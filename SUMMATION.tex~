@@ -1,24 +1,55 @@
-%version of 05-29-18
-\documentclass{article}
-\usepackage{amsfonts,amsmath,amsthm,amssymb,fullpage,makeidx,epsfig}
-\usepackage{mathptmx}
-\usepackage{amssymb}
-\usepackage{helvet}
-\usepackage{courier}
-\usepackage{makeidx}
-\usepackage{graphicx}
-\usepackage{multicol}
-\usepackage{epsfig}
-\input preamble
+%version of 06-05-18
 
-\begin{document}
 
-\begin{center}
-{\bf SUMMATION}
-\end{center}
+\chapter{SUMMATION}
+
 
 %\chapter{SUMMATION}
 %\label{ch:Summation}
+
+\section{Manifesto}
+\label{sec:manifesto}
+
+The fundamental goal of this book / chapter / section is to endow the
+reader with an operational level of conceptual and methodological
+understanding of the discrete mathematics that is used to study and
+understand computing.  We construe an ``operational'' level of
+understanding to be one that enables the reader to ``do'' mathematics.
+
+Somewhat surprising to the non-mathematician, a large portion of
+``doing'' mathematics, the widely touted ``queen of the sciences'', is
+pattern-matching---albeit of a monumentally sophisticated variety.
+Mathematicians are trained to understand pieces of reality to a depth
+that allows them to understand how apparently unrelated concepts $A$
+and $B$ can be conceptualized via the same abstract representation,
+and to analyze (computational, in our bailiwick) advantages to
+exploiting such representations.
+
+Toward the end of guiding the reader through this forest of
+abstractions, we categorize our targets in three ways
+\begin{enumerate}
+\item
+fundamental sums
+
+of intrinsic intererest
+
+e.g.: arithmetic sums, geometric sums, mathematically ``smooth'' sums
+
+\item
+fundamental techniques
+
+that work in many distinct situations
+
+e.g.: using integration for summation; grouping/replication; verification via induction
+
+\item
+fundamental representations
+
+that enable one to study the same phenomenon in many seemingly unrelated ways
+
+e.g.: numbers, Riemann sums, slices of pie, tokens arranged in stylized ways
+\end{enumerate}
+
 
 \section{Introduction}
 \label{sec:intro}
@@ -131,7 +162,7 @@ Now add the two representations of $S_1(n)$ in (\ref{eq:arith-series})
 {\em columnwise}.  Because each of the $n$ column-sums equals $n+1$,
 we find that $2 S_1(n) = n(n+1)$, which we easily rewrite as in
 (\ref{eq:sum-1-to-n}) (after multiplying both sides of the equation by
-$2$).  \qed
+$2$).
 \end{proof}
 
 It follows that our original series in (\ref{eq:arith-seq}) sums as
@@ -182,7 +213,7 @@ By direct calculation, we have
    & = & 2 \frac{n (n+1)}{2} \ \ - \ n \ \ \ \ \mbox{ by
   Proposition~\ref{thm:sum-first-integers-Gauss}} \\
    & = & (n^2 + n) - n \\
-   & = & n^2. \hfill \qed
+   & = & n^2.
 \end{eqnarray*}
 \end{proof}
 
@@ -213,7 +244,7 @@ find that
 2 S(n) \ = \ 2 \sum_{k=1}^n \ (2k-1) \ = \ 2n^2.
 \end{equation}
 We thus derive the desired summation (\ref{eq:sum-of-odds}) when we
-divide both sides of equation (\ref{eq:sum-of-odds-sum}) by $2$.  \qed
+divide both sides of equation (\ref{eq:sum-of-odds-sum}) by $2$.
 \end{proof}
 
 \subsection{Geometric Sums and Series}
@@ -232,13 +263,53 @@ We define geometric sequences and learn how to calculate their sums.
  a (1+ b + b^2 + \cdots + b^{n-1})
 \end{array}
 \end{equation}
-Easily, we can sum the series in (\ref{eq:geom-seq}) by summing just
-the sub-series
+It is clear just from this definition that we can sum the series in
+(\ref{eq:geom-seq}) by summing just the sub-series
 \begin{equation}
 \label{eq:geom-series}
 S_{b}(n) \ \eqdef \
 1+ b + b^2 + \cdots + b^{n-1}.
 \end{equation}
+
+As we develop a solution technique for sub-series
+(\ref{eq:geom-series}), we remark that when $b < 1$, an even simpler
+solution technique will show that the infinite series
+\[ \sum_{i=0}^\infty \ b^i \ = \ 1 + b + b^2 + \cdots \]
+sums to $\displaystyle \frac{1}{1-b}$.
+
+
+Toward the end of developing our first method for summing the
+sub-series (\ref{eq:geom-series}), we note the following exploitable fact.
+\begin{quote}
+This fact can be viewed as one of the ``patterns'' we referred to in
+Section~\ref{sec:manifesto} as we mentioned how mathematicians
+operate.
+\end{quote}
+\begin{equation}
+\label{eq:geom-series-replicate}
+\begin{array}{cclcl}
+S_{b}(n) 
+  & = &
+1+ b + b^2 + \cdots + b^{n-1} & & \\
+  &   &   &  & \\
+  & = &
+1 + b \cdot S_{b}(n) - b^n
+   & = & b \cdot S_{b}(n) \ + \ (1 - b^n) \\
+  &   &   &  & \\
+  & = &
+{\displaystyle
+b^{n-1} + \frac{1}{b} \cdot S_{b}(n) - \frac{1}{b}
+}
+  & = &
+{\displaystyle \frac{1}{b} \cdot S_{b}(n) \ + \ \frac{b^n -1}{b} 
+}
+\end{array}
+\end{equation}
+
+
+
+
+
 We proceed as follows.  Write $S_{b}(n)$ so that its terms are in {\em
   decreasing} order.  We thereby isolate two cases.
 \begin{enumerate}
@@ -351,7 +422,7 @@ the righthand side of that equation is divisible by $b-1$.  It follows
 therefore, that the lefthand expression, $n - s_b(n)$, is also
 divisible by $b-1$.  An easy calculation, which we leave to the
 reader, now shows that this final fact means that $n$ is divisible by
-$b-1$ if, and only if, $s_b(n)$ is.  \qed
+$b-1$ if, and only if, $s_b(n)$ is.
 \end{proof}
 
 
@@ -431,7 +502,7 @@ The segment of (\ref{eq:Lin-Recur:expand}) ``hidden'' by the vertical
 dots betokens an induction that is left to the reader.  Equations
 (\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) now enable us to
 demonstrate that (\ref{eq:Lin-Recur:solve}) is the case-structured
-solution to (\ref{eq:Lin-Recur:start}).  \qed
+solution to (\ref{eq:Lin-Recur:start}).
 \end{proof}
 
 
@@ -490,7 +561,7 @@ Fig.~\ref{fig:riemann-n2}.
   $\int_1^n \ x^2 dx$.}
 \label{fig:riemann-n2}
 \end{figure}
-\end{itemizee}
+\end{itemize}
 The strategem operates as follows.
 \begin{enumerate}
 \item
@@ -756,7 +827,7 @@ so that
 \[ c_2 \ = \ 1/2 \]
 which means that
 \[ c_1 \ = \ 1/6. \]
-We have, thus, derived equation~(\ref{eq:sum-1-to-nsq}).  \qed
+We have, thus, derived equation~(\ref{eq:sum-1-to-nsq}).  
 \end{proof}
 
 With more (calculational) work, but no new (mathematical) ideas, one
@@ -826,7 +897,7 @@ Because $n$ is an arbitrary positive integer, we conclude that
 \end{itemize}
 By the Principle of (Finite) Induction, then, we conclude that {\bf
   P}$(n)$ is true for all $n \in \N^+$.
-\qed
+
 \end{proof}
 
 \bigskip
@@ -887,4 +958,3 @@ T.H.~Cormen, C.E.~Leiserson, R.L.~Rivest, C.~Stein (2001):
 MIT Press, Cambridge, MA.
 \end{thebibliography}
 
-\end{document}

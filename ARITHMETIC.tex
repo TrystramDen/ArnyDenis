@@ -1,4 +1,4 @@
-%version of 05-17-18
+%version of 06-05-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -2476,7 +2476,7 @@ $n$ complex roots
 \index{The Binomial Theorem}
 \subsubsection{The Binomial Theorem.}
 \label{sec:Binomial-thm}
-%
+
 Perhaps the simplest bivariate polynomials are the ones in the
 following family.
 \begin{equation}
@@ -2570,7 +2570,7 @@ the coefficient $a_{n,n-r+1}$ of $x^{n-r+1}y^{r-1}$
 By induction, then, for all $n,r \in \N$ with $r \leq n$,
 \[ a_{n,r} + a_{n,r+1} \ = \ a_{n+1,r+1} \]
 Combining this equation with the observed initial conditions
-\[ a{1,0} \ = \ a_{1,1} \ = \ 1 \]
+\[ a_{1,0} \ = \ a_{1,1} \ = \ 1 \]
 we see that each coefficient $a_{n,r}$ is actually the binomial
 coefficient $\displaystyle {n \choose r}$.  This observation is
 attributed to the renowned English mathematician/physicist Isaac
@@ -2693,7 +2693,7 @@ last terms in the chain yields the claimed equation.
 
 
 Many students believe that the following result is a {\em convention}
-rather than a consequence of the basic definitions.  {\em The logarith
+rather than a consequence of the basic definitions.  {\em The logarithm
   of $1$ to any base is $0$.}
 
 \begin{prop}
@@ -2881,7 +2881,7 @@ letters is $a^k$.
 \end{prop}
 
 
-
+\ignore{*********************
 
 \subsection{Arithmetic and geometric sequences and series}
 \label{sec:sums-series}
@@ -3173,191 +3173,9 @@ divisible by $b-1$.  An easy calculation, which we leave to the
 reader, now shows that this final fact means that $n$ is divisible by
 $b-1$ if, and only if, $s_b(n)$ is.  \qed
 \end{proof}
-
-\subsection{Deriving and Solving Linear Recurrences}
-\label{sec:linear-recurrences-2}
-
-While we have discussed already discussed the use of linear
-recurrences in Section~\ref{sec:linear-recurrences-1}, we derive the
-underlying mathematics in this section
-
-By the time the reader has reached this paragraph, she has the
-mathematical tools necessary to prove and apply what is called {\it
-  The Master Theorem for Linear Recurrences} \cite{CLRS}.  This level
-of mathematical preparation should be adequate for most
-early-undergrad courses on data structures and algorithms, as well for
-for analyzing a large fraction of the algorithms that she is likely to
-encounter in daily activities.
-
-\begin{theorem}[The Master Theorem for Linear Recurrences]
-\label{thm:master-thm}
-\index{The Master Theorem for Linear Recurrences}
-Let the function $F$ be specified by the following linear recurrence.
-\begin{equation}
-\label{eq:Lin-Recur:start}
-F(n) \ = \ \left\{
-\begin{array}{cl}
-a F(n/b) + c & \mbox{for } n \geq b \\
-c & \mbox{for } n < b
-\end{array}
-\right.
-\end{equation}
-Then the value of $F$ on any argument $n$ is given by
-\begin{equation}
-\label{eq:Lin-Recur:solve}
-\begin{array}{lclll}
-F(n) & = & (1 + \log_b n)c &  & \mbox{if } a=1 \\
-     &   &                 &  & \\
-     & = &
-  {\displaystyle
-  \frac{1-a^{\log_b n}}{1-a} \ \approx \ \frac{1}{1-a}
-  }
- &  & \mbox{if } a<1 \\
-    &   &                  & & \\
-    & = &
-  {\displaystyle
-\frac{a^{\log_b n} -1}{a-1}
-  }
- & & \mbox{if } a>1
-\end{array}
-\end{equation}
-\end{theorem}
-
-\begin{proof}
-In order to discern the recurring pattern in
-(\ref{eq:Lin-Recur:start}), let us begin to ``expand'' the specified
-computation by replacing occurrences of $F(\bullet)$ as mandated in
-(\ref{eq:Lin-Recur:start}).
-\begin{equation}
-\label{eq:Lin-Recur:expand}
-\begin{array}{lcccc}
-F(n) & = & a F(n/b) + c & & \\
-     & = & a \left( a F(n/b^2) + c \right) + c
-             & = & a^2 F(n/b^2) + (1 + a)c \\
-     & = & a^2 \left( a F(n/b^3) + c \right) + (1+a)c
-             & = & a^3 F(n/b^3) + (1 + a + a^2)c \\
-     &   & \vdots & & \vdots \\
-     & = & 
-{\displaystyle
-\left( 1 + a + a^2 + \cdots + a^{\log_b n} \right) c
-} & &
-\end{array}
-\end{equation}
-The segment of (\ref{eq:Lin-Recur:expand}) ``hidden'' by the vertical
-dots betokens an induction that is left to the reader.  Equations
-(\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) now enable us to
-demonstrate that (\ref{eq:Lin-Recur:solve}) is the case-structured
-solution to (\ref{eq:Lin-Recur:start}).  \qed
-\end{proof}
+********************}
 
 
-
-\section{Elementary counting}
-
-\subsection{Binary Strings and Power Sets}
-
-\begin{prop}
-\label{thm:b-ary strings}
-For every integer $b > 1$, there are $b^n$ $b$-ary strings of length
-$n$.
-\end{prop}
-
-\begin{proof}
-The asserted numeration follows most simply by noting that there are
-always $b$ times as many $b$-ary strings of length $n$ as there are of
-length $n-1$.  This is because we can form the set of $b$-ary strings
-of length $n$ as follows.  Take the set $A_{n-1}$ of $b$-ary strings
-of length $n-1$, and make $b$ copies of it, call them $A^{(0)}_{n-1},
-A^{(1)}_{n-1}, \ldots, A^{(b-1)}_{n-1}$.  Now, append $0$ to every
-string in $A^{(0)}_{n-1}$, append $1$ to every string in
-$A^{(1)}_{n-1}$, \ldots, append $\bar{b} = b-1$ to every string in
-$A^{(b-1)}_{n-1}$.  The thus-amended sets $A^{(i)}_{n-1}$ are mutually
-disjoint (because of the terminal letters of their respective
-strings), and they collectively contain all $b$-ary strings of length
-$n$.  \qed
-\end{proof}
-
-\medskip
-
-\addcontentsline{toc}{paragraph}{-- A fun result: $n$-element sets
-  have $2^n$ subsets}
-
-\begin{prop}
-\label{thm:power-sets}
-The power set $\p(S)$ of a finite set $S$ contain $2^{|S|}$ elements.
-\end{prop}
-
-\begin{proof}
-Let us begin by taking an arbitrary finite set $S$---say of $n$
-elements---and laying its elements out in a line.  We thereby
-establish a correspondence between $S$'s elements and positive
-integers: there is the first element, which we associate with the
-integer $1$, the second element, which we associate with the integer
-$2$, and so on, until the last element along the line gets associated
-with the integer $n$.
-
-Next, let's note that we can specify any subset $S'$ of $S$ by
-specifying a length-$n$ {\em binary (i.e., base-$2$) string}, i.e., a
-string of $0$'s and $1$'s.  The translation is as follows.  If an
-element $s$ of $S$ appears in the subset $S'$, then we look at the
-integer we have associated with $s$ (via our linearization of $S$),
-and we set the corresponding bit-position of our binary string to $1$;
-otherwise, we set this bit-position to $0$.  In this way, we get a
-distinct subset of $S$ for each distinct binary string, and a distinct
-binary string for each distinct subset of $S$.
-
-Let us pause to illustrate our correspondence between sets and strings
-by focussing on the set $S = \{a,b,c\}$.  Just to make life more
-interesting, let us lay $S$'s elements out in the order $b,a,c$, so
-that $b$ has associated integer $1$, $a$ has associated integer $2$,
-and $c$ has associated integer $3$.  We depict the elements of $\p(S)$
-and the corresponding binary strings in the following table.
-\begin{center}
-\fbox{
-\begin{tabular}{c|c|c}
-Binary string & Set of integers & Subset of $S$ \\
-\hline
-$000$ & $\emptyset$ & $\emptyset$ \\
-$001$ & $\{3\}$     & $\{c\}$ \\
-$010$ & $\{2\}$     & $\{a\}$ \\
-$011$ & $\{2,3\}$   & $\{a,c\}$ \\
-$100$ & $\{1\}$     & $\{b\}$ \\
-$101$ & $\{1,3\}$   & $\{b,c\}$ \\
-$110$ & $\{1,2\}$   & $\{a,b\}$ \\
-$111$ & $\{1,2,3\}$ & $\{a,b,c\} =S$
-\end{tabular}
-}
-\end{center}
-
-Back to the Proposition: We have verified the following: {\em The
-  number of length-$n$ binary strings is the same as the number of
-  elements in the power set of $S$!}  The desired numeration thus
-follows by the ($b=2$) instance of Proposition~\ref{thm:b-ary
-  strings}.  \qed
-\end{proof}
-
-\begin{quote}
-The binary string that we have constructed to represent each set of
-integers $N \subseteq \{0, 1, \ldots, n-1\}$ is called the {\it
-(length-$n$) characteristic vector}\index{characteristic vector}
-{\it of the set} $N$.  Of course, the finite set $N$ has
-characteristic vectors of all finite lengths.  Generalizing this idea,
-{\em every} set of integers $N \subseteq \N$, whether finite or
-infinite, has an {\em infinite} characteristic vector, which is formed
-in precisely the same way as are finite characteristic vectors, but
-now using the set $\N$ as the base set.
-\end{quote}
-
-
-
-
-
-
- within discrete frameworks, including introducing
-discrete probability/likelihood as a ratio:
-\[ 
-\frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
-\]
 
 
 \section{Congruences and Modular Arithmetic}
@@ -3418,6 +3236,7 @@ students' preparation), then one would do well to insist on
 familiarity with notions such as:
 
 
+\ignore{*********
 
 \section{Advanced Topics}
 
@@ -3430,3 +3249,4 @@ norms/metrics: $L_1$ (Manhattan, or, rook's-move distance), $L_2$
 
 \subsection{Edit-distance: a measure of closeness in {\em string spaces}}
 
+***************}
