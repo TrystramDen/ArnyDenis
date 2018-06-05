@@ -1,0 +1,76 @@
+
+\chapter{Deriving and Solving Linear Recurrences}
+\label{sec:linear-recurrences-2}
+
+While we have discussed already discussed the use of linear
+recurrences in Section~\ref{sec:linear-recurrences-1}, we derive the
+underlying mathematics in this section
+
+By the time the reader has reached this paragraph, she has the
+mathematical tools necessary to prove and apply what is called {\it
+  The Master Theorem for Linear Recurrences} \cite{CLRS}.  This level
+of mathematical preparation should be adequate for most
+early-undergrad courses on data structures and algorithms, as well for
+for analyzing a large fraction of the algorithms that she is likely to
+encounter in daily activities.
+
+\begin{theorem}[The Master Theorem for Linear Recurrences]
+\label{thm:master-thm}
+\index{The Master Theorem for Linear Recurrences}
+Let the function $F$ be specified by the following linear recurrence.
+\begin{equation}
+\label{eq:Lin-Recur:start}
+F(n) \ = \ \left\{
+\begin{array}{cl}
+a F(n/b) + c & \mbox{for } n \geq b \\
+c & \mbox{for } n < b
+\end{array}
+\right.
+\end{equation}
+Then the value of $F$ on any argument $n$ is given by
+\begin{equation}
+\label{eq:Lin-Recur:solve}
+\begin{array}{lclll}
+F(n) & = & (1 + \log_b n)c &  & \mbox{if } a=1 \\
+     &   &                 &  & \\
+     & = &
+  {\displaystyle
+  \frac{1-a^{\log_b n}}{1-a} \ \approx \ \frac{1}{1-a}
+  }
+ &  & \mbox{if } a<1 \\
+    &   &                  & & \\
+    & = &
+  {\displaystyle
+\frac{a^{\log_b n} -1}{a-1}
+  }
+ & & \mbox{if } a>1
+\end{array}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+In order to discern the recurring pattern in
+(\ref{eq:Lin-Recur:start}), let us begin to ``expand'' the specified
+computation by replacing occurrences of $F(\bullet)$ as mandated in
+(\ref{eq:Lin-Recur:start}).
+\begin{equation}
+\label{eq:Lin-Recur:expand}
+\begin{array}{lcccc}
+F(n) & = & a F(n/b) + c & & \\
+     & = & a \left( a F(n/b^2) + c \right) + c
+             & = & a^2 F(n/b^2) + (1 + a)c \\
+     & = & a^2 \left( a F(n/b^3) + c \right) + (1+a)c
+             & = & a^3 F(n/b^3) + (1 + a + a^2)c \\
+     &   & \vdots & & \vdots \\
+     & = & 
+{\displaystyle
+\left( 1 + a + a^2 + \cdots + a^{\log_b n} \right) c
+} & &
+\end{array}
+\end{equation}
+The segment of (\ref{eq:Lin-Recur:expand}) ``hidden'' by the vertical
+dots betokens an induction that is left to the reader.  Equations
+(\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) now enable us to
+demonstrate that (\ref{eq:Lin-Recur:solve}) is the case-structured
+solution to (\ref{eq:Lin-Recur:start}).  \qed
+\end{proof}

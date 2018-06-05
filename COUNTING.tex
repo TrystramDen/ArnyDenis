@@ -1,0 +1,109 @@
+
+\chapter{COUNTING}
+
+\section{Elementary counting}
+
+\subsection{Binary Strings and Power Sets}
+
+\begin{prop}
+\label{thm:b-ary strings}
+For every integer $b > 1$, there are $b^n$ $b$-ary strings of length
+$n$.
+\end{prop}
+
+\begin{proof}
+The asserted numeration follows most simply by noting that there are
+always $b$ times as many $b$-ary strings of length $n$ as there are of
+length $n-1$.  This is because we can form the set of $b$-ary strings
+of length $n$ as follows.  Take the set $A_{n-1}$ of $b$-ary strings
+of length $n-1$, and make $b$ copies of it, call them $A^{(0)}_{n-1},
+A^{(1)}_{n-1}, \ldots, A^{(b-1)}_{n-1}$.  Now, append $0$ to every
+string in $A^{(0)}_{n-1}$, append $1$ to every string in
+$A^{(1)}_{n-1}$, \ldots, append $\bar{b} = b-1$ to every string in
+$A^{(b-1)}_{n-1}$.  The thus-amended sets $A^{(i)}_{n-1}$ are mutually
+disjoint (because of the terminal letters of their respective
+strings), and they collectively contain all $b$-ary strings of length
+$n$.  \qed
+\end{proof}
+
+\medskip
+
+\addcontentsline{toc}{paragraph}{-- A fun result: $n$-element sets
+  have $2^n$ subsets}
+
+\begin{prop}
+\label{thm:power-sets}
+The power set $\p(S)$ of a finite set $S$ contain $2^{|S|}$ elements.
+\end{prop}
+
+\begin{proof}
+Let us begin by taking an arbitrary finite set $S$---say of $n$
+elements---and laying its elements out in a line.  We thereby
+establish a correspondence between $S$'s elements and positive
+integers: there is the first element, which we associate with the
+integer $1$, the second element, which we associate with the integer
+$2$, and so on, until the last element along the line gets associated
+with the integer $n$.
+
+Next, let's note that we can specify any subset $S'$ of $S$ by
+specifying a length-$n$ {\em binary (i.e., base-$2$) string}, i.e., a
+string of $0$'s and $1$'s.  The translation is as follows.  If an
+element $s$ of $S$ appears in the subset $S'$, then we look at the
+integer we have associated with $s$ (via our linearization of $S$),
+and we set the corresponding bit-position of our binary string to $1$;
+otherwise, we set this bit-position to $0$.  In this way, we get a
+distinct subset of $S$ for each distinct binary string, and a distinct
+binary string for each distinct subset of $S$.
+
+Let us pause to illustrate our correspondence between sets and strings
+by focussing on the set $S = \{a,b,c\}$.  Just to make life more
+interesting, let us lay $S$'s elements out in the order $b,a,c$, so
+that $b$ has associated integer $1$, $a$ has associated integer $2$,
+and $c$ has associated integer $3$.  We depict the elements of $\p(S)$
+and the corresponding binary strings in the following table.
+\begin{center}
+\fbox{
+\begin{tabular}{c|c|c}
+Binary string & Set of integers & Subset of $S$ \\
+\hline
+$000$ & $\emptyset$ & $\emptyset$ \\
+$001$ & $\{3\}$     & $\{c\}$ \\
+$010$ & $\{2\}$     & $\{a\}$ \\
+$011$ & $\{2,3\}$   & $\{a,c\}$ \\
+$100$ & $\{1\}$     & $\{b\}$ \\
+$101$ & $\{1,3\}$   & $\{b,c\}$ \\
+$110$ & $\{1,2\}$   & $\{a,b\}$ \\
+$111$ & $\{1,2,3\}$ & $\{a,b,c\} =S$
+\end{tabular}
+}
+\end{center}
+
+Back to the Proposition: We have verified the following: {\em The
+  number of length-$n$ binary strings is the same as the number of
+  elements in the power set of $S$!}  The desired numeration thus
+follows by the ($b=2$) instance of Proposition~\ref{thm:b-ary
+  strings}.  \qed
+\end{proof}
+
+\begin{quote}
+The binary string that we have constructed to represent each set of
+integers $N \subseteq \{0, 1, \ldots, n-1\}$ is called the {\it
+(length-$n$) characteristic vector}\index{characteristic vector}
+{\it of the set} $N$.  Of course, the finite set $N$ has
+characteristic vectors of all finite lengths.  Generalizing this idea,
+{\em every} set of integers $N \subseteq \N$, whether finite or
+infinite, has an {\em infinite} characteristic vector, which is formed
+in precisely the same way as are finite characteristic vectors, but
+now using the set $\N$ as the base set.
+\end{quote}
+
+
+
+
+
+
+ within discrete frameworks, including introducing
+discrete probability/likelihood as a ratio:
+\[ 
+\frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
+\]
