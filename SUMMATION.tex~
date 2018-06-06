@@ -1,11 +1,8 @@
-%version of 06-05-18
-
+%version of 06-06-18
 
 \chapter{SUMMATION}
+\label{ch:Summation}
 
-
-%\chapter{SUMMATION}
-%\label{ch:Summation}
 
 \section{Manifesto}
 \label{sec:manifesto}
@@ -17,13 +14,15 @@ understand computing.  We construe an ``operational'' level of
 understanding to be one that enables the reader to ``do'' mathematics.
 
 Somewhat surprising to the non-mathematician, a large portion of
-``doing'' mathematics, the widely touted ``queen of the sciences'', is
-pattern-matching---albeit of a monumentally sophisticated variety.
-Mathematicians are trained to understand pieces of reality to a depth
-that allows them to understand how apparently unrelated concepts $A$
-and $B$ can be conceptualized via the same abstract representation,
-and to analyze (computational, in our bailiwick) advantages to
-exploiting such representations.
+``doing'' mathematics, the widely touted ``queen of the
+sciences''\footnote{See, e.g., Wolfgang Sartorius von Waltershausen,
+  {\it Gauss zum Ged\"{a}chtniss} (1856).}, is pattern-matching---albeit
+of a monumentally sophisticated variety.  Mathematicians are trained
+to understand pieces of reality to a depth that allows them to
+understand how apparently unrelated concepts $A$ and $B$ can be
+conceptualized via the same abstract representation, and to analyze
+(computational, in our bailiwick) advantages to exploiting such
+representations.
 
 Toward the end of guiding the reader through this forest of
 abstractions, we categorize our targets in three ways
@@ -50,6 +49,8 @@ that enable one to study the same phenomenon in many seemingly unrelated ways
 e.g.: numbers, Riemann sums, slices of pie, tokens arranged in stylized ways
 \end{enumerate}
 
+{\em We treat each topic in multiple ways, as long as each new way
+  teaches the reader a new lesson.}
 
 \section{Introduction}
 \label{sec:intro}
@@ -277,14 +278,23 @@ solution technique will show that the infinite series
 \[ \sum_{i=0}^\infty \ b^i \ = \ 1 + b + b^2 + \cdots \]
 sums to $\displaystyle \frac{1}{1-b}$.
 
+\bigskip
 
 Toward the end of developing our first method for summing the
-sub-series (\ref{eq:geom-series}), we note the following exploitable fact.
+sub-series (\ref{eq:geom-series}), we note that we can rewrite
+$S_b(n)$ in two ways that are {\em recurrent}.
 \begin{quote}
-This fact can be viewed as one of the ``patterns'' we referred to in
-Section~\ref{sec:manifesto} as we mentioned how mathematicians
-operate.
+{\em This fact can be viewed as one of the ``patterns'' we referred to
+  in Section~\ref{sec:manifesto} as we mentioned how mathematicians
+  operate.}
 \end{quote}
+Both recurrent epressions have the form
+\begin{equation}
+\label{eq:geom-series-recurrent}
+S_b(n) \ = \ \alpha \cdot S_b(n) \ + \ \beta(n)
+\end{equation}
+where $\alpha$ is a constant and $\beta(n)$ is a function of $n$; both
+may depend on the parameter $b$.
 \begin{equation}
 \label{eq:geom-series-replicate}
 \begin{array}{cclcl}
@@ -306,35 +316,32 @@ b^{n-1} + \frac{1}{b} \cdot S_{b}(n) - \frac{1}{b}
 \end{array}
 \end{equation}
 
+The significance of a recurrent expression of the form
+(\ref{eq:geom-series-recurrent}) is that it exposes an explicit value
+for $S_b(n)$:
+\begin{equation}
+\label{eq:geom-series-generic}
+S_b(n) \ = \ \frac{\beta(n)}{1 - \alpha}
+\end{equation}
 
-
-
-
-We proceed as follows.  Write $S_{b}(n)$ so that its terms are in {\em
-  decreasing} order.  We thereby isolate two cases.
+We can now combine the generic value (\ref{eq:geom-series-generic}) of
+$S_b(n)$ with the specialized recurrent expressions for $S_b(n)$ in
+(\ref{eq:geom-series-replicate}) to derive two explicit solutions for
+$S_b(n)$.
 \begin{enumerate}
 \item
-Say first that $b > 1$.  In this case, we write the series in the form
-\[ S^{b>1}_{b}(n) \ = \ b^{n-1} + b^{n-2} + \cdots + b^2 + b + 1, \]
-and we note that
-\[ S^{b>1}_{b}(n) \ = \
-b^{n-1} \ + \ \frac{1}{b} \cdot S^{b>1}_{b}(n) \ - \ \frac{1}{b}. \]
-In other words, we have
+The first solution is most useful and perspicuous when $b>1$.  In this
+case, we find that
 \[ \left( 1 - \frac{1}{b} \right)  S^{b>1}_{b}(n) \ = \ b^{n-1} -
-\frac{1}{b}, \]
-or equivalently,
+\frac{1}{b}, \] or equivalently,
 \begin{equation}
 \label{eq:geom-sum:b>1}
 S^{b>1}_{b}(n) \ = \ \frac{b^{n}- 1}{b - 1}.
 \end{equation}
 
 \item
-Alternatively, if $b < 1$, then we write the series in the form
-\[ S^{b<1}_{b}(n) \ = \ 1+ b + b^2 + b^3 + \cdots + b^{n-1}. \]
-and we note that
-\[ S^{b<1}_{b}(n) \ = \
-1 \ + \ b \cdot S^{b<1}_{b}(n) \ - \ b^n. \] 
-In other words,
+The second solution is most useful and perspicuous when $b < 1$.  In this
+case, we find that
 \[ (1-b) S^{b<1}_{b}(n) \ = \ 1 \ - \ b^n \]
 or equivalently,
 \begin{equation}
@@ -343,10 +350,9 @@ S^{b<1}_{b}(n) \ = \ \frac{1 - b^n}{1-b}.
 \end{equation}
 \end{enumerate}
 
-Note that $S^{b>1}_{b}(n)$ and $S^{b<1}_{b}(n)$ actually have the same
-form.  We have chosen to write them differently to stress their {\em
-  approximate} values, which are useful in ``back-of-the-envelope''
-calculations:  For very large values of $n$, we have
+Note that $S^{b>1}_{b}(n)$ and $S^{b<1}_{b}(n)$ have simple {\em
+  approximate} values which are useful in ``back-of-the-envelope''
+calculations: For very large values of $n$, we have
 \begin{equation}
 \label{eq:geom-sum:approx}
 S^{b>1}_{b}(n) \ \approx \ \frac{b^n}{b-1} \ \ \
@@ -354,10 +360,10 @@ S^{b>1}_{b}(n) \ \approx \ \frac{b^n}{b-1} \ \ \
 S^{b<1}_{b}(n) \ \approx \ \frac{1}{1-b} .
 \end{equation}
 
-\medskip
+\bigskip
 
-%\addcontentsline{toc}{paragraph}{-- A fun result: When is an integer
-%  divisible by $9$?}
+\addcontentsline{toc}{paragraph}{-- A fun result: When is an integer
+ divisible by $9$?}
 
 We now exploit our ability to sum geometric sums to illustrate a
 somewhat surprising, nontrivial fact about integers that are
@@ -425,7 +431,7 @@ reader, now shows that this final fact means that $n$ is divisible by
 $b-1$ if, and only if, $s_b(n)$ is.
 \end{proof}
 
-
+\ignore{********************
 \subsection{Deriving and Solving Linear Recurrences}
 \label{sec:linear-recurrences-2}
 
@@ -504,7 +510,7 @@ dots betokens an induction that is left to the reader.  Equations
 demonstrate that (\ref{eq:Lin-Recur:solve}) is the case-structured
 solution to (\ref{eq:Lin-Recur:start}).
 \end{proof}
-
+********************}
 
 \section{On Summing ``Smooth'' Series}
 \label{sec:smooth-series}
@@ -951,10 +957,12 @@ By the Principle of (Finite) Induction, then, we conclude that {\bf
   P}$(n)$ is true for all $n \in \N^+$.
 \qed
 
+
+\ignore{**********
 \begin{thebibliography}{9}
 \bibitem{CLRS}
 T.H.~Cormen, C.E.~Leiserson, R.L.~Rivest, C.~Stein (2001):
 {\it Introduction to Algorithms (2nd ed.)}.
 MIT Press, Cambridge, MA.
 \end{thebibliography}
-
+***********}
