@@ -7,11 +7,45 @@
 \label{sec:reasoning-via-proofs}
 
 We survey some important proof techniques
+In what extent Maths are useful in Computer Science? 
 
-\subsection{Proof, Implication, Equivalence}
-\label{sec:basic-logic}
+\subsection{Classical methods/technics}
 
+Traditional proofs are based on logics and use inductive arguments.
+Formal proofs can be automatically derived using computers that can achieve today very high performances. 
+But there is clearly a limit of formal proofs, 
+may be this is the reason why the field of Mathematics is not popular (or at least, seen as hard)... 
+As a consequence, Mathematics are taught as recipes that the students do not always understand or at least understand superficially. 
+Some of them are understanding the solutions, but they are unable to redo similar proofs in a different situation.
+It is not always easy to find how to start a proof.
+In the real life, it is common to have absolutely no idea about what we are looking for. 
+We should first be convinced that the target result is true and then,
+find a way to prove it. A lot of students have already some problems at this early step.
+Thus, we should develop intuition and learn through well-chosen examples using a lot of various techniques. 
 
+\subsection{Unconventional technics}
+
+A lot of situations in Computer Science involve positive natural numbers (integers).
+A nice way for proving related results is to represent them by sets of items (bullets, squares)
+and to use one of the following principle:
+Fubini's principle is to count such items in two different ways.
+Obviously, the answer is the same, and thus, it provides the value we are looking for.
+
+Another way is to restrict particularly to geometric figures where the counting is done by computing basic surfaces. 
+
+\subsection{All means are good}
+
+We are interested in this course in learning useful techniques to prove mathematical results.
+But what is really a "mathematical proof" (especially in the area of Computer Science)?
+Ren\'e Thom, a famous french mathematician (inventor of the Chaos theory who obtained the Field medal), defined it as \textit{a rigorous process 
+that creates a state of evidence for educated readers who leads their adherence}. 
+
+{\Denis Develop a simple example here? consider a graph and show that the sum of the degrees is equal to twice the number of edges.}
+
+{\Denis For me, pigeon holes in some extent fit into this category...}
+
+{\Denis Should we add here the concept of Proof by computer?
+Used for instance in the 4-color theorem...}
 
 \medskip
 
@@ -338,6 +372,9 @@ powers, i.e., the quantity $S^{(k)}_n$, for any positive integer $k$.
 \label{sec:contradiction-technique}
 \index{proof by contradiction!technique}
 
+\Denis{Latin name is:
+contradictio in contrarium}
+
 The basic principle that underlies proof by contradiction is that the
 following {\em metamathematical} assertions are logically equivalent.
 \begin{itemize}
@@ -453,8 +490,19 @@ numbers.  \qed
 \end{proof}
 
 
+
+\subsection{Geometrical and graphical proofs}
+\label{sec:unconvetionalproofs}
+
+\subsubsection{An old and simple example}
+
+\subsubsection{Fubini's principle}
+
+
 \subsection{Proofs via the Pigeonhole Principle}
 \label{sec:pigeonhole}
+
+\Denis{Is it a technique by itself like the other ones or should it be integrated into another one -- on thus, which one?}
 
 The proof technique we discuss now builds on an observation that is
 almost embarrassingly obvious---yet its simplicity is exceeded by its
@@ -482,7 +530,7 @@ into boxes must place at least two pigeons into the same box.
 You have $n$ pairs of socks, the socks in each pair having a distinct
 color (one pair of red socks, one pair of blue socks, \ldots).  Since
 you wake up ``very slowly'', you want to grab some number of unpaired
-socks that is cerain to yield at least one pair of smame-color socks.
+socks that is certain to yield at least one pair of same-color socks.
 Clearly, if you grab any $n+1$ socks (the pigeons), the pigeonhole
 principle guarantees that you have at least one monochromatic pair,
 because there are only $n$ distinct sock-colors (the boxes).
@@ -496,6 +544,8 @@ You are attending a conference and wander into a lecture that has 367
 attendees (including you).  It is certain that at least two attendees
 share the same birthday: there are 366 possible birthdays (the boxes
 for a leap year) and 367 birthday-possessors (the pigeons).
+
+\Denis{May be we can put this in exercice and add the anniversary paradox which state a similar question with probabilities?}
 
 \medskip
 
@@ -606,47 +656,55 @@ possibility that {\em both} option A {\em and} option B are true!  \qed
 \end{proof}
 
 
+\section{Bijection between sets and combinatorial proofs}
+
+\Denis{A nice example but rather complicated here may be the proof of the little Fermat theorem}
+
+
 \section{Reasoning via Mathematical Analysis}
 \label{sec:analysis}
 
-\subsection{Analyses via Linear Recurrences}
-\label{sec:linear-recurrences-1}
+\Denis{I am not clear about this section.
+What should it contain?}
 
-\begin{theorem}[The Master Theorem for Linear Recurrences]
-\label{thm:master-thm-1}
-\index{The Master Theorem for Linear Recurrences}
-Let the function $F$ be specified by the following linear recurrence.
-\begin{equation}
-\label{eq:Lin-Recur:start-1}
-F(n) \ = \ \left\{
-\begin{array}{cl}
-a F(n/b) + c & \mbox{for } n \geq b \\
-c & \mbox{for } n < b
-\end{array}
-\right.
-\end{equation}
-Then the value of $F$ on any argument $n$ is given by
-\begin{equation}
-\label{eq:Lin-Recur:solve-1}
-\begin{array}{lclll}
-F(n) & = & (1 + \log_b n)c &  & \mbox{if } a=1 \\
-     &   &                 &  & \\
-     & = &
-  {\displaystyle
-  \frac{1-a^{\log_b n}}{1-a} \ \approx \ \frac{1}{1-a}
-  }
- &  & \mbox{if } a<1 \\
-    &   &                  & & \\
-    & = &
-  {\displaystyle
-\frac{a^{\log_b n} -1}{a-1}
-  }
- & & \mbox{if } a>1
-\end{array}
-\end{equation}
-\end{theorem}
-
-
+%\subsection{Analyses via Linear Recurrences}
+%\label{sec:linear-recurrences-1}
+%
+%\begin{theorem}[The Master Theorem for Linear Recurrences]
+%\label{thm:master-thm-1}
+%\index{The Master Theorem for Linear Recurrences}
+%Let the function $F$ be specified by the following linear recurrence.
+%\begin{equation}
+%\label{eq:Lin-Recur:start-1}
+%F(n) \ = \ \left\{
+%\begin{array}{cl}
+%a F(n/b) + c & \mbox{for } n \geq b \\
+%c & \mbox{for } n < b
+%\end{array}
+%\right.
+%\end{equation}
+%Then the value of $F$ on any argument $n$ is given by
+%\begin{equation}
+%\label{eq:Lin-Recur:solve-1}
+%\begin{array}{lclll}
+%F(n) & = & (1 + \log_b n)c &  & \mbox{if } a=1 \\
+%     &   &                 &  & \\
+%     & = &
+%  {\displaystyle
+%  \frac{1-a^{\log_b n}}{1-a} \ \approx \ \frac{1}{1-a}
+%  }
+% &  & \mbox{if } a<1 \\
+%    &   &                  & & \\
+%    & = &
+%  {\displaystyle
+%\frac{a^{\log_b n} -1}{a-1}
+%  }
+% & & \mbox{if } a>1
+%\end{array}
+%\end{equation}
+%\end{theorem}
+%
+%
 
 
 \subsection{Asymptotics}
@@ -873,5 +931,9 @@ complicated in the multivariate settings engendered by PDC.  But, the
 benefits of being able to reason qualitatively about the quantitative
 aspects of computing increase at least commensurately!
 
+\subsection{Dealing with infinity}
 
+{\Denis is it the right place here?
+The message is: the classical thinking and way for proving does not apply automatically to infinity.
+There are several well-known paradox}
 
