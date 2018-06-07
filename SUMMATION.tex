@@ -1,4 +1,4 @@
-%version of 06-06-18
+%version of 06-07-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -286,6 +286,7 @@ By direct calculation, we have
 \label{sec:geometric-sums}
 
 \subsubsection{General development}
+\label{sec:general-geometric}
 
 We define geometric sequences and learn how to calculate their sums.
 
@@ -404,9 +405,97 @@ S^{b<1}_{b}(n) \ \approx \ \frac{1}{1-b} .
 
 \subsubsection{Applications}
 
+\paragraph{A. On summing ``extended'' geometric series}
+
+We now build on our sums (\ref{eq:geom-sum:b>1},
+\ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
+call ``extended'' geometric series (not a standard term), i.e., series
+of the form
+\[ S_b^{(c)}(n) \ eqdef \ \sum_{i=1}^n \ i^c b^i \]
+where $c$ is an arbitrary fixed positive integer, and $b$ is an
+arbitrary fixed real number.
+
+When $c=0$, the resulting ``extended'' geometric series is just a
+geometric series, which we have studied in
+Section~\ref{sec:general-geometric}.  For brevity, we ignore the case
+$b = 1$, which is dealt with adequately elsewhere in this chapter,
+including in Section~\ref{sec:smooth-series}.  For all other values of
+$b$ and $c$, our summation-solving strategy has two primary goals:
+\begin{itemize}
+\item
+It should be {\em inductive} in parameter $c$.  That is, the strategy
+should compute a sum for the series $S_b^{(c)}(n)$ in terms of earlier
+discovered sums for $S_b^{(c-1)}(n)$, $S_b^{(2)}(n)$, \ldots,
+$S_b^{(0)}(n) = S_b(n)$.
+
+\item
+It should rely on the recurrent-subexpression strategy which was so
+effective in Section~\ref{sec:general-geometric}.
+\end{itemize}
+We illustrate our strategy in detail for the case $c=1$ and sketch
+only briefly how it deals with larger values of $c$.  Elementary
+algebraic manipulations which are suggested by the analysis in the
+case $c=1$ should thereby allow the reader to deal with any value $c >
+1$.
+
+We begin to develop our strategy by noting that
+\[ S_b^{(1)}(n) \ = \ \sum_{i=1}^n \ i b^i  \]
+so that
+\begin{equation}
+\label{eq:ext-geom-c=1.1}
+S_b^{(1)}(n+1) \ = \ S_b^{(1)}(n) \ + \ (n+1) b^{n+1}
+\end{equation}
+Reasoning somewhat differently,
+\begin{eqnarray*}
+S_b^{(1)}(n+1)
+     & = &
+\sum_{i=1}^n \ (i+1) b^{(i+1)} \ + \ b \\
+     & = &
+b \cdot \sum_{i=1}^n \ (i+1) b^i \ + \ b \\
+     & = &
+b \cdot \left(
+\left(\sum_{i=1}^n \ i b^i \right)
+ \ + \
+\left( \sum_{i=1}^n \  b^i \right)
+\right) \ + \ b \\
+     & = &
+b \cdot \left( S_b^{(1)}(n) \ + \ S_b^{(0)}(n) \right) \ + \ b \\
+\label{eq:ext-geom-c=1.2}
+    & = &
+b \cdot S_b^{(1)}(n) \ + \ b \cdot \frac{b^{n+1} + b - 2}{b-1}
+\end{eqnarray*}
+Combining (\ref{eq:ext-geom-c=1.1}) and (\ref{eq:ext-geom-c=1.2}) we
+finally obtain
+\[ S_b^{(1)}(n) \ = \
+\frac{1}{b-1} \cdot \left(
+(n+1) \cdot b^{n+1}
+  \ - \
+\frac{b}{b-1} \cdot (b^{n+1} - 1)
+\right)
+\]
+
+**HERE
+
+\[
+ \ = \ \sum_{i=1}^n \ i^c b^i \]
+\[
+S_b^{(c+1)}(n) \ = \ 
+\]
+
+\[
+S_b^{(c+1)}(n)
+ \ = \
+b \ + \ 2^{c+1} b^2\ + \ 3^{c+1} b^3 \ + \ \cdots \ + \ n^{c+1} b^n
+ \ = \
+b \ + \ 2 b^2\ + \ 3 b^3 \ + \ \cdots \ + \ n b^n
+\]
+
+
+
+
 %\addcontentsline{toc}{subsubsection}{-- A fun result: When is an integer divisible by $9$?}
 
-\paragraph{A. A result about positional number systems}
+\paragraph{B. Detecting properties of a number $n$ via $n$'s base-$b$ (positional) numeral}
 
 We now exploit our ability to sum geometric sums to illustrate a
 somewhat surprising, nontrivial fact about integers that are
