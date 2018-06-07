@@ -162,10 +162,10 @@ as a pre-teenager.
 \label{eq:arith-series}
 \begin{array}{llccccccccc}
 \mbox{Write $S_1(n)$ ``forwards'':} &
-\hspace*{.25in}\sum_{i=1}^n \ = & 1 & + & 2   & + & \cdots & + & (n-1) & + & n \\
+\hspace*{.2in}\sum_{i=1}^n \ i \ = & 1 & + & 2   & + & \cdots & + & (n-1) & + & n \\
  & & & & & & & & & &  \\
 \mbox{Write $S_1(n)$ ``in reverse'':} &
-\hspace*{.25in}\sum_{i=1}^n \ = & n & + & (n-1) & + & \cdots & + & 2   & + & 1
+\hspace*{.2in}\sum_{i=n}^1 \ i \ = & n & + & (n-1) & + & \cdots & + & 2   & + & 1
 \end{array}
 \end{equation}
 Now add the two representations of $S_1(n)$ in (\ref{eq:arith-series})
@@ -411,7 +411,7 @@ We now build on our sums (\ref{eq:geom-sum:b>1},
 \ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
 call ``extended'' geometric series (not a standard term), i.e., series
 of the form
-\[ S_b^{(c)}(n) \ eqdef \ \sum_{i=1}^n \ i^c b^i \]
+\[ S_b^{(c)}(n) \ \eqdef \ \sum_{i=1}^n \ i^c b^i \]
 where $c$ is an arbitrary fixed positive integer, and $b$ is an
 arbitrary fixed real number.
 
@@ -662,53 +662,24 @@ The areas under the enveloping continuous functions---which we can
 calculate via integration---provide the desired bounds on the
 summations.
 
-The continuous functions that enable this method are obtained by the
-following stratagem, which we illustrate for
-\begin{itemize}
-\item
-the {\it harmonic} summation $S_{(harmonic)}(n) \eqdef \sum_{i=1}^n
-  \ 1/i$ in Fig.~\ref{fig:riemann-harmonic}.
-\begin{figure}[htb]
-\centerline{
-\includegraphics[scale=0.42]{riemann2.pdf}
-}
-\caption{The summation $S_{(harmonic)}(n) = \sum_{i=1}^n \ 1/i$
-  represented by the aggregate area of a sequence of unit-width
-  rectangles, and bounded above an below by and ``enveloping'' pair of
-  integrals.  The integral that provides the upper bound on the sum
-  yields the area under the righthand continuous curve ($a$), namely,
-  $\displaystyle \int_1^n \ \frac{1}{x} dx$.  The integral that
-  provides the lower bound yields the area under the lefthand
-  continuous curve ($b$), namely, $\displaystyle \int_0^{n-1}
-  \ \frac{1}{x+1} dx$.}
-\label{fig:riemann-harmonic}
-\end{figure}
+DEFINE ABSTRACTLY
 
-\item
-the summation $S_2(n) \eqdef \sum_{i=1}^n \ i^2$ in
-Fig.~\ref{fig:riemann-n2}.
-\begin{figure}[htb]
-\centerline{
-\includegraphics[scale=0.42]{riemann.pdf}
-}
-\caption{The summation $S_2(n) = \sum_{i=1}^n \ i^2$ represented by
-  the aggregate area of a sequence of unit-width rectangles, and
-  bounded above an below by and ``enveloping'' pair of integrals.  The
-  integral that provides the upper bound on the sum yields the area
-  under the lefthand continuous curve ($a$), namely, $\int_0^n
-  \ (x+1)^2 dx$.  The integral that provides the lower bound yields
-  the area under the righthand continuous curve ($b$), namely,
-  $\int_1^n \ x^2 dx$.}
-\label{fig:riemann-n2}
-\end{figure}
-\end{itemize}
+
 The strategem operates as follows.
 \begin{enumerate}
 \item
-Represent the summands seriatim as abutting unit-width rectangles.  In
-Fig.~\ref{fig:riemann-n2}, for instance, these rectangles have heights
-$1$, $4$, $9$, $16$, and $25$.  If we were to extend the figure, then
-next rectangle would have height $36$.
+Represent the summands seriatim as abutting unit-width rectangles.  
+  \begin{itemize}
+  \item
+In Fig.~\ref{fig:riemann-harmonic}, for instance, these rectangles have
+heights $12$, $6$, $4$, $3$, $16/3$, and $2$.  If we were to extend the
+figure, then next rectangle would have height $16/7$.
+
+  \item
+In Fig.~\ref{fig:riemann-n2}, for instance, these rectangles have
+heights $1$, $4$, $9$, $16$, and $25$.  If we were to extend the
+figure, then next rectangle would have height $36$.
+  \end{itemize}
 
 \item
 Construct the continuous curve that will yield (via integration) the
@@ -725,12 +696,39 @@ summation.  When constructed appropriately, this curve lies completely
 within the area subtended by the abutting rectangles.
 \end{enumerate}
 
-\subsubsection{Summing prefixes of the harmonic series.}
+\subsubsection{Summing finite prefixes of the harmonic series.}
 TO BE DONE
 
+The {\it harmonic series} and its finite prefixes are the following
+summations.
+\begin{equation}
+\label{eq:harmonic}
+\begin{array}{lcll}
+S^{(H)} & = & {\displaystyle \sum_{i=1}^\infty \ \frac{1}{i}} & \hspace*{.25in}
+  \mbox{the full harmonic series} \\
+S_n^{(H)} & = & {\displaystyle \sum_{i=1}^n \ \frac{1}{i} } & \hspace*{.25in}
+  \mbox{the $n$-term harmonic summation} \\
+\end{array}
+\end{equation}
 
+\begin{figure}[htb]
+\centerline{
+\includegraphics[scale=0.42]{riemann2.pdf}
+}
+\caption{The summation $S^{(H)}(n) \ = \ \sum_{i=1}^n \ 1/i$
+  represented by the aggregate area of a sequence of unit-width
+  rectangles, and bounded above an below by an ``enveloping'' pair of
+  integrals.  The integral that provides the upper bound on the sum
+  yields the area under the righthand continuous curve ($a$), namely,
+  $\displaystyle \int_1^n \ \frac{1}{x} dx$.  The integral that
+  provides the lower bound yields the area under the lefthand
+  continuous curve ($b$), namely, $\displaystyle \int_0^{n-1}
+  \ \frac{1}{x+1} dx$.}
+\label{fig:riemann-harmonic}
+\end{figure}
 
-\subsubsection{Summing successive powers.}
+\subsubsection{Summing successive perfect squares or cubes or \ldots}
+
 We illustrate the technique of bounding summations via integrals by
 focusing on the summations
 \[ S_k(n) \ \eqdef \ \sum_{i=1}^n \ i^k, \]
@@ -738,6 +736,22 @@ for arbitrary positive integers $k$.  The technique generalizes far
 beyond the summations $S_k(n)$, but this single illustration should
 give the reader a firm basis from which to extrapolate to more general
 summations.
+
+\begin{figure}[htb]
+\centerline{
+\includegraphics[scale=0.42]{riemann.pdf}
+}
+\caption{The summation $S_2(n) = \sum_{i=1}^n \ i^2$ represented by
+  the aggregate area of a sequence of unit-width rectangles, and
+  bounded above an below by and ``enveloping'' pair of integrals.  The
+  integral that provides the upper bound on the sum yields the area
+  under the lefthand continuous curve ($a$), namely, $\int_0^n
+  \ (x+1)^2 dx$.  The integral that provides the lower bound yields
+  the area under the righthand continuous curve ($b$), namely,
+  $\int_1^n \ x^2 dx$.}
+\label{fig:riemann-n2}
+\end{figure}
+
 
 We begin by describing the technique in detail for the summation
 $\displaystyle S_2(n) = \sum_{i=1}^n \ i^2$.  We shall then indicate
@@ -779,20 +793,22 @@ Newton's {\it Binomial Theorem}.\footnote{The general form of the
   Binomial Theorem expands the polynomial $(x+y)^k$ rather than
   $(x+1)^k$.}
 
-\bigskip
+\begin{theorem}[The Restricted Binomial Theorem]
+\label{thm:restricted-binomial-thm}
+For all positive integers $k$,
+\[ (x+1)^k \ = \
+\sum_{i=0}^k \ \ {k \choose i} x^{k-i}.
+\]
+\end{theorem}
 
-\noindent {\bf The Restricted Binomial Theorem.}
-{\em
-For all positive integers} $k$, \
-$\displaystyle (x+1)^k \ = \
-\sum_{i=0}^k \ \ {k \choose i} x^{k-i}$.
-\footnote{
+\begin{quote}
 As usual, the {\it binomial coefficients} are defined and denoted as
 follows.
 \[
 {k \choose i} \ = \ \frac{k!}{i!(k-i)!} \ = \
 \frac{k(k-1)(k-2) \cdots (k-i+1)}{i(i-1)(i-2) \cdots 1}
-\]}
+\]
+\end{quote}
 
 The extrapolation from $S_2(n)$ to general $S_k(n)$ begins with the
 straightforward exercise of crafting analogues of
@@ -994,9 +1010,9 @@ S_n \ \eqdef \ \sum_{i=1}^n \ i
  & \eqdef &
  1 + 2 + \cdots + (n-1) + n \\
 \label{eq:sum-first-n}
- & = & {1 \over 2} n (n+1) \\
-\nonumber
- & = & {{n+1}  \choose 2}.
+ & = & {1 \over 2} n (n+1)
+%\nonumber
+% & = & {{n+1}  \choose 2}.
 \end{eqnarray}
 \end{center}
 
