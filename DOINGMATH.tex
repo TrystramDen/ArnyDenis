@@ -932,8 +932,77 @@ benefits of being able to reason qualitatively about the quantitative
 aspects of computing increase at least commensurately!
 
 \subsection{Dealing with infinity}
+\label{subsec:infinity}
 
-{\Denis is it the right place here?
-The message is: the classical thinking and way for proving does not apply automatically to infinity.
-There are several well-known paradox}
+{\Denis is it the right place here?}
+
+\subsubsection{Operations on $\infty$}
+
+{\Denis This part should be carefully read}
+
+We presented in the chapter Summations several ways to compute the sum of numbers in a given sequence ($a_n$).
+If the number of numbers is $\infty$, the sum may be finite or not. 
+Some of the classical techniques used while calculating finite sums are no more valid for infinite sums. 
+
+
+A natural definition is $\sum_{k \geq 1} a_k = lim_{n \rightarrow \infty} \sum_{k=1}^{n} a_k$.
+But we have to be careful with this definition. 
+For instance, let us consider the following paradoxal situation:
+we aim to determine the value of $S = \sum_{k \geq 0} \frac{1}{2^k}$.
+Defining the infinite sum as the limit leads to the value $2$. 
+This is obtained $2S = S+2$...
+But what happens if we apply the same reasoning to to the sum: $\sum _{k \geq 0} 2^k$?
+Te obtain the value $-1$!
+This is obviously not correct since the sum of increasing positive numbers should be positive.
+The reason is that the terms of the series grows to $+\infty$.
+
+\subsubsection{Preliminary: Achille and the tortoise}
+
+Let us first start by a well-known dilemma stated by Zenon \Denis{put the date here and recall the story:
+Achille is 100 meters behind the tortoise and he runs 10 times faster than it, thus, when Achille reaches the original point where the tortoise was, it moves 10 meters away, and so on.}
+who imagined a race between the famous greek heros Achille and a tortoise. 
+
+This paradox was explained only in the XVIIth century by means of the infinitesimal calculus of Leibniz (Newton ?). 
+
+
+\subsubsection{The Littlehood paradox}
+
+This is a story of balls and hats.
+
+Let consider a big hat (as large as that is needed) and a unbounded series of ordered ball,
+which are labelled from 1, 2, ... and a very precise clock. 
+The process is the following:
+
+At midnight minus 1 minute, let put the first 10 balls into the hat and remove immediately the first ball.
+Iterate the same process at midnight minus 30 seconds (put the 10 next balls and remove the second one),
+and so on.
+
+the question is to \textit{How many balls are present in the hat at midnight?}
+
+This a a paradox since the number of balls in the hat is increasing (actually, it grows as a linear function of the step $k$). 
+
+The right answer is \textit{The hat is empty.}
+The argument is that any ball (say the n-th one) is removed at step $\frac{1}{n}$.
+
+
+It is easy to compute the number of balls in the hat at any finite step $k$: $N = 9k$.
+
+
+{\Denis Detail here the link with Achille.}
+
+
+\subsubsection{Hilbert's Hotel}
+
+Consider a hotel with an infinite number of rooms where each room is full.
+There is a new client who is coming. 
+Hilbert proposed the following solution: assuming each room is labelled by the consecutive integers starting at $1$,
+shift the clients of room $k$ into room $k+1$ (for all $k$). 
+As room $1$ becomes available, give it to the new client. 
+
+This is a paradox since the hotel was assumed to be full and we described a simple process to host a new client.
+This paradox can even be extended to welcome an infinite number of new clients:
+Shift the client of room $1$ to room $2$, the one of room $2$ to room $4$ and in general, room $k$ to room $2k$. 
+This way, all the room with an odd index become free, and thus, they can be assigned to the infinite number of incoming clients.
+
+In term of set theory, this reflects the \textit{bijection} between infinite integer sets. 
 
