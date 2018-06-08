@@ -101,12 +101,95 @@ question operationally, we follow the lead of the French mathematician
 Ren\'e Thom,
  \index{Thom, Rene\'{e}}
 the Fields medal winning inventor of catastrophe theory.  Thom famously
-defined a proof as \textit{a rigorous process that creates a state of
-  evidence for educated readers who leads their adherence}.
+defined a proof as an argument that satisfies the following
+criterion. \\
+\hspace*{.2in}
+\begin{tabular}{l}
+Est rigoureuse toute d\'{e}monstration, qui, chez tout lecteur
+suffisamment \\
+instruit et pr\'{e}par\'{e}, suscite un \'{e}tat d'\'{e}vidence qui
+entraine l'adh\'{e}sion.
+\end{tabular}
 
-{\Denis Develop a simple example here? consider a graph and show that the sum of the degrees is equal to twice the number of edges.}
+% \textit{a rigorous process that creates a state of
+%  evidence for educated readers who leads their adherence}.
 
-{\Denis For me, pigeon holes in some extent fit into this category...}
+%{\Denis Develop a simple example here? consider a graph and show that the sum of the degrees is equal to twice the number of edges.}
+
+\medskip
+
+\paragraph{A. The average length of a carry in a binary counter}
+
+\noindent {\it The problem.}
+%
+You add from $1$ to $n$, in increments of $1$ using a counter of
+binary (or, base-$2$) numerals.  Each time you increment the counter,
+there is a {\it carry}.  These carries have varying lengths; for
+instance, when $n = 32$, the carry-lengths range
+from $0$---whenever you increment an even integer---to $5$---when you
+increment $31 = 11111$ to achieve $32 = 100000$. \\
+{\em Prove that the average carry as you go from $1$ to $n$ hs length $2$.}
+
+\medskip
+
+\noindent {\it The solution.}
+
+\noindent
+Half of the increments add $1$ to an even number, i.e., a number whose
+binary numeral ends in ``$ \ldots 0$''.  These increments generate no
+carry---or, equivalently, a carry of length $0$.
+
+\noindent
+One-quarter of the increments, which form Half of the remaining
+increments, execute a carry of length $1$, because they add $1$ to a
+numeral that ends in ``$ \ldots 01$''.
+
+\noindent
+One-eighth of the increments, which form Half of the remaining
+increments, execute a carry of length $2$, because they add $1$ to a
+numeral that ends in ``$ \ldots 011$''.
+
+Continuing in this way, one can show that the average length of a
+carry can be expressed in the form
+\[ 
+\frac{1}{2} \cdot 0 \ + \ \frac{1}{4} \cdot 1 \ + \ \frac{1}{8} \cdot
+3 \ + \ \frac{1}{16} \cdot 4 \ + \ \cdots
+\]
+Using techniques that we cover in Chapter~\ref{ch:Summation}, one
+verifies that this infinite series converges with the sum $2$.  \qed
+
+
+\medskip
+
+\paragraph{B. On meeting new people}
+
+\noindent {\it The problem.}
+%
+You are attending a cocktail party that is populated by $n$ couples.
+In order to create a warm atmosphere, the host requests that each
+attendee shake the hand of every attendee that he or she does not
+know.  \\
+{\em Prove that some two attendees shake the same number of hands.}
+
+\medskip
+
+\noindent {\it The solution.}
+%
+This observation follows from the {\it pigeonhole principle}, which
+states the following.
+
+{\it If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
+  $2$ pigeons.}
+
+\noindent
+This principle guarantees that some two attendees shake the same
+number of hands.  To wit, the number of people that each attendee {\em
+  does not know} belongs to the set $\{ 0, 1, \ldots, 2n-2 \}$,
+because each person knows him/herself and his/her partner.  Because
+there are $2n$ handshakers (the pigeons) and $2n-1$ numbers of hands
+to shake (the boxes), some two shakers must shake the same numbers of
+hands.  \qed
+
 
 {\Denis Should we add here the concept of Proof by computer?
 Used for instance in the 4-color theorem...}
@@ -432,12 +515,19 @@ powers, i.e., the quantity $S^{(k)}_n$, for any positive integer $k$.
 \label{sec:Contradiction}
 \index{proof by contradiction}
 
+\begin{quote}
+{\em The importance of this proof technique has been recognized since
+  antiquity, under the Latin names {\em contradictio in contrarium}
+  and, perhaps less accurately, {\em reductio ad absurdum}.}
+\end{quote}
+
+
+
 \subsubsection{The Proof Technique}
 \label{sec:contradiction-technique}
 \index{proof by contradiction!technique}
 
-{\Denis Latin name is:
-contradictio in contrarium}
+
 
 The basic principle that underlies proof by contradiction is that the
 following {\em metamathematical} assertions are logically equivalent.
@@ -613,23 +703,7 @@ for a leap year) and 367 birthday-possessors (the pigeons).
 
 \medskip
 
-\addcontentsline{toc}{paragraph}{C. On meeting new people}
-\noindent {\small\sf C. On meeting new people.}
-%
-You are attending a cocktail party that is populated by $n$ couples.
-In order to create a warm atmosphere, the host requests that each
-attendee shake the hand of every attendee that he or she does not
-know.  The pigeonhole principle guarantees that some two attendees
-shake the same number of hands.  To wit, the number of people that
-each attendee {\em does not know} belongs to the set $\{ 0, 1, \ldots,
-2n-2 \}$, because each person knows him/herself and his/her partner.
-Because there are $2n$ handshakers (the pigeons) and $2n-1$ numbers of
-hands to shake (the boxes), some two shakers must shake the same
-numbers of hands.
-
-\medskip
-
-\addcontentsline{toc}{paragraph}{D. Friends and strangers at a party}
+\addcontentsline{toc}{paragraph}{C. Friends and strangers at a party}
 \noindent{\small\sf D. Friends and strangers at a party.}
 %
 We turn now to a somewhat more surprising result that can be proved
