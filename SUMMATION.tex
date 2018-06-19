@@ -46,11 +46,15 @@ fundamental representations
 
 that enable one to study the same phenomenon in many seemingly unrelated ways
 
-e.g.: numbers, Riemann sums, slices of pie, tokens arranged in stylized ways
+e.g.: numbers, Riemann sums, slices of pie, tokens arranged in stylized ways, basic geometrical structures
 \end{enumerate}
 
 {\em We treat each topic in multiple ways, as long as each new way
   teaches the reader a new lesson.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 \label{sec:intro}
@@ -63,16 +67,25 @@ sophisticated {\em discretizations} of these concepts in order to
 enlist the aid of digital computers in dealing with such abstractions.
 Summations provide a very useful discretization of ``continuous'' or
 ``smooth'' phenomena that are typically dealt with by humans with the
-aid of the calculus that was invented by Newton and Leibnitz for such
+aid of the calculus that was invented by Newton and Leibniz for such
 dealings.
 
 This chapter is dedicated to exploring how to employ summations as a
-computational tool.  We deal throughout with {\it series}, i.e.,
+computational tool.  We deal throughout with {\it series}, {\it i.e.},
 (possibly infinite) sequences of numbers
 \[ a_1, a_2, \ldots \]
 whose sum
 \[ a_1 + a_2 + \cdots \]
 is of interest.
+
+
+{\Denis Again, as I said before, I am not really convinced by this example.
+Keeping the same sum, I prefer the story of Sissa, telling an old legende:
+where wheat or rice is placed upon each square of the chess board in the following way:
+put one grain on the first square, and then, double this number on each of the subsequent squares,
+$2$ in the second case, $4$ in the third and so on.}
+
+{\Denis add cross reference for computing the sum of powers of 2 in DOINGMATHS}
 
 As a simple illustration, consider the following puzzle.  You are
 presented with a traditional $8 \times 8$ chess board, plus an offer
@@ -97,6 +110,8 @@ that the {\em alternative} offer (the one that uses the chessboard)
 would net you a sum of 8,390,656 euros---clearly the preferable
 choice!
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \section{Summing Structured Series}
@@ -186,7 +201,7 @@ an + b \cdot {n \choose 2}.
 \]
 \end{prop}
 
-\bigskip
+\medskip
 
 {\em Now is an opportune moment to step back from the specific result
   proved in Proposition~\ref{thm:sum-first-integers-Gauss} and
@@ -197,10 +212,56 @@ an + b \cdot {n \choose 2}.
   referred to in Section~\ref{sec:manifesto} as we discussed how
   mathematicians ``do mathematics''.  We see in the proof how the
   pattern is exploited to achieve the goal of summing any arithmetic
-  series.  We show now that the pattern can be expolited to other,
+  series.  We show now that the pattern can be exploited to other,
   related, ends.}
 
 \medskip
+
+
+In the spirit of the previous proof, we provide below a graphical variant of this result.
+The idea is to look at this problem by a simple (in the \textit{virtuous sense}) estimation of surfaces.
+The integers are represented by the concatenation of basic $1$ by $1$ squares.
+The result is immediate as shown in the three figures~\ref{fig:sumIntegersGeo1, fig:sumIntegersGeo2, fig:sumIntegersGeo3},
+it is obtained by the surface of half the big square plus $n$ times the surface of half the unit squares:
+$$S_1(n) = \frac{n^2}{2} + \frac{n}{2}$$
+
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumIntegersGeometricBasis}
+              \caption{Representation of the $n$ first integers using basic unit squares ($n=6$).}
+       \label{fig:sumIntegersGeo1}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumIntegersGeometricIntermediate}
+              \caption{The surface of lower-right triangle (light grey) is half of the big $n$ by $n$ square.}
+       \label{fig:sumIntegersGeo2}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumIntegersGeometricFinal}
+       \caption{The surface of the triangles on the upper diagonal (dark grey) is $\frac{n}{2}$.}
+       \label{fig:sumIntegersGeo3}
+\end{center}
+\end{figure}
+
+\medskip
+
+Let us now develop another type of proofs, namely, a combinatorial proof.
+It consists in using a counting argument for proving $S_1(n) = {n+1 \choose 2}$.
+
+Let consider any $i$ from $0$ to $n$, and count all possible situations for $j > i$.
+
+On the first hand, there are $n$ possible values of $j$ for $i=0$,  $n-1$ for $i=1$, and so on.
+Thus, the number of such situations is equal to $n+(n-1)+ ... + 1 = S_1(n)$.
+On the other hand, all these situations correspond to the possibilities to take two different values ($i$ and $j$) among the $n+1$ 
+available positions, that is ${n+1 \choose 2}$.
+
+{\Denis if necessary, I can develop the simple example for $n=3$...}
 
 %\addcontentsline{toc}{paragraph}{B. Case study: Perfect squares and sums of odd integers}
 
@@ -281,9 +342,69 @@ By direct calculation, we have
 \end{eqnarray*}
 \end{proof}
 
+\medskip
+
+We present below a third alternative proof using Fubini's principle (see section~ref{sec:xx}). {\Denis complete the reference,
+the notations are the same as before}
+
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumOddsBasis}
+              \caption{Representation of the $n$ first odd integers using bullets ($n=5$).}
+       \label{fig:sumOdds1}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumOddsIntermediate}
+              \caption{Folding the $k$th row.}
+       \label{fig:sumOdds2}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumOddsFinal}
+       \caption{The final picture organized as a big $n$ by $n$ square.}
+       \label{fig:sumOdds3}
+\end{center}
+\end{figure}
+
+\medskip
+
+%There are several other ways to prove this result.
+The previous proof was nothing else that a smart graphical way to draw and arrange the bullets of the integers. 
+We give another proof that tells us something more on numbers of their interactions.
+We consider numbers instead of bullets, and we use a similar principle as Fubini, that is to determine a
+suitable organization of the numbers and count them in a simple way.
+For the concern of computing the sum of the first odd numbers, we organize them as shown in Table~\ref{SumOddsTriangle}.
+One number in the first row, two in the second, $k$ on the $k$th row.
+There are $\Delta_p$ (complete) rows. 
+The result is obtained by summing up the elements of each row.
+The sum in a row is equal to the perfect cube of this row.
+This result can be easily proven. 
+{\Denis Should I develop here? or we can let it as an exercice?}
+
+\begin{figure}[h]
+\begin{tabular}{llllll}
+\label{SumOddsTriangle}
+1   & & & & $\rightarrow$ & 1 \\
+3   & 5 & & & $\rightarrow$ & 2 $\times$ 4 = $2^3$ \\
+7   & 9 & 11 & & $\rightarrow$ & 3 $\times$ 9 = $3^3$ \\
+13   & 15 & 17 & 19 & $\rightarrow$ & 4 $\times$ 16 = $4^3$ \\
+\end{tabular}
+   \caption{Computing the sum of odd numbers is related to the sum of cubes.}
+\end{figure}
+\medskip
+
+Computing the sum of the first cubes can be done in a similar way as the sum of integers or the sum of squares.
+This is detailed in section~\ref{sec:} {\Denis complete the reference of section here}.
+
 
 \subsection{Geometric Sums and Series}
 \label{sec:geometric-sums}
+
 
 \subsubsection{General development}
 \label{sec:general-geometric}
@@ -403,13 +524,40 @@ S^{b>1}_{b}(n) \ \approx \ \frac{b^n}{b-1} \ \ \
 S^{b<1}_{b}(n) \ \approx \ \frac{1}{1-b} .
 \end{equation}
 
+\medskip
+
+We develop below a graphical way for computing the geometrical series $\frac{1}{2}$~ref{fig:sumGeoBasis}.
+The result is immediate while considering a basic unit square and its successive decompositions while divided by $2$.
+Thus, the whole surface corresponds to the sum of $(\frac{1}{2})^k$. 
+It is equal to $2$ (surface of the two big squares) and it is completely filled. 
+
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur2Bis}
+              \caption{Geometric series obtained by an adequate arrangement of successive rectangles.}
+       \label{fig:sumGeoBasis}
+\end{center}
+\end{figure}
+
+This procedure for $\frac{1}{2}$ is hard to extend, but as depicted in figure~\ref{ig:sumGeoGeneral}, it is possible to modify it in order to consider any $r$ (for $0 \leq r <1$).
+The sum is the length of the line. 
+
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumGeometric2tiers}
+              \caption{Geometric series obtained by an adequate cascading of successive squares (for $r=\frac{2}{3}$).}
+       \label{fig:sumGeoGeneral}
+\end{center}
+\end{figure}
+
+
 \subsubsection{An extension and an application}
 
 \paragraph{A. On summing ``extended'' geometric series}
 
 We now build on our sums (\ref{eq:geom-sum:b>1},
 \ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
-call ``extended'' geometric series (not a standard term), i.e., series
+call ``extended'' geometric series (not a standard term), \textit{i.e.}, series
 of the form
 \[ S_b^{(c)}(n) \ \eqdef \ \sum_{i=1}^n \ i^c b^i \]
 where $c$ is an arbitrary fixed positive integer, and $b$ is an
