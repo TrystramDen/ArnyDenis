@@ -1,60 +1,8 @@
-%version of 06-19-18
+%version of 06-20-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
 
-
-\section{Manifesto}
-\label{sec:manifesto}
-
-The fundamental goal of this book / chapter / section is to endow the
-reader with an operational level of conceptual and methodological
-understanding of the discrete mathematics that is used to study and
-understand computing.  We construe an ``operational'' level of
-understanding to be one that enables the reader to ``do'' mathematics.
-
-Somewhat surprising to the non-mathematician, a large portion of
-``doing'' mathematics, the widely touted ``queen of the
-sciences''\footnote{See, e.g., Wolfgang Sartorius von Waltershausen,
-  {\it Gauss zum Ged\"{a}chtniss} (1856).}, is pattern-matching---albeit
-of a monumentally sophisticated variety.  Mathematicians are trained
-to understand pieces of reality to a depth that allows them to
-understand how apparently unrelated concepts $A$ and $B$ can be
-conceptualized via the same abstract representation, and to analyze
-(computational, in our bailiwick) advantages to exploiting such
-representations.
-
-Toward the end of guiding the reader through this forest of
-abstractions, we categorize our targets in three ways
-\begin{enumerate}
-\item
-fundamental sums
-
-of intrinsic intererest
-
-e.g.: arithmetic sums, geometric sums, mathematically ``smooth'' sums
-
-\item
-fundamental techniques
-
-that work in many distinct situations
-
-e.g.: using integration for summation; grouping/replication; verification via induction
-
-\item
-fundamental representations
-
-that enable one to study the same phenomenon in many seemingly unrelated ways
-
-e.g.: numbers, Riemann sums, slices of pie, tokens arranged in stylized ways, basic geometrical structures
-\end{enumerate}
-
-{\em We treat each topic in multiple ways, as long as each new way
-  teaches the reader a new lesson.}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 \label{sec:intro}
@@ -67,16 +15,101 @@ sophisticated {\em discretizations} of these concepts in order to
 enlist the aid of digital computers in dealing with such abstractions.
 Summations provide a very useful discretization of ``continuous'' or
 ``smooth'' phenomena that are typically dealt with by humans with the
-aid of the calculus that was invented by Newton and Leibniz for such
-dealings.
+aid of the (differential and integral) calculus that was invented by
+Newton and Leibniz for such dealings.
 
 This chapter is dedicated to exploring how to employ summations as a
 computational tool.  We deal throughout with {\it series}, {\it i.e.},
 (possibly infinite) sequences of numbers
 \[ a_1, a_2, \ldots \]
 whose sum
-\[ a_1 + a_2 + \cdots \]
+\begin{equation}
+\label{eq:abstract-sum}
+a_1 + a_2 + \cdots
+\end{equation}
 is of interest.
+\begin{quote}
+{\em Of course, when we deal with {\em infinite} series, wherein there
+  are infinitely many numbers $a_i$, we must address the question of
+  whether the sum (\ref{eq:abstract-sum}) exists as a finite number.
+  Sometimes the sum does exist as a finite number, as with the
+  well-known sum
+\[ 1 \ + \ \frac{1}{2} \ + \ \frac{1}{4} \ + \ \frac{1}{8} \ +
+\ \frac{1}{16} \ + \ \cdots \ + \ \frac{1}{2^k}  \ +
+\ \frac{1}{2^{k+1}} \ + \ \cdots \ = \ 2 
+\]
+(Such an infinite series is said to {\em converge}.)
+\index{infinite series!convergent}
+Sometimes a finite sum does {\em not} exist, as with the well-known
+{\it harmonic} series
+\index{harmonic series}
+\[ 1 \ + \ \frac{1}{2} \ + \ \frac{1}{3} \ + \ \frac{1}{4} \ +
+\ \frac{1}{5} \ + \ \cdots \ + \ \frac{1}{k}  \ + \ \frac{1}{k+1} \ +
+\ \cdots
+\]
+(Such an infinite series is said to {\em dinverge}.)
+\index{infinite series!dinvergent}
+}
+\end{quote}
+
+
+Toward the end of guiding the reader through the forest of
+abstractions and operations and techniques associate with summations,,
+we categorize the targets of our discussions in three ways.
+\begin{enumerate}
+\item
+We study a number of {\it fundamental sums} that have intrinsic
+intererest.
+
+Examples of this category of topic include {\it arithmetic sums}, {\it
+  geometric sums}, and {\it mathematically ``smooth'' sums}, including
+sums of positive and negative powers, such as the following:
+\[
+\begin{array}{l}
+1 \ + \ 4 \ + \ 9 \ + \ 16 \ + \ 25 \ + \ \cdots \ + \ k^2  \ + \ (k+1)^2 \ +
+\ \cdots \ + \ n^2 \\
+1 \ + \ \frac{1}{2} \ + \ \frac{1}{3} \ + \ \frac{1}{4} \ +
+\ \frac{1}{5} \ + \ \cdots \ + \ \frac{1}{k}  \ + \ \frac{1}{k+1} \ +
+\ \cdots \\
+1 \ + \ \frac{1}{4} \ + \ \frac{1}{9} \ + \ \frac{1}{16} \ +
+\ \frac{1}{25} \ + \ \cdots \ + \ \frac{1}{k^2}  \ + \ \frac{1}{(k+1)^2} \ +
+\ \cdots
+\end{array}
+\]
+
+
+\item
+We study a variety of {\it fundamental techniques} for performing summations.
+
+We include specialized techniques that work for specific classes of
+summatons, as well as more geeral techniques that work in a broad
+range of situations.
+
+Examples of such techniques include, e.g.: estimating summations by
+integrating functions related to the summation; grouping/replication
+of terms within a summation; verifying ``guessed'' sums via induction.
+
+\item
+We study a variety of {\it fundamental representations} of the
+elements be summed.  We find that being able to study the same
+phenomenon in a variety of seemingly unrelated ways often give one
+unexpected mathematical control over the phenomenon.
+
+Examples of such representations include, e.g., representing numbers
+by: numerals in a positional number system; Riemann sums; slices of
+pie; tokens arranged in stylized ways; and basic geometrical
+structures.
+\end{enumerate}
+
+{\em In summation, we treat each topic in multiple ways, as long as
+  each new way teaches the reader a new lesson.}
+
+\bigskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 
 
 {\Denis Again, as I said before, I am not really convinced by this example.
