@@ -1,4 +1,4 @@
-%version of 06-20-18
+%version of 06-21-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -79,7 +79,8 @@ sums of positive and negative powers, such as the following:
 
 
 \item
-We study a variety of {\it fundamental techniques} for performing summations.
+We study a variety of {\it fundamental techniques} for performing
+summations.
 
 We include specialized techniques that work for specific classes of
 summatons, as well as more geeral techniques that work in a broad
@@ -112,37 +113,42 @@ structures.
 
 
 
-{\Denis Again, as I said before, I am not really convinced by this example.
+\ignore{\Denis Again, as I said before, I am not really convinced by this example.
 Keeping the same sum, I prefer the story of Sissa, telling an old legende:
 where wheat or rice is placed upon each square of the chess board in the following way:
 put one grain on the first square, and then, double this number on each of the subsequent squares,
 $2$ in the second case, $4$ in the third and so on.}
 
-{\Denis add cross reference for computing the sum of powers of 2 in DOINGMATHS}
+\ignore{\Denis add cross reference for computing the sum of powers of 2 in DOINGMATHS}
 
-As a simple illustration, consider the following puzzle.  You are
-presented with a traditional $8 \times 8$ chess board, plus an offer
-of a one-time gift of {\em one million euros}.  In place of this
-one-time gift, you can opt for the money amassed in the following
-way.
+To illustrate the power of summation methodology, consider the
+following modernized version of the {\it legend of Sissa ibn Dahir}.
+\index{Sissa ibn Dahir, legend of}
+You have invented a marvelous game, let's call it {\it chess}, that is
+played on an $8 \times 8$ array of unit-size squares---call it a {\it
+  chessboard}.  A benefactor offers you a one-time gift of {\em one
+  million million (i.e., $10^{12} = 1,000,000,000,000$) euros} in
+return for all rights to the game.  As a counter-offer, you ask your
+benefactor instead for all of the money amassed in the following way.
+You ask your benefactor to proceed row by row along the chessboard,
+placing money in the squares, according to the following regimen.
+Your benefactor should place $1$ euro in the first square, $2$ euros
+in the second square, $4 \ (= 2 \times 2)$ euros in the third, $8 \ (=
+4 \times 2)$ euros in the third , and so on, doubling the number of
+euros at each step of the procedure---so the last square would contain
+$2^{64}$ euros.
 
 \noindent
-%
-I will go along the chessboard row by row.  I will place $1$ euro in
-the first square I encounter, $4 \ (= 2^2)$ euros in the second, $9
-\ (= 3^2)$ euros in the third , \ldots, $4096 \ (= 64^2)$ euros in the
-last square.
-
-\noindent
-{\em WHICH CHOICE DO YOU MAKE?}
+{\em Have you made a good bagain?}
 
 \medskip
 
 By the end of this chapter, you will be able to determine in minutes
-that the {\em alternative} offer (the one that uses the chessboard)
-would net you a sum of 8,390,656 euros---clearly the preferable
-choice!
+that under your procedure (the one that uses the chessboard), you
+would receive $2^{65} -2$ euros---which is more than $10^{20}$ euros!
 
+\noindent
+{\em A good bagain, indeed!}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -197,15 +203,18 @@ S_1(n) \ \eqdef \ \sum_{i=1}^n \ i \
 \end{prop}
 
 \begin{proof}
-The {\em constructive} proof\footnote{The proof is {\em constructive}
-  in that it actually derives an answer.  This is in contrast to, say,
-  the inductive proof of Proposition~\ref{thm:sum-1-to-n-induction},
-  which just verifies a ``guessed'' answer.}~of summation
-(\ref{eq:sum-1-to-n}) that we present now employs a device known to
-the eminent German mathematician Karl Friedrich Gauss
-\index{Gauss, Karl Friedrich}
-as a pre-teenager.
-\index{Gauss's summation ``trick''}
+{\bf A textual proof.}
+\index{sum of first $n$ integers!a textual reckoning}
+%
+We begin with a {\em constructive} proof\footnote{The proof is {\em
+    constructive} in that it actually derives an answer.  This is in
+  contrast to, say, the inductive proof of
+  Proposition~\ref{thm:sum-1-to-n-induction}, which just verifies a
+  ``guessed'' answer.}~of summation (\ref{eq:sum-1-to-n}) that employs
+an approach known to the eminent German mathematician Karl Friedrich
+Gauss \index{Gauss, Karl Friedrich} as a pre-teenager.
+\index{Gauss, Karl Friedrich!summation ``trick''}
+This approach proceeds in two steps.
 \begin{equation}
 \label{eq:arith-series}
 \begin{array}{llccccccccc}
@@ -237,17 +246,19 @@ an + b \cdot {n \choose 2}.
 \medskip
 
 \noindent {\bf Remark.}
+%
 {\em Now is an opportune moment to step back from the specific result
   proved in Proposition~\ref{thm:sum-first-integers-Gauss} and
-  concentrate on the proof.  What Gauss noticed about the sum of the
-  first $n$ integers is that when the sum is doubly written as in
-  (\ref{eq:arith-series}), the column-sums are all the same.  This
+  concentrate on the textual proof.  What Gauss noticed about the sum
+  of the first $n$ integers is that when the sum is doubly written as
+  in (\ref{eq:arith-series}), the column-sums are all the same.  This
   phenomenon of {\em finding invariants} is a ``pattern'' of the form
   referred to in Section~\ref{sec:manifesto} as we discussed how
   mathematicians ``do mathematics''.  We see in the proof how the
-  pattern is exploited to achieve the goal of summing any arithmetic
-  series.  We show now that the pattern can be exploited to other,
-  related, ends.}
+  pattern can be exploited to determine sum of any arithmetic series.
+  {\em What seemed to be a ``trick'' turns out to be an insightful
+    instance of pattern-matching.}  We show now that the pattern can
+  be exploited to other, related, ends.}
 
 \medskip
 
@@ -255,16 +266,19 @@ Not everyone thinks the same way---even within the context of
 mathematics.  It is, therefore, very important for the reader to
 recognize that even the simplest mathematical facts can be proved and
 analyzed in a broad variety of ways.  We illustrate this assertion by
-developing a ``pictorial'', graphic, alternative proof of
+developing two more proofs of
 Proposition~\ref{thm:sum-first-integers-Gauss}.
 
 \begin{proof}
-The idea is to look at the problem of summing the first $n$ integers
-as a problem of estimating the area of a simple (in the \textit{good
-  sense} of the word) surface.  In this worldview, integers are
-represented by concatenating basic {\it unit-side} (i.e., $1 \times 1$
-\index{unit-side square}
-{\it squares}, as in Fig.~\ref{fig:sumIntegersGeo1}.
+{\bf A ``pictorial'', graphic proof.}
+\index{sum of first $n$ integers!a ``pictorial'', graphic reckoning}
+%
+The idea now is to look at the problem of summing the first $n$
+integers as a problem of estimating the area of a simple (in the
+\textit{good sense} of the word) surface.  In this worldview, integers
+are represented by concatenating basic {\it unit-side} (i.e., $1
+\times 1$ \index{unit-side square} {\it squares}, as in
+Fig.~\ref{fig:sumIntegersGeo1}.
 
 Our summation result can be obtained in three steps, in the manner
 illustrated by the three figures
@@ -288,7 +302,7 @@ and~\ref{fig:sumIntegersGeo3}.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumIntegersGeometricFinal}
-\caption{The area of the (dark grey) triangles sitting on the upper
+\caption{The area of the (dark) triangles sitting on the upper
   diagonal of the $n \times n$ square is $\frac{1}{2} n$.}
        \label{fig:sumIntegersGeo3}
 \end{center}
@@ -315,39 +329,80 @@ is one-half that of a unit-side square.
 We thereby reckon the area of the surface depicting the summation as
 
 \begin{tabular}{l}
-One-half the area of the $n \times n$ square,
-i.e., $\frac{1}{2} n^2$ \\
-\hspace*{.5in} plus   \\
-$n$ times the area of one-half a unit-side square,
-i.e., $\frac{1}{2} n$
+{\it One-half the area of the $n \times n$ square,
+i.e., $\frac{1}{2} n^2$} \\
+\hspace*{.15in} plus   \\
+{\it $n$ times the area of one-half a unit-side square,
+i.e., $\frac{1}{2} n$}
 \end{tabular}
 
 \noindent
-It follows that
-\[
-S_1(n) \ = \ \frac{1}{2} n^2 \ + \ \frac{1}{2} n
-\]
+We have, thus determined the value of $S_1(n)$.
 \end{proof}
 
 \medskip
 
-Let us now develop another type of proofs, namely, a combinatorial proof.
-It consists in using a counting argument for proving $S_1(n) = {n+1 \choose 2}$.
+We present one final proof of
+Proposition~\ref{thm:sum-first-integers-Gauss}.
 
-Let consider any $i$ from $0$ to $n$, and count all possible situations for $j > i$.
+\begin{proof}
+{\bf A combinatorial proof.}
+\index{sum of first $n$ integers!a A combinatorial reckoning}
+%
+The following argument is {\it combinatorial} in that it achieves its
+goal by {\em counting} instances of the first $n$ integers, laid out
+in a line.
 
-On the first hand, there are $n$ possible values of $j$ for $i=0$,  $n-1$ for $i=1$, and so on.
-Thus, the number of such situations is equal to $n+(n-1)+ ... + 1 = S_1(n)$.
-On the other hand, all these situations correspond to the possibilities to take two different values ($i$ and $j$) among the $n+1$ 
-available positions, that is ${n+1 \choose 2}$.
+Place (tokens that represent) the integers $0$ to $n$ along a line.
+For each integer $i$, count how many integers $j > i$ lie to its
+right.  We see that in general, there is a {\it block} of $n-i$
+integers that lie to the right of integer $i$.  In detail: the block
+of integers lying to the right of $i=0$ contains $n$ values of $j$;
+the block to the right of $i=1$ contains $n-1$ values of $j$, and so
+on, as suggested in Fig.~\ref{fig:rightward-instances}.
 
-{\Denis if necessary, I can develop the simple example for $n=3$...}
+\begin{figure}[htb]
+\[
+\begin{array}{lcccccc}
+\mbox{All integers $\leq 4$:} &
+ & 0 & 1 & 2 & 3 & 4 \\
+\mbox{integers to the right of $0$:} &
+ &   & 1 & 2 & 3 & 4 \\
+\mbox{integers to the right of $1$:} &
+ &   &   & 2 & 3 & 4 \\
+\mbox{integers to the right of $2$:} &
+ &   &   &   & 3 & 4 \\
+\mbox{integers to the right of $3$:} &
+ &   &   &   &   & 4
+\end{array}
+\]
+\caption{A two-dimensional depiction of the right-lying
+  integer-instances.}
+\label{fig:rightward-instances}
+\end{figure}
+
+On the one hand, we see that the total number of right-lying integers
+$j$ equals $n+(n-1)+ ... + 1 \ = \ S_1(n)$.
+
+On the other hand, every instance of a right-lying integer can be
+identified uniquely by the pair of nonnegative integers $i$ (the
+instance's block) and and $j>i$ (the instance's
+position-within-block).  It is not hard to verify that the total
+number of right-lying integer-instances is
+$\displaystyle {n+1 \choose 2}$.\footnote{We study such counting
+  techniques in depth in Section~\ref{sec:counting}.}
+
+We have thus arrived at two, perforce equal, expressions for $S_1(n)$.
+\end{proof}
+
+%{\Denis if necessary, I can develop the simple example for $n=3$...}
 
 %\addcontentsline{toc}{paragraph}{B. Case study: Perfect squares and sums of odd integers}
 
+
 \paragraph{B. Perfect squares are sums of odd integers}
 
-We can build on Proposition~\ref{thm:sum-first-integers-Gauss} to
+We now build on Proposition~\ref{thm:sum-first-integers-Gauss} to
 craft {\em two} constructive proofs that each perfect square, say,
 $m^2$, is the sum of the first $m$ odd integers, $1, 3, 5, \ldots,
 2m-1$.  One of these proofs builds on the phenomenon of {\em finding
@@ -376,7 +431,7 @@ integer $n$.
 \smallskip
 
 \begin{proof}
-({\it Argument \#1})
+{\bf A textual proof.}
 %
 Let us adapt Gauss's ``trick'' to this problem.  Let us denote the
 target sum $\sum_{k=1}^n \ (2k-1)$ by $S(n)$. 
@@ -406,10 +461,10 @@ divide both sides of equation (\ref{eq:sum-of-odds-sum}) by $2$.
 \medskip
 
 \begin{proof}
-({\it Argument \#2})
+{\bf A proof using algebra.}
 %
-Our second proof derives this result as a corollary of
-Proposition~\ref{thm:sum-first-integers-Gauss}.
+Our second proof derives this result, via a simple calculation, as a
+corollary of Proposition~\ref{thm:sum-first-integers-Gauss}.
 
 By direct calculation, we have
 \begin{eqnarray*}
@@ -424,41 +479,136 @@ By direct calculation, we have
 
 \medskip
 
-We present below a third alternative proof using Fubini's principle (see section~ref{sec:xx}). {\Denis complete the reference,
-the notations are the same as before}
+Our next proof is purely pictorial, with a bit of reasoning mixed in.
+The only ``sophisticated'' reasoning requires knowing that
+\[ (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1. \]
 
+\begin{proof}
+{\bf A proof ``by pictures''.}
+%
+Our pictorial proof begins by representing an integer $n$ as a
+horizontal sequence of $n$ ``bullets'', i.e., dark circles.  The
+problem of summing the first $n$ odd integers then begins with a
+picture such as appears in Fig.~\ref{fig:sumOdds1}, for the
+illustrative case $n=5$.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsBasis}
-              \caption{Representation of the $n$ first odd integers using bullets ($n=5$).}
+\caption{Representing the first $n$ odd integers using bullets.  In
+  this illustration, $n=5$.}
        \label{fig:sumOdds1}
 \end{center}
 \end{figure}
 
+Starting with such a picture, we take each row of $2c+1$ bullets and
+fold it at its midpoint so that it becomes a reversed letter $L$.  The
+row of $2c+1$ bullets becomes an $L$ whose horizontal portion (at the
+bottom of the reversed $L$) is a row of $c+1$ bullets and whose
+vertical portion (at the right of the reversed $L$) is a column of
+$c+1$ bullets.  See Fig.~\ref{fig:sumOdds2} wherein the depicted
+values of $c$ are $c = 0, 1, 2, 3, 4$.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsIntermediate}
-              \caption{Folding the $k$th row.}
+              \caption{Folding a single row into a reversed letter $L$.}
        \label{fig:sumOdds2}
 \end{center}
 \end{figure}
 
+Once we have folded every row of bullets into a reversed $L$, we nest
+the $L$'s in the manner depicted in Fig~\ref{fig:sumOdds3}.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsFinal}
-       \caption{The final picture organized as a big $n$ by $n$ square.}
+\caption{The final picture organized as an $n \times n$ square
+  array of bullets.}
        \label{fig:sumOdds3}
 \end{center}
 \end{figure}
+Clearly, this nesting produces an $n \times n$ square array of
+bullets.  
+\end{proof}
 
 \medskip
 
-%There are several other ways to prove this result.
-The previous proof was nothing else that a smart graphical way to draw and arrange the bullets of the integers. 
+\begin{proof}
+{\bf A proof by rearranging terms.}
+%
+We describe in Section~\ref{sec:Fubini} how the Italian mathematician
+Guido Fubini
+\index{Fubini, Guido}
+%
+was able to make notable mathematical progress by rearranging
+representations \cite{Fubini}.  Within the context of the current
+chapter, such rearrangements work on the terms of a summation of
+interest.  Indeed, using this strategy, we obtain a surprising,
+delightful proof of Proposition~\ref{thm:squares-odd-integers-Gauss}.
+Let us take the odd integers in order, in groups of sizes $1$, then
+$2$, then $3$, and so on.  We begin with the first $n$ odd integers in
+order:
+\[ 1, \ 3, \ 5, \ 7, \ 9, \ 11, \ 13, \ 15, \ 17, \ 19, \ \ldots \]
+Now we start peeling off prefixes of successive numbers of odd
+integers and arranging them in an array, as depicted in
+Table~\ref{tab:SumOddsTriangle}.
+\begin{table}[h]
+\label{tab:SumOddsTriangle}
+\caption{The sums of successive odd numbers and the sum of
+  successive cubes}
+\[
+\begin{array}{llrrrrclcc}
+\mbox{group of size 1:} & &
+1,  &    &     &     &  \rightarrow & 1           & = & 1^3 \\
+\mbox{group of size 2:} & &
+3,  &  5, &     &    &  \rightarrow & 2 \times 4  & = & 2^3 \\
+\mbox{group of size 3:} & &
+7,  &  9, & 11, &    &  \rightarrow & 3 \times 9  & = & 3^3 \\
+\mbox{group of size 4:} & &
+13, & 15, & 17, & 19 &  \rightarrow & 4 \times 16 & = & 4^3 \\
+\end{array}
+\]
+\end{table}
+What we note is that---at least with the illustrated portion of the
+procedure, the $k$th group, of size $k$, adds up to $k^3$.
+
+Before we proceed further, let us verify---by induction---that this
+pattern persists indefinitely.
+\begin{description}
+\item[{\bf Base for the induction.}]
+The one-term triviality in row $1$ of Table~\ref{tab:SumOddsTriangle}
+provides the base for our induction.
+
+\item[{\bf Inductive hypothesis}.]
+We know from Proposition~\ref{thm:sum-first-integers-Gauss} that the
+$k$th group consists of $k$ consecutive odd numbers beginning with
+\[ 2 {k \choose 2} -1 \ \ \ \ \
+\mbox{which is the} \ \ \ \ \
+\left[ {k \choose 2} +1 \right]\mbox{th odd number}
+\]
+
+\item[{\bf Inductive extension}.]
+%
+Since successive odd numbers differ by $2$, we know that the $k$th
+group consists of the odd integers
+\[
+2 {k \choose 2} -1, \ 2 {k \choose 2} +1, \ 2 {k \choose 2} +3 ,
+\ldots, \
+2 {k \choose 2} +2k-1
+\]
+hence has sum
+\[
+2k {k \choose 2} \ - \ 2 {k \choose 2} +k
+\ = \ k^3.
+\]
+\end{description}
+
+{\Arny More calculation!  BOO!  Please complete this.  I seem to be
+  off by 1}
+With the preceding inductive verification, we have a way of computing
+the first $n$ odd numbers by computing an initial 
 We give another proof that tells us something more on numbers of their interactions.
 We consider numbers instead of bullets, and we use a similar principle as Fubini, that is to determine a
 suitable organization of the numbers and count them in a simple way.
-For the concern of computing the sum of the first odd numbers, we organize them as shown in Table~\ref{SumOddsTriangle}.
+For the concern of computing the sum of the first odd numbers, we organize them as shown in Table~\ref{tab:SumOddsTriangle}.
 One number in the first row, two in the second, $k$ on the $k$th row.
 There are $\Delta_p$ (complete) rows. 
 The result is obtained by summing up the elements of each row.
@@ -466,21 +616,12 @@ The sum in a row is equal to the perfect cube of this row.
 This result can be easily proven. 
 {\Denis Should I develop here? or we can let it as an exercice?}
 
-\begin{figure}[h]
-\begin{tabular}{llllll}
-\label{SumOddsTriangle}
-1   & & & & $\rightarrow$ & 1 \\
-3   & 5 & & & $\rightarrow$ & 2 $\times$ 4 = $2^3$ \\
-7   & 9 & 11 & & $\rightarrow$ & 3 $\times$ 9 = $3^3$ \\
-13   & 15 & 17 & 19 & $\rightarrow$ & 4 $\times$ 16 = $4^3$ \\
-\end{tabular}
-   \caption{Computing the sum of odd numbers is related to the sum of cubes.}
-\end{figure}
+
 \medskip
 
 Computing the sum of the first cubes can be done in a similar way as the sum of integers or the sum of squares.
-This is detailed in section~\ref{sec:} {\Denis complete the reference of section here}.
-
+This is detailed in Section~\ref{sec:sum-of-i2c}
+\end{proof}
 
 \subsection{Geometric Sums and Series}
 \label{sec:geometric-sums}
@@ -605,6 +746,7 @@ S^{b<1}_{b}(n) \ \approx \ \frac{1}{1-b} .
 \end{equation}
 
 \medskip
+
 
 We develop below a graphical way for computing the geometrical series $\frac{1}{2}$~ref{fig:sumGeoBasis}.
 The result is immediate while considering a basic unit square and its successive decompositions while divided by $2$.
@@ -925,7 +1067,7 @@ within the area subtended by the abutting rectangles.
 \end{enumerate}
 
 \subsection{Summing positive powers of consecutive integers}
-\label{sec:sum-of-i2k}
+\label{sec:sum-of-i2c}
 
 We illustrate the technique of bounding summations via integrals by
 focusing on the summations
@@ -1343,13 +1485,3 @@ Because $n$ is an arbitrary positive integer, we conclude that
 By the Principle of (Finite) Induction, then, we conclude that {\bf
   P}$(n)$ is true for all $n \in \N^+$.
 \qed
-
-
-\ignore{**********
-\begin{thebibliography}{9}
-\bibitem{CLRS}
-T.H.~Cormen, C.E.~Leiserson, R.L.~Rivest, C.~Stein (2001):
-{\it Introduction to Algorithms (2nd ed.)}.
-MIT Press, Cambridge, MA.
-\end{thebibliography}
-***********}
