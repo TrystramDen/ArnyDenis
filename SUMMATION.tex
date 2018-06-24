@@ -38,6 +38,7 @@ is of interest.
 \ \frac{1}{16} \ + \ \cdots \ + \ \frac{1}{2^k}  \ +
 \ \frac{1}{2^{k+1}} \ + \ \cdots \ = \ 2 
 \]
+{\Denis Her we can refer to the Achille and Tortoise story as this corresponds to the distance done by Achille to reach the tortoise if the initial situation is 1 meter...}
 (Such an infinite series is said to {\em converge}.)
 \index{infinite series!convergent}
 Sometimes a finite sum does {\em not} exist, as with the well-known
@@ -47,8 +48,10 @@ Sometimes a finite sum does {\em not} exist, as with the well-known
 \ \frac{1}{5} \ + \ \cdots \ + \ \frac{1}{k}  \ + \ \frac{1}{k+1} \ +
 \ \cdots
 \]
-(Such an infinite series is said to {\em dinverge}.)
-\index{infinite series!dinvergent}
+(Such an infinite series is said to {\em diverge}.)
+{\Denis There is a link between harmonic series and the frequencies of the notes in music (each note corresponds to the fundamental divided by 2, 3, 4, ...
+May be it would be nice here to develop?}
+\index{infinite series!divergent}
 }
 \end{quote}
 
@@ -59,7 +62,9 @@ we categorize the targets of our discussions in three ways.
 \begin{enumerate}
 \item
 We study a number of {\it fundamental sums} that have intrinsic
-intererest.
+interest.
+
+{\Denis Notice here that none of the following examples are arithmetic or geometric...}
 
 Examples of this category of topic include {\it arithmetic sums}, {\it
   geometric sums}, and {\it mathematically ``smooth'' sums}, including
@@ -77,13 +82,12 @@ sums of positive and negative powers, such as the following:
 \end{array}
 \]
 
-
 \item
 We study a variety of {\it fundamental techniques} for performing
 summations.
 
 We include specialized techniques that work for specific classes of
-summatons, as well as more geeral techniques that work in a broad
+summations, as well as more general techniques that work in a broad
 range of situations.
 
 Examples of such techniques include, e.g.: estimating summations by
@@ -146,6 +150,7 @@ $2^{64}$ euros.
 By the end of this chapter, you will be able to determine in minutes
 that under your procedure (the one that uses the chessboard), you
 would receive $2^{65} -2$ euros---which is more than $10^{20}$ euros!
+{\Denis I think the previous value is -1 and not -2}
 
 \noindent
 {\em A good bagain, indeed!}
@@ -184,7 +189,7 @@ introduce important notation.
 
 %\addcontentsline{toc}{paragraph}{A. Case study: Summing the first $n$ integers}
 
-\paragraph{A. Summing the first $n$ integers}
+\paragraph{A. Summing the first $n$ integers. This corresponds to $a=b=1$.}
 
 \begin{prop}
 \label{thm:sum-first-integers-Gauss}
@@ -196,11 +201,14 @@ S_1(n) \ \eqdef \ \sum_{i=1}^n \ i \
   & \eqdef &
  1 + 2 + \cdots + (n-1) + n \\
 \label{eq:sum-1-to-n}
-  & = & \frac{1}{2} n (n+1) \\
-\nonumber
-  & = & {{n+1}  \choose 2}.
+  & = & \frac{1}{2} n (n+1) 
+% \\
+%\nonumber
+%  & = & {{n+1}  \choose 2}.
 \end{eqnarray}
 \end{prop}
+
+{\Denis I removed the last equality with n+1 choose 2 since this combinatorial proof is presented later...}
 
 \begin{proof}
 {\bf A textual proof.}
@@ -266,7 +274,7 @@ The idea now is to look at the problem of summing the first $n$
 integers as a problem of estimating the area of a simple (in the
 \textit{good sense} of the word) surface.  In this worldview, integers
 are represented by concatenating basic {\it unit-side} (i.e., $1
-\times 1$ \index{unit-side square} {\it squares}, as in
+\times 1$ \index{unit-side square} {\it squares}), as in
 Fig.~\ref{fig:sumIntegersGeo1}.
 
 Our summation result can be obtained in three steps, in the manner
@@ -312,7 +320,7 @@ square.
 Finally, we indicate in Fig.~\ref{fig:sumIntegersGeo3} that the area
 of the small (dark grey in the figure) triangles that cover the upper
 diagonal of the $n \times n$ square is $\frac{1}{2} n$.  This
-reckoning is because there are $n$ triangle, and each has an area that
+reckoning is because there are $n$ triangles, and each has an area that
 is one-half that of a unit-side square.
 \end{enumerate}
 We thereby reckon the area of the surface depicting the summation as
@@ -375,9 +383,9 @@ $j$ equals $n+(n-1)+ ... + 1 \ = \ S_1(n)$.
 
 On the other hand, every instance of a right-lying integer can be
 identified uniquely by the pair of nonnegative integers $i$ (the
-instance's block) and and $j>i$ (the instance's
-position-within-block).  It is not hard to verify that the total
-number of right-lying integer-instances is
+instance's block) and $j>i$ (the instance's
+position-within-block).  The total
+number of right-lying integer-instances corresponds to choose $2$ integers amongs $n+1$:
 $\displaystyle {n+1 \choose 2}$.\footnote{We study such counting
   techniques in depth in Section~\ref{sec:counting}.}
 
@@ -405,7 +413,7 @@ an + b \cdot {n \choose 2}.
 We now build on Proposition~\ref{thm:sum-first-integers-Gauss} to
 craft {\em two} constructive proofs that each perfect square, say,
 $m^2$, is the sum of the first $m$ odd integers, $1, 3, 5, \ldots,
-2m-1$.  One of these proofs builds on the phenomenon of {\em finding
+2m-1$ (this is again an arithmetic series with $a=1$ and $b=2$).  One of these proofs builds on the phenomenon of {\em finding
   invariants}.  These proofs complement the ``guess-and-verify''
 inductive proof of the same result in
 Proposition~\ref{thm:squares-odd-integers-induction}.
@@ -482,6 +490,8 @@ By direct calculation, we have
 Our next proof is purely pictorial, with a bit of reasoning mixed in.
 The only ``sophisticated'' reasoning requires knowing that
 \[ (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1. \]
+
+{\Denis We can remark here that this result is straightforward by drawing a n+1 by n+1 square composed of a unit square, a n by n square and 2 rectangles 1xn and nx1...}
 
 \begin{proof}
 {\bf A proof ``by pictures''.}
