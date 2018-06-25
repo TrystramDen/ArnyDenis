@@ -1,4 +1,4 @@
-%version of 06-22-18
+%version of 06-25-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -32,52 +32,84 @@ is of interest.
 {\em Of course, when we deal with {\em infinite} series, wherein there
   are infinitely many numbers $a_i$, we must address the question of
   whether the sum (\ref{eq:abstract-sum}) exists as a finite number.
-  Sometimes the sum does exist as a finite number, as with the
-  well-known sum
+  For some infinite series the sum {\em does} exist as a finite
+  number, as with the well-known sum
 \[ 1 \ + \ \frac{1}{2} \ + \ \frac{1}{4} \ + \ \frac{1}{8} \ +
 \ \frac{1}{16} \ + \ \cdots \ + \ \frac{1}{2^k}  \ +
 \ \frac{1}{2^{k+1}} \ + \ \cdots \ = \ 2 
 \]
-{\Denis Here we can refer to the Achille and Tortoise story as this corresponds to the distance Achille's did to reach the tortoise if the initial situation is 1 meter...}
+%{\Denis Here we can refer to the Achille and Tortoise story as this corresponds to the distance Achille's did to reach the tortoise if the initial situation is 1 meter...}
 (Such an infinite series is said to {\em converge}.)
 \index{infinite series!convergent}
-Sometimes a finite sum does {\em not} exist, as with the well-known
-{\it harmonic} series
-\index{harmonic series}
+
+But sometimes an infinite series {\em does not} have a finite
+  sum.  This is true, for instance, with the well-known {\it harmonic}
+  series \index{harmonic series}
 \[ 1 \ + \ \frac{1}{2} \ + \ \frac{1}{3} \ + \ \frac{1}{4} \ +
 \ \frac{1}{5} \ + \ \cdots \ + \ \frac{1}{k}  \ + \ \frac{1}{k+1} \ +
 \ \cdots
 \]
-(Such an infinite series is said to {\em diverge}.)
+As more and more terms are added, the accumulated sum eventually
+passes every number.  (Such an infinite series is said to {\em diverge}.)
 {\Denis There is a link between harmonic series and the frequencies of the notes in music (each note corresponds to the fundamental divided by 2, 3, 4, ...
 May be it would be nice here to develop?}
+{\Arny I do not know enough to say anything intelligent about this.}
 \index{infinite series!divergent}
 }
 \end{quote}
 
+\begin{quote}
+We note parenthetically that the preceding sum illustrates some of the
+complexity of dealing with the infinite.  Sometimes finite objects
+(such as the integer $2$ in this example) have infinite ``names'' (the
+infinite series in this example).  The complexity of the concept of
+convergence has been recognized in various forms for more than $25$
+centuries.  Several charming and familiar examples appear in the
+paradoxes attributed to Zeno of Elea.  In his {\it Paradox of Achilles
+  and the Tortoise}, for instance, Zeno appears to prove that all
+motion is illusory.  In this story, the slow-footed Tortoise (T) tries
+to convince the speedy Achilles (A) of the futility of trying to win
+any race in which A gives T even the smallest head start.  As long as
+T is ahead of A, says T, every time A traverses half the distance
+between the competitors, T will respond by moving a bit further ahead.
+Thereby, T will always be a positive distance ahead of A, so that A
+can catch T.  A similar ``argument'' demonstrates that an arrow shot
+at you by an adversary can never reach you, as long as you continually
+move away from the archer.  {\em DO NOT TRY THIS AT HOME!!}
+
+The subtleties of the notion of {\em infinitesimals} that explains the
+fallacy of assertions such as the Tortoise's was not well understood
+until a few hundred years ago.
+\end{quote}
+
 
 Toward the end of guiding the reader through the forest of
-abstractions and operations and techniques associate with summations,,
+abstractions and operations and techniques associate with summations,
 we categorize the targets of our discussions in three ways.
 \begin{enumerate}
 \item
 We study a number of {\it fundamental sums} that have intrinsic
 interest.
-
-{\Denis Notice here that none of the following examples are arithmetic or geometric...}
-
+%{\Denis Notice here that none of the following examples are arithmetic or geometric...}
 Examples of this category of topic include {\it arithmetic sums}, {\it
   geometric sums}, and {\it mathematically ``smooth'' sums}, including
 sums of positive and negative powers, such as the following:
 \[
-\begin{array}{l}
-1 \ + \ 4 \ + \ 9 \ + \ 16 \ + \ 25 \ + \ \cdots \ + \ k^2  \ + \ (k+1)^2 \ +
+\begin{array}{lcl}
+1 \ + \ 2 \ + \ 3 \ + \ 4 \ + \ 5 \ + & \cdots & + \ k  \ + \ (k+1) \ +
+\ \cdots \ + \ n \\
+1 \ + \ 2 \ + \ 4 \ + \ 8 \ + \ 16 \ + & \cdots & + \ 2^k  \ +
+\ 2^{k+1} \ + \ \cdots \ + \ 2^n \\
+1 \ + \ 4 \ + \ 9 \ + \ 16 \ + \ 25 \ + & \cdots & + \ k^2  \ + \ (k+1)^2 \ +
 \ \cdots \ + \ n^2 \\
+1 \ + \ \frac{1}{2} \ + \ \frac{1}{4} \ + \ \frac{1}{16} \ +
+\ \frac{1}{32} \ + & \cdots & + \ \frac{1}{2^k}  \ + \ \frac{1}{2^{k+1}} \ +
+\ \cdots \\
 1 \ + \ \frac{1}{2} \ + \ \frac{1}{3} \ + \ \frac{1}{4} \ +
-\ \frac{1}{5} \ + \ \cdots \ + \ \frac{1}{k}  \ + \ \frac{1}{k+1} \ +
+\ \frac{1}{5} \ + & \cdots & + \ \frac{1}{k}  \ + \ \frac{1}{k+1} \ +
 \ \cdots \\
 1 \ + \ \frac{1}{4} \ + \ \frac{1}{9} \ + \ \frac{1}{16} \ +
-\ \frac{1}{25} \ + \ \cdots \ + \ \frac{1}{k^2}  \ + \ \frac{1}{(k+1)^2} \ +
+\ \frac{1}{25} \ + & \cdots & + \ \frac{1}{k^2}  \ + \ \frac{1}{(k+1)^2} \ +
 \ \cdots
 \end{array}
 \]
@@ -149,8 +181,9 @@ $2^{64}$ euros.
 
 By the end of this chapter, you will be able to determine in minutes
 that under your procedure (the one that uses the chessboard), you
-would receive $2^{65} -2$ euros---which is more than $10^{20}$ euros!
-{\Denis I think the previous value is -1 and not -2}
+would receive $2^{65} -1$ euros---which is {\em much} more than
+$10^{20}$ euros!
+%{\Denis I think the previous value is -1 and not -2}
 
 \noindent
 {\em A good bargain, indeed!}
@@ -189,7 +222,7 @@ introduce important notation.
 
 %\addcontentsline{toc}{paragraph}{A. Case study: Summing the first $n$ integers}
 
-\paragraph{A. Summing the first $n$ integers. This corresponds to $a=b=1$.}
+\paragraph{\small\sf A. Summing the first $n$ integers: the case $a=b=1$}
 
 \begin{prop}
 \label{thm:sum-first-integers-Gauss}
@@ -203,12 +236,13 @@ S_1(n) \ \eqdef \ \sum_{i=1}^n \ i \
 \label{eq:sum-1-to-n}
   & = & \frac{1}{2} n (n+1) 
 % \\
-%\nonumber
+%\nonumber 
 %  & = & {{n+1}  \choose 2}.
 \end{eqnarray}
 \end{prop}
 
-{\Denis I removed the last equality with n+1 choose 2 since this combinatorial proof is presented later...}
+%{\Denis I removed the last equality with n+1 choose 2 since this
+%combinatorial proof is presented later...}
 
 \begin{proof}
 {\bf A textual proof.}
@@ -382,12 +416,18 @@ On the one hand, we see that the total number of right-lying integers
 $j$ equals $n+(n-1)+ ... + 1 \ = \ S_1(n)$.
 
 On the other hand, every instance of a right-lying integer can be
-identified uniquely by the pair of nonnegative integers $i$ (the
-instance's block) and $j>i$ (the instance's
-position-within-block).  The total
-number of right-lying integer-instances corresponds to choose $2$ integers amongs $n+1$:
-$\displaystyle {n+1 \choose 2}$.\footnote{We study such counting
-  techniques in depth in Section~\ref{sec:counting}.}
+identified uniquely by the pair of nonnegative integers, $i$ (the
+instance's block) and $j>i$ (the instance's position-within-block).
+The total number of right-lying integer-instances corresponds to the
+number of ways to select two integers from among $n+1$.\footnote{We
+  study such counting techniques in depth in
+  Section~\ref{sec:counting}.}  This number is the binomial
+coefficient $\Delta_{n+1}$ whose definition we specialize from
+(\ref{eq:binom-coeff}) Section~\ref{sec:binary-operators}.C:
+\index{binomial coefficient}
+\[ 
+\Delta_n \ = \ {{n+1} \choose 2} \ \eqdef \ \frac{1}{2} n(n+1).
+\]
 
 We have thus arrived at two, perforce equal, expressions for $S_1(n)$.
 \end{proof}
@@ -408,12 +448,13 @@ an + b \cdot {n \choose 2}.
 \end{prop}
 
 
-\paragraph{B. Perfect squares are sums of odd integers}
+\paragraph{\small\sf B. Perfect squares are sums of odd integers}
 
 We now build on Proposition~\ref{thm:sum-first-integers-Gauss} to
 craft {\em two} constructive proofs that each perfect square, say,
 $m^2$, is the sum of the first $m$ odd integers, $1, 3, 5, \ldots,
-2m-1$ (this is again an arithmetic series with $a=1$ and $b=2$).  One of these proofs builds on the phenomenon of {\em finding
+2m-1$.  (This is again an arithmetic series with $a=1$ and $b=2$.)
+One of these proofs builds on the phenomenon of {\em finding
   invariants}.  These proofs complement the ``guess-and-verify''
 inductive proof of the same result in
 Proposition~\ref{thm:squares-odd-integers-induction}.
@@ -488,11 +529,14 @@ By direct calculation, we have
 \medskip
 
 Our next proof is purely pictorial, with a bit of reasoning mixed in.
-The only ``sophisticated'' reasoning requires knowing that
+The only ``sophisticated'' required background knowledge is that
 \[ (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1. \]
-
-{\Denis We can remark here that this result is straightforward as follows.
-see below if you think it should be included.}
+This simplest instance of the {\em restricted Binomial
+  Theorem}---which appears later in this chapter as
+Theorem~\ref{thm:restricted-binomial-thm}---can be verified using the
+highly perspicuous Fig.~\ref{fig:proofa2plusb2}.
+%{\Denis We can remark here that this result is straightforward as
+%follows. see below if you think it should be included.}
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/proofa2plusb2}
@@ -500,6 +544,31 @@ see below if you think it should be included.}
        \label{fig:proofa2plusb2}
 \end{center}
 \end{figure}
+The figure tells its tale by means of four rectangles that make up an
+$(n+1) \times (n+1)$ square, whose area is, of course, $(n+1)^2$.
+This large square is made up of four rectangles.  Reading across the
+top of the figure, we encounter a darkly shaded $n \times n$ square
+(area $= n^2$) and an unshaded $n \times 1$ rectangle (area $= n$).
+Reading across the bottom of the figure, we encounter an unshaded $1
+\times n$ rectangle (area $= n$) and a lightly shaded $1 \times 1$
+square (area = $1$).  The overall message is that
+
+\noindent
+$(n+1)^2$ (the area of the large, composite, square)
+
+\begin{tabular}{ll}
+is the sum of & \\
+  & $n^2$ (the area of the darkly shaded square) \\
+plus & \\
+  & $2n$ (the combined areas of the unshaded rectangles \\
+plus & \\
+  & $1$ (the area of the lightly shaded square)
+\end{tabular}
+
+\medskip
+
+\noindent
+Back to Proposition~\ref{thm:squares-odd-integers-Gauss}.
 
 \begin{proof}
 {\bf A proof ``by pictures''.}
@@ -519,22 +588,22 @@ illustrative case $n=5$.
 \end{figure}
 
 Starting with such a picture, we take each row of $2c+1$ bullets and
-fold it at its midpoint so that it becomes a reversed letter $L$.  The
-row of $2c+1$ bullets becomes an $L$ whose horizontal portion (at the
-bottom of the reversed $L$) is a row of $c+1$ bullets and whose
-vertical portion (at the right of the reversed $L$) is a column of
+fold it at its midpoint so that it becomes a reversed letter ``$L$''.  The
+row of $2c+1$ bullets becomes an ``$L$'' whose horizontal portion (at the
+bottom of the reversed ``$L$'') is a row of $c+1$ bullets and whose
+vertical portion (at the right of the reversed ``$L$'') is a column of
 $c+1$ bullets.  See Fig.~\ref{fig:sumOdds2} wherein the depicted
 values of $c$ are $c = 0, 1, 2, 3, 4$.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsIntermediate}
-              \caption{Folding a single row into a reversed letter $L$.}
+              \caption{Folding a single row into a reversed letter ``$L$''.}
        \label{fig:sumOdds2}
 \end{center}
 \end{figure}
 
-Once we have folded every row of bullets into a reversed $L$, we nest
-the $L$'s in the manner depicted in Fig~\ref{fig:sumOdds3}.
+Once we have folded every row of bullets into a reversed ``$L$'', we nest
+the ``$L$''s in the manner depicted in Fig~\ref{fig:sumOdds3}.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsFinal}
@@ -544,7 +613,7 @@ the $L$'s in the manner depicted in Fig~\ref{fig:sumOdds3}.
 \end{center}
 \end{figure}
 Clearly, this nesting produces an $n \times n$ square array of
-bullets.  
+(perforce, $n^2$) bullets.
 \end{proof}
 
 \medskip
@@ -586,7 +655,7 @@ Table~\ref{tab:SumOddsTriangle}.
 \]
 \end{table}
 What we note is that---at least with the illustrated portion of the
-procedure, the $k$th group, of size $k$, adds up to $k^3$.
+procedure---the $k$th group, of size $k$, adds up to $k^3$.
 
 Before we proceed further, let us verify---by induction---that this
 pattern persists indefinitely.
@@ -598,46 +667,50 @@ provides the base for our induction.
 \item[{\bf Inductive hypothesis}.]
 We know from Proposition~\ref{thm:sum-first-integers-Gauss} that the
 $k$th group consists of $k$ consecutive odd numbers beginning with
-\[ 2 {k \choose 2} -1 \ \ \ \ \
+\[ 2 \Delta_{k-1} -1 \ \ \ \ \
 \mbox{which is the} \ \ \ \ \
-\left[ {k \choose 2} +1 \right]\mbox{th odd number}
+\left( \Delta_{k-1} +1 \right)\mbox{th odd number}
 \]
+Hence, this group begins with $2 \Delta_k -1$ and ends with
+$2\Delta_k +1$.
+%{\Denis the right expression is: beginning with $2\Delta_{k-1} +1$ and ending at $2\Delta_k-1$}
 
-{\Denis the right expression is:
-beginning with $2\Delta_{k-1} +1$ and ending at $2\Delta_k-1$}
+%{\Denis I prefer to refer to $\Delta_k$ instead of ${k+1 \choose 2} $... }
 
-{\Denis I prefer to refer to $\Delta_k$ instead of ${k+1 \choose 2} $... }
-
-This proof can be represented graphically as follows:
-Let consider the unit square as the basis.
-The cube of $2$ can be represented by 2 times 2 by 2 squares as depicted in Fig.~\ref{fig:sumCubes1}.
-Fig.~\ref{fig:sumCubes2} shows that $1+2^3$ is a perfect square.
-The next cube added to the others is also a square (see Fig.~\ref{fig:sumCubes2}). 
-Notice here that when the numbers are even, there is an overlap while when they are odd, the construction is direct.
-
+This proof can be represented graphically as follows.  We begin with
+the unit square (the leftmost item in Fig.~\ref{fig:sumCubes1}) as the
+basis of our induction.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes1}
-\caption{...}
+\caption{The basis for the inductive pictorial proof}
        \label{fig:sumCubes1}
 \end{center}
 \end{figure}
-
+We next represent the number $2^3$ (the {\em cube} of $2$) by two $2
+\times 2$ squares: the figures following the unit square in
+Fig.~\ref{fig:sumCubes1}.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes2}
-\caption{...}
+\caption{Showing graphically that $2^3 +1$ is a perfect square}
        \label{fig:sumCubes2}
 \end{center}
 \end{figure}
-
+Fig.~\ref{fig:sumCubes2} illustrates graphically that $1+ 2^3$
+is a perfect square.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes3}
-\caption{...}
+\caption{The next step in the construction also produces a perfect square}
        \label{fig:sumCubes3}
 \end{center}
 \end{figure}
+Fig.~\ref{fig:sumCubes3} illustrates that iterating the process also
+produces a perfect square.  Comparing Figs.~\ref{fig:sumCubes2}
+and~\ref{fig:sumCubes3} indicates a parity constraint on the process:
+at even-numbered steps,the subsquares that get ``merged'' are
+overlapping; at odd-numbered steps, they are not.
 
 
 \item[{\bf Inductive extension}.]
@@ -649,50 +722,88 @@ group consists of the following odd integers ($k>1$):
 \ldots, \
 2 \Delta_{k-1} +2k-1
 \]
-where $2 \Delta_{k-1} +2k-1 = 2 \Delta_{k} +1$ (easy to verify by induction for instance).
-
-hence has sum
+One verifies easily (say, by induction) that $2 \Delta_{k-1} +2k-1 = 2
+\Delta_{k} +1$.
+Hence, this group has the sum
 \[
-2k {k \choose 2} \ - \ 2 {k \choose 2} +k
-\ = \ k^3.
+2k {k \choose 2} \ - \ 2 {k \choose 2} +k \ = \
+(2k -1) \Delta_k + k \ = \ k^3.
 \]
 \end{description}
 
-{\Denis here is my solution... Please, check}
+%{\Denis here is my solution... Please, check}
 
-As each row contains one more integer than the previous one, 
-row $k$ contains the sum of odds from $\Delta_{k-1}+1$ to $\Delta_k$.
-Thus, using the definition of the $\Delta_{k}$, we compute the sum as:
+Because each row contains one more integer than its predecessor, row
+$k$ contains the sum of the odd integers from $\Delta_{k-1}+1$ to
+$\Delta_k$.  By direct calculation, we can therefore compute the row's
+sum as
+\[
+\left( \frac{k(k+1)}{2} \right)^2 \ - \ \left( \frac{k(k-1)}{2} \right)^2
+ \ \ =  \ \ \frac{k^2}{4} \left( (k+1)^2 - (k-1)^2 \right)
+% & = & \frac{k^2}{4} (4k) \\
+ \ \ = \ \ k^3
+\]
+\end{proof}
 
-$= (\frac{k(k+1)}{2})^2 - (\frac{k(k-1)}{2})^2 = \frac{k^2}{4}((k+1)^2 - (k-1)^2) = \frac{k^2}{4} (4k) = k^3$
+We close this treatment with another, really basic proof.  As stated
+earlier, our goal is really to encourage readers to utilize every
+possible mathematical concept as they hone their mathematical and
+computational skills.
 
-{\Denis Another touch?}
-We describe below another way to obtain the result based on the classical multiplicative tables
-that are very popular for teaching the first concepts of arithmetic to the youngest.
-The way to construct the table is to write the integers on the first column, then, multiply by $2$ in the second column, and so on
-until the last column which is multiplied by $n$.
-The table is given below for the first 5 integers.
+\begin{proof}
+{\bf A final proof, from elementary school.}
+%
+Consider the following reasoning which emerges from the way
+multipication tables are developed in elementary school.  We
+illustrate the idea using the case $n=5$.
+\[
+\begin{array}{rrrrr}
+1  &  2 &  3 &  4 &  5 \\
+2  &  4 &  6 &  8 & 10 \\
+3  &  6 &  9 & 12 & 15 \\
+4  &  8 & 12 & 16 & 20 \\
+5  & 10 & 15 & 20 & 25 \\
+\end{array}
+\]
+Write the integers $1, 2, \ldots, n$ in a row.  Below this row, write
+the doubles of these integers.  The next row holds the triples of the
+integers; then come the quadruples of the integers, then the
+quintuples, and so on.  Note that the resulting table is symmetric:
+its rows are identical to its columns.
 
-%\begin{array}{lllll}
-%1  &  2  &  3   &  4  & 5 \\
-%2  &  4 &   6  &   8  & 10 \\
-%3  &  6  &  9   &  12  & 15 \\
-%4  &  8 &   12  &   16  & 20 \\
-%5  &  10  &  15   &  20  & 25 \\
-%\end{array}
+Using Fubini's rearrangement stratagem, we count all the integers in
+the table in two different ways.
+\begin{enumerate}
+\item
+We sum the entries of our table by peeling away successively larger
+reversed instances of the letter ``$L$'' (as in our earlier
+``pictorial'' proof of
+Proposition~\ref{thm:squares-odd-integers-Gauss}).  We find that the
+integers in each ``$L$'' sum to a perfect cube:
+\[
+\begin{array}{ccccccccc|cl}
+1  &    &    &    &    &   &     &    &   & 1   & = 1^3 \\
+2  &  4 &  2 &    &    &   &     &    &   & 8   & = 2^3 \\
+3  &  6 &  9 &  6 &  3 &   &     &    &   & 27  & = 3^3 \\
+4  &  8 & 12 & 16 & 12 &  8 &  4 &    &   & 64  & = 4^3 \\
+5  & 10 & 15 & 20 & 25 & 20 & 15 & 10 & 5 & 125 & = 5^3
+\end{array}
+\]
 
-The sum of cubes may be obtained again by Fubini:
-we count all the integers in the table by two different ways.
-First, using the reversed letter L as in section {\Denis to complete with the right reference here...}
-we see that it is the sum of cubes $1$ plus $2+4+2=2^3$ plus $3+6+9+6+3 = 3^3$ + ...
-The second way of counting is by rows:
-The first one is $\Delta_n$, the second is $2 \times \Delta_n$, the third $3 \times \Delta_n$, ... and the last one $n \times \Delta_n$.
+\item
+We sum the successive rows of our table.  The first rowof the table
+sums to $\Delta_n$; the second sums sums to $2 \Delta_n$; the third
+sums to $3 \Delta_n$, \ldots; the last row sums to $n \Delta_n$.
+Thus, the total sum is $(1 + 2 + \cdots + n) \Delta_n \ =
+\ \left(Delta_n \right)^2$.
+\end{enumerate}
+We conclude that
+\[
+\sum_{i=1}^n i^3 \ = \  \left(\Delta_n \right)^2
+\]
+\end{proof}
 
-Thus, the sum is $\Delta_n (1+2+3 ... + n) = \Delta_n^2$.
-
-{\Denis Do we need a figure here for the reversed L pattern? I guess no}
-
-
+%{\Denis Do we need a figure here for the reversed L pattern? I guess no}
 \ignore{\Arny More calculation!  BOO!  Please complete this.  I seem to be off by 1}
 %We give another proof that tells us something more on numbers of their interactions.
 %We consider numbers instead of bullets, and we use a similar principle as Fubini, that is to determine a
@@ -708,9 +819,11 @@ Thus, the sum is $\Delta_n (1+2+3 ... + n) = \Delta_n^2$.
 
 \medskip
 
-Computing the sum of the first cubes can be done in a similar way as the sum of integers or the sum of squares.
-This is detailed in Section~\ref{sec:sum-of-i2c}
-\end{proof}
+As we shall see in Section~\ref{sec:sum-of-i2c>0}, one can develop
+techniques for computing the sum of the first $n$ perfect cubes that
+are smooth extensions of the techniques for summing the first $n$
+integers or the first $n$ perfect squares.
+
 
 
 \subsection{Geometric Sums and Series}
@@ -915,36 +1028,40 @@ This procedure is hard---but not impossible---to adapt to values of $b
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral1}
 \caption{Initial state: the unit square and $r$.}
-       \label{fig:sumGeoGeneral}
+       \label{fig:sumGeoGeneral1}
 \end{center}
 \end{figure}
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral2}
-\caption{Geometric series obtained by an adequate cascading of
+\caption{Geometric series obtained by an appropriate cascading of
   shrinking squares.}
-       \label{fig:sumGeoGeneral}
+       \label{fig:sumGeoGeneral2}
 \end{center}
 \end{figure}
+Fig.~\ref{fig:sumGeoGeneral3} suggests how to achieve such an
+adaptation for any value of $b$ with $0 \leq b <1$, by an
+appropriately chosen cascade of shrinking squares.
 \begin{figure}[h]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral3}
-\caption{Complete process for computing the geometric series.}
-       \label{fig:sumGeoGeneral}
+\caption{The complete process for computing a geometric series via a
+  cascade of shrinking squares.}
+       \label{fig:sumGeoGeneral3}
 \end{center}
 \end{figure}
-Fig.~\ref{fig:sumGeoGeneral} suggests
-how to achieve such an adaptation for any value of $b$ with $0 \leq r
-<1$, by an appropriately chosen cascade of shrinking squares.  The
-length of the base of the abutting rectangles is the value of the
-infinite series $\displaystyle \sum_{i=0}^\infty \ b^{-i}$.
+The lengths of the bases of the abutting rectangles is the value of
+the infinite series $\displaystyle \sum_{i=0}^\infty \ b^{-i}$.
 \end{proof}
 
-{\Denis I realized that the notation is not consistent here, I took $r$ instead of $b$, I can change in the figure... Just ask}
+%{\Denis I realized that the notation is not consistent here, I took $r$ instead of $b$, I can change in the figure... Just ask}
+{\Arny Please do change the r to a b.  The ``b'' happened because of
+  the word ``base''}
+
 
 \subsubsection{An extension and an application}
 
-\paragraph{A. On summing ``extended'' geometric series}
+\paragraph{\small\sf A. On summing ``extended'' geometric series}
 
 We now build on our sums (\ref{eq:geom-sum:b>1},
 \ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
@@ -1031,9 +1148,7 @@ b \ + \ 2 b^2\ + \ 3 b^3 \ + \ \cdots \ + \ n b^n
 \]
 
 
-
-
-\paragraph{B. Detecting properties of integer $n$ via $n$'s base-$b$ (positional) numeral}
+\paragraph{\small\sf B. Detecting properties of integer $n$ via $n$'s base-$b$ (positional) numeral}
 
 We now exploit our ability to sum geometric sums to illustrate a
 somewhat surprising, nontrivial fact about integers that are
@@ -1102,8 +1217,6 @@ reader, now shows that this final fact means that $n$ is divisible by
 $b-1$ if, and only if, $s_b(n)$ is.
 \end{proof}
 
-
-**HERE
 
 \section{On Summing ``Smooth'' Series}
 \label{sec:smooth-series}
@@ -1196,16 +1309,22 @@ $\underline{C}$---affords {\em a lower bound} on the summation of
 interest.
 \end{enumerate}
 
-In the next three subsections, we illustrate this strategem using
-summations of fixed powers of successive integers, i.e., summations of
-the form $\displaystyle \sum_{i=1}^n i^c$.  In
-Section~\ref{sec:sum-of-cg-1}, we focus on the case $c > -1$; in
-Section~\ref{sec:sum-of-c=-1}, we focus on the case $c = -1$; in
-Section~\ref{sec:sum-of-cl-1}, we focus on the case $c < -1$.
+In the next subsection, we illustrate this strategem using summations
+of fixed powers of successive integers, i.e., summations of the form
+$\displaystyle \sum_{i=1}^n i^c$, for various values of the fixed
+parameter $c$.
+%  In
+%Section~\ref{sec:sum-of-cg-1}, we focus on the case $c > -1$; in
+%Section~\ref{sec:sum-of-c=-1}, we focus on the case $c = -1$; in
+%Section~\ref{sec:sum-of-cl-1}, we focus on the case $c < -1$.
+
+\subsection{Sums of Fixed Powers of Consecutive Integers: $\sum i^c$}
+\label{sec:sum-of-i2c}
+
 
 
 \subsubsection{Summing $c$th powers of consecutive integers: $c > -1$}
-\label{sec:sum-of-cg-1}
+\label{sec:sum-of-i2c>0}
 
 We illustrate the technique of bounding summations via integrals by
 focusing on the summations
@@ -1256,6 +1375,7 @@ $k=2$, invoking as a technical tool the following special case of
 Newton's {\it Binomial Theorem}.\footnote{The general form of the
   Binomial Theorem expands the polynomial $(x+y)^k$ rather than
   $(x+1)^k$.}
+\index{The Binomial Theorem}
 
 \begin{theorem}[The Restricted Binomial Theorem]
 \label{thm:restricted-binomial-thm}
@@ -1379,7 +1499,7 @@ We illustrate the method by deriving explicit expressions for two
 rather simple summations: the sum $S_1(n)$ of the first $n$ positive
 integers and the sum $S_2(n)$ of the first $n$ perfect squares.
 
-\paragraph{A. An explicit expression for $S_1(n)$}
+\paragraph{\small\sf A. An explicit expression for $S_1(n)$}
 
 Of course, we have already determined $S_1(n)$ in
 Section~\ref{sec:arithmetic-series}, by other means.  We provide this
@@ -1414,7 +1534,7 @@ so that $c = 1/2$; in other words,
 We verify this expression by induction in
 Proposition~\ref{thm:sum-1-to-n-induction}.
 
-\paragraph{B. An explicit expression for $S_2(n)$}
+\paragraph{\small\sf B. An explicit expression for $S_2(n)$}
 
 A modestly more complicated undetermined-coefficient calculation
 allows us to evaluate the sum $S_2(n)$ of the first $n$ squares.
