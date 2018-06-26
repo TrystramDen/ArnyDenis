@@ -1,4 +1,4 @@
-%version of 06-25-18
+%version of 06-26-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -222,7 +222,7 @@ introduce important notation.
 
 %\addcontentsline{toc}{paragraph}{A. Case study: Summing the first $n$ integers}
 
-\paragraph{\small\sf A. Summing the first $n$ integers: the case $a=b=1$}
+\paragraph{\sf A. Summing the first $n$ integers: the case $a=b=1$}
 
 \begin{prop}
 \label{thm:sum-first-integers-Gauss}
@@ -448,7 +448,7 @@ an + b \cdot {n \choose 2}.
 \end{prop}
 
 
-\paragraph{\small\sf B. Perfect squares are sums of odd integers}
+\paragraph{\sf B. Perfect squares are sums of odd integers}
 
 We now build on Proposition~\ref{thm:sum-first-integers-Gauss} to
 craft {\em two} constructive proofs that each perfect square, say,
@@ -1060,8 +1060,9 @@ the infinite series $\displaystyle \sum_{i=0}^\infty \ b^{-i}$.
 
 
 \subsubsection{An extension and an application}
+\label{sec:extended-geom-series}
 
-\paragraph{\small\sf A. On summing ``extended'' geometric series}
+\paragraph{\sf A. On summing ``extended'' geometric series}
 
 We now build on our sums (\ref{eq:geom-sum:b>1},
 \ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
@@ -1148,7 +1149,7 @@ b \ + \ 2 b^2\ + \ 3 b^3 \ + \ \cdots \ + \ n b^n
 \]
 
 
-\paragraph{\small\sf B. Detecting properties of integer $n$ via $n$'s base-$b$ (positional) numeral}
+\paragraph{\sf B. Detecting properties of integer $n$ via $n$'s base-$b$ (positional) numeral}
 
 We now exploit our ability to sum geometric sums to illustrate a
 somewhat surprising, nontrivial fact about integers that are
@@ -1239,11 +1240,11 @@ illustrate.
 \begin{enumerate}
 \item
 Represent the summands seriatim as abutting unit-width rectangles.  
-  \begin{itemize}
-  \item
-Our generic example has $n$ unit-width rectangles, of respective
-heights $a_1$, $a_2$, \ldots, $a_n$.
 
+Our generic example has $n$ unit-width rectangles, of respective
+heights $a_1$, $a_2$, \ldots, $a_n$.  We cite two special cases, to
+help the reader understand how the strategem is applied.
+  \begin{itemize}
   \item
 In Fig.~\ref{fig:riemann-n2}, we represent the sum
 \begin{figure}[htb]
@@ -1267,7 +1268,9 @@ rightward (to extend the summation and encompass more addends), then
 the next rectangle would have height $36$.
 
   \item
-In Fig.~\ref{fig:riemann-harmonic}, we represent the {\em harmonic}
+In Fig.~\ref{fig:riemann-harmonic}, we represent the {\em harmonic} sum
+\[ S^{(H)}(n) \ = \ \sum_{i=1}^n \ i^{-1} \ = \ \sum_{i=1}^n \ 1/i.
+\]
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.42]{riemann2.pdf}
@@ -1283,11 +1286,10 @@ In Fig.~\ref{fig:riemann-harmonic}, we represent the {\em harmonic}
   \ \frac{1}{x+1} dx$.}
 \label{fig:riemann-harmonic}
 \end{figure}
-sum $S^{(H)}(n) \ = \ \sum_{i=1}^n \ 1/i$.  The rectangles that
-represent the respective addends have respective heights $12$, $6$,
-$4$, $3$, $16/3$, and $2$.  If we were to extend the figure rightward
-(to extend the summation and encompass more addends), then the next
-rectangle would have height $16/7$.
+The rectangles that represent the respective addends have respective
+heights $12$, $6$, $4$, $3$, $16/3$, and $2$.  If we were to extend
+the figure rightward (to extend the summation and encompass more
+addends), then the next rectangle would have height $16/7$.
   \end{itemize}
 
 \item
@@ -1310,9 +1312,9 @@ interest.
 \end{enumerate}
 
 In the next subsection, we illustrate this strategem using summations
-of fixed powers of successive integers, i.e., summations of the form
-$\displaystyle \sum_{i=1}^n i^c$, for various values of the fixed
-parameter $c$.
+of fixed powers of successive integers---i.e., summations of the form
+$\displaystyle \sum_{i=1}^n i^c$---for various (classes of)values of
+the fixed parameter $c$.
 %  In
 %Section~\ref{sec:sum-of-cg-1}, we focus on the case $c > -1$; in
 %Section~\ref{sec:sum-of-c=-1}, we focus on the case $c = -1$; in
@@ -1321,61 +1323,63 @@ parameter $c$.
 \subsection{Sums of Fixed Powers of Consecutive Integers: $\sum i^c$}
 \label{sec:sum-of-i2c}
 
-
-
-\subsubsection{Summing $c$th powers of consecutive integers: $c > -1$}
+\subsubsection{Summing $c$th powers of consecutive integers: $c \geq 0$}
 \label{sec:sum-of-i2c>0}
 
-We illustrate the technique of bounding summations via integrals by
-focusing on the summations
-\[ S_k(n) \ \eqdef \ \sum_{i=1}^n \ i^k, \]
-for arbitrary positive integers $k$.  The technique generalizes far
-beyond the summations $S_k(n)$, but this single illustration should
-give the reader a firm basis from which to extrapolate to more general
-summations.
+\paragraph{\sf A. General powers $c \geq 0$}
 
-
-
-We begin by describing the technique in detail for the summation
-$\displaystyle S_2(n) = \sum_{i=1}^n \ i^2$.  We shall then indicate
-how to extrapolate from this case to general summations $S_k(n)$.
-
-We obtain our upper bound on $S_2(n)$ by evaluating the integral that
-yields the area $\overline{A}_2(n)$ under the lefthand continuous
+We begin to illustrate the technique of bounding summations via
+integrals by focusing on summations of the form
+\[ S_c(n) \ \eqdef \ \sum_{i=1}^n \ i^c, \]
+for arbitrary positive numbers $c$.  Extrapolating from the example in
+Fig.~\ref{fig:riemann-n2}, 
+we obtain our upper bound on $S_c(n)$ by evaluating the integral that
+yields the area $\overline{C}_c(n)$ under the lefthand continuous
 curve ($a$) in Fig.~\ref{fig:riemann-n2}, namely,
 \begin{eqnarray}
-\label{eq:upper-integral-x2}
-\overline{A}_2(n) \ = \
-\int_0^n \ (x+1)^2 dx & = &
-  \int_0^n \ x^2 dx \ + \ 2 \int_0^n \ x dx \ + \ \int_0^n \ dx \\
+\label{eq:upper-integral-xc}
+\overline{C}_c(n) \ = \
+\int_0^n \ (x+1)^c dx & = &
+%  \int_0^n \ x^2 dx \ + \ 2 \int_0^n \ x dx \ + \ \int_0^n \ dx \\
+% & = & \frac{1}{3} n^3 \ + n^2 \ + \ n \ + \ O(1).
+ \frac{1}{c+1} (n+1)^{c+1} \ + \ O(1) \\
 \nonumber
- & = & \frac{1}{3} n^3 \ + n^2 \ + \ n \ + \ O(1).
+ & = & \frac{1}{c+1} n^{c+1} \ + \ O(n^c).
 \end{eqnarray}
-We obtain our lower bound on $S_2(n)$ by evaluating the integral that
-yields the area $\underline{A}_2(n)$ under the righthand continuous
-curve ($b$) in the the figure, namely,
+We obtain our lower bound on $S_c(n)$ by evaluating the integral that
+yields the area $\underline{C}_c(n)$ under the righthand continuous
+curve ($b$) in the figure, namely,
 \begin{equation}
-\label{eq:lower-integral-x2}
-\underline{A}_2(n) \ = \
-\int_1^n \ x^2 dx \ = \ \frac{1}{3} n^3 \ + \ O(1).
+\label{eq:lower-integral-xc}
+\underline{C}_c(n) \ = \
+\int_1^n \ x^c dx \ = \ \frac{1}{c+1} n^{c+1} \ + \ O(1).
 \end{equation}
 Combining these bounds, we finally have the following two-sided bound
-on $S_2(n)$.
+on $S_c(n)$.
 \begin{equation}
-\label{eq:bounds-sum-x2}
-\frac{1}{3} n^3 \ + \ O(1)
-  \ \ \leq \ \ \sum_{i=1}^n \ i^2
-  \ \ \leq \ \ \frac{1}{3} n^3 \ + n^2 \ + \ n \ + \ O(1)
+\label{eq:bounds-sum-xc}
+\frac{1}{c+1} n^{c+1} \ + \ O(1)
+  \ \ \leq \ \ \sum_{i=1}^n \ i^c
+  \ \ \leq \ \ \frac{1}{c+1} n^{c+1} \ + \ O(n^c).
 \end{equation}
+The main message here is:
+\begin{center}
+{\em The behavior of $S_c(n)$ is dominated by $\displaystyle
+  \frac{1}{c+1} n^{c+1}$ as $n$ grows without bound.  }
+\end{center}
 
 \medskip
 
-For summations $S_k(n)$ with $k >2$, we follow the roadmap of the case
-$k=2$, invoking as a technical tool the following special case of
-Newton's {\it Binomial Theorem}.\footnote{The general form of the
-  Binomial Theorem expands the polynomial $(x+y)^k$ rather than
-  $(x+1)^k$.}
-\index{The Binomial Theorem}
+\paragraph{\sf B. Powers that are positive integers}
+
+When $c$ is a positive integer, the following special case of Newton's
+{\it Binomial Theorem}.\footnote{The general form of the Binomial
+  Theorem expands the polynomial $(x+y)^k$ rather than $(x+1)^k$.  See
+Section~\ref{sec:Binomial-thm}.}
+\index{The Binomial Theorem!restricted form}
+affords us a much more detailed version of the bounds
+(\ref{eq:bounds-sum-xc}) on $S_c(n)$, via a much more detailed upper
+bound (\ref{eq:upper-integral-xc}) on the sum.
 
 \begin{theorem}[The Restricted Binomial Theorem]
 \label{thm:restricted-binomial-thm}
@@ -1384,6 +1388,20 @@ For all positive integers $k$,
 \sum_{i=0}^k \ \ {k \choose i} x^{k-i}.
 \]
 \end{theorem}
+
+***********HERE
+
+
+We begin by describing the technique in detail for the summation
+$\displaystyle S_2(n) = \sum_{i=1}^n \ i^2$.  We shall then indicate
+how to extrapolate from this case to general summations $S_k(n)$.
+
+
+
+\medskip
+
+For summations $S_k(n)$ with $k >2$, we follow the roadmap of the case
+$k=2$, invoking as a technical tool
 
 \begin{quote}
 As usual, the {\it binomial coefficients} are defined and denoted as
@@ -1398,7 +1416,7 @@ The extrapolation from $S_2(n)$ to general $S_k(n)$ begins with the
 straightforward exercise of crafting analogues of
 Fig.~\ref{fig:riemann-n2} for arbitrary summations $S_k(n)$.
 Parallelling the reasoning that led us to the relations
-(\ref{eq:upper-integral-x2}) and (\ref{eq:lower-integral-x2}) we
+(\ref{eq:upper-integral-xc}) and (\ref{eq:lower-integral-xc}) we
 obtain:
 \begin{itemize}
 \item
@@ -1499,7 +1517,7 @@ We illustrate the method by deriving explicit expressions for two
 rather simple summations: the sum $S_1(n)$ of the first $n$ positive
 integers and the sum $S_2(n)$ of the first $n$ perfect squares.
 
-\paragraph{\small\sf A. An explicit expression for $S_1(n)$}
+\paragraph{\sf A. An explicit expression for $S_1(n)$}
 
 Of course, we have already determined $S_1(n)$ in
 Section~\ref{sec:arithmetic-series}, by other means.  We provide this
@@ -1534,7 +1552,7 @@ so that $c = 1/2$; in other words,
 We verify this expression by induction in
 Proposition~\ref{thm:sum-1-to-n-induction}.
 
-\paragraph{\small\sf B. An explicit expression for $S_2(n)$}
+\paragraph{\sf B. An explicit expression for $S_2(n)$}
 
 A modestly more complicated undetermined-coefficient calculation
 allows us to evaluate the sum $S_2(n)$ of the first $n$ squares.
