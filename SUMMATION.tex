@@ -222,7 +222,7 @@ introduce important notation.
 
 %\addcontentsline{toc}{paragraph}{A. Case study: Summing the first $n$ integers}
 
-\paragraph{\sf A. Summing the first $n$ integers: the case $a=b=1$}
+\paragraph{\small\sf A. Summing the first $n$ integers: the case $a=b=1$}
 
 \begin{prop}
 \label{thm:sum-first-integers-Gauss}
@@ -448,7 +448,7 @@ an + b \cdot {n \choose 2}.
 \end{prop}
 
 
-\paragraph{\sf B. Perfect squares are sums of odd integers}
+\paragraph{\small\sf B. Perfect squares are sums of odd integers}
 
 We now build on Proposition~\ref{thm:sum-first-integers-Gauss} to
 craft {\em two} constructive proofs that each perfect square, say,
@@ -660,11 +660,11 @@ procedure---the $k$th group, of size $k$, adds up to $k^3$.
 Before we proceed further, let us verify---by induction---that this
 pattern persists indefinitely.
 \begin{description}
-\item[{\bf Base for the induction.}]
+\item[{\small\sf Base for the induction.}]
 The trivial one-term entry in row $1$ of Table~\ref{tab:SumOddsTriangle}
 provides the base for our induction.
 
-\item[{\bf Inductive hypothesis}.]
+\item[{\small\sf Inductive hypothesis}.]
 We know from Proposition~\ref{thm:sum-first-integers-Gauss} that the
 $k$th group consists of $k$ consecutive odd numbers beginning with
 \[ 2 \Delta_{k-1} -1 \ \ \ \ \
@@ -1062,7 +1062,7 @@ the infinite series $\displaystyle \sum_{i=0}^\infty \ b^{-i}$.
 \subsubsection{An extension and an application}
 \label{sec:extended-geom-series}
 
-\paragraph{\sf A. On summing ``extended'' geometric series}
+\paragraph{\small\sf A. On summing ``extended'' geometric series}
 
 We now build on our sums (\ref{eq:geom-sum:b>1},
 \ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
@@ -1149,7 +1149,7 @@ b \ + \ 2 b^2\ + \ 3 b^3 \ + \ \cdots \ + \ n b^n
 \]
 
 
-\paragraph{\sf B. Detecting properties of integer $n$ via $n$'s base-$b$ (positional) numeral}
+\paragraph{\small\sf B. Detecting properties of integer $n$ via $n$'s base-$b$ (positional) numeral}
 
 We now exploit our ability to sum geometric sums to illustrate a
 somewhat surprising, nontrivial fact about integers that are
@@ -1370,7 +1370,7 @@ The main message here is:
 \subsubsection{Summing $c$th powers: $c$ a positive integer}
 \label{sec:positive-integer-power}
 
-\paragraph{\sf A. A better bound via the Binomial Theorem}
+\paragraph{\small\sf A. A better bound via the Binomial Theorem}
 
 When $c$ is a positive integer, the following special case of Newton's
 {\it Binomial Theorem}.\footnote{The general form of the Binomial
@@ -1427,8 +1427,9 @@ $n$ grows without bound, but we have taken a substantial step toward
 developing explicit expressions for the summations $S_c(n)$ when $c$
 is a positive integer.
 
+\medskip
 
-\paragraph{\sf B. Refining approximate sums using {\em undetermined
+\paragraph{\small\sf B. Refining approximate sums using {\em undetermined
   coefficients}}
 
 We now introduce the {\em Method of Undetermined Coefficients}
@@ -1543,14 +1544,181 @@ We have, thus, derived equation~(\ref{eq:sum-1-to-nsq}).
 \medskip
 
 We verify our expressions for $S_1(n)$ and $S_2(n)$ by induction in
-Section~\ref{sec:Sums-Induction}.
+subsection C.
 
 \medskip
 
 With more (calculational) work, but no new (mathematical) ideas, one
 can derive explicit expressions for the sum of the first $n$ $c$th
-powers, for any positive integer $c$,
-i.e., for the quantity $S^{(c)}_n$, for any positive integer $k$.
+powers, i.e., quantity $S_c(n)$, for any positive integer $c$.
+
+
+\medskip
+
+\paragraph{\small\sf C. Validating approximate summations via induction}
+
+We employ the proof technique of (Finite) Induction by proving the
+correctness of three summation formulas that have occupied our
+attention in this chapter:
+\begin{enumerate}
+\item
+the sum $S_1(n)$ of the first $n$ positive integers; cf., equation
+(\ref{eq:sum-1-to-n})
+
+\item
+the sum $S_2(n)$ of the squares of the first $n$ positive integers;
+cf., equation (\ref{eq:sum-1-to-nsq})
+
+\item
+the sum of the first $n$ odd positive integers; cf.,
+Proposition~\ref{thm:squares-odd-integers-Gauss}.
+\end{enumerate}
+We deal with these formulas in turn.
+
+\noindent {\it 1. Verifying equation (\ref{eq:sum-1-to-n}) for $S_1(n)$.}
+%
+For every positive integer $m$, let {\bf P}$_1(m)$ be the proposition
+\[  1 \ + \ 2 \ +  \cdots  + \ m \ = \ {{m+1} \choose 2}. \]
+We proceed according to the standard format of an inductive argument.
+
+\begin{description}
+\item[{\small\sf The base case P$_1(1)$}.]
+%
+Because ${\displaystyle {2 \choose 2}} = 1$, proposition {\bf P}$_1(1)$
+is true.
+
+\item[{\small\sf The inductive hypothesis}.]
+%
+Assume, for the sake of induction, that proposition {\bf P}$_1(m)$ is
+true for every positive integer $m < n$.  In particular, then,
+proposition {\bf P}$_1(n-1)$ is true.
+
+\item[{\small\sf Extending the induction}.]
+%
+Because proposition {\bf P}$_1(n-1)$ is true, we know that
+\[ S_1(n-1) \ = \ 1 + 2 + \cdots + (n-1) \ = \ {n \choose 2}.  \]
+By direct calculation, then,
+\begin{eqnarray*}
+S_1(n) & = & {n \choose 2} + n \\
+  & = & \frac{n(n-1)}{2}  \ + \ n \\ 
+%  & = & \frac{n^2 - n + 2n}{2} \\
+  & = & \frac{n^2 + n}{2} \\
+  & = & {{n+1} \choose 2},
+\end{eqnarray*}
+as was verified in equation (\ref{eq:sum-1-to-n}).
+\end{description}
+Because $n$ is an arbitrary positive integer, we conclude that
+{\bf P}$_1(n)$ is true whenever
+\begin{itemize}
+\item
+{\bf P}$_1(1)$ is true
+\item
+{\em and}
+{\bf P}$_1(m)$ is true for all $m < n$.
+\end{itemize}
+By the Principle of (Finite) Induction, then, we conclude that
+proposition {\bf P}$_1(n)$ is true for all positive integers $n$.
+\qed
+
+\bigskip
+
+
+\noindent {\it 2. Verifying equation (\ref{eq:sum-1-to-nsq}) for $S_2(n)$.}
+%
+For every positive integer $m$, let {\bf P}$_2(m)$ be the proposition
+\[  1 \ + \ 2^2 \ + \ 3^2 \ + \cdots + \ m \ = \ 
+\frac{1}{6} m (m+1)(2m+1).
+\]
+We proceed according to the standard format of an inductive argument.
+
+\begin{description}
+\item[{\small\sf The base case P$_2(1)$}.]
+%
+Because ${\displaystyle \frac{1}{6} (2 \cdot 3)} = 1$, proposition {\bf
+    P}$_2(1)$ is true.
+
+\item[{\small\sf The inductive hypothesis}.]
+%
+Assume, for the sake of induction, that proposition {\bf P}$_2(m)$ is
+true for every positive integer $m < n$.  In particular, then,
+proposition {\bf P}$_2(n-1)$ is true.
+
+\item[{\small\sf Extending the induction}.]
+%
+Because proposition {\bf P}$_2(n-1)$ is true, we know that
+\[ S_2(n-1) \ = \
+\frac{1}{6} (n-1) \cdot n \cdot (2n-1).
+\]
+By direct calculation, then,
+\begin{eqnarray*}
+S_2(n) & = &
+\frac{1}{6} (n-1) \cdot n \cdot (2n-1) \ + \ n^2 \\
+  & = &
+\frac{n}{6} \left( (n-1) \cdot (2n-1) + 6n \right) \\
+  & = & \frac{n}{6} \left( 2n^2 +3n + 1 \right) \\ 
+  & = & \frac{n}{6} (n+1)(2n+1),
+\end{eqnarray*}
+as was verified in equation (\ref{eq:sum-1-to-nsq}).
+\end{description}
+Because $n$ is an arbitrary positive integer, we conclude that
+{\bf P}$_2(n)$ is true whenever
+\begin{itemize}
+\item
+{\bf P}$_2(1)$ is true
+\item
+{\em and}
+{\bf P}$_2(m)$ is true for all $m < n$.
+\end{itemize}
+By the Principle of (Finite) Induction, then, we conclude that
+proposition {\bf P}$_2(n)$ is true for all positive integers $n$.
+\qed
+
+
+\bigskip
+
+\noindent {\it 3. Verifying that each perfect square $n^2$ is
+  the sum of the first $n$ odd integers.}
+%
+We turn finally to the assertion that, for every positive integer $n$,
+\[ n^2 \ = \ 1 \ + \  3 \ + \ 5 \ + \cdots + \ 2n-1. \]
+For each positive integer $n$, let {\bf P}$(n)$ denote the proposition
+that the preceding equation holds.
+
+The following inductive proof complements the constructive proofs of
+the same result in Proposition~\ref{thm:squares-odd-integers-Gauss}.
+We proceed according to the standard format of an inductive argument.
+
+\begin{description}
+\item[{\small\sf The base case P$(1)$}.]
+%
+Because $1$ is a perfect square, proposition {\bf P}$(1)$ is true.
+
+\item[{\small\sf The inductive hypothesis}.]
+%
+Assume, for the sake of induction, that proposition {\bf P}$(m)$ is
+true for every positive integer $m < n$.  In particular, then,
+proposition {\bf P}$(n-1)$ is true.
+
+\item[{\small\sf Extending the induction}.]
+%
+Because proposition {\bf P}$(n-1)$ is true, we know that
+\[ (n-1)^2 \ = \
+ 1 + 3 + 5 + \cdots + 2n-3 + 2n-1 \ = \ (n-1)^2 + 2n-1.  \]
+By direct calculation, we see that
+\[ (n-1)^2 + 2n-1 \ = \ (n^2 -2n +1) + (2n-1) \ = \ n^2. \]
+\end{description}
+Because $n$ is an arbitrary positive integer, we conclude that
+{\bf P}$(n)$ is true whenever
+\begin{itemize}
+\item
+{\bf P}$(1)$ is true
+\item
+{\em and}
+{\bf P}$(m)$ is true for all $m < n$.
+\end{itemize}
+By the Principle of (Finite) Induction, then, we conclude that {\bf
+  P}$(n)$ is true for all $n \in \N^+$.
+\qed
 
 
 
@@ -1584,121 +1752,6 @@ S_n^{(H)} & = & {\displaystyle \sum_{i=1}^n \ \frac{1}{i} } & \hspace*{.25in}
 
 
 
-\subsection{Validating Approximate Sums via Induction}
-\label{sec:Sums-Induction}
-
-
-We illustrate the proof technique of (Finite) Induction by proving the
-correctness of two familiar summation formulas: (1) the sum of the
-first $n$ positive integers and (2) the sum of the first $n$ odd
-positive integers.
-
-
-\begin{center}
-\label{thm:sum-1-to-n-induction}
-For all $n \in \N$,
-\begin{eqnarray}
-\nonumber
-S_n \ \eqdef \ \sum_{i=1}^n \ i
- & \eqdef &
- 1 + 2 + \cdots + (n-1) + n \\
-\label{eq:sum-first-n}
- & = & {1 \over 2} n (n+1)
-%\nonumber
-% & = & {{n+1}  \choose 2}.
-\end{eqnarray}
-\end{center}
-
-\begin{proof}
-For every positive integer $m$, let {\bf P}$(m)$ be the proposition
-\[  1 + 2 + \cdot + m \ = \ {{m+1} \choose 2}. \]
-Let us proceed according to the standard format of an inductive
-argument.
-
-{\bf 1.} Because ${\displaystyle {2 \choose 2}} = 1$, proposition {\bf
-  P}$(1)$ is true.
-
-{\bf 2.} Let us assume, for the sake of induction, that proposition
-{\bf P}$(m)$ is true for all positive integers strictly smaller than
-$n$.  In particular, then, {\bf P}$(n-1)$ is true.
-
-{\bf 3.} Consider now the summation
-\[ 1 + 2 + \cdots + (n-1) + n. \]
-Because {\bf P}$(n-1)$ is true, we know that
-\[ 1 + 2 + \cdots + (n-1) \ = \ {n \choose 2}.  \]
-By direct calculation, we see that
-\begin{eqnarray*}
-{n \choose 2} + n
-  & = & \frac{n(n-1)}{2}  \ + \ n \\ 
-  & = & \frac{n^2 - n + 2n}{2} \\
-  & = & \frac{n^2 + n}{2} \\
-  & = & {{n+1} \choose 2}
-\end{eqnarray*}
-
-Because $n$ is an arbitrary positive integer, we conclude that
-{\bf P}$(n)$ is true whenever
-\begin{itemize}
-\item
-{\bf P}$(1)$ is true
-\item
-{\em and}
-{\bf P}$(m)$ is true for all $m < n$.
-\end{itemize}
-By the Principle of (Finite) Induction, then, we conclude that {\bf
-  P}$(n)$ is true for all $n \in \N^+$.
-
-\end{proof}
-
-\bigskip
-
-We turn now to our second summation, which asserts that each perfect
-square of a positive integer, say, $n^2$, is the sum of the first $n$
-odd integers, $1, 3, 5, \ldots, 2n-1$.  This proof complements the
-constructive proofs of the same result in
-Proposition~\ref{thm:squares-odd-integers-Gauss}.
-
-\begin{center}
-\label{thm:squares-odd-integers-induction}
-For all $n \in \N^+$,
-\[
-\sum_{k=1}^n \ (2k-1)
- \ = \ 1 + 3 + 5 + \cdots + (2n-1) \ = \ n^2.
-\]
-That, is, the $n$th perfect square is the sum of the first $n$ odd
-integers.
-\end{center}
-
-\noindent {\em Verification.}
-%
-For every positive integer $m$, let {\bf P}$(m)$ be the proposition
-\[ m^2 \ = \ 1 + 3 + 5 + \cdots + 2m-1. \]
-Let us proceed according to the standard format of an inductive
-argument.
-
-{\bf 1.} Because $1 \cdot 1 = 1$, proposition {\bf P}$(1)$ is true.
-
-{\bf 2.} Let us assume, for the sake of induction, that proposition
-{\bf P}$(m)$ is true for all positive integers strictly smaller than
-$n$.  In particular, then, {\bf P}$(n-1)$ is true.
-
-{\bf 3.} Consider now the summation
-\[ 1 + 3 + 5 + \cdots + 2n-3 + 2n-1 \]
-Because {\bf P}$(n-1)$ is true, we know that
-\[ 1 + 3 + 5 + \cdots + 2n-3 + 2n-1 \ = \ (n-1)^2 + 2n-1.  \]
-By direct calculation, we see that
-\[ (n-1)^2 + 2n-1 \ = \ (n^2 -2n +1) + (2n-1) \ = \ n^2. \]
-Because $n$ is an arbitrary positive integer, we conclude that
-{\bf P}$(n)$ is true whenever
-\begin{itemize}
-\item
-{\bf P}$(1)$ is true
-\item
-{\em and}
-{\bf P}$(m)$ is true for all $m < n$.
-\end{itemize}
-By the Principle of (Finite) Induction, then, we conclude that {\bf
-  P}$(n)$ is true for all $n \in \N^+$.
-\qed
 
 
 \ignore{********************
