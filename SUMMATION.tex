@@ -1,4 +1,4 @@
-%version of 06-26-18
+%version of 06-27-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -1313,8 +1313,8 @@ interest.
 
 In the next subsection, we illustrate this strategem using summations
 of fixed powers of successive integers---i.e., summations of the form
-$\displaystyle \sum_{i=1}^n i^c$---for various (classes of)values of
-the fixed parameter $c$.
+$\displaystyle S_c(n) \eqdef \sum_{i=1}^n i^c$---for various (classes
+of) values of the fixed parameter $c$.
 %  In
 %Section~\ref{sec:sum-of-cg-1}, we focus on the case $c > -1$; in
 %Section~\ref{sec:sum-of-c=-1}, we focus on the case $c = -1$; in
@@ -1323,19 +1323,18 @@ the fixed parameter $c$.
 \subsection{Sums of Fixed Powers of Consecutive Integers: $\sum i^c$}
 \label{sec:sum-of-i2c}
 
-\subsubsection{Summing $c$th powers of consecutive integers: $c \geq 0$}
+\subsubsection{Summing $c$th powers: general $c \geq 0$}
 \label{sec:sum-of-i2c>0}
-
-\paragraph{\sf A. General powers $c \geq 0$}
 
 We begin to illustrate the technique of bounding summations via
 integrals by focusing on summations of the form
 \[ S_c(n) \ \eqdef \ \sum_{i=1}^n \ i^c, \]
-for arbitrary positive numbers $c$.  Extrapolating from the example in
-Fig.~\ref{fig:riemann-n2}, 
-we obtain our upper bound on $S_c(n)$ by evaluating the integral that
-yields the area $\overline{C}_c(n)$ under the lefthand continuous
-curve ($a$) in Fig.~\ref{fig:riemann-n2}, namely,
+for arbitrary positive numbers $c$.  To garner intuition for our
+bounds, the reader can readily extrapolate to general $c >0$ the case
+$c=2$ that is illustrated in Fig.~\ref{fig:riemann-n2}.  We obtain our
+upper bound on $S_c(n)$ by evaluating the integral that yields the
+area $\overline{C}_c(n)$ under the lefthand continuous curve ($a$) in
+Fig.~\ref{fig:riemann-n2}, namely,
 \begin{eqnarray}
 \label{eq:upper-integral-xc}
 \overline{C}_c(n) \ = \
@@ -1368,111 +1367,191 @@ The main message here is:
   \frac{1}{c+1} n^{c+1}$ as $n$ grows without bound.  }
 \end{center}
 
-\medskip
+\subsubsection{Summing $c$th powers: $c$ a positive integer}
+\label{sec:positive-integer-power}
 
-\paragraph{\sf B. Powers that are positive integers}
+\paragraph{\sf A. A better bound via the Binomial Theorem}
 
 When $c$ is a positive integer, the following special case of Newton's
 {\it Binomial Theorem}.\footnote{The general form of the Binomial
   Theorem expands the polynomial $(x+y)^k$ rather than $(x+1)^k$.  See
 Section~\ref{sec:Binomial-thm}.}
 \index{The Binomial Theorem!restricted form}
-affords us a much more detailed version of the bounds
-(\ref{eq:bounds-sum-xc}) on $S_c(n)$, via a much more detailed upper
-bound (\ref{eq:upper-integral-xc}) on the sum.
+affords us a much more detailed version of the upper bound
+(\ref{eq:upper-integral-xc})
+%(\ref{eq:bounds-sum-xc})
+on the sum $S_c(n)$.
 
 \begin{theorem}[The Restricted Binomial Theorem]
 \label{thm:restricted-binomial-thm}
-For all positive integers $k$,
+For all positive integers $k$,\footnote{See (\ref{eq:binom-coeff}) for
+  the definition of, and notation for, the binomial coefficient
+  $\displaystyle {k \choose i}$.}
 \[ (x+1)^k \ = \
 \sum_{i=0}^k \ \ {k \choose i} x^{k-i}.
 \]
 \end{theorem}
 
-***********HERE
-
-
-We begin by describing the technique in detail for the summation
-$\displaystyle S_2(n) = \sum_{i=1}^n \ i^2$.  We shall then indicate
-how to extrapolate from this case to general summations $S_k(n)$.
-
-
-
-\medskip
-
-For summations $S_k(n)$ with $k >2$, we follow the roadmap of the case
-$k=2$, invoking as a technical tool
-
-\begin{quote}
-As usual, the {\it binomial coefficients} are defined and denoted as
-follows.
-\[
-{k \choose i} \ = \ \frac{k!}{i!(k-i)!} \ = \
-\frac{k(k-1)(k-2) \cdots (k-i+1)}{i(i-1)(i-2) \cdots 1}
-\]
-\end{quote}
-
-The extrapolation from $S_2(n)$ to general $S_k(n)$ begins with the
-straightforward exercise of crafting analogues of
-Fig.~\ref{fig:riemann-n2} for arbitrary summations $S_k(n)$.
-Parallelling the reasoning that led us to the relations
-(\ref{eq:upper-integral-xc}) and (\ref{eq:lower-integral-xc}) we
-obtain:
-\begin{itemize}
-\item
-an upper bound on summation $S_k(n)$ by evaluating the integral that
-yields the area $\overline{A}_k(n)$ under the continuous curve that
+We obtain our improved upper bound on $S_c(n)$ by parallelling the
+reasoning that led us to the relation (\ref{eq:upper-integral-xc}).
+Our improved upper bound emerges also by evaluating the integral that
+yields the area $\overline{C}_c(n)$ under the continuous curve that
 passes through the upper lefthand corners of the unit-width rectangles
-specified by summation $S_k(n)$.
+specified by summation $S_c(n)$.
 \begin{eqnarray}
 \label{eq:upper-integral-xk}
-\overline{A}_k(n) \ = \
-\int_0^n \ (x+1)^k dx & = &
+\overline{C}_c(n) \ = \
+\int_0^n \ (x+1)^c dx & = &
 \int_0^n \ \left(
-\sum_{i=0}^k \ \ {k \choose i} x^{k-i} \right) dx \\
+\sum_{i=0}^c \ \ {c \choose i} x^{c-i} \right) dx \\
 \nonumber
   & = &
-\sum_{i=0}^k \ \ \frac{1}{k-i+1} {k \choose i} n^{k-i+1} \ + \ O(1)
+\sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \ O(1)
 \end{eqnarray}
 This is a proper upper bound because the region defined by this curve
 totally contains the region subtended by the rectangles.
 
-\item
-a lower bound on summation $S_k(n)$ by evaluating the integral that
-yields the area $\underline{A}_k(n)$ under the continuous curve that
-passes through the upper righthand corners of the unit-width
-rectangles specified by summation $S_k(n)$.
-\begin{equation}
-\label{eq:lower-integral-xk}
-\underline{A}_k(n) \ = \ 
-\int_1^n \ x^k dx \ = \ \frac{1}{k+1} n^{k+1} \ + \ O(1).
-\end{equation}
-This is a proper lower bound because the region subtended by the
-rectangles totally contains the below this curve
-\end{itemize}
-
 \noindent
-Using this strategy, one finds that for any positive integer $k$,
-summation $S_k(n)$ enjoys the following two-sided bound:
+Using this strategy, we find that for any positive integer $c$,
+summation $S_c(n)$ enjoys the following two-sided bound:
 \begin{equation}
 \label{eq:bounds-sum-xk}
-\frac{1}{k+1} n^{k+1} \ + \ O(1)
-  \ \ \leq \ \ \sum_{i=1}^n \ i^k
+\frac{1}{c+1} n^{c+1} \ + \ O(1)
+  \ \ \leq \ \ \sum_{i=1}^n \ i^c
   \ \ \leq \ \ 
-\sum_{i=0}^k \ \ \frac{1}{k-i+1} {k \choose i} n^{k-i+1} \ + \ O(1)
+\sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \ O(1)
 \end{equation}
-It follows that $S_k(n)$ enjoys the following asymptotic behavior.
-\begin{equation}
-\label{eq:behavior-sum-xk}
-S_k(n) \ = \
-\sum_{i=1}^n \ i^k \ \approx \ \frac{1}{k+1} \ n^{k+1}.
-\end{equation}
+
+We have, of course, not changed the dominant behavior of $S_c(n)$ as
+$n$ grows without bound, but we have taken a substantial step toward
+developing explicit expressions for the summations $S_c(n)$ when $c$
+is a positive integer.
+
+
+\paragraph{\sf B. Refining approximate sums using {\em undetermined
+  coefficients}}
+
+We now introduce the {\em Method of Undetermined Coefficients}
+\index{Method of Undetermined Coefficients}
+and illustrate how to use it to derive explicit expressions for the
+sums $S_c(n)$ when $c$ is a positive integer.  Our development builds
+on the intuition garnered from the bounds (\ref{eq:bounds-sum-xk})
+that
+\[ S_c(n) \ = \ \frac{1}{c+1} n^{c+1} \ + \ a^{(c)}_c n^c \ + \
+a^{(c)}_{c-1} n^{c-1} \ + \ \cdots \ + \ a^{(c)}_2 n^2 \ + \ a^{(c)}_1 n
+ + \ a^{(c)}_0
+\]
+for some nonnegative numbers  $a^{(c)}_{c+1}$, $a^{(c)}_c$, \ldots,
+$a^{(c)}_0$.  To begin, we know that $a^{(c)}_0 = 0$, because $S_c(0)
+= 0$.
+\begin{quote}
+{\em Because we are beginning with a conjecture based on intuition, we
+  will have to verify the explicit expressions that we derive.  We do
+  this after deriving our expressions.}
+\end{quote}
+
+Because the Method becomes computationally cumbersome for large values
+of $c$, we introduce the reader to it via the first few integer values
+of $c$.
+
+{\it The case $c=1$.}
+%
+We begin with the sum $S_1(n)$, whose value we already know.
+Reasoning from the case $c=1$ of (\ref{eq:bounds-sum-xk}), we intuit
+that
+\[ S_1(n) \ = \ \frac{1}{2} n^2 \ + \ a^{(1)}_1 n \]
+for some positive {\it undetermined coefficient} $a^{(1)}_1$.  We can
+discover the value of the single unknown, $a^{(1)}_1$ by evaluating
+$S_1(n)$ at any single value for the variable $n$.  Any value of $n$
+will work; using the {\em smallest} one, $n=1$, simplifies our
+calculation.
+
+Because $S_1(1) = 1$, we have
+\[ S_1(1) \ = \ 1 \ = \ \frac{1}{2} \ + \ a^{(1)}_1. \]
+Therefore, $a^{(1)}_1 = 1/2$, which gives us yet one more derivation
+of the value
+\[ S_1(n) \ = \ \frac{1}{2} \left( n^2 + n \right) \ = \ 
+\frac{n(n+1)}{2}.
+\]
 
 \medskip
 
-We now discuss how to ``expand'' bounds such as
-(\ref{eq:bounds-sum-xk}) into explicit expressions for the summations
-$S_k(n)$.
+{\it The case $c=2$.}
+%
+We derive an explicit expression for $S_2(n) \ \eqdef \  1 + 4 +
+\cdots + n^2$.
+
+\begin{prop}
+{\em For all} $n \in \N$,
+\begin{equation}
+\label{eq:sum-1-to-nsq}
+S_2(n) \ \eqdef \ \sum_{i=1}^n \ i^2 
+ \ = \ \frac{1}{3} n^3 \ + \ \frac{1}{2} n^2 \ + \ \frac{1}{6} n
+\end{equation}
+\end{prop}
+
+\noindent
+$S_2(n)$ is often expressed in a more aesthetic form:
+\[ S_2(n) \ = \
+\frac{1}{6} n (n+1)(2n+1) \ = \
+\frac{2n+1}{3} \cdot {n \choose 2}.
+\]
+
+\begin{proof}
+Reasoning from the case $c=2$ of (\ref{eq:bounds-sum-xk}), we
+propose the conjecture that
+\begin{equation}
+\label{eq:symbolic-cubic}
+S_2(n) \ \ = \ \
+\sum_{i=0}^n \ i^2 \ \ = \ \ \frac{1}{3} n^3 + a^{(2)}_2 n^2 + a^{(2)}_1 n.
+\end{equation}
+for some positive {\it undetermined coefficients} $a^{(2)}_2$ and
+$a^{(2)}_1$.  We thereby express $S_2(n)$ as a polynomial in two
+unknowns, $a^{(2)}_2$ and $a^{(2)}_1$.  We can determine values for
+the unknowns by instantiating the polynomial with (any) two values of
+$n$; to simplify calculations, we select the smallest two values of
+$n$, namely, $n = 1,2$.  These instantiations of the polynomial leave
+us with the following pair of linear equations.
+\[
+\begin{array}{cccccl}
+n=1: & \sum_{i=0}^1 \ i^2
+   & = & 1 & = &
+1/3 \ + \ a^{(2)}_2 \ + \ a^{(2)}_1 \\
+ & & & & & \\
+n=2: & \sum_{i=0}^2 \ i^2
+   & = & 5 & = &
+8/3 \ + \ 4 a^{(2)}_2 \ + \ 2 a^{(2)}_1
+\end{array}
+\]
+By elementary arithmetic, these equations simplify to yield the pair
+\[
+\begin{array}{ccc}
+a^{(2)}_2 \ + \ a^{(2)}_1   & = & 2/3 \\
+ & & \\
+2 a^{(2)}_2 \ + \ a^{(2)}_1 & = & 7/6
+\end{array}
+\]
+These equations reveal that
+\[ 2/3 \ - \ a^{(2)}_2 \ = \ 7/6 \ - \ 2 a^{(2)}_2 \]
+so that 
+\[ a^{(2)}_2 \ = \ 1/2 \]
+which means that
+\[ a^{(2)}_1 \ = \ 1/6. \]
+We have, thus, derived equation~(\ref{eq:sum-1-to-nsq}).  
+\end{proof}
+
+\medskip
+
+We verify our expressions for $S_1(n)$ and $S_2(n)$ by induction in
+Section~\ref{sec:Sums-Induction}.
+
+\medskip
+
+With more (calculational) work, but no new (mathematical) ideas, one
+can derive explicit expressions for the sum of the first $n$ $c$th
+powers, for any positive integer $c$,
+i.e., for the quantity $S^{(c)}_n$, for any positive integer $k$.
+
 
 
 \subsubsection{Summing $c$th powers of consecutive integers: $c = -1$}
@@ -1501,122 +1580,7 @@ S_n^{(H)} & = & {\displaystyle \sum_{i=1}^n \ \frac{1}{i} } & \hspace*{.25in}
 
 
 
-\subsection{Refining approximate sums via {\em undetermined coefficients}}
-\label{sec:undetermined-coefficients}
-\index{method of undetermined coefficients}
 
-We now introduce the {\em Method of Undetermined Coefficients}, a tool
-that can sometimes refine approximations to summations to exact
-explicit expressions.  We illustrate the tool on the summations
-$S_k(n)$ that we studied in Section~\ref{sec:riemann-bounds}; we use
-the tool to convert bounds on the $S_k(n)$, such as
-(\ref{eq:behavior-sum-xk}), to explicit expressions for the
-summations.
-
-We illustrate the method by deriving explicit expressions for two
-rather simple summations: the sum $S_1(n)$ of the first $n$ positive
-integers and the sum $S_2(n)$ of the first $n$ perfect squares.
-
-\paragraph{\sf A. An explicit expression for $S_1(n)$}
-
-Of course, we have already determined $S_1(n)$ in
-Section~\ref{sec:arithmetic-series}, by other means.  We provide this
-alternative derivation as a gentle introduction to the method of
-undetermined coefficients.
-
-\begin{prop}
-{\em For all} $n \in \N$,
-\[
-S_1(n) \ \eqdef \ \sum_{i=1}^n \ i^2 
- \ = \  1 + 2 + \cdots + n
- \ = \  \frac{1}{2} n^2 \ + \ \frac{1}{2} n
-\]
-\end{prop}
-
-\begin{proof}
-We can reason from the case $k=1$ of (\ref{eq:bounds-sum-xk}) that
-\[ S_1(n) \ = \ \frac{1}{2} n^2 \ + \ cn \]
-for some positive constant $c$, the eponymous {\it undetermined
-  coefficient} for this case.  We can discover the value of $c$ by
-evaluating $S_1(n)$ at the value $n =1$.  Any value of $n$ will work;
-using the {\em smallest} one simplifies our calculation.
-
-Because $S_1(1) = 1$, we
-have
-\[ S_1(1) \ = \ 1 \ = \ \frac{1}{2} \ + \ c, \]
-so that $c = 1/2$; in other words,
-\[ S_1(n) \ = \ \frac{1}{2} \left( n^2 + n \right) \ = \ 
-\frac{n(n+1)}{2}.
-\]
-\end{proof}
-We verify this expression by induction in
-Proposition~\ref{thm:sum-1-to-n-induction}.
-
-\paragraph{\sf B. An explicit expression for $S_2(n)$}
-
-A modestly more complicated undetermined-coefficient calculation
-allows us to evaluate the sum $S_2(n)$ of the first $n$ squares.
-
-\begin{prop}
-{\em For all} $n \in \N$,
-\begin{equation}
-\label{eq:sum-1-to-nsq}
-S_2(n) \ \eqdef \ \sum_{i=1}^n \ i^2 
- \ \eqdef \  1 + 4 + \cdots + (n-1)^2 + n^2
- \ = \ \frac{1}{3} n^3 \ + \ \frac{1}{2} n^2 \ + \ \frac{1}{6} n
-\end{equation}
-\end{prop}
-
-$S_2(n)$ is often expressed in a more aesthetic form:
-\[ S_2(n) \ = \
-\frac{1}{6} n (n+1)(2n+1) \ = \
-\frac{2n+1}{3} \cdot {n \choose 2}.
-\]
-
-\begin{proof}
-We can reason from the case $k=2$ of (\ref{eq:bounds-sum-xk}) that
-\begin{equation}
-\label{eq:symbolic-cubic}
-\sum_{i=0}^n \ k^2 \ = \ \frac{1}{3} n^3 + c_2 n^2 + c_1 n.
-\end{equation}
-for some positive numbers $c_2$ and $c_1$, the eponymous {\it
-  undetermined coefficient} for this case.
-
-We begin our determination of the constants $c_1$ and $c_2$ by
-instantiating the polynomial in (\ref{eq:symbolic-cubic}) with the
-smallest two values of $n$, namely, $n = 1,2$.  Of course, any two
-values will work, but using the {\em smallest} ones simplifies
-calculations.  These instantiations leave us with the following pair
-of linear equations.
-\[
-\begin{array}{cccccl}
-n=1: & \sum_{i=0}^1 \ k^2
-   & = & 1 & = &
-1/3 \ + \ c_2 \ + \ c_1 \\
-n=2: & \sum_{i=0}^2 \ k^2
-   & = & 5 & = &
-8/3 \ + \ 4 c_2 \ + \ 2 c_1
-\end{array}
-\]
-By elementary arithmetic, these equations simplify to yield the pair
-\[
-\begin{array}{ccc}
-c_2 \ + \ c_1   & = & 2/3 \\
-2 c_2 \ + \ c_1 & = & 7/6
-\end{array}
-\]
-These equations reveal that
-\[ 2/3 \ - \ c_2 \ = \ 7/6 \ - \ 2 c_2 \]
-so that 
-\[ c_2 \ = \ 1/2 \]
-which means that
-\[ c_1 \ = \ 1/6. \]
-We have, thus, derived equation~(\ref{eq:sum-1-to-nsq}).  
-\end{proof}
-
-With more (calculational) work, but no new (mathematical) ideas, one
-can derive explicit expressions for the sum of the first $n$ $k$th
-powers, i.e., the quantity $S^{(k)}_n$, for any positive integer $k$.
 
 
 
