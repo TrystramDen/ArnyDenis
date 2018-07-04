@@ -222,7 +222,8 @@ introduce important notation.
 
 %\addcontentsline{toc}{paragraph}{A. Case study: Summing the first $n$ integers}
 
-\paragraph{\small\sf A. Summing the first $n$ integers: the case $a=b=1$}
+\paragraph{\small\sf A. Summing the first $n$ integers: the case $a=b=1$}.
+%The sum is denoted by $\Delta_n$.
 
 \begin{prop}
 \label{thm:sum-first-integers-Gauss}
@@ -422,7 +423,7 @@ The total number of right-lying integer-instances corresponds to the
 number of ways to select two integers from among $n+1$.\footnote{We
   study such counting techniques in depth in
   Section~\ref{sec:counting}.}  This number is the binomial
-coefficient $\Delta_{n+1}$ whose definition we specialize from
+coefficient $\Delta_{n}$ whose definition we specialize from
 (\ref{eq:binom-coeff}) Section~\ref{sec:binary-operators}.C:
 \index{binomial coefficient}
 \[ 
@@ -443,7 +444,8 @@ can finally evaluate our original series in (\ref{eq:arith-seq}).
 The arithmetic series in (\ref{eq:arith-seq}) has the sum
 \[
 a + (a+b) + (a+2b) + (a+3b) + \cdots + (a+(n-1)b) \ = \
-an + b \cdot {n \choose 2}. 
+%an + b \cdot {n \choose 2}. 
+an + b \cdot \Delta_n. 
 \]
 \end{prop}
 
@@ -476,6 +478,9 @@ Before presenting our two proofs of this result, we note that the
 notation in (\ref{eq:sum-of-odds}) is perfectly general: every positive
 odd integer $m$ can be written in the form $2n-1$ for some positive
 integer $n$.
+{\Denis According to the expression of Proposition~\ref{thm:sum-of-arithmetic-series},
+the sum is equal to $1.n + 2 \Delta_{n-1} = n + n^2 -n = n^2$.
+Let us detail several alternative proofs.}
 
 \smallskip
 
@@ -667,12 +672,12 @@ provides the base for our induction.
 \item[{\small\sf Inductive hypothesis}.]
 We know from Proposition~\ref{thm:sum-first-integers-Gauss} that the
 $k$th group consists of $k$ consecutive odd numbers beginning with
-\[ 2 \Delta_{k-1} -1 \ \ \ \ \
+\[ 2 \Delta_{k-1} +1 \ \ \ \ \
 \mbox{which is the} \ \ \ \ \
 \left( \Delta_{k-1} +1 \right)\mbox{th odd number}
 \]
-Hence, this group begins with $2 \Delta_k -1$ and ends with
-$2\Delta_k +1$.
+Hence, this group begins with $2 \Delta_{k-1} +1$ and ends with
+$2\Delta_k -1$.
 %{\Denis the right expression is: beginning with $2\Delta_{k-1} +1$ and ending at $2\Delta_k-1$}
 
 %{\Denis I prefer to refer to $\Delta_k$ instead of ${k+1 \choose 2} $... }
@@ -722,9 +727,9 @@ group consists of the following odd integers ($k>1$):
 \ldots, \
 2 \Delta_{k-1} +2k-1
 \]
-One verifies easily (say, by induction) that $2 \Delta_{k-1} +2k-1 = 2
+\ignore{One verifies easily (say, by induction) that $2 \Delta_{k-1} +2k-1 = 2
 \Delta_{k} +1$.
-Hence, this group has the sum
+Hence, this group has the sum}
 \[
 2k {k \choose 2} \ - \ 2 {k \choose 2} +k \ = \
 (2k -1) \Delta_k + k \ = \ k^3.
@@ -791,11 +796,11 @@ integers in each ``$L$'' sum to a perfect cube:
 \]
 
 \item
-We sum the successive rows of our table.  The first rowof the table
+We sum the successive rows of our previous $n$ by $n$ table.  The first rowof the table
 sums to $\Delta_n$; the second sums sums to $2 \Delta_n$; the third
 sums to $3 \Delta_n$, \ldots; the last row sums to $n \Delta_n$.
 Thus, the total sum is $(1 + 2 + \cdots + n) \Delta_n \ =
-\ \left(Delta_n \right)^2$.
+\ \left(\Delta_n \right)^2$.
 \end{enumerate}
 We conclude that
 \[
@@ -803,7 +808,6 @@ We conclude that
 \]
 \end{proof}
 
-%{\Denis Do we need a figure here for the reversed L pattern? I guess no}
 \ignore{\Arny More calculation!  BOO!  Please complete this.  I seem to be off by 1}
 %We give another proof that tells us something more on numbers of their interactions.
 %We consider numbers instead of bullets, and we use a similar principle as Fubini, that is to determine a
@@ -825,6 +829,21 @@ consecutive integers, squares of integers, cubes of integers, and so
 on, i.e., that compute the sums for $k$th powers from the sums for
 smaller powers.
 
+\paragraph{\small\sf C. Another application of arithmetic sums}
+
+Let us consider $a=1$ and $b=4$. 
+The sum is $S(n)=n+4 \Delta_{n-1}$.
+From the arrangement given in Fig.~\ref{fig:Delta(n)4}, it is easy to see that it is equal to $\Delta_{2n-1}$ (4 triangles of size $n$ plus a row of $n$ bullets in dark grey
+form a bigger triangle of size $2n-1$).
+\begin{figure}[h]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/Delta(n)4}
+ \caption{Arranging the four triangles plus a row to obtain a new (bigger) triangle.}
+       \label{fig:Delta(n)4}
+\end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Geometric Sums and Series}
 \label{sec:geometric-sums}
