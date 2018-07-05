@@ -1,4 +1,4 @@
-%version of 07-03-18
+%version of 07-05-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -51,10 +51,15 @@ But sometimes an infinite series {\em does not} have a finite
 \]
 As more and more terms are added, the accumulated sum eventually
 passes every number.  (Such an infinite series is said to {\em diverge}.)
-{\Denis There is a link between harmonic series and the frequencies of the notes in music (each note corresponds to the fundamental divided by 2, 3, 4, ...
-May be it would be nice here to develop?}
-{\Arny I do not know enough to say anything intelligent about this.}
+%{\Denis There is a link between harmonic series and the frequencies
+%of the notes in music (each note corresponds to the fundamental
+%divided by 2, 3, 4, ... May be it would be nice here to develop?}
+%{\Arny I do not know enough to say anything intelligent about this.}
 \index{infinite series!divergent}
+
+The general topic of the convergence or divergence of infinite series
+is beyond the scope of this text.  It is a fascinating subject for
+advanced study.
 }
 \end{quote}
 
@@ -796,11 +801,11 @@ integers in each ``$L$'' sum to a perfect cube:
 \]
 
 \item
-We sum the successive rows of our previous $n$ by $n$ table.  The first rowof the table
-sums to $\Delta_n$; the second sums sums to $2 \Delta_n$; the third
-sums to $3 \Delta_n$, \ldots; the last row sums to $n \Delta_n$.
-Thus, the total sum is $(1 + 2 + \cdots + n) \Delta_n \ =
-\ \left(\Delta_n \right)^2$.
+We sum the successive rows of our previous $n$ by $n$ table.  The
+first row of the table sums to $\Delta_n$; the second sums sums to $2
+\Delta_n$; the third sums to $3 \Delta_n$, \ldots; the last row sums
+to $n \Delta_n$.  Thus, the total sum is $(1 + 2 + \cdots + n)
+\Delta_n \ = \ \left(\Delta_n \right)^2$.
 \end{enumerate}
 We conclude that
 \[
@@ -1756,12 +1761,10 @@ We focus finally on summations of the form
 for arbitrary {\em negative} numbers $c$.  The reader can garner
 intuition for the upcoming bounds from the general shape of the
 rectangles and continuous curves in Fig.~\ref{fig:riemann-harmonic}.
-We obtain our upper bound on $S_c(n)$ by evaluating the integral that
-yields the area $\overline{C}_c(n)$ under the righthand continuous
-curve ($a$) in that figure, and We obtain our lower bound on $S_c(n)$
-by evaluating the integral that yields the area $\underline{C}_c(n)$
-under the lefthand continuous curve ($b$) in that figure.  We thereby
-find that
+
+\begin{prop}
+\label{thm:general-bounds-negative-xc}
+For sums $S_c(n)$ with fixed negative powers $c<0$,
 \begin{equation} 
 \label{eq:general-bounds-negative-xc}
 \left[
@@ -1774,6 +1777,17 @@ find that
 \int_1^n \ x^c dx
 \right].
 \end{equation}
+\end{prop}
+
+\begin{proof}
+We obtain our upper bound on the sum $S_c(n)$ by evaluating the
+integral that yields the area $\overline{C}_c(n)$ under the righthand
+continuous curve ($a$) in the analogue of
+Fig.~\ref{fig:riemann-harmonic} for $S_c(n)$.  We obtain our lower
+bound on $S_c(n)$ by evaluating the integral that yields the area
+$\underline{C}_c(n)$ under the lefthand continuous curve ($b$) in that
+figure.
+\end{proof}
 
 When $c \neq -1$,\footnote{We need to avoid the case $c = -1$ so that
   we do not attempt to divide by $0$.}~we can provide more detail,
@@ -1784,6 +1798,10 @@ using reasoning similar to that underlying the bounds
 
 In this case, we obtain essentially the same bounds as in the case of
 nonnegative $c$.  To wit,
+
+\begin{prop}
+\label{thm:bounds-(-1)<c<0}
+For sums $S_c(n)$ with fixed negative powers in the range $-1 < c<0$,
 \begin{equation}
 \label{eq:bounds-(-1)<c<0}
 \begin{array}{l}
@@ -1796,51 +1814,64 @@ nonnegative $c$.  To wit,
 {\displaystyle \frac{1}{c+1} n^{c+1} \ + \ O(1)}.
 \end{array}
 \end{equation}
+The infinite version of summation $S_c(n)$, namely, the series
+\[ S_c^{(\infty)} \ \eqdef \ \sum_{i=0}^\infty i^c \]
+diverges.
+\end{prop}
+
 We thus observe that $S_c(n)$ has the same growth {\em pattern} as $n$
 grows as it does when $c$ is positive, but that $S_c(n)$'s growth {\em
   rate} is slower because of the damping effect the negative $c$ in
-the exponent.
+the exponent.  This damped growth notwithstanding, the infinite series
+$S_c^{(\infty)}$ diverges because $n^{c+1}$, which is the variable
+portion of the lower bound on $S_c(n)$, grows without bound as $n$
+grows without bound.
 
 \paragraph{\small\sf B. Negative powers $c$ with $c < -1$}
 
-When $c$ is ``very negative''---specifically, when $c < -1$---then we
-encounter {\em convergent infinite series}.  Because $n^c$ {\em
-  shrinks} in this case as $n$ grows, an analysis mirroring the one
-that leads to (\ref{eq:bounds-(-1)<c<0}) provides the following sum
-for the infinite version of $S_c(n)$, call it $S_c^{(\infty)}$.
+When $c$ is ``very negative''---specifically, when $c < -1$---then the
+infinite version of $S_c(n)$, call it $S_c^{(\infty)}$, is a {\em
+  convergent} infinite series.  Because $n^c$ {\em shrinks} in this
+case as $n$ grows, an analysis mirroring the one that leads to
+(\ref{eq:bounds-(-1)<c<0}) provides the following sum for $S_c^{(\infty)}$.
 
+\begin{prop}
+\label{thm:bounds-negative-(not-1)-sum-xc}
+When the fixed negative power $c$ is smaller than $-1$, then the
+infinite version, $S_c^{(\infty)}$, of $S_c(n)$, converges, with the
+following sum.
 \begin{equation}
 \label{eq:bounds-negative-(not-1)-sum-xc}
-\begin{array}{l}
-\mbox{For $c<-1$, as $n$ grows without bound:} \\
- \\
-\hspace*{.35in}
-S_c^{(\infty)} \ \ \mbox{ tends to the value } \ \
-{\displaystyle \frac{1}{c+1}}
-\end{array}
+S_c^{(\infty)} \ = \ \frac{1}{c+1}
 \end{equation}
+\end{prop}
+
+\begin{proof}
+We see as in (\ref{eq:bounds-(-1)<c<0}) that, for $c<-1$, as $n$ grows
+without bound, $S_c(n)$ tends to the value ${\displaystyle
+  \frac{1}{c+1}}$.
+\end{proof}
 
 \paragraph{\small\sf C. Negative powers $c$ with $c = -1$: the {\em harmonic} sum}
 
 The singular case defined by the value $c = -1$ defines the important
-{\it harmonic series} and its finite prefixes, the {\it harmonic sums}.
-\begin{equation}
-\label{eq:harmonic}
-\begin{array}{lcll}
-S^{(H)} & = & {\displaystyle \sum_{i=1}^\infty \ \frac{1}{i}} & \hspace*{.25in}
-  \mbox{the full harmonic series} \\
-S^{(H)}(n) & = & {\displaystyle \sum_{i=1}^n \ \frac{1}{i} } & \hspace*{.25in}
-  \mbox{the $n$-term harmonic sum} \\
-\end{array}
-\end{equation}
-
+{\it harmonic series},
+\[ S^{(H)} \ = \ \sum_{i=1}^\infty \ \frac{1}{i} \]
+and its finite prefixes that comprise the {\it harmonic sum}
+\[ S^{(H)}(n) \ = \ \sum_{i=1}^n \ \frac{1}{i} \]
 It has been known since the time of the well-traveled Swiss
-mathematician Leonhard Euler
-\index{Euler, Leonhard}
-that $S^{(H)}(n) \ \approx \ \ln n$, where $\ln n$ is the logarithm
-whose base is Euler's constant
+mathematician Leonhard Euler \index{Euler, Leonhard} that these series
+are closely related to the {\em natural} logarithm $\ln n$, i.e., the
+logarithm whose base is Euler's constant
 \index{Euler's constant}
 $e = 2.718281828 \ldots$
+
+\begin{prop}
+\label{thm:harmonic}
+The growth behavior of the harmonic sum $S^{(H)}(n)$ is given by
+\[ S^{(H)}(n) \ \approx \ \ln n. \]
+It follows that the harmonic series $S^{(H)}$ diverges.
+\end{prop}
 
 \begin{quote}
 {\em The adjective ``harmonic'' calls to mind a number of cancepts
