@@ -837,7 +837,7 @@ From the arrangement given in Fig.~\ref{fig:Delta(n)4}, it is easy to see that i
 form a bigger triangle of size $2n-1$).
 \begin{figure}[h]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/Delta(n)4}
+       \includegraphics[scale=0.5]{FiguresMaths/Delta(n)4}
  \caption{Arranging the four triangles plus a row to obtain a new (bigger) triangle.}
        \label{fig:Delta(n)4}
 \end{center}
@@ -1079,9 +1079,6 @@ The lengths of the bases of the abutting rectangles is the value of
 the infinite series $\displaystyle \sum_{i=0}^\infty \ b^{-i}$.
 \end{proof}
 
-%{\Denis I realized that the notation is not consistent here, I took $r$ instead of $b$, I can change in the figure... Just ask}
-{\Arny Please do change the r to a b.  The ``b'' happened because of
-  the word ``base''}
 
 
 \subsubsection{An extension and an application}
@@ -1107,8 +1104,9 @@ $b$ and $c$, our summation-solving strategy has two primary goals:
 \item
 It should be {\em inductive} in parameter $c$.  That is, the strategy
 should compute a sum for the series $S_b^{(c)}(n)$ in terms of earlier
-discovered sums for $S_b^{(c-1)}(n)$, $S_b^{(2)}(n)$, \ldots,
+discovered sums for $S_b^{(c-1)}(n)$, $S_b^{(c-2)}(n)$, \ldots,
 $S_b^{(0)}(n) = S_b(n)$.
+{\Denis I am not so clear here, is it an induction on c or on n? We develop for n later on...}
 
 \item
 It should rely on the recurrent-subexpression strategy which was so
@@ -1136,41 +1134,41 @@ S_b^{(1)}(n+1)
 b \cdot \sum_{i=1}^n \ (i+1) b^i \ + \ b \\
      & = &
 b \cdot \left(
-\left(\sum_{i=1}^n \ i b^i \right)
+\sum_{i=1}^n \ i b^i 
  \ + \
-\left( \sum_{i=1}^n \  b^i \right)
+\sum_{i=1}^n \  b^i 
 \right) \ + \ b \\
      & = &
 b \cdot \left( S_b^{(1)}(n) \ + \ S_b^{(0)}(n) \right) \ + \ b \\
-\label{eq:ext-geom-c=1.2}
+%\label{eq:ext-geom-c=1.2}
     & = &
 b \cdot S_b^{(1)}(n) \ + \ b \cdot \frac{b^{n+1} + b - 2}{b-1}
 \end{eqnarray*}
-Combining (\ref{eq:ext-geom-c=1.1}) and (\ref{eq:ext-geom-c=1.2}) we
+Combining this expression with the previous one (\ref{eq:ext-geom-c=1.1}), we
 finally obtain
+\[ S_b^{(1)}(n) - b \cdot S_b^{(1)}(n) \ = \
+\ b \cdot \frac{b^{n+1} + b - 2}{b-1}
+- (n+1) \cdot b^{n+1}
+\]
 \[ S_b^{(1)}(n) \ = \
-\frac{1}{b-1} \cdot \left(
-(n+1) \cdot b^{n+1}
-  \ - \
-\frac{b}{b-1} \cdot (b^{n+1} - 1)
+\frac{1}{(b-1)^2} \cdot \left(
+n \cdot b^{n+2} - (n+1) \cdot b^{n+1} - b^2 + 2b
 \right)
 \]
 
-{\Arny Please correct my arithmetic!}
 
 
-{\Arny We should really do the following general version.}
-
+We proceed similarly for computing the general expression: 
 \[
 S_b^{(c)}(n) \ = \ \sum_{i=1}^n \ i^c b^i
 \]
 
 \[
-S_b^{(c+1)}(n)
+S_b^{(c)}(n+1)
  \ = \
-b \ + \ 2^{c+1} b^2\ + \ 3^{c+1} b^3 \ + \ \cdots \ + \ n^{c+1} b^n
+b \ + \ 2^{c} b^2\ + \ 3^{c} b^3 \ + \ \cdots \ + \ (n+1)^{c} b^{n+1}
  \ = \
-b \ + \ 2 b^2\ + \ 3 b^3 \ + \ \cdots \ + \ n b^n
+S_b^{(c)}(n) +  \ (n+1)^{c} b^{n+1}
 \]
 
 
@@ -1293,24 +1291,41 @@ rightward (to extend the summation and encompass more addends), then
 the next rectangle would have height $36$.
 
   \item
-In Fig.~\ref{fig:riemann-harmonic}, we represent the {\em harmonic} sum
+In Fig.~\ref{fig:riemann-harmonic1} and~\ref{fig:riemann-harmonic2}, we represent the {\em harmonic} sum
 \[ S^{(H)}(n) \ = \ \sum_{i=1}^n \ i^{-1} \ = \ \sum_{i=1}^n \ 1/i.
 \]
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.42]{riemann2.pdf}
+\includegraphics[scale=0.3]{FiguresMaths/RiemannSum1}
 }
 \caption{The summation $S^{(H)}(n) \ = \ \sum_{i=1}^n \ 1/i$
   represented by the aggregate area of a sequence of unit-width
   rectangles, and bounded above an below by an ``enveloping'' pair of
-  integrals.  The integral that provides the upper bound on the sum
+  integrals.  
+  {\Denis the sum is the area of the grey rectangles fo heights 1, 1/2, 1/3, etc.}
+  The integral that provides the upper bound on the sum
   yields the area under the righthand continuous curve ($a$), namely,
-  $\displaystyle \int_1^n \ \frac{1}{x} dx$.  The integral that
+  $\displaystyle \int_1^n \ \frac{1}{x} dx$. }
+%  The integral that
+%  provides the lower bound yields the area under the lefthand
+%  continuous curve ($b$), namely, $\displaystyle \int_0^{n-1}
+%  \ \frac{1}{x+1} dx$.}
+\label{fig:riemann-harmonic1}
+\end{figure}
+
+\begin{figure}[htb]
+\centerline{
+\includegraphics[scale=0.3]{FiguresMaths/RiemannSum2}
+}
+\caption{ The integral that
   provides the lower bound yields the area under the lefthand
   continuous curve ($b$), namely, $\displaystyle \int_0^{n-1}
   \ \frac{1}{x+1} dx$.}
-\label{fig:riemann-harmonic}
+\label{fig:riemann-harmonic2}
 \end{figure}
+
+
+{∆enis We should add in the caption the explanation of curves (a) and (b)}
 The rectangles that represent the respective addends have respective
 heights $12$, $6$, $4$, $3$, $16/3$, and $2$.  If we were to extend
 the figure rightward (to extend the summation and encompass more
