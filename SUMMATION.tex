@@ -243,26 +243,37 @@ introduce important notation.
 
 \subsubsection{Special cases}
 
-%\addcontentsline{toc}{paragraph}{A. Case study: Summing the first $n$ integers}
+\paragraph{\sf A. Summing the first $n$ integers: the case $a=b=1$}
+Our first goal is to sum the first $n$ positive integers:
+\[ 1 \ + \ 2 \ + \cdots + \ n , \]
+that is, to find a {\it closed-form expression} 
+\index{closed-form expression}
+for the sum.  In somewhat informal terms, we say that an expression of
+the form
+\[ f(n) \ \eqdef \ \sum_{i=1}^n \ i \]
+is in {\it closed form} if it exposes a prescription for evaluating
+the sum using a {\em fixed-length} sequence of arithmetic operations
+(e.g., addition/subtraction, multiplication/division,
+exponentiation/taking logarithms).
 
-\paragraph{\sf A. Summing the first $n$ integers: the case $a=b=1$}.
-%The sum is denoted by $\Delta_n$.
+The desired sums $f(n)$ are commonly denoted $\Delta_n$.
+\index{$\Delta_n$: sum of the first $n$ integers}
+We usually prefer the notation $S_1(n)$ because it exposes the current
+goal as an instance of a related family of such expressions and
+summations that will occupy through this chapter.
+
+We derive the following (closed-form) expression for $\Delta_n$ in
+multiple ways.
 
 \begin{prop}
 \label{thm:sum-first-integers-Gauss}
 \index{sum of first $n$ integers}
 For all $n \in \N$,
-\begin{eqnarray}
-\nonumber
-S_1(n) \ \eqdef \ \sum_{i=1}^n \ i \
-  & \eqdef &
- 1 + 2 + \cdots + (n-1) + n \\
+\begin{equation}
 \label{eq:sum-1-to-n}
-  & = & \frac{1}{2} n (n+1) 
-% \\
-%\nonumber 
-%  & = & {{n+1}  \choose 2}.
-\end{eqnarray}
+S_1(n) \ = \ \sum_{i=1}^n \ i \
+  \ = \  \frac{1}{2} n (n+1) 
+\end{equation}
 \end{prop}
 
 %{\Denis I removed the last equality with n+1 choose 2 since this
@@ -312,8 +323,8 @@ $2$).
   mathematicians ``do mathematics''.  We see in the proof how the
   pattern can be exploited to determine sum of any arithmetic series.
   {\em What seemed to be a ``trick'' turns out to be an insightful
-    instance of pattern-matching.}  We show now that the pattern can
-  be exploited to other, related, ends.}
+    instance of pattern-matching.}  We shall soon see that the pattern
+  can be exploited to other, related, ends.}
 
 \medskip
 
@@ -339,14 +350,14 @@ Our summation result can be obtained in three steps, in the manner
 illustrated by the three figures
 Figs.~\ref{fig:sumIntegersGeo1},~\ref{fig:sumIntegersGeo2},
 and~\ref{fig:sumIntegersGeo3}.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumIntegersGeometricBasis}
 \caption{Representing the first $n$ integers using basic unit squares; $n=6$ in this example.}
        \label{fig:sumIntegersGeo1}
 \end{center}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumIntegersGeometricIntermediate}
 \caption{The area of the lower-right triangle (light grey) is one-half that of
@@ -354,7 +365,7 @@ and~\ref{fig:sumIntegersGeo3}.
        \label{fig:sumIntegersGeo2}
 \end{center}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumIntegersGeometricFinal}
 \caption{The area of the (dark) triangles sitting on the upper
@@ -458,9 +469,9 @@ We have thus arrived at two, perforce equal, expressions for $S_1(n)$.
 
 \medskip
 
-Now that we know---via several arguments---the value of $S_1(n)$, we
-can finally evaluate our original series in (\ref{eq:arith-seq}).
-\index{arithmetic series:explicit sum}
+Now that we know---{\em and understand}---how to derive the value of
+$S_1(n)$, we can finally evaluate our original series in
+(\ref{eq:arith-seq}).  \index{arithmetic series:explicit sum}
 
 \begin{prop}
 \label{thm:sum-of-arithmetic-series}
@@ -474,15 +485,14 @@ an + b \cdot \Delta_n.
 
 
 \paragraph{\sf B. Perfect squares are sums of odd integers}
+In this section, we build on
+Proposition~\ref{thm:sum-first-integers-Gauss} to craft {\em two}
+constructive proofs that each perfect square, say, $m^2$, is the sum
+of the first $m$ odd integers, $1, 3, 5, \ldots, 2m-1$.  One of these
+proofs builds on the phenomenon of {\em finding invariants}.  These
+proofs complement the ``guess-and-verify'' inductive proof of the same
+result in Section~\ref{sec:positive-integer-power}.C.
 
-We now build on Proposition~\ref{thm:sum-first-integers-Gauss} to
-craft {\em two} constructive proofs that each perfect square, say,
-$m^2$, is the sum of the first $m$ odd integers, $1, 3, 5, \ldots,
-2m-1$.  (This is again an arithmetic series with $a=1$ and $b=2$.)
-One of these proofs builds on the phenomenon of {\em finding
-  invariants}.  These proofs complement the ``guess-and-verify''
-inductive proof of the same result in
-Section~\ref{sec:positive-integer-power}.C.
 
 \begin{prop}
 \label{thm:squares-odd-integers-Gauss}
@@ -497,21 +507,58 @@ That, is, the $n$th perfect square is the sum of the first $n$ odd
 integers.
 \end{prop}
 
-Before presenting our two proofs of this result, we note that the
-notation in (\ref{eq:sum-of-odds}) is perfectly general: every positive
-odd integer $m$ can be written in the form $2n-1$ for some positive
-integer $n$.
-{\Denis According to the expression of Proposition~\ref{thm:sum-of-arithmetic-series},
-the sum is equal to $1.n + 2 \Delta_{n-1} = n + n^2 -n = n^2$.
-Let us detail several alternative proofs.}
+Before we present several proofs of this result, we note that the
+notation for odd integers in (\ref{eq:sum-of-odds}) is perfectly
+general: every positive odd integer $m$ can be written in the form
+$2n-1$ for some positive integer $n$. 
 
-\smallskip
+\medskip
+
+Our first two proofs of
+Proposition~\ref{thm:squares-odd-integers-Gauss} note that the result
+is a corollary of both Proposition~\ref{thm:sum-first-integers-Gauss}
+and Proposition~\ref{thm:sum-of-arithmetic-series}.
+
+\medskip
+
+\begin{proof}
+{\bf A proof using algebra.}
+%
+By direct calculation, we find that
+\begin{eqnarray*}
+\sum_{k=1}^n \ \left( 2k-1 \right)
+   & = & 2 \sum_{k=1}^n \ k \ \ - \ n \\
+   & = & 2 \Delta_n \ \ - \ n \ \ \ \ \ \ \ \ \ \ \mbox{ (by
+  Proposition~\ref{thm:sum-first-integers-Gauss})} \\
+   & = & (n^2 + n) - n \\
+   & = & n^2.
+\end{eqnarray*}
+\end{proof}
+
+\medskip
+
+\begin{proof}
+{\bf A proof by calculation.}
+%
+Because summation (\ref{eq:sum-of-odds}) is an arithmetic series with
+$a=1$ and $b=2$, we know, by direct reference to
+Proposition~\ref{thm:sum-of-arithmetic-series}, that the summation
+evaluates to
+\[ (1 \cdot n) + 2 \Delta_{n-1} \ = \ n + n^2 -n \ = \ n^2. \]
+\end{proof}
+
+\ignore{***\Denis According to the
+  expression of Proposition~\ref{thm:sum-of-arithmetic-series}, the
+  sum is equal to $1.n + 2 \Delta_{n-1} = n + n^2 -n = n^2$.  Let us
+  detail several alternative proofs.***}
+
+\medskip
 
 \begin{proof}
 {\bf A textual proof.}
 %
-Let us adapt Gauss's ``trick'' to this problem.  Let us denote the
-target sum $\sum_{k=1}^n \ (2k-1)$ by $S(n)$. 
+We adapt Gauss's ``trick'' to this problem.  Let us denote the target
+sum $\sum_{k=1}^n \ (2k-1)$ by $S(n)$.  We record $S(n)$ in two ways:
 \begin{equation}
 \label{eq:add-odds}
 \begin{array}{llccccccccc}
@@ -531,41 +578,33 @@ find that
 \label{eq:sum-of-odds-sum}
 2 S(n) \ = \ 2 \sum_{k=1}^n \ (2k-1) \ = \ 2n^2.
 \end{equation}
-We thus derive the desired summation (\ref{eq:sum-of-odds}) when we
-divide both sides of equation (\ref{eq:sum-of-odds-sum}) by $2$.
+We thus derive the sum (\ref{eq:sum-of-odds}) when we divide both
+sides of equation (\ref{eq:sum-of-odds-sum}) by $2$.
 \end{proof}
 
 \medskip
 
 \begin{proof}
-{\bf A proof using algebra.}
+{\bf A proof ``by pictures''.}
 %
-Our second proof derives this result, via a simple calculation, as a
-corollary of Proposition~\ref{thm:sum-first-integers-Gauss}.
-
-By direct calculation, we have
-\begin{eqnarray*}
-\sum_{k=1}^n \ \left( 2k-1 \right)
-   & = & 2 \sum_{k=1}^n \ k \ \ - \ n \\
-   & = & 2 \frac{n (n+1)}{2} \ \ - \ n \ \ \ \ \mbox{ by
-  Proposition~\ref{thm:sum-first-integers-Gauss}} \\
-   & = & (n^2 + n) - n \\
-   & = & n^2.
-\end{eqnarray*}
-\end{proof}
-
-\medskip
-
-Our next proof is purely pictorial, with a bit of reasoning mixed in.
-The only ``sophisticated'' required background knowledge is that
+We now build up to a proof that is almost purely pictorial, with just
+a bit of reasoning mixed in.  The only ``sophisticated'' required
+background knowledge is that
 \[ (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1. \]
-This simplest instance of the {\em restricted Binomial
-  Theorem}---which appears later in this chapter as
-Theorem~\ref{thm:restricted-binomial-thm}---can be verified using the
-highly perspicuous Fig.~\ref{fig:proofa2plusb2}.
+This is the simplest instance of the {\em restricted Binomial
+  Theorem}, which appears later in this chapter as
+Theorem~\ref{thm:restricted-binomial-thm}.
+
+As an aside, while this well-known equation can be verified by
+explicitly squaring $n+1$:
+\[ (n+1) \cdot (n+1) \ = \ n \cdot (n+1) \ + \ (n+1) 
+     \ = \ n^2 \ + \ n \ + \ n \ + \ 1,
+\]
+it can also be verified using the highly perspicuous
+Fig.~\ref{fig:proofa2plusb2}.
 %{\Denis We can remark here that this result is straightforward as
 %follows. see below if you think it should be included.}
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/proofa2plusb2}
 \caption{A geometrical proof of the identity $(n+1)^2 = n^2 + 2n + 1$.}
@@ -588,25 +627,24 @@ $(n+1)^2$ (the area of the large, composite, square)
 is the sum of & \\
   & $n^2$ (the area of the darkly shaded square) \\
 plus & \\
-  & $2n$ (the combined areas of the unshaded rectangles \\
+  & $2n$ (the combined areas of the unshaded rectangles) \\
 plus & \\
   & $1$ (the area of the lightly shaded square)
 \end{tabular}
 
-\medskip
+\smallskip
 
 \noindent
-Back to Proposition~\ref{thm:squares-odd-integers-Gauss}.
+Back to our proof of Proposition~\ref{thm:squares-odd-integers-Gauss}.
 
-\begin{proof}
-{\bf A proof ``by pictures''.}
+
 %
 Our pictorial proof begins by representing an integer $n$ as a
 horizontal sequence of $n$ ``bullets'', i.e., dark circles.  The
 problem of summing the first $n$ odd integers then begins with a
 picture such as appears in Fig.~\ref{fig:sumOdds1}, for the
 illustrative case $n=5$.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsBasis}
 \caption{Representing the first $n$ odd integers using bullets.  In
@@ -615,14 +653,14 @@ illustrative case $n=5$.
 \end{center}
 \end{figure}
 
-Starting with such a picture, we take each row of $2c+1$ bullets and
+Starting with such a picture, we take each row of $2a+1$ bullets and
 fold it at its midpoint so that it becomes a reversed letter ``$L$''.  The
-row of $2c+1$ bullets becomes an ``$L$'' whose horizontal portion (at the
-bottom of the reversed ``$L$'') is a row of $c+1$ bullets and whose
+row of $2a+1$ bullets becomes an ``$L$'' whose horizontal portion (at the
+bottom of the reversed ``$L$'') is a row of $a+1$ bullets and whose
 vertical portion (at the right of the reversed ``$L$'') is a column of
-$c+1$ bullets.  See Fig.~\ref{fig:sumOdds2} wherein the depicted
-values of $c$ are $c = 0, 1, 2, 3, 4$.
-\begin{figure}[h]
+$a+1$ bullets.  See Fig.~\ref{fig:sumOdds2} wherein the depicted
+values of $a$ are $a = 0, 1, 2, 3, 4$.
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsIntermediate}
               \caption{Folding a single row into a reversed letter ``$L$''.}
@@ -632,7 +670,7 @@ values of $c$ are $c = 0, 1, 2, 3, 4$.
 
 Once we have folded every row of bullets into a reversed ``$L$'', we nest
 the ``$L$''s in the manner depicted in Fig~\ref{fig:sumOdds3}.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsFinal}
 \caption{The final picture organized as an $n \times n$ square
@@ -665,7 +703,7 @@ order:
 Now we start peeling off prefixes of successive numbers of odd
 integers and arranging them in an array, as depicted in
 Table~\ref{tab:SumOddsTriangle}.
-\begin{table}[h]
+\begin{table}[ht]
 \label{tab:SumOddsTriangle}
 \caption{The sums of successive odd numbers and the sum of
   successive cubes}
@@ -708,7 +746,7 @@ $2\Delta_k -1$.
 This proof can be represented graphically as follows.  We begin with
 the unit square (the leftmost item in Fig.~\ref{fig:sumCubes1}) as the
 basis of our induction.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes1}
 \caption{The basis for the inductive pictorial proof}
@@ -718,7 +756,7 @@ basis of our induction.
 We next represent the number $2^3$ (the {\em cube} of $2$) by two $2
 \times 2$ squares: the figures following the unit square in
 Fig.~\ref{fig:sumCubes1}.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes2}
 \caption{Showing graphically that $2^3 +1$ is a perfect square}
@@ -727,7 +765,7 @@ Fig.~\ref{fig:sumCubes1}.
 \end{figure}
 Fig.~\ref{fig:sumCubes2} illustrates graphically that $1+ 2^3$
 is a perfect square.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes3}
 \caption{The next step in the construction also produces a perfect square}
@@ -748,13 +786,12 @@ group consists of the following odd integers ($k>1$):
 \[
 2 \Delta_{k-1} +1, \ 2 \Delta_{k-1}  +3, \ 2 \Delta_{k-1}  +5 ,
 \ldots, \
-2 \Delta_{k-1} +2k-1
+2 \Delta_{k-1} + (2k-1)
 \]
-\ignore{One verifies easily (say, by induction) that $2 \Delta_{k-1} +2k-1 = 2
-\Delta_{k} +1$.
-Hence, this group has the sum}
+Once one verifies (say, by induction) that $2 \Delta_{k-1} +2k-1 \ = \ 2
+\Delta_{k} +1$, one discovers that this group has the sum
 \[
-2k {k \choose 2} \ - \ 2 {k \choose 2} +k \ = \
+2k \Delta_{k-1} \ - \ 2 \Delta_{k-1} +k \ = \
 (2k -1) \Delta_k + k \ = \ k^3.
 \]
 \end{description}
@@ -766,17 +803,24 @@ $k$ contains the sum of the odd integers from $\Delta_{k-1}+1$ to
 $\Delta_k$.  By direct calculation, we can therefore compute the row's
 sum as
 \[
-\left( \frac{k(k+1)}{2} \right)^2 \ - \ \left( \frac{k(k-1)}{2} \right)^2
+\Delta_k^2 \ - \ \Delta_{k-1}^2 
+%\left( \frac{k(k+1)}{2} \right)^2 \ - \ \left( \frac{k(k-1)}{2} \right)^2
  \ \ =  \ \ \frac{k^2}{4} \left( (k+1)^2 - (k-1)^2 \right)
 % & = & \frac{k^2}{4} (4k) \\
  \ \ = \ \ k^3
 \]
 \end{proof}
 
-We close this treatment with another, really basic proof.  As stated
-earlier, our goal is really to encourage readers to utilize every
-possible mathematical concept as they hone their mathematical and
-computational skills.
+\medskip
+
+We close our treatment of
+Proposition~\ref{thm:squares-odd-integers-Gauss} with another, really
+basic proof.  As stated earlier, our goal is really to encourage
+readers to utilize every possible mathematical concept as they hone
+their mathematical and computational skills, so simple proofs often
+lend as much insight as sophisticated ones.
+
+\medskip
 
 \begin{proof}
 {\bf A final proof, from elementary school.}
@@ -794,10 +838,11 @@ illustrate the idea using the case $n=5$.
 \end{array}
 \]
 Write the integers $1, 2, \ldots, n$ in a row.  Below this row, write
-the doubles of these integers.  The next row holds the triples of the
-integers; then come the quadruples of the integers, then the
-quintuples, and so on.  Note that the resulting table is symmetric:
-its rows are identical to its columns.
+the doubles of these integers.  Below the ``double'' row, write the
+triples of the integers.  Below the ``triple'' row, write the
+quadruples of the integers, then the quintuples, and so on.  Note that
+the resulting table is symmetric: its rows are identical to its
+columns.
 
 Using Fubini's rearrangement stratagem, we count all the integers in
 the table in two different ways.
@@ -844,27 +889,85 @@ We conclude that
 %{\Denis Should I develop here? or we can let it as an exercice?}
 %
 
-\medskip
+\bigskip
 
-In Section~\ref{sec:sum-of-i2c>0}, we shall see the underpinnings of 
+{\it A promise, as we close the section.}
+%
+In Section~\ref{sec:sum-of-i2c>0}, we develop the underpinnings of
 techniques that incrementally compute the sums of the first $n$
-consecutive integers, squares of integers, cubes of integers, and so
-on, i.e., that compute the sums for $k$th powers from the sums for
-smaller powers.
+consecutive integers (the summations $S_1(n)$), the squares of these
+integers (the summations $S_2(n)$), the cubes of these integers (the
+summations $S_3(n)$), and so on.  Most interesting are the
+techniques that are incremental, i.e., that compute the summations
+$S_c(n)$ for $c$th powers of integers from the summations for
+smaller powers: $S_1(n)$, $S_2(n)$, \ldots, $S_{c-1}(n)$.
 
-\paragraph{\sf C. Another application of arithmetic sums}
+\bigskip
 
-Let us consider $a=1$ and $b=4$. 
-The sum is $S(n)=n+4 \Delta_{n-1}$.
-From the arrangement given in Fig.~\ref{fig:Delta(n)4}, it is easy to see that it is equal to $\Delta_{2n-1}$ (4 triangles of size $n$ plus a row of $n$ bullets in dark grey
-form a bigger triangle of size $2n-1$).
-\begin{figure}[h]
+\paragraph{\sf C. A nonobvious identity for arithmetic sums}
+%
+We close this subsection by using a ``picture'' to verify an identity for
+arithmetic sums that one would be unlikely to come upon by purely
+textual thinking.
+
+\begin{prop} 
+\label{thm:an-arithmetic-identity}
+For any positive integer $n$,
+\[ \Delta_{2n-1} \ = \ n + 4 \Delta_{n-1}. \]
+\end{prop} 
+
+\begin{proof} 
+Consider the arithmetic series in (\ref{eq:arith-seq}) for the case
+$a=1$ and $b=4$.  By Proposition~\ref{thm:sum-of-arithmetic-series},
+this series, call it $S^{(1,4)}(n)$, has the sum
+\begin{equation}
+\label{eq:triangles}
+S^{(1,4)}(n) \ = \ n + 4 \Delta_{n-1}.
+\end{equation}
+
+Let us represent the sum $\Delta_{n-1}$ in the natural way as a
+triangle of bullets.  This triangle has a base of $n-1$ bullets, upon
+which sits a row of $n-2$ bullets, upon which sits a row of $n-3$
+bullets, \ldots, all the way to the apex, which has a single bullet.
+
+Now, let us view equation (\ref{eq:triangles}) as giving us access to four
+copies of the preceding triangle of bullets.  Let us arrange these
+triangles in the manner depicted in Fig.~\ref{fig:Delta(n)4}.
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresMaths/Delta(n)4}
  \caption{Arranging the four triangles plus a row to obtain a new (bigger) triangle.}
        \label{fig:Delta(n)4}
 \end{center}
 \end{figure}
+Now, ``complete the picture'' by adding an ``extra'' row of $n$
+bullets at row $n$ of the figure (these are depicted in dark gray in
+the figure).  The four small triangles, augmented by the ``extra'' row
+of $n$ bullets has clearly become a representation  of $\Delta_{2n-1}$
+by bullets.
+\ignore{******
+The sum is $S(n)=n+4 \Delta_{n-1}$.  From the arrangement given in
+Fig.~\ref{fig:Delta(n)4}, it is easy to see that it is equal to
+$\Delta_{2n-1}$ (4 triangles of size $n$ plus a row of $n$ bullets in
+dark grey form a bigger triangle of size $2n-1$).
+*******}
+
+We now have a purely pictorial proof of the proposition.
+\end{proof} 
+
+\begin{quote}
+Full disclosure: {\em Our proof of
+  Proposition~\ref{thm:an-arithmetic-identity} is not {\em purely}
+  pictorial, because we must somehow verify that the construction is
+  completely general, i.e., that the depicted emergence of the
+  $\Delta_{2n-1}$ triangle of bullets from four copies of the
+  $\Delta_n$-triangle plus the extra row of $n$ bullets is not an
+  artifact of the depicted case $n =6$.
+
+Even with this caveat, one must admit that the {\em discovery} of the
+proposition is really pictorial, even if the verification requires
+additional modalities of reasoning. }
+\end{quote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1041,7 +1144,7 @@ Fig.~\ref{fig:sumGeoBasis} depicts a pictorial process whose analysis
 provides a rigorous argument that $\displaystyle \sum_{i=0}^\infty
 \ 2^{-i}$ evaluates to $2$ (as promised by
 Proposition~\ref{thm:sum-infinite-geometric-series}).
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur2Bis}
  \caption{Arranging successive rectangles to sum $\displaystyle
@@ -1072,14 +1175,14 @@ It is equal to $2$ (surface of the two big squares) and it is completely filled.
 
 This procedure is hard---but not impossible---to adapt to values of $b
 <1$ other than $\frac{1}{2}$.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral1}
 \caption{Initial state: the unit square and $r$.}
        \label{fig:sumGeoGeneral1}
 \end{center}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral2}
 \caption{Geometric series obtained by an appropriate cascading of
@@ -1090,7 +1193,7 @@ This procedure is hard---but not impossible---to adapt to values of $b
 Fig.~\ref{fig:sumGeoGeneral3} suggests how to achieve such an
 adaptation for any value of $b$ with $0 \leq b <1$, by an
 appropriately chosen cascade of shrinking squares.
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral3}
 \caption{The complete process for computing a geometric series via a
@@ -1108,7 +1211,6 @@ the infinite series $\displaystyle \sum_{i=0}^\infty \ b^{-i}$.
 \label{sec:extended-geom-series}
 
 \paragraph{\sf A. On summing ``extended'' geometric series}
-
 We now build on our sums (\ref{eq:geom-sum:b>1},
 \ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
 call ``extended'' geometric series (not a standard term), \textit{i.e.}, series
@@ -1196,7 +1298,6 @@ S_b^{(c)}(n) +  \ (n+1)^{c} b^{n+1}
 
 
 \paragraph{\sf B. Detecting properties of integer $n$ via $n$'s base-$b$ (positional) numeral}
-
 We now exploit our ability to sum geometric sums to illustrate a
 somewhat surprising, nontrivial fact about integers that are
 ``encoded'' in their positional numerals.  We hope that this ``fun''
@@ -1509,7 +1610,6 @@ The main message here is:
 \label{sec:positive-integer-power}
 
 \paragraph{\sf A. A better bound via the Binomial Theorem}
-
 When $c$ is a positive integer, the following special case of Newton's
 {\it Binomial Theorem}.\footnote{The general form of the Binomial
   Theorem expands the polynomial $(x+y)^k$ rather than $(x+1)^k$.  See
@@ -1567,9 +1667,7 @@ is a positive integer.
 
 \medskip
 
-\paragraph{\sf B. Using {\em undetermined coefficients} to
-  refine sums}
-
+\paragraph{\sf B. Using {\em undetermined coefficients} to refine sums}
 We now introduce the {\em Method of Undetermined Coefficients}
 \index{Method of Undetermined Coefficients}
 and illustrate how to use it to derive explicit expressions for the
@@ -1694,7 +1792,6 @@ powers, i.e., the sum $S_c(n)$, for any positive integer $c$.
 \medskip
 
 \paragraph{\sf C. Validating approximate summations via induction}
-
 We employ the proof technique of (Finite) Induction by proving the
 correctness of three summation formulas that have occupied our
 attention in this chapter:
@@ -1902,7 +1999,6 @@ using reasoning similar to that underlying the bounds
 (\ref{eq:bounds-sum-xc}) that hold for positive values of $c$.
 
 \paragraph{\sf A. Negative powers $c$ with $-1 < c < 0$}
-
 In this case, we obtain essentially the same bounds as in the case of
 nonnegative $c$.  To wit,
 
@@ -1935,7 +2031,6 @@ portion of the lower bound on $S_c(n)$, grows without bound as $n$
 grows without bound.
 
 \paragraph{\sf B. Negative powers $c$ with $c < -1$}
-
 When $c$ is ``very negative''---specifically, when $c < -1$---then the
 infinite version of $S_c(n)$, call it $S_c^{(\infty)}$, is a {\em
   convergent} infinite series.  Because $n^c$ {\em shrinks} in this
@@ -1960,7 +2055,6 @@ without bound, $S_c(n)$ tends to the value ${\displaystyle
 \end{proof}
 
 \paragraph{\sf C. Negative powers $c$ with $c = -1$: the {\em harmonic} sum}
-
 The singular case defined by the value $c = -1$ defines the important
 {\it harmonic series},
 \[ S^{(H)} \ = \ \sum_{i=1}^\infty \ \frac{1}{i} \]
