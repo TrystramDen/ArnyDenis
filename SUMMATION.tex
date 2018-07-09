@@ -1242,7 +1242,7 @@ a unit disk. The result reported in Fig~\ref{fig:sumGeo1sur2circle} is then that
 We should add $1$ for starting form index $i=1$...
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.5]{FiguresMaths/SumGeometric1sur2circle}
+       \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur2circle}
 \caption{Computing the sum of $1/2^i$ using a unit disk.}
        \label{fig:sumGeo1sur2circle}
 \end{center}
@@ -1298,18 +1298,20 @@ case $c=1$ should thereby allow the reader to deal with any value $c >
 
 We begin to develop our strategy by noting that
 \[ S_b^{(1)}(n) \ = \ \sum_{i=1}^n \ i b^i  \]
-so that
+the idea is to write this expression in two different ways by isolating the last term as follows:
 \begin{equation}
 \label{eq:ext-geom-c=1.1}
 S_b^{(1)}(n+1) \ = \ S_b^{(1)}(n) \ + \ (n+1) b^{n+1}
 \end{equation}
-Reasoning somewhat differently,
+and by isolating the first term as follows:
 \begin{eqnarray*}
 S_b^{(1)}(n+1)
      & = &
-\sum_{i=1}^n \ (i+1) b^{(i+1)} \ + \ b \\
+b + \sum_{i=2}^{n+1} \ i b^{i}  \\
+& = &
+b + \sum_{i=1}^n \ (i+1) b^{(i+1)}  \\
      & = &
-b \cdot \sum_{i=1}^n \ (i+1) b^i \ + \ b \\
+b +  b \cdot \sum_{i=1}^n \ (i+1) b^i \\
      & = &
 b \cdot \left(
 \sum_{i=1}^n \ i b^i 
@@ -1319,21 +1321,21 @@ b \cdot \left(
      & = &
 b \cdot \left( S_b^{(1)}(n) \ + \ S_b^{(0)}(n) \right) \ + \ b \\
 %\label{eq:ext-geom-c=1.2}
+& = &
+b \cdot \left( S_b^{(1)}(n) \ +  \frac{b^{n+1} -1}{b-1} -1 \right) \ + \ b \\
     & = &
-b \cdot S_b^{(1)}(n) \ + \ b \cdot \frac{b^{n+1} + b - 2}{b-1}
+b \cdot S_b^{(1)}(n) \ + \ b \cdot \frac{b^{n+1} - 1}{b-1}
 \end{eqnarray*}
 Combining this expression with the previous one (\ref{eq:ext-geom-c=1.1}), we
 finally obtain
-\[ S_b^{(1)}(n) - b \cdot S_b^{(1)}(n) \ = \
-\ b \cdot \frac{b^{n+1} + b - 2}{b-1}
-- (n+1) \cdot b^{n+1}
+\[ b \cdot S_b^{(1)}(n) -  S_b^{(1)}(n) \ = \
+(n+1) \cdot b^{n+1} - \ b \cdot \frac{b^{n+1} -1}{b-1}
 \]
-\[ S_b^{(1)}(n) \ = \
-\frac{1}{(b-1)^2} \cdot \left(
-n \cdot b^{n+2} - (n+1) \cdot b^{n+1} - b^2 + 2b
-\right)
-\]
-
+%\[ S_b^{(1)}(n) \ = \
+%\frac{1}{(b-1)^2} \cdot \left(
+%n \cdot b^{n+2} - (n+1) \cdot b^{n+1} - b^2 + 2b
+%\right)
+%\]
 
 
 We proceed similarly for computing the general expression: 
@@ -1345,8 +1347,12 @@ S_b^{(c)}(n) \ = \ \sum_{i=1}^n \ i^c b^i
 S_b^{(c)}(n+1)
  \ = \
 b \ + \ 2^{c} b^2\ + \ 3^{c} b^3 \ + \ \cdots \ + \ (n+1)^{c} b^{n+1}
- \ = \
+\]
+
+\[
 S_b^{(c)}(n) +  \ (n+1)^{c} b^{n+1}
+ \ = \
+b + \sum_{i=1}^n \ (i+1)^c b^{(i+1)} 
 \]
 
 
