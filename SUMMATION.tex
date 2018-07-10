@@ -1,4 +1,4 @@
-%version of 07-09-18
+%version of 07-10-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -1070,7 +1070,7 @@ We show graphically that $\Delta_n$ is congruent to $1$ modulo $8$.
 
 \subsection{Geometric Sums and Series}
 
-\subsubsection{General development}
+\subsubsection{Overview and main results}
 \label{sec:geometric-sums}
 \label{sec:general-geometric-sums}
 
@@ -1099,12 +1099,11 @@ S_{a,b}(n)
 \end{eqnarray}
 
 The associated geometric {\em (infinite) series} (used only when $b < 1$):
-\begin{eqnarray}
+\begin{equation}
 \label{eq:genl-geom-series}
-S_{a,b}^{(\infty)} & \eqdef &  \sum_{i=0}^\infty a b^i \\
-\nonumber
- & = &  a + ab + ab^2 + \cdots 
-\end{eqnarray}
+S_{a,b}^{(\infty)} \ \ \eqdef \ \  \sum_{i=0}^\infty a b^i
+ \ \  = \ \   a + ab + ab^2 + \cdots 
+\end{equation}
 
 It is clear from these definitions that we can evaluate the summation
 (\ref{eq:genl-geom-summation}) by evaluating just the sub-summation
@@ -1117,7 +1116,7 @@ and we can evaluate the series (\ref{eq:genl-geom-series}) by
 evaluating just the sub-series
 \begin{equation}
 \label{eq:geom-series}
-S_{b}^{(\infty)} \ \eqdef \ \sum_{i=0}^\infty b_i \ = \
+S_{b}^{(\infty)} \ \ \eqdef \ \ \sum_{i=0}^\infty b_i \ \ = \ \
 1+ b + b^2 + \cdots 
 \end{equation}
 
@@ -1135,25 +1134,27 @@ Let $S_{b}(n)$ be a geometric summation, as defined in
 When $b > 1$, $S_{b}(n)$ evaluates to the following sum.
 \begin{equation}
 \label{eq:geom-sum:b>1}
-S^{b>1}_{b}(n) \ = \ \frac{b^{n}- 1}{b - 1}.
+S^{(b>1)}_{b}(n) \ = \ \frac{b^{n}- 1}{b - 1}.
 \end{equation}
 
 \noindent {\bf (b)}
 When $b < 1$, $S_{b}(n)$ evaluates to the following sum.
 \begin{equation}
 \label{eq:geom-sum:b<1}
-S^{b<1}_{b}(n) \ = \ \frac{1 - b^n}{1-b}.
+S^{(b<1)}_{b}(n) \ = \ \frac{1 - b^n}{1-b}.
 \end{equation}
 \end{prop}
 
 Of course, in the uninteresting degenerate case $b=1$
-\[ S^{b=1}_{b}(n) \ = \ 1 + 1 + \cdots + 1 \ \ \ \mbox{($n$ times)} \]
-sums to $n$.
+\[ S^{(b=1)}_{b}(n) \ = \ 1 + 1 + \cdots + 1 \ \ \ \mbox{($n$ times)}
+  \ \ \ \ = \ n.  \]
 
 \medskip
 
 The infinite case (\ref{eq:geom-series}) can be dealt with as a
-corollary to Proposition~\ref{thm:sum-finite-geometric-series}(b).
+corollary to Proposition~\ref{thm:sum-finite-geometric-series}(b), by
+letting $n$ grow without bound and observing that the resulting
+sequence of values converges.
 
 \begin{prop}
 \label{thm:sum-infinite-geometric-series}
@@ -1165,7 +1166,8 @@ When $b < 1$,  the {\em infinite} series $S^{(\infty)}_{b}$ {\em
 \]
 \end{prop}
 
-\bigskip
+\subsubsection{Techniques for summing geometric series}
+\label{sec:summing-geometric-series:techniques}
 
 We turn now to a sequence of proofs of
 Propositions~\ref{thm:sum-finite-geometric-series}
@@ -1185,40 +1187,42 @@ we note that we can rewrite the sum in two ways that are {\em
 
 \noindent
 {\em This phenomenon of {\em finding recurrent subexpressions} is a
-  ``pattern'' of the form referred to in Section~\ref{sec:manifesto}
-  as we discussed how mathematicians ``do mathematics''.  We now
+  ``pattern'' of the form described in Section~\ref{sec:manifesto} as
+  we discussed how mathematicians ``do mathematics''.  We now
   exemplify how this pattern can be exploited to find explicit sums
-  for geometric series.}
+  for geometric summations and series.}
 
 \bigskip
 
+\noindent
 Both of the recurrent expressions for $S_{b}(n)$ have the following form.
 \begin{equation}
 \label{eq:geom-series-recurrent}
 S_b(n) \ = \ \alpha \cdot S_b(n) \ + \ \beta(n)
 \end{equation}
 where $\alpha$ is a constant and $\beta(n)$ is a function of $n$; both
-$\alpha$ and $\beta(n)$ may depend on the parameter $b$.
-\begin{equation}
+$\alpha$ and $\beta(n)$ may depend on the parameter $b$.  We provide
+two recurrent expressions for $S_b(n)$, one of which is more
+interesting when $b>1$, the other when $b<1$.
+\begin{eqnarray}
 \label{eq:geom-series-replicate}
-\begin{array}{cclcl}
+\nonumber
 S_{b}(n) 
-  & = &
-1+ b + b^2 + \cdots + b^{n-1} & & \\
-  &   &   &  & \\
-  & = &
-1 + b \cdot S_{b}(n) - b^n
+  & \eqdef &
+1+ b + b^2 + \cdots + b^{n-1}  \\
+\nonumber
+  &   &  \\
+\label{eq:geom-series-replicate-1}
+%  & = & 1 + b \cdot S_{b}(n) - b^n
    & = & b \cdot S_{b}(n) \ + \ (1 - b^n) \\
-  &   &   &  & \\
+\nonumber
+   &  & \\
+%  & = & {\displaystyle
+%b^{n-1} + \frac{1}{b} \cdot S_{b}(n) - \frac{1}{b}}
+\label{eq:geom-series-replicate-2}
   & = &
-{\displaystyle
-b^{n-1} + \frac{1}{b} \cdot S_{b}(n) - \frac{1}{b}
-}
-  & = &
-{\displaystyle \frac{1}{b} \cdot S_{b}(n) \ + \ \frac{b^n -1}{b} 
-}
-\end{array}
-\end{equation}
+\frac{1}{b} \cdot S_{b}(n) \ + \ \frac{b^n -1}{b} 
+\end{eqnarray}
 The significance of a recurrent expression of the form
 (\ref{eq:geom-series-recurrent}) is that it exposes an explicit value
 for $S_b(n)$:
@@ -1227,15 +1231,16 @@ for $S_b(n)$:
 S_b(n) \ = \ \frac{\beta(n)}{1 - \alpha}
 \end{equation}
 
-We can now combine the generic value (\ref{eq:geom-series-generic}) of
-$S_b(n)$ with the specialized recurrent expressions for $S_b(n)$ in
-(\ref{eq:geom-series-replicate}) to derive two explicit solutions for
-$S_b(n)$.
+We now combine the generic value (\ref{eq:geom-series-generic}) of
+$S_b(n)$ with the specialized recurrent expressions in
+(\ref{eq:geom-series-replicate-1}) and
+(\ref{eq:geom-series-replicate-2}) to derive two explicit solutions
+for $S_b(n)$.
 \begin{enumerate}
 \item
 The first solution is most useful and perspicuous when $b>1$.  In this
 case, we find that
-\[ \left( 1 - \frac{1}{b} \right)  S^{b>1}_{b}(n) \ = \ b^{n-1} -
+\[ \left( 1 - \frac{1}{b} \right)  S^{(b>1)}_{b}(n) \ = \ b^{n-1} -
 \frac{1}{b}, \]
 which can easily be rearranged to the equivalent and more
 perspicuous form (\ref{eq:geom-sum:b>1}).
@@ -1243,55 +1248,60 @@ perspicuous form (\ref{eq:geom-sum:b>1}).
 \item
 The second solution is most useful and perspicuous when $b < 1$.  In this
 case, we find that
-\[ (1-b) S^{b<1}_{b}(n) \ = \ 1 \ - \ b^n \]
+\[ (1-b) S^{(b<1)}_{b}(n) \ = \ 1 \ - \ b^n \]
 which can easily be rearranged to the equivalent and more
 perspicuous form (\ref{eq:geom-sum:b<1}).
 \end{enumerate}
 \end{proof}
 
-Note that both $S^{b>1}_{b}(n)$ and $S^{b<1}_{b}(n)$ have simple {\em
-  approximate} values which are useful in ``back-of-the-envelope''
+Note that both $S^{(b>1)}_{b}(n)$ and $S^{(b<1)}_{b}(n)$ have simple
+{\em approximate} values which are useful in ``back-of-the-envelope''
 calculations: For very large values of $n$, we have
 \begin{equation}
 \label{eq:geom-sum:approx}
-S^{b>1}_{b}(n) \ \approx \ \frac{b^n}{b-1} \ \ \
-\mbox{while} \ \ \
-S^{b<1}_{b}(n) \ \approx \ \frac{1}{1-b} .
+S^{(b>1)}_{b}(n) \ \approx \ \frac{b^n}{b-1} \ \ \
+\mbox{and} \ \ \
+S^{(b<1)}_{b}(n) \ \approx \ \frac{1}{1-b} .
 \end{equation}
-The expression for $S^{b<1}_{b}(n)$ in (\ref{eq:geom-sum:approx}) is
+The expression for $S^{(b<1)}_{b}(n)$ in (\ref{eq:geom-sum:approx}) is
 actually a rewording of
 Proposition~\ref{thm:sum-infinite-geometric-series}.
 
 \medskip
 
+\index{evaluating geometric sums and series!a pictorial evaluation for
+  $S^{(\infty)}_{1/2}$ using cascading shrinking squares}
 \begin{proof}
-{\bf A pictorial proof of Proposition~\ref{thm:sum-infinite-geometric-series}.}
+{\bf A pictorial summing of $S^{(\infty)}_{1/2} = \sum_{i=0}^\infty
+  2^{-i}$.}
 %
 Fig.~\ref{fig:sumGeoBasis} depicts a pictorial process whose analysis
-provides a rigorous argument that $\displaystyle \sum_{i=0}^\infty
-\ 2^{-i}$ evaluates to $2$ (as promised by
-Proposition~\ref{thm:sum-infinite-geometric-series}).
+provides a rigorous proof of
+Proposition~\ref{thm:sum-infinite-geometric-series} for the case $b =
+1/2$, i.e., a rigorous argument that the series $S^{(\infty)}_{1/2} =
+\sum_{i=0}^\infty \ 2^{-i}$ sums to $2$.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur2Bis}
- \caption{Arranging successive rectangles to sum $\displaystyle
-   \sum_{i=0}^\infty \ 2^{-i}$.}
+ \caption{Arranging successive rectangles to evaluate $S^{(\infty)}_{1/2}$.}
        \label{fig:sumGeoBasis}
 \end{center}
 \end{figure}
-We measure fractional quantities by the portion of a unit-side
-rectangle that they fill.  Thus (follow in the figure): The initial
-term of $\displaystyle \sum_{i=0}^\infty \ 2^{-i}$, namely $1$, is
-represented by the unit square that is labeled ``$1$'' in the figure.
-The next term of the series, namely $1/2$, is represented by the
-rectangle labeled ``$1/2$'' in the figure.  We proceed with
-successively smaller rectangles representing successively smaller
-inverse powers of $2$.  As the process proceeds, we observe
-increasingly more of the righthand unit-side square being filled.  In
-fact, one can argue that {\em every} point in the righthand square
-eventually gets covered by some small rectangle (as $n$ tends to
-$\infty$), thereby establishing that the infinite series
-$\displaystyle \sum_{i=0}^\infty \ 2^{-i}$ sums to $2$.
+In this evaluation of $S^{(\infty)}_{1/2}$, we measure fractional
+quantities by the portion of a unit-side rectangle that they fill.
+Thus (follow in the figure): The initial term of $S^{(\infty)}_{1/2}$,
+namely $1$, is represented by the unit square that is labeled ``$1$''
+in the figure.  The next term of the series, namely $1/2$, is
+represented by the rectangle labeled ``$1/2$'' in the figure, and so
+on, with successively smaller rectangles.  By designing each rectangle
+to have half the area of its predecessor, the sequence of rectangles
+thus represents successively smaller inverse powers of $2$.  As the
+process proceeds, we observe increasingly more of the righthand
+unit-side square being filled.  In fact, one can argue that {\em
+  every} point in the righthand unit-side square eventually gets
+covered by some small rectangle (as $n$ tends to $\infty$), thereby
+establishing that the infinite series $S^{(\infty)}_{1/2}$
+does, indeed, sum to $2$.
 
 \ignore{*******
 The result is immediate while considering a basic unit square and its
@@ -1301,42 +1311,72 @@ It is equal to $2$ (surface of the two big squares) and it is completely filled.
 ***********}
 
 This procedure is hard---but not impossible---to adapt to values of $b
-<1$ other than $\frac{1}{2}$.
+<1$ other than $1/2$.  The sequence Fig.~\ref{fig:sumGeoGeneral1},
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral1}
-\caption{Initial state: the unit square and $r$.}
+\caption{Initial state: the unit square and the base $b$.}
        \label{fig:sumGeoGeneral1}
 \end{center}
 \end{figure}
+Fig.~\ref{fig:sumGeoGeneral2},
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral2}
-\caption{Geometric series obtained by an appropriate cascading of
+\caption{Beginning to craft the geometric series by cascading
   shrinking squares.}
        \label{fig:sumGeoGeneral2}
 \end{center}
 \end{figure}
 Fig.~\ref{fig:sumGeoGeneral3} suggests how to achieve such an
 adaptation for any value of $b$ with $0 \leq b <1$, by an
-appropriately chosen cascade of shrinking squares.
+appropriate cascade of shrinking squares.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral3}
-\caption{The complete process for computing a geometric series via a
+\caption{The complete process for computing a geometric series using a
   cascade of shrinking squares.}
        \label{fig:sumGeoGeneral3}
 \end{center}
 \end{figure}
-The lengths of the bases of the abutting rectangles is the value of
-the infinite series $\displaystyle \sum_{i=0}^\infty \ b^{-i}$.
+The unit-side square in Fig.~\ref{fig:sumGeoGeneral1} begins the
+construction of the cascade.  The two squares in
+Fig.~\ref{fig:sumGeoGeneral2} illustrate the second step in
+constructing the cascade; the suggestive cascade depicted in
+Fig.~\ref{fig:sumGeoGeneral3} illustratess what the final cascade looks
+like: the lengths of the bases of its abutting rectangles is the value
+of the infinite series $S^{(\infty)}_{1/b} = \sum_{i=0}^\infty \ b^{-i}$.
 \end{proof}
 
 \medskip
-{\Denis We can add here two exercices.}
-Computing the geometric series $1/2^i$ may be done by considering another shape than a square:
-a unit disk. The result reported in Fig~\ref{fig:sumGeo1sur2circle} is then that the (infinite) sum of the disks is equal to $1$. 
-We should add $1$ for starting form index $i=1$...
+
+%{\Denis We can add here two exercices.}
+
+\noindent
+{\bf Enrichment: variations on the theme.}
+%
+The preceding pictorial derivation of the sum $S^{(\infty)}_{1/2}$ can
+be formulated using geometric shapes other than squares.  We now
+suggest suggest two of these which the interested reader may enjoy
+exploring further.
+
+\medskip
+
+\index{evaluating geometric sums and series!a pictorial evaluation for
+$S^{(\infty)}_{1/2}$ using a vigorously sliced pie}
+
+\noindent{\bf Using a vigorously sliced pie.}
+%
+This variation focuses on the modified series
+\[ \bar{S}^{(\infty)}_{1/2} \ = \ \sum_{i=1}^\infty 2^{-i} \]
+which omits the initial summand $1$ from $S^{(\infty)}_{1/2}$.  Of
+course, $\bar{S}^{(\infty)}_{1/2}$ sums to $1$, because
+$S^{(\infty)}_{1/2}$ sums to $2$.
+
+Our evaluation of $\bar{S}^{(\infty)}_{1/2}$ is depicted in
+Fig~\ref{fig:sumGeo1sur2circle}; the inverse powers of $2$ are
+represented by appropriate fractions of the unit-diameter disk.  The
+evaluation begins with this disk before it is sliced.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur2circle}
@@ -1344,6 +1384,21 @@ We should add $1$ for starting form index $i=1$...
        \label{fig:sumGeo1sur2circle}
 \end{center}
 \end{figure}
+We slice the disk in half by means of the depicted diameter; we label
+one of the resulting half-disks ``$1/2$''.  Next, we slice one of the
+half-disks in half by means of a radius of the unit disk; we label one
+of the quarter-disks ``$1/4$''.  We continue in this manner {\em ad
+  infinitum}.  The analysis that yields the sum of
+$\bar{S}^{(\infty)}_{1/2}$ amounts to a proof that every point in the
+unit-diameter disk eventually resides in a slice that is not further
+sliced.  Details are left to the interested reader.
+
+\ignore{***************
+\index{evaluating geometric sums and series!a pictorial evaluation for
+$S^{(\infty)}_{1/2}$ using a vigorously sliced pie}
+
+\noindent{\bf Using a vigorously sliced pie.}
+%  
 
 Another variation refers to the surface of an unit equilateral triangle. 
 We are looking for the sum of the $1/4^i$ is equal to $1/3$ by two ways
@@ -1356,11 +1411,14 @@ refering to Fig~\ref{fig:sumGeo1sur4}: The area of the infinite sum represented 
        \label{fig:sumGeo1sur4}
 \end{center}
 \end{figure}
+******************}
 
-\subsubsection{An extension and an application}
+
+\subsubsection{Extended geometric series and their sums}
 \label{sec:extended-geom-series}
 
-\paragraph{\sf A. On summing ``extended'' geometric series}
+**HERE
+
 We now build on our sums (\ref{eq:geom-sum:b>1},
 \ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
 call ``extended'' geometric series (not a standard term), \textit{i.e.}, series
@@ -1452,8 +1510,10 @@ S_b^{(c)}(n) +  \ (n+1)^{c} b^{n+1}
 b + \sum_{i=1}^n \ (i+1)^c b^{(i+1)} 
 \]
 
+\subsubsection{A fun result via geometric sums: When is $n$ divisible
+  by $9$?}
+\label{sec:divisible-by-9}
 
-\paragraph{\sf B. Detecting properties of integer $n$ via $n$'s base-$b$ (positional) numeral}
 We now exploit our ability to sum geometric sums to illustrate a
 somewhat surprising, nontrivial fact about integers that are
 ``encoded'' in their positional numerals.  We hope that this ``fun''
