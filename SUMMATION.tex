@@ -1,4 +1,4 @@
-%version of 07-10-18
+%version of 07-11-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -1269,11 +1269,10 @@ Proposition~\ref{thm:sum-infinite-geometric-series}.
 
 \medskip
 
-\index{evaluating geometric sums and series!a pictorial evaluation for
+\index{evaluating geometric sums and series!a pictorial way to sum
   $S^{(\infty)}_{1/2}$ using cascading shrinking squares}
 \begin{proof}
-{\bf A pictorial summing of $S^{(\infty)}_{1/2} = \sum_{i=0}^\infty
-  2^{-i}$.}
+{\bf A pictorial representation for summing $S^{(\infty)}_{1/2}$.}
 %
 Fig.~\ref{fig:sumGeoBasis} depicts a pictorial process whose analysis
 provides a rigorous proof of
@@ -1352,31 +1351,37 @@ of the infinite series $S^{(\infty)}_{1/b} = \sum_{i=0}^\infty \ b^{-i}$.
 
 %{\Denis We can add here two exercices.}
 
-\noindent
-{\bf Enrichment: variations on the theme.}
+{\Arny (1) I really like including the pie-cutting in the text,
+  because it is another representation for exactly the same problem.
+  Do you like this way of handling it?  (2) I am less enthusiastic
+  about including the nexted triangles: it changes the problem (i.e.,
+  the base b) as well as the representation.  I like it very much as
+  an exercise ... but we have not yet tackled that issue.}
+
+\index{evaluating geometric sums and series!a pictorial way to sum
+  $S^{(\infty)}_{1/2}$ using a vigorously sliced pie}
+\begin{proof}
+{\bf Another pictorial representation for summing $S^{(\infty)}_{1/2}$.}
 %
-The preceding pictorial derivation of the sum $S^{(\infty)}_{1/2}$ can
-be formulated using geometric shapes other than squares.  We now
-suggest suggest two of these which the interested reader may enjoy
-exploring further.
+The pictorial derivation of the sum $S^{(\infty)}_{1/2}$ can be
+accomplished using geometric shapes other than squares.  We now
+present a natural derives the sum $S^{(\infty)}_{1/2}$ by vigorously
+slicing a pie.
 
-\medskip
-
-\index{evaluating geometric sums and series!a pictorial evaluation for
-$S^{(\infty)}_{1/2}$ using a vigorously sliced pie}
-
-\noindent{\bf Using a vigorously sliced pie.}
-%
-This variation focuses on the modified series
-\[ \bar{S}^{(\infty)}_{1/2} \ = \ \sum_{i=1}^\infty 2^{-i} \]
+The process of pie-slicing works most naturally with the modified
+series
+\[ \bar{S}^{(\infty)}_{1/2} \ \ = \ \ \sum_{i=1}^\infty 2^{-i}
+ \ \ = \ \ S^{(\infty)}_{1/2} \ - \ 1. \]
 which omits the initial summand $1$ from $S^{(\infty)}_{1/2}$.  Of
 course, $\bar{S}^{(\infty)}_{1/2}$ sums to $1$, because
 $S^{(\infty)}_{1/2}$ sums to $2$.
 
-Our evaluation of $\bar{S}^{(\infty)}_{1/2}$ is depicted in
-Fig~\ref{fig:sumGeo1sur2circle}; the inverse powers of $2$ are
-represented by appropriate fractions of the unit-diameter disk.  The
-evaluation begins with this disk before it is sliced.
+The pie-slicing evaluation of $\bar{S}^{(\infty)}_{1/2}$ is depicted
+in Fig~\ref{fig:sumGeo1sur2circle}.  In the figure, the inverse powers
+of $2$ are represented by appropriate fractions of a unit-diameter
+disk (the pie).  The evaluation begins with this disk before it is
+sliced: this represents the number $1$, which we eventually show to be
+the sum of $\bar{S}^{(\infty)}_{1/2}$.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur2circle}
@@ -1392,14 +1397,9 @@ of the quarter-disks ``$1/4$''.  We continue in this manner {\em ad
 $\bar{S}^{(\infty)}_{1/2}$ amounts to a proof that every point in the
 unit-diameter disk eventually resides in a slice that is not further
 sliced.  Details are left to the interested reader.
+\end{proof}
 
 \ignore{***************
-\index{evaluating geometric sums and series!a pictorial evaluation for
-$S^{(\infty)}_{1/2}$ using a vigorously sliced pie}
-
-\noindent{\bf Using a vigorously sliced pie.}
-%  
-
 Another variation refers to the surface of an unit equilateral triangle. 
 We are looking for the sum of the $1/4^i$ is equal to $1/3$ by two ways
 refering to Fig~\ref{fig:sumGeo1sur4}: The area of the infinite sum represented in dark grey is obviously one third of the total area
@@ -1413,112 +1413,15 @@ refering to Fig~\ref{fig:sumGeo1sur4}: The area of the infinite sum represented 
 \end{figure}
 ******************}
 
-
-\subsubsection{Extended geometric series and their sums}
-\label{sec:extended-geom-series}
-
-**HERE
-
-We now build on our sums (\ref{eq:geom-sum:b>1},
-\ref{eq:geom-sum:b<1}) for geometric series to evaluate what we shall
-call ``extended'' geometric series (not a standard term), \textit{i.e.}, series
-of the form
-\[ S_b^{(c)}(n) \ \eqdef \ \sum_{i=1}^n \ i^c b^i \]
-where $c$ is an arbitrary fixed positive integer, and $b$ is an
-arbitrary fixed real number.
-
-When $c=0$, the resulting ``extended'' geometric series is just a
-geometric series, which we have studied in
-Section~\ref{sec:general-geometric-sums}.  For brevity, we ignore the case
-$b = 1$, which is dealt with adequately elsewhere in this chapter,
-including in Section~\ref{sec:smooth-series}.  For all other values of
-$b$ and $c$, our summation-solving strategy has two primary goals:
-\begin{itemize}
-\item
-It should be {\em inductive} in parameter $c$.  That is, the strategy
-should compute a sum for the series $S_b^{(c)}(n)$ in terms of earlier
-discovered sums for $S_b^{(c-1)}(n)$, $S_b^{(c-2)}(n)$, \ldots,
-$S_b^{(0)}(n) = S_b(n)$.
-{\Denis I am not so clear here, is it an induction on c or on n? We develop for n later on...}
-
-\item
-It should rely on the recurrent-subexpression strategy which was so
-effective in Section~\ref{sec:general-geometric-sums}.
-\end{itemize}
-We illustrate our strategy in detail for the case $c=1$ and sketch
-only briefly how it deals with larger values of $c$.  Elementary
-algebraic manipulations which are suggested by the analysis in the
-case $c=1$ should thereby allow the reader to deal with any value $c >
-1$.
-
-We begin to develop our strategy by noting that
-\[ S_b^{(1)}(n) \ = \ \sum_{i=1}^n \ i b^i  \]
-the idea is to write this expression in two different ways by isolating the last term as follows:
-\begin{equation}
-\label{eq:ext-geom-c=1.1}
-S_b^{(1)}(n+1) \ = \ S_b^{(1)}(n) \ + \ (n+1) b^{n+1}
-\end{equation}
-and by isolating the first term as follows:
-\begin{eqnarray*}
-S_b^{(1)}(n+1)
-     & = &
-b + \sum_{i=2}^{n+1} \ i b^{i}  \\
-& = &
-b + \sum_{i=1}^n \ (i+1) b^{(i+1)}  \\
-     & = &
-b +  b \cdot \sum_{i=1}^n \ (i+1) b^i \\
-     & = &
-b \cdot \left(
-\sum_{i=1}^n \ i b^i 
- \ + \
-\sum_{i=1}^n \  b^i 
-\right) \ + \ b \\
-     & = &
-b \cdot \left( S_b^{(1)}(n) \ + \ S_b^{(0)}(n) \right) \ + \ b \\
-%\label{eq:ext-geom-c=1.2}
-& = &
-b \cdot \left( S_b^{(1)}(n) \ +  \frac{b^{n+1} -1}{b-1} -1 \right) \ + \ b \\
-    & = &
-b \cdot S_b^{(1)}(n) \ + \ b \cdot \frac{b^{n+1} - 1}{b-1}
-\end{eqnarray*}
-Combining this expression with the previous one (\ref{eq:ext-geom-c=1.1}), we
-finally obtain
-\[ b \cdot S_b^{(1)}(n) -  S_b^{(1)}(n) \ = \
-(n+1) \cdot b^{n+1} - \ b \cdot \frac{b^{n+1} -1}{b-1}
-\]
-%\[ S_b^{(1)}(n) \ = \
-%\frac{1}{(b-1)^2} \cdot \left(
-%n \cdot b^{n+2} - (n+1) \cdot b^{n+1} - b^2 + 2b
-%\right)
-%\]
-
-
-We proceed similarly for computing the general expression: 
-\[
-S_b^{(c)}(n) \ = \ \sum_{i=1}^n \ i^c b^i
-\]
-
-\[
-S_b^{(c)}(n+1)
- \ = \
-b \ + \ 2^{c} b^2\ + \ 3^{c} b^3 \ + \ \cdots \ + \ (n+1)^{c} b^{n+1}
-\]
-
-\[
-S_b^{(c)}(n) +  \ (n+1)^{c} b^{n+1}
- \ = \
-b + \sum_{i=1}^n \ (i+1)^c b^{(i+1)} 
-\]
-
-\subsubsection{A fun result via geometric sums: When is $n$ divisible
-  by $9$?}
+\subsubsection{A fun result via geometric sums: When is integer  $n$
+  divisible by $9$?}
 \label{sec:divisible-by-9}
 
-We now exploit our ability to sum geometric sums to illustrate a
-somewhat surprising, nontrivial fact about integers that are
-``encoded'' in their positional numerals.  We hope that this ``fun''
-result will inspire the reader to seek kindred numeral-encoded
-properties of numbers.
+We now exploit our ability to evaluate geometric summations to
+illustrate a somewhat surprising, nontrivial fact.  One can deduce
+information about the divisibility of an integer $n$ from $n$'s
+positional numerals.  We hope that this ``fun'' result will inspire
+the reader to seek kindred numeral-encoded properties of numbers.
 
 \begin{prop}
 \label{thm:div-by-b-bar}
@@ -1537,17 +1440,21 @@ traditional use of base-$10$ (decimal) numerals. \\
 ({\it Argument for general number-base $b$}).
 %
 Of course, we lose no generality by focusing on numerals without
-leading $0$'s, for adding leading $0$'s does not alter a numeral's sum
-of digits.
+leading $0$'s, because leading $0$'s do not alter a numeral's sum of
+digits.
 
-To enhance legibility, let $b = m+1$, so that we are looking at the
-base-$b$ numeral for $n$.  Say that
+Let us focus on the base-$b$ numeral for a number $n$ (so $b = m+1$ in
+the statement of the proposition).  There therefore exist base-$b$
+digits---i.e., integers from the set $\{0, 1, \ldots, b-1\}$---call
+them $\delta_k \neq 0$, $\delta_{k-1}$, \ldots $\delta_1$, $\delta_0$,
+such that
 \[ n \ = \ \delta_k \cdot b^k + \delta_{k-1} \cdot b_{k-1} + \cdots +
-\delta_1 \cdot b + \delta_0, \]
-so that the sum of the digits of $n$'s base-$b$ numeral is
-\[ s_b(n) \ \eqdef \ \delta_k + \delta_{k-1} + \cdots + \delta_1 + \delta_0. \]
-We next calculate the difference $n - s_b(n)$.  We proceed as
-follows, digit by digit.
+\delta_1 \cdot b + \delta_0. \]
+The sum of the digits of $n$'s base-$b$ numeral is, then
+\[ s_b(n) \ \eqdef \ \delta_k + \delta_{k-1} + \cdots + \delta_1 +
+\delta_0. \]
+Let us calculate the difference $n - s_b(n)$ in the following manner,
+digit by digit.
 \begin{equation}
 \label{eq:sum-of-digits}
 \begin{array}{ccccccccccc}
@@ -1569,17 +1476,181 @@ n - s_b(n) & = &
 
 We now revisit summation (\ref{eq:geom-sum:b>1}).  Because $b$ is a
 positive integer, so that $1 + b + \cdots + b^{a-2} + b^{a-1}$ is also
-a positive integer, we adduce from the summation that {\em the integer
-  $b^a -1$ is divisible by $b-1$.}
+a positive integer, we infer that {\em the integer $b^a -1$ is
+  divisible by $b-1$.}
 
 We are almost home.  Look at the equation for $n - s_b(n)$ in the
 system (\ref{eq:sum-of-digits}).  As we have just seen, every term on
 the righthand side of that equation is divisible by $b-1$.  It follows
 therefore, that the lefthand expression, $n - s_b(n)$, is also
-divisible by $b-1$.  An easy calculation, which we leave to the
-reader, now shows that this final fact means that $n$ is divisible by
-$b-1$ if, and only if, $s_b(n)$ is.
+divisible by $b-1$.
+An easy calculation, which we leave to the reader, now shows that this
+final fact means that $n$ is divisible by $b-1$ if, and only if,
+$s_b(n)$ is.
 \end{proof}
+
+\subsubsection{Extended geometric series and their sums}
+\label{sec:extended-geom-series}
+\index{extended geometric sums: $\sum_{i=1}^n \ i^c b^i$}
+
+We now build on our ability to evaluate geometric summations of the
+forms (\ref{eq:geom-sum:b>1}, \ref{eq:geom-sum:b<1}) to evaluate
+summations that we shall term {\em extended} geometric summations (not
+a standard term), \textit{i.e.}, summations of the form
+\[ S_b^{(c)}(n) \ \eqdef \ \sum_{i=1}^n \ i^c b^i, \]
+where $c$ is an arbitrary fixed positive integer, and $b$ is an
+arbitrary fixed real number.
+
+We restrict attention here to the situation defined by the joint
+non-equalities $c \neq 0$ and $b \neq 1$.
+\begin{itemize}
+\item
+We have already adequately studied the case $c=0$, which characterizes
+``ordinary'' geometric summations.
+\item
+The case $b = 1$ removes the ``geometric growth'' of the sequence
+underlying the summation.  We study various aspects of this {\it
+  summation-of-fixed-powers} case in Section~\ref{sec:smooth-series},
+with special treatment of summations of fixed powers of consecutive
+integers in Section~\ref{sec:sum-of-i2c}.
+\end{itemize}
+
+The method we now develop for evaluating all other summations
+$S_b^{(c)}(n)$, i.e., those with $b \neq 1$ and $c \neq 0$, has two
+major characteristics.
+\begin{enumerate}
+\item
+The method is {\em inductive in parameter} $c$, in the sense that we
+will be able to express our sum for $S_b^{(c)}(n)$ in terms of sums
+for summations $S_b^{(c-1)}(n)$, $S_b^{(c-2)}(n)$, \ldots,
+$S_b^{(1)}(n)$, $S_b^{(0)}(n) = S_b(n)$.  And, for each fixed value of
+$c$, the method is {\em inductive in the argument} $n$.
+
+%{\Denis I am not  so clear here, is it an induction on c or on n? We develop for n  later on...}
+
+\item
+The method will rely on the recurrent-subexpression strategy which was so
+effective in Section~\ref{sec:general-geometric-sums}.
+\end{enumerate}
+We illustrate our strategy in detail for the case $c=1$ and sketch
+only briefly how it deals with larger values of $c$.  Elementary
+algebraic manipulations which are suggested by the analysis in the
+case $c=1$ should thereby allow the reader to deal with any value $c >
+1$.
+
+\begin{prop}
+\label{thm:sum-i2i}
+For all bases $b > 1$,
+\begin{equation}
+\label{eq:sum-i2i}
+S_b^{(1)}(n) \ \ = \ \
+\sum_{i=1}^n \ i b^i
+\ \ = \ \ 
+\frac{(b-1)n -1}{(b-1)^2} \cdot  b^{n+1} \ - \ \frac{b}{(b-1)^2}
+\end{equation}
+\end{prop}
+
+\begin{proof}
+We begin to develop our strategy by writing the natural expression for
+\[ S_b^{(1)}(n) \ \ = \ \ b \ + \ 2b^2 \ + \ 3 b^3 \ + \cdots + \ n b^n  \]
+in two different ways.  First, we isolate the summation's last term:
+\begin{equation}
+\label{eq:ext-geom-c=1.1}
+S_b^{(1)}(n+1) \ = \ S_b^{(1)}(n) \ + \ (n+1) b^{n+1}.
+\end{equation}
+Then we isolate the summation's first term:
+\begin{eqnarray}
+\nonumber
+S_b^{(1)}(n+1)
+     & = &
+b + \sum_{i=2}^{n+1} \ i b^{i}  \\
+\nonumber
+& = &
+b + \sum_{i=1}^n \ (i+1) b^{i+1}  \\
+\nonumber
+     & = &
+b +  b \cdot \sum_{i=1}^n \ (i+1) b^i \\
+\nonumber
+     & = &
+b + 
+b \cdot \left(
+\sum_{i=1}^n \ i b^i 
+ \ + \
+\sum_{i=1}^n \  b^i 
+\right) \\
+\nonumber
+     & = &
+b \cdot \left( S_b^{(1)}(n) \ + \ S_b^{(0)}(n) \right) \ + \ b \\
+\nonumber
+& = &
+b \cdot \left( S_b^{(1)}(n) \ +  \frac{b^{n+1} -1}{b-1} -1 \right) \ + \ b \\
+\label{eq:ext-geom-c=1.2}
+    & = &
+b \cdot S_b^{(1)}(n) \ + \ b \cdot \frac{b^{n+1} - 1}{b-1}
+\end{eqnarray}
+Combining expressions (\ref{eq:ext-geom-c=1.1}) and
+(\ref{eq:ext-geom-c=1.2}) for $S_b^{(1)}(n+1)$, we
+finally find that
+\begin{eqnarray}
+\nonumber
+(b-1) \cdot S_b^{(1)}(n) & = &
+(n+1) \cdot b^{n+1} \ - \ b \cdot \frac{b^{n+1} -1}{b-1} \\
+\label{eq:sum-i2i-source}
+ & = &
+\left( n - \frac{1}{b-1} \right) \cdot b^{n+1} \ + \ \frac{b}{b-1}
+\end{eqnarray}
+Standard manipulations derive expression 
+(\ref{eq:sum-i2i}) from  equation (\ref{eq:sum-i2i-source}).
+%so that, finally,
+%\[ S_b^{(1)}(n) \ = \
+%\frac{bn -n -1}{(b-1)^2} \cdot  b^{n+1} \ - \ \frac{b}{(b-1)^2}
+%\]
+\end{proof}
+
+\medskip
+
+We leave to the reader the challenge of adapting the proof of
+Proposition~\ref{thm:sum-i2i} to the general extended geometric
+summation
+\[
+S_b^{(c)}(n) \ = \ \sum_{i=1}^n \ i^c b^i
+\]
+\ignore{*********
+\[
+S_b^{(c)}(n+1)
+ \ = \
+b \ + \ 2^{c} b^2\ + \ 3^{c} b^3 \ + \ \cdots \ + \ (n+1)^{c} b^{n+1}
+\]
+
+\[
+S_b^{(c)}(n) +  \ (n+1)^{c} b^{n+1}
+ \ = \
+b + \sum_{i=1}^n \ (i+1)^c b^{(i+1)} 
+\]
+***************}
+We give two hints:
+\begin{itemize}
+\item
+As with the just-completed case $c=1$, we write $S_b^{(c)}(n)$ in two
+ways, one that isolates the summation's first term, while the other
+isolates the summation's last term.  We then manipulate the
+two---perforce equal---expressions.
+\item
+A key goal is to achieve an expression for $S_b^{(c)}(n)$ that is
+  \begin{itemize}
+  \item
+recurrent in $S_b^{(c)}(n)$
+  \item
+defined by this recurrent expresson for $S_b^{(c)}(n)$ {\em and}
+expressions for $S_b^{(c-1)}(n)$, $S_b^{(c-2)}(n)$, \ldots,
+$S_b^{(1)}(n)$, $S_b^{(0)}(n)$.
+  \end{itemize}
+In order to achieve this, one should simplify the expression $(n+1)^c$
+by using the Restricted Binomial Theorem
+(Theorem~\ref{thm:restricted-binomial-thm}).
+\end{itemize}
+
+
 
 \medskip
 {\Denis I detailed below a nice way for proving the sum of squares, may be this is not the right place.
