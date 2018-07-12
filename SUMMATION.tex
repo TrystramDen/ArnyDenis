@@ -1,4 +1,4 @@
-%version of 07-11-18
+%version of 07-12-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -1532,6 +1532,11 @@ $c$, the method is {\em inductive in the argument} $n$.
 The method will rely on the recurrent-subexpression strategy which was so
 effective in Section~\ref{sec:general-geometric-sums}.
 \end{enumerate}
+
+\medskip
+
+\paragraph{\sf A. The extended geometric sum $S^{(1)}_b(n) = \sum_{i=1}^n
+  i b^i$}
 We illustrate our strategy in detail for the case $c=1$ and sketch
 only briefly how it deals with larger values of $c$.  Elementary
 algebraic manipulations which are suggested by the analysis in the
@@ -1599,107 +1604,96 @@ finally find that
  & = &
 \left( n - \frac{1}{b-1} \right) \cdot b^{n+1} \ + \ \frac{b}{b-1}
 \end{eqnarray}
-Standard manipulations derive expression 
-(\ref{eq:sum-i2i}) from  equation (\ref{eq:sum-i2i-source}).
+One now uses standard manipulations now to derive expression
+(\ref{eq:sum-i2i}) from equation (\ref{eq:sum-i2i-source}).
 %so that, finally,
 %\[ S_b^{(1)}(n) \ = \
 %\frac{bn -n -1}{(b-1)^2} \cdot  b^{n+1} \ - \ \frac{b}{(b-1)^2}
 %\]
 \end{proof}
 
-\medskip
+\smallskip
 
-We leave to the reader the challenge of adapting the proof of
-Proposition~\ref{thm:sum-i2i} to the general extended geometric
-summation
+\paragraph{\sf B. The general extended geometric sum $S^{(c)}_b(n) =
+  \sum_{i=1}^n i^c b^i$}
+We now develop a strategy that adapts the evaluation of summation
+$S_b^{(1)}(n)$ in the proof of Proposition~\ref{thm:sum-i2i} to an
+evaluation of the general extended geometric summation
 \[
-S_b^{(c)}(n) \ = \ \sum_{i=1}^n \ i^c b^i
+S_b^{(c)}(n) \ \ = \ \ \sum_{i=1}^n \ i^c b^i
+ \ \ = \ \
+b \ + \ 2^{c} b^2\ + \ 3^{c} b^3 \ + \ \cdots \ + \ n^{c} b^{n}
 \]
-\ignore{*********
-\[
-S_b^{(c)}(n+1)
+The strategy is {\em recursive}, in that it computes a value for
+$S^{(c)}_b(n)$ from values for $S^{(c-1)}_b(n)$, $S^{(c-2)}_b(n)$,
+\ldots, $S^{(0)}_b(n)$.  It proceeds in three steps.
+
+\noindent {\bf Step 1.}
+%
+As in the case $c=1$, we write summation $S_b^{(c)}(n)$ in two ways.
+The expression that embodies the first way isolates the summation's
+first term:
+\[ S_b^{(c)}(n+1) \ = \ b + \sum_{i=1}^n \ (i+1)^c b^{i+1} \]
+The expression that embodies the second way isolates the summation's
+last term:
+\[ S_b^{(c)}(n+1) \ = \ S_b^{(c)}(n) \ + \ (n+1)^{c} b^{n+1}. \]
+By combining these expressions, we find that
+\begin{equation}
+\label{eq:Sbcn-1}
+S_b^{(c)}(n) 
  \ = \
-b \ + \ 2^{c} b^2\ + \ 3^{c} b^3 \ + \ \cdots \ + \ (n+1)^{c} b^{n+1}
+b \cdot \left(
+1 \ - \
+(n+1)^{c} b^{n} \ + \
+ \sum_{i=1}^n \ (i+1)^c b^{i} 
+\right)
+\end{equation}
+
+
+\noindent {\bf Step 2.}
+%
+We next invoke the Restricted Binomial Theorem
+(Theorem~\ref{thm:restricted-binomial-thm}) to see that
+\[ (i+1)^c \ = \ i^c \ + \ c \cdot i^{c-1} \ + \ {c \choose 2} \cdot i^{c-2} \ +
+\cdots + \ {c \choose k} \cdot i^{c-k}  \ + \cdots + \ 1
 \]
 
-\[
-S_b^{(c)}(n) +  \ (n+1)^{c} b^{n+1}
- \ = \
-b + \sum_{i=1}^n \ (i+1)^c b^{(i+1)} 
-\]
-***************}
-We give two hints:
-\begin{itemize}
-\item
-As with the just-completed case $c=1$, we write $S_b^{(c)}(n)$ in two
-ways, one that isolates the summation's first term, while the other
-isolates the summation's last term.  We then manipulate the
-two---perforce equal---expressions.
-\item
-A key goal is to achieve an expression for $S_b^{(c)}(n)$ that is
-  \begin{itemize}
-  \item
-recurrent in $S_b^{(c)}(n)$
-  \item
-defined by this recurrent expresson for $S_b^{(c)}(n)$ {\em and}
-expressions for $S_b^{(c-1)}(n)$, $S_b^{(c-2)}(n)$, \ldots,
-$S_b^{(1)}(n)$, $S_b^{(0)}(n)$.
-  \end{itemize}
-In order to achieve this, one should simplify the expression $(n+1)^c$
-by using the Restricted Binomial Theorem
-(Theorem~\ref{thm:restricted-binomial-thm}).
-\end{itemize}
+We use this expansion of $(i+1)^c$, together with multiple
+applications of the laws of arithmetic from
+Section~\ref{sec:Arithmetic-Laws}---specifically, the distributive,
+associative, and commutative laws---to verify that
+\begin{eqnarray}
+\nonumber
+\sum_{i=1}^n \ (i+1)^c b^{i} & = &
+S_b^{(c)}(n)
+ \ + \ c \cdot S_b^{(c-1)}(n)
+ \ + \ {c \choose 2} \cdot S_b^{(c-2)}(n)  \ + \cdots \\
+\label{eq:Sbcn-2}
+  &  & \cdots + \
+{c \choose k} \cdot S_b^{(c-k)}(n)
+ \ + \cdots + \
+S_b^{(0)}(n)
+\end{eqnarray}
 
-
-
-\medskip
-{\Denis I detailed below a nice way for proving the sum of squares, may be this is not the right place.
-Feel free to move it elsewhere...}
-
-The idea here is to consider $3$ copies of the sum of squares and to reorganize them in a more simple way (this is Fubini's principle).
-The square of $a$ is represented as $a$ copies of the unit square.
-The full process is depicted in figures Fig~\ref{fig:sumSquares1} to Fig~\ref{fig:sumSquares5}.
-
-The height of the final rectangle is $\Delta_ n$ and its width is $2+2n-1=2n+1$. 
-
-Thus, $3 \cdot S(n) = \Delta_n \cdot (2n+1)$, $S(n) = \frac{n(2n+1)(n+1)}{3}$.
-{\Denis I have another proof which does not consider such a graphical way, by considering three triangles --I mean well-arranged integers in a triangle-- , at least we have to put it as an exercice,
-but may be even as an alternative proof?}
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares1}
-\caption{Computing the sum of squares: initial configuration.}
-       \label{fig:sumSquares1}
-\end{center}
-\end{figure}
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares2}
-\caption{Step 1 for computing the sum of squares: fill in the surface at the bottom.}
-       \label{fig:sumSquares2}
-\end{center}
-\end{figure}
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares3}
-\caption{Step 2 for computing the sum of squares.}
-       \label{fig:sumSquares3}
-\end{center}
-\end{figure}
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares4}
-\caption{Step 3 for computing the sum of squares.}
-       \label{fig:sumSquares4}
-\end{center}
-\end{figure}
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares5}
-\caption{Final step for computing the sum of squares: the rectangle is filled.}
-       \label{fig:sumSquares5}
-\end{center}
-\end{figure}
+\noindent {\bf Step 3.}
+%
+We finally combine equations (\ref{eq:Sbcn-1}) and (\ref{eq:Sbcn-2})
+to discover that
+\begin{eqnarray}
+\nonumber
+(b-1) \cdot S_b^{(c)}(n)
+ & = &
+(n+1)^{c} b^{n} \ - \
+c \cdot S_b^{(c-1)}(n)
+ \ - \ {c \choose 2} \cdot S_b^{(c-2)}(n)  \ - \cdots \\
+\label{eq:Sbcn-3}
+  &  & 
+\cdots - \
+{c \choose k} \cdot S_b^{(c-k)}(n)
+ \ - \cdots - \
+S_b^{(0)}(n)
+\ - \ 1
+\end{eqnarray}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1899,6 +1893,57 @@ even exact, for all values of $n$.
 
 \subsubsection{$S_c(n)$ for general {\em nonnegative} real $c$th powers}
 \label{sec:sum-of-i2c>0}
+
+\ignore{***************
+\medskip
+{\Denis I detailed below a nice way for proving the sum of squares, may be this is not the right place.
+Feel free to move it elsewhere...}
+
+The idea here is to consider $3$ copies of the sum of squares and to reorganize them in a more simple way (this is Fubini's principle).
+The square of $a$ is represented as $a$ copies of the unit square.
+The full process is depicted in figures Fig~\ref{fig:sumSquares1} to Fig~\ref{fig:sumSquares5}.
+
+The height of the final rectangle is $\Delta_ n$ and its width is $2+2n-1=2n+1$. 
+
+Thus, $3 \cdot S(n) = \Delta_n \cdot (2n+1)$, $S(n) = \frac{n(2n+1)(n+1)}{3}$.
+{\Denis I have another proof which does not consider such a graphical way, by considering three triangles --I mean well-arranged integers in a triangle-- , at least we have to put it as an exercice,
+but may be even as an alternative proof?}
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumSquares1}
+\caption{Computing the sum of squares: initial configuration.}
+       \label{fig:sumSquares1}
+\end{center}
+\end{figure}
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumSquares2}
+\caption{Step 1 for computing the sum of squares: fill in the surface at the bottom.}
+       \label{fig:sumSquares2}
+\end{center}
+\end{figure}
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumSquares3}
+\caption{Step 2 for computing the sum of squares.}
+       \label{fig:sumSquares3}
+\end{center}
+\end{figure}
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumSquares4}
+\caption{Step 3 for computing the sum of squares.}
+       \label{fig:sumSquares4}
+\end{center}
+\end{figure}
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumSquares5}
+\caption{Final step for computing the sum of squares: the rectangle is filled.}
+       \label{fig:sumSquares5}
+\end{center}
+\end{figure}
+**********************}
 
 We begin to illustrate the technique of bounding summations via
 integrals by focusing on summations of the form
