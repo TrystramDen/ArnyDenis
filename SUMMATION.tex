@@ -1,4 +1,4 @@
-%version of 07-13-18
+%version of 07-16-18
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -2054,8 +2054,8 @@ on $S_c(n)$.
 \end{equation}
 The main message here is:
 \begin{center}
-{\em The behavior of $S_c(n)$ is dominated by $\displaystyle
-  \frac{1}{c+1} n^{c+1}$ as $n$ grows without bound.  }
+{\em The behavior of $S_c(n)$ as a function of $n$ is dominated by
+  $\displaystyle \frac{1}{c+1} n^{c+1}$ as $n$ grows without bound.  }
 \end{center}
 
 
@@ -2510,27 +2510,36 @@ without bound, $S_c(n)$ tends to the value ${\displaystyle
 \paragraph{\sf C. Negative powers $c$ with $c = -1$: the {\em harmonic} summation}
 The singular case defined by the value $c = -1$ defines the important
 {\it harmonic series},
+\index{harmonic series $S^{(H)}$}
 \[ S^{(H)} \ = \ \sum_{i=1}^\infty \ \frac{1}{i} \]
 and its finite prefixes that comprise the {\it harmonic summation}
 \[ S^{(H)}(n) \ = \ \sum_{i=1}^n \ \frac{1}{i} \]
+\index{harmonic summation $S^{(H)}(n)$}
+
+
+{\it (i) The asymptotic behavior of $S^{(H)}(n)$.}
+\index{harmonic summation $S^{(H)}(n)$!asymptotic behavior}
+%
 It has been known since the time of the well-traveled Swiss
 mathematician Leonhard Euler \index{Euler, Leonhard} that $S^{(H)}$
 and $S^{(H)}(n)$ are closely related to the {\em natural}, or,
 \index{Napier, John}
-{\it Napierian},\footnote{The natural logarithm (to the base $e$) is
-  commonly referred to as the {\it Napierian logarithm}, in honor of
-  the Scottish polymath John Napier.}~logarithm $\ln n$, i.e., the
-logarithm whose base is Euler's constant \index{Euler's constant} $e =
-2.718281828 \ldots$.
+{\it Napierian},\footnote{The natural logarithm, i.e., the logarithm
+  to the base $e$, is commonly referred to as the {\it Napierian
+    logarithm}, in honor of the Scottish polymath John
+  Napier.}~logarithm $\ln n$, i.e., the logarithm whose base is
+Euler's constant \index{Euler's constant} $e = 2.718281828 \ldots$.
 
 \begin{prop}
 \label{thm:harmonic}
-The growth behavior of the harmonic summation $S^{(H)}(n)$ is given by
+The behavior of the harmonic summation $S^{(H)}(n)$ as a function of
+$n$ is given by
 \[ S^{(H)}(n) \ \approx \ \ln n. \]
-It follows that the harmonic series $S^{(H)}$ diverges.
+It follows, in particular, that the harmonic series $S^{(H)}$ diverges.
 \end{prop}
 
 \begin{quote}
+\index{harmonic series  $S^{(H)}$!relation to music}
 {\em The adjective ``harmonic'' calls to mind a number of concepts
   associated with {\em music}, such as ``harmonics'' and ``harmony''.
   The association between our series and these musical concepts is not
@@ -2546,8 +2555,8 @@ It follows that the harmonic series $S^{(H)}$ diverges.
 %May be this is the wrong place, tell me (we can also split the
 %following into smaller pieces...)}
 
-\paragraph{{\bf Enrichment.} {\it More about the harmonic summation
-    and series}}
+{\it (ii) Bounds on the asymptotic behavior of $S^{(H)}(n)$.}
+\index{harmonic summation $S^{(H)}(n)$!understanding logarithmic behavior}
 %
 Fig~\ref{fig:HarmonicSumInitial} depicts the harmonic summation
 $S^{(H)}(n)$ as the area of abutting unit-width rectangles of
@@ -2562,23 +2571,76 @@ $1/n$.
 \label{fig:HarmonicSumInitial}
 \end{figure}
 
-In order to better understand $S^{H}(n)$, let us group the summation's
-consecutive terms into groups whose sizes are consecutive powers of $2$:
-\[
-1 \ + \ \left( \frac{1}{2} \right) \ + \
- \left( \frac{1}{3} + \frac{1}{4} \right) \ + \
-\left(\frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} \right) \ + \cdots
-\]
-Then we isolate each of these grouped partial sums into the following
-sequence:
+In order to better understand the behavior of $S^{(H)}(n)$ as a
+function of $n$, let us group the summation's consecutive terms into
+subsums composed from groups of summands whose sizes are consecutive
+powers of $2$:
 \begin{eqnarray*}
-A_0 & = &  \frac{1}{2} \\
-A_1 & = &  \frac{1}{3} + \frac{1}{4}  \\
-A_2 & = &  \frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} \\
-\vdots & & \vdots \\
-A_k & = &  \frac{1}{2^i+1} + \cdots + \frac{1}{2^{i+1}} \\
-\vdots & & \vdots \\
+\left( 1 \right) \ + \ \left( \frac{1}{2} + \frac{1}{3} \right)
+ & + & \left( \frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7} \right) \\
+ & + & \left( \frac{1}{8} +\frac{1}{9} + \frac{1}{10} + \frac{1}{11}
+       + \frac{1}{12} + \frac{1}{13} + \frac{1}{14} + \frac{1}{15} \right) \ + \cdots
 \end{eqnarray*}
+Next, we isolate each grouped subsum and list the subsums in order of
+size, measured as number of inverse-integer summands.
+\[ \begin{array}{llcl}
+\mbox{Sum of $(2^0 =1)$ consecutive inverses:} &
+A_0 & = &  {\displaystyle 1 } \\
+\mbox{Sum of $(2^1 =2)$ consecutive inverses:} &
+A_1 & = &  {\displaystyle \frac{1}{2} + \frac{1}{3} }  \\
+\mbox{Sum of $(2^2 =4)$ consecutive inverses:} &
+A_2 & = &  {\displaystyle \frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7} } \\
+ & \vdots & & \vdots \\
+\mbox{Sum of $2^i$ consecutive inverses:} &
+A_i & = &  {\displaystyle \frac{1}{2^i} + \frac{1}{2^i+1} + \cdots +
+     \frac{1}{2^{i+1}-1}  } \\
+ & \vdots & & \vdots \\
+\end{array}
+\]
+
+Finally, we derive absolute-constant upper and lower bounds that hold
+for all of the subsums.  To derive these bounds, we focus on the
+generic subsum $A_i$, which consists of $2^i$ summands.  When we focus
+on the largest and smallest inverse-integers in $A_i$---which are,
+respectively, $1/2^i$ and $1/(2^{i+1}-1)$---we note the following
+absolute bounds.
+\[
+\frac{1}{2}
+ \ < \
+\frac{2^i}{2^{i+1}-1}
+ \ < \
+2^i \cdot A_i
+  \ < \
+\frac{}{2^i}
+  \ = \ 1
+\]
+We thereby have absolute constant upper and lower bounds on every 
+subsum $A_i$.
+
+Referring back to Fig.~\ref{fig:HarmonicSumInitial}, what the
+just-derived bounds mean is the following.  Let us proceed left to
+right along the abutting rectangles in the figure, and let us recall,
+from Section~\ref{sec:exponential+logarithm}.B, the definition of
+``logarithm to the base $b$''.  As we double the number of rectangles
+we have traversed:
+\begin{enumerate}
+\item
+We increase the aggregate area of the thus-far traversed rectangles by
+at most $1$.
+
+{\em This means that $S^{(H)}(n)$ grows no faster than $\log_2 n$.}
+
+\item
+We increase the aggregate area of the thus-far traversed rectangles by
+more than $1/2$.
+
+{\em This means that $S^{(H)}(n)$ grows faster than $\log_4 n$.}
+\end{enumerate}
+Of course, these observations are consistent with the verified actual
+natural-logarithmic growth rate of $S^{(H)}(n)$, because $2 < e < 4$.
+
+
+\ignore{**************
 %and more generally, $A_i$ is the sum of the consecutive $\frac{1}{i}$
 %(for $k$ such that $\frac{1}{2^i+1} \leq k \leq \frac{1}{2^{i+1}}$). 
 Note that each $A_i$ is the sum of $2^i$ consecutive terms.
@@ -2595,13 +2657,14 @@ drawing in Fig~\ref{fig:HarmonicSumUpperbound}.
 \label{fig:HarmonicSumUpperbound}
 \end{figure}
 
-\ignore{********
 constant value $k$.  This claim is verified with the value $k=1$ by
-the drawing in Fig~\ref{fig:HarmonicSumUpperbound}. shows that all the $A_i$ are lower than $1$
-but we could have considered a more accurate value, however, it is enough and simple).
-This result is obtained by embedding each term $A_i$ by larger rectangles (of unit surfaces), the upper bound is the bold rectangle plus the dashed rectangle at the top.
-{\Denis I hope my previous explanation is clear enough...}
-************}
+the drawing in Fig~\ref{fig:HarmonicSumUpperbound}. shows that all the
+$A_i$ are lower than $1$ but we could have considered a more accurate
+value, however, it is enough and simple.  This result is obtained by
+embedding each term $A_i$ by larger rectangles (of unit surfaces), the
+upper bound is the bold rectangle plus the dashed rectangle at the
+top.  {\Denis I hope my previous explanation is clear enough...}
+
 
 Going into more detail, we claim that the partial sums $A_i$ form an
 increasing sequence.  Here again, an exact verification by calculating
@@ -2641,94 +2704,19 @@ $A_{i+1} \geq A_i$.
 
 Finally, as the sequence $A_i$ is bounded above and increasing, it converges to a constant.
 
-From this analysis, we derived an intuitive how the neperian logarithm behaves.
+
+The preceding grouping of the terms of $S^{(H)}(n)$, combined with our
+bounds on the generic $A_i$
+
+
+coupled with the
+the fact that
 The explanation relies on the following observations of the harmonic series:
-$S^{H}(2^{i+1}) = S^{H}(2^{i}) + A_i$
+$S^{H}(2^{i+1}-1) = S^{H}(2^{i}-1) + A_i$
 
 From a given value of $i$, each $A_i$ and its successive values have roughly the same value equal to the limit of $A_i$.
 In other words, we go from index $2^i$ to $2^{i+1}$ in $S^{H}$ by a multiplication by $2$ that corresponds to adding a constant. 
 This is exactly what the log means!
+***************}
 
-
-
-\ignore{********************
-\subsection{Deriving and Solving Linear Recurrences}
-\label{sec:linear-recurrences-2}
-
-We have discussed already discussed the use of linear recurrences in
-Section~%PLACE REFERENCE TO \ref{sec:linear-recurrences-1}.
- We now derive the mathematics
-underlying this important topic.
-
-By the time the reader has reached this paragraph, she has the
-mathematical tools necessary to prove and apply what is called {\it
-  The Master Theorem for Linear Recurrences} \cite{CLRS}.  This level
-of mathematical preparation should be adequate for most
-early-undergrad courses on data structures and algorithms, as well for
-for analyzing a large fraction of the algorithms that she is likely to
-encounter in daily activities.
-
-\noindent {\bf Theorem}[The Master Theorem for Linear Recurrences]
-\label{thm:master-thm}
-%\index{The Master Theorem for Linear Recurrences}
-{\it 
-Let the function $F$ be specified by the following linear recurrence.}
-\begin{equation}
-\label{eq:Lin-Recur:start}
-F(n) \ = \ \left\{
-\begin{array}{cl}
-a F(n/b) + c & \mbox{for } n \geq b \\
-c & \mbox{for } n < b
-\end{array}
-\right.
-\end{equation}
-{\it
-Then the value of $F$ on any argument $n$ is given by}
-\begin{equation}
-\label{eq:Lin-Recur:solve}
-\begin{array}{lclll}
-F(n) & = & (1 + \log_b n)c &  & \mbox{if } a=1 \\
-     &   &                 &  & \\
-     & = &
-  {\displaystyle
-  \frac{1-a^{\log_b n}}{1-a} \ \approx \ \frac{1}{1-a}
-  }
- &  & \mbox{if } a<1 \\
-    &   &                  & & \\
-    & = &
-  {\displaystyle
-\frac{a^{\log_b n} -1}{a-1}
-  }
- & & \mbox{if } a>1
-\end{array}
-\end{equation}
-
-
-\begin{proof}
-In order to discern the recurring pattern in
-(\ref{eq:Lin-Recur:start}), let us begin to ``expand'' the specified
-computation by replacing occurrences of $F(\bullet)$ as mandated in
-(\ref{eq:Lin-Recur:start}).
-\begin{equation}
-\label{eq:Lin-Recur:expand}
-\begin{array}{lcccc}
-F(n) & = & a F(n/b) + c & & \\
-     & = & a \left( a F(n/b^2) + c \right) + c
-             & = & a^2 F(n/b^2) + (1 + a)c \\
-     & = & a^2 \left( a F(n/b^3) + c \right) + (1+a)c
-             & = & a^3 F(n/b^3) + (1 + a + a^2)c \\
-     &   & \vdots & & \vdots \\
-     & = & 
-{\displaystyle
-\left( 1 + a + a^2 + \cdots + a^{\log_b n} \right) c
-} & &
-\end{array}
-\end{equation}
-The segment of (\ref{eq:Lin-Recur:expand}) ``hidden'' by the vertical
-dots betokens an induction that is left to the reader.  Equations
-(\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) now enable us to
-demonstrate that (\ref{eq:Lin-Recur:solve}) is the case-structured
-solution to (\ref{eq:Lin-Recur:start}).
-\end{proof}
-********************}
 
