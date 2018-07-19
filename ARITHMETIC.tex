@@ -1,4 +1,4 @@
-%version of 07-17-18
+%version of 07-19-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -40,6 +40,244 @@ examples: $123456789$ (base $10$, or, {\it decimal}), $10111.001$
 (base $2$, or, {\it binary}), or $0.1267 \times 8^{24}$ (base $8$, or,
 {\it octal}).\footnote{The use of a period as the radix point is a US
   convention; in much of Europe, a comma denotes the radix point.}
+
+\subsection{A Taxonomy of our number system}
+
+
+
+
+\section{Integers}
+
+
+\subsection{Prime numbers}
+
+We single out a subclass of the positive integers whose mathematical
+importance has been recognized for millennia but which have found
+important applications (e.g., within the domain of computer security)
+mainly within the past several decades.
+
+We say that a positive integer $p$ {\it divides} a positive integer
+$n$ (or, {\it is a divisor of $n$})\index{number!integer!divisor} if
+there is a positive integer $q$ such that $n = p \cdot q$.
+Equivalently, we say that $n$ {\it is divisible
+  by}\index{number!integer!divisibility} $p$.  Thus, every positive
+integer $n$ is divisible by $p=1$ (witnessed by $q=n$) and by $p=n$
+(witnessed by $q=1$).
+
+The class of integers we single out is defined by its divisibility
+characteristics.
+
+An integer $p >1$ is {\it prime}\index{number!integer!prime
+  number}\index{number!integer!prime}\index{prime
+  number}\index{integer!prime number}\index{integer!prime}
+if its {\em only} positive integer divisors are $1$ (which divides
+every integer) and itself (which is always a divisor).
+\begin{quote}
+We usually use the shorthand assertion, ``$p$ is a prime,'' instead of
+the longer, but equivalent, ``$p$ is a prime integer.''
+\end{quote}
+
+A very important way to classify a positive integer $n$ is to list the
+primes that divide it, coupling each such prime $p$ with its {\it
+  multiplicity}, i.e., the number of times that $p$ divides $n$.  Let
+$p_1, p_2, \ldots, p_r$ be the distinct primes that divide $n$, and
+let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime
+  factorization}\index{prime factorization}\index{integer!prime
+  factorization}\index{number!integer!prime factorization}
+%
+of $n$ is the product $p_1^{m_1} \times p_2^{m_2} \times \cdots \times
+p_r^{m_r}$; note that this product satisfies the equation
+\begin{equation}
+\label{eq:prime-factorization}
+n \ = \ p_1^{m_1} \times p_2^{m_2} \times \cdots \times p_r^{m_r}
+\end{equation}
+
+When writing an integer $n$'s prime factorization, it is traditional
+to list the primes $p_1, p_2, \ldots, p_r$ in increasing order, i.e.,
+so that $p_1 < p_2 < \cdots < p_r$.
+
+\paragraph{\sf A. The Fundamental Theorem of Arithmetic}
+
+\noindent
+A positive integer $n$ is totally characterized by its canonical prime
+factorization, as attested to by the following classical theorem,
+which has been known for millennia and has been honored with the title
+{\em The Fundamental Theorem of Arithmetic}.
+\index{Fundamental Theorem of Arithmetic}
+We state the Theorem in two equivalent ways which suggest different
+ways of thinking about the result.
+
+\begin{theorem}[The Fundamental Theorem of Arithmetic]
+\index{Fundamental Theorem of Arithmetic}
+\label{thm:Fund-Thm-Arith}
+
+\noindent
+{\rm (Traditional formulation.)}
+%
+The canonical prime factorization of every positive integer is unique.
+
+\noindent
+{\rm (Alternative formulation.)}
+%
+Let $n \in \N^+$ be a positive integer, and let $\widehat{P}_n$ denote the
+ordered sequence of prime numbers that are no larger than $n$:
+\[
+\begin{array}{cl}
+\widehat{P}_n \ = \ & \langle P_1, \ P_3, \ \ldots, \ P_{r-1}, \ P_r \rangle \\
+\mbox{where:}   & P_1 \ = \ 2 \\
+                & \mbox{each } \ \ P_i \ < \ P_{i+1} \\
+                & P_r \ \leq \ n.
+\end{array}
+\]
+There exists a unique sequence of {\em nonnegative} integers, 
+$\langle a_1, a_2, \ldots, a_r \rangle$
+such that
+\[
+n \ = \ \prod_{i=1}^r \ P^{a_i} \ = \
+P^{a_1} \cdot P^{a_2} \cdot \ \cdots \ \cdot P^{a_{r-1}} \cdot P^{a_r}
+\]
+\end{theorem}
+
+A simple, yet important, corollary of Theorem~\ref{thm:Fund-Thm-Arith}
+is the following result, whose proof we leave to the reader.
+
+\begin{prop}
+\label{thm:prime-divisor}
+Every positive integer is divisible by at least one prime number.
+\end{prop}
+
+
+\paragraph{\sf B. Proving the Fundamental Theorem}
+
+The  proof of Theorem~\ref{thm:Fund-Thm-Arith} is actually rather
+elementary, providing that one approaches it gradually.  It
+employs a lot of important techniques and concepts involved in ``doing
+mathematics'', as discussed in the eponymous Chapter~\ref{ch:doingmath}.
+
+We begin with a purely technical result.
+
+\begin{prop}
+\label{thm:p-n-linear}
+Let $p$ be a prime, and let $m$ be any positive integer that is {\em
+  not} divisible by $p$.  There exist integers $a, b$, not necessarily
+positive, such that
+\[ ap + bm \ = \ 1. \]
+\end{prop}
+
+\begin{proof}
+Consider the set of all integer linear combinations of $p$ and $m$:
+\[  L_{p,m} \ \eqdef \   \{ ap +bm \ | \ a, b \in \Z \} \ \subseteq \ \Z. \]
+Note that both $p$ and $m$ belong to $L_{p,m}$, because of the
+respective cases $(a=1, b=0)$ and $(a=0, b=1)$.  One consequence of
+this is that $L_{p,m}$ has a nonempty subset, call it
+$L^{(>0)}_{p,m}$, all of whose elements are {\em positive} integers.
+
+By the {\it Well-Ordering Principle of the positive integers}, the set
+$L^{(>0)}_{p,m}$ has a smallest element, call it $r_0$.  By definition
+of $L^{(>0)}_{p,m}$, $r_0$ is a positive integer, and there exist
+integers $a_0$ and $b_0$ such that
+\[  r_0 \ = \ a_0 p + b_0 m. \]
+
+We claim that $L^{(>0)}_{p,m}$ in fact {\em consists precisely of all
+  positive-integer multiples of $r_0$.}  Were this not the case, there
+would be an element $r$ of $L^{(>0)}_{p,m}$ that is not a
+(positive-integer) multiple of $r_0$.  Let $r_1$ be the {\em smallest}
+such element $r$.  We then have
+\begin{enumerate}
+\item
+Because $r_1 \in L^{(>0)}_{p,m}$, there exist integers $a_1$ and $b_1$
+such that
+\[  r_1 \ = \ a_1 p + b_1 m. \]
+\item
+Because $r_0$ is the {\em smallest} element of $L^{(>0)}_{p,m}$, we
+have $r_2 \ \eqdef \ r_1 - r_0 \ > 0$, so that
+\[ r_2 \ = \ (a_1 - a_0) p + (b_1 -b_0) m \ \in \ L^{(>0)}_{p,m}. \]
+\end{enumerate}
+Now, we are in trouble because of the following incompatible facts.
+\begin{itemize}
+\item
+$r_2$ {\em is not} a multiple of $r_0$!
+
+If it were, then we would have $r_0$ dividing both $r_0$ (trivially)
+and $r_2 = r_1 - r_0$.  But this would imply that $r_0$ divides $r_1$,
+contrary to assumption.
+
+\item
+$r_2$ {\em is} a multiple of $r_0$!
+
+This is because $r_2 < r_1$, and $r_1$ is the {\em smallest} element
+of $L^{(>0)}_{p,m}$ that is not a multiple of $r_0$.
+\end{itemize}
+We conclude that integer $r_1$ does not exist, so that all elements of
+$L^{(>0)}_{p,m}$ are multiples of $r_0$.
+
+Let us summarize.  The set of positive integer linear combinations of
+$p$ and $m$ consists of the multiples of a single integer $r_0$.  This
+means, in particular, that both $p$ and $m$ are multiples of a single
+positive integer, $r_0$---even though $p$ is a prime which does not
+divide $m$.  The only way this situation could hold is if $r_0 = 1$,
+as claimed in the proposition.
+\end{proof}
+
+\begin{prop}
+\label{thm:p-divides-onefactor}
+If the prime $p$ divides a composite number $m \cdot n$, then either
+$p$ divides $m$ or $p$ divides $n$, or both.\footnote{The closing
+  phease ``or both'' signals our use of the {\em inclusive} or.}
+\end{prop}
+
+\begin{proof}
+Let $p$, $m$, and $n$ be as asserted, and say that $p$ does not divide
+$m$.  By Proposition~\ref{thm:p-n-linear}, then, there exist integers
+$a, b$, not necessarily positive, such that
+\[ ap + bm \ = \ 1. \]
+Let us multiply both sides of this equation by $n$.  After some
+manipulation---specfically, applying the distributive law---we find
+that
+\[ apn + bmn \ = \ n. \]
+Now $p$ divides the expression to the left of the equal sign: $p$
+divides $p$ by definition, and $p$ divides $mn$ by assumption.  It
+follows that $p$ must divide the expression to the right of the equal
+sign---namely, the integer $n$.
+\end{proof}
+
+We are finally ready to attack the proof of the Fundamental Theorem.
+
+**HERE
+
+
+\paragraph{\small\sf C. Application of the Fundamental Theorem}
+
+We discuss a number of applications of this fundamental result.  We
+have already seen one application in
+Proposition~\ref{thm:Primes-infinite}.
+
+One very important application of Theorem~\ref{thm:Fund-Thm-Arith} is
+as a mechanism for {\em encoding}\index{number!using the Fundamental
+  Theorem of Arithmetic for encoding}\index{encoding sequences via the
+  Fundamental Theorem of Arithmetic}
+%
+sequences of positive integers as single integers!  This works as
+follows.  Consider the (infinite) ordered sequence of {\em all primes:}
+\[ (P_1 = 2), (P_2 = 3), (P_3 = 5), \ldots  \]
+Let
+\begin{equation}
+\label{eq:sequence-vec-s}
+\bar{s} \ = \ \langle m_1, m_2, \ldots, m_k \rangle
+\end{equation}
+be an arbitrary sequence of positive integers.  Then
+Theorem~\ref{thm:Fund-Thm-Arith} assures us that the (single) positive
+integer
+\[ 
+\iota(\bar{s}) \ \eqdef \ P_1^{m_1} \cdot P_2^{m_2} \cdot \ \cdots \
+\cdot P_k^{m_k}
+\]
+is a (uniquely decodable) integer-representation of sequence $\bar{s}$.
+
+We return to this idea of encoding-via-integers in a later chapter.
+
+
+**HERE
 
 
 \subsection{Numbers}\index{numbers}
@@ -246,126 +484,7 @@ the law.
 %\addcontentsline{toc}{paragraph}{B. Prime numbers}
 \paragraph{\small\sf B. Prime numbers}\index{number!prime numbers}
 
-We single out a subclass of the positive integers whose mathematical
-importance has been recognized for millennia but which have found
-important applications (e.g., within the domain of computer security)
-mainly within the past several decades.
 
-Positive integer $p$ {\it divides} positive integer $n$ (or, {\it is a
-  divisor of $n$})\index{number!integer!divisor} if there is a
-positive integer $q$ such that $n = p \cdot q$.  Equivalently, we say
-that $n$ {\it is divisible by}\index{number!integer!divisibility} $p$.
-Thus, every positive integer $n$ is divisible by $p=1$ ($q=n$) and by
-$p=n$ ($q=1$).
-
-The class of integers we single out is defined by its divisibility
-characteristics.
-
-An integer $p >1$ is {\it prime}\index{number!integer!prime
-  number}\index{number!integer!prime}\index{prime
-  number}\index{integer!prime number}\index{integer!prime}
-if its {\em only} positive integer divisors are $1$ (which divides
-every integer) and itself (which is always a divisor).
-\begin{quote}
-We usually use the shorthand assertion, ``$p$ is a prime,'' instead of
-the longer, but equivalent, ``$p$ is a prime integer.''
-\end{quote}
-
-A very important way to classify a positive integer $n$ is to list the
-primes that divide it, coupling each such prime $p$ with its {\it
-  multiplicity}, i.e., the number of times that $p$ divides $n$.  Let
-$p_1, p_2, \ldots, p_r$ be the distinct primes that divide $n$, and
-let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime
-  factorization}\index{prime factorization}\index{integer!prime
-  factorization}\index{number!integer!prime factorization}
-%
-of $n$ is the product $p_1^{m_1} \times p_2^{m_2} \times \cdots \times
-p_r^{m_r}$; note that this product satisfies the equation
-\begin{equation}
-\label{eq:prime-factorization}
-n \ = \ p_1^{m_1} \times p_2^{m_2} \times \cdots \times p_r^{m_r}
-\end{equation}
-
-When writing an integer $n$'s prime factorization, it is traditional
-to list the primes $p_1, p_2, \ldots, p_r$ in increasing order, i.e.,
-so that $p_1 < p_2 < \cdots < p_r$.
-
-\noindent
-A positive integer $n$ is totally characterized by its canonical prime
-factorization, as attested to by the following classical theorem,
-which has been known for millennia and has been honored with the title
-{\em The Fundamental Theorem of Arithmetic}.
-\index{Fundamental Theorem of Arithmetic}
-We state the Theorem in two equivalent ways which suggest different
-ways of thinking about the result.
-
-\begin{theorem}[The Fundamental Theorem of Arithmetic]
-\index{Fundamental Theorem of Arithmetic}
-\label{thm:Fund-Thm-Arith}
-
-\noindent
-{\rm (Traditional formulation.)}
-%
-The canonical prime factorization of every positive integer is unique.
-
-\noindent
-{\rm (Alternative formulation.)}
-%
-Let $n \in \N^+$ be a positive integer, and let $\widehat{P}_n$ denote the
-ordered sequence of prime numbers that are no larger than $n$:
-\[
-\begin{array}{cl}
-\widehat{P}_n \ = \ & \langle P_1, \ P_3, \ \ldots, \ P_{r-1}, \ P_r \rangle \\
-\mbox{where:}   & P_1 \ = \ 2 \\
-                & \mbox{each } \ \ P_i \ < \ P_{i+1} \\
-                & P_r \ \leq \ n.
-\end{array}
-\]
-There exists a unique sequence of {\em nonnegative} integers, 
-$\langle a_1, a_2, \ldots, a_r \rangle$
-such that
-\[
-n \ = \ \prod_{i=1}^r \ P^{a_i} \ = \
-P^{a_1} \cdot P^{a_2} \cdot \ \cdots \ \cdot P^{a_{r-1}} \cdot P^{a_r}
-\]
-\end{theorem}
-
-A simple, yet important, corollary of Theorem~\ref{thm:Fund-Thm-Arith}
-is the following result, whose proof we leave to the reader.
-
-\begin{prop}
-\label{thm:prime-divisor}
-Every positive integer is divisible by at least one prime number.
-\end{prop}
-
-The  proof of Theorem~\ref{thm:Fund-Thm-Arith} goes beyond the scope
-of this book.  We do discuss a number of applications of this
-fundamental result.  We have already seen one application in
-Proposition~\ref{thm:Primes-infinite}.
-
-One very important application of Theorem~\ref{thm:Fund-Thm-Arith} is
-as a mechanism for {\em encoding}\index{number!using the Fundamental
-  Theorem of Arithmetic for encoding}\index{encoding sequences via the
-  Fundamental Theorem of Arithmetic}
-%
-sequences of positive integers as single integers!  This works as
-follows.  Consider the (infinite) ordered sequence of {\em all primes:}
-\[ (P_1 = 2), (P_2 = 3), (P_3 = 5), \ldots  \]
-Let
-\begin{equation}
-\label{eq:sequence-vec-s}
-\bar{s} \ = \ \langle m_1, m_2, \ldots, m_k \rangle
-\end{equation}
-be an arbitrary sequence of positive integers.  Then
-Theorem~\ref{thm:Fund-Thm-Arith} assures us that the (single) positive
-integer
-\[ 
-\iota(\bar{s}) \ \eqdef \ P_1^{m_1} \cdot P_2^{m_2} \cdot \ \cdots \
-\cdot P_k^{m_k}
-\]
-is a (uniquely decodable) integer-representation of sequence $\bar{s}$.
-
-We return to this idea of encoding-via-integers in a later chapter.
 
 \subsubsection{The rational numbers}
 \label{sec:rationals}
