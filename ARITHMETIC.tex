@@ -1,4 +1,4 @@
-%version of 07-19-18
+%version of 07-22-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -42,14 +42,212 @@ examples: $123456789$ (base $10$, or, {\it decimal}), $10111.001$
   convention; in much of Europe, a comma denotes the radix point.}
 
 \subsection{A Taxonomy of our number system}
+\label{sec:number-taxonomy}
 
+We begin our study of arithmetic notions with a short taxonomy of {\it
+  numbers}, the objects that arithmetic was invented to explicate and
+exploit.  Although we assume that the reader is familiar with the most
+common classes of numbers, we do spend some time highlighting
+important features of each class, partly, at least, in the hope of
+heightening the reader's interest in this most basic object of
+mathematical discourse.
 
+We present the four most common classes of numbers in what is almost
+certainly the chronological order of their discovery/invention.
+\begin{quote}
+{\em
+Did humans invent these classes of numbers to fill specific needs, or
+did we just discover their pre-existing selves as needs prompted us to
+search for them?  The great German mathematician Leopold Kronecker,
+\index{Kronecker, Leopold}
+as cited in \cite{Bell86} (page 477), shared his viewpoint on this
+question: ``God made the integers; all else is the work of man.''}
+\end{quote}
+A pleasing narrative can be fabricated to account for our multi-class
+system of numbers.  In the beginning, the story goes, we needed to
+count things (sheep, bottles of oil, weapons, \ldots), and the
+positive {\it integers}\index{number!integer} were discovered.  As
+accounting practices matured, we needed to augment this class with
+both zero\index{number!zero ($0$)} ($0$) and the negative
+integers\index{number!negative}---and the full class of integers was
+born.  As society developed, we had to start sharing subdivisible
+materials, so we needed to invent the {\it rational
+  numbers}.\index{number!rational} Happily for the mathematically
+inclined, the rational numbers could be developed in a way that
+allowed one to view an integer as a special type of rational.
+\begin{quote}
+This quest for a single encompassing framework rather than a set of
+isolated concepts is a hallmark of mathematical thinking.
+\end{quote}
+As the ancient Greeks (so the story goes) were inventing geometry and
+its place within architecture, they encountered the uncomfortable fact
+that the lengths of portions of eminently buildable structures were
+not ``measurable,'' by which they meant ``not rational.''  The poster
+child for this phenomenon was the hypotenuse of the isosceles right
+triangle with unit-length legs.  As a response to this discomfort, the
+{\it real numbers}\index{number!real} were invented.  Once again,
+happily, one could develop the real numbers in a way that allowed one
+to view a rational number as a special type of real number.  Time went
+on, and mathematics matured.  Polynomials\index{polynomial} and their
+roots\index{polynomial!root}\footnote{A number $r$ is a {\it root} of
+  a polynomial $P(x)$ if $P(r) =0$.}~were discovered, together with
+the next source of discomfort.  To understand this discomfort, one
+must note that, since the invention of the real numbers, every
+polynomial $P_m(x)\ \eqdef \ x^2 - m$, where $m$ is a nonnegative real
+number, had two roots, denoted, respectively, $+\sqrt{m}$ and
+$-\sqrt{m}$.  But---here is the source of discomfort---{\em the
+  polynomial $P_m(x)$ had no roots when $m$ was negative, even a
+  negative \underline{integer}}.  The response this time resided in
+the invention of a new {\it imaginary} number,\index{number!imaginary}
+called $i$,\index{imaginary number $i = \sqrt{-1}$} that was a root of
+the polynomial $P_{-1}(x) = x^2 +1$; $i$ was often defined via the
+equation, $i = \sqrt{-1}$; easily, $-i$ is also a root of
+$P_{-1}(x)$.  By combining the imaginary number $i$ with the real
+number system, the {\it complex numbers}\index{number!complex} were
+born.
+
+The reader is possibly anticipating a new ``discomfort'' leading to an
+new augmentation of our number system, but, no, the story is now
+complete, in the sense expressed in the {\it Fundamental Theorem of
+  Algebra}\index{Fundamental Theorem of Algebra}, which asserts:
+
+\begin{theorem}[{\bf The Fundamental Theorem of Algebra}]
+\label{thm:fund-thm-algebra}
+Every polynomial of degree $n$ with complex coefficients has $n$ roots
+over the complex numbers.
+\end{theorem}
+
+We return to the later to the Theorem and its applications and
+implications.  For now, though, it completes our historical tour, so
+we can finally begin to get acquainted with our four classes of
+numbers.
 
 
 \section{Integers}
+\label{sec:integers}
 
+The most basic class of numbers are the {\it integers}
+\index{number!integer}
+(or, {\it whole numbers},
+\index{number!integer!whole number}
+or, {\em counting numbers}).
+\index{number!integer!counting number}
+%
+Integers are certainly the numbers that our prehistoric ancestors
+employed in the earliest days of our species.
 
-\subsection{Prime numbers}
+\medskip
+
+%\addcontentsline{toc}{paragraph}{A. Integers and their number line}
+\subsection{Integers and their number line}
+\label{sec:number-line}
+\index{number!the number line}
+\index{number!integer!the number line}
+%
+We survey a number of the most important properties of the set
+$\Z$\index{$\Z$: the set of all integers} that comprises {\em all
+  integers} (the positive and negative integers and zero ($0$)) and
+the set $\N$\index{$\N$: the set of nonnegative integers} that
+comprises the {\em nonnegative integers} (the positive integers and
+$0$).  We estimate a property's importance from the vantage points of
+both mathematics and its manifold applications.
+
+Several essential properties of $\N$ and $\Z$ are consequences of the
+sets' behavior under their natural order relations: strong ($<$) and
+weak ($\leq$) and their converses.  Indeed, order within a number
+system is one of one's biggest friends when reasoning about the
+numbers within the system.
+\index{number!ordering of numbers}
+\begin{itemize}
+\item
+The set $\Z$ is {\em totally ordered}\index{number!integer!total
+  order}\index{integer!total order}, also termed {\em linearly
+  ordered}\index{number!integer!linear ordering}\index{integer!linear
+  ordering}.
+
+\smallskip
+
+This fact is embodied in the {\em Trichotomy Laws for
+  integers}.\index{number!integer!Trichotomy Laws}
+\index{integer!Trichotomy Laws}\index{Trichotomy Laws}
+
+\medskip
+
+{\it The Trichotomy laws for integers}. \\
+%
+(a)
+%
+{\it For each integer $a \in \Z$, precisely one of the following is true.}
+\[
+(1) \ \mbox{ $a$ equals $0$:} \ a=0 \ \ \ \
+(2) \ \mbox{ $a$ is {\em positive}:} \ a>0 \ \ \ \
+(3) \ \mbox{ $a$ is {\em negative}:} \ a<0
+\]
+
+Consequently, $\Z$ can be visualized via the ($2$-way infinite) number
+line:
+\index{number!the number line}
+\[ \ldots, -2, -1, 0, 1, 2, \ldots
+\]
+Analogously, $\N$ can be visualized via the ($1$-way infinite) number
+line: $0, 1, 2, \ldots$.
+
+\medskip
+
+(b)
+%
+{\it For any integers $a, b \in \Z$, precisely one of the following is
+  true.}
+\[ (1) \ a=b \ \ \ \ \ \ \ (2) \ a<b \ \ \ \ \ \ \ (3) \ a>b \]
+
+\item
+The set $\N$ is {\it well-ordered}.
+\index{number!nonnegative integers!well-ordering}
+\index{nonnegative!integers!well-ordering}
+
+\medskip
+
+{\it The Well-ordering law for nonnegative integers}. \\
+%
+{\it Every subset of $\N$ has a smallest element (under the ordering
+  $<$).}
+
+\medskip
+
+\item
+The set $\Z$ is {\it discrete}.
+\index{number!integer!discreteness}\index{integer!discreteness}
+
+\medskip
+
+{\it The discreteness of the integers.} \\
+%
+{\it For every integer $a \in \Z$, there is no integer between $a$ and
+  $a+1$; i.e., there is no $b \in \Z$ such that $a < b < a+1$.}
+
+\medskip
+
+\item
+The set $\Z$ obeys the {\it ``Between'' Laws}
+\index{number!integer!''Between'' laws}\index{integer!''Between'' laws}
+
+\medskip
+
+{\it The ``Between'' laws for integers}. \\
+%
+{\it For any integers $a, b \in \Z$, there are finitely many $c \in
+  \Z$ such that $a < c < b$.}
+
+\smallskip
+
+Any such $c \in \Z$ is {\em between} $a$ and $b$, whence the name of
+the law.
+\end{itemize}
+
+\subsection{Prime numbers: building blocks of the integers}
+\label{sec:primes}
+\index{number!prime numbers}
+\index{integers!prime numbers}
 
 We single out a subclass of the positive integers whose mathematical
 importance has been recognized for millennia but which have found
@@ -80,23 +278,29 @@ the longer, but equivalent, ``$p$ is a prime integer.''
 A very important way to classify a positive integer $n$ is to list the
 primes that divide it, coupling each such prime $p$ with its {\it
   multiplicity}, i.e., the number of times that $p$ divides $n$.  Let
-$p_1, p_2, \ldots, p_r$ be the distinct primes that divide $n$, and
-let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime
-  factorization}\index{prime factorization}\index{integer!prime
-  factorization}\index{number!integer!prime factorization}
+$p_1, p_2, \ldots, p_r$ be all of the distinct primes that divide $n$,
+and let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime
+  factorization}
+\index{prime factorization}
+\index{integer!prime factorization}
+\index{number!integer!prime factorization}
 %
-of $n$ is the product $p_1^{m_1} \times p_2^{m_2} \times \cdots \times
+of $n$ is the product $p_1^{m_1} \cdot p_2^{m_2} \cdot \cdots \cdot
 p_r^{m_r}$; note that this product satisfies the equation
 \begin{equation}
 \label{eq:prime-factorization}
-n \ = \ p_1^{m_1} \times p_2^{m_2} \times \cdots \times p_r^{m_r}
+n \ = \ p_1^{m_1} \cdot p_2^{m_2} \cdot \cdots \cdot p_r^{m_r}
 \end{equation}
 
 When writing an integer $n$'s prime factorization, it is traditional
-to list the primes $p_1, p_2, \ldots, p_r$ in increasing order, i.e.,
-so that $p_1 < p_2 < \cdots < p_r$.
+to write the factorization in {\it canonicalform},
+\index{prime factorization!canonical form}
+\index{integer!prime factorization!canonical form}
+\index{number!integer!prime factorization!canonical form}
+i.e., with the primes $p_1, p_2, \ldots, p_r$ that divide $n$ listed
+in increasing order, i.e., so that $p_1 < p_2 < \cdots < p_r$.
 
-\paragraph{\sf A. The Fundamental Theorem of Arithmetic}
+\subsubsection{The Fundamental Theorem of Arithmetic}
 
 \noindent
 A positive integer $n$ is totally characterized by its canonical prime
@@ -121,20 +325,21 @@ The canonical prime factorization of every positive integer is unique.
 %
 Let $n \in \N^+$ be a positive integer, and let $\widehat{P}_n$ denote the
 ordered sequence of prime numbers that are no larger than $n$:
-\[
-\begin{array}{cl}
-\widehat{P}_n \ = \ & \langle P_1, \ P_3, \ \ldots, \ P_{r-1}, \ P_r \rangle \\
-\mbox{where:}   & P_1 \ = \ 2 \\
-                & \mbox{each } \ \ P_i \ < \ P_{i+1} \\
-                & P_r \ \leq \ n.
-\end{array}
-\]
+
+\begin{tabular}{ll}
+$\widehat{P}_n \ =$  & $\langle P_1, \ P_3, \ \ldots, \ P_{r-1}, \ P_r \rangle$ \\
+where:               & $P_1 \ = \ 2$ \\
+                     & each  \ \ $P_i \ < \ P_{i+1}$ \\
+                     & $P_r \ \leq \ n$.
+\end{tabular}
+
+\noindent
 There exists a unique sequence of {\em nonnegative} integers, 
 $\langle a_1, a_2, \ldots, a_r \rangle$
 such that
 \[
-n \ = \ \prod_{i=1}^r \ P^{a_i} \ = \
-P^{a_1} \cdot P^{a_2} \cdot \ \cdots \ \cdot P^{a_{r-1}} \cdot P^{a_r}
+n \ = \ \prod_{i=1}^r \ P_i^{a_i} \ = \
+P_1^{a_1} \cdot P_2^{a_2} \cdot \ \cdots \ \cdot P_{r-1}^{a_{r-1}} \cdot P_r^{a_r}
 \]
 \end{theorem}
 
@@ -147,7 +352,7 @@ Every positive integer is divisible by at least one prime number.
 \end{prop}
 
 
-\paragraph{\sf B. Proving the Fundamental Theorem}
+\subsubsection{Proving the Fundamental Theorem of Arithmetic}
 
 The  proof of Theorem~\ref{thm:Fund-Thm-Arith} is actually rather
 elementary, providing that one approaches it gradually.  It
@@ -241,12 +446,47 @@ follows that $p$ must divide the expression to the right of the equal
 sign---namely, the integer $n$.
 \end{proof}
 
-We are finally ready to attack the proof of the Fundamental Theorem.
+We are finally ready to develop the proof of the Fundamental Theorem.
 
-**HERE
+%\addcontentsline{toc}{paragraph}{Proof of the Fundamental Theorem of Arithmetic}
+
+\begin{proof}
+{\bf Proof of the Fundamental Theorem of Arithmetic.}
+%
+Our dominant tool for proving Theorem~\ref{thm:Fund-Thm-Arith} will be
+{\em proof by contradiction} (see Chapter~\ref{sec:Contradiction}).
+We assume, for the sake of contradiction, that there is a positive
+integer $n$ that has two distinct canonical prime factorizations.
+
+Our argument will be a trifle simpler if we employ the {\em alternative} 
+form of the Theorem.  To this end, let
+\[ P_1 \ < \ P_2 \ < \cdots < \ P_{r-1} \ < \ P_r \]
+denote, in increasing order, the set of all primes that do not exceed
+$n$; i.e., every $P_i \leq n$.
+
+The fact that $n$ has two distinct canonical prime factorizations
+manifests itself, in this formulation, by the assumption that there
+exist {\em two} distinct sequences of {\em nonnegative} integers, 
+\[ \langle a_1, a_2, \ldots, a_r \rangle \ \ \ \mbox{ and } \ \ \
+\langle b_1, b_2, \ldots, b_r \rangle 
+\]
+such that
+\begin{eqnarray*}
+n
+ & = & 
+P_1^{a_1} \cdot P_2^{a_2} \cdot \ \cdots \ \cdot P_{r-1}^{a_{r-1}}
+\cdot P_r^{a_r} \\
+ & = &
+P_1^{b_1} \cdot P_2^{b_2} \cdot \ \cdots \ \cdot P_{r-1}^{b_{r-1}}
+\cdot P_r^{b_r}
+\end{eqnarray*}
+
+***HERE
+\end{proof}
 
 
-\paragraph{\small\sf C. Application of the Fundamental Theorem}
+
+\subsubsection{Application of the Fundamental Theorem}
 
 We discuss a number of applications of this fundamental result.  We
 have already seen one application in
@@ -275,214 +515,6 @@ integer
 is a (uniquely decodable) integer-representation of sequence $\bar{s}$.
 
 We return to this idea of encoding-via-integers in a later chapter.
-
-
-**HERE
-
-
-\subsection{Numbers}\index{numbers}
-\label{sec:numbers}
-
-We begin our study of arithmetic notions with a short taxonomy of
-numbers, the objects that arithmetic was invented to explicate and
-exploit.  Although we assume that the reader is familiar with the most
-common classes of numbers, we do spend some time highlighting
-important features of each class, partly, at least, in the hope of
-heightening the reader's interest in this most basic object of
-mathematical discourse.
-
-We present the four most common classes of numbers in what is almost
-certainly the chronological order of their discovery/invention.
-\begin{quote}
-{\em
-Did humans invent these classes of numbers to fill specific needs, or
-did we just discover their pre-existing selves as needs prompted us to
-search for them?  The great German mathematician Leopold Kronecker,
-\index{Kronecker, Leopold}
-as cited in \cite{Bell86} (page 477), shared his viewpoint on this
-question: ``God made the integers; all else is the work of man.''}
-\end{quote}
-A pleasing narrative can be fabricated to account for our multi-class
-system of numbers.  In the beginning, the story goes, we needed to
-count things (sheep, bottles of oil, weapons, \ldots), and the
-positive {\it integers}\index{number!integer} were discovered.  As
-accounting practices matured, we needed to augment this class with
-both zero\index{number!zero ($0$)} ($0$) and the negative
-integers\index{number!negative}---and the full class of integers was
-born.  As society developed, we had to start sharing subdivisible
-materials, so we needed to invent the {\it rational
-  numbers}.\index{number!rational} Happily for the mathematically
-inclined, the rational numbers could be developed in a way that
-allowed one to view an integer as a special type of rational.
-\begin{quote}
-This quest for a single encompassing framework rather than a set of
-isolated concepts is a hallmark of mathematical thinking.
-\end{quote}
-As the ancient Greeks (so the story goes) were inventing geometry and
-its place within architecture, they encountered the uncomfortable fact
-that the lengths of portions of eminently buildable structures were
-not ``measurable,'' by which they meant ``not rational.''  The poster
-child for this phenomenon was the hypotenuse of the isosceles right
-triangle with unit-length legs.  As a response to this discomfort, the
-{\it real numbers}\index{number!real} were invented.  Once again,
-happily, one could develop the real numbers in a way that allowed one
-to view a rational number as a special type of real number.  Time went
-on, and mathematics matured.  Polynomials\index{polynomial} and their
-roots\index{polynomial!root}\footnote{A number $r$ is a {\it root} of
-  a polynomial $P(x)$ if $P(r) =0$.}~were discovered, together with
-the next source of discomfort.  To understand this discomfort, one
-must note that, since the invention of the real numbers, every
-polynomial $P_m(x)\ \eqdef \ x^2 - m$, where $m$ is a nonnegative real
-number, had two roots, denoted, respectively, $+\sqrt{m}$ and
-$-\sqrt{m}$.  But---here is the source of discomfort---{\em the
-  polynomial $P_m(x)$ had no roots when $m$ was negative, even a
-  negative \underline{integer}}.  The response this time resided in
-the invention of a new {\it imaginary} number,\index{number!imaginary}
-called $i$,\index{imaginary number $i = \sqrt{-1}$} that was a root of
-the polynomial $P_{-1}(x) = x^2 +1$; $i$ was often defined via the
-equation, $i = \sqrt{-1}$; easily, $-i$ is also a root of
-$P_{-1}(x)$.  By combining the imaginary number $i$ with the real
-number system, the {\it complex numbers}\index{number!complex} were
-born.
-
-The reader is possibly anticipating a new ``discomfort'' leading to an
-new augmentation of our number system, but, no, the story is now
-complete, in the sense expressed in the {\it Fundamental Theorem of
-  Algebra}\index{Fundamental Theorem of Algebra}, which asserts:
-
-\begin{theorem}[{\bf The Fundamental Theorem of Algebra}]
-\label{thm:fund-thm-algebra}
-Every polynomial of degree $n$ with complex coefficients has $n$ roots
-over the complex numbers.
-\end{theorem}
-
-We return to the later to the Theorem and its applications and
-implications.  For now, though, it completes our historical tour, so
-we can finally begin to get acquainted with our four classes of
-numbers.
-
-\subsubsection{The integers}
-\label{sec:integers}
-
-The most basic class of numbers are the {\it integers}
-\index{number!integer}
-(or, {\it whole numbers},
-\index{number!integer!whole number}
-or, {\em counting numbers}).
-\index{number!integer!counting number}
-%
-Integers are certainly the numbers that our prehistoric ancestors
-employed in the earliest days of our species.
-
-\medskip
-
-%\addcontentsline{toc}{paragraph}{A. Integers and their number line}
-\paragraph{\small\sf A. Integers and their number line}
-\index{number!the number line}
-\index{number!integer!the number line}
-%
-We survey a number of the most important properties of the set
-$\Z$\index{$\Z$: the set of all integers} that comprises {\em all
-  integers} (the positive and negative integers and zero ($0$)) and
-the set $\N$\index{$\N$: the set of nonnegative integers} that
-comprises the {\em nonnegative integers} (the positive integers and
-$0$).  We estimate a property's importance from the vantage points of
-both mathematics and its manifold applications.
-
-Several essential properties of $\N$ and $\Z$ are consequences of the
-sets' behavior under their natural order relations: strong ($<$) and
-weak ($\leq$) and their converses.  Indeed, order within a number
-system is one of one's biggest friends when reasoning about the
-numbers within the system.
-\index{number!ordering of numbers}
-\begin{itemize}
-\item
-The set $\Z$ is {\em totally ordered}\index{number!integer!total
-  order}\index{integer!total order}, also termed {\em linearly
-  ordered}\index{number!integer!linear ordering}\index{integer!linear
-  ordering}.
-
-\smallskip
-
-This fact is embodied in the {\em Trichotomy Laws for
-  integers}.\index{number!integer!Trichotomy Laws}
-\index{integer!Trichotomy Laws}\index{Trichotomy Laws}
-
-\medskip
-
-{\it The Trichotomy laws for integers}. \\
-%
-(a)
-%
-{\it For each integer $a \in \Z$, precisely one of the following is true.}
-\[
-(1) \ \mbox{ $a$ equals $0$:} \ a=0 \ \ \ \
-(2) \ \mbox{ $a$ is {\em positive}:} \ a>0 \ \ \ \
-(3) \ \mbox{ $a$ is {\em negative}:} \ a<0
-\]
-
-Consequently, $\Z$ can be visualized via the ($2$-way infinite) number
-line: $\ldots, -2, -1, 0, 1, 2, \ldots$.\index{number!the number line}
-
-Analogously, $\N$ can be visualized via the ($1$-way infinite) number
-line: $0, 1, 2, \ldots$.
-
-\medskip
-
-(b)
-%
-{\it For any integers $a, b \in \Z$, precisely one of the following is
-  true.}
-\[ (1) \ a=b \ \ \ \ \ \ \ (2) \ a<b \ \ \ \ \ \ \ (3) \ a>b \]
-
-\item
-The set $\N$ is {\it well-ordered}.
-\index{number!nonnegative integers!well-ordering}
-\index{nonnegative!integers!well-ordering}
-
-\medskip
-
-{\it The Well-ordering law for nonnegative integers}. \\
-%
-{\it Every subset of $\N$ has a smallest element (under the ordering
-  $<$).}
-
-\medskip
-
-\item
-The set $\Z$ is {\it discrete}.
-\index{number!integer!discreteness}\index{integer!discreteness}
-
-\medskip
-
-{\it The discreteness of the integers.} \\
-%
-{\it For every integer $a \in \Z$, there is no integer between $a$ and
-  $a+1$; i.e., there is no $b \in \Z$ such that $a < b < a+1$.}
-
-\medskip
-
-\item
-The set $\Z$ obeys the {\it ``Between'' Laws}
-\index{number!integer!''Between'' laws}\index{integer!''Between'' laws}
-
-\medskip
-
-{\it The ``Between'' laws for integers}. \\
-%
-{\it For any integers $a, b \in \Z$, there are finitely many $c \in
-  \Z$ such that $a < c < b$.}
-
-\smallskip
-
-Any such $c \in \Z$ is {\em between} $a$ and $b$, whence the name of
-the law.
-\end{itemize}
-
-\medskip
-
-%\addcontentsline{toc}{paragraph}{B. Prime numbers}
-\paragraph{\small\sf B. Prime numbers}\index{number!prime numbers}
 
 
 
