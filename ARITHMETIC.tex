@@ -136,10 +136,7 @@ or, {\em counting numbers}).
 Integers are certainly the numbers that our prehistoric ancestors
 employed in the earliest days of our species.
 
-\medskip
-
-%\addcontentsline{toc}{paragraph}{A. Integers and their number line}
-\subsection{Integers and their number line}
+\subsection{The Basic of Integers: The Number Line}
 \label{sec:number-line}
 \index{number!the number line}
 \index{number!integer!the number line}
@@ -275,6 +272,10 @@ We usually use the shorthand assertion, ``$p$ is a prime,'' instead of
 the longer, but equivalent, ``$p$ is a prime integer.''
 \end{quote}
 
+\subsubsection{Primes as building blocks: The Fundamental Theorem of Arithmetic}
+\label{sec:prime-factoriation}
+
+
 A very important way to classify a positive integer $n$ is to list the
 primes that divide it, coupling each such prime $p$ with its {\it
   multiplicity}, i.e., the number of times that $p$ divides $n$.  Let
@@ -293,14 +294,12 @@ n \ = \ p_1^{m_1} \cdot p_2^{m_2} \cdot \cdots \cdot p_r^{m_r}
 \end{equation}
 
 When writing an integer $n$'s prime factorization, it is traditional
-to write the factorization in {\it canonicalform},
+to write the factorization in {\it canonical form},
 \index{prime factorization!canonical form}
 \index{integer!prime factorization!canonical form}
 \index{number!integer!prime factorization!canonical form}
 i.e., with the primes $p_1, p_2, \ldots, p_r$ that divide $n$ listed
 in increasing order, i.e., so that $p_1 < p_2 < \cdots < p_r$.
-
-\subsubsection{The Fundamental Theorem of Arithmetic}
 
 \noindent
 A positive integer $n$ is totally characterized by its canonical prime
@@ -421,7 +420,7 @@ $p$ and $m$ consists of the multiples of a single integer $r_0$.  This
 means, in particular, that both $p$ and $m$ are multiples of a single
 positive integer, $r_0$---even though $p$ is a prime which does not
 divide $m$.  The only way this situation could hold is if $r_0 = 1$,
-as claimed in the proposition.
+as claimed in the proposition.  \qed
 \end{proof}
 
 \begin{prop}
@@ -443,7 +442,7 @@ that
 Now $p$ divides the expression to the left of the equal sign: $p$
 divides $p$ by definition, and $p$ divides $mn$ by assumption.  It
 follows that $p$ must divide the expression to the right of the equal
-sign---namely, the integer $n$.
+sign---namely, the integer $n$.  \qed
 \end{proof}
 
 We are finally ready to develop the proof of the Fundamental Theorem.
@@ -470,23 +469,158 @@ exist {\em two} distinct sequences of {\em nonnegative} integers,
 \[ \langle a_1, a_2, \ldots, a_r \rangle \ \ \ \mbox{ and } \ \ \
 \langle b_1, b_2, \ldots, b_r \rangle 
 \]
-such that
-\begin{eqnarray*}
-n
- & = & 
+such that $n$ is expressible by---i.e., is equal to---both of the
+following products of the primes $P_1$, $P_2$, \ldots, $P_{r-1}$, $P_r$.
+\begin{eqnarray}
+ & & 
+\label{eq:product1.1}
 P_1^{a_1} \cdot P_2^{a_2} \cdot \ \cdots \ \cdot P_{r-1}^{a_{r-1}}
 \cdot P_r^{a_r} \\
- & = &
+ & &
+\label{eq:product2.1}
 P_1^{b_1} \cdot P_2^{b_2} \cdot \ \cdots \ \cdot P_{r-1}^{b_{r-1}}
 \cdot P_r^{b_r}
-\end{eqnarray*}
+\end{eqnarray}
 
-***HERE
+Let us now ``cancel'' from the products (\ref{eq:product1.1}) and
+(\ref{eq:product2.1}) the longest common prefix.  Because the two
+products are, by hypothesis, distinct, at least one of them will not
+be reduced to $1$ by this cancellation.  We are, therefore, left with
+residual products of the forms
+\begin{eqnarray}
+ & &
+\label{eq:product1.2}
+P_i^{a_i} \cdot X \\
+ & &
+\label{eq:product2.2}
+P_i^{b_i} \cdot Y
+\end{eqnarray}
+where:
+\begin{itemize}
+\item
+Precisely one of $a_i$ and $b_i$ equals $0$.
+
+Say, with no loss of generality (because we have no intrinsic way to
+distinguish the products), that $b_i =0$ while $a_i \neq 0$.
+
+\item
+Products $X$ and $Y$ are composed only of primes that are strictly
+bigger than $P_i$.
+\end{itemize}
+Note that 
+\[ P_i^{a_i} \cdot X \ = \ P_i^{b_i} \cdot Y \ = \ Y, \]
+because these products result from cancelling the same prefix from the
+equal products (\ref{eq:product1.1}) and (\ref{eq:product2.1}), and
+because $b_i =0$ so that $P_i^{b_i} = 1$.
+
+We have finally reached the point of contradiction.
+
+On the one hand, $P_i$ {\em must} divide the product $Y$, because it
+divides the product $P_i^{a_i} \cdot X$ which equals $Y$.
+
+On the other hand, $P_i$ {\em cannot} divide the product $Y$, because
+every prime factor of $Y$ is bigger than $P_i$ (and a prime cannot
+divide a bigger prime).
+
+We conclude that one of the products (\ref{eq:product1.1}) and
+(\ref{eq:product2.1}) cannot exist, so the theorem must hold.  \qed
 \end{proof}
 
 
 
-\subsubsection{Application of the Fundamental Theorem}
+\subsubsection{There are infinitely many primes}
+\label{sec:infinite-primes}
+
+The following result, which is traditionally attributed to the Greek
+mathematician Euclid, \index{Euclid} one of the patriarchs of
+mathematics, invokes Theorem~\ref{thm:Fund-Thm-Arith} in a crucial
+way.
+
+\begin{prop}
+\label{thm:infinite-primes}
+There are infinitely many prime numbers.
+\end{prop}
+
+\begin{proof}
+Let us assume, for the sake of contradiction, that there are only
+finitely many primes.  Say, in particular, that the following
+$r$-element sequence enumerates all (and only) primes, in order of
+magnitude:
+
+\noindent
+$\mbox{\bf Prime-Numbers} \ = \ 
+\langle P_1, \ P_2, \ \ldots, \ P_r \rangle$
+
+\noindent where
+\[ P_1 \ < \ P_2 \ < \cdots < \ P_{r-1} \ < \ P_r \]
+Of course, we know that the first several primes are
+\[ (P_1 =2), \ (P_2 = 3), \ (P_3 =5), \ (P_4 = 7), \ (P_5 =11), \ldots \] 
+
+We verify the {\em falseness} of the alleged completeness of the sequence
+{\bf Prime-Numbers} by analyzing the positive integer
+\[ n \ = \ 1 + \prod_{i=1}^r \ P_i \ = \ 1 \ + \ 
+\left(P_1 \cdot P_2 \cdot \cdots \cdot P_r \right).
+\]
+
+We make three crucial observations.
+
+\begin{enumerate}
+\item
+We note first that {\em the number $n$ is not divisible by any prime
+number  in the sequence {\bf Prime-Numbers}.}
+
+To see this, note that for each $P_k$ in the sequence,
+\[
+n / P_k \ = \ \frac{1}{P_k} \ + \ \prod_{i \neq k} \ P_i .
+\]
+Because $P_k \geq 2$, we see that $n / P_k$ obeys the inequalities
+\[
+\prod_{i \neq k} \ P_i \ < \ n/P_k \ < \ 1 + \prod_{i \neq k} \ P_i.
+\] 
+The discreteness of the set $\Z$---see
+Section~\ref{sec:number-line}---implies that $n / P_k$ is not an
+integer, because it lies strictly between two adjacent integers.
+
+\item
+We note next that, because of assertion 1, if the sequence {\bf
+  Prime-Numbers} actually did contain {\em all} of the prime numbers,
+then we would have to conclude that {\em the number $n$ is not
+  divisible by any prime number.}
+
+\item
+Finally, we remark that the Fundamental Theorem of Arithmetic
+(Theorem~\ref{thm:Fund-Thm-Arith}) implies that {\em every integer is
+  divisible by (at least one) prime number}.
+\end{enumerate}
+The preceding chain of assertions leads to a mutual inconsistency.  On
+the one hand, the integer $n$ has no prime-integer divisor.  On the
+other hand, no integer can fail to have a prime-integer divisor!
+
+Let us analyze how we arrived at this uncomfortable place.
+\begin{itemize}
+\item
+At the front end of this uncomfortable string of assertions we have
+the assumption that there are only finitely many prime numbers.  We
+have (as yet) no substantiation for this assertion.
+\item
+At the back end of this uncomfortable string of assertions, we have
+the ({\em rock solid}) Fundamental Theorem of Arithmetic
+(Theorem~\ref{thm:Fund-Thm-Arith}).
+\item
+In between these two assertions we have a sequence of assertions, each
+of which follows from its predecessors via irrefutable rules of
+inference.
+\end{itemize}
+It follows that the {\em only} brick in this edifice that could be
+faulty---i.e., the only assertion that could be false---is the initial
+assumption, which states that there are only finitely many prime
+numbers.  We must, therefore, conclude that this vulnerable assumption
+is false!  In other words, we conclude from this classical proof by
+contradiction that there are infinitely many prime numbers.  \qed
+\end{proof}
+
+
+\subsubsection{An application of the Fundamental Theorem of Arithmetic}
 
 We discuss a number of applications of this fundamental result.  We
 have already seen one application in
@@ -518,11 +652,10 @@ We return to this idea of encoding-via-integers in a later chapter.
 
 
 
-\subsubsection{The rational numbers}
+\section{The rational numbers}
 \label{sec:rationals}
 
-%\addcontentsline{toc}{paragraph}{A. Inventing the rational numbers}
-\paragraph{\small\sf A. Inventing the rational numbers}
+\subsection{Inventing the Rational Numbers}
 
 Each augmentation of our number system throughout history has been a
 response to a deficiency with the then-current system.  The deficiency
@@ -535,10 +668,8 @@ operation that would accomplish the undoing/inverting, would be a {\em
 divides the other.  The defining characteristic of the expanded system
 is that, within it, every nonzero number divides every number.
 
-\medskip
 
-%\addcontentsline{toc}{paragraph}{B. The rationals as ordered pairs of integers}
-\paragraph{\small\sf B. The rationals as ordered pairs of integers}
+\subsection{The Rationals as Ordered Pairs of Integers}
 
 The set $\Q$ of {\it rational} numbers\index{number!rational}
 \index{$\Q$: the set of rational numbers}
@@ -580,10 +711,8 @@ of the fraction; the integer $q$ is the {\it denominator}.
 \index{number!rational!denominator}
 \index{number!fractions!denominator}
 
-\medskip
 
-%\addcontentsline{toc}{paragraph}{C. Comparing the rationals with the integers}
-\paragraph{\small\sf C. Comparing the rationals with the integers}
+\subsection{Comparing the rationals with the integers}
 
 There are many ways to compare the sets $\Z$ and $\Q$ via properties
 that enhance our understanding of the two sets.
@@ -806,11 +935,10 @@ Since the composition of two injections is also an injection (see
 Proposition~\ref{thm:fn-composition}), the result is proved.  \qed
 \end{proof}
 
-\subsubsection{The real numbers}
+\section{The real numbers}
 \label{sec:reals}
 
-%\addcontentsline{toc}{paragraph}{A. Inventing the real numbers}
-\paragraph{\small\sf A. Inventing the real numbers}
+\subsection{Inventing the Real Numbers}
 
 Each subsequent augmentation of our system of numbers inevitably gets
 more complicated than the last: one solves the easy problems first.
@@ -858,10 +986,7 @@ justify the journey along that trajectory, we leave our historical
 digression and turn to our real focus, the set $\R$ of {\it real
   numbers}.\index{number!real}
 
-\medskip
-
-%\addcontentsline{toc}{paragraph}{B. The real numbers via their numerals}
-\paragraph{\small\sf B. The real numbers via their numerals}
+\subsection{The Real Numbers via Their Numerals}
 
 For any integer $b > 1$, the real numbers are the numbers that can be
 named by {em infinite} strings built out of the digits $\{0, 1,
@@ -958,10 +1083,8 @@ foundations of mathematics might quibble about the verb ``is'' in the
 highlighted sentences, but for all practical purposes, we can accept
 the sentences as written.
 
-\medskip
 
-%\addcontentsline{toc}{paragraph}{C. Not all real numbers are rational}
-\paragraph{\small\sf C. Not all real numbers are rational}
+\subsection{Not all real numbers are rational}
 
 We close this section by verifying the earlier-mentioned assertion
 about the non-commensurability of the length of the diagonal of a
@@ -1046,11 +1169,11 @@ Section~\ref{sec:practical-logic}.
 
 
 
-\subsubsection{The complex numbers}
+\section{The complex numbers}
 \label{sec:complexes}
 
-%\addcontentsline{toc}{paragraph}{A. The basics of the complex numbers}
-\paragraph{\small\sf A. The basics of the complex numbers}
+
+\subsection{The Basics of the Complex Numbers}
 
 $\C$ denotes the complex numbers
 
@@ -1134,10 +1257,7 @@ costly than a real multiplication, so trading one multiplication for
 one addition is an unqualified ``win''.  \qed
 \end{proof}
 
-\medskip
-
-%\addcontentsline{toc}{paragraph}{B. Pairing functions: ordering $\C$ and $\N \times \N$}
-\paragraph{\small\sf B. Pairing functions: ordering $\C$ and $\N \times \N$}
+\subsection{Pairing functions: ordering $\C$ and $\N \times \N$}
 
 As noted in Section~\ref{sec:integers}.A, ``order within a number
 system is one of one's biggest friends when reasoning about the
