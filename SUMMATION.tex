@@ -1659,7 +1659,7 @@ Note that we can rewrite summation $S_2^{(1)}(n)$ as a {\em double
   summation:}
 \begin{equation}
 \label{eq:geom-double-sum}
-S_2^{(1)}(n) \ = \ \sum_{i=1}^n \ \sum_{k=0}^{i-1} 2^i
+S_2^{(1)}(n) \ = \ \sum_{i=1}^n \ \sum_{k=1}^{i} 2^i
 \end{equation}
 
 By suitable applications of the laws of arithmetic
@@ -1670,16 +1670,17 @@ summation in a different order than that specified in
 summation, to compute $S_2^{(1)}(n)$ as specified via the following
 expression:
 \[
-S_2^{(1)}(n) \ = \ \sum_{k=0}^{i-1} \ \sum_{i=k}^{n} 2^i.
+S_2^{(1)}(n) \ = \ \sum_{k=1}^{n} \ \sum_{i=k}^{n} 2^i.
 \]
-This process is illustrated in Fig.~\ref.
+This process is illustrated in Fig.~\ref{fig:Sumi2i}.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.4]{FiguresMaths/Sumi2i}
 }
 \caption{Illustration of the exchange of indices in the summation.
-The original sum is on the left, each $i \cdot 2^i$ is distributed on column $i$.
-The second sum is obtained by introducing a new index $k$ and to scan each term of the sum rom by rom (on the right)}
+The original sum is on the left, each $i \cdot 2^i$ is distributed $i$ times on column $i$.
+The second sum is obtained by introducing a new index $k$ and to scan each term of the sum row by row (on the right).
+The arrows represent the order of execution.}
 \label{fig:Sumi2i}
 \end{figure}
 The indicated summation is much easier to perform in this order,
@@ -1688,9 +1689,15 @@ summation $\sum_{i=k}^{n} 2^i$ (see
 Proposition~\ref{thm:sum-finite-geometric-series}).  Expanding these
 instances, we find finally that
 \[
+S_2^{(1)}(n) \ = \ \sum_{k=1}^{n} \ (2^{n+1} -1 - \sum_{i=0}^{k-1} \ 2^i).
+\]
+\[
+S_2^{(1)}(n) \ = \ \sum_{k=1}^{n} \ (2^{n+1} - 2^k).
+\]
+\[
 S_2^{(1)}(n)
-\ \ = \ \ n \cdot 2^{n}\ - 2 \sum_{k=1}^{i-1} \ 2^k
-\ \ = \ \ (n-2) \cdot 2^n +2.
+\ \ = \ \ n \cdot 2^{n+1}\ - ( 2^{n+1} -1) +1
+\ \ = \ \ (n-1) \cdot 2^{n+1} +2.
 \]
 \end{proof}
 
