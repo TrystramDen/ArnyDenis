@@ -186,8 +186,8 @@ $2$ in the second case, $4$ in the third and so on.}
 \ignore{\Denis add cross reference for computing the sum of powers of 2 in DOINGMATHS}
 
 To illustrate the power of summation methodology, consider the
-following modernized version of the {\it legend of Sissa ibn Dahir}.
-\index{Sissa ibn Dahir, legend of} You have invented a marvelous game,
+following modernized version of the {\it legend of Sissa ibn Dahir}
+\index{Sissa ibn Dahir, legend of} who has invented a marvelous game,
 let's call it {\it chess}, that is played on an $8 \times 8$ array of
 unit-size squares---call it a {\it chessboard}.  A benefactor offers
 you a one-time gift of {\em one million million (i.e., $10^{12} =
@@ -200,11 +200,16 @@ euro in the first square, $2$ euros in the second square, $4 \ (= 2
 \times 2)$ euros in the third, $8 \ (= 4 \times 2)$ euros in the
 fourth, and so on, doubling the number of euros at each step of the
 procedure---so the last square would contain $2^{63}$ euros.
-
+Fig.~\ref{fig:Sissa} provides an illustration of the growing of the first steps of the filling process.
 \noindent
 {\em Have you made a good bargain?}
-
-\medskip
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.3]{FiguresMaths/chess}
+\caption{First filled board's squares.}
+       \label{fig:Sissa}
+\end{center}
+\end{figure}
 
 By the end of this chapter, you will be able to determine in minutes
 that under your procedure (the one that uses the chessboard), you
@@ -468,7 +473,7 @@ The total number of right-lying integer-instances corresponds to the
 number of ways to select two integers from among $n+1$.\footnote{We
   study such counting techniques in depth in
   Section~\ref{sec:counting}.}  This number is the binomial
-coefficient $\Delta_{n}$ whose definition we specialize from
+coefficient whose definition we specialize from
 (\ref{eq:binom-coeff}) Section~\ref{sec:binary-operators}.C:
 \index{binomial coefficient}
 \[ 
@@ -510,8 +515,8 @@ an + b \cdot \Delta_n.
 \paragraph{\sf B. Perfect squares are sums of odd integers}
 In this section, we build on
 Proposition~\ref{thm:sum-first-integers-Gauss} to craft multiple
-constructive proofs of the fact that each perfect square, say, $m^2$,
-is the sum of the first $m$ odd integers, $1, 3, 5, \ldots, 2m-1$.
+constructive proofs of the fact that each perfect square, say, $n^2$,
+is the sum of the first $n$ odd integers, $1, 3, 5, \ldots, 2n-1$.
 All of these proofs complement the ``guess-and-verify'' inductive
 proof of this result in Section~\ref{sec:positive-integer-power}.C.
 
@@ -530,8 +535,8 @@ integers.
 
 Before we present several proofs of this result, we note that the
 notation for odd integers in (\ref{eq:sum-of-odds}) is perfectly
-general: every positive odd integer $m$ can be written in the form
-$2n-1$ for some positive integer $n$. 
+general: every positive odd integer $n$ can be written in the form
+$2k-1$ for some positive integer $k$. 
 
 \medskip
 
@@ -691,13 +696,13 @@ illustrative case $n=5$.
 \end{center}
 \end{figure}
 
-Starting with such a picture, we take each row of $2a+1$ bullets and
+Starting with such a picture, we take each row of $2k-1$ bullets and
 fold it at its midpoint so that it becomes a reversed letter ``$L$''.  The
-row of $2a+1$ bullets becomes an ``$L$'' whose horizontal portion (at the
-bottom of the reversed ``$L$'') is a row of $a+1$ bullets and whose
+row of $2k-1$ bullets becomes an ``$L$'' whose horizontal portion (at the
+bottom of the reversed ``$L$'') is a row of $k$ bullets and whose
 vertical portion (at the right of the reversed ``$L$'') is a column of
-$a+1$ bullets.  See Fig.~\ref{fig:sumOdds2} wherein the depicted
-values of $a$ are $a = 0, 1, 2, 3, 4$.
+$k$ bullets (one bullet is in common).  See Fig.~\ref{fig:sumOdds2} wherein the depicted
+values of $k$ are $k = 1, 2, 3, 4, 5$.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsIntermediate}
@@ -1667,6 +1672,16 @@ expression:
 \[
 S_2^{(1)}(n) \ = \ \sum_{k=0}^{i-1} \ \sum_{i=k}^{n} 2^i.
 \]
+This process is illustrated in Fig.~\ref.
+\begin{figure}[htb]
+\centerline{
+\includegraphics[scale=0.4]{FiguresMaths/Sumi2i}
+}
+\caption{Illustration of the exchange of indices in the summation.
+The original sum is on the left, each $i \cdot 2^i$ is distributed on column $i$.
+The second sum is obtained by introducing a new index $k$ and to scan each term of the sum rom by rom (on the right)}
+\label{fig:Sumi2i}
+\end{figure}
 The indicated summation is much easier to perform in this order,
 because its core consists of instances of the ``ordinary'' geometric
 summation $\sum_{i=k}^{n} 2^i$ (see
