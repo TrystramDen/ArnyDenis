@@ -1,4 +1,4 @@
-%version of 07-22-18
+%version of 07-30-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -13,35 +13,147 @@ is dedicated to sharing this legacy with the reader.
 \section{Numbers and Numerals}
 \label{sec:numbers-numerals}
 
+\subsection{Introduction}
+
 Every reader will be familiar with the notion of {\it number} and with
-the familiar strings, called {\it numerals}, that name numbers within
-positional number systems.\index{numbers vs.~numerals}
+the familiar strings, called {\it numerals}, that name numbers.
+\index{numbers vs.~numerals}
 \begin{quote}
 Numbers and numerals embody what is certainly the most familiar
 instance of a very important dichotomy that pervades our intellectual
 lives: the distinction between objects and their names:
 
-{\em Numbers are objects.  Numerals are the names we use to refer to
-  and manipulate numbers.}
+{\em Numbers are intangible, abstract objects.  Numerals are the names
+  we use to refer to and manipulate numbers.}
 
 This is a crucially important distinction!  You can ``touch'' a
 numeral: break it into pieces, combine two (or more) numerals via a
 large range of operations.  Numbers are intangible abstractions: you
 cannot compute with them.
 \end{quote}
-In our daily commerce, we typically deal with numerals formed within a
-{\it base-$b$ positional number system,}\index{numerals in a base-$b$
-  positional number system}
+Historically, we have employed a broad range of mechanisms for naming
+numbers.
+
+{\it Nicknames for ``popular'' numbers}.
+%
+At one extreme, we have endowed certain numbers that we are ``fond
+of'' with names that do not even hint at the ``meaning of'' the named
+number.  To cite just a few examples, we talk about
+\begin{itemize}
+\item
+$\pi$: the ratio of the circumference of a circle to its diameter
+\item
+$e$: the base of so-called natural logarithms
+\item
+$\phi$: the {\it golden ratio} (one of several word-names for $\phi$)
+  that can be observed in nature, e.g., in the leaf patterns of plants
+  such as pineapples and cauliflower
+\item
+Avogadro's number: a fundamental quantity discussed in chemistry and
+physics.  We include this number-name to indicate that not all
+special numbers' nicknames are single letters.
+\end{itemize}
+
+{\it Alphabet-based systems.}
+%
+Several cultures have developed systems for naming arbitrary integers
+by using their alphabets in some manner.
+
+One such system that is still visible in European cultures within
+constrained contexts comprises so-called {\it Roman numerals}.  One
+stills observes these, e.g., as the hour markers on the faces of
+grandfather clocks and as timestamps on the cornerstones of offical
+buildings.  Informally---and only partially accurately---Roman
+numerals are formed from a constrained set of letters from the Latin
+alphabet:
+
+\begin{tabular}{cc}
+{\it Letter} & {\it Numerical value} \\
+\hline
+I  & 1 \\
+V  & 5 \\
+X  & 10 \\
+L  & 50 \\
+C  & 100 \\
+D  & 500 \\
+M  & 1000
+\end{tabular}
+
+\noindent
+The formation rules for long Roman numerals are a bit complicated, but
+{\em roughly}, a letter to the right of a higher valued letter
+augments the value of the numeral (e.g., CCL $=250$, XVI $=16$), while
+a letter to the left of a higher valued letter lowers the value (e.g.,
+MCM $=1900$, XLIV $=44$).
+
+Another way to exploit one's alphabet is visible in, e.g., Hebrew, as
+a legacy from the Phoenicians.  Hebrew assigns the following
+respective values to the $22$ letters of its alphabet.
+\[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+20, 30, 40, 50, 60, 70, 80, 90, 100,
+ 200, 300, 400
+\]
+Numerals are then formed as strings of single occurrences of letters:
+numerical values are just accumulated.  Numbers that are too large to
+be named using ``words'' comprising single letter-instances are named
+using auxiliary words,such as ``thousands''.
+
+{\it Positional number systems.}
+%
+
+In our daily commerce, we typically deal with numerals that are formed
+within a {\it base-$b$ positional number system,}\index{numerals in a
+  (base-$b$) positional number system}
 %
 i.e., by strings of {\it digits}, often embellished with other
-symbols, such as a {\em radix point}.  We describe such systems in
-detail in Section~\ref{sec:Numerals}.A.  For now, we settle for a few
-examples: $123456789$ (base $10$, or, {\it decimal}), $10111.001$
-(base $2$, or, {\it binary}), or $0.1267 \times 8^{24}$ (base $8$, or,
-{\it octal}).\footnote{The use of a period as the radix point is a US
-  convention; in much of Europe, a comma denotes the radix point.}
+symbols, such as a {\em radix point},\footnote{The use of a period as
+  the radix point is a US convention; in much of Europe, a comma
+  usually denotes the radix point.}~and sometimes a leading ``$+$'' or
+``$-$'' to indicate, respectively, the denoted number's positivity or
+negativity.  We describe such systems in detail in
+Section~\ref{sec:Numerals}.  For now, we settle for a few examples:
+\begin{itemize}
+\item
+Most of our daily work employs the base $10$ ({\it decimal}) system.
+This system's digits comprise the set $\{1, 2, 3, 4, 5., 6, 7, 8,
+9\}$; its radix point is usually called a {\em decimal point}.
 
-\subsection{A Taxonomy of our number system}
+\item
+Because electrical and electronic circuitry are (for the most part)
+built using {\it bistable} devices---e.g., switches that are either
+{\em on} or {\em off}---discussions of such circuitry and its end
+products, such as computers, often employ the base $2$ ({\it binary})
+system, whose digits---usually called {\it bits}---comprise the set
+$\{0, 1\}$.
+
+\item
+Because of its small repertoire of digits, the binary system's
+numerals are quite long---roughly $3$ times longer than decimal
+numerals.  For instance,
+\[ 32,768 \ \mbox{ base $10$} \ \ \ = \ 1,000,000,000,000,000 \ \mbox{
+  base $2$}
+\]
+In order to make these numerals easier for humans to deal with, small
+sequences of bits are aggregated to form larger number bases---but
+still powers of $2$.  Two aggregations have been particularly popular:
+  \begin{itemize}
+  \item
+By aggregating length-$3$ sequences of bits, once converts the binary
+system to base $8$ ({\it octal}), whose digits comprise the set $\{0,
+1, 3, 4, 5, 6, 7\}$.
+  \item
+By aggregating length-$4$ sequences of bits, once converts the binary
+system to base $16$ ({\it hexadecimal}), whose digits comprise the set
+$\{0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15\}$.  {\it Note:}
+We have written the hexadecimal digits in decimal, to make them easy
+to read.  Keep in mind that each of ``$10$'', ``$11$'', ``$12$'',
+``$13$'', ``$14$'', ``$15$'' represents a single hexadecimal digit,
+not a $2$-digit numeral.
+  \end{itemize}
+\end{itemize}
+
+
+\subsection{A Brief Taxonomy of Our Number System}
 \label{sec:number-taxonomy}
 
 We begin our study of arithmetic notions with a short taxonomy of {\it
@@ -426,7 +538,7 @@ as claimed in the proposition.  \qed
 \begin{prop}
 \label{thm:p-divides-onefactor}
 If the prime $p$ divides a composite number $m \cdot n$, then either
-$p$ divides $m$ or $p$ divides $n$, or both.\footnote{The closing
+$p$ divides $m$, or $p$ divides $n$, or both.\footnote{The closing
   phease ``or both'' signals our use of the {\em inclusive} or.}
 \end{prop}
 
@@ -528,7 +640,8 @@ We conclude that one of the products (\ref{eq:product1.1}) and
 
 
 
-\subsubsection{There are infinitely many primes}
+\subsubsection{A technical application of the Theorem: There are
+  infinitely many primes}
 \label{sec:infinite-primes}
 
 The following result, which is traditionally attributed to the Greek
@@ -620,17 +733,36 @@ contradiction that there are infinitely many prime numbers.  \qed
 \end{proof}
 
 
-\subsubsection{An application of the Fundamental Theorem of Arithmetic}
+\subsubsection{Applying the Theorem in {\em encryption}}
+\label{sec:Primes-and-encryption}
 
-We discuss a number of applications of this fundamental result.  We
-have already seen one application in
-Proposition~\ref{thm:Primes-infinite}.
-
-One very important application of Theorem~\ref{thm:Fund-Thm-Arith} is
-as a mechanism for {\em encoding}\index{number!using the Fundamental
-  Theorem of Arithmetic for encoding}\index{encoding sequences via the
-  Fundamental Theorem of Arithmetic}
+One of the most important applications of Theorem~\ref{thm:Fund-Thm-Arith} is
+as a mechanism for facilitating {\em encryption}.
+\index{number!using the Fundamental Theorem of Arithmetic for encoding}
+\index{number!using prime numbers for encoding}
+\index{encoding sequences via the Fundamental Theorem of Arithmetic}
 %
+While the details of both encryption and the use of prime numbers to
+that end are beyond the scope of this text, we will provide a peek
+into that area by means of the following result concerning {\it
+  encodings}.
+\begin{quote}
+{\em 
+There is a crucial difference between {\em encoding} and {\em
+  encryption}, despite the words' often being confused in the
+vernacular.
+
+Encoding involves a search for representations of objects, to achieve
+some benefit, such as efficient computation or compactness.  An
+example might be the conversion of Roman numerals to positional
+numerals to enhance the arithmetic operations.
+
+Encryption usually has some notion of secrecy attached.  An example
+might be some key-based cipher which is intended to limit access to
+someinformation.  }
+\end{quote}
+
+
 sequences of positive integers as single integers!  This works as
 follows.  Consider the (infinite) ordered sequence of {\em all primes:}
 \[ (P_1 = 2), (P_2 = 3), (P_3 = 5), \ldots  \]
@@ -650,9 +782,16 @@ is a (uniquely decodable) integer-representation of sequence $\bar{s}$.
 
 We return to this idea of encoding-via-integers in a later chapter.
 
+\subsubsection{{\bf Enrichment}: The ``density'' of the prime numbers}
+\label{sec:Prime-Number-Theorem}
+
+{\Arny There are two advanced topics that we may want to
+  mention/discuss: (1) The prime-number theorem ($n/ \log n$ primes
+  $\leq n$); (2) the polynomials that generate lots of primes.  We
+  should discuss this}
 
 
-\section{The rational numbers}
+\section{The Rational Numbers}
 \label{sec:rationals}
 
 \subsection{Inventing the Rational Numbers}
@@ -1257,7 +1396,137 @@ costly than a real multiplication, so trading one multiplication for
 one addition is an unqualified ``win''.  \qed
 \end{proof}
 
-\subsection{Pairing functions: ordering $\C$ and $\N \times \N$}
+
+
+\section{Numerals We Can Work With}\index{numerals}
+\label{sec:Numerals}
+
+We can identify distinct families of {\em operational}
+numerals,\index{numerals!operational} i.e., numerals that allow one to
+do things such as perform arithmetic (add, multiply, etc.).
+
+**THOUGHTS*******
+series expansions, strings created by a positional number system, and
+hybrids built on positional systems such as ``scientific notation''.
+*************
+
+
+Of course, we are all familar with certain numbers that have {\em
+  non-operational} names that we use all the time.  Notable among
+these are (using terminology that anticipates future sections and
+chapters):
+\begin{itemize}
+\item
+$\pi$: the ratio of the circumference of a circle to its diameter;
+  $\pi \approx 3.141592653 \ldots$
+\item
+$e$: Euler's constant; the base of ``natural'' logarithms: $e \approx
+  2.718281828 \ldots$
+\item
+$i$: the name of the number whose square is $-1$; $i$ is appended to
+  the real numbers in order to ``complete'' them to the complex
+  numbers, within which system every polynomial of degree $n$ has $n$
+  roots.
+\end{itemize}
+
+\medskip
+
+%\addcontentsline{toc}{paragraph}{A. Positional number systems}
+\subsection{Positional number systems}
+\index{positional number system}
+
+The most common way of forming numerals is via strings over a {\it
+  number base}.\index{positional number system!base of the system}  
+%
+We begin with an integer $b>1$ that will serve as our base, and we
+define the set $B_b = \{ 0, 1, \ldots, b-1\}$ of {\it digits in base
+  $b$}.\index{positional number system!digits in base $b$}
+%
+To aid legibility, {\em within the context of base-$b$ positional
+  numerals}, we denote the digit $b-1$ as a single character,
+$\bar{b}$.\index{$\bar{b}$: the digit $b-1$ in base $b$}
+%
+We then form base-$b$ numerals in the following way.\index{positional
+  number system!base-$b$ numerals}
+%
+This formation builds on {\em geometric sums}, a mathematical
+structure that we shall learn to manipulate, evaluate, and compute
+with in Section~\ref{sec:geometric-sums}.
+
+A base-$b$ numeral is a string having three sections.
+\begin{enumerate}
+\item
+The numeral begins with its {\em integral part},\index{positional
+  number system!integral part of a numeral}
+%
+which is a finite string of digits from $B_b$: $\alpha_n \alpha_{n-1}
+\cdots \alpha_1 \alpha_0$.
+
+The base-$b$ number represented by the numeral's integral
+part\index{positional number system!numerical value of integral part}
+is\footnote{Our underlined notation for the numerical value of a
+  numeral is not common, but we find it convenient.}
+\[
+\underline{\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0}
+\ \ \eqdef \ \
+\sum_{i=0}^n \alpha_i \cdot b^i
+\]
+
+\item
+The numeral continues with a single occurrence of the {\it
+  radix point}\index{positional number system!radix point ``$.$''}
+``$.$''
+\item
+The numeral ends with its {\em fractional part},\index{positional
+  number system!fractional part of a numeral}
+%
+which is a string---{\em finite or infinite}--- of digits from $B_b$:
+$\beta_0 \beta_1 \beta_2 \cdots$.
+
+The base-$b$ number represented by the numeral's fractional part
+is\index{positional number system!numerical value of fractional part}
+\[
+\underline{. \beta_0 \beta_1 \beta_2 \cdots}
+\ \ \eqdef \ \
+\sum_{j\geq 0} \beta_j \cdot b^{-j}
+\]
+\end{enumerate}
+In summary, then, the base-$b$ number represented by the numeral
+$\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+. \beta_0 \beta_1 \beta_2 \cdots$ 
+is\index{positional number system!numerical value of numeral}
+\[
+\underline{\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+. \beta_0 \beta_1 \beta_2 \cdots}
+\ \ \eqdef \ \
+\sum_{i=0}^n \alpha_i \cdot b^i
+\ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
+\]
+By prepending a ``negative sign'' (or, ``minus sign'') $-$ to a
+numeral or a number, one renders the thus-embellished entity as
+negative.
+
+
+\subsection{Scientific notation}
+\index{Scientific notation}
+
+The finite numerals in subsection A are all ``exact'' in the sense
+that changing any digit changes the value of the named number.  We
+turn now to a class of numerals that abjure this ``exactness'' for the
+sake of expedience.  There are a few reasons that one might be willing
+to do this.
+
+\begin{itemize}
+\item
+WHY SCIENTIFIC NOTATION
+\end{itemize}
+
+\subsection{Exact arithmetic}
+
+REPRESENT THE RATIONAL $p/q$ via the ordered pair $\langle p,q \rangle$
+
+
+\section{Pairing Functions: Bringing Linear Order to Tuple Spaces}
 
 As noted in Section~\ref{sec:integers}.A, ``order within a number
 system is one of one's biggest friends when reasoning about the
@@ -1391,7 +1660,7 @@ $\d$'s bijectiveness.\footnote{A computationally more satisfying proof
 
 \noindent
 ************** \\
-DO THE INDUCTION \\
+{\Arny SHOULD WE DO THE INDUCTION or leave it as an exercise?} \\
 **************
 
 \begin{quote}
@@ -1414,39 +1683,6 @@ cannot be a pairing function.
 \end{enumerate}
 \end{quote}
 
-\ignore{****************
-As we now look at a variety of other pairing functions, we continue
-the convention in Fig.~\ref{fig:diag} and illustrate a pairing
-function $\f: \N^+ \times \N^+ \leftrightarrow \N^+$ via a table whose
-entries are the values of $\f$ as depicted in Fig.~\ref{fig:generic}.
-\begin{figure}[htb]
-\[ \begin{array}{c|c|c|c|c|c}
-\f(1,1) & \f(1,2) & \f(1,3) & \f(1,4) & \f(1,5) & \cdots \\
-\f(2,1) & \f(2,2) & \f(2,3) & \f(2,4) & \f(2,5) & \cdots \\
-\f(3,1) & \f(3,2) & \f(3,3) & \f(3,4) & \f(3,5) & \cdots \\
-\f(4,1) & \f(4,2) & \f(4,3) & \f(4,4) & \f(4,5) & \cdots \\
-\f(5,1) & \f(5,2) & \f(5,3) & \f(5,4) & \f(5,5) & \cdots \\
-\vdots  & \vdots  & \vdots  & \vdots  & \vdots  & \ddots
-\end{array} \]
-\caption{{\it A generic template for sampling from a pairing function.}
-\label{fig:generic}}
-\end{figure}
-
-One possible application of pairing functions is to store
-arrays/tables in an {\em extendible} manner.  It has been recognized
-since the 1950s that many classes of computations, ranging from
-linear-algebraic scientific applications to (relational) databases,
-benefit from the ability to reshape multidimensional arrays and tables
-dynamically.  While several programming languages allow a user to
-specify at least some types of reshapings---say, the addition and/or
-deletion of rows and/or columns in two dimensions---most of their
-processors implement the capability quite naively, by completely
-remapping an array/table with each reshaping.  This is, of course,
-very wasteful of time, since one does $\Omega(n^2)$ work to
-accommodate $O(n)$ changes.  Adapting pairing functions for
-array/table storage obviates this reshaping and its attendant wasted
-effort.
-************}
 
 \medskip
 
@@ -1697,221 +1933,6 @@ containing $n$ or fewer positions is spread over $\Omega(n \log n)$
 fewer position.}
 \label{f.hyp}}
 \end{figure}
-
-   
-
-\ignore{*****************
-\noindent {\em Additive pairing functions}
-%
-The study in \cite{Rosenberg02} focuses on pairing functions that are
-{\it additive}: Assign each row $v$ a {\it base task-index} $B_v$ and
-a {\it stride} $S_v$.  Then use the formula
-\[ \t(v, t) \ = \ B_v + (t-1) S_v \]
-to map $\N^+ \times \N^+$ bijectively onto $\N^+$.
-
-{\em A methodology for designing {\em additive} pairing functions.}
-%
-Easily, any additive pairing function must have infinitely many
-distinct strides; i.e., $S_x$, viewed as a function of $x$, must have
-infinite range.  Despite this, that there do exist easily computed
-additive pairing functions.  One strategy for designing such pairing
-functions builds on the following well-known property of the set \O\/
-of positive odd integers.
-
-\begin{lemma}[\cite{NivenZ80}]
-\label{l.odds}
-For any positive integer $c$, every odd integer can be written
-in precisely one of the $2^{c-1}$ forms:
-\[ 2^c n +1, \ 2^c n +3, \ 2^c n +5, \ldots, \ 2^c n + (2^c -1), \]
-for some nonnegative integer $n$.
-\end{lemma}
-
-\noindent
-One builds on Lemma~\ref{l.odds} to construct additive pairing
-functions (APFs) in the following manner.
-
-\paragraph{\underline{Procedure}} {
-\sf APF-Constructor}($\t$) \\
-/*Construct an APF $\t$*/
-\begin{description}
-\item[Step 1.]
-Partition the set of row-indices into {\it groups} whose sizes are
-powers of 2 (with any desired mix of equal-size and distinct-size
-groups).  Order the groups linearly in some (arbitrary) way.
-\end{description}
-/*One can now talk unambiguously about group 0 (whose members share
-{\it group-index} $g=0$), group 1 (whose members share group-index
-$g=1$), and so on.*/
-\begin{description}
-\item[Step 2.]
-Assign each group a distinct copy of the set \O, as well as a {\it
-copy-index} $\kappa(g)$ expressed as a function of the group-index
-$g$.
-
-\item[Step 3.]
-Allocate group $g$'s copy of \O\/ to its members via the $(c =
-\kappa(g))$ instance of Lemma~\ref{l.odds}, using the multiplier $2^g$
-as a {\it signature} to distinguish group $g$'s copy of the set \O\/
-from all other groups' copies.
-\end{description}
-One can specify the procedure's APFs in a computationally friendly
-way.
-
-{\em An explicit expression for $\t$.}
-If we denote the $2^{\kappa(g)}$ rows of group $g$ as $x_{g,1}$,
-$x_{g,2}$, \ldots, $x_{g,2^{\kappa(g)}}$, then for all $i \in \{ 1, 2,
-\ldots, 2^{\kappa(g)} \}$,
-\begin{equation}
-\label{e.define.t}
-\t(x_{g,i}, y) \ \eqdef \
-2^g \left[ 2^{1 + \kappa(g)}(y-1) +
-	(2x_{g,i} +1 \bmod 2^{1 + \kappa(g)}) \right]
-\end{equation}
-
-\begin{theorem}
-\label{t.define.ataf}
-Any function $\t: \N^+ \times \N^+ \leftrightarrow \N^+$ that is
-designed via Procedure {\small\sf APF-Constructor}, hence is of the
-form (\ref{e.define.t}), is a valid additive pairing function whose
-base row-entries and strides satisfy
-\begin{equation}
-\label{e.genl.b.s}
-B_x \ \leq \
-S_x \ =    \ \t(x, y+1) - \t(x,y) \ = \ 2^{1 + g + \kappa(g)}.
-\end{equation}
-\end{theorem}
-*********************}
-
-
-
-\subsection{Numerals}\index{numerals}
-\label{sec:Numerals}
-
-We can identify distinct families of {\em operational}
-numerals,\index{numerals!operational} i.e., numerals that allow one to
-do things such as perform arithmetic (add, multiply, etc.).
-
-**THOUGHTS*******
-series expansions, strings created by a positional number system, and
-hybrids built on positional systems such as ``scientific notation''.
-*************
-
-
-Of course, we are all familar with certain numbers that have {\em
-  non-operational} names that we use all the time.  Notable among
-these are (using terminology that anticipates future sections and
-chapters):
-\begin{itemize}
-\item
-$\pi$: the ratio of the circumference of a circle to its diameter;
-  $\pi \approx 3.141592653 \ldots$
-\item
-$e$: Euler's constant; the base of ``natural'' logarithms: $e \approx
-  2.718281828 \ldots$
-\item
-$i$: the name of the number whose square is $-1$; $i$ is appended to
-  the real numbers in order to ``complete'' them to the complex
-  numbers, within which system every polynomial of degree $n$ has $n$
-  roots.
-\end{itemize}
-
-\medskip
-
-%\addcontentsline{toc}{paragraph}{A. Positional number systems}
-\paragraph{\small\sf A. Positional number systems}
-\index{positional number system}
-
-The most common way of forming numerals is via strings over a {\it
-  number base}.\index{positional number system!base of the system}  
-%
-We begin with an integer $b>1$ that will serve as our base, and we
-define the set $B_b = \{ 0, 1, \ldots, b-1\}$ of {\it digits in base
-  $b$}.\index{positional number system!digits in base $b$}
-%
-To aid legibility, {\em within the context of base-$b$ positional
-  numerals}, we denote the digit $b-1$ as a single character,
-$\bar{b}$.\index{$\bar{b}$: the digit $b-1$ in base $b$}
-%
-We then form base-$b$ numerals in the following way.\index{positional
-  number system!base-$b$ numerals}
-%
-This formation builds on {\em geometric sums}, a mathematical
-structure that we shall learn to manipulate, evaluate, and compute
-with in Section~\ref{sec:geometric-sums}.
-
-A base-$b$ numeral is a string having three sections.
-\begin{enumerate}
-\item
-The numeral begins with its {\em integral part},\index{positional
-  number system!integral part of a numeral}
-%
-which is a finite string of digits from $B_b$: $\alpha_n \alpha_{n-1}
-\cdots \alpha_1 \alpha_0$.
-
-The base-$b$ number represented by the numeral's integral
-part\index{positional number system!numerical value of integral part}
-is\footnote{Our underlined notation for the numerical value of a
-  numeral is not common, but we find it convenient.}
-\[
-\underline{\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0}
-\ \ \eqdef \ \
-\sum_{i=0}^n \alpha_i \cdot b^i
-\]
-
-\item
-The numeral continues with a single occurrence of the {\it
-  radix point}\index{positional number system!radix point ``$.$''}
-``$.$''
-\item
-The numeral ends with its {\em fractional part},\index{positional
-  number system!fractional part of a numeral}
-%
-which is a string---{\em finite or infinite}--- of digits from $B_b$:
-$\beta_0 \beta_1 \beta_2 \cdots$.
-
-The base-$b$ number represented by the numeral's fractional part
-is\index{positional number system!numerical value of fractional part}
-\[
-\underline{. \beta_0 \beta_1 \beta_2 \cdots}
-\ \ \eqdef \ \
-\sum_{j\geq 0} \beta_j \cdot b^{-j}
-\]
-\end{enumerate}
-In summary, then, the base-$b$ number represented by the numeral
-$\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
-. \beta_0 \beta_1 \beta_2 \cdots$ 
-is\index{positional number system!numerical value of numeral}
-\[
-\underline{\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
-. \beta_0 \beta_1 \beta_2 \cdots}
-\ \ \eqdef \ \
-\sum_{i=0}^n \alpha_i \cdot b^i
-\ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
-\]
-By prepending a ``negative sign'' (or, ``minus sign'') $-$ to a
-numeral or a number, one renders the thus-embellished entity as
-negative.
-
-\bigskip
-
-%\addcontentsline{toc}{paragraph}{B. Scientific notation}
-\paragraph{\small\sf B. Scientific notation}
-\index{Scientific notation}
-
-The finite numerals in subsection A are all ``exact'' in the sense
-that changing any digit changes the value of the named number.  We
-turn now to a class of numerals that abjure this ``exactness'' for the
-sake of expedience.  There are a few reasons that one might be willing
-to do this.
-
-\begin{itemize}
-\item
-WHY SCIENTIFIC NOTATION
-\end{itemize}
-
-\addcontentsline{toc}{paragraph}{C. Exact arithmetic}
-
-
 
 
 
