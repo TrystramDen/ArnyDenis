@@ -1,4 +1,4 @@
-%version of 07-30-18
+%version of 07-31-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -97,14 +97,15 @@ M  & 1000
 \noindent
 The formation rules for Roman numerals of length exceeding $2$ are a
 bit complicated, but {\em roughly}, a letter to the right of a higher
-valued letter augments the value of the numeral (e.g., CCL $=250$, XVI
+valued letter augments the value of the numeral (e.g., DCL $=650$, XVI
 $=16$), while a letter to the left of a higher valued letter lowers
 the value (e.g., MCM $=1900$, XLIV $=44$).
 
 Yet another way to craft numerals from letters is observable in
-systems such as Hebrew's, which incorporates ideas used by the ancient
-Egyptians, Phoenicians, and Greeks.  Hebrew assigns the following
-respective values to the $22$ letters of its alphabet.
+systems such as is used with the Hebrew alphabet, which incorporates
+ideas used by the ancient Egyptians, Phoenicians, and Greeks.  Hebrew
+assigns the following respective values to the $22$ letters of its
+alphabet.
 \[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 20, 30, 40, 50, 60, 70, 80, 90, 100,
  200, 300, 400
@@ -112,85 +113,96 @@ respective values to the $22$ letters of its alphabet.
 Numerals are then formed as strings of single occurrences of letters,
 by accumulating the letters' numerical values.  Numbers that are too
 large to be named using ``words'' comprising single letter-instances
-often allow repeated letter instances or using auxiliary words, such
-as ``thousands''.
+often allow repeated letter instances or using auxiliary words, in a
+mixed-mode manner similar to our writing the number $5000$ as ``$5$
+thousand''.
 
 
-Alphabet-based systems for creating numerals are more valuable than
+Alphabet-based systems for creating numerals are more useful than
 nickname-based systems in that they {\em do} allow anyone to {\em
   identify} any named number.  Indeed, one can (algorithmically)
 convert any Roman numeral or any Hebrew numeral to a decimal numeral
 for the same number.  However, any reader who is familiar with
-alphabet-based systems will recognize what is possibly the biggest
-drawback of such systems: It is {\em exceedingly difficult} to do any
-but the most trivial arithmetic using such systems' numerals.  Two
-simple examples using Roman numerals will make our case:
+alphabet-based systems will recognize a major drawback of such
+systems: It is {\em exceedingly difficult} to do any but the most
+trivial arithmetic using such systems' numerals.  Two simple examples
+using Roman numerals will make our case:
 \begin{itemize}
 \item
 Square CC.  This is, of course, trivial using our familiar decimal
 numerals: an elementary school student can compute $200 \times 200 \ =
 \ 40,000$.  But even in an early course on programming, one would not
-assign the Roman-numeral problem as a first assignment.
+assign the general ``multiply numbers using Roman numerals'' problem
+as a first assignment.
+
 \item
 Subtract MCMXCVIII from MMII.  We all know, of course, that the answer
 is IV, but I had to convert to decimal numerals in order to determine
 this.
 \end{itemize}
 
-
-
-
 \noindent
 {\it Positional number systems.}
 %
 In our daily commerce, we typically deal with numerals that are formed
-within a {\it base-$b$ positional number system,}\index{numerals in a
-  (base-$b$) positional number system}
+within a {\it base-$b$ positional number system,}
+\index{numerals in a (base-$b$) positional number system}
 %
-i.e., by strings of {\it digits}, often embellished with other
-symbols, such as a {\em radix point},\footnote{The use of a period as
-  the radix point is a US convention; in much of Europe, a comma
-  usually denotes the radix point.}~and sometimes a leading ``$+$'' or
-``$-$'' to indicate, respectively, the denoted number's positivity or
-negativity.  We describe such systems in detail in
+i.e., by strings of {\it digits} from a set of the form $\{0, 1, 2,
+\ldots, \overline{b-1}\}$, often embellished with other symbols, such as
+a {\em radix point},\footnote{The use of a period as the radix point
+  is a US convention; in much of Europe, a comma usually denotes the
+  radix point.}~and sometimes a leading ``$+$'' or ``$-$'' to
+indicate, respectively, the denoted number's positivity or negativity.
+\begin{quote}
+{\em We employ the notation ``$\overline{b-1}$'' to remind ourselves
+  that in this context ``$b-1$'' is a digit, not a string; for
+  instance, when $b = 10$ (the common {\em decimal} base),
+  $\overline{b-1}$ is the digit $9$.  }
+\end{quote}
+We discuss positional number systems in detail in
 Section~\ref{sec:Numerals}.  For now, we settle for a few examples:
 \begin{itemize}
 \item
-Most of our daily work employs the base $10$ ({\it decimal}) system.
-This system's digits comprise the set $\{1, 2, 3, 4, 5., 6, 7, 8,
-9\}$; its radix point is usually called a {\em decimal point}.
+Most of our daily work employs the base-$10$ ({\it decimal}) system,
+whose digits comprise the set $\{0, 1, 2, 3, 4, 5., 6, 7, 8, 9\}$; the
+system's radix point is usually called a {\em decimal point}.
 
 \item
 Because electrical and electronic circuitry are (for the most part)
 built using {\it bistable} devices---e.g., switches that are either
-{\em on} or {\em off}---discussions of such circuitry and its end
-products, such as computers, often employ the base $2$ ({\it binary})
-system, whose digits---usually called {\it bits}---comprise the set
-$\{0, 1\}$.
+{\em on} or {\em off}---the system most often employed when dealing
+with such circuitry and its end products (say, computers) is the
+base-$2$ ({\it binary}) system, whose digits---usually called {\it
+  bits}---comprise the set $\{0, 1\}$.
 
 \item
 Because of its small repertoire of digits, the binary system's
 numerals are quite long---roughly $3$ times longer than decimal
 numerals.  For instance,
-\[ 32,768 \ \mbox{ base $10$} \ \ \ = \ 1,000,000,000,000,000 \ \mbox{
+\[ 32,768 \ \mbox{ base $10$} \ \ = \ 1,000,000,000,000,000 \ \mbox{
   base $2$}
 \]
 In order to make these numerals easier for humans to deal with, small
-sequences of bits are aggregated to form larger number bases---but
+sequences of bits are often aggregated to form larger number bases---but
 still powers of $2$.  Two aggregations have been particularly popular:
   \begin{itemize}
   \item
-By aggregating length-$3$ sequences of bits, once converts the binary
-system to base $8$ ({\it octal}), whose digits comprise the set $\{0,
-1, 3, 4, 5, 6, 7\}$.
+By aggregating length-$3$ sequences of bits, one converts binary
+numerals to base-$8$ ({\it octal}) numerals; the octal digits comprise
+the set $\{0, 1, 3, 4, 5, 6, 7\}$.
   \item
-By aggregating length-$4$ sequences of bits, once converts the binary
-system to base $16$ ({\it hexadecimal}), whose digits comprise the set
-$\{0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15\}$.  {\it Note:}
-We have written the hexadecimal digits in decimal, to make them easy
-to read.  Keep in mind that each of ``$10$'', ``$11$'', ``$12$'',
-``$13$'', ``$14$'', ``$15$'' represents a single hexadecimal digit,
-not a $2$-digit numeral.
+By aggregating length-$4$ sequences of bits, one converts binary
+numerals to base-$16$ ({\it hexadecimal}) numerals; the hexadecimal
+digits comprise the set
+\[ \{0, 1, 3, 4, 5, 6, 7, 8, 9, \overline{10}, \overline{11},
+\overline{12}, \overline{13}, \overline{14}, \overline{15}\}.
+\]
+{\it Note:} We have written the hexadecimal digits in decimal, to make
+them easy to read, but we have placed overlines above the (decimal)
+numerals ``$10$'', ``$11$'', ``$12$'', ``$13$'', ``$14$'', and
+``$15$'' as a reminder that each represents a single hexadecimal
+digit, not a $2$-digit numeral.
   \end{itemize}
 \end{itemize}
 
