@@ -1071,15 +1071,144 @@ We return to this idea of encoding-via-integers in a later chapter.
 
 \subsection{Pairing Functions: Bringing Linear Order to Tuple Spaces}
 \label{sec:pairing}
+\index{pairing functions}
+
+Paraphrasing an oft-used quip by the stand-up comic Rodney
+Dangerfield, integers ``don't get no respect''!  Superficially, it
+appears that integers are useful for counting things but for little
+else.  The Fundamental Theorem of Arithmetic
+(Theorem~\ref{thm:Fund-Thm-Arith}) hints at the importance of the
+prime numbers, but it does little to inspire respect for the non-prime
+integers.  Once one augments the integers with a bit of structure,
+{\em then} one can begin to represent interesting situations.
+
+For instance, let us consider {\em ordered pairs}
+\index{integer!ordered pairs}
+of integers---the sets $\Z \times \Z$, $\N \times \N$, and $\N^+
+\times \N^+$.
+\begin{quote}
+{\em The set $\Z \times \Z$, for instance, consists of elements
+  $\langle a_1, a_2 \rangle$, where $a_1$ and $a_2$ belong to $\Z$.
+  We say that $a_1 = \mbox{first }(\langle a_1, a_2 \rangle)$, while
+  $a_2 = \mbox{second }(\langle a_1, a_2 \rangle)$. }
+\end{quote}
+then, among other structures, one can represent:
+\begin{itemize}
+\item
+{\em ordered $k$-tuples of integers}
+\index{tuples of integers}
+\index{integer!tuples}
+\index{tuples of integers!via ordered pairs}
+\index{integer!tuples!via ordered pairs}
+
+One way to accomplish this is by recursion, with {\em ordered pair} as
+the base case.  We then represent the ordered $k$-tuple $\langle a_1,
+a_2, \ldots, a_k \rangle$ as the ordered pair whose {\em first} is the
+ordered $(k-1)$-tuple $\langle a_1, a_2, \ldots, a_{k-1} \rangle$ and
+whose {\em second} is the integer $a_k$:
+\[ \langle a_1, a_2, \ldots, a_k \rangle \ \ = \ \
+\langle \langle a_1, a_2, \ldots, a_{k-1} \rangle, a_k \rangle \]
+
+\item
+{\em strings of integers}
+\index{integer!string}
+\index{string of integers}
+\index{integer!string!via ordered pairs}
+\index{string of integers!via ordered pairs}
+
+One way to represent the string $a_1 a_2 \cdots a_n$ using ordered
+pairs is:
+\[ a_1 a_2 \cdots a_n \ \ = \ \
+\langle a_1, \langle a_2, \langle a_3, \ldots, \langle a_{n-2},  a_{n-1}
+\rangle, a_n \rangle \cdots \rangle \rangle \rangle
+\]
+The following small example should make the aggregation perfectly
+clear (without dots):
+\[ a_1 a_2 a_3 a_4 \ \ = \ \
+\langle a_1, \langle a_2, \langle a_3,  a_4 \rangle \rangle \rangle
+\]
+
+\item
+{\em binary trees}
+\index{integer!binary tree!via ordered pairs}
+\index{binary tree of integers!via ordered pairs}
+
+For illustration, the {\em complete binary tree}
+\index{complete binary tree}
+\index{binary tree!complete}
+\index{complete binary tree!via ordered pairs}
+\index{binary tree!complete!via ordered pairs}
+with leaves $a_1$, $a_2$, $a_3$, $a_4$, $a_5$, $a_6$, $a_7$, $a_8$
+would be represented via the following aggregation of ordered pairs,
+\[
+\langle
+\langle \langle a_1,  a_2 \rangle, \langle a_3,  a_4 \rangle \rangle,
+\langle \langle a_5,  a_6 \rangle, \langle a_7,  a_8 \rangle \rangle
+\rangle
+\]
+while the {\em comb-structured binary tree}
+\index{comb-structured binary tree}
+\index{comb-structured binary tree!via ordered pairs}
+with the same leaves would be represented via the following
+aggregation of ordered pairs,
+\[
+\langle a_1, \langle a_2, \langle a_3, \langle a_4, \langle a_5,
+\langle a_6, \langle a_7, a_8 \rangle \rangle \rangle \rangle
+\rangle \rangle \rangle
+\]
+\end{itemize}
+\begin{quote}
+{\em 
+It should be no surprise that a single character string, such as
+$\langle a_1, \langle a_2, \langle a_3, a_4 \rangle \rangle \rangle$,
+can be used to represent many distinct, but {\em isomorphic},
+objects---for instance a length-$4$ string and a $4$-leaf
+comb-structured binary tree.  Indeed, one of the biggest strengths of
+mathematics is its ability to expose often-unexpected structural
+similarities.  }
+\end{quote}
+
+\medskip
+
+The rather long preamble to this section has been our attempt to
+enhance the reputation of the integers---all three sets, $\Z$, $\N$,
+and $\N^+$---in the eyes of the readers.
+
+\medskip
+
+\noindent
+{\em We develop {\em easily computed} bijections (cf.,
+  Chapter~\ref{sec:function}) between any of the sets $\Z \times \Z$,
+  $\N \times \N$, or $\N^+ \times \N^+$ and the set $\N^+$ of positive
+  integers.}
+
+\smallskip
+
+\noindent
+{\em We thereby exhibit easily computed mechanisms for \underline{encoding}
+  ordered pairs of integers---hence, also, strings and binary trees of
+  integers---as single integers.  }
+
+\smallskip
+
+\noindent
+{\em An extra benefit of our bijections is that they endow our sets of
+  ordered pairs with natural, easily computed, \underline{linear
+    orders}.  (Of course, our sets of ordered pairs do not have native
+  natural linear orders.)  }
+
+\medskip
+
+**HERE
 
 As noted in Section~\ref{sec:integers}.A, ``order within a number
-system is one of one's biggest friends when reasoning about the
+system is among one's biggest friends when reasoning about the
 numbers within the system.''  This section is devoted to showing that,
 even when a number system lacks intrinsic desirable ordering
 properties, we can sometimes endow the system with ``inherited
 access'' to such properties by devising a {\em bijection} that {\it
   encodes}
-\index{pairing functions as encodings}
+\index{pairing functions!encodings}
 %
 the system's numbers as nonnegative integers.  We focus here on two
 important number systems, the rational and complex numbers, $\Q$ and
