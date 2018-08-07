@@ -1,4 +1,4 @@
-%version of 08-03-18
+%version of 08-07-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -1060,7 +1060,7 @@ is a (uniquely decodable) integer-representation of sequence $\bar{s}$.
 
 We return to this idea of encoding-via-integers in a later chapter.
 
-\subsubsection{{\bf Enrichment}: The ``density'' of the prime numbers}
+\subsubsection{Enrichment: The ``density'' of the prime numbers}
 \label{sec:Prime-Number-Theorem}
 
 {\Arny There are two advanced topics that we may want to
@@ -1073,7 +1073,7 @@ We return to this idea of encoding-via-integers in a later chapter.
 \label{sec:pairing}
 \index{pairing functions}
 
-Paraphrasing an oft-used quip by the stand-up comic Rodney
+Paraphrasing an oft-used quip by the late stand-up comic Rodney
 Dangerfield, integers ``don't get no respect''!  Superficially, it
 appears that integers are useful for counting things but for little
 else.  The Fundamental Theorem of Arithmetic
@@ -1085,10 +1085,8 @@ integers.  Once one augments the integers with a bit of structure,
 For instance, let us consider {\em ordered pairs}
 \index{integer!ordered pairs}
 of integers---i.e., the sets $\Z \times \Z$, $\N \times \N$, and $\N^+
-\times \N^+$.
-
-We use  the set $\Z \times \Z$ as the exemplar of these three sets of
-ordered pairs of integers.
+\times \N^+$.  Using $\Z \times \Z$ as the exemplar of these three
+sets of ordered pairs of integers:
 \begin{itemize}
 \item
 Each {\em element} of $\Z \times \Z$ has the form $\langle a_1, a_2
@@ -1108,11 +1106,11 @@ $a_2 \ \eqdef \ \mbox{second}(\langle a_1, a_2 \rangle)$.
 
 Among the myriad other structures that ``contain'' integers that one
 can represent via some sort of iterated formation of ordered pairs are
-the following
+the following.
 
 \noindent
-{\em (ordered) tuples of integers}\index{tuples of integers}\index{integer!tuples}\index{tuples of integers!via ordered pairs}\index{integer!tuples!via ordered pairs}
-
+(i) {\em (Ordered) tuples of integers.}\index{tuples of integers}\index{integer!tuples}\index{tuples of integers!via ordered pairs}\index{integer!tuples!via ordered pairs}
+%
 We focus on the set of $k$-tuples of integers, for any integer $k >
 1$.  One way to accomplish this is by recursion, with {\em ordered
   pair} (the just-described case $k=2$) as the base case.  For any $k
@@ -1124,8 +1122,8 @@ $(k-1)$-tuple $\langle a_1, a_2, \ldots, a_{k-1} \rangle$ and whose
 \langle \langle a_1, a_2, \ldots, a_{k-1} \rangle, a_k \rangle \]
 
 \noindent
-{\em strings of integers}\index{integer!string}\index{string of integers}\index{integer!string!via ordered pairs}\index{string of integers!via ordered pairs}
-
+(ii) {\em Strings of integers.}\index{integer!string}\index{string of integers}\index{integer!string!via ordered pairs}\index{string of integers!via ordered pairs}
+%
 One way to represent the string of integers $a_1 a_2 \cdots a_n$ using
 ordered pairs is as follows.
 \[ a_1 a_2 \cdots a_n \ \ = \ \
@@ -1139,8 +1137,8 @@ clear (without any possibly confusing dots):
 \]
 
 \noindent
-{\em binary trees}\index{integer!binary tree!via ordered pairs}\index{binary tree of integers!via ordered pairs}
-
+(iii) {\em Binary trees.}\index{integer!binary tree!via ordered pairs}\index{binary tree of integers!via ordered pairs}
+%
 For illustration, the {\em complete binary tree}\index{complete binary tree}\index{binary tree!complete}\index{complete binary tree!via ordered pairs}\index{binary tree!complete!via ordered pairs}
 with leaves $a_1$, $a_2$, $a_3$, $a_4$, $a_5$, $a_6$, $a_7$, $a_8$
 would be represented via the following aggregation of ordered pairs,
@@ -1172,7 +1170,7 @@ aggregation of ordered pairs,
 
 The rather long preamble to this section has been our attempt to
 enhance the reputation of the integers---all three sets, $\Z$, $\N$,
-and $\N^+$---in the eyes of the readers.  With that process hopefully
+and $\N^+$---in the eyes of the reader.  With that process hopefully
 begun, we turn now to a demonstration via multiple examples that what
 we have accomplished has largely been an exercise in form rather than
 essence.  Specifically, we show that one can easily and efficiently
@@ -1195,92 +1193,52 @@ as positive integers!
 \smallskip
 
 \noindent
-{\em We now develop {\em easily computed} bijections between any of
-  the sets $\Z \times \Z$, $\N \times \N$, or $\N^+ \times \N^+$ and
+{\em The remainder of this section is devoted to developing {\em
+    easily computed} bijections between the set $\N^+ \times \N^+$ and
   the set $\N^+$ of positive integers.  We thereby exhibit easily
   computed mechanisms for \underline{encoding} ordered pairs of
-  integers---hence, also, strings and binary trees of integers---as
-  single integers.  }
-
-\smallskip
+  integers---hence, also, tuples, strings, and binary trees of
+  integers---as single integers.  Because of the special role of
+  ordered pairs of integers in our study of encodings of structured
+  sets of integers---they form the fundamental puzzle from whose
+  solution all else will follow---a special name has been associated
+  with bijections between $\N^+ \times \N^+$ and $\N^+$.  These
+  special bijections are called {\it pairing functions}.}
+  \index{pairing functions!encodings}
 
 \noindent
-{\em An extra benefit of our bijections is that they endow our sets of
-  ordered pairs with natural, easily computed, \underline{linear
-    orders}.  (Of course, our sets of ordered pairs do not have native
-  natural linear orders.)  }
+It should be no surprise that our primary focus on $\N^+$, rather than
+$\Z$ or $\N$, as the avatar of {\it integer} is primarily for
+definiteness and a bit of clerical simplification.  We could rewrite
+this section easily with a focus on bijections between $\Z \times \Z$
+and $\Z$ or a focus on bijections between $\N \times \N$ and $\N$.
 
-\medskip
+\bigskip
 
-**HERE
-
-As noted in Section~\ref{sec:integers}.A, ``order within a number
-system is among one's biggest friends when reasoning about the
-numbers within the system.''  This section is devoted to showing that,
-even when a number system lacks intrinsic desirable ordering
-properties, we can sometimes endow the system with ``inherited
-access'' to such properties by devising a {\em bijection} that {\it
-  encodes}
-\index{pairing functions!encodings}
-%
-the system's numbers as nonnegative integers.  We focus here on two
-important number systems, the rational and complex numbers, $\Q$ and
-$\C$, whose ordering properties are much weaker than those of the
-nonnegative integers $\N$: Neither $\Q$ nor $\C$ is {\em
-  well-ordered}; $\C$ is not even {\em totally} ordered.
+We noted in Section~\ref{sec:integers}.A that ``order within a number
+system is among one's biggest friends when reasoning about the numbers
+within the system.''  A particularly valuable benefit of the
+bijections we develop, which ``encode'' various structured sets as
+integers (from $\N$ or $\N^+$ or $\Z$), is that these encodings endow
+the structures we encode (the tuples, strings, trees, etc.) with
+natural, easily computed, {\em linear orders}.
 \begin{quote}
-{\em Well-ordering} is an especially welcome property because it
-enables algorithms that are structured as a linear recursion that
-``counts down'' from an argument $n$.  Well-ordering guarantees that
-there is a ``bottom'' that will terminate the downward recursion.
+{\em Some structured sets have natural, native linear orders:
+  consider, as one such, strings under lexicographic ordering.
+  However, many structured sets do not have natural native linear
+  orders: consider, e.g., tuples, trees, arrays, \ldots .  For these,
+  our encodings can play an important role in computing with the
+  structures and analyzing the resulting algorithms. }
 \end{quote}
 
-\noindent
-Two simplifications facilitate our quest for bijective encodings
-\[ \varepsilon_1: \Q \leftrightarrow \N \ \ \ \ \ \mbox{ and }
-\ \ \ \ \ \varepsilon_2: \C \leftrightarrow \N
-\]
-\begin{itemize}
-\item
-We abstract both $\Q$ and $\C$ as the set $\N \times \N$.  Since both
-$\Q$ and the 
-\index{numbers!complex integers}
-%
-{\it complex integers}---complex numbers $a+bi$ where $a,b \in
-\N$---can be encoded as ordered pairs of nonnegative integers, this is
-a natural abstraction.
-
-Of course, using this abstraction to encode $\Q$ into $\N$ ignores
-common (integer) divisors of a fraction's numerator and denominator,
-whose elimination preserve the fraction's value.  A very simple
-algorithm would compensate for this.
-
-\item
-We slightly change our agenda and focus on bijections between $\N^+
-\times \N^+$ and $\N^+$, where $\N^+$ is the set of {\em positive}
-integers.
-\index{number!integer!positive integer}
-\index{$\N^+$:number!integer!positive integer}
-
-Focusing on {\em positive} integers rather than {\em nonnegative}
-integers somewhat simplifies certain mathematical expessions.
-\end{itemize}
-The structures of the domain $\N \times \N$ and the range $\N$ of the
-bijective encodings of interest have led to the name {\it pairing
-  functions}
-\index{pairing function}\index{pairing function as encoding}
-for these bijections.
-
-\smallskip
-
-We now embark on a short guided tour of the world of pairing
-functions.
-
 \medskip
 
-\noindent {\it i. The Diagonal pairing function $\d$.}
+We now embark on a very short guided tour that will introduce the
+reader to three interesting pairing functions.
+
+\subsubsection{The Diagonal pairing function $\d$}
 \index{The Diagonal pairing function $\d$}
-%
+
 Pairing functions first appeared in the literature early in the 19th
 century.  Perhaps the simplest and ``prettiest'' such function (since
 it is a {\em polynomial}) appears, pictorially, in an 1821 work by the
@@ -1292,7 +1250,7 @@ half-century later by the German logician Georg Cantor,
 \index{Cantor, Georg}
 %
 whose studies \cite{Cantor74,Cantor78} revolutionized how we think
-about infinite sets.
+about {\em infinite} sets.
 \begin{equation}
 \label{eq:diag}
 \d(x, y) \ = \
@@ -1300,7 +1258,9 @@ about infinite sets.
 \end{equation}
 ($\d$ of course has a twin that exchanges $x$ and $y$).  $\d$'s
 mapping of $\N^+ \times \N^+$ onto $\N^+$, as depicted in
-Fig.~\ref{fig:diag}, exposes that we can view $\d$ as:
+Fig.~\ref{fig:diag}, exposes that we can view $\d$'s mapping of $\N^+
+\times \N^+$ as a two-step conceptual process:\footnote{This is a {\em
+    conceptual} process.  $\d$ is a function, {\em not} an algorithm.}
 \begin{figure}[htb]
 \begin{center}
 \begin{tabular}{r|r|r|r|r|r|r|r|r}
@@ -1342,7 +1302,7 @@ This is accomplished by the additional subexpression ``$+y$'' in
 Understanding $\d$'s structure leads to an inductive verification of
 $\d$'s bijectiveness.\footnote{A computationally more satisfying proof
   of $\d$'s bijectiveness appears in \cite{Davis58}, along with an
-  explicit recipe for computing its inverse.}
+  explicit recipe for computing $\d$'s inverse.}
 
 \noindent
 ************** \\
@@ -1350,10 +1310,12 @@ $\d$'s bijectiveness.\footnote{A computationally more satisfying proof
 **************
 
 \begin{quote}
-The fact that $\d$ is a {\em polynomial} in $x$ and $y$ raises the
-natural (to a mathematician!)~question of whether there are other
-polynomial pairing functions.  This question remains largely open, but
-there are a few nontrivial pieces of an answer.
+{\em The fact that $\d$ is a {\em polynomial} in $x$ and $y$ raises
+  the natural (to a mathematician!)~question of whether there exist
+  any other polynomial pairing functions.  This is a quite advanced
+  topic that is beyond the scope of this text.  Indeed, even as a
+  research problem, the question remains largely open.  But, a few
+  nontrivial pieces of an answer are known.}
 \begin{enumerate}
 \item
 There is no {\em quadratic} polynomial pairing function other than
@@ -1369,13 +1331,10 @@ cannot be a pairing function.
 \end{enumerate}
 \end{quote}
 
-
-\medskip
-
-\noindent {\it ii. A methodology for constructing pairing functions.}
+\subsubsection{Enrichment: A methodology for constructing pairing functions}
 \index{constructing pairing functions via ``shells''}
 \index{pairing functions as storage mappings for arrays/tables}
-%
+
 The shell-oriented strategy that underlies the diagonal pairing
 function $\d$ can be adapted to incorporate shell-``shapes'' that are
 inspired by a variety of computational situations---and can be applied
@@ -1420,7 +1379,7 @@ Any function $\a: \N^+ \times \N^+ \leftrightarrow \N^+$ that is
 designed via Procedure {\small\sf PF-Constructor} is a bijection.
 \end{prop}
 
-\proof{(Sketch) Step 1 of Procedure {\small\sf PF-Constructor}
+\begin{proof}(Sketch) Step 1 of Procedure {\small\sf PF-Constructor}
 constructs a partial order on $\N^+ \times \N^+$, in which: ($a$) each
 shell is finite; ($b$) there is a linear order on the shells.  Step 2
 extends this partial order to a linear order, by honoring the inherent
@@ -1428,17 +1387,18 @@ ordering of shells and imposing a linear order within each shell.  The
 function constructed via the Procedure is: {\em injective} because the
 disjoint shells are enumerated sequentially; {\em surjective} because
 the enumeration within each shell begins immediately after the
-enumeration within the preceding shell, with no gap.}  \qed
+enumeration within the preceding shell, with no gap.  \qed
+\end{proof}
+
+\bigskip
 
 We have noted how to use Procedure {\small\sf PF-Constructor} to
 construct pairing function $\d$.  We now use the Procedure to design
 two other useful pairing functions.
 
-\medskip
-
-\noindent {\it iii. The Square-shell pairing function $\s$.}
+\subsubsection{The Square-shell pairing function $\s$}
 \index{The Square-shell pairing function $\s$}
-%
+
 One computational situation where pairing functions can be useful
 involves storage-mappings for arrays/tables that can expand and/or
 contract dynamically.  In conventional systems, when one expands an $n
@@ -1501,12 +1461,10 @@ $(a_1 n \times b_1 n)$ or $(a_2 n \times b_2 n)$ or \ldots or $(a_k n
 \times b_k n)$.
 \end{quote}
 
-\medskip
-
-\noindent {\it iv. The Hyperbolic-shell pairing function $\h$.}
+\subsubsection{The Hyperbolic-shell pairing function $\h$}
 \index{The Hyperbolic-shell pairing function $\h$}
-%
-We have just seen, in paragraphs (ii) and (iii), that when the growth
+
+We have just seen, in subsections B and C, that when the growth
 patterns of one's arrays/tables is very constrained, one can use
 pairing functions as storage mappings with very little wastage.  In
 contrast, if one employs a pairing function such as $\d$ without
@@ -1588,7 +1546,7 @@ than a constant factor.
 {\bf (a)} The fact that $\h$ is a pairing function follows from
 Proposition~\ref{thm:PF-construct}.
 
-{\bf (b)}
+\noindent {\bf (b)}
 %
 The pairing function $\h$ maps integers along the ``hyperbolic
 shells'' defined by $xy = 1, \ xy =2, \ xy=3, \ldots$.  Hence,
@@ -1598,7 +1556,7 @@ $\h$, the number of occupied slots is within $n$ of
 \]
 Elementary calculations show that this sum is $O(n \log n)$.
 
-{\bf (c)}
+\noindent {\bf (c)}
 %
 The optimality of $\h$ in compactness (up to constant factors) is seen
 via the following argument.  The set of tables that have $n$ or fewer
@@ -3968,3 +3926,62 @@ norms/metrics: $L_1$ (Manhattan, or, rook's-move distance), $L_2$
 \subsection{Edit-distance: a measure of closeness in {\em string spaces}}
 
 ***************}
+\ignore{************
+
+This section is devoted to showing that,
+even when a number system lacks intrinsic desirable ordering
+properties, we can sometimes endow the system with ``inherited
+access'' to such properties by devising a {\em bijection} that {\it
+  encodes}
+
+%
+the system's numbers as nonnegative integers.  We focus here on two
+important number systems, the rational and complex numbers, $\Q$ and
+$\C$, whose ordering properties are much weaker than those of the
+nonnegative integers $\N$: Neither $\Q$ nor $\C$ is {\em
+  well-ordered}; $\C$ is not even {\em totally} ordered.
+\begin{quote}
+{\em Well-ordering} is an especially welcome property because it
+enables algorithms that are structured as a linear recursion that
+``counts down'' from an argument $n$.  Well-ordering guarantees that
+there is a ``bottom'' that will terminate the downward recursion.
+\end{quote}
+
+\noindent
+Two simplifications facilitate our quest for bijective encodings
+\[ \varepsilon_1: \Q \leftrightarrow \N \ \ \ \ \ \mbox{ and }
+\ \ \ \ \ \varepsilon_2: \C \leftrightarrow \N
+\]
+\begin{itemize}
+\item
+We abstract both $\Q$ and $\C$ as the set $\N \times \N$.  Since both
+$\Q$ and the 
+\index{numbers!complex integers}
+%
+{\it complex integers}---complex numbers $a+bi$ where $a,b \in
+\N$---can be encoded as ordered pairs of nonnegative integers, this is
+a natural abstraction.
+
+Of course, using this abstraction to encode $\Q$ into $\N$ ignores
+common (integer) divisors of a fraction's numerator and denominator,
+whose elimination preserve the fraction's value.  A very simple
+algorithm would compensate for this.
+
+\item
+We slightly change our agenda and focus on bijections between $\N^+
+\times \N^+$ and $\N^+$, where $\N^+$ is the set of {\em positive}
+integers.
+\index{number!integer!positive integer}
+\index{$\N^+$:number!integer!positive integer}
+
+Focusing on {\em positive} integers rather than {\em nonnegative}
+integers somewhat simplifies certain mathematical expessions.
+\end{itemize}
+The structures of the domain $\N \times \N$ and the range $\N$ of the
+bijective encodings of interest have led to the name {\it pairing
+  functions}
+\index{pairing function}\index{pairing function as encoding}
+for these bijections.
+
+\smallskip
+**************}
