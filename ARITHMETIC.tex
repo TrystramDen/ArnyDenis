@@ -1619,49 +1619,106 @@ fewer position.}
 \section{The Rational Numbers}
 \label{sec:rationals}
 
-\subsection{Inventing the Rational Numbers}
 
 Each augmentation of our number system throughout history has been a
 response to a deficiency with the then-current system.  The deficiency
-that instigated the introduction of the rational numbers was the
-frequency with which a given integer $q$ does not divide another given
-integer $p$.  This fact meant that the operation of multiplication
-could often not be ``undone'', or ``inverted'', because division, the
-operation that would accomplish the undoing/inverting, would be a {\em
-  partial operation:} There are pairs of integers neither of which
-divides the other.  The defining characteristic of the expanded system
-is that, within it, every nonzero number divides every number.
+that instigated the introduction of the rational numbers was the fact
+that many integers do not divide certain other integers.
+
+This situation led to practical problems as civilization developed to
+the point where communities strove to share commodities that were
+physically divisible.  You can always cut a pizza into any desired
+number of slices---but mandating such an action is awkward if you lack
+the terminology to describe what you want to achieve.
+
+The situation also led to an intellectual problem, when viewed from a
+modern perspective.  Humans strive for conceptual parallelism.  The
+arithmetic operation {\it multiplication} was surely recognized not
+long after its slightly more fundamental sibling operation {\it
+  addition}.  In many ways, these two operations mimic one another.
+Both are {\em total bivariate functions} that take a pair of numbers
+and produce a number; both are {\em commutative}, in that the argument
+numbers can be presented in either order without changing the result:
+\index{commutativity of addition}\index{commutativity of multiplication}
+\[ (\forall a,b) \ \ \big[ [a+b \ = \ b+a]
+ \ \ \ \mbox{ and } \ \ \
+[a \cdot b \ = \ b \cdot a] \big]
+\]
+both are {\em associative}, in the sense asserted by the equations
+\[
+(\forall a,b) \ \ \big[ [a+(b+c) \ = \ (a+b)+c]
+ \ \ \ \mbox{ and } \ \ \ 
+[a \cdot (b \cdot c) \ = \ (a \cdot b) \cdot c] \big]
+\]
+If we restrict focus to the {\em integers}, however, there is a
+glaring difference between addition and multiplication.  To wit,
+addition has a ``partner operation'', {\it subtraction}, that operates
+as a type of {\it inverse operation}:
+\[ (\forall a, b, c) \big[ \mbox{if } \ \ [c = a + b] \ \ \mbox{ then }
+  \ \ [a = c-b] \big]
+\]
+(We call $c-b$ the {\em difference} between $c$ and $b$.)  Within the
+context of the integers, multiplication has no such ``partner''.  We
+respond to this imbalance by inventing a ``partner'' for
+multiplication, and we call it {\it division}, denoted $\div$.  Now,
+division cannot completely mimic subtraction because of the technical
+problems that arise from the {\em multiplicative annihilation}
+\index{$0$: the multiplicative annihilator} properties of the integer
+$0$:
+\[ (\forall a) \left[ a \cdot 0 \ = \ 0 \cdot a \ = \ 0 \right] \] 
+There is no way to ``undo'', or ``invert'' the operation
+multiplication-by-$0$, because that operation is not one-to-one.  But
+if we frame the operation of division carefully---specifically, by
+avoiding division by $0$, then we can endow multiplication with the
+desired ``partner'':
+\[ (\forall a, b, c) \big[ \mbox{if } \ \ [c = a \cdot b] \ \
+\mbox{ and if } \ \ [b \neq 0] \ \
+ \mbox{ then }
+  \ \ [a = c \div b] \big]
+\]
+(We will call $c \div b$ the {\em quotient} of $c$ and $b$.)
+\index{quotient} We are almost at the end of our journey.  All we need
+is a way to speak about specific quotients.  When integer $b$ divides
+integer $c$, as when $c = 12$ and $b = 4$, it is natural to write $12
+\div 4 \ = \ 3$, but how should we denote the quotient $12 \div 5$
+which is not an integer?  Enter the rational numbers!
 
 
-\subsection{The Rationals as Ordered Pairs of Integers}
+\subsection{The Rationals: Special Ordered Pairs of Integers}
+\label{sec:define-rationals}
 
-The set $\Q$ of {\it rational} numbers\index{number!rational}
-\index{$\Q$: the set of rational numbers}
-consists of the number $0$, plus the ratios $p/q$ of all nonzero
-integers:
+The set $\Q$ of {\it rational} \index{number!rational} \index{$\Q$:
+  the set of rational numbers} numbers---often abbreviated as just
+``the rationals''---was invented to name the quotients referred to in
+the preceding paragraph.  Formally:
 \[ \Q \ \eqdef \ \{0\} \ \cup \ \left\{ p/q \ | \ p, q \in \Z
 \setminus \{0\} \right\}
 \]
 Each element of $\Q$ is called a {\it rational} number;
-\index{number!rational} 
-each {\em nonzero} rational number $p/q$ is often called a {\em
-  fraction},
-\index{number!fraction}
-especially when $q > p$.
+\index{number!rational} each {\em nonzero} rational number $p/q$ is
+often called a {\em fraction}; \index{number!fraction} some people
+reserve the word ``fraction'' for the case $q > p$, because the word
+seems to connote ``less than the whole'', but this does not seem to be
+a valuable distinction.
+
+In analogy with our treatment of integers, we reserve the notation
+$\Q^+$ for the {\em positive} rationals.
 
 An alternative, mathematically more advanced, way of defining the set
-$\Q$ is to view it as the smallest set of numbers that contains the
-integers, i.e., the set $\Z$, and is {\it closed under the operation
-  of dividing any number by any nonzero number.}
-\index{algebraic closure}
-The word ``closed'' here means that, given any two numbers in $\Q$,
-call them $r$ and $s \neq 0$, their quotient $r/s$ belongs to $\Q$.
+$\Q$ is as {\em the smallest set of numbers that contains the integers
+  and is closed under the operation of dividing any number by any
+  nonzero number.}  \index{algebraic closure} The word ``{\it
+  closed}'' here means that, for every two numbers $p \in \Q$ and $q
+\in \Q \setminus \{0\}$, the quotient $p/q$ belongs to $\Q$.
 
-Numerous notations have been developed for ``naming'' rational numbers
-in terms of the integers they are ``built from.''  Most of these
-notations continue our custom of employing the symbol ``$0$'' for the
-number $0$.  For the nonzero elements of $\Q$, we traditionally employ
-some notation for the operation of division and denote the
+Numerous notations have been proposed for denoting rational numbers in
+terms of the integers they are ``built from.''  Most of these
+notations continue our custom of employing the single symbol ``$0$''
+for the number $0$, but notations such as $0/q$ (where $q \neq 0$) are
+permissible when they arise as part of a calculation or an analysis.
+For the nonzero elements of $\Q$, we traditionally employ some
+notation for the operation of division and denote the quotient of $p$
+by $q$ using one of the following:
 \begin{equation}
 \label{eq:fraction}
  p/q \ \ \ \mbox{ or } \ \ \ {p \over q} \ \ \ \mbox{ or } \ \ \ p
@@ -1676,10 +1733,13 @@ of the fraction; the integer $q$ is the {\it denominator}.
 \index{number!fractions!denominator}
 
 
-\subsection{Comparing the rationals with the integers}
+\subsection{Comparing $\Q$, the Rationals, with $\Z$, the Integers}
+\label{sec:Compare-Q-Z}
 
 There are many ways to compare the sets $\Z$ and $\Q$ via properties
-that enhance our understanding of the two sets.
+that enhance our understanding of both sets.
+
+**HERE
 
 \medskip
 
@@ -1899,7 +1959,7 @@ Since the composition of two injections is also an injection (see
 Proposition~\ref{thm:fn-composition}), the result is proved.  \qed
 \end{proof}
 
-\section{The real numbers}
+\section{The Real Numbers}
 \label{sec:reals}
 
 \subsection{Inventing the Real Numbers}
@@ -2133,7 +2193,7 @@ Section~\ref{sec:practical-logic}.
 
 
 
-\section{The complex numbers}
+\section{The Complex Numbers}
 \label{sec:complexes}
 
 
