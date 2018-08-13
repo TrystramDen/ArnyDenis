@@ -1,4 +1,4 @@
-%version of 08-10-18
+%version of 08-13-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -355,7 +355,8 @@ the lefthand grey triangle in Fig.~\ref{fig:unitsquare} as a model.
 \end{center}
 \end{figure}
 
-{\Arny Please edit the figure to follow this story}
+{\Arny Please edit the figure to follow this story ... label the
+  vertices of triangle $T$.  Any other labels? ... hypotenuse?  }
 
 Say that the angle at vertex $A$ of $T$ is a {\em right angle},
 \index{right angle} i.e., that its measure is $90^\circ$ ($90$ degrees
@@ -363,11 +364,12 @@ or, equivalently, $\pi/2$ radians).  In this case, we say that $T$ is
 a {\em right triangle} \index{right triangle}.  Because $T$ is a right
 triangle, the line from vertex $A$ to vertex $B$ and the line from
 vertex $A$ to vertex $C$ are called the {\em sides} \index{side of a
-  right triangle} of $T$, while the line from vertex $B$ to vertex $C$
-is called the {\em hypotenuse} \index{hypotenuse of a right triangle}
-of $T$.  Triangle $T$ is {\em isosceles} \index{isosceles triangle}
-precisely when its two sides have the same length.  The grey triangle
-in Fig.~\ref{fig:unitsquare} is an isosceles right triangle.
+  right triangle} (or the {\it legs}) of $T$, while the line from
+vertex $B$ to vertex $C$ is called the {\em hypotenuse}
+\index{hypotenuse of a right triangle} of $T$.  Triangle $T$ is {\em
+  isosceles} \index{isosceles triangle} precisely when its two sides
+have the same length.  The grey triangle in Fig.~\ref{fig:unitsquare}
+is an isosceles right triangle.
 
 \begin{theorem}[{\bf The Pythagorean Theorem}]
 \label{thm:Pythagorean-thm}
@@ -1304,16 +1306,19 @@ Paraphrasing an oft-used quip by the late stand-up comic Rodney
 Dangerfield, integers ``don't get no respect''!  Superficially, it
 appears that integers are useful for counting things but for little
 else.  The Fundamental Theorem of Arithmetic
-(Theorem~\ref{thm:Fund-Thm-Arith}) hints at the importance of the
-prime numbers, but it does little to inspire respect for the non-prime
-integers.  Once one augments the integers with a bit of structure,
-{\em then} one can begin to represent interesting situations.
+(Theorem~\ref{thm:Fund-Thm-Arith}) hints at the potential importance
+of the prime numbers, but it does little to inspire respect for the
+non-prime integers.  Once one augments the integers with a bit of
+structure, {\em then} one can begin to represent interesting
+situations.
 
-For instance, let us consider {\em ordered pairs}
+As we shall see imminently, we can accomplish our goals by focusing on
+very simple integer-based structures, namely, {\em ordered pairs of
+  integers}---i.e.,
 \index{integer!ordered pairs}
-of integers---i.e., the sets $\Z \times \Z$, $\N \times \N$, and $\N^+
-\times \N^+$.  Using $\Z \times \Z$ as the exemplar of these three
-sets of ordered pairs of integers:
+the sets $\Z \times \Z$, $\N \times \N$, and $\N^+ \times \N^+$.
+Using $\Z \times \Z$ as the exemplar of these three sets of ordered
+pairs of integers:
 \begin{itemize}
 \item
 Each {\em element} of $\Z \times \Z$ has the form $\langle a_1, a_2
@@ -1331,9 +1336,12 @@ $a_2 \ \eqdef \ \mbox{second}(\langle a_1, a_2 \rangle)$.
   \end{itemize}
 \end{itemize}
 
+\subsubsection{Encoding complex structures via ordered pairs}
+\label{sec:encodings-via-ordered-pairs}
+
 Among the myriad other structures that ``contain'' integers that one
-can represent via some sort of iterated formation of ordered pairs are
-the following.
+can represent---or, {\it encode}---via some sort of iterated formation
+of ordered pairs are the following.
 
 \noindent
 (i) {\em (Ordered) tuples of integers.}\index{tuples of integers}\index{integer!tuples}\index{tuples of integers!via ordered pairs}\index{integer!tuples!via ordered pairs}
@@ -1407,7 +1415,7 @@ as positive integers!
 \medskip
 
 \noindent
-{\em What does it mean to ``encode''\index{encode} one class of
+What does it mean to {\em encode} \index{encode} one class of
   entities, $A$ as another class $B$?  Our definition is a rather
   strict mathematical one.  We insist that there exist a {\em
     bijection} $F_{A,B}$ that maps $A$ {\em one-to-one onto} $B$ (cf.,
@@ -1415,55 +1423,54 @@ as positive integers!
   element $a \in A$, the function $F_{A,B}$ ``produces'' a unique
   element $b \in B$, and conversely, when presented with an element $b
   \in B$, the function $F^{-1}_{A,B}$ ``produces'' a unique element $a
-  \in A$.}
+  \in A$.
 
-\smallskip
+\subsubsection{Pairing functions: Bijections between $\N^+ \times \N^+$ and $\N^+$}
+\label{sec:building-pairing-functions}
 
-\noindent
-{\em The remainder of this section is devoted to developing {\em
-    easily computed} bijections between the set $\N^+ \times \N^+$ and
-  the set $\N^+$ of positive integers.  We thereby exhibit easily
-  computed mechanisms for \underline{encoding} ordered pairs of
-  integers---hence, also, tuples, strings, and binary trees of
-  integers---as single integers.  Because of the special role of
-  ordered pairs of integers in our study of encodings of structured
-  sets of integers---they form the fundamental puzzle from whose
-  solution all else will follow---a special name has been associated
-  with bijections between $\N^+ \times \N^+$ and $\N^+$.  These
-  special bijections are called {\it pairing functions}.}
-  \index{pairing functions!encodings}
+The remainder of this section is devoted to developing {\em easily
+  computed} bijections between the set $\N^+ \times \N^+$ and the set
+$\N^+$ of positive integers.  We thereby exhibit easily computed
+mechanisms for \underline{encoding} ordered pairs of integers---hence,
+also, tuples, strings, and binary trees of integers---as single
+integers.  Because of the special role of ordered pairs of integers in
+our study of encodings of structured sets of integers---they form the
+fundamental puzzle from whose solution all else will follow---a
+special name has been associated with bijections between $\N^+ \times
+\N^+$ and $\N^+$.  These special bijections are called {\it pairing
+  functions}.  \index{pairing functions!encodings}
 
-\noindent
-It should be no surprise that our primary focus on $\N^+$, rather than
-$\Z$ or $\N$, as the avatar of {\it integer} is primarily for
-definiteness and a bit of clerical simplification.  We could rewrite
-this section easily with a focus on bijections between $\Z \times \Z$
-and $\Z$ or a focus on bijections between $\N \times \N$ and $\N$.
+One of the most valuable by-products of encodings provided by pairing
+functions is that such encodings provide {\em linear orderings} of the
+\index{pairing functions!linear orderings}
+set being encoded.  We noted in Section~\ref{sec:integers}.A that
+``order within a number system is among one's biggest friends when
+reasoning about the numbers within the system.''  The orderings
+provided by these encodings are particularly
+valuable when the structured sets being encoded as integers do not
+have their own ``intrinsic'' or ``natural'' orderings.  Included in
+this category are  structures such as tuples,
+strings, and trees.
+\begin{quote}
+Of course some structured sets do have natural, native linear orders:
+consider, as one such, strings under lexicographic ordering.  Even for
+such sets, we often benefit from having alternative orderings as we
+design and analyze algorithms on the sets.
+\end{quote}
+
+We focus on $\N^+$ as the avatar of {\it integer}, rather than on $\Z$
+or $\N$, primarily for definiteness and a bit of clerical
+simplification.  We could easily rewrite this section with a focus on
+bijections between $\Z \times \Z$ and $\Z$ or on bijections between
+$\N \times \N$ and $\N$.
 
 \bigskip
 
-We noted in Section~\ref{sec:integers}.A that ``order within a number
-system is among one's biggest friends when reasoning about the numbers
-within the system.''  A particularly valuable benefit of the
-bijections we develop, which ``encode'' various structured sets as
-integers (from $\N$ or $\N^+$ or $\Z$), is that these encodings endow
-the structures we encode (the tuples, strings, trees, etc.) with
-natural, easily computed, {\em linear orders}.
-\begin{quote}
-{\em Some structured sets have natural, native linear orders:
-  consider, as one such, strings under lexicographic ordering.
-  However, many structured sets do not have natural native linear
-  orders: consider, e.g., tuples, trees, arrays, \ldots .  For these,
-  our encodings can play an important role in computing with the
-  structures and analyzing the resulting algorithms. }
-\end{quote}
-
-\medskip
 
 We now embark on a very short guided tour that will introduce the
 reader to three interesting pairing functions.
 
-\subsubsection{The Diagonal pairing function $\d$}
+\paragraph{\small\sf A.The Diagonal pairing function $\d$}
 \index{The Diagonal pairing function $\d$}
 
 Pairing functions first appeared in the literature early in the 19th
@@ -1558,7 +1565,7 @@ cannot be a pairing function.
 \end{enumerate}
 \end{quote}
 
-\subsubsection{Enrichment: A methodology for constructing pairing functions}
+\paragraph{\small\sf B. Enrichment: A methodology for constructing pairing functions}
 \index{constructing pairing functions via ``shells''}
 \index{pairing functions as storage mappings for arrays/tables}
 
@@ -1623,7 +1630,7 @@ We have noted how to use Procedure {\small\sf PF-Constructor} to
 construct pairing function $\d$.  We now use the Procedure to design
 two other useful pairing functions.
 
-\subsubsection{The Square-shell pairing function $\s$}
+\paragraph{\small\sf C. The Square-shell pairing function $\s$}
 \index{The Square-shell pairing function $\s$}
 
 One computational situation where pairing functions can be useful
@@ -1688,7 +1695,7 @@ $(a_1 n \times b_1 n)$ or $(a_2 n \times b_2 n)$ or \ldots or $(a_k n
 \times b_k n)$.
 \end{quote}
 
-\subsubsection{The Hyperbolic-shell pairing function $\h$}
+\paragraph{\small\sf D. The Hyperbolic-shell pairing function $\h$}
 \index{The Hyperbolic-shell pairing function $\h$}
 
 We have just seen, in subsections B and C, that when the growth
@@ -1802,6 +1809,30 @@ fewer position.}
 \label{f.hyp}}
 \end{center}
 \end{figure}
+
+\subsubsection{There are {\em no more} ordered pairs than integers}
+\label{sec:cardinality-NxN}
+
+We have remarked earlier (and will do so again) that one must be very
+careful when reasoning about infinite sets.  They can behave in ways
+that seem quite contradictory to our experience with finite sets.  One
+of the most dramatic instances of this is encountered when we ask
+whether the set $\N^+ \times \N^+$ is ``larger'' than the set $\N^+$.
+We need to put the word ``larger'' in quotes because we do not know
+(yet) what the word means in the setting of infinite sets.  Supplying
+a meaning for the word that is at once mathenatically tractable and
+intuitively plausible was among the seminal contributions of Georg
+Cantor. \index{Cantor, Georg}
+
+{\Arny How much do we want to do here?  We can talk about ``$|A| \leq
+  |B|$ iff there is an injection from $A$ into $B$''.  We can
+  cite---or even prove---the Schroeder-Bernstein Theorem, which
+  asserts ``{\em There is a {\em bijection} between sets $A$ and $B$
+    iff there is an {\em injection} from $A$ to $B$ and an injection
+    from $B$ to $A$.}''.}
+
+\cite{Cantor74,Cantor78}
+
 
 
 \section{The Rational Numbers}
@@ -1929,20 +1960,21 @@ enhance our understanding of both sets.  We craft a comparison that
 focuses on the similarities and differences in the two sets' number
 lines; see Section~\ref{sec:integer-number-line}.
 
-\paragraph{\small\sf A. Every integer is (encodable as) a rational}
+As the first point in our comparison, we remark that every integer $n
+\in \Z$ can be encoded as a rational \index{integers as rationals}
+number.  Specifically, we represent/encode the integer $n \in \Z$ by
+the rational $p/q$ whose numerator is $p = n$ and whose denominator is
+$q = 1$.  This encoding is so natural that most people would write
+``$n = n/1$'' and ignore the underlying encoding.  We know with
+hindsight that this intellectual shortcut can cause no problems.  It
+is, however, important to be aware that we are using a shortcut.  This
+will, for example, heighten our awareness that the absence of problems
+results in large part from the essential fact that the proposed
+encoding preserves the special character of the numbers $0$ and $1$,
+i.e., that the following equations hold: $0/1 = 0$ and $1/1 = 1$.
 
-It is easy to verify that every integer $n \in \Z$ can be encoded as a
-rational \index{integers as rationals} number, namely, the rational
-$p/q$ whose numerator is $p = n$ and whose denominator is $q = 1$.
-This encoding is so natural that most people would write ``$n = n/1$''
-and ignore the underlying encoding.  We know, of course, that this
-intellectual shortcut can cause no problems.  A big part of the reason
-for this is that the proposed encoding preserves the special character
-of the numbers $0$ and $1$, because $0/1 = 0$ and $1/1 = 1$.
 
-\paragraph{\small\sf B. The rational and integer number lines}
 \index{number!rational!number line}
-
 The rational numbers share some, but not all, of the number-line laws
 of the integers, as enumerated in Section~\ref{sec:integers}.A.
 We now adapt for $\Q$ that section's discussion of $\Z$'s number line.
@@ -2020,9 +2052,11 @@ ways.  Here is a simple such set, call it $S_{a,b}$.
 S_{a,b} \ = \ \left\{ \frac{a+b}{k} \ \ | \ \ k \in \Z \right\}.
 \end{equation}
 
+\bigskip
 
-\paragraph{\small\sf C. The relative ``sizes'' of $\Z$ and $\Q$: Are
-  there ``more'' rationals than integers?}
+Our final comparison between the rationals and the integers compares
+the relative ``sizes'' of $\Z$ and $\Q$, i.e., addresses the question:
+Are there ``more'' rationals than integers?
 
 \noindent Consider the following facts.
 \begin{itemize}
@@ -2118,6 +2152,10 @@ $\Q$ is at least as big as $\Z$.
 \noindent {\rm (b)} There exists an injection from $\Q$ to $\Z$.
 Therefore, $\Z$ is at least as big as $\Q$.
 \end{prop}
+
+{\Arny So we digress here to address the issue of cardinality.  Shoule
+  we ``assemble'' all such considerations---i.e., $\N \times \N$ and
+  $\Q$ and $\R$ into a separate subsection?  I have mixed feelings.}
 
 \begin{proof}
 (a) We have already established part (a), via the injection from $\Z$
@@ -2220,6 +2258,7 @@ digression and turn to our real focus, the set $\R$ of {\it real
   numbers}.\index{number!real}
 
 \subsection{The Real Numbers via Their Numerals}
+\label{sec:define-Reals}
 
 For any integer $b > 1$, the real numbers are the numbers that can be
 named by {em infinite} strings built out of the digits $\{0, 1,
@@ -2229,13 +2268,15 @@ named by {em infinite} strings built out of the digits $\{0, 1,
 strings are called {\em $b$-ary numerals}.  There are a couple of ways
 to form $b$-ary numerals; we shall discuss some of the most common
 ones in Section~\ref{sec:Numerals}.  For now, we define real numbers
-as those that can be represented by a base-$b$ numeral, for some
-integer $b >1$.  Such a numeral has the form
-\begin{equation}
-\label{eq:real-numeral}
+as those that can be represented by a {\it base-$b$ numeral},
+\index{base-$b$ numeral}
+for some integer {\it base} $b >1$.
+\index{number base}
+Such a numeral has the form
+\[
 \alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
 . \beta_0 \beta_1 \beta_2 \cdots
-\end{equation}
+\]
 \index{positional number system!numerical value of numeral}
 and represents the (real) number
 \[
@@ -2249,75 +2290,9 @@ By prepending a ``negative sign'' (or, ``minus sign'') $-$ to a
 numeral or a number, one renders the thus-embellished entity as
 negative.
 
-The fact that every rational number (hence, also, every integer) is
-also a real number is manifest in the fact that integers and rationals
-can also be written as $b$-ary numerals as in (\ref{eq:real-numeral}).
-But with rational and integers, we are able to insist that their
-numerals have special forms.  We cite without proof the following
-classical results from the theory of arithmetic.  The result for
-integers is easily phrased.
 
-\begin{theorem}{Integers as real numbers}
-\label{thm:integer-real}
-A real number is an integer if, and only if, it can be represented by
-a {\em finite-length} numeral.\index{number!integer: real with a finite numeral}
-\end{theorem}
-
-The result for rationals needs an introductory definition.  An {\em
-  infinite} sequence of numbers $\Sigma$ is {\em ultimately
-  periodic}\index{ultimately periodic sequence} if there exist two
-{\em finite} sequences of numbers, $\Gamma$ and $\Delta$, such that
-$\Sigma$ can be written in the following form (spaces added to enhance
-legibility):
-\[ \Sigma \ = \ \Gamma \ \Delta \ \Delta \ \Delta \ \ldots 
-\ \Delta \ \ldots
-\]
-The intention here is that the finite sequence $\Delta$ is repeated
-{\it ad infinitum}.
-
-
-\begin{theorem}{Rationals as real numbers}
-\label{thm:rational-real}
-\noindent
-A real number is rational if, and only if, it can be represented by a
-numeral that is {\em ultimately periodic}.\index{number!rational:
-  real with an ultimately periodic numeral}
-\end{theorem}
-
-\noindent {\em A clarification.}
-%
-Note that two types of sequences of $0$s do not affect the value of
-the number represented by a numeral: (1) an {\em initial} sequence
-of $0$s to the {\em left} of the radix point and of all non-$0$
-digits; (2) a {\em terminal} sequence of $0$s to the {\em right} of
-the radix point and of all non-$0$ digits.
-
-One consequence of this fact is that we lose no generality by
-insisting that every numeral have the following form:
-
-\smallskip
-
-\hspace*{.15in}
-\begin{tabular}{l}
-a finite sequence of digits, followed by a radix point, followed by an
-infinite \\
-sequence of digits
-\end{tabular}
-
-Integers can then be singled out via numerals that have only $0$s to
-the right of the radix point.
-
-Theorems~\ref{thm:integer-real} and~\ref{thm:rational-real} show us
-that the three sets of numbers we have defined are a nested
-progression of successively more inclusive sets, in the sense that
-{\em every integer is a rational number} and {\em every rational
-  number is a real number}.  Those interested in the (philosophical)
-foundations of mathematics might quibble about the verb ``is'' in the
-highlighted sentences, but for all practical purposes, we can accept
-the sentences as written.
-
-
-\subsection{Not all real numbers are rational}
+\subsection{Not All Real Numbers Are Rational}
+\label{sec:Real-vs-Rational}
 
 We close this section by verifying the earlier-mentioned assertion
 about the non-commensurability of the length of the diagonal of a
@@ -2400,6 +2375,11 @@ example of {\em proof by contradiction}, as discussed in
 Section~\ref{sec:practical-logic}.
 \end{quote}
 
+\subsection{There Are ``More'' Real Numbers Than Rationals}
+\label{sec:Reals-uncountable}
+
+{\Arny Do we want to include the diagonal argument.  It is beautiful
+  --- but is it ``core''?}
 
 
 \section{The Complex Numbers}
@@ -2491,13 +2471,195 @@ one addition is an unqualified ``win''.  \qed
 \end{proof}
 
 
-
 \section{Numerals We Can Work With}\index{numerals}
 \label{sec:Numerals}
 
-We can identify distinct families of {\em operational}
-numerals,\index{numerals!operational} i.e., numerals that allow one to
-do things such as perform arithmetic (add, multiply, etc.).
+
+\subsection{Positional Number Systems}
+\label{sec:positional-numbers}
+\index{positional number system}
+
+The most common family of {\em operational}
+\index{numerals!operational} numerals for real numbers---i.e.,
+numerals that enable one to do things such as perform arithmetic (add,
+multiply, etc.) on the named numbers---is the family of {\it
+  positional number systems}.  Each system in this family is
+identified by its {\em base}, 
+\index{positional number system!base}
+which is usually\footnote{In rather specialized contexts one
+  encounters number bases that are not positive integers.}~an
+integer $b >1$.
+\index{positional number system!base-$b$ numeral}
+For any base $b$, we define the set $B_b = \{ 0, 1, \ldots, b-1\}$ of
+{\it digits in base $b$}.\index{positional number system!digits in
+  base $b$}
+%
+To aid legibility, {\em within the context of base-$b$ positional
+  numerals}, we denote the digit $b-1$ as a single character, $\bar{b}$.
+\index{$\bar{b}$: the digit $b-1$ in base $b$}
+%
+We then form base-$b$ numerals in the following way.
+\index{positional number system!base-$b$ numerals}
+\begin{quote}
+{\em The entire edifice of positional numerals builds on the concept
+  of {\em geometric summations}, a mathematical structure that we
+  shall learn to manipulate, evaluate, and compute with in
+  Section~\ref{sec:geometric-sums}.  We need only special aspents of
+  this topic here.
+}
+\end{quote}
+
+A base-$b$ numeral is a string having three segments.
+\begin{enumerate}
+\item
+The numeral begins with its {\em integer part},
+\index{positional number system!integer part of a numeral}
+%
+which is a {\em finite} string of digits from $B_b$.  We denote such
+an integer-part string as: $\alpha_n \alpha_{n-1} \cdots \alpha_1
+\alpha_0$.
+
+\item
+The numeral continues with a single occurrence of the {\it
+  radix point}\index{positional number system!radix point ``$.$''}
+``$.$''
+
+\item
+The numeral ends with its {\em fractional part},\index{positional
+  number system!fractional part of a numeral}
+%
+which is a string---{\em finite or infinite}--- of digits from $B_b$:
+$\beta_0 \beta_1 \beta_2 \cdots$.
+\end{enumerate}
+Our completed numeral now has the form
+\begin{equation}
+\label{eq:real-numeral}
+\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+. \beta_0 \beta_1 \beta_2 \cdots
+\end{equation}
+where the $\alpha_i$ and the $\beta_j$ are elements \index{positional
+  number system!base-$b$ digits} {\em base-$b$ digits} i.e., elements
+of the set $B_b$, and where ``$.$'' represents the {\em (base-$b$)
+  radix point}.
+
+The numeral (\ref{eq:real-numeral}) represents the (real)
+number\footnote{The notation ``$\mbox{\sc value}(x)$'' in
+  (\ref{eq:real-numeral-number}) denotes the {\em numerical value} of
+  the numeral $x$.}
+\begin{equation}
+\label{eq:real-numeral-number}
+\mbox{\sc value}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+. \beta_0 \beta_1 \beta_2 \cdots)
+\ \ \eqdef \ \
+\sum_{i=0}^n \alpha_i \cdot b^i
+\ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
+\end{equation}
+\index{positional number system!numerical value of numeral}
+
+For emphasis, we note that the base-$b$ integer 
+\index{positional number system!numerical value of integral part}
+represented by the numeral's integer part is
+\[
+\mbox{\sc value}(\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0)
+\ \ = \ \
+\sum_{i=0}^n \alpha_i \cdot b^i
+\]
+and the base-$b$ number represented by the numeral's fractional part
+is\index{positional number system!numerical value of fractional part}
+\[
+\mbox{\sc value}(. \beta_0 \beta_1 \beta_2 \cdots)
+\ \ = \ \
+\sum_{j\geq 0} \beta_j \cdot b^{-j}
+\]
+By prepending a ``minus sign'' (or, ``negative sign'') $-$ to a
+numeral or a number, one renders the thus-embellished entity as
+negative.
+
+\medskip
+
+Note that {\em two types of sequences of $0$s do not affect the value
+  of the number represented by a numeral:} (1) an {\em initial}
+sequence of $0$s to the {\em left} of the radix point and of all
+non-$0$ digits; (2) a {\em terminal} sequence of $0$s to the {\em
+  right} of the radix point and of all non-$0$ digits.
+
+One consequence of this fact is that we lose no generality by
+insisting that every numeral have the following form:
+
+\smallskip
+
+\hspace*{.15in}
+\begin{tabular}{l}
+a finite sequence of digits, followed by a radix point, followed by an
+infinite \\
+sequence of digits
+\end{tabular}
+
+Integers can then be singled out via numerals that have only $0$s to
+the right of the radix point.
+
+
+\subsection{Recognizing Integers and Rationals via Their Numerals}
+\label{sec:special-numerals-N-Q}
+
+The fact that every rational number (hence, also, every integer) is
+also a real number is manifest in the fact that integers and rationals
+can also be written as $b$-ary numerals, as in (\ref{eq:real-numeral}).
+But with rational and integers, we are able to insist that their
+numerals have special forms.
+
+\subsubsection{Positional numerals for integers}
+\label{sec:special-numerals-N}
+
+  We cite without proof the following
+classical results from the theory of arithmetic.  The result for
+integers is easily phrased.
+
+\begin{theorem}{Integers as real numbers}
+\label{thm:integer-real}
+A real number is an integer if, and only if, it can be represented by
+a {\em finite-length} numeral.\index{number!integer: real with a finite numeral}
+\end{theorem}
+
+
+\subsubsection{Positional numerals for rationals}
+\label{sec:special-numerals-Q}
+
+
+The result for rationals needs an introductory definition.  An {\em
+  infinite} sequence of numbers $\Sigma$ is {\em ultimately
+  periodic}\index{ultimately periodic sequence} if there exist two
+{\em finite} sequences of numbers, $\Gamma$ and $\Delta$, such that
+$\Sigma$ can be written in the following form (spaces added to enhance
+legibility):
+\[ \Sigma \ = \ \Gamma \ \Delta \ \Delta \ \Delta \ \ldots 
+\ \Delta \ \ldots
+\]
+The intention here is that the finite sequence $\Delta$ is repeated
+{\it ad infinitum}.
+
+
+\begin{theorem}{Rationals as real numbers}
+\label{thm:rational-real}
+\noindent
+A real number is rational if, and only if, it can be represented by a
+numeral that is {\em ultimately periodic}.\index{number!rational:
+  real with an ultimately periodic numeral}
+\end{theorem}
+
+
+
+Theorems~\ref{thm:integer-real} and~\ref{thm:rational-real} show us
+that the three sets of numbers we have defined are a nested
+progression of successively more inclusive sets, in the sense that
+{\em every integer is a rational number} and {\em every rational
+  number is a real number}.  Those interested in the (philosophical)
+foundations of mathematics might quibble about the verb ``is'' in the
+highlighted sentences, but for all practical purposes, we can accept
+the sentences as written.
+
+
+
 
 **THOUGHTS*******
 series expansions, strings created by a positional number system, and
@@ -2505,120 +2667,6 @@ hybrids built on positional systems such as ``scientific notation''.
 *************
 
 
-Of course, we are all familar with certain numbers that have {\em
-  non-operational} names that we use all the time.  Notable among
-these are (using terminology that anticipates future sections and
-chapters):
-\begin{itemize}
-\item
-$\pi$: the ratio of the circumference of a circle to its diameter;
-  $\pi \approx 3.141592653 \ldots$
-\item
-$e$: Euler's constant; the base of ``natural'' logarithms: $e \approx
-  2.718281828 \ldots$
-\item
-$i$: the name of the number whose square is $-1$; $i$ is appended to
-  the real numbers in order to ``complete'' them to the complex
-  numbers, within which system every polynomial of degree $n$ has $n$
-  roots.
-\end{itemize}
-
-
-\subsection{Positional Number Systems}
-\label{sec:positional-numbers}
-\index{positional number system}
-
-The most common way of forming numerals is via strings over a {\it
-  number base}.\index{positional number system!base of the system}  
-%
-We begin with an integer $b>1$ that will serve as our base, and we
-define the set $B_b = \{ 0, 1, \ldots, b-1\}$ of {\it digits in base
-  $b$}.\index{positional number system!digits in base $b$}
-%
-To aid legibility, {\em within the context of base-$b$ positional
-  numerals}, we denote the digit $b-1$ as a single character,
-$\bar{b}$.\index{$\bar{b}$: the digit $b-1$ in base $b$}
-%
-We then form base-$b$ numerals in the following way.\index{positional
-  number system!base-$b$ numerals}
-%
-This formation builds on {\em geometric sums}, a mathematical
-structure that we shall learn to manipulate, evaluate, and compute
-with in Chapter~\ref{sec:geometric-sums}.
-
-A base-$b$ numeral is a string having three sections.
-\begin{enumerate}
-\item
-The numeral begins with its {\em integral part},\index{positional
-  number system!integral part of a numeral}
-%
-which is a finite string of digits from $B_b$: $\alpha_n \alpha_{n-1}
-\cdots \alpha_1 \alpha_0$.
-
-The base-$b$ number represented by the numeral's integral
-part\index{positional number system!numerical value of integral part}
-is\footnote{Our underlined notation for the numerical value of a
-  numeral is not common, but we find it convenient.}
-\[
-\underline{\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0}
-\ \ \eqdef \ \
-\sum_{i=0}^n \alpha_i \cdot b^i
-\]
-
-\item
-The numeral continues with a single occurrence of the {\it
-  radix point}\index{positional number system!radix point ``$.$''}
-``$.$''
-\item
-The numeral ends with its {\em fractional part},\index{positional
-  number system!fractional part of a numeral}
-%
-which is a string---{\em finite or infinite}--- of digits from $B_b$:
-$\beta_0 \beta_1 \beta_2 \cdots$.
-
-The base-$b$ number represented by the numeral's fractional part
-is\index{positional number system!numerical value of fractional part}
-\[
-\underline{. \beta_0 \beta_1 \beta_2 \cdots}
-\ \ \eqdef \ \
-\sum_{j\geq 0} \beta_j \cdot b^{-j}
-\]
-\end{enumerate}
-In summary, then, the base-$b$ number represented by the numeral
-$\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
-. \beta_0 \beta_1 \beta_2 \cdots$ 
-is\index{positional number system!numerical value of numeral}
-\[
-\underline{\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
-. \beta_0 \beta_1 \beta_2 \cdots}
-\ \ \eqdef \ \
-\sum_{i=0}^n \alpha_i \cdot b^i
-\ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
-\]
-By prepending a ``minus sign'' (or, ``negative sign'') $-$ to a
-numeral or a number, one renders the thus-embellished entity as
-negative.
-
-
-*****************
-
-\begin{prop}
-\label{thm:integer-iff-finite-numeral}
-A number $n$ is an integer if, and only if, it has a finite numeral in
-some base-$b$ positional number system.
-\end{prop}
-
-
-
-DEFINE ULTIMATELY PERIODIC
-
-\begin{prop}
-\label{thm:rational-iff-periodic-numeral}
-A number $n$ is rational if, and only if, it has an ultimately
-periodic infinite numeral in some base-$b$ positional number system.
-\end{prop}
-
-*****************
 
 \subsection{Scientific Notation}
 \label{sec:scientific-notation}
