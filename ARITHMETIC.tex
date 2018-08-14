@@ -1,4 +1,4 @@
-%version of 08-13-18
+%version of 08-14-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -2635,26 +2635,83 @@ We can go beyond the simple statement of
 Proposition~\ref{thm:integer-real} and present the following algorithm
 that computes the normal-form base-$b$ numeral for an integer $n$.
 
-\noindent
-Perform the following two-step iteration until the {\sc
-  current-residue} is $1$.
+\bigskip
+
+\noindent {\underline{\bf Procedure}} {\small\sf Normal-Form
+  Numeral}($n$)
+
+/*Compute the normal-form numeral for a given integer $n$*/
+
+\smallskip
+
+\noindent{\bf Initialization}.
+
+Set {\sc current-residue} to $n$
+
+\smallskip
+
+\noindent{\bf Iteration}. 
+
+Until {\sc current-residue} $= 1$
+
+Divide {\sc current-residue} by $b$
 
 \medskip
 
-\begin{tabular}{|ll}
-{\em Initialize:} &
- Set the {\sc current-residue} to $n$ \\
-{\em Iterate:} &
-Divide the {\sc current-residue} by $b$ \\
- & The {\em remainder} upon
-division is the next lowest-order base-$b$ digit of $n$.
-\end{tabular}
+\noindent
+The {\em remainder} upon each division is the next lowest-order
+digit in the base-$b$ numeral for $n$.
+
+
+\bigskip
+
+\noindent {\it Validating the procedure.}
+%
+The procedure is an implementation of a method of rewriting univariate
+polynomials, known variously as {\it Horner's rule} or {\it Horner's
+  scheme} \cite{Horner}.  
+\index{Horner's rule} \index{Horner's scheme}
+Among its other virtues, the ``rule'' provides a recipe for computing
+a degree-$d$ univariate polynomial using $O(d)$ multiplications,
+rather than the $\Theta(d^2)$ multiplications that appear at first to
+be needed.
 
 \medskip
 
-\noindent
-We illustrate this procedure by producing the normal-form base-$2$
-(binary) numeral for $143$.
+\noindent {\small\sf The ``standard'' way of writing the polynomial $P(x)$.}
+
+\noindent General degree $d$:
+
+$P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \cdots + \ a_{d-1}
+x^{d-1} \ + \ a_d x^d$
+
+\noindent Degree $3$:
+
+$P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \ a_3 x^3$
+
+\medskip
+
+\noindent {\small\sf Rewriting $P(x)$ using Horner's rule.}
+
+\noindent General degree $d$:
+
+$P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ +  \cdots
++ x \cdot (a_{d-2} \ + \ x \cdot (a_{d-1} \ + \ a_d x)) \cdots ))$  
+
+\noindent Degree $3$:
+
+$P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ + \ a_3 x))$ 
+
+\medskip
+
+The ``rule'' is so natural that its origins certainly predate the
+cited 1819 publication, but they are impossible to trace definitively.  \qed 
+
+\bigskip
+
+\noindent {\it Illustrating the procedure.}
+We use the procedure to produce the normal-form base-$2$ (binary)
+numeral for $n = 143$.
 
 \medskip
 
@@ -2717,18 +2774,18 @@ base-$b$ numeral.
 Since the exact lengths of the finite sequences $A$ and $B$ that
 constitute the numeral, as in (\ref{eq:ult-per-seq}), are not germane
 to the argument, we arbitrarily denote $r$ by the following
-normal-form numeral,
-\[  \alpha_2 \alpha_1 \alpha_0 \ . \ \beta_0 \beta_1 
-\gamma_0 \gamma_1 \gamma_2
-\gamma_0 \gamma_1 \gamma_2
+normal-form numeral (spaces added to enhance legibility):
+\[  a_2 a_1 a_0 \ . \ b_0 b_1 \
+c_0 c_1 c_2 \
+c_0 c_1 c_2
 \cdots
-\gamma_0 \gamma_1 \gamma_2
+c_0 c_1 c_2
 \cdots
 \]
 so that
 \begin{eqnarray*}
-A & = & \alpha_2 \alpha_1 \alpha_0 \ . \ \beta_0 \beta_1 \\
-B & = & \gamma_0 \gamma_1 \gamma_2
+A & = & a_2 a_1 a_0 \ . \ b_0 b_1 \\
+B & = & c_0 c_1 c_2
 \end{eqnarray*}
 (Choosing specific lengths for $A$ and $B$ cuts down on the number of
 ``ellipsis dots'' we need to denote the numeral, as in ``$123 123
@@ -2739,59 +2796,114 @@ we find that
 \begin{eqnarray}
 \nonumber
 r & = &
-\mbox{\sc value}(\alpha_2 \alpha_1 \alpha_0 \ . \ \beta_0 \beta_1
-\gamma_0 \gamma_1 \gamma_2
-\gamma_0 \gamma_1 \gamma_2
+\mbox{\sc value}(a_2 a_1 a_0 \ . \ b_0 b_1 \
+c_0 c_1 c_2 \
+c_0 c_1 c_2
 \cdots
-\gamma_0 \gamma_1 \gamma_2
+c_0 c_1 c_2
 \cdots) \\
 \nonumber
   & = &
-\mbox{\sc value}(\alpha_2 \alpha_1 \alpha_0)
- \ + \ \mbox{\sc value}(\beta_0 \beta_1) \cdot b^{-2}
+\mbox{\sc value}(a_2 a_1 a_0)
+ \ + \ \mbox{\sc value}(b_0 b_1) \cdot b^{-2}
  \ + \
-\mbox{\sc value}(\gamma_0 \gamma_1 \gamma_2) \cdot b^{-5} \\
+\mbox{\sc value}(c_0 c_1 c_2) \cdot b^{-5} \\
 \label{eq:sum-in-numeral}
   &  &
  \ + \
-\mbox{\sc value}(\gamma_0 \gamma_1 \gamma_2) \cdot b^{-8}
+\mbox{\sc value}(c_0 c_1 c_2) \cdot b^{-8}
  \ + \
 \mbox{\sc value}(\gamma_0 \gamma_1 \gamma_2) \cdot b^{-11}
 \ + \cdots \\
 \nonumber
   & = &
-\mbox{\sc value}(\alpha_2 \alpha_1 \alpha_0)
- \ + \ \mbox{\sc value}(\beta_0 \beta_1) \cdot b^{-2}
+\mbox{\sc value}(a_2 a_1 a_0)
+ \ + \ \mbox{\sc value}(b_0 b_1) \cdot b^{-2}
  \ + \
-\mbox{\sc value}(\gamma_0 \gamma_1 \gamma_2) \cdot \sum_{i=1}^\infty b^{-2-3i}
+\mbox{\sc value}(c_0 c_1 c_2) \cdot \sum_{i=1}^\infty b^{-2-3i}
 \end{eqnarray}
 
 We shall learn in Section~\ref{sec:geometric-sums} that infinite
-summations such as the summation
-\[ \sum_{i=1}^\infty b^{-2-3i} \]
-in (\ref{eq:sum-in-numeral}) {\em converge}, meaning that {\em they
-  have finite rational sums}---and we learn how to compute these sums.
-For the purposes of the current proof, we just take this fact on
-faith, and we denote the summation's finite rational sum by $p/q$.
+summations such as the one in (\ref{eq:sum-in-numeral}), namely,
+$\sum_{i=1}^\infty b^{-2-3i}$,
+{\em converge}---meaning that {\em they have finite rational
+  sums}---and we learn how to compute these sums.  For the purposes of
+the current proof, we just take this fact on faith, and we denote the
+summation's finite rational sum by $p/q$.
 
 Collecting all of this information, we find that there exist {\em
   integers} $m$, $n$, $p$, and $q$ such that
 \[ r \ = \ m \ + \ n/ b^{2} \ + \ p/q \ = \
 \frac{mqb^2 + nq + p}{qb^2}. \]
-In other words, the number $r$ is rational.
+The number $r$ is, thus, the ratio of two integers; hence, by
+definition, it is rational.
 
 \bigskip
 
+\noindent
 {\small\sf Part 2: the `` only if'' clause.}
-Say next that the real number $r$ is rational---specifically, that $r
-= p/q$ \qed
+Say next that the real number $r$ is rational---specifically,
+\[ r \ = \ s + \frac{t}{q} \]
+for nonnegative integers $t < q$ and $s$.  It is only the fraction
+$t/q < 1$ that can produce an infinite numeral, so it suffices for us
+to verify the special case
+\[ r \ = \ \frac{t}{q} \ < \ 1 \]
+of the proposition.
+
+We prove that $r = t/q$ has an ultimately periodic infinite numeral by
+using \index{synthetic division} {\it synthetic division}---the
+algorithm taught in elementary school---to compute the ratio $t/q$.
+As we proceed, keep in mind that we are working in base $b$.  Each of
+the following successive divisions produces one digit to the right of
+the radix point, in addition to a possible {\it remainder} $r_i$ from
+the set $\{0, 1, \ldots, q-1\}$.
+\begin{equation}
+\label{eq:build-rational-numeral}
+\begin{array}{ccccc}
+b \cdot t   & = & a_0 \cdot q \ + \ r_0 &
+     \mbox{ where } & r_0 < q \\
+b \cdot r_0 & = & a_1 \cdot q \ + \ r_1 &
+      \mbox{ where } & r_1 < q \\
+            & \vdots &  &  &  \\
+b \cdot r_i & = & a_{i+1} \cdot q \ + \ r_{i+1} &
+       \mbox{ where } & r_{i+1} < q \\
+b \cdot r_{i+1} & = & a_{i+2} \cdot q \ + \ r_{i+2} &
+        \mbox{ where } & r_{i+2} < q \\
+            & \vdots &  &  &   \\
+\end{array}
+\end{equation}
+Because of the possible values the remainders $r_j$ can assume, no
+more than $q$ of the divisions in the (infinite) system
+(\ref{eq:build-rational-numeral}) are distinct.  ({\em This is an
+  application of the pigeonhole principle
+  (Section~\ref{sec:pigeonhole}).})  Because of the way the system
+proceeds, once we have encountered two remainders, say, $r_i$ and
+$r_{i+k}$, that are equal---i.e., $r_i = r_{i+k}$---we must
+thenceforth observe periodic behavior:
+\[
+\begin{array}{cccccccc}
+r_i       & = & r_{i+k}    & = & r_{i+2k}   & = & r_{i+3k}   & =  \cdots \\
+r_{i+1}   & = & r_{i+k+1}  & = & r_{i+2k+1} & = & r_{i+3k+1} & =  \cdots \\
+\vdots    &   & \vdots     &   & \vdots     &   & \vdots     & \\
+r_{i+k-1} & = & r_{i+2k-1} & = & r_{i+3k11} & = & r_{i+4k-1} & =  \cdots \\
+\end{array}
+\]
+This will engender periodicity in the digits of $r$'s base-$b$ numeral:
+\[ [\mbox{\sc initial segment}]
+ [a_i a_{i+1} \cdots a_{i+k-1}]
+          [a_i a_{i+1} \cdots a_{i+k-1}]
+    \cdots  [a_i a_{i+1} \cdots a_{i+k-1}] \cdots 
+\]
+We are, thus, observing the claimed ultimately periodic behavior in
+$r$'s base-$b$ numeral.
+\qed
 \end{proof}
 
 
+\bigskip
 
 
-
-
+**HERE
 
 Theorems~\ref{thm:integer-real} and~\ref{thm:rational-real} show us
 that the three sets of numbers we have defined are a nested
