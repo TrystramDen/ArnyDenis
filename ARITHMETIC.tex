@@ -1,4 +1,4 @@
-%version of 08-14-18
+%version of 08-15-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -2859,17 +2859,24 @@ the radix point, in addition to a possible {\it remainder} $r_i$ from
 the set $\{0, 1, \ldots, q-1\}$.
 \begin{equation}
 \label{eq:build-rational-numeral}
-\begin{array}{ccccc}
+\begin{array}{lclc|l|cc}
+\multicolumn{3}{c}{\mbox{Division step}} & &  \hspace*{.15in} \mbox{Current numeral} & &
+\mbox{Current remainder} \\
+\hline
 b \cdot t   & = & a_0 \cdot q \ + \ r_0 &
-     \mbox{ where } & r_0 < q \\
+      & t/q \ = \ .a_0 \cdots &
+      & r_0 < q \\
 b \cdot r_0 & = & a_1 \cdot q \ + \ r_1 &
-      \mbox{ where } & r_1 < q \\
-            & \vdots &  &  &  \\
+      & t/q \ = \ .a_0 a_1 \cdots &
+      & r_1 < q \\
+            & \vdots &  & & \hspace*{.3in} \vdots &  & \vdots \\
 b \cdot r_i & = & a_{i+1} \cdot q \ + \ r_{i+1} &
-       \mbox{ where } & r_{i+1} < q \\
+      & t/q \ = \ .a_0 a_1 \cdots a_{i+1} \cdots &
+      & r_{i+1} < q \\
 b \cdot r_{i+1} & = & a_{i+2} \cdot q \ + \ r_{i+2} &
-        \mbox{ where } & r_{i+2} < q \\
-            & \vdots &  &  &   \\
+      & t/q \ = \ .a_0 a_1 \cdots a_{i+1} a_{i+2} \cdots &
+      & r_{i+2} < q \\
+            & \vdots &  & &  \hspace*{.3in}\vdots & & \vdots   \\
 \end{array}
 \end{equation}
 Because of the possible values the remainders $r_j$ can assume, no
@@ -2882,10 +2889,10 @@ $r_{i+k}$, that are equal---i.e., $r_i = r_{i+k}$---we must
 thenceforth observe periodic behavior:
 \[
 \begin{array}{cccccccc}
-r_i       & = & r_{i+k}    & = & r_{i+2k}   & = & r_{i+3k}   & =  \cdots \\
-r_{i+1}   & = & r_{i+k+1}  & = & r_{i+2k+1} & = & r_{i+3k+1} & =  \cdots \\
+r_i       & = & r_{i+k}    & = & r_{i+2k}   & = & r_{i+3k}   & = \ \cdots \\
+r_{i+1}   & = & r_{i+k+1}  & = & r_{i+2k+1} & = & r_{i+3k+1} & = \ \cdots \\
 \vdots    &   & \vdots     &   & \vdots     &   & \vdots     & \\
-r_{i+k-1} & = & r_{i+2k-1} & = & r_{i+3k11} & = & r_{i+4k-1} & =  \cdots \\
+r_{i+k-1} & = & r_{i+2k-1} & = & r_{i+3k-1} & = & r_{i+4k-1} & = \ \cdots \\
 \end{array}
 \]
 This will engender periodicity in the digits of $r$'s base-$b$ numeral:
@@ -2899,14 +2906,48 @@ $r$'s base-$b$ numeral.
 \qed
 \end{proof}
 
+\bigskip
+
+We end this section by illustrating the process of generating numerals
+for rationals via synthetic division.  We employ the fraction $t/q = 4/7$
+and base $b = 10$.
+\[
+\begin{array}{lclc|l|cc}
+\multicolumn{3}{c}{\mbox{Division step}} & &  \hspace*{.15in} \mbox{Current numeral} & &
+\mbox{Current remainder} \\
+\hline
+10 \cdot 4   & = & 5 \cdot 7 \ + \ 5 &
+      & 4/7 \ = \ .5 \cdots &
+      & 5 \\
+10 \cdot 5 & = & 7 \cdot 7 \ + \ 1 &
+      & 4/7 \ = \ .57 \cdots &
+      & 1 \\
+10 \cdot 1 & = & 1 \cdot 7 \ + \ 3 &
+      & 4/7 \ = \ .571 \cdots &
+      & 3 \\
+10 \cdot 3 & = & 4 \cdot 7 \ + \ 2 &
+      & 4/7 \ = \ .5714 \cdots &
+      & 2 \\
+10 \cdot 2 & = & 2 \cdot 7 \ + \ 6 &
+      & 4/7 \ = \ .57142 \cdots &
+      & 6 \\
+10 \cdot 6 & = & 8 \cdot 7 \ + \ 4 &
+      & 4/7 \ = \ .571428 \cdots &
+      & 4 \\
+ & \vdots & & & \vdots & & \vdots
+\end{array}
+\]
+The remainder $4$ in the last illustrated division step cycles us back
+to the initial division step, where the ``$4$'' came from the
+numerator of the arget fraction.  This repetition signals that the
+entire process cycles from this point on.  In other words, we have
+determined that
+\[ \frac{4}{7} \ = \ .[571428] \ [571428] \ [571428] \ \cdots \]
 
 \bigskip
 
-
-**HERE
-
-Theorems~\ref{thm:integer-real} and~\ref{thm:rational-real} show us
-that the three sets of numbers we have defined are a nested
+Propositions~\ref{thm:integer-real} and~\ref{thm:rational-real} show
+us that the three sets of numbers we have defined are a nested
 progression of successively more inclusive sets, in the sense that
 {\em every integer is a rational number} and {\em every rational
   number is a real number}.  Those interested in the (philosophical)
