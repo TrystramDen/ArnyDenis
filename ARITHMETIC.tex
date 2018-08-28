@@ -837,7 +837,156 @@ Any such $c \in \Z$ is {\em between} $a$ and $b$, whence the name of
 the law.
 
 
-\subsection{Prime numbers: building blocks of the integers}
+\subsection{Divisible or not divisible?}
+\label{sec:}
+
+{\Denis rephrase the first sentences.}
+We say that a positive integer $p$ {\it divides} a positive integer
+$n$ (or, {\it is a divisor of $n$})\index{number!integer!divisor} if
+there is a positive integer $q$ such that $n = p \cdot q$.
+Equivalently, we say that $n$ {\it is divisible
+  by}\index{number!integer!divisibility} $p$.  
+Sometimes two integers are perfectly divisible, sometimes divisibility goes wrong.
+Let us investigate this in the next two sections.
+
+\subsubsection{Perfect divisibility}
+\label{sec:divisibilityAndGCD}
+
+\textbf{Basic results and definitions}
+
+{\Denis I used my notations, let see if you should change $a$ and $b$ to $n$ and $p$...}
+
+Let $a$ and $b$ be two integers.
+$a$ divides $b$ if there is an integer $k$ such that $ak=b$. 
+%We also say that $b$ is a multiple of $a$ (notice here that $a$ may be negative).
+%Let remark that according to this definition, every number divides $0$.
+%
+%The following properties are straightforward by applying directly the definitions:
+%
+%\begin{enumerate}
+%\item If $a \mid b$  then $a \mid bc$ $\forall$ integers $c$
+%\item If $a \mid b$ and $b \mid c$ then $a \mid c$
+%\item If $a \mid b$ and $a \mid b+c$ then $a \mid c$ 
+%\item $\forall c \neq 0$, $a \mid b$ {\it iif} $ac \mid bc$ 
+%\end{enumerate}
+
+Property:
+
+If $a \mid b$ and $a \mid c$ then $a \mid sb+tc$ $\forall$ integers $s$ and $t$
+
+Proof: there exist $k_1$ and $k_2$ such that $a.k_1 = b$ and $a.k_2 = c$,
+which implies $a(k_1.s+k_2.t )= sb+tc$ for any $s$ and $t$. 
+
+
+\textbf{Greatest Common Divisor (GCD)}
+
+\noindent {\bf Definition.} 
+$GCD(a,b)$ is the largest number that is a divisor of both $a$ and $b$.
+\bigskip
+
+\noindent {\bf Proposition. }
+$GCD(a,b)$ is equal to the smallest positive linear combination of $a$ and $b$\footnote{This result is also known as Bezout identity.}.
+\bigskip
+
+The proof considers $m$ as the smallest positive linear combination of $a$ and $b$.
+We prove respectively that $m \geq GCD(a,b)$ and $m \leq GCD(a,b)$ by using the general previous properties. 
+
+\begin{enumerate}
+\item 
+By definition, $GCD(a,b) \mid a$ and $GCD(a,b) \mid b$, then, $GCD(a,b) \mid sa+tb$ for any $s$ and $t$ 
+(and thus, in particular for the smallest combination). Then, $GCD(a,b)$ divides $m$ and $m \geq GCD(a,b)$.
+\item
+First, remark that $m \leq a$ because $a = 1.a + 0.b$ is a particular linear combination.
+We show that $m \mid a$. 
+
+By the division theorem, there exists a decomposition $a=q.m+r$ (where $0 \leq r<m$). 
+Recall also that $m=sa+tb$ for some $s$ and $t$. 
+Thus, $r$ can be written as $(1-qs)a+(-qt)b$ which is a combination of $a$ and $b$. 
+However, as $m$ is the smallest, we get $r=0$.
+
+Symmetrically $m$ divides also $b$.
+
+Then, $m \leq GCD(a,b)$.
+\end{enumerate}
+
+\medskip
+
+\noindent {\bf Corollary.}
+Every linear combination of $a$ and $b$ is a multiple of $GCD(a,b)$ and vice-versa.
+\bigskip
+
+\noindent {\bf Property}
+
+ GCD(a,b) = GCD(b,rem(a,b))
+
+In this last property, $rem$ denotes the reminder of the euclidian division of $a$ by $b$. 
+It is detailed in the next section. 
+The property is useful for quickly compute the $GCD$ of two numbers. 
+This is in fact the basis of the well-known Euclid’s algorithm!
+
+Proof.
+
+The idea is to show that the set of common divisors of $a$ and $b$ (called $D$) is equal to the set
+of the common divisors of $b$ and $rem(a,b)$ (called $D'$).
+\begin{itemize}
+\item If $d \in D$, $d \mid a$ and $d \mid b$.
+
+As $a=q.b+rem(a,b)$, from property above above, we have $d \mid rem(a,b)$. Then, $d \in D'$.
+\item If $d' \in D'$, $d' \mid b$ and $d' \mid rem(a,b)$.
+
+From property $5$ above, $d'$ divides any linear combination of them, in particular $q.b+1.rem(a,b)$
+thus,  $d' \mid a$ which proves that $d' \in D$.
+\end{itemize}
+
+
+There is a nice geometrical interpretation of the euclidian division and the CGD.
+It corresponds to the largest surface unit to obtain a tessellation of the rectangle $a \times b$. 
+
+%\begin{figure}[h]
+%\begin{center}
+%        \includegraphics[scale=0.5]{../FIGmaths/EuclideAlgo.pdf}
+%        \caption{Geometric interpretation of the euclidian division of $a$ by $b$.
+%        The first step is on the left, the second one on the right.}
+%        \label{gcd}
+%\end{center}
+%\end{figure}
+
+
+\subsubsection{Euclidian division}
+\label{sec:euclidian}
+
+
+Divisibility is not always perfect. 
+As we learned in the elementary school, if one number does not evenly divide another, there is a remainder left over.
+\medskip
+
+\noindent {\bf Division theorem.}
+Let $a$ and $b$ be two integers such that $b>0$, 
+then there exists a unique pair of integers $q$ and $r$ such that $a=qb+r$ and $0 \leq r < b$.
+
+Proving this theorem is two-fold: first the existence, and then the uniqueness.
+{\Denis should we prove this or not? Would be fine, I put as follows - as a comment - a tentative proof, but I am not very happy with the phrasing}
+%\begin{itemize}
+%\item Let $E$ be the set of all positive integers in the form $n=a-b.z$.
+%$E$ is not empty (well, for instance, it contains $a$) and $E \subset \mathds{N}$,
+%thus, it has a smallest element. Let denote it $r$.
+%
+%We should now verify that $r<b$.
+%It is easy by remarking that $r=a-b.z$ for some $z$ and $r-b$ does not belong to $E$
+%because $r$ is the smallest one. Thus, $r-b <0$.
+%\item Let us prove this part by contradiction. 
+%Suppose there exist two such pairs of integers:
+%$a=q_i.b + r_i$ for $i=1,2$.
+%
+%Then, $(q_1-q_2).b + r_1-r_2 = 0$.
+%
+%Thus, $b$ divides $r_1-r_2$ and $0 \leq r_1 < b$ and $0 \leq r_2 < b$
+%
+%$r_1-r_2 = 0$ and thus, $q_1=q_2$.
+%\end{itemize}
+
+
+\subsubsection{Prime numbers: building blocks of the integers}
 \label{sec:primes}
 \index{number!prime numbers}
 \index{integers!prime numbers}
@@ -847,11 +996,7 @@ importance has been recognized for millennia but which have found
 important applications (e.g., within the domain of computer security)
 mainly within the past several decades.
 
-We say that a positive integer $p$ {\it divides} a positive integer
-$n$ (or, {\it is a divisor of $n$})\index{number!integer!divisor} if
-there is a positive integer $q$ such that $n = p \cdot q$.
-Equivalently, we say that $n$ {\it is divisible
-  by}\index{number!integer!divisibility} $p$.  Thus, every positive
+Thus, every positive
 integer $n$ is divisible by $p=1$ (witnessed by $q=n$) and by $p=n$
 (witnessed by $q=1$).
 
@@ -864,18 +1009,18 @@ An integer $p >1$ is {\it prime}\index{number!integer!prime
 if its {\em only} positive integer divisors are $1$ (which divides
 every integer) and itself (which is always a divisor).
 \begin{quote}
-We usually use the shorthand assertion, ``$p$ is a prime,'' instead of
+We usually use the shorthand assertion, ``$p$ is a prime'' (or even simpler ``$p$ is prime'') instead of
 the longer, but equivalent, ``$p$ is a prime integer.''
 \end{quote}
 
-\subsubsection{Primes as building blocks: The Fundamental Theorem of Arithmetic}
-\label{sec:prime-factoriation}
-
+  
+  \subsubsection{Primes as building blocks: The Fundamental Theorem of Arithmetic}
+\label{sec:prime-factorization}
 
 A very important way to classify a positive integer $n$ is to list the
 primes that divide it, coupling each such prime $p$ with its {\it
-  multiplicity}, i.e., the number of times that $p$ divides $n$.  Let
-$p_1, p_2, \ldots, p_r$ be all of the distinct primes that divide $n$,
+multiplicity}, i.e., the number of times that $p$ divides $n$. 
+Let $p_1, p_2, \ldots, p_r$ be all of the distinct primes that divide $n$,
 and let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime
   factorization}
 \index{prime factorization}
