@@ -381,7 +381,8 @@ Consequently, when $T$ is an {\em isosceles} right triangle, then $h^2
 \end{theorem}
 
 \ignore{\Denis I put here a figure for proving the result, may be it
-  is not at the right place, feel free to put it elsewhere... I developed later a graphical proof of the theorem...}
+  is not at the right place, feel free to put it elsewhere... I
+  developed later a graphical proof of the theorem...}
 
 The special case of the Pythagorean Theorem, which deals with
 isosceles right triangles admits the very perspicuous proof presented
@@ -421,8 +422,9 @@ was systematically observing that squares are better approximations to
 circles than triangles are; regular pentagons are better than squares;
 regular hexagons are better than pentagons; and so on.  
 Fig.~\ref{fig:approxcircle} illustrates this evidence
-\ignore{\Denis I added a figure here, feel free to remove it if you believe it is not appropriate.
-I can also extend the figure with higher degree polygons...}.
+\ignore{\Denis I added a figure here, feel free to remove it if you
+  believe it is not appropriate. I can also extend the figure with
+  higher degree polygons....} 
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.25]{FiguresArithmetic/ApproxCircle}
@@ -1606,16 +1608,16 @@ half-century later by the German logician Georg Cantor,
 %
 whose studies \cite{Cantor74,Cantor78} revolutionized how we think
 about {\em infinite} sets.
+
 \begin{equation}
 \label{eq:diag}
 \d(x, y) \ = \
-{{x+y-1} \choose 2} + y \ = \ \frac{(x+y) \cdot (x+y-1)}{2} + y
+{{x+y-1} \choose 2} + (1-y)
 \end{equation}
 ($\d$ of course has a twin that exchanges $x$ and $y$).  $\d$'s
 mapping of $\N^+ \times \N^+$ onto $\N^+$, as depicted in
 Fig.~\ref{fig:diag}, exposes that we can view $\d$'s mapping of $\N^+
-\times \N^+$ as a two-step conceptual process:\footnote{This is a {\em
-    conceptual} process.  $\d$ is a function, {\em not} an algorithm.}
+\times \N^+$ as a two-step conceptual process:
 \begin{figure}[htb]
 \begin{center}
       \includegraphics[scale=0.4]{FiguresArithmetic/PairingDiagonal}
@@ -1632,8 +1634,8 @@ Fig.~\ref{fig:diag}, exposes that we can view $\d$'s mapping of $\N^+
 %  $\vdots$ & $\vdots$ & $\ddots$
 %\end{tabular}
 \end{center}
-\caption{{\it The diagonal pairing function $\d$.  The shell $x+y = 6$ is
-highlighted.}
+\caption{{\it The diagonal pairing function $\d$.  The shell $x+y = 6$
+    is highlighted.}
 \label{fig:diag}}
 \end{figure}
 \begin{enumerate}
@@ -1652,20 +1654,27 @@ This is accomplished by the following subexpression in (\ref{eq:diag}).
 \item
 ``climbing up'' these shells in order.
 
-This is accomplished by the additional subexpression ``$+y$'' in
+This is accomplished by the additional subexpression ``$+1-y$'' in
 (\ref{eq:diag}).
 \end{enumerate}
-Understanding $\d$'s structure leads to an inductive verification of
-$\d$'s bijectiveness.\footnote{A computationally more satisfying proof
-  of $\d$'s bijectiveness appears in \cite{Davis58}, along with an
-  explicit recipe for computing $\d$'s inverse.}
+\begin{quote}
+{\em Keep in mind that we have just described a {\em conceptual}
+  process.  $\d$ is a function, {\em not} an algorithm.  ``Running''
+  this infinite process would take forever.}
+\end{quote}
+Understanding $\d$'s structure leads to a broadly applicable strategy
+for inductively constructing a broad range of pairing functions.  We
+develop this strategy in Subsection B, along with an accompanying
+rather simple inductive verification of bijectiveness.  One finds a
+computationally more satisfying proof of $\d$'s bijectiveness in
+\cite{Davis58}, along with an explicit recipe for computing $\d$'s
+inverse.  The material in \cite{Davis58} builds specifically on $\d$'s
+structure.
 
-{\Arny SHOULD WE DO THE INDUCTION or leave it as an exercise?} \\
-
-{\Denis if it is not too hard, we should put it.}
-
+\medskip
 
 \begin{quote}
+{\small\sf Esoterica for enrichment:}
 {\em The fact that $\d$ is a {\em polynomial} in $x$ and $y$ raises
   the natural (to a mathematician!)~question of whether there exist
   any other polynomial pairing functions.  This is a quite advanced
@@ -1809,14 +1818,14 @@ enumerates the entries in each shell in a counterclockwise direction.
 (Of course, $\s$ has a twin that enumerates the shells in a clockwise
 direction.)
 \begin{quote}
-Using somewhat more complicated instantiations of Procedure
-PF-Constructor, the study in \cite{Rosenberg75} adapts the
-square-shell pairing function $\s$ to: ($a$) accommodate, with no
-wastage, arrays/tables of any fixed aspect ratio $an \times bn$ ($a,b
-\in \N$); ($b$) accommodate, with only $O(n)$ wastage, arrays/tables
-whose aspect ratios come from a fixed finite set of candidates---i.e.,
-$(a_1 n \times b_1 n)$ or $(a_2 n \times b_2 n)$ or \ldots or $(a_k n
-\times b_k n)$.
+{\em Using somewhat more complicated instantiations of Procedure
+  PF-Constructor, the study in \cite{Rosenberg75} adapts the
+  square-shell pairing function $\s$ to: ($a$) accommodate, with no
+  wastage, arrays/tables of any fixed aspect ratio $an \times bn$
+  ($a,b \in \N$); ($b$) accommodate, with only $O(n)$ wastage,
+  arrays/tables whose aspect ratios come from a fixed finite set of
+  candidates---i.e., $(a_1 n \times b_1 n)$ or $(a_2 n \times b_2 n)$
+  or \ldots or $(a_k n \times b_k n)$.}
 \end{quote}
 
 \paragraph{\small\sf D. The Hyperbolic-shell pairing function $\h$}
@@ -1961,14 +1970,14 @@ intuitively plausible was among the seminal contributions of the
 Cantor. \index{Cantor, Georg}
 
 
-{\Arny How much do we want to do here?  We can talk about ``$|A| \leq
+\ignore{\Arny How much do we want to do here?  We can talk about ``$|A| \leq
   |B|$ iff there is an injection from $A$ into $B$''.  We can
   cite---or even prove---the Schroeder-Bernstein Theorem, which
   asserts ``{\em There is a {\em bijection} between sets $A$ and $B$
     iff there is an {\em injection} from $A$ to $B$ and an injection
     from $B$ to $A$.}''.}
     
-{\Denis Yes, develop if not too complicated.}    
+\ignore{\Denis Yes, develop if not too complicated.}    
 
 Cantor began by seeking an intuitively plausible and mathematically
 tractable formal notion that would allow us to verify or refute the
@@ -2051,7 +2060,7 @@ Finally, back to numbers!
 $|\N \times \N| \ = \ |\N|$.
 \end{prop}
 
-{\Arny So we digress here to address the issue of cardinality.  Shoule
+\ignore{\Arny So we digress here to address the issue of cardinality.  Should
   we ``assemble'' all such considerations---i.e., $\N \times \N$ and
   $\Q$ and $\R$ into a separate subsection?  I have mixed feelings.}
 
@@ -2059,29 +2068,34 @@ $|\N \times \N| \ = \ |\N|$.
 \begin{proof}
 We prove the following propositions in turn.
 
-\noindent {\rm (a)} There exists an injection from $\N$ to $\N \times
-\N$.  Therefore, $\N \times \N$ is at least as big as $\N$.
-
-\noindent {\rm (b)} There exists an injection from $\N \times \N$ to $\N$.
-Therefore, $\N$ is at least as big as $\N \times \N$.
-
 \medskip
 
+\noindent {\rm (a)} {\em There exists an injection from $\N$ to $\N \times
+\N$.  Therefore, $\N \times \N$ is at least as big as $\N$.}
+
+\smallskip
+
 \noindent
-Part (a) is clear via the following injection from $\N$ into $\N \times \N$.
+Subproposition (a) follows easily from the existence of the following
+injection from $\N$ into $\N \times \N$.
 \[ (\forall n \in \N) \ [ f(n) \ = \ \langle n,n \rangle]. \]
 
 \medskip
 
+\noindent {\rm (b)} {\em There exists an injection from $\N \times \N$ to $\N$.
+Therefore, $\N$ is at least as big as $\N \times \N$.}
+
+\smallskip
+
 \noindent
-To establish part (b) We define an injection from $\N \times \N$ into
-$\N$ that is inspired by the Fundamental Theorem of Arithmetic
-(Theorem~\ref{thm:Fund-Thm-Arith}).  The Theorem assures us that the
-function
+We establish subproposition (b) by defining an injection from $\N
+\times \N$ into $\N$.  We employ a function that is inspired by the
+Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}).
+Specifically, the Theorem assures us that the function
 \[ f_2(p,q) \ \eqdef \ 2^p 3^q \]
 is an {\em injection} from $\N \times \N$ into $\N$.
 
-The result is proved.  \qed
+Subproposition (a) and (b) prove the result.  \qed
 \end{proof}
 
 \medskip
@@ -2111,8 +2125,14 @@ and \\
 \hspace*{.35in}{\em an injection from $\N$ to $\N \times \N$ and an
   injection from $\N \times \N$ to $\N$.}
 
-The celebrated theorem of Schr\"{o}der and Bernstein
-\index{The Schr\"{o}der-Bernstein Theorem} {\Arny Find reference}
+\noindent
+The celebrated theorem of Schr\"{o}der and Bernstein,
+\index{The Schr\"{o}der-Bernstein Theorem}
+\index{Bernstein, Felix}
+\index{Schr\"{o}der, Ernst}
+which is, alternatively, attributed to (Georg) Cantor and Bernstein, 
+\index{The Cantor-Bernstein Theorem}
+\index{Cantor, Georg}
 tells us that bijections and paired injections always travel together.
 
 \begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
@@ -2122,13 +2142,15 @@ injection $f: S \rightarrow T$ and an injection $g: T \rightarrow S$.
 Then there exists a bijection $h: S \leftrightarrow T$.
 \end{theorem}
 
-{\Arny Should we prove the Schroeder-Bernstein theorem?  If we decide
-  to include that,then it shuould likely go into the chapter on SETS.}
-
+The theorem has a rather complicated history.  Picking just a few high
+points associated with the theorem's namesakes: The theorem was first
+stated without proof by Cantor in \cite{Cantor87}.  Roughly a decade
+later, Schr\"{o}der provided a flawed proof in \cite{Schroeder98a}.
+As reported in \cite{Deiser2010}, Schr\"{o}der soon thereafter
+provided a correct proof, as, independently, did Bernstein.
 
 \section{The Rational Numbers}
 \label{sec:rationals}
-
 
 Each augmentation of our number system throughout history has been a
 response to a deficiency with the then-current system.  The deficiency
