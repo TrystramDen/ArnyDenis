@@ -1,4 +1,4 @@
-%version of 08-16-18
+%version of 08-23-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -2118,7 +2118,7 @@ $\Q$.  ( {\em Even the fact that we can discuss the relative ``sizes''
   of infinite sets is interesting!})
 \end{enumerate}
 
-\subsubsection{Comparing $\Z$ and $\Q$ via the laws they obey}
+\subsubsection{Comparing $\Z$ and $\Q$ via their number-line laws}
 \label{sec:Q-Z-laws}
 \index{number!rational!number line}
 
@@ -2196,12 +2196,14 @@ ways.  Here is a simple such set, call it $S_{a,b}$.
 S_{a,b} \ = \ \left\{ \frac{a+b}{k} \ \ | \ \ k \in \Z \right\}.
 \end{equation}
 
-\subsubsection{Comparing $\Z$ and $\Q$ via cardinalities}
+\subsubsection{Comparing $\Z$ and $\Q$ via their cardinalities}
 \label{sec:Q-Z-cardinality}
 
 Our final comparison between the rationals and the integers compares
 the relative ``sizes'', or, {\em cardinalities} of $\Z$ and $\Q$.
 Informally, {\it Are there ``more'' rationals than integers?}
+
+\medskip
 
 \noindent Consider the following facts.
 \begin{itemize}
@@ -2302,13 +2304,8 @@ Therefore, $\Z$ is at least as big as $\Q$.
 
 {\Arny So we digress here to address the issue of cardinality.  Shoule
   we ``assemble'' all such considerations---i.e., $\N \times \N$ and
-  $\Q$ and $\R$ into a separate subsection?  I have mixed feelings.
+  $\Q$ and $\R$ into a separate subsection?  I have mixed feelings.}
 
-Even harder question: Should we present (prove?) the
-Schroeder-Bernstein theorem, which states: If there is an injection
-from $A$ to $B$ {\em and} an injection from $B$ to $A$, then there is
-a {\em bijection} between $A$ and $B$.  If we decide to include
-that,then itwould likely go into the chapter on SETS.}
 
 \begin{proof}
 (a) We have already established part (a), via the injection from $\Z$
@@ -2359,9 +2356,36 @@ Since the composition of two injections is also an injection (see
 Proposition~\ref{thm:fn-composition}), the result is proved.  \qed
 \end{proof}
 
-Note that the {\it pairing functions} of Section~\ref{sec:pairing}
-provide somewhat more interesting alternatives to part 2 of the
-preceding proof.
+The {\it pairing functions} of Section~\ref{sec:pairing} provide more
+interesting alternatives to the preceding proof.  Being {\em
+  bijections} between $\Z$ and $\Z \times \Z$, these mappings can be
+adapted to prove Proposition~\ref{thm:|Q|=|Z|} {\em in a single
+  step}.
+
+\medskip
+
+\paragraph{A digression: The Schr\"{o}der-Bernstein Theorem}
+Although sets and their cardinalities are not the major focus of this
+chapter, it is worth a short digression to expand on the preceding
+remark about pairing functions.  It is not a coincidence that there
+exists both \\
+\hspace*{.35in}{\em a bijection between $\Z$ and $\Z \times \Z$} \\
+and \\
+\hspace*{.35in}{\em an injection from $\Z$ to $\Z \times \Z$ and an
+  injection from $\Z \times \Z$ to $\Z$.} \\
+The celebrated theorem of Schr\"{o}der and Bernstein
+\index{The Schr\"{o}der-Bernstein Theorem} {\Arny Find reference}
+tells us that bijections and paired injections always travel together.
+
+\begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
+\label{thm.S-B}
+Let $S$ and $T$ be (finite or infinite) sets such that there exists an
+injection $f: S \rightarrow T$ and an injection $g: T \rightarrow S$.
+Then there exists a bijection $h: S \leftrightarrow T$.
+\end{theorem}
+
+{\Arny Should we prove the Schroeder-Bernstein theorem?  If we decide
+  to include that,then it shuould likely go into the chapter on SETS.}
 
 \section{The Real Numbers}
 \label{sec:reals}
@@ -2567,6 +2591,74 @@ Thus, we build another smaller square equation, which is a contradiction.
 {\Arny Do we want to include the diagonal argument.  It is beautiful
   --- but is it ``core''?}
   {\Denis yes, I think so}
+
+**HERE
+
+DEFINE COUNTABLE
+\index{countable set}
+\index{uncountable set}
+
+\begin{prop}
+\label{thm:R-uncountable}
+The set $\R$ of real numbers is not countable.
+There is no injection $f: \R \rightarrow \N$.
+\end{prop}
+
+\begin{proof}
+By the Schr\"{o}der--Bernstein theorem (Theorem~\ref{thm.S-B}), there
+therefore exists a {\em bijection}
+\[ 
+h: \b \ \stackrel{1\mbox{\rm -}1, \mbox{\scriptsize\rm
+    onto}}{\longrightarrow} \N.  
+\] 
+
+It is not hard to view the bijection $h$ as producing an
+``infinite-by-infinite'' binary matrix $\Delta$, whose $k$th row is
+the infinite binary string $h^{-1}(k)$.  Let's visualize $\Delta$:
+\[ \Delta \ = \
+\begin{array}{cccccc}
+\delta_{0,0} & \delta_{0,1} & \delta_{0,2} & \delta_{0,3} &
+	\delta_{0,4} & \cdots \\
+\delta_{1,0} & \delta_{1,1} & \delta_{1,2} & \delta_{1,3} &
+	\delta_{1,4} & \cdots \\
+\delta_{2,0} & \delta_{2,1} & \delta_{2,2} & \delta_{2,3} &
+	\delta_{2,4} & \cdots \\
+\delta_{3,0} & \delta_{3,1} & \delta_{3,2} & \delta_{3,3} &
+	\delta_{3,4} & \cdots \\ 
+\delta_{4,0} & \delta_{4,1} & \delta_{4,2} & \delta_{4,3} &
+	\delta_{4,4} & \cdots \\ 
+\vdots  & \vdots  & \vdots  & \vdots  & \vdots  & \ddots
+\end{array}
+\]
+Now let us construct the following infinite binary string:
+\[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
+by setting, for each index $i$,
+\[ \psi_i \ = \ \overline{\delta}_{i,i} \ = \ 1 - \delta_{i,i}. \]
+\begin{quote}
+The term ``{\em diagonal argument}'' for this proof stems from the
+fact that we create the new string $\Psi$ by making changes to the
+{\em diagonal} elements of the matrix $\Delta$.
+\end{quote}
+Note that the new string, $\Psi$, clearly does not occur as a row of
+matrix $\Delta$.  This is because $\Psi$ differs from each row of
+$\Delta$ in at least one position.  Specifically, for each index $i$,
+$\Psi$ differs from row $i$ of $\Delta$ at least in position $i$:
+$\psi_i \neq \delta_{i,i}$.  But if the binary string $\Psi$ does not
+occur as a row of matrix $\Delta$, then $\Delta$ {\em does not}
+contain {\em every} infinite binary string as one of its
+rows---which contradicts $\Delta$'s assumed defining characteristic!
+
+Where could we have gone wrong?  Every step of our argument, save one,
+is backed up by a theorem---so the one step that is not so bolstered
+must be the link that has broken.  This one unsubstantiated step is
+our assumption that the set $\b$ is countable.  Since this assumption
+has led us to a contradiction, we must conclude that the set $\b$ is
+{\em not} countable!
+
+We thus have the uncountability of the set $\R$.
+\qed
+\end{proof}
+
 
 
 \section{The Complex Numbers}
