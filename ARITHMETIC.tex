@@ -1,4 +1,4 @@
-%version of 08-23-18
+%version of 08-29-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -1789,7 +1789,7 @@ tables of other shapes.
 %$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &
 %  $\vdots$ & $\vdots$ & $\ddots$
 %\end{tabular}
-      \includegraphics[scale=0.4]{FiguresArithmetic/PairingSquareShell}
+  %MISSING      \includegraphics[scale=0.4]{FiguresArithmetic/PairingSquareShell}
 \end{center}
 \caption{{\it The square-shell pairing function $\s$.  The shell
     $\max(x,y) = 5$ is highlighted.}
@@ -1802,11 +1802,12 @@ tables of other shapes.
  & & \mbox{where } \ \ \  m \ \eqdef \ \max(x-1,y-1).
 \end{array}
 \end{equation}
-One sees in Fig.~\ref{f.square} that $\s$ follows the prescription of
-Procedure PF-Constructor: (1) it maps integers into the ``square
-shells'' defined by: $m = 0, \ m = 1, ...$.  (2) it enumerates the
-entries in each shell in a counterclockwise direction.  (Of course,
-$\s$ has a twin that enumerates the shells in a clockwise direction.)
+One sees in Fig.~\ref{fig:pairingSquareShell} that $\s$ follows the
+prescription of Procedure PF-Constructor: (1) it maps integers into
+the ``square shells'' defined by: $m = 0, \ m = 1, ...$.  (2) it
+enumerates the entries in each shell in a counterclockwise direction.
+(Of course, $\s$ has a twin that enumerates the shells in a clockwise
+direction.)
 \begin{quote}
 Using somewhat more complicated instantiations of Procedure
 PF-Constructor, the study in \cite{Rosenberg75} adapts the
@@ -1930,13 +1931,22 @@ containing $n$ or fewer positions is spread over $\Omega(n \log n)$
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/PairingHyp}
 \caption{{\it The aggregate set of positions of tables having $16$ or
-fewer position.}
+    fewer position.  To help the reader understand the figure, we
+    include the curve $f(x,y) = xy$ which provides an upper envelope
+    for the set.  A careful look at this curve will reveal that it
+    touches the set of positions at the points $\langle x,y \rangle
+    \in \{ \langle 1,16 \rangle, \ \langle 2,8 \rangle, \ \langle 4,4
+    \rangle, \ \langle 8,2 \rangle, \ \langle 16,1 \rangle \}$, but it
+    does {\em not} touch the set at the points $\langle x,y \rangle
+    \in \{ \langle 3,5 \rangle, \ \langle 5,3 \rangle \}$. }
 \label{f.hyp}}
 \end{center}
 \end{figure}
 
 \subsubsection{There are {\em no more} ordered pairs than integers}
 \label{sec:cardinality-NxN}
+
+\paragraph{\small\sf A. Comparing infinite sets via cardinalities}
 
 We have remarked earlier (and will do so again) that one must be very
 careful when reasoning about infinite sets.  They can behave in ways
@@ -1946,8 +1956,10 @@ whether the set $\N^+ \times \N^+$ is ``larger'' than the set $\N^+$.
 We need to put the word ``larger'' in quotes because we do not know
 (yet) what the word means in the setting of infinite sets.  Supplying
 a meaning for the word that is at once mathematically tractable and
-intuitively plausible was among the seminal contributions of Georg
+intuitively plausible was among the seminal contributions of the
+19th-century German mathematician and logician Georg
 Cantor. \index{Cantor, Georg}
+
 
 {\Arny How much do we want to do here?  We can talk about ``$|A| \leq
   |B|$ iff there is an injection from $A$ into $B$''.  We can
@@ -1958,8 +1970,163 @@ Cantor. \index{Cantor, Georg}
     
 {\Denis Yes, develop if not too complicated.}    
 
-\cite{Cantor74,Cantor78}
+Cantor began by seeking an intuitively plausible and mathematically
+tractable formal notion that would allow us to verify or refute the
+assertion that one infinite set is ``larger'' than another.  He
+addressed this question, and related ones, in his groundbreaking study
+of the relative ``sizes'' of infinite sets \cite{Cantor74,Cantor78}.
+We adapt enough of his formulation to suggest how such issues can be
+dealt with mathematically.
 
+We take our lead from finite sets.  Is there a notion of ``bigger''
+for finite sets that can be extended to infinite sets?
+
+We begin with a set $A$ of apples and a set $O$ of oranges, together
+with the challenge of determining which set is bigger.
+
+\medskip
+
+If sets $A$ and $O$ are both finite, then we can just {\em count} the
+number of apples in $A$, call it $a$, and the number of oranges in
+$O$, call it $o$, and then compare the sizes of the (nonnegative)
+integers $a$ and $o$.  The Trichotomy Laws for integers
+(Section~\ref{sec:integers}.A) guarantee that we shall be able to
+settle the question.
+
+\noindent
+{\em But} we cannot count the elements in an infinite set, so this
+approach fails us when we have access to infinitely much fruit!  So we
+need another approach.
+
+\medskip
+
+Here is an approach that works for finite sets and that promises to
+extend to infinite sets.  Let us assume that we can ``prove''---we
+shall explain the word imminently---the following.
+
+For every apple that we extract from set $A$ {\em for the first time},
+we can extract an orange from set $O$ {\em for the first time}.  It
+will then follow (at least in the finite case), that \\
+\hspace*{.35in}{\em There are at least as many oranges as apples!}
+
+\noindent
+This is really promising, because there is another way to describe the
+fruit-matching process that readily extends to infinite sets.  \\
+\hspace*{.35in}{\em There is an injection,\footnote{Recall from
+Chapter~\ref{sec:function} that ``{\em injection}'' is synonymous
+    with ``{\em one-to-one function}''.}~call it $f$, from $O$ to $A$.} \\
+In more formal terms: {\em Every time you pull an apple $\alpha$ from set
+  $A$, I pull the orange $f^{-1}(\alpha)$ from $O$.}
+
+\medskip
+
+Inspired by this formulation using injections---and by the work of
+Cantor---we craft the following definition.
+
+\noindent
+{\em
+Given sets $A$ and $O$ (finite or infinite), we say \\
+\hspace*{.35in}{\em Set $O$ is at least as big as set $A$, denoted
+  $|O| \geq |A|$} \\
+precisely when there is an injection from $O$ to $A$.}
+
+\noindent
+{\em
+Finally, we say that \\
+\hspace*{.35in}{\em Sets $O$ and $A$ have the same cardinality,
+  denoted $|O| = |A|$} \\
+precisely when there is an injection from $O$ to $A$ {\em and} an
+injection from $A$ to $O$.}
+\index{set cardinality}
+
+\medskip
+
+Finally, back to numbers!
+
+\paragraph{\small\sf B. Comparing $\N$ and $\N \times \N$ via cardinalities}
+
+
+\begin{prop}
+\label{thm:|NxN|=|N|}
+$|\N \times \N| \ = \ |\N|$.
+\end{prop}
+
+{\Arny So we digress here to address the issue of cardinality.  Shoule
+  we ``assemble'' all such considerations---i.e., $\N \times \N$ and
+  $\Q$ and $\R$ into a separate subsection?  I have mixed feelings.}
+
+
+\begin{proof}
+We prove the following propositions in turn.
+
+\noindent {\rm (a)} There exists an injection from $\N$ to $\N \times
+\N$.  Therefore, $\N \times \N$ is at least as big as $\N$.
+
+\noindent {\rm (b)} There exists an injection from $\N \times \N$ to $\N$.
+Therefore, $\N$ is at least as big as $\N \times N$.
+
+\medskip
+
+(a) Part (a) is clear via the following injection from $\N$ into $\N
+\times \N$.
+\[ (\forall n \in \N) \ [ f(n) \ = \ \langle n,n \rangle. \]
+
+\medskip
+
+\noindent (b)
+We define an injection from $\N \times \N$ into $\N$.
+
+Inspired by Theorem~\ref{thm:Fund-Thm-Arith}, we now consider the
+function
+\[ f_2(p,q) \ \eqdef \ 2^p 3^q. \]
+
+Thus defined, $f_2$ is a function from $\N \times \N$ into $\N$.
+Moreover, Theorem~\ref{thm:Fund-Thm-Arith} guarantees that $f_2$ maps
+$\N \times \N$ {\em one-to-one} into $\Z$.
+
+The result is proved.  \qed
+\end{proof}
+
+\medskip
+
+The {\it pairing functions} of Section~\ref{sec:pairing} provide more
+interesting alternatives to the preceding proof.  Being {\em
+  bijections} between $\N$ and $\N \times \N$, these mappings can be
+adapted to prove Proposition~\ref{thm:|NxN|=|N|} {\em in a single
+  step}.
+
+\medskip
+
+We now present a remarkable theorem that demonstrates that such
+single-step proofs of equality of cardinality are {\em always}
+available!
+
+
+
+\paragraph{\small\sf C. The Schr\"{o}der-Bernstein Theorem}
+
+Although sets and their cardinalities are not the major focus of this
+chapter, it is worth a short digression to expand on the last
+remark in subsection B.  It is not a coincidence that there
+exists both \\
+\hspace*{.35in}{\em a bijection between $\N$ and $\N \times \N$} \\
+and \\
+\hspace*{.35in}{\em an injection from $\N$ to $\N \times \N$ and an
+  injection from $\N \times \N$ to $\N$.}
+
+The celebrated theorem of Schr\"{o}der and Bernstein
+\index{The Schr\"{o}der-Bernstein Theorem} {\Arny Find reference}
+tells us that bijections and paired injections always travel together.
+
+\begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
+\label{thm.S-B}
+Let $S$ and $T$ be (finite or infinite) sets such that there exists an
+injection $f: S \rightarrow T$ and an injection $g: T \rightarrow S$.
+Then there exists a bijection $h: S \leftrightarrow T$.
+\end{theorem}
+
+{\Arny Should we prove the Schroeder-Bernstein theorem?  If we decide
+  to include that,then it shuould likely go into the chapter on SETS.}
 
 
 \section{The Rational Numbers}
@@ -2224,168 +2391,12 @@ symbolically, $\Z \subset \Q$.
 
 \medskip
 
+**HERE
+
 \noindent
 The preceding ``argument'' makes an intuitive case that \\
 \hspace*{.35in}``there are more rational numbers than integers.'' \\ 
-We put this assertion in quotes because, absent a formal notion of
-``{\em more}'' for infinite sets, the assertion is meaningless!  Is
-there an acceptable formal notion that would allow us to verify or
-refute the assertion?  The 19th-century mathematician/logician Georg
-Cantor addressed this question, and related ones, in his
-groundbreaking study of the relative ``sizes'' of infinite sets
-\cite{Cantor74,Cantor78}.  We adapt enough of his formulation to
-suggest how such issues can be dealt with mathematically.
 
-We take our lead from finite sets.  Is there a notion of ``bigger''
-for finite sets that can be extended to infinite sets?
-
-We begin with a set $A$ of apples and a set $O$ of oranges, together
-with the challenge of determining which set is bigger.
-
-\medskip
-
-If sets $A$ and $O$ are both finite, then we can just {\em count} the
-number of apples in $A$, call it $a$, and the number of oranges in
-$O$, call it $o$, and then compare the sizes of the (nonnegative)
-integers $a$ and $o$.  The Trichotomy Laws for integers
-(Section~\ref{sec:integers}.A) guarantee that we shall be able to
-settle the question.
-
-\noindent
-{\em But} we cannot count the elements in an infinite set, so this
-approach fails us when we can infinitely much fruit!
-
-\medskip
-
-Here is another approach that works for finite sets and that promises
-to extend to infinite sets.  Let us assume that we can ``prove''---we
-shall explain the word imminently---the following.
-
-For every apple that we extract from set $A$ {\em for the first time},
-we can extract an orange from set $O$ {\em for the first time}.  It
-will then follow (at least in the finite case), that \\
-\hspace*{.35in}{\em There are at least as many oranges as apples!}
-
-\noindent
-This is really promising, because there is another way to describe the
-fruit-matching process that readily extends to infinite sets.  \\
-\hspace*{.35in}{\em There is an injection,\footnote{Recall from
-Chapter~\ref{sec:function} that ``{\em injection}'' is synonymous
-    with ``{\em one-to-one function}''.}~call it $f$, from $O$ to $A$.} \\
-In more formal terms: {\em Every time you pull an apple $\alpha$ from set
-  $A$, I pull the orange $f^{-1}(\alpha)$ from $O$.}
-
-\medskip
-
-Inspired by this formulation using injections---and by the work of
-Cantor---we craft the following definition.
-
-\noindent
-{\em
-Given sets $A$ and $O$ (finite or infinite), we say \\
-\hspace*{.35in}{\em Set $O$ is at least as big as set $A$} \\
-precisely when there is an injection from $O$ to $A$.}
-
-\medskip
-
-Finally, back to numbers!
-
-\addcontentsline{toc}{subsubsection}{-- A fun result: There are as many
-  integers as rationals}
-
-\begin{prop}
-\label{thm:|Q|=|Z|}
-{\rm (a)} There exists an injection from $\Z$ to $\Q$.  Therefore,
-$\Q$ is at least as big as $\Z$.
-
-\noindent {\rm (b)} There exists an injection from $\Q$ to $\Z$.
-Therefore, $\Z$ is at least as big as $\Q$.
-\end{prop}
-
-{\Arny So we digress here to address the issue of cardinality.  Shoule
-  we ``assemble'' all such considerations---i.e., $\N \times \N$ and
-  $\Q$ and $\R$ into a separate subsection?  I have mixed feelings.}
-
-
-\begin{proof}
-(a) We have already established part (a), via the injection from $\Z$
-into $\Q$ implicit in (\ref{eq:ZintoQ}).
-
-\medskip
-
-\noindent (b)
-We proceed in two steps.
-\begin{enumerate}
-\item
-We define an injection $f_1$ that maps $\Q$ one-to-one into the set
-$\Q^+$ of {\em non-negative} rationals.  We specify $f_1$ as follows.
-\[ f_1(p/q) \ = \ \left\{
-\begin{array}{cl}
-2p/q & \mbox{ if } \ p/q \geq 0 \\
-(2p+1)/q & \mbox{ if } \ p/q < 0. \\
-\end{array}
-\right.
-\]
-We leave to the reader the easy proof that $f_1$ is an injection from
-$\Q$ into $\Q^+$.
-
-\item
-We define an injection from $\Q^+$ into $\Z$.
-
-Toward this end, we represent each rational number $r \in \Q^+$ by a
-pair of integers $p > 0$ and $q >0$ such that
-\begin{itemize}
-\item
-$r = p/q$
-
-\item
-$p$ and $q$ are {\em relatively prime} \index{relatively prime
-  integers} in the sense that no integer $n > 1$ divides both $p$ and
-  $q$.  If such an $n$ existed, then we could divide both $p$ and $q$
-  by it, with the assurance that
-\[ \frac{p/n}{q/n} \ = \ \frac{p}{q}. \]
-\end{itemize}
-Inspired by Theorem~\ref{thm:Fund-Thm-Arith}, we now consider the
-function
-\[ f_2(p/q) \ \eqdef \ 2^p 3^q. \]
-Thus defined, $f_2$ is a function from $\Q^+$ into $\Z$.  Moreover,
-Theorem~\ref{thm:Fund-Thm-Arith} guarantees that $f_2$ maps $\Q^+$
-{\em one-to-one} into $\Z$.
-\end{enumerate}
-Since the composition of two injections is also an injection (see
-Proposition~\ref{thm:fn-composition}), the result is proved.  \qed
-\end{proof}
-
-The {\it pairing functions} of Section~\ref{sec:pairing} provide more
-interesting alternatives to the preceding proof.  Being {\em
-  bijections} between $\Z$ and $\Z \times \Z$, these mappings can be
-adapted to prove Proposition~\ref{thm:|Q|=|Z|} {\em in a single
-  step}.
-
-\medskip
-
-\paragraph{A digression: The Schr\"{o}der-Bernstein Theorem}
-Although sets and their cardinalities are not the major focus of this
-chapter, it is worth a short digression to expand on the preceding
-remark about pairing functions.  It is not a coincidence that there
-exists both \\
-\hspace*{.35in}{\em a bijection between $\Z$ and $\Z \times \Z$} \\
-and \\
-\hspace*{.35in}{\em an injection from $\Z$ to $\Z \times \Z$ and an
-  injection from $\Z \times \Z$ to $\Z$.} \\
-The celebrated theorem of Schr\"{o}der and Bernstein
-\index{The Schr\"{o}der-Bernstein Theorem} {\Arny Find reference}
-tells us that bijections and paired injections always travel together.
-
-\begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
-\label{thm.S-B}
-Let $S$ and $T$ be (finite or infinite) sets such that there exists an
-injection $f: S \rightarrow T$ and an injection $g: T \rightarrow S$.
-Then there exists a bijection $h: S \leftrightarrow T$.
-\end{theorem}
-
-{\Arny Should we prove the Schroeder-Bernstein theorem?  If we decide
-  to include that,then it shuould likely go into the chapter on SETS.}
 
 \section{The Real Numbers}
 \label{sec:reals}
