@@ -1,4 +1,4 @@
-%version of 08-29-18
+%version of 08-30-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -355,7 +355,7 @@ the lefthand grey triangle in Fig.~\ref{fig:unitsquare} as a model.
 \end{center}
 \end{figure}
 
-{\Arny Please edit the figure to follow this story ... label the
+\ignore {\Arny Please edit the figure to follow this story ... label the
   vertices of triangle $T$.  Any other labels? ... hypotenuse?  }
 
 Say that the angle at vertex $A$ of $T$ is a {\em right angle},
@@ -835,21 +835,83 @@ The set $\Z$ obeys the {\it ``Between'' Laws}
 
 \smallskip
 
-Any such $c \in \Z$ is {\em between} $a$ and $b$, whence the name of
-the law.
+Any such $c \in \Z$ lies {\em between} $a$ and $b$ along the number
+line, whence the name of the law.
 
 
-\subsection{Divisible or not divisible?}
-\label{sec:}
+\subsection{Divisibility and Indivisibility}
+\label{sec:divisibility}
 
-{\Denis rephrase the first sentences.}
-We say that a positive integer $p$ {\it divides} a positive integer
-$n$ (or, {\it is a divisor of $n$})\index{number!integer!divisor} if
-there is a positive integer $q$ such that $n = p \cdot q$.
-Equivalently, we say that $n$ {\it is divisible
-  by}\index{number!integer!divisibility} $p$.  
-Sometimes two integers are perfectly divisible, sometimes divisibility goes wrong.
-Let us investigate this in the next two sections.
+Let $m$ and $n$ be nonnegative integers---symbolically, $m, n \in \N$.
+We use any of the following locutions to assert the existence of a
+positive integer $q$ such that $n = m \cdot q$. 
+\index{number!integer!divisor} \index{number!integer!divisibility}
+\index{$m \mid n$: $m$ divides $n$}
+\begin{itemize}
+\item
+$m$ {\it divides} $n$
+\item
+$m$ {\it is a divisor of} $n$
+\item
+$n$ {\it is divisible by} $m$
+\item
+$m \mid n$.
+\end{itemize}
+This section is devoted to studying the possible {\it divisibility}
+relations between the integers $m$ and $n$.  We begin by noting some
+general facts.
+\begin{itemize}
+\item
+Every integer $m$ divides $0$.
+
+This is because of the universal equations $m \cdot 0 = 0 \cdot m =
+0$.  These same equations verify that $0$ {\em does not} divide any
+integer.
+\item
+$1$ divides every integer.
+
+This is because of the universal equation $1 \cdot m = m$.
+\item
+Every nonzero integer divides itself.
+
+This is because of the universal equation $m \cdot 1 = m$.
+\end{itemize}
+
+Some nonzero integers have many distinct divisors, while some have
+very few.  Consider, for illustration, the first twelve positive
+integers.
+\[ \begin{array}{|c|c|}
+\hline
+\mbox{Number} & \mbox{Divisors} \\
+\hline
+\hline
+1  &  \{ 1 \} \\
+2  &  \{ 1, 2 \} \\
+3  &  \{ 1, 3 \} \\
+4  &  \{ 1, 2, 4 \} \\
+5  &  \{ 1, 5 \} \\
+6  &  \{ 1, 2, 3 \} \\
+7  &  \{ 1, 7 \} \\
+8  &  \{ 1, 2, 4, 8 \} \\
+9  &  \{ 1, 3, 9 \} \\
+10  & \{ 1, 2, 5, 10 \} \\
+11  & \{ 1, 11 \} \\
+12  & \{ 1, 2, 3, 4, 6, 12 \} \\
+\hline
+\end{array}
+\]
+But, note, all nonzero integers have at least $1$ and themselves as
+divisors.  These ``sparsely divisible'' integers, which have only two
+divisors, are called {\it primes}\index{numbers!integers!primes} or
+{\it prime integers}; we study these ``building blocks of the positive
+integers'' in some detail in Section~\ref{sec:primes}.
+
+Before we turn to the primes we note that there is much of interest to
+discuss about nonprime integers, particularly, when we study pairs of
+integers.
+
+%times a two integers are perfectly divisible, sometimes divisibility
+%goes wrong.  Let us investigate this in the next two sections.
 
 \subsubsection{Perfect divisibility}
 \label{sec:divisibilityAndGCD}
@@ -1011,12 +1073,13 @@ An integer $p >1$ is {\it prime}\index{number!integer!prime
 if its {\em only} positive integer divisors are $1$ (which divides
 every integer) and itself (which is always a divisor).
 \begin{quote}
-We usually use the shorthand assertion, ``$p$ is a prime'' (or even simpler ``$p$ is prime'') instead of
-the longer, but equivalent, ``$p$ is a prime integer.''
+{\em We often use the shorthand assertion, ``$p$ is a prime'' (or even
+  the simpler ``$p$ is prime'') instead of the longer, but equivalent,
+  ``$p$ is a prime integer.''}
 \end{quote}
 
   
-  \subsubsection{Primes as building blocks: The Fundamental Theorem of Arithmetic}
+\subsubsection{Primes as building blocks: The Fundamental Theorem of Arithmetic}
 \label{sec:prime-factorization}
 
 A very important way to classify a positive integer $n$ is to list the
@@ -1095,6 +1158,7 @@ Every positive integer is divisible by at least one prime number.
 
 
 \subsubsection{Proving the Fundamental Theorem of Arithmetic}
+\label{sec:FTA-proof}
 
 The  proof of Theorem~\ref{thm:Fund-Thm-Arith} is actually rather
 elementary, providing that one approaches it gradually.  It
@@ -1182,15 +1246,13 @@ Let us multiply both sides of this equation by $n$.  After some
 manipulation---specfically, applying the distributive law---we find
 that
 \[ apn + bmn \ = \ n. \]
-Now $p$ divides the expression to the left of the equal sign: $p$
+Now, $p$ divides the expression to the left of the equal sign: $p$
 divides $p$ by definition, and $p$ divides $mn$ by assumption.  It
 follows that $p$ must divide the expression to the right of the equal
 sign---namely, the integer $n$.  \qed
 \end{proof}
 
 We are finally ready to develop the proof of the Fundamental Theorem.
-
-%\addcontentsline{toc}{paragraph}{Proof of the Fundamental Theorem of Arithmetic}
 
 \begin{proof}
 {\bf Proof of the Fundamental Theorem of Arithmetic.}
