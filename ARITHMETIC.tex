@@ -355,7 +355,7 @@ the lefthand grey triangle in Fig.~\ref{fig:unitsquare} as a model.
 \end{center}
 \end{figure}
 
-\ignore {\Arny Please edit the figure to follow this story ... label the
+\ignore{\Arny Please edit the figure to follow this story ... label the
   vertices of triangle $T$.  Any other labels? ... hypotenuse?  }
 
 Say that the angle at vertex $A$ of $T$ is a {\em right angle},
@@ -913,33 +913,112 @@ integers.
 %times a two integers are perfectly divisible, sometimes divisibility
 %goes wrong.  Let us investigate this in the next two sections.
 
-\subsubsection{Perfect divisibility}
-\label{sec:divisibilityAndGCD}
+\subsubsection{Divisibility and divisors}
+\label{sec:divisibility+GCD}
+
+We begin to study the conceptof integer divisibility by considering a
+variety of simple, yet significant, consequences of an integer $n$'s
+being divisible by an integer $n$.  We leave the following
+applications of the basic definitions as exercises for the reader.
+Say that $m \mid n$.  Then:
+\begin{enumerate}
+\item
+$m \mid cn$ for all integers $c$.
+\item
+If, moreover, $n \mid c$ for some integer $c$, then $n \mid c$.
+\item
+If, moreover, $m \mid (n+c)$ for some integer $c$, then $m \mid c$.
+\item 
+For any nonzero integer $c \neq 0$, $\left[[m \mid n] \ \ \mbox{ if, and
+    only if} \ \  [ac \mid bc] \right]$.
+\end{enumerate}
+
+The following result now follows from the preceding facts.
+
+\begin{prop}
+If $m \mid n$ and $m \mid c$, then $m \mid (sn+tc)$ for all integers
+$s$ and $t$.
+\end{prop}
+
+\begin{proof}
+The statement's two divisibility relations mean that there exist
+integers $k_1$ and $k_2$ such that $k_1 \cdot m = n$ and $k_2 \cdot m
+= c$.  We therefore have $(k_1 \cdot s + k_2 \cdot t)m \ = \ sn+tc$
+for any $s$ and $t$.  \qed
+\end{proof}
+
+
+
+
+\begin{prop}
+\label{thm:gcd-n-linear}
+Let $p$ be a prime, and let $m$ be any positive integer that is {\em
+  not} divisible by $p$.  There exist integers $a, b$, not necessarily
+positive, such that
+\[ ap + bm \ = \ 1. \]
+\end{prop}
+
+\begin{proof}
+Consider the set of all integer linear combinations of $p$ and $m$:
+\[  L_{p,m} \ \eqdef \   \{ ap +bm \ | \ a, b \in \Z \} \ \subseteq \ \Z. \]
+Note that both $p$ and $m$ belong to $L_{p,m}$, because of the
+respective cases $(a=1, b=0)$ and $(a=0, b=1)$.  One consequence of
+this is that $L_{p,m}$ has a nonempty subset, call it
+$L^{(>0)}_{p,m}$, all of whose elements are {\em positive} integers.
+
+By the {\it Well-Ordering Principle of the positive integers}, the set
+$L^{(>0)}_{p,m}$ has a smallest element, call it $r_0$.  By definition
+of $L^{(>0)}_{p,m}$, $r_0$ is a positive integer, and there exist
+integers $a_0$ and $b_0$ such that
+\[  r_0 \ = \ a_0 p + b_0 m. \]
+
+We claim that $L^{(>0)}_{p,m}$ in fact {\em consists precisely of all
+  positive-integer multiples of $r_0$.}  Were this not the case, there
+would be an element $r$ of $L^{(>0)}_{p,m}$ that is not a
+(positive-integer) multiple of $r_0$.  Let $r_1$ be the {\em smallest}
+such element $r$.  We then have
+\begin{enumerate}
+\item
+Because $r_1 \in L^{(>0)}_{p,m}$, there exist integers $a_1$ and $b_1$
+such that
+\[  r_1 \ = \ a_1 p + b_1 m. \]
+\item
+Because $r_0$ is the {\em smallest} element of $L^{(>0)}_{p,m}$, we
+have $r_2 \ \eqdef \ r_1 - r_0 \ > 0$, so that
+\[ r_2 \ = \ (a_1 - a_0) p + (b_1 -b_0) m \ \in \ L^{(>0)}_{p,m}. \]
+\end{enumerate}
+Now, we are in trouble because of the following incompatible facts.
+\begin{itemize}
+\item
+$r_2$ {\em is not} a multiple of $r_0$!
+
+If it were, then we would have $r_0$ dividing both $r_0$ (trivially)
+and $r_2 = r_1 - r_0$.  But this would imply that $r_0$ divides $r_1$,
+contrary to assumption.
+
+\item
+$r_2$ {\em is} a multiple of $r_0$!
+
+This is because $r_2 < r_1$, and $r_1$ is the {\em smallest} element
+of $L^{(>0)}_{p,m}$ that is not a multiple of $r_0$.
+\end{itemize}
+We conclude that integer $r_1$ does not exist, so that all elements of
+$L^{(>0)}_{p,m}$ are multiples of $r_0$.
+
+Let us summarize.  The set of positive integer linear combinations of
+$p$ and $m$ consists of the multiples of a single integer $r_0$.  This
+means, in particular, that both $p$ and $m$ are multiples of a single
+positive integer, $r_0$---even though $p$ is a prime which does not
+divide $m$.  The only way this situation could hold is if $r_0 = 1$,
+as claimed in the proposition.  \qed
+\end{proof}
+
 
 \textbf{Basic results and definitions}
 
 {\Denis I used my notations, let see if you should change $a$ and $b$ to $n$ and $p$...}
 
-Let $a$ and $b$ be two integers.
-$a$ divides $b$ if there is an integer $k$ such that $ak=b$. 
-%We also say that $b$ is a multiple of $a$ (notice here that $a$ may be negative).
-%Let remark that according to this definition, every number divides $0$.
-%
-%The following properties are straightforward by applying directly the definitions:
-%
-%\begin{enumerate}
-%\item If $a \mid b$  then $a \mid bc$ $\forall$ integers $c$
-%\item If $a \mid b$ and $b \mid c$ then $a \mid c$
-%\item If $a \mid b$ and $a \mid b+c$ then $a \mid c$ 
-%\item $\forall c \neq 0$, $a \mid b$ {\it iif} $ac \mid bc$ 
-%\end{enumerate}
 
-Property:
-
-If $a \mid b$ and $a \mid c$ then $a \mid sb+tc$ $\forall$ integers $s$ and $t$
-
-Proof: there exist $k_1$ and $k_2$ such that $a.k_1 = b$ and $a.k_2 = c$,
-which implies $a(k_1.s+k_2.t )= sb+tc$ for any $s$ and $t$. 
 
 
 \textbf{Greatest Common Divisor (GCD)}
@@ -1060,6 +1139,7 @@ importance has been recognized for millennia but which have found
 important applications (e.g., within the domain of computer security)
 mainly within the past several decades.
 
+**HERE
 Thus, every positive
 integer $n$ is divisible by $p=1$ (witnessed by $q=n$) and by $p=n$
 (witnessed by $q=1$).
@@ -1160,10 +1240,11 @@ Every positive integer is divisible by at least one prime number.
 \subsubsection{Proving the Fundamental Theorem of Arithmetic}
 \label{sec:FTA-proof}
 
-The  proof of Theorem~\ref{thm:Fund-Thm-Arith} is actually rather
-elementary, providing that one approaches it gradually.  It
-employs a lot of important techniques and concepts involved in ``doing
-mathematics'', as discussed in the eponymous Chapter~\ref{ch:doingmath}.
+The proof of Theorem~\ref{thm:Fund-Thm-Arith} is actually rather
+elementary, providing that one approaches it gradually.  It employs a
+lot of important techniques and concepts involved in ``doing
+mathematics'', as discussed in the eponymous
+Chapter~\ref{ch:doingmath}.
 
 We begin with a purely technical result.
 
@@ -1176,58 +1257,10 @@ positive, such that
 \end{prop}
 
 \begin{proof}
-Consider the set of all integer linear combinations of $p$ and $m$:
-\[  L_{p,m} \ \eqdef \   \{ ap +bm \ | \ a, b \in \Z \} \ \subseteq \ \Z. \]
-Note that both $p$ and $m$ belong to $L_{p,m}$, because of the
-respective cases $(a=1, b=0)$ and $(a=0, b=1)$.  One consequence of
-this is that $L_{p,m}$ has a nonempty subset, call it
-$L^{(>0)}_{p,m}$, all of whose elements are {\em positive} integers.
-
-By the {\it Well-Ordering Principle of the positive integers}, the set
-$L^{(>0)}_{p,m}$ has a smallest element, call it $r_0$.  By definition
-of $L^{(>0)}_{p,m}$, $r_0$ is a positive integer, and there exist
-integers $a_0$ and $b_0$ such that
-\[  r_0 \ = \ a_0 p + b_0 m. \]
-
-We claim that $L^{(>0)}_{p,m}$ in fact {\em consists precisely of all
-  positive-integer multiples of $r_0$.}  Were this not the case, there
-would be an element $r$ of $L^{(>0)}_{p,m}$ that is not a
-(positive-integer) multiple of $r_0$.  Let $r_1$ be the {\em smallest}
-such element $r$.  We then have
-\begin{enumerate}
-\item
-Because $r_1 \in L^{(>0)}_{p,m}$, there exist integers $a_1$ and $b_1$
-such that
-\[  r_1 \ = \ a_1 p + b_1 m. \]
-\item
-Because $r_0$ is the {\em smallest} element of $L^{(>0)}_{p,m}$, we
-have $r_2 \ \eqdef \ r_1 - r_0 \ > 0$, so that
-\[ r_2 \ = \ (a_1 - a_0) p + (b_1 -b_0) m \ \in \ L^{(>0)}_{p,m}. \]
-\end{enumerate}
-Now, we are in trouble because of the following incompatible facts.
-\begin{itemize}
-\item
-$r_2$ {\em is not} a multiple of $r_0$!
-
-If it were, then we would have $r_0$ dividing both $r_0$ (trivially)
-and $r_2 = r_1 - r_0$.  But this would imply that $r_0$ divides $r_1$,
-contrary to assumption.
-
-\item
-$r_2$ {\em is} a multiple of $r_0$!
-
-This is because $r_2 < r_1$, and $r_1$ is the {\em smallest} element
-of $L^{(>0)}_{p,m}$ that is not a multiple of $r_0$.
-\end{itemize}
-We conclude that integer $r_1$ does not exist, so that all elements of
-$L^{(>0)}_{p,m}$ are multiples of $r_0$.
-
-Let us summarize.  The set of positive integer linear combinations of
-$p$ and $m$ consists of the multiples of a single integer $r_0$.  This
-means, in particular, that both $p$ and $m$ are multiples of a single
-positive integer, $r_0$---even though $p$ is a prime which does not
-divide $m$.  The only way this situation could hold is if $r_0 = 1$,
-as claimed in the proposition.  \qed
+This result is a special case of Proposition~\ref{thm:gcd-n-linear}
+because for any prime $p$ and integer $m$ that is not divisible by
+$p$, {\sc gcd}$(p, m) = 1$.
+\qed
 \end{proof}
 
 \begin{prop}
