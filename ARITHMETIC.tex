@@ -1,6 +1,6 @@
-%version of 08-31-18
+%version of 09-01-18
 
-\chapter{ARITHMETIC}
+\chapter{NUMBERS, NUMERALS, AND ARITHMETIC}
 \label{ch:arithmetic}
 
 Many, perhaps most, of us take for granted the brilliant notations
@@ -10,8 +10,8 @@ that are not only perspicuous but also convenient for computing and
 for discovering and verifying new mathematical truths.  This chapter
 is dedicated to sharing this legacy with the reader.
 
-\section{Numbers and Numerals}
-\label{sec:numbers-numerals}
+\section{Numbers}
+\label{sec:numbers}
 
 \subsection{Introduction}
 
@@ -2057,18 +2057,20 @@ $\h$, the number of occupied slots is within $n$ of
 \]
 Elementary calculations show that this sum is $O(n \log n)$.
 
-\noindent {\bf (c)}
-The optimality of $\h$ in compactness (up to constant factors) is seen
-via the following argument.  The set of tables that have $n$ or fewer
-positions are those of aspect ratios $a_i \times b_i$, where $a_i b_i
-\leq n$.  As one sees from Fig.~\ref{f.hyp} (generalized to arbitrary
-$n$), the union of the positions of all these arrays is the set of
-integer lattice points under the hyperbola $xy = n$.  It is
+\noindent {\bf (c)} The optimality of $\h$ in compactness (up to
+constant factors) is seen via the following argument.  The set of
+tables that have $n$ or fewer positions are those of aspect ratios
+$a_i \times b_i$, where $a_i b_i \leq n$.  As one sees from
+Fig.~\ref{f.hyp} (generalized to arbitrary $n$), the union of the
+positions of all these arrays is the set of integer lattice points
+under the hyperbola $xy = n$.  It is
 well-known---cf.~\cite{NivenZ80}---that this set of points has
-cardinality $\Theta(n \log n)$.  Since every table contains position
-$\langle 1,1 \rangle$, it follows that, for every $n$, some table
-containing $n$ or fewer positions is spread over $\Omega(n \log n)$
-``addresses.''   \qed
+cardinality $\Theta(n \log n)$.\footnote{Recall from
+  Chapter~\ref{sec:set-concepts} that the {\it cardinality} of a
+  finite set $S$ is the number of elements in $S$.}  Since every table
+contains position $\langle 1,1 \rangle$, it follows that, for every
+$n$, some table containing $n$ or fewer positions is spread over
+$\Omega(n \log n)$ ``addresses.''  \qed
 \end{proof}
 \begin{figure}[htb]
 \begin{center}
@@ -2090,6 +2092,7 @@ containing $n$ or fewer positions is spread over $\Omega(n \log n)$
 \label{sec:cardinality-NxN}
 
 \paragraph{\small\sf A. Comparing infinite sets via cardinalities}
+\index{cardinality!infinite set}
 
 We have remarked earlier (and will do so again) that one must be very
 careful when reasoning about infinite sets.  They can behave in ways
@@ -2186,11 +2189,30 @@ injection from $A$ to $O$.}
 
 Finally, back to numbers!
 
+There has always been special interest in comparing the cardinalities of
+specific infinite sets with the cardinality of the integers.  This
+interest has led to the following pair of adjectives.
+\begin{itemize}
+\item
+A (finite or infinite) set $S$ is {\it countable} \index{countable
+  set} \index{set!countable} if $|S| \leq |\N|$.
+\item
+An infinite set $S$ is {\it uncountable} \index{uncountable set}
+\index{set!uncountable} if $|S| \not\leq |\N|$.
+\end{itemize}
+
 \paragraph{\small\sf B. Comparing $\N$ and $\N \times \N$ via cardinalities}
 
+An obvious first candidate whose cardinality to compare with that of
+the integers $\N$ (or $\Z$, or $\N^+$) is the corresponding set of
+ordered pairs, $\N \times \N$ (or $\Z \times \Z$, or $\N^+ \times
+\N^+$).  Cantor discovered in the 1870s that pairing does not increase
+cardinality in infinite sets.  We now prove this for the set $\N$, but
+we could easily repeat our argument for $\Z$ or $\N^+$.
 
 \begin{prop}
 \label{thm:|NxN|=|N|}
+The set $\N \times \N$ is countable:
 $|\N \times \N| \ = \ |\N|$.
 \end{prop}
 
@@ -2204,8 +2226,9 @@ We prove the following propositions in turn.
 
 \medskip
 
-\noindent {\rm (a)} {\em There exists an injection from $\N$ to $\N \times
-\N$.  Therefore, $\N \times \N$ is at least as big as $\N$.}
+\noindent {\rm (a)} {\em There exists an injection from $\N$ to $\N
+  \times \N$.  Therefore, $|\N| \leq |\N \times \N|$; informally, $\N
+  \times \N$ is at least as big as $\N$.}
 
 \smallskip
 
@@ -2216,8 +2239,9 @@ injection from $\N$ into $\N \times \N$.
 
 \medskip
 
-\noindent {\rm (b)} {\em There exists an injection from $\N \times \N$ to $\N$.
-Therefore, $\N$ is at least as big as $\N \times \N$.}
+\noindent {\rm (b)} {\em There exists an injection from $\N \times \N$
+  to $\N$.  Therefore, $|\N \times \N| \leq |\N|$; informally, $\N$ is
+  at least as big as $\N \times \N$.}
 
 \smallskip
 
@@ -2796,7 +2820,7 @@ Thus, we build another smaller square equation, which is a contradiction.
 \end{figure}
 
 
-\subsection{Comparing $\Q$ and $\R$ via cardinalities: There are ``more'' real numbers}
+\subsection{Comparing $\Z$, $\Q$, and $\R$ via cardinalities}
 \label{sec:Q-Z-R-cardinality}
 \label{sec:Reals-uncountable}
 
@@ -2806,17 +2830,15 @@ Thus, we build another smaller square equation, which is a contradiction.
 
 **HERE
 
-DEFINE COUNTABLE
-\index{countable set}
-\index{uncountable set}
-
 \begin{prop}
 \label{thm:R-uncountable}
-The set $\R$ of real numbers is not countable.
+The set $\R$ of real numbers is not countable:
 There is no injection $f: \R \rightarrow \N$.
 \end{prop}
 
 \begin{proof}
+START SLOWLY
+
 By the Schr\"{o}der--Bernstein theorem (Theorem~\ref{thm.S-B}), there
 therefore exists a {\em bijection}
 \[ 
