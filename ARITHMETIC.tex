@@ -2947,17 +2947,23 @@ producing an ``infinite-by-infinite'' matrix $\Delta$ of decimal
 digits, whose $k$th row is the infinite string of decimal digits
 $\mbox{\sc num}_{10}(h(k))$.  Let us visualize $\Delta$:
 \[ \Delta \ = \
-\begin{array}{cccccc}
+\begin{array}{ccccccc}
+\delta_0 = &
 \delta_{0,0} & \delta_{0,1} & \delta_{0,2} & \delta_{0,3} &
 	\delta_{0,4} & \cdots \\
+\delta_1 = &
 \delta_{1,0} & \delta_{1,1} & \delta_{1,2} & \delta_{1,3} &
 	\delta_{1,4} & \cdots \\
+\delta_2 = &
 \delta_{2,0} & \delta_{2,1} & \delta_{2,2} & \delta_{2,3} &
 	\delta_{2,4} & \cdots \\
+\delta_3 = &
 \delta_{3,0} & \delta_{3,1} & \delta_{3,2} & \delta_{3,3} &
 	\delta_{3,4} & \cdots \\ 
+\delta_4 = &
 \delta_{4,0} & \delta_{4,1} & \delta_{4,2} & \delta_{4,3} &
 	\delta_{4,4} & \cdots \\ 
+\vdots &
 \vdots  & \vdots  & \vdots  & \vdots  & \vdots  & \ddots
 \end{array}
 \]
@@ -2984,39 +2990,66 @@ real numbers in the set $\R_{(0,1)}$.
 \paragraph{\small\sf C. A ``problem'':  bijection $h$ ``missed'' some
   $x \in \R_{(0,1)}$}
 
-We are poised to find the contradiction to our argument thus
-far---hence, to the assumption that $|\R_{(0,1)}| \leq |\N|$.
-Specifically, we construct an infinite decimal numeral
+We are finally poised to find the contradiction to our assumption that
+$|\R_{(0,1)}| \leq |\N|$.  Specifically, we define from $\Delta$ an
+infinite decimal numeral
 \[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
 that {\em does not} appear in $\Delta$, even though $\mbox{\sc
-  num}_{10}(\Psi) \in \R_{(0,1)}$.
+  num}_{10}(\Psi) \in \R_{(0,1)}$.  For each index $i \in \N$, we
+define the $i$th digit $\psi_i$ of $\Psi$ from the $i$th {\em diagonal
+  digit}\footnote{Our use of $\Delta$'s ``diagonal digits'' in this
+  definition is the origin of the term ``{\em diagonal argument}'' to
+  describe this proof and its intellectual kin.}~$\delta_{i,i}$ of
+$\Delta$ in the following manner.
+\[ \psi_i \ \eqdef \
+%= \ \overline{\delta}_{i,i} \ \eqdef \
+\left\{
+\begin{array}{cc}
+0 & \mbox{ if } \ \delta_{i,i} \ > \ 5 \\
+9 & \mbox{ if } \ \delta_{i,i} \ \leq \ 5 \\
+\end{array}
+\right.
+\]
+The important feature of the definition is the following.
 
-**HERE
+\begin{lemma}
+\label{lem:PSI-notin-DELTA}
+The string $\Psi$ does not occur as a row of $\Delta$.
+\end{lemma}
 
-by setting, for each index $i$,
-\[ \psi_i \ = \ \overline{\delta}_{i,i} \ = \ 1 - \delta_{i,i}. \]
-\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
-The term ``{\em diagonal argument}'' for this proof stems from the
-fact that we create the new string $\Psi$ by making changes to the
-{\em diagonal} elements of the matrix $\Delta$.
-\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
-Note that the new string, $\Psi$, clearly does not occur as a row of
-matrix $\Delta$.  This is because $\Psi$ differs from each row of
-$\Delta$ in at least one position.  Specifically, for each index $i$,
-$\Psi$ differs from row $i$ of $\Delta$ at least in position $i$:
-$\psi_i \neq \delta_{i,i}$.  But if the binary string $\Psi$ does not
-occur as a row of matrix $\Delta$, then $\Delta$ {\em does not}
-contain {\em every} infinite binary string as one of its
-rows---which contradicts $\Delta$'s assumed defining characteristic!
+\noindent {\it Verification}.
+Focus on an arbitrary row of $\Delta$, say row $k$, and on the numeral,
+$\delta_k$, in that row.
+
+\begin{tabular}{lclc}
+If & $\delta_{k,k} \ > \ 5$ & then & \ \
+$\mbox{\sc num}_{10}(\delta_k) \ - \ \mbox{\sc num}_{10}(\Psi) \ > \ 4
+\cdot 10^{-k}$ \\
+If & $\delta_{k,k} \ \leq \ 5$ & then & \ \
+$\mbox{\sc num}_{10}(\Psi) \ - \ \mbox{\sc num}_{10}(\delta_k) \ > \ 4
+\cdot 10^{-k}$
+\end{tabular}
+
+\noindent
+In either case, we have $\mbox{\sc num}_{10}(\Psi) \ \neq \ \mbox{\sc
+  num}_{10}(\delta_k)$ so that $\Psi$ does not appear as row $k$ of
+$\Delta$.  Since $k \in \N$ is an arbitrary row-index of $\Delta$, we
+conclude that $\Psi$ does not occur as any row of $\Delta$.  \qed
+
+\paragraph{\small\sf D. The denouement: The set  $\R_{(0,1)}$ is not countable}
+
+Because the infinite decimal string $\Psi$ differs from every row of
+$\Delta$, even though $\mbox{\sc num}_{10}(\Psi) \in \R_{10}$, we have
+shown that $\Delta$ {\em does not} contain as a row {\em every}
+infinite decimal numeral of a number in $\R_{10}$.  But this
+contradicts $\Delta$'s assumed defining characteristic!
 
 Where could we have gone wrong?  Every step of our argument, save one,
-is backed up by a theorem---so the one step that is not so bolstered
+is backed up by a proof---so the one step that is not so bolstered
 must be the link that has broken.  This one unsubstantiated step is
-our assumption that the set $\b$ is countable.  Since this assumption
-has led us to a contradiction, we must conclude that the set $\b$ is
-{\em not} countable!
-
-We thus have the uncountability of the set $\R$.
+our assumption that the set $\R_{10}$ is countable.  Since this
+assumption has led us to a contradiction, we must conclude that the
+set $\R_{10}$, and hence, the set $\R$, is {\em not} countable!
 \qed
 \end{proof}
 
