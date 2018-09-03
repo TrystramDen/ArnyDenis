@@ -1,4 +1,4 @@
-%version of 09-02-18
+%version of 09-03-18
 
 \chapter{NUMBERS, NUMERALS, AND ARITHMETIC}
 \label{ch:arithmetic}
@@ -2855,59 +2855,86 @@ In particular, there is no injection $f: \R \rightarrow \N$.
 \begin{proof}
 Our multi-step proof shows that the assumption of $\R$'s countability
 leads to a contradiction.  Being built around Georg Cantor's renowned
-{\it diagonalization construction} \index{diagonalization}, this will
-provide the most sophisticated proof by contradiction in our text.
-The reader might want to review the reasoning underlying such
-argumentation in Chapter~\ref{sec:Contradiction}, as a ``warm-up.''
+{\it diagonalization construction}, \index{diagonalization} this
+argument provides the most sophisticated proof by contradiction in our
+text.  The reader might want to review the reasoning underlying such
+argumentation, in Chapter~\ref{sec:Contradiction}, as a ``warm-up.''
 
 \paragraph{\small\sf A. Refining our goal}
 
-Using the definition of countability, our proof will begin with the
-assumption that $|\R| \leq |\N|$ and will derive a contradiction from
-that assumption.  In fact, we shall use other knowledge about the sets
-$\N$ and $\R$ to recast our goal into a form that will be easier to
-manage mathematically.  We begin with the following easy lemma.
+Invoking the definition of countability, our proof begins with the
+assumption that $|\R| \leq |\N|$ and demonstrates that this assumption
+leads to a contradiction.  We simplify our goal in several steps.
+
+{\it (a) Recasting the problem in terms of bijections.}
+We now set out to recast our goal into a form that will be easier to
+manage mathematically, by invoking our prior knowledge about the sets
+$\N$ and $\R$.  We begin with the following easy lemma.
 
 \begin{lemma}
 \label{lem:N-leq-R}
-$|\N| \leq |\R|$.  Stated otherwise, there exists an injection $f: \N
-  \rightarrow \R$.
+There exists an injection $f: \N \rightarrow \R$; i.e., $|\N| \leq
+|\R|$.
 \end{lemma}
 
 \noindent {\it Verification}.
 %
-For each nonnegative integer $n \in \N$, let $\nu(n)$ denote the
-base-$b$ numeral for $n$.  The mapping that associates each $n \in \N$
-with the infinite string
-\[ \nu(n) \ . \ 00 \cdots \]
-is an injection from $\N$ into $\R$.  Given a real numeral that has
-only $0$s to the right of the radix point, one produces the integer
-$n$ by stripping the numerals of its radix point and all $0$s to the
-right of the point, and then ``decoding'' the remaining string of
-digits as the base-$b$ numeral of a nonnegative integer.  \qed.
+For each nonnegative integer $n \in \N$, let $\mbox{\sc num}_b(n)$
+denote the shortest base-$b$ numeral for $n$, i.e., a numeral with no
+leading $0$s.  The mapping that associates each $n \in \N$ with the
+infinite string
+\[ \mbox{\sc num}_b(n) \ . \ 00 \cdots \]
+is an injection from $\N$ into $\R$.  To wit, when given a real
+numeral that has only $0$s to the right of its radix point, one
+produces the integer $n$ by stripping the numeral of its radix point
+and all $0$s to the right of the point, and then evaluating the
+remaining string of digits, which is $\mbox{\sc num}_b(n)$, according
+to Section~\ref{sec:define-Reals}'s rules for evaluating integer
+numerals.  \qed
 
 \medskip
 
-Lemma~\ref{lem:N-leq-R} converts our initial assumption that $|\R|
-\leq |\N|$ to the stronger assumption
-\[ |\R| \ = \ |\N| \]
+Somewhat unexectedly, Lemma~\ref{lem:N-leq-R} simplifies our argument
+by converting our initial assumption \\
+\hspace*{.35in}$|\R| \leq |\N|$ \\
+to the stronger assumption \\
+\hspace*{.35in}$|\R| \ = \ |\N|$.  \\
+Cantor's diagonal argument deals quite gracefully with the latter
+assumption.
 
-**HERE
+\medskip
 
-NEXT: Look only $0 < x < 1$ 
+{\it (b) Focus on real numbers between $0$ and $1$.}
+Our next refinement replaces our target set $\R$ by its proper subset
+$\R_{(0,1)}$, all of whose elements have infinite decimal numerals of
+the form
+\[ 0 \ . \ \delta_0 \delta_1 \cdots \]
+where each $\delta_i$ is a decimal digit: $\delta_i \in \{0, 1, 2, 3,
+4, 5, 6, 7, 8, 9\}$.\footnote{We choose {\em decimal} numerals for
+  convenience: converting the argument to other number
+  bases---especially the base $b=2$---slightly complicates clerical
+  details.}
 
-START SLOWLY
+Of course, if we prove that the proper subset $\R_{(0,1)} \subset \R$
+is uncountable, then it will follow that $\R$ is uncountable.  (In
+informal terms which can be made formal, any putative injection $f: \R
+\rightarrow \N$ ``contains'' an injection $f_{(0,1)}: \R_{(0,1)}
+\rightarrow \N$.)
 
-By the Schr\"{o}der--Bernstein theorem (Theorem~\ref{thm.S-B}), there
-therefore exists a {\em bijection}
+\paragraph{\small\sf B. The proof: there is no bijection $g:
+  \R_{(0,1)} \leftrightarrow \N$}
+
+We assume, for contradiction, that the targeted bijection $g$ exists.
+As part of this two-way mapping, there exists an {\em injection}
 \[ 
-h: \b \ \stackrel{1\mbox{\rm -}1, \mbox{\scriptsize\rm
-    onto}}{\longrightarrow} \N.  
-\] 
-
-It is not hard to view the bijection $h$ as producing an
-``infinite-by-infinite'' binary matrix $\Delta$, whose $k$th row is
-the infinite binary string $h^{-1}(k)$.  Let's visualize $\Delta$:
+h: \N \ \rightarrow \ \R_{(0,1)},
+\]
+which we view as an {\em enumeration} of the elements of $\R_{(0,1)}$.
+Specifically, for each integer $k \in \N$, we can think of $h(k)$ as
+the ``$k$th number in the set $\R_{(0,1)}$.''  We thereby view $h$ as
+producing an ``infinite-by-infinite'' matrix $\Delta$ of decimal
+digits, whose $k$th row is the infinite string of decimal digits
+$\mbox{\sc num}_{10}(h(k))$.  Let us visualize $\Delta$:
 \[ \Delta \ = \
 \begin{array}{cccccc}
 \delta_{0,0} & \delta_{0,1} & \delta_{0,2} & \delta_{0,3} &
@@ -2923,6 +2950,24 @@ the infinite binary string $h^{-1}(k)$.  Let's visualize $\Delta$:
 \vdots  & \vdots  & \vdots  & \vdots  & \vdots  & \ddots
 \end{array}
 \]
+
+\noindent We summarize, for emphasis:
+\begin{itemize}
+\item
+The rows of $\Delta$ consist of{\em all, and only,} numerals of
+numbers in the set $\R_{(0,1)}$.
+\item
+For each integer $k \in \N$,
+\[
+h(k) \ = \ \delta_{k,0} \ \delta_{k,1} \ \delta_{k,2} \ \delta_{k,3} \
+        \delta_{k,4} \ \cdots
+\]
+\item
+Each $\delta_{k,i} \in \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$.
+\end{itemize}
+
+**HERE
+
 Now let us construct the following infinite binary string:
 \[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
 by setting, for each index $i$,
