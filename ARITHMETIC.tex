@@ -2869,7 +2869,7 @@ leads to a contradiction.  We simplify our goal in several steps.
 {\it (a) Recasting the problem in terms of bijections.}
 We now set out to recast our goal into a form that will be easier to
 manage mathematically, by invoking our prior knowledge about the sets
-$\N$ and $\R$.  We begin with the following easy lemma.
+$\N$ and $\R$.  We begin with two simplifying lemmas.
 
 \begin{lemma}
 \label{lem:N-leq-R}
@@ -2892,14 +2892,25 @@ remaining string of digits, which is $\mbox{\sc num}_b(n)$, according
 to Section~\ref{sec:define-Reals}'s rules for evaluating integer
 numerals.  \qed
 
+\begin{lemma}
+\label{lem:N-=-R}
+If there exists an injection $g: \R \rightarrow \N$, then there exists
+a bijection $h: \N \leftrightarrow \R$.  In other words, if $|\R| \leq
+|\N|$, then $|\N| = |\R|$.
+\end{lemma}
+
+\noindent {\it Verification}.
+This is an immediate consequence of the Schr\"{o}der-Bernstein Theorem
+(Theorem~\ref{thm.S-B}).  \qed
+
 \medskip
 
-Somewhat unexectedly, Lemma~\ref{lem:N-leq-R} simplifies our argument
-by converting our initial assumption \\
+It is somewhat surprising that our proof is simplified by converting
+our initial assumption \\
 \hspace*{.35in}$|\R| \leq |\N|$ \\
 to the stronger assumption \\
-\hspace*{.35in}$|\R| \ = \ |\N|$.  \\
-Cantor's diagonal argument deals quite gracefully with the latter
+\hspace*{.35in}$|\R| \ = \ |\N|$,  \\
+but Cantor's diagonal argument deals quite gracefully with the latter
 assumption.
 
 \medskip
@@ -2921,8 +2932,8 @@ informal terms which can be made formal, any putative injection $f: \R
 \rightarrow \N$ ``contains'' an injection $f_{(0,1)}: \R_{(0,1)}
 \rightarrow \N$.)
 
-\paragraph{\small\sf B. The proof: there is no bijection $g:
-  \R_{(0,1)} \leftrightarrow \N$}
+\paragraph{\small\sf B. A consequence of the refined goal: a bijection
+  $h: \N \leftrightarrow \R_{(0,1)}$}
 
 We assume, for contradiction, that the targeted bijection $g$ exists.
 As part of this two-way mapping, there exists an {\em injection}
@@ -2954,22 +2965,34 @@ $\mbox{\sc num}_{10}(h(k))$.  Let us visualize $\Delta$:
 \noindent We summarize, for emphasis:
 \begin{itemize}
 \item
-The rows of $\Delta$ consist of{\em all, and only,} numerals of
-numbers in the set $\R_{(0,1)}$.
+Each row of $\Delta$ consists of the decimal numeral for a number in
+the set $\R_{(0,1)}$.
+
 \item
-For each integer $k \in \N$,
-\[
-h(k) \ = \ \delta_{k,0} \ \delta_{k,1} \ \delta_{k,2} \ \delta_{k,3} \
-        \delta_{k,4} \ \cdots
-\]
-\item
-Each $\delta_{k,i} \in \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$.
+Each number in the set $\R_{(0,1)}$ contributes at least one numeral
+to the rows of $\Delta$.
+
+A number may contribute more than one numeral because of an artifact
+of positional number systems, which is exemplified by equations such
+as
+\[ 0.25 \ = \ 0.24999\cdots \]
 \end{itemize}
+We can, thus, view the successive rows of $\Delta$, $h(0)$, $h(1)$,
+\ldots, as an enumeration (with possible repetitions) of all of the
+real numbers in the set $\R_{(0,1)}$.
+
+\paragraph{\small\sf C. A ``problem'':  bijection $h$ ``missed'' some
+  $x \in \R_{(0,1)}$}
+
+We are poised to find the contradiction to our argument thus
+far---hence, to the assumption that $|\R_{(0,1)}| \leq |\N|$.
+Specifically, we construct an infinite decimal numeral
+\[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
+that {\em does not} appear in $\Delta$, even though $\mbox{\sc
+  num}_{10}(\Psi) \in \R_{(0,1)}$.
 
 **HERE
 
-Now let us construct the following infinite binary string:
-\[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
 by setting, for each index $i$,
 \[ \psi_i \ = \ \overline{\delta}_{i,i} \ = \ 1 - \delta_{i,i}. \]
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
