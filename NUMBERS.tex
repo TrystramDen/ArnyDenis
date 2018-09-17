@@ -1,4 +1,4 @@
-%version of 09-13-18
+%version of 09-17-18
 
 \chapter{NUMBERS AND NUMERALS}
 \label{ch:numbers-numerals}
@@ -2077,7 +2077,7 @@ $\Omega(n \log n)$ ``addresses.''  \qed
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/PairingHyp}
-\caption{{\it The aggregate set of positions of tables having $16$ or
+\caption{The aggregate set of positions of tables having $16$ or
     fewer position.  To help the reader understand the figure, we
     include the curve $f(x,y) = xy$ which provides an upper envelope
     for the set.  A careful look at this curve will reveal that it
@@ -2085,7 +2085,7 @@ $\Omega(n \log n)$ ``addresses.''  \qed
     \in \{ \langle 1,16 \rangle, \ \langle 2,8 \rangle, \ \langle 4,4
     \rangle, \ \langle 8,2 \rangle, \ \langle 16,1 \rangle \}$, but it
     does {\em not} touch the set at the points $\langle x,y \rangle
-    \in \{ \langle 3,5 \rangle, \ \langle 5,3 \rangle \}$. }
+    \in \{ \langle 3,5 \rangle, \ \langle 5,3 \rangle \}$. 
 \label{f.hyp}}
 \end{center}
 \end{figure}
@@ -3217,6 +3217,127 @@ the ``direct'' implementation.  But this entire exercise was
 predicated on the observation that each real addition is much less
 costly than a real multiplication, so trading one multiplication for
 one addition is an unqualified ``win''.  \qed
+\end{proof}
+
+
+\section{Finite Number Systems}
+\label{sec:congruences+modular}
+
+
+Give clock, circle as practical examples of inite number systems
+
+
+
+
+\subsection{Congruences on Nonegative Integers}
+\label{sec:congruences}
+
+$\Z_n \ \eqdef \ \{0, 1, \ldots, n-1\}$
+
+For nonnegative integers $m$ and $n$ and positive integer $a$, we say
+that {\em $m$ is congruent to $n$ modulo $a$}, \index{congruence}
+\index{congruent to} denoted
+\[ m \equiv n \bmod a, \]
+precisely when $a \mbox{ divides } |n-m|$.
+
+\begin{prop}
+\label{thm:CONGisEQUIVALENCE-REL}
+The relation of congruence modulo a positive integer is an equivalence
+relation on the set $\N$ of nonnegative integers.
+\end{prop}
+
+\begin{proof}
+We verify in turn the three defining properties of an equivalence
+relation (see Chapter~\ref{sec:equiv-relation}).  Focus on nonnegative
+integers $m$, $n$, and $q$ and positive integer $a$.
+
+\begin{enumerate}
+\item
+Congruence is a {\em symmetric} relation on $\N$
+
+Because $|m-n| = |n-m|$, the equalities $[a \mbox{ divides } |n-m|]$
+and $[a \mbox{ divides } |n-m|]$ must hold simultaneously.
+
+\item
+Congruence is a {\em reflexive} relation on $\N$.
+
+$m \equiv m \bmod a$ because every positive integer divides $m-m =
+0$.
+
+\item
+Congruence is a {\em transitive} relation on $\N$
+
+Say that $m \equiv n \bmod a$, so that $[a \mbox{ divides } |m-n|]$,
+and $n \equiv q \bmod a$, so that $[a \mbox{ divides } |n-q|]$.  We
+must consider the relative sizes of $m$, $n$, and $q$ in order to do
+the relevant arithmetic.  We supply the details for the case $m > n >
+q$ for definiteness, and we leave the other cases as exercises.
+
+In the chosen case $m > n > q$, the two relevant congruences imply that
+there exist integers $c_1$ and $c_2$ such that:
+  \begin{enumerate}
+  \item
+$c_1 a = m-n$, which implies that $n = m - c_1 a$;
+  \item
+$c_2 a = n-q$, which implies that $n = q + c_2 a$.
+  \end{enumerate}
+We therefore have $q-m = (c2-c_1) a$, which means that $m \equiv q
+\bmod a$.  In other words, The relation $equiv$ is transitive.
+\end{enumerate}
+The preceding three properties define an equivalence relation.
+\qed
+\end{proof}
+
+\subsection{Finite Number Systems via Modular Arithmetic}
+\label{sec:modular}
+
+Our main result in this section is that for every prime number $p$,
+every nonzero $n \in \Z_p$ has a multiplicative inverse, i.e., an
+element $m \in \Z_p$ such that $m \cdot n \equiv 1 \bmod p$.
+\index{multiplicative inverse}
+
+\begin{prop}
+\label{sec:finite-field}
+For every prime number $p$, every nonzero $n \in \Z_p$ has a
+multiplicative inverse.
+\end{prop}
+
+\begin{proof}
+Our proof combines applications of the Fundamental Theorem of
+Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}) and the Pigeonhole
+Principle (Section~\ref{sec:pigeonhole}) alongside a proof by
+contradiction.  It thereby exercises many of our important new proof
+techniques.
+
+Focus on the set $\Z_p$ for some prime $p$.  Let $n$ be any nonzero
+element of $\Z_p$.  
+
+\begin{lemma}
+\label{lem:multiples-in-Zp-unique}
+There do not exist nonzero $m_1$ and $m_2 \neq m_1$ in $\Z_p$ such
+that $m_1 \cdot n \equiv m_2 \cdot n \bmod p$.
+\end{lemma}
+
+\begin{proof} (of Lemma~\ref{lem:multiples-in-Zp-unique})
+Assume for contradiction that there {\em do} exist $m_1$ and $m_2 \neq
+m_1$ in $\Z_p$ such that $m_1 \cdot n \equiv m_2 \cdot n \bmod p$.
+Say, with no loss of generality, that $m_1 > m_2$ within the set $\N$.
+We must then have
+\[ p | (m_1 - m_2) \cdot n. \]
+The fact that $p$ is a prime ensures, by
+Proposition~\ref{thm:p-divides-onefactor}, that $p$ divides either
+$m_1 - m_2$ or $n$.  Because both of these integers lie strictly
+between $0$ and $p-1$, this divisibility is impossible!  The lemma
+follows.  \qed
+\end{proof}
+
+Because of Lemma~\ref{lem:multiples-in-Zp-unique}, all of the
+following elements of $\Z_p$ are nonzero and distinct:
+\[ 1 \cdot n, \ 2 \cdot n, \ldots, \ (p-1) \cdot n. \]
+Because $\Z_p$ has precisely $p-1$ non zero elements, the multiples of
+$n$ must exhaust these elements.  In other words, one of these
+multiples, say $c \cdot n$, must equal $1$.  This element $c \in \Z_p$
+is $n$'s multiplicative inverse.  \qed
 \end{proof}
 
 
