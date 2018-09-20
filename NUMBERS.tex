@@ -1,4 +1,4 @@
-%version of 09-17-18
+%version of 09-20-18
 
 \chapter{NUMBERS AND NUMERALS}
 \label{ch:numbers-numerals}
@@ -3223,22 +3223,62 @@ one addition is an unqualified ``win''.  \qed
 \section{Finite Number Systems}
 \label{sec:congruences+modular}
 
+The sets that underlie the number systems that we use in most daily
+tasks---namely $\N, \Z, \Q$, and $\C$---are infinite: we can always
+find a number in each set that is bigger than all the numbers we have
+seen thus far.  Indeed, the last two of these sets are ``two-way''
+infinite: we can also always find a number in each set that is smaller
+than all the numbers we have seen thus far.\footnote{The
+  philosophically inclined reader might be interested in the essay
+  ``The Two Infinities'' within the {\it Pens\'{e}es} of the French
+  mathematician-philosopher (or philosopher-mathematician?) Blaise
+  Pascal \index{Pascal, Blaise}, whose work we shall revisit in
+  Chapter~\ref{sec:binary-operators}.C.}  There do, however, exist
+several very important situations in which we use number systems that
+are {\em finite} and {\em cyclically repetitive}.  We mention only
+two.
+\begin{itemize}
+\item
+The {\em clocks} that we use to indicate daily time are calibrated
+into a fixed finite number of major subdivisions, {\em hours}.  We
+endow our days with $24$ hours and depending on circumstances, have
+our clocks measure each day's time via repeating cycles of either $12$
+or $24$ hours.  Once a clock's limit of ($12$ or $24$ hours) has been
+reached, it begins its numeration all over---with no memory of the
+past.
 
-Give clock, circle as practical examples of inite number systems
+\item
+We typically orient all manner of location specification relative to a
+fixed reference point in terms of {\em angles}.  There are two
+coexisting, competing systems for such measurement.  One system
+subdivides the ``circle'' around the reference point into $360$ {\em
+  degrees;} the other subdivides the ``circle'' into $2 \pi$ {\em
+  radians}.  For our purposes, the main interesting point is that both
+of these systems are {\em cyclically repetitive}.  Once we have
+circled the reference point by $360$ degrees (or, equivalently, by $2
+\pi$ radians), then we measure further circumnavigation starting over
+at $0$ degrees/radians.
+\end{itemize}
+
+This section is dedicated to integer-based {\em finite} number systems
+that were invented to describe and measure cyclically repetitive
+situations such as the two just described.
 
 
-
-
-\subsection{Congruences on Nonegative Integers}
+\subsection{Congruences on Nonnegative Integers}
 \label{sec:congruences}
 
-$\Z_n \ \eqdef \ \{0, 1, \ldots, n-1\}$
-
-For nonnegative integers $m$ and $n$ and positive integer $a$, we say
-that {\em $m$ is congruent to $n$ modulo $a$}, \index{congruence}
-\index{congruent to} denoted
-\[ m \equiv n \bmod a, \]
-precisely when $a \mbox{ divides } |n-m|$.
+For any positive integer $q \in \N^+$, we denote by $\N_q$ the
+$q$-element ``prefix'' of the set $\N$ of nonnegative integers:
+\index{$\N_q$: the first $q$ nonnegative integers}
+\[ \N_q \ \eqdef \ \{0, 1, \ldots, q-1\} . \]
+For nonnegative integers $m, n \in \N$ and positive integer $a \in
+\N^+$, we say that {\em $m$ is congruent to $n$ modulo $q$},
+\index{integer congruence} \index{congruent to} denoted
+\[ m \equiv n \bmod q, \]
+precisely when $q \mbox{ divides } |m-n|$.  We call $q$ the {\it
+  modulus} of the congruence (relation).
+\index{modulus}
 
 \begin{prop}
 \label{thm:CONGisEQUIVALENCE-REL}
@@ -3249,94 +3289,176 @@ relation on the set $\N$ of nonnegative integers.
 \begin{proof}
 We verify in turn the three defining properties of an equivalence
 relation (see Chapter~\ref{sec:equiv-relation}).  Focus on nonnegative
-integers $m$, $n$, and $q$ and positive integer $a$.
+integers $m$, $n$, and $r$ and an arbitrary positive integer modulus
+$q$.
 
 \begin{enumerate}
 \item
-Congruence is a {\em symmetric} relation on $\N$
+Congruence modulo $q \in \N^+$ is a {\em symmetric} relation on $\N$.
 
-Because $|m-n| = |n-m|$, the equalities $[a \mbox{ divides } |n-m|]$
-and $[a \mbox{ divides } |n-m|]$ must hold simultaneously.
-
-\item
-Congruence is a {\em reflexive} relation on $\N$.
-
-$m \equiv m \bmod a$ because every positive integer divides $m-m =
-0$.
+{\it Verification:}
+Because $|m-n| = |n-m|$, the assertions $[q \mbox{ divides } |n-m|]$
+and $[q \mbox{ divides } |n-m|]$ must hold simultaneously, i.e.,
+either both assertions are true or neither is.
 
 \item
-Congruence is a {\em transitive} relation on $\N$
+Congruence modulo $q \in \N^+$ is a {\em reflexive} relation on $\N$.
 
-Say that $m \equiv n \bmod a$, so that $[a \mbox{ divides } |m-n|]$,
-and $n \equiv q \bmod a$, so that $[a \mbox{ divides } |n-q|]$.  We
-must consider the relative sizes of $m$, $n$, and $q$ in order to do
-the relevant arithmetic.  We supply the details for the case $m > n >
-q$ for definiteness, and we leave the other cases as exercises.
+{\it Verification:}
+We always have $m \equiv m \bmod q$ because every positive integer
+divides $m-m = 0$.
 
-In the chosen case $m > n > q$, the two relevant congruences imply that
-there exist integers $c_1$ and $c_2$ such that:
+\item
+Congruence modulo $q \in \N^+$ is a {\em transitive} relation on $\N$.
+
+{\it Verification:}
+Say that $m \equiv n \bmod q$ and $n \equiv r \bmod q$.  The
+arithmetic needed to verify that these two congruences imply that $m
+\equiv r \bmod q$ breaks down into cases defined by the relative sizes
+of $m$, $n$, and $r$.  We supply the details for the case $m > n > r$,
+and we leave the other cases as exercises.
+
+Note first that the two assumed conguences can be rewritten as
+assertions of divisibility: $q \mbox{ divides } |m-n|$, and $q \mbox{
+  divides } |n-r|$.  Therefore, in the chosen case $m > n > $, the
+congruences imply that there exist integers $c_1$ and $c_2$ such that:
   \begin{enumerate}
   \item
-$c_1 a = m-n$, which implies that $n = m - c_1 a$;
+$c_1 q = m-n$, which implies that $n = m - c_1 q$;
   \item
-$c_2 a = n-q$, which implies that $n = q + c_2 a$.
+$c_2 q = n-q$, which implies that $n = q + c_2 q$.
   \end{enumerate}
-We therefore have $q-m = (c2-c_1) a$, which means that $m \equiv q
-\bmod a$.  In other words, The relation $equiv$ is transitive.
+We therefore have $r-m = (c2-c_1) q$, which means that $m \equiv r
+\bmod q$.  In other words, The relation $equiv \bmod q$ is transitive.
 \end{enumerate}
-The preceding three properties define an equivalence relation.
+The preceding three properties define an equivalence relation, hence,
+jointly verify the proposition.
 \qed
 \end{proof}
 
 \subsection{Finite Number Systems via Modular Arithmetic}
 \label{sec:modular}
 
-Our main result in this section is that for every prime number $p$,
-every nonzero $n \in \Z_p$ has a multiplicative inverse, i.e., an
-element $m \in \Z_p$ such that $m \cdot n \equiv 1 \bmod p$.
-\index{multiplicative inverse}
+Once we embellish the sets $\N_q$ with arithmetic operations---namely,
+the ``big four'' of addition, subtraction, multiplication, and
+division---we shall see why we are able to use the resulting
+congruential systems in the same way as their infinite counterparts,
+$\N$, $\Z$, and $\Q$.  In the coming subsections, we show that every
+set $\N_q$ can ``mimic'' $\N$ and $\Z$ with respect to addition,
+subtraction, and multipliciation, but only when $q$ is a prime number
+can $\N_q$ ``mimic'' $\Q$ with respect to division.
+
+\subsubsection{Sums, differences, and products exist within $\N_q$}
+\label{sec:modular-add-sub-mult}
+
+Our main result in this section demonstrates that every set $\N_q$,
+when embellished with the operations addition, subtraction, and
+multiplication, is {\em closed}\index{algebraic closure}\index{closure
+  under an arithmetic operation} under these operations, in the sense
+spelled out in the following result.
 
 \begin{prop}
-\label{sec:finite-field}
-For every prime number $p$, every nonzero $n \in \Z_p$ has a
-multiplicative inverse.
+\label{thm:modular-add-sub-mult}
+For every integer $q \in \N^+$ and all $m,n \in \N_q$, the sum $m+n
+\bmod q$ and the difference $m-n \bmod q$ and the product $m \cdot n \bmod
+q$ exist within $\N_q$.
+\end{prop}
+
+\begin{proof}
+For the operations of addition and multiplication, the result is true
+by definition of congruence modulo $q$: since the sum $m+n$ and the
+product $m \cdot n$ exist within $\N^+$, their ``reductions'' modulo
+$q$ exist within $\N_q$.  For the case of subtraction, we augment the
+preceding sentence with the following equation.  For all $r \in \Z$
+\[ q-r \ \equiv \ -r \bmod q. \]
+One verifies this equation by noting the following chain of equalities
+and congruences (parentheses added to enhance legibility)
+\[ (q-r) - (-r) \ \ = \ \ (q-r) + r \ \ = \ \ q \ \ \equiv \ 0 \bmod q. \] 
+In all cases, therefore, the result of the operation remains in the set
+$\N_q$.
+\qed
+\end{proof}
+
+We cannot generally add division to the set of operations listed in
+Proposition~\ref{thm:modular-add-sub-mult}.  For instance, the
+following table shows that the equation 
+\[ 2x \ \equiv \ 1 \bmod 6 \]
+is not solvable for all $x \in \N_6 \setminus \{0\}$.
+\[ \begin{array}{|c|c|}
+\hline
+x & 2 \cdot x \bmod 6 \\
+\hline
+\hline
+1 & 2 \\
+2 & 4 \\
+3 & 0 \\
+4 & 2 \\
+5 & 4 \\
+\hline
+\end{array}
+\]
+The next subsection implicitly identifies the modulus $6$'s
+non-primality as the culprit in this example.  In fact, the reader can
+easily show that {\em $\N_q$ is never closed under division when the
+  modulus $q$ is composite.}
+
+
+\subsubsection{Quotients exist within $\N_p$ for every prime $p$}
+\label{sec:modular-quotientss}
+
+Our main result in this section concerns congruences modulo a prime
+number.  We prove that for every prime number $p$, every nonzero $n
+\in \N_p$ has a {\em multiplicative inverse}, i.e., an element $m \in
+\N_p$ such that $m \cdot n \equiv 1 \bmod p$.  \index{multiplicative
+  inverse} Of course, the existence of multiplicative inverses allows
+one to {\em divide} within $\N_p$---of course, using nonzero divisors.
+
+\begin{prop}
+\label{thm:finite-field}
+For every prime number $p$, every nonzero $n \in \N_p$ has a
+multiplicative inverse within $\N_p$.
 \end{prop}
 
 \begin{proof}
 Our proof combines applications of the Fundamental Theorem of
 Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}) and the Pigeonhole
-Principle (Section~\ref{sec:pigeonhole}) alongside a proof by
+Principle (Section~\ref{sec:pigeonhole}), alongside a proof by
 contradiction.  It thereby exercises many of our important new proof
 techniques.
 
-Focus on the set $\Z_p$ for some prime $p$.  Let $n$ be any nonzero
-element of $\Z_p$.  
+Focus on the set $\N_p$ for some prime $p$.  Let $n$ be any nonzero
+element of $\N_p$.  
 
 \begin{lemma}
 \label{lem:multiples-in-Zp-unique}
-There do not exist nonzero $m_1$ and $m_2 \neq m_1$ in $\Z_p$ such
-that $m_1 \cdot n \equiv m_2 \cdot n \bmod p$.
+There do {\em not} exist nonzero $m_1$ and $m_2 \neq m_1$ in $\N_p$
+such that $m_1 \cdot n \equiv m_2 \cdot n \bmod p$.
 \end{lemma}
 
 \begin{proof} (of Lemma~\ref{lem:multiples-in-Zp-unique})
 Assume for contradiction that there {\em do} exist $m_1$ and $m_2 \neq
-m_1$ in $\Z_p$ such that $m_1 \cdot n \equiv m_2 \cdot n \bmod p$.
+m_1$ in $\N_p$ such that $m_1 \cdot n \equiv m_2 \cdot n \bmod p$.
 Say, with no loss of generality, that $m_1 > m_2$ within the set $\N$.
 We must then have
-\[ p | (m_1 - m_2) \cdot n. \]
+\begin{equation}
+\label{eq:a-forbidden-divisibility}
+p \ \mbox{ divides } \ (m_1 - m_2) \cdot n.
+\end{equation}
 The fact that $p$ is a prime ensures, by
-Proposition~\ref{thm:p-divides-onefactor}, that $p$ divides either
-$m_1 - m_2$ or $n$.  Because both of these integers lie strictly
-between $0$ and $p-1$, this divisibility is impossible!  The lemma
-follows.  \qed
+Proposition~\ref{thm:p-divides-onefactor}, that $p$ divides at least
+one of the integers $n$ or $(m_1 - m_2)$.  Because both of these
+integers belong to $\N_p$, hence lie strictly between $0$ and $p-1$
+(within the infinite set $\N$), the divisibility posited in
+(\ref{eq:a-forbidden-divisibility}) is impossible!  The lemma follows.
+\qed
 \end{proof}
 
 Because of Lemma~\ref{lem:multiples-in-Zp-unique}, all of the
-following elements of $\Z_p$ are nonzero and distinct:
+following $p-1$ elements of $\N_p$ are nonzero and distinct:
 \[ 1 \cdot n, \ 2 \cdot n, \ldots, \ (p-1) \cdot n. \]
-Because $\Z_p$ has precisely $p-1$ non zero elements, the multiples of
+Because $\N_p$ has precisely $p-1$ nonzero elements, the multiples of
 $n$ must exhaust these elements.  In other words, one of these
-multiples, say $c \cdot n$, must equal $1$.  This element $c \in \Z_p$
+multiples, say $c \cdot n$, must equal $1$.  This element $c \in \N_p$
 is $n$'s multiplicative inverse.  \qed
 \end{proof}
 
