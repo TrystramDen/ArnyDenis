@@ -861,7 +861,7 @@ Any such $c \in \Z$ lies {\em between} $a$ and $b$ along the number
 line, whence the name of the law.
 
 
-\subsection{Divisibility and Indivisibility}
+\subsection{Divisibility and Its Consequences}
 \label{sec:divisibility}
 
 Let $m$ and $n$ be nonnegative integers---symbolically, $m, n \in \N$.
@@ -1072,24 +1072,14 @@ $m_0 = \mbox{\sc gcd}(n,q)$, as claimed in the proposition.  \qed
 \end{proof}
 
 \ignore{******************
-
 \textbf{Basic results and definitions}
 
 {\Denis I used my notations, let see if you should change $a$ and $b$ to $n$ and $p$...}
-
-
-
 
 \textbf{Greatest Common Divisor (GCD)}
 
 \noindent {\bf Definition.} 
 $GCD(a,b)$ is the largest number that is a divisor of both $a$ and $b$.
-\bigskip
-
-
-
-
-\bigskip
 
 The proof considers $m$ as the smallest positive linear combination of
 $a$ and $b$.  We prove respectively that $m \geq GCD(a,b)$ and $m \leq
@@ -1112,7 +1102,6 @@ Symmetrically $m$ divides also $b$.
 
 Then, $m \leq GCD(a,b)$.
 \end{enumerate}
-
 ***************}
 
 
@@ -1121,10 +1110,22 @@ Every linear combination of $n$ and $q$ is a multiple of $\mbox{\sc
   gcd}(n,q)$, and vice-versa.
 \end{corol}
 
+Greatest common divisors are fundamental entities.  How does one
+compute them?  To understand this, we reopen our discussion of
+divisibility with a wider perspective.
+
+
+\subsubsection{Euclidian division}
+\label{sec:euclidian}
+
+
+Divisibility is not always perfect.  As we learned in the elementary
+school, if one number $m$ does not ``evenly'' divide another $n$, then
+it ``leaves a remainder'' when one divides $n$ by $m$.
 
 **HERE
 
-**DEFINE EUCLIDEAN, SYNTHETIC DIVISION ... AND REMAINDERS.
+**DEFINE EUCLIDEAN ... AND REMAINDERS.
 
 \noindent {\bf Property}
 
@@ -1163,12 +1164,7 @@ It corresponds to the largest surface unit to obtain a tessellation of the recta
 %\end{figure}
 
 
-\subsubsection{Euclidian division}
-\label{sec:euclidian}
 
-
-Divisibility is not always perfect. 
-As we learned in the elementary school, if one number does not evenly divide another, there is a remainder left over.
 \medskip
 
 \noindent {\bf Division theorem.}
@@ -1204,22 +1200,20 @@ Proving this theorem is two-fold: first the existence, and then the uniqueness.
 
 We single out a subclass of the positive integers whose mathematical
 importance has been recognized for millennia but which have found
-important applications (e.g., within the domain of computer security)
-mainly within the past several decades.
+important new applications (e.g., within the domain of computer
+security) as recently as within the past several decades.  This
+subclass is defined by its divisibility characteristics.
 
-**HERE
-Thus, every positive
-integer $n$ is divisible by $p=1$ (witnessed by $q=n$) and by $p=n$
-(witnessed by $q=1$).
-
-The class of integers we single out is defined by its divisibility
-characteristics.
+Note that every positive integer $n$ is divisible by $1$ and by $n$.
+The subclass of interest consist of those $n$ that have no other
+divisors.
 
 An integer $p >1$ is {\it prime}\index{number!integer!prime
   number}\index{number!integer!prime}\index{prime
   number}\index{integer!prime number}\index{integer!prime}
 if its {\em only} positive integer divisors are $1$ (which divides
 every integer) and itself (which is always a divisor).
+
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 {\em We often use the shorthand assertion, ``$p$ is a prime'' (or even
   the simpler ``$p$ is prime'') instead of the longer, but equivalent,
@@ -1227,26 +1221,21 @@ every integer) and itself (which is always a divisor).
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 
   
-\subsubsection{Primes as building blocks: The Fundamental Theorem of Arithmetic}
-\label{sec:prime-factorization}
+\paragraph{\small\sf A. Primes as building blocks: The Fundamental Theorem of Arithmetic}
 
-A very important way to classify a positive integer $n$ is to list the
-primes that divide it, coupling each such prime $p$ with its {\it
-multiplicity}, i.e., the number of times that $p$ divides $n$. 
-Let $p_1, p_2, \ldots, p_r$ be all of the distinct primes that divide $n$,
+A very consequential way to classify a positive integer $n$ is to list
+the primes that divide it, coupling each such prime $p$ with its {\it
+  multiplicity}, i.e., the number of times that $p$ divides $n$.  Let
+$p_1, p_2, \ldots, p_r$ be all of the distinct primes that divide $n$,
 and let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime
-  factorization}
-\index{prime factorization}
-\index{integer!prime factorization}
-\index{number!integer!prime factorization}
-%
+  factorization} \index{prime factorization} \index{integer!prime
+  factorization} \index{number!integer!prime factorization}
 of $n$ is the product $p_1^{m_1} \cdot p_2^{m_2} \cdot \cdots \cdot
 p_r^{m_r}$; note that this product satisfies the equation
 \begin{equation}
 \label{eq:prime-factorization}
 n \ = \ p_1^{m_1} \cdot p_2^{m_2} \cdot \cdots \cdot p_r^{m_r}
 \end{equation}
-
 When writing an integer $n$'s prime factorization, it is traditional
 to write the factorization in {\it canonical form},
 \index{prime factorization!canonical form}
@@ -1255,14 +1244,13 @@ to write the factorization in {\it canonical form},
 i.e., with the primes $p_1, p_2, \ldots, p_r$ that divide $n$ listed
 in increasing order, i.e., so that $p_1 < p_2 < \cdots < p_r$.
 
-\noindent
 A positive integer $n$ is totally characterized by its canonical prime
 factorization, as attested to by the following classical theorem,
 which has been known for millennia and has been honored with the title
 {\em The Fundamental Theorem of Arithmetic}.
 \index{Fundamental Theorem of Arithmetic}
-We state the Theorem in two equivalent ways which suggest different
-ways of thinking about the result.
+We state the Theorem in two equivalent ways which suggest somewhat
+different ways of thinking about the result.
 
 \begin{theorem}[The Fundamental Theorem of Arithmetic]
 \index{Fundamental Theorem of Arithmetic}
@@ -1301,12 +1289,11 @@ is the following result, whose proof we leave to the reader.
 
 \begin{prop}
 \label{thm:prime-divisor}
-Every positive integer is divisible by at least one prime number.
+Every integer $n>1$ is divisible by at least one prime number.
 \end{prop}
 
 
-\subsubsection{Proving the Fundamental Theorem of Arithmetic}
-\label{sec:FTA-proof}
+\paragraph{\small\sf B. Proving the Fundamental Theorem of Arithmetic}
 
 The proof of Theorem~\ref{thm:Fund-Thm-Arith} is actually rather
 elementary, providing that one approaches it gradually.  It employs a
@@ -1433,14 +1420,11 @@ We conclude that one of the products (\ref{eq:product1.1}) and
 \end{proof}
 
 
+\paragraph{\small\sf C. A technical application: There are infinitely many primes}
 
-\subsubsection{A technical application: There are infinitely many primes}
-\label{sec:infinite-primes}
-
-The following result, which is traditionally attributed to the Greek
-mathematician Euclid, \index{Euclid} one of the patriarchs of
-mathematics, invokes Theorem~\ref{thm:Fund-Thm-Arith} in a crucial
-way.
+The main result of this section, which is traditionally attributed to
+(our friend, by now) Euclid, \index{Euclid}, invokes
+Theorem~\ref{thm:Fund-Thm-Arith} in a crucial way.
 
 \begin{prop}
 \label{thm:infinite-primes}
@@ -1448,59 +1432,66 @@ There are infinitely many prime numbers.
 \end{prop}
 
 \begin{proof}
-Let us assume, for the sake of contradiction, that there are only
-finitely many primes.  Say, in particular, that the following
-$r$-element sequence enumerates all (and only) primes, in order of
-magnitude:
-
-\noindent
-$\mbox{\bf Prime-Numbers} \ = \ 
-\langle P_1, \ P_2, \ \ldots, \ P_r \rangle$
-
-\noindent where
-\[ P_1 \ < \ P_2 \ < \cdots < \ P_{r-1} \ < \ P_r \]
-Of course, we know that the first several primes are
+We know that the first several primes are
 \[ (P_1 =2), \ (P_2 = 3), \ (P_3 =5), \ (P_4 = 7), \ (P_5 =11), \ldots \] 
+How far does this sequence extend?  Does it ever end?
+
+Let us assume, for the sake of contradiction, that there are only
+finitely many primes (so that our sequence ends).  Say, in particular,
+that the following $r$-element sequence of integers enumerates all
+(and only) primes, in order of magnitude:
+
+$ \begin{array}{ccl}
+\mbox{\bf Prime-Numbers} & = & 
+\langle P_1, \ P_2, \ \ldots, \ P_r \rangle \\
+\mbox{ where} &  &
+P_1 \ < \ P_2 \ < \cdots < \ P_{r-1} \ < \ P_r
+\end{array}
+$
+
+\medskip
 
 We verify the {\em falseness} of the alleged completeness of the sequence
 {\bf Prime-Numbers} by analyzing the positive integer
-\[ n \ = \ 1 + \prod_{i=1}^r \ P_i \ = \ 1 \ + \ 
+\[ n^\star \ = \ 1 + \prod_{i=1}^r \ P_i \ = \ 1 \ + \ 
 \left(P_1 \cdot P_2 \cdot \cdots \cdot P_r \right).
 \]
 
-We make three crucial observations.
-
+In fact, we claim that $n^\star$ is a prime that is not in the
+sequence {\bf Prime-Numbers}.  We begin to verify our claim by making
+three crucial observations.
 \begin{enumerate}
 \item
-We note first that {\em the number $n$ is not divisible by any prime
-number  in the sequence {\bf Prime-Numbers}.}
+{\em The number $n^\star$ is not divisible by any prime in the sequence}
+{\bf Prime-Numbers}.
 
 To see this, note that for each $P_k$ in the sequence,
 \[
-n / P_k \ = \ \frac{1}{P_k} \ + \ \prod_{i \neq k} \ P_i .
+n^\star / P_k \ \ = \ \ \frac{1}{P_k} \ + \ \prod_{i \neq k} \ P_i .
 \]
-Because $P_k \geq 2$, we see that $n / P_k$ obeys the inequalities
+Because $P_k \geq 2$, we see that $n^\star / P_k$ obeys the inequalities
 \[
-\prod_{i \neq k} \ P_i \ < \ n/P_k \ < \ 1 + \prod_{i \neq k} \ P_i.
+\prod_{i \neq k} \ P_i \ < \ n^\star /P_k \ < \ 1 + \prod_{i \neq k} \ P_i.
 \] 
 The discreteness of the set $\Z$---see
-Section~\ref{sec:integer-number-line}---implies that $n / P_k$ is not
+Section~\ref{sec:integer-number-line}---implies that $n^\star / P_k$ is not
 an integer, because it lies strictly between two adjacent integers.
 
 \item
-We note next that, because of assertion 1, if the sequence {\bf
-  Prime-Numbers} actually did contain {\em all} of the prime numbers,
-then we would have to conclude that {\em the number $n$ is not
-  divisible by any prime number.}
+Because of observation 1, if the sequence {\bf Prime-Numbers} actually
+did contain {\em all} of the prime numbers, then we would have to
+conclude that {\em the number $n^\star$ is not divisible by any prime
+  number.}
 
 \item
 Finally, we remark that the Fundamental Theorem of Arithmetic
-(Theorem~\ref{thm:Fund-Thm-Arith}) implies that {\em every integer is
-  divisible by (at least one) prime number}.
+(Theorem~\ref{thm:Fund-Thm-Arith}) implies that {\em every integer $m
+  >1$ is divisible by (at least one) prime number}.
 \end{enumerate}
 The preceding chain of assertions leads to a mutual inconsistency.  On
-the one hand, the integer $n$ has no prime-integer divisor.  On the
-other hand, no integer can fail to have a prime-integer divisor!
+the one hand, the integer $n^\star >1$ has no prime-integer divisor.
+On the other hand, no such integer can fail to have a prime-integer
+divisor!
 
 Let us analyze how we arrived at this uncomfortable place.
 \begin{itemize}
@@ -1520,14 +1511,14 @@ inference.
 It follows that the {\em only} brick in this edifice that could be
 faulty---i.e., the only assertion that could be false---is the initial
 assumption, which states that there are only finitely many prime
-numbers.  We must, therefore, conclude that this vulnerable assumption
-is false!  In other words, we conclude from this classical proof by
-contradiction that there are infinitely many prime numbers.  \qed
+numbers.  {\em We must, therefore, conclude that this vulnerable
+  assumption is false!}  In other words, we conclude from this
+classical proof by contradiction that there are infinitely many prime
+numbers.  \qed
 \end{proof}
 
 
-\subsubsection{Applying the Theorem in {\em encryption}}
-\label{sec:Primes-and-encryption}
+\paragraph{\small\sf D. Applying the Theorem in {\em encryption}}
 
 One of the most important applications of Theorem~\ref{thm:Fund-Thm-Arith} is
 as a mechanism for facilitating {\em encryption}.
@@ -1538,45 +1529,43 @@ as a mechanism for facilitating {\em encryption}.
 While the details of both encryption and the use of prime numbers to
 that end are beyond the scope of this text, we will provide a peek
 into that area by means of the following result concerning {\it
-  encodings}.
+  encodings} of sequences of positive integers as single integers!
+
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
-{\em 
 There is a crucial difference between {\em encoding} and {\em
   encryption}, despite the words' often being confused in the
 vernacular.
 
-Encoding involves a search for representations of objects, to achieve
-some benefit, such as efficient computation or compactness.  An
-example might be the conversion of Roman numerals to positional
-numerals to enhance the arithmetic operations.
+Encodings seek representations of objects which achieve some benefit,
+such as efficient computation or compactness.  An example might be the
+conversion of Roman numerals to positional numerals to enhance the
+arithmetic operations.
 
 Encryption usually has some notion of secrecy attached.  An example
 might be some key-based cipher which is intended to limit access to
-someinformation.  }
+some information.
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 
-
-sequences of positive integers as single integers!  This works as
-follows.  Consider the (infinite) ordered sequence of {\em all primes:}
+We illustrate (and achieve) the sought encodings as follows.  Consider
+the (infinite) ordered sequence of {\em all primes:}
 \[ (P_1 = 2), (P_2 = 3), (P_3 = 5), \ldots  \]
 Let
 \begin{equation}
 \label{eq:sequence-vec-s}
-\bar{s} \ = \ \langle m_1, m_2, \ldots, m_k \rangle
+\bar{s} \ \ = \ \ \langle m_1, m_2, \ldots, m_k \rangle
 \end{equation}
 be an arbitrary sequence of positive integers.  Then
 Theorem~\ref{thm:Fund-Thm-Arith} assures us that the (single) positive
 integer
 \[ 
-\iota(\bar{s}) \ \eqdef \ P_1^{m_1} \cdot P_2^{m_2} \cdot \ \cdots \
+\iota(\bar{s}) \ \ = \ \ P_1^{m_1} \cdot P_2^{m_2} \cdot \ \cdots \
 \cdot P_k^{m_k}
 \]
 is a (uniquely decodable) integer-representation of sequence $\bar{s}$.
 
 We return to this idea of encoding-via-integers in a later chapter.
 
-\subsubsection{Enrichment: The ``density'' of the prime numbers}
-\label{sec:Prime-Number-Theorem}
+\paragraph{\small\sf E. Enrichment: The ``density'' of the prime numbers}
 
 {\Arny There are two advanced topics that we may want to
   mention/discuss: (1) The prime-number theorem ($n/ \log n$ primes
