@@ -863,6 +863,11 @@ line, whence the name of the law.
 
 \subsection{Divisibility and Its Consequences}
 \label{sec:divisibility}
+\index{divisibility}
+\index{integervdivisibility}
+
+This section is devoted to studying the fundamental relation of {\em
+  divisibility} between two integers.
 
 Let $m$ and $n$ be nonnegative integers---symbolically, $m, n \in \N$.
 We use any of the following locutions to assert the existence of a
@@ -933,8 +938,93 @@ discuss about \index{numbers!integers!composite} nonprime---or, {\it
 integers.  The next section looks at the defining property of
 composite integers, namely, {\em divisibility}.
 
-%times a two integers are perfectly divisible, sometimes divisibility
-%goes wrong.  Let us investigate this in the next two sections.
+In order to better understand the fundamental concept of divisibility,
+we must broaden our perspective a bit and consider {\em Euclidean
+  division}, \index{Euclidean division} i.e., division with
+remainders.  The ntion of ``perfect'' divisibility that we have been
+discussing thus far is the special case in which the remainder is $0$.
+The next subsection studies Euclidean division; the remainder of this
+section investigates the ramifications of ``perfect'' divisibillity.
+
+\subsubsection{Euclidian division}
+\label{sec:euclidian}
+\index{Euclidean division}
+
+Divisibility is not always perfect.  As we learned in the elementary
+school, if a number $m$ does not ``evenly'' divide a number $n$, then
+we are left with a ``remainder'' when one divides $n$ by $m$.
+
+**HERE
+
+**DEFINE EUCLIDEAN ... AND REMAINDERS.
+
+\noindent {\bf Property}
+
+ GCD(a,b) = GCD(b,rem(a,b))
+
+In this last property, $rem$ denotes the reminder of the euclidian division of $a$ by $b$. 
+It is detailed in the next section. 
+The property is useful for quickly compute the $GCD$ of two numbers. 
+This is in fact the basis of the well-known Euclid’s algorithm!
+
+Proof.
+
+The idea is to show that the set of common divisors of $a$ and $b$ (called $D$) is equal to the set
+of the common divisors of $b$ and $rem(a,b)$ (called $D'$).
+\begin{itemize}
+\item If $d \in D$, $d \mid a$ and $d \mid b$.
+
+As $a=q.b+rem(a,b)$, from property above above, we have $d \mid rem(a,b)$. Then, $d \in D'$.
+\item If $d' \in D'$, $d' \mid b$ and $d' \mid rem(a,b)$.
+
+From property $5$ above, $d'$ divides any linear combination of them, in particular $q.b+1.rem(a,b)$
+thus,  $d' \mid a$ which proves that $d' \in D$.
+\end{itemize}
+
+
+There is a nice geometrical interpretation of the euclidian division and the CGD.
+It corresponds to the largest surface unit to obtain a tessellation of the rectangle $a \times b$. 
+
+%\begin{figure}[h]
+%\begin{center}
+%        \includegraphics[scale=0.5]{../FIGmaths/EuclideAlgo.pdf}
+%        \caption{Geometric interpretation of the euclidian division of $a$ by $b$.
+%        The first step is on the left, the second one on the right.}
+%        \label{gcd}
+%\end{center}
+%\end{figure}
+
+
+
+\medskip
+
+\noindent {\bf Division theorem.}
+Let $a$ and $b$ be two integers such that $b>0$, 
+then there exists a unique pair of integers $q$ and $r$ such that $a=qb+r$ and $0 \leq r < b$.
+
+Proving this theorem is two-fold: first the existence, and then the uniqueness.
+{\Denis should we prove this or not? Would be fine, I put as follows - as a comment - a tentative proof, but I am not very happy with the phrasing}
+%\begin{itemize}
+%\item Let $E$ be the set of all positive integers in the form $n=a-b.z$.
+%$E$ is not empty (well, for instance, it contains $a$) and $E \subset \mathds{N}$,
+%thus, it has a smallest element. Let denote it $r$.
+%
+%We should now verify that $r<b$.
+%It is easy by remarking that $r=a-b.z$ for some $z$ and $r-b$ does not belong to $E$
+%because $r$ is the smallest one. Thus, $r-b <0$.
+%\item Let us prove this part by contradiction. 
+%Suppose there exist two such pairs of integers:
+%$a=q_i.b + r_i$ for $i=1,2$.
+%
+%Then, $(q_1-q_2).b + r_1-r_2 = 0$.
+%
+%Thus, $b$ divides $r_1-r_2$ and $0 \leq r_1 < b$ and $0 \leq r_2 < b$
+%
+%$r_1-r_2 = 0$ and thus, $q_1=q_2$.
+%\end{itemize}
+
+
+
 
 \subsubsection{Divisibility and divisors}
 \label{sec:divisibility+GCD}
@@ -1111,86 +1201,8 @@ Every linear combination of $n$ and $q$ is a multiple of $\mbox{\sc
 \end{corol}
 
 Greatest common divisors are fundamental entities.  How does one
-compute them?  To understand this, we reopen our discussion of
+compute them?  To understand this, we revisit our discussion of
 divisibility with a wider perspective.
-
-
-\subsubsection{Euclidian division}
-\label{sec:euclidian}
-
-
-Divisibility is not always perfect.  As we learned in the elementary
-school, if one number $m$ does not ``evenly'' divide another $n$, then
-it ``leaves a remainder'' when one divides $n$ by $m$.
-
-**HERE
-
-**DEFINE EUCLIDEAN ... AND REMAINDERS.
-
-\noindent {\bf Property}
-
- GCD(a,b) = GCD(b,rem(a,b))
-
-In this last property, $rem$ denotes the reminder of the euclidian division of $a$ by $b$. 
-It is detailed in the next section. 
-The property is useful for quickly compute the $GCD$ of two numbers. 
-This is in fact the basis of the well-known Euclid’s algorithm!
-
-Proof.
-
-The idea is to show that the set of common divisors of $a$ and $b$ (called $D$) is equal to the set
-of the common divisors of $b$ and $rem(a,b)$ (called $D'$).
-\begin{itemize}
-\item If $d \in D$, $d \mid a$ and $d \mid b$.
-
-As $a=q.b+rem(a,b)$, from property above above, we have $d \mid rem(a,b)$. Then, $d \in D'$.
-\item If $d' \in D'$, $d' \mid b$ and $d' \mid rem(a,b)$.
-
-From property $5$ above, $d'$ divides any linear combination of them, in particular $q.b+1.rem(a,b)$
-thus,  $d' \mid a$ which proves that $d' \in D$.
-\end{itemize}
-
-
-There is a nice geometrical interpretation of the euclidian division and the CGD.
-It corresponds to the largest surface unit to obtain a tessellation of the rectangle $a \times b$. 
-
-%\begin{figure}[h]
-%\begin{center}
-%        \includegraphics[scale=0.5]{../FIGmaths/EuclideAlgo.pdf}
-%        \caption{Geometric interpretation of the euclidian division of $a$ by $b$.
-%        The first step is on the left, the second one on the right.}
-%        \label{gcd}
-%\end{center}
-%\end{figure}
-
-
-
-\medskip
-
-\noindent {\bf Division theorem.}
-Let $a$ and $b$ be two integers such that $b>0$, 
-then there exists a unique pair of integers $q$ and $r$ such that $a=qb+r$ and $0 \leq r < b$.
-
-Proving this theorem is two-fold: first the existence, and then the uniqueness.
-{\Denis should we prove this or not? Would be fine, I put as follows - as a comment - a tentative proof, but I am not very happy with the phrasing}
-%\begin{itemize}
-%\item Let $E$ be the set of all positive integers in the form $n=a-b.z$.
-%$E$ is not empty (well, for instance, it contains $a$) and $E \subset \mathds{N}$,
-%thus, it has a smallest element. Let denote it $r$.
-%
-%We should now verify that $r<b$.
-%It is easy by remarking that $r=a-b.z$ for some $z$ and $r-b$ does not belong to $E$
-%because $r$ is the smallest one. Thus, $r-b <0$.
-%\item Let us prove this part by contradiction. 
-%Suppose there exist two such pairs of integers:
-%$a=q_i.b + r_i$ for $i=1,2$.
-%
-%Then, $(q_1-q_2).b + r_1-r_2 = 0$.
-%
-%Thus, $b$ divides $r_1-r_2$ and $0 \leq r_1 < b$ and $0 \leq r_2 < b$
-%
-%$r_1-r_2 = 0$ and thus, $q_1=q_2$.
-%\end{itemize}
 
 
 \subsubsection{Prime numbers: building blocks of the integers}
