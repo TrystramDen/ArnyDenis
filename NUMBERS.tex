@@ -1,4 +1,4 @@
-%version of 09-28-18
+%version of 10-01-18
 
 \chapter{NUMBERS AND NUMERALS}
 \label{ch:numbers-numerals}
@@ -996,7 +996,10 @@ the West. \index{Euclid}
 \begin{prop}[The Division Theorem]
 Given any integers $n$ and $m > 0$, there exists a unique pair of
 integers $q$ and $r$, with $0 \leq r < m$ such that
-\[ n \ = \ q \cdot m + r. \]
+\begin{equation}
+\label{eq:euclid-division}
+n \ = \ q \cdot m + r.
+\end{equation}
 \end{prop}
 
 \begin{proof}
@@ -1110,28 +1113,28 @@ The following result follows from the preceding facts.
 
 \begin{prop}
 \label{thm:m-common-divisor-nq}
-Given integers $m$, $n$, and $q$, if [$m \mbox{ divides } n$] and [$m
-  \mbox{ divides } q$], then
+Given integers $m$, $n$, and $q$, if $m$ divides both $n$ and $q$,
+then $m$ divides all linear combinations of $n$ and $q$; i.e.,
 $m \mbox{ divides } (sn + tq)$ for all integers $s$ and $t$.
 \end{prop}
 
 \begin{proof}
-The statement's two divisibility relations mean that there exist
-integers $k_1$ and $k_2$ such that $k_1 \cdot m = n$ and $k_2 \cdot m
-= q$.  By the distributive law, therefore:
-\[ (k_1 \cdot s + k_2 \cdot t)m \ = \ sn+tq \]
+Because $m$ divides both $n$ and $q$, there exist integers $k_1$ and
+$k_2$ such that $k_1 \cdot m = n$ and $k_2 \cdot m = q$.  By the
+distributive law, we therefore have:
+\[ (k_1 \cdot s \ + \ k_2 \cdot t)m \ = \ sn+tq \]
 for any $s$ and $t$.  \qed
 \end{proof}
 
-Proposition~\ref{thm:m-common-divisor-nq} points out a consequence of
-integers $n$ and $q$ having a {\em common divisor} $m$.  \index{common
-  divisor} A particularly consequential case occurs when $m$ is the
-{\em greatest common divisor} of $n$ and $q$, \index{greatest common
-  divisor} i.e., $m$ is the largest integer that divides both $n$ and
-$q$.  We refer to $m$ as the {\sc gcd} \index{{\sc gcd}: greatest
-  common divisor} of $n$ and $q$ and use the notation
+Among the common divisors of integers $n$ and $q$, a particularly
+significant one is their {\em greatest common divisor},
+\index{greatest common divisor}
+which is the largest integer that divides both $n$ and
+$q$.  We abbreviate ``greatest common divisor'' by
+ {\sc gcd} \index{{\sc gcd}: greatest
+  common divisor}, and we write
 \[ m \ = \ \mbox{\sc gcd}(n, q) \]
-to signal $m$'s having this status.
+to identify an integer $m$ as the {\sc gcd} of $n$ and $q$.
 
 We are finally ready for our first major result about integer division
 and divisors.
@@ -1205,21 +1208,33 @@ of $n$ and $q$.  The only way this situation could hold is if
 $m_0 = \mbox{\sc gcd}(n,q)$, as claimed in the proposition.  \qed
 \end{proof}
 
+B\'{e}zout's identity has the following significant corollary.
 
+\begin{corol}
+Every linear combination of $n$ and $q$ is a multiple of $\mbox{\sc
+  gcd}(n,q)$, and vice-versa.
+\end{corol}
+
+Greatest common divisors are fundamental companions of pairs of
+integers, with manifold computational applications.  How does one
+compute them?  This question was addressed millennia ago, by Euclid,
+\index{Euclid} who authored the following result, which led to the
+{\sc gcd}-computing algorithm that bears his name.\index{the Euclidean Algorithm}
+
+For any integers $n$ and $m > 0$, let $\mbox{\sc rem}(m,n)$ denote the
+remainder in the Euclidean division expression (\ref{eq:euclid-division})
+for $m$ and $n$; i.e.,
+\[ n \ = \ q \cdot m \ + \ \mbox{\sc rem}(m,n). \]
+
+\begin{prop}
+\label{thm:gcd-basis}
+For any integers $n$ and $m > 0$,
+\[ \mbox{\sc gcd}(m,n) \ = \  \mbox{\sc gcd}(m, \ \mbox{\sc rem}(m,n)) . \]
+\end{prop}
+
+\begin{proof}
 
 **HERE
-
-
-\noindent {\bf Property}
-
- GCD(a,b) = GCD(b,rem(a,b))
-
-In this last property, $rem$ denotes the reminder of the euclidian division of $a$ by $b$. 
-It is detailed in the next section. 
-The property is useful for quickly compute the $GCD$ of two numbers. 
-This is in fact the basis of the well-known Euclid’s algorithm!
-
-Proof.
 
 The idea is to show that the set of common divisors of $a$ and $b$ (called $D$) is equal to the set
 of the common divisors of $b$ and $rem(a,b)$ (called $D'$).
@@ -1232,6 +1247,8 @@ As $a=q.b+rem(a,b)$, from property above above, we have $d \mid rem(a,b)$. Then,
 From property $5$ above, $d'$ divides any linear combination of them, in particular $q.b+1.rem(a,b)$
 thus,  $d' \mid a$ which proves that $d' \in D$.
 \end{itemize}
+\qed
+\end{proof}
 
 
 There is a nice geometrical interpretation of the euclidian division and the CGD.
@@ -1247,49 +1264,7 @@ It corresponds to the largest surface unit to obtain a tessellation of the recta
 %\end{figure}
 
 
-\ignore{******************
 
-\textbf{Basic results and definitions}
-
-{\Denis I used my notations, let see if you should change $a$ and $b$ to $n$ and $p$...}
-
-\textbf{Greatest Common Divisor (GCD)}
-
-\noindent {\bf Definition.} 
-$GCD(a,b)$ is the largest number that is a divisor of both $a$ and $b$.
-
-The proof considers $m$ as the smallest positive linear combination of
-$a$ and $b$.  We prove respectively that $m \geq GCD(a,b)$ and $m \leq
-GCD(a,b)$ by using the general previous properties.
-
-\begin{enumerate}
-\item 
-By definition, $GCD(a,b) \mid a$ and $GCD(a,b) \mid b$, then, $GCD(a,b) \mid sa+tb$ for any $s$ and $t$ 
-(and thus, in particular for the smallest combination). Then, $GCD(a,b)$ divides $m$ and $m \geq GCD(a,b)$.
-\item
-First, remark that $m \leq a$ because $a = 1.a + 0.b$ is a particular linear combination.
-We show that $m \mid a$. 
-
-By the division theorem, there exists a decomposition $a=q.m+r$ (where $0 \leq r<m$). 
-Recall also that $m=sa+tb$ for some $s$ and $t$. 
-Thus, $r$ can be written as $(1-qs)a+(-qt)b$ which is a combination of $a$ and $b$. 
-However, as $m$ is the smallest, we get $r=0$.
-
-Symmetrically $m$ divides also $b$.
-
-Then, $m \leq GCD(a,b)$.
-\end{enumerate}
-***************}
-
-
-\begin{corol}
-Every linear combination of $n$ and $q$ is a multiple of $\mbox{\sc
-  gcd}(n,q)$, and vice-versa.
-\end{corol}
-
-Greatest common divisors are fundamental entities.  How does one
-compute them?  To understand this, we revisit our discussion of
-divisibility with a wider perspective.
 
 
 \subsubsection{Prime numbers: building blocks of the integers}
