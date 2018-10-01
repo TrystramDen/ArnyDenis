@@ -994,6 +994,7 @@ Greek mathematician Euclid whose writings introduced the process in
 the West. \index{Euclid}
 
 \begin{prop}[The Division Theorem]
+\label{thm:division-thm}
 Given any integers $n$ and $m > 0$, there exists a unique pair of
 integers $q$ and $r$, with $0 \leq r < m$ such that
 \begin{equation}
@@ -1084,6 +1085,7 @@ We leave the following applications of the basic definitions as
 exercises for the reader.
 
 \begin{prop}
+\label{thm:basic-divisibility}
 \begin{enumerate}
 \item
 If $m$ divides $n$, then $m$ divides all integer multiples of $n$.
@@ -1233,20 +1235,37 @@ For any integers $n$ and $m > 0$,
 \end{prop}
 
 \begin{proof}
-
-**HERE
-
-The idea is to show that the set of common divisors of $a$ and $b$ (called $D$) is equal to the set
-of the common divisors of $b$ and $rem(a,b)$ (called $D'$).
+For integers $x > 0$ and $y \geq 0$, we denote by $D(x,y)$ the set of
+common divisors of $x$ and $y$, i.e., the set of integers that divide
+both $x$ and $y$.  We prove the proposition by showing, as follows,
+that the sets $D(m, n)$ and $D(m, \mbox{\sc rem})$ actually contain
+precisely the same elements.
 \begin{itemize}
-\item If $d \in D$, $d \mid a$ and $d \mid b$.
+\item 
+$D(m, n) \ \subseteq \ D(m, \mbox{\sc rem}(m,n))$.
 
-As $a=q.b+rem(a,b)$, from property above above, we have $d \mid rem(a,b)$. Then, $d \in D'$.
-\item If $d' \in D'$, $d' \mid b$ and $d' \mid rem(a,b)$.
+Say that the integer $d$ divides both $m$ and $n$, i.e., that $d \in
+D(m,n)$.  By Proposition~\ref{thm:division-thm}, we know that $n \ =
+\ q \cdot m \ + \ \mbox{\sc rem}(m,n)$.  By property 3 in
+Proposition~\ref{thm:basic-divisibility}, we must then have $d \mid
+\mbox{\sc rem}(m,n)$.  This means that $d \in D(m, \mbox{\sc rem}(m,n))$.
 
-From property $5$ above, $d'$ divides any linear combination of them, in particular $q.b+1.rem(a,b)$
-thus,  $d' \mid a$ which proves that $d' \in D$.
+\item 
+$D(m, \mbox{\sc rem}(m,n)) \ \subseteq \ D(m,n)$.
+
+Say that the integer $d$ divides both $m$ and $\mbox{\sc rem}(m,n)$,
+i.e., that $d \in D(m, \mbox{\sc rem}(m,n))$.  By
+Proposition~\ref{thm:m-common-divisor-nq}, $d$ divides every linear
+combination of $m$ and $\mbox{\sc rem}(m,n)$.  In particular, $d$
+divides $q \cdot m \ + \ 1 \cdot \mbox{\sc rem}(m,n) \ = \ n$.  Thus,
+$d$ divides $n$, so that $d \in D(m,n)$.
 \end{itemize}
+Since we thus have $D(m, n) \ = \ D(m, \mbox{\sc rem}(m,n))$, we know
+that the sets contain the same largest element:
+\[ \max\left( D(m, n) \right) \ = \ \max\left( D(m, \mbox{\sc
+  rem}(m,n)) \right);
+\]
+the proposition follows.
 \qed
 \end{proof}
 
