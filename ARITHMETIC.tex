@@ -1,4 +1,4 @@
-%version of 09-28-18
+%version of 10-02-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -267,11 +267,10 @@ a \ = \ (a+b) -b \ = \ (a-b) +b
 
 \medskip
 
-\addcontentsline{toc}{paragraph}{B. Multiplication and Division}
-\noindent {\small\sf B. Multiplication and Division}.
+\paragraph{\small\sf B. Multiplication and Division}
 \index{arithmetic!basic operations!multiplication}
 \index{arithmetic!basic operations!division}
-%
+
 The operation of {\it multiplication}\index{arithmetic!multiplication}
 is a {\em total function} that replaces any two numbers $a$ and $b$ by
 a number of the same sort.  The resulting number is the {\em product
@@ -527,7 +526,7 @@ reals, rationals, and reals---and be able to employ them cogently in
 rigorous argumentation.
 
 
-\paragraph{\small\sf A. The commutative law.}
+\paragraph{\small\sf A. The commutative law}
 \index{commutative law!arithmetic}
 \index{commutative law!addition}
 \index{commutative law!multiplication}
@@ -839,6 +838,7 @@ relating to, say, fault tolerance and encryption).
 
 \index{The Fundamental Theorem of Algebra}
 \begin{theorem}[The Fundamental Theorem of Algebra]
+\label{thm:fund-thm-algebra}
 Every degree-$d$ univariate polynolmial with complex coefficients has
 $d$ complex roots 
 \end{theorem}
@@ -881,10 +881,90 @@ Thus, the length of the initial square is equal to $60-30=30$.}
 
 
 
-\paragraph{\small\sf B. The technique of ``completing the square''}
+\paragraph{\small\sf B. Solving a general quadratic univariate polynomial}
 
-\paragraph{\small\sf C. Specifying the roots of a quadratic univariate polynomial}
+Consider the generic quadratic polynomial with real coefficients:
+\begin{equation}
+\label{eq:generic-quadratic-1}
+P(x) \ = \  ax^2 \ + \ bx \ + \ c
+\end{equation}
+Our task is to {\it solve} \index{polynomial!solving a polynomial}
+$P(x)$, i.e., to discover its two roots (which are promised by
+Theorem~\ref{thm:fund-thm-algebra}).
 
+\noindent {\it Step 1}.
+%
+We begin by simplifying our task: we rewrite $P(x)$ in the following
+form
+\begin{equation}
+\label{eq:generic-quadratic-2}
+P_0(x) \ = \ \frac{1}{a} P(x) \ = \  x^2 \ + \ \frac{b}{a} x \ + \ \frac{c}{a}.
+\end{equation}
+{\it Monic} polynomials \index{polynomial!monic} such as $P_0(x)$,
+i.e., ones whose leading coefficient is $1$ are clerically easier to
+solve than general polynomials.  {\em Clearly $P(x)$ and $P_0(x)$ have
+  the same roots.}
+
+\smallskip
+
+\noindent {\it Step 2}.
+%
+We next invoke a technique called {\it completing the
+  square}. \index{polynomial!quadratic!completing the square} When a
+monic polynomial $Q(x)$ is a perfect square, it can be written in the
+form
+\[ Q(x) \ = \ (x \ - \ A)^2 \ = \ x^2 \ - \ 2Ax \ + \ A^2. \]
+This form makes it clear that the double root of $Q(x)$ is $x = A$.
+
+The technique of completing the square consists of adding to $P_0(x)$
+an expression $E$ that turns $P_0(x)$ into a perfect square
+$P_1(x)$---and simultaneously subtracting $E$, so as to preserve the
+value of the function.
+
+In our case, this process proceeds as follows.
+\begin{equation}
+\label{eq:generic-quadratic-3}
+P_1(x) \ = \ x^2 \ + \ \frac{b}{a} x \ + \ \frac{b^2}{4a^2}
+\ = \ \left( x \ - \ \frac{b}{2a} \right)^2 
+\end{equation}
+so that
+\begin{eqnarray*}
+P_0(x) & = & P_1(x) \ + \ \frac{c}{a} \ - \frac{b^2}{4a^2} \\
+       & = & P_1(x) \ + \ \frac{1}{a} \left(c - \frac{b^2}{4a} \right) \\
+       & = & P_1(x) \ + \ \frac{1}{a} \frac{4ac - b^2}{4a} 
+\end{eqnarray*}
+
+
+
+
+The rationale for this rewriting is that, when written in this form,
+it is transparent that the two roots of $P(x)$ are:
+
+
+Of course, we want the roots of $P(x)$ expressed in terms of its
+original coefficients, $a, b, c$, not in terms of the ``dummy''
+coefficients, $A$ and $B$.  To accomplish this translation, we refer
+back to expression (\ref{eq:generic-quadratic-1}), which tells us that
+\begin{eqnarray*}
+a & = & A^2 \\
+b & = & 2AB \\
+c & = & B^2
+\end{eqnarray*}
+
+\[ A \ = \ \sqrt{a} \ = \ \frac{b}{2B}
+B \ = \ \sqrt{c} \ = \ \frac{b}{2A}
+b \ = \ 2 \sqrt{ac} 
+\]
+
+
+
+
+\index{polynomial!quadratic!solving a polynomial}
+They are:
+\begin{eqnarray*}
+x_1 & = & \frac{-b \ + \ \sqrt{b^2 -4ac}}{2a} \\
+x_2 & = & \frac{-b \ - \ \sqrt{b^2 -4ac}}{2a}
+\end{eqnarray*}
 
 \subsection{Bivariate Polynomials}
 \label{sec:bivariate-polynomials}
