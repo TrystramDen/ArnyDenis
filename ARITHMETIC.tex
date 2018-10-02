@@ -883,88 +883,79 @@ Thus, the length of the initial square is equal to $60-30=30$.}
 
 \paragraph{\small\sf B. Solving a general quadratic univariate polynomial}
 
-Consider the generic quadratic polynomial with real coefficients:
+Consider the generic quadratic---i.e., degree-$2$---polynomial
+\index{Polynomial!quadratic!generic}
+with real coefficients:
 \begin{equation}
 \label{eq:generic-quadratic-1}
-P(x) \ = \  ax^2 \ + \ bx \ + \ c
+P(x) \ = \  ax^2 \ + \ bx \ + \ c \ \ \mbox{  where  } \ b,c \in \R;
+\ a \in \R \setminus \{0\}
 \end{equation}
-Our task is to {\it solve} \index{polynomial!solving a polynomial}
-$P(x)$, i.e., to discover its two roots (which are promised by
-Theorem~\ref{thm:fund-thm-algebra}).
+We use a widely applicable strategy to {\it solve}
+\index{polynomial!solving a polynomial} $P(x)$, i.e., to discover the
+two roots promised by Theorem~\ref{thm:fund-thm-algebra}.
+\index{polynomial!quadratic!solving a polynomial}
 
-\noindent {\it Step 1}.
-%
-We begin by simplifying our task: we rewrite $P(x)$ in the following
-form
+
+\begin{prop}
+\label{thm:quadratic-formula}
+The two roots of the generic quadratic polynomial
+(\ref{eq:generic-quadratic-1}) are specified as follows.
+\begin{equation}
+\label{eq:generic-quadratic-4}
+x \ = \  \frac{1}{2a} \left( -b \ \pm \
+\sqrt{b^2 \ - \ 4ac} \right).
+\end{equation}
+\end{prop}
+
+
+\begin{proof}
+The problem of finding the roots of $P(x)$ is equivalent to the probem
+of solving the polynomial equation $P(x) = 0$.  By elementary
+calculation on expression (\ref{eq:generic-quadratic-1}), we reduce
+the root-finding problem to the solution of the equation
 \begin{equation}
 \label{eq:generic-quadratic-2}
-P_0(x) \ = \ \frac{1}{a} P(x) \ = \  x^2 \ + \ \frac{b}{a} x \ + \ \frac{c}{a}.
+x^2 \ + \ \frac{b}{a} x \ = \ - \frac{c}{a}.
 \end{equation}
-{\it Monic} polynomials \index{polynomial!monic} such as $P_0(x)$,
-i.e., ones whose leading coefficient is $1$ are clerically easier to
-solve than general polynomials.  {\em Clearly $P(x)$ and $P_0(x)$ have
-  the same roots.}
 
-\smallskip
-
-\noindent {\it Step 2}.
-%
-We next invoke a technique called {\it completing the
-  square}. \index{polynomial!quadratic!completing the square} When a
-monic polynomial $Q(x)$ is a perfect square, it can be written in the
-form
-\[ Q(x) \ = \ (x \ - \ A)^2 \ = \ x^2 \ - \ 2Ax \ + \ A^2. \]
-This form makes it clear that the double root of $Q(x)$ is $x = A$.
-
-The technique of completing the square consists of adding to $P_0(x)$
-an expression $E$ that turns $P_0(x)$ into a perfect square
-$P_1(x)$---and simultaneously subtracting $E$, so as to preserve the
-value of the function.
-
-In our case, this process proceeds as follows.
-\begin{equation}
-\label{eq:generic-quadratic-3}
-P_1(x) \ = \ x^2 \ + \ \frac{b}{a} x \ + \ \frac{b^2}{4a^2}
-\ = \ \left( x \ - \ \frac{b}{2a} \right)^2 
-\end{equation}
-so that
-\begin{eqnarray*}
-P_0(x) & = & P_1(x) \ + \ \frac{c}{a} \ - \frac{b^2}{4a^2} \\
-       & = & P_1(x) \ + \ \frac{1}{a} \left(c - \frac{b^2}{4a} \right) \\
-       & = & P_1(x) \ + \ \frac{1}{a} \frac{4ac - b^2}{4a} 
-\end{eqnarray*}
-
-
-
-
-The rationale for this rewriting is that, when written in this form,
-it is transparent that the two roots of $P(x)$ are:
-
-
-Of course, we want the roots of $P(x)$ expressed in terms of its
-original coefficients, $a, b, c$, not in terms of the ``dummy''
-coefficients, $A$ and $B$.  To accomplish this translation, we refer
-back to expression (\ref{eq:generic-quadratic-1}), which tells us that
-\begin{eqnarray*}
-a & = & A^2 \\
-b & = & 2AB \\
-c & = & B^2
-\end{eqnarray*}
-
-\[ A \ = \ \sqrt{a} \ = \ \frac{b}{2B}
-B \ = \ \sqrt{c} \ = \ \frac{b}{2A}
-b \ = \ 2 \sqrt{ac} 
+The technique of {\it completing the square}
+\index{polynomial!quadratic!completing the square} gives us an easy
+path to solving equation (\ref{eq:generic-quadratic-2}).  This
+technique mandates adding to both sides of the equation a
+variable-free expression $E$ that turns the lefthand expression into a
+perfect square.  In the current instance, the expression
+\[ E \ = \ \frac{b^2}{4a^2} \]
+does the job, because
+\[
+x^2 \ + \ \frac{b}{a} x \ + \ E \ \ = \ \
+x^2 \ + \ \frac{b}{a} x \ + \ \frac{b^2}{4a^2}
+   \ \ = \ \ \left( x \ + \ \frac{b}{2a} \right)^2
 \]
-
-
-
-
-\index{polynomial!quadratic!solving a polynomial}
-They are:
+We have thereby converted equation (\ref{eq:generic-quadratic-2}) to
+the equation
+\begin{eqnarray}
+\nonumber
+\left( x \ + \ \frac{b}{2a} \right)^2
+  & = & \frac{b^2}{4a^2} - \frac{c}{a} \\
+\nonumber
+  & = & \frac{b^2}{4a^2} - \frac{4ac}{4a^2} \\
+\label{eq:generic-quadratic-3}
+  & = & \frac{1}{4a^2} \cdot (b^2 - 4ac).
+\end{eqnarray}
+An elementary algebraic calculation shows that equation
+(\ref{eq:generic-quadratic-3}) identifies $P(x)$'s two roots, call
+them $x_1$ and $x_2$:
 \begin{eqnarray*}
 x_1 & = & \frac{-b \ + \ \sqrt{b^2 -4ac}}{2a} \\
-x_2 & = & \frac{-b \ - \ \sqrt{b^2 -4ac}}{2a}
+x_2 & = & \frac{-b \ - \ \sqrt{b^2 -4ac}}{2a}.
 \end{eqnarray*}
+The roots $x_1$ and $x_2$ are usually specified via the shorthand expression
+(\ref{eq:generic-quadratic-4}), which is the well-known
+{\it the quadratic formula}. \index{the quadratic formula}
+\qed
+\end{proof}
+
 
 \subsection{Bivariate Polynomials}
 \label{sec:bivariate-polynomials}
