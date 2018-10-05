@@ -3,13 +3,17 @@
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
 
-\section{Deriving and Solving Linear Recurrences}
-\label{sec:linear-recurrences-2}
+This chapter is devoted to derive and solve Linear Recurrences}.
 
 While we have discussed already discussed the use of linear
 recurrences in Section ***CHECK REFERENCE  %~\ref{sec:linear-recurrences-1}, 
 we derive the
 underlying mathematics in this section
+
+\section{The Master Theorem}
+\label{sec:mesterTheorem}
+
+\subsection{A simplified form}
 
 By the time the reader has reached this paragraph, she has the
 mathematical tools necessary to prove and apply what is called {\it
@@ -63,13 +67,13 @@ computation by replacing occurrences of $F(\bullet)$ as mandated in
 \begin{array}{lcccc}
 F(n) & = & a F(n/b) + c & & \\
      & = & a \left( a F(n/b^2) + c \right) + c
-             & = & a^2 F(n/b^2) + (1 + a)c \\
-     & = & a^2 \left( a F(n/b^3) + c \right) + (1+a)c
-             & = & a^3 F(n/b^3) + (1 + a + a^2)c \\
+             & = & a^2 F(n/b^2) + (a+1)c \\
+     & = & a^2 \left( a F(n/b^3) + c \right) + (a+1)c
+             & = & a^3 F(n/b^3) + (a^2+a+1)c \\
      &   & \vdots & & \vdots \\
      & = & 
 {\displaystyle
-\left( 1 + a + a^2 + \cdots + a^{\log_b n} \right) c
+\left(a^{\log_b n} + \cdots +a^2+a+1 \right) c
 } & &
 \end{array}
 \end{equation}
@@ -79,6 +83,55 @@ dots betokens an induction that is left to the reader.  Equations
 demonstrate that (\ref{eq:Lin-Recur:solve}) is the case-structured
 solution to (\ref{eq:Lin-Recur:start}).  \qed
 \end{proof}
+
+\subsection{A more complicated (but still regular) form}
+
+We present in this section a more general recurring pattern:
+
+\begin{equation}
+\label{eq:Lin-Recur:general}
+F(n) \ = \ \left\{
+\begin{array}{cl}
+a F(n/b) + f(n) & \mbox{for } n > b \\
+1 & \mbox{for } n = b
+\end{array}
+\right.
+\end{equation}
+
+Let us first solve the case where function $f$ is linear, i.e. in the simplified form $f(n) = n$.
+We also assume for clarity that $n$ is a power of $b$. 
+
+We proceed as previously by replacing the successive occurrences of $F$:
+
+\begin{equation}
+\label{eq:Lin-Recur:expand}
+\begin{array}{lcccc}
+F(n) & = & a F(n/b) + n & & \\
+     & = & a \left( a F(n/b^2) + n/b \right) + n
+             & = & a^2 F(n/b^2) + (a.n/b+n) \\
+     & = & a^2 \left( a F(n/b^3) + n/b^2 \right) + (a.n/b+n)
+             & = & a^3 F(n/b^3) + (a^2/b^2+a/b+1)n \\
+     &   & \vdots & & \vdots \\
+     & = & 
+{\displaystyle
+\left(a^{\log_b n}F(1) + \sum_{i=0,\log_b (n)-1} (a/b)^i \right) n
+} & &
+\end{array}
+\end{equation}
+
+\begin{figure}[htb]
+\begin{center}
+       \includegraphics[scale=0.25]{FiguresRecurrences/MasterTheorem}
+\caption{{\it Development of the computations. Summation on the right.}
+\label{fig:masterTheorem}}
+\end{center}
+\end{figure}
+
+Fig.~\ref{fig:masterTheorem} illustrates these computations.
+The second term corresponds to a geometric sequence.
+
+The interpretation is that if $a$ is larger than $b$, $F(n)$ is dominated by the first term while if it is smaller, the second term dominates.
+The problem is perfectly balanced between the iterations when $a=b=2$, we obtain $F(n) = n.log_2(n)$. 
 
 
 \section{The Fibonacci Recurrence and its Kin}
@@ -91,3 +144,10 @@ Leonardo of Pisa, ``the son of Bonaccio''
 
 
 \subsection{Relatives of the Fibonacci sequence}
+
+The Lucas' sequence
+
+\section{The Token Game}
+\label{sec:TokenGame}
+
+
