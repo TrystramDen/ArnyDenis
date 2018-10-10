@@ -1,4 +1,4 @@
-%version of 10-03-18
+%version of 10-10-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -826,66 +826,101 @@ must be mastered in order to fully understand positional number
 systems; it is also essential, e.g., when discussing a range of topics
 relating to, say, fault tolerance and encryption).
 
-**DEFINE ``degree''
+**DEFINE ``degree'' and ``root''
 
-\subsection{Univariate Polynomials}
+\subsection{ENRICHMENT: The General Unsolvability of the Problem}
+
+
+**Briefly discuss Hilbert's Tenth Problem --- 
+Julia Robinson, Martin Davis, Yuri Matiyasevich, Hilary
+Putnam and Julia Robinson
+
+This problem suggests that seeking roots of general polynomials will
+be exceedingly hard, and often impossible.
+
+
+\subsection{Univariate Polynomials and Their Roots}
 \label{sec:univariate-polynomials}
 \index{polynomials!univariate}
 
+``finding the roots of polynomial $P(x)$'' is often called ``solving
+polynomial $P(x)$''
 
-\subsubsection{Degree-$d$ univariate polynomials have $d$ roots}
+We focus throughout on univariate polynomials with real coefficients
+
+
+\subsubsection{Every degree-$d$ polynomial has $d$ roots}
 \label{sec:fund-thm-algebra}
+
+Finding roots of {\em univariate} polynomials is always possible.
 
 \index{The Fundamental Theorem of Algebra}
 \begin{theorem}[The Fundamental Theorem of Algebra]
 \label{thm:fund-thm-algebra}
 Every degree-$d$ univariate polynolmial with complex coefficients has
-$d$ complex roots 
+$d$ complex roots.
 \end{theorem}
 
-\subsection{Finding the Roots of Univariate Polynomials}
+There are proofs of Theorem~\ref{thm:fund-thm-algebra} that are
+constructive in the followig sense.  Given a degree-$d$  polynomial
+$P(x)$, the proof determines a disk $D$ in space such all $d$ roots of
+$P(x)$ reside in disk $D$.
 
-\subsubsection{Milestones in the quest for roots}
+
+
+\noindent {\it Milestones in the quest for roots}
 
 Al-Khwarizmi,
 Descartes
 
-\subsubsection{Solving general quadratic and cubic polynomials}
-\label{sec:solve-quadratic}
+
+
+
+\subsubsection{Solving polynomials by radicals}
+
 
 The problem of {\it solving} arbitrary degree-$d$ polynomials---i.e.,
 of discovering their $d$ roots, as promised by
 Theorem~\ref{thm:fund-thm-algebra}---is computationally very complex,
 even for moderately low degrees, in a sense that can be made precise
 but is beyond the scope of this text.  For polynomials of low degree,
-there do exist computationally feasible algorithms for finding
-roots.  For polynomials of {\em very} low degree---such as degrees $2$
-and $3$, there actually exist {\em formulas} that specify the $2$ or
-$3$ roots, respectively.  This section is devoted to deriving the
-{\em quadratic} formula, i.e., the one that works for degree-$2$---{\it
+there do exist computationally feasible algorithms for finding roots.
+For polynomials of {\em very} low degree---such as degrees $2$ and
+$3$, there actually exist {\em formulas} that specify the $2$ or $3$
+roots, respectively.  This section is devoted to deriving the {\em
+  quadratic} formula, i.e., the one that works for degree-$2$---{\it
   quadratic}---polynomials. \index{polynomials!quadratic}
 
 
-\paragraph{\small\sf A. Solving general quadratic polynomials}
+**DEFINE solution by radicals
 
-Consider the generic quadratic polynomial
+\paragraph{\small\sf A. Galois theory: the {\em unsolvability} of the
+  quintic by radicals}
+
+
+
+\paragraph{\small\sf B. Solving {\em quadratic}, {\em cubic}, and {\em
+    quartic} polynomials by radicals} 
+\label{sec:solve-quadratic-cubic-quartic}
+
+We do only quadratic and cubic, leaving quartic as an exercise.
+Quartic is not so hard conceptually, but it is hard clerically.
+
+\noindent {\it i. Solving quadratic polynomials by radicals}
+
+We derive a formula that {\it solves} an arbitrary quadratic polynomial
 \index{Polynomial!quadratic!generic} with real coefficients:
 \begin{equation}
 \label{eq:generic-quadratic-1}
 P(x) \ = \  ax^2 \ + \ bx \ + \ c \ \ \mbox{  where  } \ b,c \in \R;
 \ a \in \R \setminus \{0\}
 \end{equation}
-
-We derive a formula that {\it solves} any quadratic polynomial, i.e.,
-discovers the two roots promised by
-Theorem~\ref{thm:fund-thm-algebra}, and we illustrate the derivation
-with our generic polynomial $P(x)$.  \index{polynomial!solving a
-  quadratic polynomial} While the formula and its derivation are
-specialized to the structure of quadratic polynomials, the interested
-reader will observe aspects of the derivation that can be extrapolated
-to polynomials of higher degree.  The so-called {\em quadratic
-  formula} that we derive is announced in the following proposition.
-\index{quadratic formula}
+\index{polynomial!solving a quadratic polynomial} 
+While the formula and its derivation are specialized to the structure
+of quadratic polynomials, the interested reader will observe aspects
+of the derivation that can be extrapolated to polynomials of higher
+degree.  The so-called {\em quadratic formula} that we derive is
+announced in the following proposition.  \index{quadratic formula}
 
 \begin{prop}
 \label{thm:quadratic-formula}
@@ -945,6 +980,143 @@ The roots $x_1$ and $x_2$ are usually specified via the shorthand expression
 {\it the quadratic formula}. \index{the quadratic formula}
 \qed
 \end{proof}
+
+\smallskip
+
+The reader can verify that our proof essentially proceeded by
+replacing $P(x)$'s variable $x$ with the variable
+\[ u \ = \ x + \frac{b}{2a}. \]
+This replacement streamlines the process of completing the square and
+finding the solutions $x_1$ and $x_2$.  We presented the more
+elementary proof to let the reader see the solution process proceed
+step by step.  As we turn now to the clerically more complex solution
+of the cubic polynomial, we get around some of the computational
+complexity by employing the variable-substitution strategem.
+
+\bigskip
+
+\noindent {\it ii. Solving cubic polynomials by radicals}
+
+We derive a formula that {\it solves} an arbitrary cubic polynomial
+\index{Polynomial!cubic!generic} with real coefficients:
+\index{polynomial!solving a cubic polynomial} 
+\begin{equation}
+\label{eq:generic-cubic-1}
+P(x) \ = \  ax^3 \ + \ bx^2 \ + \ cx \ + \ d \ \ \mbox{  where  }
+\ b,c, d  \in \R;\ a \in \R \setminus \{0\}
+\end{equation}
+While the formula and its derivation are specialized to the structure
+of cubic polynomials, the interested reader should recognize aspects
+of the derivation that are akin to our derivation of the quadratic
+formula.  Because the so-called {\em cubic formula} that we derive is
+so complex in form, we are going to present the proof/derivation {\em
+  before} presenting the formula.
+
+\begin{proof} {\it (Derivation of the cubic formula)}
+
+\noindent {\it Step 1.} Convert the problem to solving a {\em monic} cubic polynomial.
+
+\noindent
+We convert the generic cubic polynomial $P(x)$ of
+(\ref{eq:generic-cubic-1}) to the monic cubic polynomial that has the
+same roots.
+\begin{eqnarray}
+\label{eq:generic-cubic-2}
+P^{(1)}(x) & = &  x^3 \ + \ Bx^2 \ + \ Cx \ + \ D \\
+\nonumber
+\mbox{where} & &
+B \ = \ \frac{b}{a}; \ \ \
+C \ = \ \frac{c}{a}; \ \ \
+D \ = \ \frac{d}{a}
+\end{eqnarray}
+One verifies easily that the polynomials $P(x)$ and $P^{(1)}(x)$ have
+the same roots.
+
+\medskip
+
+\noindent {\it Step 2.} Convert $P^{(1)}(x)$ to {\em reduced form}.
+\index{polynomial!cubic!monic!reduced form}
+
+\noindent
+When we make the substitution
+\[ y \ = \ x \ + \ \frac{B}{3} \]
+in (\ref{eq:generic-cubic-2}), we obtain the polynomial
+
+\begin{eqnarray}
+\nonumber
+P^{(2)}(y) & = &  \left(y - \frac{B}{3} \right)^3
+ \ + \ B \left(y - \frac{B}{3} \right)^2
+ \ + \ C \left(y - \frac{B}{3} \right) \ + \ D \\
+%\nonumber
+%           & = &
+%y^3 \ - \ B y^2 \ + \ \frac{B^2}{9} y \ - \ \frac{B^3}{27}
+%\ + \ By^2 \ - \ \frac{2B^2}{3} y \ + \ \frac{B^3}{9} 
+%\ + \ Cy \ - \ \frac{BC}{3}  \ + \ D \\
+\label{eq:generic-cubic-3}
+           & = &
+y^3 \ + \
+\left( \frac{B^2}{9} \ - \ \frac{2B^2}{3} \ + \ C  \right) y
+\ + \ \left( \frac{2 B^3}{27}  \ - \ \frac{BC}{3}  \ + \ D \right)
+\end{eqnarray}
+The absence of the quadratic term in $P^{(2)}(y)$---i.e., the term
+involving $y^2$---defines the polynomial's being {\it in reduced
+  form}.  For simplicity, let us rewrite $P^{(2)}(y)$ in the form
+\begin{equation}
+\label{eq:generic-cubic-4}
+P^{(2)}(y) \ = \ y^3 \ + \ E y \ + \ F
+\end{equation}
+
+\medskip
+
+\noindent {\it Step 3.} Convert $P^{(2)}(y)$ to a quadratic polynomial.
+
+\noindent
+We apply a transformation attributed to Vieta ({\em CITATION, INDEX})
+to convert $P^{(2)}(y)$ to a quadratic polynomial.  This transformaton
+makes the variable-substitution
+\[  y \ = \ z \ - \ \frac{E}{3z} \]
+in (\ref{eq:generic-cubic-4}).  We thereby obtain (after calculation
+and cancellations)
+\begin{eqnarray}
+\nonumber
+P^{(3)}(z) & = & \left( z \ - \ \frac{E}{3z} \right)^3
+\ + \ E \left(z \ - \ \frac{E}{3z} \right) \ + \ F \\
+\label{eq:generic-cubic-5}
+  & = &
+z^3 \ - \ \frac{E^3}{27z^3}  \ + \ F
+\end{eqnarray}
+Clearly, $P^{(3)}(z) = 0$ precisely when
+\[ (z^3)^2 \ + \ F (z^3) \ - \ \frac{E^3}{27} \ = \ 0 \]
+If we view this equation as a quadratic in the ``variable'' $z^3$ (we
+kept $z^3$ within parentheses to facilitate this view), then the
+quadratic formula (\ref{eq:generic-quadratic-4}) allows us to solve
+for $z^3$, as follows.  **HERE
+
+done!
+\qed
+\end{proof}
+
+
+
+announced in the following
+proposition.  \index{cubic formula}
+
+\begin{prop}
+\label{thm:cubic-formula}
+The three roots of the generic cubic polynomial
+(\ref{eq:generic-cubic-1}) are specified as follows.
+\begin{equation}
+\label{eq:generic-cubic}
+x \ = \  \frac{1}{2a} \left( -b \ \pm \
+\sqrt{b^2 \ - \ 4ac} \right).
+\end{equation}
+\end{prop}
+
+
+
+
+
+
 
 \paragraph{\small\sf B. Solving general cubic polynomials}
 
