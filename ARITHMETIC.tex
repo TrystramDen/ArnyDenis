@@ -1,4 +1,4 @@
-%version of 10-12-18
+%version of 10-17-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -1094,9 +1094,10 @@ when
 Let us view this equation as a quadratic equation in the ``variable''
 $z^3$.  (We wrote both instances of $z^3$ within parentheses to
 facilitate this view.)  The quadratic formula
-(\ref{eq:generic-quadratic-4}) allows us to solve this equation for
+(\ref{eq:generic-quadratic-4}) enables us to solve this equation for
 $z^3$, yielding the following two solutions (abbreviated via the
-operator $\pm$, for ``plus or minus''). \index{$\pm$: plus or minus}
+shorthand operator $\pm$, for ``plus or minus''). \index{$\pm$: plus
+  or minus}
 \begin{equation}
 \label{eq:solve-cubic-for-z3}
 (z^3) \ = \
@@ -1105,30 +1106,40 @@ operator $\pm$, for ``plus or minus''). \index{$\pm$: plus or minus}
 
 Solving equation (\ref{eq:solve-cubic-for-z3}) for the variable $z$
 requires a bit of background.  Theorem~\ref{thm:fund-thm-algebra}
-assures us that the equation has three roots.  In order to complete
-equation (\ref{eq:solve-cubic-for-z3})'s basis for these solutions, we
-must employ a truly remarkable result that is known as \index{Euler's
-  formula} {\it Euler's formula}, in honor of its discoverer, the
-much-traveled $18$th-century mathematician Leonhard
-Euler. \index{Euler, Leonhard}
+assures us that the equation has three roots.  In order to compute
+these roots, we must invoke a truly remarkable result that is known as
+\index{Euler's formula} {\it Euler's formula}, in honor of its
+discoverer, the much-traveled $18$th-century mathematician Leonhard
+Euler. \index{Euler, Leonhard} This result/formula exposes a fundamental
+relationship among:
+\begin{itemize}
+\item
+the imaginary unit \index{$i$: the imaginary unit} $i$;
+\item
+the ratio of the circumference of a circle to its radius,
+$\pi \ = \ 3.141592653 \cdots$;
+\index{$\pi$: the ratio of the circumference of a circle to its radius}
+\item
+the base of natural logarithms, Euler's constant $e \ = \ 2.718281828 \cdots$.
+\index{Euler's constant}\index{$e$:the base of natural logarithms}
+\end{itemize}
 
 \begin{theorem}[Euler's formula]
 \label{thm:Euler's-formula}
-\[ e^{i \pi} \ = \ -1, \]
-where $i$ is the imaginary unit, \index{$i$: the imaginary unit} and
-$e$ denotes Euler's constant, \index{Euler's constant} $e \ =
-\ 2.718281828 \cdots$.
+\[ e^{i \pi} \ = \ -1. \]
 \end{theorem}
 
+Back to equation (\ref{eq:solve-cubic-for-z3}):
 Theorem~\ref{thm:fund-thm-algebra} tells us that within the complex
 number system $\C$, the cubic polynomial $u^3 \ = \ 1$ has three
-distinct roots; these numbers are traditionally called the {\em
+distinct roots.  These numbers are traditionally called the {\em
   primitive $3$rd roots of unity} \index{primitive $3$rd roots of
-  unity} and denoted $\omega_0$, $\omega_1$, and $\omega_2$.
-Theorem~\ref{thm:Euler's-formula} identifies these numbers as:
-\[ \omega_0 \ = \ 1; \ \ \ \ \
-\omega_1 \ = \ e^{-i \pi/3}; \ \ \ \ \
-\omega_2 \ = \ e^{-2i \pi/3}.
+  unity} and are denoted $\omega^0$, $\omega^1$, and $\omega^2$.
+Using Theorem~\ref{thm:Euler's-formula}, we can specify these numbers
+as:
+\[ \omega^0 \ = \ 1; \ \ \ \ \
+\omega^1 \ = \ e^{2i \pi/3}; \ \ \ \ \
+\omega^2 \ = \ e^{4i \pi/3}.
 \]
 
 \medskip
@@ -1137,43 +1148,45 @@ When we unite the abbreviated double equation
 (Theorem~\ref{thm:Euler's-formula}), we discover {\em six} solutions
 for the variable $z$, namely, {\small
 \begin{equation}
-\label{eq:cubic-solution}
+\label{eq:cubic-solution-1}
 \begin{array}{ccrrrccr}
 z_1 & = &
 {\displaystyle
+\omega^0 \cdot
 \left[ \frac{1}{2} \left(-F \ + \ \sqrt{F^2 + 4 \frac{E^3}{27}}
 \right) \right]^{1/3} 
 }
   & & &
 z_2 & = &
 {\displaystyle
+\omega^0 \cdot
 \left[
 \frac{1}{2} \left(-F \ - \ \sqrt{F^2 + 4 \frac{E^3}{27}}
 \right) \right]^{1/3}
 } \\
 z_3 & = &
 {\displaystyle
-\omega_1 \cdot \left[
+\omega^1 \cdot \left[
 \frac{1}{2} \left(-F \ + \ \sqrt{F^2 + 4 \frac{E^3}{27}}
 \right) \right]^{1/3} 
 }
   & & &
 z_4 & = &
 {\displaystyle
-\omega_1 \cdot \left[
+\omega^1 \cdot \left[
 \frac{1}{2} \left(-F \ - \ \sqrt{F^2 + 4 \frac{E^3}{27}}
 \right) \right]^{1/3}
 } \\
 z_5 & = &
 {\displaystyle
-\omega_2 \cdot \left[
+\omega^2 \cdot \left[
 \frac{1}{2} \left(-F \ + \ \sqrt{F^2 + 4 \frac{E^3}{27}}
 \right) \right]^{1/3} 
 }
   & & &
 z_6 & = &
 {\displaystyle
-\omega_2 \cdot \left[
+\omega^2 \cdot \left[
 \frac{1}{2} \left(-F \ - \ \sqrt{F^2 + 4 \frac{E^3}{27}}
 \right) \right]^{1/3}
 }
@@ -1183,48 +1196,37 @@ z_6 & = &
 
 When we use our substitution (\ref{eq:cubic-substitute-z-for-y}) to
 generate solutions for $y$ (the variable we really care about) from
-these solutions for $z$, then we find that we find only {\em three}
-solutions for $y$.
+these solutions for $z$, then we encounter cancellations in our
+calculations, which leave us with only {\em three} solutions for $y$.
+(We knew from the Fundamental Theorem of Algebra,
+Theorem~\ref{thm:fund-thm-algebra}, that something like this had to
+happen, because cubic polynolmials have only three roots.)
+\begin{eqnarray}
+\label{eq:cubic-solution-2}
+y_1 & = &
+\omega^0 \cdot
+2E \cdot \sqrt{\frac{F^2}{4} \ + \ \frac{E^3}{27}} \\
+y_1 & = &
+\omega^1 \cdot
+2E \cdot \sqrt{\frac{F^2}{4} \ + \ \frac{E^3}{27}} \\
+y_1 & = &
+\omega^2 \cdot
+2E \cdot \sqrt{\frac{F^2}{4} \ + \ \frac{E^3}{27}}
+\end{eqnarray}
 
-**HERE
-
-*********************
-
-
-
-done!
+We could assemble the solutions we have derived into a form
+reminiscent of the quadratic formula (\ref{eq:generic-quadratic-4}).
+But for cubics this formulation is so complex visually that it lends
+no important insights.\footnote{The curious reader can find such
+  formulas on the web.}
 \qed
 \end{proof}
-
-
-
-announced in the following
-proposition.  \index{cubic formula}
-
-\begin{prop}
-\label{thm:cubic-formula}
-The three roots of the generic cubic polynomial
-(\ref{eq:generic-cubic-1}) are specified as follows.
-\begin{equation}
-\label{eq:generic-cubic}
-x \ = \  \frac{1}{2a} \left( -b \ \pm \
-\sqrt{b^2 \ - \ 4ac} \right).
-\end{equation}
-\end{prop}
-
-
-
-
-
-
-
-\paragraph{\small\sf B. Solving general cubic polynomials}
-
-**HERE
 
 {\Arny
 I think that solving the general cubic, although specialized, does
 involve useful skills for manipulating polynomials.  WHAT DO YOU THINK?}
+
+
 
 
 
