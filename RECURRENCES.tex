@@ -1,33 +1,55 @@
-%version of 10-10-18
+%version of 10-22-18
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
 
-This chapter is devoted to derive and solve Linear Recurrences.
+One of the intellectually most powerful strategies for all manner of
+human endeavor is to ``learn from the past''---i.e., to {\em re}-use
+knowledge that one has acquired earlier in order to acquire new
+knowledge.  Within the domain of computing, this strategy is
+exemplified by computations that derive the value of a function $F$ at
+an argument $n \in \N^+$ by invoking the (hopefully, earlier-computed)
+values of $F$ at arguments $1, 2, \ldots, n-1$.  The classical first
+example of such a {\it recurrent} mode of computing involves the {\it
+  factorial function} {\sc Fact} of Section~\ref{sec:unary-ops}.C.
+\index{arithmetic!basic operations!factorial (of a nonnegative integer)}
+The ``direct'' mode of computing {\sc Fact} at an argument $n \in
+\N^+$ is:
+\[ \mbox{\sc Fact}(n) \ = \ 1 \times 2 \times \cdots \times n. \]
+The {\em recurrent} mode of computing {\sc Fact}($n$) is more
+compact---and it better exposes the inherent structure of the
+function.
+\[ \mbox{\sc Fact}(n) \ = \ \left\{
+\begin{array}{cl}
+ n \times \mbox{\sc Fact}(n-1) & \mbox{ if } \ n > 1 \\
+ 1 & \mbox{ if } \ n = 1 \\
+\end{array}
+\right.
+\]
+This chapter is devoted to deriving and solving a variety of types of
+recurrences.  In common with the rest of this text, our treatment of
+this subject emphasizes exploiting recurrent structure in reasoning
+and analysis: increased understanding will enable improved computing.
 
-While we have discussed already discussed the use of linear
-recurrences in Section ***CHECK REFERENCE  %~\ref{sec:linear-recurrences-1}, 
-we derive the underlying mathematics in this section
 
-\section{The Master Theorem}
-\label{sec:mesterTheorem}
+\section{Linear Recurrences}
+\label{sec:linear-recurrences}
 
-\subsection{A simplified form}
+This section is devoted to the solution of {\em linear} recurrences,
+as exemplified by the following function specifications.  
 
-By the time the reader has reached this paragraph, she has the
-mathematical tools necessary to prove and apply what is called {\it
-  The Master Theorem for Linear Recurrences} \cite{CLRS}.  This level
-of mathematical preparation should be adequate for most
-early-undergrad courses on data structures and algorithms, as well for
-for analyzing a large fraction of the algorithms that she is likely to
-encounter in daily activities.
-
-\begin{theorem}[The Master Theorem for Linear Recurrences]
-\label{thm:master-thm}
-\index{The Master Theorem for Linear Recurrences}
-Let the function $F$ be specified by the following linear recurrence.
 \begin{equation}
-\label{eq:Lin-Recur:start}
+\label{eq:Lin-Recur:general}
+F(n) \ = \ \left\{
+\begin{array}{cl}
+a F(n/b) + f(n) & \mbox{for } n > b \\
+1 & \mbox{for } n = b
+\end{array}
+\right.
+\end{equation}
+
+\begin{equation}
+\label{eq:Lin-Recur:basic}
 F(n) \ = \ \left\{
 \begin{array}{cl}
 a F(n/b) + c & \mbox{for } n \geq b \\
@@ -35,32 +57,65 @@ c & \mbox{for } n < b
 \end{array}
 \right.
 \end{equation}
-Then the value of $F$ on any argument $n$ is given by
+
+Myriad basic algorithmic problems, including sorting, selection,
+matching, etc., can be solved using linear-recurrent algorithms
+\cite{CLRS}---and such algorithms yield to specification and analysis
+via linear recurrences.
+
+In the next two subsections, we present analyses of recurrences
+(\ref{eq:Lin-Recur:general}) and (\ref{eq:Lin-Recur:basic}).  The
+reader will be able to extend the techniques we use in our analyses of
+these specific recurrences in order to analyze other members of the
+important family of linear-recurrent algorithms.
+
+
+\subsection{Solving Recurrence (\ref{eq:Lin-Recur:basic})} 
+\label{sec:masterTheorem}
+\label{sec:linear-recurrence-basic}
+
+We focus first on the simpler of our sample recurrences, namely,
+(\ref{eq:Lin-Recur:basic}).  Happily, there is a single perspicuous
+proof that elegantly solves recurrences of this form.
+
+By the time the reader has reached this paragraph, she has the
+mathematical tools necessary to prove and apply what is called {\it
+  The Master Theorem for Linear Recurrences} \cite{CLRS}.  The main
+tools in the proof of the Theorem are: summing geometric summations
+(Section~\ref{sec:geometric-sums}) and employing elementary asymptotic
+notions and notations (Section~\ref{sec:asymptotics}).
+
+\begin{theorem}[The Master Theorem for Linear Recurrences]
+\label{thm:master-thm}
+\index{The Master Theorem for Linear Recurrences}
+Let the function $F$ be specified by the linear recurrence
+(\ref{eq:Lin-Recur:basic}).  Then the value of $F$ on any argument $n$
+is given by
 \begin{equation}
 \label{eq:Lin-Recur:solve}
-\begin{array}{lclll}
-F(n) & = & (1 + \log_b n)c &  & \mbox{if } a=1 \\
-     &   &                 &  & \\
+\begin{array}{lcllll}
+F(n) & = & (1 + \log_b n)c &  &  & \mbox{if } a=1 \\
+     &   &                 &  &  & \\
      & = &
   {\displaystyle
   \frac{1-a^{\log_b n}}{1-a} \ \approx \ \frac{1}{1-a}
   }
- &  & \mbox{if } a<1 \\
-    &   &                  & & \\
+                           &  &  & \mbox{if } a<1 \\
+    &   &                  &  &  & \\
     & = &
   {\displaystyle
 \frac{a^{\log_b n} -1}{a-1}
   }
- & & \mbox{if } a>1
+                           &  &  & \mbox{if } a>1
 \end{array}
 \end{equation}
 \end{theorem}
 
 \begin{proof}
 In order to discern the recurring pattern in
-(\ref{eq:Lin-Recur:start}), let us begin to ``expand'' the specified
+(\ref{eq:Lin-Recur:basic}), let us begin to ``expand'' the specified
 computation by replacing occurrences of $F(\bullet)$ as mandated in
-(\ref{eq:Lin-Recur:start}).
+(\ref{eq:Lin-Recur:basic}).
 \begin{equation}
 \label{eq:Lin-Recur:expand}
 \begin{array}{lcccc}
@@ -80,22 +135,16 @@ The segment of (\ref{eq:Lin-Recur:expand}) ``hidden'' by the vertical
 dots betokens an induction that is left to the reader.  Equations
 (\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) now enable us to
 demonstrate that (\ref{eq:Lin-Recur:solve}) is the case-structured
-solution to (\ref{eq:Lin-Recur:start}).  \qed
+solution to (\ref{eq:Lin-Recur:basic}).  \qed
 \end{proof}
 
-\subsection{A more complicated (but still regular) form}
+
+\subsection{Solving Recurrence (\ref{eq:Lin-Recur:general})} 
+\label{sec:linear-recurrence-general}
 
 We present in this section a more general recurring pattern:
 
-\begin{equation}
-\label{eq:Lin-Recur:general}
-F(n) \ = \ \left\{
-\begin{array}{cl}
-a F(n/b) + f(n) & \mbox{for } n > b \\
-1 & \mbox{for } n = b
-\end{array}
-\right.
-\end{equation}
+
 
 Let us first solve the case where function $f$ is linear, i.e. in the simplified form $f(n) = n$.
 We also assume for clarity that $n$ is a power of $b$. 
