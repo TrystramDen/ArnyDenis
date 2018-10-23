@@ -1,4 +1,4 @@
-%version of 10-22-19
+%version of 10-23-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -877,79 +877,100 @@ Descartes
 
 
 \subsubsection{Solving polynomials by radicals}
-
+\label{sec:poly-by-radical}
 
 The problem of {\it solving} arbitrary degree-$d$ polynomials---i.e.,
 of discovering their $d$ roots, as promised by
 Theorem~\ref{thm:fund-thm-algebra}---is computationally very complex,
-even for moderately low degrees, in a sense that can be made precise
-but is beyond the scope of this text.  For polynomials of low degree,
-there do exist computationally feasible algorithms for finding roots.
-For polynomials of {\em very} low degree---such as degrees $2$ and
-$3$, there actually exist {\em formulas} that specify the $2$ or $3$
-roots, respectively.  This section is devoted to deriving the {\em
-  quadratic} formula, i.e., the one that works for degree-$2$---{\it
-  quadratic}---polynomials. \index{polynomials!quadratic}
+even for moderately low degrees.  (This assertion can be made
+mathematically precise, but the required notions are beyond the scope
+of this text.)  For univariate polynomials of low degree, there do
+exist computationally feasible root-finding algorithms.  Indeed, for
+polynomials of {\em very} low degree---specifically, degrees $2$, $3$
+and $4$---there actually exist ``simple'' {\em formulas} that specify
+the polynomial's roots.  The word ``simple'' is used in a technical
+sense here: it refers to a formula that can be constructed using the
+following algebraic operations: adding/subtracting two quantities,
+multiplying/dividing two quantities, and raising a quantity to a
+rational power.  Because the last of these operations is often
+expressed by using a {\em radical sign}, \index{radical sign} rather
+than an exponent---as when we write ``$\sqrt{x}$'' for
+``$x^{1/2}$''---these formulas are often referred to as {\it solution
+  by radicals}.  \index{polynomial!solution by radicals}
+\index{solution by radicals}
 
-
-**DEFINE solution by radicals
 
 \paragraph{\small\sf A. Galois theory: the {\em unsolvability} of the
   quintic by radicals}
 
 
 
-\paragraph{\small\sf B. Solving {\em quadratic}, {\em cubic}, and {\em
-    quartic} polynomials by radicals} 
-\label{sec:solve-quadratic-cubic-quartic}
+\paragraph{\small\sf B. Solving {\em quadratic} and {\em cubic} polynomials by radicals} 
+\label{sec:solve-quadratic-cubic}
 
-We do only quadratic and cubic, leaving quartic as an exercise.
-Quartic is not so hard conceptually, but it is hard clerically.
+This section is devoted to deriving the {\em quadratic} formula---the
+one that specifies the roots of any degree-$2$ {\it (quadratic)}
+\index{polynomials!quadratic} polynomial---and the {\em cubic}
+formula---the one that specifies the roots of any degree-$3$ {\it
+  (cubic)} polynomial. \index{polynomials!cubic} We shall observe that
+the cubic formula is so onerous calculationally that it is seldom
+actually written out; it is instead specified {\em algorithmically}.
+The {\em quartic} formula---the one that specifies the roots of any
+degree-$4$ {\it (quartic)} \index{polynomials!quartic} polynomial---is
+so complex that it is virtually never written out.  The courageous
+reader can attack the quartic formula as an exercise, using the
+conceptual techniques we derive here.
+
+\medskip
 
 \noindent {\it i. Solving quadratic polynomials by radicals}
 
-We derive a formula that {\it solves} an arbitrary quadratic polynomial
-\index{Polynomial!quadratic!generic} with real coefficients:
+\noindent
+We derive the {\it quadratic formula}, which solves an arbitrary
+quadratic polynomial \index{Polynomial!quadratic!generic} with real
+coefficients: \index{polynomial!solving a quadratic polynomial} 
 \begin{equation}
 \label{eq:generic-quadratic-1}
 P(x) \ = \  ax^2 \ + \ bx \ + \ c \ \ \mbox{  where  } \ b,c \in \R;
 \ a \in \R \setminus \{0\}
 \end{equation}
-\index{polynomial!solving a quadratic polynomial} 
 While the formula and its derivation are specialized to the structure
-of quadratic polynomials, the interested reader will observe aspects
-of the derivation that can be extrapolated to polynomials of higher
-degree.  The so-called {\em quadratic formula} that we derive is
-announced in the following proposition.  \index{quadratic formula}
+of quadratic polynomials, several aspects of the derivation can be
+extrapolated to polynomials of higher degree.  The formula that we
+derive is announced in the following proposition.  \index{quadratic
+  formula}
 
 \begin{prop}
 \label{thm:quadratic-formula}
-The two roots of the generic quadratic polynomial
-(\ref{eq:generic-quadratic-1}) are specified as follows.
-\begin{equation}
+The two roots, $x_1$ and $x_2$, of the generic quadratic polynomial
+(\ref{eq:generic-quadratic-1}) are:
+\begin{eqnarray}
+\nonumber
+x_1 & = & \frac{-b \ + \ \sqrt{b^2 -4ac}}{2a} \\
 \label{eq:generic-quadratic-4}
-x \ = \  \frac{1}{2a} \left( -b \ \pm \
-\sqrt{b^2 \ - \ 4ac} \right).
-\end{equation}
+    &   & \\
+\nonumber
+x_2 & = & \frac{-b \ - \ \sqrt{b^2 -4ac}}{2a}.
+\end{eqnarray}
 \end{prop}
 
 
 \begin{proof}
-The problem of finding the roots of $P(x)$ is equivalent to the probem
-of solving the polynomial equation $P(x) = 0$.  By elementary
-calculation on expression (\ref{eq:generic-quadratic-1}), we reduce
-the root-finding problem to the solution of the equation
+We find the roots of $P(x)$ by solving the polynomial equation $P(x) =
+0$.  We simplify our task by dividing both sides of this equation by
+$a$; easily, this does not impact the two solutions we seek.  We
+thereby reduce the root-finding problem to the solution of the
+equation
 \begin{equation}
 \label{eq:generic-quadratic-2}
 x^2 \ + \ \frac{b}{a} x \ = \ - \frac{c}{a}.
 \end{equation}
-
 The technique of {\it completing the square}
 \index{polynomial!quadratic!completing the square} gives us an easy
-path to solving equation (\ref{eq:generic-quadratic-2}).  This
-technique mandates adding to both sides of the equation a
-variable-free expression $E$ that turns the lefthand expression into a
-perfect square.  In the current instance, the expression
+path to solving (\ref{eq:generic-quadratic-2}).  This technique
+mandates adding to both sides of the equation a variable-free
+expression $E$ that turns the lefthand expression into a perfect
+square.  In the current instance, the expression
 \[ E \ = \ \frac{b^2}{4a^2} \]
 does the job, because
 \[
@@ -968,18 +989,20 @@ the equation
 \label{eq:generic-quadratic-3}
   & = & \frac{1}{4a^2} \cdot (b^2 - 4ac).
 \end{eqnarray}
-An elementary algebraic calculation shows that equation
-(\ref{eq:generic-quadratic-3}) identifies $P(x)$'s two roots, call
-them $x_1$ and $x_2$:
-\begin{eqnarray*}
-x_1 & = & \frac{-b \ + \ \sqrt{b^2 -4ac}}{2a} \\
-x_2 & = & \frac{-b \ - \ \sqrt{b^2 -4ac}}{2a}.
-\end{eqnarray*}
-The roots $x_1$ and $x_2$ are usually specified via the shorthand expression
-(\ref{eq:generic-quadratic-4}), which is the well-known
-{\it the quadratic formula}. \index{the quadratic formula}
+An elementary algebraic calculation on equation
+(\ref{eq:generic-quadratic-3}) identifies $P(x)$'s two roots as the
+values $x_1$ and $x_2$ specified in (\ref{eq:generic-quadratic-4}).
 \qed
 \end{proof}
+
+Using a common shorthand, the expressions for $x_1$ and $x_2$ in
+(\ref{eq:generic-quadratic-4}) are often abbreviated by using the
+operator $\pm$, for ``plus or minus''.  The quadratic formula is then
+written:
+\[
+x \ = \  \frac{1}{2a} \left( -b \ \pm \ \sqrt{b^2 \ - \ 4ac} \right).
+\]
+
 
 \smallskip
 
@@ -990,13 +1013,14 @@ This replacement streamlines the process of completing the square and
 finding the solutions $x_1$ and $x_2$.  We presented the more
 elementary proof to let the reader see the solution process proceed
 step by step.  As we turn now to the clerically more complex solution
-of the cubic polynomial, we get around some of the computational
+of the cubic polynomial, we get around some of the calculational
 complexity by employing the variable-substitution strategem.
 
 \bigskip
 
 \noindent {\it ii. Solving cubic polynomials by radicals}
 
+\noindent
 We derive a formula that {\it solves} an arbitrary cubic polynomial
 \index{Polynomial!cubic!generic} with real coefficients:
 \index{polynomial!solving a cubic polynomial} 
