@@ -1665,6 +1665,285 @@ We return to this idea of encoding-via-integers in a later chapter.
   mention/discuss: (1) The prime-number theorem ($n/ \log n$ primes
   $\leq n$); (2) the polynomials that generate lots of primes.  We
   should discuss this}
+  
+
+\subsection{Fermat little theorem}
+\label{sec:fermat}
+\index{Fermat little theorem}
+
+\noindent \textbf{Statement:}
+
+Let $p$ a prime
+
+$a^p − a$ is divisible by $p$ for any integer $a$.
+
+%Another way to write this theorem is $a^{p} \equiv a [p]$.
+%\bigskip
+%
+%Notice that there exist other formulations, the following is the most popular one:
+%
+%Let consider two primes $p$ and $a$.
+%$a^{p-1} \equiv 1 [p]$
+
+\subsubsection{Classical proof}
+
+Before presenting the proof, let us first establish a preliminary property:
+\medskip
+
+\noindent \textbf{Property.} 
+\label{prop:preliminaryFermat}
+When $p$ is prime, it is clear while looking at the Pascal triangle depicted
+in Figure~\ref{fig:TrianglePrime} that apart the two extreme coefficients in the prime rows (starting at 0), all the coefficients are multiples of $p$.
+
+Looking from another perspective (with Pascal triangles modulo primes) evidences this property. 
+We detail it on two particular examples in Figures~\ref{fig:TriangleModulo5} and \ref{fig:TriangleModulo7} (namely, for $p=5$ and $p=7$). 
+
+%Let us compute the powers of $p=7$ for the first successive integers:
+%
+%$1^7  \equiv 1 [7]$
+%
+%$2^7 = 128 = 7 \times 18 + 2  \equiv 2 [7]$
+%
+%$3^7 = 2187 = 7 \times 312 + 3 \equiv 3 [7]$
+%
+%$4^7 = 16 384 = 7 \times 2340 + 4 \equiv 4 [7]$
+%
+%$5^7 = 78 125 = 7 \times 11140 + 5  \equiv 5 [7]$
+%
+%$6^7 = 279 936  = 7 \times 39 990 + 6 \equiv 6 [7]$
+%\bigskip
+
+This result reflects the core of the little Fermat Theorem, that is: \textbf{the reminders by a prime of a number and its power to the same prime remain the same}.
+It can be proved formally by simply applying the definition: 
+
+${p}\choose{k}$ $= \frac{p!}{k!(p-k)!}$ (for $0 < k < p$)
+
+Thus,  $k!$ ${p}\choose{k}$ $= p(p-1)\cdots(p-k+1)$.
+
+In other words, $p$ divides the product $k!$ ${p}\choose{k} $ but it has no common divisor with $k!$ since $k < p$, thus, $p$ divides ${p}\choose{k}$.
+\medskip
+
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresArithmetic/TrianglePascalPrimes.png}
+        \caption{First rows of the Pascal's triangle, which show that the internal elements of the rows corresponding to primes are multiple of this prime
+        (here row $2$, $3$ and $5$.}
+        \label{fig:TrianglePrime}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.2]{FiguresArithmetic/TrianglePascalModulo5init.png}
+         \includegraphics[scale=0.2]{FiguresArithmetic/TrianglePascalModulo5.png}
+        \caption{Pascal triangle modulo a prime (here $p=5$) and its reproducible pattern.}
+        \label{fig:TriangleModulo5}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/TrianglePascalModulo7.png}
+        \caption{Pascal triangle modulo a prime ($p=7$)}
+        \label{fig:TriangleModulo7}
+\end{center}
+\end{figure}
+
+\noindent \textbf{Proof.}
+The classical proof is obtained by induction on $a$ (for a given prime $p$), applying the Newton binomial decomposition.
+
+\begin{itemize}
+\item The basis of the induction is straightforward since $1^{p} \equiv 1 [p]$.
+
+\item Assuming $a^{p} \equiv a [p]$ holds and let compute $(a+1)^{p}$.
+
+ $(a+1)^{p} = a^p + 1 + \Sigma_{1 \leq k \leq p-1} a^k $ ${p}\choose{k}$
+\bigskip
+
+On the first hand, from the preliminary property, all \textit{internal} binomial coefficients are divisible by $p$, thus, 
+$\Sigma_{1 \leq k \leq p-1} a^k $ ${p}\choose{k} $ $= a.N.p$
+
+On the second hand, applying the induction hypothesis says there exists an integer $N'$ such that  $a^{p} = a + N'.p$.
+
+Then, $(a+1)^{p} = a.N.p +1 + a + N'.p = (a+1) + p.N''$ ($N''=a.N+N'$).
+\end{itemize}
+%\noindent $\blacksquare$
+
+
+\subsubsection{An alternative combinatorial proof}
+
+The following proof has been suggested by our colleague Jean-Marc Vincent. 
+The idea is to build an adequate set and to count its elements.
+Consider the set obtained by all the words of length $p$ coded on the alphabet $\mathcal{A}$ with $a$ symbols ($p$ is prime).
+
+\begin{itemize}
+\item The number of words of length $p$ built on the alphabet $\mathcal{A}$ is equal to $a^p$.
+
+\item 
+%Let depict all the words of length $p=3$ on $\mathcal{A} = \{\alpha_1,\alpha_2,\alpha_3,\alpha_4\}$.
+
+We define the circular permutation $c$ of a word by taking the last symbol of this word, putting
+it in the first position and shifting all the others to the right. More formally:
+
+$c(\alpha_1 \alpha_2 \cdots \alpha_p) = \alpha_p \alpha_1 \cdots \alpha_{p-1}$
+
+%Graph of $c$ for words of length $p=3$ on $\mathcal{A} = \{0,1\}$.
+
+We also define the \textit{necklace} $\mathcal{N} (\omega)$ associated to a word $\omega$ as the set of the successive images of $\omega$ by $c$, 
+namely, $\mathcal{N}(\omega) = {\omega,c(\omega),c(c(\omega)),\cdots}$.
+
+The size of the necklace $\mathcal{N}$ is the number of elements in $\mathcal{N}(\omega)$.
+
+\medskip
+The size of a necklace is always bounded by $p$ since in the worst case, the circular permutation shift all the symbols before coming back to the original position. 
+
+As $p$ is prime, the size of a necklace with at least 2 different symbols is exactly $p$.
+Fig.~\ref{fig:necklace24} depicts all the necklaces of size $p=3$ on the alphabet $\{ A,B,C \}$.
+Indeed, it is easy to prove this by contradiction using the definition of primes that have no divisors lower than them selves.
+
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.25]{FiguresArithmetic/Necklace24.png}
+        \caption{8 groups of necklaces of size $p=3$ (for $a=3$).}
+        \label{fig:necklace24}
+\end{center}
+\end{figure}
+
+Moreover, it is easy to see that the number of necklaces of size 1 is equal to $a$.
+There are the words where the symbols are all the same (see Fig.~\ref{fig:necklace24}).
+
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/Necklace3.png}
+        \caption{The 3 necklaces composed of the the same symbol ($a=3$)}
+        \label{fig:necklace3}
+\end{center}
+\end{figure}
+
+\end{itemize}
+
+The proof of Fermat little theorem with combinatorial arguments is a direct consequence of the previous properties
+since the number of necklaces of size $p$ is equal to $a^p - a$. 
+
+
+\subsection{Perfect numbers}
+\label{sec:perfectnumbers}
+\index{perfect numbers}
+
+\subsubsection{Definitions}
+
+A perfect number (\textit{PN} in short) is a number which is equal to the sum of its proper divisors.
+For instance, the first perfect numbers are the following: 
+\begin{itemize}
+\item $6$, which has $3$ proper divisors, namely, $1$, $2$ and $3$.
+
+$1+2+3=6$.
+\item $28$ whose $5$ proper divisors are: $1$, $2$, $4$, $7$ and $14$.
+
+$1+2+4+7+14=28$.
+\item $496$ has $9$ proper divisors, namely, $1$, $2$, $4$, $8$, $16$, $31$, $62$, $124$ and $248$. 
+
+$1+2+4+8+16+31+62+124+248=496$.
+\end{itemize}
+
+A \textit{Mersenne number} is a prime which has the following expression: $2^\alpha-1$ for some given integer $\alpha$.
+{\Denis I don't know if we really need to introduce Mersenne numbers here?}
+
+For instance, $2^2-1=3$, $2^3-1=7$, $2^5-1=31$ are primes while $2^4-1=15=3 \times 5$ or $2^6-1=63=7 \times 9$ are not prime...
+Obviously, there exist primes which are not Mersenne's numbers (like $5, 13$, etc.). 
+\medskip
+
+\noindent
+\textbf{Property.}
+\label{prop:MersennePrimes}
+
+\noindent 
+$2^\alpha-1$ is only prime if $\alpha$ is prime.
+\medskip
+
+The proof is a direct consequence of the little Fermat theorem (proved in the last section).
+
+The objective of the next section is to study some characterizations of perfect numbers.
+\medskip
+
+Notice that it remains several open questions related to perfect numbers like the existence of odd PN.
+
+%Let us first prove some properties about even PN.
+
+\subsubsection{Properties}
+
+We are now going to prove the main result:
+\bigskip
+
+\noindent
+\textbf{Theorem (characterization of PN).}
+
+\noindent 
+Let consider a prime $\alpha$. 
+
+Looking at the detail of the 3 first PN given in the introduction of this section, we remark that the first factors are powers of $2$ while the last ones are multiple of $2^\alpha-1$
+(these multiples are also powers of $2$).
+Let denote by $PN_\alpha$ the number obtained by the following expression:
+$2^{\alpha-1}(2^\alpha-1)$ where $2^\alpha-1$ is a prime.
+
+$PN_\alpha$ is a perfect number.
+\bigskip
+
+\noindent 
+\textbf{Proof.}
+
+The list of factors $F_i$ (for $0 \leq i \leq \alpha-1$) of $2^{\alpha-1}$ is: 
+
+$F_0=1, F_1=2, F_2=4, ..., F_{\alpha-1}=2^{\alpha-1}$.
+
+The other factors of $PN_\alpha$ are obtained by: $F_i.(2^\alpha-1)$ for $i < \alpha-1$.
+
+Summing up all these factors, we obtain:
+
+$\Sigma_{i=0,\alpha-1} 2^{i} + \Sigma_{i=0,\alpha-2} 2^{i}(2^\alpha-1)$
+
+$= 2^{\alpha-1} + \Sigma_{i=0,\alpha-2} 2^{i}(1+2^\alpha-1)$
+
+$ = 2^{\alpha-1} + 2^{\alpha} (2^{\alpha-1} -1) $
+
+$ = 2^{\alpha-1} (1+2.2^{\alpha-1}-2) $
+
+$= 2^{\alpha-1} (2^{\alpha}-1)$.
+
+This property was proved by Euclide in \textit{Principae IX-36}.
+\bigskip
+
+%\noindent
+%\textbf{Property 3.}
+%
+%\noindent 
+%The last digit of any perfect number (in usual decimal notation) is $6$ or $8$.
+%\bigskip
+
+\noindent
+\textbf{Property (coding by the binary representation).}
+\label{prop:codingPN}
+
+$PN_\alpha = (11...10...0)_2$ ($\alpha$ times $1$ followed by $\alpha-1$ times $0$).
+
+%The first $\alpha -1$ 1 comes from $2^{\alpha-1}$ and the right part comes from the shifts corresponding to the multiplication by $2^{\alpha}$
+\medskip
+
+\noindent
+\textbf{Property (link with triangular numbers $\Delta_n$).}
+
+\noindent 
+It is easy to remark that $6=\Delta_3$ and $28=\Delta_7$ are triangular numbers.
+We show more generally that $PN_\alpha = \Delta_{2^\alpha-1}$.
+\medskip
+
+\noindent 
+\textbf{Proof.}
+
+The proof is straightforward by using the basic expression $\Delta_{n} = \frac{n(n+1)}{2}$ for $n=2^{\alpha-1}$. 
+
+$\Delta_{2^\alpha-1} = \frac{(2^\alpha-1)(2^\alpha-1+1)}{2} = \frac{(2^\alpha-1)(2^\alpha)}{2} = (2^\alpha-1)2^{\alpha-1}$
+
 
 
 \subsection{Pairing Functions: Bringing Linear Order to Tuple Spaces}
