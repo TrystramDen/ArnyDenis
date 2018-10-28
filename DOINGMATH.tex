@@ -1117,18 +1117,23 @@ complicated in the multivariate settings engendered by PDC.  But, the
 benefits of being able to reason qualitatively about the quantitative
 aspects of computing increase at least commensurately!
 
-\subsection{Dealing with infinity}
+\subsection{Dealing with Infinity}
 \label{subsec:infinity}
 
 {\Denis is it the right place here?}
 
-\subsubsection{Operations on $\infty$}
+\subsubsection{Operations on infinity}
 
 {\Denis This part should be carefully read}
 
-We presented in the chapter Summations several ways to compute the sum of numbers in a given sequence ($a_n$).
-If the number of numbers is $\infty$, the sum may be finite or not. 
-Some of the classical techniques used while calculating finite sums are no more valid for infinite sums. 
+{\Arny An immediate problem is the forward reference to SUMMATION.  Do
+  we need to reorganize?}
+
+We presented in the chapter Summations several ways to compute the sum
+of numbers in a given sequence ($a_n$).  If the sequence contains
+infinitely many, the sum can be finite or not.  Some of the classical
+techniques used while calculating finite sums are no longer valid for
+infinite sums.
 
 
 A natural definition is $\sum_{k \geq 1} a_k = lim_{n \rightarrow \infty} \sum_{k=1}^{n} a_k$.
@@ -1142,7 +1147,12 @@ Te obtain the value $-1$!
 This is obviously not correct since the sum of increasing positive numbers should be positive.
 The reason is that the terms of the series grows to $+\infty$.
 
+
+
 \subsubsection{Preliminary: Achille and the tortoise}
+
+{\Arny This story appears in SUMMATION.  Should we repeata sortened
+  version here?  It's pretty short already}
 
 Let us first start by a well-known dilemma stated by Zenon {\Denis put the date here and recall the story:}
 
@@ -1152,28 +1162,55 @@ who imagined a race between the famous greek heros Achille and a tortoise.
 This paradox was explained only in the XVIIth century by means of the infinitesimal calculus of Leibniz (Newton ?). 
 
 
-\subsubsection{The Littlehood paradox}
+\subsubsection{The Ross-Littlewood paradox}
+\label{sec:littlewood}
 
-This is a story of balls and hats.
+The following story about balls and hats is known as the {\it
+  Ross-Littlewood paradox}, after its creators.  A version of the
+story appeared first in the enlightening and entertaining book {\it
+  Littlewood's Miscellany} \cite{Littlewood-misc} \index{Littlewood,
+  John E.}  The story was amplified to its present form by S.M.~Ross
+\cite{Ross76} \index{Ross, Sheldon M.}
 
-Let consider a big hat (as large as that is needed) and a unbounded series of ordered ball,
-which are labelled from 1, 2, ... and a very precise clock. 
-The process is the following:
+Let us consider a system that contains
+\begin{itemize}
+\item
+a {\em really big} hat (as large as is needed for the story)
+\item
+an unboundedly long series of ordered balls,  labelled 1, 2, \ldots
+\item
+a {\em very precise} clock.
+\end{itemize}
+The process we observe proceeds as follows.
 
-At midnight minus 1 minute, let put the first 10 balls into the hat and remove immediately the first ball.
-Iterate the same process at midnight minus 30 seconds (put the 10 next balls and remove the second one),
-and so on.
+At midnight minus 1 minute, we place the first ten balls into the hat,
+and we {\em immediately} remove the first ball.  We repeat this
+process at midnight minus 30 seconds (put the 10 next balls into the
+hat and remove the second one), then at midnight minus 45 seconds (put
+the 10 next balls into the hat and remove the third one), and so on,
+\ldots, decreasing at each step, by one-half, the number of seconds
+remaining until midnight.
 
-the question is to \textit{How many balls are present in the hat at midnight?}
+The question is, \textit{How many balls are present in the hat at midnight?}
 
-This a a paradox since the number of balls in the hat is increasing (actually, it grows as a linear function of the step $k$). 
+This is a trick question: It has the aroma of a {\it paradox:} ``a
+statement or proposition that, despite sound (or apparently sound)
+reasoning from acceptable premises, leads to a conclusion that seems
+senseless, logically unacceptable, or self-contradictory.'' (Apple
+dictionary)  To wit:
 
-The right answer is \textit{The hat is empty.}
-The argument is that any ball (say the n-th one) is removed at step $\frac{1}{n}$.
+On the one hand, each step of the process inserts $10$ balls but
+removes only $1$ ball.  It appears, then, that the number of balls
+grows without bound.  In fact, this is true at every {\em
+  finite-numbered} step: at step $k$, there are $N = 9k$ balls in the
+hat.  It is intuitive, then, that, if we were actually able to reach
+midnight---after infinitely many steps---then we would observe
+infinitely many balls in the hat!
 
-
-It is easy to compute the number of balls in the hat at any finite step $k$: $N = 9k$.
-
+But this intuition is wrong!  In fact, at midnight {\em The hat is
+  empty}.  This is because {\em every ball is eventually removed from
+  the hat!}  Specifically, ball \# $n$ is removed at step
+$\frac{1}{n}$, i.e., at time midnight minus $\frac{1}{n}$ seconds.
 
 {\Denis Detail here the link with Achille.}
 
