@@ -1,4 +1,4 @@
-%version of 10-12-18
+%version of 10-30-18
 
 \chapter{NUMBERS AND NUMERALS}
 \label{ch:numbers-numerals}
@@ -983,14 +983,18 @@ divisibility.
 \label{sec:euclidian}
 \index{Euclidean division}
 
-Divisibility is not always perfect.  As we learned in the elementary
-school, if a number $m > 0$ does not ``evenly'' divide a number $n$,
-then we are left with a ``remainder'' when one divides $n$ by $m$.
-The process of producing integer {\it quotient} \index{quotient} $q$
-and {\it remainder} \index{remainder} $r$, where $0 \leq r < m$, is
-called {\em Euclidean division}, \index{Euclidean division} after the
-Greek mathematician Euclid whose writings introduced the process in
-the West. \index{Euclid}
+Divisibility is not always perfect: Given a pair of integers, neither
+needs be an integer multiple of the other.  As we learned in
+elementary school, if an integer $m > 0$ does not ``evenly'' divide an
+integer $n > m$, then we are left with a ``remainder'' when we attempt
+to divide $n$ by $m$.  {it Euclidean} \index{Euclidean division} {\it
+  division}---so named for the Greek mathematician Euclid,
+\index{Euclid} whose writings introduced the process in the West---is
+the process of producing, given integers $m >0$ and $n >m$, an integer
+{\it quotient} \index{quotient} $q$ and an integer {\it remainder}
+\index{remainder} $r$ (where $0 \leq r < m$) such that $n = q \cdot m
++ r$.  The process of Euclidean division always succeeds, in the
+following strong sense.
 
 \begin{prop}[The Division Theorem]
 \label{thm:division-thm}
@@ -1315,7 +1319,7 @@ every integer) and itself (which is always a divisor).
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 
   
-\paragraph{\small\sf A. Primes as building blocks: The Fundamental Theorem of Arithmetic}
+\paragraph{\small\sf A. The Fundamental Theorem of Arithmetic}
 
 A very consequential way to classify a positive integer $n$ is to list
 the primes that divide it, coupling each such prime $p$ with its {\it
@@ -1667,25 +1671,141 @@ We return to this idea of encoding-via-integers in a later chapter.
   should discuss this}
   
 
-\subsection{Fermat little theorem}
+\subsubsection{Fermat's Little Theorem}
 \label{sec:fermat}
-\index{Fermat little theorem}
+\index{Fermat's Little Theorem}
 
-\noindent \textbf{Statement:}
+A measure of the greatness of the 17th-century French mathematician
+Pierre de Fermat \index{Fermat, Pierre de} is that the following
+fundamental result is called his ``little theorem.''  Aside from its
+exposing an important and basic property of prime numbers, the theorem
+provides the basis for a valuable algorithm for testing the primality
+of integers.
 
-Let $p$ a prime
 
-$a^p − a$ is divisible by $p$ for any integer $a$.
+\begin{theorem}[Fermat's Little Theorem]
+\index{Fermat's Little Theorem}
+\label{thm:Fermat's-Little-Thm}
 
-%Another way to write this theorem is $a^{p} \equiv a [p]$.
-%\bigskip
-%
+Let $a$ be any integer, and let $p$ be any prime.
+
+{\rm (Formulation 1):}
+The number $a^p \ − \ a$ is divisible by $p$.
+
+\medskip
+
+{\rm (Formulation 2):}
+$a^{p} \equiv a \bmod p$.
+\end{theorem}
+
 %Notice that there exist other formulations, the following is the most popular one:
 %
 %Let consider two primes $p$ and $a$.
 %$a^{p-1} \equiv 1 [p]$
 
-\subsubsection{Classical proof}
+\noindent
+We provide two proofs for this fundamental result, each providing
+different insights on the result.
+
+
+\paragraph{\small\sf A. A proof using ``necklaces''}
+
+{\Arny This proof appears in Wikipedia}
+
+\begin{proof}
+The idea underlying this proof is to design a framework in which the
+result can be reduced to counting a special set of strings.
+
+Letting $a$ and $p$ be as in the theorem, consider the set $S(\a,p)$ of
+all words/strings of length $p$ over an alphabet/set $\a = \{ \alpha_1,
+\alpha_2, \ldots, \alpha_a \}$ of $a$ symbols.  For instance, when $\a
+= \{0,1\}$ (so that $a=2$) and $p=3$, the set $S(\a,p)$ consists of the
+words:
+\[ 000, \ 001, \ 010, \ 011, \ 100, \ 101, \ 110, \ 111 \]
+We begin with some basic definitions and observations.
+\begin{itemize}
+\item
+The number of words in $S(\a,p)$ is $a^p$.
+
+\item
+The {\it (one-place) circular left shift} $c$ of a word in $S(\a,p)$ is
+accomplished by placing the last symbol of this word into the first
+position and shifting all other symbols one position rightward.
+Formally:
+\[ c(\alpha_1 \alpha_2 \cdots \alpha_p) \ = \ \alpha_p \alpha_1 \cdots
+\alpha_{p-1} \]
+%Graph of $c$ for words of length $p=3$ on $\mathcal{A} = \{0,1\}$.
+
+\item
+By iterating the shift $c$ on a length-$p$ word $w$ at most $p-1$
+times, we obtain the {\it necklace} $\n(w)$, which is the sequence
+\[ \n(w) \ = \ w, \ c(w), \ c(c(w), \ldots, \ c(\cdots c(w)) \cdots )) \]
+in which one further shift would replicate word $w$.
+
+\item
+The {\it period} of the necklase $\n(w)$ is the number of words in the
+sequence.
+\end{itemize}
+
+Note that {\em the period of $\n(w)$ can never exceed $p-1$}.  This is
+because an earlier-seen word must recur by the time the length-$p$
+word $w$ has been shifted $p$ times.
+
+Say next that the word $w$ is a replicate of another word $u$, i.e.,
+$w = uu \cdots u$.  Let $u$ be the shortest such word; say that $u$
+has length $m$.  Then, we must have: {\em The length $m$ of $u$
+  divides $p$.}  This is obvious from our ability to write $w$ in the
+indicated form.
+
+When $w$ is a replicate of a word of length $m$, then {\em the period
+  of $\n(w)$ is $m-1$.}  This is because, by the time one has shifted
+$w$ $m$ times, one has transferred a copy of $u$ from the end of $w$
+to the beginning.  Hence, one has recreated $w$.
+
+In our special situation---where $w$ has prime length: {\em Because
+  $p$ is prime, the only candidates for the replicated word $u$ in
+  this case have length $1$ or $p$.}  In other words, one of the
+following is true:
+
+{\em The word $w$ has the form $w = \alpha \alpha \cdots \alpha$ for
+  some symbol $\alpha \in \a$.}  This can occur in $a$ distinct ways.
+
+{\em The word $w$ is not a replicate of any shorter word.}  This
+situation must hold for all $a^p - a$ words over alphabet $\a$ that
+contain at least $2$ distinct symbols.  Because the period of any
+necklace $\n(w)$ for a word that contains at least $2$ distinct
+symbols is, thus, exactly $p-1$, the lengths of such necklaces must be
+exactly $p$.
+
+This means that the $a^p - a$ words that contain at least $2$ distinct
+symbols partition $S(\a, p)$ into disjoint sets of size $p$ each.
+This means, however, that $p$ divides $a^p - a$.
+\qed
+\end{proof}
+
+The reader's comprehension of this multi-step proof might be enhanced
+by Figs.~\ref{fig:necklace3} and~\ref{fig:necklace24}.
+\begin{figure}[ht]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/Necklace3.png}
+        \caption{The 3 necklaces composed of the the same symbol ($a=3$)}
+        \label{fig:necklace3}
+\end{center}
+\end{figure}
+\begin{figure}[ht]
+\begin{center}
+        \includegraphics[scale=0.25]{FiguresArithmetic/Necklace24.png}
+        \caption{Eight groups of necklaces of size $p=3$ (for $a=3$).}
+        \label{fig:necklace24}
+\end{center}
+\end{figure}
+The former figure depicts all necklaces $\n(w)$ over alphabet $\a = \{
+A,B,C \}$ for length-$(p=3)$ words $w$ that use only a single letter;
+the latter figure is the analogous depiction for words $w$ that use at
+least two letters.
+
+
+\paragraph{\small\sf B. A proof using Pascal's triangle}
 
 Before presenting the proof, let us first establish a preliminary property:
 \medskip
@@ -1770,67 +1890,14 @@ Then, $(a+1)^{p} = a.N.p +1 + a + N'.p = (a+1) + p.N''$ ($N''=a.N+N'$).
 %\noindent $\blacksquare$
 
 
-\subsubsection{An alternative combinatorial proof}
 
-The following proof has been suggested by our colleague Jean-Marc Vincent. 
-The idea is to build an adequate set and to count its elements.
-Consider the set obtained by all the words of length $p$ coded on the alphabet $\mathcal{A}$ with $a$ symbols ($p$ is prime).
+**HERE
 
-\begin{itemize}
-\item The number of words of length $p$ built on the alphabet $\mathcal{A}$ is equal to $a^p$.
-
-\item 
-%Let depict all the words of length $p=3$ on $\mathcal{A} = \{\alpha_1,\alpha_2,\alpha_3,\alpha_4\}$.
-
-We define the circular permutation $c$ of a word by taking the last symbol of this word, putting
-it in the first position and shifting all the others to the right. More formally:
-
-$c(\alpha_1 \alpha_2 \cdots \alpha_p) = \alpha_p \alpha_1 \cdots \alpha_{p-1}$
-
-%Graph of $c$ for words of length $p=3$ on $\mathcal{A} = \{0,1\}$.
-
-We also define the \textit{necklace} $\mathcal{N} (\omega)$ associated to a word $\omega$ as the set of the successive images of $\omega$ by $c$, 
-namely, $\mathcal{N}(\omega) = {\omega,c(\omega),c(c(\omega)),\cdots}$.
-
-The size of the necklace $\mathcal{N}$ is the number of elements in $\mathcal{N}(\omega)$.
-
-\medskip
-The size of a necklace is always bounded by $p$ since in the worst case, the circular permutation shift all the symbols before coming back to the original position. 
-
-As $p$ is prime, the size of a necklace with at least 2 different symbols is exactly $p$.
-Fig.~\ref{fig:necklace24} depicts all the necklaces of size $p=3$ on the alphabet $\{ A,B,C \}$.
-Indeed, it is easy to prove this by contradiction using the definition of primes that have no divisors lower than them selves.
-
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.25]{FiguresArithmetic/Necklace24.png}
-        \caption{8 groups of necklaces of size $p=3$ (for $a=3$).}
-        \label{fig:necklace24}
-\end{center}
-\end{figure}
-
-Moreover, it is easy to see that the number of necklaces of size 1 is equal to $a$.
-There are the words where the symbols are all the same (see Fig.~\ref{fig:necklace24}).
-
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.3]{FiguresArithmetic/Necklace3.png}
-        \caption{The 3 necklaces composed of the the same symbol ($a=3$)}
-        \label{fig:necklace3}
-\end{center}
-\end{figure}
-
-\end{itemize}
-
-The proof of Fermat little theorem with combinatorial arguments is a direct consequence of the previous properties
-since the number of necklaces of size $p$ is equal to $a^p - a$. 
-
-
-\subsection{Perfect numbers}
+\subsubsection{Perfect numbers}
 \label{sec:perfectnumbers}
 \index{perfect numbers}
 
-\subsubsection{Definitions}
+\paragraph{\small\sf A. Definitions}
 
 A perfect number (\textit{PN} in short) is a number which is equal to the sum of its proper divisors.
 For instance, the first perfect numbers are the following: 
@@ -1846,7 +1913,9 @@ $1+2+4+7+14=28$.
 $1+2+4+8+16+31+62+124+248=496$.
 \end{itemize}
 
-A \textit{Mersenne number} is a prime which has the following expression: $2^\alpha-1$ for some given integer $\alpha$.
+A \textit{Mersenne number}
+\index{Mersenne number} \index{Mersenne prime}
+ is a prime which has the following expression: $2^\alpha-1$ for some given integer $\alpha$.
 {\Denis I don't know if we really need to introduce Mersenne numbers here?}
 
 For instance, $2^2-1=3$, $2^3-1=7$, $2^5-1=31$ are primes while $2^4-1=15=3 \times 5$ or $2^6-1=63=7 \times 9$ are not prime...
@@ -1870,7 +1939,7 @@ Notice that it remains several open questions related to perfect numbers like th
 
 %Let us first prove some properties about even PN.
 
-\subsubsection{Properties}
+\paragraph{\small\sf B. Properties}
 
 We are now going to prove the main result:
 \bigskip
