@@ -1,4 +1,4 @@
-%version of 10-30-18
+%version of 10-31-18
 
 \chapter{NUMBERS AND NUMERALS}
 \label{ch:numbers-numerals}
@@ -1705,7 +1705,7 @@ $a^{p} \equiv a \bmod p$.
 
 \noindent
 We provide two proofs for this fundamental result, each providing
-different insights on the result.
+rather different insights on the result.
 
 
 \paragraph{\small\sf A. A proof using ``necklaces''}
@@ -1725,13 +1725,14 @@ words:
 We begin with some basic definitions and observations.
 \begin{itemize}
 \item
-The number of words in $S(\a,p)$ is $a^p$.
+The number of words in $S(\a,p)$ is $a^p$; see
+Proposition~\ref{thm:Num-strings-lgth-k}.
 
 \item
-The {\it (one-place) circular left shift} $c$ of a word in $S(\a,p)$ is
+A {\it (one-place) circular shift} $c$ of a word in $S(\a,p)$ is
 accomplished by placing the last symbol of this word into the first
-position and shifting all other symbols one position rightward.
-Formally:
+position and shifting all other symbols one position rightward.  For
+illustration:
 \[ c(\alpha_1 \alpha_2 \cdots \alpha_p) \ = \ \alpha_p \alpha_1 \cdots
 \alpha_{p-1} \]
 %Graph of $c$ for words of length $p=3$ on $\mathcal{A} = \{0,1\}$.
@@ -1745,41 +1746,58 @@ in which one further shift would replicate word $w$.
 \item
 The {\it period} of the necklase $\n(w)$ is the number of words in the
 sequence.
+
+Note that {\em the period of $\n(w)$ can never exceed $p-1$}---because
+an earlier-seen word must recur by the time the length-$p$ word $w$
+has been shifted $p$ times.
 \end{itemize}
 
-Note that {\em the period of $\n(w)$ can never exceed $p-1$}.  This is
-because an earlier-seen word must recur by the time the length-$p$
-word $w$ has been shifted $p$ times.
+Consider now a word $w$ that is a {\it replicate}
+\index{word!replicate} of another word $u$, in the sense that $w = uu
+\cdots u$.  Say that $u$ is the shortest word of which $w$ is a
+replicate and that $u$ has length $m$.  Then:
+\begin{itemize}
+\item
+{\em $u$'s length $m$ divides $p$.}
 
-Say next that the word $w$ is a replicate of another word $u$, i.e.,
-$w = uu \cdots u$.  Let $u$ be the shortest such word; say that $u$
-has length $m$.  Then, we must have: {\em The length $m$ of $u$
-  divides $p$.}  This is obvious from our ability to write $w$ in the
-indicated form.
+This is obvious from our ability to write $w$ in the indicated form.
 
-When $w$ is a replicate of a word of length $m$, then {\em the period
-  of $\n(w)$ is $m-1$.}  This is because, by the time one has shifted
-$w$ $m$ times, one has transferred a copy of $u$ from the end of $w$
-to the beginning.  Hence, one has recreated $w$.
+\item
+{\em The period of $\n(w)$ is $m-1$.}
 
-In our special situation---where $w$ has prime length: {\em Because
-  $p$ is prime, the only candidates for the replicated word $u$ in
-  this case have length $1$ or $p$.}  In other words, one of the
-following is true:
+This is because, by the time one has shifted $w$ $m$ times, one has
+transferred a copy of $u$ from the end of $w$ to the beginning.
+Hence, one has recreated $w$.
 
+\item
+In our special situation---where $w$ has prime length---{\em The only
+  candidates for the shortest replicated word $u$ have length $1$ or
+  $p$.}
+
+This is because $m$ divides the prime $p$.
+\end{itemize}
+Summing up, one of the following two situations must hold.
+
+\noindent
+Possibility \#1:
 {\em The word $w$ has the form $w = \alpha \alpha \cdots \alpha$ for
-  some symbol $\alpha \in \a$.}  This can occur in $a$ distinct ways.
+  some symbol $\alpha \in \a$.}
 
-{\em The word $w$ is not a replicate of any shorter word.}  This
-situation must hold for all $a^p - a$ words over alphabet $\a$ that
-contain at least $2$ distinct symbols.  Because the period of any
-necklace $\n(w)$ for a word that contains at least $2$ distinct
-symbols is, thus, exactly $p-1$, the lengths of such necklaces must be
-exactly $p$.
+This can occur in $a$ distinct ways because of $\a$'s cardinality..
 
-This means that the $a^p - a$ words that contain at least $2$ distinct
-symbols partition $S(\a, p)$ into disjoint sets of size $p$ each.
-This means, however, that $p$ divides $a^p - a$.
+\noindent
+Possibility \#2:
+{\em The word $w$ is not a replicate of any shorter word.}
+
+Because $p$ is a prime, this possibility must hold for every one of
+the $a^p - a$ words over $\a$ that contains at least $2$ distinct
+symbols.  Because the period of any necklace $\n(w)$ for a word that
+contains at least $2$ distinct symbols is exactly $p-1$, the lengths
+of such necklaces must be exactly $p$.
+
+This means that the $a^p - a$ words that each contain at least $2$
+distinct symbols partition $S(\a, p)$ into disjoint sets of size $p$
+each.  This, in turn, means that $p$ divides $a^p - a$.
 \qed
 \end{proof}
 
@@ -1799,10 +1817,11 @@ by Figs.~\ref{fig:necklace3} and~\ref{fig:necklace24}.
         \label{fig:necklace24}
 \end{center}
 \end{figure}
-The former figure depicts all necklaces $\n(w)$ over alphabet $\a = \{
-A,B,C \}$ for length-$(p=3)$ words $w$ that use only a single letter;
-the latter figure is the analogous depiction for words $w$ that use at
-least two letters.
+These figures jointly depict all necklaces $\n(w)$ for $(p=3)$-letter
+words over the alphabet $\a = \{ A,B,C \}$.  Fig.~\ref{fig:necklace3}
+depicts the necklaces for words that use only a single letter;
+Fig.~\ref{fig:necklace24} depicts the necklaces for words that use at
+least two distinct letters.
 
 
 \paragraph{\small\sf B. A proof using Pascal's triangle}
