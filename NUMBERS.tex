@@ -1824,7 +1824,60 @@ Fig.~\ref{fig:necklace24} depicts the necklaces for words that use at
 least two distinct letters.
 
 
-\paragraph{\small\sf B. A proof using Pascal's triangle}
+\paragraph{\small\sf B. A proof using the Binomial Theorem}
+
+\begin{proof}
+Our next proof employs Formulation 2 of the Proposition.  We focus on
+a fixed prime $p$ and argue by induction on the alphabet size $a$,
+that $a^{p} \equiv a \bmod p$.
+
+\noindent
+{\it Base of the induction.}
+The base case $a=1$ is straightforward because $1^{p} = 1$
+
+\noindent
+{\it Inductive hypothesis.}
+We assume for induction that $a^{p} \equiv a \bmod p$ for all alphabet
+sizes not exceeding the integer $b$.
+
+\noindent
+{\it Extending the induction.}
+Invoking the restricted form of the Binomial Theorem,
+we know---see (\ref{eq:restricted-binomial-thm})---that
+\begin{equation}
+\label{eq:FLT-0}
+(b+1)^p \ = \ \left( b^p + 1 \right) \ + \
+ \sum_{i=1}^{p-1} {p \choose i} b^{p-i}
+%\ \ = \ \  \sum_{j=1}^{p-1} {p \choose {p-j}} b^j
+\end{equation}
+Let us ponder this equation.
+
+On the one hand, we know from
+Section~\ref{sec:binomial-coeff+Pascal}.C that $p$ divides all
+``internal'' binomial coefficients, i.e., all $\displaystyle {p
+  \choose i}$ with $0 < i < p$.  This means that there exists an
+integer $N_1$ such that
+\begin{equation}
+\label{eq:FLT-1}
+ \sum_{i=1}^{p-1} {p \choose i} b^{p-i} \ = \ p \cdot N_1.
+\end{equation}
+On the other hand, by the inductive hypothesis, $p$ divides $b^p -b$,
+so there exists an integer $N_2$ such that
+\begin{equation}
+\label{eq:FLT-2}
+ b^p \ = \ b \ + \ p \cdot N_2.
+\end{equation}
+Combining (\ref{eq:FLT-1}) and (\ref{eq:FLT-2}), and inserting them
+into (\ref{eq:FLT-0}), we find that
+\[
+(b+1)^p \ = \ (b + 1) \ + \ p \cdot (N_1 + N_2).
+\]
+This means that $p$ divides $(b+1)^p \ - \ (b + 1)$, which extends the
+induction and completes the proof.
+ \qed
+\end{proof}
+
+\paragraph{\small\sf C. A proof using Pascal's triangle}
 
 Before presenting the proof, let us first establish a preliminary property:
 \medskip
@@ -1852,17 +1905,21 @@ We detail it on two particular examples in Figures~\ref{fig:TriangleModulo5} and
 %$6^7 = 279 936  = 7 \times 39 990 + 6 \equiv 6 [7]$
 %\bigskip
 
-This result reflects the core of the little Fermat Theorem, that is: \textbf{the reminders by a prime of a number and its power to the same prime remain the same}.
-It can be proved formally by simply applying the definition: 
+This result reflects the core of the little Fermat Theorem, that is:
+\textbf{the reminders by a prime of a number and its power to the same
+  prime remain the same}.  It can be proved formally by simply
+applying the definition:
 
 ${p}\choose{k}$ $= \frac{p!}{k!(p-k)!}$ (for $0 < k < p$)
 
 Thus,  $k!$ ${p}\choose{k}$ $= p(p-1)\cdots(p-k+1)$.
 
-In other words, $p$ divides the product $k!$ ${p}\choose{k} $ but it has no common divisor with $k!$ since $k < p$, thus, $p$ divides ${p}\choose{k}$.
+In other words, $p$ divides the product $k!$ ${p}\choose{k} $ but it
+has no common divisor with $k!$ since $k < p$, thus, $p$ divides
+${p}\choose{k}$.
 \medskip
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresArithmetic/TrianglePascalPrimes.png}
         \caption{First rows of the Pascal's triangle, which show that the internal elements of the rows corresponding to primes are multiple of this prime
@@ -1871,7 +1928,7 @@ In other words, $p$ divides the product $k!$ ${p}\choose{k} $ but it has no comm
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
         \includegraphics[scale=0.2]{FiguresArithmetic/TrianglePascalModulo5init.png}
          \includegraphics[scale=0.2]{FiguresArithmetic/TrianglePascalModulo5.png}
@@ -1880,7 +1937,7 @@ In other words, $p$ divides the product $k!$ ${p}\choose{k} $ but it has no comm
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresArithmetic/TrianglePascalModulo7.png}
         \caption{Pascal triangle modulo a prime ($p=7$)}
@@ -1888,25 +1945,7 @@ In other words, $p$ divides the product $k!$ ${p}\choose{k} $ but it has no comm
 \end{center}
 \end{figure}
 
-\noindent \textbf{Proof.}
-The classical proof is obtained by induction on $a$ (for a given prime $p$), applying the Newton binomial decomposition.
 
-\begin{itemize}
-\item The basis of the induction is straightforward since $1^{p} \equiv 1 [p]$.
-
-\item Assuming $a^{p} \equiv a [p]$ holds and let compute $(a+1)^{p}$.
-
- $(a+1)^{p} = a^p + 1 + \Sigma_{1 \leq k \leq p-1} a^k $ ${p}\choose{k}$
-\bigskip
-
-On the first hand, from the preliminary property, all \textit{internal} binomial coefficients are divisible by $p$, thus, 
-$\Sigma_{1 \leq k \leq p-1} a^k $ ${p}\choose{k} $ $= a.N.p$
-
-On the second hand, applying the induction hypothesis says there exists an integer $N'$ such that  $a^{p} = a + N'.p$.
-
-Then, $(a+1)^{p} = a.N.p +1 + a + N'.p = (a+1) + p.N''$ ($N''=a.N+N'$).
-\end{itemize}
-%\noindent $\blacksquare$
 
 
 
@@ -3615,17 +3654,17 @@ set $\R_{10}$, and hence, the set $\R$, is {\em not} countable!
 
 \subsection{The Basics of the Complex Numbers}
 
-$\C$ denotes the complex numbers
-
-Each complex number $\kappa = a+bi \in \C$ has a {\it real part}---the
-part that {\em does not} involve the imaginary unit $i$---and an {\it
-  imaginary part}---the part that {\em does} involve $i$.  To be
-explicit: the real part of our number $\kappa$, is Re$(\kappa) = a$;
-\index{complex number!real part Re($\cdot$)}
-the {\it imaginary part} of our number $\kappa$,is Im$(\kappa) = b$.
-\index{complex number!imaginary part Im($\cdot$)}
-The notation Re$(\kappa)$ and Im$(\kappa)$ is common but not
-universal.
+Let us denote by $\C$ the set of complex numbers.  Each number $\kappa
+= a+bi \in \C$ has a {\it real} \index{number!complex!real part} {\em
+  part}---the part that {\em does not} involve the imaginary unit
+\index{$i$: the imaginary unit} $i$---and an {\it imaginary}
+\index{number!complex!imaginary part} {\em part}---the part that {\em
+  does} involve $i$.  To be explicit: the real part of our number
+$\kappa$, is \index{complex number!real part Re($\cdot$)} Re$(\kappa)
+= a$; the {\it imaginary part} of our number $\kappa$,is
+\index{complex number!imaginary part Im($\cdot$)} Im$(\kappa) = b$.
+\index{complex number!imaginary part Im($\cdot$)} The notation
+Re$(\kappa)$ and Im$(\kappa)$ is common but not universal.
 
 \index{complex number!multiplication!three real multiplications}
 Using the basic arithmetic laws that we have discussed thus far, plus
