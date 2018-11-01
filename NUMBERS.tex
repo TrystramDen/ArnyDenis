@@ -1,4 +1,4 @@
-%version of 10-31-18
+%version of 11-01-18
 
 \chapter{NUMBERS AND NUMERALS}
 \label{ch:numbers-numerals}
@@ -42,7 +42,8 @@ numbers.
 Historically, we have employed a broad range of mechanisms for naming
 numbers.
 
-{\ignore {\Arny I really like the idea of providing some cultural background to lure the reader.  }}
+{\ignore {\Arny I really like the idea of providing some cultural
+    background to get the reader involved.}}
 {\ignore {\Denis I also like the idea, may be we can shorten the Latin numbers
   and let some parts (examples) as an exercice...}}
 {\ignore {\Arny Please propose what to omit.  I do want to point out the
@@ -1850,33 +1851,58 @@ we know---see (\ref{eq:restricted-binomial-thm})---that
  \sum_{i=1}^{p-1} {p \choose i} b^{p-i}
 %\ \ = \ \  \sum_{j=1}^{p-1} {p \choose {p-j}} b^j
 \end{equation}
-Let us ponder this equation.
+Pondering this equation, we make two important observations.
 
-On the one hand, we know from
+\noindent {\bf 1.}
+We learn from the development in
 Section~\ref{sec:binomial-coeff+Pascal}.C that $p$ divides all
-``internal'' binomial coefficients, i.e., all $\displaystyle {p
-  \choose i}$ with $0 < i < p$.  This means that there exists an
-integer $N_1$ such that
+``internal'' binomial coefficients, i.e., all coefficients
+$\displaystyle {p \choose i}$ with $0 < i < p$.  This means that there
+exists an integer $n_1$ such that
 \begin{equation}
 \label{eq:FLT-1}
- \sum_{i=1}^{p-1} {p \choose i} b^{p-i} \ = \ p \cdot N_1.
+ \sum_{i=1}^{p-1} {p \choose i} b^{p-i} \ = \ p \cdot n_1.
 \end{equation}
-On the other hand, by the inductive hypothesis, $p$ divides $b^p -b$,
-so there exists an integer $N_2$ such that
+
+\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
+As an aside, one can observe the just-exposed divisibility property of
+``internal'' binomial coefficients by looking at Pascal's triangle;
+see the rows corresponding to primes---i.e., rows $n=2$, $n=3$, and
+$n=5$---in the triangle of Fig.~\ref{fig:TrianglePrime}.  (Remember
+that rows are indexed beginning with $n=0$.)
+\begin{figure}[ht]
+\begin{center}
+  \includegraphics[scale=0.3]{FiguresArithmetic/TrianglePascalPrimes.png}
+\caption{The rows of Pascal's triangle that correspond to $n=0$,
+  $n=1$, \ldots, $n=6$.  The ``internal'' entries of the rows that
+  correspond to prime numbers---in this case, $n=2$, $n=3$, and $n=5$---are
+  divisible by that number.}
+\label{fig:TrianglePrime}
+\end{center}
+\end{figure}
+\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
+
+\noindent {\bf 2.}
+By the inductive hypothesis, $p$ divides $b^p -b$, which means that
+there exists an integer $n_2$ such that
 \begin{equation}
 \label{eq:FLT-2}
- b^p \ = \ b \ + \ p \cdot N_2.
+ b^p \ = \ b \ + \ p \cdot n_2.
 \end{equation}
-Combining (\ref{eq:FLT-1}) and (\ref{eq:FLT-2}), and inserting them
-into (\ref{eq:FLT-0}), we find that
+
+\smallskip
+
+When we combine relations (\ref{eq:FLT-1}) and (\ref{eq:FLT-2}), and
+we use them to rewrite equation (\ref{eq:FLT-0}), we find that
 \[
-(b+1)^p \ = \ (b + 1) \ + \ p \cdot (N_1 + N_2).
+(b+1)^p \ = \ (b + 1) \ + \ p \cdot (n_1 + n_2).
 \]
 This means that $p$ divides $(b+1)^p \ - \ (b + 1)$, which extends the
 induction and completes the proof.
- \qed
+\qed
 \end{proof}
 
+\ignore{********************
 \paragraph{\small\sf C. A proof using Pascal's triangle}
 
 Before presenting the proof, let us first establish a preliminary property:
@@ -1884,8 +1910,8 @@ Before presenting the proof, let us first establish a preliminary property:
 
 \noindent \textbf{Property.} 
 \label{prop:preliminaryFermat}
-When $p$ is prime, it is clear while looking at the Pascal triangle depicted
-in Figure~\ref{fig:TrianglePrime} that apart the two extreme coefficients in the prime rows (starting at 0), all the coefficients are multiples of $p$.
+
+
 
 Looking from another perspective (with Pascal triangles modulo primes) evidences this property. 
 We detail it on two particular examples in Figures~\ref{fig:TriangleModulo5} and \ref{fig:TriangleModulo7} (namely, for $p=5$ and $p=7$). 
@@ -1921,15 +1947,6 @@ ${p}\choose{k}$.
 
 \begin{figure}[ht]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresArithmetic/TrianglePascalPrimes.png}
-        \caption{First rows of the Pascal's triangle, which show that the internal elements of the rows corresponding to primes are multiple of this prime
-        (here row $2$, $3$ and $5$.}
-        \label{fig:TrianglePrime}
-\end{center}
-\end{figure}
-
-\begin{figure}[ht]
-\begin{center}
         \includegraphics[scale=0.2]{FiguresArithmetic/TrianglePascalModulo5init.png}
          \includegraphics[scale=0.2]{FiguresArithmetic/TrianglePascalModulo5.png}
         \caption{Pascal triangle modulo a prime (here $p=5$) and its reproducible pattern.}
@@ -1944,16 +1961,17 @@ ${p}\choose{k}$.
         \label{fig:TriangleModulo7}
 \end{center}
 \end{figure}
+******************}
 
 
+\subsubsection{Perfect numbers}
+\label{sec:perfectnumbers}
+\index{perfect numbers}
 
 
 
 **HERE
 
-\subsubsection{Perfect numbers}
-\label{sec:perfectnumbers}
-\index{perfect numbers}
 
 \paragraph{\small\sf A. Definitions}
 
