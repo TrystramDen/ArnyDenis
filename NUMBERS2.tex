@@ -684,58 +684,137 @@ ${p}\choose{k}$.
 ******************}
 
 
-\subsection{Perfect Numbers}
-\label{sec:perfectnumbers}
+\subsection{Mersenne Primes and Perfect Numbers}
+\label{sec:perfect-numbers+Mersenne-primes}
 \index{perfect numbers}
+\index{number!integer!perfect}
 
+This short section is dedicated to two related topics whose intrinsic
+charm has garnered attention from mathematicians who study numbers and
+their properties for more than three millennia.  The section is placed
+here because of the central role of a particular class of prime
+numbers in the story we relate here.
 
+\subsubsection{Perfect numbers}
+\label{sec:perfect-numbers}
+
+Hearkening back to the ancient Greeks' mystical affinity for special
+classes of integers, we term a positive integer $n \in \N^+$ {\it
+  perfect} \index{number!perfect} \index{number!integer!perfect}
+\index{perfect number} if $n$ equals the sum of its proper
+divisors.\footnote{Euclid refers to perfect numbers in his {\it
+    Elements}, using adjectives such as ``perfect'' and ``ideal.''}
+\index{Euclid}
+
+It is not intuitive that perfect numbers even exist, but only a short
+search is needed until one realizes that
+\[ 6 \ \ = \ \ 1 \cdot 2 \cdot 3 \ \ = \ \ 1 \ +\ 2 \ + \ 3 \]
+A few more minutes will lead one to the double equation
+\[ 28  \ \ = \ \ 1 \cdot 2 \cdot 4 \cdot 7 \cdot 14
+  \ \ = \ \ 1 \ + \ 2 \ + \ 4 \ + \ 7\ + \ 14 \]
+It may take a bit longer, but the curious reader will eventually
+discover the double equation
+\begin{eqnarray*}
+496 & = & 
+1 \cdot 2 \cdot 4 \cdot 8 \cdot 16 \cdot 31 \cdot 62 \cdot 124 \cdot
+248 \\
+ & = &
+1 \ + \ 2 \ + \ 4 \ + \ 8 \ + \ 16 \ + \ 31 \ + \ 62 \ + \ 124 \ + \ 248
+\end{eqnarray*}
+
+You may have absorbed enough of our ``How to be a mathematician'' lore
+by this point to ask the following ``natural'' (to a mathematician, at
+least) questions.
+
+\smallskip
+
+\begin{tabular}{l}
+{\bf Question \#$1$.}  {\em Are there {\em infinitely many} perfect numbers?} \\
+{\bf Answer.}  We imminently derive a positive response. \\
+ \\
+{\bf Question \#$2$.}  {\em Are there any {\em odd} infinitely many perfect numbers?} \\
+{\bf Answer.}  No one knows---as of 2018.
+\end{tabular}
+
+\subsubsection{Mersenne primes}
+\index{Mersenne prime}
+\index{integer!prime!Mersenne prime}
+\label{sec:Mersenne-primes}
+
+A prime number $p$ is a {\it Mersenne prime}---so named for the
+17th-century French monk Marin \index{Mersenne prime}
+\index{integer!prime!Mersenne prime} Mersenne---if it has the form $p
+= 2^q -1$ for some integer $q$.  It is obvious that Mersenne primes
+exist: to wit,
+\begin{equation}
+\label{eq:sample-mersennes}
+\begin{array}{lclc}
+\mbox{The number} & p=3 & 
+  \mbox{is a Mersenne prime, because} & 3 \ = \ 2^2 -1 \\
+\mbox{The number} & p=7 &
+  \mbox{is a Mersenne prime, because} & 7 \ = \ 2^3 -1 \\
+\mbox{The number} & p=31 &
+  \mbox{is a Mersenne prime, because} & 31 \ = \ 2^5 -1
+\end{array}
+\end{equation}
+(There are obviously primes---such as $5$ and $13$---that are not
+Mersenne primes.)  Despite the promising beginning to our list, we
+cannot extend it too far: To wit, only about $50$ Mersenne primes are
+known!  Indeed, it is not known---as of 2018---whether there exist
+infinitely many Mersenne primes!  It is true, though, that {\em
+  largest known prime}---as of 2018---{\em is a Mersenne prime:}
+$2^{77,232,917} -1$.  \index{integer!prime!largest known} We close our
+discussion of Mersenne primes as an isolated topic---i.e., unrelated
+to perfect numbers---with the following result, which limits one's
+search for Mersenne primes to expressions with prime powers of $2$.
+
+%corollary of Fermat's Little Theorem (Theorem~\ref{thm:Fermat's-Little-Thm}).
+
+\begin{prop}
+\label{thm:Mersenne-needs-prime-exponent}
+The integer $2^q -1$ is prime only if the integer $q$ is prime.
+\end{prop}
+
+\begin{proof}
+Say, for contradiction, that there is a composite number $q = m \cdot
+n$, with both $m, n > 1$, such that $2^q -1$ is a prime.  We invoke
+identity (\ref{eq:geom-sum:b>1}) from
+Proposition~\ref{thm:sum-finite-geometric-series} to show that $2^q
+-1$ is, in fact, {\em not} prime.  We note, by direct calculation,
+that
+\begin{eqnarray}
+\nonumber
+2^{m \cdot n} -1 & = & (2^m -1) \cdot \frac{2^{m \cdot n} -1}{2^m -1} \\
+\nonumber
+  & = & (2^m -1) \cdot \sum_{i=0}^{n-1} \ \ (2^m)^{i} \\
+\label{eq:Mersenne-factors}
+  & = & (2^m -1) \cdot \left( 1 \ + \ (2^m) \ + \ (2^m)^2 \ + \cdots
+            \ + \ (2^m)^{n-1} \right)
+\end{eqnarray}
+The number $r = 2^q - 1$ is, thus the product of two numbers, both
+greater than $1$ and less than $r$, hence is not a prime.
+\qed
+\end{proof}
+
+\subsubsection{Using Mersenne prime to generate perfect numbers}
+\label{sec:MP+PN}
+
+We unite the subjects of the preceding two subsections to derive a
+procedure that employs Mersenne primes to generate perfect numbers.
+
+The three sample perfect numbers presented at the beginning
 
 **HERE
 
+  Let denote by
+$PN_\alpha$ the number obtained by the following expression:
+$2^{\alpha-1}(2^\alpha-1)$ where $2^\alpha-1$ is a prime.
 
-\paragraph{\small\sf A. Definitions}
 
-A perfect number (\textit{PN} in short) is a number which is equal to the sum of its proper divisors.
-For instance, the first perfect numbers are the following: 
-\begin{itemize}
-\item $6$, which has $3$ proper divisors, namely, $1$, $2$ and $3$.
+\begin{prop}
+\label{thm:MP-PN}
 
-$1+2+3=6$.
-\item $28$ whose $5$ proper divisors are: $1$, $2$, $4$, $7$ and $14$.
-
-$1+2+4+7+14=28$.
-\item $496$ has $9$ proper divisors, namely, $1$, $2$, $4$, $8$, $16$, $31$, $62$, $124$ and $248$. 
-
-$1+2+4+8+16+31+62+124+248=496$.
-\end{itemize}
-
-A \textit{Mersenne number}
-\index{Mersenne number} \index{Mersenne prime}
- is a prime which has the following expression: $2^\alpha-1$ for some given integer $\alpha$.
-{\Denis I don't know if we really need to introduce Mersenne numbers here?}
-
-For instance, $2^2-1=3$, $2^3-1=7$, $2^5-1=31$ are primes while $2^4-1=15=3 \times 5$ or $2^6-1=63=7 \times 9$ are not prime...
-Obviously, there exist primes which are not Mersenne's numbers (like $5, 13$, etc.). 
-\medskip
-
-\noindent
-\textbf{Property.}
-\label{prop:MersennePrimes}
-
-\noindent 
-$2^\alpha-1$ is only prime if $\alpha$ is prime.
-\medskip
-
-The proof is a direct consequence of the little Fermat theorem (proved in the last section).
-
-The objective of the next section is to study some characterizations of perfect numbers.
-\medskip
-
-Notice that it remains several open questions related to perfect numbers like the existence of odd PN.
-
-%Let us first prove some properties about even PN.
-
-\paragraph{\small\sf B. Properties}
+\end{prop}
 
 We are now going to prove the main result:
 \bigskip
@@ -746,10 +825,7 @@ We are now going to prove the main result:
 \noindent 
 Let consider a prime $\alpha$. 
 
-Looking at the detail of the 3 first PN given in the introduction of this section, we remark that the first factors are powers of $2$ while the last ones are multiple of $2^\alpha-1$
-(these multiples are also powers of $2$).
-Let denote by $PN_\alpha$ the number obtained by the following expression:
-$2^{\alpha-1}(2^\alpha-1)$ where $2^\alpha-1$ is a prime.
+
 
 $PN_\alpha$ is a perfect number.
 \bigskip
