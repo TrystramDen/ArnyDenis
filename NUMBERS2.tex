@@ -837,31 +837,38 @@ is perfect.
 \end{prop}
 
 \begin{proof}
+Focus on the instance of expression (\ref{eq:Mersenne-perfect-p})
+associated with the Mersenne prime $2^p-1$.  With the aid of
+Theorem~\ref{thm:Fund-Thm-Arith} (the Fundamental Theorem of
+Arithmetic), let us enumerate the factors of $2^{p-1} \cdot (2^p-1)$.
+Our list consists of two groups:
 
-The list of factors $F_i$ (for $0 \leq i \leq \alpha-1$) of $2^{\alpha-1}$ is: 
+\begin{tabular}{cl}
+{\bf 1.} &
+all powers of $2$, from $2^0 =1, \ \ldots, 2^{p-1}$; \\
+{\bf 2.} &
+all products: $(2^p-1) \times$(a power of $2$ from $2^0 =1, \ \ldots,
+2^{p-1}$).
+\end{tabular}
 
-$F_0=1, F_1=2, F_2=4, ..., F_{\alpha-1}=2^{\alpha-1}$.
+\noindent
+Summing all of these factors leads to the expression
+\begin{equation}
+\label{eq:MP-sum-factors}
+\sum_{i=0}^{p-1} \ 2^i \ \ + \ \ (2^p-1) \cdot \sum_{i=0}^{p-1} \ 2^i
+ \ \ \ = \ \ \  2^p \cdot \sum_{i=0}^{p-1} \ 2^i
+ \ \ \ = \ \ \ 2^p \cdot (2^p -1).
+\end{equation}
+We derive the ultimate expression in (\ref{eq:MP-sum-factors}) from
+the penultimate expression by invoking
+Proposition~\ref{thm:sum-finite-geometric-series} for the case $b=2$.
 
-The other factors of $PN_\alpha$ are obtained by: $F_i.(2^\alpha-1)$ for $i < \alpha-1$.
-
-Summing up all these factors, we obtain:
-
-$\Sigma_{i=0,\alpha-1} 2^{i} + \Sigma_{i=0,\alpha-2} 2^{i}(2^\alpha-1)$
-
-$= 2^{\alpha-1} + \Sigma_{i=0,\alpha-2} 2^{i}(1+2^\alpha-1)$
-
-$ = 2^{\alpha-1} + 2^{\alpha} (2^{\alpha-1} -1) $
-
-$ = 2^{\alpha-1} (1+2.2^{\alpha-1}-2) $
-
-$= 2^{\alpha-1} (2^{\alpha}-1)$.
-
+We thus see that the factors of $n = 2^p \cdot (2^p -1)$ sum to $n$,
+so that $n$ is perfect.
+\qed
 \end{proof}
 
 
-
-This property was proved by 
-\bigskip
 
 %\noindent
 %\textbf{Property 3.}
@@ -870,15 +877,23 @@ This property was proved by
 %The last digit of any perfect number (in usual decimal notation) is $6$ or $8$.
 %\bigskip
 
-\noindent
-\textbf{Property (coding by the binary representation).}
-\label{prop:codingPN}
+{\Arny I am not sure what to do with the binary representation.  It is
+  an interesting curiosity ... but is ti more than that?}
 
-$PN_\alpha = (11...10...0)_2$ ($\alpha$ times $1$ followed by $\alpha-1$ times $0$).
+%\noindent
+%\textbf{Property (coding by the binary representation).}
+%\label{prop:codingPN}
 
-%The first $\alpha -1$ 1 comes from $2^{\alpha-1}$ and the right part comes from the shifts corresponding to the multiplication by $2^{\alpha}$
-\medskip
+%$PN_\alpha = (11...10...0)_2$ ($\alpha$ times $1$ followed by $\alpha-1$ times $0$).
 
+%The first $\alpha -1$ 1 comes from $2^{\alpha-1}$ and the right part
+%comes from the shifts corresponding to the multiplication by
+%$2^{\alpha}$ 
+
+{\Arny I incorporated the triangular numbers into the statement of the
+  proposition.  It is just an interesting aside --- no new lessons}
+
+\ignore{******************
 \noindent
 \textbf{Property (link with triangular numbers $\Delta_n$).}
 
@@ -894,7 +909,7 @@ The proof is straightforward by using the basic expression $\Delta_{n} = \frac{n
 
 $\Delta_{2^\alpha-1} = \frac{(2^\alpha-1)(2^\alpha-1+1)}{2} = \frac{(2^\alpha-1)(2^\alpha)}{2} = (2^\alpha-1)2^{\alpha-1}$
 
-
+*****************}
 
 \section{Pairing Functions: Bringing Linear Order to Tuple Spaces}
 \label{sec:pairing}
