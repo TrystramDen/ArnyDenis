@@ -1,4 +1,4 @@
-%version of 11-02-18
+%version of 11-04-18
 
 \chapter{NUMBERS II, BEYOND THE BASICS}
 \label{ch:numbers-advanced}
@@ -700,12 +700,11 @@ numbers in the story we relate here.
 
 Hearkening back to the ancient Greeks' mystical affinity for special
 classes of integers, we term a positive integer $n \in \N^+$ {\it
-  perfect} \index{number!perfect} \index{number!integer!perfect}
-\index{perfect number} if $n$ equals the sum of its proper
-divisors.\footnote{Euclid refers to perfect numbers in his {\it
-    Elements}, using adjectives such as ``perfect'' and ``ideal.''}
-\index{Euclid}
-
+  perfect} 
+\index{number!perfect}\index{number!integer!perfect}\index{perfect number} 
+if $n$ equals the sum of its proper divisors.\footnote{Euclid refers
+  to perfect numbers in his {\it Elements}, using adjectives such as
+  ``perfect'' and ``ideal.''}  \index{Euclid}
 It is not intuitive that perfect numbers even exist, but only a short
 search is needed until one realizes that
 \[ 6 \ \ = \ \ 1 \cdot 2 \cdot 3 \ \ = \ \ 1 \ +\ 2 \ + \ 3 \]
@@ -799,39 +798,45 @@ greater than $1$ and less than $r$, hence is not a prime.
 \subsubsection{Using Mersenne prime to generate perfect numbers}
 \label{sec:MP+PN}
 
-We unite the subjects of the preceding two subsections to derive a
-procedure that employs Mersenne primes to generate perfect numbers.
+We unite the subjects of the preceding two subsections to derive the
+basis of a procedure that employs Mersenne primes to generate perfect
+numbers.
 
-The three sample perfect numbers presented at the beginning
-
-**HERE
-
-  Let denote by
-$PN_\alpha$ the number obtained by the following expression:
-$2^{\alpha-1}(2^\alpha-1)$ where $2^\alpha-1$ is a prime.
-
+Let us revisit the three sample perfect numbers presented at the
+beginning of Section~\ref{sec:perfect-numbers}.  As the following
+table illustrates, all three numbers share the form $2^{p-1} \cdot
+(2^p -1)$, where both $p$ and $2^p-1$ are primes.
+\[ \begin{array}{ccrcrcccccc}
+n & = & 6   & = & 2 \cdot 3  & = & 2^1 \cdot (2^2 -1) & 
+\mbox{ so that } & p = 2 & 
+\mbox{ and } & 2^p-1 = 3 \\
+n & = & 28  & = & 4 \cdot 7  & = & 2^2 \cdot (2^3 -1) & 
+\mbox{ so that } & p = 3 &
+\mbox{ and } & 2^p-1 = 7 \\
+n & = & 496 & = & 16 \cdot 31 & = & 2^4 \cdot (2^5 -1) & 
+\mbox{ so that } & p=5 &
+\mbox{ and } & 2^p-1 = 31
+\end{array}
+\]
+It was no accident that the three perfect numbers we found have
+intimate formal relationships with the first three primes.  In fact,
+the result we present now establishes that every Mersenne prime has
+such a formal relationship with a perfect number---thereby providing
+us the promised path toward generating perfect numbers.\footnote{This
+  result (of course with no mention of Mersenne) appears in Euclid's
+  \textit{Principae IX-36}. \index{Euclid}}
 
 \begin{prop}
 \label{thm:MP-PN}
-
+For every Mersenne prime $2^p-1$, the number
+\begin{equation}
+\label{eq:Mersenne-perfect-p}
+2^{p-1} \cdot (2^p-1) \ = \ {{2^p} \choose 2}
+\end{equation} 
+is perfect.
 \end{prop}
 
-We are now going to prove the main result:
-\bigskip
-
-\noindent
-\textbf{Theorem (characterization of PN).}
-
-\noindent 
-Let consider a prime $\alpha$. 
-
-
-
-$PN_\alpha$ is a perfect number.
-\bigskip
-
-\noindent 
-\textbf{Proof.}
+\begin{proof}
 
 The list of factors $F_i$ (for $0 \leq i \leq \alpha-1$) of $2^{\alpha-1}$ is: 
 
@@ -851,7 +856,11 @@ $ = 2^{\alpha-1} (1+2.2^{\alpha-1}-2) $
 
 $= 2^{\alpha-1} (2^{\alpha}-1)$.
 
-This property was proved by Euclide in \textit{Principae IX-36}.
+\end{proof}
+
+
+
+This property was proved by 
 \bigskip
 
 %\noindent
