@@ -1,4 +1,4 @@
-%version of 11-04-18
+%version of 11-19-18
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -344,7 +344,7 @@ can be used to ``undo'' the other:
 
 
 \paragraph{\small\sf C. Binomial coefficients and Pascal's triangle}
-\label{sec:binomial-coeff+Pascal}
+\label{sec:binomial-coeff}
 \index{arithmetic!basic operations!binomial coefficient}
 
 We close our catalogue of arithmetic operations with a binary
@@ -412,92 +412,8 @@ n! \cdot \frac{(k+1) + (n-k)} {(k+1)!(n-k)!} \\
 {{n+1} \choose {k+1}}
 \end{eqnarray*}
 
-We thus have both of the proposition's rules for binomial coefficients.
+We have thus established  both of the proposition's rules for binomial coefficients.
 \qed
-\end{proof}
-
-Extrapolating from Proposition~\ref{thm:manipulate-binom-coeff}, we now
-present {\it Pascal's triangle}, named in honor of
-\index{Pascal's triangle}
-\index{Pascal, Blaise}
-the French polymath Blaise Pascal.  Fig.~\ref{fig:pascal-triangle}
-provides a ``prefix'' of this famed array of integers, for $n,k \leq
-5$.
-\begin{figure}[htb]
-\[
-\begin{array}{c||r|r|r|r|r|r|r}
-{\displaystyle {n \choose k}} & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 &\ldots \\
-\hline
-\hline
-n=1 & 1 & 1 &    &    &    &   & \ldots \\
-\hline
-n=2 & 1 & 2 & 1  &    &    &   & \ldots \\
-\hline
-n=3 & 1 & 3 & 3  & 1  &    &   & \ldots \\
-\hline
-n=4 & 1 & 4 & 6  & 4  & 1  &   & \ldots \\
-\hline
-n=5 & 1 & 5 & 10 & 10 & 5  & 1 & \ldots \\
-\hline
-\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots
-\end{array}
-\]
-\caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 5$.}
-\label{fig:pascal-triangle}
-\end{figure}
-The formation rule of the array is as follows. \index{Pascal's triangle!frmation rule}
-
-\smallskip
-\noindent {\small\sf Formation rule for Pascal's triangle.}
-{\it The entry at (row $n+1$, column $k+1$) is the sum of the entries
-  at (row $n$, column $k$) and (row $n$, column $k+1$).}
-
-\smallskip
-
-If you compare the formation rule for Pascal's triangle with equation
-(\ref{eq:add-binom-coeff}), then you may anticipate the following
-result.
-
-%\addcontentsline{toc}{paragraph}{-- A fun result: Pascal's triangle
-%  and the binomial coefficients}
-
-\begin{prop}
-\label{thm:pascal-binom}
-The entries of Pascal's triangle are the binomial coefficients.
-Specifically, for all $n,k$, the entry at (row $n$, column $k$) of the
-Triangle is $\displaystyle {n \choose k}$.
-\end{prop}
-
-\begin{proof}
-We note by observation and direct calcullation (see
-Fig.~\ref{fig:pascal-triangle}) that the proposition is true for $n =
-1$ and $k \in \{0, 1\}$.  A simple double induction
-
-\noindent
-****************** \\
-induction on $n$, then for each value of $n$ on $k \leq n$ \\
-{\Arny SHOULD WE SPELL THIS OUT IN DETAIL?  GIVE AS AN EXERCISE?} \\
-******************
-
-\noindent
-verifies that every binomial coefficient appears in the Triangle and
-every Triangle entry is a binomial coefficient.  \qed
-\end{proof}
-
-\medskip
-
-\addcontentsline{toc}{paragraph}{-- A fun result: Binomial
-  coefficients are integers}
-
-\begin{prop}
-\label{thm:binomcoeff-integer}
-Every binomial coefficient is an integer.
-\end{prop}
-
-\begin{proof}
-Since every entry in Pascal's triangle is obtained from integers via
-repeated additions, this result follows from
-Proposition~\ref{thm:pascal-binom}.  \qed
 \end{proof}
 
 \bigskip
@@ -514,13 +430,18 @@ What is the likelihood of observing $15$ {\sc head}s and $25$ {\sc
 \item
 What are the comparative operation-count costs of Merge-Sort and
 Quick-Sort when sorting $n$ keys; cf.~\cite{CLRS}?
-
 \end{itemize}
-We shall, therefore, see a lot more about binomial coefficients
-throughout the text; see, among other places,
-Sections~\ref{sec:powers+polynolmials} and~\ref{sec:arithmetic-series}
-and Chapter~\ref{ch:prob-stat}.  With each subsequent encounter, our
-respect for these numbers will grow.
+
+We shall have a lot more to say about binomial coefficients throughout
+the text.  Within the current chapter, we encounter binomial
+coefficients in Section~\ref{sec:powers+polynolmials}; in
+Chapter~\ref{ch:Summation}, they play a prominent role in evaluating
+arithmetic summations (Section~\ref{sec:arithmetic-series}); in
+Chapter~\ref{ch:Recurrences}, they provide an important example of
+bilinear recurrences (Section~\ref{sec:bilinear-recurrences}); and in
+Chapter~\ref{ch:prob-stat}, they will prove indispensable in analyzing
+complex phenomena, by counting the way various situations (such as a
+royal flush in poker) can occur.
 
 
 \subsection{The Laws of Arithmetic, with Applications}
@@ -683,18 +604,19 @@ n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
 \end{proof}
 
 
-\subsection{Rational Arithmetic: A Worthwhile Exercise}
+\subsection{Rational Arithmetic: A Specialized Computational Exercise}
 \label{sec:Rational-arithmetic}
 \index{number!rational!arithmetic}
 
 In Section~\ref{sec:rationals} we defined the rational numbers and
 reviewed why they were needed to compensate for the general lack of
-multiplicative inverses in the integers.  But we did not review how to
-perform arithmetic on the elements of the set $\Q$.  We correct this
-shortcoming now.  Of course, the reader will have encountered rational
-arithmetic long ago---but we are now reviewing the topic in order to
-provide the reader with a set of worthwhile exercise to reinforce the
-mathematical thinking whose presentation is our main goal.
+multiplicative inverses within the integers.  But we did not review
+how to perform arithmetic on the elements of the set $\Q$.  We correct
+this shortcoming now.  Of course, the reader will have encountered
+rational arithmetic long ago---but we are now reviewing the topic in
+order to provide the reader with a set of worthwhile exercise to
+reinforce the mathematical thinking whose presentation is our main
+goal.
 
 \medskip
 
@@ -1463,10 +1385,10 @@ arguments $x$
 f(g(x)) \ = \ x.
 \end{equation}
 
-\subsubsection{Basic definitions}
+\subsection{Basic definitions}
 
-\paragraph{\small\sf A. Exponential functions}.\index{Exponential functions}
-%
+\subsubsection{Exponential functions}.\index{Exponential functions}
+
 A function $f$ is {\it exponential} if there is a positive number $b$
 such that, for all $x$,
 \begin{equation}
@@ -1480,9 +1402,8 @@ are derivable from (\ref{eq:power-def}), so we leave these details to
 the reader and turn immediately to the functional inverses of
 exponential functions..
 
-\paragraph{\small\sf B. Logarithmic functions}.\index{Logarithmic
-  functions}
-%
+\subsubsection{Logarithmic functions}.\index{Logarithmic functions}
+
 Given an integer $b >1$ (mnemonic for ``base''), the {\em base-$b$
   logarithm}\index{base-$b$ logarithm}
 %
@@ -1512,7 +1433,7 @@ f(x) \ = \ \log_b x
 \end{equation}
 is the functional inverse of the base-$b$ exponential function.
 
-\subsubsection{Fun facts about exponentials and logarithms}
+\subsection{Fun facts about exponentials and logarithms}
 
 Definition (\ref{eq:logarithm-defn}) exposes and---even more
 importantly---explains myriad facts about logarithms that we often
@@ -1627,7 +1548,7 @@ For any integers $a, b >1$,
 \end{prop}
 
 
-\subsubsection{Exponentials and logarithms within information theory}
+\subsection{Exponentials and logarithms within information theory}
 \label{sec:count-strings}
 
 The student should recognize and be able to reason about the following

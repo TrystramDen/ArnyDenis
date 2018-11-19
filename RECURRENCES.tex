@@ -1,4 +1,4 @@
-%version of 10-22-18
+%version of 11-19-18
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -34,6 +34,7 @@ and analysis: increased understanding will enable improved computing.
 
 \section{Linear Recurrences}
 \label{sec:linear-recurrences}
+\index{linear recurrences}
 
 This section is devoted to the solution of {\em linear} recurrences,
 as exemplified by the following function specifications.  
@@ -140,27 +141,34 @@ case-structured solution to (\ref{eq:Lin-Recur:basic}).  \qed
 \end{proof}
 
 
-\subsection{The More Recurrence (\ref{eq:Lin-Recur:general})} 
+\subsection{The More General Recurrence (\ref{eq:Lin-Recur:general})} 
 \label{sec:linear-recurrence-general}
 
-We move on from the simple recurrence (\ref{eq:Lin-Recur:basic}) to
+We now progress from the simple recurrence (\ref{eq:Lin-Recur:basic}) to
 the more general recurrence (\ref{eq:Lin-Recur:general}).  We simplify
 our problem in two ways, in order to avoid calculational complications
-(such as floors and ceilings) that can mask the principle that govern
+(such as floors and ceilings) that can mask the principles that govern
 our analysis.
 \begin{enumerate}
 \item
-We focus on the case where function $f$ is {\em linear}, i.e., of the
-form $f(n) = n$.
+We focus on the case $f(n) = n$.
+
+It is a triviality to generalize to the slightly more ambitious $f(n)
+= \alpha n + \beta$ (i.e., to a {\em linear} function $f$), but this
+exension teaches no new lessons.
 \item
 We assume that the argument $n$ to functions $F$ and $f$ is a power of
 $b$.
+
+Removing this assumptions would significantly complicate our
+calculations, but it would not change our reasoning.
 \end{enumerate}
 
-We now employ the strategy we used in
-Section~\ref{sec:linear-recurrence-basic} to expose the algebraic
-pattern created by our recurrence.  As in (\ref{eq:Lin-Recur:expand}),
-once we discern this pattern, we jump to the general form.
+By ``unfolding'' (\ref{eq:Lin-Recur:general}) as in
+Section~\ref{sec:linear-recurrence-basic}, we expose the algebraic
+pattern created by the recurrence.  As in (\ref{eq:Lin-Recur:expand}),
+once we discern this pattern, we jump to the general form (whch can be
+verified via indution).
 \[
 \begin{array}{ccccc}
 F(n) & = & a F(n/b) + n & & \\
@@ -175,19 +183,25 @@ F(n) & = & a F(n/b) + n & & \\
 } & &
 \end{array}
 \]
-We see that one solves the more general recurrence
-(\ref{eq:Lin-Recur:general}) by augmenting the solution to the simpler
-recurrence (\ref{eq:Lin-Recur:basic}) by a geometric sum whose base is
-the ratio $a/b$.
 
-An important lesson to garner from this analysis has strong
-implications for the situation that leads to recurrence
-(\ref{eq:Lin-Recur:general}).  To wit:
+We thus see that solving the more general recurrence
+(\ref{eq:Lin-Recur:general}) requires only augmenting the solution to
+the simpler recurrence (\ref{eq:Lin-Recur:basic}) by ``appending'' to
+the simple solution a geometric summation whose base is the ratio
+$a/b$.  The reader can now invoke the techniques from
+Section~\ref{sec:summing-geometric-series:techniques} to arrive at a a
+solution to (\ref{eq:Lin-Recur:general}).
+
+When ``doing mathematics,'' one is often interested in discovering the
+{\em dominant behavior} of the function $F(n)$ specified via a
+recurrence such as (\ref{eq:Lin-Recur:general}).  An important lesson
+to garner from the analysis we have been performing throughout this
+section is the following:
 \begin{itemize}
 \item
 When $a > b$, the behavior of $F(n)$ is dominated by the first
 solution term
-\[ a^{\log_b n} \cdot n \cdot  F(1) \ = \ n^{1 + \log_b a} \cdot F(1) \]
+\[ a^{\log_b n} \cdot n \cdot  F(1) \ \ = \ \ n^{1 + \log_b a} \cdot F(1) \]
 \item
 When $a < b$, the behavior of $F(n)$ is dominated by the second
 solution term
@@ -202,15 +216,16 @@ n \ - \ n^{\log_b a}
 \end{eqnarray*}
 \end{itemize}
 
-One can learn yet more lessons about the structure of the recurrence
-by observing the graphical depiction of the described calculation, in
-Fig.~\ref{fig:masterTheorem}.
+One can learn yet more lessons about $F(n)$, specifically about how to
+compute $F(n)$ (exactly or approximately) by observing the graphical
+depiction in Fig.~\ref{fig:masterTheorem} of the calculation described
+by recurrence (\ref{eq:Lin-Recur:general}).
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/MasterTheoremgeneral}
-\caption{{\it Development of the calculation specified by recurrence
-    (\ref{eq:Lin-Recur:general}).  The associated Summation appears on
-    the right.}
+\caption{Development of the calculation specified by recurrence
+  (\ref{eq:Lin-Recur:general}).  The associated summation appears on
+  the right.
 \label{fig:masterTheorem}}
 \end{center}
 \end{figure}
@@ -218,12 +233,134 @@ In particular, one observes in the figure that the computation---and
 its associated tree---are perfectly balanced when $a=b$.  In
 particular, when $a=b=2$, we obtain $F(n) = n \log_2(n)$.
 
+{\Arny The notation in Fig.~\ref{fig:masterTheorem} (fonts, cdots)
+  should be made consistent with the text.}
 
 
-\section{The Fibonacci Recurrence and its Kin}
+\section{Bilinear Recurrences}
+\label{sec:bilinear-recurrences}
+\index{bilinear recurrences}
+
+\subsection{Binomial Coefficients and Pascal's Triangle}
+\label{sec:binomial-coeff+Pascal}
+
+In Section~\ref{sec:binomial-coeff}.C, we introduced and briefly
+discussed the \index{binomial coefficient} $\displaystyle \Delta_{n,k}
+\ = \ {n \choose k}$ in its guise as a binary operation on integers;
+see (\ref{eq:binom-coeff}).  And, we established in
+Proposition~\ref{thm:manipulate-binom-coeff} the summation rule
+\[ {n \choose k} \ + \ {n \choose {k+1}} \ = \ {{n+1} \choose {k+1}} \]
+for $\Delta_{n,k}$.  In fact, one can {\em define} binomial
+coefficient via the {\em bilinear recurrence} that underlies this
+rule.  This change in viewpoint is the topic of the current
+subsection.
+
+\smallskip
+
+Let us define the bivariate integer function\footnote{We alter our
+  notation for binomial coefficients in deference to our change in
+  viewpoint: We promote the integer pair $\langle n,k \rangle$ from a
+  subscript to an argument, and we embellish $\Delta$ with a
+  hat.}~$\hat{\Delta}(n,k)$ via the bilinear recurrence
+\begin{equation}
+\label{eq:binom-coeff-recurrence}
+\hat{\Delta}(n,k) \ = \ 
+\left\{
+\begin{array}{cl}
+1  & \mbox{ if } \ [n=1, k=0] \\
+1  & \mbox{ if } \ [n=1, k=1] \\
+\hat{\Delta}(n-1, k-1) \ + \  \hat{\Delta}(n-1,k) & \mbox{ otherwise}
+\end{array}
+\right.
+\end{equation}
+
+\smallskip
+
+We claim that the function $\hat{\Delta}(n,k)$ thus defined is, in
+fact, the for binomial coefficient $\displaystyle {n \choose k}$.  We
+establish this claim with the help of a two-dimensional array of
+integers known as {\it Pascal's Triangle},
+\index{Pascal's triangle}
+so named in honor of the French polymath Blaise Pascal.
+\index{Pascal, Blaise}
+Fig.~\ref{fig:pascal-triangle} provides a ``prefix'' of this famed
+array, for $n,k \leq 5$.
+\begin{figure}[htb]
+\[
+\begin{array}{c||r|r|r|r|r|r|r}
+{\displaystyle {n \choose k}} & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 &\ldots \\
+\hline
+\hline
+n=1 & 1 & 1 &    &    &    &   & \ldots \\
+\hline
+n=2 & 1 & 2 & 1  &    &    &   & \ldots \\
+\hline
+n=3 & 1 & 3 & 3  & 1  &    &   & \ldots \\
+\hline
+n=4 & 1 & 4 & 6  & 4  & 1  &   & \ldots \\
+\hline
+n=5 & 1 & 5 & 10 & 10 & 5  & 1 & \ldots \\
+\hline
+\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots
+\end{array}
+\]
+\caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 5$.}
+\label{fig:pascal-triangle}
+\end{figure}
+The {\em formation rule of the array} is that the array-entry at (row
+$n+1$, column $k+1$) is the sum of the array-entries at (row $n$, column
+$k$) and at (row $n$, column $k+1$).
+\index{Pascal's Triangle!formation rule}
+
+\smallskip
+
+If you compare the formation rule for Pascal's Triangle with equation
+(\ref{eq:add-binom-coeff}), then you may anticipate the following
+result.
+
+\begin{prop}
+\label{thm:pascal-binom}
+The entries of Pascal's Triangle are the binomial coefficients.
+Specifically, for all $n,k$, the entry at (row $n$, column $k$) of the
+Triangle is $\displaystyle {n \choose k}$.
+\end{prop}
+
+\begin{proof}
+We note by observation and direct calculation (see
+Fig.~\ref{fig:pascal-triangle}) that the proposition is true for $n =
+1$ and $k \in \{0, 1\}$.  A simple double induction verifies that
+every binomial coefficient appears in the Triangle and every Triangle
+entry is a binomial coefficient.  \qed
+\end{proof}
+
+\noindent
+****************** \\
+induction on $n$, then for each value of $n$ on $k \leq n$ \\
+{\Arny SHOULD WE SPELL THIS OUT IN DETAIL?  GIVE AS AN EXERCISE?} \\
+******************
+
+\smallskip
+
+We conclude this section with an {\it a priori} nonobvious observation
+that is rendered obvious by Pascal's Triangle.
+
+\begin{prop}
+\label{thm:binomcoeff-integer}
+Every binomial coefficient is an integer.
+\end{prop}
+
+\begin{proof}
+Since every entry in Pascal's Triangle is obtained from integers via
+repeated additions, this result follows from
+Proposition~\ref{thm:pascal-binom}.  \qed
+\end{proof}
+
+
+\subsection{The Fibonacci Recurrence and its Kin}
 \label{sec:Fiboacci-plus}
 
-\subsection{The Fibonacci sequence}
+**HERE
+This section is devoted to 
 
 Leonardo of Pisa, ``the son of Bonaccio''
 
@@ -231,6 +368,13 @@ In the original problem introduced by Leonardo of Pisa (Fibonacci) in the middle
 Fibonacci numbers are the number of pairs of rabbits that can be produced at the successive generations. 
 Starting by a single pair of rabbits and assuming that each pair produces a new pair of rabbits 
 at each generation during only two generations. 
+
+
+\subsubsection{The Fibonacci sequence}
+
+
+
+
 \bigskip
 
 \noindent
@@ -277,7 +421,7 @@ The explanation is illustrated in Figure~\ref{fig:FiboPascalExplanation}: a diag
 \end{figure}
 
 
-\section{Some recurrences on Fibonacci numbers}
+\subsubsection{Some recurrences on Fibonacci numbers}
 
 %Fibonacci numbers are defined by the following numerical progression:
 %$n \geq 2$ $F(n) = F(n-1) + F(n-2)$, $F(0)=F(1)=1$.
@@ -304,7 +448,7 @@ Replace the last term by the recurrence hypothesis: $F(n+2) = 1+\sum_{k=0}^{n} F
 Thus, $F(n+3) = F(n+1) + 1+ \sum_{k=0}^{n} F(k)  = 1+\sum_{k=0}^{n+1} F(k)$
 \end{itemize}
 
-\subsection{Computing the product of two consecutive Fibonacci numbers}
+\subsubsection{Computing the product of two consecutive Fibonacci numbers}
 
 \noindent \textbf{Property.} 
 \label{prop:FiboSumConsecutive}
@@ -344,7 +488,7 @@ Apply the definition of $F(n+1)$:
 
 \end{itemize}
 
-\subsection{Another property dealing with squares}
+\subsubsection{Another property dealing with squares}
 
 We will show the following property by two different methods
 
@@ -382,7 +526,7 @@ Again, using the definition of $F(n+1)$ into the square, we get the expected res
 $F(n+2)^2 = 4.F(n+1).F(n) + F(n-1)^2$
 
 
-\subsection{Cassini's identity}
+\subsubsection{Cassini's identity}
 
 \noindent \textbf{Property. (Cassini's identity)} 
 \label{prop:cassini}
@@ -454,7 +598,7 @@ The greater $n$, the better the paradox because the deformation of the surface o
 %%Show how this number is related to Fibonacci's numbers.
 %%\item Find a closed form for the sum of consecutive Fibonacci numbers.
 
-\subsection{Combinatorial interpretation of Fibonacci numbers}
+\subsubsection{Combinatorial interpretation of Fibonacci numbers}
 
 Let count the number of binary vectors whose components donot have two consecutive $1$. Call $F(n)$ this number.
 
@@ -599,7 +743,7 @@ $F(2n) = F(n).L(n)$
 
 The proof is straightforward using the previous expression for $m=n$, we get $2F(2n) = F(n).L(n) + F(n).L(n) = 2.F(n)L(n)$.
 
-
+\ignore{***********
 \section{The Token Game}
 \label{sec:TokenGame}
 
@@ -822,3 +966,5 @@ We finally obtain:
 $f(n) = \frac{1}{3} (2^{n+1} -1)$ if $n$ is odd.
 
 $f(n) = \frac{1}{3} (2^{n+1} -2)$ if $n$ is even.
+
+******************}
