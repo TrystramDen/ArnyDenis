@@ -1,4 +1,4 @@
-%version of 11-19-18
+%version of 11-20-18
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -356,34 +356,223 @@ Proposition~\ref{thm:pascal-binom}.  \qed
 \end{proof}
 
 
-\subsection{The Fibonacci Recurrence and its Kin}
-\label{sec:Fiboacci-plus}
+\subsection{The Fibonacci Sequence}
+\label{sec:Fibonacci}
+\index{Fibonacci sequence}
+\index{Fibonacci numbers}
 
-**HERE
-This section is devoted to 
+This section is devoted to one of the most storied topics in the world
+of mathematics---in terms of the topic's manifestation in the real
+world and in terms of the multiple names used to refer to its
+discoverer,\footnote{Not surprisingly, this marvelous sequence was
+  discovered many times, in many places.  Our story refers ony to its
+  discovery in the West.}~the 13th-century Italian mathematician
+variously known as: \index{Fibonacci, Leonardo}
+\index{Fibonacci, Leonardo!alternative names}
 
-Leonardo of Pisa, ``the son of Bonaccio''
+\begin{tabular}{ll}
+Fibonacci               & (Italian for: son of Bonaccio) \\
+Leonardo of Pisa        & (his hometown) \\
+Leonardo Pisano         & (variant of ``of Pisa'') \\
+Leonardo Pisano Bigolo  & (his hometown plus family name) \\
+Leonardo Fibonacci      & (for: son of Bonaccio Bigolo) \\
+Leonardo Bonacci        & (for: son of Bonaccio Bigolo) \\
+\end{tabular}
 
-In the original problem introduced by Leonardo of Pisa (Fibonacci) in the middle age, 
-Fibonacci numbers are the number of pairs of rabbits that can be produced at the successive generations. 
-Starting by a single pair of rabbits and assuming that each pair produces a new pair of rabbits 
-at each generation during only two generations. 
-
-
-\subsubsection{The Fibonacci sequence}
-
-
-
-
-\bigskip
+\medskip
 
 \noindent
-{\bf Definition.}
-Given the two numbers $F(0) = 1$ and $F(1) = 1$, 
-the Fibonacci numbers are obtained by the following expression: 
+The sequence discovered by this multi-named genius is defined as follows.
 
-$F(n+1)= F(n)+F(n-1)$.
-\bigskip
+\medskip
+
+The {\it Fibonacci sequence}, or, {\it the Fibonacci numbers}, is an
+infinite sequence
+\[ F(0), \ F(1), \ F(2), \ \ldots \]
+of elements of $\N^+$, the set of positive integers.  As just denoted,
+we see that the numbers in the sequence are traditionally indexed by
+elements of $\N$, the set of nonnegative integers and are often
+written using functional ($F(i)$) notation rather than subscripts
+($F_i$).  The classical definition of the sequence is as follows.
+\index{Fibonacci sequence!definition}\index{Fibonacci numbers!definition}
+\begin{eqnarray}
+\nonumber
+F(0) & = & 1 \\
+\label{eq:Fibonacci-defn}
+F(1) & = & 1 \\
+\nonumber
+F(n) & = & F(n-1) \ + \ F(n-2) \ \ \ \mbox{ for all } n > 1
+\end{eqnarray}
+The sequence is often specified just by listing its early elements:
+\[ 1, \ 1, \ 2, \ 3, \ 5, \ 8, \ 13, \ 21, \ 34, \ \ldots \]
+
+
+\subsubsection{The story of the Fibonacci numbers}
+\label{sec:Fibonacci-story}
+\index{Fibonacci sequence!story}
+\index{Fibonacci numbers!story}
+
+Leonardo Fibonnaci is said to have dscovered his eponymous sequence in
+the course of contemplating the rate of population growth of
+successive generations of an idealized immortal initial pair of
+rabbits.  Rabbits mature quickly and, after attaining maturity at one
+month, can spawn a new pair of progeny every following month.  So, at
+``time $0$'', there is one pair of rabbits.  This persists at month
+$1$, because there has not yet been time to produce new rabbits.  By
+month $2$, though, there are $2$ pairs of rabbits.  At month $3$, only
+the first pair will have spawned, so there are $3$ pairs of rabbits.
+At month $4$, these $3$ pairs are joined by $2$ more.  The reader can
+continue this story and discover that the number of pairs of rabbits
+observed after successive months are given by the sequence generated
+by the process implicit in recurrence (\ref{eq:Fibonacci-defn}) and
+illustrated by our initial list.
+
+The Fibonacci sequence's role in describing idealized rabbit
+population statistics is no more fascinating than its appearance
+elsewhere in the natural world---in structural features such as the
+patterns of seeds in flower heads, the numbers of petals of flowers,
+the growth patterns of pine cones and pineapples, and on and on; see
+\cite{Basin63}.
+
+The mayhematical properties of this truly remarkable sequence will
+occupy our attention in the remainder of this section.
+
+\subsubsection{Alternative generating recurrences for the Fibonacci numbers}
+\label{sec:Fibonacci-other-recurrences}
+\index{Fibonacci sequence!other generating recurrences}
+\index{Fibonacci numbers!other generating recurrences}
+
+Although the classical recurrence (\ref{eq:Fibonacci-defn}) is the
+structurally simplest generator of the Fibonacci sequence, there exist
+other generators that are not much more complex.  We now present two
+other multi-linear recurrences that generate the sequence.
+
+\begin{prop}
+\label{thm:FiboSum-1}
+For all integers $n \geq 2$,
+\begin{eqnarray}
+\label{eq:multilinear-Fib-1}
+F(n) & = &
+1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(n-2) \\
+\nonumber
+     & = &
+1 \ + \ \sum_{k=0}^{n-2} F(k)
+\end{eqnarray}
+\end{prop}
+
+\begin{proof}
+We proceed by induction.
+
+\noindent
+The {\em base case}, $n=2$, holds because $F(2) = 2 =  1 + F(0)$.
+
+\noindent 
+ Assume, {\em for induction}, that 
+(\ref{eq:multilinear-Fib-1}) holds for all arguments $2 \leq n < m$.
+
+\noindent
+We {\em extend} the induction as follows.  Our inductive hypothesis
+assures us that for all $m \geq 3$,
+\[ F(m-1) \ = \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(m-3). \]
+Combining this with the classical recurrence
+(\ref{eq:Fibonacci-defn}), we therefore have
+\begin{eqnarray*}
+F(m) & = & F(m-2) \ + \ F(m-1) \\
+     & = &
+F(m-2) \ + \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(m-3)
+\end{eqnarray*}
+
+\noindent
+This extends the induction and completes the proof.
+\qed
+\end{proof}
+
+\begin{prop}
+\label{thm:FiboSum-2}
+For all integers $n \geq 2$,
+\begin{eqnarray}
+\label{eq:multilinear-Fib-2}
+F(n) & = &
+F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \cdots + \ C(n) \\
+\nonumber
+\mbox{where} &   & \\
+\nonumber
+C(n) & = & \left\{
+\begin{array}{cl}
+3   & \mbox{\rm if } \ n \ \mbox{\rm is even} \\
+2   & \mbox{\rm if } \ n \ \mbox{\rm is odd}
+\end{array}
+\right.
+\end{eqnarray}
+We thereby sum every other term up to the $(n-1)$th and use a
+``clean-up'' term to complete the sum.
+\end{prop}
+
+\begin{proof}
+We develop the claimed summation (\ref{eq:multilinear-Fib-2}) by
+iteratively expanding the righthand term ($F(n-2)$) of the classical
+recurrence (\ref{eq:Fibonacci-defn}).  This expansion begins
+\begin{eqnarray}
+\label{eq:multilinear-Fib-3}
+F(n)
+& = &
+F(n-1) \ + \ F(n-2) \\
+\nonumber
+& = &
+F(n-1) \ + \ F(n-3) \ + \ F(n-4) \\
+\nonumber
+& = &
+F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \ F(n-6)
+\end{eqnarray}
+We continue this expansion process as long as we can, and then we add
+a single {\em clean-up term}, which we have designated $C(n)$ in the
+statement of the proposition.
+
+Determining the value of $C(n)$ is facilitated by noticing that our
+expansion is ``trying'' to have all term-indices in the expanded
+summation have the same parity.  To wit, the successive indices of the
+expanded summation differ by $2$, beginning with $n-1$, $n-3$, $n-5$,
+and so on; therefore, the index $n-k$ that we expand always has the
+same parity as $n$.  Let us observe the consequence of this fact for
+the ``end game'' of the expanson process.
+\begin{itemize}
+\item
+When $n$ is even, our expansion eventually comes down to
+\[ \begin{array}{cl}
+  & \cdots + F(5) \ + \ F(4) \\
+\longrightarrow 
+  & \cdots + F(5) \ + \ F(2) \ + \ F(1) \\
+\end{array}
+\]
+The expansion must end at this point because we have run out of
+Fibonacci numbers!  We therefore have
+\[ C(n) \ = \ F(2) \ + \ F(1) \ = \ 2 + 1 \ = \ 3. \]
+
+\item
+When $n$ is odd, our expansion eventually comes down to
+\[ \begin{array}{cl}
+  & \cdots + F(4) \ + \ F(3) \\
+\longrightarrow
+  & \cdots + F(4) \ + \ F(1) \ + \ F(0)
+\end{array}
+\]
+The expansion must end at this point because we have run out of
+Fibonacci numbers!  We therefore have
+\[ C(n) \ = \ F(1) \ + \ F(0) \ = \ 1 + 1 \ = \ 2. \]
+\end{itemize}
+In either case, our expanded summation produces the correct value of
+$F(n)$.  \qed
+\end{proof}
+
+**HERE
+
+
+
+
+\subsubsection{The Fibonacci sequence and the binomial coefficients}
+
+
+
 
 %\begin{figure}[h]
 %\begin{center}
@@ -404,7 +593,7 @@ The explanation is illustrated in Figure~\ref{fig:FiboPascalExplanation}: a diag
 %Another way to write this relation is by the following expression:
 %$F_n = binomial (n,0,1 ...)$
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths//FiboPascal1}
         \caption{Obtaining Fibonacci numbers are the diagonals of the Pascal triangle justified to the left. }
@@ -412,7 +601,7 @@ The explanation is illustrated in Figure~\ref{fig:FiboPascalExplanation}: a diag
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths//FiboPascal2}
         \caption{Each term of the diagonal is obtained by summing up both previous ones.}
@@ -427,26 +616,6 @@ The explanation is illustrated in Figure~\ref{fig:FiboPascalExplanation}: a diag
 %$n \geq 2$ $F(n) = F(n-1) + F(n-2)$, $F(0)=F(1)=1$.
 These numbers have nice properties, like the following one. 
 
-\noindent \textbf{Property.} 
-\label{prop:FiboSum}
-$F(n+2) =1+ \sum_{k=0}^{n} F(k) $
-\bigskip
-
-\noindent The proof is by induction.
-
-\begin{itemize}
-\item
-The \textbf{basis case} (for $n=2$) is true since $F(2) = 1+F(0)$.
-
-\item
-\textbf{Induction step:} Let assume the property holds at rank $n$ for $F(n+2)$ and compute $F(n+3)$:
-
-Apply the definition of Fibonacci numbers: $F(n+3) = F(n+1)+F(n+2)$ 
-
-Replace the last term by the recurrence hypothesis: $F(n+2) = 1+\sum_{k=0}^{n} F(k)$
-
-Thus, $F(n+3) = F(n+1) + 1+ \sum_{k=0}^{n} F(k)  = 1+\sum_{k=0}^{n+1} F(k)$
-\end{itemize}
 
 \subsubsection{Computing the product of two consecutive Fibonacci numbers}
 
@@ -615,7 +784,7 @@ Thus, $F(n) = F(n-1) + F(n-2)$
 \bigskip
 
 This alternative view of looking at the Fibonacci numbers allows us to establish some elegant proofs.
-This is for instance the case for Property~\ref{prop:FiboSum}. 
+This is for instance the case for Property~\ref{thm:FiboSum-1}. 
 
 \subsection{Toward a close form of the current term of the sequence}
 
@@ -663,8 +832,9 @@ L(n): 1, 3, 4, 7, 11, 18, 29, 47, 76, 123, ...
 
 There are several interesting links with Fibonacci numbers.
 
-In particular, we established at the beginning of this chapter in Property~\ref{prop:FiboSum} that
-$F(n+2) = 1+ \sum_{k=0}^{n} F(k)$. 
+In particular, we established at the beginning of this chapter in
+Proposition~\ref{thm:FiboSum-1} that $F(n+2) = 1+ \sum_{k=0}^{n}
+F(k)$.
 
 We have similarly: $L(n+2) = 1+ \sum_{k=-1}^{n} L(k)$ since the basic step of the induction is still valid: $L(2) = L(-1 )+L(0) +1 = 2+1+1 = 4$.
 %Actually, it will be true for all the progressions where $u_1=1$.
