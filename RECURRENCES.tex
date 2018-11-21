@@ -1,4 +1,4 @@
-%version of 11-20-18
+%version of 11-21-18
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -245,17 +245,18 @@ particular, when $a=b=2$, we obtain $F(n) = n \log_2(n)$.
 \label{sec:binomial-coeff+Pascal}
 
 In Section~\ref{sec:binomial-coeff}.C, we introduced and briefly
-discussed the \index{binomial coefficient} $\displaystyle \Delta_{n,k}
-\ = \ {n \choose k}$ in its guise as a binary operation on integers;
-see (\ref{eq:binom-coeff}).  And, we established in
-Proposition~\ref{thm:manipulate-binom-coeff} the summation rule
+discussed the binomial coefficient \index{binomial coefficients}
+$\displaystyle \Delta_{n,k} \ = \ {n \choose k}$ in its guise as a
+binary operation on integers; see (\ref{eq:binom-coeff}).  And, we
+established in Proposition~\ref{thm:manipulate-binom-coeff} the
+summation rule
 \[ {n \choose k} \ + \ {n \choose {k+1}} \ = \ {{n+1} \choose {k+1}} \]
 for $\Delta_{n,k}$.  In fact, one can {\em define} binomial
 coefficient via the {\em bilinear recurrence} that underlies this
 rule.  This change in viewpoint is the topic of the current
 subsection.
 
-\smallskip
+\subsubsection{Relating binomial coefficients with Pascal's Triangle}
 
 Let us define the bivariate integer function\footnote{We alter our
   notation for binomial coefficients in deference to our change in
@@ -312,11 +313,10 @@ $n+1$, column $k+1$) is the sum of the array-entries at (row $n$, column
 $k$) and at (row $n$, column $k+1$).
 \index{Pascal's Triangle!formation rule}
 
-\smallskip
+\medskip
 
-If you compare the formation rule for Pascal's Triangle with equation
-(\ref{eq:add-binom-coeff}), then you may anticipate the following
-result.
+By comparing the formation rule for Pascal's Triangle with equation
+(\ref{eq:add-binom-coeff}), you can anticipate the following result.
 
 \begin{prop}
 \label{thm:pascal-binom}
@@ -339,20 +339,47 @@ induction on $n$, then for each value of $n$ on $k \leq n$ \\
 {\Arny SHOULD WE SPELL THIS OUT IN DETAIL?  GIVE AS AN EXERCISE?} \\
 ******************
 
-\smallskip
+\subsubsection{Basic properties of the binomial coefficients}
 
-We conclude this section with an {\it a priori} nonobvious observation
-that is rendered obvious by Pascal's Triangle.
+We conclude this section with two results that expose important
+aspects of the nature of binomial coefficients.  We begin with an {\it
+  a priori} nonobvious observation that is rendered obvious by the
+formation rule for Pascal's Triangle, in the light of
+Proposition~\ref{thm:pascal-binom}.
 
 \begin{prop}
 \label{thm:binomcoeff-integer}
 Every binomial coefficient is an integer.
 \end{prop}
+\index{binomial coefficients!integer-hood}
 
 \begin{proof}
-Since every entry in Pascal's Triangle is obtained from integers via
-repeated additions, this result follows from
-Proposition~\ref{thm:pascal-binom}.  \qed
+By the formation rule for Pascal's Triangle, every entry in that array
+is obtained from integers via repeated additions.  This result
+therefore follows from Proposition~\ref{thm:pascal-binom}'s proof that
+the elements of the Triangle are precisely the binomial coefficients.  \qed
+\end{proof}
+
+\begin{prop}
+\label{thm:sumsof-binomcoeff}
+For every positive integer $n$,
+\[
+\sum_{i=0}^n \ {n \choose i} \ \ = \ \
+{n \choose 0} \ + \ {n \choose 1} \ + \cdots + \ {n \choose {n-1}} \ +
+\ {n \choose n} \ \ = \ \ 2^n
+\]
+\end{prop}
+\index{binomial coefficients!summation formula}
+
+\begin{proof}
+The Binomial Theorem (Theorem~\ref{thm:Binomial-theorem}) tells us
+that, for all $n \in \N$,
+\[
+(x+y)^n \ \ = \ \ \sum_{i=0}^n \ \ {n \choose i} x^{n-i} y^i.
+\]
+If we instantiate this polynomial equation with the values $x = y =
+1$, then we obtain the present result.
+\qed
 \end{proof}
 
 
@@ -434,8 +461,63 @@ patterns of seeds in flower heads, the numbers of petals of flowers,
 the growth patterns of pine cones and pineapples, and on and on; see
 \cite{Basin63}.
 
-The mayhematical properties of this truly remarkable sequence will
+The mathematical properties of this truly remarkable sequence will
 occupy our attention in the remainder of this section.
+
+
+\subsubsection{The Fibonacci sequence and the binomial coefficients}
+\label{sec:FibNo+BinomCoeff}
+\index{Fibonacci numbers!connection with binomial coefficients}
+\index{binomial coefficients!connection with Fibonacci numbers}
+
+%\begin{figure}[h]
+%\begin{center}
+%        \includegraphics[scale=0.4]{FIGmaths/DefFibo}
+%        \caption{Principle of the Fibonacci progression}
+%        \label{doublesum}
+%\end{center}
+%\end{figure}
+%Notice that it is a special case of $u_{n+1} =\alpha.u_{n} + \beta.u_{n-1}$ for $\alpha=\beta=1$.
+%\bigskip
+
+There is a strong, nonobvious, connection between the binomial
+coefficients of Section~\ref{sec:binomial-coeff+Pascal} and the
+Fibonacci numbers of the current section.  We observe this connection
+by contemplating the diagonals of Pascal's Triangle.  See
+Fig.~\ref{fig:FiboPascal}.
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths//FiboPascal1}
+\caption{Obtaining Fibonacci numbers as diagonals of the left-justified Pascal Triangle.}
+\label{fig:FiboPascal}
+\end{center}
+\end{figure}
+
+\begin{prop}
+\label{thm:FibNo+BinomCoeff}
+For all $n \in \N$, the Fibonacci number $F(n)$ is the sum of the
+first $n/2$
+binomial coefficients ${k \choose i}$ such that $k+i = n$.  Symbolically,
+\begin{equation}
+\label{eq:FibNo+BinomCoeff}
+F(n) \ = \ {n \choose 0} \ + \ {{n-1} \choose 1} \ + \cdots \ + \ 
+\end{equation}
+\end{prop}
+
+
+As shown in Figure~\ref{fig:FiboPascal}, Fibonacci numbers can be obtained by summing up the successive numbers of the diagonals.
+The explanation is illustrated in Figure~\ref{fig:FiboPascalExplanation}: a diagonal is obtained by summing the two previous ones and the two first start at 1. 
+%Another way to write this relation is by the following expression:
+%$F_n = binomial (n,0,1 ...)$
+
+
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresMaths//FiboPascal2}
+        \caption{Each term of the diagonal is obtained by summing up both previous ones.}
+        \label{fig:FiboPascalExplanation}
+\end{center}
+\end{figure}
 
 \subsubsection{Alternative generating recurrences for the Fibonacci numbers}
 \label{sec:Fibonacci-other-recurrences}
@@ -565,49 +647,6 @@ $F(n)$.  \qed
 \end{proof}
 
 **HERE
-
-
-
-
-\subsubsection{The Fibonacci sequence and the binomial coefficients}
-
-
-
-
-%\begin{figure}[h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{FIGmaths/DefFibo}
-%        \caption{Principle of the Fibonacci progression}
-%        \label{doublesum}
-%\end{center}
-%\end{figure}
-
-
-Notice that it is a special case of $u_{n+1} =\alpha.u_{n} + \beta.u_{n-1}$ for $\alpha=\beta=1$.
-\bigskip
-
-There is a strong link between these numbers as the diagonal and the Pascal triangle:
-
-As shown in Figure~\ref{fig:FiboPascal}, Fibonacci numbers can be obtained by summing up the successive numbers of the diagonals.
-The explanation is illustrated in Figure~\ref{fig:FiboPascalExplanation}: a diagonal is obtained by summing the two previous ones and the two first start at 1. 
-%Another way to write this relation is by the following expression:
-%$F_n = binomial (n,0,1 ...)$
-
-\begin{figure}[htb]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths//FiboPascal1}
-        \caption{Obtaining Fibonacci numbers are the diagonals of the Pascal triangle justified to the left. }
-        \label{fig:FiboPascal}
-\end{center}
-\end{figure}
-
-\begin{figure}[htb]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths//FiboPascal2}
-        \caption{Each term of the diagonal is obtained by summing up both previous ones.}
-        \label{fig:FiboPascalExplanation}
-\end{center}
-\end{figure}
 
 
 \subsubsection{Some recurrences on Fibonacci numbers}
@@ -806,6 +845,8 @@ The general term $F(n)$ is equal to $a.\Phi^n + a'.\Phi'^n$ where $a$ and $a'$ a
 $F(n)= \frac{1}{\sqrt{5}} ((\frac{1+\sqrt{5}}{2})^n - (\frac{1-\sqrt{5}}{2})^n)$
 
 \subsection{Relatives of the Fibonacci sequence}
+
+Profile numbers \cite{Rosenberg79}
 
 The Lucas' sequence...
 
