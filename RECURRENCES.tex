@@ -465,7 +465,7 @@ The mathematical properties of this truly remarkable sequence will
 occupy our attention in the remainder of this section.
 
 
-\subsubsection{The Fibonacci sequence and the binomial coefficients}
+\subsubsection{Fibonacci numbers and binomial coefficients}
 \label{sec:FibNo+BinomCoeff}
 \index{Fibonacci numbers!connection with binomial coefficients}
 \index{binomial coefficients!connection with Fibonacci numbers}
@@ -496,28 +496,35 @@ Fig.~\ref{fig:FiboPascal}.
 \begin{prop}
 \label{thm:FibNo+BinomCoeff}
 For all $n \in \N$, the Fibonacci number $F(n)$ is the sum of the
-first $n/2$
-binomial coefficients ${k \choose i}$ such that $k+i = n$.  Symbolically,
+first $\lceil (n+1)/2 \rceil$ binomial coefficients $\displaystyle {k
+  \choose i}$ such that $k+i = n$.  Symbolically,
 \begin{equation}
 \label{eq:FibNo+BinomCoeff}
-F(n) \ = \ {n \choose 0} \ + \ {{n-1} \choose 1} \ + \cdots \ + \ 
+F(n) \ = \ {n \choose 0} \ + \ {{n-1} \choose 1} \ + \cdots + \ 
+{{\lfloor (n+1)/2 \rfloor} \choose {\lceil (n+1)/2 \rceil -1}}.
 \end{equation}
 \end{prop}
 
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths//FiboPascal2}
+        \caption{Each term of the diagonal is obtained by summing up both previous ones.}
+        \label{fig:FiboPascalExplanation}
+\end{center}
+\end{figure}
 
-As shown in Figure~\ref{fig:FiboPascal}, Fibonacci numbers can be obtained by summing up the successive numbers of the diagonals.
+\begin{proof}[Sketch]
+Because of the heavy calculational content of the proof, we provide
+here just a short sketch.
+
 The explanation is illustrated in Figure~\ref{fig:FiboPascalExplanation}: a diagonal is obtained by summing the two previous ones and the two first start at 1. 
 %Another way to write this relation is by the following expression:
 %$F_n = binomial (n,0,1 ...)$
 
 
-\begin{figure}[htb]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths//FiboPascal2}
-        \caption{Each term of the diagonal is obtained by summing up both previous ones.}
-        \label{fig:FiboPascalExplanation}
-\end{center}
-\end{figure}
+\qed
+\end{proof}
+
 
 \subsubsection{Alternative generating recurrences for the Fibonacci numbers}
 \label{sec:Fibonacci-other-recurrences}
