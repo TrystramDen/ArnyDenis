@@ -797,17 +797,19 @@ with the following instantiation of the classical recurrence:
 We find that
 \begin{eqnarray*}
 F(n) & = & F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1) \\
-     & = & F(k) \cdot \big( F(n-k-1) \ + \ F(n-k-2) \big)  \ +
+     & = & F(k) \cdot \big[ F(n-k-1) \ + \ F(n-k-2) \big]  \ +
              \ F(k-1) \cdot F(n-k-1) \\
-     & = & \big( F(k) \ + \ F(k-1) \big) \cdot F(n-k-1) \ + \ F(k)
+     & = & \big[ F(k) \ + \ F(k-1) \big] \cdot F(n-k-1) \ + \ F(k)
              \cdot F(n-k-2) \\
-     & = & F(k+1) \cdot F(n-k-1) \ + \ F(k) \cdot F(n-k-2)
+     & = & F(k+1) \cdot F(n-k-1) \ + \ F(k) \cdot F(n-k-2).
 \end{eqnarray*}
 The induction is thus extended, which establishes the proposition.
 \qed 
 \end{proof}
 
-\subsubsection{Toward a close form of the current term of the sequence}
+\subsubsection{Toward a closed form for the ``limit''  of the
+  Fibonacci sequence}
+\label{sec:Fib-Golden-Ratio}
 
 In this section, we present the general methodology for determining
 the close form of $F(n)$, that is an direct expression that only
@@ -829,34 +831,21 @@ and $a'$ are determined by two particular values $n=0$ and $n=1$:
 $F(n)= \frac{1}{\sqrt{5}} ((\frac{1+\sqrt{5}}{2})^n - (\frac{1-\sqrt{5}}{2})^n)$
 
 
-\subsection{Enrichment: Relatives of the Fibonacci Numbers}
-
-\subsubsection{Profile numbers}
-
-Profile numbers \cite{Rosenberg79}
-
-\[ P(n+1, k+1) \ = \ P(n,k) + 2 P(n, k-1) \ \ \ k>0 \]
-
-\[ \sum_{k=0}^{2n-1} \ = \ 3^n -1 \]
-
-\[ P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i} \]
-
-
-\begin{eqnarray*}
-P(n, k+1) & = & 
-  2 P(n,k) - 2^{k-n+1} {n \choose {k-n+1}} \\
-P(n+1, k) & = &
-  P(n,k) + 2^{k-n-1} \left[ {n \choose {k-n}} + {{n+1} \choose {k-n}} \right]
-\end{eqnarray*}
-
+\subsection{Enrichment: Relatives of the Fibonacci Numbers and binomial coefficients}
+\label{sec:Fibo-relatives}
 
 \subsubsection{Lucas numbers}
+\label{sec:Lucas-numbers}
+\index{Lucas numbers}
+
 
 The Lucas' sequence...
 
-A natural question is what happens if we change the first ranks of the sequence keeping the same recurrence pattern?
-It has been studied by the french mathematician Edouard Lucas, starting at 2 and 1. 
-For some reasons that will be clarified later, the sequence is shifted (we take the convention $L(-1)=2$).
+A natural question is what happens if we change the first ranks of the
+sequence keeping the same recurrence pattern?  It has been studied by
+the 19th-century French mathematician Edouard Lucas, starting at 2 and
+1. \index{Lucas, Edouard} For some reasons that will be clarified
+later, the sequence is shifted (we take the convention $L(-1)=2$).
 
 {\Denis do you agree with this shift of the sequence? it simplifies several proofs...}
 \bigskip
@@ -959,12 +948,41 @@ $F(2n) = F(n).L(n)$
 The proof is straightforward using the previous expression for $m=n$, we get $2F(2n) = F(n).L(n) + F(n).L(n) = 2.F(n)L(n)$.
 
 
+\subsubsection{Tree-Profile numbers}
+\label{sec:Tree-Profile-numbers}
+\index{Tree-Profile numbers}
+
+In the course of analyzing a genre of search tree called {\it
+  2,3-trees},\footnote{These are the ``smallest'' instance of the {\it
+    B-trees} that proved so useful in data bases \cite{CLRS}.}~in
+\cite{MillerPRS79,RosenbergS78}, a new number sequence was discovered.
+Named {\it Tree-Profile numbers} \cite{Rosenberg79}, this sequence was
+found to be a close relative of the binomial coefficients, both in its
+defining recurrence and in the quite similar properties that the two
+sequences share.
+
+**HERE
+
+\[ P(n+1, k+1) \ = \ P(n,k) + 2 P(n, k-1) \ \ \ k>0 \]
+
+\[ \sum_{k=0}^{2n-1} \ = \ 3^n -1 \]
+
+\[ P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i} \]
+
+
+\begin{eqnarray*}
+P(n, k+1) & = & 
+  2 P(n,k) - 2^{k-n+1} {n \choose {k-n+1}} \\
+P(n+1, k) & = &
+  P(n,k) + 2^{k-n-1} \left[ {n \choose {k-n}} + {{n+1} \choose {k-n}} \right]
+\end{eqnarray*}
+
 
 
  
 
 
-\subsubsection{Computing the product of two consecutive Fibonacci numbers}
+\subsection{Computing the product of two consecutive Fibonacci numbers}
 
 \noindent \textbf{Property.} 
 \label{prop:FiboSumConsecutive}
