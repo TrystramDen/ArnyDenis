@@ -1,4 +1,4 @@
-%version of 11-21-18
+%version of 11-22-18
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -572,7 +572,7 @@ for the result.
 %$F_n = binomial (n,0,1 ...)$
 
 
-\subsubsection{Alternative generating recurrences for the Fibonacci numbers}
+\subsubsection{Alternative generating recurrences for the Fibonacci sequence}
 \label{sec:Fibonacci-other-recurrences}
 \index{Fibonacci sequence!other generating recurrences}
 \index{Fibonacci numbers!other generating recurrences}
@@ -580,7 +580,10 @@ for the result.
 Although the classical recurrence (\ref{eq:Fibonacci-defn}) is the
 structurally simplest generator of the Fibonacci sequence, there exist
 other generators that are not much more complex.  We now present two
-other multi-linear recurrences that generate the sequence.
+other multi-linear recurrences that generate the sequence, in addition
+to a family of binary generating recurrences.
+
+\paragraph{\small\sf A. Two multi-linear generating recurrences}
 
 \begin{prop}
 \label{thm:FiboSum-1}
@@ -624,10 +627,11 @@ This extends the induction and completes the proof.
 
 \medskip
 
-While recurrence (\ref{eq:multilinear-Fib-1}) in the preceding
-proposition employs all of the Fibonnaci numbers up to the desired
-bound, recurrence (\ref{eq:multilinear-Fib-2}) in the next proposition
-employs only every other such number.
+While recurrence (\ref{eq:multilinear-Fib-1}) in
+Proposition~\ref{eq:multilinear-Fib-1} employs all of the Fibonnaci
+numbers up to the desired bound, recurrence
+(\ref{eq:multilinear-Fib-2}) in the next proposition employs only
+every other such number.
 
 \begin{prop}
 \label{thm:FiboSum-2}
@@ -706,14 +710,258 @@ In either case, our expanded summation produces the correct value of
 $F(n)$.  \qed
 \end{proof}
 
-**HERE
+
+\paragraph{\small\sf B. A family of binary generating recurrences}
+
+What we have earlier called ``generating recurrences'' or ``formation
+rules'' for binomial coefficients and Fibonacci numbers can also be
+viewed as (mathematical) identities on the quantities of interest.  In
+our usage, the line between ``generating recurrences'' and
+``identities'' centers on computational issues: multilinear
+recurrences can feasibly be used to generate the desired numbers;
+nonlinear recurrences such as we expose in this subsection will likely
+not be used as generators.  Indeed, for several of the results we
+cover here, it is the methodology of proof and analysis that we wish
+to stress.
+
+\begin{prop}
+\label{thm:Fib-higher-indices}
+For all $n \in \N$ and $k < n$
+\begin{equation}
+\label{eq:Fib-higher-indices}
+F(n) \ = \ F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1).
+\end{equation}
+\end{prop}
+
+Of course, the classical recurrence (\ref{eq:Fibonacci-defn}) is
+instance $(k = 1)$ of the family of recurrent equations
+(\ref{eq:Fib-higher-indices}).
+
+\begin{proof}
+We first explain how one might guess at the existence of the family of
+recurrences (\ref{eq:Fib-higher-indices}), and then we validate the
+recurrences in the family.
+
+We begin with the classical recurrence (\ref{eq:Fibonacci-defn})
+and iteratively use this recurrence to ``expand'' the classical
+recurrence.  In detail, we begin by combining the first two instances
+of (\ref{eq:Fibonacci-defn}), namely,
+\[
+\begin{array}{lcrrr}
+F(n)   & = & F(n-1) & + & F(n-2) \\
+F(n-1) & = & F(n-2) & + & F(n-3)
+\end{array}
+\]
+and we combine them algebraically to produce the following.
+\[ F(n) \ = \ 2 F(n-2) \ + \ F(n-3). \]
+And then we iterate!  The following table illustrates the result of
+the first four iterations of the process.
+\[
+\begin{array}{ccrcrcrcrcrcr}
+F(n) & = & F(n) & + & F(n-1) \\
+     & = &      &   & 2 F(n-1) & + & F(n-2) \\
+     & = &      &   &          &   & 3 F(n-2) & + & 2 F(n-3) \\
+     & = &      &   &          &   &          &   & 5 F(n-3) & + & 3 F(n-4)  \\
+     & = &      &   &          &   &          &   &          & + & 8
+F(n-4) & + & 5 F(n-5)  \\
+ & \vdots  &  & \vdots  &  &  \vdots &  & \vdots
+ &  & \vdots  &   & \vdots  & 
+\end{array}
+\]
+Note that the coefficients of the successive occurrences of the
+Fibonacci numbers $F(i)$ that occur in our table are themselves
+Fibonacci numbers.  By analyzing the emerging pattern---{\em remember
+  our advice in Chapter~\ref{ch:doingmath} to always look for
+  patterns}---we arrive at the family (\ref{eq:Fib-higher-indices})
+of recurrent equations.
+
+{\em Keep in mind that, at this point, we are still in the realm of
+  conjecture!  We must now verify the universal validity of the
+  family.}
+
+We proceed by induction on the number $k$ of iterated expansions of
+the classical recurrence (\ref{eq:Fibonacci-defn}).
+
+The {\em basis for our induction} resides in the observation we shared
+right after stating the proposition: Instance $(k = 1)$ of the posited
+family of recurrent equations is just the classical recurrence
+(\ref{eq:Fibonacci-defn}).
+
+Let us assume that instance $k$ of family
+(\ref{eq:Fib-higher-indices}), namely, the equation
+\[ F(n) \ = \ F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1) \]
+is valid, and let us observe the result of producing instance $k+1$
+from this instance.  We algebraically combine the just-cited equation
+with the following instantiation of the classical recurrence:
+\[ F(n-k) \ = \ F(n-k-1) \ + \ F(n-k-2) \]
+We find that
+\begin{eqnarray*}
+F(n) & = & F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1) \\
+     & = & F(k) \cdot \big( F(n-k-1) \ + \ F(n-k-2) \big)  \ +
+             \ F(k-1) \cdot F(n-k-1) \\
+     & = & \big( F(k) \ + \ F(k-1) \big) \cdot F(n-k-1) \ + \ F(k)
+             \cdot F(n-k-2) \\
+     & = & F(k+1) \cdot F(n-k-1) \ + \ F(k) \cdot F(n-k-2)
+\end{eqnarray*}
+The induction is thus extended, which establishes the proposition.
+\qed 
+\end{proof}
+
+\subsubsection{Toward a close form of the current term of the sequence}
+
+In this section, we present the general methodology for determining
+the close form of $F(n)$, that is an direct expression that only
+depends on $n$ and not on the other terms of the sequence.  The
+characteristic equation of $F(n+2) - F(n+1) - F(n) =0$ is:
+
+$x^2 - x - 1 = 0$
+
+Let determine its discriminant: $\Delta = 5$.
+Since it is positive, this equation has two distinct roots:
+
+$\Phi = \frac{1+\sqrt{5}}{2}$ and $\Phi' = \frac{1-\sqrt{5}}{2}$
+
+The first one $\Phi$ is known as the \textit{golden ratio}. 
+
+The general term $F(n)$ is equal to $a.\Phi^n + a'.\Phi'^n$ where $a$
+and $a'$ are determined by two particular values $n=0$ and $n=1$:
+
+$F(n)= \frac{1}{\sqrt{5}} ((\frac{1+\sqrt{5}}{2})^n - (\frac{1-\sqrt{5}}{2})^n)$
 
 
-\subsubsection{Some recurrences on Fibonacci numbers}
+\subsection{Enrichment: Relatives of the Fibonacci Numbers}
 
-%Fibonacci numbers are defined by the following numerical progression:
-%$n \geq 2$ $F(n) = F(n-1) + F(n-2)$, $F(0)=F(1)=1$.
-These numbers have nice properties, like the following one. 
+\subsubsection{Profile numbers}
+
+Profile numbers \cite{Rosenberg79}
+
+\[ P(n+1, k+1) \ = \ P(n,k) + 2 P(n, k-1) \ \ \ k>0 \]
+
+\[ \sum_{k=0}^{2n-1} \ = \ 3^n -1 \]
+
+\[ P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i} \]
+
+
+\begin{eqnarray*}
+P(n, k+1) & = & 
+  2 P(n,k) - 2^{k-n+1} {n \choose {k-n+1}} \\
+P(n+1, k) & = &
+  P(n,k) + 2^{k-n-1} \left[ {n \choose {k-n}} + {{n+1} \choose {k-n}} \right]
+\end{eqnarray*}
+
+
+\subsubsection{Lucas numbers}
+
+The Lucas' sequence...
+
+A natural question is what happens if we change the first ranks of the sequence keeping the same recurrence pattern?
+It has been studied by the french mathematician Edouard Lucas, starting at 2 and 1. 
+For some reasons that will be clarified later, the sequence is shifted (we take the convention $L(-1)=2$).
+
+{\Denis do you agree with this shift of the sequence? it simplifies several proofs...}
+\bigskip
+
+\noindent
+{\bf Definition.}
+Given the two numbers $L(0) = 1$ and $L(1) = 3$, 
+all the other Lucas numbers are obtained by the same progression as Fibonacci: 
+$L(n+1) = L(n)+L(n-1)$.
+\bigskip
+
+n: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ...
+
+F(n): 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
+
+L(n): 1, 3, 4, 7, 11, 18, 29, 47, 76, 123, ...
+\bigskip
+
+There are several interesting links with Fibonacci numbers.
+
+In particular, we established at the beginning of this chapter in
+Proposition~\ref{thm:FiboSum-1} that $F(n+2) = 1+ \sum_{k=0}^{n}
+F(k)$.
+
+We have similarly: $L(n+2) = 1+ \sum_{k=-1}^{n} L(k)$ since the basic step of the induction is still valid: $L(2) = L(-1 )+L(0) +1 = 2+1+1 = 4$.
+%Actually, it will be true for all the progressions where $u_1=1$.
+\bigskip
+
+We can also easily show that the Lucas number of order $n$ is the sum of two Fibonacci numbers:
+
+\noindent \textbf{Property. } 
+\label{prop:Lucas1}
+$L(n) = F(n-1)+F(n+1)$ for $n \geq 1$
+\medskip
+
+
+The proof is by induction as follows.
+
+\begin{itemize}
+\item
+The \textbf{basis case} (for $n=2$) is true since $L(1) = 3 = F(2) + F(0) = 2+1$.
+
+\item
+\textbf{Induction step:} Let assume the property holds at all ranks $k \leq n$ and compute $L(n+1)$:
+
+Apply the definition of Lucas' numbers: $L(n+1) = L(n)+L(n-1)$
+
+Apply the induction hypothesis on both terms:
+
+ $L(n+1) = F(n+1)+F(n-1)+F(n)+F(n-2)$
+ 
+Apply now the definition of Fibonacci numbers for $F(n+1) + F(n) = F(n+2)$  and $F(n-1) + F(n-2) = F(n)$
+and replace them in the previous expression:
+
+$L(n+1) = F(n+2)+F(n)$
+which concludes the proof.
+
+%
+\end{itemize}
+\medskip
+
+Notice that using a similar proof, we obtain $L(n) = F(n+2)+F(n-2)$. 
+However, the generalization it is no more true for the further terms.
+The interested reader can easily prove:
+
+$L(n) = \frac{1}{2} (F(n+3)+F(n-3))= \frac{1}{3} (F(n+4)+F(n-4))$, and so on.
+\medskip
+
+Another interesting expression is the following.
+
+\noindent \textbf{Property. } 
+\label{prop:Lucas2}
+$F(n+1) = \frac{1}{2} (F(1).L(n) + F(n).L(1))$
+
+
+\medskip
+The proof comes from direct arithmetic manipulations:
+
+$2.F(n+1) = F(n+1) +  F(n+1) =  F(n+1) + F(n) + F(n-1)$
+
+$= L(n) + F(n) $
+
+$= F(1).L(n) + F(n).L(1)$
+\medskip
+
+
+The previous property can be extended for any $m>1$ as follows:
+
+\noindent \textbf{Property. } 
+\label{prop:Lucas3}
+$2.F(n+m) = F(m).L(n) + F(n).L(m)$
+
+The proof is left to the reader.
+
+\bigskip
+
+\noindent \textbf{Corollary:} Another interesting expression is
+$F(2n) = F(n).L(n)$
+
+The proof is straightforward using the previous expression for $m=n$, we get $2F(2n) = F(n).L(n) + F(n).L(n) = 2.F(n)L(n)$.
+
+
+
+
+ 
 
 
 \subsubsection{Computing the product of two consecutive Fibonacci numbers}
@@ -867,155 +1115,7 @@ The greater $n$, the better the paradox because the deformation of the surface o
 %%\item Find a closed form for the sum of consecutive Fibonacci numbers.
 
 
-\subsubsection{Toward a close form of the current term of the sequence}
 
-In this section, we present the general methodology for determining the close form of $F(n)$,
-that is an direct expression that only depends on $n$ and not on the other terms of the sequence.
-The characteristic equation of $F(n+2) - F(n+1) - F(n) =0$ is:
-
-$x^2 - x - 1 = 0$
-
-Let determine its discriminant: $\Delta = 5$.
-Since it is positive, this equation has two distinct roots:
-
-$\Phi = \frac{1+\sqrt{5}}{2}$ and $\Phi' = \frac{1-\sqrt{5}}{2}$
-
-The first one $\Phi$ is known as the \textit{golden ratio}. 
-
-The general term $F(n)$ is equal to $a.\Phi^n + a'.\Phi'^n$ where $a$ and $a'$ are determined by two particular values $n=0$ and $n=1$:
-
-$F(n)= \frac{1}{\sqrt{5}} ((\frac{1+\sqrt{5}}{2})^n - (\frac{1-\sqrt{5}}{2})^n)$
-
-
-
-\subsection{Relatives of the Fibonacci Numbers}
-
-\subsubsection{Profile numbers}
-
-Profile numbers \cite{Rosenberg79}
-
-\[ P(n+1, k+1) \ = \ P(n,k) + 2 P(n, k-1) \ \ \ k>0 \]
-
-\[ \sum_{k=0}^{2n-1} \ = \ 3^n -1 \]
-
-\[ P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i} \]
-
-
-\begin{eqnarray*}
-P(n, k+1) & = & 
-  2 P(n,k) - 2^{k-n+1} {n \choose {k-n+1}} \\
-P(n+1, k) & = &
-  P(n,k) + 2^{k-n-1} \left[ {n \choose {k-n}} + {{n+1} \choose {k-n}} \right]
-\end{eqnarray*}
-
-
-\subsubsection{Lucas numbers}
-
-The Lucas' sequence...
-
-A natural question is what happens if we change the first ranks of the sequence keeping the same recurrence pattern?
-It has been studied by the french mathematician Edouard Lucas, starting at 2 and 1. 
-For some reasons that will be clarified later, the sequence is shifted (we take the convention $L(-1)=2$).
-
-{\Denis do you agree with this shift of the sequence? it simplifies several proofs...}
-\bigskip
-
-\noindent
-{\bf Definition.}
-Given the two numbers $L(0) = 1$ and $L(1) = 3$, 
-all the other Lucas numbers are obtained by the same progression as Fibonacci: 
-$L(n+1) = L(n)+L(n-1)$.
-\bigskip
-
-n: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ...
-
-F(n): 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
-
-L(n): 1, 3, 4, 7, 11, 18, 29, 47, 76, 123, ...
-\bigskip
-
-There are several interesting links with Fibonacci numbers.
-
-In particular, we established at the beginning of this chapter in
-Proposition~\ref{thm:FiboSum-1} that $F(n+2) = 1+ \sum_{k=0}^{n}
-F(k)$.
-
-We have similarly: $L(n+2) = 1+ \sum_{k=-1}^{n} L(k)$ since the basic step of the induction is still valid: $L(2) = L(-1 )+L(0) +1 = 2+1+1 = 4$.
-%Actually, it will be true for all the progressions where $u_1=1$.
-\bigskip
-
-We can also easily show that the Lucas number of order $n$ is the sum of two Fibonacci numbers:
-
-\noindent \textbf{Property. } 
-\label{prop:Lucas1}
-$L(n) = F(n-1)+F(n+1)$ for $n \geq 1$
-\medskip
-
-
-The proof is by induction as follows.
-
-\begin{itemize}
-\item
-The \textbf{basis case} (for $n=2$) is true since $L(1) = 3 = F(2) + F(0) = 2+1$.
-
-\item
-\textbf{Induction step:} Let assume the property holds at all ranks $k \leq n$ and compute $L(n+1)$:
-
-Apply the definition of Lucas' numbers: $L(n+1) = L(n)+L(n-1)$
-
-Apply the induction hypothesis on both terms:
-
- $L(n+1) = F(n+1)+F(n-1)+F(n)+F(n-2)$
- 
-Apply now the definition of Fibonacci numbers for $F(n+1) + F(n) = F(n+2)$  and $F(n-1) + F(n-2) = F(n)$
-and replace them in the previous expression:
-
-$L(n+1) = F(n+2)+F(n)$
-which concludes the proof.
-
-%
-\end{itemize}
-\medskip
-
-Notice that using a similar proof, we obtain $L(n) = F(n+2)+F(n-2)$. 
-However, the generalization it is no more true for the further terms.
-The interested reader can easily prove:
-
-$L(n) = \frac{1}{2} (F(n+3)+F(n-3))= \frac{1}{3} (F(n+4)+F(n-4))$, and so on.
-\medskip
-
-Another interesting expression is the following.
-
-\noindent \textbf{Property. } 
-\label{prop:Lucas2}
-$F(n+1) = \frac{1}{2} (F(1).L(n) + F(n).L(1))$
-
-
-\medskip
-The proof comes from direct arithmetic manipulations:
-
-$2.F(n+1) = F(n+1) +  F(n+1) =  F(n+1) + F(n) + F(n-1)$
-
-$= L(n) + F(n) $
-
-$= F(1).L(n) + F(n).L(1)$
-\medskip
-
-
-The previous property can be extended for any $m>1$ as follows:
-
-\noindent \textbf{Property. } 
-\label{prop:Lucas3}
-$2.F(n+m) = F(m).L(n) + F(n).L(m)$
-
-The proof is left to the reader.
-
-\bigskip
-
-\noindent \textbf{Corollary:} Another interesting expression is
-$F(2n) = F(n).L(n)$
-
-The proof is straightforward using the previous expression for $m=n$, we get $2F(2n) = F(n).L(n) + F(n).L(n) = 2.F(n)L(n)$.
 
 \ignore{***********
 \section{The Token Game}
