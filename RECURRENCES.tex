@@ -930,40 +930,72 @@ well as for the Fibonacci sequence.
 
 \paragraph{\small\sf B. Relating the Lucas and Fibonacci numbers}
 
-**HERE
+There are several simple equations that relate the Lucas and Fibonacci
+numbers.  We present a few of the most compelling ones, in terms of
+exposing an intimate relationaship between the two sequences.
 
+\begin{prop}
+\label{thm:Lucas-n:2Fibs}
+For all $m, n \geq 1$
+\begin{eqnarray}
+\label{eq:L-FF}
+L(n) & = & F(n-1) + F(n+1) \\
+\label{eq:F-FL+FL}
+F(m + n) & = & \frac{1}{2} \big( F(m) \cdot L(n) \ + \ F(n) \cdot L(m) \big) \\
+\label{eq:F2n-FL}
+F(2n) & = & F(n) \cdot L(n).
+\end{eqnarray}
+\end{prop}
 
-We can also easily show that the Lucas number of order $n$ is the sum of two Fibonacci numbers:
+\begin{proof}
+{\bf (1)}
+We begin with equation (\ref{eq:L-FF}).  We proceed by induction.
 
-\noindent \textbf{Property. } 
-\label{prop:Lucas1}
-$L(n) = F(n-1)+F(n+1)$ for $n \geq 1$
 \medskip
 
+\noindent
+{\it The base case.}
+The case $n=2$ is true because
+\[ L(1) = 3 = F(2) + F(0) = 2+1. \]
 
-The proof is by induction as follows.
+\medskip
 
+\noindent
+{\it The inductive hypothesis}. \\
+Assume that equation (\ref{eq:L-FF}) holds for $L(0), L(1), \ldots,
+L(n)$.
+
+\medskip
+
+\noindent
+{\it The inductive extension}. 
+Let us compute $L(n+1)$:
 \begin{itemize}
 \item
-The \textbf{basis case} (for $n=2$) is true since $L(1) = 3 = F(2) + F(0) = 2+1$.
-
+By definition (\ref{eq:Lucas-defn-2}),
+\begin{equation}
+\label{eq:L-FF-1}
+L(n+1) \ = \L(n) \ + \ L(n-1).
+\end{equation}
 \item
-\textbf{Induction step:} Let assume the property holds at all ranks $k \leq n$ and compute $L(n+1)$:
-
-Apply the definition of Lucas' numbers: $L(n+1) = L(n)+L(n-1)$
-
-Apply the induction hypothesis on both terms:
-
- $L(n+1) = F(n+1)+F(n-1)+F(n)+F(n-2)$
- 
-Apply now the definition of Fibonacci numbers for $F(n+1) + F(n) = F(n+2)$  and $F(n-1) + F(n-2) = F(n)$
-and replace them in the previous expression:
-
-$L(n+1) = F(n+2)+F(n)$
-which concludes the proof.
-
-%
+When we apply the inductive hypothesis to both addends in
+(\ref{eq:L-FF-1}), we obtain (after rearranging terms):
+\begin{equation}
+\label{eq:L-FF-2}
+L(n+1) \ = \  F(n+1) \ + \ F(n) \ + \ F(n-1) \ + \ F(n-2)
+\end{equation}
+\item
+Finally, we invoke the defining
+identity of Fibonacci numbers on the first two addends in
+equation (\ref{eq:L-FF-2}) and on the last two addends.  We thereby
+transform equation (\ref{eq:L-FF-2}) to equation (\ref{eq:L-FF}),
+which validates the last equation and proves {\bf (1)}.
 \end{itemize}
+\end{proof}
+\bigskip
+
+**HERE
+
 \medskip
 
 Notice that using a similar proof, we obtain $L(n) = F(n+2)+F(n-2)$. 
@@ -995,7 +1027,7 @@ The previous property can be extended for any $m>1$ as follows:
 
 \noindent \textbf{Property. } 
 \label{prop:Lucas3}
-$2.F(n+m) = F(m).L(n) + F(n).L(m)$
+
 
 The proof is left to the reader.
 
