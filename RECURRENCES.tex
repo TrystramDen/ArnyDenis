@@ -933,36 +933,46 @@ well as for the Fibonacci sequence.
 There are several simple equations that relate the Lucas and Fibonacci
 numbers.  We present a few of the most compelling ones, in terms of
 exposing an intimate relationaship between the two sequences.
+\index{Fibonacci numbers!relations with Lucas numbers}
+\index{Lucas numbers!relations with Fibonacci numbers}
 
 \begin{prop}
 \label{thm:Lucas-n:2Fibs}
 For all $m, n \geq 1$
 \begin{eqnarray}
-\label{eq:L-FF}
-L(n) & = & F(n-1) + F(n+1) \\
-\label{eq:F-FL+FL}
+\label{eq:L-F-a}
+\mathbf{(a) } \ \ 
+L(n) & = & F(n+1) + F(n-1) \\
+\label{eq:L-F-b}
+\mathbf{(b) } \ \
+F(n+1) & = & \frac{1}{2} \big(F(n) \ + \ L(n) \big) \\
+\label{eq:L-F-c}
+\mathbf{(c) } \ \
 F(m + n) & = & \frac{1}{2} \big( F(m) \cdot L(n) \ + \ F(n) \cdot L(m) \big) \\
-\label{eq:F2n-FL}
+\label{eq:L-F-d}
+\mathbf{(d) } \ \
 F(2n) & = & F(n) \cdot L(n).
 \end{eqnarray}
 \end{prop}
 
 \begin{proof}
-{\bf (1)}
-We begin with equation (\ref{eq:L-FF}).  We proceed by induction.
+We consider the three identities in turn.
+
+\noindent {\bf (a)}
+We proceed by induction.
 
 \medskip
 
 \noindent
 {\it The base case.}
-The case $n=2$ is true because
+Equation (\ref{eq:L-F-a}) holds when $n=1$ because
 \[ L(1) = 3 = F(2) + F(0) = 2+1. \]
 
 \medskip
 
 \noindent
-{\it The inductive hypothesis}. \\
-Assume that equation (\ref{eq:L-FF}) holds for $L(0), L(1), \ldots,
+{\it The inductive hypothesis}.
+Assume that equation (\ref{eq:L-F-a}) holds for $L(2), L(3), \ldots,
 L(n)$.
 
 \medskip
@@ -985,26 +995,48 @@ When we apply the inductive hypothesis to both addends in
 L(n+1) \ = \  F(n+1) \ + \ F(n) \ + \ F(n-1) \ + \ F(n-2)
 \end{equation}
 \item
-Finally, we invoke the defining
-identity of Fibonacci numbers on the first two addends in
-equation (\ref{eq:L-FF-2}) and on the last two addends.  We thereby
-transform equation (\ref{eq:L-FF-2}) to equation (\ref{eq:L-FF}),
-which validates the last equation and proves {\bf (1)}.
+Finally, we invoke the defining identity (\ref{eq:Fibonacci-defn}) of
+Fibonacci numbers on the first two addends in (\ref{eq:L-FF-2}) and on
+the last two addends.  We thereby transform (\ref{eq:L-FF-2}) to
+equation (\ref{eq:L-F-a}), which validates the latter identity.
 \end{itemize}
-\end{proof}
+
+\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
+Notice that a proof similar to the preceding one yields the identity
+$L(n) = F(n+2) + F(n-2)$.  Similar, but more complicated, identities
+hold for larger arguments.  For the cases $n+3$ and $n+4$, for
+instance, one can establish the following pair of identities.
+
+{\Arny Perfect exercises, no?}
+
+\begin{eqnarray}
+\label{eq:LF:n+3}
+L(n) & = & \frac{1}{2} (F(n+3)+F(n-3)) \\
+\label{eq:LF:n+4}
+L(n) & = & \frac{1}{3} (F(n+4)+F(n-4))
+\end{eqnarray}
+\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
+
 \bigskip
 
-**HERE
+\noindent {\bf (b)}
+By direct arithmetic manipulation,
+\begin{eqnarray*}
+2 F(n+1) & = & F(n+1) \ + \ F(n) \ + \ F(n-1) \\
+         & = & L(n) \ + \ F(n).
+\end{eqnarray*}
 
-\medskip
+\bigskip
 
-Notice that using a similar proof, we obtain $L(n) = F(n+2)+F(n-2)$. 
-However, the generalization it is no more true for the further terms.
-The interested reader can easily prove:
+\noindent {\bf (c)}
+\[
+F(m) \cdot L(n) \ = \ 
 
-$L(n) = \frac{1}{2} (F(n+3)+F(n-3))= \frac{1}{3} (F(n+4)+F(n-4))$, and so on.
-\medskip
+2F(m+1) \ = \ F(m+1) + F(m) + F(m-1) \ = \ F(m) \ + \ L(m)
 
+2L(n) \ = \ L(n) +  F(n+1) + F(n-1) \ = \ 
+
+\]
 Another interesting expression is the following.
 
 \noindent \textbf{Property. } 
@@ -1013,9 +1045,7 @@ $F(n+1) = \frac{1}{2} (F(1).L(n) + F(n).L(1))$
 
 
 \medskip
-The proof comes from direct arithmetic manipulations:
 
-$2.F(n+1) = F(n+1) +  F(n+1) =  F(n+1) + F(n) + F(n-1)$
 
 $= L(n) + F(n) $
 
@@ -1025,18 +1055,14 @@ $= F(1).L(n) + F(n).L(1)$
 
 The previous property can be extended for any $m>1$ as follows:
 
-\noindent \textbf{Property. } 
-\label{prop:Lucas3}
-
-
-The proof is left to the reader.
-
 \bigskip
 
-\noindent \textbf{Corollary:} Another interesting expression is
-$F(2n) = F(n).L(n)$
+\noindent {\bf (d)}
+Identity ((\ref{eq:L-F-d}) is actually the case $m=n$ of identity
+((\ref{eq:L-F-c}).
 
-The proof is straightforward using the previous expression for $m=n$, we get $2F(2n) = F(n).L(n) + F(n).L(n) = 2.F(n)L(n)$.
+This validates our final identity, which completes the proof.  \qed
+\end{proof}
 
 
 \subsubsection{Tree-Profile numbers}
