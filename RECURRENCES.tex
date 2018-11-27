@@ -1,4 +1,4 @@
-%version of 11-23-18
+%version of 11-27-18
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -288,24 +288,34 @@ Fig.~\ref{fig:pascal-triangle} provides a ``prefix'' of this famed
 array, for $n,k \leq 5$.
 \begin{figure}[htb]
 \[
-\begin{array}{c||r|r|r|r|r|r|r}
-{\displaystyle {n \choose k}} & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 &\ldots \\
+\begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
+{\displaystyle {n \choose k}} & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 &
+k=6 & k=7 & k=8 & k=9 & \ldots \\
 \hline
 \hline
-n=1 & 1 & 1 &    &    &    &   & \ldots \\
+n=1 & 1 & 1 &    &    &     &     &    &    &   &   & \ldots \\
 \hline
-n=2 & 1 & 2 & 1  &    &    &   & \ldots \\
+n=2 & 1 & 2 &  1 &    &     &     &    &    &   &   & \ldots \\
 \hline
-n=3 & 1 & 3 & 3  & 1  &    &   & \ldots \\
+n=3 & 1 & 3 &  3 &  1 &     &     &    &    &   &   & \ldots \\
 \hline
-n=4 & 1 & 4 & 6  & 4  & 1  &   & \ldots \\
+n=4 & 1 & 4 &  6 &  4 &   1 &     &    &    &   &   & \ldots \\
 \hline
-n=5 & 1 & 5 & 10 & 10 & 5  & 1 & \ldots \\
+n=5 & 1 & 5 & 10 & 10 &   5 &   1 &    &    &   &   & \ldots \\
 \hline
-\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\ddots
+n=6 & 1 & 6 & 15 & 20 &  15 &   6 &  1 &    &   &   & \ldots \\
+\hline
+n=7 & 1 & 7 & 21 & 35 &  35 &  21 &  7 &  1 &   &   & \ldots \\
+\hline
+n=8 & 1 & 8 & 28 & 56 &  70 &  56 & 28 &  8 & 1 &   & \ldots \\
+\hline
+n=9 & 1 & 9 & 36 & 84 & 126 & 126 & 84 & 36 & 9 & 1 & \ldots \\
+\hline
+\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots
+&\vdots &\vdots &\ddots
 \end{array}
-\]
-\caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 5$.}
+\] 
+\caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 9$.}
 \label{fig:pascal-triangle}
 \end{figure}
 The {\em formation rule of the array} is that the array-entry at (row
@@ -1083,7 +1093,7 @@ F(n) \cdot \big( L(k-1) \ + \ L(k-2) \big) \\
               & = &
 L(n) \cdot F(k) \ + \ F(n) \cdot L(k)
 \end{eqnarray*}
-This extended induction verifies identity (\ref{eq:L-F-c}).
+The thus-extended induction verifies identity (\ref{eq:L-F-c}).
 
 \bigskip
 
@@ -1121,37 +1131,63 @@ of positive integers specified by the following recursive definition.
 \index{tree-profile numbers!definition}
 \begin{equation}
 \label{eq:TP-defn}
-\begin{array}{ccll}
-P(1,1) & =      & 1 & \\
-P(1,k) & \equiv & 0 & \mbox{ for all } \ k > 1 \\
-P(n,0) & \equiv & 1 & \mbox{ for all } \ n \geq 1 \\
-P(n,1) & \equiv & 2 & \mbox{ for all } \ n > 1 \\
-P(n+1, k+1) & = & P(n,k) + 2 P(n, k-1) & \mbox{ for all } n > 1, k > 0
+\begin{array}{ccl}
+P(n,0) & \equiv & 1 \ \ \ \ \ \mbox{ for all } \ n \geq 1 \\
+  & & \\
+P(n,1) & = &
+  {\displaystyle
+\left\{
+\begin{array}{cl}
+ 1 & \mbox{ for } \ n=1 \\
+ 2 & \mbox{ for all } \ n > 1
+\end{array}
+\right.  } \\
+  & & \\
+P(n+1, k+1) & = & P(n,k) + 2 P(n, k-1) \ \ \  \mbox{ for all } n > 1, k > 0
 \end{array}
 \end{equation}
+\index{tree-profile numbers!triangle of numbers}
 
-\begin{equation}
-\label{eq:TP-table}
-\begin{array}{l|rrrrrrrrrr}
-    & k=0 & k=1 & k=2 & k=3  & k=4 & k=5  & k=6 & k=7 & k=8 & k=9 \\
+This somewhat complicated definition can be better understood with the
+help of an analogue of Pascal's Triangle that we call the {\it
+  Tree-profile Triangle}.  The reader may want to comapare
+Fig.~\ref{fig:pascal-triangle} with Fig.~\ref{fig:TP-triangle}.
+
+\begin{figure}[htb]
+\[
+\begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
+P(n, k) & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 & k=6 & k=7 & k=8 & k=9 & \ldots \\
 \hline
-n=1 &     &  1  &  0  &   0  &  0  &    0 &   0 &  0  &  0  &  0  \\
-n=2 &  1  &  2  &  4  &   4  &  4  &    3 &   3 &  3  &  3  &  3  \\
-n=3 &  1  &  2  &  6  &  14  & 24  &   22 &  28 &     &     &     \\
-n=4 &  1  &  2  &  6  &  18  & 46  &   64 & 108 &     &     &     \\
-n=5 &  1  &  2  &  6  &  18  & 36  &  100 & 228 &     &     &     \\
-n=6 &  1  &  2  &  6  &  18  & 36  &  108 & 308 &     &     &     \\
-n=7 &  1  &  2  &  6  &  18  & 36  &  108 & 308 &     &     &     \\
-n=8 &  1  &  2  &  6  &  18  & 36  &  108 & 308 &     &     &     \\
-n=9 &  1  &  2  &  6  &  18  & 36  &  108 & 308 &     &     & 
+\hline
+n=1 &  1 &  1 &    &    &     &     &     &     &     &     \\
+\hline
+n=2 &  1 &  2 &  3 &  2 &     &     &     &     &     &     \\
+\hline
+n=3 &  1 &  2 &  4 &  7 &   8 &   4 &     &     &     &     \\
+\hline
+n=4 &  1 &  2 &  4 &  8 &  15 &  22 &  20 &   8 &     &     \\
+\hline
+n=5 &  1 &  2 &  4 &  8 &  16 &  31 &  52 &  64 & 48  &  16 \\
+\hline
+n=6 &  1 &  2 &  4 &  8 &  16 &  32 &  63 & 114 & 168 & 176 \\
+\hline
+n=7 &  1 &  2 &  4 &  8 &  16 &  32 &  64 & 127 & 240 & 396 \\
+\hline
+n=8 &  1 &  2 &  4 &  8 &  16 &  32 &  64 & 128 & 255 & 494 \\
+\hline
+n=9 &  1 &  2 &  4 &  8 &  16 &  32 &  64 & 128 & 256 & 511 \\
+\hline
+\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots
+&\vdots &\vdots &\ddots
 \end{array}
-\end{equation}
+\] 
+\caption{A ``prefix'' of the Tree-Profile Triangle, for $n,k \leq 9$.}
+\label{fig:TP-triangle}
+\end{figure}
 
 
-
-
-
-\[ \sum_{k=0}^{2n-1} \ = \ 3^n -1 \]
+\paragraph{\small\sf B. Relating Triangle-Profile numbers with
+  Binomial Coefficients}
 
 \[ P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i} \]
 
@@ -1164,9 +1200,16 @@ P(n+1, k) & = &
 \end{eqnarray*}
 
 
+\paragraph{\small\sf C. The summation formula for Triangle-Profile numbers}
 
+\begin{prop}
+\[ \sum_{k=0}^{2n-1} \ = \ 3^n -1 \]
+\end{prop}
  
+\begin{proof}
 
+\qed
+\end{proof}
 
 \subsection{Computing the product of two consecutive Fibonacci numbers}
 
