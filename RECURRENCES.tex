@@ -1186,30 +1186,217 @@ n=9 &  1 &  2 &  4 &  8 &  16 &  32 &  64 & 128 & 256 & 511 \\
 \end{figure}
 
 
-\paragraph{\small\sf B. Relating Triangle-Profile numbers with
-  Binomial Coefficients}
+\paragraph{\small\sf B. Relating Triangle-Profile numbers with binomial coefficients}
+\index{tree-profile numbers!relations with binomial coefficients}
 
-\[ P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i} \]
+\begin{prop}
+\label{thm:TP=sum-of-bincoeff}
+For all $n \geq 1$ and all $k \geq 0$,
+\begin{equation}
+\label{eq:TP=sum-of-bincoeff}
+P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i}
+\end{equation}
+\end{prop}
 
+\begin{proof}
+We proceed by induction on $n$.
 
+\medskip
+
+\noindent
+{\it The base case.}
+The case $n=1$ of (\ref{eq:TP=sum-of-bincoeff}) follows from the
+``boundary cases'' of definition (\ref{eq:TP-defn}).
+
+\medskip
+
+\noindent
+{\it The inductive hypothesis.}
+Let us assume that (\ref{eq:TP=sum-of-bincoeff}) holds for all $n$ up
+to (but not including) some integer $m$.  Focus on an arbitrary
+Tree-Profile number $P(m,k)$.
+\begin{itemize}
+\item
+If $k \in \{0,1\}$, then the ``boundary cases'' of definition
+(\ref{eq:TP-defn}) assure us that
+\[
+P(m,k) \ \ = \ \ 2^k \ \ = \ \ 2^{k-n} \cdot 2^n \ \ = \ \ 
+2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i}
+\]
+
+\item
+If $k > 1$, then the defining recurrence in (\ref{eq:TP-defn})
+combines with the inductive hypothesis to yield:
 \begin{eqnarray*}
+\nonumber
+P(m, k) & = &
+   P(m-1, k-1) \ + \ 2 P(m-1, k-2) \\
+        & = &
+   2^{k-m} \cdot \sum_{i=0}^{2m-k-2} {m-1 \choose i}
+   \ + \
+   2^{k-m} \cdot \sum_{j=0}^{2m-k-1} {m-1 \choose i} \\
+        & = &
+   2^{k-m} \cdot {m \choose 0}
+   \ + \
+   2^{k-m} \cdot \sum_{i=1}^{2m-k-1} {m-1 \choose i}
+   \ + \
+   {{m-1} \choose {i-1}} \\
+        & = &
+   2^{k-m} \cdot \sum_{i=0}^{2m-k-1} {m \choose i}.
+\end{eqnarray*}
+\end{itemize}
+The induction is thus extended, thereby establishing the proposition.
+\qed
+\end{proof}
+
+Proposition~\ref{thm:TP=sum-of-bincoeff} explains the proliferation of
+powers of $2$ in the Tree-Profile Triangle.
+
+\begin{corol}
+For all $n > k$, $P(n,k) = 2^k$.
+\end{corol}
+
+\medskip
+
+Finally, we derive the successor Tree-Profile values that allow us to
+generate the Tree-Profile Triangle.
+
+\begin{prop}
+\label{thm:successor-TP-values}
+\begin{eqnarray*}
+\nonumber
+\mathbf{(a)} \ \
 P(n, k+1) & = & 
   2 P(n,k) - 2^{k-n+1} {n \choose {k-n+1}} \\
+\label{eq:successor-TP-values}
+          &   & \\
+\nonumber
+\mathbf{(b)} \ \
 P(n+1, k) & = &
   P(n,k) + 2^{k-n-1} \left[ {n \choose {k-n}} + {{n+1} \choose {k-n}} \right]
 \end{eqnarray*}
+\end{prop}
 
+\begin{proof}
+The major recurrence in (\ref{eq:TP-defn}) can be decomposed into the
+following triplet of recurrences.
+\begin{eqnarray}
+\label{eq:TP-recurrence-1}
+P(n, k)   & = & P(n-1, k-1) \ + \ 2 P(n-1, k-2) \\
+\label{eq:TP-recurrence-2}
+P(n, k+1) & = & P(n-1, k) \ + \ 2 P(n-1, k-1) \\
+\label{eq:TP-recurrence-3}
+P(n+1, k) & = & P(n, k-1) \ + \ 2 P(n, k-2)
+\end{eqnarray}
+We use the recurrences in this triplet to attack the two alleged
+recurrences in the proposition.
+
+\medskip
+
+\noindent {\bf (a)}
+Combining recurrences (\ref{eq:TP-recurrence-1}) and
+(\ref{eq:TP-recurrence-2}) leads, via
+Proposition~\ref{thm:TP=sum-of-bincoeff}, to the following chain of
+equalities.
+\begin{eqnarray*}
+P(n, k+1) \ - \ P(n, k)
+  & = &
+P(n-1, k) \ - \ 4 P(n-1, k-2) \\
+  & = &
+2^{k-n+1} \cdot \left[
+\sum_{i=0}^{2n-k-3} {{n-1} \choose i} \ - \
+\sum_{i=0}^{2n-k-1} {{n-1} \choose i}
+\right] \\
+  & = & 
+- 2^{k-n+1} \cdot \left[
+{{n-1} \choose {2n-k-2}} \ + \ {{n-1} \choose {2n-k-1}}
+\right] \\
+  & = &
+- 2^{k-n+1} \cdot {n \choose k-n+1}.
+\end{eqnarray*}
+This chain thus yields part {\bf (a)} of the proposition.
+
+\medskip
+
+\noindent {\bf (b)}
+This part of the proposition follows by direct calculation from
+recurrence (\ref{eq:TP-recurrence-3}) and
+Proposition~\ref{thm:TP=sum-of-bincoeff}.  To wit,
+\begin{eqnarray*}
+P(n+1, k) \ - \ P(n, k)
+  & = &
+P(n, k-1) \ + \ 2 P(n, k-2) \ - \ P(n,k) \\
+  & = &
+2^{k-n-1} \cdot \left[
+\sum_{i=0}^{2n-k+1} {n \choose i}
+ \ - \ \sum_{i=0}^{2n-k+2} {n \choose i}
+ \ - \ 2 \sum_{i=0}^{2n-k} {n \choose i}
+\right] \\
+  & = & 
+2^{k-n-1} \cdot \left[
+  2 {n \choose {2n-k}} \ + \ {n \choose {2n-k+1}} \right] \\
+  & = &
+2^{k-n-1} \cdot \left[
+   {n \choose {k-n}} \ + \ {{n+1} \choose {k-n}} \right]
+\end{eqnarray*}
+This chain thus yields part {\bf (b)} of the proposition, completing
+the proof.
+\qed
+\end{proof}
 
 \paragraph{\small\sf C. The summation formula for Triangle-Profile numbers}
+\index{tree-profile numbers!summation formula}
+
+We observed in Proposition~\ref{thm:sumsof-binomcoeff} that the
+binomial coefficients in successive rows of Pascal's Triangle sum to
+successive powers of $2$.  While not quite matching that level of
+elegance, we show now that the Tree-Profile numbers in successive rows
+of the Tree-Profile Triangle sum to $1$ less than successive powers of
+$3$.
 
 \begin{prop}
-\[ \sum_{k=0}^{2n-1} \ = \ 3^n -1 \]
+\label{thm:TP-summation}
+For all $n \in \N^+$,
+\begin{equation}
+\label{eq:TP-summation}
+S_n \ \ \eqdef \ \ \sum_{k=0}^{2n-1} P(n,k) \ \ = \ \ 3^n -1.
+\end{equation}
 \end{prop}
  
 \begin{proof}
+We begin with the following consequence of
+Proposition~\ref{thm:TP=sum-of-bincoeff}:
+\[
+S(n) \ \ = \ \
+  \sum_{k=0}^{2n-1} P(n,k)
+     \ \ = \ \
+  1 \ + \ \sum_{k=0}^{2n-1} P(n,k+1).
+\]
+If we now invoke Proposition~\ref{thm:successor-TP-values}(a), then we
+find that
+\[
+S(n) \ \ = \ \ 1 \ + \ 2 \cdot \sum_{k=0}^{2n-1} 
+  \big( P(n,k) \ - \ 2^{k-n} {n \choose {k-n+1}} \big).
+\]
 
+We can combine the preceding expressions with the ``restricted''
+Binomial Theorem (Theorem~\ref{thm:restricted-binomial-thm}) to
+generate the following chain of equalities.
+\begin{eqnarray*}
+S(n) & = & 
+\sum_{j=0}^{2n-1} \left[ 2^{n-j} {n \choose j} \ - \ 1 \right] \\
+     & = & 
+2^n \cdot (3/2)^n \ - \ 1 \\
+     & = &
+3^n -1.
+\end{eqnarray*}
+
+The summation formula (\ref{eq:TP-summation}) follows.
 \qed
 \end{proof}
+
+
+**HERE
 
 \subsection{Computing the product of two consecutive Fibonacci numbers}
 
@@ -1222,7 +1409,7 @@ $F(n).F(n-1)= \sum_{k=0}^{n-1} F(k)^2$ (for $n \geq 1$)
 \item The relation  
 can be proved very easily by the geometric argument shown in Fig.~\ref{fig:fibosquare}). 
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresMaths//Fiboembedded}
         \caption{Geometric interpretation of the relation $F(n).F(n-1)$.}
@@ -1262,7 +1449,7 @@ $F(n+2)^2 = 4.F(n).F(n+1) + F(n-1)^2$ for $n \geq 2$.
 
 The geometrical proof is obtained as depicted in Fig.~\ref{fig:fibosquareembedded} for computing $F_{n+2}^2$.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresMaths//FiboSquares}
         \caption{Geometric interpretation for computing $F_{n+2}^2$.}
@@ -1326,7 +1513,7 @@ The previous result (Cassini's identity) can be used for a geometrical paradox (
 Consider a chess board and cut it into 4 pieces as shown in figure~\ref{paradox}, then reassemble them into a rectangle.
 %Interpret this paradox.
 %
-\begin{figure}[h]
+\begin{figure}[htb]
 \begin{center}
 \label{paradox}
        \includegraphics[scale=0.4]{FiguresMaths//FiboParadox.png}
