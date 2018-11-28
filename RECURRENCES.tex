@@ -1,4 +1,4 @@
-%version of 11-27-18
+%version of 11-28-18
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -472,6 +472,38 @@ patterns of seeds in flower heads, the numbers of petals of flowers,
 the growth patterns of pine cones and pineapples, and on and on; see
 \cite{Basin63}.
 
+The story of this fascinating sequence of numbers has a macroscopic
+aspect also.  Many cultures, the ancient Greeks among them, have
+attributed mystical properties to (classes of) numbers; our
+discussions about the {\it prime numbers} in Section~\ref{sec:primes}
+and about the {\it perfect numbers} in
+Section~\ref{sec:perfect-numbers+Mersenne-primes} bear witness to this
+phenomenon.  One specific number that has attracted such attention is
+the {\it golden ratio}, an irrational number which is usually denoted
+$\Phi$ and which has the following (exact and approximate) values:
+\index{golden ratio, $\Phi$}
+\index{$\Phi$, the golden ratio}
+\[ \Phi \ = \ \frac{1+\sqrt{5}}{2} \ \approx \  1.618\ldots \]
+It has been alleged that rectangles whose {\it aspect ratios} (Length
+$\div$ Width) are (roughly) $\Phi$ are the most pleasing to the human
+eye.  In fact, the aspect ratio of the Parthenon, in Athens is
+(roughly) $\Phi$, although it is not known whether this is
+intentional.  The relevance of $\Phi$ to this section resides in the
+fact that {\em the sequence of ratios of successive Fibonacci numbers
+approaches $\Phi$}.
+
+You can perform your own test about pleasing rectangles and ratios of
+successive Fibonacci numbers by perusing Fig.~\ref{fig:fibosquare}.
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresMaths//Fiboembedded}
+\caption{Successive Fibonacci numbers interpreted geometrically, via a
+  spiral of rectangles whose respective lengths form a Fibonacci
+  sequence.}
+        \label{fig:fibosquare}
+\end{center}
+\end{figure}
+
 The mathematical properties of this truly remarkable sequence will
 occupy our attention in the remainder of this section.
 
@@ -842,7 +874,7 @@ and $a'$ are determined by two particular values $n=0$ and $n=1$:
 $F(n)= \frac{1}{\sqrt{5}} ((\frac{1+\sqrt{5}}{2})^n - (\frac{1-\sqrt{5}}{2})^n)$
 
 
-\subsection{Enrichment: Relatives of the Fibonacci numbers and binomial coefficients}
+\subsection{$\oplus$ Relatives of Fibonacci Numbers and Binomial Coefficients}
 \label{sec:Fibo-relatives}
 
 \subsubsection{Lucas numbers}
@@ -1384,7 +1416,9 @@ Binomial Theorem (Theorem~\ref{thm:restricted-binomial-thm}) to
 generate the following chain of equalities.
 \begin{eqnarray*}
 S(n) & = & 
-\sum_{j=0}^{2n-1} \left[ 2^{n-j} {n \choose j} \ - \ 1 \right] \\
+\sum_{j=0}^{2n-1} 2^{n-j} {n \choose j} \ - \ 1  \\
+     & = &
+2^n \cdot \sum_{j=0}^{2n-1} 2^{-j} {n \choose j} \ - \ 1 \\
      & = & 
 2^n \cdot (3/2)^n \ - \ 1 \\
      & = &
@@ -1396,48 +1430,72 @@ The summation formula (\ref{eq:TP-summation}) follows.
 \end{proof}
 
 
-**HERE
+\subsection{$\oplus$ Computing Products of Consecutive Fibonacci Numbers}
+\label{sec:product-Fn-Fn+1}
+\index{Fibonacci numbers!product of consecutive}
 
-\subsection{Computing the product of two consecutive Fibonacci numbers}
+One feature of the Fibonacci numbers that has captivated an entire
+community of mathematically oriented people is the plethora of simply
+presented identities involving the numbers.\footnote{Indeed, an entire
+  research journal, {\it The Fibonacci Quartlerly},\index{The
+    Fibonacci Quartlerly} is dedicated to the mathematics of Fibonacci
+  numbers and their kin, including the sharing of such identities.}
+We now present a particularly beautiful identity.
 
-\noindent \textbf{Property.} 
-\label{prop:FiboSumConsecutive}
-$F(n).F(n-1)= \sum_{k=0}^{n-1} F(k)^2$ (for $n \geq 1$)
+\begin{prop} 
+\label{thm:FiboSumConsecutive}
+For all $n \geq 1$,
+\begin{equation}
+\label{eq:FiboSumConsecutive}
+F(n) \cdot F(n-1) \ \ = \ \ \sum_{k=0}^{n-1} (F(k))^2.
+\end{equation}
+\end{prop}
 
-\begin{itemize}
+\begin{proof}
+One can observe identity (\ref{eq:FiboSumConsecutive}) ``in action''
+in Fig.~\ref{fig:fibosquare}.  We augment this visual validation of
+the identity with the following induction.
 
-\item The relation  
-can be proved very easily by the geometric argument shown in Fig.~\ref{fig:fibosquare}). 
+\medskip
 
-\begin{figure}[htb]
-\begin{center}
-        \includegraphics[scale=0.5]{FiguresMaths//Fiboembedded}
-        \caption{Geometric interpretation of the relation $F(n).F(n-1)$.}
-        \label{fig:fibosquare}
-\end{center}
-\end{figure}
+\noindent {\it Base case.}
+Instance $n=1$ of identity (\ref{eq:FiboSumConsecutive}) is valid
+because
+\[ F(0) \cdot F(1) \ = \ 1 \cdot 1 \ = \ 1^2 \ = \ (F(0))^2. \]
 
-\item
-Another proof is by induction.
+\medskip
 
-\begin{itemize}
-\item
-The \textbf{basis case} is to check $F(0).F(1) = F(0)^2$, which is true.
+\noindent {\it Inductive hypothesis.}
+Assume that identity (\ref{eq:FiboSumConsecutive}) is valid for all $n
+\leq m$.
 
-\item
-\textbf{Induction step:} Let assume this property holds at rank $n$ and compute $F(n+1).F(n)$.
+\medskip
 
-Apply the definition of $F(n+1)$:
+\noindent {\it Inductive extension.}  Let us focus on the product
+$F(m+1) \cdot F(m)$.  Invoking the defining Fibonacci recurrence
+(\ref{eq:Fibonacci-defn}) and the inductive hypothesis, we generate
+the following chain of identities.
+\begin{eqnarray*}
+F(m+1) \cdot F(m)
+ & = &
+   (F(m) + F(m-1)) \cdot F(m) \\
+ & = &
+   (F(m))^2 + \big( F(m) \cdot F(m-1) \big) \\
+ & = & 
+   (F(m))^2 + \big( \sum_{k=0}^{m-1} (F(k))^2 \big) \\
+ & = &
+   \sum_{k=0}^{m} (F(k))^2.
+\end{eqnarray*}
+The induction is thus extended, which completes the proof.
+\qed
+\end{proof}
 
- $F(n+1).F(n) =  (F(n)+F(n-1)).F(n) = F(n)^2 +  F(n).F(n-1)$
- 
- Apply now the induction hypothesis to this last term:
- 
- $F(n+1).F(n) = F(n)^2 + \sum_{k=0}^{n-1} F(k)^2 = \sum_{k=0}^{n} F(k)^2$.
- \end{itemize}
+{\Arny My instinct is that the following example is not ``pretty'' or
+  ``dramatic'' in the way that
+  Proposition~\ref{thm:FiboSumConsecutive} is ... and it does not seem
+  to teach any really new lessons.}
 
-\end{itemize}
-
+\ignore{************
 \subsubsection{Another property dealing with squares}
 
 We will show the following property by two different methods
@@ -1474,9 +1532,31 @@ $= 4.F(n+1).F(n) + (F(n+1) - F(n))^2$
 Again, using the definition of $F(n+1)$ into the square, we get the expected result:
 
 $F(n+2)^2 = 4.F(n+1).F(n) + F(n-1)^2$
+***********}
 
 
-\subsubsection{Cassini's identity}
+{\Arny This is another one we should discuss.  As with the section
+  ``Another Identity'', Cassini's Identity does not strike me as
+  ``pretty'' as the ``Consecutive products'', and the proof does not
+  open the way to much new methodology.  I am troubled by Carroll's
+  Puzzle because its resolution builds on principles that we do not
+  cover anywhere.  Since this is not a true paradox, this material
+  does not belong in that section.}
+
+
+{\Arny Both of my preceding comments build on the question, Why should
+  we include this material?  Obviously, when new techniques are
+  involved, or when new, highly applicable, concepts are revealed,
+  then the material should be included.  In other situations, I am
+  just pulled by my gut feeling.  Should we discuss?}
+
+\ignore{**************
+\subsection{$\oplus$ Cassini's Identity and Carroll's Puzzle}
+\label{sec:Cassini+Carroll}
+\index{Fibonacci numbers!Cassini's Identity}
+\index{Fibonacci numbers!Carroll's Puzzle}
+
+
 
 \noindent \textbf{Property. (Cassini's identity)} 
 \label{prop:cassini}
@@ -1494,7 +1574,7 @@ The \textbf{induction step} is proved assuming the Cassini's identity holds at r
 
 Apply the definition of $F(n+2)$:
  
-$F(n).F(n+2) = F(n) (F(n+1)+F(n)) = F(n)^2 + F(n).F(n+1))$
+$F(n).F(n+2) = F(n) (F(n+1)+F(n)) = F(n)^2 + F(n).F(n+1)$
 
 Replace the last term using the recurrence hypothesis:
 
@@ -1532,7 +1612,7 @@ The paradox comes from the wrong representation of the diagonal of the rectangle
 of the right triangles of sides $F(n+1)$ and $F(n-1)$.
 In other words, it always remains (for any $n$) an empty space (corresponding to the unit size of the basic square of the chess board).
 The greater $n$, the better the paradox because the deformation of the surface of this basic square becomes more tiny. 
-
+***********************}
 
 %\subsection{Using Fibonacci numbers}
 %
