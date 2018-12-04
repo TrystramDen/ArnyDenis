@@ -1,9 +1,11 @@
-%version of 04-11-18
+%version of 12-04-18
 
 \chapter{GRAPH-THEORETIC ENTITIES}
 \label{Ch:Graphs-Trees}
+\index{Graphs}
 
 \section{Basic Graph-Theoretic Topics}
+\label{sec:Graph-intro}
 
 Graphs provide one of the richest technical and conceptual frameworks
 in the world of computing.  They provide concrete representations of
@@ -12,58 +14,90 @@ for a ``Data Structures and Algorithms'' course.  They embody tangible
 abstractions of relationships of all sorts, hence must be well
 understood in order to discuss entities as varied as web-search
 engines and social networks with precision and rigor.  As with most of
-the topics we are discussing, graph-oriented concepts must be taught
-``in layers''.  All students must be conversant with the use of graphs
-to represent and reason about a variety of complicated relationships,
-but the degree of sophistication that an individual student requires
-depends both on the abilities of the student and the range of
-applications that will appear in the student's program.  The
-fundamental concepts in this essay should be understood by all
-students---although each can be developed with more texture and nuance
-within the context of specific application domains.
+the topics we discuss in this text, graph-oriented concepts must be
+taught ``in layers''.  All students should be conversant with the use
+of graphs to represent and reason about a vast array of complicated
+relationships---ranging from taxonomies (including intra-family
+structures) to link-based data structures to interconnectivity within
+social media, and on and on---but the degree of sophistication that an
+individual student requires depends both on the abilities of the
+student and the range of graph-modeled concepts that will appear in
+the student's program.  The most-basic concepts in this chapter should
+be understood by all students in any academic program that includes a
+computation-oriented component---although each concept can be
+developed with more texture and nuance within the context of specific
+application domains; the more advanced concepts should be selected
+with care, based on the instructor's perception of students' needs, in
+the light of the ever-growing importance of concepts involving
+interconnectivity.
 
 Many developments in computing technology over recent decades have
 made it imperative that graphs no longer be viewed by students as the
-static objects introduced, e.g., as abstractions of data struntures.
-Applications ranging from databases to web-search engines to social
-networks demand an appreciation of graphs as dynamic objects.  This
-change in perspective affects many aspects of the mathematical
-prerequisites for any CS/CE program.
+static objects introduced early in the history of computational
+studies.  For instance, while it was innovative in the 1960s to employ
+graphs computationally as abstractions of data structures, such a view
+is standard today.  Similar remarks, perhaps with differing dates, can
+be made about graphs as vehicles for representing the flow of control
+and information and as vehicles for representing interconnectivity
+among both concepts and populations.  Applications ranging from
+databases to web-search engines to social networks demand an
+appreciation of graphs as dynamic objects.  This change in perspective
+affects many aspects of the mathematical prerequisites for any
+academic program that includes a computation-oriented component.
 
 \subsection{Fundamental Notions}
+\label{sec:graph-fundamentals}
 
-The basic components of graphs are {\em nodes/vertices} (one
-encounters both terms in the literature) and the {\em edges} that
-interconnect them.  When a graph is {\em undirected}, an edge connotes
-some sort of sibling-like relationship among nodes of ``equal''
-status.  When a graph is {\em directed} (sometimes referred to as a
-{\em digraph}), an edge connotes an ``unequal'' relationship such as
-parenthood or priority or dependence; edges in directed graphs are
-often termed {\em arcs}.  In many situations involving directed
-graphs, it is important to recognize The {\em dual} of a digraph $G$
-is a digraph obtained by reversing all of $G$'s arcs.  One sometimes
-encounters situations when arguments about, or operations on, a
-digraph $G$ can be ``translated'' to arguments about, or operations
-on, $G$'s dual with only clerical effort.  A {\em subgraph} $G'$ of a
-graph $G$ is a graph whose nodes are a subset of $G$'s and whose edges
-are a subset of $G$'s that interconnect only nodes of $G'$.  A {\em
-  path} in an undirected graph is a sequence of nodes within which
-every adjacent pair is connected by an edge.  A path is a {\em cycle}
+\subsubsection{An informal overview}
+\label{sec:graphs-informal}
+
+The basic components of a graph $\g$ are its {\em nodes/vertices}
+\index{Graphs!nodes} \index{Graphs!vertices} \index{node (of a graph)}
+\index{vertex (of a graph)} (one encounters both terms in the
+literature) and its {\em edges} \index{Graphs!edges} \index{edge (of a
+  graph)} that interconnect them.  (The singular form of ``vertices''
+is {\it vertex}.)  \index{Graphs!vertex} \index{vertex (of a graph)}
+When graph $\g$ is {\em undirected}, \index{Graphs!undirected} each of
+its edges connotes some sort of sibling-like relationship among nodes
+of ``equal'' status.  When graph $\g$ is {\em directed}
+\index{Graphs!directed} (sometimes referred to as a {\em digraph}),
+\index{digraph} \index{Graphs!digraphs} each of its edges connotes an
+``unequal'' relationship such as parenthood or priority or dependence;
+edges in directed graphs are often termed {\em
+  arcs}. \index{Graphs!arc} \index{arc (of a directed graph)}
+\index{arc (of a digraph)} In many situations involving directed
+graphs, it is important to recognize the {\em dual}
+\index{Graphs!digraph!dual} of a digraph $\g$.  This dual---which is
+usually denoted by some notational embellishment of ``$\g$'', such as
+$\widehat{\g}$---is the digraph obtained by {\em reversing} all of
+$\g$'s arcs.  One sometimes encounters situations when arguments
+about, or operations on, a digraph $\g$ can be ``translated'' to
+arguments about, or operations on, $\widehat{\g}$ with only clerical
+effort.  A {\em subgraph} $\g'$ of a graph $\g$ is a graph whose nodes
+are a subset of $\g$'s and whose edges are a subset of $\g$'s that
+interconnect only nodes of $\g'$.  A {\em path} \index{Graphs!path}
+\index{path (in a graph)} in an undirected graph is a sequence of
+nodes within which every adjacent pair is connected by an edge.  A
+path is a {\em cycle} \index{Graphs!cycle} \index{cycle (in a graph)}
 if all nodes in the sequence are distinct, except for the first and
 last, which are identical.  Paths and cycles in directed graphs are
 defined similarly, except that every adjacent pair of nodes must be
 connected by an arc, and all arcs must ``point in the same
-direction.''  
+direction.''
 
-{\small\sf Getting formal}.
-%
-A {\it directed graph} ({\it digraph}, for short) $\g$ is given by a
-set of {\it nodes} $\n_{\fg}$ and a set of {\it arcs} (or {\it
-  directed edges}) $\a_{\fg}$.  Each arc has the form $(u \rightarrow
-v)$, where $u, v \in \n_{\fg}$; we say that this arc goes {\em from}
-$u$ {\em to} $v$.  A {\it path} in $\g$ is a sequence of arcs that
-share adjacent endpoints, as in the following path from node $u_1$ to
-node $u_n$:
+\subsubsection{Getting formal}
+\label{sec:graphs-formal}
+
+A {\it directed graph} \index{Graphs!directed} ({\it digraph},
+\index{digraph} for short) $\g$ is given by a set of {\it nodes}
+\index{Graphs!node} \index{$\n_{\fg}$: set of nodes of graph $\g$}
+$\n_{\fg}$ and a set of {\it arcs} \index{Graphs!digraph!arcs} (or
+{\it directed edges}) $\a_{\fg}$. \index{$\a_{\fg}$: set of arcs of
+  digraph $\g$} Each arc has the form $(u \rightarrow v)$, where $u, v
+\in \n_{\fg}$; we say that this arc goes {\em from} $u$ {\em to} $v$.
+A {\it path} \index{Graph!path in a digraph} in the digraph $\g$ is a
+sequence of arcs that share adjacent endpoints, as in the following
+path from node $u_1$ to node $u_n$:
 \begin{equation}
 \label{e.path}
 (u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2}
@@ -83,7 +117,8 @@ then we call the preceding path a {\em cycle}.\index{cycle (in a digraph)}
 
 An {\em undirected graph} is obtained from a directed graph by
 removing the directionality of the arcs; the thus-beheaded arcs are
-called {\em edges}.  Whereas we say: \\
+called {\em edges}.  \index{Graphs!edge} \index{edge (in a graph)}
+Whereas we say: \\
 \hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} node $u$ {\em to}
 node $v$ \\
 we say: \\
