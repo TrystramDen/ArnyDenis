@@ -98,26 +98,32 @@ has no exiting arcs.  The reader is certainly familiar with the use of
 rooted directed trees to represent family trees and corporate
 hierarchies.
 
-\subsection{Directed graphs}
+\subsection{Generic Graphs: Directed and Undirected}
 \label{sec:digraphs}
 
 A {\it directed graph} \index{Graphs!directed} ({\it digraph},
 \index{digraph} for short) $\g$ is given by a set of {\it nodes}
-\index{Graphs!node} \index{$\n_{\fg}$: set of nodes of graph $\g$}
-$\n_{\fg}$ and a set of {\it arcs} \index{Graphs!digraph!arcs} (or
-{\it directed edges}) $\a_{\fg}$. \index{$\a_{\fg}$: set of arcs of
-  digraph $\g$} Each arc has the form $(u \rightarrow v)$,
-\index{$\rightarrow$: parent/child in a rooted tree}
-\index{$\rightarrow$: arc in a directed graph} where $u, v \in
-\n_{\fg}$; we say that this arc goes {\em from} $u$ {\em to} $v$.  A
-  {\it path} \index{Graph!path in a digraph} in the digraph $\g$ is a
-  sequence of arcs that share adjacent endpoints, as in the following
-  path from node $u_1$ to node $u_n$:
+\index{Graphs!node}
+\index{$\n_{\fg}$: set of nodes of graph $\g$}
+$\n_{\fg}$ and a set of {\it arcs}
+\index{Graphs!digraph!arcs}
+(or {\it directed edges}) $\a_{\fg}$.
+\index{$\a_{\fg}$: set of arcs of digraph $\g$}
+Each arc of $\g$ has the form $(u \rightarrow v)$,
+\index{$\rightarrow$: arc in a directed graph}
+where $u, v \in \n_{\fg}$; we say that this arc goes {\em from} $u$
+{\em to} $v$.  A {\it path} 
+\index{Graphs!path in a digraph}
+in the digraph $\g$ is a sequence of arcs that share adjacent
+endpoints, as in the following path from node $u_1$ to node $u_n$:
 \begin{equation}
 \label{e.path}
 (u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2}
         \rightarrow u_{n-1}), \ (u_{n-1} \rightarrow u_n).
 \end{equation}
+
+\medskip
+
 It is sometimes useful to endow the arcs of a digraph with labels from
 an alphabet $\Sigma$.  When so endowed, the path (\ref{e.path}) would
 be written
@@ -130,25 +136,107 @@ be written
 where the $\lambda_i$ denote symbols from $\Sigma$.  If $u_1 = u_n$,
 then we call the preceding path a {\em cycle}.\index{cycle (in a digraph)}
 
-\subsection{Undirected graphs}
-\label{sec:graphs-undirected}
+\medskip
 
-An {\em undirected graph} is obtained from a directed graph by
-removing the directionality of the arcs; the thus-beheaded arcs are
-called {\em edges}.  \index{Graphs!edge} \index{edge (in a graph)}
-Whereas we say: \\
+An {\em undirected graph} $\h$ is given by a set of nodes $\n_{\fh}$
+and a set $\e_{\fh}$ 
+\index{$\e_{\fh}$: the set of edges of the undirected  graph $\h$}
+of $2$-element subsets of $\n_{\fh}$.  Each of these subsets is called
+an {\it edge (of $\h$)}.
+\index{Graphs!edge} \index{edge (in a graph)}
+One can, thus, view the undirected graph $\h$ as being obtained from a
+directed graph $\bar{\h}$ by removing the directionality of
+$\bar{\h}$'s arcs.  Whereas we say: \\
 \hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} node $u$ {\em to}
 node $v$ \\
 we say: \\
 \hspace*{.35in}the undirected edge $\{u,v\}$ goes {\em between} nodes
 $u$ and $v$ \\
 or, more simply: \\
-\hspace*{.35in}the undirected edge $\{u,v\}${\em connects} nodes $u$
+\hspace*{.35in}the undirected edge $\{u,v\}$ {\em connects} nodes $u$
 and $v$.  \\
+One can view an undirected graph as asserting ``pure'' connectivity,
+whereas directed graphs assert some form of priority or
+directionality.
+
+\medskip
+
 {\em Undirected} graphs are usually the default concept, in the
-following sense: {\em When $\g$ is described as a ``graph,'' with no
-  qualifier ``directed'' or ``undirected,'' it is understood that $\g$
-  is an undirected graph.}
+following sense: When $\g$ is described as a ``graph,'' with no
+qualifier ``directed'' or ``undirected,'' it is usually understood
+that $\g$ is an undirected graph.
+
+\medskip
+
+For each edge $\{u,v\} \in \e_{\fh}$, we call nodes $u$ and $v$ {\it
+  neighbors} (in $\h$).
+\index{neighbor node!in a graph}
+The {\it degree}
+\index{degree of a node in an undirected graph}
+of a node $u \in \n_{\fh}$ is the number of neighbors that $u$ has.
+
+We sometimes use the term {\it neighbor} within the context of {\em
+  directed} graphs also.  If we say that nodes $u$ and $v$ are
+neighbors in the directed graph $\g$,
+\index{neighbor node!in a directed graph}
+then we mean that $\a_{\fg}$ contains at least one of the arcs $(u
+  \rightarrow v)$ or $(v \rightarrow u)$.  More typically, we use
+  terminology that is more faithful to digraph $\g$'s directedness.
+If $\a_{\fg}$ contains the arc $(u \rightarrow v)$, then we would call
+  $v$ a {\it (direct) successor} of $u$
+\index{digraph!successor node}
+\index{successor node in a directed graph}
+and we would call $u$ a {\it (direct) predecessor} of $v$
+\index{digraph!predecessor node}
+\index{predecessor node in a directed graph}
+The term {\it parent} often replaces ``predecessor node'', and the
+term {\it child} often replaces ``successor node'', especially when
+$\g$ is a directed {\em tree}.  Acknowledging the distinction between
+predecessors and successors in digraphs, we usually split the notion
+of the degree of a node within a digraph into the {\it indegree} and
+the {\it outdegree} of node $u$:
+\begin{itemize}
+\item
+The {\it indegree} of node $u \in \n_{\fg}$
+\index{digraph!indegree}
+is the number of nodes $v \in \n_{\fg}$ such that $(u \rightarrow v)$
+is an arc of $\g$.
+\item
+Symmetrically, the {\it outdegree} of node $u \in \n_{\fg}$
+\index{digraph!outdegree}
+is the number of nodes $v \in \n_{\fg}$ such that $(v \rightarrow u)$
+is an arc of $\g$.
+\end{itemize}
+
+The {\it (directed) distance}
+\index{digraph!distance between two nodes}
+from node $u_1$ to node $u_n$ in the digraph $\g$ is defined as
+follows.
+\begin{equation}
+\label{eq:di-distance-defn}
+ \mbox{distance}(u_1, u_n) \ = \ \left\{
+\begin{array}{cl}
+0 & \mbox{  if  } \ u_1 = u_n \\
+n-1 & \mbox{  if there is a path } \ (\ref{e.path})
+\ \mbox{ from $u_1$ to $u_n$} \\
+\infty & \mbox{  if there is no path } \ (\ref{e.path})
+\ \mbox{ from $u_1$ to $u_n$}
+\end{array}
+\right.
+\end{equation}
+The {\it directed diameter} 
+\index{directed diameter (in a digraph)}
+of a directed graph $\g$ is the largest quantity $q$ such that there
+exist nodes $u_1, u_n \in \n_{\fg}$ having distance$(u_1, u_n) = q$.
+
+\medskip
+
+The notions of {\it undirected distance} and {\it undirected diameter}
+
+\index{diameter in a graph}
+
+**HERE
+
 
 \subsection{Trees}
 \label{sec:Trees}
@@ -182,21 +270,30 @@ Sociologically, the historical {\it atomic family tree} \index{family
   tree} has two roots, representing the matriarch and patriarch of the
 family.  The entirety of the tree represents a single family
 generationally, before any children form their own families.  All
-child nodes in this genre of tree are the roots of singly-rooted
-trees.  The leaves of the tree are the childless descendants of the
-roots.  Note that, while we are using anthropomorphic language here,
-we could be discussing other genres of ``family'', as, e.g., many
-types of biological taxonomies.
+child-nodes in this genre of tree are the roots of singly-rooted
+subtrees of the entire family tree.  The leaves of the tree are the
+childless descendants of the roots.  Note that, while we are using
+anthropomorphic language here, we could be discussing other genres of
+``family'', as, e.g., many types of biological taxonomies.
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 
-Among rooted directed trees, an important subclass comprise those that
-have a {\em single root}.  One verifies easily that the root of such a
-tree has a directed path to every other node of the tree.
+Among rooted directed trees, an important subclass comprises those
+that have a {\em single root} which has a directed path to every other
+node.  The length of each such directed path is often used to label
+the {\it generation}
+\index{generation of a node in a singly-rooted directed tree}
+of the node at the end of the path: root, child, grandchild,
+great-grandchild, etc.
+Every node of the tree is the root of a singly-rooted directed
+subtree of the entire tree.  All subtrees that are rooted at nodes of
+the same generation are mutually disjoint.
 
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
-A singly-rooted tree represents a {\it hierarchy},
-\index{Trees!singly-rooted!hierarchy} \index{hierarchy}
-such as one might find in a corporate structure.
+A singly-rooted tree represents a {\it hierarchy}.
+\index{Trees!singly-rooted!hierarchy} \index{hierarchy} Given two
+directed subtrees within a hierarchy, either the root of one of the
+subtrees is a descendant of the root of the other, or the two subtrees
+are are mutually disjoint.
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 
 More formally: {\em rooted trees} are a class of {\em acyclic}
@@ -336,16 +433,33 @@ none
 \subsection{Other Important Families of Graphs}
 \label{sec:graphs-important-families}
 
-As the technology that enabled both the hardware and software systems
-of modern computers has advanced, the ability to design and utilize
-such systems ``by the seat of one's pants'' has commensurately
-decreased.  A vast array of formal aids for the activities of
-designing, analyzing, utilizing, and verifying computer systems has
-developed, and mathematical tools have always been at or near the
-forefront of such aids.
+The mathematical discipline called graph theory is an important source
+of formal aids for the activities of designing, analyzing, utilizing,
+and verifying computer systems.  Of course, computer systems are
+designed by humans.  Among other consequences of this fact is the
+observations that the graphs that are among the most commonly used to
+structure systems tend to be rather uniform in structure, in a variety
+of possible ways.  Such graphs, when drawn, often exhibit a lot of
+structural symmetry.  One popular form of symmetry is {\it degree
+  regularity}: an undirected graph $\g$ is {\it regular}
+\index{Graphs!regular}
+if all nodes of $\g$ have the same degree.  Not surprisingly, there
+are symmetric notion of {\it in-regularity}
+\index{Graphs!directed!in-regular}
+and {\it out-regularity}
+\index{Graphs!directed!out-regular}
+for directed graphs.
 
-Let us start by studying structural properties for some particular regular graphs
-(\textit{i.e.} those whose degree is equal on each vertex).
+We now describe five families of regular graphs that have proven
+useful over the history of digital computing, and we expose some basic
+properties of each.  **HERE
+
+cycles
+complete
+(boolean) hypercube
+cube-connected cycles
+de Bruijn networks
+
 \bigskip
 
 \noindent {\bf Definitions.}
