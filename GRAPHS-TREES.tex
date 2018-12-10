@@ -511,32 +511,63 @@ Say Especially when the graphs are studied within the context of {\em
   hardware}---i.e, as the network that underlies a parallel
 architecture by interconnecting its processors
 
+Throughout, the parameters that describe our graph families range over
+the positive integers; i.e., each occurrence of $n$ below ranges over
+$\N^+$.
+
 \subsubsection{Cycle-graphs}
 \label{sec:cycle-graph}
 
-For each $n \in \N^+$, the {\it order-$n$ cycle-graph} $\cc_n$ has
+Both the {\it undirected order-$n$ cycle-graph} $\cc_n$ and the {\it
+  directed order-$n$ cycle-graph} $\widehat{\cc}_n$
 \index{cycle graph}
 \index{cycle network}
+have {\it node-set}
+\[ \n_{{\cal C}_n} \ = \ \n_{\widehat{{\cal C}}_n}
+\ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
+\begin{itemize}
+\item
+$\cc_n$ has {\it edge-set}
+\[ \e_{{\cal C}_n} \ = \
+\big\{ \{i, \ i+1 \bmod n\} \ \ | \ \ i \in \{0, \ 1, \ \ldots,
+\ n-1\} \big\}.
+\]
+  \begin{itemize}
+  \item
+$\cc_n$ is a regular network: each node has degree $2$.
+   \item
+$\cc_n$ has diameter $\lfloor (n-1)/2 \rfloor$.
 
-\begin{tabular}{lll}
-{\sf node-set}: & &
-$\n_{{\cal C}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}$ \\
-\n_{{\cal C}_n}
-{\sf edge-set:} & & 
-$\e_{{\cal C}_n} \ = \ 
-\big\{ \{i, \ i+1 \bmod n\} \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}$.
-\end{tabular}
+Direct calculation shows that $\cc_n$'s diameter is no larger than
+this.  The fact that this is, in fact, the graphs's diameter is
+witnessed by the distance betewen each node $k \in \n_{{\cal C}_n}$
+and its antipodal node $k + \lfloor (n-1)/2 \rfloor \bmod n$.
+  \end{itemize}
 
-\noindent
-It is clear that $\cc_n$ has diameter $\lfloor (n-1)/2 \rfloor$.
-Direct calculation shows that the diameter is no larger than this and
-that the diameter is, in fact, the distance betewen each node $k \in
-\n_{{\cal C}_n}$ and its antipodal node $k + \lfloor (n-1)/2 \rfloor
-\bmod n$.
+\item
+$\widehat{\cc}_n$ has {\it arc-set}
+\[ \a_{\widehat{{\cal C}}_n} \ = \ 
+\big\{ (i \rightarrow i+1 \bmod n) \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}
+\]
+  \begin{itemize}
+  \item
+$\widehat{\cc}_n$ is a regular network: each node has the same
+    indegree and the same outdegree.  Coincidentally both the common
+    indegree and the common outdegree are $2$.
+  \item
+$\widehat{\cc}_n$ has (directed) diameter $n-1$.
+
+Of course, $n-1$ is an upper bound on the diameter of any $n$-node
+digraph.  The fact that this is, in fact, the graph's diameter is witnessed by
+the directed distance from each node $k$ of $\widehat {\cc}_n$ 
+to its predecessor node $k-1 \bmod n$. 
+  \end{itemize}
+\end{itemize}
+
+**HERE
 
 
 
-cycles
 complete
 (boolean) hypercube
 cube-connected cycles
