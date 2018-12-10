@@ -1,4 +1,4 @@
-%version of 12-04-18
+%version of 12-10-18
 
 \chapter{GRAPH-THEORETIC CONCEPTS AND ENTITIES}
 \label{Ch:Graphs-Trees}
@@ -114,19 +114,29 @@ Each arc of $\g$ has the form $(u \rightarrow v)$,
 where $u, v \in \n_{\fg}$; we say that this arc goes {\em from} $u$
 {\em to} $v$.  A {\it path} 
 \index{Graphs!path in a digraph}
+\index{path in a digraph}
 in the digraph $\g$ is a sequence of arcs that share adjacent
-endpoints, as in the following path from node $u_1$ to node $u_n$:
+endpoints, as in the following $(n-1)$-arc path from node $u_1$ to
+node $u_n$ in $\g$:
 \begin{equation}
-\label{e.path}
+\label{eq:di-path}
 (u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2}
         \rightarrow u_{n-1}), \ (u_{n-1} \rightarrow u_n).
 \end{equation}
+The path described in (\ref{eq:di-path}) makes sense only when every
+node $u_i$ belongs to $\n_{\fg}$ and every arc $(u_i \rightarrow u_j)$
+belongs to $\a_{\fg}$.  The {\it length} of path (\ref{eq:di-path}) is
+the number of arcs---i.e., $n-1$; and the existence of the path means
+that the {\it distance} \index{distance in a digraph}
+\index{digraph!distance} \index{Graphs!distance in a digraph} from
+$u_1$ to $u_n$ in $\g$ is no greater than $n-1$.   (There may exist
+shorter paths in $\g$ from $u_1$ to $u_n$.)
 
 \medskip
 
 It is sometimes useful to endow the arcs of a digraph with labels from
-an alphabet $\Sigma$.  When so endowed, the path (\ref{e.path}) would
-be written
+an alphabet $\Sigma$.  When so endowed, the path (\ref{eq:di-path})
+would be written
 \[
 (u_1 \stackrel{\lambda_1}{\rightarrow} u_2), \ 
 (u_2 \stackrel{\lambda_2}{\rightarrow} u_3), \ \ldots, \ 
@@ -158,6 +168,25 @@ and $v$.  \\
 One can view an undirected graph as asserting ``pure'' connectivity,
 whereas directed graphs assert some form of priority or
 directionality.
+
+A {\it path} in an undirected graph \index{Graphs!path in undirected
+  graph} \index{path in and undirectd graph} is a sequence of
+edges---i.e., of $2$-element sets of nodes---such that adjacent edges
+share a node.  For illustration, an $(n-1)$-edge path that connects
+nodes $u$ and $v$ in the undirected graph $\h$ has the form
+\begin{equation}
+\label{eq:undi-path}
+\{u, u_1\}, \ \{u_1, u_2\}, \ \{u_2, u_3\}, \ \ldots, \ \{u_{n-2},
+u_{n-1}\}, \ \{u_{n-1}, v\}
+\end{equation}
+The path described in (\ref{eq:undi-path}) makes sense only when every
+node $u_i$ belongs to $\n_{\fh}$ and every edge $(u_i \ u_j\}$ belongs
+to $\e_{\fh}$.  The {\it length} of path (\ref{eq:undi-path}) is the
+number of edges---which is $n-1$ in this example; and the existence of
+the path means that the {\it distance} \index{distance in a graph}
+\index{Graphs!distance} {\it between} $u$ and $v$ in $\h$ is no
+greater than $n-1$.  (There may exist shorter paths that connect $u$
+and $v$.)
 
 \medskip
 
@@ -208,34 +237,57 @@ is the number of nodes $v \in \n_{\fg}$ such that $(v \rightarrow u)$
 is an arc of $\g$.
 \end{itemize}
 
-The {\it (directed) distance}
+\noindent {\it Distance and diameter in a digraph.}
 \index{digraph!distance between two nodes}
-from node $u_1$ to node $u_n$ in the digraph $\g$ is defined as
-follows.
+Extrapolating from our discussion of path (\ref{eq:di-path}): The {\it
+  distance} from node $u_1$ to node $u_n$ in the digraph $\g$ is the
+smallest number of arcs in any path from $u_1$ to $u_n$.  In detail:
 \begin{equation}
 \label{eq:di-distance-defn}
- \mbox{distance}(u_1, u_n) \ = \ \left\{
-\begin{array}{cl}
-0 & \mbox{  if  } \ u_1 = u_n \\
-n-1 & \mbox{  if there is a path } \ (\ref{e.path})
+ \mbox{\sc distance}(u_1, u_n) \ \ \left\{
+\begin{array}{cll}
+= & 0 & \mbox{  if  } \ u_1 = u_n \\
+\leq & n-1 & \mbox{  if there is a path } \ (\ref{eq:di-path})
 \ \mbox{ from $u_1$ to $u_n$} \\
-\infty & \mbox{  if there is no path } \ (\ref{e.path})
+= & \infty & \mbox{  if there is no path } \ (\ref{eq:di-path})
 \ \mbox{ from $u_1$ to $u_n$}
 \end{array}
 \right.
 \end{equation}
-The {\it directed diameter} 
-\index{directed diameter (in a digraph)}
-of a directed graph $\g$ is the largest quantity $q$ such that there
-exist nodes $u_1, u_n \in \n_{\fg}$ having distance$(u_1, u_n) = q$.
+The {\it diameter} \index{diameter in a digraph}
+\index{digraph!diameter} of a directed graph $\g$ is the largest
+distance between two nodes of $\g$, i.e., the largest number $d$ for
+which there exist nodes $u_1, u_n \in \n_{\fg}$ such that {\sc
+  distance}$(u_1, u_n) = d$.  Note that when discussing digraphs, we
+always use {\em directed} paths when defining distance.
 
 \medskip
 
-The notions of {\it undirected distance} and {\it undirected diameter}
-
+\noindent {\it Distance and diameter in an undirected graph.}
+\index{Graphs!!distance between two nodes}
 \index{diameter in a graph}
-
-**HERE
+Extrapolating from our discussion of path (\ref{eq:undi-path}): The
+{\it distance between} node $u_1$ and node $u_n$ in the graph $\g$ is
+the smallest number of edges in any path from $u_1$ to $u_n$.  In
+detail:
+\begin{equation}
+\label{eq:distance-defn}
+ \mbox{\sc distance}(u, v) \ \ \left\{
+\begin{array}{cll}
+= & 0 & \mbox{  if  } \ u = v \\
+\leq & n-1 & \mbox{  if there is a path } \ (\ref{eq:di-path})
+\ \mbox{ between $u$ and $v$} \\
+= & \infty & \mbox{  if there is no path } \ (\ref{eq:di-path})
+\ \mbox{ between $u$ and $v$}
+\end{array}
+\right.
+\end{equation}
+The {\it diameter} \index{diameter in a graph} \index{Graphs!diameter}
+of an undirected graph $\h$ is the largest distance between two nodes
+of $\h$, i.e., the largest number $d$ for which the exist nodes $u_1,
+u_n \in \n_{\fh}$ such that {\sc distance}$(u_1, u_n) = d$.  Note that
+when discussing undirected graphs, we always use {\em undirected}
+paths when defining distance.
 
 
 \subsection{Trees}
@@ -299,10 +351,10 @@ are are mutually disjoint.
 More formally: {\em rooted trees} are a class of {\em acyclic}
 digraphs.  Paths in trees which start at the root are often called
 {\em branches}.  The {\em acyclicity} of a tree $\t$ means that for
-any branch of $\t$ of the form (\ref{e.path}), we cannot have $u_1 =
+any branch of $\t$ of the form (\ref{eq:di-path}), we cannot have $u_1 =
 u_n$, for this would create a cycle.  Each singly-rooted tree $\t$ has
 a designated {\em root node} \index{Trees!root node} $u_n \in
-\n_{\ft}$ that resides at the end of a branch (\ref{e.path}) that
+\n_{\ft}$ that resides at the end of a branch (\ref{eq:di-path}) that
 starts at $r_{\ft}$ (so $u_1 = r_{\ft}$) is said to reside at {\em
   depth} $n-1$ in $\t$; by convention, $r_{\ft}$ is said to reside at
 depth $0$.  \index{depth of a node in a singly-rooted trees} $\t$'s
@@ -442,17 +494,47 @@ structure systems tend to be rather uniform in structure, in a variety
 of possible ways.  Such graphs, when drawn, often exhibit a lot of
 structural symmetry.  One popular form of symmetry is {\it degree
   regularity}: an undirected graph $\g$ is {\it regular}
-\index{Graphs!regular}
-if all nodes of $\g$ have the same degree.  Not surprisingly, there
-are symmetric notion of {\it in-regularity}
-\index{Graphs!directed!in-regular}
-and {\it out-regularity}
+\index{Graphs!regular} if all nodes of $\g$ have the same degree.  Not
+surprisingly, there is a directed version of regular embodied in the
+symmetric notions of {\it in-regularity}
+\index{Graphs!directed!in-regular} and {\it out-regularity}.
 \index{Graphs!directed!out-regular}
-for directed graphs.
 
 We now describe five families of regular graphs that have proven
 useful over the history of digital computing, and we expose some basic
-properties of each.  **HERE
+properties of each, including its diameter.  Each of these graphs is
+available in both a directed and an undirected version.
+
+*** DESCRIBE MOTIVATION***
+
+Say Especially when the graphs are studied within the context of {\em
+  hardware}---i.e, as the network that underlies a parallel
+architecture by interconnecting its processors
+
+\subsubsection{Cycle-graphs}
+\label{sec:cycle-graph}
+
+For each $n \in \N^+$, the {\it order-$n$ cycle-graph} $\cc_n$ has
+\index{cycle graph}
+\index{cycle network}
+
+\begin{tabular}{lll}
+{\sf node-set}: & &
+$\n_{{\cal C}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}$ \\
+\n_{{\cal C}_n}
+{\sf edge-set:} & & 
+$\e_{{\cal C}_n} \ = \ 
+\big\{ \{i, \ i+1 \bmod n\} \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}$.
+\end{tabular}
+
+\noindent
+It is clear that $\cc_n$ has diameter $\lfloor (n-1)/2 \rfloor$.
+Direct calculation shows that the diameter is no larger than this and
+that the diameter is, in fact, the distance betewen each node $k \in
+\n_{{\cal C}_n}$ and its antipodal node $k + \lfloor (n-1)/2 \rfloor
+\bmod n$.
+
+
 
 cycles
 complete
@@ -464,7 +546,6 @@ de Bruijn networks
 
 \noindent {\bf Definitions.}
 \begin{itemize}
-\item A cycle $C_n$ of order $n$ is a graph where each vertex $i$ is linked with $i-1$ and $i+1$ modulo $n$.
 \item The complete graph $K_n$ of order $n$ is the graph where each vertex is linked with all the others. 
 \item An hypercube of rank $k$ is defined recursively as follows:
 
