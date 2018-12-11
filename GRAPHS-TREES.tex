@@ -518,11 +518,10 @@ $\N^+$.
 \subsubsection{Cycle-graphs}
 \label{sec:cycle-graph}
 
-Both the {\it undirected order-$n$ cycle-graph} $\cc_n$ and the {\it
-  directed order-$n$ cycle-graph} $\widehat{\cc}_n$
-\index{cycle graph}
-\index{cycle network}
-have {\it node-set}
+For each positive integer $n \in \N^+$, both the {\it undirected
+  order-$n$ cycle-graph} $\cc_n$ and the {\it directed order-$n$
+  cycle-graph} $\widehat{\cc}_n$ \index{cycle graph} \index{cycle
+  network} have {\it node-set}
 \[ \n_{{\cal C}_n} \ = \ \n_{\widehat{{\cal C}}_n}
 \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
 \begin{itemize}
@@ -571,9 +570,10 @@ to its predecessor node $k-1 \bmod n$.
 \subsubsection{Complete graphs}
 \label{sec:complete-graph}
 
-Both the {\it undirected order-$n$ complete-graph} $\k_n$ and the {\it
-  directed order-$n$ complete-graph} $\widehat{\k}_n$ \index{complete
-  graph} have {\it node-set} 
+For each positive integer $n \in \N^+$, both the {\it undirected
+  order-$n$ complete-graph} $\k_n$ and the {\it directed order-$n$
+  complete-graph} $\widehat{\k}_n$ \index{complete graph} have {\it
+  node-set}
 \[ \n_{{\cal K}_n} \ = \ \n_{\widehat{{\cal K}}_n}
 \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
 \begin{itemize}
@@ -626,6 +626,54 @@ and communication---that one can achieve using PDC.
 \subsubsection{Mesh and torus networks}
 \label{sec:mesh-torus}
 \index{mesh and torus networks}
+
+For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh
+  (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network}
+(or, {\it torus}) $\widetilde{\m}_{m,n}$ have {\it node-set}
+\begin{eqnarray*}
+\n_{\fm_{m,n}} \ = \ \n_{\widetilde{\fm}_{m,n}}
+  & = & 
+\{1, \ 2, \ldots, \ m\} \ \times \ \{1, \ 2, \ldots, \ n\} \\
+  & = & 
+\big\{ \langle i, \ j \rangle \ \ | \ \ 
+\big[ i \in \{1, \ 2, \ldots, \ m\} \big], \ \
+\big[ j \in \{1, \ 2, \ldots, \ n\} \big]
+\big\}
+\end{eqnarray*}
+
+\begin{itemize}
+\item
+$\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
+\begin{eqnarray*}
+\e_{\fm_{m,n}} & = & 
+\big\{
+\{ \{ i, j \}, \ \{ i+1, j \} \ \ | \ \
+1 \leq i < m, \ \ 1 \leq j \leq n \} \\
+  &  & \hspace*{.1in} \cup
+\{ \{ i, j \}, \ \{ i, j+1 \} \ \ | \ \
+1 \leq i \leq m, \ \ 1 \leq j < n \}
+\big\}
+\end{eqnarray*}
+
+DEGREE, DIAMETER
+
+\item
+$\widetilde{\m}_{m,n}$ has $2mn$ arcs; its {\it arc-set} is
+\begin{eqnarray*}
+\a_{\widetilde{\m}_{m,n}} & = &
+\big\{
+\{ (\langle i, \ j \rangle \rightarrow \langle i+1 \bmod m, \ j
+\rangle) \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j \leq n \} \\
+  &  & \hspace*{.1in} \cup
+\{ (\langle i, \ j \rangle \rightarrow \langle i, \ j+1 \bmod n
+\rangle) \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j \leq n \}
+\big \}
+\end{eqnarray*}
+
+DEGREE, DIAMETER
+
+\end{itemize}
+
 
 **HERE
 
@@ -730,7 +778,7 @@ $\q_n$ is a regular network: each of its $2^n$ nodes has degree $n$.
 \smallskip
 
 \noindent
-$\q_n$ has diameter $n \ = \ \ln |\n_{\fq}_n|$.\footnote{Recall that
+$\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.\footnote{Recall that
   $\ln n = \log_2 n$; see Section~\ref{sec:logarithmic-fns}.}  In
 other words, $\q_n$'s diameter is {\em logarithmic} in its size.  This
 fact makes $\q_n$ an efficient network for many tasks related to
