@@ -527,7 +527,7 @@ have {\it node-set}
 \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
 \begin{itemize}
 \item
-$\cc_n$ has {\it edge-set}
+$\cc_n$ has $n$ edges; its {\it edge-set} is
 \[ \e_{{\cal C}_n} \ = \
 \big\{ \{i, \ i+1 \bmod n\} \ \ | \ \ i \in \{0, \ 1, \ \ldots,
 \ n-1\} \big\}.
@@ -535,13 +535,17 @@ $\cc_n$ has {\it edge-set}
   \begin{itemize}
   \item
 $\cc_n$ is a regular network: each node has degree $2$.
-   \item
-$\cc_n$ has diameter $\lfloor (n-1)/2 \rfloor$.
+
+Specifically, each node $i$ of $\cc_n$ has its {\it predecessor} $i-1
+\bmod n$ \index{cycle graph!predecessor node} \index{cycle
+  graph!successor node} and its {\it successor} $i+1 \bmod n$ .
+  \item
+$\cc_n$ has diameter $\lfloor n/2 \rfloor$.
 
 Direct calculation shows that $\cc_n$'s diameter is no larger than
 this.  The fact that this is, in fact, the graphs's diameter is
 witnessed by the distance betewen each node $k \in \n_{{\cal C}_n}$
-and its antipodal node $k + \lfloor (n-1)/2 \rfloor \bmod n$.
+and its antipodal node $k + \lfloor n/2 \rfloor \bmod n$.
   \end{itemize}
 
 \item
@@ -564,11 +568,56 @@ to its predecessor node $k-1 \bmod n$.
   \end{itemize}
 \end{itemize}
 
+\subsubsection{Complete graphs}
+\label{sec:complete-graph}
+
+Both the {\it undirected order-$n$ complete-graph} $\k_n$ and the {\it
+  directed order-$n$ cmplete-graph} $\widehat{\k}_n$ \index{complete
+  graph} have {\it node-set} 
+\[ \n_{{\cal K}_n} \ = \ \n_{\widehat{{\cal K}}_n}
+\ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
+\begin{itemize}
+\item
+$\k_n$ has $\displaystyle {n \choose 2}$ edges; its {\it edge-set} is
+\[ \e_{{\cal K}_n} \ = \
+\big\{ \{i, \ j\} \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\}, \ i
+\neq j \big\}.
+\]
+  \begin{itemize}
+  \item
+$\k_n$ is a regular network: each node has degree $n-1$.
+
+Every node $i$ of $\k_n$ is connected with all other nodes.
+
+   \item
+$\k_n$ has diameter $1$.
+
+$\k_n$'s diameter is a direct consequence of its node-degrees, and vice versa.
+  \end{itemize}
+
+\item
+$\widehat{\k}_n$ has $(n-1)n$ arcs; its {\it arc-set} is
+\[ \a_{\widehat{{\cal K}}_n} \ = \ 
+\big\{ (i \rightarrow j) \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\}
+\big\}, \ i \neq j
+\]
+  \begin{itemize}
+  \item
+$\widehat{\k}_n$ is a regular network: each node has the same indegree
+    and the same outdegree.  Both the common indegree and the common
+    outdegree are $n-1$.
+  \item
+$\widehat{\k}_n$ has (directed) diameter $1$.
+
+Once again, there is a causal relationship between $\widehat{\k}_n$
+diameter and its (in- and out-) node-degrees.
+  \end{itemize}
+\end{itemize}
+
 **HERE
 
 
 
-complete
 (boolean) hypercube
 cube-connected cycles
 de Bruijn networks
@@ -577,7 +626,6 @@ de Bruijn networks
 
 \noindent {\bf Definitions.}
 \begin{itemize}
-\item The complete graph $K_n$ of order $n$ is the graph where each vertex is linked with all the others. 
 \item An hypercube of rank $k$ is defined recursively as follows:
 
 $H_0$ is reduced to one vertex.
