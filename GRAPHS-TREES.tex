@@ -1,4 +1,4 @@
-%version of 12-10-18
+%version of 12-12-18
 
 \chapter{GRAPH-THEORETIC CONCEPTS AND ENTITIES}
 \label{Ch:Graphs-Trees}
@@ -505,7 +505,7 @@ useful over the history of digital computing, and we expose some basic
 properties of each, including its diameter.  Each of these graphs is
 available in both a directed and an undirected version.
 
-*** DESCRIBE MOTIVATION***
+*** DESCRIBE MOTIVATION / CHOICE OF GRAPHS***
 
 Say Especially when the graphs are studied within the context of {\em
   hardware}---i.e, as the network that underlies a parallel
@@ -572,7 +572,7 @@ to its predecessor node $k-1 \bmod n$.
 \label{sec:complete-graph}
 
 Both the {\it undirected order-$n$ complete-graph} $\k_n$ and the {\it
-  directed order-$n$ cmplete-graph} $\widehat{\k}_n$ \index{complete
+  directed order-$n$ complete-graph} $\widehat{\k}_n$ \index{complete
   graph} have {\it node-set} 
 \[ \n_{{\cal K}_n} \ = \ \n_{\widehat{{\cal K}}_n}
 \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
@@ -609,31 +609,147 @@ $\widehat{\k}_n$ is a regular network: each node has the same indegree
   \item
 $\widehat{\k}_n$ has (directed) diameter $1$.
 
-Once again, there is a causal relationship between $\widehat{\k}_n$
-diameter and its (in- and out-) node-degrees.
+As in the undirected case, there is a causal relationship between
+$\widehat{\k}_n$'s diameter and its (in- and out-) node-degrees.
   \end{itemize}
 \end{itemize}
+
+\bigskip
+
+The families of graphs we discuss in the coming subsections are among
+the most important graph families when discussing parallel and
+distributed computing (PDC).  All of these families have been used
+both to design computer architectures that support PDC and to craft
+algorithms that exploit the potential efficiencies---in computation
+and communication---that one can achieve using PDC.
+
+\subsubsection{Mesh and torus networks}
+\label{sec:mesh-torus}
+\index{mesh and torus networks}
 
 **HERE
 
 
 
-(boolean) hypercube
+\subsubsection{Boolean hypercubes}
+\label{sec:hypercube}
+\index{boolean hypercube}
+
+\index{order-$n$ boolean hypercube}
+The {\it order-$n$ boolean hypercube}, traditionally denoted $\q_n$,
+is the $2^n$-node graph defined as follows.
+\begin{itemize}
+\item
+{\it The recursive definition}. 
+\index{order-$n$ boolean hypercube!recursive definition}
+  \begin{itemize}
+  \item
+The order-$0$ boolean hypercube, $\q_0$, has a single node, and no
+edges.
+  \item
+The order-$(k+1)$ boolean hypercube, $\q_{k+1}$, is obtained by taking
+two copies of $\q_k$, call them $\q_k^{(1)}$ and $\q_k^{(2)}$, and
+creating an edge that connects each node of $\q_k^{(1)}$ with the
+corresponding node of $\q_k^{(2)}$.
+  \end{itemize}
+For illustration:
+  \begin{itemize}
+  \item
+$\q_1$ consists of two nodes connected by a single edge.
+  \item
+$\q_2$ can be viewed as a ``square'', or equivalently, a copy of $\cc_4$.
+  \item
+$\q_3$ can be viewed as a ``cube'', i.e., as two copies of $\cc_4$
+    with edges connecting corresponding nodes: Each of the following
+    pairs of nodes are connected by an edge: the upper right
+    corner-nodes, the upper left corner-nodes, the lower right
+    corner-nodes, and the lower left corner-nodes.
+  \end{itemize}
+
+\item
+{\it The direct definition}.
+For each $n \in \N$, the nodes of the order-$n$ boolean hypercube,
+$\q_n$, are all length-$n$ binary strings.  For illustration:
+\index{order-$n$ boolean hypercube!direct definition}
+\begin{eqnarray*}
+\n_{{\fq}_0}
+  & = & 
+\{ \varepsilon \}, \ \ \mbox{ the length-$0$ {\em null string}} \\ 
+\n_{{\fq}_1}
+  & = &
+\{ 0, \ 1 \} \\
+\n_{{\fq}_2}
+  & = & \{ 00, \ 01, \ 10, \ 11 \} \\
+\n_{{\fq}_3}
+  & = & \{ 000, \ 001, \ 010, \ 011, \ 100, \ 101, \ 110, \ 111 \} 
+\end{eqnarray*}
+Easily, for each value of $n$, $\q_n$ has $2^n$ nodes, for this is the
+number of length-$n$ binary strings.
+
+\medskip
+
+For each value of $n$, each edge of $\q_n$ connects two node-strings
+that differ in precisely one position.  This means that $\q_n$ has $n
+2^{n-1}$ edges: To wit, each of its $2^n$ nodes has $n$ neighbors, so
+the quantity $n 2^n$ counts each of $\q_n$'s edges twice---one for
+each endpoint.  For illustration:
+\begin{eqnarray*}
+\a_{{\fq}_1}
+  & = &
+\big\{ \{ 0, \ 1 \} \big\} \\
+\a_{{\fq}_2}
+  & = & \big\{
+\{ 00, \ 01 \}, \ \{ 00, \ 10\}, \
+\{ 01, \ 11 \}, \ \{ 10, \ 11\} 
+\big\} \\
+\a_{{\fq}_3}
+  & = & \big\{ 
+\{000, \ 001\}, \
+\{000, \ 010\}, \
+\{000, \ 100\}, \
+\{001, \ 011\}, \\
+  &  & \hspace*{.2in}
+\{001, \ 101\}, \
+\{010, \ 011\}, \
+\{010, \ 110\}, \
+\{100, \ 101\}, \\
+  &  & \hspace*{.2in}
+\{100, \ 110\}, \
+\{101, \ 111\}, \
+\{011, \ 111\}, \
+\{110, \ 111\}
+\big\}
+\end{eqnarray*}
+\end{itemize}
+
+\medskip
+
+\noindent
+$\q_n$ is a regular network: each of its $2^n$ nodes has degree $n$.
+
+\smallskip
+
+\noindent
+$\q_n$ has diameter $n \ = \ \ln |\n_{\fq}_n|$.\footnote{Recall that
+  $\ln n = \log_2 n$; see Section~\ref{sec:logarithmic-fns}.}  In
+other words, $\q_n$'s diameter is {\em logarithmic} in its size.  This
+fact makes $\q_n$ an efficient network for many tasks related to
+computing and communication.
+
+
+**HERE
+
 cube-connected cycles
 de Bruijn networks
 
 \bigskip
 
 \noindent {\bf Definitions.}
-\begin{itemize}
-\item An hypercube of rank $k$ is defined recursively as follows:
-
-$H_0$ is reduced to one vertex.
 
 $H_k$ is obtained by linking every pair of relative vertices of two $H_{k-1}$.
 
 $H_2$ and $H_3$ are the two classical square and cube.
-\end{itemize}
+
 
 Let us compute for all these graphs their number of edges, degree and diameter.
 
