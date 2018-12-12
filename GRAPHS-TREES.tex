@@ -515,7 +515,7 @@ Throughout, the parameters that describe our graph families range over
 the positive integers; i.e., each occurrence of $n$ below ranges over
 $\N^+$.
 
-\subsubsection{Cycle-graphs}
+\subsubsection{The cycle-graph}
 \label{sec:cycle-graph}
 
 For each positive integer $n \in \N^+$, both the {\it undirected
@@ -567,7 +567,7 @@ to its predecessor node $k-1 \bmod n$.
   \end{itemize}
 \end{itemize}
 
-\subsubsection{Complete graphs}
+\subsubsection{The {\em complete} graph}
 \label{sec:complete-graph}
 
 For each positive integer $n \in \N^+$, both the {\it undirected
@@ -623,7 +623,7 @@ both to design computer architectures that support PDC and to craft
 algorithms that exploit the potential efficiencies---in computation
 and communication---that one can achieve using PDC.
 
-\subsubsection{Mesh and torus networks}
+\subsubsection{The mesh network and the torus network}
 \label{sec:mesh-torus}
 \index{mesh and torus networks}
 
@@ -657,13 +657,81 @@ $\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
 
   \begin{itemize}
   \item
+    \begin{itemize}
+    \item
+The subgraph of $\m_{m,n}$ defined by the node-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
+  m\}\right], \ \ \left[1 \leq j < n\right]\}
+\]
+and all edges both of whose endpoints belong to that set is called the
+$i$th {\it row} of $\m_{m,n}$
+\index{row of a mesh graph}
+\index{mesh graph!row}
+Dually, the subgraph of $\m_{m,n}$ defined by the node-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
+  n\}\right], \ \ \left[1 \leq i < m\right] \}
+\]
+and all edges both of whose endpoints belong to that set is called the
+$j$th {\it column} of $\m_{m,n}$.
+\index{column of a mesh graph}
+\index{mesh graph!column}
+     \item
+Nodes $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
+\ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner nodes}
+(or, just {\it corners}) of $\m_{m,n}$.
+\index{corner (node) of a mesh graph}
+\index{mesh graph!corner (node)}
+     \item
+The path-graph consisting of the node-set
+\[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
+\langle 1, \ n \rangle \}
+\]
+together with all edges of $\m_{m,n}$ both of whose endpoints belong
+to this set, is the {\it top edge} of $\m_{m,n}$.
+\index{top edge of a mesh graph}
+\index{mesh graph!top edge}
+
+The other edges of $\m_n$ are defined analogously:
+
+\smallskip
+
+The {\it bottom edge} of $\m_{m,n}$ is the path-graph built upon the
+node-set
+\[ \{ \langle m, \ 1 \rangle, \ \langle m, \ 2 \rangle, \ldots, \
+\langle m, \ n \rangle \}
+\]
+\index{bottom edge of a mesh graph}
+\index{mesh graph!bottom edge}
+
+The {\it left edge} of $\m_{m,n}$ is the path-graph built upon the
+node-set
+\[ \{ \langle 1, \ 1 \rangle, \ \langle 2, \ 1 \rangle, \ldots, \
+\langle m, \ 1 \rangle \}
+\]
+\index{left edge of a mesh graph}
+\index{mesh graph!left edge}
+
+The {\it right edge} of $\m_{m,n}$ is the path-graph built upon the
+node-set
+\[ \{ \langle 1, \ n \rangle, \ \langle 2, \ n \rangle, \ldots, \
+\langle m, \ n \rangle \}
+\]
+\index{left edge of a mesh graph}
+\index{mesh graph!right edge}
+     \end{itemize}
 
   \item
+$\m_{m,n}$ is {\em not} a regular graph.  Its corner nodes each has
+    degree $2$; its non-corner edge nodes each has degree $3$; its
+\index{internal node of a mesh graph}
+\index{mesh graph!internal node}
+{\em internal nodes}---which are all non-edge nodes---each has degree
+$4$
 
   \item
-
+The diameter of $\m_{m,n}$ is $m+n-2$, as witnessed by the distance
+between nodes $\langle 1, \ 1 \rangle$ and $\langle 2, \ n \rangle$.
   \end{itemize}
-DEGREE, DIAMETER
 
 \item
 $\widetilde{\m}_{m,n}$ has $2mn$ arcs; its {\it arc-set} is
@@ -680,24 +748,38 @@ $\widetilde{\m}_{m,n}$ has $2mn$ arcs; its {\it arc-set} is
 
   \begin{itemize}
   \item
-
+The subgraph of $\widetilde{\m}_{m,n}$ defined by the node-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
+  m\}\right], \ \ \left[1 \leq j \leq n\right]\}
+\]
+and all edges both of whose endpoints belong to that set is called the
+$i$th {\it row} of $\widetilde{\m}_{m,n}$
+\index{row of a torus graph}
+Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the node-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
+  n\}\right], \ \ \left[1 \leq i \leq m\right] \}
+\]
+and all edges both of whose endpoints belong to that set is called the
+$j$th {\it column} of $\widetilde{\m}_{m,n}$.
+\index{column of a torus graph}
   \item
-
+$\widetilde{\m}_{m,n}$ is a regular network; each node has degree $4$.
+    Despite the fact that $\widetilde{\m}_{m,n}$ is an {\em
+      undirected} graph, its arcs are commonly referred to via an
+    anthropomorphic labeling, either as ``up, down, left, and right''
+    or as ``north, south, west, and east''.
   \item
-
+$\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \
+\lfloor n/2 \rfloor$.  This can be verified in analogy to the diameter
+of the cycle-graph $\cc_n$.
   \end{itemize}
-DEGREE, DIAMETER
-
 \end{itemize}
 
 
-**HERE
-
-
-
-\subsubsection{Boolean hypercubes}
+\subsubsection{The boolean hypercube}
 \label{sec:hypercube}
 \index{boolean hypercube}
+\index{hypercube}
 
 \index{order-$n$ boolean hypercube}
 The {\it order-$n$ boolean hypercube}, traditionally denoted $\q_n$,
@@ -800,11 +882,18 @@ other words, $\q_n$'s diameter is {\em logarithmic} in its size.  This
 fact makes $\q_n$ an efficient network for many tasks related to
 computing and communication.
 
+\subsubsection{The de Bruijn network}
+\label{sec:de-bruijn}
+\index{de Bruijn network}
+
+
+
+%\langle 1, \ n \rangle, \ \langle 2, \ n \rangle
+
 
 **HERE
 
-cube-connected cycles
-de Bruijn networks
+
 
 \bigskip
 
