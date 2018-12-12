@@ -1,4 +1,4 @@
-%version of 12-13-18
+%version of 12-12-18
 
 \chapter{GRAPH-THEORETIC CONCEPTS AND ENTITIES}
 \label{Ch:Graphs-Trees}
@@ -781,6 +781,13 @@ of the cycle-graph $\cc_n$.
 \index{boolean hypercube}
 \index{hypercube}
 
+The graphs we focus on next have had a major impact on the world of
+coding, especially in regard to codes that are {\em error correcting}
+\cite{PetersonW81}, and the world of computing, especially in regard
+to parallel and distributed computing
+\cite{JohnssonH1989, SaadS89, Schwartz80}.  The cited sources give a
+range of perspectives on the importance of {\it hypercube networks.}
+
 \index{order-$n$ boolean hypercube}
 The {\it order-$n$ boolean hypercube}, traditionally denoted $\q_n$,
 is the $2^n$-node graph defined as follows.
@@ -886,6 +893,53 @@ computing and communication.
 \label{sec:de-bruijn}
 \index{de Bruijn network}
 
+While the family of hypercube networks has few competitors in the
+world of parallel and distributed computing, in terms of performance
+and ease of designing algorithms, it does have one major shortcoming
+regarding its realization in hardware.  The basic problem is that the
+order-$n$ hypercube has large node-degrees, specifically logarithmic
+in the size of the network.  This feature makes the hypercubes actual
+performance much lower than its theoretical performance.
+Specifically, the size of the hypercube grows exponentially with the
+common degrees of the network's nodes---this is the ``inverse'' way
+of talking about logarithmic node-degrees---while the space in which
+we (and our computers) live grows only cubically with linear
+distance.  The resulting disparity means that the wires in a large
+hypercube must inevitably be very long---in contrast to the unit-size
+of idealized network-edges.  Consequently, electrical signals within a
+large hyeprcube must travel long distances, which means that the
+physical computer is much slower than its idealized version.  (One
+finds a more technical discussion of this phenomenon in
+\cite{Ullman84}.)
+
+The preceding shortcoming of hypercubes led researchers to seek a
+family of networks whose node-degrees stay constant even as one
+deploys successively larger instances of the network.  A candidate
+such network was discovered within the domain of coding theorists (as,
+coincidentally, was the hypercube).  
+
+In the mid-20-century, Dutch mathematican Nicolaas Govert de Bruijn
+\index{de Bruijn, Nicolaas Govert} discovered a way to generate
+compact sequences that contain all possible strings of a prespecified
+length.  Focussing on {\em binary} strings---although de Bruijn's
+strategy works for any finite alphabet---de Bruijn could generate a
+string of length $2^n +n-1$ that contains every length-$n$ binary
+string as a substrings.  One can prove that no string shorter than
+$2^n +n-1$ will work.  {\Arny (A GOOD EXERCISE)}  Here are two
+examples.
+\[
+\begin{array}{ll}
+00, \ 01, \ 10, \ 11
+  & 00110 \\
+000, \ 001, \ 010, \ 011, \ 100, \ 101, \ 110, \ 111
+  & 000101100111
+\end{array}
+\]
+
+     001        010 
+000     101  101     111
+     100        110
+ \cite{AnnexsteinBR90} \cite{Ullman84}
 
 
 %\langle 1, \ n \rangle, \ \langle 2, \ n \rangle
@@ -898,7 +952,7 @@ computing and communication.
 \bigskip
 
 \noindent {\bf Definitions.}
-
+\ignore{********
 $H_k$ is obtained by linking every pair of relative vertices of two $H_{k-1}$.
 
 $H_2$ and $H_3$ are the two classical square and cube.
@@ -931,8 +985,9 @@ each vertex is encoded in a binary notation using $O(log_2(n)$) bits and its adj
 Thus, there is a path from any vertex in crossing at most $log_2(n)$ other vertices.
 \end{itemize}
 
-There exist other graphs with a constant degree and low diameters (like the {\it de Bruijn} graph whose diameter is in also $log_2(n)$. 
-
+There exist other graphs with a constant degree and low diameters
+(like the {\it de Bruijn} graph whose diameter is in also $log_2(n)$). 
+*****************}
 %The chromatic number of a graph is defined as the minimum number of colors for coloring a graph. It is a NP-hard problem. However, there are good greedy approximation algorithms.
 
 
@@ -1221,6 +1276,9 @@ Finally, all the vertices of the new graph are even since the degree of the odd 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Hamiltonian tours}
+
+\cite{Fleischner74}
+(square of 2-connected graph is hamiltonian)
 
 Let us now turn to the problem of cycles going through the vertices of a given graph instead of edges.
 \bigskip
