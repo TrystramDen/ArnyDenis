@@ -892,6 +892,7 @@ computing and communication.
 \subsubsection{The de Bruijn network}
 \label{sec:de-bruijn}
 \index{de Bruijn network}
+\index{de Bruijn graph}
 
 While the family of hypercube networks has few competitors in the
 world of parallel and distributed computing, in terms of performance
@@ -924,35 +925,169 @@ compact sequences that contain all possible strings of a prespecified
 length.  Focussing on {\em binary} strings---although de Bruijn's
 strategy works for any finite alphabet---de Bruijn could generate a
 string of length $2^n +n-1$ that contains every length-$n$ binary
-string as a substrings.  One can prove that no string shorter than
-$2^n +n-1$ will work.  {\Arny (A GOOD EXERCISE)}  Here are two
-examples.
+string as a substring.  Quite appropriately, such a string is called a
+{\it de Bruijn sequence}. \index{de Bruijn sequence} It is not obvious
+that de Bruijn sequences exist for every $n$, so we provide two
+examples---both to illustrate the phenomenon and to allow the reader
+to work out how to generate such sequences.
+\begin{table}[hbt]
+\label{tab:deBruijn-seq}
+\caption{Illustrating the order-$2$ and order-$3$ de Bruijn sequences.}
 \[
-\begin{array}{ll}
-00, \ 01, \ 10, \ 11
-  & 00110 \\
-000, \ 001, \ 010, \ 011, \ 100, \ 101, \ 110, \ 111
-  & 000101100111
+\begin{array}{|l||l|c|}
+\hline
+n & \mbox{\sc Length-$n$ binary strings}
+    & \mbox{\sc Order-$n$ de Bruijn sequence} \\
+\hline
+\hline
+1. &
+00, \ 01, \ 10, \ 11  & 00110 \\
+\hline
+2. &
+\begin{array}{l}
+000, \ 001, \ 010, \ 011, \\
+100, \ 101, \ 110, \ 111 
+\end{array}
+  & 0001110100 \\
+\hline
 \end{array}
 \]
+\end{table}
 
-     001        010 
-000     101  101     111
-     100        110
- \cite{AnnexsteinBR90} \cite{Ullman84}
+Table~\ref{tab:deBruijn-seq} spawns many interesting questions: {\Arny
+  Where did the crazy label for the table come from?  That's the
+  section number, not the table number.}
+\begin{itemize}
+\item
+Do de Bruijn sequences exist for every $n$?
+\item
+If so, 
+  \begin{itemize}
+  \item
+How does one compute them?
+  \item
+Can one always find a de Bruijn sequence of length $2^n +n-1$?
+  \item
+Can one find de Bruijn sequences of length $< 2^n +n-1$?
+  \end{itemize}
+ {\Arny (SOME GOOD EXERCISES HERE)}  
+\end{itemize}
+The answers to all of these questions---and the connection of de
+Bruijn sequences to the current chapter---reside in the family of
+directed graphs called {\it de Bruijn graphs} (or, {\it de Bruijn
+  networks}).
+
+For every integer $n \in \N^+$, the {\it order-$n$ de Bruijn network}
+is the {\em directed} graph $\d_n$ whose nodes comprise the set of
+length-$n$ binary strings\footnote{While {\em binary} de Bruijn
+  networks are the most frequently encountered ones, one can also find
+  de Bruijn networks whose nodes comprise all length-$n$ strings over
+  larger finite alphabets.  Such extended families also find
+  applications in coding theory.}  The sets $\n_{\fd_2}$ and
+$\n_{\fd_3}$ appear in Table~\ref{tab:deBruijn-seq}.
+
+$\d_n$ is a regular directed graph; its nodes all have in-degree $2$
+and outdegree-$2$.  The $2^{n+1}$ arcs of $\d_n$ come in pairs
+specified as follows.  Each node of $\d_n$ is a binary string of
+length $n \geq 1$; hence it can be written in the form $\beta x$,
+where $\beta \in \{0, \ 1\}$ is a {\it bit} (short for {\it binary
+  digit}) and $x$ is a length-$(n-1)$ binary string.  Each pair of
+arcs of $\d_n$ have the forms:
+\[ (\beta x \rightarrow x0) \ \ \ \mbox{ and } \ \ \ 
+(\beta x \rightarrow x1)
+\]
+We illustrate $\a_{\fd_3}$ in Table~\ref{tab:deBruijn-arcs}.
+{\Arny Again the label comes out wrong!}
+
+\begin{table}[hbt]
+\label{tab:deBruijn-arcs}
+\caption{The arcs of the order-$3$ de Bruijn network $\d_3$.}
+\[
+\begin{array}{|ccccc|}
+\hline
+\mbox{\sc Node} & & {\sc Node} & & {\sc Node} \\
+\hline \hline
+{\displaystyle
+\left.
+\begin{array}{c}
+000 \\
+001 \\
+010 \\
+011 \\
+100 \\
+101 \\
+110 \\
+111
+\end{array}
+\right\}
+} &
+\mbox{\sc goes to} 
+  &
+{\displaystyle
+\left\{
+\begin{array}{c}
+000 \\
+010 \\
+100 \\
+110 \\
+001 \\
+011 \\
+101 \\
+111
+\end{array}
+\right.
+}
+  &
+\mbox{\sc and to}
+  &
+{\displaystyle
+\left\{
+\begin{array}{c}
+001 \\
+011 \\
+101 \\
+111 \\
+000 \\
+010 \\
+100 \\
+110
+\end{array} 
+\right.
+}
+ \\
+\hline
+\end{array}
+\]
+\end{table}
+
+Extrapolating from this example, we can show that $\d_n$ has diameter
+$n$.  The structure of $\d_n$'s arcs allows one to ``rewrite'' any
+(length-$n$) start-node $x$ to any desired (length-$n$) finish-node
+$y$ bit by bit, i.e., in $n$ steps.  This is the best that one can
+achieve, as witnessed by the situations when $x$ and $y$ are bitwise
+complementary strings, as when $x = 00 \cdots 0$ and $y = 11 \cdots 1$.
+
+\medskip
+
+Stepping back from the structural specifics of $\d_n$, we now see that
+de Bruijn networks provide us with a {\em
+  bounded-degree---specifically, a degree-$2$} family of networks each
+of whose constituent graphs has {\em logarithmic diameter}!  In this
+regard, at least, de Bruijn networks have exactly the same
+cost-performance as hypercubes---i.e., $2^n$-node graphs with diameter
+$n$---with bounded degrees.  Even more dramatic, it has been shown
+that sophisticated algorithmic techniques can achieve roughly
+equivalent computational efficiency, on a broad range of significant
+computational problems, using de Bruijn networks as using like-sized
+hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
 
 
-%\langle 1, \ n \rangle, \ \langle 2, \ n \rangle
-
-
-**HERE
-
-
+\ignore{********
 
 \bigskip
 
 \noindent {\bf Definitions.}
-\ignore{********
+
 $H_k$ is obtained by linking every pair of relative vertices of two $H_{k-1}$.
 
 $H_2$ and $H_3$ are the two classical square and cube.
@@ -991,7 +1126,7 @@ There exist other graphs with a constant degree and low diameters
 %The chromatic number of a graph is defined as the minimum number of colors for coloring a graph. It is a NP-hard problem. However, there are good greedy approximation algorithms.
 
 
-
+**HERE
 
 \section{Graph evolution and decomposition}
 
