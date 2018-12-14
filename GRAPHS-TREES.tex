@@ -1032,7 +1032,7 @@ $x$, $\d_n$ has the two arcs
 \[ (\beta x \rightarrow x0) \ \ \ \mbox{ and } \ \ \ 
 (\beta x \rightarrow x1)
 \]
-We illustrate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
+We enumerate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
 \begin{equation}
 \label{eqn:deBruijn-arcs}
 \begin{array}{|ccccc|}
@@ -1095,10 +1095,11 @@ For each $n \in \N^+$, $\d_n$ has diameter $n$.  To see why this is
 true, note that following any one of $\d_n$'s arcs, say from node $x$
 to node $y$, consists of ``rewriting'' the length-$n$ string $x$ as
 the length-$n$ string $y$.  The diameter bound therefore follows by
-showing that, for any two string-nodes of $\d_n$, say $u$ and $v$, one
-can rewrite string $u$ as string $v$ by traversing a sequence of
-arcs---i.e., a directed path---of length at most $n$.  Observe, for
-instance, that the path in $\d_3$ described schematically as follows
+showing that, for any two string-nodes of $\d_n$, say node $u$ and
+node $v$, one can rewrite string $u$ as string $v$ by traversing a
+sequence of arcs---i.e., a directed path---of length at most $n$.
+Observe, for instance, that the path in $\d_3$ described schematically
+as follows
 \[ 000 \ \rightarrow \ 001 \ \rightarrow \ 011 \ \rightarrow \ 111 \]
 leads node $000$ to node $111$, by rewriting string $000$ as string
 $111$.  The diameter bound is now an immediate consequence of the
@@ -1106,39 +1107,111 @@ following result.
 
 \begin{prop}
 \label{thm:deBruijn-hamiltonian}
-For all $n \in \N^+$, $\d_n$ contains a {\em hamiltonian cycle}, i.e.,
-a length-$2^n$ direct path that contains each node of $d_n$ precisely
-once.
-\end{prop}
-
-\begin{proof}{Sketch}
-The simplest proof of this result has two steps, both of which depend
-on topics we develop later in this chapter:
+For all $n \in \N^+$, $\d_n$ contains a {\em directed hamiltonian
+  cycle}, 
+\index{directed hamiltonian cycle in a digraph}
+i.e., a length-$2^n$ directed cycle of the form
+\begin{equation}
+\label{eq:deBruijn-cycle}
+ x \ \rightarrow \ y_1 \ \rightarrow \ y_2 \ \rightarrow \cdots
+\ \rightarrow \ y_{2^n-1} \ \rightarrow \ x
+\end{equation}
+that contains every node of $\d_n$ precisely once; i.e.:
 \begin{itemize}
 \item
-{\it Eulerian cycles} \index{Eulerian cycle}
-
-An {\it eulerian cycle} in a graph $\g$ is a cycle that contains each
-edge of $\g$ precisely once.  This notion is named for its discoverer,
-Leonhard Euler \index{Euler, Leonhard}
+$\{x, \ y_1, \ y_2, \ldots, \ y_{2^n-1}\} \ = \ \n_{\fd_n}$.
 \item
-{\it Line graphs} \index{line graph}
-
-The {\it line graph} of a graph $\g$ is a graph $\l(\g)$.  The nodes
-of $\l(\g)$ are the edges of $\g$; $\l(\g)$ contains an edge $(e_1,
-e_2)$, for every pair of edges of $\g$, $e_1$ and $e_2$, that share an
-endpoint.
-
-The relevance of this topic here is that the line graph of every de
-Bruijn network $\d_n$ is the de Bruijn network $\d_{n+1}$. 
+All of the ``$y$-nodes'' that appear in cycle
+(\ref{eq:deBruijn-cycle}) differ from $x$ and from each other.
 \end{itemize}
-A truly elementary argument, based on node-degrees will show that
-every de Bruijn network has an eulerian cycle.  An invocation of the
-second preceding bulleted item will then complete the proof.
-\qed
+\end{prop}
+
+The simplest proof of this result has two steps, each of which
+introduces a topic we have not yet developed.
+
+\medskip
+
+\noindent {\bf (1)}
+%
+For any directed graph $\g$, the {\it line digraph} \index{line graph}
+\index{line digraph} of $\g$, denoted $\l(\g)$, is the following
+directed graph.
+\begin{itemize}
+\item
+The nodes of $\l(\g)$ are the arcs of $\g$:
+\[ \n_{{\cal L}({\cal G})} \ = \ \a_{\fg} \]
+\item
+For each pair of arcs of $\g$ of the form
+\[ \big[a_{x,y} = (x \ \rightarrow \ y) \big] \ \ \ \mbox{ and } \ \ \ 
+\big[a_{y,z} = (y \ \rightarrow \ z) \big]
+\]
+i.e, arcs such that the endpoint of the first arc is the source of the
+second arc, $\l(\g)$ contains an arc $(a_{x,y} \ \rightarrow
+\ a_{y,z})$.
+\end{itemize}
+The relevance of this topic to this section is that the line graph of
+every de Bruijn network $\d_n$ is the ``next bigger'' de Bruijn
+network, $\d_{n+1}$.  Let us verify this claim.
+
+\begin{prop}
+\label{thm:deBruin-linegraph}
+For all $n \in \N^+$,
+$\d_{n+1}$ is the line digraph of $\d_n$: $\d_{n+1} \ = \ \l(\d_n)$.
+\end{prop}
+
+\begin{proof}
+Each node of $\l(\d_n)$ is an arc of $\d_n$, hence has the form
+\[ (\beta x \ \rightarrow \ x \gamma) \]
+for $x$ a length-$(n-1)$ binary string and $\beta, \gamma \in
+\{0,1\}$.  Let us associate node $\beta x \gamma$ of $\d_{n+1}$ with
+this node of $\l(\d_n)$.
+
+\smallskip
+
+Note first that each arc of $\d_{n+1}$ has the form
+\[ (\delta y \varepsilon \ \rightarrow \ y \varepsilon \varphi), \]
+where $y$ is a length-$(n-2)$ binary string and $\delta, \varepsilon,
+\varphi \in \{0,1\}$.  By our association of nodes of $\d_{n+1}$ with
+arcs of $\d_n$, this arc of $\d_{n+1}$ does, indeed, correspond to two
+successive arcs of $\d_n$.   The first of these successive arcs
+{\em enters} node $y \varepsilon$ of $\d_n$; the second {\em leaves}
+that node.
+
+Note next that, given any two successive arcs of $\d_n$, say
+\[
+(\rho \sigma z \ \rightarrow \ \sigma z \tau) \ \ \ \mbox { and } \ \ \
+(\sigma z \tau \ \rightarrow \  z \tau \xi)
+\]
+where $z$ is a length-$(n-2)$ binary string and $\rho, \sigma, \tau,
+\xi \in \{0,1\}$, there is, indeed, an arc of $\d_{n+1}$ of the form
+\[ (\rho \sigma z \tau \ \rightarrow \ \sigma z \tau \xi) \]
+This means that the digraph $\d_{n+1}$ is identical to the digraph
+$\l(\d_n)$, modulo a renaming of nodes and arcs.\footnote{Technically,
+  we are asserting that the digraphs ${\cal D}_{n+1}$ and ${\cal
+    L}({\cal D}_n)$ are {\it isomorphic} to one another.  The topic of
+  graph isomorphism is beyond the scope of this text, but our informal
+  description provides all the details one would need to formalize the
+  described isomorphism.}
+
+The described correspondence between the nodes and arcs of $\d_{n+1}$
+and $\l(\d_n)$ completes the proof.  \qed
 \end{proof}
 
 \medskip
+
+\noindent {\bf (2)}
+{\it Eulerian cycles}. \index{Eulerian cycle}
+A {\it directed eulerian cycle}\footnote{This notion is named for its
+  discoverer, Leonhard Euler \index{Euler, Leonhard}.}~in a digraph
+$\g$ is a directed cycle that contains each arc of $\g$ precisely
+once.  We will see, later in this chapter, a truly elementary argument, based
+on node-degrees, which proves that every de Bruijn digraph has a directed
+eulerian cycle.  This demonstration will combine with
+Proposition~\ref{thm:deBruin-linegraph} to complete the proof of
+Proposition~\ref{thm:deBruijn-hamiltonian}.  \qed
+%\end{proof}
+
+\bigskip
 
 Stepping back from the structural specifics of $\d_n$, we now see that
 de Bruijn networks provide us with a {\em
