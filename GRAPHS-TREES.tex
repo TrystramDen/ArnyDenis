@@ -1,4 +1,4 @@
-%version of 12-12-18
+%version of 12-14-18
 
 \chapter{GRAPH-THEORETIC CONCEPTS AND ENTITIES}
 \label{Ch:Graphs-Trees}
@@ -532,13 +532,13 @@ $\cc_n$ has $n$ edges; its {\it edge-set} is
 \ n-1\} \big\}.
 \]
   \begin{itemize}
-  \item
+  \item \index{cycle graph!node-degree}
 $\cc_n$ is a regular network: each node has degree $2$.
 
 Specifically, each node $i$ of $\cc_n$ has its {\it predecessor} $i-1
 \bmod n$ \index{cycle graph!predecessor node} \index{cycle
   graph!successor node} and its {\it successor} $i+1 \bmod n$ .
-  \item
+  \item \index{cycle graph!diameter}
 $\cc_n$ has diameter $\lfloor n/2 \rfloor$.
 
 Direct calculation shows that $\cc_n$'s diameter is no larger than
@@ -553,7 +553,7 @@ $\widehat{\cc}_n$ has {\it arc-set}
 \big\{ (i \rightarrow i+1 \bmod n) \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}
 \]
   \begin{itemize}
-  \item
+  \item \index{cycle graph!directed node-degree}
 $\widehat{\cc}_n$ is a regular network: each node has the same
     indegree and the same outdegree.  Coincidentally both the common
     indegree and the common outdegree are $2$.
@@ -569,6 +569,7 @@ to its predecessor node $k-1 \bmod n$.
 
 \subsubsection{The {\em complete} graph}
 \label{sec:complete-graph}
+\index{complete graph}
 
 For each positive integer $n \in \N^+$, both the {\it undirected
   order-$n$ complete-graph} $\k_n$ and the {\it directed order-$n$
@@ -584,12 +585,12 @@ $\k_n$ has $\displaystyle {n \choose 2}$ edges; its {\it edge-set} is
 \neq j \big\}.
 \]
   \begin{itemize}
-  \item
+  \item \index{complete graph!node-degree}
 $\k_n$ is a regular network: each node has degree $n-1$.
 
 Every node $i$ of $\k_n$ is connected with all other nodes.
 
-   \item
+   \item \index{complete graph!diameter}
 $\k_n$ has diameter $1$.
 
 $\k_n$'s diameter is a direct consequence of its node-degrees, and vice versa.
@@ -720,7 +721,7 @@ node-set
 \index{mesh graph!right edge}
      \end{itemize}
 
-  \item
+  \item \index{mesh graph!node-degree}
 $\m_{m,n}$ is {\em not} a regular graph.  Its corner nodes each has
     degree $2$; its non-corner edge nodes each has degree $3$; its
 \index{internal node of a mesh graph}
@@ -728,7 +729,7 @@ $\m_{m,n}$ is {\em not} a regular graph.  Its corner nodes each has
 {\em internal nodes}---which are all non-edge nodes---each has degree
 $4$
 
-  \item
+  \item \index{mesh graph!undirected diameter}
 The diameter of $\m_{m,n}$ is $m+n-2$, as witnessed by the distance
 between nodes $\langle 1, \ 1 \rangle$ and $\langle 2, \ n \rangle$.
   \end{itemize}
@@ -754,21 +755,21 @@ The subgraph of $\widetilde{\m}_{m,n}$ defined by the node-set
 \]
 and all edges both of whose endpoints belong to that set is called the
 $i$th {\it row} of $\widetilde{\m}_{m,n}$
-\index{row of a torus graph}
+\index{torus graph!row}
 Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the node-set
 \[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
   n\}\right], \ \ \left[1 \leq i \leq m\right] \}
 \]
 and all edges both of whose endpoints belong to that set is called the
 $j$th {\it column} of $\widetilde{\m}_{m,n}$.
-\index{column of a torus graph}
+\index{torus graph!column}
   \item
 $\widetilde{\m}_{m,n}$ is a regular network; each node has degree $4$.
     Despite the fact that $\widetilde{\m}_{m,n}$ is an {\em
       undirected} graph, its arcs are commonly referred to via an
     anthropomorphic labeling, either as ``up, down, left, and right''
     or as ``north, south, west, and east''.
-  \item
+  \item \index{mesh graph!directed diameter}
 $\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \
 \lfloor n/2 \rfloor$.  This can be verified in analogy to the diameter
 of the cycle-graph $\cc_n$.
@@ -878,15 +879,50 @@ each endpoint.  For illustration:
 \medskip
 
 \noindent
+It is easy to observe $\q_n$'s basic structural properties.
+\begin{itemize}
+\item \index{hypercube!node-degree}
 $\q_n$ is a regular network: each of its $2^n$ nodes has degree $n$.
 
-\smallskip
+This follows from the fact that each arc of $\q_n$ rewrites a single
+bit-position in the length-$n$ binary string that is the arc's source
+node.
 
-\noindent
+\item \index{hypercube!diameter}
 $\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.\footnote{Recall that
-  $\ln n = \log_2 n$; see Section~\ref{sec:logarithmic-fns}.}  In
-other words, $\q_n$'s diameter is {\em logarithmic} in its size.  This
-fact makes $\q_n$ an efficient network for many tasks related to
+  $\ln n = \log_2 n$; see Section~\ref{sec:logarithmic-fns}.}
+
+We address this issue formally.
+\end{itemize}
+
+\begin{prop}
+\label{thm:hypercube-diameter}
+For all $n \in \N^+$, $\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.
+\end{prop}
+
+\begin{proof}
+We prove this diameter bound by construction.  Focus on two arbitrary
+nodes of $\q_n$:
+\[ x \ = \ \alpha_1 \alpha_2 \cdots \alpha_n \ \ \ \mbox{ and } \ \ \
+y \ = \ \beta_1 \beta_2 \cdots \beta_n
+\]
+One of the several paths in $\q_n$ from $x$ to $y$ is described
+schematically as the following left-to-right, bit-by-bit rewriting of
+$x$ as $y$ using arcs of $\q_n$
+\[
+x \ = \ \alpha_1 \alpha_2 \cdots \alpha_n \ \rightarrow \
+\beta_1 \alpha_2 \cdots \alpha_n \ \rightarrow \
+\beta_1 \beta_2\cdots \alpha_n \ \rightarrow \cdots \rightarrow\ 
+\beta_1 \beta_2 \cdots \beta_n \ = \ y
+\]
+Since each bit of each string is rewritten once, the bound follows.
+\qed
+\end{proof}
+
+\medskip
+
+The fact that $\q_n$'s diameter is {\em logarithmic} in its size makes
+$\q_n$ an efficient network for many tasks related to parallel
 computing and communication.
 
 \subsubsection{The de Bruijn network}
@@ -927,23 +963,21 @@ strategy works for any finite alphabet---de Bruijn could generate a
 string of length $2^n +n-1$ that contains every length-$n$ binary
 string as a substring.  Quite appropriately, such a string is called a
 {\it de Bruijn sequence}. \index{de Bruijn sequence} It is not obvious
-that de Bruijn sequences exist for every $n$, so we provide two
-examples---both to illustrate the phenomenon and to allow the reader
-to work out how to generate such sequences.
-\begin{table}[hbt]
-\label{tab:deBruijn-seq}
-\caption{Illustrating the order-$2$ and order-$3$ de Bruijn sequences.}
-\[
-\begin{array}{|l||l|c|}
+that de Bruijn sequences exist for every $n$, but we now plant the
+seeds of a proof that they do.  We begin by illustrating two sample
+sequences in (\ref{eqn:deBruijn-seq}).
+\begin{equation}
+\label{eqn:deBruijn-seq}
+\begin{array}{|l||c|c|}
 \hline
 n & \mbox{\sc Length-$n$ binary strings}
     & \mbox{\sc Order-$n$ de Bruijn sequence} \\
 \hline
 \hline
-1. &
+1 &
 00, \ 01, \ 10, \ 11  & 00110 \\
 \hline
-2. &
+2 &
 \begin{array}{l}
 000, \ 001, \ 010, \ 011, \\
 100, \ 101, \ 110, \ 111 
@@ -951,12 +985,9 @@ n & \mbox{\sc Length-$n$ binary strings}
   & 0001110100 \\
 \hline
 \end{array}
-\]
-\end{table}
-
-Table~\ref{tab:deBruijn-seq} spawns many interesting questions: {\Arny
-  Where did the crazy label for the table come from?  That's the
-  section number, not the table number.}
+\end{equation}
+The table in (\ref{eqn:deBruijn-seq}) spawns many interesting
+questions:
 \begin{itemize}
 \item
 Do de Bruijn sequences exist for every $n$?
@@ -974,8 +1005,11 @@ Can one find de Bruijn sequences of length $< 2^n +n-1$?
 \end{itemize}
 The answers to all of these questions---and the connection of de
 Bruijn sequences to the current chapter---reside in the family of
-directed graphs called {\it de Bruijn graphs} (or, {\it de Bruijn
-  networks}).
+directed graphs called either {\it de Bruijn graphs} or {\it de Bruijn
+  networks}.  \index{de Bruijn graph} \index{de Bruijn network} (The
+term used varies by intended application---mainly, coding theory and
+[the interconnection networks of] parallel computer architectures.  We
+use the names interchangeably.)
 
 For every integer $n \in \N^+$, the {\it order-$n$ de Bruijn network}
 is the {\em directed} graph $\d_n$ whose nodes comprise the set of
@@ -984,28 +1018,26 @@ length-$n$ binary strings\footnote{While {\em binary} de Bruijn
   de Bruijn networks whose nodes comprise all length-$n$ strings over
   larger finite alphabets.  Such extended families also find
   applications in coding theory.}  The sets $\n_{\fd_2}$ and
-$\n_{\fd_3}$ appear in Table~\ref{tab:deBruijn-seq}.
+$\n_{\fd_3}$ appear in (\ref{eqn:deBruijn-seq}).
 
 $\d_n$ is a regular directed graph; its nodes all have in-degree $2$
-and outdegree-$2$.  The $2^{n+1}$ arcs of $\d_n$ come in pairs
-specified as follows.  Each node of $\d_n$ is a binary string of
+and outdegree-$2$.  Each node of $\d_n$ is a binary string of
 length $n \geq 1$; hence it can be written in the form $\beta x$,
 where $\beta \in \{0, \ 1\}$ is a {\it bit} (short for {\it binary
-  digit}) and $x$ is a length-$(n-1)$ binary string.  Each pair of
-arcs of $\d_n$ have the forms:
+  digit}) and $x$ is a length-$(n-1)$ binary string.
+
+The $2^{n+1}$ arcs of $\d_n$ come in pairs specified as follows.  For
+each $\beta \in \{0,1\}$ and for each length-$(n-1)$ binary string
+$x$, $\d_n$ has the two arcs
 \[ (\beta x \rightarrow x0) \ \ \ \mbox{ and } \ \ \ 
 (\beta x \rightarrow x1)
 \]
-We illustrate $\a_{\fd_3}$ in Table~\ref{tab:deBruijn-arcs}.
-{\Arny Again the label comes out wrong!}
-
-\begin{table}[hbt]
-\label{tab:deBruijn-arcs}
-\caption{The arcs of the order-$3$ de Bruijn network $\d_3$.}
-\[
+We illustrate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
+\begin{equation}
+\label{eqn:deBruijn-arcs}
 \begin{array}{|ccccc|}
 \hline
-\mbox{\sc Node} & & {\sc Node} & & {\sc Node} \\
+\mbox{\sc Source node} & & \mbox{\sc Target node} & & \mbox{\sc Target node} \\
 \hline \hline
 {\displaystyle
 \left.
@@ -1057,15 +1089,54 @@ We illustrate $\a_{\fd_3}$ in Table~\ref{tab:deBruijn-arcs}.
  \\
 \hline
 \end{array}
-\]
-\end{table}
+\end{equation}
 
-Extrapolating from this example, we can show that $\d_n$ has diameter
-$n$.  The structure of $\d_n$'s arcs allows one to ``rewrite'' any
-(length-$n$) start-node $x$ to any desired (length-$n$) finish-node
-$y$ bit by bit, i.e., in $n$ steps.  This is the best that one can
-achieve, as witnessed by the situations when $x$ and $y$ are bitwise
-complementary strings, as when $x = 00 \cdots 0$ and $y = 11 \cdots 1$.
+For each $n \in \N^+$, $\d_n$ has diameter $n$.  To see why this is
+true, note that following any one of $\d_n$'s arcs, say from node $x$
+to node $y$, consists of ``rewriting'' the length-$n$ string $x$ as
+the length-$n$ string $y$.  The diameter bound therefore follows by
+showing that, for any two string-nodes of $\d_n$, say $u$ and $v$, one
+can rewrite string $u$ as string $v$ by traversing a sequence of
+arcs---i.e., a directed path---of length at most $n$.  Observe, for
+instance, that the path in $\d_3$ described schematically as follows
+\[ 000 \ \rightarrow \ 001 \ \rightarrow \ 011 \ \rightarrow \ 111 \]
+leads node $000$ to node $111$, by rewriting string $000$ as string
+$111$.  The diameter bound is now an immediate consequence of the
+following result.
+
+\begin{prop}
+\label{thm:deBruijn-hamiltonian}
+For all $n \in \N^+$, $\d_n$ contains a {\em hamiltonian cycle}, i.e.,
+a length-$2^n$ direct path that contains each node of $d_n$ precisely
+once.
+\end{prop}
+
+\begin{proof}{Sketch}
+The simplest proof of this result has two steps, both of which depend
+on topics we develop later in this chapter:
+\begin{itemize}
+\item
+{\it Eulerian cycles} \index{Eulerian cycle}
+
+An {\it eulerian cycle} in a graph $\g$ is a cycle that contains each
+edge of $\g$ precisely once.  This notion is named for its discoverer,
+Leonhard Euler \index{Euler, Leonhard}
+\item
+{\it Line graphs} \index{line graph}
+
+The {\it line graph} of a graph $\g$ is a graph $\l(\g)$.  The nodes
+of $\l(\g)$ are the edges of $\g$; $\l(\g)$ contains an edge $(e_1,
+e_2)$, for every pair of edges of $\g$, $e_1$ and $e_2$, that share an
+endpoint.
+
+The relevance of this topic here is that the line graph of every de
+Bruijn network $\d_n$ is the de Bruijn network $\d_{n+1}$. 
+\end{itemize}
+A truly elementary argument, based on node-degrees will show that
+every de Bruijn network has an eulerian cycle.  An invocation of the
+second preceding bulleted item will then complete the proof.
+\qed
+\end{proof}
 
 \medskip
 
