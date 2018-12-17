@@ -1910,6 +1910,9 @@ $\displaystyle {a \over b}$ is the simplest name.
 
 {\Denis I did not find a better word for simplest...}
 
+{\Denis I have another geometric proof for the same result,
+I added it in the separate file which will serve as exercices.}
+
 \subsection{$\R$ is uncountable, hence is ``bigger than'' $\Z$ and $\Q$}
 \label{sec:Q-Z-R-cardinality}
 \label{sec:Reals-uncountable}
@@ -1935,7 +1938,7 @@ leads to a contradiction.  Being built around Georg Cantor's renowned
 {\it diagonalization construction}, \index{diagonalization} this
 argument provides the most sophisticated proof by contradiction in our
 text.  The reader might want to review the reasoning underlying such
-argumentation, in Chapter~\ref{sec:Contradiction}, as a ``warm-up.''
+argumentation, in Section~\ref{sec:Contradiction}, as a ``warm-up.''
 
 \subsubsection{Plotting a strategy to prove uncountability}
 \label{sec:the-diag-strategy}
@@ -1956,6 +1959,9 @@ There exists an injection $f: \N \rightarrow \R$; i.e., $|\N| \leq
 \end{lemma}
 
 \noindent {\it Verification}.
+
+{\Denis It sounds like we have a confusion for the definition of NUMb...
+In the other parts, NUM is the integer}
 %
 For each nonnegative integer $n \in \N$, let $\mbox{\sc num}_b(n)$
 denote the shortest base-$b$ numeral for $n$, i.e., a numeral with no
@@ -2117,21 +2123,23 @@ conclude that $\Psi$ does not occur as any row of $\Delta$.  \qed
 \subsubsection{The denouement: There is no bijection  $h: \N \leftrightarrow \R$}
 
 Because the infinite decimal string $\Psi$ differs from every row of
-$\Delta$, even though $\mbox{\sc num}_{10}(\Psi) \in \R_{10}$, we have
+$\Delta$, even though $\mbox{\sc num}_{10}(\Psi) \in \R_{(0,1)}$, we have
 shown that $\Delta$ {\em does not} contain as a row {\em every}
-infinite decimal numeral of a number in $\R_{10}$.  But this
+infinite decimal numeral of a number in $\R_{(0,1)}$.  But this
 contradicts $\Delta$'s assumed defining characteristic!
 
 Where could we have gone wrong?  Every step of our argument, save one,
 is backed up by a proof---so the one step that is not so bolstered
 must be the link that has broken.  This one unsubstantiated step is
-our assumption that the set $\R_{10}$ is countable.  Since this
+our assumption that the set $\R_{(0,1)}$ is countable.  Since this
 assumption has led us to a contradiction, we must conclude that the
-set $\R_{10}$, and hence, the set $\R$, is {\em not} countable!
+set $\R_{(0,1)}$, and hence, the set $\R$, is {\em not} countable!
 \qed
 \end{proof}
 
-
+{\Denis The result and the proof are fine, however, I am preaty sure we can simplify 
+the presentation of the successive steps more clearly. I will come back later at this...
+}
 
 \section{The Complex Numbers}
 \label{sec:complexes}
@@ -2203,8 +2211,8 @@ and then noting that
 \begin{equation}
 \label{eq:complex-mult-3b}
 \begin{array}{lcl}
-\mbox{Re}(\kappa) & = & (a+b) \cdot (c+d) - ac -bd, \\
-\mbox{Im}(\kappa) & = & ac -bd
+\mbox{Im}(\kappa) & = & (a+b) \cdot (c+d) - ac -bd, \\
+\mbox{Re}(\kappa) & = & ac -bd
 \end{array}
 \end{equation}
 We thereby achieve the result of the complex multiplication described
@@ -2220,6 +2228,10 @@ predicated on the observation that each real addition is much less
 costly than a real multiplication, so trading one multiplication for
 one addition is an unqualified ``win''.  \qed
 \end{proof}
+
+{\Denis I added a sentence to refer to an exercice dealing with karatsuba which uses the same idea...}
+Notice that this technique is classical and it has been used in many other situations.
+For instance while multiplying two integers in base 2 (see exercice~\ref{Karatsuba}).
 
 
 \section{Numerals We Can Work With}\index{numerals}
@@ -2267,6 +2279,8 @@ We then form base-$b$ numerals in the following way.
 }
 \medskip
 
+{\Denis the following should be put before in 4.5.2}
+
 A base-$b$ numeral is a string having three segments.
 \begin{enumerate}
 \item
@@ -2303,12 +2317,12 @@ are {\em base-$b$ digits} i.e., elements of the set $B_b$, and
 
 \noindent
 The numeral depicted in (\ref{eq:real-numeral}) represents the (real)
-number\footnote{The notation ``$\mbox{\sc value}(x)$'' in
+number\footnote{The notation ``$\mbox{\sc num}_{10}(x)$'' in
   (\ref{eq:real-numeral-number}) denotes an operator that produces the
-  {\em numerical value} of the numeral $x$.}
+  {\em numerical value} of the numeral $x$ written in base-$b$.}
 \begin{equation}
 \label{eq:real-numeral-number}
-\mbox{\sc value}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+\mbox{\sc num}_{10}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
 \ . \ \beta_0 \beta_1 \beta_2 \cdots)
 \ \ \eqdef \ \
 \sum_{i=0}^n \alpha_i \cdot b^i
@@ -2320,14 +2334,14 @@ For emphasis, we note that the base-$b$ integer
 \index{positional number system!numerical value of integral part}
 represented by the numeral's integer part is
 \[
-\mbox{\sc value}(\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0)
+\mbox{\sc num}_{10}(\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0)
 \ \ = \ \
 \sum_{i=0}^n \alpha_i \cdot b^i
 \]
 and the base-$b$ fraction represented by the numeral's fractional part
 is\index{positional number system!numerical value of fractional part}
 \[
-\mbox{\sc value}(. \beta_0 \beta_1 \beta_2 \cdots)
+\mbox{\sc num}_{10}(. \beta_0 \beta_1 \beta_2 \cdots)
 \ \ = \ \
 \sum_{j\geq 0} \beta_j \cdot b^{-j}
 \]
@@ -2362,14 +2376,16 @@ insisting that every numeral have the following {\em normal form:}
 \label{sec:special-numerals-N-Q}
 
 We have provided an adequate, albeit inelegant, characterization of
-the real numbers: a number $r$ is real if,and only if, it can be
+the real numbers: a number $r$ is real if, and only if, it can be
 represented by an infinite-length numeral in a positional number
 system.  Because every rational number---hence, also, every
 integer---is also a real number, every rational number and every
-integer can also be written as a$b$-ary numeral, in the form
+integer can also be written as a $b$-ary numeral, in the form
 (\ref{eq:real-numeral}).  For rational numbers and integers, we can
 make much stronger statements about the forms of their positional
 numerals.
+
+{\Denis We have to add a brief discussion about k-ary and k-adic systems...}
 
 \subsubsection{Positional numerals for integers}
 \label{sec:special-numerals-N}
@@ -2393,34 +2409,29 @@ We can go beyond the simple statement of
 Proposition~\ref{thm:integer-real} and present the following algorithm
 that computes the normal-form base-$b$ numeral for an integer $n$.
 
+{\Denis I think it would be better to give the process in literal form as the rest of the chapter...}
 \bigskip
 
 \noindent {\underline{\bf Procedure}} {\small\sf Normal-Form
   Numeral}($n$)
 
 /*Compute the normal-form numeral for a given integer $n$*/
-
 \smallskip
 
 \noindent{\bf Initialization}.
 
 Set {\sc current-residue} to $n$
-
 \smallskip
 
-\noindent{\bf Iteration}. 
-
-Until {\sc current-residue} $= 1$
+\noindent{\bf Iterate until}
+{\sc current-residue} $= 1$
 
 Divide {\sc current-residue} by $b$
-
 \medskip
 
 \noindent
 The {\em remainder} upon each division is the next lowest-order
 digit in the base-$b$ numeral for $n$.
-
-
 \bigskip
 
 \noindent {\it Validating the procedure.}
@@ -2507,7 +2518,7 @@ rational numbers, in terms of the auxiliary notion of an {\em ultimately
 \index{ultimately periodic sequence}
 
 An infinite sequence $S$ of numbers is {\em ultimately periodic} if
-there exist two {\em finite} sequences of numbers,$A$ and $B$, such
+there exist two {\em finite} sequences of numbers, $A$ and $B$, such
 that $S$ can be written in the following form (we have added spaces to
 enhance legibility):
 \begin{equation}
