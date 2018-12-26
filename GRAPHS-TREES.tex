@@ -372,44 +372,112 @@ even numbers, $\Sigma_{x \in V_{odd}} \delta(x)$ should also be even.
 Thus, the number of odd vertices is even.% as depicted in Figure~\ref{propertyOdd}.
 *************}
 
+\bigskip
+
+Our discussion of internode distances within graphs have focused on
+shortest (or longest) path problems in {\em unweighted} graphs.  A
+variety of important applications can be modeled via path-distance
+problems in graphs $\g$ each of whose edges, say, $\{u,v\}$, is
+weighted with a number that measures the cost of going between nodes
+$u$ and $v$ in $\g$.  Of course, when graph $\g$ is directed, then the
+arcs $(u \rightarrow v)$ and $(v \rightarrow u)$ can have different
+weights, to model situations wherein going from $u$ to $v$ is
+easier/cheaper than going from $v$ to $u$.  Happily, determining
+shortest (or longest) paths in a directed or undirected graph $\g$ can
+be accomplished ``efficiently''---which in the algorithmic world means
+``in a number of steps that is polynomial in the size of $\g$''.
+ 
+
+
 \paragraph{\small\sf C. Matchings in graphs}
 \index{graphs!matching}
 
 The notion of a {\it matching} in a graph is fundamental to many
 situations that can be modeled using graphs.  A {\it matching} in an
 undirected graph $\g$ is a set of edges of $\g$ that have no nodes in
-common.  Happily, many problem involvings selecting matchings that
-optimize with various criteria can be solved via efficient algorithms.
-We discuss a few such criteria that model significant situations.
+common.  It is, thus, a formal mechanism for pairing nodes of a graph.
+The broad array of activities that can be modeled using graph matching
+include: pairing competitors for a tennis tournament; helping a person
+select a potential spouse (which even in the vernacular is often
+termed ``matchmaking''); determining (near-)optimal layouts for a
+keyboard in language X; selecting persons to command the police
+stations in city Y.  Even this small sample of situations requiring
+matchings makes it clear that there are many variations on this formal
+theme.  We describe, and briefly discuss a few of the most commonly
+encountered versions of matchings in graphs.
 
-A variety of algorithmic problem related to finding matchings in
-graphs have historically been called {\it marriage problems:}
-\index{graphs!marriage problems} the insinuation is that each edge in
-the matching unites (``marries'') the nodes that are the edge's
-endpoints.  Within this context, a classical problem considers graphs
-each of whose edges, say, $\{u,v\}$, is weighted with a number that
-measure the ``affinity'' of  nodes $u$ and $v$ for each other.  The
-challenge is to find a matching that is {\em maximal}
-\index{graphs!maximal matching} in the sense of having a cumulative
-sum of edge-weights that is not exceeded by any other matching's.
+\begin{itemize}
+\item
+The most straightforward notion of matching involves an undirected
+graph $\g$ with unlabeled edges.  The optimization criterion most
+often invoked with this genre of matching is to maximize the number of
+edges of $\g$ that belong to the matching.
 
+The target in this ``vanilla-flavored'' matching problem is often a
+matching that is {\em maximal}, \index{graphs!maximal matching}
+\index{graphs!maximal matching!unweighted graph} in the sense that
+adding any further edge of $\g$ to the matching leaves one with a set
+of edges that is no longer a matching.
 
-that adding any further
-edge to the matching leaves one with a set of edges that is no longer
-a matching.  The ``ultimate treasure'' in the world of matchings is a
-matching that is {\it perfect}.  \index{graphs!perfect matching} A
-matching in $\g$ is {\it perfect} if every node of $\g$ belongs to
-some edge of the matching.
+Among maximal matchings in a graph $\g$, the ``ultimate treasure'' is
+a matching that is {\it perfect}, \index{graphs!perfect matching} in
+the sense that every node of $\g$ belongs to some edge of the
+matching.
 
-We leave to the reader the challenge of verifying the following
+\begin{prop}
+\label{thm:max-matching}
+Maximal matching exist for any graph $\g$.  One can find such a
+matching in a number of steps proportional to $|\n_{\fg}|$.
+\end{prop}
 
+\begin{proof}
+We leave to the reader the challenge of verifying that the following
+\index{greedy algorithm} {\em greedy}\footnote{In the world of
+  algorithmics, the term ``greedy'' descibes any process that seeks to
+  satisfy a criterion as quickly as possible, with no consideration of
+  how this choice affects future choices.}~process satisfies the
+conditions of the Propositioon.
 
-The reader can verify that, if a graph $\g$ admits a perfect matching,
-then $|\n_{\fg}|$ must be even, and the cardinality of the matching is
-exactly $\frac{1}{2}|\n_{\fg}|$.
-{\Arny (Another good exercise)}
+\noindent
+{\it The Process:} \\
+Begin by laying the nodes of $\g$ out, left to right, in any way.
+Repeat the following process until no nodes remain in the layout.
 
-\bigskip
+\noindent
+Select the leftmost node, $u$, in the remaining layout of $\n_{\fg}$.
+Select the leftmost neighbor, $v$, of $u$ that remains in the layout.
+  \begin{enumerate}
+  \item
+If you succeed in finding both $u$ and $v$, then add edge $\{u,v\}$ to
+the matching we are building.  Remove both $u$ and $v$ from the
+layout.
+  \item
+If there is no remaining neighbor $v$ of $u$ in the layout, then
+remove node $u$ from the layout.
+  \end{enumerate}
+The real challenge here is to find a data structure that allows an
+efficient search in the remaining layout for the neighbor-node $v$.
+\qed
+\end{proof}
+
+In contrast to maximal matchings, there exist myriad simple that do
+not admit any perfect matching.  We leave to the reader the challenge
+of verifying the following.
+
+\begin{prop}
+\label{thm:necessary-for-perfect-matching}
+Let $\g$ be a graph that admits a perfect matching.  Then:
+\begin{itemize}
+\item
+$\g$ has an even number of nodes.
+\item
+The cardinality of the (perfect) matching---i.e., the number of edges
+in the matching---is exactly
+$\frac{1}{2}|\n_{\fg}|$.
+\end{itemize}
+\end{prop}
+
+LOTS OF CHOICES
 
 \noindent {\bf Proposition.}
 The number of perfect matchings in a graph of order $n=2k$ grows exponentially with $k$.
@@ -431,13 +499,26 @@ Thus, $N_k$ is the product of the $k$ first odd numbers.
 
 
 
-However, determining a perfect matching of minimal weight in a weighted graph can be obtained in polynomial time (using the Hungarian assignment algorithm). 
+However, determining a perfect matching of minimal weight in a
+weighted graph can be obtained in polynomial time (using the Hungarian
+assignment algorithm).
 
 
 
-\noindent {\bf Shortest path problems.}
+\item
+The other very popular genre of matching problem focuses on graphs
+each of whose edges, say, $\{u,v\}$, is weighted with a number that
+measure the ``affinity'' of  nodes $u$ and $v$ for each other.  The
+challenge is to find a matching that is {\em maximal}
+\index{graphs!maximal matching} in the sense of having a cumulative
+sum of edge-weights that is not exceeded by any other matching's.
 
-Determining the shortest (or longest) path can be done in polynomial time.
+
+\end{itemize}
+
+\bigskip
+
+
 
 
 
