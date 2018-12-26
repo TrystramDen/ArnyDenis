@@ -1,4 +1,4 @@
-%version of 12-20-18
+%version of 12-26-18
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -47,6 +47,8 @@ academic program that includes a computation-oriented component.
 \label{sec:graphs-generic}
 
 \subsection{Basic Concepts}
+
+\paragraph{\small\sf A. Connectivity-related concepts}
 
 The basic components of a graph $\g$ are its {\em nodes/vertices}
 \index{graphs!nodes} \index{graphs!vertices} \index{node (of a graph)}
@@ -119,30 +121,58 @@ node $u_n$ in $\g$:
 \begin{equation}
 \label{eq:di-path}
 (u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2}
-        \rightarrow u_{n-1}), \ (u_{n-1} \rightarrow u_n).
+        \rightarrow u_{n-1}), \ (u_{n-1} \rightarrow u_n)
 \end{equation}
-The path described in (\ref{eq:di-path}) makes sense only when every
-node $u_i$ belongs to $\n_{\fg}$ and every arc $(u_i \rightarrow u_j)$
+The path (\ref{eq:di-path}) is often written in the more succinct form
+\[
+u_1 \ \rightarrow \ u_2 \ \rightarrow \ u_3 \ \rightarrow \cdots
+\rightarrow \ u_{n-2} \ \rightarrow \ u_{n-1} \ \rightarrow \ u_n
+\]
+The just-described path makes sense only when every node $u_i$ belongs
+to $\n_{\fg}$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$,
 belongs to $\a_{\fg}$.  The {\it length} of path (\ref{eq:di-path}) is
-the number of arcs---i.e., $n-1$; and the existence of the path means
-that the {\it distance} \index{distance in a digraph}
+the number of arcs, i.e., $n-1$.  The existence of the path means that
+the {\it distance} \index{distance in a digraph}
 \index{digraph!distance} \index{graphs!distance in a digraph} from
-$u_1$ to $u_n$ in $\g$ is no greater than $n-1$.   (There may exist
+$u_1$ to $u_n$ in $\g$ is no greater than $n-1$.  (There may exist
 shorter paths in $\g$ from $u_1$ to $u_n$.)
 
 \medskip
 
 It is sometimes useful to endow the arcs of a digraph with labels from
 an alphabet $\Sigma$.  When so endowed, the path (\ref{eq:di-path})
-would be written
-\[
+would be written in a form such as
+
+\smallskip
+
+\hspace*{.35in}$\displaystyle
 (u_1 \stackrel{\lambda_1}{\rightarrow} u_2), \ 
 (u_2 \stackrel{\lambda_2}{\rightarrow} u_3), \ \ldots, \ 
 (u_{n-2} \stackrel{\lambda_{n-2}}{\rightarrow} u_{n-1}), \ 
-(u_{n-1} \stackrel{\lambda_{n-1}}{\rightarrow} u_n),
-\]
-where the $\lambda_i$ denote symbols from $\Sigma$.  If $u_1 = u_n$,
-then we call the preceding path a {\em cycle}.\index{cycle (in a digraph)}
+(u_{n-1} \stackrel{\lambda_{n-1}}{\rightarrow} u_n)$
+
+\smallskip
+
+\noindent
+where the $\lambda_i$ denote symbols from $\Sigma$.  Labeled paths
+also are often written in a succinct manner, as:
+
+\smallskip
+
+\hspace*{.35in}$\displaystyle 
+u_1 \ \stackrel{\lambda_1}{\rightarrow} \ u_2
+    \ \stackrel{\lambda_2}{\rightarrow} \ u_3
+    \ \stackrel{\lambda_3}{\rightarrow} \ \cdots \ 
+    \ \stackrel{\lambda_{n-3}}{\rightarrow} \ u_{n-2}
+    \ \stackrel{\lambda_{n-2}}{\rightarrow} \ u_{n-1}
+    \  \stackrel{\lambda_{n-1}}{\rightarrow} \ u_n$
+
+\medskip
+
+If $u_1 = u_n$, then we call path (\ref{eq:di-path}) a {\em (directed)
+  cycle},\index{cycle (in a digraph)} and we call its labeled version
+a {\em labeled (directed) cycle}.  (The qualifier ``directed'' is
+usually included only for emphasis.)
 
 \medskip
 
@@ -259,6 +289,20 @@ is the number of nodes $v \in \n_{\fg}$ such that $(v \rightarrow u)$
 is an arc of $\g$.
 \end{itemize}
 
+\smallskip
+
+The reader will note that we nowhere guarantee that there is always a
+path that connects each node $u$ with each other node $v$.  We say
+that a graph $\g$ is {\it connected} \index{graphs!connected} if every
+pair of nodes $u, v \in \n_{\fg}$ is connected by a path in $\g$.  If
+graph $\g$ is {\em not} connected, then it is the disjoint union of
+some number $c$ of connected subgraphs, usually called $\g$'s {\it
+  (connected) components}.  \index{graphs!connected components} Of
+course, $g$ is connected just when $c=1$; i.e., there is a single
+connected component.
+
+\paragraph{\small\sf B. Distance-related concepts}
+
 \noindent {\it Distance and diameter in a digraph.}
 \index{digraph!distance between two nodes}
 Extrapolating from our discussion of path (\ref{eq:di-path}): The {\it
@@ -311,24 +355,6 @@ u_n \in \n_{\fh}$ such that {\sc distance}$(u_1, u_n) = d$.  Note that
 when discussing undirected graphs, we always use {\em undirected}
 paths when defining distance.
 
-The reader will note that definition (\ref{eq:distance-defn}) has an
-``escape clause''---specifically its third clause---which admits the
-possibility that there is no path that connects node $u$ with node
-$v$.  We say that a graph $\g$ is {\it connected}
-\index{graphs!connected} if every pair of nodes $u, v \in \n_{\fg}$ is
-connected by a path in $\g$---so that the ``escape clause'' never has
-to be invoked.  If graph $\g$ is {\em not} connected, then it is the
-disjoint union of some number $c$ of connected subgraphs, usually
-called $\g$'s {\it (connected) components}.
-\index{graphs!connected components}
-Of course, $g$ is connected just when $c=1$; i.e., there is a single
-connected component.
-
-
-\subsection{Some Basic  Results}
-**HERE
-
-
 \ignore{********
 Alternatively, this result can be proved by applying the Fubini's
 principle using the adjacency matrix.  The two ways of counting the
@@ -345,19 +371,38 @@ even numbers, $\Sigma_{x \in V_{odd}} \delta(x)$ should also be even.
 
 Thus, the number of odd vertices is even.% as depicted in Figure~\ref{propertyOdd}.
 *************}
-\bigskip
+
+\paragraph{\small\sf C. Matchings in graphs}
+\index{graphs!matching}
 
 The notion of a {\it matching} in a graph is fundamental to many
-situations that are modeled using graphs.
+situations that can be modeled using graphs.  A {\it matching} in an
+undirected graph $\g$ is a set of edges of $\g$ that have no nodes in
+common.  Happily, many problem involvings selecting matchings that
+optimize with various criteria can be solved via efficient algorithms.
+We discuss a few such criteria that model significant situations.
 
-\medskip
+A variety of algorithmic problem related to finding matchings in
+graphs have historically been called {\it marriage problems:}
+\index{graphs!marriage problems} the insinuation is that each edge in
+the matching unites (``marries'') the nodes that are the edge's
+endpoints.  Within this context, a classical problem considers graphs
+each of whose edges, say, $\{u,v\}$, is weighted with a number that
+measure the ``affinity'' of  nodes $u$ and $v$ for each other.  The
+challenge is to find a matching that is {\em maximal}
+\index{graphs!maximal matching} in the sense of having a cumulative
+sum of edge-weights that is not exceeded by any other matching's.
 
-\index{graphs!matching}
-A {\it matching} in an undirected graph $\g$ is a set of edges of $\g$
-that have no nodes in common.
-\index{graphs!perfect matching}
-A matching in $\g$ is {\it perfect} if every node of $\g$ belongs to
-some edge of the metching.
+
+that adding any further
+edge to the matching leaves one with a set of edges that is no longer
+a matching.  The ``ultimate treasure'' in the world of matchings is a
+matching that is {\it perfect}.  \index{graphs!perfect matching} A
+matching in $\g$ is {\it perfect} if every node of $\g$ belongs to
+some edge of the matching.
+
+We leave to the reader the challenge of verifying the following
+
 
 The reader can verify that, if a graph $\g$ admits a perfect matching,
 then $|\n_{\fg}|$ must be even, and the cardinality of the matching is
