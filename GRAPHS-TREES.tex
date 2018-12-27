@@ -1,4 +1,4 @@
-%version of 12-26-18
+%version of 12-27-18
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -42,17 +42,18 @@ appreciation of graphs as dynamic objects.  This change in perspective
 affects many aspects of the mathematical prerequisites for any
 academic program that includes a computation-oriented component.
 
+\section{Basic Concepts}
+\label{sec:basic-graphs}
 
-\section{Generic Graphs: Directed and Undirected}
+\subsection{Generic Graphs: Directed and Undirected}
 \label{sec:graphs-generic}
 
-\subsection{Basic Concepts}
+\subsubsection{Connectivity-related concepts}
 
-\paragraph{\small\sf A. Connectivity-related concepts}
-
-The basic components of a graph $\g$ are its {\em nodes/vertices}
-\index{graphs!nodes} \index{graphs!vertices} \index{node (of a graph)}
-\index{vertex (of a graph)} (one encounters both terms in the
+The basic components of a graph $\g$ are \index{graphs!nodes}
+\index{graphs!vertices} \index{node (of a graph)} \index{vertex (of a
+  graph)} its {\em nodes/vertices}\footnote{The singular form of
+  ``vertices'' is {\it vertex}.}~(one encounters both terms in the
 literature) and its {\em edges} \index{graphs!edges} \index{edge (of a
   graph)} that interconnect them.  (The singular form of ``vertices''
 is {\it vertex}.)  \index{graphs!vertex} \index{vertex (of a graph)}
@@ -85,20 +86,18 @@ connected by an arc, and all arcs must ``point in the same
 direction.''
 
 The special class of graphs called {\it trees} \index{graphs!trees}
-\index{Trees} occupy a place of honor within both the mathematical
-field called {\it graph theory} and the vernacular.  Mathematically
-speaking, a tree $\t$ is a graph that contains no cycles: $\t$ is thus
-the embodiment of ``pure'' connectivity.  As one would expect from the
-vernacular, a set of trees is called a {\it forest}. \index{forest (of
-  trees)} Just as with graphs, there is a directed version of trees.
-Within a directed tree $\t$, one singles out two special classes of
-nodes: A {\it root (node)} \index{Trees!root (node)} \index{root (of a
-  directed tree)} of $\t$ has no entering arcs; a {\it leaf (node)}
-\index{Trees!leaf (node)} \index{leaf (of a directed tree)} of $\t$
-has no exiting arcs.  The reader is certainly familiar with the use of
-rooted directed trees to represent family trees and corporate
-hierarchies.
-
+\index{trees} are identified mathematically as graphs that contain no
+cycles or, equivalently, as graphs in which each pair of nodes is
+connected by a unique path: a tree is thus the embodiment of ``pure''
+connectivity.  As one would expect from the vernacular, a set of trees
+is called a {\it forest}. \index{forest (of trees)} Just as with
+graphs, there is a directed version of trees.  Within a directed tree
+$\t$, one singles out two special classes of nodes: A {\it root
+  (node)} \index{trees!root (node)} \index{root (of a directed tree)}
+of $\t$ has no entering arcs; a {\it leaf (node)} \index{trees!leaf
+  (node)} \index{leaf (of a directed tree)} of $\t$ has no exiting
+arcs.  The reader is certainly familiar with the use of rooted
+directed trees to represent family trees and corporate hierarchies.
 
 
 A {\it directed graph} \index{graphs!directed} ({\it digraph},
@@ -232,19 +231,78 @@ The {\it degree}
 \index{degree of a node in an undirected graph}
 of a node $u \in \n_{\fh}$ is the number of neighbors that $u$ has.
 
-Even at this early moment in our study of graphs, we can observe an
-important fact that can be useful when analyzing a broad range of
+Even at this early moment in our study of graphs, we can observe a few
+important facts that can be useful when analyzing a broad range of
 computation-related issues involving graphs (either as auxiliary
 notions or as subjects of discourse).
 
 \begin{prop}
-\label{thm:even-num-odd-degrees}
-In any undirected graph $\g$, the number of nodes of odd degree is
-even.
+\label{thm:number-edges/arcs}
+{\bf (a)}
+An $n$-node digraph $\g$ has no more than $n^2$ arcs.
+
+{\bf (b)}
+An $n$-node graph $\h$ has no more than $\displaystyle {n \choose 2}$ edges.
+
+{\bf (c)}
+An $n$-node (connected) tree has precisely $n-1$ edges.
 \end{prop}
 
 \begin{proof}
-The result follows directly from the following equation:
+{\bf (a)}
+The set $\a_{\fg}$ of arcs of $\g$ is a subset of the set of ordered
+pairs of nodes of $\g$.  This latter number is clearly $n^2$, becaause
+one can choose the first node in a pair in $n$ ways and then {\em
+  independently} choose the second node in $n$ ways.
+
+\smallskip
+
+\noindent {\bf (b)}
+The stated number is the number of $2$-node subsets of $\n_{\fh}$.  To
+wit, start by listing the $n^2$ ordered pairs of nodes of $\h$.
+First, eliminate from the list all $n$ pairs whose first and second
+elements are equal: a set of the form $\{ u,u\}$ has only one element,
+hence is not an edge of $\h$.  Then, for each distinct pair of nodes
+$u, v \in \n_{\fh}$, eliminate one of the two ordered pairs, $\langle
+u,v \rangle$ and $\langle u,v \rangle$: both of these ordered pairs
+lead to the same unordered set $\{ u,v\}$, hence the same edge of
+$\h$.  After these eliminations, we are left with
+\[ \frac{n^2 - n}{2} \ = \ {n \choose 2} \]
+$2$-element subsets of $\n_{\fh}$, from which we choose the edges of
+$\h$.
+
+\smallskip
+
+\noindent {\bf (c)}
+Let us proceed by induction on $n$.
+
+The base case $n=2$ is obvious, because one edge is both necessary and
+sufficient to connect two nodes.
+
+Assume for induction that the indicated tally is correct for all trees
+having no more than $k$ nodes.
+
+Consider, for the purpose of extending the induction, any tree $\t$ on
+$k+1$ nodes.  Easily, $\t$ must contain at least one leaf-node---i.e.,
+a node $v$ of degree $1$---or else $\t$ would contain a cycle.  If we
+remove $v$ and its incident edge, we now have a tree on $k$ nodes
+which, by induction, has $k-1$ edges.  When we reattach node $v$, to
+restore $\t$ to its original state, we see that $\t$ has $k+1$ nodes
+and $k$ edges.
+
+Because $\t$ was an arbitrary $(k+1)$-node tree, the induction is
+extended.  \qed
+\end{proof}
+
+
+\begin{prop}
+\label{thm:even-num-odd-degrees}
+In any undirected graph, the number of nodes of odd degree is even.
+\end{prop}
+
+\begin{proof}
+The result follows directly from the following equation that holds for
+any undirected graph $\g$:
 \[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot
 |\e_{\cal G}|.
 \]
@@ -301,7 +359,7 @@ some number $c$ of connected subgraphs, usually called $\g$'s {\it
 course, $g$ is connected just when $c=1$; i.e., there is a single
 connected component.
 
-\paragraph{\small\sf B. Distance-related concepts}
+\subsubsection{Distance-related concepts}
 
 \noindent {\it Distance and diameter in a digraph.}
 \index{digraph!distance between two nodes}
@@ -388,8 +446,7 @@ be accomplished ``efficiently''---which in the algorithmic world means
 ``in a number of steps that is polynomial in the size of $\g$''.
  
 
-
-\paragraph{\small\sf C. Matchings in graphs}
+\subsubsection{Matchings in graphs}
 \index{graphs!matching}
 
 The notion of a {\it matching} in a graph is fundamental to many
@@ -400,14 +457,26 @@ The broad array of activities that can be modeled using graph matching
 include: pairing competitors for a tennis tournament; helping a person
 select a potential spouse (which even in the vernacular is often
 termed ``matchmaking''); determining (near-)optimal layouts for a
-keyboard in language X; selecting persons to command the police
-stations in city Y.  Even this small sample of situations requiring
-matchings makes it clear that there are many variations on this formal
-theme.  We describe, and briefly discuss a few of the most commonly
-encountered versions of matchings in graphs.
+keyboard in language X (based on the relative ``affinities'' of
+various pars of letters for one another in language X); selecting
+persons to command the police stations in city Y (based on the
+perceived ``match'' between a candidate's qualifications and the needs
+of specific stations).  Even this small sampler of situations that
+involve matchings makes it clear that there are many variations on
+this formal theme.  This section is devoted to describing, and briefly
+discussing, a few of the most commonly encountered versions of
+matching in graphs.
 
-\begin{itemize}
-\item
+\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
+Although the definitions of the various versions of matching are
+readily accessible to even the beginning student of mathematics, munch
+of the more sophisticated mathematical knowledge about matchings is
+beyond any beginning text.  The interested reader might consult a more
+advanced source, such as \cite{Berge73}, to get a feeling for what is
+known about this simple, yet rich, topic.
+\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
+
+\noindent {\it Matchings in unweighted graphs}.
 The most straightforward notion of matching involves an undirected
 graph $\g$ with unlabeled edges.  The optimization criterion most
 often invoked with this genre of matching is to maximize the number of
@@ -426,7 +495,7 @@ matching.
 
 \begin{prop}
 \label{thm:max-matching}
-Maximal matching exist for any graph $\g$.  One can find such a
+Maximal matchings exist for any graph $\g$.  One can find such a
 matching in a number of steps proportional to $|\n_{\fg}|$.
 \end{prop}
 
@@ -452,17 +521,22 @@ If you succeed in finding both $u$ and $v$, then add edge $\{u,v\}$ to
 the matching we are building.  Remove both $u$ and $v$ from the
 layout.
   \item
-If there is no remaining neighbor $v$ of $u$ in the layout, then
+If there is no neighbor $v$ of $u$ in the remaining layout, then
 remove node $u$ from the layout.
   \end{enumerate}
 The real challenge here is to find a data structure that allows an
-efficient search in the remaining layout for the neighbor-node $v$.
+efficient search for a ``remaining'' neighbor-node $v$ at each step of
+the selction process.
 \qed
 \end{proof}
 
-In contrast to maximal matchings, there exist myriad simple that do
-not admit any perfect matching.  We leave to the reader the challenge
-of verifying the following.
+\medskip
+
+In contrast to maximal matchings, there exist myriad simple graphs
+that do not admit any perfect matching.  Contemplating, for instance,
+matchings within any cycle with an odd number of nodes may prepare the
+reader for the challenge of verifying the following necessary
+condition for a graph to admit a perfect matching.
 
 \begin{prop}
 \label{thm:necessary-for-perfect-matching}
@@ -477,35 +551,10 @@ $\frac{1}{2}|\n_{\fg}|$.
 \end{itemize}
 \end{prop}
 
-LOTS OF CHOICES
 
-\noindent {\bf Proposition.}
-The number of perfect matchings in a graph of order $n=2k$ grows exponentially with $k$.
 \bigskip
 
-\noindent {\bf Proof.}
-by recurrence on $k$, let denote the number of perfect matchings by $N_k$.
-
-For $k=1$, there is only one perfect matching 
-%(see Figure~\ref{perfectMatching1}): 
-$N_1=1$
-and for $k=2$, there are $3$ different perfect matchings  
-$N_2=3$.
-For $k$, there are $2k-1$ possibilities for a vertex to choose an edge, which each leads to $3$ perfect matchings 
-$N_k = (2k-1).N_{k-1}$. 
-
-%$N_1=1$, $N_2=3$, $N_3=3 \times 5=15$, $N_4=3 \times 5 \times 7=115$, etc..
-Thus, $N_k$ is the product of the $k$ first odd numbers. 
-
-
-
-However, determining a perfect matching of minimal weight in a
-weighted graph can be obtained in polynomial time (using the Hungarian
-assignment algorithm).
-
-
-
-\item
+\noindent {\it Matchings in weighted graphs}.
 The other very popular genre of matching problem focuses on graphs
 each of whose edges, say, $\{u,v\}$, is weighted with a number that
 measure the ``affinity'' of  nodes $u$ and $v$ for each other.  The
@@ -513,8 +562,17 @@ challenge is to find a matching that is {\em maximal}
 \index{graphs!maximal matching} in the sense of having a cumulative
 sum of edge-weights that is not exceeded by any other matching's.
 
+We note in closing that, while edge-weightings often complicate
+computational processing of graphs, they need not render such
+computations practically infeasible.  For instance, the problem of
+discovering a perfect matching of minimal weight in an edge-weighted
+graph can be solved moderately efficiently---i.e., in a number of
+steps that is polynomial in the size of the graph.  (An algorithm that
+achieves this efficiency can be based on the colorfully named {\it
+  Hungarian assignment method}; \index{Kuhn, Harold W.}  see the
+original source \cite{Kuhn55} or the encyclopedic algorithms text
+\cite{CLRS}.)
 
-\end{itemize}
 
 \bigskip
 
@@ -529,14 +587,37 @@ sum of edge-weights that is not exceeded by any other matching's.
 \label{sec:Trees}
 
 The special class of graphs called {\it trees} \index{graphs!trees}
-\index{Trees} occupy a place of honor within both the mathematical
+\index{trees} occupy a place of honor within both the mathematical
 field called {\it graph theory} and within the vernacular.
 
-Mathematically speaking, a tree is a graph that contains no cycles.  A
-tree is thus the embodiment of ``pure'' connectivity: it provides the
-minimal interconnection structure that provides paths that connect
-every pair of nodes.  As one might expect from the vernacular, a set
-of trees is called a {\it forest}. \index{forest (of trees)}
+Mathematically speaking, a tree is a graph that contains no cycles,
+i.e., is {\it cycle-free}. \index{graphs!cycle-free} Equivalently, a
+tree is a graph in which each pair of distinct nodes is connected by
+precisely one path.  A tree is thus the embodiment of ``pure''
+connectivity: it provides the minimal interconnection structure that
+provides paths that connect every pair of nodes.  As one might expect
+from the vernacular, a set of trees is called a {\it
+  forest}. \index{forest (of trees)}
+
+We have just given two distinct definitions of ``tree''.  The reader
+should prove that both definitions define the same class of graphs.
+
+\begin{prop}
+\label{thm:2defns-trees}
+Prove that the two definitions of ``tree'' are equivalent.  In other
+words, prove that the following assertions about a connected graph
+$\t$ are equivalent, in the sense that one assertion holds if, and
+only if, the other does.
+\begin{itemize}
+\item
+The graph $\t$ is cycle-free.
+\item
+Each pair of distinct nodes of $\t$ is connected by precisely one
+path.
+\end{itemize}
+\end{prop}
+
+{\Arny A GOOD EXERCISE?}
 
 One of the major uses of trees and forests is as a way of succinctly
 ``summarizing'' the connectivity structure inherent in an undirected
@@ -563,8 +644,8 @@ vernacular, a {\em minimum spanning tree}).  Happily, this classical
 optimization problem can be solved within a number of steps that is
 linear in the number of edges of $\g$.
 
-{\Arny Giving a {\em hint} at a solution for MST to real beginners is
-  probably useless}
+{\Arny Giving just a {\em hint} at a solution for MST to real
+  beginners is probably useless}
 \ignore{*********
 There are mainly two ways for constructing such a MST, each one emphasizes a different propriety of the MST, namely, avoid cycles and minimize the span.
 In both cases, the edges are sorted in increasing order of weights.
@@ -575,16 +656,16 @@ while the other add successively the edges of minimal weights that do not create
 Just as with graphs, there is a {\em directed} version of trees, which
 is formed by replacing the (unoriented) edges of an undirected tree by
 (oriented) arcs.  Within a directed tree, one often says that an arc
-goes from a {\it parent node} \index{Trees!parent node} to a {\it
-  child node} \index{Trees!child node}.  Extending this
+goes from a {\it parent node} \index{trees!parent node} to a {\it
+  child node} \index{trees!child node}.  Extending this
 anthropomorphic metaphor, one often talks about the {\it ancestor(s)}
-\index{Trees!ancestor node} and {\it descendant(s)}
-\index{Trees!descendant node} of a tree-node.  We single out two
+\index{trees!ancestor node} and {\it descendant(s)}
+\index{trees!descendant node} of a tree-node.  We single out two
 special classes of nodes of a directed tree: A {\it root (node)}
-\index{Trees!root (node)} \index{root (of a directed tree)} is defined
-by its having no entering arcs; a {\it leaf (node)} \index{Trees!leaf
+\index{trees!root (node)} \index{root (of a directed tree)} is defined
+by its having no entering arcs; a {\it leaf (node)} \index{trees!leaf
   (node)} \index{leaf (of a directed tree)} is defined by its having
-no exiting arcs.
+no exiting arcs, i.e., outdegree $0$.
 
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 Sociologically, the historical {\it atomic family tree} \index{family
@@ -611,7 +692,7 @@ the same generation are mutually disjoint.
 
 \[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 A singly-rooted tree represents a {\it hierarchy}.
-\index{Trees!singly-rooted!hierarchy} \index{hierarchy} Given two
+\index{trees!singly-rooted!hierarchy} \index{hierarchy} Given two
 directed subtrees within a hierarchy, either the root of one of the
 subtrees is a descendant of the root of the other, or the two subtrees
 are are mutually disjoint.
@@ -620,9 +701,9 @@ are are mutually disjoint.
 More formally: {\em rooted trees} are a class of {\em acyclic}
 digraphs.  Paths in trees which start at the root are often called
 {\em branches}.  The {\em acyclicity} of a tree $\t$ means that for
-any branch of $\t$ of the form (\ref{eq:di-path}), we cannot have $u_1 =
-u_n$, for this would create a cycle.  Each singly-rooted tree $\t$ has
-a designated {\em root node} \index{Trees!root node} $u_n \in
+any branch of $\t$ of the form (\ref{eq:di-path}), we cannot have $u_1
+= u_n$, for this would create a cycle.  Each singly-rooted tree $\t$
+has a designated {\em root node} \index{trees!root node} $u_n \in
 \n_{\ft}$ that resides at the end of a branch (\ref{eq:di-path}) that
 starts at $r_{\ft}$ (so $u_1 = r_{\ft}$) is said to reside at {\em
   depth} $n-1$ in $\t$; by convention, $r_{\ft}$ is said to reside at
@@ -631,20 +712,19 @@ root $r_{\ft}$ has some number (possibly $0$) of arcs that go from
 $r_{\ft}$ to its {\em children,} each of which thus resides at depth
 $1$ in $\t$; in turn, each child has some number of arcs (possibly
 $0$) to its children, and so on.  For each arc $(u \rightarrow v) \in
-A_{\ft}$, we call $u$ a {\it parent} \index{Trees!parent node} of $v$,
-and $v$ a {\it child} \index{Trees!child node} of $u$, in $\t$;
+A_{\ft}$, we call $u$ a {\it parent} \index{trees!parent node} of $v$,
+and $v$ a {\it child} \index{trees!child node} of $u$, in $\t$;
 clearly, the depth of each child is one greater than the depth of its
 parent.  Every node of $\t$ except for $r_{\ft}$ has precisely one
 parent; $r_{\ft}$ has no parents.  A childless node of a tree is a
-{\em leaf}.  \index{Trees!leaf node} The transitive extensions of the
-parent and child relations are, respectively, the {\em ancestor}
-\index{Trees!ancestor node} and {\em descendant}
-\index{Trees!descendant node} relations.  The {\em degree}
-\index{degree (of a node in a tree)} of a node $v$ in a tree is the
-number of children that the node has, call it $c_v$.  If every nonleaf
-node in a tree has the same degree $c$, then we call $c$ the {\em
-  degree of the tree}.
-\index{degree of a tree}
+{\em leaf}, \index{trees!leaf node} i.e., a node of degree $1$.  The
+transitive extensions of the parent and child relations are,
+respectively, the {\em ancestor} \index{trees!ancestor node} and {\em
+  descendant} \index{trees!descendant node} relations.  The {\em
+  degree} \index{degree (of a node in a tree)} of a node $v$ in a tree
+is the number of children that the node has, call it $c_v$.  If every
+nonleaf node in a tree has the same degree $c$, then we call $c$ the
+{\em degree of the tree}.  \index{degree of a tree}
 
 It is sometimes useful to have a symbolic notation for the ancestor
 and descendant relations.  To this end, we write $(u \Rightarrow v)$
@@ -764,28 +844,52 @@ of possible ways.  Such graphs, when drawn, often exhibit a lot of
 structural symmetry.  One popular form of symmetry is {\it degree
   regularity}: an undirected graph $\g$ is {\it regular}
 \index{graphs!regular} if all nodes of $\g$ have the same degree.  Not
-surprisingly, there is a directed version of regular embodied in the
+surprisingly, there is a directed version of ``regular'' embodied in the
 symmetric notions of {\it in-regularity}
 \index{graphs!directed!in-regular} and {\it out-regularity}.
 \index{graphs!directed!out-regular}
 
+\medskip
+
 We now describe five families of regular graphs that have proven
 useful over the history of digital computing, and we expose some basic
 properties of each, including its diameter.  Each of these graphs is
-available in both a directed and an undirected version.
+available in both a directed and an undirected version, although, as
+we note, one of these versions is more commonly encountered.  We have
+selected these specific graphs for rather different reasons.
+\begin{itemize}
+\item
+The first two graphs, the {\it cycle-graph} of paragraph {\small\sf A}
+and the {\it complete graph} of paragraph {\small\sf B} were selected
+for respectively representing the lowest-degree and highest-degree
+graphs that share two properties: (1) every node of each graph is
+accessible from every other node; (2) all nodes ``look alike'' to
+someone traversing the graph.  Elaborating on (2): If we put you down
+on a node of either graph, there is no way that you can determine the
+identity of that node.  This is an important feature to ponder,
+because it is a simple instance of the anonymity problem inherent to
+many modern distributed computing environments.  {\it How does one
+  orchestrate cooperative activities when all agents ``are
+  identical''?}
 
-*** DESCRIBE MOTIVATION / CHOICE OF GRAPHS***
-
-Say Especially when the graphs are studied within the context of {\em
-  hardware}---i.e, as the network that underlies a parallel
-architecture by interconnecting its processors
-
+\item
+The remaining graphs, the {\it mesh and torus networks}\footnote{These
+  two structures, though distinct, are usually discussed together
+  because they share so many important properties.}~of paragraph
+{\small\sf C}, the {\it hypercube network} of paragraph {\small\sf D},
+and the {\it de Bruijn network} of paragraph {\small\sf E}, were
+selected for their importance within the world of parallel and
+distributed computing---as abstract platforms for developing efficient
+computational and communicational processes, and as abstract versions
+of the networks that underlie parallel architectures by
+interconnecting its processors.
+\end{itemize}
 Throughout, the parameters that describe our graph families range over
 the positive integers; i.e., each occurrence of $n$ below ranges over
 $\N^+$.
 
-{\it The cycle-graph}.
-%
+\subsubsection{The cycle-graph}
+
 For each positive integer $n \in \N^+$, both the {\it undirected
   order-$n$ cycle-graph} $\cc_n$ and the {\it directed order-$n$
   cycle-graph} $\widehat{\cc}_n$ \index{cycle graph} \index{cycle
@@ -835,11 +939,9 @@ witnessed by the directed distance from each node $k$ of $\widehat
   \end{itemize}
 \end{itemize}
 
-\bigskip
-
-{\it The {\em complete} graph}.
+\subsubsection{The complete graph, or, clique}
 \index{complete graph}
-%
+
 For each positive integer $n \in \N^+$, we denote by $\k_n$ the {\em
   undirected} order-$n$ {\it complete-graph} (or, {\it clique}),
 \index{complete graph} \index{clique} and by $\widehat{\k}_n$ the {\em
@@ -884,27 +986,87 @@ $\widehat{\k}_n$'s diameter and its (in- and out-) node-degrees.
   \end{itemize}
 \end{itemize}
 
+Hearkening back to our discussion of matchings in (unweighted) graphs:
+The structure of the set of perfect matchings in general graphs is
+decidely nontrivial.  For clique-graphs, though, the structure is much
+easier to discuss.
+
+\begin{prop}
+\label{thm:perfect-matchings-clique}
+The number of perfect matchings admitted by the clique-graph $\k_n$ is
+either $0$---if $n$ is odd---or exponential in $n$ if $n$ is even.
+\end{prop}
+
+\begin{proof}
+The assertion about cliques with odd numbers of nodes is immediate
+from Proposition~\ref{thm:necessary-for-perfect-matching}.
+
+We verify the assertion about cliques of the form $\k_{2k}$ by
+induction on $k$.  To this end, let $M_n$ denote the number of perfect
+matchings that the clique $\k_n$ admits.
+
+The base of our induction is the case $k=1$.  Because $\k_{2}$
+consists of a single edge, it admits only one perfect matching; i.e.,
+$M_1 = 1$.
+%(see Figure~\ref{perfectMatching1}): 
+
+To garner intuition, we remark that $\k_4 = \k_{2 \cdot 2}$ can be
+viewed as a $4$-cycle (i.e., nodes $1, 2, 3, 4$ with edges summarized
+as $1-2-3-4-1$), augmented by two ``cross-edges'' (i.e., edges $\{1,
+3\}$ and $\{2, 4\}$).  Easily, then, $\k_4$ admits $3$ different
+perfect matchings, which can be identified (and specified) by the edge
+that contains node $1$, i.e., either $\{ 1,2\}$ or $\{ 1,3\}$ or $\{
+1,4\}$.  (Given the first edge, there is just one choice for the second
+edge.)  Thus, $M_2=3$.
+
+We jump now to any arbitrary $k > 2$.  We remark that there are
+precisely $2k-1$ nodes of $\k_{2k}$ that node $1$ can ``choose'' as
+its mate in a perfect matching.  Once we set node $1$ and its chosen
+mate aside, we confront an independent instance of the problem with
+parameter $k-1$, i.e., the problem of counting the number of perfect
+matchings in $\k_{n-2} = \k_{2k-2}$.  We thereby note that as $k$
+grows, the quantity $M_k$ obeys the following recurrence:
+\[ M_k \ = \ (2k-1) \cdot M_{k-1} \]
+In other words:
+
+\hspace*{.25in}{\em $M_k$ is the product of the first $k$ odd numbers.}
+%$N_1=1$, $N_2=3$, $N_3=3 \times 5=15$, $N_4=3 \times 5 \times 7=115$, etc..
+
+\noindent
+To gauge the growth rate of $M_k$, we concentrate on cases $k > 2$ and
+ignore the $\lfloor k/2 \rfloor$ smallest odd numbers.  We then
+replace each of the remaining odd numbers by its smallest possible
+value.  We thereby find that
+\[
+M_k \ \ =    \ \ \prod_{i=1}^k \ (2i-1)
+    \ \ \geq \ \ \prod_{\lceil k/2 \rceil}^k \ (2i-1)
+    \ \ \geq \ \ \left( 2 \lceil k/2 \rceil -1 \right)^{k/2}
+    \ \ >    \ \ k^{k/2}
+\]
+In summary, $M_k$ grows exponentially with the parameter $k$, as claimed.
+\qed
+\end{proof}
+
+
 \bigskip
 
-The two families of graphs we have just described are recommended by
-their structural simplicity---they epitomize, respectively, the most
-sparse way to completely interconnect $n$ nodes (the cycle) and the
-most dense way (the complete graph).  The remainder of this section is
-devoted to three graph-structures that are structurally more complex
-than cycles and cliques; and, they have been designed to meet specific
-algorithmic needs, within the worlds of coding and computing.  Indeed,
-the three upcoming graph families are among the most important ones
-when discussing parallel and distributed computing (PDC, for short).
-All of these families have been used both to design computer
-architectures that support PDC and to craft algorithms that exploit
-the potential efficiencies---in computation and communication---that
-one can achieve using PDC.
+The two families of graphs we have just discussed, cycles and cliques,
+are recommended to our attention by their structural simplicity---they
+epitomize, respectively, the most sparse way (the cycle) and the most
+dense way (the clique) to completely interconnect $n$ nodes.  The
+remainder of this section is devoted to three graph-structures that
+are structurally more complex than cycles and cliques, which have been
+designed to meet specific needs within the real technological world of
+computing and communicating.  Indeed, the three upcoming graph
+families are among the most important ones when discussing parallel
+and distributed computing (PDC, for short).  All three families have
+been used both to design computer architectures that support PDC and
+to craft algorithms that exploit the potential efficiencies---in
+computation and communication---that one can achieve using PDC.
 
-\bigskip
-
-{\it The mesh and torus networks}.
+\subsubsection{The mesh and torus networks}
 \index{mesh and torus networks}
-%
+
 For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh
   (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network}
 (or, {\it torus}) $\widetilde{\m}_{m,n}$ have {\it node-set}
@@ -1053,12 +1215,10 @@ of the cycle-graph $\cc_n$.
   \end{itemize}
 \end{itemize}
 
-\bigskip
-
-{\it The boolean hypercube network}.
+\subsubsection{The boolean hypercube network}
 \index{boolean hypercube}
 \index{hypercube}
-%
+
 The graphs we focus on in this section have had a major impact on the
 world of coding, especially in regard to codes that are {\em error
   correcting} \cite{PetersonW81}, and the world of computing,
@@ -1202,12 +1362,10 @@ The fact that $\q_n$'s diameter is {\em logarithmic} in its size makes
 $\q_n$ an efficient network for many tasks related to parallel
 computing and communication.
 
-\bigskip
-
-{\it The de Bruijn network}.
+\subsubsection{The de Bruijn network}
 \index{de Bruijn network}
 \index{de Bruijn graph}
-%
+
 While the family of hypercube networks has few competitors in the
 world of parallel and distributed computing, in terms of performance
 and ease of designing algorithms, it does have one major shortcoming
@@ -1503,12 +1661,11 @@ equivalent computational efficiency, on a broad range of significant
 computational problems, using de Bruijn networks as using like-sized
 hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
 
-%The chromatic number of a graph is defined as the minimum number of colors for coloring a graph. It is a NP-hard problem. However, there are good greedy approximation algorithms.
 
+\section{Path and Cycle Problems in Graphs}
+\label{sec:path-cycle-problems}
 
 **HERE
-
-\section{Graph evolution and decomposition}
 
 Any course on algorithms will discuss graphs, especially trees, that
 evolve over time.  Such structures arise in the study of ``classical''
@@ -1563,7 +1720,7 @@ However, surprisingly, determining a \textit{tour} (i.e. a cycle) that visits ex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Eulerian cycles}
+\subsection{Eulerian cycles}
 \label{sec:eulerianCycle}
 
 \subsection{Existence}
@@ -1645,7 +1802,7 @@ The underlying graph is $G=(V,E)$ where $V$ is the (finite) set of cross points 
 weighted by the distances.  
 
 Fig.~\ref{fig:eulerianInitial} presents an example of the chinese postman problem. 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienInitial}
        \caption{Example of an instance of the chinese postman with $10$ cross vertices.}
@@ -1664,7 +1821,7 @@ the optimal tour (of minimal length) using some simple mathematical properties.
 First, we know that there is an even number of odd vertices.
 Considering the previous instance of the postman problem, there are $4$ such vertices (represented in grey in Fig.~\ref{fig:eulerianVodd}).
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienVodd}
        \caption{The $4$ vertices with an odd degree in the previous instance.}
@@ -1677,7 +1834,7 @@ As there exists a path between any pair of vertices of odd degree in $V_{odd}$,
 we consider the complete graph whose vertices are the odd degree vertices weighting the edges with the shortest paths (denoted by $K_{odd}$).
 As we mentioned in the preliminary properties, computing the shortest paths is a classical problem, which can be solved in polynomial time. 
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienPerfectMatching}
        \caption{The minimum weight perfect matching labelled by the shortest distances between the vertices of $V_{odd}$.}
@@ -1690,7 +1847,7 @@ Then, it is possible to do the correspondence between the optimal solution of th
 %Recall that a matching is a set of edges without common vertices. It is perfect if it has the maximum number of edges. 
 by duplicating the edges of the minimal perfect matching.
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienFinal}
        \caption{Final step: adding the edges of the minimum perfect matching.}
@@ -1715,7 +1872,7 @@ Finally, all the vertices of the new graph are even since the degree of the odd 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Hamiltonian tours}
+\subsection{Hamiltonian tours}
 
 \cite{Fleischner74}
 (square of 2-connected graph is hamiltonian)
@@ -1748,7 +1905,7 @@ The solution of Christofides algorithm is not worse than $\frac{3}{2}$ time the 
 Let us construct an efficient solution for this problem. It is well-known that TSP is a hard problem, 
 that means we can not expect a polynomial time algorithm which solves exactly the problem, unless $\mathcal{P} = \mathcal{NP}$. 
 Fig.~\ref{fig:perfectMatchingInitial} presents an example of euclidian TSP with $n=7$ cities. 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.8]{FiguresGraph/christofides1}
        \caption{Example of an instance of TSP with 7 cities.}
@@ -1771,7 +1928,7 @@ Indeed, $H^*$ is a cycle, then, removing any edge in $H^*$ leads to a chain, whi
 As $T^*$ is the minimal spanning tree, we have:
 $\omega_{T^*} \leq \omega_{H^*}$.
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/christofides2}
        \caption{Construction of an optimal spanning Tree $T^*$.}
@@ -1786,7 +1943,7 @@ We proved in the preliminary properties that the cardinality of $V_{odd}$ is eve
 
 Let us construct the perfect matching $C^*$ of minimum weight between the vertices in $V_{odd}$. 
 Fig.~\ref{fig:AllPerfectMatchings} shows all possible perfect matchings on the previous example, the optimal one (with minimal weight) is represented in bold. 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/perfectmatchingAll}
        \caption{The three different perfect matchings on the set of four vertices of odd degree.
@@ -1796,7 +1953,7 @@ Fig.~\ref{fig:AllPerfectMatchings} shows all possible perfect matchings on the p
 \end{figure}
 
 Fig.~\ref{fig:christofidesPerfectMatching} illustrates the graph obtained by considering the edges of both $T^*$ and $C^*$. 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/christofides3}
        \caption{Adding the optimal perfect matching $C^*$ to the minimal spanning tree $T^*$.}
@@ -1815,7 +1972,7 @@ Thus, the weight of the cycle formed by the concatenation of both perfect matchi
 Moreover, as $C^*$ is the minimum perfect matching, we have $\omega_{C^*} \leq \omega_{C}$, this concludes the proof.
 
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.7]{FiguresGraph/perfectmatching1}
        \caption{An optimal hamiltonian cycle $H^*$.}
@@ -1823,7 +1980,7 @@ Moreover, as $C^*$ is the minimum perfect matching, we have $\omega_{C^*} \leq \
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.7]{FiguresGraph/perfectmatching2}
        \caption{Perfect matching $C^*$ between the vertices of odd degrees.}
@@ -1831,7 +1988,7 @@ Moreover, as $C^*$ is the minimum perfect matching, we have $\omega_{C^*} \leq \
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.7]{FiguresGraph/perfectmatching3}
        \caption{Cycle $C^* \bigcup C$ (in dashed and bold).}
@@ -1851,7 +2008,7 @@ and thus, must be avoided.
 Fig.~\ref{fig:christofidesFinalStep1} shows such a transformation on the previous example, 
 Fig.~\ref{fig:christofidesFinalStep2} shows a valid transformation.
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/christofides4}
        \caption{Reduction of the degree in $T^* \bigcup C^*$, disconnected solution.}
@@ -1859,7 +2016,7 @@ Fig.~\ref{fig:christofidesFinalStep2} shows a valid transformation.
 \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/christofides5}
        \caption{Reduction of the degree in $T^* \bigcup C^*$, connected solution.}
@@ -1873,10 +2030,18 @@ Such transformations do not increase the total weight.
 Finally, 
 as $\omega_{T^*} \leq \omega_{H^*}$ and $\omega_{C^*} \leq 1/2 \omega_{H^*}$,
 we deduce that the value of such a tour is lower than $3/2 \omega_{H^*}$.
- 
+
+\section{Advanced Topics}
+
+\subsection{Chromatic number}
 
 
-\section{Hypergraphs: an advanced topic}
+%The chromatic number of a graph is defined as the minimum number of colors for coloring a graph. It is a NP-hard problem. However, there are good greedy approximation algorithms.
+
+
+\subsection{Graph decomposition}
+
+\subsection{Hypergraphs}
 
 When studying certain computing-related topics, one will
 need a generalization of graphs called {\em hypergraphs}.  A
