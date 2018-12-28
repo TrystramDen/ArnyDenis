@@ -1,4 +1,4 @@
-%version of 12-27-18
+%version of 12-28-18
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -621,36 +621,53 @@ path.
 
 One of the major uses of trees and forests is as a way of succinctly
 ``summarizing'' the connectivity structure inherent in an undirected
-graph.  This role is inherent in the notion of a {\it spanning tree}.
-\index{graphs!spanning tree} \index{spanning tree}
-A {\it spanning tree} $\t(\g)$ of a connected undirected graph $\g$ is
-a tree whose node-set is identical to $\g$'s:
+graph.  This role is inherent in the notion of a {\it spanning tree}
+\index{graphs!spanning tree} \index{spanning tree} of a connected
+graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$ whose node-set
+is identical to $\g$'s:
 \[ \n_{\ft(\fg)} \ = \ \n_{\fg} \]
 and all of whose edges are edges of $\g$:
 \[ \e_{\ft(\fg)} \ \subseteq \ \e_{\fg}. \]
-For a graph $\g$ that is not connected, we have the analogous concept
-of a {\it spanning forest}
-\index{graphs!spanning forest} \index{spanning forest}
-of $\g$.  We shall typically discuss spanning trees, leaving the
-reader to extrapolate the discussion to include spanning forests.
+Not surprisingly, a connected graph $\g$  typically has {\em many}
+spanning trees.  All such trees share $\g$'s node-set, but they may
+choose quite different sets of edges.
 
-Of course, a graph $g$ typically has {\em many} spanning trees.
-Within the many contexts wherein the edges of spanning trees are {\em
-  weighted}---in order to impose a ``cost'' of incorporating that edge
-in the tree---it is a classical computational problem to discover a
-{\em minimum-weight spanning tree} \index{graphs!minimum-weight
-  spanning tree} \index{minimum-weight spanning tree} (or, in the
-vernacular, a {\em minimum spanning tree}).  Happily, this classical
-optimization problem can be solved within a number of steps that is
-linear in the number of edges of $\g$.
+{\Arny Chance for some exercises here}
+
+For a graph $\g$ that is not connected, we replace the notion of
+spanning tree of $\g$ with the analogous notion of a {\it spanning
+  forest} \index{graphs!spanning forest} \index{spanning forest} of
+$\g$.  We shall typically discuss only spanning trees in this section,
+leaving the reader to extrapolate the discussion to include spanning
+forests of unconnected graphs.
+
+The major use of spanning trees in applications is to ``summarize''
+the full connectivity structure of a graph---and of the entities that
+the graph models, such as a map, the layout of a museum, etc.  When
+used in this way, the edges of spanning trees are typically {\em
+  weighted}, \index{graphs!spanning tree!edge-weighted} in order to
+model a ``cost'' of incorporating that edge in the tree.  The types of
+computational problem modeled via edge-weighted spanning trees
+include: the optimal placement of firehouses, or hospitals, in a town
+and the optimal deployment of security mechanisms in an art museum.
+Reflecting problems wherein edge-weights measure transit costs, it is
+a classical computational problem to seek a {\em minimum-weight
+  spanning tree} \index{graphs!minimum-weight spanning tree}
+\index{minimum-weight spanning tree} (or, in the vernacular, a {\em
+  minimum spanning tree}).  Happily, this classical optimization
+problem can be solved within a number of steps that is linear in the
+number of edges of $\g$ \cite{CLRS}.
 
 {\Arny Giving just a {\em hint} at a solution for MST to real
   beginners is probably useless}
 \ignore{*********
-There are mainly two ways for constructing such a MST, each one emphasizes a different propriety of the MST, namely, avoid cycles and minimize the span.
-In both cases, the edges are sorted in increasing order of weights.
-More precisely, the first one constructs a subtree which partially spans the graph by adding at each step the minimum neighboring edge 
-while the other add successively the edges of minimal weights that do not create a cycle.
+There are mainly two ways for constructing such a MST, each one
+emphasizes a different propriety of the MST, namely, avoid cycles and
+minimize the span.  In both cases, the edges are sorted in increasing
+order of weights.  More precisely, the first one constructs a subtree
+which partially spans the graph by adding at each step the minimum
+neighboring edge while the other add successively the edges of minimal
+weights that do not create a cycle.
 *************}
 
 Just as with graphs, there is a {\em directed} version of trees, which
@@ -1010,22 +1027,37 @@ consists of a single edge, it admits only one perfect matching; i.e.,
 $M_1 = 1$.
 %(see Figure~\ref{perfectMatching1}): 
 
-To garner intuition, we remark that $\k_4 = \k_{2 \cdot 2}$ can be
-viewed as a $4$-cycle (i.e., nodes $1, 2, 3, 4$ with edges summarized
-as $1-2-3-4-1$), augmented by two ``cross-edges'' (i.e., edges $\{1,
-3\}$ and $\{2, 4\}$).  Easily, then, $\k_4$ admits $3$ different
-perfect matchings, which can be identified (and specified) by the edge
-that contains node $1$, i.e., either $\{ 1,2\}$ or $\{ 1,3\}$ or $\{
-1,4\}$.  (Given the first edge, there is just one choice for the second
-edge.)  Thus, $M_2=3$.
+To garner intuition, we also explcitly solve the case $k=2$, which is
+illustrated in Fig.~\ref{fig:AllPerfectMatchings}.
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.55]{FiguresGraph/perfectmatchingAll}
+       \caption{The three different perfect matchings in the $4$-node
+         clique $\k_4$: the matchings' edges are drawn, respectively,
+         with bold lines, dashed lines, and dotted lines.}
+%of one matching are drawn in bold;
+% The optimal one is represented in bold (the two others are in dashed and dot lines).}
+  \label{fig:AllPerfectMatchings}
+\end{center}
+\end{figure}
+As the figure illustrates, $\k_4 = \k_{2 \cdot 2}$ can be viewed as a
+$4$-cycle (drawn with bold and dashed lines), augmented by two
+``cross-edges'' (drawn with dotted lines).  Easily, then, $\k_4$
+admits $3$ different perfect matchings, which can be identified (and
+specified) by the edge that contains the northwesterly node---call it
+$v$---in the figure.  Node $v$ has the choice of three nodes to
+``boldly'' match with. (In the figure, $v$ has chosen the
+southwesterly node as its ``bold'' match.)  Once $v$ has chosen its
+match, there is only one viable choice for the second edge in the
+matching.  Thus, $M_2=3$.
 
-We jump now to any arbitrary $k > 2$.  We remark that there are
-precisely $2k-1$ nodes of $\k_{2k}$ that node $1$ can ``choose'' as
-its mate in a perfect matching.  Once we set node $1$ and its chosen
-mate aside, we confront an independent instance of the problem with
-parameter $k-1$, i.e., the problem of counting the number of perfect
-matchings in $\k_{n-2} = \k_{2k-2}$.  We thereby note that as $k$
-grows, the quantity $M_k$ obeys the following recurrence:
+We jump now to the case of any arbitrary $k > 2$.  We remark that
+there are precisely $2k-1$ nodes of $\k_{2k}$ that node $1$ can
+``choose'' as its mate in a perfect matching.  Once we set node $1$
+and its chosen mate aside, we confront an independent instance of the
+problem with parameter $k-1$, i.e., the problem of counting the number
+of perfect matchings in $\k_{n-2} = \k_{2k-2}$.  We thereby note that
+as $k$ grows, the quantity $M_k$ obeys the following recurrence:
 \[ M_k \ = \ (2k-1) \cdot M_{k-1} \]
 In other words:
 
@@ -1065,6 +1097,7 @@ to craft algorithms that exploit the potential efficiencies---in
 computation and communication---that one can achieve using PDC.
 
 \subsubsection{The mesh and torus networks}
+\label{sec:mesh-torus}
 \index{mesh and torus networks}
 
 For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh
@@ -1665,44 +1698,13 @@ hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
 \section{Path and Cycle Problems in Graphs}
 \label{sec:path-cycle-problems}
 
+Just as various genres of {\it spanning trees} are used to
+``summarize'' aspects of the connectivity structure of a connected
+graph $\g$, various genres of {\it paths} and {\it cycles} in $\g$ are
+often useful to ``summarize'' aspects of $\g$'s traversal structure.
+
 **HERE
 
-Any course on algorithms will discuss graphs, especially trees, that
-evolve over time.  Such structures arise in the study of ``classical''
-algorithmic topics such minimum-spanning-tree and branch-and-bound
-algorithms, as well as in the study of more modern topics such as
-social networks and internetworks.  For the most part, the mathematics
-already appearing in this essay suffices for these studies: the students
-must assimilate new algorithmic notions, not new mathematics.  That
-said, students will be challenged to utilize the mathematical devices
-that they have (hopefully) mastered in new, more sophisticated, ways.
-Instructors who wish to lead their students to even a casual
-understanding of emerging modalities and platforms for computing are
-thereby challenged to teach required mathematical preliminaries using
-exemplars that include these new modalities and exemplars.
-
-A fundamental variety of relevant notions within the study of graphs
-reside in the notions known in various contexts via terms such as {\em
-  graph separators} or {\em graph bisection}.  The key idea that
-underlies these notions is that certain graph-theoretic structures
-interconnect their graphs' constituent nodes more or less densely ---
-and the type and level of interconnectivity has important algorithmic
-consequences.  In such situations, the student must understand how the
-phenomenon/a modeled by the graphs of interest are elucidated by the
-way a graph can be broken into subgraphs by excising nodes or edges.
-When discussing communication-related structures, for instance, graph
-are often used to model the individual pairwise communications that
-must occur in order to accomplish the desired overall communication
-(such as a broadcast).  There is often a provable tradeoff between the
-number of such pairwise communications and the overall time for the
-completion of the overall task.  As another example, when discussing
-social networks, one can pose questions such as: which node in a
-network is best to connect to (when joining the network) in order to
-best facilitate one's interactions or influence within the community.
-The latter topic leads, e.g., to the study of {\em power-law}
-networks, a topic that would not be studied in depth in any early
-course; indeed, the structure of these networks is not yet well
-understood even in advanced settings.
 
 
 
@@ -1872,16 +1874,66 @@ Finally, all the vertices of the new graph are even since the degree of the odd 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Hamiltonian tours}
+\subsection{Hamiltonian Paths and Cycles/Tours}
+\label{sec:hamiltonian-cycle}
 
-\cite{Fleischner74}
-(square of 2-connected graph is hamiltonian)
+We turn now to the problem of determining when a connected graph $\g$
+has a cycle that contains every node of $\g$ precisely once---and the
+allied problem of finding such a cycle when one exists.  Such a cycle
+is called a {\it Hamiltonian cycle},\footnote{Note that words and
+  phrases deriving from Hamilton's name, such as ``Hamiltonian cycle''
+  and ``Hamiltonianicity'', tend to retain their capitalization, but
+  one does sometimes encounter ``hamiltonian cycle'' and
+  ``hamiltonianicity''.  Hamilton is, thus, not totally immune from
+  the incursions of familiarity that have led to ``abelian group'' and
+  ``naperian logarithm''.}~or \index{graphs!Hamiltonian cycle}
+\index{Hamiltonian cycle} {\it Hamiltonian circuit},
+\index{graphs!Hamiltonian circuit} \index{Hamiltonian circuit} in
+honor of the British mathematician William Rowan Hamilton,
+\index{Hamilton, William Rowan} who is credited with inventing the
+concept in the mid-19th century.  When one views a Hamiltonian cycle
+as a ``map'' for traversing a graph, one often calls the cycle a {\it
+  Hamiltonian tour}.  Traditionally, one says that a graph that admits
+a Hamiltonian cycle is {\it Hamiltonian}, or is a {\it Hamiltonian
+  graph}. \index{graphs!Hamiltonian} \index{Hamiltonian graph}
 
-Let us now turn to the problem of cycles going through the vertices of a given graph instead of edges.
-\bigskip
+The weaker notion of a {\it Hamiltonian path}
+\index{graphs!Hamiltonian path} \index{Hamiltonian path} (defined in
+the obvious way) is also of interest.  Hamiltonian paths can easily be
+shown to be a strictly weaker notion than Hamiltonian cycles, in the
+following sense.  Obviously, every graph that admits a Hamiltonian
+cycle also admits a Hamiltonian path: one just drops any single edge
+of such a cycle to obtain such a path.  However, there are graphs that
+admit a Hamiltonian path that do not admit any Hamiltonian cycle!  The
+reader can verify that there exist {\it mesh-graphs} (see
+Section~\ref{sec:mesh-torus}) that admit no Hamiltonian cycle, even
+though every mesh-graph admits a Hamiltonian path.
 
-\noindent {\bf Definition.}
-An hamiltonian cycle is a tour that visits all vertices exactly once.
+The existence of graphs that do not admit any Hamiltonian cycle have
+spawned two paths of inquiry.  One has sought ``slight'' ways to
+weaken the property of {\it hamiltonianicity} \index{graphs!hamiltonianicity}
+in a way that encompasses more graphs.  The two major successes along
+this path are encapsulated in the following result whose proof is
+beyond the current text.
+
+\begin{prop}
+\label{thm:weak-hamiltonianicity}
+{\bf (a)}
+Let $\g$ be any connected graph.  One can cyclically enumerate the
+nodes of $\g$ in such a way that nodes that are adjacent in the cycle
+are at distance $\leq 3$ in $\g$ \cite{ChartrandK69}.
+
+
+\noindent {\bf (b)}
+Let $\h$ be any graph that is {\em $2$-connected}
+\index{graphs!$2$-connected} \index{graphs!biconnected} (or, {\it
+  biconnected}) in the sense that, for every two nodes, $u$ and $v$,
+of $\h$, there exist at least two node-disjoint paths in $\h$ that
+connect $u$ and $v$.  One can cyclically enumerate the nodes of $\h$
+in such a way that nodes that are adjacent in the cycle are at
+distance $\leq 2$ in $\h$ \cite{Fleischner74}.
+\end{prop}
+
 
 This problem is the traveling salesman problem, called TSP in short.
 It corresponds to determine a minimal hamiltonian cycle in a weighted complete graphs $K_n$.
@@ -1943,14 +1995,6 @@ We proved in the preliminary properties that the cardinality of $V_{odd}$ is eve
 
 Let us construct the perfect matching $C^*$ of minimum weight between the vertices in $V_{odd}$. 
 Fig.~\ref{fig:AllPerfectMatchings} shows all possible perfect matchings on the previous example, the optimal one (with minimal weight) is represented in bold. 
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/perfectmatchingAll}
-       \caption{The three different perfect matchings on the set of four vertices of odd degree.
-       The optimal one is represented in bold (the two others are in dashed and dot lines).}
-              \label{fig:AllPerfectMatchings}
-\end{center}
-\end{figure}
 
 Fig.~\ref{fig:christofidesPerfectMatching} illustrates the graph obtained by considering the edges of both $T^*$ and $C^*$. 
 \begin{figure}[hbt]
@@ -2033,6 +2077,22 @@ we deduce that the value of such a tour is lower than $3/2 \omega_{H^*}$.
 
 \section{Advanced Topics}
 
+\subsection{Graphs with evolving structure}
+
+Any course on algorithms will discuss graphs, especially trees, that
+evolve over time.  Such structures arise in the study of ``classical''
+algorithmic topics such minimum-spanning-tree and branch-and-bound
+algorithms, as well as in the study of more modern topics such as
+social networks and internetworks.  For the most part, the mathematics
+already appearing in this essay suffices for these studies: the students
+must assimilate new algorithmic notions, not new mathematics.  That
+said, students will be challenged to utilize the mathematical devices
+that they have (hopefully) mastered in new, more sophisticated, ways.
+Instructors who wish to lead their students to even a casual
+understanding of emerging modalities and platforms for computing are
+thereby challenged to teach required mathematical preliminaries using
+exemplars that include these new modalities and exemplars.
+
 \subsection{Chromatic number}
 
 
@@ -2040,6 +2100,32 @@ we deduce that the value of such a tour is lower than $3/2 \omega_{H^*}$.
 
 
 \subsection{Graph decomposition}
+
+
+A fundamental variety of relevant notions within the study of graphs
+reside in the notions known in various contexts via terms such as {\em
+  graph separators} or {\em graph bisection}.  The key idea that
+underlies these notions is that certain graph-theoretic structures
+interconnect their graphs' constituent nodes more or less densely ---
+and the type and level of interconnectivity has important algorithmic
+consequences.  In such situations, the student must understand how the
+phenomenon/a modeled by the graphs of interest are elucidated by the
+way a graph can be broken into subgraphs by excising nodes or edges.
+When discussing communication-related structures, for instance, graph
+are often used to model the individual pairwise communications that
+must occur in order to accomplish the desired overall communication
+(such as a broadcast).  There is often a provable tradeoff between the
+number of such pairwise communications and the overall time for the
+completion of the overall task.  As another example, when discussing
+social networks, one can pose questions such as: which node in a
+network is best to connect to (when joining the network) in order to
+best facilitate one's interactions or influence within the community.
+The latter topic leads, e.g., to the study of {\em power-law}
+networks, a topic that would not be studied in depth in any early
+course; indeed, the structure of these networks is not yet well
+understood even in advanced settings.
+
+
 
 \subsection{Hypergraphs}
 
