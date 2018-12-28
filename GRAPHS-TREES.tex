@@ -573,16 +573,6 @@ achieves this efficiency can be based on the colorfully named {\it
 original source \cite{Kuhn55} or the encyclopedic algorithms text
 \cite{CLRS}.)
 
-
-\bigskip
-
-
-
-
-
-
-
-
 \subsection{Trees}
 \label{sec:Trees}
 
@@ -1504,6 +1494,7 @@ $x$, $\d_n$ has the two arcs
 We enumerate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
 \begin{equation}
 \label{eqn:deBruijn-arcs}
+{\small
 \begin{array}{|ccccc|}
 \hline
 \mbox{\sc Source node} & & \mbox{\sc Target node} & & \mbox{\sc Target node} \\
@@ -1558,6 +1549,7 @@ We enumerate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
  \\
 \hline
 \end{array}
+}
 \end{equation}
 
 For each $n \in \N^+$, $\d_n$ has diameter $n$.  To see why this is
@@ -1785,6 +1777,14 @@ The eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ 
 
 \end{itemize}
 
+
+{\bf APPLICATION}
+
+\begin{corol}
+\label{thm:deBruijn-Eulerian}
+Every de Bruin network $\d_n$ is (directed)-Eulerian.
+\end{corol}
+
 \subsection{Chinese postman problem}
 \label{sec:chinesePostman}
 
@@ -1877,6 +1877,9 @@ Finally, all the vertices of the new graph are even since the degree of the odd 
 \subsection{Hamiltonian Paths and Cycles/Tours}
 \label{sec:hamiltonian-cycle}
 
+\subsubsection{Hamiltonianicity in unweighted graphs}
+\label{sec:hamiltonian-unweighted}
+
 We turn now to the problem of determining when a connected graph $\g$
 has a cycle that contains every node of $\g$ precisely once---and the
 allied problem of finding such a cycle when one exists.  Such a cycle
@@ -1897,44 +1900,235 @@ as a ``map'' for traversing a graph, one often calls the cycle a {\it
 a Hamiltonian cycle is {\it Hamiltonian}, or is a {\it Hamiltonian
   graph}. \index{graphs!Hamiltonian} \index{Hamiltonian graph}
 
-The weaker notion of a {\it Hamiltonian path}
-\index{graphs!Hamiltonian path} \index{Hamiltonian path} (defined in
-the obvious way) is also of interest.  Hamiltonian paths can easily be
+One can envision a number of benefits rendered accessible by a
+Hamiltonian cycle in a graph $\g$.  Most obviously, the cycle
+specifies a tour of $\g$ (or of a map whose structure $\g$ abstracts)
+  which visits each of $\g$'s nodes precisely once.
+
+\paragraph{\small\sf A. Seeking more inclusive notions of Hamiltonianicity}
+
+Many graphs---even ones with ``nice'' structures---do not admit
+Hamiltonian cycles.  The reader can generate {\it mesh-graphs}
+(Section~\ref{sec:mesh-torus}) that admit no Hamiltonian cycle.  The
+existence of such non-Hamiltonian graphs has spawned several
+independent paths of inquiry.  One path seeks ``modest'' ways to
+weaken the property of {\it Hamiltonianicity}
+\index{graphs!Hamiltonianicity} in a way that retains many of
+Hamiltonianicity's benefits while encompassing a braoder range of
+graph structures.  We describe two avenues toward weakened, more
+inclusive, notions of Hamiltonianicity.
+
+\noindent {\it Be satisfied with paths, rather than cycles}.
+A {\it Hamiltonian path} \index{graphs!Hamiltonian path}
+\index{Hamiltonian path} in a graph $\g$ is a path that passes through
+each of $\g$'s nodes precisely once.  Hamiltonian paths can easily be
 shown to be a strictly weaker notion than Hamiltonian cycles, in the
 following sense.  Obviously, every graph that admits a Hamiltonian
 cycle also admits a Hamiltonian path: one just drops any single edge
-of such a cycle to obtain such a path.  However, there are graphs that
-admit a Hamiltonian path that do not admit any Hamiltonian cycle!  The
-reader can verify that there exist {\it mesh-graphs} (see
-Section~\ref{sec:mesh-torus}) that admit no Hamiltonian cycle, even
-though every mesh-graph admits a Hamiltonian path.
+of such a cycle to obtain such a path.  However, there are many graphs
+that admit a Hamiltonian path that do not admit any Hamiltonian cycle.
+As suggested earlier, there exist mesh-graphs that admit no
+Hamiltonian cycle, even though every mesh-graph admits a Hamiltonian
+path.  This latter claim is verified by a path that traverses the rows
+of a mesh-graph {\it seriatim}, in alternating directions.
 
-The existence of graphs that do not admit any Hamiltonian cycle have
-spawned two paths of inquiry.  One has sought ``slight'' ways to
-weaken the property of {\it hamiltonianicity} \index{graphs!hamiltonianicity}
-in a way that encompasses more graphs.  The two major successes along
-this path are encapsulated in the following result whose proof is
-beyond the current text.
+\noindent {\it Be satisfied with short paths, rather than edges}.
+A Hamiltonian cycle in graph $\g$ is a circular enumeration of $\g$'s
+nodes in which adjacent nodes are at unit distance from one
+another---i.e., are connected by an edge.  We can weaken (or,
+generalize) this notion to create a {\it Hamiltonian $k$-cycle}
+\index{graphs!Hamiltonian $k$-cycle} in $\g$, for any positive integer
+$k$: This is a circular enumeration of $\g$'s nodes in which adjacent
+nodes are at distance $\leq k$ from one another---so a Hamiltonian
+$1$-cycle is what we have been calling a Hamiltonian cycle.  In fact,
+the following result shows that one need not let $k$ be very big
+before one encompasses all connected graphs.  Regrettably, the proof
+of this result is beyond the current text.
 
 \begin{prop}
 \label{thm:weak-hamiltonianicity}
-{\bf (a)}
+{\bf (a)} {\rm \cite{ChartrandK69}}
 Let $\g$ be any connected graph.  One can cyclically enumerate the
 nodes of $\g$ in such a way that nodes that are adjacent in the cycle
-are at distance $\leq 3$ in $\g$ \cite{ChartrandK69}.
+are at distance $\leq 3$ in $\g$.
 
 
-\noindent {\bf (b)}
+\noindent {\bf (b)} {\rm  \cite{Fleischner74}}
 Let $\h$ be any graph that is {\em $2$-connected}
 \index{graphs!$2$-connected} \index{graphs!biconnected} (or, {\it
   biconnected}) in the sense that, for every two nodes, $u$ and $v$,
 of $\h$, there exist at least two node-disjoint paths in $\h$ that
 connect $u$ and $v$.  One can cyclically enumerate the nodes of $\h$
 in such a way that nodes that are adjacent in the cycle are at
-distance $\leq 2$ in $\h$ \cite{Fleischner74}.
+distance $\leq 2$ in $\h$.
 \end{prop}
 
+\paragraph{\small\sf B. Understand Hamiltonianicity in important graphs}
 
+Yet another direction of inquiry is to determine whether specific
+graphs of interest are Hamiltonian.  We illustrate this avenue by
+reviewing the five important families of graphs we studied in
+Section~\ref{sec:graphs-important-families}.
+
+\begin{prop}
+\label{thm:named-graph-hamiltonian}
+{\bf (a)}
+Every cycle-graph $\cc_n$ is Hamiltonian.
+
+\noindent {\bf (b)}
+Every clique-graph $\k_n$ is Hamiltonian.
+
+\noindent {\bf (c)}.1.
+For all $m,n$: the mesh-graph $\m_{m,n}$:
+
+(i)  is path-Hamiltonian.
+
+(ii) contains no odd-length cycle; hence, is not Hamiltonian if $mn$
+is odd.
+
+(iii) is Hamiltonian whenever $mn$ is even 
+
+\noindent {\bf (c)}.2.
+For all $m,n$: the torus-graph $\widetilde{\m}_{m,n}$ is Hamiltonian.
+
+\noindent {\bf (d)}
+Every hypercube $\q_n$  is Hamiltonian.
+
+\noindent {\bf (e)}
+Every de Bruijn network $\d_n$ is (directed)-Hamiltonian.
+\end{prop}
+
+\begin{proof}
+\noindent {\bf (a)}
+This is a tautology, by definition of $\cc_n$.
+
+\medskip
+
+\noindent {\bf (b)}
+This is immediate because, by definition, $\k_n$ contains every
+$n$-node graph---including $\cc_n$---as a subgraph.
+
+\medskip
+
+\noindent {\bf (c)}.1.i.
+As we noted earlier in the text, one can ``snake'' a path through
+$\m_{m,n}$, row by row, from the top-most to the bottom-most.  By
+``snake'', we mean that one should traverse adjacent rows in
+alternating directions.
+
+\noindent {\bf (c)}.1.ii.
+This is a consequence of the fact that $\m_{m,n}$ is {\it bipartite}:
+\index{graphs!bipartite} One can color $\m_{m,n}$'s nodes ed and blue
+in such a way that every edge connect nodes of different colors.
+Details are left to the reader.
+
+\noindent {\bf (c)}.1.iii.
+We sketch the construction of a Hamiltonian cycle in $\m_{m,n}$ when
+$mn$ is even.  Say, with no loss of generality that $m$ is even, so
+that $\m_{m,n}$ has an even number of rows.  Temporarily remove column
+$1$ of $\m_{m,n}$, and consruct the ``snaking'' Hamiltonian path
+described in part {\bf (c)}.1.i of this proof.  Because $m$ is even,
+this path begins and ends in column $2$ of $\m_{m,n}$.  One can,
+therefore, replace column $1$ and use it to connect the ends of the
+``snaking'' Hamiltonian path.  This describes a Hamiltonian cycle in
+$\m_{m,n}$.
+
+\noindent {\bf (c)}.2.
+When $mn$ is even, the Hamiltonianicity of $\widetilde{\m}_{m,n}$
+follows from the fact that $\m_{m,n}$ is a spanning subgraph of
+$\widetilde{\m}_{m,n}$.  (Think about it!)  When $mn$ is odd, one
+needs just traverse $\widetilde{\m}_{m,n}$'s nodes row by row, going
+to the cyclically next node after completing each row.  Details are
+left to the reader.
+
+\medskip
+
+\noindent {\bf (d)}
+One can craft a Hamiltonian cycle in $\q_n$ by generating an {\it
+  order-$n$ binary reflected Gray code}---so named for its inventor,
+Bell Laboratories researcher \index{Gray, Frank} Frank Gray; see
+\cite{PetersonW81}.  \index{Gray code} \index{binary reflected Gray
+  code} Such a ``code'' is a cyclic enumeration of all $2^n$ binary
+strings of length $n$ having the property that cyclically adjacent
+strings differ in only one bit-position.  Within our context, such a
+code describes a Hamiltonian cycle in $\q_n$.
+
+\noindent
+One easily generates an order-$n$ Gray code from an order-$(n-1)$ Gray
+code, as follows.  (We describe the entire inductive process, from
+order $1$ to order $n$.)
+
+The order-$1$ code is $0 \ \ \ 1$.
+
+To generate the order-$(k+1)$ code:
+\begin{itemize}
+\item
+Concatenate the order-$k$ code with a {\em reversed} copy of the
+order-$k$ code
+\item
+Expand each length-$k$ string in the order-$k$ code to length $(k+1)$
+by prepending a string of $2^k$ $0$s followed by a string of $2^k$ $1$s.
+\end{itemize}
+The following table illustrates the first few steps of this process.
+\[ {\small
+\begin{array}{|c|c|c|c|}
+\hline
+\mbox{Order } \ 1
+  & \mbox{Order } \ 2
+  & \mbox{Order } \ 3
+  & \mbox{Order } \ 4 \\
+\hline
+0   & 00   & 000  &  0000 \\ 
+1   & 01   & 001  &  0001 \\
+    & 11   & 011  &  0011 \\
+    & 10   & 010  &  0010 \\
+    &      & 110  &  0110 \\
+    &      & 111  &  0111 \\
+    &      & 101  &  0101 \\
+    &      & 100  &  0100 \\
+    &      &      &  1100 \\  
+    &      &      &  1101 \\  
+    &      &      &  1111 \\  
+    &      &      &  1110 \\  
+    &      &      &  1010 \\  
+    &      &      &  1011 \\  
+    &      &      &  1001 \\  
+    &      &      &  1000 \\  
+\hline
+\end{array} }
+\]
+We leave the details required to verifythis process to the reader.
+
+\medskip
+
+\noindent {\bf (e)}
+By Proposition~\ref{thm:deBruin-linegraph}, each de Bruijn network
+$\d_n$ is the line-digraph of the next bigger de Bruijn network,
+$\d_{n+1}$.  Therefore, by definition of ``line (di)graph'', the fact
+that $\d_n$ is (directed)-Eulerian
+(Corollary~\ref{thm:deBruijn-Eulerian}) means that $\d_{n+1}$ is
+(directed)-Hamiltonian.  \qed
+\end{proof}
+
+\bigskip
+
+
+
+ cycles in general connected
+graphs and in specific graphs of interest.
+
+**HERE
+
+
+\paragraph{\small\sf C. Test general graphs for Hamiltonianicity}
+
+
+
+\subsubsection{Hamiltonianicity in weighted graphs: The Traveling
+  Salesman Problem}
+\label{sec:TSP}
+
+Hamiltonian
 This problem is the traveling salesman problem, called TSP in short.
 It corresponds to determine a minimal hamiltonian cycle in a weighted complete graphs $K_n$.
 Obviously, $K_n$ is hamiltonian (it exists $n!$ such hamiltonian paths), thus, the question here is to determine the minimum one. 
