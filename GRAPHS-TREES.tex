@@ -1,4 +1,4 @@
-%version of 12-28-18
+%version of 12-30-18
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -2044,33 +2044,43 @@ left to the reader.
 \medskip
 
 \noindent {\bf (d)}
-One can craft a Hamiltonian cycle in $\q_n$ by generating an {\it
-  order-$n$ binary reflected Gray code}---so named for its inventor,
-Bell Laboratories researcher \index{Gray, Frank} Frank Gray; see
-\cite{PetersonW81}.  \index{Gray code} \index{binary reflected Gray
-  code} Such a ``code'' is a cyclic enumeration of all $2^n$ binary
-strings of length $n$ having the property that cyclically adjacent
-strings differ in only one bit-position.  Within our context, such a
-code describes a Hamiltonian cycle in $\q_n$.
+One can craft a Hamiltonian cycle in $\q_n$ by
+generating an {\it order-$n$ binary reflected Gray code}---so named
+for its inventor, Bell Laboratories researcher \index{Gray, Frank}
+Frank Gray; see \cite{PetersonW81}.  \index{Gray code} \index{binary
+  reflected Gray code} Such a ``code'' is a cyclic enumeration of all
+$2^n$ binary strings of length $n$ having the property that cyclically
+adjacent \index{strings!cyclically adjacent} strings differ in only
+one bit-position.  Length-$n$ strings $x_i$ and $x_j$ are {\it
+  cyclically adjacent} in the Gray code $\langle x_0, \ x_1, \ldots,
+x_{2^n-1} \rangle$ if $j = i+1 \bmod 2^n$.
 
 \noindent
-One easily generates an order-$n$ Gray code from an order-$(n-1)$ Gray
-code, as follows.  (We describe the entire inductive process, from
-order $1$ to order $n$.)
+It is computationally easy to generate an order-$n$ Gray code from an
+order-$(n-1)$ Gray code, as follows.
 
-The order-$1$ code is $0 \ \ \ 1$.
+We note first that the order-$1$ code is the sequence $\langle 0, 1
+\rangle$.
 
-To generate the order-$(k+1)$ code:
+Inductively, to generate the order-$(k+1)$ Gray code from the
+order-$k$ code:
 \begin{itemize}
 \item
-Concatenate the order-$k$ code with a {\em reversed} copy of the
-order-$k$ code
+Concatenate the order-$k$ code with a {\em reversed} copy of itself.
+(It is the code-sequence that is reversed, not the individual strings.
+For instance, as we go from the order-$2$ code $\langle x_0, \ x_1,
+\ x_2, \ x_3 \rangle$ to the order-$3$ code, we concatenate that
+sequence with $\langle x_3, \ x_2, \ x_1, \ x_0 \rangle$.)
 \item
-Expand each length-$k$ string in the order-$k$ code to length $(k+1)$
-by prepending a string of $2^k$ $0$s followed by a string of $2^k$ $1$s.
+Augment each length-$k$ string in one copy of the order-$k$ Gray code
+to length $(k+1)$ by prepending a $0$ to each string; and, augment
+each length-$k$ string in the other (reversed) copy of the order-$k$
+Gray code to length $(k+1)$ by prepending a $1$ to each string.
 \end{itemize}
 The following table illustrates the first few steps of this process.
-\[ {\small
+\begin{equation}
+\label{eq:gray-code}
+ {\small
 \begin{array}{|c|c|c|c|}
 \hline
 \mbox{Order } \ 1
@@ -2096,8 +2106,54 @@ The following table illustrates the first few steps of this process.
     &      &      &  1000 \\  
 \hline
 \end{array} }
-\]
-We leave the details required to verifythis process to the reader.
+\end{equation}
+
+We now sketch a proof that for each index $n \in \N^+$, the order-$n$
+Gray code sequence specifies a Hamiltonian cycle in $\q_n$; exercises
+will give the reader the opportunity to fill in details.  We verify
+the following two assertions in turn:
+\begin{enumerate}
+\item
+{\it The order-$n$ Gray code contains all $2^n$ length-$n$ binary
+  strings.}
+\item
+{\it Every pair of cyclically adjacent strings in the order-$n$ Gray
+  code differ in a single bit-position.}
+\end{enumerate}
+
+(1) We sketch the induction.  When $n=1$, the Gray code consists of
+the two distinct strings $0$ and $1$.  Assume that the assertion holds
+for $n=k$.  The order-$(k+1)$ code is obtained by taking two copies of
+the order-$k$ code and prepending $0$ to the strings in one copy and
+$1$ to the strings in the other copy.  The $2^k$ distinct binary
+strings from the order-$k$ code thereby produce $2^{k+1}$ distinct
+binary strings in the order-$(k+1)$ code.
+
+(2) We distinguish three situations.  Let the adjacent strings be
+string $x$, which appears in position $i$ of the code, and string $y$,
+which appears in position $i+1 \bmod 2^n$ of the code.
+  \begin{itemize}
+  \item
+Say that $i = 2^n-1$.  In this case $x$ is the last string in the
+code, and $y$ is the first string.  By the ``refective'' nature of the
+construction of the code, we know that $x = 1z$ and $y = 0z$ for some
+length-$(n-1)$ binary string $z$.  Strings $x$ and $y$ therefore
+differ in precisely one bit-position, namely, bit-position $0$.
+
+  \item
+Precisely the same argument shows that when $i = 2^{n-1} -1$, strings
+$x$ and $y$ again differ precisely in bit-position $0$.
+
+  \item
+In all other cases, namely, when $i \in \{0,1, \ldots, 2^n-1\}
+\setminus \{2^{n-1} -1, 2^n-1\}$, strings $x$ and $y$ share the same
+first bit-position.  In fact, for some bit $\beta \in \{0,1\}$, $x =
+\beta u$ and $y = \beta v$ for length-$(n-1)$ binary strings $u$ and
+$v$ which are cyclically adjacent in the order-$(n-1)$ Gray code.  By
+an inductive argument, $u$ and $v$ differ in precisely one
+bit-position---which means that $x$ and $y$ also differ in precisely
+one bit-position.
+  \end{itemize}
 
 \medskip
 
@@ -2114,8 +2170,9 @@ that $\d_n$ is (directed)-Eulerian
 
 
 
+
  cycles in general connected
-graphs and in specific graphs of interest.
+graphs
 
 **HERE
 
