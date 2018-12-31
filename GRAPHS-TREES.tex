@@ -1,4 +1,4 @@
-%version of 12-30-18
+%version of 12-31-18
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -1687,37 +1687,61 @@ computational problems, using de Bruijn networks as using like-sized
 hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
 
 
-\section{Path and Cycle Problems in Graphs}
+\section{Path and Cycle Discovery Problems in Graphs}
 \label{sec:path-cycle-problems}
 
 Just as various genres of {\it spanning trees} are used to
 ``summarize'' aspects of the connectivity structure of a connected
 graph $\g$, various genres of {\it paths} and {\it cycles} in $\g$ are
 often useful to ``summarize'' aspects of $\g$'s traversal structure.
+This section is devoted to a range of problems related to determining
+the existence in a graph $\g$ of a path or a cycle that {\em
+  completely} ``summarizes'' $\g$'s traversal structure, either by
+containing each node of $\g$ precisely once or by containing each edge
+of $\g$ precisely once.
 
-**HERE
+An edge-exhausting cycle in a graph $\g$ is called an {\it Eulerian
+  cycle},\index{graphs!Eulerian cycle} \index{Eulerian cycle} or {\it
+  Eulerian circuit}, \index{graphs!Eulerian circuit} \index{Eulerian
+  circuit} yet another concept named for the Swiss mathematician
+Leonhard Euler \index{Euler, Leonhard} who is credited with inventing
+the concept---in addition to the entire field of graph theory.  (An
+edge-exhausting path in $\g$ is named analogously.)  When one views an
+Eulerian cycle as a ``map'' for traversing a graph, one often calls
+the cycle an {\it Eulerian tour}.  \index{graphs!Eulerian tour}
+\index{Eulerian tour} Traditionally, a graph that admits an Eulerian
+cycle is said to be a {\it Eulerian graph}. \index{graphs!Eulerian}
+\index{Eulerian graph}
 
-
-
-
-
-
-\subsection{Path problems}
-
-The main interest of graphs is to determine \textit{paths}, i.e. how vertices are connected to each other (determine if they are connected, find the shortest or the longest paths, count the number of edge disjoint paths, etc.). 
-
-There are two types of problems: those which concern the edges and those which concern the vertices. 
-In this sense, these problems are \textit{dual}.
-However, surprisingly, determining a \textit{tour} (i.e. a cycle) that visits exactly once each edge is an easy problem
- while determining a tour that visits exactly once each vertex is hard. 
+Dually: A node-exhausting cycle in a graph $\g$ is called a {\it
+  Hamiltonian cycle}, \index{graphs!Hamiltonian cycle}
+\index{Hamiltonian cycle} or {\it Hamiltonian circuit},
+\index{graphs!Hamiltonian circuit} \index{Hamiltonian circuit} in
+honor of the British mathematician William Rowan Hamilton,
+\index{Hamilton, William Rowan} who is credited with inventing the
+concept in the mid-19th century.  (A node-exhausting path in $\g$ is
+named analogously.)  When one views a Hamiltonian cycle as a ``map''
+for traversing a graph, one often calls the cycle a {\it Hamiltonian
+  tour}.  \index{graphs!Hamiltonian tour} \index{Hamiltonian tour}
+Traditionally, a graph that admits a Hamiltonian cycle is said to be a
+{\it Hamiltonian graph}. \index{graphs!Hamiltonian} \index{Hamiltonian
+  graph}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Eulerian cycles}
+\subsection{Eulerian paths and cycles}
 \label{sec:eulerianCycle}
 
+We turn now to the problem of determining when a connected graph $\g$
+has an {\it Eulerian cycle}---and the allied problem of finding such a
+cycle when one exists.
+
+**HERE
+
 \subsection{Existence}
+
+
 
 Let us first consider the problem of determining a cycle which visits all the edges of a given (undirected) graph $G=(V,E)$ exactly once.
 This problem of determining if such a tour (called \textit{eulerian cycle}) exists is one of the oldest problem in the field of Operational Research
@@ -1881,29 +1905,13 @@ Finally, all the vertices of the new graph are even since the degree of the odd 
 \label{sec:hamiltonian-unweighted}
 
 We turn now to the problem of determining when a connected graph $\g$
-has a cycle that contains every node of $\g$ precisely once---and the
-allied problem of finding such a cycle when one exists.  Such a cycle
-is called a {\it Hamiltonian cycle},\footnote{Note that words and
-  phrases deriving from Hamilton's name, such as ``Hamiltonian cycle''
-  and ``Hamiltonianicity'', tend to retain their capitalization, but
-  one does sometimes encounter ``hamiltonian cycle'' and
-  ``hamiltonianicity''.  Hamilton is, thus, not totally immune from
-  the incursions of familiarity that have led to ``abelian group'' and
-  ``naperian logarithm''.}~or \index{graphs!Hamiltonian cycle}
-\index{Hamiltonian cycle} {\it Hamiltonian circuit},
-\index{graphs!Hamiltonian circuit} \index{Hamiltonian circuit} in
-honor of the British mathematician William Rowan Hamilton,
-\index{Hamilton, William Rowan} who is credited with inventing the
-concept in the mid-19th century.  When one views a Hamiltonian cycle
-as a ``map'' for traversing a graph, one often calls the cycle a {\it
-  Hamiltonian tour}.  Traditionally, one says that a graph that admits
-a Hamiltonian cycle is {\it Hamiltonian}, or is a {\it Hamiltonian
-  graph}. \index{graphs!Hamiltonian} \index{Hamiltonian graph}
-
-One can envision a number of benefits rendered accessible by a
-Hamiltonian cycle in a graph $\g$.  Most obviously, the cycle
-specifies a tour of $\g$ (or of a map whose structure $\g$ abstracts)
-  which visits each of $\g$'s nodes precisely once.
+has a {\it Hamiltonian cycle}---and the allied problem of finding such
+a cycle when one exists.  One can envision a number of benefits
+rendered accessible by the presence of a Hamiltonian cycle in a graph
+$\g$.  Most obviously, the cycle specifies a tour of $\g$ (or of a map
+whose structure $\g$ abstracts) which visits each of $\g$'s nodes
+precisely once.  This is the sense in which the cycle ``sumarizes
+$\g$'s traversal structure.
 
 \paragraph{\small\sf A. Seeking more inclusive notions of Hamiltonianicity}
 
@@ -2168,7 +2176,7 @@ that $\d_n$ is (directed)-Eulerian
 
 \bigskip
 
-
+We 
 
 
  cycles in general connected
