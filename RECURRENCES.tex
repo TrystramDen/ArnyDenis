@@ -1,4 +1,4 @@
-%version of 11-28-18
+%version of 01-02-19
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -1505,198 +1505,104 @@ The induction is thus extended, which completes the proof.
 \qed
 \end{proof}
 
-{\Arny My instinct is that the following example is not ``pretty'' or
-  ``dramatic'' in the way that
-  Proposition~\ref{thm:FiboSumConsecutive} is ... and it does not seem
-  to teach any really new lessons.}
 
-\ignore{************
-\subsubsection{Another property dealing with squares}
-
-We will show the following property by two different methods
-
-\noindent \textbf{Property.} 
-\label{prop:FiboEmbedded}
-$F(n+2)^2 = 4.F(n).F(n+1) + F(n-1)^2$ for $n \geq 2$.
-
-
-The geometrical proof is obtained as depicted in Fig.~\ref{fig:fibosquareembedded} for computing $F_{n+2}^2$.
-
-\begin{figure}[htb]
-\begin{center}
-        \includegraphics[scale=0.5]{FiguresMaths//FiboSquares}
-        \caption{Geometric interpretation for computing $F_{n+2}^2$.}
-        \label{fig:fibosquareembedded}
-\end{center}
-\end{figure}
-
-Let remark that this figure might be adapted to show several properties using various decompositions of the squares and rectangles.
-
-Another proof uses directly the definition of the Fibonacci numbers:
-
-%$F_{n+1} + F_{n}$
-
-$F(n+2)^2 = (F(n+1) + F(n))^2 $
-
-$= F(n+1)^2+2.F(n+1).F(n)+F_{n}^2$
-
-$= 4.F(n+1).F(n) - 2.F(n+1).F(n) + F(n+1)^2 + F(n)^2$
-
-$= 4.F(n+1).F(n) + (F(n+1) - F(n))^2$
-
-Again, using the definition of $F(n+1)$ into the square, we get the expected result:
-
-$F(n+2)^2 = 4.F(n+1).F(n) + F(n-1)^2$
-***********}
-
-
-{\Arny This is another one we should discuss.  As with the section
-  ``Another Identity'', Cassini's Identity does not strike me as
-  ``pretty'' as the ``Consecutive products'', and the proof does not
-  open the way to much new methodology.  I am troubled by Carroll's
-  Puzzle because its resolution builds on principles that we do not
-  cover anywhere.  Since this is not a true paradox, this material
-  does not belong in that section.}
-
-
-{\Arny Both of my preceding comments build on the question, Why should
-  we include this material?  Obviously, when new techniques are
-  involved, or when new, highly applicable, concepts are revealed,
-  then the material should be included.  In other situations, I am
-  just pulled by my gut feeling.  Should we discuss?}
-
-\ignore{**************
-\subsection{$\oplus$ Cassini's Identity and Carroll's Puzzle}
-\label{sec:Cassini+Carroll}
-\index{Fibonacci numbers!Cassini's Identity}
-\index{Fibonacci numbers!Carroll's Puzzle}
-
-
-
-\noindent \textbf{Property. (Cassini's identity)} 
-\label{prop:cassini}
-$F(n-1).F(n+1) = F(n)^2 + (-1)^{n+1}$ for $n \geq 1$.
-
-
-The proof by induction is as follows:
-
-\begin{itemize}
-\item 
-The \textbf{basis case} is straightforward since $F(0).F(2) = 2$ and $F(1)^2 +1 = 2$.
-
-\item
-The \textbf{induction step} is proved assuming the Cassini's identity holds at rank $n$.
-
-Apply the definition of $F(n+2)$:
- 
-$F(n).F(n+2) = F(n) (F(n+1)+F(n)) = F(n)^2 + F(n).F(n+1)$
-
-Replace the last term using the recurrence hypothesis:
-
-$F(n)^2 = F(n-1).F(n+1) - (-1)^{n+1} =F(n-1).F(n+1) + (-1)^{n+2} $
-
-Thus,
-$F(n).F(n+2) = F(n).F(n+1) + F(n-1).F(n+1) + (-1)^{n+2} = F(n+1) (F(n) + F(n-1)) + (-1)^{n+2}$ 
-
-Apply again the definition of Fibonacci sequence $F(n) + F(n-1) = F(n+1)$, we obtain:
-
-$F(n).F(n+2) = F(n+1)^2 + (-1)^{n+2}$
-\end{itemize}
-
-
-The previous result (Cassini's identity) can be used for a geometrical paradox (one of the favorite puzzle of Lewis Carroll).
-Consider a chess board and cut it into 4 pieces as shown in figure~\ref{paradox}, then reassemble them into a rectangle.
-%Interpret this paradox.
-%
-\begin{figure}[htb]
-\begin{center}
-\label{paradox}
-       \includegraphics[scale=0.4]{FiguresMaths//FiboParadox.png}
-              \caption{Construction of the rectangle after splitting the $8 \times 8$ square
-              in two right $8$ by $3$ triangles and two polytopes.}
-        \label{fig:FiboParadox}
-\end{center}
-\end{figure}
-
-The surface of the square is $F(n)^2$ while the rectangle is $F(n+1).F(n-1)$.
-In Fig.~\ref{fig:FiboParadox}, the Cassini identity is applied for $n=5$, $F(5)=8$. 
-On one side, we obtain a surface of $8 \times 8 = 64$, but $13 \times 5 = 65$ on the other side!
-What's wrong?
-
-The paradox comes from the wrong representation of the diagonal of the rectangle which does not coincide with the hypothenuse
-of the right triangles of sides $F(n+1)$ and $F(n-1)$.
-In other words, it always remains (for any $n$) an empty space (corresponding to the unit size of the basic square of the chess board).
-The greater $n$, the better the paradox because the deformation of the surface of this basic square becomes more tiny. 
-***********************}
-
-%\subsection{Using Fibonacci numbers}
-%
-%$F(n)$ is the number of paths from node $1$ to $n$ in the following family of graphs of figure~\ref{fibograph}. 
-%
-%\begin{figure}[h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{../FIGmaths/FiboGraph.pdf}
-%        \caption{Counting paths from node $1$ to node $n$ ($n=7$)}
-%        \label{fibograph}
-%\end{center}
-%\end{figure}
-%%Show how this number is related to Fibonacci's numbers.
-%%\item Find a closed form for the sum of consecutive Fibonacci numbers.
-
-
-
-
-\ignore{***********
-\section{The Token Game}
+\section{Recurrences ``in action'': The Token Game}
 \label{sec:TokenGame}
 
-\subsection{Principle}
 
-%Let us start by studying a puzzle whose solution can be obtained by a recursive algorithm. 
+**HERE
 
-Consider a bank with $n$ circle positions numbered from $1$ to $n$ and $n$ tokens.
-Initially, the bank is empty (see Figure~\ref{fig:jeujetonsInit}).
-%\begin{itemize}
-%\item Put a token in position $1$ if it is empty or remove the token in position $1$.
-%\item Put a token in the position 
-%\end{itemize}
+We describe the (single-player) combinatorial {\it Token Game} and use
+recurrences to analyze optimal plays of the game.
 
+\subsection{The Token Game}
+\label{sec:TokenGame-Rules}
+
+The order-$n$ version of the Token Game is played with a {\it bank}
+with $n$ positions, labeled $1$, \ldots, $n$ and with a {\it pile} of
+$n$ tokens; see Fig.~\ref{fig:jeujetonsInit}.  In any play of the
+game, the bank is initially empty.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/GameTokenInit.png}
-        \caption{Initial position: $n$ tokens (grey) and all the empty bank.}
+        \includegraphics[scale=0.35]{FiguresMaths/GameTokenInit.png}
+\caption{The initial configuration of the Token Game: Each of the $n$
+  tokens appears as a grey circle, and the empty bank has $n$ slots
+  where the tokens can fit.}
         \label{fig:jeujetonsInit}
 \end{center}
 \end{figure}
-
-The game consists in determining the process to fill the bank with the $n$ tokens, putting or removing one token at a time according to one of the two 
-following constraints.
-Both rules are illustrated in figures~\ref{fig:rule1} and \ref{fig:rule2}.
-
 \begin{itemize}
-\item \textbf{Rule 1.} Position 1: Put a token if it is empty or remove it.
-\item \textbf{Rule 2.} Position next to the first empty position (i.e. on the right): Put a token if the position is empty or remove it.
-\end{itemize}
+\item
+{\it Object of the game:} To fill all of the bank's slots with the $n$
+tokens.
 
-Notice that the first rule only refers to positions (and thus, it is symmetric in regard to the move: put or remove a token), 
-while the second one is not symmetric.
+\item
+{\it Each move of the game:} Move one token from the pile to the bank
+{\em or} remove one token from the bank and return it to the pile.
 
+\item
+{\it Constraints of the game:} There are two rules:
+
+\textbf{Rule 1.} If Slot \# 1 of the bank:
+  \begin{itemize}
+  \item
+is {\em empty}, then move a token from the pile into Slot \# 1.
+  \item
+is {\em full}, i.e., contains a token, then remove that token from
+Slot \# 1 and return it to the pile; see Fig.~\ref{fig:rule1}.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/GameTokenRule1.png}
-        \caption{Rule 1: Position 1 contains a token, thus, remove it.}
+        \includegraphics[scale=0.35]{FiguresMaths/GameTokenRule1.png}
+\caption{Rule 1: (TOP) Slot \#1 contains a token.  (BOTTOM) Therefore,
+  remove it (i.e., move it back to the pile).}
         \label{fig:rule1}
 \end{center}
 \end{figure}
-
+  \end{itemize}
+\textbf{Rule 2.} Focus on the bank-slot immediately to the right of
+the first empty bank-slot.  If this slot
+  \begin{itemize}
+  \item
+is {\em empty}, then move a token from the pile into Slot \# 1.
+  \item
+is {\em full}, i.e., contains a token, then remove that token from
+Slot \#1 and return it to the pile; see Fig.~\ref{fig:rule2}.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/GameTokenRule2.png}
-        \caption{Rule 2: The position next to the first idle position (i.e. position 3 in this example) 
-        is idle, thus, put a remaining token here.}
+        \includegraphics[scale=0.35]{FiguresMaths/GameTokenRule2.png}
+\caption{Rule 2: (TOP) Slot \#$c$, which is immediately to the right
+  of the first empty slot ($c=3$ in this example) is empty.  (BOTTOM)
+  Therefore, move a token from the pile to Slot \#$3$.}
         \label{fig:rule2}
 \end{center}
 \end{figure}
+  \end{itemize}
+
+\item
+{\it Objective of a play of the game:} To minimize the number of moves
+from an initially empty bank to the finally full bank.
+\end{itemize}
+
+%Note that Rule 1 refers only to the slot whose full/empty status can
+%change in this step, whereas Rule 2 depends on the status of slots
+%whose full/empty status cannot change in this step.
+
+\subsection{Strategies for Playing the Game}
+\label{sec:Token-Game-Strategies}
+
+The initial move of the game always involves an invocation of Rule 1,
+because the bank is initially empty.  But, thereafter, one may
+possibly have access to more than one move.  The question is how to
+decide which move to make when one has access to more than one.
+
+We lay the groundwork for devising an optimal strategy for playing the game
+by making some observations.
+
+
+
+
+
+
 
 The analysis of the game for some particular values of $n$ leads to some evidences (looking at the first ranks):
 First, in the even case, the process should start by putting the second token while in the odd case, we should start to fill the first position.
@@ -1870,4 +1776,174 @@ $f(n) = \frac{1}{3} (2^{n+1} -1)$ if $n$ is odd.
 
 $f(n) = \frac{1}{3} (2^{n+1} -2)$ if $n$ is even.
 
-******************}
+
+
+{\Arny My instinct is that the following example is not ``pretty'' or
+  ``dramatic'' in the way that
+  Proposition~\ref{thm:FiboSumConsecutive} is ... and it does not seem
+  to teach any really new lessons.}
+
+\ignore{************
+\subsubsection{Another property dealing with squares}
+
+We will show the following property by two different methods
+
+\noindent \textbf{Property.} 
+\label{prop:FiboEmbedded}
+$F(n+2)^2 = 4.F(n).F(n+1) + F(n-1)^2$ for $n \geq 2$.
+
+
+The geometrical proof is obtained as depicted in Fig.~\ref{fig:fibosquareembedded} for computing $F_{n+2}^2$.
+
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresMaths//FiboSquares}
+        \caption{Geometric interpretation for computing $F_{n+2}^2$.}
+        \label{fig:fibosquareembedded}
+\end{center}
+\end{figure}
+
+Let remark that this figure might be adapted to show several properties using various decompositions of the squares and rectangles.
+
+Another proof uses directly the definition of the Fibonacci numbers:
+
+%$F_{n+1} + F_{n}$
+
+$F(n+2)^2 = (F(n+1) + F(n))^2 $
+
+$= F(n+1)^2+2.F(n+1).F(n)+F_{n}^2$
+
+$= 4.F(n+1).F(n) - 2.F(n+1).F(n) + F(n+1)^2 + F(n)^2$
+
+$= 4.F(n+1).F(n) + (F(n+1) - F(n))^2$
+
+Again, using the definition of $F(n+1)$ into the square, we get the expected result:
+
+$F(n+2)^2 = 4.F(n+1).F(n) + F(n-1)^2$
+***********}
+
+
+{\Arny This is another one we should discuss.  As with the section
+  ``Another Identity'', Cassini's Identity does not strike me as
+  ``pretty'' as the ``Consecutive products'', and the proof does not
+  open the way to much new methodology.  I am troubled by Carroll's
+  Puzzle because its resolution builds on principles that we do not
+  cover anywhere.  Since this is not a true paradox, this material
+  does not belong in that section.}
+
+
+{\Arny Both of my preceding comments build on the question, Why should
+  we include this material?  Obviously, when new techniques are
+  involved, or when new, highly applicable, concepts are revealed,
+  then the material should be included.  In other situations, I am
+  just pulled by my gut feeling.  Should we discuss?}
+
+\ignore{**************
+\subsection{$\oplus$ Cassini's Identity and Carroll's Puzzle}
+\label{sec:Cassini+Carroll}
+\index{Fibonacci numbers!Cassini's Identity}
+\index{Fibonacci numbers!Carroll's Puzzle}
+
+
+
+\noindent \textbf{Property. (Cassini's identity)} 
+\label{prop:cassini}
+$F(n-1).F(n+1) = F(n)^2 + (-1)^{n+1}$ for $n \geq 1$.
+
+
+The proof by induction is as follows:
+
+\begin{itemize}
+\item 
+The \textbf{basis case} is straightforward since $F(0).F(2) = 2$ and $F(1)^2 +1 = 2$.
+
+\item
+The \textbf{induction step} is proved assuming the Cassini's identity holds at rank $n$.
+
+Apply the definition of $F(n+2)$:
+ 
+$F(n).F(n+2) = F(n) (F(n+1)+F(n)) = F(n)^2 + F(n).F(n+1)$
+
+Replace the last term using the recurrence hypothesis:
+
+$F(n)^2 = F(n-1).F(n+1) - (-1)^{n+1} =F(n-1).F(n+1) + (-1)^{n+2} $
+
+Thus,
+$F(n).F(n+2) = F(n).F(n+1) + F(n-1).F(n+1) + (-1)^{n+2} = F(n+1) (F(n) + F(n-1)) + (-1)^{n+2}$ 
+
+Apply again the definition of Fibonacci sequence $F(n) + F(n-1) = F(n+1)$, we obtain:
+
+$F(n).F(n+2) = F(n+1)^2 + (-1)^{n+2}$
+\end{itemize}
+
+
+The previous result (Cassini's identity) can be used for a geometrical paradox (one of the favorite puzzle of Lewis Carroll).
+Consider a chess board and cut it into 4 pieces as shown in figure~\ref{paradox}, then reassemble them into a rectangle.
+%Interpret this paradox.
+%
+\begin{figure}[htb]
+\begin{center}
+\label{paradox}
+       \includegraphics[scale=0.4]{FiguresMaths//FiboParadox.png}
+              \caption{Construction of the rectangle after splitting the $8 \times 8$ square
+              in two right $8$ by $3$ triangles and two polytopes.}
+        \label{fig:FiboParadox}
+\end{center}
+\end{figure}
+
+The surface of the square is $F(n)^2$ while the rectangle is $F(n+1).F(n-1)$.
+In Fig.~\ref{fig:FiboParadox}, the Cassini identity is applied for $n=5$, $F(5)=8$. 
+On one side, we obtain a surface of $8 \times 8 = 64$, but $13 \times 5 = 65$ on the other side!
+What's wrong?
+
+The paradox comes from the wrong representation of the diagonal of the rectangle which does not coincide with the hypothenuse
+of the right triangles of sides $F(n+1)$ and $F(n-1)$.
+In other words, it always remains (for any $n$) an empty space (corresponding to the unit size of the basic square of the chess board).
+The greater $n$, the better the paradox because the deformation of the surface of this basic square becomes more tiny. 
+***********************}
+
+%\subsection{Using Fibonacci numbers}
+%
+%$F(n)$ is the number of paths from node $1$ to $n$ in the following family of graphs of figure~\ref{fibograph}. 
+%
+%\begin{figure}[h]
+%\begin{center}
+%        \includegraphics[scale=0.4]{../FIGmaths/FiboGraph.pdf}
+%        \caption{Counting paths from node $1$ to node $n$ ($n=7$)}
+%        \label{fibograph}
+%\end{center}
+%\end{figure}
+%%Show how this number is related to Fibonacci's numbers.
+%%\item Find a closed form for the sum of consecutive Fibonacci numbers.
+
+
+
+
+%
+%Figures~\ref{fig:alternatePowers2even} and~\ref{fig:alternatePowers2finalEven} illustrate the construction in the even case.
+%The details are left to the readers. 
+%We obtain $3.f(n)+2= 2^{n+1}$ by a similar analysis.
+%However, we can deduce directly the even case from the odd case by remarking that $f(2k)=2.f(2k-1) +1$.
+%
+%This is obtained by the basic relations $f(n) = 2^{n} - f(n-1) -1$ and $f(2k-1) = \frac{1}{3} (2^{2k} -1)$.
+%
+%$n=2k$, $f(n) = 2^{2k} - \frac{1}{3} (2^{2k} -1) -1 = \frac{1}{3} (2^{n+1} -2)$.
+%
+%\begin{figure} [h]
+%\begin{center}
+%        \includegraphics[scale=0.4]{FIGmaths/alternatePowers2initEven.png}
+%        \caption{Representation of the alternate series of powers of $2$ for $n=6$.
+%        f(6)=32+8+2.}
+%        \label{fig:alternatePowers2even}
+%\end{center}
+%\end{figure}
+%
+%
+%\begin{figure} [h]
+%\begin{center}
+%        \includegraphics[scale=0.4]{FIGmaths/alternatePowers2even.png}
+%        \caption{Case odd: Geometric proof in the odd case. Notice here that there are 2 small rectangles left at the extreme corners on the right,
+%        whose surface is $1$ each.}
+%        \label{fig:alternatePowers2finalEven}
+%\end{center}
+%\end{figure}
