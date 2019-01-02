@@ -1,4 +1,4 @@
-%version of 12-31-18
+%version of 01-02-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -1567,10 +1567,10 @@ $111$.  The diameter bound is now an immediate consequence of the
 following result.
 
 \begin{prop}
-\label{thm:deBruijn-hamiltonian}
-For all $n \in \N^+$, $\d_n$ contains a {\em directed hamiltonian
+\label{thm:deBruijn-Hamiltonian}
+For all $n \in \N^+$, $\d_n$ contains a {\em directed Hamiltonian
   cycle}, 
-\index{directed hamiltonian cycle in a digraph}
+\index{directed Hamiltonian cycle in a digraph}
 i.e., a length-$2^n$ directed cycle of the form
 \begin{equation}
 \label{eq:deBruijn-cycle}
@@ -1661,15 +1661,14 @@ and $\Lambda(\d_n)$ completes the proof.  \qed
 \medskip
 
 \noindent {\bf (2)}
-{\it Eulerian cycles}. \index{Eulerian cycle}
-A {\it directed eulerian cycle}\footnote{This notion is named for its
-  discoverer, Leonhard Euler \index{Euler, Leonhard}.}~in a digraph
-$\g$ is a directed cycle that contains each arc of $\g$ precisely
-once.  We will see, later in this chapter, a truly elementary argument, based
-on node-degrees, which proves that every de Bruijn digraph has a directed
-eulerian cycle.  This demonstration will combine with
+{\it Eulerian cycles}. \index{Eulerian cycle} A {\it directed Eulerian
+  cycle} in a digraph $\g$ is a directed ( cycle that contains each
+arc of $\g$ precisely once.  We will see, later in this chapter, a
+truly elementary argument, based on node-degrees, which proves that
+every de Bruijn digraph has a directed Eulerian cycle.  This
+demonstration will combine with
 Proposition~\ref{thm:deBruin-linegraph} to complete the proof of
-Proposition~\ref{thm:deBruijn-hamiltonian}.  \qed
+Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
 %\end{proof}
 
 \bigskip
@@ -1698,65 +1697,97 @@ This section is devoted to a range of problems related to determining
 the existence in a graph $\g$ of a path or a cycle that {\em
   completely} ``summarizes'' $\g$'s traversal structure, either by
 containing each node of $\g$ precisely once or by containing each edge
-of $\g$ precisely once.
+of $\g$ precisely once.  We shall generally focus in this section only
+on {\em undirected} paths and cycles in {\em undirected}, {\em
+  unweighted} graphs.  Extrapolating the notions we discuss to their
+directed analogues in directed and/or weighted graphs, will be
+accomplished via carefully crafted exercises.  In a similarly, but
+simpler, vein, we shall generally discuss only prolems concerning {\em
+  cycles}, leaving to the reader the analogous notions that concern
+paths.  We begin by delimiting the two main classes of cycle-discovery
+problems that we study in this section.
 
-An edge-exhausting cycle in a graph $\g$ is called an {\it Eulerian
-  cycle},\index{graphs!Eulerian cycle} \index{Eulerian cycle} or {\it
-  Eulerian circuit}, \index{graphs!Eulerian circuit} \index{Eulerian
-  circuit} yet another concept named for the Swiss mathematician
-Leonhard Euler \index{Euler, Leonhard} who is credited with inventing
-the concept---in addition to the entire field of graph theory.  (An
-edge-exhausting path in $\g$ is named analogously.)  When one views an
-Eulerian cycle as a ``map'' for traversing a graph, one often calls
-the cycle an {\it Eulerian tour}.  \index{graphs!Eulerian tour}
-\index{Eulerian tour} Traditionally, a graph that admits an Eulerian
-cycle is said to be a {\it Eulerian graph}. \index{graphs!Eulerian}
-\index{Eulerian graph}
+{\it Eulerian cycles}.  A cycle in a graph $\g$ that traverses each of
+$\g$'s edges precisely once is called an {\it Eulerian
+  cycle},\index{graphs!Eulerian cycle} \index{Eulerian cycle} (or,
+often, an {\it Eulerian circuit}).  \index{graphs!Eulerian circuit}
+\index{Eulerian circuit} These edge-exhausting cycles were introduced
+as a topic of study in 1736 by the Swiss mathematician \index{Euler,
+  Leonhard} Leonhard Euler, whose name we have already encountered
+multiple times.  Euler allegedly discovered the topic while
+contemplating how to design a tour of the town of K\"{o}nigsberg that
+would cross each of the town's bridges precisely once.  The quest for
+Eulerian cycles in graphs is, thus, one of the oldest problems in the
+fields now called {\it Operations Research} and {\it graph theory}.
+(An edge-exhausting {\em path} in $\g$ is referred to in the obvious
+analogous way.)  When one views an Eulerian cycle as a ``map'' for
+traversing a graph---as did Euler when contemplating this
+problem---one often calls the cycle an {\it Eulerian tour}.
+\index{graphs!Eulerian tour} \index{Eulerian tour} Traditionally, a
+graph that admits an Eulerian cycle is said to be {\it
+  Eulerian}. \index{graphs!Eulerian} \index{Eulerian graph}
 
-Dually: A node-exhausting cycle in a graph $\g$ is called a {\it
-  Hamiltonian cycle}, \index{graphs!Hamiltonian cycle}
-\index{Hamiltonian cycle} or {\it Hamiltonian circuit},
-\index{graphs!Hamiltonian circuit} \index{Hamiltonian circuit} in
+\bigskip
+
+Dually: A cycle in a graph $\g$ that encounters each of $\g$'s nodes
+precisely once is called a {\it Hamiltonian cycle},
+\index{graphs!Hamiltonian cycle} \index{Hamiltonian cycle} (or, often,
+a {\it Hamiltonian circuit}). \index{graphs!Hamiltonian circuit}
+\index{Hamiltonian circuit} This cycle-discovery problem is named in
 honor of the British mathematician William Rowan Hamilton,
 \index{Hamilton, William Rowan} who is credited with inventing the
-concept in the mid-19th century.  (A node-exhausting path in $\g$ is
-named analogously.)  When one views a Hamiltonian cycle as a ``map''
-for traversing a graph, one often calls the cycle a {\it Hamiltonian
-  tour}.  \index{graphs!Hamiltonian tour} \index{Hamiltonian tour}
-Traditionally, a graph that admits a Hamiltonian cycle is said to be a
-{\it Hamiltonian graph}. \index{graphs!Hamiltonian} \index{Hamiltonian
-  graph}
+concept in the mid-19th century.  (A node-exhausting {\em path} in
+$\g$ is referred to in the obvious analogous way.)  When one views a
+Hamiltonian cycle as a ``map'' for traversing a graph, one often calls
+the cycle a {\it Hamiltonian tour}.  \index{graphs!Hamiltonian tour}
+\index{Hamiltonian tour} Traditionally, a graph that admits a
+Hamiltonian cycle is said to be {\it
+  Hamiltonian}. \index{graphs!Hamiltonian} \index{Hamiltonian graph}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Eulerian paths and cycles}
-\label{sec:eulerianCycle}
+\subsection{Eulerian Cycles and Paths}
+\label{sec:EulerianCycle}
 
-We turn now to the problem of determining when a connected graph $\g$
-has an {\it Eulerian cycle}---and the allied problem of finding such a
-cycle when one exists.
-
-**HERE
-
-\subsection{Existence}
+**TO BE DONE
 
 
+We turn first to the problems of determining when a connected
+unweighted graph $\g$ has an {\it Eulerian cycle} or an {\it Eulerian
+  path}---and the allied problem of finding such a cycle or such a
+path when one exists.  Note that the problem of finding an Eulerian
+cycle in a graph $\g$ is equivalent to the problem of drawing $\g$
+without ever lifting one's pencil. \index{graphs!drawing without
+  lifting pencil}
 
-Let us first consider the problem of determining a cycle which visits all the edges of a given (undirected) graph $G=(V,E)$ exactly once.
-This problem of determining if such a tour (called \textit{eulerian cycle}) exists is one of the oldest problem in the field of Operational Research
-(it was introduced in 1736). 
-It has been studied by the famous swiss mathematician Leonard Euler for the specific case of a tour going through all the bridges of the Koenigsberg town. 
-The graph is called \textit{eulerian} if it admits such an eulerian cycle.
-The solution of this problem is characterized by the following proposition.
-\bigskip
+\subsection{Characterizing Eulerian Graphs}
+\label{sec:eulerian-cycle-path}
 
-\noindent {\bf Proposition.}
-A connected graph is eulerian {\it iff} all its vertices have an even degree.
-\bigskip
+There is a simple and elegant characterization of graphs that admit
+Eulerian cycles.
 
-We distinguish below two types of proofs based on the same claims, one is simply the existence while the other one provides a solution. 
-Let us first establish three basic claims (elementary facts) that will be useful.
+\begin{prop}
+\label{thm:euerian-cycle}
+A graph is Eulerian if, and only if, it is connected and regular of
+even degree.
+\end{prop}
+
+\begin{proof}
+The necessity of the Proposition's conditions is established thus.
+\begin{itemize}
+\item
+By definition, a graph that is not connected does not admit any cycle.
+\item
+Each cycle that a graph admits accounts for two edges per node,
+because the cycle must ``enter'' the node by one edge and ``exit'' the
+node by a different edge.
+\end{itemize}
+\end{proof}
+We offer two proofs of this result: the first merely establishes the
+existence of the cycle; the second actually computes the cycle.  Both
+proofs invoke the following elementary facts.
+
 \bigskip
 
 \noindent {\bf Claim 1.}
@@ -1767,6 +1798,14 @@ A tour is an union of disjoint cycles.\bigskip
 
 \noindent {\bf Claim 3.}
 If we remove a cycle in a tour then the degrees remain even.\bigskip
+
+
+
+\begin{proof}
+{\bf A proof of existence.}
+
+\end{proof} 
+
 
 The necessary condition of the proposition is straightforward. 
 Let us focus on the sufficient condition.
@@ -1791,15 +1830,21 @@ By induction on the number of edges.
 \item The basis case is simple to verify for $m=2$ (where two vertices linked by two edges correspond to the cycle of minimal length). 
 \item
 Let consider a connected graph with $m+1$ edges where all its vertices have an even degree.
-Let assume that the property holds for connected graphs of even vertices with $k$ edges ($k \leq m$), which means there exist eulerian tours in these sub-graphs. 
+Let assume that the property holds for connected graphs of even vertices with $k$ edges ($k \leq m$), which means there exist Eulerian tours in these sub-graphs. 
 
 From Claim~1, there exists a cycle (let denote it by $\Gamma$ described by its successive vertices) and consider the sub-graph of $G$ 
 without the edges of $\Gamma$: $G'=(V-{\Gamma},E')$. 
-By induction hypothesis, there exists an eulerian cycle $\mathcal{C}_i$ in each connected component of $G'$ 
+By induction hypothesis, there exists an Eulerian cycle $\mathcal{C}_i$ in each connected component of $G'$ 
 (from Claim 3).
-The eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ and the eulerian cycles in the successive $\mathcal{C}_i$.
+The Eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ and the Eulerian cycles in the successive $\mathcal{C}_i$.
 
 \end{itemize}
+
+
+The simplicity---but not the elegance---of the preceding
+characteriation degrades a trifle when one seeks Eulerian paths rather
+than Eulerian cycles.
+
 
 
 {\bf APPLICATION}
@@ -1813,7 +1858,7 @@ Every de Bruin network $\d_n$ is (directed)-Eulerian.
 \label{sec:chinesePostman}
 
 Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
-there exist some odd vertices. From the previous section, we know that there is no eulerian cycle in this case and thus, 
+there exist some odd vertices. From the previous section, we know that there is no Eulerian cycle in this case and thus, 
 any feasible solution should duplicate some edges.
 The problem is to duplicate the minimum.
 This problem is known as the {\it chinese postman} and it is described below (in a french equivalent version).
@@ -1827,31 +1872,31 @@ to his office.
 The underlying graph is $G=(V,E)$ where $V$ is the (finite) set of cross points and $E$ is the set of the links between the cross roads
 weighted by the distances.  
 
-Fig.~\ref{fig:eulerianInitial} presents an example of the chinese postman problem. 
+Fig.~\ref{fig:EulerianInitial} presents an example of the chinese postman problem. 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienInitial}
        \caption{Example of an instance of the chinese postman with $10$ cross vertices.}
-              \label{fig:eulerianInitial}
+              \label{fig:EulerianInitial}
 \end{center}
 \end{figure}
 
 \bigskip
 
-This problem may be formulated mathematically in term of eulerian cycles.
+This problem may be formulated mathematically in term of Eulerian cycles.
 Intuitively, the basic idea is to duplicate some edges that are carefully chosen in order to use the previous construction
-of an eulerian tour of section~\ref{sec:eulerianCycle} that will help the postman to determine 
+of an Eulerian tour of section~\ref{sec:EulerianCycle} that will help the postman to determine 
 the optimal tour (of minimal length) using some simple mathematical properties. 
 \bigskip
 
 First, we know that there is an even number of odd vertices.
-Considering the previous instance of the postman problem, there are $4$ such vertices (represented in grey in Fig.~\ref{fig:eulerianVodd}).
+Considering the previous instance of the postman problem, there are $4$ such vertices (represented in grey in Fig.~\ref{fig:EulerianVodd}).
 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienVodd}
        \caption{The $4$ vertices with an odd degree in the previous instance.}
-              \label{fig:eulerianVodd}
+              \label{fig:EulerianVodd}
 \end{center}
 \end{figure}
 \bigskip
@@ -1864,7 +1909,7 @@ As we mentioned in the preliminary properties, computing the shortest paths is a
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienPerfectMatching}
        \caption{The minimum weight perfect matching labelled by the shortest distances between the vertices of $V_{odd}$.}
-              \label{fig:eulerianperfectmatching}
+              \label{fig:Eulerianperfectmatching}
 \end{center}
 \end{figure}
 \bigskip
@@ -1877,7 +1922,7 @@ by duplicating the edges of the minimal perfect matching.
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienFinal}
        \caption{Final step: adding the edges of the minimum perfect matching.}
-              \label{fig:eulerianFinal}
+              \label{fig:EulerianFinal}
 \end{center}
 \end{figure}
 
@@ -1887,7 +1932,7 @@ The main steps of the algorithm for determining the optimal tour are the followi
 \item Consider the complete graph with the odd vertices and compute its weight by the shortest paths.
 Compute a perfect matching of minimal weight between these vertices. 
 \item Duplicate all the edges along the paths of this matching.
-\item Determine an eulerian tour in this new graph with even degrees.
+\item Determine an Eulerian tour in this new graph with even degrees.
 \end{itemize}
 
 The optimality of this algorithm comes from the fact that the duplicated edges are the minimum possible ones.
@@ -1899,10 +1944,10 @@ Finally, all the vertices of the new graph are even since the degree of the odd 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Hamiltonian Paths and Cycles/Tours}
-\label{sec:hamiltonian-cycle}
+\label{sec:Hamiltonian-cycle}
 
 \subsubsection{Hamiltonianicity in unweighted graphs}
-\label{sec:hamiltonian-unweighted}
+\label{sec:Hamiltonian-unweighted}
 
 We turn now to the problem of determining when a connected graph $\g$
 has a {\it Hamiltonian cycle}---and the allied problem of finding such
@@ -1954,7 +1999,7 @@ before one encompasses all connected graphs.  Regrettably, the proof
 of this result is beyond the current text.
 
 \begin{prop}
-\label{thm:weak-hamiltonianicity}
+\label{thm:weak-Hamiltonianicity}
 {\bf (a)} {\rm \cite{ChartrandK69}}
 Let $\g$ be any connected graph.  One can cyclically enumerate the
 nodes of $\g$ in such a way that nodes that are adjacent in the cycle
@@ -1971,7 +2016,7 @@ in such a way that nodes that are adjacent in the cycle are at
 distance $\leq 2$ in $\h$.
 \end{prop}
 
-\paragraph{\small\sf B. Understand Hamiltonianicity in important graphs}
+\paragraph{\small\sf B. Understanding Hamiltonianicity in ``named'' graphs}
 
 Yet another direction of inquiry is to determine whether specific
 graphs of interest are Hamiltonian.  We illustrate this avenue by
@@ -1979,7 +2024,7 @@ reviewing the five important families of graphs we studied in
 Section~\ref{sec:graphs-important-families}.
 
 \begin{prop}
-\label{thm:named-graph-hamiltonian}
+\label{thm:named-graph-Hamiltonian}
 {\bf (a)}
 Every cycle-graph $\cc_n$ is Hamiltonian.
 
@@ -2174,18 +2219,65 @@ that $\d_n$ is (directed)-Eulerian
 (directed)-Hamiltonian.  \qed
 \end{proof}
 
-\bigskip
 
-We 
+\paragraph{\small\sf C. Testing general graphs for Hamiltonianicity}
 
+The techniques we used in Subsection~{\small\sf B} to investigate the
+Hamiltonianicity of our ``named'' graphs exploit the detailed
+structures of the individual graphs.  Thus, we cannot expect the proof
+of Proposition~\ref{thm:named-graph-Hamiltonian} to suggest avenues
+for determining whether an arbitrary given graph is Hamiltonian.  In
+fact, quite sophisticated results proved in the early 1970s make a
+strong mathematical argument that no set of case studies is likely to
+have a major impact on the problem of testing general graphs for
+Hamiltonianicity.
 
- cycles in general connected
-graphs
+The backstory of the preceding assertion began in 1971 when Stephen
+A.~Cook \index{Cook, Stephen A.} was able to adapt, in \cite{Cook71},
+arguments\footnote{These arguments were the legacy of intellectual
+  giants such as Kurt G\"{o}del \index{G\"{o}del, Kurt} (in
+  \cite{Goedel31}) and Alan M.~Turing \index{Turing, Alan M.} (in
+  \cite{Turing36}).}~underlying the mathematical foundations of the
+theory of computing to the study of specific computational problems;
+the new theory was soon named {\it (the theory of) {\sf
+    NP}-completeness} \index{{\sf NP}-completeness} for reasons that
+are explained in sources such as \index{GareyJ79} and developed in
+texts such as \index{Rosenberg09}.  Within a year, Richard M.~Karp
+\index{Karp, Richard M.} and colleagues had greatly lengthened the
+list of computational problems that Cook's nascent theory encompassed;
+several variants of the Hamiltonianicity-detection problem were on
+this list.  The details of the theory of {\sf NP}-completeness are
+beyond the scope of this text, but we do want the reader to recognize
+the following.
+\begin{description}
+\item
+{\it The problem of deciding, given a graph $\g$ that is presented via
+  a list of nodes and a list of edges, whether $\g$ admits a
+  Hamiltonian path or a Hamiltonian cycle is {\sf NP}-complete.}
+\end{description}
+It remains mathematically {\em possible} that {\sf NP}-complete
+problems can be solved efficiently---meaning ``in time polynomial in
+the size of the description of the problem'' (e.g., the number of
+nodes and edges in a graph).  However it is mathematically {\em
+  certain} that if any one problem in this class has a polynomial-time
+solution, then every problem in this class does.
 
-**HERE
+Given the half-century that has passed since the work of Cook and
+Karp, and given the practical importance of many of the problems that
+are known to be {\sf NP}-complete, it is widely {\em suspected} that
+no {\sf NP}-complete problem can be solved via a polynomial-time
+algorithm.
 
+There is a large, vibrant literature concerning approaches for
+lessening the negative computational impacts of {\sf
+  NP}-completeness---by considering significant special cases of {\sf
+  NP}-complete problems, by developing approximate solutions to such
+problems, and by developing heuristics fr such problems, whose
+behavior cannot be guaranteed but which seem to work well ``in
+practice''.
 
-\paragraph{\small\sf C. Test general graphs for Hamiltonianicity}
+This short discussion is a perfect segu\'{e} to the material in the
+next section---the Hamiltonianicity problem in weighted graphs.
 
 
 
@@ -2193,10 +2285,13 @@ graphs
   Salesman Problem}
 \label{sec:TSP}
 
+
+**HERE
+
 Hamiltonian
 This problem is the traveling salesman problem, called TSP in short.
-It corresponds to determine a minimal hamiltonian cycle in a weighted complete graphs $K_n$.
-Obviously, $K_n$ is hamiltonian (it exists $n!$ such hamiltonian paths), thus, the question here is to determine the minimum one. 
+It corresponds to determine a minimal Hamiltonian cycle in a weighted complete graphs $K_n$.
+Obviously, $K_n$ is Hamiltonian (it exists $n!$ such Hamiltonian paths), thus, the question here is to determine the minimum one. 
 
 TSP is a classical problem in Operational Research.
 Let us consider a saleswoman who wants to organize the visit of her clients as best as possible.
@@ -2268,17 +2363,17 @@ Let us now determine a lower bound of the optimal tour $H^*$ (represented in Fig
 
 $2 \omega_{C^*}$ is a lower bound of the value of the optimal tour ($\omega_{C^*} \leq \frac{1}{2} \omega_{H^*}$). 
 Indeed, consider first the perfect matching $C^*$.
-As its vertices belong to $H^*$, $\omega_{C*}$ is lower than the piece of hamiltonian tour contained between these vertices
+As its vertices belong to $H^*$, $\omega_{C*}$ is lower than the piece of Hamiltonian tour contained between these vertices
 because of the euclidian property (see Fig.~\ref{fig:perfectMatchingC*}).
 Similarly for the \textit{complementary} perfect matching $C$ (Fig.~\ref{fig:perfectMatchingC}).  
-Thus, the weight of the cycle formed by the concatenation of both perfect matchings is lower than the hamiltonian tour $\omega_{C^* \bigcup C} \leq \omega_{H^*}$.
+Thus, the weight of the cycle formed by the concatenation of both perfect matchings is lower than the Hamiltonian tour $\omega_{C^* \bigcup C} \leq \omega_{H^*}$.
 Moreover, as $C^*$ is the minimum perfect matching, we have $\omega_{C^*} \leq \omega_{C}$, this concludes the proof.
 
 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.7]{FiguresGraph/perfectmatching1}
-       \caption{An optimal hamiltonian cycle $H^*$.}
+       \caption{An optimal Hamiltonian cycle $H^*$.}
               \label{fig:perfectMatchingInitial}
 \end{center}
 \end{figure}
