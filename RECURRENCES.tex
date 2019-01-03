@@ -1,4 +1,4 @@
-%version of 01-02-19
+%version of 01-03-19
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -1506,132 +1506,197 @@ The induction is thus extended, which completes the proof.
 \end{proof}
 
 
-\section{Recurrences ``in action'': The Token Game}
+\section{$\oplus$ Recurrences ``in action'': The Token Game}
 \label{sec:TokenGame}
 
-
-**HERE
-
-We describe the (single-player) combinatorial {\it Token Game} and use
-recurrences to analyze optimal plays of the game.
+In order to truly appreciate the power of recurrences as an analysis
+tool, one must witness them ``in action''.  To this end, we now
+describe the (single-player) combinatorial {\it Token Game}.  By
+employing recurrences to analyze plays of the game, we are able to
+derive an optimal strategy for playing the game.
 
 \subsection{The Token Game}
 \label{sec:TokenGame-Rules}
 
-The order-$n$ version of the Token Game is played with a {\it bank}
-with $n$ positions, labeled $1$, \ldots, $n$ and with a {\it pile} of
-$n$ tokens; see Fig.~\ref{fig:jeujetonsInit}.  In any play of the
-game, the bank is initially empty.
-\begin{figure}[h]
+\noindent {\it The equipment}.
+For each $n \in \N^+$, the order-$n$ version of the Token Game is
+played with a {\it bank} which has $n$ slots, labeled $1$, \ldots,
+$n$, and with a {\it pile} of $n$ tokens.
+
+\medskip
+
+\noindent {\it Initial and terminal configurations}.
+Each play of the game begins with the bank empty and the pile full, as
+depicted in Fig.~\ref{fig:jeujetonsInit}.
+\begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresMaths/GameTokenInit.png}
 \caption{The initial configuration of the Token Game: Each of the $n$
-  tokens appears as a grey circle, and the empty bank has $n$ slots
-  where the tokens can fit.}
+  tokens appears as a grey circle, and the empty bank has $n$ slots.
+  In the figure, $n=7$.}
         \label{fig:jeujetonsInit}
 \end{center}
 \end{figure}
-\begin{itemize}
-\item
-{\it Object of the game:} To fill all of the bank's slots with the $n$
-tokens.
+The goal of each play is to transfer all $n$ tokens from the pile into
+the bank.
 
-\item
-{\it Each move of the game:} Move one token from the pile to the bank
-{\em or} remove one token from the bank and return it to the pile.
+\medskip
 
+\noindent {\it The repertoire of Game moves}.
+The player transfers tokens from the pile to the bank by executing a
+sequence of {\it moves}.  Each successive move has one of the
+following types.
+\begin{enumerate}
 \item
-{\it Constraints of the game:} There are two rules:
+Change the state of bank-slot \#$1$, which is the first (i.e.,
+leftmost) slot in the bank:
 
-\textbf{Rule 1.} If Slot \# 1 of the bank:
-  \begin{itemize}
-  \item
-is {\em empty}, then move a token from the pile into Slot \# 1.
-  \item
-is {\em full}, i.e., contains a token, then remove that token from
-Slot \# 1 and return it to the pile; see Fig.~\ref{fig:rule1}.
+If slot \#$1$ is empty, then move a token from the pile to that slot.
+
+If slot \#$1$ is full (i.e., contains a token), then remove this token
+and return it to the pile; see Fig.~\ref{fig:rule1}.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.35]{FiguresMaths/GameTokenRule1.png}
-\caption{Rule 1: (TOP) Slot \#1 contains a token.  (BOTTOM) Therefore,
-  remove it (i.e., move it back to the pile).}
+        \includegraphics[scale=0.3]{FiguresMaths/GameTokenRule1.png}
+\caption{(TOP) Slot \#1 contains a token.  (BOTTOM) Therefore, remove
+  it (i.e., move it back to the pile).}
         \label{fig:rule1}
 \end{center}
 \end{figure}
-  \end{itemize}
-\textbf{Rule 2.} Focus on the bank-slot immediately to the right of
-the first empty bank-slot.  If this slot
-  \begin{itemize}
-  \item
-is {\em empty}, then move a token from the pile into Slot \# 1.
-  \item
-is {\em full}, i.e., contains a token, then remove that token from
-Slot \#1 and return it to the pile; see Fig.~\ref{fig:rule2}.
-\begin{figure}[h]
+
+\item
+Change the state of the bank-slot---call it slot \#$s$---that is
+immediately to the right of the first (i.e., leftmost) {\em empty}
+slot:
+
+If slot \#$s$ is empty, then move a token from the pile to that slot.
+
+If slot \#$s$ is full (i.e., contains a token), then remove this token
+and return it to the pile; see Fig.~\ref{fig:rule2}.
+\begin{figure}[htb]
 \begin{center}
-        \includegraphics[scale=0.35]{FiguresMaths/GameTokenRule2.png}
-\caption{Rule 2: (TOP) Slot \#$c$, which is immediately to the right
-  of the first empty slot ($c=3$ in this example) is empty.  (BOTTOM)
-  Therefore, move a token from the pile to Slot \#$3$.}
+        \includegraphics[scale=0.3]{FiguresMaths/GameTokenRule2.png}
+\caption{(TOP) Bank-slot \#$s$, which is immediately to the right of
+  the first empty slot ($s=3$ in this example) is empty.  (BOTTOM)
+  Therefore, move a token from the pile into slot \#$3$.}
         \label{fig:rule2}
 \end{center}
 \end{figure}
-  \end{itemize}
+\end{enumerate}
 
-\item
-{\it Objective of a play of the game:} To minimize the number of moves
-from an initially empty bank to the finally full bank.
-\end{itemize}
+\medskip
+
+\noindent {\it Objective of a play of the Game:} To minimize the
+number of moves from an initially empty bank to the finally full bank.
+
 
 %Note that Rule 1 refers only to the slot whose full/empty status can
 %change in this step, whereas Rule 2 depends on the status of slots
 %whose full/empty status cannot change in this step.
 
-\subsection{Strategies for Playing the Game}
+\subsection{An Optimal Strategy for Playing the Game}
 \label{sec:Token-Game-Strategies}
 
-The initial move of the game always involves an invocation of Rule 1,
-because the bank is initially empty.  But, thereafter, one may
-possibly have access to more than one move.  The question is how to
-decide which move to make when one has access to more than one.
+The initial move of the game always involves a Type-1 move, because
+the bank is initially empty.  But, thereafter, the player may possibly
+have access to more than one move.  The question is how the player
+should choose successive moves, with the goal of filling the bank as
+quickly as possible.
 
-We lay the groundwork for devising an optimal strategy for playing the game
-by making some observations.
+While one can garner some strategic observations about how to play the
+Game by playing small instances---a trivial example: Do not choose two
+successive type-$1$ moves, because the second one just undoes the
+first---it is not easy to discern a complete strategy.  In fact,
+though, one can rather easily specify a {\em recursive} solution to
+the game, which can be proved optimal using recurrences.
 
+%WhileEven is not easy to describe and its cost is not easy to
+%establish.  We lay the groundwork for devising an optimal strategy
+%for playing the game by making some observations.  The analysis of
+%the game for some particular values of $n$ leads to some evidences
+%(looking at the first ranks): First, in the even case, the process
+%should start by putting the second token while in the odd case, we
+%should start to fill the first position.  Then, the first token is
+%flipped every double steps, the second one every four steps and so
+%on.  Second observation: both rules are applied alternatively (this
+%is obvious for Rule 1 since applying it twice consecutively leads to
+%the initial position, and easy to check for Rule 2 on the first
+%ranks).
 
+\bigskip
 
+A recursive solution for Game instances with $n > 2$ can be derived
+from the following reasoning.
 
+A token can be placed into the last bank-slot via the type-$2$ move
+\begin{center}
+{\sc move token from pile into bank-slot} $n$.
+\end{center}
+In order for this move to be eligible for execution, the bank must be
+in the following configuration, reading rightward from bank-slot $1$:
+\[ \big[ \mbox{tokens in slots } \ 1, 2, \ldots, n-2 \big],
+ \big[ \mbox{no token in slot } \ n-1 \big],
+ \big[ \mbox{no token in slot } \ n \big]
+\]
+Once  having achieved this configuration, and then executed the move
+\begin{center}
+{\sc move token from pile into bank-slot} $n$,
+\end{center}
+the player can execute a sequence of $n-2$ type-$2$ moves of the form
+\begin{center}
+{\sc move token from bank-slot} \ $k$ \ {\sc to the pile},
+\end{center}
+for $k = n-2, \ n-3, \ldots, \ 1$, in turn.  At this point, if one
+henceforth ignores the token in bank-slot $n$, then the player is now
+confronted with the initial configuration of the order-$(n-1)$ version
+of the Game.  You can see the recursion coming!
 
+Thus, the Game can be played via a recursion that iteratively executes
+the ``super-steps'' depicted in Figure~\ref{fig:jeujetonsPrinciple},
+on successively smaller banks and piles.
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths/GameTokenPrinciple.png}
+\caption{A schematic of the recursive play of the current-sized
+  version of the Game.  The top four bank configurations indicate the
+  iterating four supersteps in the recursions.  The bottom bank
+  configuration is the final one: the bank is entirely filled. }
+        \label{fig:jeujetonsPrinciple}
+\end{center}
+\end{figure}
+When the {\em active} size of the bank is $k$:
+\begin{enumerate}
+\item
+{\it Topmost bank configuration $\longrightarrow$ Second bank
+  configuration}
 
+Move tokens into the leftmost $k-2$ slots of the bank, leaving the
+rightmost two slots empty.
 
-The analysis of the game for some particular values of $n$ leads to some evidences (looking at the first ranks):
-First, in the even case, the process should start by putting the second token while in the odd case, we should start to fill the first position.
-%Then, the first token is flipped every double steps, the second one every four steps and so on.
-Second observation: both rules are applied alternatively (this is obvious for Rule 1 since applying it twice consecutively leads to the initial position, 
-and easy to check for Rule 2 on the first ranks). 
-However, the solution is not easy to describe and its cost is not easy to establish.
+\item
+{\it Second bank configuration $\longrightarrow$ Third bank configuration}
 
-The solution can be easily expressed recursively as follows (for $n > 2$):
-the token in the last position can only be put bu rule 2, that means that the first $(n-2)$ one are on the bank.
-Then, if we empty these first $n-2$ positions,
-we obtain a configuration similar as in the initial one except for the last position which has a token. 
-Then, the puzzle is solved by applying the same process on a bank with $n-1$ tokens.
-The successive steps of this recursive solution are depicted in Figure~\ref{fig:jeujetonsPrinciple}.
+Move a token into bank-slot $k$, i.e., the current rightmost slot
+
+\item
+{\it Third bank configuration $\longrightarrow$ Fourth bank configuration}
+
+Empty  bank-slots $1, 2, \ldots k-1$; i.e., leave the current
+rightmost slot filled, but empty all slots to its left.
+
+\item
+{\it Final bank configuration}
+
+The Game is complete!
+\end{enumerate}
 
 %Thus, flipping the first tokens of the same color is different if they are all blue or red.
 %Notice that flipping the first reds can be obtained using the reverse process as for the blue ones (see coding at the end of this document).
 
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/GameTokenPrinciple.png}
-        \caption{Principle of the recursive solution. Fill the bank in the $(n-2)$ first positions, then, put a token on the last position (Rule 2), 
-        empty the (n-2) first positions. Finally, fill the $(n-1)$ first positions of the bank.}
-        \label{fig:jeujetonsPrinciple}
-\end{center}
-\end{figure}
 \bigskip
 
-More formally,
+We can express the preceding recursive algorithm in a more formal way:
+
 \bigskip
 
 fillBank(n)
