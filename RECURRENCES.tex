@@ -1693,28 +1693,35 @@ The Game is complete!
 %Thus, flipping the first tokens of the same color is different if they are all blue or red.
 %Notice that flipping the first reds can be obtained using the reverse process as for the blue ones (see coding at the end of this document).
 
-\bigskip
+\medskip
 
-We can express the preceding recursive algorithm in a more formal way:
+We can specify the preceding recursive algorithm in the following more
+formal format:
 
-\bigskip
-
-fillBank(n)
-\begin{itemize}
-\item
- if $n=1$ then putToken(1) -- according to Rule 1
-\item
-if $n=2$ then PutToken(2) -- Rule 2 -- and then PutToken(1) -- Rule 1
-
-\item 
-if $n > 2$ then
-\begin{itemize}
-\item fillBank(n-2)
-\item PutToken(n)
-\item EmptyBank(n-2)
-\item FillBank(n-1)
-\end{itemize}
-\end{itemize}
+\begin{tabular}{|l|c|ll|}
+\multicolumn{4}{l}{{\bf Recursive-Procedure} Fill-Bank($n$)} \\
+\hline
+\multicolumn{4}{l}{/* Fill the leftmost $n$ slots of the currently
+  empty bank */} \\
+\hline
+\hline
+{\bf Case} & & & \\
+$n=1$ &   & Move-Token to slot \#$1$ & via a Type-$1$ move \\
+\hline
+$n=2$ & 1 & Move-Token to slot \#$2$ & via a Type-$2$ move \\
+      &   & Move-Token to slot \#$1$ & via a Type-$1$ move \\
+%PutToken(2) -- Rule 2 -- and then PutToken(1) -- Rule 1
+\hline
+$n>2$ & 1 & Fill-Bank($n-2$) & via recursive invocation \\
+%\item fillBank(n-2)
+      & 2 & Move-Token to slot \#$n$ & as described in text \\ 
+%\item PutToken(n)
+      & 3 & Erase leftmost $n-2$ bank-slots & as described in text \\
+%\item EmptyBank(n-2)
+      & 4 & Fill-Bank($n-1$) & via recursive invocation \\
+%\item FillBank(n-1)
+\hline
+\end{tabular}
 
 \subsection{Analysis}
 
