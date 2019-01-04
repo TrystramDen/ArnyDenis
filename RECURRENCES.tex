@@ -1,4 +1,4 @@
-%version of 01-03-19
+%version of 01-04-19
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -1709,12 +1709,12 @@ formal format:
 $n=1$ &   & Move-Token to slot \#$1$ & via a Type-$1$ move \\
 \hline
 $n=2$ & 1 & Move-Token to slot \#$2$ & via a Type-$2$ move \\
-      &   & Move-Token to slot \#$1$ & via a Type-$1$ move \\
+      & 2 & Move-Token to slot \#$1$ & via a Type-$1$ move \\
 %PutToken(2) -- Rule 2 -- and then PutToken(1) -- Rule 1
 \hline
 $n>2$ & 1 & Fill-Bank($n-2$) & via recursive invocation \\
 %\item fillBank(n-2)
-      & 2 & Move-Token to slot \#$n$ & as described in text \\ 
+      & 2 & via a Type-$2$ move \\
 %\item PutToken(n)
       & 3 & Erase leftmost $n-2$ bank-slots & as described in text \\
 %\item EmptyBank(n-2)
@@ -1725,20 +1725,23 @@ $n>2$ & 1 & Fill-Bank($n-2$) & via recursive invocation \\
 
 \subsection{Analysis}
 
-The analysis comes directly from the previous process. 
+The analysis mirrors the previous process description. 
 
-Let call $f(i)$ the cost for filling the bank from position $1$ to position $i$
-(the cost here refers to the number of elementary moves, put or remove a token).
-Notice that it requires the same number of steps to fill or to empty the truncated bank (from position $1$ to $i$). 
-The total cost is to fill the whole bank of size $n$, thus we have to solve:
+Let call $f(i)$ the cost for filling the bank from position $1$ to
+position $i$ (the cost here refers to the number of elementary moves,
+put or remove a token).  Notice that it requires the same number of
+steps to fill or to empty the truncated bank (from position $1$ to
+$i$).  The total cost is to fill the whole bank of size $n$, thus we
+have to solve:
 
 $f(n) = f(n-2) + 1 + f(n-2) + f(n-1) = f(n-1) + 2.f(n-2) +1$ for $n > 2$
 
 with $f(1) = 1$ and $f(2) = 2$.
 \bigskip
 
-If we add $f(n-1)$ in both sides of the previous expression, we obtain a simpler equation (call $s(n)$ the sum $f(n)+f(n-1)$ $n \geq 2$,
-in particular, $s(2) = 2+1$):
+If we add $f(n-1)$ in both sides of the previous expression, we obtain
+a simpler equation (call $s(n)$ the sum $f(n)+f(n-1)$ $n \geq 2$, in
+particular, $s(2) = 2+1$):
 
 $f(n) + f(n-1) = 2.f(n-1) + 2.f(n-2) +1$
 
