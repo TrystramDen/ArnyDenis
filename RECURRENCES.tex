@@ -1,4 +1,4 @@
-%version of 01-04-19
+%version of 01-07-19
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -475,7 +475,8 @@ Fig.~\ref{fig:fibo5} below illustrates the process up to month $4$.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths//Fibo5}
-\caption{The successive generations of rabbits are growing each month (depicted for the $4$ first months).}
+\caption{The successive generations of rabbits are growing each month
+  (depicted for the first four months).}
         \label{fig:fibo5}
 \end{center}
 \end{figure}
@@ -865,28 +866,98 @@ The induction is thus extended, which establishes the proposition.
 \qed 
 \end{proof}
 
-\subsubsection{Toward a closed form for the ``limit''  of the
-  Fibonacci sequence}
+\subsubsection{$\oplus$  A closed-form expression for Fibonacci numbers}
 \label{sec:Fib-Golden-Ratio}
 
+We close our survey of the Fibonacci numbers by exposing a {\it
+  closed-form expression}\footnote{The term ``closed-form expression''
+  is defined and illustrated in Section~\ref{sec:special-arithmetic
+    sums}.A.}~for the numbers in this fascinating family.  The
+detailed derivation of this form is beyond the scope of this text, so
+we settle for a heuristic explanation of the closed-form expression.
+By ``heuristic'', we mean here the kind of intuitive explanation that
+mathematicians often use to garner intuition during the exploratory
+phase of studying a complex topic. 
+
+If you write out a sufficiently long initial sequence of Fibonacci
+numbers, then you observe that they grow quite fast.  Indeed, by this
+point in the text, you have hopefully ``played'' with enugh sequences
+that you might guess that the Fibonacci numbers grow exponentially
+with the index $n$.  That is, you might guess that there exists a base
+$\beta$ such that $F(n) = \beta^n$, at least approximately.  In order
+to (hopefully!)~garner intuition for the actual behavior of the
+Fibonacci sequence, let us observe an important consequence of this
+guess.  If the guess were true, then it would combine with the
+classical recurrence (\ref{eq:Fibonacci-defn}) in the following way.
+\[ \begin{array}{cccll}
+(1) & F(n) & = & \beta^n
+      & \mbox{ by our guess} \\
+(2) & F(n) & = & F(n-1) \ + \ F(n-2)
+      & \mbox{ by recurrence (\ref{eq:Fibonacci-defn})}
+\end{array}
+\]
+By combining (1) and (2), we therefore find that
+\[ \beta^n \ = \ \beta^{n-1} \ + \ \beta^{n-2} \]
+so that $\beta^n$ is a root of the quadratic equation
+\[
+x^2 - x - 1 \ = \ 0
+\]
+By the quadratic formula (see
+Proposition~\ref{thm:quadratic-formula}), this polynomial has two roots 
+
+$\Phi \ = \ {\displaystyle \frac{1+\sqrt{5}}{2}}$ \ \ and \ \
+$\Phi' \ = \ {\displaystyle \frac{1-\sqrt{5}}{2}}$
+
+\noindent
+Note that $\Phi$, which is known as the \textit{golden ratio},
+\index{golden ratio} exceeds $1$ while $\Phi'$ does not.  Since we
+know that the Fibonacci numbers {\em grow} with $n$ rather than shrink
+with $n$, our initial guess would assign $F(n)$ the value
+\[
+F(n) \ = \ \Phi^n \ = \ {\displaystyle \left( \frac{1+\sqrt{5}}{2} \right)^n }
+\]
+In fact, this guessed value of $F(n)$ is off by only a small constant
+factor, at least for very large values of $n$, in the sense of part
+(a) of the following result.  Part (b) of the result actually provides
+a closed-form expression for $F(n)$.
+\index{Fibonacci numbers!closed-form expression}
+
+\begin{prop}
+\label{thm:FibNo-GoldenRatio}
+{\bf (a)} {\rm (An approximating expression)}
+For all sufficiently large $n$,
+\[ F(n) \ \approx \
+\frac{1}{\sqrt{5}} \left(\frac{1+\sqrt{5}}{2} \right)^n
+\]
+The meaning of the symbol ``$\approx$'' here means that the error
+incurred by approximating $F(n)$ via this expression shrinks
+exponentially as $n$ grows.
+
+\medskip
+
+\noindent{\bf (b)} {\rm (An exact expression)}
+For all $n$,
+\[ F(n) \ = \ 
+\frac{1}{\sqrt{5}} \left( \left(\frac{1+\sqrt{5}}{2} \right)^n -
+\left(\frac{1-\sqrt{5}}{2} \right)^n \right)
+\]
+\end{prop}
+
+
+\ignore{*********
 In this section, we present the general methodology for determining
 the close form of $F(n)$, that is an direct expression that only
 depends on $n$ and not on the other terms of the sequence.  The
 characteristic equation of $F(n+2) - F(n+1) - F(n) =0$ is:
-
-$x^2 - x - 1 = 0$
-
 Let determine its discriminant: $\Delta = 5$.
 Since it is positive, this equation has two distinct roots:
-
-$\Phi = \frac{1+\sqrt{5}}{2}$ and $\Phi' = \frac{1-\sqrt{5}}{2}$
 
 The first one $\Phi$ is known as the \textit{golden ratio}. 
 
 The general term $F(n)$ is equal to $a.\Phi^n + a'.\Phi'^n$ where $a$
 and $a'$ are determined by two particular values $n=0$ and $n=1$:
+*******************}
 
-$F(n)= \frac{1}{\sqrt{5}} ((\frac{1+\sqrt{5}}{2})^n - (\frac{1-\sqrt{5}}{2})^n)$
 
 
 \subsection{$\oplus$ Relatives of Fibonacci Numbers and Binomial Coefficients}
@@ -1705,7 +1776,7 @@ formal format:
   empty bank */} \\
 \hline
 \hline
-{\bf Case} & & & \\
+\underline{\bf Case} & & & \\
 $n=1$ &   & Move-Token to slot \#$1$ & via a Type-$1$ move \\
 \hline
 $n=2$ & 1 & Move-Token to slot \#$2$ & via a Type-$2$ move \\
@@ -1725,6 +1796,7 @@ $n>2$ & 1 & Fill-Bank($n-2$) & via recursive invocation \\
 
 \subsection{Analysis}
 
+**HERE
 The analysis mirrors the previous process description. 
 
 Let call $f(i)$ the cost for filling the bank from position $1$ to
