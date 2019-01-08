@@ -1,4 +1,4 @@
-%version of 01-07-19
+%version of 01-09-19
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -495,10 +495,9 @@ discussions about the {\it prime numbers} in Section~\ref{sec:primes}
 and about the {\it perfect numbers} in
 Section~\ref{sec:perfect-numbers+Mersenne-primes} bear witness to this
 phenomenon.  One specific number that has attracted such attention is
-the {\it golden ratio}, an irrational number which is usually denoted
-$\Phi$ and which has the following (exact and approximate) values:
-\index{golden ratio, $\Phi$}
-\index{$\Phi$, the golden ratio}
+the {\it golden ratio}, an irrational real number which is usually
+denoted $\Phi$ and which has the following (exact and approximate)
+values: \index{golden ratio, $\Phi$} \index{$\Phi$, the golden ratio}
 \[ \Phi \ = \ \frac{1+\sqrt{5}}{2} \ \approx \  1.618\ldots \]
 It has been alleged that rectangles whose {\it aspect ratios} (Length
 $\div$ Width) are (roughly) $\Phi$ are the most pleasing to the human
@@ -866,7 +865,7 @@ The induction is thus extended, which establishes the proposition.
 \qed 
 \end{proof}
 
-\subsubsection{$\oplus$  A closed-form expression for Fibonacci numbers}
+\subsubsection{$\oplus$  A closed-form expression for the $n$th Fibonacci number}
 \label{sec:Fib-Golden-Ratio}
 
 We close our survey of the Fibonacci numbers by exposing a {\it
@@ -1769,6 +1768,8 @@ The Game is complete!
 We can specify the preceding recursive algorithm in the following more
 formal format:
 
+\medskip
+
 \begin{tabular}{|l|c|ll|}
 \multicolumn{4}{l}{{\bf Recursive-Procedure} Fill-Bank($n$)} \\
 \hline
@@ -1776,7 +1777,8 @@ formal format:
   empty bank */} \\
 \hline
 \hline
-\underline{\bf Case} & & & \\
+\underline{\bf Case} & \underline{\bf Move-sequence} & 
+\multicolumn{2}{c}{\underline{\bf Action}} \\ 
 $n=1$ &   & Move-Token to slot \#$1$ & via a Type-$1$ move \\
 \hline
 $n=2$ & 1 & Move-Token to slot \#$2$ & via a Type-$2$ move \\
@@ -1794,36 +1796,78 @@ $n>2$ & 1 & Fill-Bank($n-2$) & via recursive invocation \\
 \hline
 \end{tabular}
 
-\subsection{Analysis}
+\subsection{An analysis of the recursive strategy}
 
-**HERE
-The analysis mirrors the previous process description. 
+We now develop an analysis of our recursive strategy for playing the
+Token Game.  Not surprisingly, the analysis is embodied in a {\it
+  recurrence} for the cost of playing the Game as a function of the
+bank-size $n$.  Also not surprisingly, the structure of the recurrence
+mirrors the recursion structure of our playing strategy.
 
-Let call $f(i)$ the cost for filling the bank from position $1$ to
-position $i$ (the cost here refers to the number of elementary moves,
-put or remove a token).  Notice that it requires the same number of
-steps to fill or to empty the truncated bank (from position $1$ to
-$i$).  The total cost is to fill the whole bank of size $n$, thus we
-have to solve:
+For $i = 1, \ldots, n$ let $f(i)$ denote the cost for filling the
+bank-slots from slot \#$1$ through slot \#$i$, measured in terms of
+the number of atomic moves, each of the form {\sc place a token} or
+{\sc remove a token}.  Because of the dual forms of our atomic
+moves---each move fills one slot that is empty or empties one slot
+that is full---the cost of filling an empty length-$i$ prefix of the
+bank with tokens equals the cost of emptying a full length-$i$ prefix
+of the bank.  The total cost of a play of the Game is, by definition,
+the cost of filling the initially empty $n$-slot bank with tokens.
+The analysis of our recursive playing strategy therefore resides in
+solving the following recurrence.
+\begin{equation}
+\label{eq:Token-cost-recurrence}
+f(n) \ = \ \left\{
+\begin{array}{ll}
+1 & \mbox{ if } \ n=1 \\
+2 & \mbox{ if } \ n=2 \\
+% f(n-2) + 1 + f(n-2) + f(n-1) = 
+f(n-1) \ + \ 2 f(n-2) + 1 & \mbox{ if } \  n > 2
+\end{array}
+\right.
+\end{equation}
+We can dramatically simplify recurrence
+(\ref{eq:Token-cost-recurrence}) by focusing on the function
+\[ g(n) \ \eqdef \ f(n) \ + \ f(n-1) \ \ \mbox{ for } \ n \geq 2 \]
+instead of on $f$.  Elementary calculation based on
+(\ref{eq:Token-cost-recurrence}) shows that $g(n)$ satisfies the
+recurrence
+\begin{equation}
+\label{eq:g-Token-cost-recurrence}
+g(n) \ = \ \left\{
+\begin{array}{ll}
+3 & \mbox{ if } \ n=2 \\
+2 g(n-1) + 1 & \mbox{ if } \  n > 2
+\end{array}
+\right.
+\end{equation}
+We have, thereby, replaced the {\em bilinear} recurrence
+(\ref{eq:Token-cost-recurrence}) by the {\em (singly) linear}
+recurrence (\ref{eq:g-Token-cost-recurrence}).  We learned in
+Section~\ref{sec:geometric-sums}---specifically, see
+Proposition~\ref{thm:sum-finite-geometric-series}---how to evaluate
+the geometric summations that solve recurrences such as
+(\ref{eq:g-Token-cost-recurrence}).  In our case, we find that
+%If we add $f(n-1)$ in both sides of the previous expression, we obtain
+%a simpler equation (call $s(n)$ the sum $f(n)+f(n-1)$ $n \geq 2$, in
+%particular, $s(2) = 2+1$):
+%
+%$f(n) + f(n-1) = 2.f(n-1) + 2.f(n-2) +1$
+%$s(n) = 2.s(n-1)+1 = 2.(2.s(n-2)+1) + 1 = 2^2 s(n-2) + 2+ 1 = 2^3
+%s(n-3) + 2^2 + 2 + 1 = ... = 2^{n-2} s(2) + 2^{n-3} + ... + 2^2 + 2 +
+%1$ where $s(2) = 2+1$
+\[
+g(n) \ \ = \ \ 2^{n-1} \ + \ 2^{n-2} \ + \ 2^{n-3} \ + \cdots + \ 2^2 \ +
+\ 2 \ + \ 1 \ \ = \ \ 2^{n} -1
+\]
+%
+%Summing up this geometric series leads to
+%$s(n) = 2^{n} -1$
 
-$f(n) = f(n-2) + 1 + f(n-2) + f(n-1) = f(n-1) + 2.f(n-2) +1$ for $n > 2$
+\medskip
 
-with $f(1) = 1$ and $f(2) = 2$.
-\bigskip
-
-If we add $f(n-1)$ in both sides of the previous expression, we obtain
-a simpler equation (call $s(n)$ the sum $f(n)+f(n-1)$ $n \geq 2$, in
-particular, $s(2) = 2+1$):
-
-$f(n) + f(n-1) = 2.f(n-1) + 2.f(n-2) +1$
-
-$s(n) = 2.s(n-1)+1 = 2.(2.s(n-2)+1) + 1 = 2^2 s(n-2) + 2+ 1 = 2^3 s(n-3) + 2^2 + 2 + 1 = ... = 2^{n-2} s(2) + 2^{n-3} + ... + 2^2 + 2 + 1$ where $s(2) = 2+1$
-
-$s(n) = 2^{n-1} + 2^{n-2} + 2^{n-3} + ... + 2^2 + 2 + 1$ 
-
-Summing up this geometric series leads to
-$s(n) = 2^{n} -1$
-\bigskip
+We can now return to evaluating (\ref{eq:Token-cost-recurrence}) for
+$f(n)$, in the light of our solution for $g(n)$.
 
 Coming back to the $f(n)$, we can rewrite this equation as:
 
