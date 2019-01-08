@@ -1856,62 +1856,139 @@ the geometric summations that solve recurrences such as
 %$s(n) = 2.s(n-1)+1 = 2.(2.s(n-2)+1) + 1 = 2^2 s(n-2) + 2+ 1 = 2^3
 %s(n-3) + 2^2 + 2 + 1 = ... = 2^{n-2} s(2) + 2^{n-3} + ... + 2^2 + 2 +
 %1$ where $s(2) = 2+1$
-\[
-g(n) \ \ = \ \ 2^{n-1} \ + \ 2^{n-2} \ + \ 2^{n-3} \ + \cdots + \ 2^2 \ +
-\ 2 \ + \ 1 \ \ = \ \ 2^{n} -1
-\]
+\begin{equation}
+\label{eq:VALUE-g-Token-cost}
+g(n) \ \ = \ \ 2^{n-1} \ + \ 2^{n-2} \ + \cdots + \ 2^2 \ + \ 2 \ +
+\ 1 \ \ = \ \ 2^{n} -1
+\end{equation}
 %
 %Summing up this geometric series leads to
 %$s(n) = 2^{n} -1$
 
 \medskip
 
-We can now return to evaluating (\ref{eq:Token-cost-recurrence}) for
-$f(n)$, in the light of our solution for $g(n)$.
+We can now return to evaluating $f(n)$ via recurrence
+(\ref{eq:Token-cost-recurrence}), in the light of our analysis of
+$g(n)$ in (\ref{eq:g-Token-cost-recurrence}) and
+(\ref{eq:VALUE-g-Token-cost}).  We find that 
+\begin{equation}
+\label{eq:f-Token-cost-recurrence}
+f(n) \ = \ \left\{
+\begin{array}{ll}
+1 & \mbox{ if } \ n=1 \\
+g(n) - f(n-1) \ \ = \ \
+\left(2^{n} -1\right) - f(n-1) & \mbox{ if } \ n>1
+\end{array}
+\right.
+\end{equation}
+We begin to solve the {\em singly} linear recurrence
+(\ref{eq:f-Token-cost-recurrence}) for $f(n)$ using the strategy we
+developed in Section~\ref{sec:geometric-sums}; namely, we expand the
+recurrence in order to discern its pattern and then aanalyze the
+summation that the pattern leads us to.  In this case, we find that
+\begin{eqnarray*}
+f(n) & = & 2^{n} - 2^{n-1} + f(n-2) + 1 -1 \\
+     & = & 2^{n} - 2^{n-1} + 2^{n-2} - f(n-3) -1 \\
+     & = & 2^{n} - 2^{n-1} + 2^{n-2} - 2^{n-3} + f(n-4) +1-1 \\
+     &   & \vdots
+\end{eqnarray*}
+What we observe emerging---(an inviting induction for the reader lurks
+in those words)---is a geometric summation of powers of $2$, with
+adjacent terms {\em alternating} in sign; the terminal units, $\pm 1$,
+cancel after each pair of steps.  We must be careful, though, because
+the numbers of terms in the summations differ based on the parity of
+$n$: when $n$ is even, the last term is $-2$; when $n$ is odd, the
+last term is $-1$.  We thereby reach the {\em penultimate} step in our
+solution for $f(n)$, namely, the following parity-specified
+summations.
+\begin{equation}
+\label{eq:EVEN-f-sum}
+\mbox{For even values of } \ n \ \ \ \
+f(n) \ \ = \ \
+\sum_{k=1}^n \ (-1)^{k} \ 2^{k}
+\end{equation}
+\begin{equation}
+\label{eq:ODD-f-sum}
+\mbox{For odd values of } \ n \ \ \ \
+f(n) \ \ = \ \
+\sum_{k=0}^n \ (-1)^{k+1} \ 2^{k}
+\end{equation}
+Solving these parity-specific summations for $f(n)$ requires a
+moderate bit of mathematical dexterity.  For pedagagical reasons, we
+employ quite distinct approaches for determining $f(n)$ for the cases
+of odd and even $n$: we want to expose the reader to the
+quite-different intuitions that each approach elicits.
 
-Coming back to the $f(n)$, we can rewrite this equation as:
+\medskip
 
-$f(n) = 2^{n} - f(n-1) -1$ where $f(1)=1$
+\noindent {\it An algebraic approach for the case of odd $n$}.
+We begin by looking in detail at summation (\ref{eq:ODD-f-sum}), which
+specifies the value of $f(n)$ when $n$ is odd.  We employ an algebraic
+approach to determine the value of $f(n)$ in this case.  By gathering
+the positive and negative terms in the summation, performing some
+elementary manipulations, and then invoking
+Proposition~\ref{thm:sum-finite-geometric-series}, we find that, for
+odd values of $n$:
+\begin{eqnarray*}
+\label{eq:ODD-soln-f-sum}
+f(n)
+  & = &
+\left(2^{n} \ + \ 2^{n-2} \ + \cdots + \ 2 \right) \ - \
+  \left(2^{n-1} \ + \ 2^{n-3} \ + \cdots + \ 1 \right) \\
+%    & = &
+%2 \cdot \left(2^{n-1} \ + \ 2^{n-3} \ + \cdots + \ 1 \right) \ - \
+%  \left(2^{n-1} \ + \ 2^{n-3} \ + \cdots + \ 1 \right) \\
+    & = &
+2^{n-1} \ + \ 2^{n-3} \ + \cdots + \ 1  \\
+    & = &
+2^{n-1} \cdot \left( 1 \ + \ \frac{1}{4} \ + \ \frac{1}{16}  \ +
+\cdots + \ \frac{1}{2^{n-1}} \right) \\
+    & = &
+\frac{1}{3} \left(2^{n+1} - 1 \right) 
+\end{eqnarray*}
 
-$f(n) = 2^{n} - 2^{n-1} + f(n-2) +1 -1 = 2^{n} - 2^{n-1} + 2^{n-2} - f(n-3) -1 = ...$
-
-This sequence is an alternate series of the powers of $2$ where the $1$ and $-1$ are cancelled two by two.
-However, there is a different number of steps if $n$ is even or not. 
-In this case, the last term is $-2$, while it is $-1$ when $n$ is odd.
 \bigskip
 
-For $n$ even, $f(n) = \sum_{1 \leq k \leq n}(-1)^{k}2^{k} $
+\noindent {\it A geometric approach for the case of even $n$}.
+Somewhat unexpectedly, we begin to determine the value of $f(n)$ for
+the case of even $n$ by looking again at equation
+(\ref{eq:ODD-f-sum})---which is dedicated to the case of {\em odd}
+values of $n$.  Nevertheless, \ldots
 
-For $n$ odd, $f(n) = \sum_{0 \leq k \leq n}(-1)^{k+1}2^{k} $
-\bigskip
-
-$f(n)$ is an alternate series of the successive powers of $2$, which can be solved by a graphical proof.
-
-We rewrite it by gathering the positive and negative terms as follows (for odd $n$): 
-$f(n) = (2^{n} + 2^{n-2} + ... + 2) - (2^{n-1} + 2^{n-3} + ... + 1)$
-
-$= 2.(2^{n-1} + 2^{n-3}  + ...  +1) - (2^{n-1} + 2^{n-3}  + ... + 1)$
-
-$= 2^{n-1} + 2^{n-3}  + ...  +1$ 
-
-Consider first the odd case (here, $2^{n+1}$ is a perfect square).
-Figure~\ref{fig:alternatePowers2odd} gives a representation of $f(n)$ 
-where the smallest surface at the right is the unit square.
-
-Take 3 copies of $f(n)$ as it is depicted in figure~\ref{fig:alternatePowers2finalOdd},
-two are mirror configurations and the third one (represented in grey) fills the remaining part of a big square but some idle space at the 2 extreme right corners. 
-The whole surface is a perfect $2^{n} \times 2^{n}$ square, equal to $2^{n+1}$ plus the small surface equal to half of the basic unit square ($2 \times \frac{1}{2}$ = 1). Thus, $3.f(n)+1= 2^{n+1}$.
-
-\begin{figure} [h]
+We remark first that when $n$ is odd, $2^{n+1}$ is a perfect square.
+We are, therefore, able to represent $f(n)$ as the aggregated area of
+a shrinking set of squares.  Fig.~\ref{fig:alternatePowers2odd}
+provides such a representation of $f(7)$.
+\begin{figure} [htb]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/alternatePowers2initOdd.png}
-        \caption{Representation of the alternate series of powers of $2$ for $n=7$.
-        f(7)=64+16+4+1.}
+        \includegraphics[scale=0.35]{FiguresMaths/alternatePowers2initOdd.png}
+\caption{A representation of the series (\ref{eq:ODD-f-sum}) for the
+  case $n=7$.}
         \label{fig:alternatePowers2odd}
 \end{center}
 \end{figure}
+In each instance of the figure, for various odd values of $n$, the
+smallest square (at the far right) is the unit square, hence
+contributes $+1$ to the aggregated area.  The reader should verify
+that if we 
 
-\begin{figure} [h]
+Easily, $f(7) = 64+16+4+1 = 85$.  In order to evaluate $f(n)$ on an
+arbitrary odd argument $n$, take three copies of
+Fig.~\ref{fig:alternatePowers2odd}'s geometric representation of
+$f(n)$, and manipulate them into the form is depicted in
+Fig.~\ref{fig:alternatePowers2finalOdd}.
+
+, two are mirror
+configurations and the third one (represented in grey) fills the
+remaining part of a big square but some idle space at the 2 extreme
+right corners.  The whole surface is a perfect $2^{n} \times 2^{n}$
+square, equal to $2^{n+1}$ plus the small surface equal to half of the
+basic unit square ($2 \times \frac{1}{2}$ = 1). Thus, $3.f(n)+1=
+2^{n+1}$.
+
+
+
+\begin{figure} [htb]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths/alternatePowers2odd.png}
         \caption{Even case: Geometric proof using 3 copies of $f(n)$ that almost fill a large square.}
