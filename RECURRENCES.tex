@@ -883,13 +883,14 @@ numbers, then you observe that they grow quite fast.  Indeed, by this
 point in the text, you have hopefully ``played'' with enugh sequences
 that you might guess that the Fibonacci numbers grow exponentially
 with the index $n$.  That is, you might guess that there exists a base
-$\beta$ such that $F(n) = \beta^n$, at least approximately.  In order
-to (hopefully!)~garner intuition for the actual behavior of the
-Fibonacci sequence, let us observe an important consequence of this
-guess.  If the guess were true, then it would combine with the
-classical recurrence (\ref{eq:Fibonacci-defn}) in the following way.
+$\beta > 1$ and a constant of proportionality $c > 0$ such that $F(n)
+= c \beta^n$, at least approximately.  In order to (hopefully!)~garner
+intuition for the actual growth behavior of the Fibonacci numbers, let
+us observe an important corollary of this guess.  If the guess were
+true, then it would combine with the classical recurrence
+(\ref{eq:Fibonacci-defn}) in the following way.
 \[ \begin{array}{cccll}
-(1) & F(n) & = & \beta^n
+(1) & F(n) & = & c \beta^n
       & \mbox{ by our guess} \\
 (2) & F(n) & = & F(n-1) \ + \ F(n-2)
       & \mbox{ by recurrence (\ref{eq:Fibonacci-defn})}
@@ -1797,6 +1798,7 @@ $n>2$ & 1 & Fill-Bank($n-2$) & via recursive invocation \\
 \end{tabular}
 
 \subsection{An analysis of the recursive strategy}
+\label{sec:analysis-of-Token-Game}
 
 We now develop an analysis of our recursive strategy for playing the
 Token Game.  Not surprisingly, the analysis is embodied in a {\it
@@ -1813,8 +1815,27 @@ that is full---the cost of filling an empty length-$i$ prefix of the
 bank with tokens equals the cost of emptying a full length-$i$ prefix
 of the bank.  The total cost of a play of the Game is, by definition,
 the cost of filling the initially empty $n$-slot bank with tokens.
-The analysis of our recursive playing strategy therefore resides in
-solving the following recurrence.
+
+\begin{prop}
+\label{thm:f-cost of TokenGame}
+Let $f(n)$ be the cost of a play of the $n$ bank-slot version of the
+Token Game.  For all $n \in \N^+$, the value of $f(n)$ is
+\begin{equation}
+\label{eq:f-cost:Token-Game}
+f(n) \ = \ \left\{
+\begin{array}{ll}
+ \frac{1}{3} \left( 2^{n+1} -1 \right)
+  & \mbox{  if $n$ is odd} \\
+ \frac{1}{3} \left( 2^{n+1} -2 \right)
+  & \mbox{  if $n$ is even}
+\end{array}
+\right.
+\end{equation}
+\end{prop}
+
+\begin{proof}
+Our discussion has revealed that the analysis of our recursive playing
+strategy resides in solving the following recurrence.
 \begin{equation}
 \label{eq:Token-cost-recurrence}
 f(n) \ = \ \left\{
@@ -1892,43 +1913,49 @@ f(n) & = & 2^{n} - 2^{n-1} + f(n-2) + 1 -1 \\
      & = & 2^{n} - 2^{n-1} + 2^{n-2} - 2^{n-3} + f(n-4) +1-1 \\
      &   & \vdots
 \end{eqnarray*}
-What we observe emerging---(an inviting induction for the reader lurks
-in those words)---is a geometric summation of powers of $2$, with
+What we observe emerging---an inviting induction for the reader lurks
+in those words---is a geometric summation of powers of $2$, with
 adjacent terms {\em alternating} in sign; the terminal units, $\pm 1$,
 cancel after each pair of steps.  We must be careful, though, because
 the numbers of terms in the summations differ based on the parity of
 $n$: when $n$ is even, the last term is $-2$; when $n$ is odd, the
-last term is $-1$.  We thereby reach the {\em penultimate} step in our
-solution for $f(n)$, namely, the following parity-specified
+last term is $-1$.
+
+We have now reached the {\em penultimate} step in finding the value of
+$f(n)$; specifically, we have derived the following parity-specified
 summations.
-\begin{equation}
+\begin{eqnarray}
 \label{eq:EVEN-f-sum}
-\mbox{For even values of } \ n \ \ \ \
-f(n) \ \ = \ \
-\sum_{k=1}^n \ (-1)^{k} \ 2^{k}
-\end{equation}
-\begin{equation}
+\mbox{For even values of } \ n \ \ \
+f(n) & = &
+\sum_{k=1}^n \ (-1)^{k} \ 2^{k} \\
 \label{eq:ODD-f-sum}
 \mbox{For odd values of } \ n \ \ \ \
-f(n) \ \ = \ \
+f(n) & = &
 \sum_{k=0}^n \ (-1)^{k+1} \ 2^{k}
-\end{equation}
+\end{eqnarray}
 Solving these parity-specific summations for $f(n)$ requires a
 moderate bit of mathematical dexterity.  For pedagagical reasons, we
-employ quite distinct approaches for determining $f(n)$ for the cases
-of odd and even $n$: we want to expose the reader to the
-quite-different intuitions that each approach elicits.
+illustrate two quite distinct approaches for determining the value of
+$f(n)$ for the case of odd $n$: we want to expose the reader to the
+quite-different intuitions that each approach elicits.  We shall then
+derive the value of $f(n)$ for the case of even $n$ from the value for
+the case of odd $n$.
 
 \medskip
 
 \noindent {\it An algebraic approach for the case of odd $n$}.
-We begin by looking in detail at summation (\ref{eq:ODD-f-sum}), which
-specifies the value of $f(n)$ when $n$ is odd.  We employ an algebraic
-approach to determine the value of $f(n)$ in this case.  By gathering
-the positive and negative terms in the summation, performing some
-elementary manipulations, and then invoking
-Proposition~\ref{thm:sum-finite-geometric-series}, we find that, for
-odd values of $n$:
+We look in detail at summation (\ref{eq:ODD-f-sum}), which specifies
+$f(n)$ when $n$ is odd, and we invoke algebraic manipulation to
+determine the value of $f(n)$ in this case.
+
+In the following chain of equalities, we: gather the positive and
+negative terms in summation (\ref{eq:ODD-f-sum}) [line 1 in the
+  chain], perform some elementary manipulations on the result [lines 2
+  and 3 in the chain], and then invoke
+Proposition~\ref{thm:sum-finite-geometric-series} [line 4 in the
+  chain, which evaluates the resulting geometric summation].  We
+thereby find that, for odd values of $n$:
 \begin{eqnarray*}
 \label{eq:ODD-soln-f-sum}
 f(n)
@@ -1949,53 +1976,128 @@ f(n)
 
 \bigskip
 
-\noindent {\it A geometric approach for the case of even $n$}.
-Somewhat unexpectedly, we begin to determine the value of $f(n)$ for
-the case of even $n$ by looking again at equation
-(\ref{eq:ODD-f-sum})---which is dedicated to the case of {\em odd}
-values of $n$.  Nevertheless, \ldots
-
-We remark first that when $n$ is odd, $2^{n+1}$ is a perfect square.
-We are, therefore, able to represent $f(n)$ as the aggregated area of
-a shrinking set of squares.  Fig.~\ref{fig:alternatePowers2odd}
-provides such a representation of $f(7)$.
+\noindent {\it A geometric approach for the case of odd $n$}.
+We begin again by looking again at summation (\ref{eq:ODD-f-sum}).
+Then, noting that $2^{n-1}$ is a perfect square whenever $n$ is odd,
+we set out to represent $f(n)$ as the aggregated area of a shrinking
+sequence of squares, of successive dimensions
+\[ 2^{(n-1)/2} \times 2^{(n-1)/2}, \ \ 2^{(n-3)/2} \times 2^{(n-3)/2},
+\ \ 2^{(n-5)/2} \times 2^{(n-5)/2}, \
+\ldots, \ \  1 \times 1
+\]
+Fig.~\ref{fig:alternatePowers2odd} depicts such a representation of
+$f(7) = 64+16+4+1 = 85$.
 \begin{figure} [htb]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresMaths/alternatePowers2initOdd.png}
-\caption{A representation of the series (\ref{eq:ODD-f-sum}) for the
-  case $n=7$.}
+\caption{A representation of summation (\ref{eq:ODD-f-sum}) for the case $n=7$.}
         \label{fig:alternatePowers2odd}
 \end{center}
 \end{figure}
-In each instance of the figure, for various odd values of $n$, the
-smallest square (at the far right) is the unit square, hence
-contributes $+1$ to the aggregated area.  The reader should verify
-that if we 
+To facilitate our upcoming manipulation of the configuration depicted
+in the figure, let us refer to the configuration as {\it the cascade
+  of squares determined by $f(n)$}.  Note that, because each cascade
+is associated with an odd value of $n$, the smallest square in the
+cascade (at the far right in the figure) is the unit square, of
+dimensions $1 \times 1$; hence, it contributes $+1$ to the aggregate
+area of the cascade.
 
-Easily, $f(7) = 64+16+4+1 = 85$.  In order to evaluate $f(n)$ on an
-arbitrary odd argument $n$, take three copies of
-Fig.~\ref{fig:alternatePowers2odd}'s geometric representation of
-$f(n)$, and manipulate them into the form is depicted in
-Fig.~\ref{fig:alternatePowers2finalOdd}.
-
-, two are mirror
-configurations and the third one (represented in grey) fills the
-remaining part of a big square but some idle space at the 2 extreme
-right corners.  The whole surface is a perfect $2^{n} \times 2^{n}$
-square, equal to $2^{n+1}$ plus the small surface equal to half of the
-basic unit square ($2 \times \frac{1}{2}$ = 1). Thus, $3.f(n)+1=
-2^{n+1}$.
-
-
-
+We can now use a geometric construction to evaluate $f(n)$ on an
+arbitrary odd argument $n$.  We take three copies of the cascade in
+Fig.~\ref{fig:alternatePowers2odd} and we manipulate the copies into
+the form is depicted in Fig.~\ref{fig:alternatePowers2finalOdd}.  
 \begin{figure} [htb]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/alternatePowers2odd.png}
-        \caption{Even case: Geometric proof using 3 copies of $f(n)$ that almost fill a large square.}
+        \includegraphics[scale=0.3]{FiguresMaths/alternatePowers2odd.png}
+\caption{Evaluating $f(n)$ for odd $n$ by ``almost'' filling a large square.}
         \label{fig:alternatePowers2finalOdd}
 \end{center}
 \end{figure}
+In detail:
+\begin{enumerate}
+\item
+We choose one of the three copies as the ``anchor'' of the
+construction.  We position it in space so that it serves as the upper
+white cascade in Fig.~\ref{fig:alternatePowers2finalOdd}.
+\item
+We then take a second copy, flip it across the horizontal axis, and
+abut the top edge of its largest square with the bottom edge of the
+largest square in the anchor cascade.  It then becomes the lower white
+cascade in Fig.~\ref{fig:alternatePowers2finalOdd}.
 
+Note that, importantly, the abutted white cascades fit into a
+$2^{(n+1)/2} \times 2^{(n+1)/2}$ square.
+\begin{quote}
+  {\em All of our observations about figures fitting within other
+  figures are verified by direct calculations.  These calculations are
+  not too hard because all squares have side-dimensions that are
+  powers of $2$.}
+\end{quote}
+Indeed, the top edge of the top white cascade and the bottom edge of
+the bottom white cascade lie, respectively, along the top and bottom
+edges of the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square.  {\em But}, the
+cascades' edges are $1$ unit shorter that the edges of the big square;
+i.e., they both have length
+\[
+2^{(n-1)/2} \ + \ 2^{(n-3)/2} \ + \ 2^{(n-5)/2} \ + \cdots + \ 1
+\ = \ 2^{(n+1)/2} \ - 1
+\]
+
+\item
+Finally, we take the third copy, color it grey, and nest it into the
+abutting white cascades in the following way.
+  \begin{enumerate}
+  \item
+Take the biggest square in the grey cascade and nest it against the
+abutted biggest squares in the paired white cascades, in the manner
+depicted in Fig.~\ref{fig:alternatePowers2finalOdd}.  Note that the
+nest places one half of its biggest grey square abutting the biggest
+white square of the top white cascade and one half abutting the
+biggest white square of the bottom white cascade.  Observe (from
+Fig.~\ref{fig:alternatePowers2finalOdd}) that the resulting
+configuration fits within the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square,
+and that the fit is {\em exact} along the left and right edges, which
+are shared by the abutting white cascades and the big square.
+
+  \item
+For all of the other grey square, in decreasing order of size: We
+bisect---i.e., cut exactly in half---each square along its its
+equator, and we nest the resulting two halves of that square
+symmetrically within the abutting white cascades, in the manner
+depicted in Fig.~\ref{fig:alternatePowers2finalOdd}.  Once again, we
+observe that the resulting configuration fits within the $2^{(n+1)/2}
+\times 2^{(n+1)/2}$ square, and that the fit is {\em exact} along the
+left and right edges, which are shared by the abutting white cascades
+and the big square.
+
+The placement of the bisected squares from the grey cascade leaves two
+small {\em empty} regions within the $2^{(n+1)/2} \times 2^{(n+1)/2}$
+square.  The empty regions each has area $1/2$, because they are
+created by the ``inadequate'' placement of the bisected unit-side
+square from the grey cascade; the empty regions appear at the top
+right and bottom right corners of the $2^{(n+1)/2} \times 2^{(n+1)/2}$
+square.
+  \end{enumerate}
+\end{enumerate}
+
+Once we have completed the described construction of the composite
+object depicted in Fig.~\ref{fig:alternatePowers2finalOdd}, we
+calculate that the combined areas of the three cascades is one unit
+less that the area of the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square
+(which, of course, has area $2^{n+1}$).  We have thus shown
+geometrically that $3 f(n)+1 \ = \ 2^{n+1}$, which {\em of
+  course!}~agrees with the value derived algebraically in
+(\ref{eq:ODD-soln-f-sum}).
+
+\bigskip
+
+We leave as an exercise the (somewhat easier) derivation of the value
+of $f(n)$ for the case of even $n$.
+\qed
+\end{proof}
+
+
+\ignore{***********
 The previous construction may be adapted in the even case in a similar way.
 The details are left to the readers. 
 
@@ -2008,7 +2110,7 @@ Now, apply the final expression of $f$ to $2k-1$, which is odd: $f(2k-1) = \frac
 
 $f(2k) = 2^{2k} - \frac{1}{3} (2^{2k-1+1}-1) -1 = 2^{2k} (1-\frac{1}{3}) + \frac{1}{3} -1= \frac{1}{3} (2^{2k+1} -2)$.
 \bigskip
-
+*************}
 %
 %Figures~\ref{fig:alternatePowers2even} and~\ref{fig:alternatePowers2finalEven} illustrate the construction in the even case.
 %The details are left to the readers. 
@@ -2037,13 +2139,6 @@ $f(2k) = 2^{2k} - \frac{1}{3} (2^{2k-1+1}-1) -1 = 2^{2k} (1-\frac{1}{3}) + \frac
 %        \label{fig:alternatePowers2finalEven}
 %\end{center}
 %\end{figure}
-
-We finally obtain: 
-
-$f(n) = \frac{1}{3} (2^{n+1} -1)$ if $n$ is odd.
-
-$f(n) = \frac{1}{3} (2^{n+1} -2)$ if $n$ is even.
-
 
 
 {\Arny My instinct is that the following example is not ``pretty'' or
