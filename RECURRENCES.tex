@@ -224,8 +224,9 @@ by recurrence (\ref{eq:Lin-Recur:general}).
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/MasterTheoremgeneral}
 \caption{Development of the calculation specified by recurrence
-  (\ref{eq:Lin-Recur:general}).  The associated summation appears on
-  the right.
+  (\ref{eq:Lin-Recur:general}).  The total cost is obtained by the summation on each row:
+  $a \times f(n/b)$ in the first row, $a^2 \times f(n/b^2)$ in the second row, and so on.
+  This leads to $a^{log_b(n)}$.
 \label{fig:masterTheorem}}
 \end{center}
 \end{figure}
@@ -233,9 +234,7 @@ In particular, one observes in the figure that the computation---and
 its associated tree---are perfectly balanced when $a=b$.  In
 particular, when $a=b=2$, we obtain $F(n) = n \log_2(n)$.
 
-{\Arny The notation in Fig.~\ref{fig:masterTheorem} (fonts, cdots)
-  should be made consistent with the text.}
-
+%{\Arny The notation in Fig.~\ref{fig:masterTheorem} (fonts, cdots) should be made consistent with the text.}
 
 \section{Bilinear Recurrences}
 \label{sec:bilinear-recurrences}
@@ -347,7 +346,24 @@ entry is a binomial coefficient.  \qed
 ****************** \\
 induction on $n$, then for each value of $n$ on $k \leq n$ \\
 {\Arny SHOULD WE SPELL THIS OUT IN DETAIL?  GIVE AS AN EXERCISE?} \\
+{\Denis Yes, I think we can detail the classical recurrence proof. I added an alternative proof based on counting the number of paths in the Pascal's triangle -- see figure}
 ******************
+
+\begin{figure}[htb]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiaux1}
+\caption{Another representation of the Pascal's triangle}.
+\label{fig:binomialCoeff1}
+\end{center}
+\end{figure}
+
+\begin{figure}[htb]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiaux2}
+\caption{Argument for an alternative proof (the coefficient in row $n+1$ is obtained by the two previous coefficients in row $n$.}
+\label{fig:binomialCoeff2}
+\end{center}
+\end{figure}
 
 As an immediate consequence of the relation between binomial
 coefficients and Pascal's Triangle, we observe the following {\it a
