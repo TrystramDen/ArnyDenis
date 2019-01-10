@@ -1,4 +1,4 @@
-%version of 01-02-19
+%version of 01-10-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -1280,8 +1280,8 @@ of the cycle-graph $\cc_n$.
 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/torus}
-       \caption{A $4$ by $4$ torus.}
+       \includegraphics[scale=0.6]{FiguresGraph/torus}
+       \caption{The $4 \times 4$ torus.}
   \label{fig:torus}
 \end{center}
 \end{figure}
@@ -1345,12 +1345,15 @@ $\q_n$, are all length-$n$ binary strings.  For illustration:
 \n_{{\fq}_3}
   & = & \{ 000, \ 001, \ 010, \ 011, \ 100, \ 101, \ 110, \ 111 \} 
 \end{eqnarray*}
-The construction of the first order hypercubes is given in Fig.~\ref{fig:hypercube}.
-
+The iteration-based construction of big hypercubes from the next
+smaller ones is illusrated in Fig.~\ref{fig:hypercube}.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/hypercube}
-       \caption{Construction of the first order hypercubes: take two copies of the previous order and prefix each by 0 and 1.}
+       \includegraphics[scale=0.6]{FiguresGraph/hypercube}
+\caption{The iteration-based construction of order-$n$ hypercubes:
+  Take two copies of the order-$(n-1)$ hypercube.  Prepend a $0$ to
+  the node-labels of the first copy and a $1$ to the node-labels of
+  the second copy.}
   \label{fig:hypercube}
 \end{center}
 \end{figure}
@@ -1442,15 +1445,51 @@ Since each bit of each string is rewritten once, the bound follows.
 The fact that $\q_n$'s diameter is {\em logarithmic} in its size makes
 $\q_n$ an efficient network for many tasks related to parallel
 computing and communication.
-\medskip
 
-The hypercube $\q_4$ is \textit{isomorph} to the $(4,4)$ torus.
-This can easily been checked while looking at the coding scheme in Fig.~{fig:toruslabel}.
+\bigskip
 
+A powerful avenue for understanding the structure of a given family of
+networks is to understand how the perceived ``shape'' of graphs in the
+family can apparently change just by relabeling/renaming the nodes, or
+the edges/arcs, of the graphs.  The formal mechanism for studying such
+relabelings/renamings is the concept of {\it graph isomorphism}.
+\index{graph isomorphism} Let $\g$ and $\h$ be undirected graphs that
+have the same numbers of nodes and edges.  (The following definition
+can easily be adapted to deal with {\em directed} graphs.)  An {\it
+  isomorphism} between $\g$ and $\h$ is a {\em
+  bijection}\footnote{Recall, from Chapter~\ref{ch:sets-BA-logic} that
+  a bijection is a function that is one-to-one (i.e., injective) and
+  onto (i.e., surjective).}
+\[ \beta: \n_{\fg} \ \leftrightarrow \ \n_{\fh} \]
+such that
+\begin{itemize}
+\item
+For each edge $\{ u,v \}$ of $\g$ (i.e., $\{ u,v \} \in \e_{\fg}$),
+the doubleton set $\{ \beta(u), \beta(v) \}$ is an edge of $\h$ (i.e.,
+$\{ \beta(u), \beta(v) \} \in \e_{\fh}$).
+\item
+For each edge $\{ x,y \}$ of $\h$ (i.e., $\{ x,y \} \in \e_{\fh}$),
+the doubleton set $\{ \beta^{-1}(x), \beta^{-1}(y) \}$ is an edge of $\g$ (i.e.,
+$\{ \beta^{-1}(x), \beta^{-1}(y) \} \in \e_{\fg}$).
+\end{itemize}
+We can immediately exemplify this notion via the following example.
+
+\begin{prop}
+The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
+4$ torus $\widetilde{\m}_{4,4}$.
+\end{prop}
+
+{\Arny Proof is an EXERCISE}
+
+We relegate the proof of this result to a Exercise, supplying as a
+hint the coding scheme (or, bijection) depicted in
+Fig.~\ref{fig:toruslabel}.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/toruslabel}
-       \caption{A coding scheme for labeling the vertices of the $(4,4)$ torus, which is isomorph to $\q_4$.}
+       \includegraphics[scale=0.6]{FiguresGraph/toruslabel}
+\caption{Sketching the coding scheme that yields an isomorphism
+  between the order-$4$ hypercube $\q_4$ and the $4 \times                          
+4$ torus $\widetilde{\m}_{4,4}$.}
   \label{fig:toruslabel}
 \end{center}
 \end{figure}
@@ -1543,16 +1582,16 @@ use the names interchangeably.)
 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/dB2by2}
-       \caption{de Bruijn with 4 vertices.}
+       \includegraphics[scale=0.6]{FiguresGraph/dB2by2}
+       \caption{The $4$-node, order-$2$ de Bruijn network.}
   \label{fig:dB2by2}
 \end{center}
 \end{figure}
 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/dB2by3}
-       \caption{de Bruijn with 8 vertices.}
+       \includegraphics[scale=0.6]{FiguresGraph/dB2by3}
+       \caption{The $8$-node, order-$3$ de Bruijn network.}
   \label{fig:dB2by3}
 \end{center}
 \end{figure}
@@ -1748,9 +1787,11 @@ and $\Lambda(\d_n)$ completes the proof.  \qed
 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/dBlabelEdge}
-       \caption{Labeling the edges of a de Bruijn by concatenation of the vertex coding and then, compacting the intermediate bits (which are the same).
-       In the figure, 01-11 becomes 011.}
+       \includegraphics[scale=0.6]{FiguresGraph/dBlabelEdge}
+\caption{Illustrating how to label each arc of a de Bruijn network by
+  concatenating the labels of the nodes incident to the arc and
+  compacting the common intermediate bits.  In the depicted example,
+  the node-labels $01$ and $11$ combine to yield the arc-label $011$.}
   \label{fig:dBlabelEdge}
 \end{center}
 \end{figure}
@@ -1973,17 +2014,19 @@ Fig.~\ref{fig:EulerianInitial} presents an example of the chinese postman proble
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienInitial}
-       \caption{Example of an instance of the chinese postman with $10$ cross vertices.}
+       \caption{An instance of the Chinese postman with $10$ cross-nodes.}
               \label{fig:EulerianInitial}
 \end{center}
 \end{figure}
 
 \bigskip
 
-This problem may be formulated mathematically in term of Eulerian cycles.
-Intuitively, the basic idea is to duplicate some edges that are carefully chosen in order to use the previous construction
-of an Eulerian tour of section~\ref{sec:EulerianCycle} that will help the postman to determine 
-the optimal tour (of minimal length) using some simple mathematical properties. 
+This problem can be formulated mathematically in term of Eulerian
+cycles.  Intuitively, the basic idea is to duplicate some edges that
+are carefully chosen in order to use the previous construction of an
+Eulerian tour of section~\ref{sec:EulerianCycle} that will help the
+postman to determine the optimal tour (of minimal length) using some
+simple mathematical properties.
 \bigskip
 
 First, we know that there is an even number of odd vertices.
