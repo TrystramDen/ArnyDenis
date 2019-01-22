@@ -1,4 +1,4 @@
-%version of 01-10-19
+%version of 01-22-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -1799,14 +1799,14 @@ and $\Lambda(\d_n)$ completes the proof.  \qed
 \medskip
 
 \noindent {\bf (2)}
-{\it Eulerian cycles}. \index{Eulerian cycle} A {\it directed Eulerian
-  cycle} in a digraph $\g$ is a directed ( cycle that contains each
-arc of $\g$ precisely once.  We will see, later in this chapter, a
-truly elementary argument, based on node-degrees, which proves that
-every de Bruijn digraph has a directed Eulerian cycle.  This
-demonstration will combine with
-Proposition~\ref{thm:deBruin-linegraph} to complete the proof of
-Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
+{\it Eulerian cycles (or tours)}. \index{Eulerian cycle}
+\index{Eulerian tour} A {\it directed Eulerian cycle} in a digraph
+$\g$ is a directed cycle that contains each arc of $\g$ precisely
+once.  We will see, later in this chapter, a truly elementary
+argument, based on node-degrees, which proves that every de Bruijn
+digraph has a directed Eulerian cycle.  This demonstration will
+combine with Proposition~\ref{thm:deBruin-linegraph} to complete the
+proof of Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
 %\end{proof}
 
 \bigskip
@@ -1845,27 +1845,30 @@ simpler, vein, we shall generally discuss only prolems concerning {\em
 paths.  We begin by delimiting the two main classes of cycle-discovery
 problems that we study in this section.
 
-{\it Eulerian cycles}.  A cycle in a graph $\g$ that traverses each of
-$\g$'s edges precisely once is called an {\it Eulerian
-  cycle},\index{graphs!Eulerian cycle} \index{Eulerian cycle} (or,
-often, an {\it Eulerian circuit}).  \index{graphs!Eulerian circuit}
-\index{Eulerian circuit} These edge-exhausting cycles were introduced
-as a topic of study in 1736 by the Swiss mathematician \index{Euler,
-  Leonhard} Leonhard Euler, whose name we have already encountered
-multiple times.  Euler allegedly discovered the topic while
-contemplating how to design a tour of the town of K\"{o}nigsberg that
-would cross each of the town's bridges precisely once.  The quest for
-Eulerian cycles in graphs is, thus, one of the oldest problems in the
-fields now called {\it Operations Research} and {\it graph theory}.
-(An edge-exhausting {\em path} in $\g$ is referred to in the obvious
-analogous way.)  When one views an Eulerian cycle as a ``map'' for
-traversing a graph---as did Euler when contemplating this
+\smallskip
+
+{\it Eulerian cycles (or, tours)}.  A cycle in a graph $\g$ that
+traverses each of $\g$'s edges precisely once is called an {\it
+  Eulerian cycle},\index{graphs!Eulerian cycle} \index{Eulerian cycle}
+(or, often, an {\it Eulerian circuit}).  \index{graphs!Eulerian
+  circuit} \index{Eulerian circuit} The edge-exhausting
+cycles/circiuts/tours referred to by these several names were
+introduced as a topic of study in 1736 by the Swiss mathematician
+\index{Euler, Leonhard} Leonhard Euler, whose name we have already
+encountered multiple times.  Euler allegedly discovered the topic
+while contemplating how to design a tour of the town of K\"{o}nigsberg
+that would cross each of the town's bridges precisely once.  The quest
+for Eulerian cycles in graphs is, thus, one of the oldest problems in
+the fields now called {\it Operations Research} and {\it graph
+  theory}.  (An edge-exhausting {\em path} in $\g$ is referred to in
+the obvious analogous way.)  When one views an Eulerian cycle as a
+``map'' for traversing a graph---as did Euler when contemplating this
 problem---one often calls the cycle an {\it Eulerian tour}.
 \index{graphs!Eulerian tour} \index{Eulerian tour} Traditionally, a
 graph that admits an Eulerian cycle is said to be {\it
   Eulerian}. \index{graphs!Eulerian} \index{Eulerian graph}
 
-\bigskip
+\medskip
 
 Dually: A cycle in a graph $\g$ that encounters each of $\g$'s nodes
 precisely once is called a {\it Hamiltonian cycle},
@@ -1882,37 +1885,67 @@ the cycle a {\it Hamiltonian tour}.  \index{graphs!Hamiltonian tour}
 Hamiltonian cycle is said to be {\it
   Hamiltonian}. \index{graphs!Hamiltonian} \index{Hamiltonian graph}
 
+\medskip
+
+Despite the conceptual duality between the edge-encountering goal that
+underlies Eulerian paths and cycles, on the one hand, and the
+node-encountering goal that underlies Hamiltonian paths and cycles,
+these two graph-traversing goals differ in virtually every significant
+respect.  It is rather easy to characterize the family of graphs that
+admit Eulerian tours and to find such a tour if it exists
+(Section~\ref{sec:EulerianCycle}); in contrast, there is no known
+characterization of the family of graphs that admit Hamiltonian tours,
+and the computational problem of efficiently determining whether a
+graph admits such a tour is one of the major classical problems in the
+field of computational complexity  (Section~\ref{sec:Hamiltonian-Cycle}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eulerian Cycles and Paths}
 \label{sec:EulerianCycle}
 
-**TO BE DONE
+The main results in this section characterize the families of directed
+and undirected graphs that admit an {\it Eulerian cycle} or an {\it
+  Eulerian path}.  The proofs of these characterizations are
+constructive: they consist of algorithms that efficiently find such a
+cycle or such a path when one exists.  We focus on graphs that are
+connected: the algorithms we present can actually be adapted to find
+an {\it Eulerian cycle} or an {\it Eulerian path} in each connected
+component of a general graph.  As we embark on our adventure, we note
+that the problem of finding an Eulerian cycle in a graph $\g$ is
+equivalent to the problem of drawing $\g$ without ever lifting one's
+pencil. \index{graphs!drawing without lifting pencil}
 
+After solving the preceding ``pure'' version of the Eulerian-tour
+problem, we discuss the so-called {\it Chinese Postman Problem}, which
+focuses on ``almost Eulerian'' tours within graphs that do not admit
+an Eulerian tour.
 
-We turn first to the problems of determining when a connected
-unweighted graph $\g$ has an {\it Eulerian cycle} or an {\it Eulerian
-  path}---and the allied problem of finding such a cycle or such a
-path when one exists.  Note that the problem of finding an Eulerian
-cycle in a graph $\g$ is equivalent to the problem of drawing $\g$
-without ever lifting one's pencil. \index{graphs!drawing without
-  lifting pencil}
-
-\subsection{Characterizing Eulerian Graphs}
+\subsubsection{Characterizing Eulerian graphs, and finding Eulerian tours}
 \label{sec:eulerian-cycle-path}
 
 There is a simple and elegant characterization of graphs that admit
-Eulerian cycles.
+Eulerian cycles and paths, which is accompanied by a simple and
+efficent algorithm for testing a given graph for finding such a tour
+in a graph that admits one.  We encapsulate four versions of the
+desired result in the following statement.
 
-\begin{prop}
-\label{thm:euerian-cycle}
-A graph is Eulerian if, and only if, it is connected and regular of
-even degree.
+\begin{prop}[Eulerian Cycles]
+\label{thm:eulerian-cycle}
+{\bf (a)}
+An undirected graph $\g$ admits an Eulerian cycle if, and only if,
+$\g$ is connected and every node of $\g$ has even degree.
+
+{\bf (b)}
+A directed graph $\h$ admits a directed Eulerian cycle if, and only if,
+$\h$ is connected and, for every node $v$ of $\g$,
+
+\hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
 \end{prop}
 
 \begin{proof}
-The necessity of the Proposition's conditions is established thus.
+The {\em necessity} of the conditions in both parts {\bf (a)} and {\bf
+  (b)} is established thus.
 \begin{itemize}
 \item
 By definition, a graph that is not connected does not admit any cycle.
@@ -1921,7 +1954,60 @@ Each cycle that a graph admits accounts for two edges per node,
 because the cycle must ``enter'' the node by one edge and ``exit'' the
 node by a different edge.
 \end{itemize}
+
+\smallskip
+
+\noindent
+We now provide a complete proof of the {\em sufficiency} of the
+conditions in part {\bf (a)}, with hints interspersed regarding part
+{\bf (b)}.  Our argument resides in the following ``streamlined''
+induction.
+
+We leave the reader the chore of verifying the sufficiency of the
+Proposition's conditions for ``small'' graphs.  In the case of
+undirected graphs, ``small'' begins with $3$-node graphs, because
+$2$-node graphs cannot have even node-degrees.  In the case of
+directed graphs, ``small'' begins with $2$-node graphs, because there
+does exist the Eulerian $2$-node digraph each of whose nodes hosts a
+single arc that points to the other node.
+
+So, let us consider a connected multi-node undirected graph $\g$.
+Choose some node $v$ of $\g$, and follow a walk of the following sort.
+
+end
+\qed
 \end{proof}
+
+
+
+
+
+
+
+\begin{prop}[Eulerian Paths]
+\label{thm:eulerian-path}
+{\bf (a)}
+An undirected graph $\g$ admits an Eulerian path if, and only if,
+$\g$ is connected and at most two nodes of $\g$ have odd degree.
+
+{\bf (b)}
+A directed graph $\h$ admits an Eulerian path if, and only if: $\h$ is
+connected; either $\h$ admits an Eulerian cycle, or $\h$ contains one
+node $u$ such that
+
+\hspace*{.5in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
+
+\noindent
+and one node $v$ such that
+
+\hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
+\end{prop}
+
+
+
+
+
+
 We offer two proofs of this result: the first merely establishes the
 existence of the cycle; the second actually computes the cycle.  Both
 proofs invoke the following elementary facts.
@@ -1992,7 +2078,7 @@ than Eulerian cycles.
 Every de Bruin network $\d_n$ is (directed)-Eulerian.
 \end{corol}
 
-\subsection{Chinese postman problem}
+\subsubsection{The Chinese postman problem}
 \label{sec:chinesePostman}
 
 Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
