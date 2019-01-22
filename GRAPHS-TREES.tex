@@ -1496,6 +1496,7 @@ Fig.~\ref{fig:toruslabel}.
 
 
 \subsubsection{The de Bruijn network}
+\label{sec:deBruijn-network}
 \index{de Bruijn network}
 \index{de Bruijn graph}
 
@@ -1958,55 +1959,133 @@ node by a different edge.
 \smallskip
 
 \noindent
-We now provide a complete proof of the {\em sufficiency} of the
-conditions in part {\bf (a)}, with hints interspersed regarding part
-{\bf (b)}.  Our argument resides in the following ``streamlined''
-induction.
+We turn now to the verification of the {\em sufficiency} of the
+Proposition's conditions.  Our argument resides in the following
+``streamlined'' version of an induction---this is closer to the form
+of an induction that one would encounter in practice, rather than in a
+textbook.
 
-We leave the reader the chore of verifying the sufficiency of the
-Proposition's conditions for ``small'' graphs.  In the case of
-undirected graphs, ``small'' begins with $3$-node graphs, because
-$2$-node graphs cannot have even node-degrees.  In the case of
-directed graphs, ``small'' begins with $2$-node graphs, because there
-does exist the Eulerian $2$-node digraph each of whose nodes hosts a
-single arc that points to the other node.
+The base case of the induction resides in proving the sufficiency of
+the Proposition's conditions for ``small'' graphs.  While we largely
+leave this step to the reader, we do want to walk the reader through
+the handing of ``small'' graphs.  Until we consider how we will deal
+with arbitrary $n$-node graphs, we do not yet know how the general
+step of our induction reduces the graph size $n$ at each step.
+Because of this, it is a good practice to ``play'' with a few small
+graph sizes.  Hopefully, in addition to giving our argument a robust
+base case, it will give us valuable intuition for the general case.
+\begin{itemize}
+\item
+When we focus on {\em undirected} graphs, we note that $2$-node graphs
+cannot have even node-degrees---and, indeed, as promised by the
+Proposition, they cannot be Eulerian.  One can exhaustively enumerate
+$3$-node and $4$-node graphs and verify that the Proposition correctly
+separates the Eulerian ones from the non-Eulerian ones.
+\item
+When we focus on {\em directed} graphs, we note that $2$-node graphs
+can be Eulerian---as witnessed by the $2$-node digraph each of whose
+nodes hosts a single arc that points to the other node.  Once again,
+one can perform an exhaustive enumeration of $3$-node and $4$-node
+graphs andverify that the Proposition correctly separates the Eulerian
+ones from the non-Eulerian ones.
+\end{itemize}
 
-So, let us consider a connected multi-node undirected graph $\g$.
-Choose some node $v$ of $\g$, and follow a walk of the following sort.
+We now develop a complete proof of the {\em sufficiency} of the
+conditions in part {\bf (a)} for general $n$-node undirected graphs.
+Throughout the discussion, we intersperse hints regarding the
+sufficiency of the conditions in part {\bf (b)}.
 
-end
-\qed
-\end{proof}
+So, let us consider a connected multi-node undirected graph $\g$ all
+of whose nodes have nonzero even degree.
+\begin{description}
+\item[{\bf Step 1}]
+Initialize the {\it progress parameter} $k$ to $0$.  This parameter
+will help orchestrate our discovery of the Eulerian cycle within $\g$.
+Choose some node of $\g$, call it $v_k$, and follow a walk along edges
+of $\g$ beginning at $v_k$.
 
+\item[{\bf Step 2}]
+The rules of the walk beginning at $v_k$ are:
+  \begin{itemize}
+  \item
+Each step of the walk will traverse an edge of $\g$ that has not been
+used earlier in the walk.
+  \item
+The walk terminates when it encounters a node of $\g$ all of whose
+edges have already been used.
+  \end{itemize}
+The facts that 
 
-
-
-
-
-
-\begin{prop}[Eulerian Paths]
-\label{thm:eulerian-path}
-{\bf (a)}
-An undirected graph $\g$ admits an Eulerian path if, and only if,
-$\g$ is connected and at most two nodes of $\g$ have odd degree.
-
-{\bf (b)}
-A directed graph $\h$ admits an Eulerian path if, and only if: $\h$ is
-connected; either $\h$ admits an Eulerian cycle, or $\h$ contains one
-node $u$ such that
-
-\hspace*{.5in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
+\hspace*{.25in}\begin{tabular}{ll}
+(1) & each node of $\g$ has even degree; \\
+(2) & the walk begins at node $v_k$; \\
+(3) & no edge of $\g$ is traversed more than once
+\end{tabular}
 
 \noindent
-and one node $v$ such that
+mean that the last node encountered in this walk is $v_k$.
 
-\hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
-\end{prop}
+\item[{\bf Step 3}]
+Say that we have completed the walk in $\g$ that begins at node $v_k$.
 
+\smallskip
 
+{\bf If} every edge of $\g$ has been traversed by the end of the
+current walk, then we {\it go to {\bf Step 4}}, which invoke procedure
+{\bf Build Eulerian Cycle} to stitch our series of walks into an
+Eulerian cycle in $\g$.
 
+\smallskip
 
+{\bf Else}, there is a node of $\g$, call it $v_{k+1}$, one of whose
+incident edges has not yet been traversed.  Note that we are here
+increasing the value of our progress parameter from $k$ to $k+1$.  We
+now {\it repeat {\bf Step 2}} with the updated progress parameter,
+$k+1$.
 
+\item[{\bf Step 4}]
+We have reached this step because our sequence of walks, beginning,
+respectively, at nodes $v_0$, $v_1$, \ldots, $v_{m-1}$ of $\g$, has
+terminated with all of $\g$'s edges having been traversed.  We are now
+ready to stitch together the $m$ walks into an Eulerian cycle in $\g$.
+The resulting procedure {\bf Build Eulerian Cycle} proceeds
+recursively as follows.
+
+{\bf Build Eulerian Cycle}($v_k$)
+\begin{itemize}
+\item
+Begin the walk associated with $v_k$ until it encounters $v_{k+1}$ for
+the last time
+\item
+{\bf Build Eulerian Cycle}($v_{k+1}$)
+\item
+Complete the walk associated with $v_k$
+\end{itemize}
+\end{description}
+
+When dealing with a {\em directed} graph $\h$, we proceed exactly as
+with undirected graphs, with one critical difference: we always enter
+a node $v$ of $\h$ along one of $v$'s {\em in-arcs}, and we always
+exit a node $v$ of $\h$ along one of $v$'s {\em out-arcs}.  As in the
+undirected case, an arc of $\h$ is traversed precisely once during the
+entire described process.  \qed
+\end{proof}
+
+\medskip
+
+The significance of the de Bruijn network in both coding and
+computation (as discussed in Section~\ref{sec:deBruijn-network}) lends
+considerable weight to the following important application of
+Proposition~\ref{thm:eulerian-cycle}:  When combined with
+Proposition~\ref{thm:deBruin-linegraph}, we obtain a proof of 
+Proposition~\ref{thm:deBruijn-Hamiltonian}.
+
+\begin{corol}
+\label{thm:deBruijn-Eulerian}
+Every de Bruin network $\d_n$ is (directed)-Eulerian..
+\end{corol}
+
+\ignore{**************
 
 We offer two proofs of this result: the first merely establishes the
 existence of the cycle; the second actually computes the cycle.  Both
@@ -2063,23 +2142,39 @@ By induction hypothesis, there exists an Eulerian cycle $\mathcal{C}_i$ in each 
 The Eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ and the Eulerian cycles in the successive $\mathcal{C}_i$.
 
 \end{itemize}
-
+*****************}
 
 The simplicity---but not the elegance---of the preceding
 characteriation degrades a trifle when one seeks Eulerian paths rather
 than Eulerian cycles.
 
+\begin{prop}[Eulerian Paths]
+\label{thm:eulerian-path}
+{\bf (a)}
+An undirected graph $\g$ admits an Eulerian path if, and only if,
+$\g$ is connected and at most two nodes of $\g$ have odd degree.
+
+{\bf (b)}
+A directed graph $\h$ admits an Eulerian path if, and only if: $\h$ is
+connected; either $\h$ admits an Eulerian cycle, or $\h$ contains one
+node $u$ such that
+
+\hspace*{.5in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
+
+\noindent
+and one node $v$ such that
+
+\hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
+\end{prop}
 
 
-{\bf APPLICATION}
 
-\begin{corol}
-\label{thm:deBruijn-Eulerian}
-Every de Bruin network $\d_n$ is (directed)-Eulerian.
-\end{corol}
+
 
 \subsubsection{The Chinese postman problem}
 \label{sec:chinesePostman}
+
+**HERE
 
 Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
 there exist some odd vertices. From the previous section, we know that there is no Eulerian cycle in this case and thus, 
