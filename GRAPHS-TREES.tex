@@ -1918,9 +1918,22 @@ equivalent to the problem of drawing $\g$ without ever lifting one's
 pencil. \index{graphs!drawing without lifting pencil}
 
 After solving the preceding ``pure'' version of the Eulerian-tour
-problem, we discuss the so-called {\it Chinese Postman Problem}, which
-focuses on ``almost Eulerian'' tours within graphs that do not admit
-an Eulerian tour.
+problem---which seeks a tour of a graph which crosses each edge
+precisely once---we discuss an extension of this problem which allows
+us to augment a graph $\g$ by adding multiple edges between the same
+two nodes.  (Terminologically, we thereby convert $\g$ to a {\it
+  multi-graph} \index{multi-graph} \index{graphs!multi-graph}
+consisting of nodes and {\it multi-edges}.) \index{multi-edge} Not
+obviously, adding multi-edges can often convert a graph $\g$ that does
+not admit an Eulerian cycle into a multi-graph that does admit an
+Eulerian cycle.  The problem of finding the {\em smallest} such
+augmentation of $\g$---i.e., of adding the fewest multi-edges---is
+called the \index{Route Inspection Problem} {\it Route Inspection
+  Problem}; it is also often called the {\it Chinese Postman Problem},
+\index{Chinese Postman Problem} in honor of its inventor, the Chinese
+mathematician Kwan Mei-Ko \index{Kwan Mei-Ko} \cite{Kwan60}.
+
+**HERE
 
 \subsubsection{Characterizing Eulerian graphs, and finding Eulerian tours}
 \label{sec:eulerian-cycle-path}
@@ -2219,12 +2232,27 @@ of the end node of the path.  With these hints, we invite the reader
 to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a
 proof of Proposition~\ref{thm:eulerian-path}.
 
-
-
-\subsubsection{The Chinese postman problem}
+\subsubsection{The Route Inspection Problem; the Chinese postman problem}
 \label{sec:chinesePostman}
 
+This section is devoted to studying the {\it Route Inspection
+  Problem}, \index{Route Inspection Problem} also known as the {\it
+  Chinese Postman Problem}, \index{Chinese Postman Problem} in honor
+of its inventor, the Chinese mathematician Kwan Mei-Ko \index{Kwan
+  Mei-Ko} \cite{Kwan60}.  This problem seeks to add as few multi-edges
+\index{graphs!multi-graph!multi-edge} as possible to a graph $\g$ in
+order to render $\g$ Eulerian.  (A {\it multi-graph} is ``almost'' an
+undirected graph.  It differs from a true graph because of the
+possible presence of multiple multi-edges that connect the same two
+nodes.)
+
 **HERE
+
+
+We know from Proposition~\ref{thm:eulerian-cycle} that if all of
+$\g$'s nodes have even node-degrees, then---{\em and only then}---$\g$
+admits an Eulerian cycle.  Therefore, in this case, {\em zero}
+multi-edges need be added to $\g$ to render it Eulerian.  
 
 Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
 there exist some odd vertices. From the previous section, we know that there is no Eulerian cycle in this case and thus, 
