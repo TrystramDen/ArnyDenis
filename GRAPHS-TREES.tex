@@ -1,4 +1,4 @@
-%version of 01-22-19
+%version of 01-23-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -1898,7 +1898,7 @@ admit Eulerian tours and to find such a tour if it exists
 characterization of the family of graphs that admit Hamiltonian tours,
 and the computational problem of efficiently determining whether a
 graph admits such a tour is one of the major classical problems in the
-field of computational complexity  (Section~\ref{sec:Hamiltonian-Cycle}).
+field of computational complexity  (Section~\ref{sec:Hamiltonian-cycle}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1918,9 +1918,22 @@ equivalent to the problem of drawing $\g$ without ever lifting one's
 pencil. \index{graphs!drawing without lifting pencil}
 
 After solving the preceding ``pure'' version of the Eulerian-tour
-problem, we discuss the so-called {\it Chinese Postman Problem}, which
-focuses on ``almost Eulerian'' tours within graphs that do not admit
-an Eulerian tour.
+problem---which seeks a tour of a graph which crosses each edge
+precisely once---we discuss an extension of this problem which allows
+us to augment a graph $\g$ by adding multiple edges between the same
+two nodes.  (Terminologically, we thereby convert $\g$ to a {\it
+  multi-graph} \index{multi-graph} \index{graphs!multi-graph}
+consisting of nodes and {\it multi-edges}.) \index{multi-edge} Not
+obviously, adding multi-edges can often convert a graph $\g$ that does
+not admit an Eulerian cycle into a multi-graph that does admit an
+Eulerian cycle.  The problem of finding the {\em smallest} such
+augmentation of $\g$---i.e., of adding the fewest multi-edges---is
+called the \index{Route Inspection Problem} {\it Route Inspection
+  Problem}; it is also often called the {\it Chinese Postman Problem},
+\index{Chinese Postman Problem} in honor of its inventor, the Chinese
+mathematician Kwan Mei-Ko \index{Kwan Mei-Ko} \cite{Kwan60}.
+
+**HERE
 
 \subsubsection{Characterizing Eulerian graphs, and finding Eulerian tours}
 \label{sec:eulerian-cycle-path}
@@ -1940,8 +1953,7 @@ $\g$ is connected and every node of $\g$ has even degree.
 {\bf (b)}
 A directed graph $\h$ admits a directed Eulerian cycle if, and only if,
 $\h$ is connected and, for every node $v$ of $\g$,
-
-\hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
+$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
 \end{prop}
 
 \begin{proof}
@@ -1967,63 +1979,71 @@ textbook.
 
 The base case of the induction resides in proving the sufficiency of
 the Proposition's conditions for ``small'' graphs.  While we largely
-leave this step to the reader, we do want to walk the reader through
-the handing of ``small'' graphs.  Until we consider how we will deal
-with arbitrary $n$-node graphs, we do not yet know how the general
-step of our induction reduces the graph size $n$ at each step.
-Because of this, it is a good practice to ``play'' with a few small
-graph sizes.  Hopefully, in addition to giving our argument a robust
-base case, it will give us valuable intuition for the general case.
+leave this step to the reader, we do want to discuss the definition of
+``small''.  Until we understand how to deal with arbitrary $n$-node
+graphs, we will not know how the general step of our induction reduces
+the graph size $n$ at each step.  Because of this, it is a good
+practice to ``play'' with several small graph sizes initially.
+Hopefully, in addition to giving our inductive argument a robust base
+case, such ``playing'' will give us valuable intuition for the general
+case of the induction.
 \begin{itemize}
 \item
-When we focus on {\em undirected} graphs, we note that $2$-node graphs
+Focusing on {\em undirected} graphs: We note that $2$-node graphs
 cannot have even node-degrees---and, indeed, as promised by the
 Proposition, they cannot be Eulerian.  One can exhaustively enumerate
 $3$-node and $4$-node graphs and verify that the Proposition correctly
 separates the Eulerian ones from the non-Eulerian ones.
 \item
-When we focus on {\em directed} graphs, we note that $2$-node graphs
-can be Eulerian---as witnessed by the $2$-node digraph each of whose
-nodes hosts a single arc that points to the other node.  Once again,
-one can perform an exhaustive enumeration of $3$-node and $4$-node
-graphs andverify that the Proposition correctly separates the Eulerian
-ones from the non-Eulerian ones.
+Focusing on {\em directed} graphs: We note that $2$-node graphs can be
+Eulerian---as witnessed by the $2$-node digraph each of whose nodes
+hosts a single arc that points to the other node.  Once again, one can
+perform an exhaustive enumeration of $3$-node and $4$-node graphs
+andverify that the Proposition correctly separates the Eulerian ones
+from the non-Eulerian ones.
 \end{itemize}
 
 We now develop a complete proof of the {\em sufficiency} of the
-conditions in part {\bf (a)} for general $n$-node undirected graphs.
-Throughout the discussion, we intersperse hints regarding the
-sufficiency of the conditions in part {\bf (b)}.
+conditions in part {\bf (a)} of the Proposition, for general $n$-node
+undirected graphs.  Throughout the discussion, we intersperse hints
+regarding the sufficiency of the conditions in part {\bf (b)} of the
+Proposition.
 
-So, let us consider a connected multi-node undirected graph $\g$ all
-of whose nodes have nonzero even degree.
+Let us consider a connected multi-node undirected graph $\g$ all of
+whose nodes have nonzero even degree.
 \begin{description}
 \item[{\bf Step 1}]
 Initialize the {\it progress parameter} $k$ to $0$.  This parameter
 will help orchestrate our discovery of the Eulerian cycle within $\g$.
-Choose some node of $\g$, call it $v_k$, and follow a walk along edges
-of $\g$ beginning at $v_k$.
 
 \item[{\bf Step 2}]
-The rules of the walk beginning at $v_k$ are:
+Choose an arbitrary node of $\g$ some of whose incident edges have not
+yet been traversed.  Call this node $v_k$, and let us henceforth refer
+to $v_k$ as a {\em special} node.  Follow a walk along edges of $\g$
+beginning at special node $v_k$.  The rules of this walk are:
   \begin{itemize}
   \item
-Each step of the walk will traverse an edge of $\g$ that has not been
-used earlier in the walk.
+Every step of the walk will traverse an edge of $\g$ that {\em has not
+  yet been traversed} during any walk.
   \item
-The walk terminates when it encounters a node of $\g$ all of whose
-edges have already been used.
+The walk terminates when it encounters a node of $\g$ {\em all of
+  whose edges have already been traversed}.
   \end{itemize}
 The facts that 
 
 \hspace*{.25in}\begin{tabular}{ll}
 (1) & each node of $\g$ has even degree; \\
-(2) & the walk begins at node $v_k$; \\
+(2) & the walk begins at node $v_k$ (which crosses one of $v_k$'s edges); \\
 (3) & no edge of $\g$ is traversed more than once
 \end{tabular}
 
 \noindent
-mean that the last node encountered in this walk is $v_k$.
+mean that the last node encountered in this walk is $v_k$.  In other
+words: {\em This walk begins and ends with node $v_k$.}
+
+Note that node $v_k$ will occur in this walk multiple
+times---specifically with multiplicity $\frac{1}{2} \mbox{\sc
+  degree}(v_k)$.
 
 \item[{\bf Step 3}]
 Say that we have completed the walk in $\g$ that begins at node $v_k$.
@@ -2031,8 +2051,8 @@ Say that we have completed the walk in $\g$ that begins at node $v_k$.
 \smallskip
 
 {\bf If} every edge of $\g$ has been traversed by the end of the
-current walk, then we {\it go to {\bf Step 4}}, which invoke procedure
-{\bf Build Eulerian Cycle} to stitch our series of walks into an
+current walk, then we {\it go to {\bf Step 4}} and invoke procedure
+{\bf Build Eulerian Cycle}, which stitches our series of walks into an
 Eulerian cycle in $\g$.
 
 \smallskip
@@ -2044,31 +2064,70 @@ now {\it repeat {\bf Step 2}} with the updated progress parameter,
 $k+1$.
 
 \item[{\bf Step 4}]
-We have reached this step because our sequence of walks, beginning,
-respectively, at nodes $v_0$, $v_1$, \ldots, $v_{m-1}$ of $\g$, has
-terminated with all of $\g$'s edges having been traversed.  We are now
-ready to stitch together the $m$ walks into an Eulerian cycle in $\g$.
-The resulting procedure {\bf Build Eulerian Cycle} proceeds
-recursively as follows.
+We have reached this step because our sequence of walks that begin and
+end at special nodes has terminated with all of $\g$'s edges having
+been traversed.  We are now ready to stitch together these walks in
+order to expose an Eulerian cycle in $\g$.  The resulting procedure
+{\bf Build Eulerian Cycle} proceeds as follows.
 
-{\bf Build Eulerian Cycle}($v_k$)
-\begin{itemize}
-\item
-Begin the walk associated with $v_k$ until it encounters $v_{k+1}$ for
-the last time
-\item
-{\bf Build Eulerian Cycle}($v_{k+1}$)
-\item
-Complete the walk associated with $v_k$
-\end{itemize}
+For each special node $v_k$, during the walk that begins and ends at
+$v_k$, we encounter other special nodes, call them $v_{k,1}$,
+$v_{k,2}$, \ldots, $v_{k,{m_k}}$, in the order of their being
+encountered along the walk.  We then define the following recursive
+procedure.
+
+\medskip
+
+\begin{tabular}{|ll|}
+\multicolumn{2}{l}{{\bf Procedure Build Eulerian Cycle}($v_k$)} \\
+\hline
+{\bf Phase $1$} &
+Follow the walk that begins at $v_k$ until it encounters $v_{k,1}$ \\
+  &
+Execute {\bf Build Eulerian Cycle}($v_{k,1}$) \\
+\hline
+{\bf Phase $2$} &
+Continue the walk that begins at $v_k$ until it encounters $v_{k,2}$ \\
+  &
+Execute {\bf Build Eulerian Cycle}($v_{k,2}$) \\
+\hline
+  &
+$\begin{array}{c}
+\bullet \\
+\bullet \\
+\bullet
+\end{array}
+$ \\
+\hline
+{\bf Phase $m_k$} &
+Continue the walk that begins at $v_k$ until it encounters $v_{k,m_k}$ \\
+   &
+Execute {\bf Build Eulerian Cycle}($v_{k,m_k}$) \\
+\hline
+{\bf Phase $m_k +1$} &
+Complete the walk that begins at $v_k$. \\
+\hline
+\end{tabular}
 \end{description}
 
+\medskip
+
+\noindent
+The process invocation
+
+Execute {\bf Build Eulerian Cycle}($v_0$)
+
+\noindent
+produces the Eulerian cycle in $\g$.
+
+\bigskip
+
 When dealing with a {\em directed} graph $\h$, we proceed exactly as
-with undirected graphs, with one critical difference: we always enter
-a node $v$ of $\h$ along one of $v$'s {\em in-arcs}, and we always
-exit a node $v$ of $\h$ along one of $v$'s {\em out-arcs}.  As in the
-undirected case, an arc of $\h$ is traversed precisely once during the
-entire described process.  \qed
+with undirected graphs, with one critical difference: for each node
+$v$ of $\h$, we always enter $v$ along one of its {\em in-arcs}, and
+we always exit $v$ along one of its {\em out-arcs}.  As in the
+undirected case, each arc of $\h$ is traversed precisely once during
+the described process.  \qed
 \end{proof}
 
 \medskip
@@ -2086,28 +2145,18 @@ Every de Bruin network $\d_n$ is (directed)-Eulerian..
 \end{corol}
 
 \ignore{**************
-
 We offer two proofs of this result: the first merely establishes the
 existence of the cycle; the second actually computes the cycle.  Both
 proofs invoke the following elementary facts.
-
 \bigskip
-
 \noindent {\bf Claim 1.}
 if all the degrees are even (and not null) then there exists a cycle.\bigskip
-
 \noindent {\bf Claim 2.}
 A tour is an union of disjoint cycles.\bigskip
-
 \noindent {\bf Claim 3.}
 If we remove a cycle in a tour then the degrees remain even.\bigskip
-
-
-
 \begin{proof}
 {\bf A proof of existence.}
-
-\end{proof} 
 
 
 The necessary condition of the proposition is straightforward. 
@@ -2144,9 +2193,8 @@ The Eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ 
 \end{itemize}
 *****************}
 
-The simplicity---but not the elegance---of the preceding
-characteriation degrades a trifle when one seeks Eulerian paths rather
-than Eulerian cycles.
+The simplicity of the preceding characteriation degrades a trifle when
+one seeks Eulerian {\em paths} rather than {\em cycles}.
 
 \begin{prop}[Eulerian Paths]
 \label{thm:eulerian-path}
@@ -2167,14 +2215,44 @@ and one node $v$ such that
 \hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
 \end{prop}
 
+The proof of the path-oriented Proposition~\ref{thm:eulerian-path} has
+the same overall structure as the cycle-oriented
+Proposition~\ref{thm:eulerian-cycle}, with one major difference.
+Whereas a cycle has neither beginning nor end, a path has both.
+Proposition~\ref{thm:eulerian-path}(a) asserts that an undirected
+graph which admits an Eulerian path but not an Eulerian cycle has
+precisely two nodes of odd degree.  These odd-degree nodes play the
+role of the two ends of the Eulerian path.  In similar fashion,
+Proposition~\ref{thm:eulerian-path}(b) asserts that a directed graph
+which admits an Eulerian path but not an Eulerian cycle contains one
+node, $u$, whose out-degree exceeds its in-degree and one node, $v$,
+whose in-degree exceeds its out-degree.  Node $u$ plays the role of
+the beginning node of the Eulerian path, and node $v$ plays the role
+of the end node of the path.  With these hints, we invite the reader
+to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a
+proof of Proposition~\ref{thm:eulerian-path}.
 
-
-
-
-\subsubsection{The Chinese postman problem}
+\subsubsection{The Route Inspection Problem; the Chinese postman problem}
 \label{sec:chinesePostman}
 
+This section is devoted to studying the {\it Route Inspection
+  Problem}, \index{Route Inspection Problem} also known as the {\it
+  Chinese Postman Problem}, \index{Chinese Postman Problem} in honor
+of its inventor, the Chinese mathematician Kwan Mei-Ko \index{Kwan
+  Mei-Ko} \cite{Kwan60}.  This problem seeks to add as few multi-edges
+\index{graphs!multi-graph!multi-edge} as possible to a graph $\g$ in
+order to render $\g$ Eulerian.  (A {\it multi-graph} is ``almost'' an
+undirected graph.  It differs from a true graph because of the
+possible presence of multiple multi-edges that connect the same two
+nodes.)
+
 **HERE
+
+
+We know from Proposition~\ref{thm:eulerian-cycle} that if all of
+$\g$'s nodes have even node-degrees, then---{\em and only then}---$\g$
+admits an Eulerian cycle.  Therefore, in this case, {\em zero}
+multi-edges need be added to $\g$ to render it Eulerian.  
 
 Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
 there exist some odd vertices. From the previous section, we know that there is no Eulerian cycle in this case and thus, 
