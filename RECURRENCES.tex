@@ -39,15 +39,19 @@ and analysis: increased understanding will enable improved computing.
 This section is devoted to the solution of {\em linear} recurrences,
 as exemplified by the following function specifications.  
 
+{\Denis Should we change the notation of F here? since it will be used for Fibo elements in the following section of the chapter. We can keep it as it is, and add a note about the abstract letters usually $x$ for any variable and $F$ for any function...}
+
 \begin{equation}
 \label{eq:Lin-Recur:general}
 F(n) \ = \ \left\{
 \begin{array}{cl}
-a F(n/b) + f(n) & \mbox{for } n > b \\
-1 & \mbox{for } n = b
+a F(n/b) + f(n) & \mbox{for } n \geq b \\
+1 & \mbox{for } n < b
 \end{array}
 \right.
 \end{equation}
+
+{\Denis I changed the bounds in the expression to keep more generality}
 
 \begin{equation}
 \label{eq:Lin-Recur:basic}
@@ -59,9 +63,11 @@ c & \mbox{for } n < b
 \right.
 \end{equation}
 
+{\Denis We should say here that $a$, $b$ and $c$ are integers.}
+
 Myriad basic algorithmic problems, including sorting, selection,
-matching, etc., can be solved using linear-recurrent algorithms
-\cite{CLRS}---and such algorithms yield to specification and analysis
+matching, etc., can be solved using linear-recurrent algorithms~\cite{CLRS}
+---and such algorithms yield to specification and analysis
 via linear recurrences.
 
 In the next two subsections, we present analyses of recurrences
@@ -71,7 +77,7 @@ these specific recurrences in order to analyze other members of the
 important family of linear-recurrent algorithms.
 
 
-\subsection{The Simple Recurrence (\ref{eq:Lin-Recur:basic})} 
+\subsection{The Simple Recurrence} 
 \label{sec:masterTheorem}
 \label{sec:linear-recurrence-basic}
 
@@ -141,7 +147,7 @@ case-structured solution to (\ref{eq:Lin-Recur:basic}).  \qed
 \end{proof}
 
 
-\subsection{The More General Recurrence (\ref{eq:Lin-Recur:general})} 
+\subsection{The More General Recurrence} 
 \label{sec:linear-recurrence-general}
 
 We now progress from the simple recurrence (\ref{eq:Lin-Recur:basic}) to
@@ -155,20 +161,20 @@ We focus on the case $f(n) = n$.
 
 It is a triviality to generalize to the slightly more ambitious $f(n)
 = \alpha n + \beta$ (i.e., to a {\em linear} function $f$), but this
-exension teaches no new lessons.
+extension teaches no new lessons.
 \item
 We assume that the argument $n$ to functions $F$ and $f$ is a power of
 $b$.
 
-Removing this assumptions would significantly complicate our
+Removing these assumptions would significantly complicate our
 calculations, but it would not change our reasoning.
 \end{enumerate}
 
 By ``unfolding'' (\ref{eq:Lin-Recur:general}) as in
 Section~\ref{sec:linear-recurrence-basic}, we expose the algebraic
 pattern created by the recurrence.  As in (\ref{eq:Lin-Recur:expand}),
-once we discern this pattern, we jump to the general form (whch can be
-verified via indution).
+once we discern this pattern, we jump to the general form (which can be
+verified via induction).
 \[
 \begin{array}{ccccc}
 F(n) & = & a F(n/b) + n & & \\
@@ -179,17 +185,19 @@ F(n) & = & a F(n/b) + n & & \\
      &   & \vdots & & \vdots \\
     & = & 
 {\displaystyle
-\left(a^{\log_b n} F(1) + \sum_{i=0}^{\log_b (n)-1} (a/b)^i \right) n
+a^{\log_b n} F(1) + \left( \sum_{i=0}^{\log_b (n)-1} (a/b)^i \right) log_b n
 } & &
 \end{array}
 \]
+
+{\Denis I changed the last term, which was false since there are $log_b(n)$ terms and not $n$...}
 
 We thus see that solving the more general recurrence
 (\ref{eq:Lin-Recur:general}) requires only augmenting the solution to
 the simpler recurrence (\ref{eq:Lin-Recur:basic}) by ``appending'' to
 the simple solution a geometric summation whose base is the ratio
 $a/b$.  The reader can now invoke the techniques from
-Section~\ref{sec:summing-geometric-series:techniques} to arrive at a a
+Section~\ref{sec:summing-geometric-series:techniques} to arrive at a
 solution to (\ref{eq:Lin-Recur:general}).
 
 When ``doing mathematics,'' one is often interested in discovering the
@@ -201,7 +209,9 @@ section is the following:
 \item
 When $a > b$, the behavior of $F(n)$ is dominated by the first
 solution term
-\[ a^{\log_b n} \cdot n \cdot  F(1) \ \ = \ \ n^{1 + \log_b a} \cdot F(1) \]
+\[ a^{\log_b n} \cdot  F(1) \ \ = \ \ n^{\log_b a} \]
+
+{\Denis as we assumed F(1)=1, I remove F(1) in the last term}
 \item
 When $a < b$, the behavior of $F(n)$ is dominated by the second
 solution term
