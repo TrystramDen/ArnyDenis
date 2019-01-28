@@ -1,4 +1,4 @@
-%version of 01-23-19
+%version of 01-28-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -65,25 +65,24 @@ of ``equal'' status.  When graph $\g$ is {\em directed}
 ``unequal'' relationship such as parenthood or priority or dependence;
 edges in directed graphs are often termed {\em
   arcs}. \index{graphs!arc} \index{arc (of a directed graph)}
-\index{arc (of a digraph)} In many situations involving directed
-graphs, it is important to recognize the {\em dual}
-\index{graphs!digraph!dual} of a digraph $\g$.  This dual---which is
-usually denoted by some notational embellishment of ``$\g$'', such as
-$\widehat{\g}$---is the digraph obtained by {\em reversing} all of
-$\g$'s arcs.  One sometimes encounters situations when arguments
-about, or operations on, a digraph $\g$ can be ``translated'' to
-arguments about, or operations on, $\widehat{\g}$ with only clerical
-effort.  A {\em subgraph} $\g'$ of a graph $\g$ is a graph whose nodes
-are a subset of $\g$'s and whose edges are a subset of $\g$'s that
-interconnect only nodes of $\g'$.  A {\em path} \index{graphs!path}
-\index{path (in a graph)} in an undirected graph is a sequence of
-nodes within which every adjacent pair is connected by an edge.  A
-path is a {\em cycle} \index{graphs!cycle} \index{cycle (in a graph)}
-if all nodes in the sequence are distinct, except for the first and
-last, which are identical.  Paths and cycles in directed graphs are
-defined similarly, except that every adjacent pair of nodes must be
-connected by an arc, and all arcs must ``point in the same
-direction.''
+In many situations involving directed graphs, it is important to
+deal with the {\em dual} \index{graphs!digraph!dual} of a digraph
+$\g$.  This dual---which is usually denoted by some notational
+embellishment of ``$\g$'', such as $\widehat{\g}$---is the digraph
+obtained by {\em reversing} all of $\g$'s arcs.  One sometimes
+encounters situations when arguments about, or operations on, a
+digraph $\g$ can be ``translated'' to arguments about, or operations
+on, $\widehat{\g}$ with only clerical effort.  A {\em subgraph} $\g'$
+of a graph $\g$ is a graph whose nodes are a subset of $\g$'s and
+whose edges are a subset of $\g$'s that interconnect only nodes of
+$\g'$.  A {\em path} \index{graphs!path} \index{path (in a graph)} in
+an undirected graph is a sequence of nodes within which every adjacent
+pair is connected by an edge.  A path is a {\em cycle}
+\index{graphs!cycle} \index{cycle (in a graph)} if all nodes in the
+sequence are distinct, except for the first and last, which are
+identical.  Paths and cycles in directed graphs are defined similarly,
+except that every adjacent pair of nodes must be connected by an arc,
+and all arcs must ``point in the same direction.''
 
 The special class of graphs called {\it trees} \index{graphs!trees}
 \index{trees} are identified mathematically as graphs that contain no
@@ -140,8 +139,8 @@ The just-described path makes sense only when every node $u_i$ belongs
 to $\n_{\fg}$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$,
 belongs to $\a_{\fg}$.  The {\it length} of path (\ref{eq:di-path}) is
 the number of arcs, i.e., $n-1$.  The existence of the path means that
-the {\it distance} \index{distance in a digraph}
-\index{digraph!distance} \index{graphs!distance in a digraph} from
+the {\it distance} \index{distance!in a digraph}
+\index{digraph!distance} \index{graphs!distance!in a digraph} from
 $u_1$ to $u_n$ in $\g$ is no greater than $n-1$.  (There may exist
 shorter paths in $\g$ from $u_1$ to $u_n$.)
 
@@ -219,10 +218,10 @@ The path described in (\ref{eq:undi-path}) makes sense only when every
 node $u_i$ belongs to $\n_{\fh}$ and every edge $(u_i \ u_j\}$ belongs
 to $\e_{\fh}$.  The {\it length} of path (\ref{eq:undi-path}) is the
 number of edges---which is $n-1$ in this example; and the existence of
-the path means that the {\it distance} \index{distance in a graph}
-\index{graphs!distance} {\it between} $u$ and $v$ in $\h$ is no
-greater than $n-1$.  (There may exist shorter paths that connect $u$
-and $v$.)
+the path means that the {\it distance} \index{graphs!distance} 
+\index{distance!in an undirected graph}
+{\it between} $u$ and $v$ in $\h$ is no greater than $n-1$.  (There
+may exist shorter paths that connect $u$ and $v$.)
 
 \medskip
 
@@ -235,8 +234,11 @@ that $\g$ is an undirected graph.
 
 For each edge $\{u,v\} \in \e_{\fh}$, we call nodes $u$ and $v$ {\it
   neighbors} (in $\h$).
+\index{graphs!nodes!neighbor nodes}
 \index{neighbor node!in a graph}
 The {\it degree}
+\index{graphs!nodes!degree of a node in an undirected graph}
+\index{graphs!degree of a node in an undirected graph}
 \index{degree of a node in an undirected graph}
 of a node $u \in \n_{\fh}$ is the number of neighbors that $u$ has.
 
@@ -1692,7 +1694,16 @@ as follows
 \[ 000 \ \rightarrow \ 001 \ \rightarrow \ 011 \ \rightarrow \ 111 \]
 leads node $000$ to node $111$, by rewriting string $000$ as string
 $111$.  The diameter bound is now an immediate consequence of the
-following result.
+following result.  The result builds upon a notion that we have not
+yet encountered but will study in some detail in
+Section~\ref{sec:Hamiltonian-cycle}.
+\index{graphs!Hamiltonian cycle} \index{Hamiltonian cycle}.
+
+A {\it Hamiltonian cycle} in an $n$-node graph $\g$ is a length-$n$
+cycle that contains every node of $\g$ precisely once.  A {\it
+  directed Hamiltonian cycle} in an $n$-node digraph $\h$ is a
+length-$n$ directed cycle that contains every node of $\h$ precisely
+once.
 
 \begin{prop}
 \label{thm:deBruijn-Hamiltonian}
@@ -2675,20 +2686,119 @@ problems, and by developing heuristics fr such problems, whose
 behavior cannot be guaranteed but which seem to work well ``in
 practice''.
 
-This short discussion is a good segu\'{e} to the material in the
-next section---the Hamiltonianicity problem in weighted graphs.
+\medskip
 
+This short discussion is a good segu\'{e} to the material in the next
+section, which leds valuable perspective on our brief study of
+Hamiltonian paths and cycles---and, indeed, on the computational
+implications of that work.
 
-
-\subsubsection{Hamiltonianicity in weighted graphs: The Traveling
-  Salesman Problem}
+\subsubsection{$\oplus$ Lessons from Hamiltonianicity in weighted graphs}
 \label{sec:TSP}
+\index{Traveling Salesman Problem}
 
+In the preceding section,
+%Section~\ref{sec:Hamiltonian-unweighted}.C, 
+we suggested how daunting it is computationally to determine whether
+an unweighted graph admits a Hamiltonian cycle.  There is an
+important, practically significant, analogue of this problem for
+edge-weighted graphs: the well-known, so-called {\it Traveling
+  Salesman Problem}, often abbreviated {\it TSP}.
+\index{Traveling Salesman Problem} \index{TSP: the Traveling Salesman Problem}
 
-**HERE
+The {\it TSP} operates on a set of $n$ cities, $\{C_1, C_2, \ldots,
+C_n\}$, together with a set of $\displaystyle {n \choose 2}$ real
+numbers $\{c_{i,j} \ | \ 1 \leq i,j \leq n\}$.  The interpretation is
+that each $c_{i,j}$ is the {\it cost} of traveling between cities
+$C_i$ and $C_j$ (in either direction).  We employ the term ``cost''
+here, rather than ``distance''---which is a commonly encountered
+substitute for ``cost''---because the intercity costs are not assumed
+to obey any of the laws that one commonly associates with the
+distances we encounter in our daily lives.
+\bigskip
 
-Hamiltonian
-This problem is the traveling salesman problem, called TSP in short.
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+The {\it triangle inequality} is the prime example of such a law.
+\index{triangle inequality} Intuitively, this law insists that the
+distance between any two cities is never decreased by placing an
+intermediate stopover city between them.  In a common formulation:
+{\em A straight line is the shortest distance between two points.}
+Cost measures that obey the triangle inequality are termed {\it
+  Euclidean} \index{Euclidean distance measure} \index{Euclid} because
+the distances studied in Euclidean geometry are assumed to obey this
+law.
+\end{minipage}
+}
+\bigskip
+
+\noindent
+(Some people like to think of our intercity costs as airfares---which
+clearly have no logical basis.)  The challenge of the TSP is to
+discover a minimum-cost tour of all $n$ cities.  Such a tour would
+be a cycle of the form
+\[ C_{i_1} \ - \ C_{i_2} \ - \cdots - \ C_{i_n} \ - \ C_{i_1} \]
+In particular:
+\begin{itemize}
+\item
+all $n$ cities appear in the tour  precisely once;
+\item
+no tour has smaller cost than the cost
+\[ c_{i_1,i_2} \ + \ c_{i_2, i_3} \ + \cdots + \  
+c_{i_{n-1}, i_n} \ + \ c_{i_n, i_1} \]
+of the indicated tour.
+\end{itemize}
+The main connection of the TSP to this chapter is twofold.
+\begin{enumerate}
+\item
+The TSP admits a graceful representation as a weighted analogue of the
+Hamiltonianicity-detection problem.  Within the representation, the
+TSP's $n$ cities are depicted as an instance of the complete graph
+$\k_n$, and the TSP's intercity costs are depicted as real weights on
+the edges of $\k_n$.
+
+\item
+The TSP is computationally ``no easier'' than the
+Hamiltonianicity-detection problem, in a very strong sense.  By
+definition, the target of the TSP is a tour of minimum {\em overall
+  cost}, as measured by the sum of the costs of the edges traversed in
+the tour.  But, of course, {\em every} tour has some cost, according
+to this measure.  The computational difficulty of the TSP is suggested
+by the following result.
+
+{\em For any fixed positive constant $\kappa$, the problem of finding
+  a tour for an instance of the  TSP that is within a factor of
+  $\kappa$ of minimal is an {\sf NP}-complete problem.}
+\end{enumerate}
+
+The fact that TSP is a computationally complex problem is not very
+surprising, because the TSP can be framed in a way that encompasses a
+form of the Hamiltonianicity-detection problem.  To see this
+intuitively, let us encode a graph $\g$ into an instance of the TSP as
+follows.
+\begin{itemize}
+\item
+Each node of $\g$ becomes a ``city'' that must be visited.
+\item
+For each pair of cities/nodes $A$ and $B$:
+\[ \mbox{\sc distance}(A,B) \ = \ \left\{
+\begin{array}{ccl}
+1 & & \mbox{if there is an edge between $A$ and $B$ in $\g$} \\
+\infty & & \mbox{if there is no edge between $A$ and $B$ in $\g$} \\
+       & & \mbox{\small\sf (if the idea of ``infinite'' distance bothers you,} \\
+       & & \mbox{\small\sf then make this some ridiculousy large number)}
+\end{array}
+\right.
+\]
+\end{itemize}
+What {\em is} surprising, though, is that if we restrict attention to
+{\em Euclidean} instances of the TSP---i.e., instances whose ``costs''
+measure Euclidean ``distances''---then there exists a rather efficient
+algorithm that {\em approximately} solves such TSP instances.
+\index{Euclidean TSP problem}
+
+**INTRODUCE EUCLIDEAN TERMINOLOGY above!!
+
 It corresponds to determine a minimal Hamiltonian cycle in a weighted complete graphs $K_n$.
 Obviously, $K_n$ is Hamiltonian (it exists $n!$ such Hamiltonian paths), thus, the question here is to determine the minimum one. 
 
