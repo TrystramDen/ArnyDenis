@@ -1,4 +1,4 @@
-%version of 01-29-19
+%version of 01-30-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -2558,10 +2558,188 @@ problems, and by developing heuristics fr such problems, whose
 behavior cannot be guaranteed but which seem to work well ``in
 practice''.
 
+
+\section{Graph Coloring and Chromatic number}
+\label{sec:graph-color}
+\index{graphs!node-coloring}
+
+This section introduces the notion of {\it graph coloring}, and its
+associated notion of the {\it chromatic number}
+\index{graphs!chromatic number} of a graph.
+
+A {\it node-coloring} \index{graphs!node-coloring} of a graph $\g$ is
+an assignment of labels to $\g$'s nodes, in such a way that all of a
+node $v$'s neighbors get a different label than $v$.  Traditionally,
+the labels are called {\it colors}, for that term's evocative power.
+The {\it chromatic number} \index{graphs!chromatic number} of a graph
+$\g$ is the smallest number of colors that can be used in a legal
+node-coloring of $\g$.  In traditional parlance, the assertions
+
+``$\g$ has chromatic number $c$'' \ \ \ \ \ and \ \ \ \ \
+``$\g$ is {\it $c$-colorable}''
+\index{graphs!$c$-colorable}
+
+\noindent
+are considered to be synonymous.
+
+The notion of graph coloring can be used to computational advantage to
+model a broad variety of situations.  An extremely important, and
+illustrative, use of graph coloring is to model {\it distributed}
+computing.  In this setting, the nodes of a computation-graph $\g$
+represent {\it agents}, such as, e.g., processing elements in a
+computer; and $g$'s edges represent {\it communication links} that
+enable each node $u$ to check its neighbors' states before any action
+and to inform its neighbors of state-changes occasioned by an action
+of $u$.  The prohibition against ``monochrome'' edges---i.e., edges
+both of whose incident nodes have the same color---guarantees that
+node $u$ and all of its like-colored nodes can act at the same instant
+with no fear of missing an important input to those actions.  Indeed,
+one often encounters programs for distributed computing that look
+something like
+
+1. All {\em red} nodes perform an action
+
+2. All {\em green} nodes perform an action
+
+3. All {\em blue} nodes perform an action
+
+\hspace*{1in} $\vdots$
+
+
+\subsection{Graphs with Provably Small Chromatic Numbers}
+\label{sec:Graphs-small-Chromatic-No} 
+
+Most of the ``named'' graphs in
+Section~\ref{sec:graphs-important-families} have very small chromatic
+numbers.  This is no accident: These graphs were invented (or, at
+least, placed in the spotlight) because of their importance to the
+topic of parallel and distributed computing---and we suggested only a
+few paragraphs ago how to use graph node-colors to orchestrate some
+such computations.  Accordingly, we devote this section to studying
+graphs with very small chromatic numbers.
+
+\subsubsection{Graphs with chromatic number $2$}
+\label{sec:2-color-graphs}
+
+We begin to garner intuition about graph coloring by exposing a large
+set of graphs with chromatic number $2$.  In fact, we can completely
+characterize these graphs structurally.
+
+A graph $\g$ is {\it leveled} \index{graphs!leveled} if there exists
+an assignment of {\it level numbers} $\{ 1, 2, \ldots, \lambda\}$ to the
+nodes of $\g$ in such a way that every neighbor of a level-$\ell$ node
+$u$ resides either on level $\ell +1$ or on level $\ell -1$.
+
+\begin{prop}
+\label{thm:leveled=2-color}
+A graph $\g$ has chromatic number $2$ if, and only if, it is leveled.
+\end{prop}
+
+\begin{proof}
+Say first that $\g$ is a leveled graph.  Then labeling each node of
+$\g$ with the (odd-even) parity of its level provides a valid
+$2$-coloring of $\g$.
+
+Say next that $\g$ is $2$-colorable.  Pick any node of $\g$ and assign
+it to be the unique node on level $1$.  Let all neighbors of $v$ be
+assigned to level $2$.  Continuing iteratively, say that the largest
+level-number that we have employed---i.e., assigned nodes to---is
+$\ell$.  Then we now assign to level $\ell +1$ all neighbors of
+level-$\ell$ nodes which have not yet been assigned to a level of
+$\g$.
+
+We leave it to the reader to verify the preceding two mappings in
+detail.  \qed
+\end{proof}
+
+We can now show that the following named graphs are $2$-colorable.
+
+\begin{corol}
+\label{thm:list-2-colorables}
+The following graphs are leveled, hence have chromatic number $2$.
+\begin{itemize}
+\item
+any tree (which includes any path-graph $\p_n$)
+\item
+any cycle-graph $\cc_n$ that has an even number $n$ of nodes
+\item
+any mesh-graph $\m_{m,n}$
+\item
+any torus-graph $\widetilde{\m}_{m,n}$ that has an even number of
+diagonals, i.e., an even value $m+n$
+$i+j$
+\item
+any hypercube $\q_n$
+\item
+any de Bruijn network $\d_n$
+\end{itemize} 
+\end{corol}
+
+**PROVIDE PROOFS FOR TORUS, HYPER, DB**
+
+**REMARK ON 3-COLOR FOR NON 2-COLOR**
+
+
+\subsection{Computing the Chromatic Number of an Arbitrary Graph}
+\label{sec:Compute-Chromatic-No}
+
+%The chromatic number of a graph is defined as the minimum number of colors for coloring a graph. It is a NP-hard problem. However, there are good greedy approximation algorithms.
+
+
+
 \section{$\oplus$ Advanced Topics}
+\label{sec:advanced-topics}
+
+This section is devoted to a variety of topics that are typically not
+covered---at least in depth---early in the curriculum, yet are
+important enough that the reader should at least be aware of them.  
+
+The topics we cover are motivated by virtually every computational
+area that benefits from graph-theoretic models.  The two problems we
+discuss in Section~\ref{sec:Relate-CS-Math-Probs} illustrate how the
+{\em dynamic} models in the field of algorithmics---``dynamic'' in the
+sense that they {\em do} something---and the {\em structural} models
+provided by graph theory can often provide beneficial illumination of
+one another.  Section~\ref{sec:graph-decompose}
+\index{graphs!graph separators} \index{graphs!graph decomposition}
+focuses on the myriad computations on graph that can be accomplished
+efficiently via recursive algorithms that decompose, then reassemble,
+the graphs that they work on.  Section~\ref{sec:graph-evolve}
+\index{graphs!evolving graphs} introduces the increasingly important
+topic of graphs whose structure changes dynamically over time.  One
+timely instance of this dynamic evolution is the connectivity graph of
+the Internet.  Finally, Section~\ref{sec:hypergraphs}
+\index{graphs!hypergraphs} \index{hypergraphs}
+broaches the topic of {\it hypergraphs}, structures that can be
+mathematically viewed as a generalization of graphs that allows
+``edges'' to be sets of nodes whose cardinalities need not be $2$.
+These structures are essential for the modeling a variety of
+structures that pervade our digital world.
+\begin{itemize}
+\item
+Modern electronic circuits are implemented using integrated circuit
+technology: {\em VLSI: Very Large Scale Integrated circuits}.
+\index{hypergraphs!modeling integrated circuits}
+\item
+Bus-connected parallel communication has been part of digital computer
+design since its earliest days.
+\index{hypergraphs!modeling bus-connected communication}
+\item
+Interconnectivity in social networks.
+\index{hypergraphs!modeling interconnectivity in social networks}
+\end{itemize}
+
+We have tried to present each topic we touch on at a level of
+discourse that will prepare the interested reader to delve more deeply
+into the material, yet at a level of informality that will make the
+material accessible to the more casual reader.  We thus strive for an
+intuitive presentation that will not lead any reader astray.
 
 \subsection{Relating Computational and Mathematical Problems}
 \label{sec:Relate-CS-Math-Probs}
+
+This 
+
 
 
 \subsubsection{The Route Inspection/ Chinese Postman Problem}
@@ -3003,14 +3181,10 @@ we deduce that the value of such a tour is lower than $3/2 \omega_{H^*}$.
 \end{proof}
 
 
-\subsection{Graph Coloring and Chromatic number}
-
-
-%The chromatic number of a graph is defined as the minimum number of colors for coloring a graph. It is a NP-hard problem. However, there are good greedy approximation algorithms.
-
 
 
 \subsection{Graph Decomposition}
+\label{sec:graph-decompose}
 
 
 A fundamental variety of relevant notions within the study of graphs
@@ -3039,6 +3213,7 @@ understood even in advanced settings.
 
 
 \subsection{Graphs with Evolving Structure}
+\label{sec:graph-evolve}
 
 Any course on algorithms will discuss graphs, especially trees, that
 evolve over time.  Such structures arise in the study of ``classical''
@@ -3057,6 +3232,23 @@ exemplars that include these new modalities and exemplars.
 
 
 \subsection{Hypergraphs}
+\label{sec:hypergraphs}
+
+\begin{itemize}
+\item
+Modern electronic circuits are implemented using integrated circuit
+technology: {\em VLSI: Very Large Scale Integrated circuits}.
+\index{hypergraphs!modeling integrated circuits}
+\item
+Bus-connected parallel communication has been part of digital computer
+design since its earliest days.
+\index{hypergraphs!modeling bus-connected communication}
+\item
+Interconnectivity in social networks.
+\index{hypergraphs!modeling interconnectivity in social networks}
+\end{itemize}
+
+
 
 When studying certain computing-related topics, one will
 need a generalization of graphs called {\em hypergraphs}.  A
