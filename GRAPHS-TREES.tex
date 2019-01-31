@@ -1,4 +1,4 @@
-%version of 01-30-19
+%version of 01-31-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -2606,7 +2606,7 @@ something like
 \hspace*{1in} $\vdots$
 
 
-\subsection{Graphs with Provably Small Chromatic Numbers}
+\subsection{Graphs with Small Chromatic Numbers}
 \label{sec:Graphs-small-Chromatic-No} 
 
 Most of the ``named'' graphs in
@@ -2640,16 +2640,15 @@ Say first that $\g$ is a leveled graph.  Then labeling each node of
 $\g$ with the (odd-even) parity of its level provides a valid
 $2$-coloring of $\g$.
 
-Say next that $\g$ is $2$-colorable.  Pick any node of $\g$ and assign
-it to be the unique node on level $1$.  Let all neighbors of $v$ be
-assigned to level $2$.  Continuing iteratively, say that the largest
-level-number that we have employed---i.e., assigned nodes to---is
-$\ell$.  Then we now assign to level $\ell +1$ all neighbors of
-level-$\ell$ nodes which have not yet been assigned to a level of
-$\g$.
-
-We leave it to the reader to verify the preceding two mappings in
-detail.  \qed
+Say next that $\g$ is $2$-colorable.  Pick any node $v$ of $\g$ and
+assign it to be the unique node on level $1$.  Let all neighbors of
+$v$ be assigned to level $2$.  Continuing iteratively, say that the
+largest level-number that we have employed---i.e., assigned nodes
+to---is $\ell$.  Then we now assign to level $\ell +1$ all neighbors
+of level-$\ell$ nodes which have not yet been assigned to a level of
+$\g$.  Because $\g$ is $2$-colorable, each of the levels we have
+specified is monochromatic, so that each edge of $\g$ connects a node
+of one color with a node of the other color.  \qed
 \end{proof}
 
 We can now show that the following named graphs are $2$-colorable.
@@ -2657,27 +2656,117 @@ We can now show that the following named graphs are $2$-colorable.
 \begin{corol}
 \label{thm:list-2-colorables}
 The following graphs are leveled, hence have chromatic number $2$.
-\begin{itemize}
-\item
+
+{\bf (a)}
 any tree (which includes any path-graph $\p_n$)
-\item
+
+{\bf (b)}
 any cycle-graph $\cc_n$ that has an even number $n$ of nodes
-\item
+
+{\bf (c)}
 any mesh-graph $\m_{m,n}$
-\item
+
+{\bf (d)}
 any torus-graph $\widetilde{\m}_{m,n}$ that has an even number of
-diagonals, i.e., an even value $m+n$
-$i+j$
-\item
+diagonals, i.e., even $m+n$
+
+{\bf (e)}
 any hypercube $\q_n$
-\item
-any de Bruijn network $\d_n$
-\end{itemize} 
 \end{corol}
 
-**PROVIDE PROOFS FOR TORUS, HYPER, DB**
+\begin{proof}
+We provide a detailed sketch for each of the five graph families in
+turn.
 
-**REMARK ON 3-COLOR FOR NON 2-COLOR**
+\noindent {\bf (a)}
+We follow the procedure from the second half of the proof of
+Proposition~\ref{thm:leveled=2-color} to expose a level structure in
+any tree $\t$, as follows.  Pick any node $v$ of $\t$ and make it the
+unique node on level $1$.  Let all neighbors of $v$ be assigned to
+level $2$.  Continuing iteratively, say that the largest level-number
+that we have employed is $\ell$.  Then we now assign to level $\ell
++1$ all neighbors of level-$\ell$ nodes which have not yet been
+assigned to a level of $\t$.
+
+Of course this process can be simplified when $\t$ is a path-graph
+$\p$, by choosing one of $\p$'s end-nodes as node $v$.  We thereby
+have precisely one node on each level, whereas the general procedure
+can have levels with $2$ nodes.  A lesson here is that {\em a graph
+  may admit many distinct level structures}.
+
+\medskip
+
+\noindent {\bf (b)}
+When we apply the procedure of part (a) to an even-length cycle
+$\cc_{2n}$, we produce a level structure in which levels $1$ and $n+1$
+have one node apiece, while all other levels have two nodes apiece.
+
+\medskip
+
+\noindent {\bf (c)}
+The edge-structure of mesh-graphs ensures that the labeling of each
+node $\langle i,j \rangle$ of $\m_{m,n}$ with the odd-even parity of
+the number $i+j$ is a $2$-coloring of $\m_{m,n}$.
+
+\medskip
+
+\noindent {\bf (d)}
+The labeling in part (d) provides a $2$-coloring of any torus-graph
+$\widetilde{\m}_{m,n}$ with even $m+n$.
+
+\medskip
+
+\noindent {\bf (e)}
+Each edge of a hypercube $\q_n$ connects a node $v = \beta_1 \beta_2
+\cdots \beta_n$, where each $\beta_i \in \{0,1\}$, to a node $v' =
+\beta'_1 \beta'_2 \cdots \beta'_n$ where precisely one $\beta_j$
+differs from $\beta'_j$.  Therefore, the following aggregation of
+nodes of $\q_n$ into sets $S_0, S_1, \ldots, S_n$ provides a valid
+leveling of $\q_n$.
+
+Assign node $v = \beta_1 \beta_2 \cdots \beta_n$ to set $S_k$
+precisely if $k$ of the bits $\beta_i$ equal $1$.
+\qed
+\end{proof}
+
+The reader can show that no odd-length cycle $\cc_{2n+1}$ with $n \geq
+1$ is $2$-colorable.  In like fashion, no graph $\g$ that {\em
+  contains} an odd-length cycle can be $2$-colored.  This is the
+problem that plagues the torus $\widetilde{\m}_{m,n}$ when $m+n$ is
+odd.
+  {\Arny Put the odd cycle and torus as Exercises}
+
+The existence of odd-length cycles prevents {\em every} de Bruijn
+network $\d_n$ from being $2$-colorable.  As small examples, one
+observes the $3$-cycle
+\[ 00 \ \rightarrow \ 01 \ \rightarrow \ 10  \rightarrow \ 00 \]
+in $\d_2$ in Fig.~\ref{fig:dB2by2} and the $3$-cycle
+\[ 001 \ \rightarrow \ 010 \ \rightarrow \ 100 \ \rightarrow \ 001 \]
+in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length
+cycles are only the proverbial tip of the iceberg for de Bruijn
+networks.  The following result asserts that de Bruijn networks are
+{\it directed-pancyclic}, \index{graphs!pancyclic} 
+\index{de Bruijn network!pancyclicity} \index{de Bruijn graph!pancyclicity}
+meaning that they contain (even directed!)~cycles of {\em all}
+possible lengths, both odd and even.  The proof of this result is
+outside the scope of this text, but it should be accessible to the
+motivated reader.
+
+\begin{prop}{\cite{Yoeli62}}
+For all $n$, the order-$n$ de Bruijn
+network $\d_n$ is directed-pancylic, i.e., it
+contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
+\end{prop}
+
+\subsection{Coloring the Nodes of Planar and Outerplanar Graphs}
+\label{sec:planar+outerplanar-color}
+
+In this section, we focus on two graph families that are defined in
+terms of the way they can be drawn.
+
+** define planar, outerplanar
+** outerplanar has degree-2 node; therefore (induction) is $3$-colorable
+** planar is $4$-colorable
 
 
 \subsection{Computing the Chromatic Number of an Arbitrary Graph}
