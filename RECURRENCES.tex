@@ -46,24 +46,27 @@ as exemplified by the following function specifications.
 F(n) \ = \ \left\{
 \begin{array}{cl}
 a F(n/b) + f(n) & \mbox{for } n \geq b \\
-1 & \mbox{for } n < b
+c & \mbox{for } n < b
 \end{array}
 \right.
 \end{equation}
 
-{\Denis I changed the bounds in the expression to keep more generality}
+{\Denis I changed the bounds in the expression to keep more generality.
+I also changed F(1) for a constant c replacing 1}
+
+{\Denis We should say here that $a$, $b$ and $c$ are integers}
 
 \begin{equation}
 \label{eq:Lin-Recur:basic}
 F(n) \ = \ \left\{
 \begin{array}{cl}
 a F(n/b) + c & \mbox{for } n \geq b \\
-c & \mbox{for } n < b
+1 & \mbox{for } n < b
 \end{array}
 \right.
 \end{equation}
 
-{\Denis We should say here that $a$, $b$ and $c$ are integers.}
+{\Denis constant c ws used twice, this was a bit confuseing... Thus, I changed here F(1) to 1 since it is the simplified form...}
 
 Myriad basic algorithmic problems, including sorting, selection,
 matching, etc., can be solved using linear-recurrent algorithms~\cite{CLRS}
@@ -92,7 +95,7 @@ tools in the proof of the Theorem are: summing geometric summations
 (Section~\ref{sec:geometric-sums}) and employing elementary asymptotic
 notions and notations (Section~\ref{sec:asymptotics}).
 
-\begin{theorem}[The Master Theorem for Linear Recurrences]
+\begin{theorem}[The simplified form of Master Theorem for Linear Recurrences]
 \label{thm:master-thm}
 \index{The Master Theorem for Linear Recurrences}
 Let the function $F$ be specified by the linear recurrence
@@ -101,17 +104,17 @@ is given by
 \begin{equation}
 \label{eq:Lin-Recur:solve}
 \begin{array}{lcllll}
-F(n) & = & (1 + \log_b n)c &  &  & \mbox{if } a=1 \\
+F(n) & = & (1 + \log_b n) c &  &  & \mbox{if } a=1 \\
      &   &                 &  &  & \\
      & = &
   {\displaystyle
-  \frac{1-a^{\log_b n}}{1-a} \ \approx \ \frac{1}{1-a}
+  \frac{1-a^{\log_b n}}{1-a} c \ \approx \ \frac{c}{1-a}
   }
                            &  &  & \mbox{if } a<1 \\
     &   &                  &  &  & \\
     & = &
   {\displaystyle
-\frac{a^{\log_b n} -1}{a-1}
+\frac{a^{\log_b n} -1}{a-1} c
   }
                            &  &  & \mbox{if } a>1
 \end{array}
@@ -165,10 +168,10 @@ extension teaches no new lessons.
 \item
 We assume that the argument $n$ to functions $F$ and $f$ is a power of
 $b$.
-
+\item We consider $c=1$.
+\end{enumerate}
 Removing these assumptions would significantly complicate our
 calculations, but it would not change our reasoning.
-\end{enumerate}
 
 By ``unfolding'' (\ref{eq:Lin-Recur:general}) as in
 Section~\ref{sec:linear-recurrence-basic}, we expose the algebraic
@@ -185,12 +188,10 @@ F(n) & = & a F(n/b) + n & & \\
      &   & \vdots & & \vdots \\
     & = & 
 {\displaystyle
-a^{\log_b n} F(1) + \left( \sum_{i=0}^{\log_b (n)-1} (a/b)^i \right) log_b n
+a^{\log_b n} F(1) + \left( \sum_{i=0}^{\log_b (n)-1} (a/b)^i \right) n
 } & &
 \end{array}
 \]
-
-{\Denis I changed the last term, which was false since there are $log_b(n)$ terms and not $n$...}
 
 We thus see that solving the more general recurrence
 (\ref{eq:Lin-Recur:general}) requires only augmenting the solution to
@@ -218,13 +219,15 @@ solution term
 \begin{eqnarray*}
 n \cdot \sum_{i=0}^{\log_b (n)-1} (a/b)^i
   & = &
-\left( 1 \ - \  (a/b)^{\log_b (n)} \right) n \\
-  & = &
-n \ - \ a^{\log_b n} \\
-  & = &
-n \ - \ n^{\log_b a}
+\frac{\left( 1 \ - \  (a/b)^{\log_b (n)} \right)}{1-\frac{a}{b}} n \\
+%  & = &
+%n \ - \ a^{\log_b n} \\
+  & \approx &
+n \frac{b}{b - a}
 \end{eqnarray*}
 \end{itemize}
+
+{\Denis Is there a reason to avoid to write the theorem here as in the previous section?}
 
 One can learn yet more lessons about $F(n)$, specifically about how to
 compute $F(n)$ (exactly or approximately) by observing the graphical
@@ -240,9 +243,8 @@ by recurrence (\ref{eq:Lin-Recur:general}).
 \label{fig:masterTheorem}}
 \end{center}
 \end{figure}
-In particular, one observes in the figure that the computation---and
-its associated tree---are perfectly balanced when $a=b$.  In
-particular, when $a=b=2$, we obtain $F(n) = n \log_2(n)$.
+In particular, one observes in the figure that when $a=b$, the computations in each row are perfectly balanced.  
+When $a=b=2$, there are $n$ leaves and the computations inside the tree are exactly $n$ in each of the $ \log_2(n)$ levels,, leading to $F(n) = n \log_2(n)$.
 
 %{\Arny The notation in Fig.~\ref{fig:masterTheorem} (fonts, cdots) should be made consistent with the text.}
 
