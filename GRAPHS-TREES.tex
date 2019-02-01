@@ -2788,23 +2788,22 @@ knowledge.
 \bigskip
 
 \noindent
-Graphs in the larger family---termed {\it planar}
-\index{graphs!planar} \index{planar graphs} graphs---are characterized
-by their ability to be drawn without any crossing edges.  Graphs in
-the subfamily of planar graphs---termed {\it outerplanar}
-\index{graphs!outerplanar} \index{outerplanar graphs} graphs---are
-characterized by their ability to be drawn in the following manner.
-One can place the nodes of an outerplanar graph $\g$ around a circle
-in such a way that the edges of $\g$ can be drawn within the circle,
-without any crossings.
+A graph is {\it planar} \index{graphs!planar} \index{planar graphs}
+precisely if it can be drawn {\em without any crossing edges}.  A
+graph $\g$ is {\it outerplanar} \index{graphs!outerplanar}
+\index{outerplanar graphs} precisely if it can drawn by {\em placing
+  its nodes along a circle in such a way that its edges can be drawn
+  as noncrossing chords of the circle}.  The latter condition is
+equivalent to demanding that $\g$'s edges can be drawn within the
+circle without any crossings.
 
 We urge the reader to garner intuition about the graphs in these
-families by experimenting with some specific graphs.
+families by experimenting at drawing some specific graphs.
 \begin{itemize}
 \item
-The first set of graphs to play with are the cliques $\k_3$, $\k_4$,
-and $\k_5$.  To forestall excessive frustration for the reader, we
-note that
+The first set of graphs to draw are the cliques $\k_3$, $\k_4$, and
+$\k_5$.  To forestall excessive frustration for the reader, we note
+that
   \begin{itemize}
   \item
 $\k_3$ is outerplanar; 
@@ -2822,12 +2821,8 @@ The bipartite clique $\k_{m,n}$'s nodes are ordered pairs of integers:
 \{ \langle i,j \rangle \ \ | \ \ 1 \leq i \leq m; \ \ 1 \leq j \leq n\}
 \]
 $\k_{m,n}$'s connect each node $\langle i,j \rangle$ to every node
-  \begin{itemize}
-  \item
-$\langle i,k \rangle$ with $1 \leq k \leq n$
-  \item
-$\langle h,j \rangle$ with $1 \leq h \leq m$
-  \end{itemize}
+$\langle i,k \rangle$ with $1 \leq k \leq n$ and to every node
+$\langle h,j \rangle$ with $1 \leq h \leq m$.
 
 The second set of graphs to play with are the bipartite cliques
 $\k_{1,3}$, $\k_{2,3}$, and $\k_{3,3}$.  To forestall excessive
@@ -2865,25 +2860,137 @@ The word ``homeomorphic'' in
 Theorem~\ref{thm:planar+outerplanar-exclusion} exemplifies daunting
 technical terms that are easily understood informally.  A {\it
   homeomorph} \index{graphs!homeomorph} of a graph $\g$ is obtained by
-adding new (degree-$2$) nodes along one or more edges of $\g$.
+adding (degree-$2$) nodes along one or more edges of $\g$.
 
 
 \subsubsection{Outerplanar graphs}
 \label{sec:outerplanar-graphs}
 
-The first, and smaller of this section's two graph families comprises
-{\it outerplanar graphs}. \index{outerplanar graphs}
-\index{graphs!outerplanar} A graph $\g$ is {\it outerplanar} if it can
-be drawn (on a two-dimensional medium, such as a piece of paper) in
-the following manner.  One places the nodes of $\g$ on a circle in
-such a way that one can draw $\g$ within the circle with no crossing
-edges.  We shall remark in Section~\ref{sec:planar-graphs} why these
-graphs are called {\em outer}-planar.
+We look first at the smaller of this section's two graph families,
+namely, the {\it outerplanar graphs}. \index{outerplanar graphs}
+\index{graphs!outerplanar}  (We shall remark in
+Section~\ref{sec:planar-graphs} why these graphs are called {\em
+  outer}-planar.)
 
+We begin our discussion with some basic facts about outerplanar
+graphs.
 
-The drawing-based definition of outerplanar graphs renders obvious the
-following property
+\begin{prop}
+Every tree is outerplanar.
+\end{prop}
 
+We leave to the reader the challenge of drawing a tree in a way that
+exposes its outerplanarity.  {\Arny Another exercise}
+
+\begin{prop}
+\label{thm:basic-outerplanar-stuff}
+Let $\g$ be an outerplanar graph.  Then:
+
+\begin{tabular}{ll}
+{\bf (a)} &
+$\g$ is planar. \\
+{\bf (b)} &
+$\g$ is a subgraph of a Hamiltonian graph. \\
+{\bf (c)} &
+Every subgraph of $\g$ is outerplanar. \\
+{\bf (d)} &
+At least one of $\g$'s nodes has degree $\leq 2$.
+\end{tabular}
+\end{prop}
+
+\begin{proof}
+{\bf (a)} $\g$'s planarity can be inferred from the ability to draw
+$\g$'s edges as noncrossing chords of the circle.
+
+\medskip
+
+\noindent {\bf (b)} $\g$'s ``sub-Hamiltonianicity'' can be inferred
+from the ability to draw $\g$ with its nodes along a circle.
+
+\medskip
+
+\noindent {\bf (c)} We can produce an outerplanarity-witnessing
+drawing of any subgraph of $\g$ by erasing some nodes and/or some
+edges from our outerplanarity-witnessing drawing of $\g$.
+
+\medskip
+
+\noindent {\bf (d)} One verifies easily that this result holds for all
+outerplanar graphs having $3$ or fewer nodes.  Focus, therefore, on an
+arbitrary outerplanar graph $\g$ that has more than $3$ nodes.  Since
+adding more edges to a graph cannot decrease the degree of any node,
+we lose no generality by focusing on a $\g$ that is {\em maximal}
+outerplanar, \index{maximal outerplanar graph} in the sense that
+adding any new edge to $\g$ would destroy its outerplanarity.
+
+Because $\g$ has more than $3$ nodes, and because all of its nodes lie
+on a circle (in the drawing that witnesses its outerplanarity), there
+must be pairs of nodes of $\g$ that are not adjacent along the circle.
+Let $u$ and $v$ be nonadjacent nodes such that the distance between
+$u$ and $v$ (measured in edges that must be traversed to reach one
+from the other) is minimal among pairs of nodes nonadjacent nodes.  We
+consider two cases.
+\begin{itemize}
+\item
+If the distance between $u$ and $v$ were $2$, then the unique node
+that lies between $u$ and $v$ along the circle would have degree $2$.
+\item
+If, on the other hand, the distance between $u$ and $v$ {\em exceeded}
+$2$, then there would be at least {\em two} nodes that lie between $u$
+and $v$ in either direction around the circle.  But in this case,
+there would be two nonadjacent nodes that were closer to one another
+than $u$ and $v$---which contradicts our choice of $u$ and $v$ as a
+pair of closest nonadjacent nodes.
+\end{itemize}
+We conclude that $\g$ must have a node of degree $\leq 2$, completing
+the proof.
+\qed
+\end{proof}
+
+\medskip
+
+Our primary concern in this section is, of course, on graph coloring.
+We return to thsi topic now
+
+\begin{prop}
+\label{thm:OP-3-colorability}
+Every outerplanar graph is $3$-colorable.
+\end{prop}
+
+\begin{proof}
+We proceed by induction on the number of nodes in the outerplanar
+graph to be colored.
+
+The base cases of the result are provided by small outerplanar
+graphs---say those having $3$ nodes or fewer.
+
+We assume, for induction, that every outerplanar graph having fewer
+than $n$ nodes is $3$-colorable.
+
+Let us nw focus on an $n$-node outerplanar graph $\g$.  By
+Proposition~\ref{thm:basic-outerplanar-stuff}, $\g$ has a node $v$ of
+degree $\leq 2$.  Let us remove node $v$ from $\g$, along with the
+edge(s) that connect $v$ to the rest of $\g$; call the resulting graph
+$\g'$.  Now, $\g'$ is clearly outerplanar, once we ``stitch'' together
+the circle we ``damaged'' by removing $v$, and $\g'$ has fewer than
+$n$ nodes.  By induction, therefore, $\g$ is $3$-colorable.  But now
+we can reattach node $v$ to $\g'$ by replacing the edges that attach
+$v$ to $\g$.  Moreover, we can now color $v$ using whichever of the
+$3$ colors on $\g$ that is {\em not} used for $v$'s neighbors in $\g$.
+We have, thus, specified a $3$-coloring of $\g$, which extends the
+induction and completes the proof.  \qed
+\end{proof}
+
+Two remarks about Proposition~\ref{thm:OP-3-colorability}:
+\begin{enumerate}
+\item
+Our proof of the proposition can easily be transformed into an
+algorithm that $3$ colors any $n$-node outerplanar graph in a
+number of inductive stages that is a low-degree polynomial in $n$.
+\item
+The color-bound of the proposition can, of course, not be improved, as
+witnessed by odd-length cycle-graphs.
+\end{enumerate}
 
 
 \subsubsection{Planar graphs}
