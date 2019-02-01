@@ -1,4 +1,4 @@
-%version of 01-31-19
+%version of 02-01-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -2760,9 +2760,151 @@ contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
 
 \subsection{Coloring the Nodes of Planar and Outerplanar Graphs}
 \label{sec:planar+outerplanar-color}
+\index{planar graphs}
+\index{outerplanar graphs}
+\index{graphs!planar}
+\index{graphs!outerplanar}
 
 In this section, we focus on two graph families that are defined in
-terms of the way they can be drawn.
+terms of the way they can be drawn (on a two-dimensional medium, such
+as a piece of paper).
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+The reader should not view this attention to how a graph can be drawn
+as just an abstract game.  The process of designing and implementing
+circuits within the constraints of {\it VLSI}, \index{VLSI} {\it Very
+  Large Scale Integrated Circuit} technology,
+\index{Very Large Scale Integrated Circuit technology}
+\index{VLSI:Very Large Scale
+Integrated Circuit technology} are very similar to drawing a circuit
+on a two-dimensional medium.  We refer the reader to the revolutionary
+1979 text \cite{Mead-Conway} for an introduction to this fascinating
+technology, which requires technical literacy but little specialized
+knowledge.
+\end{minipage}
+}
+\bigskip
+
+\noindent
+Graphs in the larger family---termed {\it planar}
+\index{graphs!planar} \index{planar graphs} graphs---are characterized
+by their ability to be drawn without any crossing edges.  Graphs in
+the subfamily of planar graphs---termed {\it outerplanar}
+\index{graphs!outerplanar} \index{outerplanar graphs} graphs---are
+characterized by their ability to be drawn in the following manner.
+One can place the nodes of an outerplanar graph $\g$ around a circle
+in such a way that the edges of $\g$ can be drawn within the circle,
+without any crossings.
+
+We urge the reader to garner intuition about the graphs in these
+families by experimenting with some specific graphs.
+\begin{itemize}
+\item
+The first set of graphs to play with are the cliques $\k_3$, $\k_4$,
+and $\k_5$.  To forestall excessive frustration for the reader, we
+note that
+  \begin{itemize}
+  \item
+$\k_3$ is outerplanar; 
+  \item
+$\k_4$ is planar but not outerplanar;
+  \item
+$\k_5$ is not planar.
+  \end{itemize}
+
+\item
+The second graphs to play with are so-called {\it bipartite cliques}.
+\index{bipartite cliques}
+The bipartite clique $\k_{m,n}$'s nodes are ordered pairs of integers:
+\[  \n_{\fk_{m,n}} \ = \
+\{ \langle i,j \rangle \ \ | \ \ 1 \leq i \leq m; \ \ 1 \leq j \leq n\}
+\]
+$\k_{m,n}$'s connect each node $\langle i,j \rangle$ to every node
+  \begin{itemize}
+  \item
+$\langle i,k \rangle$ with $1 \leq k \leq n$
+  \item
+$\langle h,j \rangle$ with $1 \leq h \leq m$
+  \end{itemize}
+
+The second set of graphs to play with are the bipartite cliques
+$\k_{1,3}$, $\k_{2,3}$, and $\k_{3,3}$.  To forestall excessive
+frustration for the reader, we note that
+  \begin{itemize}
+  \item
+$\k_{1,3}$ is outerplanar; 
+  \item
+$\k_{2,3}$ is planar but not outerplanar;
+  \item
+$\k_{3,3}$ is not planar.
+  \end{itemize}
+\end{itemize}
+
+We selected the graphs to ``play with'' very carefully.  Using
+arguments that go beyond the scope of this text, one can prove the
+following {\em characterization via exclusion} result, which
+characterizes each of our graph families by identifying {\it forbidden
+  subgraphs}.  \index{forbidden subgraphs}
+\index{forbidden subgraphs!characterization of planar graphs}
+\index{forbidden subgraphs!characterization of outerplanar graphs}
+
+\begin{theorem}
+\label{thm:planar+outerplanar-exclusion}
+{\bf (a)}
+A graph is outerplanar if, and only if, it does not have a subgraph
+that is homeomorphic to either $\k_4$ or $\k_{2,3}$.
+
+{\bf (b)}
+A graph is planar if, and only if, it does not have a subgraph
+that is homeomorphic to either $\k_5$ or $\k_{3,3}$.
+\end{theorem}
+
+The word ``homeomorphic'' in
+Theorem~\ref{thm:planar+outerplanar-exclusion} exemplifies daunting
+technical terms that are easily understood informally.  A {\it
+  homeomorph} \index{graphs!homeomorph} of a graph $\g$ is obtained by
+adding new (degree-$2$) nodes along one or more edges of $\g$.
+
+
+\subsubsection{Outerplanar graphs}
+\label{sec:outerplanar-graphs}
+
+The first, and smaller of this section's two graph families comprises
+{\it outerplanar graphs}. \index{outerplanar graphs}
+\index{graphs!outerplanar} A graph $\g$ is {\it outerplanar} if it can
+be drawn (on a two-dimensional medium, such as a piece of paper) in
+the following manner.  One places the nodes of $\g$ on a circle in
+such a way that one can draw $\g$ within the circle with no crossing
+edges.  We shall remark in Section~\ref{sec:planar-graphs} why these
+graphs are called {\em outer}-planar.
+
+
+The drawing-based definition of outerplanar graphs renders obvious the
+following property
+
+
+
+\subsubsection{Planar graphs}
+\label{sec:planar-graphs}
+
+
+FACES AND OUTERplanarity
+
+The larger of this section's two graph families comprises {\it planar
+  graphs}. \index{planar graphs} \index{graphs!planar} A graph is {\it
+  planar} if it can be drawn (on a two-dimensional medium, such as a
+piece of paper) with no crossing edges.  One can view planar graphs as
+abtractions of geographical maps.  Indeed, one of the most fascinating
+
+
+\begin{itemize}
+\item
+TBD
+\end{itemize}
+
+
 
 ** define planar, outerplanar
 ** outerplanar has degree-2 node; therefore (induction) is $3$-colorable
