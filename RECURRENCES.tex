@@ -583,7 +583,7 @@ Fig.~\ref{fig:FiboPascal}.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths//FiboPascal1}
-\caption{Obtaining Fibonacci numbers as diagonals of the left-justified Pascal Triangle.}
+\caption{Obtaining Fibonacci numbers as the sums of diagonal elements of the left-justified Pascal Triangle.}
 \label{fig:FiboPascal}
 \end{center}
 \end{figure}
@@ -615,13 +615,13 @@ provide here just a short sketch.
 Fig.~\ref{fig:FiboPascalExplanation} depicts a portion of Pascal's
 Triangle with shaded diagonal and horizontal annotations.  The shaded
 diagonal annotation depicts the three numbers in the Triangle that
-sum to the Fibonnaci number $F(5)$.
+sum to the Fibonacci number $F(5)$.
 \begin{enumerate}
 \item
 Looking at the three horizontal shaded areas {\em individually}
-illustrates how each of the three numbers on the shaded diagonal,
+illustrates how each of the three numbers on the shaded diagonal (1, 4, 3),
 being a binomial coefficient, arises as a sum of two numbers on the
-preceding rowof the array---as instantiations of the formation rule
+preceding row of the array---as instantiations of the formation rule
 for Pascal's Triangle.  The illustrated instance of the rule asserts
 that:
 \[
@@ -650,7 +650,7 @@ that:
 Looking at the three horizontal shaded areas {\em in tandem}
 illustrates that the numbers along the shaded diagonal are sums of the
 numbers along the two diagonals that are above the shaded one---as
-instantiations of the formation rule for Fibonnaci numbers.  The
+instantiations of the formation rule for Fibonacci numbers.  The
 illustrated instance of the rule asserts that
 \[ F(5) \ = \ F(4) + F(3) \ = \ 5 + 3 \ = \ 8. \]
 \end{enumerate}
@@ -703,6 +703,8 @@ The {\em base case}, $n=2$, holds because $F(2) = 2 =  1 + F(0)$.
 Assume, {\em for induction}, that 
 (\ref{eq:multilinear-Fib-1}) holds for all arguments $2 \leq n < m$.
 
+{\Denis I think the indices n and m are confused here. I suggest to invert them in the following proof...}
+
 \noindent
 We {\em extend} the induction as follows.  Our inductive hypothesis
 assures us that for all $m \geq 3$,
@@ -723,7 +725,7 @@ This extends the induction and completes the proof.
 \medskip
 
 While recurrence (\ref{eq:multilinear-Fib-1}) in
-Proposition~\ref{eq:multilinear-Fib-1} employs all of the Fibonnaci
+Proposition~\ref{eq:multilinear-Fib-1} employs all of the Fibonacci
 numbers up to the desired bound, recurrence
 (\ref{eq:multilinear-Fib-2}) in the next proposition employs only
 every other such number.
@@ -740,11 +742,12 @@ F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \cdots + \ C(n) \\
 \nonumber
 C(n) & = & \left\{
 \begin{array}{cl}
-F(2) + F(1) = 3  & \mbox{\rm if } \ n \ \mbox{\rm is even} \\
-F(1) + F(0) = 2  & \mbox{\rm if } \ n \ \mbox{\rm is odd}
+F(0) = 1  & \mbox{\rm if } \ n \ \mbox{\rm is even} \\
+F(1) = 1  & \mbox{\rm if } \ n \ \mbox{\rm is odd}
 \end{array}
 \right.
 \end{eqnarray}
+{\Denis Attention here on the values of C, verify! I think the constant are the same, see details in the next paragraph...}
 We thereby sum every other term up to the $(n-1)$th and use a
 ``clean-up'' term $C(n)$ to complete the sum.
 \end{prop}
@@ -775,36 +778,39 @@ summation have the same parity.  To wit, the successive indices of the
 expanded summation differ by $2$, beginning with $n-1$, $n-3$, $n-5$,
 and so on; therefore, the index $n-k$ that we expand always has the
 same parity as $n$.  Let us observe the consequence of this fact for
-the ``end game'' of the expanson process.
+the ``end game'' of the expansion process.
 \begin{itemize}
 \item
 When $n$ is even, our expansion eventually comes down to
 \[ \begin{array}{cl}
   & \cdots + F(5) \ + \ F(4) \\
 \longrightarrow 
-  & \cdots + F(5) \ + \ F(2) \ + \ F(1) \\
+  & \cdots + F(5) \ + \ F(3) \ + \ F(2) \\
+  \longrightarrow 
+  & \cdots + F(5) \ + \ F(3) \ + \ F(1) \ + F(0)\\
 \end{array}
 \]
 The expansion must end at this point because we have run out of
 Fibonacci numbers!  We therefore have
-\[ C(n) \ = \ F(2) \ + \ F(1) \ = \ 2 + 1 \ = \ 3. \]
+\[ C(n) \ = \ F(0) \ = \ 1 \]
 
 \item
 When $n$ is odd, our expansion eventually comes down to
 \[ \begin{array}{cl}
   & \cdots + F(4) \ + \ F(3) \\
 \longrightarrow
-  & \cdots + F(4) \ + \ F(1) \ + \ F(0)
+  & \cdots + F(4) \ + \ F(2) \ + \ F(1)
 \end{array}
 \]
 The expansion must end at this point because we have run out of
 Fibonacci numbers!  We therefore have
-\[ C(n) \ = \ F(1) \ + \ F(0) \ = \ 1 + 1 \ = \ 2. \]
+\[ C(n) \ = \ F(1) \ = \ 1 \]
 \end{itemize}
 In either case, our expanded summation produces the correct value of
 $F(n)$.  \qed
 \end{proof}
 
+{\Denis I found a little mistake in the original writing, redoing the calculations, t appears the constants are the same in both cases... Please, check my calculus}
 
 \paragraph{\small\sf B. A family of binary generating recurrences}
 
@@ -1171,7 +1177,10 @@ and on the last two addends.  We thereby transform (\ref{eq:L-FF-2})
 to equation (\ref{eq:L-F-a}), which validates the latter identity.
 \end{itemize}
 
-\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
 Notice that a proof similar to the preceding one yields the identity
 $L(n) = F(n+2) + F(n-2)$.  Similar, but more complicated, identities
 hold for larger arguments.  For the cases $n+3$ and $n+4$, for
@@ -1182,9 +1191,10 @@ L(n) & = & \frac{1}{2} (F(n+3)+F(n-3)) \\
 \label{eq:LF:n+4}
 L(n) & = & \frac{1}{3} (F(n+4)+F(n-4))
 \end{eqnarray}
-{\Arny Perfect exercises, no?}
-\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 
+{\Arny Perfect exercises, no?}
+\end{minipage}
+}
 \bigskip
 
 \noindent {\bf (b)}
