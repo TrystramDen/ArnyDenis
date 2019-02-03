@@ -550,7 +550,7 @@ successive Fibonacci numbers by perusing Fig.~\ref{fig:fibosquare}.
 \begin{center}
         \includegraphics[scale=0.5]{FiguresMaths//Fiboembedded}
 \caption{Successive Fibonacci numbers interpreted geometrically, via a
-  spiral of rectangles whose respective lengths form a Fibonacci
+  spiral of squares whose respective sides form a Fibonacci
   sequence.}
         \label{fig:fibosquare}
 \end{center}
@@ -1171,7 +1171,7 @@ Let us compute $L(n+1)$:
 By definition (\ref{eq:Lucas-defn-2}),
 \begin{equation}
 \label{eq:L-FF-1}
-L(n+1) \ = \L(n) \ + \ L(n-1).
+L(n+1) \ = \ L(n) \ + \ L(n-1).
 \end{equation}
 \item
 When we apply the inductive hypothesis to both addends in
@@ -1203,12 +1203,14 @@ L(n) & = & \frac{1}{3} (F(n+4)+F(n-4))
 \end{eqnarray}
 
 {\Arny Perfect exercises, no?}
+
+{\Denis YES}
 \end{minipage}
 }
 \bigskip
 
 \noindent {\bf (b)}
-By direct calculation, we derive the desired rsult:
+By direct calculation, we derive the desired result:
 \begin{eqnarray*}
 2 F(n+1) & = & F(n+1) \ + \ F(n) \ + \ F(n-1) \\
          & = & L(n) \ + \ F(n).
@@ -1237,6 +1239,8 @@ just proved.  To wit,
 {\it The inductive hypothesis}.
 Let us assume that identity (\ref{eq:L-F-c}) holds for all $m \leq k$.
 
+{\Denis Again, we should check for every proof the indices, the basic expressions are on $n$, fine.
+The induction is on $m$ or $k$ up to $n$, and then, we derive for $n+1$...}
 \medskip
 
 \noindent
@@ -1325,7 +1329,7 @@ P(n+1, k+1) & = & P(n,k) + 2 P(n, k-1) \ \ \  \mbox{ for all } n > 1, k > 0
 
 This somewhat complicated definition can be better understood with the
 help of an analogue of Pascal's Triangle that we call the {\it
-  Tree-profile Triangle}.  The reader may want to comapare
+  Tree-profile Triangle}.  The reader may want to compare
 Fig.~\ref{fig:pascal-triangle} with Fig.~\ref{fig:TP-triangle}.
 
 \begin{figure}[htb]
@@ -1384,6 +1388,8 @@ The case $n=1$ of (\ref{eq:TP=sum-of-bincoeff}) follows from the
 ``boundary cases'' of definition (\ref{eq:TP-defn}).
 
 \medskip
+
+{\Denis same remark as before about the indices...}
 
 \noindent
 {\it The inductive hypothesis.}
@@ -1466,15 +1472,17 @@ P(n+1, k) & = & P(n, k-1) \ + \ 2 P(n, k-2)
 We use the recurrences in this triplet to attack the two alleged
 recurrences in the proposition.
 
+{\Denis indent the first equation of the previous array}
 \medskip
 
 \noindent {\bf (a)}
 Combining recurrences (\ref{eq:TP-recurrence-1}) and
 (\ref{eq:TP-recurrence-2}) leads, via
 Proposition~\ref{thm:TP=sum-of-bincoeff}, to the following chain of
-equalities.
+equalities\footnote{Nothing magical here! The idea to combine $P(n, k+1)$ and $-2 P(n, k)$
+is for removing the common term $P(n-1, k-1)$}.
 \begin{eqnarray*}
-P(n, k+1) \ - \ P(n, k)
+P(n, k+1) \ - \ 2 \ P(n, k)
   & = &
 P(n-1, k) \ - \ 4 P(n-1, k-2) \\
   & = &
@@ -1557,6 +1565,8 @@ S(n) \ \ = \ \ 1 \ + \ 2 \cdot \sum_{k=0}^{2n-1}
 We can combine the preceding expressions with the ``restricted''
 Binomial Theorem (Theorem~\ref{thm:restricted-binomial-thm}) to
 generate the following chain of equalities.
+
+{\Denis The first equality is not straightforward, I think an intermediate step is needed here...}
 \begin{eqnarray*}
 S(n) & = & 
 \sum_{j=0}^{2n-1} 2^{n-j} {n \choose j} \ - \ 1  \\
@@ -2251,19 +2261,21 @@ $F(n+2)^2 = 4.F(n+1).F(n) + F(n-1)^2$
   cover anywhere.  Since this is not a true paradox, this material
   does not belong in that section.}
 
+{\Denis Right, put this as an excercice. }
 
 {\Arny Both of my preceding comments build on the question, Why should
   we include this material?  Obviously, when new techniques are
   involved, or when new, highly applicable, concepts are revealed,
   then the material should be included.  In other situations, I am
   just pulled by my gut feeling.  Should we discuss?}
+  
+
 
 \ignore{**************
 \subsection{$\oplus$ Cassini's Identity and Carroll's Puzzle}
 \label{sec:Cassini+Carroll}
 \index{Fibonacci numbers!Cassini's Identity}
 \index{Fibonacci numbers!Carroll's Puzzle}
-
 
 
 \noindent \textbf{Property. (Cassini's identity)} 
@@ -2323,21 +2335,6 @@ The greater $n$, the better the paradox because the deformation of the surface o
 ***********************}
 
 %\subsection{Using Fibonacci numbers}
-%
-%$F(n)$ is the number of paths from node $1$ to $n$ in the following family of graphs of figure~\ref{fibograph}. 
-%
-%\begin{figure}[h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{../FIGmaths/FiboGraph.pdf}
-%        \caption{Counting paths from node $1$ to node $n$ ($n=7$)}
-%        \label{fibograph}
-%\end{center}
-%\end{figure}
-%%Show how this number is related to Fibonacci's numbers.
-%%\item Find a closed form for the sum of consecutive Fibonacci numbers.
-
-
-
 
 %
 %Figures~\ref{fig:alternatePowers2even} and~\ref{fig:alternatePowers2finalEven} illustrate the construction in the even case.
