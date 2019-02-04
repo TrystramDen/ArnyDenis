@@ -2137,13 +2137,13 @@ set $\R_{(0,1)}$, and hence, the set $\R$, is {\em not} countable!
 \qed
 \end{proof}
 
-{\Denis The result and the proof are fine, however, I am preaty sure we can simplify 
+{\Denis The result and the proof are fine, however, I am sure we can simplify 
 the presentation of the successive steps more clearly. I will come back later at this...
 }
 
+
 \section{The Complex Numbers}
 \label{sec:complexes}
-
 
 \subsection{The Basics of the Complex Numbers}
 
@@ -2447,7 +2447,8 @@ be needed.
 
 \medskip
 
-\noindent {\small\sf The ``standard'' way of writing the polynomial $P(x)$.}
+\begin{itemize}
+\item {\small\sf The ``standard'' way of writing the polynomial $P(x)$.}
 
 \noindent General degree $d$:
 
@@ -2458,9 +2459,7 @@ x^{d-1} \ + \ a_d x^d$
 
 $P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \ a_3 x^3$
 
-\medskip
-
-\noindent {\small\sf Rewriting $P(x)$ using Horner's rule.}
+\item {\small\sf Rewriting $P(x)$ using Horner's rule.}
 
 \noindent General degree $d$:
 
@@ -2470,8 +2469,7 @@ $P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ +  \cdots
 \noindent Degree $3$:
 
 $P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ + \ a_3 x))$ 
-
-\medskip
+\end{itemize}
 
 The ``rule'' is so natural that its origins certainly predate the
 cited 1819 publication, but they are impossible to trace definitively.  \qed 
@@ -2536,7 +2534,11 @@ ultimately periodic.
 \end{prop}
 
 \begin{proof}
+
+\begin{enumerate}
+\item 
 {\small\sf Part 1: the ``if'' clause.}
+
 Say first that the real number $r$ has an ultimately periodic infinite
 base-$b$ numeral.
 
@@ -2592,6 +2594,8 @@ c_0 c_1 c_2
 \mbox{\sc value}(c_0 c_1 c_2) \cdot \sum_{i=1}^\infty b^{-2-3i}
 \end{eqnarray}
 
+{\Denis We must change VALUE, is corresponds to $NUM_{10}$ right?}
+
 We shall learn in Section~\ref{sec:geometric-sums} that infinite
 summations such as the one in (\ref{eq:sum-in-numeral}), namely,
 $\sum_{i=1}^\infty b^{-2-3i}$,
@@ -2607,10 +2611,9 @@ Collecting all of this information, we find that there exist {\em
 The number $r$ is, thus, the ratio of two integers; hence, by
 definition, it is rational.
 
-\bigskip
-
-\noindent
+\item 
 {\small\sf Part 2: the `` only if'' clause.}
+
 Say next that the real number $r$ is rational---specifically,
 \[ r \ = \ s + \frac{t}{q} \]
 for nonnegative integers $t < q$ and $s$.  It is only the fraction
@@ -2672,6 +2675,7 @@ This will engender periodicity in the digits of $r$'s base-$b$ numeral:
 \]
 We are, thus, observing the claimed ultimately periodic behavior in
 $r$'s base-$b$ numeral.
+\end{enumerate}
 \qed
 \end{proof}
 
@@ -2708,7 +2712,7 @@ and base $b = 10$.
 \]
 The remainder $4$ in the last illustrated division step cycles us back
 to the initial division step, where the ``$4$'' came from the
-numerator of the arget fraction.  This repetition signals that the
+numerator of the target fraction.  This repetition signals that the
 entire process cycles from this point on.  In other words, we have
 determined that
 \[ \frac{4}{7} \ = \ .[571428] \ [571428] \ [571428] \ \cdots \]
@@ -2769,6 +2773,10 @@ between Earth and its closest star, the Sun, is, very roughly,
 5,892,480,000,000 & \mbox{ inches}
 \end{array}
 \]
+
+{\Denis notice here that people in US need 3 different non-correlated metrics 
+while from the french revolution and "systeme metrique" we need only one (the meter)...}
+
 All of these numbers are coarse approximations.  In some sense, they
 all convey exactly the same information, since all are obtained from
 the first number (the number of miles to the Sun) by simple scaling.
@@ -2818,3 +2826,114 @@ Within this system of specification, we thus have
 .166   & \times & 10^{-23} & \mbox{ grams of weight of a proton, to $3$ digits of accuracy}
 \end{array}
 \]
+
+
+{\Denis I suggest to add a section on numbering systems (we already spoke about binary system,
+I would like to add a section on Fibonacci numbering system), 
+I put it in the following, but may be we will have to put somewhere else, or as an exercice?}
+
+\section{Fibonacci numbering system}
+
+We study how Fibonacci numbers can be used as a basis for representing any integers~\ref{SectionFibo}.
+
+Let us first introduce a useful notation: $j \gg k$ iff $j \geq k+2$.
+
+We will first prove the \textit{Zeckendorf's theorem} which states that every positive integer $n$ has a unique representation of the form:
+
+$n = F_{k_1} + F_{k_2} + ... + F_{k_r}$ where $k_1 \gg k_2 \gg ... \gg k_r$ and $k_r \geq 2$.
+
+Here, we assume that the Fibonacci sequence starts at index $1$ and not $0$,
+moreover, the decompositions will never consider $F(1)$ (since $F(1)=F(2$)). 
+For instance, the representation of $12345$ turns out to be:
+
+$12345 = 10946 + 987 + 377 + 34 + 1 = F(21) + F(16) + F(14) + F(9) + F(2)$
+\bigskip
+
+Figure~\ref{zeckendorf} shows the decomposition of the first 26 integers written in this system. 
+\begin{figure}[h]
+\begin{center}
+%\includegraphics[width=0.4\textwidth]{../FIGmaths/zeckendorf_representations.png}
+        \includegraphics[scale=0.6]{FiguresArithmetic/Zeckendorf}
+        \caption{The first integers (on the Y-axis) broken down into the Zeckendorf representation.
+        The shaded rows corresponds to pure Fibonacci numbers.}
+\label{zeckendorf}
+\end{center}
+\end{figure}
+
+\noindent \textbf{Proof of Zeckendorf's Theorem}
+
+The proof is done by induction on $n$ for proving simultaneously both construction and uniqueness.
+
+\begin{itemize}
+\item
+The basis is true since the decomposition is obviously unique for $n=2$ (and also for $n=3$). 
+Notice that for $n=4$, we have $4 = 3 + 1 = F(4) + F(2)$. 
+
+\item
+Assume for the induction step that any integer strictly lower than $F(k)$ can be decomposed uniquely as the sum of non-consecutive Fibonacci numbers.
+We will prove as a consequence that an integer $n$ in the next interval between two consecutive Fibonacci numbers $F(k) \leq n < F(k+1)$ may be decomposed. 
+
+If $n=F(k)$ is a Fibonacci number, the decomposition is reduced to $F(k)$.
+
+Moreover, it is not difficult to check that it is unique.
+
+%by using Property~\ref{prop:FiboSum}:
+%$F(k) = 2+ \sum_{i=1}^{k-2} F(i)$ (the 2 comes from the shift of the starting element of the sequence...).
+
+\medskip
+
+If $n \neq F(k)$ write $n = F(k) + N$.
+
+As $N$ is strictly lower than $F(k)$, we apply the recurrence hypothesis to decompose it into non-consecutive Fibonacci numbers:
+
+$n = F(k) + F(k_1) + F(k_2) + \cdots + F(r)$ where $k_2 \gg ... \gg k_r \geq 2$. 
+
+The last point to verify is that $F(k)$ and $F(k_1)$ are not consecutive ($F(k) \gg F(k_1)$), which is done by contradiction:
+
+Assuming $k$ and $k_1$ are consecutive ($k_1=k-1$) leads to $n = F(k+1) + F(k_2) + \cdots + F(r)$
+which contradicts $n < F(k+1)$.
+\end{itemize}
+
+Any unique system of representation is a numbering system.
+
+The previous theorem ensures that any non-negative integer can be written
+as a sequence of bits $b_i$, in other words,
+
+$n = (b_mb_{m-1}...b_2)_F$ iff $n = \Sigma_{k=2}^m b_k F_k$.
+
+Let us compare this system to the binary representation.
+For instance, the Fibonacci representation of $12345$ is $(100001010000100000010)_F$
+while  $12345 = 2^{13} + 2^{12} + 2^{5} + 2^{4} + 2^{3} + 2^{0} = (1100000111001)_2$.
+
+The binary representation is more compact. 
+\bigskip
+
+The decomposition in the Fibonacci basis of the first integers (starting from $1 = (00001)_F$) is as follows:
+
+ $2 = (0010)_2 = F_3 = (00010)_F$
+ 
+ $3 = (0011)_2 = F_4 = (00100)_F$
+  
+ $4 = (100)_2 = 3+1 = (00101)_F$
+ 
+ $5 = (101)_2 = F_5 = (01000)_F$
+ 
+ $6 = (110)_2 = 5+1 = (01001)_F$
+ 
+ $7 = (111)_2 = 5+2 = (01010)_F$
+ 
+ $8 = (1000)_2 = F_6 = (10000)_F$
+ 
+ $9 = (1001)_2 = (10001)_F$
+ 
+ $10 = (1010)_2 = (10010)_F$
+ 
+ $11 = (1011)_2 = (10100)_F$
+ 
+ $12 = (1100)_2 = (10101)_F$
+ 
+ $13 = (1101)_2 = F_7 =(100000)_F$
+ 
+ ...
+ 
+There is no consecutive digits equal to $1$ in such representations.
