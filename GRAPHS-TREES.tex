@@ -1,4 +1,4 @@
-%version of 02-01-19
+%version of 02-06-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -989,7 +989,8 @@ witnessed by the directed distance from each node $k$ of $\widehat
 \end{figure}
 
 \subsubsection{The complete graph, or, clique $\k_n$}
-\index{complete graph}
+\label{sec:cliques}
+\index{complete graph} \index{clique}
 
 For each positive integer $n \in \N^+$, we denote by $\k_n$ the {\em
   undirected} order-$n$ {\it complete-graph} (or, {\it clique}),
@@ -2798,12 +2799,14 @@ equivalent to demanding that $\g$'s edges can be drawn within the
 circle without any crossings.
 
 We urge the reader to garner intuition about the graphs in these
-families by experimenting at drawing some specific graphs.
+families by experimenting with drawing some specific, rather complex
+graphs.
 \begin{itemize}
 \item
-The first set of graphs to draw are the cliques $\k_3$, $\k_4$, and
-$\k_5$.  To forestall excessive frustration for the reader, we note
-that
+The first set of graphs to draw are cliques, as defined in
+Section~\ref{sec:cliques}.  The cliques $\k_3$, $\k_4$, and
+$\k_5$ will help expose the nature of the planar and outerplanar
+graphs, because:
   \begin{itemize}
   \item
 $\k_3$ is outerplanar; 
@@ -2814,19 +2817,20 @@ $\k_5$ is not planar.
   \end{itemize}
 
 \item
-The second graphs to play with are so-called {\it bipartite cliques}.
-\index{bipartite cliques}
-The bipartite clique $\k_{m,n}$'s nodes are ordered pairs of integers:
+The ``bipartite'' cousins of the cliques will also yield valuable
+insights.  For postive integers $m$ and $n$, the $m \times n$
+bipartite clique $\k_{m,n}$ \index{bipartite clique} is the graph
+whose node-set comprises the ordered pairs of integers:
 \[  \n_{\fk_{m,n}} \ = \
 \{ \langle i,j \rangle \ \ | \ \ 1 \leq i \leq m; \ \ 1 \leq j \leq n\}
 \]
-$\k_{m,n}$'s connect each node $\langle i,j \rangle$ to every node
+and whose edges connect each node $\langle i,j \rangle$ to every node
 $\langle i,k \rangle$ with $1 \leq k \leq n$ and to every node
 $\langle h,j \rangle$ with $1 \leq h \leq m$.
 
-The second set of graphs to play with are the bipartite cliques
-$\k_{1,3}$, $\k_{2,3}$, and $\k_{3,3}$.  To forestall excessive
-frustration for the reader, we note that
+The second set of graphs to draw are the bipartite cliques $\k_{1,3}$,
+$\k_{2,3}$, and $\k_{3,3}$.  These graphs will also help expose the
+nature of the planar and outerplanar graphs, because:
   \begin{itemize}
   \item
 $\k_{1,3}$ is outerplanar; 
@@ -2837,13 +2841,19 @@ $\k_{3,3}$ is not planar.
   \end{itemize}
 \end{itemize}
 
-We selected the graphs to ``play with'' very carefully.  Using
-arguments that go beyond the scope of this text, one can prove the
-following {\em characterization via exclusion} result, which
-characterizes each of our graph families by identifying {\it forbidden
-  subgraphs}.  \index{forbidden subgraphs}
+We selected the preceding cliques and bipartite cliques to ``play
+with'' very carefully.  Using arguments that go beyond the scope of
+this text, one can prove the following {\em characterization via
+  exclusion} result, which characterizes each of our graph families by
+identifying {\it forbidden subgraphs}.  \index{forbidden subgraphs}
 \index{forbidden subgraphs!characterization of planar graphs}
-\index{forbidden subgraphs!characterization of outerplanar graphs}
+\index{forbidden subgraphs!characterization of outerplanar graphs} The
+notion of {\it graph homeomorphism} plays a fundamental role in
+\index{graphs!homeomorphism} the characterization.  This is a
+dauntingly named technical term that is easily understood informally.
+A {\it homeomorph} \index{graphs!homeomorph} of a graph $\g$ is
+obtained by adding (degree-$2$) nodes along one or more edges of $\g$.
+
 
 \begin{theorem}
 \label{thm:planar+outerplanar-exclusion}
@@ -2856,23 +2866,16 @@ A graph is planar if, and only if, it does not have a subgraph
 that is homeomorphic to either $\k_5$ or $\k_{3,3}$.
 \end{theorem}
 
-The word ``homeomorphic'' in
-Theorem~\ref{thm:planar+outerplanar-exclusion} exemplifies daunting
-technical terms that are easily understood informally.  A {\it
-  homeomorph} \index{graphs!homeomorph} of a graph $\g$ is obtained by
-adding (degree-$2$) nodes along one or more edges of $\g$.
-
 
 \paragraph{\small\sf A. Outerplanar graphs}
 
-We look first at the smaller of this section's two graph families,
-namely, the {\it outerplanar graphs}. \index{outerplanar graphs}
-\index{graphs!outerplanar}  (We shall remark in
-Section~\ref{sec:planar-graphs} why these graphs are called {\em
-  outer}-planar.)
+We look first at the smaller of this section's graph families, namely,
+the {\it outerplanar graphs}. \index{outerplanar graphs}
+\index{graphs!outerplanar} (We shall remark in subsection B why these
+graphs are called {\em outer}-planar.)
 
-We begin our discussion with some basic facts about outerplanar
-graphs.
+We begin our discussion of outerplanar graphs with some basic facts
+about the family.
 
 \begin{prop}
 Every tree is outerplanar.
@@ -2946,12 +2949,17 @@ the proof.
 \qed
 \end{proof}
 
-\medskip
+\bigskip
 
 Our primary concern in this section is, of course, on graph coloring.
-We return to thsi topic now
+We return to this topic now.  The $3$-node cycle $\cc_3$ witnesses the
+fact that not every outerplanar graph is $2$-colorable; $3$ colors is
+the best that we can hope for.  We now show that this hope can be
+realized.  The inductive proof of the following result can easily be
+turned into an efficient node-coloring algorithm for outerplanar
+graphs.
 
-\begin{prop}
+\begin{prop}{\bf The $3$-Color Theorem for Outerplanar Graphs}
 \label{thm:OP-3-colorability}
 Every outerplanar graph is $3$-colorable.
 \end{prop}
@@ -2980,6 +2988,7 @@ We have, thus, specified a $3$-coloring of $\g$, which extends the
 induction and completes the proof.  \qed
 \end{proof}
 
+\ignore{**************
 Two remarks about Proposition~\ref{thm:OP-3-colorability}:
 \begin{enumerate}
 \item
@@ -2990,18 +2999,49 @@ number of inductive stages that is a low-degree polynomial in $n$.
 The color-bound of the proposition can, of course, not be improved, as
 witnessed by odd-length cycle-graphs.
 \end{enumerate}
-
+*************}
 
 \paragraph{\small\sf B. Planar graphs}
 
 
-FACES AND OUTERplanarity
-
 The larger of this section's two graph families comprises {\it planar
-  graphs}. \index{planar graphs} \index{graphs!planar} A graph is {\it
-  planar} if it can be drawn (on a two-dimensional medium, such as a
-piece of paper) with no crossing edges.  One can view planar graphs as
+  graphs} \index{planar graphs} \index{graphs!planar} i.e., graphs
+that can be drawn (on a two-dimensional medium, such as a piece of
+paper) with no crossing edges.  One can view planar graphs as
 abtractions of geographical maps.  Indeed, one of the most fascinating
+dramas in modern mathematics has been the century-plus attempt to
+prove the following theorem. \index{The Four-Color Theorem}
+
+\begin{theorem}{{\bf The Four-Color Theorem for Planar Graphs} \cite{AppelH77a,AppelH77b}}
+\label{thm:Four-ColorTheorem}
+Every planar graph is $4$-colorable.
+\end{theorem}
+
+Beginning with a failed attempt, in 1875, to prove that every planar
+map can be colored with four colors with no abutting countries getting
+the same color, the so-called {\it Four-Color Problem}
+\index{The Four-Color Problem} held the world of discrete mathematics
+in thrall for roughly a century before Kenneth Appel \index{Appel, Kenneth} 
+and Wolfgang Haken, \index{Haken, Wolfgang}---with the help of their
+families and their computer!---announced their two-article-long proof
+of Theorem~\ref{thm:Four-ColorTheorem}.  But the drama surrounding the
+Four-Color Problem persisted, because of the Appel-Haken proof's
+reliance, in a fundamental way, on a compute program that checked more
+than a thousand essential assertions (about forbidden subgraphs).  It
+took the mathematics community years before this proof, with its
+massive complexity and unprecedented employment of ``collaboration''
+by computer, was generally accepted.  In addition to the primary
+references \cite{AppelH77a,AppelH77b} that accompany our statement of
+the Theorem, we recommend to the interested reader the articles
+\cite{AppelH77c,AppelH89} that summarize and, to some extent,
+popularize this marvelous mathematical tale..
+
+Not surprisingly, we are not going to present a proof of
+Theorem~\ref{thm:Four-ColorTheorem}, but we shall now present the
+six-color and five-color analogues of the theorem.  The redundancy in
+our presentation is motivated by the fact that the six-color result is
+so close to its outerplanar-graph cousin,
+Proposition~\ref{thm:OP-3-colorability}.
 
 
 \begin{itemize}
@@ -3009,6 +3049,8 @@ abtractions of geographical maps.  Indeed, one of the most fascinating
 TBD
 \end{itemize}
 
+
+FACES AND OUTERplanarity
 
 
 ** define planar, outerplanar
