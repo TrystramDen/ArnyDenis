@@ -2974,9 +2974,9 @@ graphs---say those having $3$ nodes or fewer.
 We assume, for induction, that every outerplanar graph having fewer
 than $n$ nodes is $3$-colorable.
 
-Let us nw focus on an $n$-node outerplanar graph $\g$.  By
-Proposition~\ref{thm:basic-outerplanar-stuff}, $\g$ has a node $v$ of
-degree $\leq 2$.  Let us remove node $v$ from $\g$, along with the
+Let us now focus on an arbitrary $n$-node outerplanar graph $\g$.  By
+Proposition~\ref{thm:basic-outerplanar-stuff}(d), $\g$ has a node $v$
+of degree $\leq 2$.  Let us remove node $v$ from $\g$, along with the
 edge(s) that connect $v$ to the rest of $\g$; call the resulting graph
 $\g'$.  Now, $\g'$ is clearly outerplanar, once we ``stitch'' together
 the circle we ``damaged'' by removing $v$, and $\g'$ has fewer than
@@ -3034,28 +3034,139 @@ by computer, was generally accepted.  In addition to the primary
 references \cite{AppelH77a,AppelH77b} that accompany our statement of
 the Theorem, we recommend to the interested reader the articles
 \cite{AppelH77c,AppelH89} that summarize and, to some extent,
-popularize this marvelous mathematical tale..
+popularize this marvelous mathematical tale.
 
 Not surprisingly, we are not going to present a proof of
-Theorem~\ref{thm:Four-ColorTheorem}, but we shall now present the
-six-color and five-color analogues of the theorem.  The redundancy in
-our presentation is motivated by the fact that the six-color result is
-so close to its outerplanar-graph cousin,
-Proposition~\ref{thm:OP-3-colorability}.
+Theorem~\ref{thm:Four-ColorTheorem} in an introductory text, but we
+shall now present the six-color and five-color analogues of the
+theorem.  We present the weaker result (six colors) as well as the
+stronger one (five colors) because the six-color result is so close to
+its outerplanar-graph cousin,
+Proposition~\ref{thm:OP-3-colorability}---a fact that we hope the
+reader will find thought-provoking.
 
+The first step in proving the ``Six-Color Theorem for Planar Graphs''
+will be to derive the following analogue for planar graphs of 
+Proposition~\ref{thm:basic-outerplanar-stuff}(d), which assures us
+that every outerplanar graph has a node of degree $2$.
 
+\begin{lemma}
+\label{thm:PlanarGraph-degree5}
+Every planar graph has a node of degree $\leq 5$.
+\end{lemma}
+
+\begin{proof} {\em (Lemma~\ref{thm:PlanarGraph-degree5})}
+Let us focus on a planar drawing of a (perforce) planar graph $\g$,
+which has $n$ nodes, $e$ edges, and $f$ {\it faces}.  A {\it face}
+\index{graphs!planar!face in a drawing}
+\index{planar graph!face in a drawing} 
+in a drawing of $\g$ is a polygon whose sides are edges of
+$\g$, whose points are nodes of $\g$, and whose interiors are empty,
+in that no edge of $\g$ crosses through the interior.
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+Now that we know about faces, we can finally describe the origin of
+the term {\it outerplanar}.  A graph $\g$ is outerplanar if it can be
+drawn with all of its nodes around a single ``outer'' face in such a
+way that all of its edges are drawn in a noncrossing manner within the
+``outer'' face.  In fact, we usually draw $\g$ so that the ``outer''
+face is literally outside the ``outer'' face.
+\end{minipage}
+}
+\bigskip
+
+The following auxiliary result derives a celebrated ``formula'' of
+Euler.  \index{Euler, Leonhard} \index{Euler's Formula}
+
+\begin{prop} {(\bf Euler's Formula for Planar Graphs)}
+\label{thm:Euler-Formula}
+Given the indicated drawing of $\g$, we have
+\begin{equation}
+\label{eqn:Eulers-formula}
+n \ - \ e \ + \ f \ \ = \ \ 2
+\end{equation}
+\end{prop}
+
+\begin{proof} {\em (Proposition~\ref{thm:Euler-Formula})}
+We proceed by structural induction, growing the graph $\g$ edge by
+edge.
+
+The result clearly holds for the smallest planar graphs, including the
+smallest interesting one, namely, $\cc_3$, which has $n = e = 3$ and $f
+=2$ (the inner face of the triangle and the outer face).
+
+Say that we have a current version of $\g$, and we proceed to grow it
+by adding a new edge.  Two cases arise.\begin{itemize}
+\item
+The new edge connects existing nodes.  In this case, the augmentation
+of $\g$ increases the number of edges ($e$) and the number of faces
+($f$) by $1$ each, while keeping the number of nodes ($n$) unchanged.
+Euler's formula (\ref{eqn:Eulers-formula}) thus continues to hold.
+
+\item
+The new edge adds a new node, which is appended to some preexisting
+node.  In this case, the augmentation of $\g$ increases the number of
+edges ($e$) and the number of nodes ($n$) by $1$ each, while keeping
+the number of faces ($f$) unchanged.  Euler's formula
+(\ref{eqn:Eulers-formula}) thus continues to hold.
+\end{itemize}
+This augmentation extends the induction, whence the result.
+\qed-Proposition~\ref{thm:Euler-Formula}
+\end{proof}
+
+\medskip
+
+As we approach the next step of the proof, we simplify the setting by
+assuming henceforth that $\g$ is connected and that it is a {\em
+  maximal} planar graph, \index{graphs!planar!maximal} in the sense
+that one cannot add any new edge to the drawing without crossing an
+existing edge.  This step only strengthen's the Lemma's conclusion by
+apparently making is more difficult to find a small-degree node.
+
+With this assumption in place, we now adapt a pedagaogical tool from
+\cite{Berge73}, in order to make the following counting argument
+easier to follow.  We construct a {\em directed bipartite} graph {\bf
+  G} which exposes certain features of $\g$'s structure.  On one side
+of {\bf G} are the $f$ faces of $\g$; on the other side are $\g$'s $e$
+edges.  {\bf G} contains an arc from each face $\varphi$ of $\g$ to
+each edge $\varepsilon$ of $\g$ that forms a ``side'' of the polygonal
+drawing of $\varphi$.  Because $\g$ is a maximal planar graph, we have:
 \begin{itemize}
 \item
-TBD
+Each face of $\g$ is a $3$-cycle, hence involves three nodes.
+\item
+Each edge of $\g$ touches two faces.
+\item
+Each edge of $\g$ touches two nodes.
 \end{itemize}
 
+Let us now put these facts together, and assume, for contradiction,
+that every node of $\g$ had degree $\geq 6$.  We would then find that
+\begin{enumerate}
+\item
+$f \ \ \leq \ \ \frac{2}{3} e$
+\item
+$e \ \ \geq \ \ 3n$
+\end{enumerate}
+Incorporating these bounds into Euler's formula
+(\ref{eqn:Eulers-formula}), we arrive at the following contradiction.
+\[ 2 \ \ = \ \ n \ - \ e \  + \ f
+\ \ \leq \ \ \frac{1}{3} e \ - \ e \ + \ \frac{2}{3} e \ \ = \ \ 0
+\]
+This contradiction proves that every planar graph must have a node of
+degree $\leq 5$.
+ \qed-Lemma~\ref{thm:PlanarGraph-degree5}
+\end{proof}
 
-FACES AND OUTERplanarity
+\medskip
+
+**HERE We can finally prove the SIX-COLOR THEOREM.
 
 
-** define planar, outerplanar
-** outerplanar has degree-2 node; therefore (induction) is $3$-colorable
-** planar is $4$-colorable
+
+
 
 
 \subsection{Computing the Chromatic Number of an Arbitrary Graph}
