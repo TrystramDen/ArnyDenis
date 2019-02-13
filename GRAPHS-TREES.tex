@@ -3743,38 +3743,85 @@ we deduce that the value of such a tour is lower than $3/2 \omega_{H^*}$.
 
 \subsection{Graph Decomposition}
 \label{sec:graph-decompose}
+\index{graphs!decomposition}
+\index{graphs!bisector}
+\index{graphs!separator}
+
+The reader will certainly have noted that some ``named'' graphs are,
+intuitively, more tightly interconnected than others.  From a purely
+intellectual vantage point, it would be of interest to be able to
+quantify the tightness of interconnection.  Among the various measures
+that have been proposed, one stands out for its myriad algorithmic
+implications: the notion of {\it graph separator}.  In fact, this
+notion appears in the literature in several flavors.  An $n$-node,
+$e$-edge graph $\g$ has:
+\begin{itemize}
+\item
+an {\it $\alpha$-edge separator} of size $k$, 
+\index{graphs!$\alpha$-edge separator of size $k$} where $\alpha$ is a
+real number with $\alpha \leq 1/2$ and $k$ is an integer with $k < n$,
+precisely if:
+
+\smallskip
+
+one can partition $\g$ into two disjoint (not-necessarily connected)
+subgraphs, each having $\leq \alpha n$ nodes, by removing $\leq k$
+edges from $\g$.
+
+\item
+a {\it $\alpha$-node separator} of size $\ell$,
+\index{graphs!$\alpha$-node separator of size $\ell$}
+where $\alpha$ is a real number with $\alpha \leq 1/2$ and $\ell$ is
+an integer with $k < e$, precisely if:
+
+\smallskip
+
+one can partition $\g$ into two disjoint (not-necessarily connected)
+subgraphs, each having $\leq \alpha n$ nodes, by removing $\leq \ell$
+nodes from $\g$.
+\end{itemize}
+We replace the term ``separator'' with the term {\em ``bisector''} 
+\index{graphs!edge bisector} \index{graphs!node bisector}
+if both subgraphs after a separation operation have $\leq \lfloor
+\frac{1}{2} n \rfloor$ nodes.
+
+\medskip
+
+Commonalities and differences in inherent separator sizes are often
+not visually obvious.  For illustration, referring to the ``named''
+graphs of Section~\ref{sec:graphs-important-families}:
+\begin{itemize}
+\item
+It is certainly obvious that cycles are easier to bisect than cliques,
+as measured by either edge or node bisectors.
+\item
+It is far less clear that de Bruijn networks and hypercubes are
+roughly equal in ease to bisect, as measured by node bisectors.
+\end{itemize}
+But similar separation behavior has very important algorithmic
+consequences.  For instance, the closeness in separation
+characteristics between de Bruijn networks and hypercubes manifests
+itself in a large range of algorithmic applications.  The range of
+such applications is hinted at by sources that study the algorithmics
+of laying out VLSI circuits (see, e.g., \cite{Leiserson85}) and
+sources that study the ability of a network's interconnections to host
+a range of communication patterns that enable efficient parallel
+computation and communication (see, e.g.,
+\cite{AnnexsteinBR90,Leiserson85,Ullman84}).
 
 
-A fundamental variety of relevant notions within the study of graphs
-reside in the notions known in various contexts via terms such as {\em
-  graph separators} or {\em graph bisection}.  The key idea that
-underlies these notions is that certain graph-theoretic structures
-interconnect their graphs' constituent nodes more or less densely ---
-and the type and level of interconnectivity has important algorithmic
-consequences.  In such situations, the student must understand how the
-phenomenon/a modeled by the graphs of interest are elucidated by the
-way a graph can be broken into subgraphs by excising nodes or edges.
-When discussing communication-related structures, for instance, graph
-are often used to model the individual pairwise communications that
-must occur in order to accomplish the desired overall communication
-(such as a broadcast).  There is often a provable tradeoff between the
-number of such pairwise communications and the overall time for the
-completion of the overall task.  As another example, when discussing
-social networks, one can pose questions such as: which node in a
-network is best to connect to (when joining the network) in order to
-best facilitate one's interactions or influence within the community.
-The latter topic leads, e.g., to the study of {\em power-law}
-networks, a topic that would not be studied in depth in any early
-course; indeed, the structure of these networks is not yet well
-understood even in advanced settings.
+\medskip
 
-\cite{Leiserson85}
-\cite{LiptonT79}
-
-The reader can find a comprehensive exposition on the theory of graph
+There is a large literature that develops the algorithmics of finding
+small separators for significant families of graphs.  An early star in
+the firmament of such studies is the discovery in \cite{LiptonT79} of
+a $1/3$-node separator of size $\sqrt{8n}$ for $n$-node planar graphs.
+The dual problem of finding lower bounds on the sizes of graph
+separators is a bit sparser but, of course, no less significant.  The
+reader can find a comprehensive exposition on the theory of graph
 separators in \cite{RosenbergH01}, including both the mathematics that
-underlies the theory and a variety of algorithmic applications.
-
+yields lower bounds on separator sizes and the algorithmics that
+yields upper bounds.
 
 
 \subsection{Graphs with Evolving Structure}
@@ -3804,12 +3851,35 @@ In contrast, the ``modern'' topics we have mentioned do require the
 reader's assimilating new mathematics.  Dealing successfully with the
 algorithmic issues that arise with social networks and inter-networks
 requires the reader to understand the structures of the evolving
-graph-oriented systems and how evolution changes these structures.  A
-number of competing, rather sophisticated, abstract models have been
-developed---see, e.g.,
-\cite{AielloCL00,BarabasiA99,Bollobas85,ChenCGJSW}---and numerous
-studies have attempted to understand the specific situations wherein
-the abstract models reflect reality more or less faithfully---see, e.g.,
+graph-oriented systems and how evolution changes these structures.
+Among the interesting (and valuable) mathematical questions one can
+pose is: When a new node applies to join an evolving network, which
+node in the network is the best one to connect to, in order to best
+facilitate one's interactions or influence within the community.  The
+latter topic leads, e.g., to the study of {\em power-law} networks.
+\index{graphs!with evolving structure!social networks!power-law networks}
+\index{graphs!with power-law degreegrowth patterns}
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+An evolving network is said to {\it obey a power law} if there exists
+a real number $\gamma >0$ such that, for sufficiently large values of
+the integer parameter $k$, the fraction of nodes in the network having
+degree $k$ is proportional to $k^{-\gamma}$.
+\end{minipage}
+}
+\bigskip
+
+Little of the abstract work on power-law networks would likely be
+studied in depth in any early course; indeed, the structure of these
+networks is not yet well understood even in advanced settings.
+Attempts to understand power laws with rigor have given rise to a
+number of competing, rather sophisticated, abstract models---see,
+e.g., \cite{AielloCL00,BarabasiA99,Bollobas85,ChenCGJSW}---and
+numerous studies have attempted to understand the specific situations
+wherein the abstract models reflect reality more or less
+faithfully---see, e.g.,
 \cite{BuT02,FaloutsosFF99,JaiswalRT04,TangmunarunkitGJSW02,ZeguraCD97}.
 
 
