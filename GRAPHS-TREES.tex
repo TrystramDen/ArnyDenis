@@ -1,4 +1,4 @@
-%version of 02-13-19
+%version of 02-15-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -3009,15 +3009,25 @@ paper) with no crossing edges.  The original focus on planar graphs
 stemmed from viewing them as abstractions of geographical maps.
 
 The $4$-node clique $\k_4$ witnesses the fact that not every planar
-graph is $3$-colorable; $4$ colors is the best that we can hope for.
+graph is $3$-colorable.  To wit, because every pair of nodes of every
+clique are neighbors of each other, it follows that:
+
+\smallskip
+
+{\em For all $n$, the $n$-node clique $\k_n$ can be colored with $n$
+  colors but no fewer.}.
+
+\smallskip
+
+\noindent
 A century-plus attempt to prove that $4$ colors suffice for planar
 graphs culminated in one of the most fascinating dramas in modern
 mathematics, as American mathematicians Kenneth Appel 
 \index{Appel, Kenneth}
 and Wolfgang Haken, \index{Haken, Wolfgang}---with the help of their
-families and their computer!---announced their two-article-long proof
-in 1974 of their renowned {\it $4$-Color Theorem for Planar Graphs}.
-\index{The $4$-Color Theorem for Planar Graphs}
+families and of their computer!---announced their two-article-long
+proof in 1974 of their renowned {\it $4$-Color Theorem for Planar
+  Graphs}.  \index{The $4$-Color Theorem for Planar Graphs}
 \index{coloring planar graphs!the $4$-Color Theorem}
 
 \begin{theorem}[The $4$-Color Theorem for Planar Graphs \cite{AppelH77a,AppelH77b}]
@@ -3025,33 +3035,41 @@ in 1974 of their renowned {\it $4$-Color Theorem for Planar Graphs}.
 Every planar graph is $4$-colorable.
 \end{theorem}
 
-Beginning with a failed attempt, in 1875, to prove that every planar
-map can be colored with four colors with no abutting countries getting
-the same color, the so-called {\it $4$-Color Problem} \index{The
-  $4$-Color Problem for planar graphs} held the world of discrete
-mathematics in thrall for roughly a century before But the drama
-surrounding the $4$-Color Problem persisted, because of the
-Appel-Haken proof's reliance, in a fundamental way, on a compute
-program that checked more than a thousand essential assertions (about
-forbidden subgraphs).  It took the mathematics community years before
-this proof, with its massive complexity and unprecedented employment
-of ``collaboration'' by computer, was generally accepted.  In addition
-to the primary references \cite{AppelH77a,AppelH77b} that accompany
-our statement of the Theorem, we recommend to the interested reader
-the articles \cite{AppelH77c,AppelH89} that summarize and, to some
-extent, popularize this marvelous mathematical tale.
+The proof of Theorem~\ref{thm:Four-ColorTheorem} is beyond the scope
+of any introductory text, but the backstory of the proof is truly
+fascinating---and it supplies ample motivation for the proofs of the
+$6$-color and $5$-color analogues of the Theorem.  Beginning with a
+failed attempt, in 1875, to prove that every planar map can be colored
+with four colors with no abutting countries getting the same color,
+the so-called {\it $4$-Color Problem}
+\index{The $4$-Color Problem for planar graphs} 
+held the world of discrete mathematics in thrall for roughly a century
+before But the drama surrounding the $4$-Color Problem persisted,
+because of the Appel-Haken proof's reliance, in a fundamental way, on
+a computer program that checked more than a thousand essential---but
+clerical---assertions (about forbidden subgraphs).  It took the
+mathematics community years before this proof, with its massive
+complexity and unprecedented employment of ``collaboration'' by
+computer, was generally accepted.  In addition to the primary
+references \cite{AppelH77a,AppelH77b} that accompany our statement of
+the Theorem, we recommend to the interested reader the articles
+\cite{AppelH77c,AppelH89} that summarize and, at a rather
+sophisticated level, popularize this marvelous mathematical tale.
 
-Not surprisingly, we are not going to present a proof of
-Theorem~\ref{thm:Four-ColorTheorem} in an introductory text, but we
-shall now present the six-color and five-color analogues of the
-theorem.  We present the weaker result (six colors) as well as the
-stronger one (five colors) because the six-color result is so close to
-its outerplanar-graph cousin,
-Proposition~\ref{thm:OP-3-colorability}---a fact that we hope the
-reader will find thought-provoking.
+We turn now to the $6$-color and $5$-color analogues of the $4$-color
+Theorem.  The weaker, $6$-color, version of the Theorem can be proved
+in much the same way as its outerplanar-graph cousin,
+Proposition~\ref{thm:OP-3-colorability}.  The proof of the stronger,
+$5$-color, version of the Theorem already requires us to break the
+world into multiple cases---but only a single-digit number of cases,
+in contrast to the four-digit case list one encounters with the proof
+of Theorem~\ref{thm:Four-ColorTheorem} \cite{AppelH77a,AppelH77b}.
 
-The first step in proving the ``$6$-Color Theorem for Planar Graphs''
-will be to derive the following analogue for planar graphs of
+\bigskip
+
+{\it The $6$-Color Theorem for Planar Graphs.}
+The first step in showing that every planar graph can be colored using
+$6$ colors resides in the following analogue for planar graphs of
 Proposition~\ref{thm:basic-outerplanar-stuff}(d), which asserts that
 every outerplanar graph has a node of degree $2$.
 
@@ -3221,13 +3239,16 @@ $d_v$.  \qed
 
 \bigskip
 
-**HERE
-
-We 
-now show how to color planar graphs using $5$ colors.
+{\it The $5$-Color Theorem for Planar Graphs.}
 \index{The $5$-Color Theorem for Planar Graphs}
 \index{coloring planar graphs!the $5$-Color Theorem}
 
+We now show sketch a proof that every planar graph can be colored
+using $5$ colors.  We settle for a proof sketch because of the
+details of the required case analysis.  But, the {\em roadmap} of the
+case analysis is a valuable lesson in how mathematics is really done!
+
+**HERE
 **FIND REFERENCE
 
 \begin{prop}[The $5$-Color Theorem for Planar Graphs]
@@ -3235,17 +3256,130 @@ now show how to color planar graphs using $5$ colors.
 Every planar graph is $5$-colorable.
 \end{prop}
 
-\begin{proof}
+\begin{proof}[Sketch]
+We focus on a planar graph $\g$ and on a node $v \in \n_{\fg}$ of
+smallest degree.  We consider the following cases.
+\begin{description}
+\item[{\sf Case 1}.]
+Node $v$ has degree $\leq 4$.
 
-This completes the proof.
+\smallskip
+
+In this case, we employ the coloring strategy of
+Proposition~\ref{thm:P-6-colorability} to produce a $5$-coloring of
+$\g$.  This is possible because, using the terminology of that
+strategy, $d_v \leq 4$ in this case.
+
+\smallskip
+
+{\em Thus, when Case 1 holds, one can color $\g$ with $5$ colors.}
+\end{description}
+Note that, in all remaining cases, node $v$ has precisely $5$
+neighbors---or else, we would have invoked Case 1 to color $\g$ with $5$
+colors.
+\begin{description}
+\item[{\sf Case 2}.]  There is a coloring of $\g$ in which two or more
+  neighbors of node $v$ get the same color.
+
+\smallskip
+
+Even though $v$ has precisely $5$ neighbors, in this case, only $4$
+colors are used to color these neighbors.  This means that when we
+invoke the coloring strategy of
+Proposition~\ref{thm:P-6-colorability}---removing $v$, coloring the
+rest of $\g$, and restoring $v$---we have a $5$th color available to
+use on node $v$.  Thus, the described coloring strategy produces a
+$5$-coloring of $\g$.
+
+\smallskip
+
+{\em Thus, when Case 2 holds, one can color $\g$ with $5$ colors.}
+\end{description}
+Note that, in all remaining cases, all $5$
+neighbors of node $v$ have distinct colors under the coloring of $\g$
+that we are focusing on.
+\begin{description}
+\item[{\sf Case 3}.]
+Two neighbors of $v$, call them $v_1$ and $v_2$, reside in components
+of $\g$ that are mutually disjoint once $v$ and its incident edges are
+removed from $\g$.
+
+\smallskip
+
+For ease of discussion, let $\g'$ be the (disconnected) graph that
+results from removing $v$ and its incident edges from $\g$.  Let
+$\g_1$ be the component of $\g'$ that contains node $v_1$, and let
+$\g_2$ be the component of $\g'$ that contains node $v_2$.
+
+Say that, under the coloring of $\g$ that we are focusing on, node
+$v_1$ is colored {\it red} and node $v_2$ is colored {\it green}.
+
+Let us take subgraph $\g_1$ of $\g$ and recolor its nodes so that
+under the new coloring, node $v_1$ is colored {\it green}.  (One needs
+only switch the colors {\it red} and {\it green} in the existing
+coloring of $\g_1$.)  It is always possible to do this in a way that
+does not affect the valid coloring of $\g_2$ because $\g_1$ and $\g_2$
+are mutually disjoint.
+
+Once we have effected this recoloring of $\g_1$, we now have a valid
+coloring of $\g$ for which Case 2 holds.  (In fact, we can color node
+$v$ {\em red} when we reattach node $v$ and its incident edges.)
+
+\smallskip
+
+{\em Thus, when Case 3 holds, one can color $\g$ with $5$ colors.}
+
+\item[{\sf Case 4}.]
+The final case of the argument is when all neighbors of node $\g$
+remain in the same component of $\g$ when $v$ and its incident edges
+are removed.
+
+\smallskip
+
+Dealing with this case requires a rather intricate multi-subcase
+analysis of the structure of paths within $\g$.  Each subcase
+prescribes a way to recolor the nodes of one or more paths that
+interconnect node $v$'s neighbors, in much the manner of Case 3's
+mandated recoloring of one of the subgraphs of graph $\g'$.
+
+Because the many subcases of this case expose no significant new ideas
+or principles we merely refer the motivated reader to any of the
+excellent expositions of this case available on the Web.  We note
+only, in closing, that:
+
+\smallskip
+
+{\em In all possible cases, one can color $\g$ with $5$ colors.}
+\end{description}
+This four-case analysis completes the proof.
 \qed
 \end{proof}
 
+We finish this topic with an overview of the intellectual
+cost-benefit tradeoff we have observed:
+\begin{itemize}
+\item
+A straightforward recursive coloring strategy suffices if one is
+willing to settle for a six-color palette when coloring planar graphs
+(Proposition~\ref{thm:P-6-colorability}).
+\item
+A four-case analysis, in which one case comprises multipl subcases, is
+needed in order to eliminate one of the colors from the palette, to
+achieve a five-color palette (Proposition~\ref{thm:P-5-colorability}).
+\item
+An analysis involving close to $2000$ cases is needed in order to
+achieve the provable optimal, a four-color palette
+(Theorem~\ref{thm:Four-ColorTheorem}).
+\end{itemize}
 
 \subsection{Computing the Chromatic Number of an Arbitrary Graph}
 \label{sec:Compute-Chromatic-No}
 
+**HERE
 **FIND REFERENCES
+
+\cite{GareyJ79}
+\cite{Karp72}
 
 It is an {\sf NP}-complete problem to decide, given any fixed $k \geq
 3$, whether a given graph $\g$ is $k$-colorable.
@@ -3292,7 +3426,7 @@ evolution is the connectivity graph of the Internet.
 
 
 
-
+\ignore{*******************
 \subsection{Relating Computational and Mathematical Problems}
 \label{sec:Relate-CS-Math-Probs}
 
@@ -3738,7 +3872,7 @@ we deduce that the value of such a tour is lower than $3/2 \omega_{H^*}$.
 \qed
 \end{proof}
 
-
+******************}
 
 
 \subsection{Graph Decomposition}
