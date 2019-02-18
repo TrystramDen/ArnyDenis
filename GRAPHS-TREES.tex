@@ -1,4 +1,4 @@
-%version of 02-17-19
+%version of 02-18-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -3253,87 +3253,162 @@ case analysis is a valuable lesson in how mathematics is really done!
 Every planar graph is $5$-colorable.
 \end{prop}
 
-\begin{proof}[Sketch]
-We focus on a planar graph $\g$ and on a node $v \in \n_{\fg}$ of
-smallest degree.  We consider the following cases.
+************************
+
+The proof again (I mean like for 6 colors) is by recurrence but we add
+here a contradiction argument:
+Similarly, we focus on a node with degree 5 (at some points, we will
+have to justify this)
+This node (call it x) has 5 neighbors
+The problem is when they are colored by the 5 colors, otherwise it is
+colored by a missing one.
+Let now label these 5 nodes from 1 to 5.
+Consider the nodes 1 and 3, colored by two different colors and the
+sub-graph composed of nodes with colors 1 and 3
+If these two nodes are in disjoint connex components, (case 1), it is
+easy to color x by reverting the colors 1 and 3 in one component
+(see figure)
+Thus, the problem is when there exists an alternate path (in term of
+colors) between node 1 and node 3
+in this case (case 2), consider nodes 2 and 4, using a similar process
+as in case 1, if there are two connex components
+we are done (x can be colored by reverting the colors along the path
+in one component), otherwise, there is an alternate path
+between 2 and 4.
+However, since the graph is planar, then, both alternate paths will
+intersect, which is impossible
+
+
+
+************************
+
+\begin{proof}
+We present a proof that is methodologically marvelous: it is primarily
+a proof by contradiction, but it builds on an inner induction that
+employs a sophisticated analysis by cases.
+
+\smallskip
+
+Let us assume, for contradiction, that the proposition is false, i.e.,
+that there exists a planar graph that does not admit a {\em valid}
+$5$-coloring, i.e., a coloring of the graph's nodes in which
+neighboring nodes get different colors.
+
+For brevity, let us henceforth discuss only {\em valid} colorings.
+
+\smallskip
+
+\noindent {\em Base of an induction that will refute the presumed
+  falsity of the proposition.}
+Because the $5$-clique $\k_5$ is obviously $5$-colorable, so also must
+be all graphs having $\leq 5$ nodes.  Therefore, we know that any
+non-$5$-colorable graph must have $\geq 6$ nodes.
+
+\smallskip
+
+\noindent {\em Inductive hypothesis.}
+Assume, for induction, that every planar graph having $\leq n$ nodes
+is $5$-colorable.
+
+\smallskip
+
+\noindent {\em Inductive extension.}
+If the proposition were, indeed, false, then there would exist a
+planar graph $\g$ having $n+1$ nodes which is not $5$-colorable.  By
+Lemma~\ref{thm:PlanarGraph-degree5}, $\g$ would have a node $v$ of
+degree $\leq 5$.  The remainder of the proof focuses on the graph
+$\g$, its minimal-degree node $v$, and on $v$'s $(d_v \leq 5)$
+neighbors in $\g$.
+
+Now, if there were a coloring of $\g$'s nodes in which $\leq 4$ colors
+were used to color $v$'s neighbors, then the following analogue of the
+coloring strategy of Proposition~\ref{thm:P-6-colorability} would
+produce a $5$-coloring of $\g$.
+\begin{enumerate}
+\item
+Remove node $v$ and its incident edges from $\g$, thereby producing
+the $n$-node planar graph $\g'$.
+\item
+Produce a $5$-coloring of $\g'$ that uses only $4$ colors for the
+nodes that are neighbors of $v$ in $\g$.
+\item
+($a$) Reattach node $v$ and its edges to $\g'$, thereby reconstituting
+  $\g$.  ($b$) Color $v$ with whichever of the $5$ available colors is
+  not used to color $v$'s neighbors.
+\end{enumerate}
+
+In order to proceed in pursuit of a contradiction, we must understand
+what structural features of $\g$ make it impossible to use only $4$
+colors on $v$'s neighbors when $5$-coloring $\g$.  There are three
+important situations to recognize.
 \begin{description}
 \item[{\sf Case 1}.]
 Node $v$ has degree $\leq 4$.
 
 \smallskip
 
-In this case, we employ the coloring strategy of
-Proposition~\ref{thm:P-6-colorability} to produce a $5$-coloring of
-$\g$.  This is possible because, using the terminology of that
-strategy, $d_v \leq 4$ in this case.
-
-\smallskip
-
-{\em Thus, when Case 1 holds, one can color $\g$ with $5$ colors.}
+By definition, $\leq 4$ colors are used to color $v$'s neighbors in
+this case.
 \end{description}
 Note that, in all remaining cases, node $v$ has precisely $5$
-neighbors---or else, we would have invoked Case 1 to color $\g$ with $5$
+neighbors---or else, we would have invoked Case 1 to color $\g$ with
+$5$ colors.
+\begin{description}
+\item[{\sf Case 2}.]
+For some $5$-coloring of $\g$, $\geq 2$ neighbors of $v$ get the same
+color.
+
+\smallskip
+
+Because $v$ has exactly $5$ neighbors, in this case, only $4$ colors
+are used to color these neighbors.
+\end{description}
+In all remaining cases, the $5$ neighbors of $v$ receive distinct
 colors.
 \begin{description}
-\item[{\sf Case 2}.]  There is a coloring of $\g$ in which two or more
-  neighbors of node $v$ get the same color.
-
-\smallskip
-
-Even though $v$ has precisely $5$ neighbors, in this case, only $4$
-colors are used to color these neighbors.  This means that when we
-invoke the coloring strategy of
-Proposition~\ref{thm:P-6-colorability}---removing $v$, coloring the
-rest of $\g$, and restoring $v$---we have a $5$th color available to
-use on node $v$.  Thus, the described coloring strategy produces a
-$5$-coloring of $\g$.
-
-\smallskip
-
-{\em Thus, when Case 2 holds, one can color $\g$ with $5$ colors.}
-\end{description}
-Note that, in all remaining cases, all $5$
-neighbors of node $v$ have distinct colors under the coloring of $\g$
-that we are focusing on.
-\begin{description}
 \item[{\sf Case 3}.]
-Two neighbors of $v$, call them $v_1$ and $v_2$, reside in components
-of $\g$ that are mutually disjoint once $v$ and its incident edges are
-removed from $\g$.
+For some $5$-coloring of $\g$, some two neighbors of $v$, call them
+$v_1$ and $v_2$, reside in distinct components of $\g$ once $v$ and
+its incident edges are removed from $\g$.
 
 \smallskip
 
-For ease of discussion, let $\g'$ be the (disconnected) graph that
-results from removing $v$ and its incident edges from $\g$.  Let
-$\g_1$ be the component of $\g'$ that contains node $v_1$, and let
-$\g_2$ be the component of $\g'$ that contains node $v_2$.
+As before, let $\g'$ be the (in this case, disconnected) graph that
+results when $v$ and its incident edges are removed from $\g$.  For $i
+= 1,2$ Let $\g_i$ be the component of $\g'$ that contains node $v_i$.
 
-Say that, under the coloring of $\g$ that we are focusing on, node
-$v_1$ is colored {\it red} and node $v_2$ is colored {\it green}.
+Say that, under the $5$-coloring of $\g$ that we are focusing on,
+$v_1$ is colored {\it red} and $v_2$ is colored {\it green}.
 
-Let us take subgraph $\g_1$ of $\g$ and recolor its nodes so that
-under the new coloring, node $v_1$ is colored {\it green}.  (One needs
-only switch the colors {\it red} and {\it green} in the existing
-coloring of $\g_1$.)  It is always possible to do this in a way that
-does not affect the valid coloring of $\g_2$ because $\g_1$ and $\g_2$
-are mutually disjoint.
+Let us recolor the nodes of $\g_1$ so that node $v_1$ is now colored
+{\it green}.  (One needs only switch the colors {\it red} and {\it
+  green} in the existing coloring of $\g_1$.)  It is always possible
+to do this in a way that does not affect the valid coloring of $\g_2$
+because $\g_1$ and $\g_2$ are mutually disjoint.
 
-Once we have effected this recoloring of $\g_1$, we now have a valid
-coloring of $\g$ for which Case 2 holds.  (In fact, we can color node
-$v$ {\em red} when we reattach node $v$ and its incident edges.)
+Once we have thus-recolored $\g_1$, we have a $5$-coloring of $\g$ for
+which Case 2 holds.  (In fact, we can color node $v$ {\em red} when we
+reattach it to $\g'$.)
+\end{description}
 
-\smallskip
+\noindent
+Outside of Cases 1--3, we are left with the minimally constrained
+situation:
+\begin{itemize}
+\item
+Every minimum-degree node of $\g$ has $5$ neighbors.
 
-{\em Thus, when Case 3 holds, one can color $\g$ with $5$ colors.}
+For the minimum-degree node $v$, let us call these neighbors $v_1$,
+$v_2$, $v_3$, $v_4$, $v_5$.
+\item
+In every $5$-coloring of $\g$, the neighbors of every minimum-degree
+node receive distinct colors.
 
-**HERE
-
-\item[{\sf Case 4}.]
-The final case of the argument is when all neighbors of node $\g$
-remain in the same component of $\g$ when $v$ and its incident edges
-are removed.
-
-\smallskip
+For node $v$, let us say that neighbor $v_i$ receives color $c_i$.
+\item
+All neighbors of node $v$ remain in the same component of $\g$ when
+$v$ and its incident edges are removed.
+\end{itemize}
 
 Dealing with this case requires a rather intricate multi-subcase
 analysis of the structure of paths within $\g$.  Each subcase
@@ -3349,7 +3424,7 @@ only, in closing, that:
 \smallskip
 
 {\em In all possible cases, one can color $\g$ with $5$ colors.}
-\end{description}
+
 This four-case analysis completes the proof.
 \qed
 \end{proof}
