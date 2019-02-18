@@ -2498,6 +2498,7 @@ that $\d_n$ is (directed)-Eulerian
 
 
 \subsubsection{Testing general graphs for Hamiltonianicity}
+\label{sec:Hamiltonian-unweighted}
 
 The techniques we used in Subsection~{\small\sf B} to investigate the
 Hamiltonianicity of our ``named'' graphs exploit the detailed
@@ -3501,7 +3502,7 @@ But one can exhibit ``greedy'' algorithms that give good results.
 \section{$\oplus$ Pointers to Advanced Topics}
 \label{sec:advanced-topics}
 
-**PROVIDE SOME REFERENCES
+%**PROVIDE SOME REFERENCES
 
 We conclude this chapter by mentioning a variety of topics that are
 typically not covered---at least in depth---early in the curriculum,
@@ -3514,9 +3515,8 @@ material, yet at a level of informality that will make the material
 accessible to the more casual reader.  We thus strive for an intuitive
 presentation that will not lead any reader astray.
 
-
-The two problems we discuss in Section~\ref{sec:Relate-CS-Math-Probs}
-illustrate how the {\em dynamic} models in the field of
+The problem that we discuss in Section~\ref{sec:Relate-CS-Math-Probs}
+illustrates how the {\em dynamic} models in the field of
 algorithmics---``dynamic'' in the sense that they {\em do}
 something---and the {\em structural} models provided by graph theory
 can often provide beneficial illumination of one another.
@@ -3531,165 +3531,39 @@ introduces the increasingly important topic of graphs whose structure
 changes dynamically over time.  One timely instance of this dynamic
 evolution is the connectivity graph of the Internet.
 
-
-
-\ignore{*******************
-\subsection{Relating Computational and Mathematical Problems}
-\label{sec:Relate-CS-Math-Probs}
-
-This 
-
-
-
-\subsubsection{The Route Inspection/ Chinese Postman Problem}
-\label{sec:chinesePostman}
-
-**HERE
-
-After solving the preceding ``pure'' version of the Eulerian-tour
-problem---which seeks a tour of a graph which crosses each edge
-precisely once---we discuss an extension of this problem which allows
-us to augment a graph $\g$ by adding multiple edges between the same
-two nodes.  (Terminologically, we thereby convert $\g$ to a {\it
-  multi-graph} \index{multi-graph} \index{graphs!multi-graph}
-consisting of nodes and {\it multi-edges}.) \index{multi-edge} Not
-obviously, adding multi-edges can often convert a graph $\g$ that does
-not admit an Eulerian cycle into a multi-graph that does admit an
-Eulerian cycle.  The problem of finding the {\em smallest} such
-augmentation of $\g$---i.e., of adding the fewest multi-edges---is
-called the \index{Route Inspection Problem} {\it Route Inspection
-  Problem}; it is also often called the {\it Chinese Postman Problem},
-\index{Chinese Postman Problem} in honor of its inventor, the Chinese
-mathematician Kwan Mei-Ko \index{Kwan Mei-Ko} \cite{Kwan60}.
-
-
-
-This section is devoted to studying the {\it Route Inspection
-  Problem}, \index{Route Inspection Problem} also known as the {\it
-  Chinese Postman Problem}, \index{Chinese Postman Problem} in honor
-of its inventor, the Chinese mathematician Kwan Mei-Ko \index{Kwan
-  Mei-Ko} \cite{Kwan60}.  This problem seeks to add as few multi-edges
-\index{graphs!multi-graph!multi-edge} as possible to a graph $\g$ in
-order to render $\g$ Eulerian.  (A {\it multi-graph} is ``almost'' an
-undirected graph.  It differs from a true graph because of the
-possible presence of multiple multi-edges that connect the same two
-nodes.)
-
-**HERE
-
-
-We know from Proposition~\ref{thm:eulerian-cycle} that if all of
-$\g$'s nodes have even node-degrees, then---{\em and only then}---$\g$
-admits an Eulerian cycle.  Therefore, in this case, {\em zero}
-multi-edges need be added to $\g$ to render it Eulerian.  
-
-Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
-there exist some odd vertices. From the previous section, we know that there is no Eulerian cycle in this case and thus, 
-any feasible solution should duplicate some edges.
-The problem is to duplicate the minimum.
-This problem is known as the {\it chinese postman} and it is described below (in a french equivalent version).
-
-A postman moved recently from Grenoble to a small village in the country side. 
-He asked himself how to organize his daily tour by bike for distributing the letters in the shortest possible time. 
-The director of the post office gives him the map and 
-fortunately, the postman had some old souvenir of previous lectures in Graph Theory.  
-The tour starts from the post office and of course, the postman has to go through every roads for distributing the letters before coming back
-to his office.
-The underlying graph is $G=(V,E)$ where $V$ is the (finite) set of cross points and $E$ is the set of the links between the cross roads
-weighted by the distances.  
-
-Fig.~\ref{fig:EulerianInitial} presents an example of the chinese postman problem. 
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/EulerienInitial}
-       \caption{An instance of the Chinese postman with $10$ cross-nodes.}
-              \label{fig:EulerianInitial}
-\end{center}
-\end{figure}
-
-\bigskip
-
-This problem can be formulated mathematically in term of Eulerian
-cycles.  Intuitively, the basic idea is to duplicate some edges that
-are carefully chosen in order to use the previous construction of an
-Eulerian tour of Section~\ref{sec:EulerianCycle} that will help the
-postman to determine the optimal tour (of minimal length) using some
-simple mathematical properties.
-\bigskip
-
-First, we know that there is an even number of odd vertices.
-Considering the previous instance of the postman problem, there are $4$ such vertices (represented in grey in Fig.~\ref{fig:EulerianVodd}).
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/EulerienVodd}
-       \caption{The $4$ vertices with an odd degree in the previous instance.}
-              \label{fig:EulerianVodd}
-\end{center}
-\end{figure}
-\bigskip
-
-As there exists a path between any pair of vertices of odd degree in $V_{odd}$,
-we consider the complete graph whose vertices are the odd degree vertices weighting the edges with the shortest paths (denoted by $K_{odd}$).
-As we mentioned in the preliminary properties, computing the shortest paths is a classical problem, which can be solved in polynomial time. 
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/EulerienPerfectMatching}
-       \caption{The minimum weight perfect matching labelled by the shortest distances between the vertices of $V_{odd}$.}
-              \label{fig:Eulerianperfectmatching}
-\end{center}
-\end{figure}
-\bigskip
-
-Then, it is possible to do the correspondence between the optimal solution of the postman problem and a perfect matching of minimal weight in $K_{odd}$
-%Recall that a matching is a set of edges without common vertices. It is perfect if it has the maximum number of edges. 
-by duplicating the edges of the minimal perfect matching.
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/EulerienFinal}
-       \caption{Final step: adding the edges of the minimum perfect matching.}
-              \label{fig:EulerianFinal}
-\end{center}
-\end{figure}
-
-The main steps of the algorithm for determining the optimal tour are the following:
-
+Section~\ref{sec:hypergraphs} \index{graphs!hypergraphs}
+\index{hypergraphs} introduces {\it hypergraphs}, a generalization of
+graphs that allows multi-entity relationships, in contrast to the
+binary relationships mandated by graphs' two-element edges.
+Hypergraph-based models find application in areas as diverse as:
 \begin{itemize}
-\item Consider the complete graph with the odd vertices and compute its weight by the shortest paths.
-Compute a perfect matching of minimal weight between these vertices. 
-\item Duplicate all the edges along the paths of this matching.
-\item Determine an Eulerian tour in this new graph with even degrees.
+\item
+{\it social networks:} Hyperedges can describe, e.g., collaboration
+and collusion.
+\item
+{\it electronic networks:} Hyperedges can enable the design of
+equi-potential nodes in voltage-driven technologies such as {\it
+  VLSI}.
+\item
+{\it communication networks:} Hyperedges can model bus-oriented
+communication.
 \end{itemize}
 
-The optimality of this algorithm comes from the fact that the duplicated edges are the minimum possible ones.
-% This is straightforward for two odd vertices.
-Finally, all the vertices of the new graph are even since the degree of the odd vertices in $G$ is augmented by $1$
-(extremities of the paths) and the other even vertices which are intermediate vertices of the paths remain even. 
-
-\medskip
-
-This short discussion is a good segu\'{e} to the material in the next
-section, which leds valuable perspective on our brief study of
-Hamiltonian paths and cycles---and, indeed, on the computational
-implications of that work.
-
-\subsubsection{Hamiltonianicity in weighted graphs and the
-  Traveling Salesman Problem}
+\subsection{Hamiltonianicity in Weighted Graphs: the TSP}
 \label{sec:TSP}
 \index{Traveling Salesman Problem}
 
-In Section~\ref{sec:Hamiltonian-unweighted}.C, we suggested how
-daunting it is computationally to determine whether an unweighted
-graph admits a Hamiltonian cycle.  There is an important, practically
-significant, analogue of this problem for edge-weighted graphs.  This
-analogue has the traditional familiar name, the {\it Traveling
-  Salesman Problem}, often abbreviated {\it TSP}.  \index{Traveling
-  Salesman Problem} \index{TSP: the Traveling Salesman Problem} The
-TSP is a classical problem in Operations Research.  Its familiar name
-arises from the following story.  \index{Traveling Salesman
-  Problem!origin of the name}
+In Section~\ref{sec:Hamiltonian-unweighted}, we suggested how daunting
+it is computationally to determine whether an unweighted graph admits
+a Hamiltonian cycle.  There is an important, practically significant,
+analogue of this problem for edge-weighted graphs, which has
+traditionally been known as the {\it Traveling Salesman Problem}; we
+shall use the modern abbreviation {\it TSP}.
+\index{Traveling Salesman Problem}
+\index{TSP: the Traveling Salesman Problem}
+The TSP is a classical problem in Operations Research, whose familiar
+name arises from the following story.
+\index{Traveling Salesman Problem!origin of the name}
 
 We consider a saleswoman who wants to make a call on all of her $n$
 clients, who live in the $n$ cities, $C_1, C_2, \ldots, C_n$.  In
@@ -3703,23 +3577,29 @@ cities $C_i$ and $C_j$ (in either direction).
 \begin{minipage}{0.95\textwidth}
 We are purposely vague about the meaning of the word ``cost'' here.
 The costs represented by the unknowns $c_{i,j}$ could be intercity
-driving distances or intercity travel times or intercity airfares.
-Instances of the TSP can be formulated with {\em any} notion of cost
-that can be represented by positive real numbers.
+driving distances or inter-region travel times or international
+airfares.  Instances of the TSP can be formulated with {\em any}
+notion of cost that can be represented by positive real numbers.
 
-The importance of being vague is that, in particular, {\em intercity
-  costs are not assumed to obey any of the laws that one commonly
+\smallskip
+
+The importance of being vague is that, in particular, {\em none of
+  these costs is assumed to obey any of the laws that one commonly
   associates with the distances we encounter in our daily lives}.  The
-{\it triangle inequality} is the prime example of such a law.
+{\it triangle inequality} is a prime example of such a law.
 \index{triangle inequality} Intuitively, this law insists that the
 distance between any two cities is never decreased by placing an
-intermediate stopover city between them.  In a common formulation:
-{\em A straight line is the shortest distance between two points.}
-Cost measures that obey the triangle inequality are termed {\it
-  Euclidean} \index{Euclidean distance measure} \index{Euclid} because
-the distances studied in Euclidean geometry are assumed to obey this
-law.  (Some people like to think of intercity costs as
-airfares---which clearly have no logical basis.)
+intermediate stopover city between them.  It is a discretization of
+the geometric postulate, {\em A straight line is the shortest distance
+  between two points.}  Cost measures that obey the triangle
+inequality are termed {\it Euclidean} \index{Euclidean distance
+  measure} \index{Euclid} because the distances studied in Euclidean
+geometry are assumed to obey this law.
+
+\smallskip
+
+Some people like to think of general intercity costs as
+airfares---which clearly obey no immutable laws.)
 \end{minipage}
 }
 \bigskip
@@ -3739,27 +3619,27 @@ no tour has cost smaller than the cost
 c_{i_{n-1}, i_n} \ + \ c_{i_n, i_1} \]
 of the indicated tour.
 \end{itemize}
-The main connection of the TSP to this chapter is twofold.
+The main connection of the TSP to the current chapter is twofold.
 \begin{enumerate}
 \item
-The TSP admits a graceful representation as a weighted analogue of the
-problem of detecting Hamiltonian cycles.  Within the representation,
-the TSP's $n$ cities are depicted as an instance of the complete graph
-$\k_n$, and the TSP's intercity costs are depicted as real weights on
-the edges of $\k_n$.  We describe this representation via the
-following informal, but precise, encoding of a graph $\g$ as an
-instance of the TSP.
+The TSP can be represented as a weighted analogue of the problem of
+detecting Hamiltonian cycles.  Within this representation, the TSP's
+$n$ cities are depicted as an instance of the complete graph $\k_n$,
+and its intercity costs are real-number weights on the edges of
+$\k_n$.  We describe this representation via the following informal,
+but precise, encoding of a graph $\g$ as an instance of the TSP.
   \begin{itemize}
   \item
 Each node of $\g$ becomes a ``city'' that must be visited.
   \item
 For each pair of cities/nodes $A$ and $B$:
-\[ \mbox{\sc distance}(A,B) \ = \ \left\{
+\[ \mbox{\sc cost}(A,B) \ = \ \left\{
 \begin{array}{ccl}
 1 & & \mbox{if there is an edge between $A$ and $B$ in $\g$} \\
 \infty & & \mbox{if there is no edge between $A$ and $B$ in $\g$} \\
-       & & \mbox{\small\sf (if the idea of ``infinite'' distance bothers you,} \\
-       & & \mbox{\small\sf then make this some ridiculousy large number)}
+       & & \mbox{\small\sf (if the idea of ``infinite'' cost bothers
+  you, then} \\
+       & & \mbox{\small\sf make this some ridiculousy large number)}
 \end{array}
 \right.
 \]
@@ -3775,7 +3655,7 @@ to this measure.  The computational difficulty of the TSP is suggested
 by the following result, which we state without proof.
 \end{enumerate}
 
-\begin{prop}
+\begin{prop}[\cite{GareyJ79}]
 \label{thm:Approx-TSP-NPC}
 For any fixed positive constant $\kappa$, the problem of finding a
 tour for an instance of the TSP that is within a factor of $\kappa$ of
@@ -3798,7 +3678,9 @@ exists a fixed constant $\kappa > 0$ such that, for each Euclidean
 instance $\i$ of the TSP, if an {\em optimal}---i.e., {\em
   cost-minimal}---tour for instance $\i$ has cost $c^\star$, then the
 cost of the tour discovered by the algorithm is no larger than $\kappa
-c^\star$.
+\cdot c^\star$.  The algorithm that achieves this approximation is
+named for its inventor, Nicos Christofides.
+\index{Christofides, Nicos}
 
 \ignore{*********
 It corresponds to determine a minimal Hamiltonian cycle in a weighted
@@ -3818,14 +3700,19 @@ larger if the path is going through any other vertex.
 \bigskip
 *****************}
 
-\begin{prop}{\cite{Christofides76}}
+\begin{prop}[\cite{Christofides76}]
 There exists an algorithm for the Euclidean TSP that produces
 approximately optimal tours, specifically, tours whose costs are no
-greater than $\displaystyle \frac{3}{2}$ times the cost of an optimal
-tour.
+greater than $1.5$ times the cost of an optimal tour.
 \end{prop}
 
-\begin{proof}
+Proving this result is the domain of an algorithms text such as
+\cite{CLRS}.  We remark only that the algorithm combines a number of
+classical computational problems that admit efficient solutions:
+minimum-weight spanning trees, preorder walks within trees, and
+minimum-weight perfect matchings.
+
+\ignore{***************
 We construct an efficient solution for the Euclidean TSP, which is
 known as {\it the Christofides algorithm}, \index{Christofides algorithm} 
 after its inventor, Nicos Christofides.
@@ -3978,9 +3865,150 @@ as $\omega_{T^*} \leq \omega_{H^*}$ and $\omega_{C^*} \leq 1/2 \omega_{H^*}$,
 we deduce that the value of such a tour is lower than $3/2 \omega_{H^*}$.
 \qed
 \end{proof}
+*****************}
 
-******************}
+\ignore{*******************
+\subsection{Relating Computational and Mathematical Problems}
+\label{sec:Relate-CS-Math-Probs}
 
+This 
+
+
+
+\subsubsection{The Route Inspection/ Chinese Postman Problem}
+\label{sec:chinesePostman}
+
+**HERE
+
+After solving the preceding ``pure'' version of the Eulerian-tour
+problem---which seeks a tour of a graph which crosses each edge
+precisely once---we discuss an extension of this problem which allows
+us to augment a graph $\g$ by adding multiple edges between the same
+two nodes.  (Terminologically, we thereby convert $\g$ to a {\it
+  multi-graph} \index{multi-graph} \index{graphs!multi-graph}
+consisting of nodes and {\it multi-edges}.) \index{multi-edge} Not
+obviously, adding multi-edges can often convert a graph $\g$ that does
+not admit an Eulerian cycle into a multi-graph that does admit an
+Eulerian cycle.  The problem of finding the {\em smallest} such
+augmentation of $\g$---i.e., of adding the fewest multi-edges---is
+called the \index{Route Inspection Problem} {\it Route Inspection
+  Problem}; it is also often called the {\it Chinese Postman Problem},
+\index{Chinese Postman Problem} in honor of its inventor, the Chinese
+mathematician Kwan Mei-Ko \index{Kwan Mei-Ko} \cite{Kwan60}.
+
+
+
+This section is devoted to studying the {\it Route Inspection
+  Problem}, \index{Route Inspection Problem} also known as the {\it
+  Chinese Postman Problem}, \index{Chinese Postman Problem} in honor
+of its inventor, the Chinese mathematician Kwan Mei-Ko \index{Kwan
+  Mei-Ko} \cite{Kwan60}.  This problem seeks to add as few multi-edges
+\index{graphs!multi-graph!multi-edge} as possible to a graph $\g$ in
+order to render $\g$ Eulerian.  (A {\it multi-graph} is ``almost'' an
+undirected graph.  It differs from a true graph because of the
+possible presence of multiple multi-edges that connect the same two
+nodes.)
+
+**HERE
+
+
+We know from Proposition~\ref{thm:eulerian-cycle} that if all of
+$\g$'s nodes have even node-degrees, then---{\em and only then}---$\g$
+admits an Eulerian cycle.  Therefore, in this case, {\em zero}
+multi-edges need be added to $\g$ to render it Eulerian.  
+
+Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
+there exist some odd vertices. From the previous section, we know that there is no Eulerian cycle in this case and thus, 
+any feasible solution should duplicate some edges.
+The problem is to duplicate the minimum.
+This problem is known as the {\it chinese postman} and it is described below (in a french equivalent version).
+
+A postman moved recently from Grenoble to a small village in the country side. 
+He asked himself how to organize his daily tour by bike for distributing the letters in the shortest possible time. 
+The director of the post office gives him the map and 
+fortunately, the postman had some old souvenir of previous lectures in Graph Theory.  
+The tour starts from the post office and of course, the postman has to go through every roads for distributing the letters before coming back
+to his office.
+The underlying graph is $G=(V,E)$ where $V$ is the (finite) set of cross points and $E$ is the set of the links between the cross roads
+weighted by the distances.  
+
+Fig.~\ref{fig:EulerianInitial} presents an example of the chinese postman problem. 
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/EulerienInitial}
+       \caption{An instance of the Chinese postman with $10$ cross-nodes.}
+              \label{fig:EulerianInitial}
+\end{center}
+\end{figure}
+
+\bigskip
+
+This problem can be formulated mathematically in term of Eulerian
+cycles.  Intuitively, the basic idea is to duplicate some edges that
+are carefully chosen in order to use the previous construction of an
+Eulerian tour of Section~\ref{sec:EulerianCycle} that will help the
+postman to determine the optimal tour (of minimal length) using some
+simple mathematical properties.
+\bigskip
+
+First, we know that there is an even number of odd vertices.
+Considering the previous instance of the postman problem, there are $4$ such vertices (represented in grey in Fig.~\ref{fig:EulerianVodd}).
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/EulerienVodd}
+       \caption{The $4$ vertices with an odd degree in the previous instance.}
+              \label{fig:EulerianVodd}
+\end{center}
+\end{figure}
+\bigskip
+
+As there exists a path between any pair of vertices of odd degree in $V_{odd}$,
+we consider the complete graph whose vertices are the odd degree vertices weighting the edges with the shortest paths (denoted by $K_{odd}$).
+As we mentioned in the preliminary properties, computing the shortest paths is a classical problem, which can be solved in polynomial time. 
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/EulerienPerfectMatching}
+       \caption{The minimum weight perfect matching labelled by the shortest distances between the vertices of $V_{odd}$.}
+              \label{fig:Eulerianperfectmatching}
+\end{center}
+\end{figure}
+\bigskip
+
+Then, it is possible to do the correspondence between the optimal solution of the postman problem and a perfect matching of minimal weight in $K_{odd}$
+%Recall that a matching is a set of edges without common vertices. It is perfect if it has the maximum number of edges. 
+by duplicating the edges of the minimal perfect matching.
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/EulerienFinal}
+       \caption{Final step: adding the edges of the minimum perfect matching.}
+              \label{fig:EulerianFinal}
+\end{center}
+\end{figure}
+
+The main steps of the algorithm for determining the optimal tour are the following:
+
+\begin{itemize}
+\item Consider the complete graph with the odd vertices and compute its weight by the shortest paths.
+Compute a perfect matching of minimal weight between these vertices. 
+\item Duplicate all the edges along the paths of this matching.
+\item Determine an Eulerian tour in this new graph with even degrees.
+\end{itemize}
+
+The optimality of this algorithm comes from the fact that the duplicated edges are the minimum possible ones.
+% This is straightforward for two odd vertices.
+Finally, all the vertices of the new graph are even since the degree of the odd vertices in $G$ is augmented by $1$
+(extremities of the paths) and the other even vertices which are intermediate vertices of the paths remain even. 
+
+\medskip
+
+This short discussion is a good segu\'{e} to the material in the next
+section, which leds valuable perspective on our brief study of
+Hamiltonian paths and cycles---and, indeed, on the computational
+implications of that work.
+*************************}
 
 \subsection{Graph Decomposition}
 \label{sec:graph-decompose}
