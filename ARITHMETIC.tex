@@ -879,6 +879,8 @@ became well-known only when it appeared in the famous {\it Cours
 \index{Cauchy, Augustin-Louis}
 whose name we have encountered in earlier sections.
 
+\medskip
+
 A few cultural/historical comments are in order.
 \begin{itemize}
 \item
@@ -898,32 +900,92 @@ the field.
 \item
 Despite the word ``algebra'' in the name of
 Theorem~\ref{thm:fund-thm-algebra}, there does not yet exist an {\em
-  algebraic} proof of the theorem.  Some input from some other area of
-mathematics enters every known proof in some fundamental
+  algebraic} proof of the theorem: Some input from some other area of
+mathematics enters every known proof in some essential
 way.\footnote{One of the authors reports learning a proof that
   borrowed results from topology during his undergraduate days.}
 \item
-**HERE
-\noindent {\it Milestones in the quest for roots of polynomials}
-
-Al-Khwarizmi,
-Descartes
-
-
-
+The march toward Theorem~\ref{thm:fund-thm-algebra} took literally
+millennia.  Among the luminaries who made major contributions along
+the way were the following pioneers in the Theory of (Solving)
+Equations:
+  \begin{itemize}
+  \item
+{\it Diophantus of Alexandria}. \index{Diophantus of Alexandria} 
+He authored a series of books known collectively as {\it Arithmetica},
+\index{Diophantus of Alexandria!{\it Arithmetica}}
+which expounded the basics of a theory of solving equations.  These
+books earned Diophantus the name ``father of algebra''.
+\index{Diophantus of Alexandria!father of algebra}
+   \item
+{\it Muhammad ibn Musa al-Khwarizmi}.
+\index{Al-Khwarizmi!Muhammad ibn Musa al-Khwarizmi}
+Known better as {\em Al-Khwarizmi}, this Persian mathematician and
+scholar of the $9$th century lent his name to the modern term {\it
+  algorithm}.\index{Al-Khwarizmi!eponym of ``algorithm''} His
+extensive writings, especially the book \cite{Al-Khwarizmi},
+introduced into Europe both Hindu-Arabic numerals
+\index{Al-Khwarizmi!Hindu-Arabic numerals} and the elements of what
+was known in his day of the field of algebra---particularly the
+solution of equations.\footnote{The important role of the Middle East
+  in the development of mathematics is testified to eloquently by the
+  origin of the word ``algebra''.  According to the {\it Oxford
+    English Dictionary}, this word comes from the Arabic ``{\it
+    al-jabr}'', which literally means ``reunion of broken
+  parts''. \index{algebra!etymology of the word}}
+   \item
+{\it Ren\'{e} Descartes}. \index{Descartes, Ren\'{e}}
+The $17$th-century mathematican and philosopher Descartes is credited
+with establishing the mathematical notation that we use to this day.
+The reader should not minimize the importance of notation until trying
+to perform arithmetic using Roman numerals.  At a more abstract level,
+Descartes's invention of {\em Analytical Geometry}
+\index{Descartes, Ren\'{e}!inventor of Analytical Geometry}
+enabled the use of geometric concepts and techniques in algebra.  Both
+of these contributions had incalculable value in the history leading
+up to Theorem~\ref{thm:fund-thm-algebra}.
+   \end{itemize}
 \end{itemize}
 
 \medskip
 
-There are currently proofs of Theorem~\ref{thm:fund-thm-algebra} that
-are {\em constructive} in the following sense.  Given a degree-$d$
-polynomial $P(x)$, the proof determines a disk $D$ in
-(two-dimensional) space such all $d$ roots of $P(x)$ reside in disk
-$D$.  How might such a disk emerge from a mathematical argument?  Here
-is a simple illustration.
+Even though the earliest proofs of Theorem~\ref{thm:fund-thm-algebra}
+were not {\em constructive:} They did not provide a roadmap for
+finding the roots of a given polynomial.  There currently do exist
+proofs of the Theorem that are constructive, in the following sense.
+Given a degree-$d$ polynomial $P(x)$, these proofs determine a disk
+$D$ in two-dimensional space which contains all $d$ roots of $P(x)$.
+How might such a disk emerge from a mathematical argument?  Here is a
+{\em very simple illustration} which focuses on a {\em very special
+  type of polynomial}.
 
-**HERE
+Let us be given a degree-$d$ polynomial with real coefficients:
+\[ P(x) \ \ = \ \ a_d x^d \ + \ a_{d-1} x^{d-1} \ + \ a_{d-2} x^{d-2}
+\ + \cdots + \ a_1 x \ + \ a_0
+\]
+Since we are interested only studying the roots of $P(x)$, we lose no
+generality by insisting that $P(x)$ is {\em monic},
+\index{polynomial!monic} i.e., has leading coefficient $a_d = 1$.
+(The reader should verify this assertion.)  Once we do this, we can
+rewrite $P(x)$ in the following form
+\[ P(x) \ \ = \ \ 
+x^d \cdot \left( 1 \ + \ \frac{a_{d-1}}{x} \ + \ \frac{a_{d-2}}{x^2}
+\ + \cdots + \ \frac{a_1}{x^{d-1}} \ + \ \frac{a_0}{x^d} \right)
+\]
+The important benefit of this rewriting is that it makes the following
+inequality totally clear.
+\[ P(x) \ \ > \ \ 0 \ \ \ \ \ \mbox{ for all } \ \ x >
+d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}|
+\ + \cdots + \ |a_1| \ + \ |a_0| \right)
+\]
+This means that all real roots of $P(x)$, if there are any, lie within
+the region $x \ \leq \ d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}|
+\ + \cdots + \ |a_1| \ + \ |a_0| \right)$.
 
+This is just one simple example, but it does illustrate that one can
+sometimes find bounded regions within which all of $P(x)$'s roots must
+lie.  Many texts (and research papers) deal with the general problem
+of computing the roots of polynomials; see, e.g., \cite{MacDuffee}.
 
 
 \subsubsection{Solving polynomials by radicals}
@@ -1094,7 +1156,10 @@ formula's proof/derivation {\em before} presenting the formula.
 
 \begin{proof} {\it (Derivation of the cubic formula)}
 
-\noindent {\it Step 1.} Convert the problem to solving a {\em monic} cubic polynomial.
+\noindent {\it Step 1.} Convert the problem to solving a
+cubic polynomial that is {\em monic}, \index{polynomial!monic}
+i.e., has leading coefficient $1$.
+
 
 \noindent
 We convert the generic cubic polynomial $P(x)$ of
@@ -1457,6 +1522,7 @@ consistent terminology to discuss all three authors' work.}
 \label{sec:Binomial-thm}
 \index{polynomials!bivariate}
 \index{The Binomial Theorem}
+
 
 
 Perhaps the simplest bivariate polynomials are the ones in the
