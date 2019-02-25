@@ -1,4 +1,4 @@
-%version of 02-22-19
+%version of 02-25-19
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -688,29 +688,58 @@ $1/x$.\index{multiplicative inverse!reciprocal as multiplicative inverse}
 
 We close this section with another of our ``fun'' propositions.
 
-\subsection{A Fun Result: A ``Trick'' for Squaring Some Integers}
+\subsection{A Fun Result: A ``Trick'' for Squaring Certain Integers}
+
+Sometimes only basic knowledge is needed to craft amusing
+``tricks''---we know that they are not really tricks at all!---that
+are really rigorous applications of principles that we have learned.
+Here is an ``old chestnut'' example that may inspire you to design
+your own. 
+
+If someone presents you with a number that has a numeral that ends in
+$5$, then there is a simple way to square the number mentally.  For
+instance, if someone says
+
+\hspace{.25in}``$n = 25$''
+
+\noindent
+then you can instantly respond
+
+\hspace{.25in}``$n^2 = 625$''
+
+\noindent
+If the challenge is
+
+\hspace{.25in}``$n = 75$''
+
+\noindent
+then your response is
+
+\hspace{.25in}``$n^2 = 5625$''
+
+\noindent
+Let's make this ``game'' mathematical.
 
 \begin{prop}
 \label{thm:75x65=4925}
-Let $n$ be any number that has a $2$-digit decimal of the form $\delta
-5$, where $\delta \in \{ 0,1,2,3,4,5,6,7,8,9 \}$,
-so that
-\[ n \ = \ 10 \cdot \delta + 5
-\]
-Then 
-\[ n^2 \ = \ 100 \cdot \delta \cdot (\delta+1) + 25. \]
-In other words, one obtains a base-$10$ numeral for $n^2$ by
-multiplying $\delta$ by $\delta +1$ and appending $25$ to the product.
-\end{prop}
+Let $n$ be any number that has a $2$-digit decimal numeral of the form
+
+\hspace{.25in}$\delta \ 5$ \ \ \ \ $(\delta \in \{ 0,1,2,3,4,5,6,7,8,9\})$.
 
 \noindent
-Examples of Proposition ~\ref{thm:75x65=4925} include
-$25^2 = 625$ (because $2 \cdot 3 = 6$) and $75^2 = 5625$ (because $7
-\cdot 8 = 56$).
+Then the square of $n$ is the integer
 
-\begin{proof} (for general $\delta$).
-%
-We invoke Proposition~\ref{prop:(a+b)(c+d)} and the distributive law.
+\hspace{.25in}$25 \ + \ \delta \cdot (\delta +1)$. 
+\end{prop}
+
+\begin{proof}
+We can rewrite the premise of the proposition in the form
+\[ n \ = \ 10 \cdot \delta + 5 \]
+It is now easy to invoke Proposition~\ref{prop:(a+b)(c+d)} and the
+distributive law to compute that
+
+\[ n^2 \ = \ 100 \cdot \delta \cdot (\delta+1) + 25. \]
+To wit: 
 \[
 \begin{array}{lclll}
 n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
@@ -722,6 +751,7 @@ n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
               & & \mbox{factoring: distributive law} \\
 \end{array}
 \]
+A parlor trick has become a mathematical demonstration!
 \qed
 \end{proof}
 
@@ -1421,7 +1451,7 @@ Thus, the length of the initial square is equal to $60-30=30$.}
 \end{figure}
 
 
-\subsection{$\oplus$ Integer Roots of Multivariate Polynomials: Hilbert's Tenth Problem}
+\subsection{$\oplus$ Integer Roots of Polynomials: Hilbert's $10$th Problem}
 \label{sec:Hilberts-Tenth}
 \index{Hilbert's Tenth Problem}
 
@@ -1523,9 +1553,12 @@ consistent terminology to discuss all three authors' work.}
 \index{polynomials!bivariate}
 \index{The Binomial Theorem}
 
+{\em Bivariate} polynomials are just polynomials each of whose
+summands/terms has the form $a x^b y^c$: $x$ and $y$ are the polynomial's
+variables; $a$ is the term's coefficient; $b$ and $c$ are the
+respective powers of $x$ and $y$ in this term.
 
-
-Perhaps the simplest bivariate polynomials are the ones in the
+Probably the simplest bivariate polynomials are the ones in the
 following family.
 \begin{equation}
 \label{eq:binomial-polys}
@@ -1570,44 +1603,49 @@ Let us use induction to explore this possibility by expanding a
 generic $P_n$ with symbolic ``dummy'' coefficients and see what this
 says about $P_{n+1}$.  To this end, let $a_{n,n-r}$ denote the
 coefficient of $x^{n-r} y^r$ in the expansion of $P_n(x,y)$.  Using
-our ``dummy'' coefficients, we have
-\[ 
-\begin{array}{l}
-P_n(x,y) \ = \
- x^n \ + \ \cdots \ + \ a_{n,n-r} x^{n-r} y^r
-    \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+1} \\
-\hspace*{1in} + \ a_{n,n-r-2} x^{n-r-2} y^{r+2}
- \ + \ \cdots \ + \ y^n
-\end{array}
-\]
+our symbolic coefficients $a_{n,k}$, we have
+\begin{eqnarray*}
+P_n(x,y) & = &
+ x^n \ + \ a_{n,n-1} x^{n-1} y \ + \cdots + \\
+         &   &
+a_{n,n-r} x^{n-r} y^r \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+1}
+\ + \ a_{n,n-r-2} x^{n-r-2} y^{r+2} \\
+         &   &
++ \cdots + \ a_{n,1} x y^{n-1} \ + \ y^n
+\end{eqnarray*}
 Continuing with this symbolic evaluation, we have:
-\begin{equation}
+\begin{eqnarray}
+\nonumber
+x \cdot P_n(x,y) & = &
+ x^{n+1} \ + \ a_{n,n-1} x^n y \ + \cdots + \\
+\nonumber
+         &   &
+a_{n,n-r} x^{n-r+1} y^r \ + \ a_{n,n-r-1} x^{n-r} y^{r+1}
+\ + \ a_{n,n-r-2} x^{n-r-1} y^{r+2} \\
 \label{eq:xPk}
-\begin{array}{l}
-x \cdot P_n(x,y) \ = \
- x^{n+1} \ + \ \cdots \ + \ a_{n,n-r} x^{n-r+1} y^r
-    \ + \ a_{n,n-r-1} x^{n-r} y^{r+1} \\
-\hspace*{1in} + \ a_{n,n-r-2} x^{n-r-1} y^{r+2}
- \ + \ \cdots \ + \ xy^n
-\end{array}
-\end{equation}
+         &   &
++ \cdots + \ a_{n,1} x^2 y^{n-1} \ + \ x y^n
+\end{eqnarray}
 and
-\begin{equation}
+\begin{eqnarray}
+\nonumber
+y \cdot P_n(x,y) & = &
+ x^n y \ + \ a_{n,n-1} x^n y^2 \ + \cdots + \\
+\nonumber
+         &   &
+a_{n,n-r} x^{n-r} y^{r+1} \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+2}
+\ + \ a_{n,n-r-2} x^{n-r-2} y^{r+3} \\
 \label{eq:yPk}
-\begin{array}{l}
-y \cdot P_n(x,y) \ = \
- x^n y \ + \ \cdots \ + \ a_{n,n-r} x^{n-r} y^{r+1}
-    \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+2} \\
-\hspace*{1in} + \ a_{n,n-r-2} x^{n-r-2} y^{r+3}
- \ + \ \cdots \ + \ y^{n+1}
-\end{array}
-\end{equation}
+         &   &
++ \cdots  + \ a_{n,1} x^2 y^n \ + \ y^{n+1}
+\end{eqnarray}
 Because
 \[ P_{n+1}(x+y) \ = \ (x+y) \cdot P_n(x,y)
                 \ = \ x \cdot P_n(x,y) \ + \ y \cdot P_n(x,y),
 \]
-the ``dummy'' coefficient $a_{n-r+1,r}$ of $x^{n-r+1} y^r$ in
-$P_{n+1}(x+y)$ is the sum of the following coefficients in $P_n(x,y)$:
+the symbolic coefficient $a_{n-r+1,r}$ of $x^{n-r+1} y^r$ in
+$P_{n+1}(x+y)$ is the sum of the following symbolic coefficients in
+$P_n(x,y)$:
 \begin{center}
 $\bullet$
 the coefficient $a_{n,n-r}$ of $x^{n-r}y^r$ \ \ \ \ \
