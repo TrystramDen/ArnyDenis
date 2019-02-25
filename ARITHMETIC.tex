@@ -1886,37 +1886,41 @@ string-name must have length no shorter than $\lceil \log_a n \rceil$.
 \begin{prop}
 \label{thm:bound-stringnames-lgth-k}
 Say that one must assign distinct labels to $n$ items, via strings
-over an alphabet of $a$ letters.  Then at least one string-label must
+over an alphabet of $a$ symbols.  Then at least one string-label must
 have length no shorter than $\lceil \log_a n \rceil$.
 \end{prop}
 
 \begin{proof}
-Let $Sigma$ be an alphabet of $a$ letters/symbols.  For each integer
-$k \geq 0$ (i.e., for each $k \in \N$), let $\Sigma^{(k)}$ denote the
-set of all length-$k$ strings over $\Sigma$.  The bound of
-Proposition~\ref{thm:bound-stringnames-lgth-k} follows by counting the
-number of strings of various lengths over $\Sigma$, because each such
-string can label at most one item.  Let us, therefore, inductively
-evaluate the cardinality $|\Sigma^{(k)}|$ of each set $\Sigma^{(k)}$.
+Let $\Sigma$ be an alphabet of $a$ symbols.  For each integer $k \geq
+0$, let $\Sigma^{(k)}$ denote the set of all length-$k$ strings over
+$\Sigma$.  The bound of Proposition~\ref{thm:bound-stringnames-lgth-k}
+follows by counting the number of strings of various lengths over
+$\Sigma$, because each such string can label at most one item.  Let
+us, therefore, inductively evaluate the cardinality $|\Sigma^{(k)}|$
+of each set $\Sigma^{(k)}$.
 \begin{itemize}
 \item
 $|\Sigma^{(0)}| =1$
 
 This is because the null-string $\varepsilon$ \index{$\varepsilon$:
-  the null string, of length $0$}
-\index{null string $\varepsilon$}
-is the unique string in $\Sigma^{(0)}$, i.e., $\Sigma^{(0)} = \{
+  the null string, of length $0$} \index{null string $\varepsilon$}
+is the unique string in $\Sigma^{(0)}$; i.e., $\Sigma^{(0)} = \{
 \varepsilon \}$.
 
 \item
-$|\Sigma^{(k+1)}| = |Sigma| \cdot |\Sigma^{(k)}|$.
+$|\Sigma^{(k+1)}| = |\Sigma| \cdot |\Sigma^{(k)}|$.
 
 This reckoning follows from the following recipe for creating all
 strings over $\Sigma$ of length $k+1$ from all strings of length $k$.
 \[
-\Sigma^{(k+1)} \ = \ \{ \sigma x \ | \ \sigma \in \Sigma, x \in
-\Sigma^{(k)} \}
+\Sigma^{(k+1)} \ = \ \{ \sigma x \ | \ \sigma \in \Sigma \ \ \mbox{
+  and } \ \ x \in \Sigma^{(k)} \}
 \]
+In other words, every length-$(k+1)$ string over $\Sigma$ is obtained
+by taking a length-$k$ string $x$ over $\Sigma$ and {\em prepending}
+\index{prepend a symbol to a string} to it a symbol from $\Sigma$,
+i.e., adding $x$ an additional leftmost symbol.
+
 This recipe is correct because
   \begin{itemize}
   \item
@@ -1951,68 +1955,70 @@ find explicitly that:
 
 \noindent
 For each $\ell \in \N$,
-\[ |\Sigma^{(\ell)}| \ = \ \frac{|\Sigma|^{\ell+1} \ - \ |\Sigma|}
-{|\Sigma| -1} \ \leq \ c \cdot |\Sigma|^{\ell}
+\[ |\Sigma^{(\ell)}| \ \ = \ \ \frac{|\Sigma|^{\ell+1} \ - \ |\Sigma|}
+{|\Sigma| -1} \ \ \leq \ \ c \cdot |\Sigma|^{\ell}
 \]
 for some constant $c$.  In order for this quantity to reach the value
-$n \in \N$, we must have
+$n$, we must have
 \[ \ell \ > \ d \cdot \log_{|\Sigma|} n   \]
 for some small constant $d$.  \qed
 \end{proof}
 
-**HERE
-
-Focus on 
-Say, inductively, that there are $\ell_k$
-
+The following result can be considered anther way of looking at
+Proposition~\ref{thm:bound-stringnames-lgth-k}.
 
 \begin{prop}
 \label{thm:Num-strings-lgth-k}
 The number of distinct strings of length $k$ over an alphabet of $a$
-letters is $a^k$.
+symbols is $a^k$.
 \end{prop}
 
 \begin{proof}
-Focus on the generic $a$-letter alphabet $\a \ = \ \{\alpha_1,
-\alpha_2, \ldots, \alpha_a\}$.  We argue by induction on $k$.
+As in Proposition~\ref{thm:bound-stringnames-lgth-k}, let us focus on
+the generic $a$-letter alphabet $\Sigma \ = \ \{\sigma_1, \sigma_2,
+\ldots, \sigma_a\}$.  We argue by induction on string-length $k$.
 
 \noindent
 {\it Bases.}
-The induction we develop can start either at $k=0$ or at $k=1$.  Some
-people are willing to recognize the {\it null word}, \index{word!the
-  null word} which contains no letters, hence has length $0$; others
-insist that the status ``word'' can be enjoyed only by non-null
-strings.  This is purely a matter of taste.
+The induction we develop can start either with strings of length $k=0$
+or with strings of length $k=1$.  Some people countenance the {\it
+  null string} \index{word!the null word} \index{string!the null string}
+$\varepsilon$,  \index{word!$\varepsilon$: the null word}
+\index{string!$\varepsilon$: the null string} which contains no
+symbols, hence has length $0$ as a legitimate string; others insist
+that the status ``string'' can be enjoyed only by non-null strings.
+This is purely a matter of taste.
 
-At any rate, everyone agrees that, if you are willing to countenance
-the null word over the alphabet, there is only $a^0 = 1$ such word;
-this is the case $k=0$ of the proposition.  And, everyone agrees that,
-if you insist on non-null words, then there are $a^1 = a$ such words,
-one for each symbol in $\a$; this is the case $k=1$ of the
-proposition.
+At any rate, everyone agrees that, if one accepts $\varepsilon$ as a
+legitimate string over alphabet $\Sigma$, then there is only $a^0 = 1$
+such word; this is the case $k=0$ of the proposition.  And, everyone
+agrees that, if you insist on non-null tsrings, then there are $a^1 =
+a$ such strings over $\Sigma$, one for each symbol $\sigma \in
+\Sigma$; this is the case $k=1$ of the proposition.  No matter which
+side of the fence you choose to stand on, we have verified our
+induction's base case.
 
 \noindent
 {\it The inductive hypothesis.}
-Say that for all word-lengths $k$ up through $n$, there are $a^k$
-distinct words of length $k$ over $\a$.
+Say that for all string-lengths $k$ up through $n$, there are $a^k$
+distinct words of length $k$ over $\Sigma$.
 
 \noindent
 {\it Extending the induction.}
-Take each length-$n$ word $w$ over $\a$, and append each of $\a$'s $a$
-symbols to $w$.  One thereby creates $a$, obviously distinct, words
-from $w$, namely, $w \alpha_1$, $w \alpha_2$, \ldots, $w \alpha_a$.
-We have thus created $a^{n+1}$ distinct length-$(n+1)$ words over $\a$
-from $\a$'s $a^n$ distinct length-$n$ words.
-\qed
+Take each length-$n$ string $x$ over $\Sigma$, and {\em append}
+\index{append a symbol to a string} to it, in turn, each of $\Sigma$'s
+$a$ symbols, i.e., add each symbol to $x$ as an additional rightmost
+symbol.  One thereby creates $a$ new strings each obviously distinct
+$x$, namely, $x \sigma_1$, $x \sigma_2$, \ldots, $x \sigma_a$.  We
+have thus created $a^{n+1}$ distinct length-$(n+1)$ words over
+$\Sigma$ from $\Sigma$'s $a^n$ distinct length-$n$ words.
+
+The induction is extended, which completes the proof.  \qed
 \end{proof}
 
+\section{$\oplus$ Pointers to Advanced Topics}
 
-
-\section{Useful Nonalgebraic Notions}
-\label{sec:extra-functions}
-
-\subsection{Nonalgebraic Notions Involving Numbers}
-
+**HERE
 
 If the intended curriculum will approach more sophisticated
 application areas such as robotics or data science or information
@@ -2020,21 +2026,99 @@ retrieval or data mining (of course, at levels consistent with the
 students' preparation), then one would do well to insist on
 familiarity with notions such as:
 
+\bigskip
 
-\ignore{*********
-
-\section{Advanced Topics}
-
-\subsection{Measures of distance in tuple-spaces}
+\noindent
+{\bf\em Measures of distance in tuple-spaces.}
 
 including the following
 norms/metrics: $L_1$ (Manhattan, or, rook's-move distance), $L_2$
 (Euclidean distance); $L_\infty$ (King's-move distance).
 
+\bigskip
 
-\subsection{Edit-distance: a measure of closeness in {\em string spaces}}
+\noindent
+{\bf\em Edit-distance: a measure of closeness in {\em string spaces}}.
+From the earliest days of digital computing, the challenge of
+employing computers as ``editorial assistants'' was viewed as a prime
+domain within which to achieve a significant practical payoff.  An
+early problem within this domain was to determine of ``how different''
+two strings, $x$ and $y$, over an alphabet $\Sigma$ are from one
+another.  The quotation marks in the preceding sentence acknowledges
+that it is actually not obvious how to measure the ``distance''
+between $x$ and $y$ in a way that matters.  The intersecting need of
+three separate developing communities finally supplied the definition
+that has generally been accepted.  Roughly contemoraneously, during,
+say, the decade from 1955--1965:
+  \begin{itemize}
+  \item
+Computational linguists attempted to enlist computers in the
+processing of natural language.  The goal of automatic translation
+from Russian to English became the ``holy grail'' of this community.
+Reminiscences by Anthony G.~Oettinger, \index{Oettinger, Anthony G.}
+a pioneer in this effort, appear in \cite{Hutchins00}.
+   \item
+As the potential power of computers became appreciated, more
+sophisticated process-specification languages began to emerge.  From
+the earliest days of this development, programming languages became
+more ``language-like''.  One of the earliest entrants in this arena
+was the business-oriented language COBOL, which was inspired by early
+work of the computing giant Grace Murray Hopper 
+\index{Hopper, Grace Murray} and developed under the leadership of
+Jean E.~Sammet; \index{Sammet, Jean E.} see \cite{Sammet78}.  A second
+early entrant was the string-processing language COMIT developed under
+the leadership of Victor Yngve \index{Yngve, Victor} with an eye
+toward applications such as language processing; see \cite{Yngve}.
+Finally, the ever-evolving FORTRAN language was developed in the
+mid-1950s by a small team at IBM, headed by John Backus;
+\index{Backus, John} see \cite{Backus-etal57}.  FORTRAN was the first
+programming language that aimed to enable scientists to specify the
+problems they wished to compute in a manner that was at least
+reminiscent of the mathematical notation they would use to communicate
+with one another.
+   \item
+As it became clear that FORTRAN was a step toward satisfying the
+programming needs of an enormous market, a veritable army of systems
+programmers began to develop increasingly sophisticated processors for
+programming languages.  The era of ``smart compilers'' was dawning.
+   \end{itemize}
 
-***************}
+A common feature in the preceding developments was that people were
+typing more as they used computers.  Inevitably, therefore, they were
+making more typing mistakes.  A very specific computing challenge
+arose, to make much more concrete the desire to understand how close a
+string $x$ was to a string $y$.  Could one develop an algorithm that
+would rewrite one of these strings as the other while ``editing'',
+or, rewriting, as few symbols as possible?  While such an algorithm
+would not completely solve the ``mistyping'' problem---consider, e.g.,
+that the strings
+
+\hspace*{.25in} ``SORTH'' \ \ and \ \ ``NOUTH''
+
+\noindent
+are both ``edit-distance $1$'' from both
+
+\hspace*{.25in} ``SOUTH'' \ \ and \ \ ``NORTH''
+
+\noindent
+hence cannot be ``corrected'' automatically---being able to correct a
+mistyped string to its edit-nearest legitimate string would probably
+be very useful in practice.  Happily, although this algorithmic
+problem was more difficult than many had imagined, it did admit the
+efficient elegant solution that appears in \cite{WagnerF74}.
+
+
+
+
+
+
+\ignore{**************
+\section{Useful Nonalgebraic Notions}
+\label{sec:extra-functions}
+
+\subsection{Nonalgebraic Notions Involving Numbers}
+*************}
+
 \ignore{************
 
 This section is devoted to showing that,
