@@ -1,4 +1,4 @@
-%version of 02-26-19
+%version of 02-27-19
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -2031,24 +2031,172 @@ the students' preparation.  We now flesh out this suggestion by
 discussing two supplements which, broadly construed, could fit under
 the mantle of {\it Arithmetic}.
 
-\subsection{Norms Metrics and for Tuple-Spaces}
+\subsection{Norms and Metrics for Tuple-Spaces}
+\label{sec:Ln-norms}
 
 By the 1950s, computers had become sophisticated enough to handle
-structured data  computer users became sophisticated enough to think in terms
-of structured models.  Thus, during the 1960s, one began to see
-{\it tuple-spaces} \index{ , it took virtually no time until application
-designers abandoned the simple linear structures of the 
+structured data computer users became sophisticated enough to think in
+terms of structured models.  Thus, from the 1960s and 1970s onward to
+the present, one sees {\it tuple-spaces} \index{tuple-spaces} used to
+algorithmic advantage in application areas as varied as {\it
+  databases}, \cite{Codd70} {\it parallel computing},
+\cite{BlumS77,Shinahr74} and {\it robotics}
+\cite{Marchese96,Rosenberg12}.  While the specific concepts drawn from
+the study of tuple-spaces vary a bit from one application area to
+another, certain concepts recur---and among these, the {\it norms} and
+{\it metrics} that allow us to talk about notions such as ``distance''
+play a very important role.  Of course, notions of ``distance''
+relevant to databases may differ from those used in, e.g., robotic
+path planning, but in very many applcations it is important to know
+whether tuple $t_1$ is ``closer to'' tuple $t_2$ than to tuple $t_3$.
 
-\cite{Codd70}
-\cite{BlumS77}
-\cite{Marchese96}
-\cite{Shinahr74}
-\cite{Rosenberg12}
-**HERE
+It is an often-frustrating phenomenon that new application areas all
+too frequently rename concepts and tools that it inherits from its
+predecessors.  So how shall we name the norms and metrics that we
+inject into our mathmeatics curriculum?  Probably the most scholarly
+course is to employ the names that honor the early 20th century French
+mathematician and function theorist Henri L\'{e}on Lebesgue
+\index{Lebesgue, Henri L\'{e}on} whose $L$-measures
+\index{Lebesgue's $L$-measures} form the classical taxonomy of norms
+and distances in tuple-spaces.
 
-including the following
-norms/metrics: $L_1$ (Manhattan, or, rook's-move distance), $L_2$
-(Euclidean distance); $L_\infty$ (King's-move distance).
+We focus on {\em two-dimensional} tuple-spaces, although everything we
+say generalizes in a straightforward manner to arbitrary
+finite-integer dimensionalities.  And, we restrict attention to the
+three $L$-measures that are the most common in application areas such
+as informatics and robotics.  Focus on arbitrary $2$-tuples of numbers
+$z_1 = \langle x_1, y_1 \rangle$ and $z_2 = \langle x_2, y_2 \rangle$.
+
+\medskip
+
+\noindent{\it The $L^1$ measure.} \index{$L^1$ measure}
+\begin{itemize}
+\item
+The $L^1$-{\it norm} \index{$L^1$ measure!norm} of $z_1$ is the sum of
+the magnitudes of its coordinates, i.e.,
+\[ L^1(z_1) \ = \ |x_1| + |y_1|.  \]  
+
+\item
+The $L^1$-{\it distance} \index{$L^1$ measure!distance} between $z_1$
+and $z_2$ is the sum of the magnitudes of the differences between the
+coordinates of the two pairs, i.e.,
+\[ L^1(z_1, z_2) \ = \ |x_1 - x_2| + |y_1 - y_2|. \]
+\end{itemize}
+$L^1$-distance is also called {\it Manhattan distance}
+\index{Manhattan distance} or {\it rook distance},
+\index{rook distance} because a path between $z_1$ and $z_2$, viewed
+as points in $2$-dimensional space, in which adjacent points are unit
+$L^1$-distance apart, follows a rectilinear grid-like pattern such one
+observes in a map of Manhattan or in the path taken by a rook in
+chess.  From a less picturesque point of view, one observes that each
+point in $2$-dimensional space is unit $L^1$-distance from four other
+points, one each in the four NEWS (north, east, south, west) compass
+directions.  If one maps out the points in $2$-dimensional space that
+are at successive $L^1$-distances from a ``center'' point $z$, then
+one observes the {\it $L^1$-disc} \index{$L^1$ measure!disc} of
+Fig.~\ref{fig:Ln-discs}(left), which generalizes in higher dimensions
+to the {\it $L^1$-sphere}. \index{$L^1$ measure!sphere}
+\begin{figure}[hbt]
+\[
+\begin{array}{ccc}
+\begin{array}{|ccccccc|}
+\hline
+  &   &   & \fbox{3} &   &   &   \\
+  &   & \fbox{3} & \fbox{2} & \fbox{3} &   &   \\
+  & \fbox{3} & \fbox{2} & \fbox{1} & \fbox{2} & \fbox{3} &   \\
+\fbox{3} & \fbox{2} & \fbox{1} & \fbox{0} & \fbox{1} & \fbox{2} & \fbox{3} \\
+  & \fbox{3} & \fbox{2} & \fbox{1} & \fbox{2} & \fbox{3} &   \\
+  &   & \fbox{3} & \fbox{2} & \fbox{3} &   &   \\
+  &   &   & \fbox{3} &   &   &   \\
+\hline
+\end{array}
+  & \hspace*{.5in} &
+\begin{array}{|ccccccc|}
+\hline
+\fbox{3} & \fbox{3} & \fbox{3} & \fbox{3} & \fbox{3} & \fbox{3} & \fbox{3} \\
+\fbox{3} & \fbox{2} & \fbox{2} & \fbox{2} & \fbox{2} & \fbox{2} & \fbox{3} \\
+\fbox{3} & \fbox{2} & \fbox{1} & \fbox{1} & \fbox{1} & \fbox{2} & \fbox{3} \\
+\fbox{3} & \fbox{2} & \fbox{1} & \fbox{0} & \fbox{1} & \fbox{2} & \fbox{3} \\
+\fbox{3} & \fbox{2} & \fbox{1} & \fbox{1} & \fbox{1} & \fbox{2} & \fbox{3} \\
+\fbox{3} & \fbox{2} & \fbox{2} & \fbox{2} & \fbox{2} & \fbox{2} & \fbox{3} \\
+\fbox{3} & \fbox{3} & \fbox{3} & \fbox{3} & \fbox{3} & \fbox{3} & \fbox{3} \\
+\hline
+\end{array}
+\end{array}
+\]
+\caption{The radius-$3$ $L^1$-disc (left) and $L^\infty$-disc (right),
+  with annotated $L^1$-distances and $L^\infty$-distances,
+  respectively, from the ``center'' point.}
+\label{fig:Ln-discs}
+\end{figure}
+
+\medskip
+
+\noindent{\it The $L^\infty$ measure.} \index{$L^\infty$ measure}
+\begin{itemize}
+\item
+The $L^\infty$-{\it norm} \index{$L^\infty$ measure!norm} of $z_1$ is
+the larger of the magnitudes of its coordinates, i.e.,
+\[ L^\infty(z_1) \ = \ \max(|x_1|, \ |y_1|).  \]  
+
+\item
+The $L^\infty$-{\it distance} \index{$L^\infty$ measure!distance}
+between $z_1$ and $z_2$ is the larger of the magnitudes of the
+differences between the coordinates of the two pairs, i.e.,
+\[ L^\infty(z_1, z_2) \ = \ \max(|x_1 - x_2|, \  |y_1 - y_2|). \]
+\end{itemize}
+$L^\infty$-distance is also called {\it king's-move distance},
+\index{king's-move distance} because each step in a path between $z_1$
+and $z_2$, in which adjacent points are unit $L^\infty$-distance apart
+follows a pattern such as one observes in a path taken by a king in
+chess.  From a less picturesque point of view, one observes that each
+point in $2$-dimensional space is unit $L^\infty$-distance from eight
+other points, one each in the eight compass directions N, NE, E, SE,
+S, SW, W, NW.  If one maps out the points in $2$-dimensional space
+that are at successive $L^\infty$-distances from a ``center'' point
+$z$, then one observes the {\it $L^\infty$-disc} of
+Fig.~\ref{fig:Ln-discs}(right), \index{$L^\infty$ measure!disc} which
+generalizes in higher dimensions to the
+{\it $L^\infty$-sphere}. \index{$L^\infty$ measure!sphere}
+
+\smallskip
+
+As one observes in Fig.~\ref{fig:Ln-discs}, the structures of the
+$L^1$-disc and the $L^\infty$-disc are, respectively, dominated by
+diagonals and squares; see the ``equipotential'' lines in the figure.
+One can exploit this fact when crafting algorithms that are governed
+by these norms.  Indeed, we invoke the structures of these discs as we
+develop the ``pairing functions'' which we showcase in
+Section~\ref{sec:building-pairing-functions}.
+
+\bigskip
+
+We have not (yet) mentioned what is likely the most familiar
+$L$-measure, namely, the $L^2$ measure which is named for Euclid in
+honor of his celebrated treatise on geometry, {\it The Elements}.
+\index{Euclid!{\it The Elements}} For completeness, we now define this
+measure, but we do not develop the subject further because it is not
+frequently used when dealing with the discrete mathematical structures
+that are the primary foci of this text.
+
+\medskip
+
+\noindent{\it The $L^2$ measure.} \index{$L^2$ measure}
+\begin{itemize}
+\item
+The $L^2$-{\it norm} \index{$L^2$ measure!norm} of $z_1$ is the
+Euclidean distance of the point from the {\it origin} of
+$2$-dimensional space, \index{origin of $2$-dimensional space}
+which is the point $\langle 0,0 \rangle$:
+\[ L^2(z_1) \ = \ \sqrt{x_1^2 + y_1^2}.  \]  
+
+\item
+The $L^2$-{\it distance} \index{$L^2$ measure!distance} between $z_1$
+and $z_2$ is the Euclidean distance between the points in
+$2$-dimensional space, i.e.,
+\[ L^2(z_1, z_2) \ = \ \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}. \]
+\end{itemize}
+
 
 \subsection{Edit-Distance: Measuring Closeness in {\em String Spaces}}
 
