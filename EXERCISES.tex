@@ -1,0 +1,207 @@
+%version of 02-27-19
+
+\chapter{EXERCISES}
+\label{ch:Exercises}
+
+
+
+
+
+
+\subsubsection{A fun result: complex
+  multiplication via $3$ real multiplications}
+\index{complex number!multiplication via 3 real multiplications}
+
+\begin{prop}
+\label{thm:complex-mult-3real}
+One can compute the product of two complex numbers using {\em three}
+real multiplications rather than four.
+\end{prop}
+
+\begin{proof}
+Although implementing (\ref{eq:complex-mult}) ``directly'' correctly
+produces the product $\kappa = (a+bi) \cdot (c+di)$, there is another
+implementation that is {\em more efficient}.  Specifically, the
+following recipe computes $\kappa$ using only {\em three} real
+multiplications instead of the four real multiplications of the
+``direct'' implementation.  We begin to search for this recipe by
+noting that our immediate goal is to compute both Re$(\kappa) = ac-bd$
+and Im$(\kappa) = ad+bc$.  We can accomplish this by computing the
+{\em three} real products
+\begin{equation}
+\label{eq:complex-mult-3a}
+(a+b) \cdot (c+d); \ \ \ \ \
+ac;  \ \ \ \ \ bd
+\end{equation}
+and then noting that
+\begin{equation}
+\label{eq:complex-mult-3b}
+\begin{array}{lcl}
+\mbox{Im}(\kappa) & = & (a+b) \cdot (c+d) - ac -bd, \\
+\mbox{Re}(\kappa) & = & ac -bd
+\end{array}
+\end{equation}
+We thereby achieve the result of the complex multiplication described
+in (\ref{eq:complex-mult}) while using only {\em three} real
+multiplications.
+
+Of course, a full reckoning of the costs of the two implementations we
+have discussed exposes the fact that the implementation that invokes
+(\ref{eq:complex-mult-3a}) and (\ref{eq:complex-mult-3b}) uses {\em
+  three} real additions rather than the {\em two} real additions of
+the ``direct'' implementation.  But this entire exercise was
+predicated on the observation that each real addition is much less
+costly than a real multiplication, so trading one multiplication for
+one addition is an unqualified ``win''.  \qed
+\end{proof}
+
+{\Denis I added a sentence to refer to an exercice dealing with karatsuba which uses the same idea...}
+Notice that this technique is classical and it has been used in many other situations.
+For instance while multiplying two integers in base 2 (see exercice~{Karatsuba}).
+
+
+
+
+\subsection{A Fun Result: A ``Trick'' for Squaring Certain Integers}
+
+Sometimes only basic knowledge is needed to craft amusing
+``tricks''---we know that they are not really tricks at all!---that
+are really rigorous applications of principles that we have learned.
+Here is an ``old chestnut'' example that may inspire you to design
+your own. 
+
+If someone presents you with a number that has a numeral that ends in
+$5$, then there is a simple way to square the number mentally.  For
+instance, if someone says
+
+\hspace{.25in}``$n = 25$''
+
+\noindent
+then you can instantly respond
+
+\hspace{.25in}``$n^2 = 625$''
+
+\noindent
+If the challenge is
+
+\hspace{.25in}``$n = 75$''
+
+\noindent
+then your response is
+
+\hspace{.25in}``$n^2 = 5625$''
+
+\noindent
+Let's make this ``game'' mathematical.
+
+\begin{prop}
+\label{thm:75x65=4925}
+Let $n$ be any number that has a $2$-digit decimal numeral of the form
+
+\hspace{.25in}$\delta \ 5$ \ \ \ \ $(\delta \in \{ 0,1,2,3,4,5,6,7,8,9\})$.
+
+\noindent
+Then the square of $n$ is the integer
+
+\hspace{.25in}$25 \ + \ \delta \cdot (\delta +1)$. 
+\end{prop}
+
+\begin{proof}
+We can rewrite the premise of the proposition in the form
+\[ n \ = \ 10 \cdot \delta + 5 \]
+It is now easy to invoke Proposition~\ref{prop:(a+b)(c+d)} and the
+distributive law to compute that
+
+\[ n^2 \ = \ 100 \cdot \delta \cdot (\delta+1) + 25. \]
+To wit: 
+\[
+\begin{array}{lclll}
+n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
+    & = & 100 \cdot \delta^2 \ + \ 100 \cdot delta \ + \ 25
+              & & \mbox{the proposition} \\
+    & = & 100 \cdot (\delta^2 \ + \ \delta) \ + \ 25
+              & & \mbox{factoring: distributive law} \\
+    & = & 100 \cdot \delta \cdot (\delta + 1) \ + \ 25
+              & & \mbox{factoring: distributive law} \\
+\end{array}
+\]
+A parlor trick has become a mathematical demonstration!
+\qed
+\end{proof}
+
+
+\subsubsection{A fun result via geometric sums: When is integer  $n$
+  divisible by $9$?}
+\label{sec:divisible-by-9}
+
+We now exploit our ability to evaluate geometric summations to
+illustrate a somewhat surprising, nontrivial fact.  One can deduce
+information about the divisibility of an integer $n$ from $n$'s
+positional numerals.  We hope that this ``fun'' result will inspire
+the reader to seek kindred numeral-encoded properties of numbers.
+
+\begin{prop}
+\label{thm:div-by-b-bar}
+An integer $n$ is divisible by an integer $m$ if, and only if, $m$
+divides the sum of the digits in the base-$(m+1)$ numeral for $n$.
+\end{prop}
+
+The most familiar instance of this result is phrased in terms of our
+traditional use of base-$10$ (decimal) numerals. \\
+{\it An integer $n$ is divisible by $9$ if, and only if, the sum of
+  the digits of $n$'s base-$10$ numeral is divisible by $9$.}
+
+\smallskip
+
+\begin{proof}
+({\it Argument for general number-base $b$}).
+%
+Of course, we lose no generality by focusing on numerals without
+leading $0$'s, because leading $0$'s do not alter a numeral's sum of
+digits.
+
+Let us focus on the base-$b$ numeral for a number $n$ (so $b = m+1$ in
+the statement of the proposition).  There therefore exist base-$b$
+digits---i.e., integers from the set $\{0, 1, \ldots, b-1\}$---call
+them $\delta_k \neq 0$, $\delta_{k-1}$, \ldots $\delta_1$, $\delta_0$,
+such that
+\[ n \ = \ \delta_k \cdot b^k + \delta_{k-1} \cdot b_{k-1} + \cdots +
+\delta_1 \cdot b + \delta_0. \]
+The sum of the digits of $n$'s base-$b$ numeral is, then
+\[ s_b(n) \ \eqdef \ \delta_k + \delta_{k-1} + \cdots + \delta_1 +
+\delta_0. \]
+Let us calculate the difference $n - s_b(n)$ in the following manner,
+digit by digit.
+\begin{equation}
+\label{eq:sum-of-digits}
+\begin{array}{ccccccccccc}
+n & = &
+\delta_k \cdot b^k & + & \delta_{k-1} \cdot b^{k-1} & + & \cdots
+  & + & \delta_1 \cdot b & + & \delta_0 \\
+s_b(n) & = &
+\delta_k & + & \delta_{k-1} & + & \cdots & + & \delta_1 & + & \delta_0 \\
+\hline
+n - s_b(n) & = &
+\delta_k \cdot (b^k -1) & + &
+\delta_{k-1} \cdot (b^{k-1} -1) & + &
+\cdots & + &
+\delta_1 \cdot (b-1) & & 
+\end{array}
+\end{equation}
+
+\medskip
+
+We now revisit summation (\ref{eq:geom-sum:b>1}).  Because $b$ is a
+positive integer, so that $1 + b + \cdots + b^{a-2} + b^{a-1}$ is also
+a positive integer, we infer that {\em the integer $b^a -1$ is
+  divisible by $b-1$.}
+
+We are almost home.  Look at the equation for $n - s_b(n)$ in the
+system (\ref{eq:sum-of-digits}).  As we have just seen, every term on
+the righthand side of that equation is divisible by $b-1$.  It follows
+therefore, that the lefthand expression, $n - s_b(n)$, is also
+divisible by $b-1$.
+An easy calculation, which we leave to the reader, now shows that this
+final fact means that $n$ is divisible by $b-1$ if, and only if,
+$s_b(n)$ is.
+\end{proof}
