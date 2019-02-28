@@ -1,4 +1,4 @@
-%version of 02-27-19
+%version of 02-28-19
 
 \chapter{SETS, BOOLEAN ALGEBRA, AND LOGIC}
 \label{ch:sets-BA-logic}
@@ -939,7 +939,7 @@ A {\it Boolean algebra} is a mathematical system **HERE
 \index{Boolean Algebra!Operations}
 
 
-\noindent{\it The Axioms of Boolean Algebras}.
+\noindent{\it The Axioms of Boolean Algebra}.
 \index{Boolean Algebra!axioms}
 
 \noindent{The algebra of sets}.
@@ -1103,20 +1103,24 @@ Propositional Calclulus.  This is because one often feels that logical
 propositions are static statements rather than active prescriptions
 for computations.
 
+\medskip
+
 \noindent {\it The (Boolean) algebra of logical operations}
 \index{Propositional logic!logic as a Boolean algebra}
 \index{the Boolean algebra of logical operations}
 \index{Boolean algebra!the Propositional Calculus}
 
+**HERE
+
 The operations of the Propositional Calclulus give rise to a Boolean
 algebra that manipulates (logical) propositions in much the way that
-the set-oriented Boolean algebra of
-Section~\ref{sec:Boolean-Algebra-Sets} manipulates sets.
+the set-oriented Boolean algebra of Section~\ref{sec:Boolean-Algebra}
+manipulates sets.
 
 
 \subsubsection{Logic via Truth Tables}
 
-\paragraph{\small\sf A. The logical connectives via truth tables}
+\noindent{\it The logical connectives via truth tables}.
 \index{logical operations!a functional view}
 %
 If one is willing to view statements in the Propositional Calclulus as
@@ -1161,18 +1165,22 @@ operations ($\Rightarrow$ and $\equiv$) that have informal
 counterparts in ``real-life'' reasoning.  Think about whether your
 intuition agrees with the formal specifications of these operations.
 
-\smallskip
+\medskip
 
-\paragraph {\small\sf D. Logic via truth values}
+\noindent{Logic via truth values}.
 \index{Propositional logic!logic via truth values}
-
+%
 As demonstrated in Subsection~C, the Propositional Calculus is a
 Boolean Algebra when one interprets the logical connectives of
 Subsection~A as operations on logical expressions that evaluate to
 either {\sc true} (or, $1$) or {\sc false} (or, $0$).  But, the
 calculus forms a very special genre of Boolean Algebra, namely, a {\em
   free Boolean Algebra}.\index{Boolean algebra!{\em free} algebra}
-\begin{quote}
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
 The meaning of the qualifier {\it free} is easy to state but not so
 easy to understand.  Here is a very informal try.
 
@@ -1222,7 +1230,11 @@ Every integer $z \in \Z$ has an {\it additive inverse} (namely, $-z$).
 
 So, it really is meaningful that the Boolean Algebra built upon the
 Porpositional calculus {\em is} free.
-\end{quote}
+\end{minipage}
+}
+\bigskip
+
+\noindent
 For us, the impact of the ``freeness'' of the Propositional algebra,
 {\it qua} Boolean Algebra, is manifest in the following
 \index{meta-theorem}
@@ -1529,54 +1541,136 @@ identical, as are columns 10 and 11.  By
 Theorem~\ref{thm:Prop-calc-isfree} this fact verifies the distributive
 laws for Propositional logic.
 
-\subsection{Satisfiability problem}
+\subsubsection{Satisfiability problems}
+\label{sec:Satisfiability}
+
+Satisfiability problems focus on logical expressions that are {\it
+  conjuncts of disjuncts}.  In the lingo of the ``in-crowd'', these
+expressions are said to be in {\it POS} form, \index{POS-form expression} 
+or {\it product of sums}.  More formally, the expressions are {\it
+  conjuncts of disjuncts}, i.e., {\it logical products of logical
+  sums}.  Until 1971, POS expressions were viewed as nothing more than
+the duals of the somewhat more common {\it SOP}-form expressions,
+\index{SOP-form expression} or {\it sums of products}.  A discovery in
+1971 changed this view, by exposing how POS-form expressions can be
+used to model a computational phenomenon whose importance was only
+beginning to be appreciated at that time.  The importance of this
+phenomenon and of its representation via POS-form expressions has
+grown immeasurably since that time, originally just within the
+theoretical world, but increasingly in the world of applications as
+well.
+
+Let prepare the stage for our more detailed discussion.
+
+\paragraph{\small\sf A. The general satisfiability problem SAT}
+
+**HERE
 
 Some basics
 
-A \textit{literal} is a predicate composed of a single boolean variable $x$ or its negation.
-A \textit{clause} is a particular predicate formed by disjunctions of literals, for instance $C = x \vee \bar{y} \vee z$.
+A \textit{literal} is a predicate composed of a single boolean
+variable $x$ or its negation.  A \textit{clause} is a particular
+predicate formed by disjunctions of literals, for instance $C = x \vee
+\bar{y} \vee z$.
 
-The problem SAT (Satisfiability)  consists in deciding if there exists a truth assignment
-that satisfies all the clauses of a given set of clauses. 
-2SAT is the variant where the cardinality of the clauses is no more than $2$.
-More formally, the problem is defined as follows:
+The problem SAT (Satisfiability) consists in deciding if there exists
+a truth assignment that satisfies all the clauses of a given set of
+clauses.  2SAT is the variant where the cardinality of the clauses is
+no more than $2$.  More formally, the problem is defined as follows:
 
-Consider $n$ boolean variables and $m$ clauses $C_i$ composed of at most two literals on these variables. 
+Consider $n$ boolean variables and $m$ clauses $C_i$ composed of at
+most two literals on these variables.
 
-The question is to determine if there exists a truth assignment that satisfies 
-the following boolean formula $C_1 \wedge C_2 \wedge ... \wedge C_m$.
+The question is to determine if there exists a truth assignment that
+satisfies the following boolean formula $C_1 \wedge C_2 \wedge
+... \wedge C_m$.
 
-SAT is well-known problem that plays a particular role in theoretical Computer Science since it was the first problem to be proved to be NP-complete. 
-However, if we restrict the cardinality of the clauses to 2, 2SAT can be polynomially solvable.
-This result can be proved elegantly by using graphs. Notice that the variant 3SAT (Clauses of cardinality $3)$ remains NP-complete. 
-The idea is to transform the boolean formula $\Phi = C_1 \wedge C_2 \wedge ... \wedge C_m$ into a graph $G(\Phi)$
-with $2n$ vertices where:
+\paragraph{\small\sf B. 3SAT: SAT with $3$ literals per clause}
+
+
+
+The backstory of the preceding assertion began in 1971 when Stephen
+A.~Cook \index{Cook, Stephen A.} was able to adapt, in \cite{Cook71},
+arguments\footnote{These arguments were the legacy of intellectual
+  giants such as Kurt G\"{o}del \index{G\"{o}del, Kurt} (in
+  \cite{Goedel31}) and Alan M.~Turing \index{Turing, Alan M.} (in
+  \cite{Turing36}).}~underlying the mathematical foundations of the
+theory of computing to the study of specific computational problems;
+the new theory was soon named {\it (the theory of) {\sf
+    NP}-completeness} \index{{\sf NP}-completeness} for reasons that
+are explained in sources such as \index{GareyJ79} and developed in
+texts such as \index{Rosenberg09}.  Within a year, Richard M.~Karp
+\index{Karp, Richard M.} and colleagues had greatly lengthened the
+list of computational problems that Cook's nascent theory encompassed;
+several variants of the Hamiltonianicity-detection problem were on
+this list.  The details of the theory of {\sf NP}-completeness are
+beyond the scope of this text, but we do want the reader to recognize
+the following.
+
+It remains mathematically {\em possible} that {\sf NP}-complete
+problems can be solved efficiently---meaning ``in time polynomial in
+the size of the description of the problem'' (e.g., the number of
+nodes and edges in a graph).  However it is mathematically {\em
+  certain} that if any one problem in this class has a polynomial-time
+solution, then every problem in this class does.
+
+Given the half-century that has passed since the work of Cook and
+Karp, and given the practical importance of many of the problems that
+are known to be {\sf NP}-complete, it is widely {\em suspected} that
+no {\sf NP}-complete problem can be solved via a polynomial-time
+algorithm.
+
+There is a large, vibrant literature concerning approaches for
+lessening the negative computational impacts of {\sf
+  NP}-completeness---by considering significant special cases of {\sf
+  NP}-complete problems, by developing approximate solutions to such
+problems, and by developing heuristics for such problems, whose
+behavior cannot be guaranteed but which seem to work well ``in
+practice''.
+
+
+
+
+\paragraph{\small\sf C. 2SAT: SAT with $2$ literals per clause}
+
+SAT is well-known problem that plays a particular role in theoretical
+Computer Science since it was the first problem to be proved to be
+NP-complete.  However, if we restrict the cardinality of the clauses
+to 2, 2SAT can be polynomially solvable.  This result can be proved
+elegantly by using graphs. Notice that the variant 3SAT (Clauses of
+cardinality $3)$ remains NP-complete.  The idea is to transform the
+boolean formula $\Phi = C_1 \wedge C_2 \wedge ... \wedge C_m$ into a
+graph $G(\Phi)$ with $2n$ vertices where:
 
 \begin{itemize}
 \item
-Each vertex corresponds to one variable in the two states $x$ and $\bar{x}$).
+Each vertex corresponds to one variable in the two states $x$ and
+$\bar{x}$.
 \item
-Each clause $C_i = (a \vee b)$ is transformed into an arc between vertices $\bar{a}$ and $b$.
+Each clause $C_i = (a \vee b)$ is transformed into an arc between
+vertices $\bar{a}$ and $b$.
 
-The meaning is to translate the fact that $b$ should be assigned to {\em true} in case if $a$ is {\em false}
-(in other words, $\bar{a} \rightarrow b$). 
-Controversally, there is an arc from $\bar{b}$ to $a$
-if $b$ is {\em false}, $a$ should be {\em true}. 
+The meaning is to translate the fact that $b$ should be assigned to
+{\em true} in case if $a$ is {\em false} (in other words, $\bar{a}
+\rightarrow b$).  Controversally, there is an arc from $\bar{b}$ to
+$a$ if $b$ is {\em false}, $a$ should be {\em true}.
 \end{itemize}
 
 In this graph, all the paths represent the valid logical implications. 
 
 \begin{prop}
 \label{prop:2SAT}
-The boolean expression $\Phi = C_1 \wedge C_2 \wedge ... \wedge C_m$ is satisfiable iff
-no strong component of $G(\Phi)$ contains both a vertex $x$ and its negation $\bar{x}$.
+The boolean expression $\Phi = C_1 \wedge C_2 \wedge ... \wedge C_m$
+is satisfiable iff no strong component of $G(\Phi)$ contains both a
+vertex $x$ and its negation $\bar{x}$.
 \end{prop}
 
 The proof is a consequence of the two following elementary results.
 
 \begin{prop}
 \label{prop:2SATlemma1}
-If $G(\Phi)$ contains a path from $x$ to $y$ then, it has a path from $\bar{y}$ to $\bar{x}$.
+If $G(\Phi)$ contains a path from $x$ to $y$ then, it has a path from
+$\bar{y}$ to $\bar{x}$.
 \end{prop}
 
 The proof is easy by induction on the length of the shortest path from $x$ to $y$. 
@@ -1584,43 +1678,55 @@ The proof is easy by induction on the length of the shortest path from $x$ to $y
 
 \begin{prop}
 \label{prop:2SATlemma2}
-If $G(\Phi)$ contains a path from $x$ to $y$ then for every satisfying truth assignment $t$, $x(t)=1$ implies $y(t)=1$.
+If $G(\Phi)$ contains a path from $x$ to $y$ then for every satisfying
+truth assignment $t$, $x(t)=1$ implies $y(t)=1$.
 \end{prop}
 
 \begin{proof}
-Suppose that $\Phi$ is satisfied by a truth assignment $t$ where $x(t)=1$.
-By contradiction, if along the path from $x$ to $\bar{x}$ , there exists an arc (say $\alpha,\beta$) such that $\alpha$ is {\em true} and $\beta$ is {\em false}.
-As this arc belongs to $G(\Phi)$ it means that the clause ($\bar{\alpha},\beta$) is a clause of $\Phi$ 
-whose assignment is ({\em false},{\em false}) and thus, the clause is not satisfied. 
+Suppose that $\Phi$ is satisfied by a truth assignment $t$ where
+$x(t)=1$.  By contradiction, if along the path from $x$ to $\bar{x}$ ,
+there exists an arc (say $\alpha,\beta$) such that $\alpha$ is {\em
+  true} and $\beta$ is {\em false}.  As this arc belongs to $G(\Phi)$
+it means that the clause ($\bar{\alpha},\beta$) is a clause of $\Phi$
+whose assignment is ({\em false},{\em false}) and thus, the clause is
+not satisfied.
 \end{proof}
 \medskip
 
 Let us now prove the main result.
 
 \begin{proof}
-Suppose that $\Phi$ is satisfied by a truth assignment of $x$.
-By first part of the proof is by contradiction, $\Phi$ is satisfiable by the truth assignment $t$.  
-and there exists a strong component that contains both $x$ and $\bar{x}$.
-From the previous result~\ref{prop:2SATlemma2}, $x(t)=1$ implies that $\bar{x}=1$, which is impossible. 
+Suppose that $\Phi$ is satisfied by a truth assignment of $x$.  By
+first part of the proof is by contradiction, $\Phi$ is satisfiable by
+the truth assignment $t$.  and there exists a strong component that
+contains both $x$ and $\bar{x}$.  From the previous
+result~\ref{prop:2SATlemma2}, $x(t)=1$ implies that $\bar{x}=1$, which
+is impossible.
 
-Let prove now that there is no strong component that contains bit a variable $x$ and its negation.
-We construct as follows a truth assignment for $\Phi$:
-Let order the strong component $S_i$ in the topologic order from $1$ to $k$,
-that is, there is no arc from $S_j$ and $S_i$ if $i<j$.
-Let mark all the non-assigned variables and start form the strong component which has the largest index.
-We proceed backwards, if there is any variable in the current $S_i$ whose negation has been assigned, assign it to $0$
-otherwise, assign it to $1$.
-This way, all the clauses are satisfied.
-Indeed assume by contradiction that there is a clause $\alpha \vee \beta$ which is not (this means that $\alpha = 0$
-and then, $\bar{\alpha}$ has been assigned to $1$ before, in a strong component with a higher index.
-The same stands for $\beta$ which is impossible since $\alpha \vee \beta$ corresponds to an arc $\bar{\alpha},\beta$.
+Let prove now that there is no strong component that contains bit a
+variable $x$ and its negation.  We construct as follows a truth
+assignment for $\Phi$: Let order the strong component $S_i$ in the
+topologic order from $1$ to $k$, that is, there is no arc from $S_j$
+and $S_i$ if $i<j$.  Let mark all the non-assigned variables and start
+form the strong component which has the largest index.  We proceed
+backwards, if there is any variable in the current $S_i$ whose
+negation has been assigned, assign it to $0$ otherwise, assign it to
+$1$.  This way, all the clauses are satisfied.  Indeed assume by
+contradiction that there is a clause $\alpha \vee \beta$ which is not
+(this means that $\alpha = 0$ and then, $\bar{\alpha}$ has been
+assigned to $1$ before, in a strong component with a higher index.
+The same stands for $\beta$ which is impossible since $\alpha \vee
+\beta$ corresponds to an arc $\bar{\alpha},\beta$.  \qed
 \end{proof}
 
 
-Let us develop two examples to illustrate this problem.
-The first one $\Phi_1 = (\bar{x_{3}} \vee \bar{x_{1}}) \wedge (x_{1} \vee \bar{x_{2}}) \wedge (x_{2} \vee x_{3})$
-is depicted in Fig.~\ref{2SATyes}). It leads to a positive truth assignment
-while the second one $\Phi_2 = (\bar{x_{3}} \vee \bar{x_{1}}) \wedge (\bar{x_{1}} \vee {x_{3}}) \wedge (x_{2} \vee x_{3})$ (Fig.~\ref{2SATno}) is negative. 
+Let us develop two examples to illustrate this problem.  The first one
+$\Phi_1 = (\bar{x_{3}} \vee \bar{x_{1}}) \wedge (x_{1} \vee
+\bar{x_{2}}) \wedge (x_{2} \vee x_{3})$ is depicted in
+Fig.~\ref{2SATyes}). It leads to a positive truth assignment while the
+second one $\Phi_2 = (\bar{x_{3}} \vee \bar{x_{1}}) \wedge
+(\bar{x_{1}} \vee {x_{3}}) \wedge (x_{2} \vee x_{3})$
+(Fig.~\ref{2SATno}) is negative.
 
 
 \begin{figure}[h]
