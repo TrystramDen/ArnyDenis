@@ -1,4 +1,4 @@
-%version of 02-28-19
+%version of 03-02-19
 
 \chapter{SETS, BOOLEAN ALGEBRA, AND LOGIC}
 \label{ch:sets-BA-logic}
@@ -1544,13 +1544,77 @@ laws for Propositional logic.
 \subsubsection{Satisfiability problems}
 \label{sec:Satisfiability}
 
-Satisfiability problems focus on logical expressions that are {\it
-  conjuncts of disjuncts}.  In the lingo of the ``in-crowd'', these
-expressions are said to be in {\it POS} form, \index{POS-form expression} 
-or {\it product of sums}.  More formally, the expressions are {\it
-  conjuncts of disjuncts}, i.e., {\it logical products of logical
-  sums}.  Until 1971, POS expressions were viewed as nothing more than
-the duals of the somewhat more common {\it SOP}-form expressions,
+Satisfiability problems deal with propositional formulae that are
+populated by entities that can assume the truth values {\small\sf
+  true} and {\small\sf false}. \index{logical expressions!truth values}
+The {\em underlying} entities are {\it logical variables},
+\index{logical expressions!logical variables}
+i.e., variables that range over the truth values.  The {\em actual}
+entities that appear in each formula are {\it logical literals}, 
+\index{logical expressions!logical literals}
+i.e., instances of logical variables in either their {\em true} or
+{\em complemented} forms.
+\index{logical expressions!logical literals!true or complemented}
+
+
+The following simple example should clarify these terms.
+
+\begin{tabular}{ll}
+{\bf The formula}:  & $(\bar{x} \vee y) \wedge (x \vee \bar{y})$ \\
+{\bf The variables}: & $x$ and $y$ \\
+{\bf The literals}:  & $x$ and $y$ (true form); \ $\bar{x}$ and $\bar{y}$
+(complemented form)
+\end{tabular}
+\[
+\begin{array}{ccccccccccc}
+( & \bar{x} & \vee & y & ) & \wedge & ( & x & \vee & \bar{y} & ) \\
+  & \uparrow &     & \uparrow & & & & \uparrow & & \uparrow & \\
+  & \mbox{complemented} &  & \mbox{true}  & & & & \mbox{true} &
+        & \mbox{complemented} &  \\
+  & \mbox{literal} & & \mbox{literal} & & & & \mbox{literal} & &
+  \mbox{literal} & 
+\end{array}
+\]
+Satisfiability problems can be viewed in two formally distinct but
+algorithmically equivalent ways.
+\begin{itemize}
+\item
+In the {\it combinatorial formulation}:
+\index{Satisfiability problem!combinatorial formulation}
+  \begin{itemize}
+  \item
+A Satisfiability problem is specified by a set of {\it logical
+  clauses}, each clause being a set of {\it logical variables}, i.e.,
+variables that range over the truth values {\small\sf true} and
+{\small\sf false}.
+  \item
+The Satisfiability question is: Is there a way of assigning truth
+values to all of the logical variables of the formula in which every
+clause has at least one {\small\sf true} literal?
+  \end{itemize}
+\item
+In the {\it formal logical formulation}:
+\index{Satisfiability problem!formal logical formulation}
+  \begin{itemize}
+  \item
+A Satisfiability problem is specified by a propositional formula that
+is  a conjunction of disjuncts of literals.
+
+In the lingo of the ``in-crowd'', these expressions are said to be in
+{\it POS} form, \index{POS-form expression} or {\it (logicl) product
+of logical) sums}.
+  \item
+The Satisfiability question is: Is there a way of assigning truth
+values to all of the logical variables of the formula in which every
+disjunct evaluates to {\small\sf true}?
+  \end{itemize}
+\end{itemize}
+The reader should be able to prove that these are just two views of
+the same logical problem.  {\Arny This is a good exercise to verify
+  command of the underlying concepts.}
+
+Until 1971, POS expressions were viewed as nothing more than the duals
+of the somewhat more common {\it SOP}-form expressions,
 \index{SOP-form expression} or {\it sums of products}.  A discovery in
 1971 changed this view, by exposing how POS-form expressions can be
 used to model a computational phenomenon whose importance was only
