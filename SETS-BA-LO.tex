@@ -1,4 +1,4 @@
-%version of 03-02-19
+%version of 03-04-19
 
 \chapter{SETS, BOOLEAN ALGEBRA, AND LOGIC}
 \label{ch:sets-BA-logic}
@@ -1555,8 +1555,16 @@ entities that appear in each formula are {\it logical literals},
 i.e., instances of logical variables in either their {\em true} or
 {\em complemented} forms.
 \index{logical expressions!logical literals!true or complemented}
-
-
+In detail:
+\begin{itemize}
+\item
+In its {\em true} form, a literal evaluates to {\small\sf true}
+precisely when its associated variable does.
+\item
+In its {\em complemented} form, a literal evaluates to {\small\sf
+  true} precisely when its associated variable evaluates to {\small\sf
+  false}.
+\end{itemize}
 The following simple example should clarify these terms.
 
 \begin{tabular}{ll}
@@ -1575,38 +1583,46 @@ The following simple example should clarify these terms.
   \mbox{literal} & 
 \end{array}
 \]
-Satisfiability problems can be viewed in two formally distinct but
-algorithmically equivalent ways.
+
+The general form of {\it The Satisfiability Problem for the
+  Propositional Calculus} 
+\index{The Satisfiability Problem (for the Propositional Calculus)}
+is denoted {\sf SAT}. \index{{\sf SAT}: The Satisfiability Problem} 
+\index{{\sf SAT}!definition}
+The problem can be viewed in two formally distinct but algorithmically
+equivalent ways.
 \begin{itemize}
 \item
 In the {\it combinatorial formulation}:
 \index{Satisfiability problem!combinatorial formulation}
+\index{{\sf SAT}!combinatorial formulation}
   \begin{itemize}
   \item
-A Satisfiability problem is specified by a set of {\it logical
-  clauses}, each clause being a set of {\it logical variables}, i.e.,
-variables that range over the truth values {\small\sf true} and
+The Satisfiability Problem is specified by a set of {\it logical
+  clauses}, each clause being a {\it set of {\em logical} variables},
+i.e., variables that range over the truth values {\small\sf true} and
 {\small\sf false}.
   \item
-The Satisfiability question is: Is there a way of assigning truth
-values to all of the logical variables of the formula in which every
-clause has at least one {\small\sf true} literal?
+The Satisfiability question is: Can one assign truth values to all of
+the logical variables of the formula in such a way that every clause
+ends up with at least one {\small\sf true} literal?
   \end{itemize}
 \item
 In the {\it formal logical formulation}:
 \index{Satisfiability problem!formal logical formulation}
+\index{{\sf SAT}!formal logical formulation}
   \begin{itemize}
   \item
-A Satisfiability problem is specified by a propositional formula that
-is  a conjunction of disjuncts of literals.
+The Satisfiability Problem is specified by a propositional formula that
+is  a {\it conjunction of disjuncts of logical literals}.
 
 In the lingo of the ``in-crowd'', these expressions are said to be in
-{\it POS} form, \index{POS-form expression} or {\it (logicl) product
-of logical) sums}.
+{\it POS} form, \index{POS-form expression} or {\it (logical) product
+of (logical) sums}.
   \item
-The Satisfiability question is: Is there a way of assigning truth
-values to all of the logical variables of the formula in which every
-disjunct evaluates to {\small\sf true}?
+The Satisfiability question is: Can one assign truth values to all of
+the logical variables of the formula in a way that has every disjunct
+evaluate to {\small\sf true}?
   \end{itemize}
 \end{itemize}
 The reader should be able to prove that these are just two views of
@@ -1622,59 +1638,60 @@ beginning to be appreciated at that time.  The importance of this
 phenomenon and of its representation via POS-form expressions has
 grown immeasurably since that time, originally just within the
 theoretical world, but increasingly in the world of applications as
-well.
+well.  The backstory of the preceding assertion began in 1971 when
+Stephen A.~Cook \index{Cook, Stephen A.} published, in \cite{Cook71},
+a revolutionary new foundation for the field of {\it Computational
+  Complexity}. \index{Computational Complexity} Cook achieved this
+goal by adapting arguments\footnote{These arguments were the legacy of
+  intellectual giants such as Kurt G\"{o}del \index{G\"{o}del, Kurt}
+  (in \cite{Goedel31}) and Alan M.~Turing \index{Turing, Alan M.} (in
+  \cite{Turing36}).}~from the decades-old field of {\it
+  Computability Theory} \index{Computability Theory} in a way that
+enabled one to rigorously study complexity-theoretic questions:
 
-Let prepare the stage for our more detailed discussion.
+\hspace*{.5in}{\em How hard is it to compute function $f$?}
 
-\paragraph{\small\sf A. The general satisfiability problem SAT}
+\noindent
+rather than the classical computability-theoretic questions:
 
-**HERE
+\hspace*{.5in}{\em Can one write a program to compute function $f$?}
 
-Some basics
+\noindent
+Cook's ingenious adaptation created a new theory that was named {\it
+  (the theory of) {\sf NP}-completeness} \index{{\sf NP}-completeness}
+\index{{\sf NP}-complete computational problems} for reasons that are
+explained in sources such as \index{GareyJ79}.  In very informal, but
+hopefully evocative terms, {\sf NP}-complete computational problems
+are problems whose solutions are {\em easy to check} but {\em hard to
+  find}.  (Of course, the adjectives ``hard'' and ``easy'' have
+technical meanings, but developing these meanings is beyond the scope
+of this text.  These concepts are developed ``gently'' but
+systematically in texts such as \index{Rosenberg09}.)  What is
+intellectually exciting is the following.
 
-A \textit{literal} is a predicate composed of a single boolean
-variable $x$ or its negation.  A \textit{clause} is a particular
-predicate formed by disjunctions of literals, for instance $C = x \vee
-\bar{y} \vee z$.
+\hspace*{.5in}{\em All {\sf NP}-complete problems can be efficiently
+  ``translated'' as one another.}
 
-The problem SAT (Satisfiability) consists in deciding if there exists
-a truth assignment that satisfies all the clauses of a given set of
-clauses.  2SAT is the variant where the cardinality of the clauses is
-no more than $2$.  More formally, the problem is defined as follows:
+\paragraph{{\sf SAT} is an {\sf NP}-complete problem}
 
-Consider $n$ boolean variables and $m$ clauses $C_i$ composed of at
-most two literals on these variables.
+The reason we relate this story at this point is that the problem {\sf
+  SAT} was the first ``natural'' problem that was shown by Cook to be
+{\sf NP}-complete!  (The term ``{\sf NP}-complete'' does not occur in
+\cite{Cook71}; there was not yet a name for this concept.)
 
-The question is to determine if there exists a truth assignment that
-satisfies the following boolean formula $C_1 \wedge C_2 \wedge
-... \wedge C_m$.
-
-\paragraph{\small\sf B. 3SAT: SAT with $3$ literals per clause}
-
-
-
-The backstory of the preceding assertion began in 1971 when Stephen
-A.~Cook \index{Cook, Stephen A.} was able to adapt, in \cite{Cook71},
-arguments\footnote{These arguments were the legacy of intellectual
-  giants such as Kurt G\"{o}del \index{G\"{o}del, Kurt} (in
-  \cite{Goedel31}) and Alan M.~Turing \index{Turing, Alan M.} (in
-  \cite{Turing36}).}~underlying the mathematical foundations of the
-theory of computing to the study of specific computational problems;
-the new theory was soon named {\it (the theory of) {\sf
-    NP}-completeness} \index{{\sf NP}-completeness} for reasons that
-are explained in sources such as \index{GareyJ79} and developed in
-texts such as \index{Rosenberg09}.  Within a year, Richard M.~Karp
-\index{Karp, Richard M.} and colleagues had greatly lengthened the
-list of computational problems that Cook's nascent theory encompassed;
-several variants of the Hamiltonianicity-detection problem were on
-this list.  The details of the theory of {\sf NP}-completeness are
-beyond the scope of this text, but we do want the reader to recognize
-the following.
+\noindent
+To round out the story, within a year, Richard M.~Karp 
+\index{Karp, Richard M.} 
+and colleagues had greatly lengthened the list of computational
+problems that Cook's nascent theory encompassed.  The details
+of the theory of {\sf NP}-completeness are beyond the scope of this
+text, but we do want the reader to recognize the following.
 
 It remains mathematically {\em possible} that {\sf NP}-complete
 problems can be solved efficiently---meaning ``in time polynomial in
-the size of the description of the problem'' (e.g., the number of
-nodes and edges in a graph).  However it is mathematically {\em
+the size of the description of the problem''---for the {\sf SAT}
+problem, this size is measured in terms of the number of literals in
+the POS popositoinal formula.  However it is mathematically {\em
   certain} that if any one problem in this class has a polynomial-time
 solution, then every problem in this class does.
 
@@ -1692,10 +1709,19 @@ problems, and by developing heuristics for such problems, whose
 behavior cannot be guaranteed but which seem to work well ``in
 practice''.
 
+\medskip
 
+In fact, it is proved in \cite{Cook71} that the {\sf 3SAT} problem,
+i.e., the  {\sf SAT} problem that is restrincted to formulae with $3$
+literals per clause, is {\sf NP}-complete.
 
+\medskip
 
 \paragraph{\small\sf C. 2SAT: SAT with $2$ literals per clause}
+
+**HERE
+
+
 
 SAT is well-known problem that plays a particular role in theoretical
 Computer Science since it was the first problem to be proved to be
