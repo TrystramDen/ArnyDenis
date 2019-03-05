@@ -1011,17 +1011,18 @@ Every linear combination of $n$ and $q$ is a multiple of $\mbox{\sc
 
 Greatest common divisors are fundamental companions of pairs of
 integers, with manifold computational applications.  How does one
-compute them?  This question was addressed millennia ago, by Euclid,
-\index{Euclid} who authored the following result, which led to the
-{\sc gcd}-computing algorithm that bears his name.\index{the Euclidean Algorithm}
+compute them?  This question was addressed millennia ago by Euclid,
+\index{Euclid} who authored the following result which led to the 
+{\sc gcd}-computing algorithm that bears his name.
+\index{the Euclidean Algorithm}
 
-For any integers $n$ and $m > 0$, let $\mbox{\sc rem}(m,n)$ denote the
-remainder in the Euclidean division expression (\ref{eq:euclid-division})
-for $m$ and $n$; i.e.,
-\[ n \ = \ q \cdot m \ + \ \mbox{\sc rem}(m,n). \]
+For positive integers $m$ and $n$, let $\mbox{\sc rem}(m,n)$ denote the
+(integer!)~remainder $r$ in the Euclidean-division expression
+(\ref{eq:euclid-division}).  
 
-Notice here that we use an integer function to express the reminder
-since it will be used as the result of an operation on two integers (similarly to what we did for the GCD).
+%Notice here that we use an integer function to express the remainder
+%since it will be used as the result of an operation on two integers
+%(similarly to what we did for the GCD).
 
 \begin{prop}
 \label{thm:gcd-basis}
@@ -1052,8 +1053,8 @@ Say that the integer $d$ divides both $m$ and $\mbox{\sc rem}(m,n)$,
 i.e., that $d \in D(m, \mbox{\sc rem}(m,n))$.  By
 Proposition~\ref{thm:m-common-divisor-nq}, $d$ divides every linear
 combination of $m$ and $\mbox{\sc rem}(m,n)$.  In particular, $d$
-divides the specific combination $q \cdot m \ + \ 1 \cdot \mbox{\sc rem}(m,n) \ = \ n$.  Thus,
-$d$ divides $n$, so that $d \in D(m,n)$.
+divides the specific combination $q \cdot m \ + \ 1 \cdot \mbox{\sc
+  rem}(m,n) \ = \ n$.  Thus, $d$ divides $n$, so that $d \in D(m,n)$.
 \end{itemize}
 Since we thus have $D(m, n) \ = \ D(m, \mbox{\sc rem}(m,n))$, we know
 that the sets contain the same largest element:
@@ -1136,10 +1137,11 @@ which is not an integer?  Enter the rational numbers!
 \subsection{The Rationals: Special Ordered Pairs of Integers}
 \label{sec:define-rationals}
 
-The set $\Q$ of {\it rational} \index{number!rational} \index{$\Q$:
-  the set of rational numbers} numbers---often abbreviated as just
-``the rationals''---was invented to name the quotients referred to in
-the preceding paragraph.  Formally:
+The set $\Q$ of {\it rational} \index{number!rational}
+\index{$\Q$: the set of rational numbers}
+numbers---often abbreviated as just ``the rationals''---was invented
+to name the quotients referred to in the preceding paragraph.
+Formally:
 \[ \Q \ \eqdef \ \{0\} \ \cup \ \left\{ p/q \ | \ p, q \in \Z
 \setminus \{0\} \right\}
 \]
@@ -1215,10 +1217,10 @@ There are intuitively similar situations wherein one's intuition turns
 out to be wrong!  One such situation occupies
 Section~\ref{sec:Q-Z-cardinality}, wherein we demonstrate that the
 sets $\Z$ and $\Q$ ``have the same size'', and the more advanced
-Section~\ref{sec:Q-Z-R-cardinality}, wherein we show that the set $\R$
+Section~\ref{sec:Q-Z-R-cardinality}, wherein we show that the set
 of real numbers is (in a formal sense) ``larger'' than sets $\Z$ and
 $\Q$.  ({\em Even the fact that we can discuss the relative ``sizes''
-  of infinite sets is interesting!})
+  of infinite sets is interesting---and not obvious!})
 \end{enumerate}
 
 \subsubsection{Comparing $\Z$ and $\Q$ via their number-line laws}
@@ -1299,7 +1301,10 @@ S_{a,b} \ = \ \left\{ \frac{a+b}{k} \ \ | \ \ k \in \Z \right\}.
 
 Our final comparison between the rationals and the integers compares
 the relative ``sizes'', or, {\em cardinalities} of $\Z$ and $\Q$.
-Informally, {\it Are there ``more'' rationals than integers?}
+Informally, 
+
+\hspace*{.35in}{\it Are there ``more'' rationals than integers?}
+
 \medskip
 
 \noindent Consider the following facts.
@@ -1308,7 +1313,8 @@ Informally, {\it Are there ``more'' rationals than integers?}
 Every integer is a rational number, as attested to by the ``encoding''
 \begin{equation}
 \label{eq:ZintoQ}
-\mbox{Encode } \ \ \ n \in \Z \ \ \ \mbox{ by } \ \ \ {n \over 1} \in \Q .
+\mbox{Encode } \ \ \ n \in \Z \ \ \ \mbox{ by the quotient } \ \ \ {n
+  \over 1} \in \Q .
 \end{equation}
 
 \item
@@ -1318,17 +1324,19 @@ defined in (\ref{eq:between-rationals}).
 \end{itemize}
 Thus, the set $\Z$ of integers is a {\em proper} subset of the set
 $\Q$ of rationals: symbolically, $\Z \subset \Q$.  To many, this
-subset relation provides an intuitively compelling argument that \\
-\hspace*{.35in}{\em there are more rational numbers than integers.}
+subset relation provides an intuitively compelling argument that
+there are more rational numbers than integers.
 
 For us---and for the general mathematical community---the preceding
 intuition provides a compelling argument only for the fact that
-reasoning about infinite sets demands subtlety and care.  For this
-community, only the formal setting of
-Section~\ref{sec:cardinality-NxN}.A allows us to reason cogently about
-the relative ``sizes'' of infinite sets.  Within this setting, we show
-that \\
-\hspace*{.35in}{\em the set $\N$ has the same cardinality as the set $\Q$.}  \\
+reasoning about infinite sets demands subtlety and care.  For us, only
+the formal setting of Section~\ref{sec:cardinality-NxN} allows us to
+reason cogently about the relative ``sizes'' of infinite sets.  Within
+this rigorous setting, we now show that
+
+\hspace*{.35in}{\em the set $\N$ has the same cardinality as the set $\Q$.}
+
+\noindent
 Mirroring Proposition~\ref{thm:|NxN|=|N|}, we have
 
 \begin{prop}
@@ -1339,7 +1347,7 @@ $|\Q| \ = \ |\N|$.
 \begin{proof}
 Since the proof of this result is adapted from that of
 Proposition~\ref{thm:|NxN|=|N|}, we provide only a sketch, leaving
-details to an exercise.
+details to an exercise.  {\Arny Exercise alert :)}
 
 First, we note that the encoding $f$ defined by
 \[ (\forall n \in \N) \left[ f(n) \ = \ \frac{n}{1} \right] \]
@@ -1430,44 +1438,50 @@ term them, {\it radicals} \index{number!radical}.  The augmentation
 thus begun culminated in what we know as the real number system.
 Since our intention in this introduction has been to justify the
 journey along that trajectory, we leave our historical digression and
-turn to our real focus, the set $\R$ of {\it real numbers}.
-\index{number!real}
+turn to our real focus, the set of {\it real numbers}.
+\index{number!real} 
 
 \subsection{Defining the Real Numbers via Their Numerals}
 \label{sec:define-Reals}
 
-For any integer $b > 1$, the real numbers are the numbers that can be
-named by {\em infinite} strings built out of the digits $\{0, 1,
-\ldots, b-1\}$;\footnote{This is not the traditional way that a
-  mathematician would define the set of real numbers, but it is
-  correct and adequate for thinking about the set.}~the resulting
-strings are called {\em $b$-ary numerals}.  There are a couple of ways
-to form $b$-ary numerals; we shall discuss some of the most common
-ones in Section~\ref{sec:Numerals}.  For now, we define real numbers
-as those that can be represented by a {\it base-$b$ numeral},
-\index{base-$b$ numeral}
-for some integer {\it base} $b >1$.
-\index{number base}
-Such a numeral is a string of the form
-\[
-\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
-. \beta_0 \beta_1 \beta_2 \cdots
-\]
-\index{positional number system!numerical value of numeral}
-and represents the (real) number
-\[
-NUM_b(alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
-. \beta_0 \beta_1 \beta_2 \cdots)
-\ \ \eqdef \ \
-\sum_{i=0}^n \alpha_i \cdot b^i
-\ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
-\]
-By prepending a ``negative sign'' (or, ``minus sign'') $-$ to a
-numeral or a number, one renders the thus-embellished entity as
-negative.
+There are numerous ways to define the class $\R$ of {\it real
+  numbers}.  \index{number!real} \index{$\R$: the set of real numbers}
+We have chosen a way for this text that allows us as quickly as
+possible to consider the conceptual interplay between numbers and
+their numerals---particularly their {\em operational} numerals.  We
+have, therefore, decided to employ a definition of ``real number''
+that lays the groundwork for Chapter~\ref{ch:numerals}'s study of
+numerals, by employing a definition that has a computational feel to
+it.  Our definition is completely correct and adequate, but its
+nuances will be appreciated by the reader only incrementally, through
+Chapter~\ref{ch:Summation} (especially
+Section~\ref{sec:geometric-sums}) and Chapter~\ref{ch:numerals}.
 
-{\Denis I put NUM here without telling what it is, there is a reference to 4.7 where you defined NUM and the positional numerals, but I think the whole definition 
-should be placed here and 4.7 should refer to this section, are you OK with this?}
+Our definition is parameterized by an integer {\it base}
+\index{number base} $b > 1$: any such integer will work.  Having fixed
+on base $b$, a {\it real number} \index{number!real} is an {\em
+  infinite} summation of the form
+\begin{equation}
+\label{eq:real-defn}
+\begin{array}{l}
+{\displaystyle
+\sum_{i=0}^n \alpha_i \cdot b^i \ \ \ + \ \ \ \sum_{j=0}^\infty \beta_j \cdot b^{-j} } 
+  \\
+\begin{array}{ll}
+\mbox{where: } & n \in \N \\
+               & \mbox{each } \ \ \alpha_i, \beta_j \ \in \ \{0, 1, \ldots, b-1\}
+\end{array}
+\end{array}
+\end{equation}
+By prepending a ``negative sign'' (or, ``minus sign'') to a numeral or
+a number, one renders the thus-embellished entity as negative.
+
+The perceptive reader will note that a proof is required to establish
+that every expression of the form (\ref{eq:real-defn}) actually
+defines a finite number.  This proof can be crafted using the tools of 
+Section~\ref{sec:geometric-sums}, but we will accept the fact on faith
+for the remainder of this chapter.
+
 
 \subsection{Not All Real Numbers Are Rational}
 \label{sec:Real-vs-Rational}
@@ -1478,6 +1492,9 @@ square with the (common) length of its sides---or, equivalently, the
 leg-length of an isosceles right triangle with the length of its
 hypotenuse.
 \index{The non-commensurabiliy of $\sqrt{2}$}
+
+
+
 
 
 \begin{prop}
