@@ -1,4 +1,4 @@
-%version of 03-05-19
+%version of 03-06-19
 
 \chapter{NUMBERS I: THE BASICS OF OUR NUMBER SYSTEM}
 \label{ch:numbers-numerals}
@@ -1385,6 +1385,8 @@ Combining the preceding derived inequalities completes the proof.
 
 \section{The Real Numbers}
 \label{sec:reals}
+\index{real number}
+\index{number!real}
 
 \subsection{Inventing the Real Numbers}
 \label{sec:real-history}
@@ -1441,8 +1443,10 @@ journey along that trajectory, we leave our historical digression and
 turn to our real focus, the set of {\it real numbers}.
 \index{number!real} 
 
-\subsection{Defining the Real Numbers via Their Numerals}
+\subsection{Defining the Real Numbers via Representability}
 \label{sec:define-Reals}
+\index{real number}
+\index{number!real}
 
 There are numerous ways to define the class $\R$ of {\it real
   numbers}.  \index{number!real} \index{$\R$: the set of real numbers}
@@ -1453,20 +1457,20 @@ have, therefore, decided to employ a definition of ``real number''
 that lays the groundwork for Chapter~\ref{ch:numerals}'s study of
 numerals, by employing a definition that has a computational feel to
 it.  Our definition is completely correct and adequate, but its
-nuances will be appreciated by the reader only incrementally, through
-Chapter~\ref{ch:Summation} (especially
+nuances will be appreciated by readers only incrementally, as they
+progress through Chapter~\ref{ch:Summation} (especially
 Section~\ref{sec:geometric-sums}) and Chapter~\ref{ch:numerals}.
 
 Our definition is parameterized by an integer {\it base}
 \index{number base} $b > 1$: any such integer will work.  Having fixed
-on base $b$, a {\it real number} \index{number!real} is an {\em
-  infinite} summation of the form
+on base $b$, a {\it real number} \index{number!real} is any number
+that is specified by an {\em infinite} summation of the form
 \begin{equation}
 \label{eq:real-defn}
 \begin{array}{l}
 {\displaystyle
-\sum_{i=0}^n \alpha_i \cdot b^i \ \ \ + \ \ \ \sum_{j=0}^\infty \beta_j \cdot b^{-j} } 
-  \\
+\sum_{i=0}^n \alpha_i \cdot b^i \ \ \ 
++ \ \ \ \sum_{j=0}^\infty \beta_j \cdot b^{-j} }  \\
 \begin{array}{ll}
 \mbox{where: } & n \in \N \\
                & \mbox{each } \ \ \alpha_i, \beta_j \ \in \ \{0, 1, \ldots, b-1\}
@@ -1475,55 +1479,121 @@ on base $b$, a {\it real number} \index{number!real} is an {\em
 \end{equation}
 By prepending a ``negative sign'' (or, ``minus sign'') to a numeral or
 a number, one renders the thus-embellished entity as negative.
+\index{number!real!specified via infinite summation}
+\index{real number!specified via infinite summation}
+
+\smallskip
 
 The perceptive reader will note that a proof is required to establish
 that every expression of the form (\ref{eq:real-defn}) actually
-defines a finite number.  This proof can be crafted using the tools of 
-Section~\ref{sec:geometric-sums}, but we will accept the fact on faith
-for the remainder of this chapter.
+defines a specific finite number.  Such a proof can be developed, but
+it would require mathematical tools that are beyond the scope of this
+text.  For the practicalities of our study, we establsih the following
+rule, which allows one to posit the membership in $\R$ of a particular
+subset of the real numbers, which we shall term {\it constructible}.
+\index{constructible real numbers} \index{number!real!constructible}
+\index{real number!constructible}
+
+\noindent {\bf The constructibility principle for real numbers}.  {\em
+  Any length (of a line segment) that can be delimited via a drawing
+  that uses only ruler and compass is a real number.}
+\index{The constructibility principle for real numbers}
+
 
 
 \subsection{Not All Real Numbers Are Rational}
 \label{sec:Real-vs-Rational}
 
-We close this section by verifying the earlier-mentioned assertion
-about the non-commensurability of the length of the diagonal of a
-square with the (common) length of its sides---or, equivalently, the
-leg-length of an isosceles right triangle with the length of its
-hypotenuse.
-\index{The non-commensurabiliy of $\sqrt{2}$}
-
-
-
-
+We close this section by verifying that the real number $\sqrt{2}$ is
+not rational.  We thereby conclude---via a specific example---that
+there are real numbers that are not rational: In
+Section~\ref{sec:Reals-uncountable}, we shall observe infnitely many
+such numbers.  The current proof also provides the basis for a proof
+of the non-commensurability of the length of the hypotenuse of an
+isosceles right triangle---or, equivalently, of the (common) length of
+the diagonals of a square with the (common) length of its sides.
+\index{The non-commensurability of $\sqrt{2}$} \index{The
+  irrationality of $\sqrt{2}$}
 
 \begin{prop}
 \label{thm:sqrt(2)}
-The real number $\sqrt{2} = 2^{1/2}$ is not rational.
+{\bf (a)}
+The number $\sqrt{2} = 2^{1/2}$ is real, i.e., belongs to $\R$.
+
+{\bf (b)}
+The number $\sqrt{2}$ is not rational, i.e., does not belong to $\Q$.
 \end{prop}
 
-As with many results that arise in our mathematical journey, we
-provide multiple---in this case, two---proofs for
-Proposition~\ref{thm:sqrt(2)}, which build upon quite different
+\begin{proof}[Part (a)]
+The fact that $\sqrt{2}$ is a real number follows from the
+constructibility principle for real numbers, in the light of
+Proposition~\ref{thm:unit-isosceles-PythThm}.
+\qed-Part (a)
+\end{proof}
+
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.97\textwidth}
+{\bf $\oplus$ Digression: An infinite summation for $\sqrt{2}$}.
+We have presented the constructibility principle for real numbers
+precisely because deriving, and reasoning about, infinite summations
+often requires mathematical tools that go beyond those that populate
+an introductory text.  That said, one of our goals is to introduce the
+reader to the beauty in mathematics.  To that end, we present, with no
+proofs, an infinite summation for $\sqrt{2}$.  While this summation is
+not of the form (\ref{eq:real-defn}), it is close enough to render
+plausible the fact that $\sqrt{2}$ can be represented by a summation
+that is of the form (\ref{eq:real-defn}).
+{\small
+\begin{eqnarray*}
+\sqrt{2} & = &
+1 \ + \ \frac{3}{4} \cdot \left(\frac{1}{2}\right)
+  \ + \ \frac{3}{8} \cdot
+\left(\frac{1 \cdot 3}{2 \cdot 4 \cdot 6}\right)
+  \ + \ \frac{3}{12} \cdot
+\left(\frac{1 \cdot 3 \cdot 5 \cdot 7}{2 \cdot 4 \cdot 6 \cdot 8 \cdot
+  10}\right) \\
+ & &
+  \ + \ \frac{3}{16} \cdot
+\left(\frac{1 \cdot 3 \cdot 5 \cdot 7 \cdot 9 \cdot 11}
+{2 \cdot 4 \cdot 6 \cdot 8 \cdot 10 \cdot 12 \cdot 14}\right)
+  \ + \ \frac{3}{20} \cdot
+\left(\frac{1 \cdot 3 \cdot 5 \cdot 7 \cdot 9 \cdot 11 \cdot 13 \cdot 15}
+{2 \cdot 4 \cdot 6 \cdot 8 \cdot 10 \cdot 12 \cdot 14 \cdot 16 \cdot 18}\right)
+  \\
+ & &
+ \ + \cdots + \ \frac{3}{4k} \cdot
+\left(\frac{1 \cdot 3 \cdot 5 \cdot 7 \cdots (4k-5)}
+{2 \cdot 4 \cdot 6 \cdot 8 \cdot 10 \cdots (4k-2)}\right) \ + \ \cdots
+\end{eqnarray*}
+}
+\end{minipage}
+}
+
+\bigskip
+
+As we do for many results that we encounter in our mathematical
+journey, we provide multiple---in this case, two---proofs for
+Proposition~\ref{thm:sqrt(2)}(b), which build upon quite different
 mathematical insights.  In Section~\ref{sec:classical-proof-sqrt(2)}
 we provide the classical proof of the result.  This proof invokes a
-simple provision of Theorem~\ref{thm:Fund-Thm-Arith}, to exploit the
-divisibility properties of integers.  In
-Section~\ref{sec:geom-proof-sqrt(2)}, we provide a proof of the
-results that builds on the Pythagorean Theorem
+simple provision of the Fundamental Theorem of Arithmetic
+(Theorem~\ref{thm:Fund-Thm-Arith}) to exploit the divisibility
+properties of integers.  In Section~\ref{sec:geom-proof-sqrt(2)}, we
+provide a proof that builds on the Pythagorean Theorem
 (Theorem~\ref{thm:Pythagorean-thm}) to develop geometric insights.
 
-\subsubsection*{Using divisibility to prove that $\sqrt{2} \not\in \Q$}
+\subsubsection{A number-based proof that $\sqrt{2} \not\in \Q$}
 \label{sec:classical-proof-sqrt(2)}
 
 \begin{proof}
-We now prove Proposition~\ref{thm:sqrt(2)} {\em by
-contradiction},\index{proof by contradiction} a proof technique
-described in Chapter~\ref{sec:practical-logic}.
-
-{\Denis I don't think you should refer to the type of proof here (contradiction)....
-I let you choose if we keep the remark or not. Or should we systematically refer to the type of proof used?}
-
+%We now prove Proposition~\ref{thm:sqrt(2)} {\em by
+%contradiction},\index{proof by contradiction} a proof technique
+%described in Chapter~\ref{sec:practical-logic}.
+%{\Denis I don't think you should refer to the type of proof here (contradiction)....
+%I let you choose if we keep the remark or not. Or should we
+%systematically refer to the type of proof used?}
 Let us assume, for contradiction, that $\sqrt{2}$ is rational.  By
 definition, then, $\sqrt{2}$ can be written as a quotient
 \[ \sqrt{2} \ = \ {a \over b} \]
@@ -1572,10 +1642,12 @@ our assumption that $k$ and $\ell$ share no common prime divisor!
 
 Since every step of our argument is ironclad---except for our
 assumption that $\sqrt{2}$ is rational, we conclude that that
-assumption is false!  The Proposition is verified. \qed
+assumption is false!  Part (b) of the Proposition is verified. \qed
 \end{proof}
+
 \medskip
 
+\ignore{************
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 %\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
@@ -1586,36 +1658,35 @@ Section~\ref{sec:practical-logic}. \index{Proof by contradiction}
 \end{minipage}
 }
 \medskip
-
+***********}
 \ignore{\Denis Here is a detailed (geometric) proof of the result.
 I hope this is convincing now, I changed a little the way to prove the result...}
 
-\subsubsection*{A geometric proof that $\sqrt{2} \not\in \Q$}
+\subsubsection{A geometric proof that $\sqrt{2} \not\in \Q$}
 \label{sec:geom-proof-sqrt(2)}
 
 \begin{proof}
-Our geometric proof repeatedly invokes Fig.~\ref{fig:irrationality1}, which
+Our geometric proof is built around Fig.~\ref{fig:irrationality1},
+which
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/sqrt2initial}
-\caption{{\it A geometric depiction the Pythagorean Theorem and its
+\caption{{\it A geometric depiction of the Pythagorean Theorem and its
     underlying equation: $a^2 = b^2 + b^2$.}
 \label{fig:irrationality1}}
 \end{center}
 \end{figure}
-suggestively invokes the Pythagorean Theorem.  The figure presents
-three squares.  The intention is that the two small grey squares are
-identical, with common area $A$, while the large white square has
-double this area.  By the Pythagorean Theorem, if the small squares
-have (common) side-lengths $b \in \N^+$, hence shared area $A = b^2$ each,
-then the large square has side-lengths $a \eqdef \sqrt{2}b$, hence
-area $a^2 = 2 b^2$.
+suggestively invokes the Pythagorean Theorem.  The figure displays
+three squares: The two small grey squares are identical, with common
+area $A$, while the large white square has double this area.  By the
+Pythagorean Theorem, if the small squares have (common) side-lengths
+$b \in \N^+$, hence share area $A = b^2$ each, then the large square
+has side-lengths $a \eqdef \sqrt{2}b$, hence has area $a^2 = 2 b^2$.
 
-Thus set up, we begin to pursue our contradiction.  
-As in the classical proof shown above,
-%in Section~\ref{sec:classical-proof-sqrt(2)}, 
-we start with the assumption that $\sqrt{2}$ is rational.  Within the context
-of Fig.~\ref{fig:irrationality1}, this means that
+As in the classical proof, in
+Section~\ref{sec:classical-proof-sqrt(2)}, we now assume that
+$\sqrt{2}$ is rational.  Within the context of
+Fig.~\ref{fig:irrationality1}, this means that
 \[ \sqrt{2} \ = \ {a \over b} \]
 for $a, b \in \N^+$.  Since all that we have said thus far holds for
 arbitrary $a$ and $b$, we are free to consider the assumption's
@@ -1631,13 +1702,11 @@ we know that $a > b$.
 
 \noindent \fbox{
 \begin{minipage}{0.97\textwidth}
-%\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 Of course, our demands on the relationship between the numerator $a$
 and the denominator $b$ lose no generality in our argument.  To wit,
 ``$\displaystyle {a \over b}$'' is just one name for the depicted
 rational number, and choosing any specific name has no impact on the
 number itself.
-%\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 \end{minipage}
 }
 \medskip
@@ -1664,18 +1733,19 @@ which remain white in the figure.
 Now, let us get quantitative.
 \begin{itemize}
 \item
-On the first side, the fact that the combined areas of the two grey squares equal the
-area of the white square guarantees that the area of the dark grey
-overlap-square is equal to the combined areas of the small unoccupied
-white squares.
+On the one hand, the fact that the combined areas of the two grey
+squares equal the area of the white square guarantees that the area of
+the dark grey overlap-square is equal to the combined areas of the
+small unoccupied white squares.
 
 \item
-On the other side, because the side-lengths of the large white square is $a$, while those
-of the grey squares is $b$, the side-lengths of the small white square
-is $a-b$, and the side-lengths of the dark grey overlap-square is
-$2b-a$.  All of these side-lengths are positive because of the value
-of $\sqrt{2}$: ($i$) $a > b$ because $\sqrt{2} >1$; ($ii$) $2b >a$
-because $\sqrt{2} < 2$.
+On the other hand, because the side-length of the large white square
+is $a$, while the (common) side-length of the grey squares is $b$, it
+follows that the side-lengths of the small white square is $a-b$, and
+the side-length of the dark grey overlap-square is $2b-a$.  All of
+these side-lengths are positive because of the value of $\sqrt{2}$.
+To wit: ($i$) $a > b$ because $\sqrt{2} >1$; ($ii$) $2b >a$ because
+$\sqrt{2} < 2$.
 \end{itemize}
 The preceding facts allow us to label the squares of
 Fig.~\ref{fig:irrationality1} differently than we did earlier---and
@@ -1690,17 +1760,17 @@ putative rational value $\displaystyle {a \over b}$ for $\sqrt{2}$,
 the new focus yields the putative rational value $\displaystyle {2b-a
   \over a-b}$ for $\sqrt{2}$.  We thus have
 \[ \sqrt{2} \ = \ {a \over b} \ = \ {2b-a \over a-b}, \]
-where $2b-a < a$ and $a-b < b$.  In the light of the Fundamental
-Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}), this new
-rational name for $\sqrt{2}$ contradicts our beginning assumption that
-$\displaystyle {a \over b}$ is the simplest name.
+where $2b-a \ < \ a$ and $a-b \ < \ b$.  In the light of the
+Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}),
+this new rational name for $\sqrt{2}$ contradicts our starting
+assumption that $\displaystyle {a \over b}$ was a fration in lowest
+terms, i.e., in which $a$ and $b$ share no common factor. % is the simplest name.
 \qed
 \end{proof}
 
-{\Denis I did not find a better word for simplest...}
-
-{\Denis I have another geometric proof for the same result,
-I added it in the separate file which will serve as exercices.}
+%{\Denis I did not find a better word for simplest...}
+%{\Denis I have another geometric proof for the same result,
+%I added it in the separate file which will serve as exercices.}
 
 
 \section{The Complex Numbers}
@@ -1743,16 +1813,20 @@ but used fewer multiplications and not too many more additions.
 Complex multiplication was one of the operations they studied.  Here
 is the result.
 
-\ignore{******************
-\addcontentsline{toc}{subsubsection}{-- A fun result: complex
-  multiplication via $3$ real multiplications}
-\index{complex number!multiplication via 3 real multiplications}
-
 \begin{prop}
 \label{thm:complex-mult-3real}
 One can compute the product of two complex numbers using {\em three}
 real multiplications rather than four.
 \end{prop}
+
+The proof of this result involves arithmetic manipulation that
+``thinks outsde the box.  We leave the proof as an exercise.  The main
+message of the result is not to be lulled into assuming that the way
+an arithmetic expression {\em is} written is the way that it {\em has
+  to be} written.
+
+
+\ignore{*********************
 
 \begin{proof}
 Although implementing (\ref{eq:complex-mult}) ``directly'' correctly
