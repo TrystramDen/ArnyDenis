@@ -3446,6 +3446,75 @@ achieve the provable optimal, a four-color palette
 (Theorem~\ref{thm:Four-ColorTheorem}).
 \end{itemize}
 
+\bigskip
+
+{\Denis Here is a nice alternative proof for the Euler proposition}
+\bigskip
+
+We develop below an alternative proof for the Euler proposition~\label{thm:Euler-Formula}.
+It is constructive and it uses the concept of \textit{invariance}.
+
+\begin{prop} [Alternative approach for proving the Euler's Formula for Planar Graphs]
+\label{thm:Euler-Formula-alternative}
+Given the indicated drawing of $\g$, we have
+\begin{equation}
+\label{eqn:Eulers-formula}
+n \ - \ e \ + \ f \ \ = \ \ 2
+\end{equation}
+\end{prop}
+
+Sketch of the proof:
+
+Let consider a planar graph and denoted $\phi(n,e,f) = n+e-f$.
+
+We propose the following two-steps process:
+
+\begin{enumerate}
+\item
+Iterate until it remains only one region
+(which is equivalent to stop when a tree is obtained, remark that there is only one connected tree).
+
+if an edge is common between two regions (labelled by a different index),
+let remove it.
+
+The sub-sequent graph remains planar (no edge is added) and this process keeps invariant function $\phi$.
+Indeed, $e$ and $f$ are each reduced by one:
+$\phi(n,e,f) = \phi(n,e-1,f-1)$.
+
+\item
+Iterate until it remains only one vertex
+
+remove on leave of the current tree and the corresponding edge.
+
+SImilarly as for the previous step, function $\phi$ remains invariant since $n$ and $e$ are each reduced by one.
+$\phi(n,e,f) = \phi(n-1,e-1,f)$
+\end{enumerate}
+
+It is easy to verify that this process is finite (the number of steps is exactly equal to the number of edges.
+At the end of the process, $e=0$ and $n=f=1$, thus, $\phi= 2$. 
+Since the process only involved invariant transformation $\phi(n,e,f)=2$, which concludes the proof.
+
+The two following figures~\ref{} and \ref{} illustrate the construction for a given example with $n=8$, $e=11$ and $f=5$.
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/planarStep1}
+       \caption{First step: from top left to bottom right, each transformation keeps the invariance of $\phi$.}
+  \label{fig:planarStep1}
+\end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/planarStep2}
+       \caption{Second step: We remove progressively a leaf and its link until reaching a single vertex.
+       Again, $\phi$ remains invariant}
+  \label{fig:planarStep2}
+\end{center}
+\end{figure}
+
+
+
 \subsection{Computing Chromatic Number}
 \label{sec:Compute-Chromatic-No}
 
