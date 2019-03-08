@@ -1,9 +1,12 @@
-%version of 03-07-19
+%version of 03-08-19
 
-\chapter{NUMBERS III: ON NUMBER REPRESENTATIONS}
+\chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
+\index{numerals!operational}
+\index{number representations!operational}
+\index{number representations}
 
-\section{Introduction}
+\section{Historical and Conceptual Introduction}
 
 Numbers are intangible idealizations.  One must endow numbers with
 names before one can manipulate them and compute with them.
@@ -242,75 +245,82 @@ most often when the properties of the underlying family expose
 particular properties of named numbers.  We discuss one such system in
 Section~\ref{sec:Fibo-numbers}.
 
-\section{Numerals We Can Work With}
-\label{sec:Numerals}
-\index{numerals!operational}
+\medskip
 
-\subsection{Positional Number Systems}
+The remainder of this chapter is devoted to discussing two genres of
+{\em operational} numerals \index{operational numerals}
+\index{numerals!operational} for real numbers---i.e., numerals that
+enable one to do things such as perform arithmetic (add, multiply,
+etc.) on the named numbers.  The first class of such numerals come
+from the {\it positional number systems} that we commonly use in
+everyday life.  The second class is built upon the family of Fibonacci
+numbers, which we became familiar with in Section~\ref{sec:Fibonacci}.
+
+\section{Positional Number Systems}
 \label{sec:positional-numbers}
 \index{positional number systems}
 \index{number systems!positional number systems}
 
-The most common family of {\em operational}
-\index{numerals!operational} numerals for real numbers---i.e.,
-numerals that enable one to do things such as perform arithmetic (add,
-multiply, etc.) on the named numbers---is the family of {\it
-  positional number systems}.  Each system in this family is
-identified by its {\em base}, 
-\index{positional number system!base}
+The most widely used family of {\em operational} numerals for real
+numbers is the family of {\it positional number systems}.  Each system
+in this family is identified by its {\em base},
+\index{positional number system!base} 
 which is usually\footnote{In rather specialized contexts one
-  encounters number bases that are not positive integers.}~an
-integer $b >1$.
-\index{positional number system!base-$b$ numeral}
-For any base $b$, we define the set $B_b = \{ 0, 1, \ldots, b-1\}$ of
-{\it digits in base $b$}.\index{positional number system!digits in
-  base $b$}
+may encounter number bases that are not positive integers.}~an integer
+$b >1$.  \index{positional number system!base-$b$ numeral} For any
+base $b$, we define the set $B_b = \{ 0, 1, \ldots, b-1\}$ of {\it
+  digits in base $b$}.
+\index{positional number system!digits in base $b$}
 %
-To aid legibility, {\em within the context of base-$b$ positional
-  numerals}, we denote the digit $b-1$ as a single character, $\bar{b}$.
+To aid legibility---{\em just within the context of base-$b$
+  positional numerals}---we denote the digit $b-1$ as a single
+character, $\bar{b}$.
 \index{$\bar{b}$: the digit $b-1$ in base $b$}
 %
 We then form base-$b$ numerals in the following way.
-\index{positional number system!base-$b$ numerals}
+
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.97\textwidth}
-%\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
-{\em The entire edifice of positional numerals builds on the concept
-  of {\em geometric summations}, a mathematical structure that we
-  shall learn to manipulate, evaluate, and compute with in
-  Section~\ref{sec:geometric-sums}.  We need only special aspents of
-  this topic here.
-}
-%\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
+The edifice of positional numerals builds on {\em geometric
+  summations}, so this is a good time to review
+Section~\ref{sec:geometric-sums}.
 \end{minipage}
 }
 \medskip
 
-{\Denis the following should be put before in 4.5.2}
+%{\Denis the following should be put before in 4.5.2}
 
+\index{base-$b$ numeral}
+\index{positional number system!base-$b$ numeral}
+\noindent
 A base-$b$ numeral is a string having three segments.
 \begin{enumerate}
 \item
 The numeral begins with its {\em integer part},
-\index{positional number system!integer part of a numeral}
-%
-which is a {\em finite} string of digits from $B_b$.  We denote the
-integer-part string as: $\alpha_n \alpha_{n-1} \cdots \alpha_1
-\alpha_0$.
+\index{positional number system!base-$b$ numeral!integer part}
+\index{base-$b$ numeral!integer part}
+which is a {\em finite} string of base-$b$ digits, i.e., digits from
+$B_b$.  We denote the integer-part string as: $\alpha_n \alpha_{n-1}
+\cdots \alpha_1 \alpha_0$.
 
 \item
 The numeral continues with a single occurrence of the {\it
-  radix point}\index{positional number system!radix point ``$.$''}
-``$.$''
+  radix point},
+\index{positional number system!radix point}
+\index{positional number system!base-$b$ numeral!radix point}
+\index{base-$b$ numeral!radix point}
+which is denoted ``$.$'' in the U.S.~and ``,'' in many other countries. 
 
 \item
-The numeral ends with its {\em fractional part},\index{positional
-  number system!fractional part of a numeral}
+The numeral ends with its {\em fractional part},
+\index{positional number system!fractional part of a numeral}
+\index{positional number system!base-$b$ numeral!fractional part}
+\index{base-$b$ numeral!fractional part}
 %
-which is a string---{\em finite or infinite}--- of digits from $B_b$.
-We denote the fractional-part string as:
+which is a string---{\em finite or infinite}---of base-$b$ digits,
+i.e., digits from $B_b$.  We denote the fractional-part string as:
 $\beta_0 \beta_1 \beta_2 \cdots$.
 \end{enumerate}
 Our completed numeral now has the form
@@ -319,53 +329,59 @@ Our completed numeral now has the form
 \alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0
 \ . \ \beta_0 \beta_1 \beta_2 \cdots
 \end{equation}
-where the $\alpha_i$ and the $\beta_j$
-\index{positional number system!base-$b$ digits} 
-are {\em base-$b$ digits} i.e., elements of the set $B_b$, and
-``$.$'' represents the {\em (base-$b$) radix point}.
 
 \noindent
-The numeral depicted in (\ref{eq:real-numeral}) represents the (real)
-number\footnote{The notation ``$\mbox{\sc num}_{10}(x)$'' in
-  (\ref{eq:real-numeral-number}) denotes an operator that produces the
-  {\em numerical value} of the numeral $x$ written in base-$b$.}
+This numeral has the {\it numerical value}\footnote{The notation
+  ``$\mbox{\sc num}_{b}(x)$'' in (\ref{eq:real-numeral-number})
+  denotes an operator that produces the {\em numerical value} of the
+  base-$b$ numeral $x$.}
 \begin{equation}
 \label{eq:real-numeral-number}
-\mbox{\sc num}_{10}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+\mbox{\sc num}_{b}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
 \ . \ \beta_0 \beta_1 \beta_2 \cdots)
 \ \ \eqdef \ \
 \sum_{i=0}^n \alpha_i \cdot b^i
 \ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
 \end{equation}
-\index{positional number system!numerical value of numeral}
-
-For emphasis, we note that the base-$b$ integer 
-\index{positional number system!numerical value of integral part}
-represented by the numeral's integer part is
+\index{positional number system!numerical value of base-$b$ numeral}
+\index{base-$b$ numeral!numerical value}
+\index{positional number system!base-$b$ numeral!numerical value}
+For emphasis, we review.
+\index{positional number system!numerical value of integer part}
+\begin{itemize}
+\item
+The numerical value of the integer part of the numeral in
+(\ref{eq:real-numeral}) is:
 \[
-\mbox{\sc num}_{10}(\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0)
+\mbox{\sc num}_{b}(\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0)
 \ \ = \ \
 \sum_{i=0}^n \alpha_i \cdot b^i
 \]
-and the base-$b$ fraction represented by the numeral's fractional part
-is\index{positional number system!numerical value of fractional part}
+\item
+The numerical value of the fractional part of the numeral in
+(\ref{eq:real-numeral}) is:
+\index{positional number system!numerical value of fractional part}
 \[
-\mbox{\sc num}_{10}(. \beta_0 \beta_1 \beta_2 \cdots)
+\mbox{\sc num}_{b}(. \beta_0 \beta_1 \beta_2 \cdots)
 \ \ = \ \
 \sum_{j\geq 0} \beta_j \cdot b^{-j}
 \]
+\item
 By prepending a ``minus sign'' (or, ``negative sign'') $-$ to a
 numeral or a number, one renders the thus-embellished entity as
 negative.
-
-\medskip
+\end{itemize}
 
 Note that {\em two types of sequences of $0$s do not affect the value
-  of the number represented by a numeral:} (1) an {\em initial}
-sequence of $0$s to the {\em left} of the radix point and of all
-non-$0$ digits; (2) a {\em terminal} sequence of $0$s to the {\em
-  right} of the radix point and of all non-$0$ digits.
-
+  of the number represented by a numeral:}
+\begin{itemize}
+\item
+an {\em initial} sequence of $0$s that reside to the {\em left} of the
+radix point and of all non-$0$ digits;
+\item
+a {\em terminal} sequence of $0$s that reside to the {\em right} of
+the radix point and of all non-$0$ digits.
+\end{itemize}
 One consequence of this fact is that we lose no generality by
 insisting that every numeral have the following {\em normal form:}
 \index{positional number system!numeral!normal form}
@@ -375,11 +391,26 @@ insisting that every numeral have the following {\em normal form:}
 
 \hspace*{.15in}
 \begin{tabular}{l}
--- a finite sequence of digits, \\
--- followed by a radix point, \\
--- followed by an infinite sequence of digits
+-- begins with a finite sequence of digits, \\
+-- then has one occurrence of the radix point, \\
+-- ends with an infinite sequence of digits
 \end{tabular}
 
+\bigskip
+
+We finish this section with an important observation which is a direct
+consequence of the definition of real numbers in
+Section~\ref{sec:define-Reals} in terms of the summations in
+(\ref{eq:real-defn}).
+
+\begin{prop}
+\label{thm:define-Reals-via-numerals}
+A number $n$ is real, i.e., belongs to the set $\R$, if, and only if
+it is the numerical value of a numeral of the form
+(\ref{eq:real-numeral}).
+\end{prop}
+
+{\Arny A good exercise ?}
 
 \subsection{Recognizing Integers and  Rationals from Their Numerals}
 \label{sec:special-numerals-N-Q}
@@ -394,65 +425,66 @@ integer can also be written as a $b$-ary numeral, in the form
 make much stronger statements about the forms of their positional
 numerals.
 
-{\Denis We have to add a brief discussion about k-ary and k-adic systems...}
 
 \subsubsection{Positional numerals for integers}
 \label{sec:special-numerals-N}
+
+The following result slightly alters the usual way that we write
+numerals for integers, in order to render explicit the familial
+relationship between reals and integers.
 
 \begin{prop}
 \label{thm:integer-real}
 A real number is an integer if, and only if, it can be represented by
 a {\em finite-length} numeral all of whose nonzero digits are to the
 left of the radix point.
-\index{number!integer!real with a finite numeral}
+\index{number!integer!as a real with a finite numeral}
 \end{prop}
 
 \begin{proof}
 The result is immediate by definition (\ref{eq:real-numeral-number}).
-In the indicated form, if any $\beta_i$ is nonzero, then the {\sc
-value} of the numeral is non-integral: it has a nonzero fractional part.
-\qed
+In the indicated form, if any $\beta_i$ is nonzero, then the numerical
+value of the numeral is non-integral.  To wit, this digit $\beta_i$
+witnesses that the numeral has a nonzero fractional part, hence is not
+an integer.  \qed
 \end{proof}
 
 We can go beyond the simple statement of
-Proposition~\ref{thm:integer-real} and present the following algorithm
-that computes the normal-form base-$b$ numeral for an integer $n$.
+Proposition~\ref{thm:integer-real} and develop an efficient algorithm
+that computes the base-$b$ numeral for an integer $n$ via a series of
+integer divisions.
 
-{\Denis I think it would be better to give the process in literal form as the rest of the chapter...}
 \bigskip
 
-\noindent {\underline{\bf Procedure}} {\small\sf Normal-Form
-  Numeral}($n$)
+\noindent {\it To compute a (finite) base-$b$ numeral for integer $n$.}
+\index{number!integer!computing an integer's finite numeral}
+%
+If we ignore the radix point and all of the $0$s to the right of it in
+the base-$b$ numerals given by (\ref{eq:real-numeral}), then we see
+that the base-$b$ numeral $a_d a_{d-1} \cdots a_1 a_0$ for an integer
+$n$ is a polynomial
 
-/*Compute the normal-form numeral for a given integer $n$*/
-\smallskip
-
-\noindent{\bf Initialization}.
-
-Set {\sc current-residue} to $n$
-\smallskip
-
-\noindent{\bf Iterate until}
-{\sc current-residue} $= 1$
-
-Divide {\sc current-residue} by $b$
-\medskip
+$P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \cdots + \ a_{d-1}
+x^{d-1} \ + \ a_d x^d$
 
 \noindent
-The {\em remainder} upon each division is the next lowest-order
-digit in the base-$b$ numeral for $n$.
-\bigskip
+evaluated at the point $x=b$:
 
-\noindent {\it Validating the procedure.}
-%
-The procedure is an implementation of a method of rewriting univariate
-polynomials, known variously as {\it Horner's rule} or {\it Horner's
-  scheme} \cite{Horner}.  
-\index{Horner's rule} \index{Horner's scheme}
-Among its other virtues, the ``rule'' provides a recipe for computing
-a degree-$d$ univariate polynomial using $O(d)$ multiplications,
-rather than the $\Theta(d^2)$ multiplications that appear at first to
-be needed.
+$\mbox{\sc num}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ +
+\cdots + \ a_1 b \ + \ a_0$.
+
+\noindent
+It appears at first glance that $\Theta(d^2)$ multiplications are
+needed to evaluate the preceding degree-$d$ univariate
+polynomial---which woud not give us a very efficient procedure for
+producing a numeral for $n$.  However, we can develop an efficient,
+$O(d)$-multiplication, procedure by adapting a method of rewriting
+univariate polynomials which is known variously as {\it Horner's rule}
+or {\it Horner's scheme} \cite{Horner}. \index{Horner's rule}
+\index{Horner's scheme} By describing Horner's rule on a degree-$3$
+polynomial, we should give the reader adequate preparation for our
+$O(d)$-division recipe for producing a $d$-digit base-$b$ numeral for
+integer $n$.
 
 \medskip
 
@@ -480,22 +512,25 @@ $P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ +  \cdots
 $P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ + \ a_3 x))$ 
 \end{itemize}
 
-The ``rule'' is so natural that its origins certainly predate the
-cited 1819 publication, but they are impossible to trace definitively.  \qed 
+\noindent
+Described procedurally: We iteratively divide $n$ by $b$, using {\it
+  Euclidean division} (Section~\ref{sec:euclidian}).  It is easy to
+see that the {\em remainder} upon each consecutive division is the
+next lowest-order digit in the base-$b$ numeral for $n$.
 
 \bigskip
 
 \noindent {\it Illustrating the procedure.}
-We use the procedure to produce the normal-form base-$2$ (binary)
-numeral for $n = 143$.
+We use the procedure to produce the base-$2$ (binary) numeral for $n =
+143$.
 
 \medskip
 
 \begin{tabular}{|c|r|r|}
 \hline
 Step &
-{\sc current-residue} &
-Remainder \\
+Current Quotient &
+Current Remainder \\
 \hline
 1. & $143$ & $1$ \\
 2. & $71$  & $1$ \\
@@ -512,8 +547,18 @@ Remainder \\
 
 \noindent
 We have thus derived the following equation which specifies the
-base-$2$ normal-form numeral for $143$.
+base-$2$ numeral for $143$.
 \[ 143_{10} \ = \ 10001111_2 \]
+
+\bigskip
+
+\noindent
+$\oplus$ {\bf Enrichment}.  {\it The dyadic system of numerals.}
+\index{numerals!the dyadic system} 
+\index{positional number systems!the dyadic system}
+ **HERE
+
+{\Denis We have to add a brief discussion about k-ary and k-adic systems...}
 
 
 \subsubsection{Positional numerals for rationals}
@@ -605,13 +650,12 @@ c_0 c_1 c_2
 
 {\Denis We must change VALUE, is corresponds to $NUM_{10}$ right?}
 
-We shall learn in Section~\ref{sec:geometric-sums} that infinite
+We learned in Section~\ref{sec:geometric-sums} that infinite
 summations such as the one in (\ref{eq:sum-in-numeral}), namely,
-$\sum_{i=1}^\infty b^{-2-3i}$,
-{\em converge}---meaning that {\em they have finite rational
-  sums}---and we learn how to compute these sums.  For the purposes of
-the current proof, we just take this fact on faith, and we denote the
-summation's finite rational sum by $p/q$.
+$\sum_{i=1}^\infty b^{-2-3i}$, {\em converge}---meaning that {\em they
+  have finite rational sums}---and we learn how to compute these sums.
+For the purposes of the current proof, we just take this fact on
+faith, and we denote the summation's finite rational sum by $p/q$.
 
 Collecting all of this information, we find that there exist {\em
   integers} $m$, $n$, $p$, and $q$ such that
@@ -968,7 +1012,7 @@ the presentation of the successive steps more clearly. I will come back later at
 
 
 
-\subsection{Scientific Notation}
+\section{Scientific Notation}
 \label{sec:scientific-notation}
 \index{Scientific notation}
 
@@ -1070,7 +1114,7 @@ Within this system of specification, we thus have
 I would like to add a section on Fibonacci numbering system), 
 I put it in the following, but may be we will have to put somewhere else, or as an exercice?}
 
-\subsection{Fibonacci Number Systems}
+\section{$\oplus$ Fibonacci Number Systems}
 \label{sec:Fibo-numbers}
 
 We study how Fibonacci numbers can be used as a basis for representing any integers.
