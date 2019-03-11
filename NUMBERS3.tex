@@ -1,4 +1,4 @@
-%version of 03-10-19
+%version of 03-11-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -148,18 +148,83 @@ would likely determine this by converting to decimal numerals
 \index{positional number systems}
 \index{number systems!positional number systems}
 %
-In our daily commerce, we typically deal with numerals that are formed
-within a {\it base-$b$ positional number system},
-\index{numerals in a base-$b$ positional number system}
-known also as a {\it $b$-ary positional number system}.
+In our daily commerce, we deal almost exclusively with numerals that
+are formed within a {\it base-$b$ positional number system},
+\index{numerals in a base-$b$ positional number system} known also as
+a {\it $b$-ary positional number system}.
 \index{numerals in a $b$-ary positional number system}
+The most common exemplars of $b$-ary positional number systems are:
+
+\smallskip
+
+\begin{tabular}{llclcl}
+base-$2$:  & the & $2$-ary  & or & {\em binary}      & system \\
+base-$8$:  & the & $8$-ary  & or & {\em octal}       & system \\
+base-$10$: & the & $10$-ary & or & {\em decimal}     & system \\
+base-$12$: & the & $12$-ary & or & {\em duodecimal}  & system \\
+base-$16$: & the & $16$-ary & or & {\em hexadecimal} & system
+\end{tabular}
+
+\smallskip
+
+\noindent
+Most of this chapter---specifically,
+Section~\ref{sec:positional-numbers}---is devoted to studying {\em
+  -ary} positional number systems in detail.
+
+\medskip
+
+\noindent
+{\it Systems developed to ensure special properties.}
+\index{number systems!formed to ensure special properties}
+In Section~\ref{sec:numerals-special-properties}, we briefly describe
+two families of positional systems that were invented to ensure number
+representations with specific properties.  Section~\ref{sec:bijective-adic}
+discusses {\em bijective number systems},
+\index{positional number systems!bijective systems}
+\index{positional number systems!-adic number systems}
+\index{number systems!positional number systems!bijective systems}
+\index{number systems!positional number systems!-adic number systems}
+which are positional number systems in which distinct numerals name
+distinct numbers.  This property can be significant in certain genres
+of numeral-based encodings.  (Of course, -ary number systems do not
+enjoy this property because of excess leading and trailing $0$s.)
+Finally Section~\ref{sec:carry-free} introduces number systems that
+enable {\em carry-free addition}.  This property enables the design of
+``unit-time'' parallel adders of arbitrary-length numerals.
+
+\medskip
+
+\noindent
+{\it Systems formed using special families of numbers.}
+\index{number systems!based on special families of numbers}
 %
-i.e., by strings of {\it digits} from a set of the form $\{0, 1, 2,
-\ldots, \overline{b-1}\}$, often embellished with other symbols, such
-as a {\em radix point},\footnote{Using a period as the radix point is
-  a US convention; in much of Europe, a comma is used.}~and sometimes
-a leading ``$+$'' or ``$-$'' to indicate, respectively, the denoted
-number's positivity or negativity.
+In Section~\ref{sec:numerals-special-families}
+The final genre of number system that we discuss in this introduction
+are those based on special families of numbers, such as the binomial
+coefficients and the Fibonacci numbers.  Such systems are employed
+most often when the properties of the underlying family expose
+particular properties of named numbers.  We discuss one such system in
+Section~\ref{sec:Fibo-numbers}.
+
+
+\section{Positional Number Systems}
+\label{sec:positional-numbers}
+\index{positional number systems}
+\index{number systems!positional number systems}
+
+We turn now to the immensely successful family of {\em operational}
+numerals, the $b$-ary number systems.  Each such system is built upon
+a {\em number base $b$} which is an integer $b> 1$.\footnote{In
+  rather specialized contexts one may encounter number bases that are
+  not positive integers.}
+\index{positonal number system!number base}
+The numerals in the system are strings of {\it digits} from the set
+$\{0, 1, 2, \ldots, \overline{b-1}\}$, often embellished with other
+symbols, such as a {\em radix point},\footnote{Using a period as the
+  radix point is a US convention; in much of Europe, a comma is
+  used.}~and sometimes a leading ``$+$'' or ``$-$'' to indicate,
+respectively, the denoted number's positivity or negativity.
 
 \medskip
 
@@ -175,66 +240,61 @@ $\overline{b-1}$ is the digit $9$.
 \medskip
 
 \noindent
-Most of this chapter---specifically,
-Section~\ref{sec:positional-numbers}---is devoted to studying
-positional number systems in detail.  For now, we present just a few
-examples:
+We begin to discuss these systems with a few examples:
 \begin{itemize}
 \item
-Most of our daily activities employ the number system that usually
-goes by the name {\it decimal} or {\it base-$10$}, or, unusually but
-correctly, the name {\it $10$-ary}.
-\index{the decimal number system}
-\index{the base-$10$ number system}
-\index{the $10$-ary number system}
+Most of our daily activities employ the number system usually called
+{\it decimal} or {\it base-$10$}, or, unusually but also correctly,
+{\it $10$-ary}.  \index{the decimal number system} 
+\index{the base-$10$ number system} \index{the $10$-ary number system}
 This system's digits comprise the set $\{0, 1, 2, 3, 4, 5., 6, 7, 8,
-9\}$; its radix point is called a {\em decimal point}. \index{decimal
-  point}
+9\}$; its radix point is called a {\em decimal point}.
+\index{decimal point}
 
 \item
 Because electrical and electronic circuitry are (for the most part)
 built using {\it bistable} devices---e.g., switches that are either
 {\em on} or {\em off}---the system most often employed when dealing
 with such circuitry and its end products (say, computers) is the
-{\it base}-$2$, or, {\it binary} system,
+{\it base}-$2$ system, which is also called {\it binary} of $2$-ary.
 \index{the binary (base-2) number system}
-whose digits--called {\it bits}---comprise the set $\{0, 1\}$.  The
-term {\it bit} is the contraction of {\it binary digit}.
+The digits of this system comprise the set $\{0, 1\}$.  Each digit is
+called a {\it bit}---a contraction of {\it binary digit}.
 \index{bit: binary digit}
 
 \item
 Because of its small repertoire of digits, the binary system's
 numerals are quite long---roughly $3$ times longer than decimal
-numerals.  For instance,
-\[ 32,768 \ \mbox{ base $10$} \ \ = \ \ 1,000,000,000,000,000 \ \mbox{ base $2$}
-\]
-In order to make these numerals easier for humans to deal with, small
-sequences of bits are often aggregated to form larger number bases---but
-still powers of $2$.  Two aggregations have been particularly popular:
+numerals.  For instance, denoting the base-$b$ as a subscript to the
+numeral (a common convention):
+\[ 32,768_{10} \ \ = \ \ 1,000,000,000,000,000_2 \]
+In order to make base-$2$e numerals easier for humans to deal with, we
+usually aggregate small sequences of bits to form larger number
+bases---but still powers of $2$.  Two aggregations have been
+particularly popular:
   \begin{itemize}
   \item
-By aggregating length-$3$ sequences of bits, one converts binary
+By aggregating length-$3$ sequences of bits, one converts base-$2$
 numerals to {\it base}-$8$ numerals, known also as {\it octal} or
 $8$-{\it ary} numerals;
 \index{the octal (base-$8$) number system} the octal digits comprise
 the set $\{0, 1, 2, 3, 4, 5, 6, 7\}$.
   \item
-By aggregating length-$4$ sequences of bits, one converts binary
+By aggregating length-$4$ sequences of bits, one converts base-$2$
 numerals to base-$16$ numerals, known also as {\it hexadecimal} or
-{\it $16$-ary} numerals;
-\index{the hexadecimal (base-$16$) number system}
-the hexadecimal digits comprise the set
+{\it $16$-ary} numerals; \index{the hexadecimal (base-$16$) number system} 
+the hexadecimal digits comprise the set 
 \[ \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, \overline{10}, \overline{11},
 \overline{12}, \overline{13}, \overline{14}, \overline{15}\}.
 \]
 {\it Note:} We have written the hexadecimal digits in decimal, to make
-them easy to read, but we have placed overlines above the $2$-digit
-(decimal) numerals ``$10$'', ``$11$'', ``$12$'', ``$13$'', ``$14$'',
-and ``$15$'' as a reminder that each represents a single hexadecimal
-digit, not a $2$-digit numeral.
+them easy to read, but we have placed overlines above the
+$2$-decimal-digit numerals ``$10$'', ``$11$'', ``$12$'', ``$13$'',
+``$14$'', and ``$15$'' as a reminder that each represents a single
+hexadecimal digit, not a $2$-digit numeral.
   \end{itemize}
-The success of the cited aggregations is attested to by the following
-equation in which subscripts denote the number base.
+The success of these aggregations is attested to by the following
+equation chain:
 \[ 32,768_{10} \ \ = \ \ 1,000,000,000,000,000_2 \ \ = \ \
 100,000_8 \ \ = \ \ 8,000_{16}
 \]
@@ -242,118 +302,56 @@ equation in which subscripts denote the number base.
 
 \medskip
 
-\noindent
-{\it Systems based on special families of numbers.}
-\index{number systems!based on special families of numbers}
-%
-The final genre of number system that we discuss in this introduction
-are those based on special families of numbers, such as the binomial
-coefficients and the Fibonacci numbers.  Such systems are employed
-most often when the properties of the underlying family expose
-particular properties of named numbers.  We discuss one such system in
-Section~\ref{sec:Fibo-numbers}.
+The {\it $b$-ary} number systems are by far the most commonly used
+positional number systems.  The names of the different instances of
+the system---each formed by choosing a specific number base
+$b$---derive from the {\em Latin} name of the base number.
+Regrettably, from a denotational point of view, the systems associated
+with certain bases end with the suffix {\em -ary} (as in ``binary'')
+while those associated with other bases end with the suffix {\em -al}
+(as in ``decimal'').  The following table codifies the multiple names
+of the systems associated with the most commonly used bases (for
+mathematicians, scientists, and engineers).
 
-\medskip
+\smallskip
 
-The remainder of this chapter is devoted to discussing two genres of
-{\em operational} numerals \index{operational numerals}
-\index{numerals!operational} for real numbers---i.e., numerals that
-enable one to do things such as perform arithmetic (add, multiply,
-etc.) on the named numbers.  The first class of such numerals come
-from the {\it positional number systems} that we commonly use in
-everyday life.  The second class is built upon the family of Fibonacci
-numbers, which we became familiar with in Section~\ref{sec:Fibonacci}.
-
-\section{Positional Number Systems}
-\label{sec:positional-numbers}
-\index{positional number systems}
-\index{number systems!positional number systems}
-
-The most widely used systems of {\em operational} numerals for real
-numbers are the family of {\it positional number systems}.  Each
-system in this family is identified by its {\em base},
-\index{positional number system!base} 
-which is usually\footnote{In rather specialized contexts one
-may encounter number bases that are not positive integers.}~an integer
-$b >1$.
-
-Unfortunately, there are actually {\em two} positional number systems
-associated with each integer base $b$.  One is by far the more
-commonly used, but the other has properties that make it much
-appreciated in certain contexts.  Fortunately, the two systems share
-the same formation rules; they differ only in their names and their
-underlying sets of digits.  Because of the fortunate circumstance, we
-focus first on how both types of base-$b$ numerals are formed.
-
-\subsection{The Formation Rules for Base-$b$ Numerals}
-\label{sec:forming-numerals}
-\index{positional number system!forming base-$b$ numeral}
-
-**HERE
-
-\subsection{The Two Base-$b$ Positional Number Systems}
-\label{sec:ARYnumerals}
-\index{positional number system!$b$-ary numeral}
-
-We focus first on the familiar $b$-ary number systems.  The names of
-these systems derive from the Latin names of the base number.
-Regrettably, from a linguistic point of view, the systems associated
-with some bases end with the suffix {\em -ary} while the systems
-associated with other bases end with the suffix {\em -al}.  The
-following table codifies the multile names of the systems associated
-with the most commonly used bases (for mathematicians, scientists, and
-engineers).
-
-\begin{tabular}{|c|l|l|l|}
+\begin{tabular}{|c|l|l|}
 \hline
-{\bf Base} & \multicolumn{3}{c}{\bf System names} \\
+{\bf Base} & \multicolumn{2}{c}{\bf {\em -ary} System Names}  \\
 \hline
-$2$         & base-$2$ & binary & $2$-ary \\
+$2$   & binary     & $2$-ary  \\
 \hline 
-$4$         & base-$4$ & ternary & $4$-ary \\
+$4$   & quaternary & $4$-ary  \\
 \hline
-$8$         & base-$8$ & octal & $8$-ary \\
+$8$    & octal & $8$-ary \\
 \hline
-$10$        & base-$10$ & decimal & $10$-ary \\
+$10$   & decimal & $10$-ary  \\
 \hline
-$12$        & base-$12$ & duodecimal & $12$-ary \\
+$12$    & duodecimal & $12$-ary  \\
 \hline
-$16$        & base-$16$ & hexadecimal & $16$-ary \\
+$16$     & hexadecimal & $16$-ary \\
 \hline
 \end{tabular}
 
-\medskip
+\bigskip
 
-\noindent
-Names aside, for any integer base $b >1$, the digits employed by the
-associated {\em $b$-ary} number system comprise the set $B_b = \{ 0, 1,
-\ldots, b-1\}$.
-\index{positional number system!digits in $b$-ary system}
-%
-To aid legibility---{\em just within the context of base-$b$
-  positional numerals}---we denote the digit $b-1$ as a single
-character, $\bar{b}$.
-\index{$\bar{b}$: the digit $b-1$ in base $b$}
-%
-We then form $b$-ary numerals in the following way.
+\index{positional number system!forming base-$b$ numeral}
+\noindent {\bf The formation rules for $b$-ary numerals}.
+As we turn to the {\it formation rules} for $b$-ary numerals, we want
+to emphasize that these rules build in an essential way on the ideas
+relating to summing {\em geometric summations}.  This is, therefore, a
+good time to review Section~\ref{sec:geometric-sums}.
 
-\medskip
-
-\noindent \fbox{
-\begin{minipage}{0.97\textwidth}
-The edifice of positional numerals builds on {\em geometric
-  summations}, so this is a good time to review
-Section~\ref{sec:geometric-sums}.
-\end{minipage}
-}
 \medskip
 
 %{\Denis the following should be put before in 4.5.2}
 
 \index{base-$b$ numeral}
 \index{positional number system!base-$b$ numeral}
+\index{$b$-ary numeral}
+\index{positional number system!$b$-ary numeral}
 \noindent
-A base-$b$ numeral is a string having three segments.
+A $b$-ary numeral is a string having three segments.
 \begin{enumerate}
 \item
 The numeral begins with its {\em integer part},
@@ -376,10 +374,9 @@ The numeral ends with its {\em fractional part},
 \index{positional number system!fractional part of a numeral}
 \index{positional number system!base-$b$ numeral!fractional part}
 \index{base-$b$ numeral!fractional part}
-%
-which is a string---{\em finite or infinite}---of base-$b$ digits,
-i.e., digits from $B_b$.  We denote the fractional-part string as:
-$\beta_0 \beta_1 \beta_2 \cdots$.
+which is a string---{\em finite or infinite}---of base-$b$ digits We
+denote the fractional-part string as: $\beta_0 \beta_1 \beta_2
+\cdots$.
 \end{enumerate}
 Our completed numeral now has the form
 \begin{equation}
@@ -404,7 +401,7 @@ This numeral has the {\it numerical value}\footnote{The notation
 \index{positional number system!numerical value of base-$b$ numeral}
 \index{base-$b$ numeral!numerical value}
 \index{positional number system!base-$b$ numeral!numerical value}
-For emphasis, we review.
+For emphasis, we review:
 \index{positional number system!numerical value of integer part}
 \begin{itemize}
 \item
@@ -425,13 +422,13 @@ The numerical value of the fractional part of the numeral in
 \sum_{j\geq 0} \beta_j \cdot b^{-j}
 \]
 \item
-By prepending a ``minus sign'' (or, ``negative sign'') $-$ to a
+By prepending a ``minus sign'', or, ``negative sign'' ($-$) to a
 numeral or a number, one renders the thus-embellished entity as
 negative.
 \end{itemize}
 
 Note that {\em two types of sequences of $0$s do not affect the value
-  of the number represented by a numeral:}
+  of the number represented by a $b$ary numeral:}
 \begin{itemize}
 \item
 an {\em initial} sequence of $0$s that reside to the {\em left} of the
@@ -449,17 +446,16 @@ insisting that every numeral have the following {\em normal form:}
 
 \hspace*{.15in}
 \begin{tabular}{l}
--- begins with a finite sequence of digits, \\
--- then has one occurrence of the radix point, \\
--- ends with an infinite sequence of digits
+-- it begins with a finite sequence of digits, \\
+-- it then has one occurrence of the radix point, \\
+-- it ends with an infinite sequence of digits
 \end{tabular}
 
 \bigskip
 
-We finish this section with an important observation which is a direct
-consequence of the definition of real numbers in
-Section~\ref{sec:define-Reals} in terms of the summations in
-(\ref{eq:real-defn}).
+We finish this section with an important consequence of the definition
+of real numbers in Section~\ref{sec:define-Reals}, in terms of the
+summations in (\ref{eq:real-defn}).
 
 \begin{prop}
 \label{thm:define-Reals-via-numerals}
@@ -470,7 +466,27 @@ it is the numerical value of a numeral of the form
 
 {\Arny A good exercise ?}
 
-\subsection{Recognizing Integers and  Rationals from Their Numerals}
+\subsection{$\oplus$ Positional Number Systems with Special Properties}
+\label{sec:numerals-special-properties}
+
+**HERE
+
+bijective, carry-free
+
+\cite{Hwang79}
+
+\subsubsection{Bijective systems}
+\label{sec:bijective-adic}
+Smullyan
+
+\subsubsection{Carry-free addition}
+\label{sec:carry-free}
+
+\subsection{$\oplus$ Number Systems from Special Number Familiiies}
+\label{sec:numerals-special-families}
+
+
+\section{Recognizing Integers and  Rationals from Their $b$-ary Numerals}
 \label{sec:special-numerals-N-Q}
 
 We have provided an adequate, albeit inelegant, characterization of
