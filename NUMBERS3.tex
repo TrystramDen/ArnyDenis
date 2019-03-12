@@ -493,12 +493,11 @@ systems are often termed {\it bijective} because their unique numerals
 for integers arise from a bijection between the integer numerals and
 the set $\N^+$ of positive integers.  {\em The price that these
   systems pay for their bijectiveness is that they cannot represent
-  the number $0$; they can represent all other integers.}
-
-Each bijective base-$b$ system is sometimes called the {\it $b$-adic
-  number system}. \index{positional number system!$b$-adic} One also
-finds some -adic number systems being named using Greek-inspired names
-for the base $b$, in imitation of the Latin-inspired names of -ary
+  the number $0$; they can represent all other integers.}  Each
+bijective base-$b$ system is sometimes called the {\it $b$-adic number
+  system}. \index{positional number system!$b$-adic} One also finds
+some -adic number systems being named using Greek-inspired names for
+the base $b$, in imitation of the Latin-inspired names of -ary
 systems.  Most commonly one encounters the base-$2$ {\it dyadic}
 \index{positional number system!dyadic: base-$2$}
 \index{dyadic (base-$2$) number system} system as the -adic analogue
@@ -509,7 +508,31 @@ are formed in exactly the same way as are the numerals of the $b$-ary
 number system---see (\ref{eq:real-numeral-number})---but the bijective
 systems' numerals are formed using the digit-set $B'_b \ = \ \{1, 2,
 \ldots, b\}$, rather than the $b$-ary set $B_b$ of
-(\ref{eq:b-ary-digits}).
+(\ref{eq:b-ary-digits}).  In order to lend the reader some intuition,
+we display the dyadic numerals that have one or two digits together
+with their numerical values.
+
+\smallskip
+
+\begin{tabular}{|lc|ll|}
+\hline
+\multicolumn{2}{c}{\bf Dyadic Numeral} & \multicolumn{2}{c}{\bf Numerical Value} \\
+\hline
+$x=$ & $1$  & {\sc dyadic-num}$(x) =$ & $1$ \\
+     & $2$  &                         & $2$ \\
+     & $11$ &                         & $2 + 1 = 3$ \\
+     & $12$ &                         & $2 + 2 = 4$ \\
+     & $21$ &                         & $4 + 1 = 5$ \\
+     & $22$ &                         & $4 + 2 = 6$ \\
+\hline
+\end{tabular}
+
+\medskip
+\noindent
+The preceding table indicates how the numerical values of dyadic
+numerals track the lexicographic order of the numerals.
+
+\bigskip
 
 Formally verifying the bijectiveness of all $b$-adic number systems is
 a valuable exercise in manipulating numerals.  An analogue of the
@@ -529,101 +552,217 @@ Distinct $b$-adic numerals name distinct positive numbers.
 \begin{proof}[Sketch]
 We provide a proof only for dyadic, i.e., base $b=2$, integers.  This
 will expose the basic ideas of a complete proof, with minimal
-notation.
+notation.  We begin by exposing the largest and smallest integers that
+admit a $d$-digit dyadic numeral.
 
-\medskip
+\begin{lemma}
+\label{lem:big-small-dyadic}
+The {\em smallest} integer representable by a $d$-digit dyadic
+numeral is 
+\[ \mbox{\sc min-integer}_d \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1
+\]
+The {\em largest} integer representable by a $d$-digit dyadic
+numeral is
+\[ \mbox{\sc max-integer}_d \ = \
+2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2
+\]
+\end{lemma}
 
-\noindent 1. {\it Shortest numerals}.
-We verify by direct enumeration that the result is true for numerals
-having one or two digits.
-
-\smallskip
-
-\begin{tabular}{|c|c|}
-\hline
-{\bf Dyadic Numeral} & {\bf Numerical Value} \\
-\hline
-$1$  & $1$ \\
-$2$  & $2$ \\
-$11$ & $2 + 1 = 3$ \\
-$12$ & $2 + 2 = 4$ \\
-$21$ & $4 + 1 = 5$ \\
-$22$ & $4 + 2 = 6$ \\
-\hline
-\end{tabular}
-
-\medskip
-
-\noindent 2. {\it The largest and smallest $d$-digit numbers}.
-We invoke the summation techniques in Section~\ref{sec:geometric-sums}
-to verify the following.
+\begin{proof}[Lemma]
+By definition,
 \begin{itemize}
 \item
-The {\em smallest} integer representable by a $d$-digit dyadic
-numeral:
-
-\smallskip
-
-\begin{tabular}{|c|c|}
-\hline
-{\bf Dyadic Numeral} & {\bf Numerical Value} \\
-\hline
-$11 \cdots 1$ ($d$ digits) &
-$2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1$ \\
-\hline
-\end{tabular}
-
-\smallskip
-
+The smallest $d$-digit dyadic numeral is $11 \cdots 1$ ($d$ digits).
+Its value is:
+\[ \mbox{\sc dyadic-num}_2(11 \cdots 1)
+ \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1 \]
 \item
-The {\em largest} integer representable by a $d$-digit dyadic numeral:
-
-\smallskip
-
-\begin{tabular}{|c|c|}
-\hline
-{\bf Dyadic Numeral} & {\bf Numerical Value} \\
-\hline
-$22 \cdots 2$ ($d$ digits) &
-$2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2$ \\
-\hline
-\end{tabular}
+The {\em largest} $d$-digit dyadic numeral is 
+$22 \cdots 2$ ($d$ digits).  Its value is:
+\[ \mbox{\sc dyadic-num}_2(22 \cdots 2)
+\ = \ 2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2 \]
 \end{itemize}
+We derive the values of both extremal integers by invoking the
+summation techniques in Section~\ref{sec:geometric-sums}.
+\qed-Lemma
+\end{proof}
 
-\medskip
+\bigskip
 
-\noindent  3. {\it The inductive hypothesis}.
-Assume, for the sake of induction that all dyadic numerals of lengths
-$\leq d$ represent distinct positive integers.
+We are now ready to prove the proposition.  To this end, let us be
+given distinct dyadic numerals,
+\[
+x \ = \ \gamma_r \gamma_{r-1} \cdots \gamma_1
+ \ \ \ \ \ \mbox{ and } \ \ \ \ \
+y \ = \ \delta_s \delta_{s-1} \cdots \delta_1
+\]
 
-\medskip
-
-\noindent  4. {\it Extending the induction}.
-Let us be given distinct dyadic numerals,
-\[ \gamma_r \gamma_{r-1} \cdots \gamma_1 \ \ \ \mbox{ and }  \ \ \
-\delta_s \delta_{s-1} \cdots \delta_1 \]
-
-4(a) {\it [$r > s$]}.
-Say specifically that $r = s +c$ for some $c > 0$.
-In this case, we have  **HERE
-\[ \mbox{\sc dyadic-num}(\gamma_r \gamma_{r-1} \cdots \gamma_1) \ \geq
-\ 2^{r+1} - 1 \]
+{\bf (a)} Say first that $r \neq s$.  With no loss of generality, say
+that $r = s +c$ for some $c \geq 1$.  In this case, we have, by
+Lemma~\ref{lem:big-small-dyadic}:
+\[ \mbox{\sc dyadic-num}(x) \ \geq \ 2^{r+1} - 1 \ = \ 2^{s+c+1} -1 \]
 while
-\[ \mbox{\sc dyadic-num}(\delta_s \delta_{s-1} \cdots \delta_1) \ \leq
-\ 2^{s+2} - 2 \]
+\[ \mbox{\sc dyadic-num}(y) \ \leq \ 2^{s+2} - 2 \]
+It follows, therefore, that
+\[ \mbox{\sc dyadic-num}(x) \ \geq \ \mbox{\sc dyadic-num}(y) \ + \ 1 \]
+In other words, numerals $x$ and $y$ behave in consistency with the proposition.
 
+{\bf (b)} The alternative to assumption (a) is that $r = s$.  Because
+$x$ and $y$ are distinct numerals, there must be a largest index $m
+\leq r$ such that $\gamma_m \neq \delta_m$; say, with no loss of
+generality, that $\gamma_m = \delta_m + c$ for some base-$b$ dyadic
+digit $c$.  We can, therefore, rewrite numeral $y$ as
+\[ y \ = \ \gamma_r \cdots \gamma_{m+1} \delta_m \delta_{m-1} \cdots \delta_1
+\]
+Invoking Lemma~\ref{lem:big-small-dyadic}, we can infer the following
+bounds on the difference between $\mbox{\sc dyadic-num}(x)$ and
+$\mbox{\sc dyadic-num}(y)$.
 
+\medskip
 
+ $\mbox{\sc dyadic-num}(x) \ - \ \mbox{\sc dyadic-num}(y)$
+\begin{eqnarray*}
+  & =  &
+2^m \cdot (\gamma_m - \delta_m) \ + \ 2^{m-1} \cdot (\gamma_{m-1} -
+\delta_{m-1}) \ + \cdots + \  2 \cdot (\gamma_1 - \delta_1) \\
+  & \geq &
+2^m \cdot (\gamma_m - \delta_m) \ - \ \left( 2^{m-1} + 2^{m-2} +
+\cdots + 1 \right) \\
+  & = &
+2^m \cdot (\gamma_m - \delta_m)\ - \ \left( 2^m -1 \right) \\
+  & = &
+2^m \cdot (c-1) +1 \\
+  & \geq & 1
+\end{eqnarray*}
+Once again, numerals $x$ and $y$ behave in consistency with the
+proposition.  The result follows.
 \qed
 \end{proof}
 
-\subsubsection{A system that enables {\em carry-free addition}}
+
+
+\subsubsection{Redundant systems that enable {\em carry-free addition}}
 \label{sec:carry-free}
+
+**HERE
 
 \cite{Hwang79}
 
-\subsection{$\oplus$ Systems Based on Special Number Families}
+\section{$\oplus$ A System Based on the Fibonacci Numbers}
 \label{sec:numerals-special-families}
+\label{sec:Fibo-numbers}
+
+
+{\Denis I suggest to add a section on numbering systems (we already spoke about binary system,
+I would like to add a section on Fibonacci numbering system), 
+I put it in the following, but may be we will have to put somewhere else, or as an exercice?}
+
+%\section{$\oplus$ Fibonacci Number Systems}
+
+
+We study how Fibonacci numbers can be used as a basis for representing any integers.
+
+Let us first introduce a useful notation: $j \gg k$ iff $j \geq k+2$.
+
+We will first prove the \textit{Zeckendorf's theorem} which states that every positive integer $n$ has a unique representation of the form:
+
+$n = F_{k_1} + F_{k_2} + ... + F_{k_r}$ where $k_1 \gg k_2 \gg ... \gg k_r$ and $k_r \geq 2$.
+
+Here, we assume that the Fibonacci sequence starts at index $1$ and not $0$,
+moreover, the decompositions will never consider $F(1)$ (since $F(1)=F(2$)). 
+For instance, the representation of $12345$ turns out to be:
+
+$12345 = 10946 + 987 + 377 + 34 + 1 = F(21) + F(16) + F(14) + F(9) + F(2)$
+\bigskip
+
+Figure~\ref{zeckendorf} shows the decomposition of the first 26 integers written in this system. 
+\begin{figure}[h]
+\begin{center}
+%\includegraphics[width=0.4\textwidth]{../FIGmaths/zeckendorf_representations.png}
+        \includegraphics[scale=0.6]{FiguresArithmetic/Zeckendorf}
+        \caption{The first integers (on the Y-axis) broken down into the Zeckendorf representation.
+        The shaded rows corresponds to pure Fibonacci numbers.}
+\label{zeckendorf}
+\end{center}
+\end{figure}
+
+\noindent \textbf{Proof of Zeckendorf's Theorem}
+
+The proof is done by induction on $n$ for proving simultaneously both construction and uniqueness.
+
+\begin{itemize}
+\item
+The basis is true since the decomposition is obviously unique for $n=2$ (and also for $n=3$). 
+Notice that for $n=4$, we have $4 = 3 + 1 = F(4) + F(2)$. 
+
+\item
+Assume for the induction step that any integer strictly lower than $F(k)$ can be decomposed uniquely as the sum of non-consecutive Fibonacci numbers.
+We will prove as a consequence that an integer $n$ in the next interval between two consecutive Fibonacci numbers $F(k) \leq n < F(k+1)$ may be decomposed. 
+
+If $n=F(k)$ is a Fibonacci number, the decomposition is reduced to $F(k)$.
+
+Moreover, it is not difficult to check that it is unique.
+
+%by using Property~\ref{prop:FiboSum}:
+%$F(k) = 2+ \sum_{i=1}^{k-2} F(i)$ (the 2 comes from the shift of the starting element of the sequence...).
+
+\medskip
+
+If $n \neq F(k)$ write $n = F(k) + N$.
+
+As $N$ is strictly lower than $F(k)$, we apply the recurrence hypothesis to decompose it into non-consecutive Fibonacci numbers:
+
+$n = F(k) + F(k_1) + F(k_2) + \cdots + F(r)$ where $k_2 \gg ... \gg k_r \geq 2$. 
+
+The last point to verify is that $F(k)$ and $F(k_1)$ are not consecutive ($F(k) \gg F(k_1)$), which is done by contradiction:
+
+Assuming $k$ and $k_1$ are consecutive ($k_1=k-1$) leads to $n = F(k+1) + F(k_2) + \cdots + F(r)$
+which contradicts $n < F(k+1)$.
+\end{itemize}
+
+Any unique system of representation is a numbering system.
+
+The previous theorem ensures that any non-negative integer can be written
+as a sequence of bits $b_i$, in other words,
+
+$n = (b_mb_{m-1}...b_2)_F$ iff $n = \Sigma_{k=2}^m b_k F_k$.
+
+Let us compare this system to the binary representation.
+For instance, the Fibonacci representation of $12345$ is $(100001010000100000010)_F$
+while  $12345 = 2^{13} + 2^{12} + 2^{5} + 2^{4} + 2^{3} + 2^{0} = (1100000111001)_2$.
+
+The binary representation is more compact. 
+\bigskip
+
+The decomposition in the Fibonacci basis of the first integers (starting from $1 = (00001)_F$) is as follows:
+
+ $2 = (0010)_2 = F_3 = (00010)_F$
+ 
+ $3 = (0011)_2 = F_4 = (00100)_F$
+  
+ $4 = (100)_2 = 3+1 = (00101)_F$
+ 
+ $5 = (101)_2 = F_5 = (01000)_F$
+ 
+ $6 = (110)_2 = 5+1 = (01001)_F$
+ 
+ $7 = (111)_2 = 5+2 = (01010)_F$
+ 
+ $8 = (1000)_2 = F_6 = (10000)_F$
+ 
+ $9 = (1001)_2 = (10001)_F$
+ 
+ $10 = (1010)_2 = (10010)_F$
+ 
+ $11 = (1011)_2 = (10100)_F$
+ 
+ $12 = (1100)_2 = (10101)_F$
+ 
+ $13 = (1101)_2 = F_7 =(100000)_F$
+ 
+ ...
+ 
+There is no consecutive digits equal to $1$ in such representations.
 
 
 \section{Recognizing Integers and  Rationals from Their $b$-ary Numerals}
@@ -640,7 +779,7 @@ make much stronger statements about the forms of their positional
 numerals.
 
 
-\subsubsection{Positional numerals for integers}
+\subsection{Positional numerals for integers}
 \label{sec:special-numerals-N}
 
 The following result slightly alters the usual way that we write
@@ -775,7 +914,7 @@ $\oplus$ {\bf Enrichment}.  {\it The dyadic system of numerals.}
 {\Denis We have to add a brief discussion about k-ary and k-adic systems...}
 
 
-\subsubsection{Positional numerals for rationals}
+\subsection{Positional numerals for rationals}
 \label{sec:special-numerals-Q}
 
 We can completely characterize the positional numerals that represent
@@ -995,7 +1134,7 @@ foundations of mathematics might quibble about the verb ``is'' in the
 highlighted sentences, but for all practical purposes, we can accept
 the sentences as written.
 
-\subsection{$\R$ is uncountable, hence is ``bigger than'' $\Z$ and $\Q$}
+\section{$\R$ is uncountable, hence is ``bigger than'' $\Z$ and $\Q$}
 \label{sec:Q-Z-R-cardinality}
 \label{sec:Reals-uncountable}
 
@@ -1022,7 +1161,7 @@ argument provides the most sophisticated proof by contradiction in our
 text.  The reader might want to review the reasoning underlying such
 argumentation, in Section~\ref{sec:Contradiction}, as a ``warm-up.''
 
-\subsubsection{Plotting a strategy to prove uncountability}
+\subsection{Plotting a strategy to prove uncountability}
 \label{sec:the-diag-strategy}
 
 Invoking the definition of countability, our proof begins with the
@@ -1098,7 +1237,7 @@ informal terms which can be made formal, any putative injection $f: \R
 \rightarrow \N$ ``contains'' an injection $f_{(0,1)}: \R_{(0,1)}
 \rightarrow \N$.)
 
-\paragraph{\small\sf A. Seeking a bijection $h: \N \leftrightarrow \R_{(0,1)}$}
+\subsubsection{Seeking a bijection $h: \N \leftrightarrow \R_{(0,1)}$}
 
 We assume, for contradiction, that the targeted bijection $g$ exists.
 As part of this two-way mapping, there exists an {\em injection}
@@ -1152,8 +1291,7 @@ We can, thus, view the successive rows of $\Delta$, $h(0)$, $h(1)$,
 \ldots, as an enumeration (with possible repetitions) of all of the
 real numbers in the set $\R_{(0,1)}$.
 
-\paragraph{\small\sf B. Every bijection $h: \N \leftrightarrow \R$
-  ``misses'' some real}
+\subsubsection{Every bijection $h: \N \leftrightarrow \R$ ``misses'' some real}
 %$x \in \R_{(0,1)}$}
 
 We are finally poised to find the contradiction to our assumption that
@@ -1202,7 +1340,7 @@ In either case, we have $\mbox{\sc num}_{10}(\Psi) \ \neq \ \mbox{\sc
 $\Delta$.  Since $k \in \N$ is an arbitrary row-index of $\Delta$, we
 conclude that $\Psi$ does not occur as any row of $\Delta$.  \qed
 
-\subsubsection{The denouement: There is no bijection  $h: \N \leftrightarrow \R$}
+\subsection{The denouement: There is no bijection  $h: \N \leftrightarrow \R$}
 
 Because the infinite decimal string $\Psi$ differs from every row of
 $\Delta$, even though $\mbox{\sc num}_{10}(\Psi) \in \R_{(0,1)}$, we have
@@ -1323,114 +1461,3 @@ Within this system of specification, we thus have
 \end{array}
 \]
 
-
-{\Denis I suggest to add a section on numbering systems (we already spoke about binary system,
-I would like to add a section on Fibonacci numbering system), 
-I put it in the following, but may be we will have to put somewhere else, or as an exercice?}
-
-\section{$\oplus$ Fibonacci Number Systems}
-\label{sec:Fibo-numbers}
-
-We study how Fibonacci numbers can be used as a basis for representing any integers.
-
-Let us first introduce a useful notation: $j \gg k$ iff $j \geq k+2$.
-
-We will first prove the \textit{Zeckendorf's theorem} which states that every positive integer $n$ has a unique representation of the form:
-
-$n = F_{k_1} + F_{k_2} + ... + F_{k_r}$ where $k_1 \gg k_2 \gg ... \gg k_r$ and $k_r \geq 2$.
-
-Here, we assume that the Fibonacci sequence starts at index $1$ and not $0$,
-moreover, the decompositions will never consider $F(1)$ (since $F(1)=F(2$)). 
-For instance, the representation of $12345$ turns out to be:
-
-$12345 = 10946 + 987 + 377 + 34 + 1 = F(21) + F(16) + F(14) + F(9) + F(2)$
-\bigskip
-
-Figure~\ref{zeckendorf} shows the decomposition of the first 26 integers written in this system. 
-\begin{figure}[h]
-\begin{center}
-%\includegraphics[width=0.4\textwidth]{../FIGmaths/zeckendorf_representations.png}
-        \includegraphics[scale=0.6]{FiguresArithmetic/Zeckendorf}
-        \caption{The first integers (on the Y-axis) broken down into the Zeckendorf representation.
-        The shaded rows corresponds to pure Fibonacci numbers.}
-\label{zeckendorf}
-\end{center}
-\end{figure}
-
-\noindent \textbf{Proof of Zeckendorf's Theorem}
-
-The proof is done by induction on $n$ for proving simultaneously both construction and uniqueness.
-
-\begin{itemize}
-\item
-The basis is true since the decomposition is obviously unique for $n=2$ (and also for $n=3$). 
-Notice that for $n=4$, we have $4 = 3 + 1 = F(4) + F(2)$. 
-
-\item
-Assume for the induction step that any integer strictly lower than $F(k)$ can be decomposed uniquely as the sum of non-consecutive Fibonacci numbers.
-We will prove as a consequence that an integer $n$ in the next interval between two consecutive Fibonacci numbers $F(k) \leq n < F(k+1)$ may be decomposed. 
-
-If $n=F(k)$ is a Fibonacci number, the decomposition is reduced to $F(k)$.
-
-Moreover, it is not difficult to check that it is unique.
-
-%by using Property~\ref{prop:FiboSum}:
-%$F(k) = 2+ \sum_{i=1}^{k-2} F(i)$ (the 2 comes from the shift of the starting element of the sequence...).
-
-\medskip
-
-If $n \neq F(k)$ write $n = F(k) + N$.
-
-As $N$ is strictly lower than $F(k)$, we apply the recurrence hypothesis to decompose it into non-consecutive Fibonacci numbers:
-
-$n = F(k) + F(k_1) + F(k_2) + \cdots + F(r)$ where $k_2 \gg ... \gg k_r \geq 2$. 
-
-The last point to verify is that $F(k)$ and $F(k_1)$ are not consecutive ($F(k) \gg F(k_1)$), which is done by contradiction:
-
-Assuming $k$ and $k_1$ are consecutive ($k_1=k-1$) leads to $n = F(k+1) + F(k_2) + \cdots + F(r)$
-which contradicts $n < F(k+1)$.
-\end{itemize}
-
-Any unique system of representation is a numbering system.
-
-The previous theorem ensures that any non-negative integer can be written
-as a sequence of bits $b_i$, in other words,
-
-$n = (b_mb_{m-1}...b_2)_F$ iff $n = \Sigma_{k=2}^m b_k F_k$.
-
-Let us compare this system to the binary representation.
-For instance, the Fibonacci representation of $12345$ is $(100001010000100000010)_F$
-while  $12345 = 2^{13} + 2^{12} + 2^{5} + 2^{4} + 2^{3} + 2^{0} = (1100000111001)_2$.
-
-The binary representation is more compact. 
-\bigskip
-
-The decomposition in the Fibonacci basis of the first integers (starting from $1 = (00001)_F$) is as follows:
-
- $2 = (0010)_2 = F_3 = (00010)_F$
- 
- $3 = (0011)_2 = F_4 = (00100)_F$
-  
- $4 = (100)_2 = 3+1 = (00101)_F$
- 
- $5 = (101)_2 = F_5 = (01000)_F$
- 
- $6 = (110)_2 = 5+1 = (01001)_F$
- 
- $7 = (111)_2 = 5+2 = (01010)_F$
- 
- $8 = (1000)_2 = F_6 = (10000)_F$
- 
- $9 = (1001)_2 = (10001)_F$
- 
- $10 = (1010)_2 = (10010)_F$
- 
- $11 = (1011)_2 = (10100)_F$
- 
- $12 = (1100)_2 = (10101)_F$
- 
- $13 = (1101)_2 = F_7 =(100000)_F$
- 
- ...
- 
-There is no consecutive digits equal to $1$ in such representations.
