@@ -1,4 +1,4 @@
-%version of 03-11-19
+%version of 03-12-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -358,8 +358,15 @@ The numeral begins with its {\em integer part},
 \index{positional number system!base-$b$ numeral!integer part}
 \index{base-$b$ numeral!integer part}
 which is a {\em finite} string of base-$b$ digits, i.e., digits from
-$B_b$.  We denote the integer-part string as: $\alpha_n \alpha_{n-1}
-\cdots \alpha_1 \alpha_0$.
+the set \index{$B_b$: $b$-ary digits}
+\begin{equation}
+\label{eq:b-ary-digits}
+B_b \ \eqdef \ \{0, 1, 2, \ldots, \overline{b-1}\}
+\end{equation}
+(Recall that ``$\overline{b-1}$'' represents the integer $b-1$ as a
+single digit.)  \index{$\overline{b-1}$: $b-1$ as a single digit}
+We denote the integer-part string as: $\alpha_n \alpha_{n-1} \cdots
+\alpha_1 \alpha_0$.
 
 \item
 The numeral continues with a single occurrence of the {\it
@@ -469,20 +476,153 @@ it is the numerical value of a numeral of the form
 \subsection{$\oplus$ Positional Number Systems with Special Properties}
 \label{sec:numerals-special-properties}
 
-**HERE
+Among the many ``nonstandard'' positional number systems that have
+been invented because of some special characteristic(s), we have
+selected two, chosen because of their importance to some scientific
+endeavor.
 
-bijective, carry-free
+\subsubsection{A {\em bijective} number system}
+\label{sec:bijective-adic}
+\index{positional number system!bijective}
+
+This section introduces a positional number system in which distinct
+numerals name distinct numbers.  Of course, $b$-ary systems do not
+enjoy this property because of the value neutrality of leading $0$s
+for integer numerals and trailing $0$s for fractional numerals.  The
+systems are often termed {\it bijective} because their unique numerals
+for integers arise from a bijection between the integer numerals and
+the set $\N^+$ of positive integers.  {\em The price that these
+  systems pay for their bijectiveness is that they cannot represent
+  the number $0$; they can represent all other integers.}
+
+Each bijective base-$b$ system is sometimes called the {\it $b$-adic
+  number system}. \index{positional number system!$b$-adic} One also
+finds some -adic number systems being named using Greek-inspired names
+for the base $b$, in imitation of the Latin-inspired names of -ary
+systems.  Most commonly one encounters the base-$2$ {\it dyadic}
+\index{positional number system!dyadic: base-$2$}
+\index{dyadic (base-$2$) number system} system as the -adic analogue
+of the binary system.
+
+For any number base $b > 1$, the base-$b$ bijective systems' numerals
+are formed in exactly the same way as are the numerals of the $b$-ary
+number system---see (\ref{eq:real-numeral-number})---but the bijective
+systems' numerals are formed using the digit-set $B'_b \ = \ \{1, 2,
+\ldots, b\}$, rather than the $b$-ary set $B_b$ of
+(\ref{eq:b-ary-digits}).
+
+Formally verifying the bijectiveness of all $b$-adic number systems is
+a valuable exercise in manipulating numerals.  An analogue of the
+following proof for the $10$-adic numbers appears in \cite{Foster47}.
+A proof for arbitrary bases appears in \cite{Smullyan61}, with
+intended application to the field of Computation Theory--wherein
+encodings by integers play an extremely important role; see the
+discussions of {\it G\"{o}del numbers} \index{G\"{o}del numbers} in
+the primary sources \cite{Goedel31,Turing36} or texts such as
+\cite{Rosenberg12}.
+
+\begin{prop}
+\label{thm:adic-bijective}
+Distinct $b$-adic numerals name distinct positive numbers.
+\end{prop}
+
+\begin{proof}[Sketch]
+We provide a proof only for dyadic, i.e., base $b=2$, integers.  This
+will expose the basic ideas of a complete proof, with minimal
+notation.
+
+\medskip
+
+\noindent 1. {\it Shortest numerals}.
+We verify by direct enumeration that the result is true for numerals
+having one or two digits.
+
+\smallskip
+
+\begin{tabular}{|c|c|}
+\hline
+{\bf Dyadic Numeral} & {\bf Numerical Value} \\
+\hline
+$1$  & $1$ \\
+$2$  & $2$ \\
+$11$ & $2 + 1 = 3$ \\
+$12$ & $2 + 2 = 4$ \\
+$21$ & $4 + 1 = 5$ \\
+$22$ & $4 + 2 = 6$ \\
+\hline
+\end{tabular}
+
+\medskip
+
+\noindent 2. {\it The largest and smallest $d$-digit numbers}.
+We invoke the summation techniques in Section~\ref{sec:geometric-sums}
+to verify the following.
+\begin{itemize}
+\item
+The {\em smallest} integer representable by a $d$-digit dyadic
+numeral:
+
+\smallskip
+
+\begin{tabular}{|c|c|}
+\hline
+{\bf Dyadic Numeral} & {\bf Numerical Value} \\
+\hline
+$11 \cdots 1$ ($d$ digits) &
+$2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1$ \\
+\hline
+\end{tabular}
+
+\smallskip
+
+\item
+The {\em largest} integer representable by a $d$-digit dyadic numeral:
+
+\smallskip
+
+\begin{tabular}{|c|c|}
+\hline
+{\bf Dyadic Numeral} & {\bf Numerical Value} \\
+\hline
+$22 \cdots 2$ ($d$ digits) &
+$2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2$ \\
+\hline
+\end{tabular}
+\end{itemize}
+
+\medskip
+
+\noindent  3. {\it The inductive hypothesis}.
+Assume, for the sake of induction that all dyadic numerals of lengths
+$\leq d$ represent distinct positive integers.
+
+\medskip
+
+\noindent  4. {\it Extending the induction}.
+Let us be given distinct dyadic numerals,
+\[ \gamma_r \gamma_{r-1} \cdots \gamma_1 \ \ \ \mbox{ and }  \ \ \
+\delta_s \delta_{s-1} \cdots \delta_1 \]
+
+4(a) {\it [$r > s$]}.
+Say specifically that $r = s +c$ for some $c > 0$.
+In this case, we have  **HERE
+\[ \mbox{\sc dyadic-num}(\gamma_r \gamma_{r-1} \cdots \gamma_1) \ \geq
+\ 2^{r+1} - 1 \]
+while
+\[ \mbox{\sc dyadic-num}(\delta_s \delta_{s-1} \cdots \delta_1) \ \leq
+\ 2^{s+2} - 2 \]
+
+
+
+\qed
+\end{proof}
+
+\subsubsection{A system that enables {\em carry-free addition}}
+\label{sec:carry-free}
 
 \cite{Hwang79}
 
-\subsubsection{Bijective systems}
-\label{sec:bijective-adic}
-Smullyan
-
-\subsubsection{Carry-free addition}
-\label{sec:carry-free}
-
-\subsection{$\oplus$ Number Systems from Special Number Familiiies}
+\subsection{$\oplus$ Systems Based on Special Number Families}
 \label{sec:numerals-special-families}
 
 
