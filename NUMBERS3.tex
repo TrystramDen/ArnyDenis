@@ -1,4 +1,4 @@
-%version of 03-12-19
+%version of 03-13-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -300,7 +300,8 @@ equation chain:
 \]
 \end{itemize}
 
-\medskip
+\subsection{$b$-ary Number Systems}
+\label{sec:b-ary-systems}
 
 The {\it $b$-ary} number systems are by far the most commonly used
 positional number systems.  The names of the different instances of
@@ -534,22 +535,37 @@ numerals track the lexicographic order of the numerals.
 
 \bigskip
 
-Formally verifying the bijectiveness of all $b$-adic number systems is
-a valuable exercise in manipulating numerals.  An analogue of the
-following proof for the $10$-adic numbers appears in \cite{Foster47}.
-A proof for arbitrary bases appears in \cite{Smullyan61}, with
-intended application to the field of Computation Theory--wherein
-encodings by integers play an extremely important role; see the
-discussions of {\it G\"{o}del numbers} \index{G\"{o}del numbers} in
-the primary sources \cite{Goedel31,Turing36} or texts such as
-\cite{Rosenberg12}.
+Formally verifying the bijectiveness of $b$-adic number systems is a
+valuable exercise in manipulating numerals.  The first appearance of
+bijective number systems was in \cite{Foster47}, where the base-$10$
+system is introduced and shown to be bijective.  A proof of
+bijectiveness for arbitrary $b$-adic systems appears in
+\cite{Smullyan61}, where the term {\em $b$-adic} is introduced.  The
+motivating application in \cite{Smullyan61} was to the allied fields
+of Mathematical Logic and Computation Theory: Encoded versions of a
+program's computations play a central role in these theories.  While
+crafting the required encodings using strings of symbols accomplished
+many of the goals of the theories, the overarching reach of the
+theories was fully appreciated only when mathematical logician Kurt
+G\"{o}del \index{G\"{o}del, Kurt} showed, in 1931, that the encodings
+could be achieved using integers and simple arithmetic
+operations---see the discussions of {\it G\"{o}del numbers}
+\index{G\"{o}del numbers} in the primary sources
+\cite{Goedel31,Turing36} or texts such as \cite{Rosenberg12}.  The
+introduction in \cite{Smullyan61} of -adic number systems to replace
+the traditional -ary systems significantly simplified certain of the
+theories' central proofs, because of the -adic systems' bijectiveness.
+
+We turn now to a result that asserts the bijectiveness of -adic number
+systems.  We provide a proof only for the case $b = 2$: this case
+provides all of the ideas necessary for the general result.
 
 \begin{prop}
 \label{thm:adic-bijective}
 Distinct $b$-adic numerals name distinct positive numbers.
 \end{prop}
 
-\begin{proof}[Sketch]
+\begin{proof}[For dyadic integers]
 We provide a proof only for dyadic, i.e., base $b=2$, integers.  This
 will expose the basic ideas of a complete proof, with minimal
 notation.  We begin by exposing the largest and smallest integers that
@@ -605,7 +621,8 @@ while
 \[ \mbox{\sc dyadic-num}(y) \ \leq \ 2^{s+2} - 2 \]
 It follows, therefore, that
 \[ \mbox{\sc dyadic-num}(x) \ \geq \ \mbox{\sc dyadic-num}(y) \ + \ 1 \]
-In other words, numerals $x$ and $y$ behave in consistency with the proposition.
+In particular, numerals $x$ and $y$ behave in consistency with the
+proposition.
 
 {\bf (b)} The alternative to assumption (a) is that $r = s$.  Because
 $x$ and $y$ are distinct numerals, there must be a largest index $m
@@ -618,9 +635,9 @@ Invoking Lemma~\ref{lem:big-small-dyadic}, we can infer the following
 bounds on the difference between $\mbox{\sc dyadic-num}(x)$ and
 $\mbox{\sc dyadic-num}(y)$.
 
-\medskip
+\bigskip
 
- $\mbox{\sc dyadic-num}(x) \ - \ \mbox{\sc dyadic-num}(y)$
+$\mbox{\sc dyadic-num}(x) \ - \ \mbox{\sc dyadic-num}(y)$
 \begin{eqnarray*}
   & =  &
 2^m \cdot (\gamma_m - \delta_m) \ + \ 2^{m-1} \cdot (\gamma_{m-1} -
@@ -644,9 +661,41 @@ proposition.  The result follows.
 \subsubsection{Redundant systems that enable {\em carry-free addition}}
 \label{sec:carry-free}
 
+Imagine that you have a box that contains a {\it counter}: Each time
+you push a button on the box, the counter increments its tally of your
+pushes.  In between button-pushes, you must wait until the electronic
+circuitry inside the box settles into a stable configuration.  Now, if
+the electronic circuitry that implements the counter was designed to
+mimic the binary representation of the number---in technical jargon,
+\index{carry-ripple adder} the counter implements a {\it carry-ripple
+  adder}; see \cite{Hwang79} for details---then, as we noted in
+Section~\ref{sec:sample-proofs}.A, roughly half the time, you have no
+enforced delays in your ability to time your button-pushes: the update
+of the tally engenders no carry.  Roughly one-quarter of the time, you
+have a miniscule delay: the update engenders a carry of only one
+place.  Roughly one-eighth of the time, you have a slightly longer
+delay: the update engenders a carry of two places.  Continuing in this
+progression, for each integer $k$ roughly the fraction $2^{-k}$ of the
+button-pushes engender a delay commensurate with a carry of $k-1$
+places.  In fact, one can improve on the pattern of delays.  By using
+more sophisticated circuitry, one can replace your counter's
+carry-ripple adder by a {\it carry-lookahead adder}; see
+\cite{Hwang79} for details, and thereby reduce the aggregate number of
+carries for the first $n$ button-pushes from the $\Theta(n^2)$ carries
+of the carry-ripple adder to $O(n \log n)$ carries for a
+carry-lookahead adder.  So, we have diminished your annoyance at the
+necessary varying delays between successive button-pushes, but we have
+certainly not eliminated the cause of the annoyance.
+
+In fact, if you are willing to replace your counter by one that uses a
+quite specialized {\it redundant number system}, 
+\index{redundant number system} then you can eliminate your annoyance
+completely by designing your counter to implement the slightly
+misnamed {\it carry-free addition}
+
 **HERE
 
-\cite{Hwang79}
+%\cite{Hwang79}
 
 \section{$\oplus$ A System Based on the Fibonacci Numbers}
 \label{sec:numerals-special-families}
