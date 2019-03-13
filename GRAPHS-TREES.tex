@@ -3068,7 +3068,7 @@ face is literally outside the ``outer'' face.
 \bigskip
 
 The following auxiliary result derives a celebrated ``formula'' of
-Euler.  \index{Euler, Leonhard} \index{Euler's formula}
+Euler.  \index{Euler, Leonhard} \index{Euler's Formula}
 
 \begin{prop} [Euler's Formula for Planar Graphs]
 \label{thm:Euler-Formula}
@@ -3118,7 +3118,7 @@ that every node of $\g$ had degree $\geq 6$.  We would then find that
 \left[ f \ \ \leq \ \ \frac{2}{3} e \right] \ \ \ \ \mbox{ and } \ \ \ \
 \Big[ e \ \ \geq \ \ 3n \Big]
 \]
-Incorporating these two bounds into Euler's formula
+Incorporating these two bounds into Euler's Formula
 (\ref{eqn:Eulers-formula}), we arrive at the following contradiction.
 \[ 2 \ \ = \ \ n \ - \ e \  + \ f
 \ \ \leq \ \ \frac{1}{3} e \ - \ e \ + \ \frac{2}{3} e \ \ = \ \ 0
@@ -3426,112 +3426,160 @@ achieve the provable optimal, a four-color palette
 (Theorem~\ref{thm:Four-ColorTheorem}).
 \end{itemize}
 
-\paragraph{\small\sf C. Two derivations of Euler's Formula}
+\paragraph{\small\sf C. Two validations of Euler's Formula}
+\index{Euler's Formula}
 
 We develop two quite different proofs of
 Proposition~\ref{thm:Euler-Formula}.
 
-**HERE
+\medskip
 
+\index{Euler's Formula!validation by structural induction}
+\noindent {\bf Validatinging Euler's Formula by structural induction}.  We
+validate (\ref{eqn:Eulers-formula}) by growing a planar graph $\g$
+edge by edge.  We proceed by induction.
 
+\smallskip
 
-\begin{proof} [Proposition~\ref{thm:Euler-Formula}]
-We proceed by structural induction, growing the graph $\g$ edge by
-edge.
+\noindent {\it Base case}.
+The Formula clearly holds for the smallest planar graphs, including
+the smallest interesting one, $\cc_3$, which has $n = e = 3$ and $f =2$
+(the inner and outer faces of the ``triangle'').
 
-The result clearly holds for the smallest planar graphs, including the
-smallest interesting one, namely, $\cc_3$, which has $n = e = 3$ and $f
-=2$ (the inner face of the triangle and the outer face).
+\smallskip
 
-Say that we have a current version of $\g$, and we proceed to grow it
-by adding a new edge.  Two cases arise.\begin{itemize}
+\noindent {\it Extension}.
+We grow the current version of $\g$ by adding a new edge.  Two cases
+arise.
+\begin{itemize}
 \item
-The new edge connects existing nodes.  In this case, the augmentation
-of $\g$ increases the number of edges ($e$) and the number of faces
-($f$) by $1$ each, while keeping the number of nodes ($n$) unchanged.
-Euler's formula (\ref{eqn:Eulers-formula}) thus continues to hold.
+{\em The new edge connects existing nodes.}  In this case, this
+augmentation of $\g$ increases the number of edges ($e$) and the
+number of faces ($f$) by $1$ each, while keeping the number of nodes
+($n$) unchanged.  Euler's Formula (\ref{eqn:Eulers-formula}) thus
+continues to hold.
 
 \item
-The new edge adds a new node, which is appended to some preexisting
-node.  In this case, the augmentation of $\g$ increases the number of
-edges ($e$) and the number of nodes ($n$) by $1$ each, while keeping
-the number of faces ($f$) unchanged.  Euler's formula
-(\ref{eqn:Eulers-formula}) thus continues to hold.
+{\em The new edge adds a new node, which is appended to some
+  preexisting node.}  In this case, this augmentation of $\g$
+increases the number of edges ($e$) and the number of nodes ($n$) by
+$1$ each, while keeping the number of faces ($f$) unchanged.  Euler's
+formula (\ref{eqn:Eulers-formula}) thus continues to hold.
 \end{itemize}
-This augmentation extends the induction, whence the result.
-\qed-Proposition~\ref{thm:Euler-Formula}
-\end{proof}
+This augmentation extends the induction, hence validates the Formula.
+\qed
 
-
-
-{\Denis Here is a nice alternative proof for the Euler proposition}
 \bigskip
 
-We develop below an alternative proof for the Euler proposition~\ref{thm:Euler-Formula}.
-It is constructive and it uses the concept of \textit{invariance}.
+%{\Denis Here is a nice alternative proof for the Euler proposition}
 
-\ignore{
-\begin{prop} [Alternative approach for proving the Euler's Formula for Planar Graphs]
-\label{thm:Euler-Formula-alternative}
-Given the indicated drawing of $\g$, we have
-\begin{equation}
-\label{eqn:Eulers-formula}
-n \ - \ e \ + \ f \ \ = \ \ 2
-\end{equation}
-\end{prop}
+\index{Euler's Formula!validation by deconstruction}
+\noindent {\bf Validating Euler's Formula by deconstruction}.  Let us be
+given a planar graph $\g$ that has $n$ nodes, $e$ edges, and $f$
+faces.  We validate (\ref{eqn:Eulers-formula}) by deconstructing $\g$
+and showing that each step in the process preserves as {\it invariant}
+the expression $\phi(n,e,f) = n+e-f$.  \index{invariants}
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+The concept of \textit{invariance} is an extremely important
+conceptual tool when crafting proofs.  The underlying idea is to find
+an expression $\phi(\cdot)$ whose value is preserved as a process
+proceeds, step by step.  Rather than try to explain the concept in
+abstraction, we recommend that the reader follow this proof of Euler's
+Formula with an eye to keeping track of the invariant expression
+$\phi(n,e,f)$ whose arguments are obtained from the subject planar
+graph $\g$.
+\end{minipage}
 }
+\bigskip
 
-Sketch of the proof:
+\noindent
+We analyze the following two-step process, whose steps are performed
+in sequence.
+\begin{description}
+\item[{\bf Step 1}.]
+Iterate the following process of removing edges from $\g$ until one
+edge-removal reduces $\g$ to a graph with a single face.  This
+termination condition is equivalent to stopping when the remaining
+graph is a tree.  One can verify that the tree one ends up with is
+{\em connected}.
 
-Let consider a planar graph and denoted $\phi(n,e,f) = n+e-f$.
+{\bf The action}.
+If the graph remaining at some step contains an edge that is shared by
+two distinct faces, then remove any such edge.
 
-We propose the following two-steps process:
-
-\begin{enumerate}
-\item
-Iterate until it remains only one region
-(which is equivalent to stop when a tree is obtained, remark that there is only one connected tree).
-
-if an edge is common between two regions (labelled by a different index),
-let remove it.
-
-The sub-sequent graph remains planar (no edge is added) and this process keeps invariant function $\phi$.
-Indeed, $e$ and $f$ are each reduced by one:
-$\phi(n,e,f) = \phi(n,e-1,f-1)$.
-
-\item
-Iterate until it remains only one vertex
-
-remove on leave of the current tree and the corresponding edge.
-
-SImilarly as for the previous step, function $\phi$ remains invariant since $n$ and $e$ are each reduced by one.
-$\phi(n,e,f) = \phi(n-1,e-1,f)$
-\end{enumerate}
-
-It is easy to verify that this process is finite (the number of steps is exactly equal to the number of edges.
-At the end of the process, $e=0$ and $n=f=1$, thus, $\phi= 2$. 
-Since the process only involved invariant transformation $\phi(n,e,f)=2$, which concludes the proof.
-
-The two following figures~\ref{fig:planarStep1} and \ref{fig:planarStep2} illustrate the construction for a given example with $n=8$, $e=11$ and $f=5$.
-
+Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
+(residual) graph with $n=8$ nodes, $e=11$ edges, and $f=5$ faces.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.5]{FiguresGraph/planarStep1}
-       \caption{First step: from top left to bottom right, each transformation keeps the invariance of $\phi$.
-       The first transformation is to remove an edge to merge region (1) and (3), we obtain then a new region (1)'}
+   \includegraphics[scale=0.4]{FiguresGraph/planarStep1}
+\caption{Illustrating Step 1: From top left to bottom right, each
+  transformation preserves the invariant $\phi(n,e,f)$.  The first
+  transformation removes the edge shared by faces (1) and (3),
+  creating a new, merged, face (1)'.}
   \label{fig:planarStep1}
 \end{center}
 \end{figure}
 
+\bigskip
+
+{\bf The analysis}.
+\begin{itemize}
+\item
+The graph remaining after an edge-removal is still planar---edges are
+removed but never added---so we can continue the process.
+\item
+The process preserves the value of function $\phi$.  To wit, $n$ is
+unchanged, while $e$ and $f$ are each reduced by $1$: $\phi(n,e,f) =
+\phi(n,e-1,f-1)$.
+\end{itemize}
+
+\item[{\bf Step 2}.]
+Iterate the following process of removing nodes from the tree produced
+by Step 1, until onlu one node remains.
+
+{\bf The action}.
+Remove any leaf of the current tree, together with its incident edge.
+
+Fig.~\ref{fig:planarStep2} illustrates the action of Step 2
+for a tree  with $n=8$ nodes---hence, $e=7$ edges and $f=1$ face.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.5]{FiguresGraph/planarStep2}
-       \caption{Second step: We remove progressively a leaf and its link until reaching a single vertex.
-       Again, $\phi$ remains invariant}
+   \includegraphics[scale=0.4]{FiguresGraph/planarStep2}
+   \caption{Illustrating Step 2: We remove a sequence of leaves, each
+     with its incident edge, until we reach a single node.  Again,
+     $\phi$ remains invariant after each leaf-removal.}
   \label{fig:planarStep2}
 \end{center}
 \end{figure}
 
+\bigskip
+
+{\bf The analysis}.
+The value of function $\phi$ remains unchanged by each leaf-removal.
+To wit, $f$ is unchanged (it remains at $1$), while $n$ and $e$ are
+each reduced by $1$: $\phi(n,e,f) = \phi(n-1,e-1,f)$
+\end{description}
+
+\noindent {\bf The cumulative analysis}.
+\begin{itemize}
+\item
+Our process executes a number of steps exactly equal to the number of
+edges of the graph $\g$ that we began with.  To wit, the edge-removal
+Step removes $e-n$ edges, while the leaf-removal Step removes $n$
+nodes.
+\item
+At the end of the process, $e=0$ and $n=f=1$, so that the residual
+value of $\phi$ is $2$.  Because each action prescribed by the process
+preserved the value of $\phi$, we know that $\phi$ has the value $2$
+before each edge-removal and leaf-removal.
+\end{itemize}
+We conclude that, at the
+start of the process,  $\phi(n,e,f)$ had the value $2$.  In other
+words, $n-e+f = 2$.  This concludes the proof.  \qed
 
 
 \subsection{Computing Chromatic Number}
