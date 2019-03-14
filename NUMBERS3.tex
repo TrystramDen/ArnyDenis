@@ -1,4 +1,4 @@
-%version of 03-13-19
+%version of 03-14-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -669,29 +669,40 @@ the electronic circuitry that implements the counter was designed to
 mimic the binary representation of the number---in technical jargon,
 \index{carry-ripple adder} the counter implements a {\it carry-ripple
   adder}; see \cite{Hwang79} for details---then, as we noted in
-Section~\ref{sec:sample-proofs}.A, roughly half the time, you have no
-enforced delays in your ability to time your button-pushes: the update
-of the tally engenders no carry.  Roughly one-quarter of the time, you
-have a miniscule delay: the update engenders a carry of only one
-place.  Roughly one-eighth of the time, you have a slightly longer
-delay: the update engenders a carry of two places.  Continuing in this
-progression, for each integer $k$ roughly the fraction $2^{-k}$ of the
-button-pushes engender a delay commensurate with a carry of $k-1$
-places.  In fact, one can improve on the pattern of delays.  By using
-more sophisticated circuitry, one can replace your counter's
-carry-ripple adder by a {\it carry-lookahead adder}; see
-\cite{Hwang79} for details, and thereby reduce the aggregate number of
-carries for the first $n$ button-pushes from the $\Theta(n^2)$ carries
-of the carry-ripple adder to $O(n \log n)$ carries for a
-carry-lookahead adder.  So, we have diminished your annoyance at the
-necessary varying delays between successive button-pushes, but we have
-certainly not eliminated the cause of the annoyance.
+Section~\ref{sec:sample-proofs}.A:
+\begin{itemize}
+\item
+Roughly half the time, you have no enforced delays in your ability to
+time your button-pushes: the update of the tally engenders no carry.
+\item
+Roughly one-quarter of the time, you have a miniscule delay: the
+update engenders a carry of only one place.
+\item
+Roughly one-eighth of the time, you have a slightly longer delay: the
+update engenders a carry of two places.
+\item
+\ldots Continuing this progression: For each integer $k$ roughly the
+fraction $2^{-k}$ of the button-pushes engender a delay commensurate
+with a carry of $k-1$ places.
+\end{itemize}
+In fact, you can improve on the described pattern of delays.  By using
+more sophisticated circuitry, you can replace your counter's
+carry-ripple adder by a {\it carry-lookahead adder}---see
+\cite{Hwang79} for details---and thereby reduce the {\em aggregate}
+number of carries engendered by the first $n$ button-pushes from the
+$\Theta(n^2)$ carries of the carry-ripple adder to $O(n \log n)$
+carries for a carry-lookahead adder.  So, we have diminished your
+annoyance at the necessary varying delays between successive
+button-pushes, but we have certainly not eliminated the cause of your
+annoyance.
 
 In fact, if you are willing to replace your counter by one that uses a
 quite specialized {\it redundant number system}, 
 \index{redundant number system} then you can eliminate your annoyance
-completely by designing your counter to implement the slightly
-misnamed {\it carry-free addition}
+(almost) completely by designing your counter to implement the slightly
+misnamed {\it carry-free addition}.  The carry-free adders we sketch
+now engender a bounded---i.e., $O(1)$---delay between button-pushes,
+no matter how long you keep pushing the button.
 
 \cite{PhatakK94}
 
