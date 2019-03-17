@@ -1,4 +1,4 @@
-%version of 03-14-19
+%version of 03-15-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -395,12 +395,12 @@ Our completed numeral now has the form
 
 \noindent
 This numeral has the {\it numerical value}\footnote{The notation
-  ``$\mbox{\sc num}_{b}(x)$'' in (\ref{eq:real-numeral-number})
+  ``$\mbox{\sc val}_{b}(x)$'' in (\ref{eq:real-numeral-number})
   denotes an operator that produces the {\em numerical value} of the
   base-$b$ numeral $x$.}
 \begin{equation}
 \label{eq:real-numeral-number}
-\mbox{\sc num}_{b}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
+\mbox{\sc val}_{b}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
 \ . \ \beta_0 \beta_1 \beta_2 \cdots)
 \ \ \eqdef \ \
 \sum_{i=0}^n \alpha_i \cdot b^i
@@ -416,7 +416,7 @@ For emphasis, we review:
 The numerical value of the integer part of the numeral in
 (\ref{eq:real-numeral}) is:
 \[
-\mbox{\sc num}_{b}(\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0)
+\mbox{\sc val}_{b}(\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0)
 \ \ = \ \
 \sum_{i=0}^n \alpha_i \cdot b^i
 \]
@@ -425,7 +425,7 @@ The numerical value of the fractional part of the numeral in
 (\ref{eq:real-numeral}) is:
 \index{positional number system!numerical value of fractional part}
 \[
-\mbox{\sc num}_{b}(. \beta_0 \beta_1 \beta_2 \cdots)
+\mbox{\sc val}_{b}(. \beta_0 \beta_1 \beta_2 \cdots)
 \ \ = \ \
 \sum_{j\geq 0} \beta_j \cdot b^{-j}
 \]
@@ -519,7 +519,7 @@ with their numerical values.
 \hline
 \multicolumn{2}{c}{\bf Dyadic Numeral} & \multicolumn{2}{c}{\bf Numerical Value} \\
 \hline
-$x=$ & $1$  & {\sc dyadic-num}$(x) =$ & $1$ \\
+$x=$ & $1$  & {\sc dyadic-val}$(x) =$ & $1$ \\
      & $2$  &                         & $2$ \\
      & $11$ &                         & $2 + 1 = 3$ \\
      & $12$ &                         & $2 + 2 = 4$ \\
@@ -590,12 +590,12 @@ By definition,
 \item
 The smallest $d$-digit dyadic numeral is $11 \cdots 1$ ($d$ digits).
 Its value is:
-\[ \mbox{\sc dyadic-num}_2(11 \cdots 1)
+\[ \mbox{\sc dyadic-val}_2(11 \cdots 1)
  \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1 \]
 \item
 The {\em largest} $d$-digit dyadic numeral is 
 $22 \cdots 2$ ($d$ digits).  Its value is:
-\[ \mbox{\sc dyadic-num}_2(22 \cdots 2)
+\[ \mbox{\sc dyadic-val}_2(22 \cdots 2)
 \ = \ 2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2 \]
 \end{itemize}
 We derive the values of both extremal integers by invoking the
@@ -616,11 +616,11 @@ y \ = \ \delta_s \delta_{s-1} \cdots \delta_1
 {\bf (a)} Say first that $r \neq s$.  With no loss of generality, say
 that $r = s +c$ for some $c \geq 1$.  In this case, we have, by
 Lemma~\ref{lem:big-small-dyadic}:
-\[ \mbox{\sc dyadic-num}(x) \ \geq \ 2^{r+1} - 1 \ = \ 2^{s+c+1} -1 \]
+\[ \mbox{\sc dyadic-val}(x) \ \geq \ 2^{r+1} - 1 \ = \ 2^{s+c+1} -1 \]
 while
-\[ \mbox{\sc dyadic-num}(y) \ \leq \ 2^{s+2} - 2 \]
+\[ \mbox{\sc dyadic-val}(y) \ \leq \ 2^{s+2} - 2 \]
 It follows, therefore, that
-\[ \mbox{\sc dyadic-num}(x) \ \geq \ \mbox{\sc dyadic-num}(y) \ + \ 1 \]
+\[ \mbox{\sc dyadic-val}(x) \ \geq \ \mbox{\sc dyadic-val}(y) \ + \ 1 \]
 In particular, numerals $x$ and $y$ behave in consistency with the
 proposition.
 
@@ -632,12 +632,12 @@ digit $c$.  We can, therefore, rewrite numeral $y$ as
 \[ y \ = \ \gamma_r \cdots \gamma_{m+1} \delta_m \delta_{m-1} \cdots \delta_1
 \]
 Invoking Lemma~\ref{lem:big-small-dyadic}, we can infer the following
-bounds on the difference between $\mbox{\sc dyadic-num}(x)$ and
-$\mbox{\sc dyadic-num}(y)$.
+bounds on the difference between $\mbox{\sc dyadic-val}(x)$ and
+$\mbox{\sc dyadic-val}(y)$.
 
 \bigskip
 
-$\mbox{\sc dyadic-num}(x) \ - \ \mbox{\sc dyadic-num}(y)$
+$\mbox{\sc dyadic-val}(x) \ - \ \mbox{\sc dyadic-val}(y)$
 \begin{eqnarray*}
   & =  &
 2^m \cdot (\gamma_m - \delta_m) \ + \ 2^{m-1} \cdot (\gamma_{m-1} -
@@ -698,35 +698,74 @@ annoyance.
 
 In fact, if you are willing to replace your counter by one that uses a
 quite specialized {\it redundant number system}, 
-\index{redundant number system} then you can eliminate your annoyance
-(almost) completely by designing your counter to implement the slightly
-misnamed {\it carry-free addition}.  The carry-free adders we sketch
-now engender a bounded---i.e., $O(1)$---delay between button-pushes,
-no matter how long you keep pushing the button.
+\index{redundant number systems} then you can eliminate your annoyance
+(almost) completely by designing your counter to implement {\it
+  carry-free addition}.  This is a bit of a misnomer: adders of this
+sort are not really {\em carry-free}; it is more accurate to say that
+they implement carries in a {\em buffered} fashion so as to achieve a
+bounded---i.e., $O(1)$---delay between button-pushes, no matter how
+long you keep pushing the button.
 
-\cite{PhatakK94}
+Redundant number systems are positional systems of the same genre as
+-ary systems: Their numerals are evaluated by the same {\sc val}
+function as defined in (\ref{eq:real-numeral-number}).  These systems
+achieve their bounded-delay, buffered, carries by augmenting their
+sets of digits to allow {\em negative} digits.  The base-$b$ redundant
+system has the following digit set; parentheses are added to enhance
+legibility.
+\[ \widehat{B}_b \ = \ \{-(\overline{b-1}), -(\overline{b-2}), \ldots,
+-1, 0 , 1, \ldots, (\overline{b-2}), (\overline{b-1})\}
+\]
+If we focus on base $b=2$, then we note that $\widehat{B}_2 \ = \ \{
+-1, 0, 1\}$.  The ``redundancy'' in this system is witnessed by the
+fact that the number $1$ is the numerical value of {\em every} numeral
+of the form
+\[ 1 \ (-1) \ (-1) \ \cdots \ (-1) \ (-1), \]
+because the $d$-digit instance of these numerals has numerical value
 
-**HERE
+$\displaystyle \mbox{\sc val}_2 \big( 1 \ (-1) \ (-1) \ \cdots \ (-1) \ (-1) \big)$
 
-%\cite{Hwang79}
+\smallskip
+
+\hspace*{.25in}$= \ 2^{d-1} \ - \ 2^{d-2} \ - \ 2^{d-3} \ - \cdots - \ 2 \ - \ 1$
+
+\hspace*{.25in}$= \ 1$
+
+\medskip
+
+A detailed description of the form and implementation of redundant
+number systems can be found in sources such as \cite{PhatakK94}.
+
 
 \section{$\oplus$ A System Based on the Fibonacci Numbers}
 \label{sec:numerals-special-families}
 \label{sec:Fibo-numbers}
 
+**HERE
 
-{\Denis I suggest to add a section on numbering systems (we already spoke about binary system,
-I would like to add a section on Fibonacci numbering system), 
-I put it in the following, but may be we will have to put somewhere else, or as an exercice?}
+%{\Denis I suggest to add a section on numbering systems (we already
+%spoke about binary system, I would like to add a section on Fibonacci
+%numbering system), I put it in the following, but may be we will have
+%to put somewhere else, or as an exercice?}
 
-%\section{$\oplus$ Fibonacci Number Systems}
+In a variety of application areas, the special properties of certain
+families of numbers can be exploited if one uses the numbers in the
+family to devise representations of all integers.  We illustrate this
+fact while using the Fibonacci numbers---see
+Section~\ref{sec:Fibonacci}---as our basis family.
+
+\noindent
+We shall repeatedly find the following nonstandard notation useful:
+
+For integers $m$ and $n$, we write $[m \gg n]$ to mean that $m \geq
+n+2$.
+
+\medskip
 
 
-We study how Fibonacci numbers can be used as a basis for representing any integers.
-
-Let us first introduce a useful notation: $j \gg k$ iff $j \geq k+2$.
-
-We will first prove the \textit{Zeckendorf's theorem} which states that every positive integer $n$ has a unique representation of the form:
+We will first prove the \textit{Zeckendorf's theorem} which states
+that every positive integer $n$ has a unique representation of the
+form:  **ITATION**
 
 $n = F(k_1) + F(k_2) + ... + F(k_r)$ where $k_1 \gg k_2 \gg ... \gg k_r$ and $k_r \geq 2$.
 
@@ -857,9 +896,9 @@ left of the radix point.
 \end{prop}
 
 \begin{proof}
-The result is immediate by definition (\ref{eq:real-numeral-number}).
-In the indicated form, if any $\beta_i$ is nonzero, then the numerical
-value of the numeral is non-integral.  To wit, this digit $\beta_i$
+The result follows from definition (\ref{eq:real-numeral-number}).  In
+the indicated form, if any $\beta_i$ is nonzero, then the numerical
+value of the numeral is non-integral.  To wit, digit $\beta_i$
 witnesses that the numeral has a nonzero fractional part, hence is not
 an integer.  \qed
 \end{proof}
@@ -885,7 +924,7 @@ x^{d-1} \ + \ a_d x^d$
 \noindent
 evaluated at the point $x=b$:
 
-$\mbox{\sc num}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ +
+$\mbox{\sc val}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ +
 \cdots + \ a_1 b \ + \ a_0$.
 
 \noindent
@@ -961,10 +1000,11 @@ Current Remainder \\
 \medskip
 
 \noindent
-We have thus derived the following equation which specifies the
-base-$2$ numeral for $143$.
+We thereby have the following equation which specifies the base-$2$
+numeral for $143$.
 \[ 143_{10} \ = \ 10001111_2 \]
 
+\ignore{*****
 \bigskip
 
 \noindent
@@ -974,18 +1014,16 @@ $\oplus$ {\bf Enrichment}.  {\it The dyadic system of numerals.}
  **HERE
 
 {\Denis We have to add a brief discussion about k-ary and k-adic systems...}
-
+**********}
 
 \subsection{Positional numerals for rationals}
 \label{sec:special-numerals-Q}
 
 We can completely characterize the positional numerals that represent
-rational numbers, in terms of the auxiliary notion of an {\em ultimately
-  periodic} infinite sequence of digits.
+rational numbers, in terms of the following auxiliary notion.
 \index{ultimately periodic sequence}
-
-An infinite sequence $S$ of numbers is {\em ultimately periodic} if
-there exist two {\em finite} sequences of numbers, $A$ and $B$, such
+An infinite sequence $S$ of digits is {\em ultimately periodic} if
+there exist two {\em finite} sequences of digits, $A$ and $B$, such
 that $S$ can be written in the following form (we have added spaces to
 enhance legibility):
 \begin{equation}
@@ -1036,7 +1074,7 @@ we find that
 \begin{eqnarray}
 \nonumber
 r & = &
-\mbox{\sc value}(a_2 a_1 a_0 \ . \ b_0 b_1 \
+\mbox{\sc val}_b(a_2 a_1 a_0 \ . \ b_0 b_1 \
 c_0 c_1 c_2 \
 c_0 c_1 c_2
 \cdots
@@ -1044,26 +1082,24 @@ c_0 c_1 c_2
 \cdots) \\
 \nonumber
   & = &
-\mbox{\sc value}(a_2 a_1 a_0)
- \ + \ \mbox{\sc value}(b_0 b_1) \cdot b^{-2}
+\mbox{\sc val}_b(a_2 a_1 a_0)
+ \ + \ \mbox{\sc val}_b(b_0 b_1) \cdot b^{-2}
  \ + \
-\mbox{\sc value}(c_0 c_1 c_2) \cdot b^{-5} \\
+\mbox{\sc val}_b(c_0 c_1 c_2) \cdot b^{-5} \\
 \label{eq:sum-in-numeral}
   &  &
  \ + \
-\mbox{\sc value}(c_0 c_1 c_2) \cdot b^{-8}
+\mbox{\sc val}_b(c_0 c_1 c_2) \cdot b^{-8}
  \ + \
-\mbox{\sc value}(\gamma_0 \gamma_1 \gamma_2) \cdot b^{-11}
+\mbox{\sc val}_b(\gamma_0 \gamma_1 \gamma_2) \cdot b^{-11}
 \ + \cdots \\
 \nonumber
   & = &
-\mbox{\sc value}(a_2 a_1 a_0)
- \ + \ \mbox{\sc value}(b_0 b_1) \cdot b^{-2}
+\mbox{\sc val}_b(a_2 a_1 a_0)
+ \ + \ \mbox{\sc val}_b(b_0 b_1) \cdot b^{-2}
  \ + \
-\mbox{\sc value}(c_0 c_1 c_2) \cdot \sum_{i=1}^\infty b^{-2-3i}
+\mbox{\sc val}_b(c_0 c_1 c_2) \cdot \sum_{i=1}^\infty b^{-2-3i}
 \end{eqnarray}
-
-{\Denis We must change VALUE, is corresponds to $NUM_{10}$ right?}
 
 We learned in Section~\ref{sec:geometric-sums} that infinite
 summations such as the one in (\ref{eq:sum-in-numeral}), namely,
@@ -1144,7 +1180,7 @@ This will engender periodicity in the digits of $r$'s base-$b$ numeral:
 We are, thus, observing the claimed ultimately periodic behavior in
 $r$'s base-$b$ numeral.
 \end{enumerate}
-\qed
+This completes the proof. \qed
 \end{proof}
 
 \bigskip
@@ -1243,19 +1279,16 @@ There exists an injection $f: \N \rightarrow \R$; i.e., $|\N| \leq
 
 \noindent {\it Verification}.
 
-{\Denis It sounds like we have a confusion for the definition of NUMb...
-In the other parts, NUM is the integer}
-%
-For each nonnegative integer $n \in \N$, let $\mbox{\sc num}_b(n)$
+For each nonnegative integer $n \in \N$, let $\mbox{\sc name}_b(n)$
 denote the shortest base-$b$ numeral for $n$, i.e., a numeral with no
 leading $0$s.  The mapping that associates each $n \in \N$ with the
 infinite string
-\[ \mbox{\sc num}_b(n) \ . \ 00 \cdots \]
+\[ \mbox{\sc name}_b(n) \ . \ 00 \cdots \]
 is an injection from $\N$ into $\R$.  To wit, when given a real
 numeral that has only $0$s to the right of its radix point, one
 produces the integer $n$ by stripping the numeral of its radix point
 and all $0$s to the right of the point, and then evaluating the
-remaining string of digits, which is $\mbox{\sc num}_b(n)$, according
+remaining string of digits, which is $\mbox{\sc name}_b(n)$, according
 to Section~\ref{sec:define-Reals}'s rules for evaluating integer
 numerals.  \qed
 
@@ -1311,7 +1344,7 @@ Specifically, for each integer $k \in \N$, we can think of $h(k)$ as
 the ``$k$th number in the set $\R_{(0,1)}$.''  We thereby view $h$ as
 producing an ``infinite-by-infinite'' matrix $\Delta$ of decimal
 digits, whose $k$th row is the infinite string of decimal digits
-$\mbox{\sc num}_{10}(h(k))$.  Let us visualize $\Delta$:
+$\mbox{\sc name}_{10}(h(k))$.  Let us visualize $\Delta$:
 \[ \Delta \ = \
 \begin{array}{ccccccc}
 \delta_0 = &
@@ -1361,7 +1394,7 @@ $|\R_{(0,1)}| \leq |\N|$.  Specifically, we define from $\Delta$ an
 infinite decimal numeral
 \[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
 that {\em does not} appear in $\Delta$, even though $\mbox{\sc
-  num}_{10}(\Psi) \in \R_{(0,1)}$.  For each index $i \in \N$, we
+  val}_{10}(\Psi) \in \R_{(0,1)}$.  For each index $i \in \N$, we
 define the $i$th digit $\psi_i$ of $\Psi$ from the $i$th {\em diagonal
   digit}\footnote{Our use of $\Delta$'s ``diagonal digits'' in this
   definition is the origin of the term ``{\em diagonal argument}'' to
@@ -1389,24 +1422,24 @@ $\delta_k$, in that row.
 
 \begin{tabular}{lclc}
 If & $\delta_{k,k} \ > \ 5$ & then & \ \
-$\mbox{\sc num}_{10}(\delta_k) \ - \ \mbox{\sc num}_{10}(\Psi) \ > \ 4
+$\mbox{\sc name}_{10}(\delta_k) \ - \ \mbox{\sc name}_{10}(\Psi) \ > \ 4
 \cdot 10^{-k}$ \\
 If & $\delta_{k,k} \ \leq \ 5$ & then & \ \
-$\mbox{\sc num}_{10}(\Psi) \ - \ \mbox{\sc num}_{10}(\delta_k) \ > \ 4
+$\mbox{\sc name}_{10}(\Psi) \ - \ \mbox{\sc name}_{10}(\delta_k) \ > \ 4
 \cdot 10^{-k}$
 \end{tabular}
 
 \noindent
-In either case, we have $\mbox{\sc num}_{10}(\Psi) \ \neq \ \mbox{\sc
-  num}_{10}(\delta_k)$ so that $\Psi$ does not appear as row $k$ of
+In either case, we have $\mbox{\sc name}_{10}(\Psi) \ \neq \ \mbox{\sc
+  name}_{10}(\delta_k)$ so that $\Psi$ does not appear as row $k$ of
 $\Delta$.  Since $k \in \N$ is an arbitrary row-index of $\Delta$, we
 conclude that $\Psi$ does not occur as any row of $\Delta$.  \qed
 
 \subsection{The denouement: There is no bijection  $h: \N \leftrightarrow \R$}
 
 Because the infinite decimal string $\Psi$ differs from every row of
-$\Delta$, even though $\mbox{\sc num}_{10}(\Psi) \in \R_{(0,1)}$, we have
-shown that $\Delta$ {\em does not} contain as a row {\em every}
+$\Delta$, even though $\mbox{\sc name}_{10}(\Psi) \in \R_{(0,1)}$, we
+have shown that $\Delta$ {\em does not} contain as a row {\em every}
 infinite decimal numeral of a number in $\R_{(0,1)}$.  But this
 contradicts $\Delta$'s assumed defining characteristic!
 
@@ -1470,8 +1503,21 @@ between Earth and its closest star, the Sun, is, very roughly,
 \end{array}
 \]
 
-{\Denis notice here that people in US need 3 different non-correlated metrics 
-while from the french revolution and "systeme metrique" we need only one (the meter)...}
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.97\textwidth}
+One might read an argument in favor of the metric system into the
+preceding listing of ``miles'' and ``feet'' and ``inches'', whose
+interrelationships require a lexicon, in contrast to the singular
+``km'' whose relationships to ``cm'' and ``meter'' are transparent.
+\end{minipage}
+}
+
+\medskip
+
+%{\Denis notice here that people in US need 3 different non-correlated
+%metrics while from the french revolution and "systeme metrique" we need only one (the meter)...}
 
 All of these numbers are coarse approximations.  In some sense, they
 all convey exactly the same information, since all are obtained from
