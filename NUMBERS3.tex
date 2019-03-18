@@ -1,4 +1,4 @@
-%version of 03-15-19
+%version of 03-18-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -153,7 +153,10 @@ are formed within a {\it base-$b$ positional number system},
 \index{numerals in a base-$b$ positional number system} known also as
 a {\it $b$-ary positional number system}.
 \index{numerals in a $b$-ary positional number system}
-The most common exemplars of $b$-ary positional number systems are:
+The word {\it ``radix''} is often used in place of the word ``base'';
+\index{numerals in a radix-$b$ positional number system}
+we shall use the word ``base''.  The most common exemplars of $b$-ary
+positional number systems are:
 
 \smallskip
 
@@ -657,7 +660,6 @@ proposition.  The result follows.
 \end{proof}
 
 
-
 \subsubsection{Redundant systems that enable {\em carry-free addition}}
 \label{sec:carry-free}
 
@@ -696,30 +698,40 @@ annoyance at the necessary varying delays between successive
 button-pushes, but we have certainly not eliminated the cause of your
 annoyance.
 
-In fact, if you are willing to replace your counter by one that uses a
-quite specialized {\it redundant number system}, 
-\index{redundant number systems} then you can eliminate your annoyance
-(almost) completely by designing your counter to implement {\it
-  carry-free addition}.  This is a bit of a misnomer: adders of this
-sort are not really {\em carry-free}; it is more accurate to say that
-they implement carries in a {\em buffered} fashion so as to achieve a
+In fact, you can eliminate your annoyance (almost) completely by
+redesigning your counter to implement {\it carry-free addition}.
+\index{carry-free addition} We should clarify the term ``carry-free''
+here.  Of course, all adders that employ positional numerals have to
+transmit updating information from lower-order digits to higher-order
+ones during an addition.  A accurate term for these adders would be
+something like {\em buffered carry}.  By changing the form of
+numerals, such adders buffer carries in a way that achieves a
 bounded---i.e., $O(1)$---delay between button-pushes, no matter how
 long you keep pushing the button.
 
-Redundant number systems are positional systems of the same genre as
--ary systems: Their numerals are evaluated by the same {\sc val}
-function as defined in (\ref{eq:real-numeral-number}).  These systems
-achieve their bounded-delay, buffered, carries by augmenting their
-sets of digits to allow {\em negative} digits.  The base-$b$ redundant
-system has the following digit set; parentheses are added to enhance
-legibility.
+In order to achieve ``carry-free'' addition, we have to redesign your
+counter so that, instead of using a conventional positional number
+system, it uses a quite specialized {\it redundant number system},
+\index{redundant number systems} which is often known also as a {\it
+  signed-digit number system}.  \index{igned-digit number system}
+
+The redundant number systems that we discuss---{\em there are
+  others}---are positional systems of the same genre as -ary systems:
+Their numerals are also evaluated by the {\sc val} function of
+(\ref{eq:real-numeral-number}).  These systems achieve their buffered
+carries via augmented digit-sets that include {\em negative} digits
+also.  The base-$b$ (or, {\it radix}-$b$) redundant number system
+\index{base-$b$ redundant number system} \index{radix-$b$ redundant
+  number system} has the following set of digits.\footnote{($a$)
+  Recall that the overline notation, as in ``$\overline{b-2}$'' is to
+  indicate that we are referring to a single digit.  ($b$) We add
+  parentheses when we describe $\widehat{B}_b$ to enhance legibility.}
 \[ \widehat{B}_b \ = \ \{-(\overline{b-1}), -(\overline{b-2}), \ldots,
 -1, 0 , 1, \ldots, (\overline{b-2}), (\overline{b-1})\}
 \]
-If we focus on base $b=2$, then we note that $\widehat{B}_2 \ = \ \{
--1, 0, 1\}$.  The ``redundancy'' in this system is witnessed by the
-fact that the number $1$ is the numerical value of {\em every} numeral
-of the form
+For base $b=2$, for example, $\widehat{B}_3 \ = \ \{ -1, 0, 1\}$.  The
+``redundancy'' in this system is witnessed by the fact that the number
+$1$ is the numerical value of {\em every} numeral of the form
 \[ 1 \ (-1) \ (-1) \ \cdots \ (-1) \ (-1), \]
 because the $d$-digit instance of these numerals has numerical value
 
@@ -734,7 +746,23 @@ $\displaystyle \mbox{\sc val}_2 \big( 1 \ (-1) \ (-1) \ \cdots \ (-1) \ (-1) \bi
 \medskip
 
 A detailed description of the form and implementation of redundant
-number systems can be found in sources such as \cite{PhatakK94}.
+number systems and carry-free adders can be found in sources such as
+\cite{Hwang79}.  We describe here just a single incrementation of a
+carry-free counter.
+
+Say that our base-$2$ carry-free counter currently holds the
+signed-digit numeral
+\[ \delta_d \delta_{d-1} \cdots \delta_0 \ \ \ \mbox{ each }
+\ \delta_i \in \{-1, 0, 1\}
+\]
+If we wish to augment the counter (by adding $00 \cdots 01$ to the
+current contents), then we cannot always do so via digit-by-digit
+conventional addition.  When $\delta_0 = 1$, this approach would
+either leave us with the illegal digit $\delta_0 + 1 =2$, or it would
+engender the beginning of a carry-chain; neither situation is
+acceptable.
+
+**HERE
 
 
 \section{$\oplus$ A System Based on the Fibonacci Numbers}
