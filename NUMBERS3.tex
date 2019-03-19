@@ -1,4 +1,4 @@
-%version of 03-18-19
+%version of 03-19-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -660,23 +660,30 @@ proposition.  The result follows.
 \end{proof}
 
 
-\subsubsection{Redundant systems that enable {\em carry-free addition}}
+\subsubsection{Signed-digit systems: carry-free addition}
 \label{sec:carry-free}
 
 Say that you have a box that contains a {\it counter}.  There are two
-buttons on top of the box: one {\em red} and one {\em green}.  Each time you push
-the green button, the counter increments its tally of your pushes.  In
-between button-pushes, you must wait until the electronic circuitry
-inside the box settles into a stable configuration.  Now, if the
-electronic circuitry that implements the counter was designed to mimic
-the binary representation of the number---in technical jargon,
-\index{carry-ripple adder} the counter implements a {\it carry-ripple
-  adder}; see \cite{Hwang79} for details---then, as we noted in
+buttons on top of the box: one {\em red} and one {\em green}.  Each
+time the green button is pushed, the counter increments---i.e., adds
+$+1$ to---its tally; each time the red button is pushed, the counter
+decrements---i.e., adds $11$ to---its tally.  Now, in order for the
+tally on the counter to {\em always be correct}, you must insert
+delays between button-pushes: you must always wait until the
+electronic circuitry inside the box settles into a stable
+configuration with all necessary carries and borrows up to date.  Now,
+if the electronic circuitry that implements the counter was designed
+to mimic the binary representation of the number---in technical
+jargon, \index{carry-ripple adder} the counter implements a {\it
+  carry-ripple adder}; see \cite{Hwang79} for details---then, you
+observe the following.  While you keep pushing only the green
+(increment) button, you do not feel that the delays between
+button-pushes are onerous: As we noted in
 Section~\ref{sec:sample-proofs}.A:
 \begin{itemize}
 \item
-Roughly half the time, you have no enforced delays in your ability to
-time your button-pushes: the update of the tally engenders no carry.
+Roughly half the time, you have no enforced delays between successive
+button-pushes: the update of the tally engenders no carry.
 \item
 Roughly one-quarter of the time, you have a miniscule delay: the
 update engenders a carry of only one place.
@@ -688,45 +695,70 @@ update engenders a carry of two places.
 fraction $2^{-k}$ of the button-pushes engender a delay commensurate
 with a carry of $k-1$ places.
 \end{itemize}
-In fact, you can improve on the described pattern of delays.  By using
-more sophisticated circuitry, you can replace your counter's
+Stated differently, the {\em average} delay you must suffer is bounded
+by the time required for a $2$-place carry.  In fact, you can even
+improve on the described pattern of delays, by using more
+sophisticated circuitry for your counter's adder.  If you replace the
 carry-ripple adder by a {\it carry-lookahead adder}---see
-\cite{Hwang79} for details---and thereby reduce the {\em aggregate}
+\cite{Hwang79} for details---you can thereby reduce the aggregate
 number of carries engendered by the first $n$ button-pushes from the
 $\Theta(n^2)$ carries of the carry-ripple adder to $O(n \log n)$
-carries for a carry-lookahead adder.  So, we have diminished your
-annoyance at the necessary varying delays between successive
-button-pushes, but we have certainly not eliminated the cause of your
-annoyance.
+carries for a carry-lookahead adder.
 
-In fact, you can eliminate your annoyance (almost) completely by
-redesigning your counter to implement {\it carry-free addition}.
+But, the picture changes markedly as soon as you (or an opponent)
+starts using the red button as well as the green one.  If you wait
+until the counter has tallied some number of green-button pushes of
+the form $2^k$, hence contains the binary numeral $100 \cdots 00$ with
+$k$ $0$s, then a push of the red button engenders a delay of $k$
+carry-units---and a subsequent push of the green button incurs the
+same delay!  In fact, if you (and your opponent) begin to toggle the
+two buttons---one red push, then one green push, then one red push,
+then one green push, \ldots---then you incur a delay of $k$
+carry-units with each successive button-push.  If you do this for long
+enough, then your {\em average} delay starts growing toward $k$
+carry-units.
+
+If (the risk of) these long delays is more than you want to deal with,
+then you can employ mathematical and electronic technology to replace
+your counter's adder with one that (almost) eliminates these delays
+completely.  The ``silver bullet'' resides in using a {\em
+  signed-digit} (positional) number representation
+\index{signed-digit number representation}
+\index{positional number representation!signed-digit representation}
+to design a counter that implements {\it carry-free addition}.
 \index{carry-free addition} We should clarify the term ``carry-free''
 here.  Of course, all adders that employ positional numerals have to
 transmit updating information from lower-order digits to higher-order
-ones during an addition.  A accurate term for these adders would be
-something like {\em buffered carry}.  By changing the form of
-numerals, such adders buffer carries in a way that achieves a
-bounded---i.e., $O(1)$---delay between button-pushes, no matter how
-long you keep pushing the button.
+ones during an increment and from higher-order digits to lower-order
+ones during an decrement.  Therefore, a more accurate term for these
+adders would be something like {\em buffered carry}.  By changing the
+form of numerals, one can design adders that buffer carries in a way
+that achieves a bounded---i.e., $O(1)$---delay between button-pushes,
+no matter how long you keep pushing a button or which one you choose
+to push.
 
-In order to achieve ``carry-free'' addition, we have to redesign your
-counter so that, instead of using a conventional positional number
-system, it uses a quite specialized {\it redundant number system},
-\index{redundant number systems} which is often known also as a {\it
-  signed-digit number system}.  \index{igned-digit number system}
+In order to achieve a ``carry-free'' adder for the counter, we have to
+design the adder using a genre of {\it redundant number system},
+\index{redundant number systems} known as a {\it signed-digit number
+  system}.  \index{igned-digit number system}
 
-The redundant number systems that we discuss---{\em there are
-  others}---are positional systems of the same genre as -ary systems:
-Their numerals are also evaluated by the {\sc val} function of
-(\ref{eq:real-numeral-number}).  These systems achieve their buffered
-carries via augmented digit-sets that include {\em negative} digits
-also.  The base-$b$ (or, {\it radix}-$b$) redundant number system
-\index{base-$b$ redundant number system} \index{radix-$b$ redundant
-  number system} has the following set of digits.\footnote{($a$)
-  Recall that the overline notation, as in ``$\overline{b-2}$'' is to
-  indicate that we are referring to a single digit.  ($b$) We add
-  parentheses when we describe $\widehat{B}_b$ to enhance legibility.}
+**HERE
+
+The signed-digit number systems that we discuss\footnote{There are
+  many such systems and many places to learn about them; see, e.g.,
+  the encyclopedic work \cite{Knuth69} on ``seminumerical algorithms''
+  and the comprehensive text \cite{Hwang79} on computer
+  arithmetic.}~are positional systems of the same genre as -ary
+systems: Their numerals are also evaluated by the {\sc val} function
+of (\ref{eq:real-numeral-number}).  These systems achieve their
+buffered carries via augmented digit-sets that include {\em negative}
+digits as well as positive ones.  The base-$b$ (or, {\it radix}-$b$)
+redundant number system \index{base-$b$ signed-digit number system}
+\index{radix-$b$ signed-digit number system} has the following set of
+digits.\footnote{($a$) Recall that the overline notation, as in
+  ``$\overline{b-2}$'' is to indicate that we are referring to a
+  single digit.  ($b$) We add parentheses when we describe
+  $\widehat{B}_b$ to enhance legibility.}
 \[ \widehat{B}_b \ = \ \{-(\overline{b-1}), -(\overline{b-2}), \ldots,
 -1, 0 , 1, \ldots, (\overline{b-2}), (\overline{b-1})\}
 \]
