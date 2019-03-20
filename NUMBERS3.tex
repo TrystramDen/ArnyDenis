@@ -798,6 +798,11 @@ engender the beginning of a carry-chain; neither situation is
 acceptable.
 
 **HERE
+adding $b$-ary numerals $x_n x_{n-1} \cdots x_1 x_0$ and $y_n y_{n-1}
+\cdots y_1 y_0$: so each $x_i, y_i \in B_b = \{ 0, 1, \ldots \bar{b} \}$
+ (a) via carry-ripple, (b) via carry-free.  We look at
+the component of the adder that deals with digit $i$
+
 
 \begin{figure}[hbt]
 \[
@@ -824,6 +829,118 @@ c_{i+1} \ = \ \big( (x_i + y_i + c_i) \ominus \bar{b} \big)
   the portion of the sum that exceeds $\bar{b}$.}
 \label{fig:carry-ripple-digit}
 \end{figure}
+
+\bigskip
+
+\noindent {\it A Carry-ripple adder}. \index{carry-ripple adder}
+See Fig.~\ref{fig:carry-ripple-digit}.
+\begin{itemize}
+\item
+All digits---input digits $x_i$ and $y_i$, and carry digit $c_i$ (for
+$i>0$) come from $B_b = \{ 0, 1, \ldots, \bar{b}\}$; $c_0 = 0$.
+\item
+Addition is a {\em single-pass} process.  For each digit-index $i$:
+  \begin{itemize}
+  \item
+Digit-adder $i$ admits inputs $x_i$ and $y_i$ (from the ``outside'')
+and carry-in $c_i$: When $i=0$, $c_0 = 0$ by convention; for all other
+indices $i$, $c_i$ is the carry-in from digit-adder $i-1$.
+  \item
+The $i$th sum-digit, $z_i$, and the carry-out, $c_{i+1}$, are
+evaluated as follows.
+\[
+\begin{array}{ccccccc}
+ z_i    & = &  \min \big( \bar{b}, \ x_i + y_i + c_i \big) & & & & \\
+c_{i+1} & = &  (x_i + y_i + c_i) \ominus \bar{b} &
+\mbox{ where } &
+m \ \ominus \ n &  \eqdef & \left\{
+{\displaystyle
+\begin{array}{cl}
+m-n & \mbox{ if } \ \ m \geq n \\
+0   & \mbox{ if } \ \ m \leq n
+\end{array}
+} \right.
+\end{array}
+\]
+  \end{itemize}
+\end{itemize}
+
+\bigskip
+
+
+\begin{figure}[hbt]
+\[
+\begin{array}{|llcccr|}
+\hline
+ & & & x_i \ \ \ y_i & & \\
+ & & & \downarrow \ \ \ \downarrow  & & \\
+\mbox{\bf stage $1$:   } & t_{i+1} & \longleftarrow &
+\fbox{
+\begin{tabular}{c}
+Compute \\
+$\iota_i$ \ \ and \ \ $t_{i+1}$ \\
+via the relation \\
+$b \cdot t_{i+1} + \iota_i \ = \ x_i + y_i$
+\end{tabular}
+} & & \\
+  & & & \downarrow & & \\  
+  & & & \iota_i & & \\
+  & & & \downarrow & & \\ 
+\mbox{\bf stage $2$:   } & & &  \fbox{Compute $\iota_i + t_i$} & \longleftarrow & t_i 
+  \\
+  & & & \downarrow & &
+  \\
+  & & & z_i & &
+  \\
+\hline
+\end{array}
+\]
+\caption{Digit-adder $i$ of a $(b > 2)$-ary carry-free adder.  The outgoing
+  {\it transfer digit} $t_{i+1}$ and the {\it interim sum} $\omega_i$
+  are computed from the input digits $x_i$ and $y_i$, using the
+  relation specified in the upper box.  These results are transmitted,
+  respectively, to stage $1$ of digit-adder $i+1$ and stage $2$ of the current
+  digit-adder $i$.}
+\label{fig:carry-free-digit}
+\end{figure}
+
+\noindent {\it A Carry-free adder}. \index{carry-free adder}
+See Fig.~\ref{fig:carry-free-digit}.
+\begin{itemize}
+\item
+This simple carry-free adder operates in {\em two-stages}.  It
+operates on base-$b$ numerals but requires $b > 2$ (for technical
+reasons).
+\item
+There is no ``carry digit''.  In its place, there is a {\it transfer
+  digit} $t_i$ \index{carry-free adder!transfer digits} which is
+generated in stage $1$ of the adder and consumed in stage $2$.
+\item
+In addition to the transfer digits, there are {\it interim sum} digits
+$\iota_i$, \index{carry-free adder!interim-sum digits} 
+which are also generated in stage $1$ and consumed in stage $2$.
+\end{itemize}
+\begin{enumerate}
+\item
+Stage $1$ of the adder
+\begin{enumerate}
+\item
+computes {\it transfer digit} $t_{i+1}$ and {\it interim-sum digit}
+$\iota_i$ via the equation
+\[ b \cdot t_{i+1} + \iota_i \ = \ x_i + y_i \]
+\item
+transmits $t_{i+1}$ to digit-adder $i+1$
+\item
+transmits $\iota_i$ to stage $2$.
+\end{enumerate}
+\item
+Stage $2$ of the adder
+computes the $i$th output digit $z_i$ via by adding $\iota_i$ to $t_i$
+(which came from digit-adder $i-1$)
+\end{enumerate}
+
+
+
 
 \section{$\oplus$ A System Based on the Fibonacci Numbers}
 \label{sec:numerals-special-families}
