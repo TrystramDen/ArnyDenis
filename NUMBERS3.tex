@@ -744,6 +744,8 @@ design the adder using a genre of {\it redundant number system},
 
 **HERE
 
+$\monus   \ \ \ \  a \monus b \ \ \ a \ominus b$
+
 The signed-digit number systems that we discuss\footnote{There are
   many such systems and many places to learn about them; see, e.g.,
   the encyclopedic work \cite{Knuth69} on ``seminumerical algorithms''
@@ -797,6 +799,31 @@ acceptable.
 
 **HERE
 
+\begin{figure}[hbt]
+\[
+\begin{array}{|lcccr|}
+\hline
+ & & x_i \ \ \ y_i & & \\
+ & & \downarrow \ \ \ \downarrow & & \\
+c_{i+1} \ = \ \big( (x_i + y_i + c_i) \ominus \bar{b} \big)
+ & & \longleftarrow \ \fbox{$x_i + y_i + c_i$} \ \longleftarrow & &  c_i 
+  \\
+ & & \downarrow & &
+  \\
+ & & z_i \ = \ \min \big( \bar{b}, \ x_i + y_i + c_i \big)  & & 
+  \\
+\hline
+\end{array}
+\]
+\caption{Digit $i$ of a $b$-ary carry-ripple adder.  The input digits
+  $x_i$ and $y_i$ are summed with the in-carry $c_i$.  If the sum can
+  be represented by a single $b$-ary digit, then it is the output from
+  this digit-adder, and the out-carry $c_{i+1}$ is set to $0$.  If the
+  sum is too big, then the maximum $b$-ary digit $\bar{b}$ is the
+  output from this digit-adder, and the out-carry $c_{i+1}$ is set to
+  the portion of the sum that exceeds $\bar{b}$.}
+\label{fig:carry-ripple-digit}
+\end{figure}
 
 \section{$\oplus$ A System Based on the Fibonacci Numbers}
 \label{sec:numerals-special-families}
