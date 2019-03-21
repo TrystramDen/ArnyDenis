@@ -1,4 +1,4 @@
-%version of 03-19-19
+%version of 03-21-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -726,25 +726,12 @@ completely.  The ``silver bullet'' resides in using a {\em
 \index{signed-digit number representation}
 \index{positional number representation!signed-digit representation}
 to design a counter that implements {\it carry-free addition}.
-\index{carry-free addition} We should clarify the term ``carry-free''
-here.  Of course, all adders that employ positional numerals have to
-transmit updating information from lower-order digits to higher-order
-ones during an increment and from higher-order digits to lower-order
-ones during an decrement.  Therefore, a more accurate term for these
-adders would be something like {\em buffered carry}.  By changing the
-form of numerals, one can design adders that buffer carries in a way
-that achieves a bounded---i.e., $O(1)$---delay between button-pushes,
-no matter how long you keep pushing a button or which one you choose
-to push.
-
-In order to achieve a ``carry-free'' adder for the counter, we have to
-design the adder using a genre of {\it redundant number system},
-\index{redundant number systems} known as a {\it signed-digit number
-  system}.  \index{igned-digit number system}
-
-**HERE
-
-$\monus   \ \ \ \  a \monus b \ \ \ a \ominus b$
+\index{carry-free addition} By changing the form of numerals, one can
+design adders whose constituent digit-adders can operate in parallel.
+While these digit-adders are roughly twice as complex as those of the
+more familiar carry-ripple adders, they do guarantee bounded---i.e.,
+$O(1)$---delay between button-pushes, no matter how long you keep
+pushing a button or which one you choose to push.
 
 The signed-digit number systems that we discuss\footnote{There are
   many such systems and many places to learn about them; see, e.g.,
@@ -761,48 +748,47 @@ digits.\footnote{($a$) Recall that the overline notation, as in
   ``$\overline{b-2}$'' is to indicate that we are referring to a
   single digit.  ($b$) We add parentheses when we describe
   $\widehat{B}_b$ to enhance legibility.}
-\[ \widehat{B}_b \ = \ \{-(\overline{b-1}), -(\overline{b-2}), \ldots,
--1, 0 , 1, \ldots, (\overline{b-2}), (\overline{b-1})\}
+\[ \widehat{B}_b \ = \ \{(-\overline{b-1}), (-\overline{b-2}), \ldots,
+(-1), 0 , 1, \ldots, \overline{b-2}, \overline{b-1}\}
 \]
-For base $b=2$, for example, $\widehat{B}_3 \ = \ \{ -1, 0, 1\}$.  The
-``redundancy'' in this system is witnessed by the fact that the number
-$1$ is the numerical value of {\em every} numeral of the form
-\[ 1 \ (-1) \ (-1) \ \cdots \ (-1) \ (-1), \]
+For technical reasons, the simple carry-free adder that we describe
+requires that the number base $b$ be n smaller than $3$.  For the
+smallest relevant base, $b=3$, one can use the digit-set
+$\widehat{B}_3 \ = \ \{ (-2), (-1), 0, 1, 2\}$ (parentheses added to
+enhance legibility).  The ``redundancy'' in this system is witnessed
+by the fact that the number $1$ is the numerical value of {\em every}
+numeral of the form
+\[ 1 \ (-2) \ (-2) \ \cdots \ (-2) \ (-2), \]
 because the $d$-digit instance of these numerals has numerical value
-
-$\displaystyle \mbox{\sc val}_2 \big( 1 \ (-1) \ (-1) \ \cdots \ (-1) \ (-1) \big)$
 
 \smallskip
 
-\hspace*{.25in}$= \ 2^{d-1} \ - \ 2^{d-2} \ - \ 2^{d-3} \ - \cdots - \ 2 \ - \ 1$
+$\displaystyle \mbox{\sc val}_3 \big( 1 \ (-2) \ (-2) \ \cdots \ (-2) \ (-2) \big)$
+
+\smallskip
+
+\hspace*{.25in}$= \ 3^{d-1} \ - \ 2 \cdot \big(3^{d-2} \ + \ 3^{d-3}
+\ + \cdots + \ 3 \ + \ 1 \big)$
 
 \hspace*{.25in}$= \ 1$
 
-\medskip
+\bigskip
 
-A detailed description of the form and implementation of redundant
-number systems and carry-free adders can be found in sources such as
-\cite{Hwang79}.  We describe here just a single incrementation of a
-carry-free counter.
-
-Say that our base-$2$ carry-free counter currently holds the
-signed-digit numeral
-\[ \delta_d \delta_{d-1} \cdots \delta_0 \ \ \ \mbox{ each }
-\ \delta_i \in \{-1, 0, 1\}
+We now provide a schematic description of ($a$) a carry-ripple adder
+and ($b$) a carry-free adder adding the $b$-ary integer-specifying
+numerals
+\[ x_n x_{n-1} \cdots x_1 x_0 \ \ \ \mbox{ and } \ \ \ 
+y_n y_{n-1} \cdots y_1 y_0
 \]
-If we wish to augment the counter (by adding $00 \cdots 01$ to the
-current contents), then we cannot always do so via digit-by-digit
-conventional addition.  When $\delta_0 = 1$, this approach would
-either leave us with the illegal digit $\delta_0 + 1 =2$, or it would
-engender the beginning of a carry-chain; neither situation is
-acceptable.
+In both descriptions, we describe the function of the $i$th
+digit-adder, emphasizing the information that it receives from the
+$(i-1)$th digit-adder and the information that it transmits to the
+$(i+1)$th digit-adder.  Of course, this information is at the heart of
+the issue of carries or no-carries.
 
-**HERE
-adding $b$-ary numerals $x_n x_{n-1} \cdots x_1 x_0$ and $y_n y_{n-1}
-\cdots y_1 y_0$: so each $x_i, y_i \in B_b = \{ 0, 1, \ldots \bar{b} \}$
- (a) via carry-ripple, (b) via carry-free.  We look at
-the component of the adder that deals with digit $i$
-
+A detailed description of both genres of adders---including both
+operational and implementational matters---can be found in sources
+such as \cite{Hwang79}.
 
 \begin{figure}[hbt]
 \[
@@ -878,15 +864,15 @@ m-n & \mbox{ if } \ \ m \geq n \\
 \fbox{
 \begin{tabular}{c}
 Compute \\
-$\iota_i$ \ \ and \ \ $t_{i+1}$ \\
+$\tau_i$ \ \ and \ \ $t_{i+1}$ \\
 via the relation \\
-$b \cdot t_{i+1} + \iota_i \ = \ x_i + y_i$
+$b \cdot t_{i+1} + \tau_i \ = \ x_i + y_i$
 \end{tabular}
 } & & \\
   & & & \downarrow & & \\  
-  & & & \iota_i & & \\
+  & & & \tau_i & & \\
   & & & \downarrow & & \\ 
-\mbox{\bf stage $2$:   } & & &  \fbox{Compute $\iota_i + t_i$} & \longleftarrow & t_i 
+\mbox{\bf stage $2$:   } & & &  \fbox{Compute $\tau_i + t_i$} & \longleftarrow & t_i 
   \\
   & & & \downarrow & &
   \\
@@ -895,12 +881,12 @@ $b \cdot t_{i+1} + \iota_i \ = \ x_i + y_i$
 \hline
 \end{array}
 \]
-\caption{Digit-adder $i$ of a $(b > 2)$-ary carry-free adder.  The outgoing
-  {\it transfer digit} $t_{i+1}$ and the {\it interim sum} $\omega_i$
-  are computed from the input digits $x_i$ and $y_i$, using the
-  relation specified in the upper box.  These results are transmitted,
-  respectively, to stage $1$ of digit-adder $i+1$ and stage $2$ of the current
-  digit-adder $i$.}
+\caption{Digit-adder $i$ of a $(b > 2)$-ary carry-free adder.  The
+  outgoing {\it transfer digit} $t_{i+1}$ and the {\it tentative sum}
+  $\tau_i$ are computed from the input digits $x_i$ and $y_i$, using
+  the relation specified in the upper box.  These results are
+  transmitted, respectively, to stage $1$ of digit-adder $i+1$ and
+  stage $2$ of the current digit-adder $i$.}
 \label{fig:carry-free-digit}
 \end{figure}
 
@@ -913,11 +899,12 @@ operates on base-$b$ numerals but requires $b > 2$ (for technical
 reasons).
 \item
 There is no ``carry digit''.  In its place, there is a {\it transfer
-  digit} $t_i$ \index{carry-free adder!transfer digits} which is
-generated in stage $1$ of the adder and consumed in stage $2$.
+  digit} $t_i \in \{-1, 0, 1\}$ 
+\index{carry-free adder!transfer digit} which is generated in stage
+$1$ of the adder and consumed in stage $2$.
 \item
-In addition to the transfer digits, there are {\it interim sum} digits
-$\iota_i$, \index{carry-free adder!interim-sum digits} 
+In addition to transfer digits, there are {\it tentative sum} digits
+$\tau_i$, \index{carry-free adder!tentative-sum digits} 
 which are also generated in stage $1$ and consumed in stage $2$.
 \end{itemize}
 \begin{enumerate}
@@ -925,20 +912,24 @@ which are also generated in stage $1$ and consumed in stage $2$.
 Stage $1$ of the adder
 \begin{enumerate}
 \item
-computes {\it transfer digit} $t_{i+1}$ and {\it interim-sum digit}
-$\iota_i$ via the equation
-\[ b \cdot t_{i+1} + \iota_i \ = \ x_i + y_i \]
+computes {\it transfer digit} $t_{i+1} \in \{-1, 0 , 1\}$ and {\it
+  tentative-sum digit} $\tau_i$ via the equation
+\[ b \cdot t_{i+1} + \tau_i \ = \ x_i + y_i \]
 \item
 transmits $t_{i+1}$ to digit-adder $i+1$
 \item
-transmits $\iota_i$ to stage $2$.
+transmits $\tau_i$ to stage $2$.
 \end{enumerate}
 \item
-Stage $2$ of the adder
-computes the $i$th output digit $z_i$ via by adding $\iota_i$ to $t_i$
-(which came from digit-adder $i-1$)
+Stage $2$ of the adder computes the $i$th output digit $z_i$ via by
+adding $\tau_i$ to $t_i$ (which came from digit-adder $i-1$).
 \end{enumerate}
-
+The important fact to note is that this adder does not have a chain of
+propagated carries!  Digit-adder $i$ computes transfer digit
+$t_{i+1}$---which is the only information that it transmits to
+digit-adder $i+1$---based only on the $i$th input digits $x_i$ and
+$y_i$.  Consequently: {\em All of the adder's digit-adders can operate
+  in parallel!}
 
 
 
