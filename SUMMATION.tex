@@ -1,4 +1,4 @@
-%version of 03-21-19
+%version of 03-25-19
 
 \chapter{SUMMATION}
 \label{ch:Summation}
@@ -770,7 +770,7 @@ Fig.~\ref{fig:anotherSumOdds}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/Deltaodd}
-\caption{Four copies of $S(n)$ represented as a trianle of bullets.
+\caption{Four copies of $S(n)$ represented as a triangle of bullets.
   The triangles are arranged to yield a $2n \times 2n$ square of
   bullets.}
        \label{fig:anotherSumOdds}
@@ -1077,25 +1077,23 @@ $\Delta_{2n-1}$ (4 triangles of size $n$ plus a row of $n$ bullets in
 dark grey form a bigger triangle of size $2n-1$).
 *******}
 
-We now have a purely pictorial proof of the proposition.
+We now have a purely pictorial proof of the proposition. \qed
 \end{proof} 
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-%\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 Full disclosure: Our proof of
-  Proposition~\ref{thm:an-arithmetic-identity} is not {\em purely}
-  pictorial, because we must somehow verify that the construction is
-  completely general, i.e., that the depicted emergence of the
-  $\Delta_{2n-1}$ triangle of bullets from four copies of the
-  $\Delta_n$-triangle plus the extra row of $n$ bullets is not an
-  artifact of the depicted case $n =6$.
+Proposition~\ref{thm:an-arithmetic-identity} is not {\em purely}
+pictorial, because we must somehow verify that the construction is
+completely general, i.e., that the depicted emergence of the
+$\Delta_{2n-1}$ triangle of bullets from four copies of the
+$\Delta_n$-triangle plus the extra row of $n$ bullets is not an
+artifact of the depicted case $n =6$.
 
 Even with this caveat, one must admit that the {\em discovery} of the
 proposition is really pictorial, even if the verification requires
 additional modalities of reasoning. 
-%\[ \approx \approx \approx \approx \approx \approx \approx \approx \approx \approx \]
 \end{minipage}
 }
 
@@ -1395,6 +1393,7 @@ like: the cumulative length of the bases of its abutting rectangles is
 the value of the infinite series $=
 \sum_{i=0}^\infty \ b^{i}$ (where $0 \leq b < 1$).
 
+**HERE
 {\Denis We should add a final remark here}.
 The final touch is that the infinite sum is given by the base of the big right rectangle.
 It is similar ({\Denis we call this property semblable in french}) to the little right rectangle top left in the figure.
@@ -1732,33 +1731,42 @@ This process is illustrated in Fig.~\ref{fig:Sumi2i}.
 \centerline{
 \includegraphics[scale=0.4]{FiguresMaths/Sumi2i}
 }
-\caption{Illustration of the exchange of indices in the summation.
-The original sum is on the left, each $i \cdot 2^i$ is distributed $i$ times on column $i$.
-The second sum is obtained by introducing a new index $k$ and to scan each term of the sum row by row (on the right).
-The arrows represent the order of execution. The drawing was done for $n=4$}
+\caption{Illustrating the case $n=4$ of the exchange of indices in the
+  summation.  The original summation is drawn on the left.  In the
+  righthand drawing, we reproduce each term $i \cdot 2^i$ $i$ times
+  within column $i$.  We then express the summation on the right by
+  introducing a new index $k$ and scanning the terms of the summation
+  row by row (on the right).  The arrows represent the flow of the
+  scan.}
 \label{fig:Sumi2i}
 \end{figure}
 The indicated summation is much easier to perform in this order,
 because its core consists of instances of the ``ordinary'' geometric
-summation $\sum_{i=k}^{n} 2^i$ (see
-Proposition~\ref{thm:sum-finite-geometric-series}).  Expanding these
+summation $\sum_{i=k}^{n} 2^i$
+(Proposition~\ref{thm:sum-finite-geometric-series}).  Expanding these
 instances, we find finally that
-\[
-S_2^{(1)}(n) \ = \ \sum_{k=1}^{n} \ (2^{n+1} -1 - \sum_{i=0}^{k-1} \ 2^i).
-\]
-\[
-S_2^{(1)}(n) \ = \ \sum_{k=1}^{n} \ (2^{n+1} - 2^k).
-\]
-\[
+\begin{eqnarray*}
 S_2^{(1)}(n)
-\ \ = \ \ n \cdot 2^{n+1}\ - ( 2^{n+1} -1) +1
-\ \ = \ \ (n-1) \cdot 2^{n+1} +2.
-\]
+  & = &
+\sum_{k=1}^{n} \ \big( 2^{n+1} -1 - \sum_{i=0}^{k-1} \ 2^i \big) \\
+  & = &
+\sum_{k=1}^{n} \ \big( 2^{n+1} - 2^k \big) \\
+  & = &
+n \cdot 2^{n+1}\ - ( 2^{n+1} -1) +1 \\
+  & = &
+(n-1) \cdot 2^{n+1} +2.
+\end{eqnarray*}
+This completes the proof.  \qed
 \end{proof}
 
-{\Denis I added an interesting comment to finish this section:}
-Let remark that the process of obtaining the single summation can be also seen in the figure by scanning the elements of the sum by diagonals (see Fig.~\ref{fig:Sumi2iDiag}).
-Each of the $n$ diagonal is exactly the different between the complete geometric series minus the partial geometric series truncated at rank $k$. 
+\ignore{\Denis I added an interesting comment to finish this section:}
+
+We remark that the process of obtaining the original summation can
+also be seen in the figure, by scanning the elements of the summation
+along the diagonals, as we portray in Fig.~\ref{fig:Sumi2iDiag}.  Each
+of the $n$ diagonals contains exactly the difference between the
+complete geometric summation and the partial summation that is
+truncated at the $k$th term.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.4]{FiguresMaths/Sumi2iDiag}
