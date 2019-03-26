@@ -1,4 +1,4 @@
-%version of 03-04-19
+%version of 03-26-19
 
 \chapter{SETS, BOOLEAN ALGEBRA, AND LOGIC}
 \label{ch:sets-BA-logic}
@@ -1229,7 +1229,7 @@ Every integer $z \in \Z$ has an {\it additive inverse} (namely, $-z$).
 \end{enumerate}
 
 So, it really is meaningful that the Boolean Algebra built upon the
-Porpositional calculus {\em is} free.
+Propositional calculus {\em is} free.
 \end{minipage}
 }
 \bigskip
@@ -1617,8 +1617,8 @@ The Satisfiability Problem is specified by a propositional formula that
 is  a {\it conjunction of disjuncts of logical literals}.
 
 In the lingo of the ``in-crowd'', these expressions are said to be in
-{\it POS} form, \index{POS-form expression} or {\it (logical) product
-of (logical) sums}.
+{\it POS} form, \index{POS-form expression} shorthand for a {\it
+  (logical) product of (logical) sums}.
   \item
 The Satisfiability question is: Can one assign truth values to all of
 the logical variables of the formula in a way that has every disjunct
@@ -1629,25 +1629,87 @@ The reader should be able to prove that these are just two views of
 the same logical problem.  {\Arny This is a good exercise to verify
   command of the underlying concepts.}
 
-Until 1971, POS expressions were viewed as nothing more than the duals
-of the somewhat more common {\it SOP}-form expressions,
-\index{SOP-form expression} or {\it sums of products}.  A discovery in
-1971 changed this view, by exposing how POS-form expressions can be
-used to model a computational phenomenon whose importance was only
-beginning to be appreciated at that time.  The importance of this
-phenomenon and of its representation via POS-form expressions has
-grown immeasurably since that time, originally just within the
-theoretical world, but increasingly in the world of applications as
-well.  The backstory of the preceding assertion began in 1971 when
-Stephen A.~Cook \index{Cook, Stephen A.} published, in \cite{Cook71},
-a revolutionary new foundation for the field of {\it Computational
-  Complexity}. \index{Computational Complexity} Cook achieved this
-goal by adapting arguments\footnote{These arguments were the legacy of
-  intellectual giants such as Kurt G\"{o}del \index{G\"{o}del, Kurt}
-  (in \cite{Goedel31}) and Alan M.~Turing \index{Turing, Alan M.} (in
-  \cite{Turing36}).}~from the decades-old field of {\it
-  Computability Theory} \index{Computability Theory} in a way that
-enabled one to rigorously study complexity-theoretic questions:
+Until 1971, POS expressions were largely viewed simply as the duals of
+the somewhat more common {\it SOP}-form expressions, 
+\index{SOP-form expression}, shorthand for {\it sums of products}.  A
+ discovery in 1971 by Stephen A.~Cook \index{Cook, Stephen A.}
+ changed this view, by exposing how POS-form expressions can be used
+ to model a number of computational phenomena whose importance was
+ only beginning to be appreciated at that time.  These phenomena were
+{\it nondeterminism in computation}
+\index{nondeterminism in computation} and {\it computational complexity}.
+ \index{computational complexity}
+
+\medskip
+
+{\it Nondeterminism} can best be thought of in one of two ways.  The
+first, more concrete, way to think about a nondeterministic computing
+device is as a device that can ``make guesses'' at various junctures
+of a computation, rather than performing some prolonged search through
+plausible alternative fixed paths.  The second, more idealisitic, way
+to think about a nondeterminism is by imagining that a computing
+device has the capability of spawning alternative universes that it
+can proceed through ``in parallel.''
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+We place the phrase ``in parallel'' within quotes because parallel
+computation is a concrete computational paradigm, while
+nondeterministic computation is a conceptual framework for thinking
+about the computational process.
+\end{minipage}
+}
+\bigskip
+
+\noindent 
+Nondeterminism was invented during the 1950s, under a variety of
+names, as a conceptual framework for understand the computing power of
+{\it finite automata}.  \index{finite automata} The concept's
+appearance in the seminal work \cite{RabinS59} by Michael O.~Rabin
+\index{Rabin, Michael O.} and Dana Scott \index{Scott, Dana}
+established the standard way of formulating and discussing the topic.
+
+\medskip
+
+By the early 1960s, computation theorists recognized the importance of
+developing conceptual, mathematical, tools for discussing, analyzing,
+and quantifying the {\it complexity} of computations.  Sample
+motivating questions were:
+\begin{itemize}
+\item
+Is it really harder to multiply two numbers than to add them?
+\item
+Does multiplying two $n \times n$ matrices really require
+$\Omega(n^3)$ operations?
+\item
+Does computational time correlate with program size?
+\end{itemize}
+For close to a decade, models for studying such questions were
+proposed, discarded, improved, and embellished, but no consensus
+developed about an intellectually uniform approach to the topic.  This
+situation largely changed because of Cook's work---and nondeterminism
+played a significant role in the change.
+
+\medskip
+
+**HERE
+
+The importance of this phenomenon and of its representation via
+POS-form expressions has grown immeasurably since that time,
+originally just within the theoretical world, but increasingly in the
+world of applications as well.  The backstory of the preceding
+assertion began in 1971 when Stephen A.~Cook \index{Cook, Stephen A.}
+published, in \cite{Cook71}, a revolutionary new foundation for the
+field of {\it Computational Complexity}. \index{Computational
+  Complexity} Cook achieved this goal by adapting
+arguments\footnote{These arguments were the legacy of intellectual
+  giants such as Kurt G\"{o}del \index{G\"{o}del, Kurt} (in
+  \cite{Goedel31}) and Alan M.~Turing \index{Turing, Alan M.} (in
+  \cite{Turing36}).}~from the decades-old field of {\it Computability
+  Theory} \index{Computability Theory} in a way that enabled one to
+rigorously study complexity-theoretic questions:
 
 \hspace*{.5in}{\em How hard is it to compute function $f$?}
 
@@ -1672,7 +1734,7 @@ intellectually exciting is the following.
 \hspace*{.5in}{\em All {\sf NP}-complete problems can be efficiently
   ``translated'' as one another.}
 
-\paragraph{{\sf SAT} is an {\sf NP}-complete problem}
+\paragraph{\small\sf A. {\sf SAT} is an {\sf NP}-complete problem}
 
 The reason we relate this story at this point is that the problem {\sf
   SAT} was the first ``natural'' problem that was shown by Cook to be
@@ -1717,7 +1779,7 @@ literals per clause, is {\sf NP}-complete.
 
 \medskip
 
-\paragraph{\small\sf C. 2SAT: SAT with $2$ literals per clause}
+\paragraph{\small\sf B. 2SAT: SAT with $2$ literals per clause}
 
 **HERE
 
