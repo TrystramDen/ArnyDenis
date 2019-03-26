@@ -6,8 +6,9 @@
 
 Graphs provide one of the richest technical and conceptual frameworks
 in the world of computing.  They provide concrete representations of
-manifold data structures, hence must be well understood in preparation
-for a ``Data Structures and Algorithms'' course.  They embody tangible
+manifold data structures {\Denis that should be studied in depth}
+\ignore{hence must be well understood }
+in preparation for a ``Data Structures and Algorithms'' course.  They embody tangible
 abstractions of relationships of all sorts, hence must be well
 understood in order to discuss entities as varied as web-search
 engines and social networks with precision and rigor.  As with most of
@@ -32,7 +33,7 @@ Many developments in computing technology over recent decades have
 made it imperative that graphs no longer be viewed by students as the
 static objects introduced early in the history of computational
 studies.  For instance, while it was innovative in the 1960s to employ
-graphs computationally as abstractions of data structures, such a view
+graphs and trees computationally as abstractions of data structures, such a view
 is standard today.  Similar remarks, perhaps with differing dates, can
 be made about graphs as vehicles for representing the flow of control
 and information and as vehicles for representing interconnectivity
@@ -50,13 +51,17 @@ academic program that includes a computation-oriented component.
 
 \subsubsection{Connectivity-related concepts}
 
+% general introduction
 The basic components of a graph $\g$ are \index{graphs!nodes}
 \index{graphs!vertices} \index{node (of a graph)} \index{vertex (of a
-  graph)} its {\em nodes/vertices}\footnote{The singular form of
-  ``vertices'' is {\it vertex}.}~(one encounters both terms in the
+  graph)} its {\em nodes/vertices}
+  \ignore{\footnote{The singular form of
+  ``vertices'' is {\it vertex}.}}~(one encounters both terms in the
 literature) and its {\em edges} \index{graphs!edges} \index{edge (of a
   graph)} that interconnect them.  (The singular form of ``vertices''
 is {\it vertex}.)  \index{graphs!vertex} \index{vertex (of a graph)}
+
+% undirected case
 When graph $\g$ is {\em undirected}, \index{graphs!undirected} each of
 its edges connotes some sort of sibling-like relationship among nodes
 of ``equal'' status.  When graph $\g$ is {\em directed}
@@ -65,17 +70,30 @@ of ``equal'' status.  When graph $\g$ is {\em directed}
 ``unequal'' relationship such as parenthood or priority or dependence;
 edges in directed graphs are often termed {\em
   arcs}. \index{graphs!arc} \index{arc (of a directed graph)}
+
 In many situations involving directed graphs, it is important to
 deal with the {\em dual} \index{graphs!digraph!dual} of a digraph
-$\g$.  This dual---which is usually denoted by some notational
+$\g$.  {\Denis I am not comfortable with the term DUAL which has another 
+meaning in maths programming and linear prog}
+This dual---which is usually denoted by some notational
 embellishment of ``$\g$'', such as $\widehat{\g}$---is the digraph
 obtained by {\em reversing} all of $\g$'s arcs.  One sometimes
 encounters situations when arguments about, or operations on, a
 digraph $\g$ can be ``translated'' to arguments about, or operations
 on, $\widehat{\g}$ with only clerical effort.  A {\em subgraph} $\g'$
 of a graph $\g$ is a graph whose nodes are a subset of $\g$'s and
-whose edges are a subset of $\g$'s that interconnect only nodes of
-$\g'$.  A {\em path} \index{graphs!path} \index{path (in a graph)} in
+whose edges are a subset of $\g$'s that interconnect only nodes of $\g'$.  
+
+\medskip
+
+{\em Undirected} graphs are usually the default concept, in the
+following sense: When $\g$ is described as a ``graph,'' with no
+qualifier ``directed'' or ``undirected,'' it is usually understood
+that $\g$ is an undirected graph.
+
+\medskip
+
+A {\em path} \index{graphs!path} \index{path (in a graph)} in
 an undirected graph is a sequence of nodes within which every adjacent
 pair is connected by an edge.  A path is a {\em cycle}
 \index{graphs!cycle} \index{cycle (in a graph)} if all nodes in the
@@ -84,7 +102,8 @@ identical.  Paths and cycles in directed graphs are defined similarly,
 except that every adjacent pair of nodes must be connected by an arc,
 and all arcs must ``point in the same direction.''
 
-The special class of graphs called {\it trees} \index{graphs!trees}
+{\Denis I moved the following section on trees as the introduction of the section 11.1.2}
+\ignore{The special class of graphs called {\it trees} \index{graphs!trees}
 \index{trees} are identified mathematically as graphs that contain no
 cycles or, equivalently, as graphs in which each pair of nodes is
 connected by a unique path: a tree is thus the embodiment of ``pure''
@@ -107,6 +126,9 @@ would expect from the vernacular, a set of trees is called a {\it
   \label{fig:outtree}
 \end{center}
 \end{figure}
+}
+
+{\Denis may be it lacks a sentence here for the transition...}
 
 A {\it directed graph} \index{graphs!directed} ({\it digraph},
 \index{digraph} for short) $\g$ is given by a set of {\it nodes}
@@ -115,6 +137,7 @@ A {\it directed graph} \index{graphs!directed} ({\it digraph},
 $\n_{\fg}$ and a set of {\it arcs}
 \index{graphs!digraph!arcs}
 (or {\it directed edges}) $\a_{\fg}$.
+In the following, we will omit the subscript if there is no ambiguity.
 \index{$\a_{\fg}$: set of arcs of digraph $\g$}
 Each arc of $\g$ has the form $(u \rightarrow v)$,
 \index{$\rightarrow$: arc in a directed graph}
@@ -143,6 +166,11 @@ the {\it distance} \index{distance!in a digraph}
 \index{digraph!distance} \index{graphs!distance!in a digraph} from
 $u_1$ to $u_n$ in $\g$ is no greater than $n-1$.  (There may exist
 shorter paths in $\g$ from $u_1$ to $u_n$.)
+
+{\Denis Two remarks here: First the term distance is not defined...
+Second, I think we should add a brief paragraph about elementary paths, 
+the Konig lemma is crucial since all the path algorithms require a finite set of vertices
+(I remove the replicate nodes)}
 
 \medskip
 
@@ -183,6 +211,10 @@ usually included only for emphasis.)
 
 \medskip
 
+{\Denis in the following, we move to undirected paths and intentionnally 
+you changed the notation from G to H... It is interesting, but not natural for me,
+I am using spontaneously the same symbol...}
+
 An {\em undirected graph} $\h$ is given by a set of nodes $\n_{\fh}$
 and a set $\e_{\fh}$ 
 \index{$\e_{\fh}$: the set of edges of the undirected  graph $\h$}
@@ -201,34 +233,25 @@ or, more simply: \\
 \hspace*{.35in}the undirected edge $\{u,v\}$ {\em connects} nodes $u$
 and $v$.  \\
 One can view an undirected graph as asserting ``pure'' connectivity,
-whereas directed graphs assert some form of priority or
-directionality.
+whereas directed graphs assert some form of priority or directionality.
 
 A {\it path} in an undirected graph \index{graphs!path in undirected
-  graph} \index{path in and undirectd graph} is a sequence of
+  graph} \index{path in an undirected graph} is a sequence of
 edges---i.e., of $2$-element sets of nodes---such that adjacent edges
 share a node.  For illustration, an $(n-1)$-edge path that connects
-nodes $u$ and $v$ in the undirected graph $\h$ has the form
+nodes $u_1$ and $u_n$ in the undirected graph $\h$ has the form
 \begin{equation}
 \label{eq:undi-path}
-\{u, u_1\}, \ \{u_1, u_2\}, \ \{u_2, u_3\}, \ \ldots, \ \{u_{n-2},
-u_{n-1}\}, \ \{u_{n-1}, v\}
+\{u_1, u_2\}, \ \{u_2, u_3\}, \ \ldots, \ \{u_{n-2}, u_{n-1}\}, \ \{u_{n-1}, u_{n}\}
 \end{equation}
 The path described in (\ref{eq:undi-path}) makes sense only when every
-node $u_i$ belongs to $\n_{\fh}$ and every edge $(u_i \ u_j\}$ belongs
+node $u_i$ belongs to $\n_{\fh}$ and every edge $\{u_i \ u_j\}$ belongs
 to $\e_{\fh}$.  The {\it length} of path (\ref{eq:undi-path}) is the
-number of edges---which is $n-1$ in this example; and the existence of
+number of edges---which is $n-1$ here; and the existence of
 the path means that the {\it distance} \index{graphs!distance} 
 \index{distance!in an undirected graph}
-{\it between} $u$ and $v$ in $\h$ is no greater than $n-1$.  (There
+{\it between} $u_1$ and $u_n$ in $\h$ is no greater than $n-1$.  (There
 may exist shorter paths that connect $u$ and $v$.)
-
-\medskip
-
-{\em Undirected} graphs are usually the default concept, in the
-following sense: When $\g$ is described as a ``graph,'' with no
-qualifier ``directed'' or ``undirected,'' it is usually understood
-that $\g$ is an undirected graph.
 
 \medskip
 
@@ -255,14 +278,12 @@ An $n$-node digraph $\g$ has no more than $n^2$ arcs.
 {\bf (b)}
 An $n$-node graph $\h$ has no more than $\displaystyle {n \choose 2}$ edges.
 
-{\bf (c)}
-An $n$-node (connected) tree has precisely $n-1$ edges.
 \end{prop}
 
 \begin{proof}
 {\bf (a)}
 The set $\a_{\fg}$ of arcs of $\g$ is a subset of the set of ordered
-pairs of nodes of $\g$.  This latter number is clearly $n^2$, becaause
+pairs of nodes of $\g$.  This latter number is clearly $n^2$, because
 one can choose the first node in a pair in $n$ ways and then {\em
   independently} choose the second node in $n$ ways.
 
@@ -280,29 +301,7 @@ lead to the same unordered set $\{ u,v\}$, hence the same edge of
 $\h$.  After these eliminations, we are left with
 \[ \frac{n^2 - n}{2} \ = \ {n \choose 2} \]
 $2$-element subsets of $\n_{\fh}$, from which we choose the edges of
-$\h$.
-
-\smallskip
-
-\noindent {\bf (c)}
-Let us proceed by induction on $n$.
-
-The base case $n=2$ is obvious, because one edge is both necessary and
-sufficient to connect two nodes.
-
-Assume for induction that the indicated tally is correct for all trees
-having no more than $k$ nodes.
-
-Consider, for the purpose of extending the induction, any tree $\t$ on
-$k+1$ nodes.  Easily, $\t$ must contain at least one leaf-node---i.e.,
-a node $v$ of degree $1$---or else $\t$ would contain a cycle.  If we
-remove $v$ and its incident edge, we now have a tree on $k$ nodes
-which, by induction, has $k-1$ edges.  When we reattach node $v$, to
-restore $\t$ to its original state, we see that $\t$ has $k+1$ nodes
-and $k$ edges.
-
-Because $\t$ was an arbitrary $(k+1)$-node tree, the induction is
-extended.  \qed
+$\h$. \qed
 \end{proof}
 
 
@@ -314,11 +313,14 @@ In any undirected graph, the number of nodes of odd degree is even.
 \begin{proof}
 The result follows directly from the following equation that holds for
 any undirected graph $\g$:
+
+{\Denis we are dealing with undirected graphs and the notation is still $\g$ and not $\h$...
+This is connected with my previous remark. Let take $\g$ everywhere?}
 \[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot
 |\e_{\cal G}|.
 \]
 The equation holds because each edge $e$ of $\g$ ``touches'' two nodes
-of $\g$, namely, $e$'s two endpoints.  Since the sum of $\g$'s
+of $\g$, namely, $\e$'s two endpoints.  Since the sum of $\g$'s
 node-degrees is even, each odd node-degree must be paired (in the sum)
 with another odd node-degree.  \qed
 \end{proof}
@@ -367,7 +369,7 @@ pair of nodes $u, v \in \n_{\fg}$ is connected by a path in $\g$.  If
 graph $\g$ is {\em not} connected, then it is the disjoint union of
 some number $c$ of connected subgraphs, usually called $\g$'s {\it
   (connected) components}.  \index{graphs!connected components} Of
-course, $g$ is connected just when $c=1$; i.e., there is a single
+course, $\g$ is connected just when $c=1$; i.e., there is a single
 connected component.
 
 \subsubsection{Distance-related concepts}
@@ -417,6 +419,8 @@ detail:
 \end{array}
 \right.
 \end{equation}
+{\Denis Same remark as before, we are dealing with undirected graphs and the notation is $\g$ instead of $\h$...}
+
 The {\it diameter} \index{diameter in a graph} \index{graphs!diameter}
 of an undirected graph $\h$ is the largest distance between two nodes
 of $\h$, i.e., the largest number $d$ for which the exist nodes $u_1,
@@ -442,7 +446,8 @@ Thus, the number of odd vertices is even.% as depicted in Figure~\ref{propertyOd
 *************}
 
 \bigskip
-
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
 Our discussion of internode distances within graphs have focused on
 shortest (or longest) path problems in {\em unweighted} graphs.  A
 variety of important applications can be modeled via path-distance
@@ -455,7 +460,10 @@ easier/cheaper than going from $v$ to $u$.  Happily, determining
 shortest (or longest) paths in a directed or undirected graph $\g$ can
 be accomplished ``efficiently''---which in the algorithmic world means
 ``in a number of steps that is polynomial in the size of $\g$''.
- 
+ \end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Matchings in graphs}
 \index{graphs!matching}
@@ -482,7 +490,7 @@ matching in graphs.
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
 Although the definitions of the various versions of matching are
-readily accessible to even the beginning student of mathematics, munch
+readily accessible to even the beginning student of mathematics, much
 of the more sophisticated mathematical knowledge about matchings is
 beyond any beginning text.  The interested reader might consult a more
 advanced source, such as \cite{Berge73}, to get a feeling for what is
@@ -522,6 +530,7 @@ We leave to the reader the challenge of verifying that the following
   how this choice affects future choices.}~process satisfies the
 conditions of the Proposition.
 
+{\Denis Rewrite with the algo style and put it in a more algorithmic language}
 \noindent
 {\it The Process:} \\
 Begin by laying the nodes of $\g$ out, left to right, in any way.
@@ -541,7 +550,7 @@ remove node $u$ from the layout.
   \end{enumerate}
 The real challenge here is to find a data structure that allows an
 efficient search for a ``remaining'' neighbor-node $v$ at each step of
-the selction process.
+the selection process.
 \qed
 \end{proof}
 
@@ -588,12 +597,39 @@ achieves this efficiency can be based on the colorfully named {\it
 original source \cite{Kuhn55} or the encyclopedic algorithms text
 \cite{CLRS}.)
 
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Trees}
 \label{sec:Trees}
 
 The special class of graphs called {\it trees} \index{graphs!trees}
 \index{trees} occupy a place of honor within both the mathematical
 field called {\it graph theory} and within the vernacular.
+They are identified mathematically as graphs that contain no
+cycles or, equivalently, as graphs in which each pair of nodes is
+connected by a unique path: a tree is thus the embodiment of ``pure''
+connectivity (see Fig.~\ref{fig:tree} for an example of tree).  As one
+would expect from the vernacular, a set of trees is called a {\it
+  forest}. \index{forest (of trees)}
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.7]{FiguresGraph/tree}
+       \hspace{1cm}
+       \includegraphics[scale=0.7]{FiguresGraph/outtree}
+       \caption{An undirected tree with 10 vertices (left) and a directed out tree (right).}
+  \label{fig:tree}
+\end{center}
+\end{figure}
+
 
 Mathematically speaking, a tree is a graph that contains no cycles,
 i.e., is {\it cycle-free}. \index{graphs!cycle-free} Equivalently, a
@@ -601,8 +637,7 @@ tree is a graph in which each pair of distinct nodes is connected by
 precisely one path.  A tree is thus the embodiment of ``pure''
 connectivity: it provides the minimal interconnection structure that
 provides paths that connect every pair of nodes.  As one might expect
-from the vernacular, a set of trees is called a {\it
-  forest}. \index{forest (of trees)}
+from the vernacular, a set of trees is called a {\it forest}. \index{forest (of trees)}
 
 We have just given two distinct definitions of ``tree''.  The reader
 should prove that both definitions define the same class of graphs.
@@ -613,84 +648,40 @@ Prove that the two definitions of ``tree'' are equivalent.  In other
 words, prove that the following assertions about a connected graph
 $\t$ are equivalent, in the sense that one assertion holds if, and
 only if, the other does.
-\begin{itemize}
+\begin{enumerate}
 \item
 The graph $\t$ is cycle-free.
 \item
 Each pair of distinct nodes of $\t$ is connected by precisely one
 path.
-\end{itemize}
+\item
+An $n$-node connected tree $\t$ has precisely $n-1$ edges.
+\end{enumerate}
 \end{prop}
 
-{\Arny A GOOD EXERCISE?}
+Let us detail the proof of the last property.
 
-One of the major uses of trees and forests is as a way of succinctly
-``summarizing'' the connectivity structure inherent in an undirected
-graph.  This role is inherent in the notion of a {\it spanning tree}
-\index{graphs!spanning tree} \index{spanning tree} of a connected
-graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$ whose node-set
-is identical to $\g$'s:
-\[ \n_{\ft(\fg)} \ = \ \n_{\fg} \]
-and all of whose edges are edges of $\g$:
-\[ \e_{\ft(\fg)} \ \subseteq \ \e_{\fg}. \]
-Not surprisingly, a connected graph $\g$  typically has {\em many}
-spanning trees.  All such trees share $\g$'s node-set, but they may
-choose quite different sets of edges.
+\begin{proof}
+\noindent 
+Let us proceed by induction on $n$.
 
-{\Arny Chance for some exercises here}
+The base case $n=2$ is obvious, because one edge is both necessary and
+sufficient to connect two nodes.
 
-For a graph $\g$ that is not connected, we replace the notion of
-spanning tree of $\g$ with the analogous notion of a {\it spanning
-  forest} \index{graphs!spanning forest} \index{spanning forest} of
-$\g$.  We shall typically discuss only spanning trees in this section,
-leaving the reader to extrapolate the discussion to include spanning
-forests of unconnected graphs.
+Assume for induction that the indicated tally is correct for all trees
+having no more than $k$ nodes.
 
-The major use of spanning trees in applications is to ``summarize''
-the full connectivity structure of a graph---and of the entities that
-the graph models, such as a map, the layout of a museum, etc.  When
-used in this way, the edges of spanning trees are typically {\em
-  weighted}, \index{graphs!spanning tree!edge-weighted} in order to
-model a ``cost'' of incorporating that edge in the tree.  The types of
-computational problem modeled via edge-weighted spanning trees
-include: the optimal placement of firehouses, or hospitals, in a town
-and the optimal deployment of security mechanisms in an art museum.
-Reflecting problems wherein edge-weights measure transit costs, it is
-a classical computational problem to seek a {\em minimum-weight
-  spanning tree} \index{graphs!minimum-weight spanning tree}
-\index{minimum-weight spanning tree} (or, in the vernacular, a {\em
-  minimum spanning tree}).  Happily, this classical optimization
-problem can be solved within a number of steps that is linear in the
-number of edges of $\g$ \cite{CLRS}.
+Consider, for the purpose of extending the induction, any tree $\t$ on
+$k+1$ nodes.  Easily, $\t$ must contain at least one leaf-node---i.e.,
+a node $v$ of degree $1$---or else $\t$ would contain a cycle.  If we
+remove $v$ and its incident edge, we now have a tree on $k$ nodes
+which, by induction, has $k-1$ edges.  When we reattach node $v$, to
+restore $\t$ to its original state, we see that $\t$ has $k+1$ nodes
+and $k$ edges.
 
-{\Arny Giving just a {\em hint} at a solution for MST to real
-  beginners is probably useless}
-\ignore{*********
-There are mainly two ways for constructing such a MST, each one
-emphasizes a different propriety of the MST, namely, avoid cycles and
-minimize the span.  In both cases, the edges are sorted in increasing
-order of weights.  More precisely, the first one constructs a subtree
-which partially spans the graph by adding at each step the minimum
-neighboring edge while the other add successively the edges of minimal
-weights that do not create a cycle.
-*************}
-
-Just as with graphs, there is a {\em directed} version of trees which
-is formed by replacing the (unoriented) edges of an undirected tree by
-(oriented) arcs; see Fig.~\ref{fig:outtree}.  Within a directed tree
-$\t$, one often says that an arc goes from a {\it parent node}
-\index{trees!parent node} to a {\it child node} \index{trees!child
-  node}.  Extending this anthropomorphic metaphor, one often talks
-about the {\it ancestor(s)} \index{trees!ancestor node} and {\it
-  descendant(s)} \index{trees!descendant node} of a tree-node.  We
-single out two special classes of nodes: A {\it root (node)}
-\index{trees!root (node)} \index{root (of a directed tree)} of $\t$ is
-defined by its having no entering arcs, i.e., indegree $0$; a {\it
-  leaf (node)} \index{trees!leaf (node)} \index{leaf (of a directed
-  tree)} of $\t$ is defined by its having no exiting arcs, i.e.,
-outdegree $0$.  The reader is certainly familiar with the use of
-rooted directed trees to represent family trees and corporate
-hierarchies.
+Because $\t$ was an arbitrary $(k+1)$-node tree, the induction is
+extended.  \qed
+\end{proof}
 
 \bigskip
 
@@ -757,7 +748,7 @@ respectively, the {\em ancestor} \index{trees!ancestor node} and {\em
   descendant} \index{trees!descendant node} relations.  The {\em
   degree} \index{degree (of a node in a tree)} of a node $v$ in a tree
 is the number of children that the node has, call it $c_v$.  If every
-nonleaf node in a tree has the same degree $c$, then we call $c$ the
+non-leaf node in a tree has the same degree $c$, then we call $c$ the
 {\em degree of the tree}.  \index{degree of a tree}
 
 It is sometimes useful to have a symbolic notation for the ancestor
@@ -865,6 +856,81 @@ none
 \end{table}
 *********************}
 
+\subsubsection{Spanning trees}
+
+One of the major uses of trees and forests is as a way of succinctly
+``summarizing'' the connectivity structure inherent in an undirected
+graph.  This role is inherent in the notion of a {\it spanning tree}
+\index{graphs!spanning tree} \index{spanning tree} of a connected
+graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$ whose node-set
+is identical to $\g$'s:
+\[ \n_{\ft(\fg)} \ = \ \n_{\fg} \]
+and all of whose edges are edges of $\g$:
+\[ \e_{\ft(\fg)} \ \subseteq \ \e_{\fg}. \]
+Not surprisingly, a connected graph $\g$  typically has {\em many}
+spanning trees.  All such trees share $\g$'s node-set, but they may
+choose quite different sets of edges.
+
+\ignore{
+{\Arny Chance for some exercises here}
+
+For a graph $\g$ that is not connected, we replace the notion of
+spanning tree of $\g$ with the analogous notion of a {\it spanning
+  forest} \index{graphs!spanning forest} \index{spanning forest} of
+$\g$.  We shall typically discuss only spanning trees in this section,
+leaving the reader to extrapolate the discussion to include spanning
+forests of unconnected graphs.
+}
+
+
+The major use of spanning trees in applications is to ``summarize''
+the full connectivity structure of a graph---and of the entities that
+the graph models, such as a map, the layout of a museum, etc.  When
+used in this way, the edges of spanning trees are typically {\em
+  weighted}, \index{graphs!spanning tree!edge-weighted} in order to
+model a ``cost'' of incorporating that edge in the tree.  The types of
+computational problem modeled via edge-weighted spanning trees
+include: the optimal placement of firehouses, or hospitals, in a town
+and the optimal deployment of security mechanisms in an art museum.
+Reflecting problems wherein edge-weights measure transit costs, it is
+a classical computational problem to seek a {\em minimum-weight
+  spanning tree} \index{graphs!minimum-weight spanning tree}
+\index{minimum-weight spanning tree} (or, in the vernacular, a {\em
+  minimum spanning tree}).  Happily, this classical optimization
+problem can be solved within a number of steps that is linear in the
+number of edges of $\g$ \cite{CLRS}.
+
+{\Arny Giving just a {\em hint} at a solution for MST to real
+  beginners is probably useless}
+\ignore{*********
+There are mainly two ways for constructing such a MST, each one
+emphasizes a different propriety of the MST, namely, avoid cycles and
+minimize the span.  In both cases, the edges are sorted in increasing
+order of weights.  More precisely, the first one constructs a subtree
+which partially spans the graph by adding at each step the minimum
+neighboring edge while the other add successively the edges of minimal
+weights that do not create a cycle.
+*************}
+
+Just as with graphs, there is a {\em directed} version of trees which
+is formed by replacing the (unoriented) edges of an undirected tree by
+(oriented) arcs; see Fig.~\ref{fig:outtree}.  Within a directed tree
+$\t$, one often says that an arc goes from a {\it parent node}
+\index{trees!parent node} to a {\it child node} \index{trees!child
+  node}.  Extending this anthropomorphic metaphor, one often talks
+about the {\it ancestor(s)} \index{trees!ancestor node} and {\it
+  descendant(s)} \index{trees!descendant node} of a tree-node.  We
+single out two special classes of nodes: A {\it root (node)}
+\index{trees!root (node)} \index{root (of a directed tree)} of $\t$ is
+defined by its having no entering arcs, i.e., indegree $0$; a {\it
+  leaf (node)} \index{trees!leaf (node)} \index{leaf (of a directed
+  tree)} of $\t$ is defined by its having no exiting arcs, i.e.,
+outdegree $0$.  The reader is certainly familiar with the use of
+rooted directed trees to represent family trees and corporate
+hierarchies.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Computationally Significant ``Named'' Graphs}
 \label{sec:graphs-important-families}
 
@@ -905,7 +971,6 @@ because it is a simple instance of the anonymity problem inherent to
 many modern distributed computing environments.  {\it How does one
   orchestrate cooperative activities when all agents ``are
   identical''?}
-
 \item
 The remaining graphs, the {\it mesh and torus networks}\footnote{These
   two structures, though distinct, are usually discussed together
@@ -1476,9 +1541,24 @@ The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
 4$ torus $\widetilde{\m}_{4,4}$.
 \end{prop}
 
-{\Arny Proof is an EXERCISE}
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/Isomorphism1}
+       \caption{A representation of $\q_4$.}
+  \label{fig:isomorphism1}
+\end{center}
+\end{figure}
 
-We relegate the proof of this result to a Exercise, supplying as a
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/Isomorphism2}
+       \caption{Transformation of $\q_4$ to a $4 \times 4$ torus.}
+  \label{fig:isomorphism2}
+\end{center}
+\end{figure}
+
+A graphical proof is depicted in Fig.~\ref{fig:isomorphism1}  and ~\ref{fig:isomorphism2} and 
+We relegate the formal proof of this result to a Exercise, supplying as a
 hint the coding scheme (or, bijection) depicted in
 Fig.~\ref{fig:toruslabel}.
 \begin{figure}[hbt]
