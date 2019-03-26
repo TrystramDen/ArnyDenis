@@ -1584,6 +1584,8 @@ The following simple example should clarify these terms.
 \end{array}
 \]
 
+\paragraph{\small\sf A. {\sf SAT}: the original {\sf NP}-complete problem}
+
 The general form of {\it The Satisfiability Problem for the
   Propositional Calculus} 
 \index{The Satisfiability Problem (for the Propositional Calculus)}
@@ -1632,13 +1634,13 @@ the same logical problem.  {\Arny This is a good exercise to verify
 Until 1971, POS expressions were largely viewed simply as the duals of
 the somewhat more common {\it SOP}-form expressions, 
 \index{SOP-form expression}, shorthand for {\it sums of products}.  A
- discovery in 1971 by Stephen A.~Cook \index{Cook, Stephen A.}
- changed this view, by exposing how POS-form expressions can be used
- to model a number of computational phenomena whose importance was
- only beginning to be appreciated at that time.  These phenomena were
-{\it nondeterminism in computation}
+discovery in 1971 by Stephen A.~Cook \index{Cook, Stephen A.}  changed
+this view, by exposing, in \cite{Cook71}, how POS-form expressions can
+be used to model a number of computational phenomena whose importance
+was only beginning to be appreciated at that time.  These phenomena
+were {\it nondeterminism in computation}
 \index{nondeterminism in computation} and {\it computational complexity}.
- \index{computational complexity}
+\index{computational complexity}
 
 \medskip
 
@@ -1694,33 +1696,37 @@ played a significant role in the change.
 
 \medskip
 
-**HERE
-
-The importance of this phenomenon and of its representation via
-POS-form expressions has grown immeasurably since that time,
-originally just within the theoretical world, but increasingly in the
-world of applications as well.  The backstory of the preceding
-assertion began in 1971 when Stephen A.~Cook \index{Cook, Stephen A.}
-published, in \cite{Cook71}, a revolutionary new foundation for the
-field of {\it Computational Complexity}. \index{Computational
-  Complexity} Cook achieved this goal by adapting
-arguments\footnote{These arguments were the legacy of intellectual
-  giants such as Kurt G\"{o}del \index{G\"{o}del, Kurt} (in
-  \cite{Goedel31}) and Alan M.~Turing \index{Turing, Alan M.} (in
-  \cite{Turing36}).}~from the decades-old field of {\it Computability
-  Theory} \index{Computability Theory} in a way that enabled one to
-rigorously study complexity-theoretic questions:
-
-\hspace*{.5in}{\em How hard is it to compute function $f$?}
-
-\noindent
-rather than the classical computability-theoretic questions:
-
-\hspace*{.5in}{\em Can one write a program to compute function $f$?}
-
-\noindent
+In 1971, Cook published, in \cite{Cook71}, a revolutionary new
+foundation for the field of {\it computational complexity}.
+\index{computational complexity} Cook achieved this goal by adapting
+conceptual frameworks\footnote{These frameworks were the legacy of
+  intellectual giants such as Kurt G\"{o}del \index{G\"{o}del, Kurt}
+  (in \cite{Goedel31}) and Alan M.~Turing \index{Turing, Alan M.} (in
+  \cite{Turing36}).}~from the decades-old field known variously as
+{\it computability theory} \index{computability theory} and {\it
+  computation theory}. \index{computation theory}
+Whereas computability theory enabled one to study questions about the
+{\em feasibility} of computing a function $f$:
+\begin{itemize}
+\item
+Can one write a program to compute function $f$?
+\end{itemize}
+Cook's adaptation enabled one to rigorously study questions of the
+following types about the {\em complexity} of computing functions $f$
+and $g$.
+\begin{itemize}
+\item
+Why is it easy (computationally) to prove that $f(x) = y$, but hard to
+compute $f(x)$?
+\item
+Why can you adapt any program that computes function $f$ to a
+``similar'' program that computes function $g$, even though these
+functions do not apparently have any relationship to one another?
+\item
+Is function $f$ inherently harder to compute than function $g$?
+\end{itemize}
 Cook's ingenious adaptation created a new theory that was named {\it
-  (the theory of) {\sf NP}-completeness} \index{{\sf NP}-completeness}
+  (the theory of) {\sf NP}-completeness}, \index{{\sf NP}-completeness}
 \index{{\sf NP}-complete computational problems} for reasons that are
 explained in sources such as \index{GareyJ79}.  In very informal, but
 hopefully evocative terms, {\sf NP}-complete computational problems
@@ -1728,39 +1734,52 @@ are problems whose solutions are {\em easy to check} but {\em hard to
   find}.  (Of course, the adjectives ``hard'' and ``easy'' have
 technical meanings, but developing these meanings is beyond the scope
 of this text.  These concepts are developed ``gently'' but
-systematically in texts such as \index{Rosenberg09}.)  What is
-intellectually exciting is the following.
+systematically in texts such as \index{Rosenberg09}.)
 
-\hspace*{.5in}{\em All {\sf NP}-complete problems can be efficiently
-  ``translated'' as one another.}
-
-\paragraph{\small\sf A. {\sf SAT} is an {\sf NP}-complete problem}
+Tying up loose ends: The notion {\em easy to check} is formalized
+using the concept of computational nondeterminism that we just
+discussed.  And, the technical apparatus used to represent
+nondeterminism in Cook's formulation is manifest in the disjunctions
+that abound in POS-form expressions---and in the associated
+Satisfiability problem {\sf SAT}!
 
 The reason we relate this story at this point is that the problem {\sf
   SAT} was the first ``natural'' problem that was shown by Cook to be
 {\sf NP}-complete!  (The term ``{\sf NP}-complete'' does not occur in
-\cite{Cook71}; there was not yet a name for this concept.)
-
-\noindent
-To round out the story, within a year, Richard M.~Karp 
-\index{Karp, Richard M.} 
+\cite{Cook71}; there was not yet a name for this concept.)  To round
+out the story, within a year, Richard M.~Karp \index{Karp, Richard M.}
 and colleagues had greatly lengthened the list of computational
-problems that Cook's nascent theory encompassed.  The details
-of the theory of {\sf NP}-completeness are beyond the scope of this
-text, but we do want the reader to recognize the following.
+problems that Cook's nascent theory encompassed.  The details of the
+theory of {\sf NP}-completeness are beyond the scope of this text, but
+we do want the reader to recognize the following.
 
 It remains mathematically {\em possible} that {\sf NP}-complete
-problems can be solved efficiently---meaning ``in time polynomial in
-the size of the description of the problem''---for the {\sf SAT}
-problem, this size is measured in terms of the number of literals in
-the POS popositoinal formula.  However it is mathematically {\em
-  certain} that if any one problem in this class has a polynomial-time
-solution, then every problem in this class does.
+problems can be solved ``efficiently''---meaning, technically, ``in
+time polynomial in the size of the description of the problem''.  (For
+the {\sf SAT} problem, this size is measured in terms of the number of
+literals in the POS popositoinal formula.)  However it is
+mathematically {\em certain} that if any one problem in this class has
+a polynomial-time solution, then every problem in this class does.
+This is because of the following intellectually exciting fact, which
+is known as {\it Cook's Theorem} \index{Cook's Theorem}.  Even without
+the technical details---which are available in sources such as
+\cite{GareyJ79,Rosenberg09}---the excitement of this result should be
+clear.
+
+\begin{theorem}[Cook's Theorem \cite{Cook71}]
+All {\sf NP}-complete problems can be efficiently ``translated'' as
+one another.  In detail:
+
+Let {\sf A} and {\sf B} be {\sf NP}-complete problems.  There exists a
+polynomial-time computable function $f_{{\sf A} \rightarrow {\sf B}}$
+that produces an instance of problem {\sf B} when given an instance of
+problem {\sf A}.
+\end{theorem}
 
 Given the half-century that has passed since the work of Cook and
-Karp, and given the practical importance of many of the problems that
-are known to be {\sf NP}-complete, it is widely {\em suspected} that
-no {\sf NP}-complete problem can be solved via a polynomial-time
+Karp, and given the {\em practical} importance of many of the problems
+that are known to be {\sf NP}-complete, it is widely {\em suspected}
+that no {\sf NP}-complete problem can be solved via a polynomial-time
 algorithm.
 
 There is a large, vibrant literature concerning approaches for
@@ -1771,15 +1790,12 @@ problems, and by developing heuristics for such problems, whose
 behavior cannot be guaranteed but which seem to work well ``in
 practice''.
 
-\medskip
-
-In fact, it is proved in \cite{Cook71} that the {\sf 3SAT} problem,
-i.e., the  {\sf SAT} problem that is restrincted to formulae with $3$
-literals per clause, is {\sf NP}-complete.
-
-\medskip
 
 \paragraph{\small\sf B. 2SAT: SAT with $2$ literals per clause}
+
+In fact, it is proved in \cite{Cook71} that the {\sf 3SAT} problem,
+i.e., the  {\sf SAT} problem that is restricted to formulae with $3$
+literals per clause, is {\sf NP}-complete.
 
 **HERE
 
