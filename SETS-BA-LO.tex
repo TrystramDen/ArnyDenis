@@ -1,4 +1,4 @@
-%version of 03-26-19
+%version of 03-27-19
 
 \chapter{SETS, BOOLEAN ALGEBRA, AND LOGIC}
 \label{ch:sets-BA-logic}
@@ -1590,7 +1590,7 @@ The general form of {\it The Satisfiability Problem for the
   Propositional Calculus} 
 \index{The Satisfiability Problem (for the Propositional Calculus)}
 is denoted {\sf SAT}. \index{{\sf SAT}: The Satisfiability Problem} 
-\index{{\sf SAT}!definition}
+\index{{\sf SAT}}\index{{\sf SAT}!definition}
 The problem can be viewed in two formally distinct but algorithmically
 equivalent ways.
 \begin{itemize}
@@ -1615,15 +1615,15 @@ In the {\it formal logical formulation}:
 \index{{\sf SAT}!formal logical formulation}
   \begin{itemize}
   \item
-The Satisfiability Problem is specified by a propositional formula that
-is  a {\it conjunction of disjuncts of logical literals}.
+The Satisfiability Problem is specified by a propositional formula
+$\Phi$ that is  a {\it conjunction of disjuncts of logical literals}.
 
 In the lingo of the ``in-crowd'', these expressions are said to be in
 {\it POS} form, \index{POS-form expression} shorthand for a {\it
   (logical) product of (logical) sums}.
   \item
 The Satisfiability question is: Can one assign truth values to all of
-the logical variables of the formula in a way that has every disjunct
+the logical variables of formula $\Phi$ in a way that has every disjunct
 evaluate to {\small\sf true}?
   \end{itemize}
 \end{itemize}
@@ -1767,20 +1767,31 @@ the technical details---which are available in sources such as
 clear.
 
 \begin{theorem}[Cook's Theorem \cite{Cook71}]
-All {\sf NP}-complete problems can be efficiently ``translated'' as
-one another.  In detail:
+\label{thm:Cook}
+{\bf (a)}
+The Satisfiability Problem for the Propositional Calculus, {\sf SAT},
+is {\sf NP}-complete.
 
-Let {\sf A} and {\sf B} be {\sf NP}-complete problems.  There exists a
-polynomial-time computable function $f_{{\sf A} \rightarrow {\sf B}}$
-that produces an instance of problem {\sf B} when given an instance of
-problem {\sf A}.
+\noindent{\bf (b)}
+All {\sf NP}-complete problems can be efficiently ``translated'' as
+one another.
 \end{theorem}
+
+The detailed meaning of part (b) of Theorem~\ref{thm:Cook} is the
+following.  {\em Let {\sf A} and {\sf B} be {\sf NP}-complete
+  problems.  There exists a polynomial-time computable function
+  $f_{{\sf A} \rightarrow {\sf B}}$ that produces an instance of
+  problem {\sf B} when given an instance of problem {\sf A}.}
+
+\medskip
 
 Given the half-century that has passed since the work of Cook and
 Karp, and given the {\em practical} importance of many of the problems
 that are known to be {\sf NP}-complete, it is widely {\em suspected}
 that no {\sf NP}-complete problem can be solved via a polynomial-time
 algorithm.
+
+\medskip
 
 There is a large, vibrant literature concerning approaches for
 lessening the negative computational impacts of {\sf
@@ -1793,125 +1804,52 @@ practice''.
 
 \paragraph{\small\sf B. 2SAT: SAT with $2$ literals per clause}
 
-In fact, it is proved in \cite{Cook71} that the {\sf 3SAT} problem,
-i.e., the  {\sf SAT} problem that is restricted to formulae with $3$
-literals per clause, is {\sf NP}-complete.
+Once a framework for discussing the complexity of computations
+received general acceptance, researchers began to investigate the
+boundaries within the framework: How, and how much, could one
+``weaken'' an {\sf NP}-complete problem before one lost the problem's
+{\sf NP}-complete?  One of the earliest examples of this activity
+occurred within the paper that actually invented the framework,
+namely, \cite{Cook71}!  A careful analysis revealed the following
+strengthening of Theorem~\ref{thm:Cook}(a).
 
-**HERE
+\begin{theorem}[Cook's Theorem: stronger version]
+\label{thm:Cook-3SAT}
+{\sf 3SAT}, the {\sf SAT} problem with $3$ literals per clause is {\sf
+  NP}-complete.
+\end{theorem}
+\index{{\sf 3SAT}: the {\sf SAT} problem with $3$ literals per clause}
+\index{{\sf SAT}!{\sf 3SAT}: {\sf SAT} with $3$ literals per clause}
 
-
-
-SAT is well-known problem that plays a particular role in theoretical
-Computer Science since it was the first problem to be proved to be
-NP-complete.  However, if we restrict the cardinality of the clauses
-to 2, 2SAT can be polynomially solvable.  This result can be proved
-elegantly by using graphs. Notice that the variant 3SAT (Clauses of
-cardinality $3)$ remains NP-complete.  The idea is to transform the
-boolean formula $\Phi = C_1 \wedge C_2 \wedge ... \wedge C_m$ into a
-graph $G(\Phi)$ with $2n$ vertices where:
-
-\begin{itemize}
-\item
-Each vertex corresponds to one variable in the two states $x$ and
-$\bar{x}$.
-\item
-Each clause $C_i = (a \vee b)$ is transformed into an arc between
-vertices $\bar{a}$ and $b$.
-
-The meaning is to translate the fact that $b$ should be assigned to
-{\em true} in case if $a$ is {\em false} (in other words, $\bar{a}
-\rightarrow b$).  Controversally, there is an arc from $\bar{b}$ to
-$a$ if $b$ is {\em false}, $a$ should be {\em true}.
-\end{itemize}
-
-In this graph, all the paths represent the valid logical implications. 
+Of course, the natural question raised by Theorem~\ref{thm:Cook-3SAT}
+is: What is the complexity of {\sf 2SAT}: the variant {\sf SAT}
+problem in which each clause has only $2$ literals?
+\index{{\sf 2SAT}: the {\sf SAT} problem with $2$ literals per clause}
+\index{{\sf SAT}!{\sf 2SAT}: {\sf SAT} with $2$ literals per clause}
+This section is dedicated to answering this question.  We include this
+computation-theoretic material in our ``pure'' mathematics text
+because it turns out that the answer reveals, in an elegant manner, an
+interesting, nonobvious intersection region for the fields of
+mathematical logic, computational complexity, algorithms, and graph
+theory; indeed, we shall defer developing this answer until we 
+introduce the basic notions concerning graphs, in
+Section~\ref{sec:graph-model-2SAT}.
 
 \begin{prop}
-\label{prop:2SAT}
-The boolean expression $\Phi = C_1 \wedge C_2 \wedge ... \wedge C_m$
-is satisfiable iff no strong component of $G(\Phi)$ contains both a
-vertex $x$ and its negation $\bar{x}$.
+\label{thm:2SAT}
+The {\sf 2SAT} problem can be solved in polynomial time.
+
+\noindent
+That is, given any instance $\Phi$ of {\sf 2SAT}, one can determine in
+time polynomial in the number of literals in $\Phi$ whether there
+exists a satisfying assignment of truth-values to the variables of
+$\Phi$.
 \end{prop}
 
-The proof is a consequence of the two following elementary results.
-
-\begin{prop}
-\label{prop:2SATlemma1}
-If $G(\Phi)$ contains a path from $x$ to $y$ then, it has a path from
-$\bar{y}$ to $\bar{x}$.
-\end{prop}
-
-The proof is easy by induction on the length of the shortest path from $x$ to $y$. 
-
-
-\begin{prop}
-\label{prop:2SATlemma2}
-If $G(\Phi)$ contains a path from $x$ to $y$ then for every satisfying
-truth assignment $t$, $x(t)=1$ implies $y(t)=1$.
-\end{prop}
-
-\begin{proof}
-Suppose that $\Phi$ is satisfied by a truth assignment $t$ where
-$x(t)=1$.  By contradiction, if along the path from $x$ to $\bar{x}$ ,
-there exists an arc (say $\alpha,\beta$) such that $\alpha$ is {\em
-  true} and $\beta$ is {\em false}.  As this arc belongs to $G(\Phi)$
-it means that the clause ($\bar{\alpha},\beta$) is a clause of $\Phi$
-whose assignment is ({\em false},{\em false}) and thus, the clause is
-not satisfied.
-\end{proof}
-\medskip
-
-Let us now prove the main result.
-
-\begin{proof}
-Suppose that $\Phi$ is satisfied by a truth assignment of $x$.  By
-first part of the proof is by contradiction, $\Phi$ is satisfiable by
-the truth assignment $t$.  and there exists a strong component that
-contains both $x$ and $\bar{x}$.  From the previous
-result~\ref{prop:2SATlemma2}, $x(t)=1$ implies that $\bar{x}=1$, which
-is impossible.
-
-Let prove now that there is no strong component that contains bit a
-variable $x$ and its negation.  We construct as follows a truth
-assignment for $\Phi$: Let order the strong component $S_i$ in the
-topologic order from $1$ to $k$, that is, there is no arc from $S_j$
-and $S_i$ if $i<j$.  Let mark all the non-assigned variables and start
-form the strong component which has the largest index.  We proceed
-backwards, if there is any variable in the current $S_i$ whose
-negation has been assigned, assign it to $0$ otherwise, assign it to
-$1$.  This way, all the clauses are satisfied.  Indeed assume by
-contradiction that there is a clause $\alpha \vee \beta$ which is not
-(this means that $\alpha = 0$ and then, $\bar{\alpha}$ has been
-assigned to $1$ before, in a strong component with a higher index.
-The same stands for $\beta$ which is impossible since $\alpha \vee
-\beta$ corresponds to an arc $\bar{\alpha},\beta$.  \qed
-\end{proof}
-
-
-Let us develop two examples to illustrate this problem.  The first one
-$\Phi_1 = (\bar{x_{3}} \vee \bar{x_{1}}) \wedge (x_{1} \vee
-\bar{x_{2}}) \wedge (x_{2} \vee x_{3})$ is depicted in
-Fig.~\ref{2SATyes}). It leads to a positive truth assignment while the
-second one $\Phi_2 = (\bar{x_{3}} \vee \bar{x_{1}}) \wedge
-(\bar{x_{1}} \vee {x_{3}}) \wedge (x_{2} \vee x_{3})$
-(Fig.~\ref{2SATno}) is negative.
-
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=0.3\textwidth]{FiguresGraph/2SATyes.png}
-        \caption{There are two strong components that provides a truth assignment, for instance with $x_1=0, x_2=0, x_3=1$.}
-\label{2SATyes}
-\end{center}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center}
-\includegraphics[width=0.3\textwidth]{FiguresGraph/2SATno.png}
-        \caption{There exists a path from $x_1$ to $\bar{x_1}$, thus the formula can not be satisfied.}
-\label{2SATno}
-\end{center}
-\end{figure}
+The proof of Proposition~\ref{thm:2SAT} requires the basic
+connectivity-related notions underlying graphs.  These are available
+in Section~\ref{sec:connectivity-notions}, and the proof follows
+immediately, in Section~\ref{sec:graph-model-2SAT}.
 
 
 
