@@ -4,11 +4,133 @@
 \label{ch:Exercises}
 
 
+\section{Summation}
+
+
+\subsection{Compute $\Delta_n$ and sum of squares}
+
+\ignore{$\Delta_n = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+
+Use the same technique of writing the same sum by extracting the first and the last element provides a nice example.
+
+We loose since the coefficient of the $\Delta_n$ is the same after these manipulations, but we can manage if we compute the \textit{next} sum, that is sum of the squares.
+\medskip
+
+$\Delta_{n+1} = 1 + \sum_{i=1}^{n+1} i $
+
+$\Delta_{n+1} = (\sum_{i=1}^{n} i) + \frac{(n+1)(n+2)}{2}$
+}
+
+\section{Tetrahedral numbers}
+
+The sum of the $\Delta_n$ is denoted by $\Theta_n$ and it is called a tetrahedral numbers:
+
+$\Theta_n =  \sum_{k=1}^{n} \Delta_k$.
+
+%We can show that: $\Theta_n = \frac{n.(n+1).(n+2)}{6}$
+
+A way to prove this expression is to consider three copies of $\Theta_n$ and organize them in order to obtain the expected result
+(remember the way we established the closed formula for triangular numbers was based on $2$ copies
+arranged in the right form).
+The basic tetrahedral number is organized as a triangle (see Figure~\ref{fig:TetrahedralBasic}).
+The proof is obtained by Fubini's principle by rotating this triangle as shows in Figure~\ref{fig:Tetrahedral}.
+
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresArithmetic/TetrahedralBasic}
+        \caption{Computing $\Theta_n$: basic triangle pattern.}
+        \label{fig:Tetrahedral}
+\end{center}
+\end{figure}
+
+The first row is equal to $n+2$.
+
+The second one is equal to $3 + 2(n-1)+3 = 2(n+2)$. 
+
+Let us sum up the elements in row $k$: 
+
+$\Delta_k + k(n-k+1) + \Delta_k = k(k+1) +kn-k^2+k = k(n+2)$.
+
+Thus, the global sum is equal to $n+2$ times $(1+2+...+n)$.
+
+Finally, $3 \Theta_n = (n+2) \Delta_n$
+
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresArithmetic/Tetrahedral}
+        \caption{Computing $\Theta_n$ using an adequate arrangement of $3$ triangles.}
+        \label{fig:Tetrahedral}
+\end{center}
+\end{figure}
+
+Summary and extension:
+
+We proved some results, in particular:
+\begin{itemize}
+\item $Id_n = 1+1+ ... +1 = n$
+\item $\Delta_n = 1+2+3+ ... +n = \frac{1}{2}.Id_n.(n+1)$
+\item $\Theta_n = \Delta_1 + \Delta_2 + ... + \Delta_n = \frac{1}{3} .\Delta_n.(n+2)$
+\end{itemize}
+
+A natural question is if we can go further following the same pattern for computing $ \sum_{k=1}^{n} \Theta_k$, and so on.
+
+\section{More exercises}
+
+\subsection{Graphical proofs 1}
+
+Compute sum of squares with 3 copies and fill the 2D rectangle. 
+We should add here the figures that have been removed from the chapter SUMMATION. 
+
+\subsection{Graphical proofs 2}
+
+Computing the sum of $(\frac{1}{4})^k =\frac{1}{3} $ using a graphical argument.
+
+The solution is depicted in Fig.~\ref{Fig:SUmgeo1sur4}. 
+
+
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresArithmetic/SumGeometric1sur4}
+        \caption{Graphical construction. Assuming the total surface is 1, the surface of the the internal triangle (in blue) is $\frac{1}{4}$.
+        As the blue surface is one third at each layer, the global surface is $\frac{1}{3}$.
+        By Fubini principle, this surface is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
+        \label{Fig:SUmgeo1sur4}
+\end{center}
+\end{figure}
+
+
+\subsection{Harmonic series}
+
+$H_{n} = \sum_{k=1}^{n} \frac{1}{k}$.
+
+Another way to prove that the sum is infinite:
+ 
+The analysis is as follows.
+Group the terms according to powers of $2$. 
+The sum within each group is between $\frac{1}{2}$ and $1$, thus,
+$H_n > \frac{1}{2}.n$
+\\
+
+Another (more precise) way is to gather the terms 3 by 3 as follows:
+
+$S_k = (\frac{1}{3k-1} + \frac{1}{3k} + \frac{1}{3k+1} )$ for $k\geq1$, 
+
+$H = 1 + S_1 + ... + S_k + ... > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + ... + 3.\frac{1}{3k} + ... $
+
+since $S_k > 3.\frac{1}{k} $.
+
+The proof is by contradiction, if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
+\bigskip
+
+Moreover, the first way of  bounding the sum tells us about its value (actually, we know the value at a factor of $2$):
+
+$\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = \O(log(n))$
 
 
 
+\section{Arithmetic}
 
-\subsubsection{A fun result: complex
+\subsection{A fun result: complex
   multiplication via $3$ real multiplications}
 \index{complex number!multiplication via 3 real multiplications}
 
@@ -55,7 +177,8 @@ costly than a real multiplication, so trading one multiplication for
 one addition is an unqualified ``win''.  \qed
 \end{proof}
 
-{\Denis I added a sentence to refer to an exercice dealing with karatsuba which uses the same idea...}
+Extension of the same method: 
+
 Notice that this technique is classical and it has been used in many other situations.
 For instance while multiplying two integers in base 2 (see exercice~{Karatsuba}).
 
@@ -130,7 +253,7 @@ A parlor trick has become a mathematical demonstration!
 \end{proof}
 
 
-\subsubsection{A fun result via geometric sums: When is integer  $n$
+\subsection{A fun result via geometric sums: When is integer  $n$
   divisible by $9$?}
 \label{sec:divisible-by-9}
 
@@ -205,3 +328,19 @@ An easy calculation, which we leave to the reader, now shows that this
 final fact means that $n$ is divisible by $b-1$ if, and only if,
 $s_b(n)$ is.
 \end{proof}
+
+\section{Graphs}
+
+{\subsection{Spanning Trees}
+
+Recall here the problem
+\bigskip
+
+There are mainly two ways for constructing such a MST, each one
+emphasizes a different propriety of the MST, namely, avoid cycles and
+minimize the span.  In both cases, the edges are sorted in increasing
+order of weights.  More precisely, the first one constructs a subtree
+which partially spans the graph by adding at each step the minimum
+neighboring edge while the other add successively the edges of minimal
+weights that do not create a cycle.
+
