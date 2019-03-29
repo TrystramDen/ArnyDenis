@@ -6,7 +6,7 @@
 
 Graphs provide one of the richest technical and conceptual frameworks
 in the world of computing.  They provide concrete representations of
-manifold data structures {\Denis that should be studied in depth}
+manifold data structures that should be studied in depth
 \ignore{hence must be well understood }
 in preparation for a ``Data Structures and Algorithms'' course.  They embody tangible
 abstractions of relationships of all sorts, hence must be well
@@ -54,8 +54,8 @@ academic program that includes a computation-oriented component.
 
 % general introduction
 The basic components of a graph $\g$ are \index{graphs!nodes}
-\index{graphs!vertices} \index{node (of a graph)} \index{vertex (of a
-  graph)} its {\em nodes/vertices}
+\index{graphs!vertices} \index{node (of a graph)} \index{vertex (of a graph)} 
+  its {\em nodes/vertices}
   \ignore{\footnote{The singular form of
   ``vertices'' is {\it vertex}.}}~(one encounters both terms in the
 literature) and its {\em edges} \index{graphs!edges} \index{edge (of a
@@ -72,14 +72,9 @@ of ``equal'' status.  When graph $\g$ is {\em directed}
 edges in directed graphs are often termed {\em
   arcs}. \index{graphs!arc} \index{arc (of a directed graph)}
 
-*** CHANGE WORD ``DUAL''
-
-
 In many situations involving directed graphs, it is important to
-deal with the {\em dual} \index{graphs!digraph!dual} of a digraph
-$\g$.  {\Denis I am not comfortable with the term DUAL which has another 
-meaning in maths programming and linear prog}
-This dual---which is usually denoted by some notational
+deal with the {\em reverse} \index{graphs!digraph!dual} of a digraph $\g$. 
+This new graph---which is usually denoted by some notational
 embellishment of ``$\g$'', such as $\widehat{\g}$---is the digraph
 obtained by {\em reversing} all of $\g$'s arcs.  One sometimes
 encounters situations when arguments about, or operations on, a
@@ -87,14 +82,12 @@ digraph $\g$ can be ``translated'' to arguments about, or operations
 on, $\widehat{\g}$ with only clerical effort.  A {\em subgraph} $\g'$
 of a graph $\g$ is a graph whose nodes are a subset of $\g$'s and
 whose edges are a subset of $\g$'s that interconnect only nodes of $\g'$.  
-
 \medskip
 
 {\em Undirected} graphs are usually the default concept, in the
 following sense: When $\g$ is described as a ``graph,'' with no
 qualifier ``directed'' or ``undirected,'' it is usually understood
 that $\g$ is an undirected graph.
-
 \medskip
 
 A {\em path} \index{graphs!path} \index{path (in a graph)} in
@@ -105,34 +98,7 @@ sequence are distinct, except for the first and last, which are
 identical.  Paths and cycles in directed graphs are defined similarly,
 except that every adjacent pair of nodes must be connected by an arc,
 and all arcs must ``point in the same direction.''
-
-{\Denis I moved the following section on trees as the introduction of the section 11.1.2}
-\ignore{The special class of graphs called {\it trees} \index{graphs!trees}
-\index{trees} are identified mathematically as graphs that contain no
-cycles or, equivalently, as graphs in which each pair of nodes is
-connected by a unique path: a tree is thus the embodiment of ``pure''
-connectivity (see Fig.~\ref{fig:tree} for an example of tree).  As one
-would expect from the vernacular, a set of trees is called a {\it
-  forest}. \index{forest (of trees)}
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/tree}
-       \caption{A tree with 10 vertices.}
-  \label{fig:tree}
-\end{center}
-\end{figure}
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/outtree}
-       \caption{A directed tree (out tree).}
-  \label{fig:outtree}
-\end{center}
-\end{figure}
-}
-
-{\Denis may be it lacks a sentence here for the transition...}
+\bigskip
 
 A {\it directed graph} \index{graphs!directed} ({\it digraph},
 \index{digraph} for short) $\g$ is given by a set of {\it nodes}
@@ -145,7 +111,7 @@ In the following, we will omit the subscript if there is no ambiguity.
 \index{$\a_{\fg}$: set of arcs of digraph $\g$}
 Each arc of $\g$ has the form $(u \rightarrow v)$,
 \index{$\rightarrow$: arc in a directed graph}
-where $u, v \in \n_{\fg}$; we say that this arc goes {\em from} $u$
+where $u, v \in \n$; we say that this arc goes {\em from} $u$
 {\em to} $v$.  A {\it path} 
 \index{graphs!path in a digraph}
 \index{path in a digraph}
@@ -163,20 +129,25 @@ u_1 \ \rightarrow \ u_2 \ \rightarrow \ u_3 \ \rightarrow \cdots
 \rightarrow \ u_{n-2} \ \rightarrow \ u_{n-1} \ \rightarrow \ u_n
 \]
 The just-described path makes sense only when every node $u_i$ belongs
-to $\n_{\fg}$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$,
-belongs to $\a_{\fg}$.  The {\it length} of path (\ref{eq:di-path}) is
+to $\n$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$,
+belongs to $\a$.  The {\it length} of path (\ref{eq:di-path}) is
 the number of arcs, i.e., $n-1$.  The existence of the path means that
 the {\it distance} \index{distance!in a digraph}
 \index{digraph!distance} \index{graphs!distance!in a digraph} from
-$u_1$ to $u_n$ in $\g$ is no greater than $n-1$.  (There may exist
-shorter paths in $\g$ from $u_1$ to $u_n$.)
+$u_1$ to $u_n$ in $\g$ is no greater than $n-1$ (where the distance here is taken in term of number of arcs.  
+Notice also there may exist shorter paths in $\g$ from $u_1$ to $u_n$.)
+\bigskip
 
-{\Denis Two remarks here: First the term distance is not defined...
-Second, I think we should add a brief paragraph about elementary paths, 
-the Konig lemma is crucial since all the path algorithms require a finite set of vertices
-(I remove the replicate nodes)}
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+In the presentation above, we implicitly considered that there are no
+redundant vertices in a path.
+This is obviously always possible since if a vertex appears twice, we simply skip the sub-path between these two occurrences.
 
-\medskip
+{\Denis Do we introduce here few words here about the Koenig Lemma?}
+\end{minipage}
+}
+\bigskip
 
 It is sometimes useful to endow the arcs of a digraph with labels from
 an alphabet $\Sigma$.  When so endowed, the path (\ref{eq:di-path})
@@ -212,22 +183,17 @@ If $u_1 = u_n$, then we call path (\ref{eq:di-path}) a {\em (directed)
   cycle},\index{cycle (in a digraph)} and we call its labeled version
 a {\em labeled (directed) cycle}.  (The qualifier ``directed'' is
 usually included only for emphasis.)
-
 \medskip
 
-{\Denis in the following, we move to undirected paths and intentionnally 
-you changed the notation from G to H... It is interesting, but not natural for me,
-I am using spontaneously the same symbol...}
-
-An {\em undirected graph} $\h$ is given by a set of nodes $\n_{\fh}$
-and a set $\e_{\fh}$ 
-\index{$\e_{\fh}$: the set of edges of the undirected  graph $\h$}
-of $2$-element subsets of $\n_{\fh}$.  Each of these subsets is called
-an {\it edge (of $\h$)}.
+An {\em undirected graph} $\g$ is given by a set of nodes $\n$
+and a set $\e$ 
+\index{$\e_{\fg}$: the set of edges of the undirected  graph $\g$}
+of $2$-element subsets of $\n$.  Each of these subsets is called
+an {\it edge}.
 \index{graphs!edge} \index{edge (in a graph)}
-One can, thus, view the undirected graph $\h$ as being obtained from a
-directed graph $\bar{\h}$ by removing the directionality of
-$\bar{\h}$'s arcs.  Whereas we say: \\
+One can, thus, view the undirected graph $\g$ as being obtained from a
+directed graph $\bar{\g}$ by removing the directionality of
+$\bar{\g}$'s arcs.  Whereas we say: \\
 \hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} node $u$ {\em to}
 node $v$ \\
 we say: \\
@@ -235,7 +201,9 @@ we say: \\
 $u$ and $v$ \\
 or, more simply: \\
 \hspace*{.35in}the undirected edge $\{u,v\}$ {\em connects} nodes $u$
-and $v$.  \\
+and $v$.  
+\medskip
+
 One can view an undirected graph as asserting ``pure'' connectivity,
 whereas directed graphs assert some form of priority or directionality.
 
@@ -243,31 +211,29 @@ A {\it path} in an undirected graph \index{graphs!path in undirected
   graph} \index{path in an undirected graph} is a sequence of
 edges---i.e., of $2$-element sets of nodes---such that adjacent edges
 share a node.  For illustration, an $(n-1)$-edge path that connects
-nodes $u_1$ and $u_n$ in the undirected graph $\h$ has the form
+nodes $u_1$ and $u_n$ in the undirected graph $\g$ has the form
 \begin{equation}
 \label{eq:undi-path}
 \{u_1, u_2\}, \ \{u_2, u_3\}, \ \ldots, \ \{u_{n-2}, u_{n-1}\}, \ \{u_{n-1}, u_{n}\}
 \end{equation}
 The path described in (\ref{eq:undi-path}) makes sense only when every
-node $u_i$ belongs to $\n_{\fh}$ and every edge $\{u_i \ u_j\}$ belongs
-to $\e_{\fh}$.  The {\it length} of path (\ref{eq:undi-path}) is the
+node $u_i$ belongs to $\n$ and every edge $\{u_i \ u_j\}$ belongs
+to $\e$.  The {\it length} of path (\ref{eq:undi-path}) is the
 number of edges---which is $n-1$ here; and the existence of
 the path means that the {\it distance} \index{graphs!distance} 
 \index{distance!in an undirected graph}
-{\it between} $u_1$ and $u_n$ in $\h$ is no greater than $n-1$.  (There
+{\it between} $u_1$ and $u_n$ in $\g$ is no greater than $n-1$.  (There
 may exist shorter paths that connect $u$ and $v$.)
-
 \medskip
 
-For each edge $\{u,v\} \in \e_{\fh}$, we call nodes $u$ and $v$ {\it
-  neighbors} (in $\h$).
+For each edge $\{u,v\} \in \e$, we call nodes $u$ and $v$ {\it neighbors} (in $\g$).
 \index{graphs!nodes!neighbor nodes}
 \index{neighbor node!in a graph}
 The {\it degree}
 \index{graphs!nodes!degree of a node in an undirected graph}
 \index{graphs!degree of a node in an undirected graph}
 \index{degree of a node in an undirected graph}
-of a node $u \in \n_{\fh}$ is the number of neighbors that $u$ has.
+of a node $u \in \n$ is the number of neighbors that $u$ has.
 
 Even at this early moment in our study of graphs, we can observe a few
 important facts that can be useful when analyzing a broad range of
@@ -280,32 +246,31 @@ notions or as subjects of discourse).
 An $n$-node digraph $\g$ has no more than $n^2$ arcs.
 
 {\bf (b)}
-An $n$-node graph $\h$ has no more than $\displaystyle {n \choose 2}$ edges.
+An $n$-node graph $\g$ has no more than $\displaystyle {n \choose 2}$ edges.
 
 \end{prop}
 
 \begin{proof}
 {\bf (a)}
-The set $\a_{\fg}$ of arcs of $\g$ is a subset of the set of ordered
+The set $\a$ of arcs of $\g$ is a subset of the set of ordered
 pairs of nodes of $\g$.  This latter number is clearly $n^2$, because
 one can choose the first node in a pair in $n$ ways and then {\em
   independently} choose the second node in $n$ ways.
-
-\smallskip
+\medskip
 
 \noindent {\bf (b)}
-The stated number is the number of $2$-node subsets of $\n_{\fh}$.  To
-wit, start by listing the $n^2$ ordered pairs of nodes of $\h$.
+The stated number is the number of $2$-node subsets of $\n$.  To
+wit, start by listing the $n^2$ ordered pairs of nodes of $\g$.
 First, eliminate from the list all $n$ pairs whose first and second
 elements are equal: a set of the form $\{ u,u\}$ has only one element,
-hence is not an edge of $\h$.  Then, for each distinct pair of nodes
-$u, v \in \n_{\fh}$, eliminate one of the two ordered pairs, $\langle
+hence is not an edge of $\g$.  Then, for each distinct pair of nodes
+$u, v \in \n$, eliminate one of the two ordered pairs, $\langle
 u,v \rangle$ and $\langle u,v \rangle$: both of these ordered pairs
 lead to the same unordered set $\{ u,v\}$, hence the same edge of
-$\h$.  After these eliminations, we are left with
+$\g$.  After these eliminations, we are left with
 \[ \frac{n^2 - n}{2} \ = \ {n \choose 2} \]
-$2$-element subsets of $\n_{\fh}$, from which we choose the edges of
-$\h$. \qed
+$2$-element subsets of $\n$, from which we choose the edges of
+$\g$. \qed
 \end{proof}
 
 
@@ -318,8 +283,6 @@ In any undirected graph, the number of nodes of odd degree is even.
 The result follows directly from the following equation that holds for
 any undirected graph $\g$:
 
-{\Denis we are dealing with undirected graphs and the notation is still $\g$ and not $\h$...
-This is connected with my previous remark. Let take $\g$ everywhere?}
 \[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot
 |\e_{\cal G}|.
 \]
@@ -376,6 +339,9 @@ some number $c$ of connected subgraphs, usually called $\g$'s {\it
 course, $\g$ is connected just when $c=1$; i.e., there is a single
 connected component.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection{Graphs as a modeling tool: the {\sf 2SAT} problem}
 \label{sec:graph-model-2SAT}
 
@@ -411,8 +377,8 @@ vertices and $2n$ arcs.
 \begin{itemize}
 \item
 For each logical variable, $x$: there is one vertex that represents
-the {\em true} literal form, $x$, of variable $x$, and a second vertex
-that represents the {\em false} literal form, $\bar{x}$, of the
+the {\sc true} literal form, $x$, of variable $x$, and a second vertex
+that represents the {\sc false} literal form, $\bar{x}$, of the
 variable.
 \item
 Each clause $C_i = (\ell_{i,1} \vee \ell_{i,2})$ is represented by a
@@ -529,7 +495,6 @@ all vertices of $S_j$ accessible from all vertices of $S_i$, and
 conversely.  This would mean that $S_i$ and $S_j$ would be contained
 within the same strongly connected component---which would contradict
 their assumed disjointness.
-
 \medskip
 
 \noindent {\bf 2.}
@@ -617,7 +582,7 @@ Even without formal background in algorithmics, it is clear that the
 processes of: constructing digraph $\g(\Phi)$ from formula $\Phi$;
 isolating and investigating the strongly connected components of
 $\g(\Phi)$ can be accomplished in a number of computational steps that
-is polynomial in thesize of $\Phi$.  This validates
+is polynomial in the size of $\Phi$.  This validates
 Proposition~\ref{prop:2SAT}.  \qed
 
 
@@ -644,10 +609,9 @@ smallest number of arcs in any path from $u_1$ to $u_n$.  In detail:
 The {\it diameter} \index{diameter in a digraph}
 \index{digraph!diameter} of a directed graph $\g$ is the largest
 distance between two nodes of $\g$, i.e., the largest number $d$ for
-which there exist nodes $u_1, u_n \in \n_{\fg}$ such that {\sc
+which there exist nodes $u_1, u_n \in \n$ such that {\sc
   distance}$(u_1, u_n) = d$.  Note that when discussing digraphs, we
 always use {\em directed} paths when defining distance.
-
 \medskip
 
 \noindent {\it Distance and diameter in an undirected graph.}
@@ -669,12 +633,11 @@ detail:
 \end{array}
 \right.
 \end{equation}
-{\Denis Same remark as before, we are dealing with undirected graphs and the notation is $\g$ instead of $\h$...}
 
 The {\it diameter} \index{diameter in a graph} \index{graphs!diameter}
-of an undirected graph $\h$ is the largest distance between two nodes
-of $\h$, i.e., the largest number $d$ for which the exist nodes $u_1,
-u_n \in \n_{\fh}$ such that {\sc distance}$(u_1, u_n) = d$.  Note that
+of an undirected graph is the largest distance between two nodes, 
+i.e., the largest number $d$ for which the exist a pair of nodes $u_1,
+u_n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that
 when discussing undirected graphs, we always use {\em undirected}
 paths when defining distance.
 
@@ -710,7 +673,7 @@ easier/cheaper than going from $v$ to $u$.  Happily, determining
 shortest (or longest) paths in a directed or undirected graph $\g$ can
 be accomplished ``efficiently''---which in the algorithmic world means
 ``in a number of steps that is polynomial in the size of $\g$''.
- \end{minipage}
+\end{minipage}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -769,7 +732,7 @@ matching.
 \begin{prop}
 \label{thm:max-matching}
 Maximal matchings exist for any graph $\g$.  One can find such a
-matching in a number of steps proportional to $|\n_{\fg}|$.
+matching in a number of steps proportional to $|\n|$.
 \end{prop}
 
 \begin{proof}
@@ -779,25 +742,24 @@ We leave to the reader the challenge of verifying that the following
   satisfy a criterion as quickly as possible, with no consideration of
   how this choice affects future choices.}~process satisfies the
 conditions of the Proposition.
+\medskip
 
-{\Denis Rewrite with the algo style and put it in a more algorithmic language}
 \noindent
 {\it The Process:} \\
 Begin by laying the nodes of $\g$ out, left to right, in any way.
 Repeat the following process until no nodes remain in the layout.
 
 \noindent
-Select the leftmost node, $u$, in the remaining layout of $\n_{\fg}$.
+Select the leftmost node, $u$, in the remaining layout of $\n$.
 Select the leftmost neighbor, $v$, of $u$ that remains in the layout.
-  \begin{enumerate}
+  \begin{itemize}
   \item
-If you succeed in finding both $u$ and $v$, then add edge $\{u,v\}$ to
-the matching we are building.  Remove both $u$ and $v$ from the
-layout.
+If we succeed in finding such a $v$, then add edge $\{u,v\}$ to
+the matching we are building.  
+Then, remove both $u$ and $v$ from the layout.
   \item
-If there is no neighbor $v$ of $u$ in the remaining layout, then
-remove node $u$ from the layout.
-  \end{enumerate}
+If there is no neighbor $v$ of $u$, remove node $u$ from the layout.
+  \end{itemize}
 The real challenge here is to find a data structure that allows an
 efficient search for a ``remaining'' neighbor-node $v$ at each step of
 the selection process.
@@ -821,7 +783,7 @@ $\g$ has an even number of nodes.
 \item
 The cardinality of the (perfect) matching---i.e., the number of edges
 in the matching---is exactly
-$\frac{1}{2}|\n_{\fg}|$.
+$\frac{1}{2}|\n|$.
 \end{itemize}
 \end{prop}
 
@@ -867,19 +829,16 @@ field called {\it graph theory} and within the vernacular.
 They are identified mathematically as graphs that contain no
 cycles or, equivalently, as graphs in which each pair of nodes is
 connected by a unique path: a tree is thus the embodiment of ``pure''
-connectivity (see Fig.~\ref{fig:tree} for an example of tree).  As one
+connectivity (see Fig.~\ref{fig:tree} left for an example of tree).  As one
 would expect from the vernacular, a set of trees is called a {\it
   forest}. \index{forest (of trees)}
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/tree}
-       \hspace{1cm}
-       \includegraphics[scale=0.7]{FiguresGraph/outtree}
+       \includegraphics[scale=0.6]{FiguresGraph/tree}
        \caption{An undirected tree with 10 vertices (left) and a directed out tree (right).}
   \label{fig:tree}
 \end{center}
 \end{figure}
-
 
 Mathematically speaking, a tree is a graph that contains no cycles,
 i.e., is {\it cycle-free}. \index{graphs!cycle-free} Equivalently, a
@@ -1912,7 +1871,7 @@ use the names interchangeably.)
 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/dB2by2}
+       \includegraphics[scale=0.5]{FiguresGraph/dB2by2}
        \caption{The $4$-node, order-$2$ de Bruijn network.}
   \label{fig:dB2by2}
 \end{center}
