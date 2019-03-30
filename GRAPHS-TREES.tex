@@ -747,14 +747,17 @@ conditions of the Proposition.
 \noindent
 {\it The Process:} \\
 Begin by laying the nodes of $\g$ out, left to right, in any way.
+
+\noindent
 Repeat the following process until no nodes remain in the layout.
 
 \noindent
 Select the leftmost node, $u$, in the remaining layout of $\n$.
-Select the leftmost neighbor, $v$, of $u$ that remains in the layout.
+%Select the leftmost neighbor, $v$, of $u$ that remains in the layout.
   \begin{itemize}
   \item
-If we succeed in finding such a $v$, then add edge $\{u,v\}$ to
+If we succeed in finding such a vertex $v$ neighbor of $u$ (taken from left to right)), 
+then add edge $\{u,v\}$ to
 the matching we are building.  
 Then, remove both $u$ and $v$ from the layout.
   \item
@@ -835,7 +838,8 @@ would expect from the vernacular, a set of trees is called a {\it
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/tree}
-       \caption{An undirected tree with 10 vertices (left) and a directed out tree (right).}
+       \caption{An undirected tree with 10 vertices (left) and a directed outtree (right).
+       Its root is on the right upper side of the figure.}
   \label{fig:tree}
 \end{center}
 \end{figure}
@@ -1170,8 +1174,8 @@ we note, one of these versions is more commonly encountered.  We have
 selected these specific graphs for rather different reasons.
 \begin{itemize}
 \item
-The first two graphs, the {\it cycle-graph} of paragraph~\ref{sec:cycle}
-and the {\it complete graph} of paragraph~\ref{sec:clique} were selected
+The first two graphs, the {\it cycle-graph} of section~\ref{sec:cycle}
+and the {\it complete graph} of section~\ref{sec:clique} were selected
 for respectively representing the lowest-degree and highest-degree
 graphs that share two properties: (1) every node of each graph is
 accessible from every other node; (2) all nodes ``look alike'' to
@@ -1185,9 +1189,9 @@ many modern distributed computing environments.  {\it How does one
 \item
 The remaining graphs, the {\it mesh and torus networks}\footnote{These
   two structures, though distinct, are usually discussed together
-  because they share so many important properties.}~of paragraph~\ref{sec:mesh}, 
-  the {\it hypercube network} of paragraph~\ref{sec:hypercube},
-and the {\it de Bruijn network} of paragraph~\ref{sec:deBruijn}, were
+  because they share so many important properties.} of section~\ref{sec:mesh}, 
+  the {\it hypercube network} of section~\ref{sec:hypercube},
+and the {\it de Bruijn network} of section~\ref{sec:deBruijn}, were
 selected for their importance within the world of parallel and
 distributed computing---as abstract platforms for developing efficient
 computational and communicational processes, and as abstract versions
@@ -1200,6 +1204,9 @@ $\N^+$.
 
 \subsubsection{The cycle-graph $\cc_n$}
 \label{sec:cycle}
+
+{\Denis The notation with a hat for the directed version is not the same as
+the reverse graph presented before. Do we really need to present the reverse graph???}
 
 For each positive integer $n \in \N^+$, both the {\it undirected
   order-$n$ cycle-graph} $\cc_n$ and the {\it directed order-$n$
@@ -1253,7 +1260,7 @@ witnessed by the directed distance from each node $k$ of $\widehat
 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.7]{FiguresGraph/cycle}
+       \includegraphics[scale=0.6]{FiguresGraph/cycle}
        \caption{A cycle of $8$ vertices.}
   \label{fig:cycle}
 \end{center}
@@ -1306,6 +1313,10 @@ As in the undirected case, there is a causal relationship between
 $\widehat{\k}_n$'s diameter and its (in- and out-) node-degrees.
   \end{itemize}
 \end{itemize}
+
+{\Denis good opportunity for an exercice here: a tournoiment 
+is a directed version of a complete graph (any orientation of the edges).
+The proof that it is hamiltonian is nice, If you agree I can add it in the exercices...}
 
 Hearkening back to our discussion of matchings in (unweighted) graphs:
 The structure of the set of perfect matchings in general graphs is
@@ -1431,14 +1442,17 @@ $\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
 \big\}
 \end{eqnarray*}
 
-  \begin{itemize}
-  \item
-    \begin{itemize}
-    \item
+{\Denis I removed the formal definitions of corners, edges
+since I don't see what this really add to the text (we don't use this later),
+let discuss if you disagree... }
+
+\begin{itemize}
+\item
 The subgraph of $\m_{m,n}$ defined by the node-set
 \[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
   m\}\right], \ \ \left[1 \leq j < n\right]\}
 \]
+{\Denis Definition not clear: for me, $i$ should be fixed, and then, $j$ varies}
 and all edges both of whose endpoints belong to that set is called the
 $i$th {\it row} of $\m_{m,n}$
 \index{row of a mesh graph}
@@ -1451,6 +1465,8 @@ and all edges both of whose endpoints belong to that set is called the
 $j$th {\it column} of $\m_{m,n}$.
 \index{column of a mesh graph}
 \index{mesh graph!column}
+\ignore{
+  \begin{itemize}
      \item
 Nodes $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
 \ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner nodes}
@@ -1495,14 +1511,14 @@ node-set
 \index{left edge of a mesh graph}
 \index{mesh graph!right edge}
      \end{itemize}
+     }
 
   \item \index{mesh graph!node-degree}
-$\m_{m,n}$ is {\em not} a regular graph.  Its corner nodes each has
-    degree $2$; its non-corner edge nodes each has degree $3$; its
+$\m_{m,n}$ is {\em not} a regular graph.  Its four corner nodes each has
+    degree $2$; its non-corner extreme edge nodes each has degree $3$; its
 \index{internal node of a mesh graph}
 \index{mesh graph!internal node}
-{\em internal nodes}---which are all non-edge nodes---each has degree
-$4$
+{\em internal nodes} each has degree $4$
 
   \item \index{mesh graph!undirected diameter}
 The diameter of $\m_{m,n}$ is $m+n-2$, as witnessed by the distance
@@ -1522,6 +1538,7 @@ $\widetilde{\m}_{m,n}$ has $2mn$ arcs; its {\it arc-set} is
 \big \}
 \end{eqnarray*}
 
+\ignore{
   \begin{itemize}
   \item
 The subgraph of $\widetilde{\m}_{m,n}$ defined by the node-set
@@ -1538,6 +1555,8 @@ Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the node-set
 and all edges both of whose endpoints belong to that set is called the
 $j$th {\it column} of $\widetilde{\m}_{m,n}$.
 \index{torus graph!column}
+}
+\begin{itemize}
   \item
 $\widetilde{\m}_{m,n}$ is a regular network; each node has degree $4$.
     Despite the fact that $\widetilde{\m}_{m,n}$ is an {\em
@@ -1548,7 +1567,7 @@ $\widetilde{\m}_{m,n}$ is a regular network; each node has degree $4$.
 $\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \
 \lfloor n/2 \rfloor$.  This can be verified in analogy to the diameter
 of the cycle-graph $\cc_n$.
-  \end{itemize}
+\end{itemize}
 \end{itemize}
 
 \begin{figure}[hbt]
@@ -1558,6 +1577,8 @@ of the cycle-graph $\cc_n$.
   \label{fig:torus}
 \end{center}
 \end{figure}
+
+
 
 \subsubsection{The (boolean) hypercube network $\q_n$}
 \label{sec:hypercube}
@@ -1643,15 +1664,15 @@ that differ in precisely one position.  This means that $\q_n$ has $n
 the quantity $n 2^n$ counts each of $\q_n$'s edges twice---one for
 each endpoint.  For illustration:
 \begin{eqnarray*}
-\a_{{\fq}_1}
+\e_{{\fq}_1}
   & = &
 \big\{ \{ 0, \ 1 \} \big\} \\
-\a_{{\fq}_2}
+\e_{{\fq}_2}
   & = & \big\{
 \{ 00, \ 01 \}, \ \{ 00, \ 10\}, \
 \{ 01, \ 11 \}, \ \{ 10, \ 11\} 
 \big\} \\
-\a_{{\fq}_3}
+\e_{{\fq}_3}
   & = & \big\{ 
 \{000, \ 001\}, \
 \{000, \ 010\}, \
@@ -1679,8 +1700,8 @@ It is easy to observe $\q_n$'s basic structural properties.
 \item \index{hypercube!node-degree}
 $\q_n$ is a regular network: each of its $2^n$ nodes has degree $n$.
 
-This follows from the fact that each arc of $\q_n$ rewrites a single
-bit-position in the length-$n$ binary string that is the arc's source
+This follows from the fact that each edge of $\q_n$ rewrites a single
+bit-position in the length-$n$ binary string that is the edge's source
 node.
 
 \item \index{hypercube!diameter}
@@ -1703,14 +1724,14 @@ y \ = \ \beta_1 \beta_2 \cdots \beta_n
 \]
 One of the several paths in $\q_n$ from $x$ to $y$ is described
 schematically as the following left-to-right, bit-by-bit rewriting of
-$x$ as $y$ using arcs of $\q_n$
+$x$ as $y$ using edges of $\q_n$
 \[
 x \ = \ \alpha_1 \alpha_2 \cdots \alpha_n \ \rightarrow \
 \beta_1 \alpha_2 \cdots \alpha_n \ \rightarrow \
 \beta_1 \beta_2\cdots \alpha_n \ \rightarrow \cdots \rightarrow\ 
 \beta_1 \beta_2 \cdots \beta_n \ = \ y
 \]
-Since each bit of each string is rewritten once, the bound follows.
+Since each bit of each string is rewritten at most once (only if $\alpha_i \neq \beta_i$), the bound follows.
 \qed
 \end{proof}
 
@@ -1719,13 +1740,12 @@ Since each bit of each string is rewritten once, the bound follows.
 The fact that $\q_n$'s diameter is {\em logarithmic} in its size makes
 $\q_n$ an efficient network for many tasks related to parallel
 computing and communication.
-
 \bigskip
 
 A powerful avenue for understanding the structure of a given family of
 networks is to understand how the perceived ``shape'' of graphs in the
 family can apparently change just by relabeling/renaming the nodes, or
-the edges/arcs, of the graphs.  The formal mechanism for studying such
+the edges, of the graphs.  The formal mechanism for studying such
 relabelings/renamings is the concept of {\it graph isomorphism}.
 \index{graph isomorphism} Let $\g$ and $\h$ be undirected graphs that
 have the same numbers of nodes and edges.  (The following definition
@@ -1764,13 +1784,15 @@ The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresGraph/Isomorphism2}
-       \caption{Transformation of $\q_4$ to a $4 \times 4$ torus.}
+       \caption{Transformation of $\q_4$ to a $4 \times 4$ torus.
+       The bold edges correspond to the horizontal cycles and the dashed edges correspond to vertical cycles.}
   \label{fig:isomorphism2}
 \end{center}
 \end{figure}
 
 A graphical proof is depicted in Fig.~\ref{fig:isomorphism1}  and ~\ref{fig:isomorphism2} and 
-We relegate the formal proof of this result to a Exercise, supplying as a
+We relegate the formal proof of this result to a Exercise
+{\Denis add a ref here?}, supplying as a
 hint the coding scheme (or, bijection) depicted in
 Fig.~\ref{fig:toruslabel}.
 \begin{figure}[hbt]
