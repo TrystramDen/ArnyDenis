@@ -1754,17 +1754,17 @@ can easily be adapted to deal with {\em directed} graphs.)  An {\it
   bijection}\footnote{Recall, from Chapter~\ref{ch:sets-BA-logic} that
   a bijection is a function that is one-to-one (i.e., injective) and
   onto (i.e., surjective).}
-\[ \beta: \n_{\fg} \ \leftrightarrow \ \n_{\fh} \]
+\[ f: \n_{\fg} \ \leftrightarrow \ \n_{\fh} \]
 such that
 \begin{itemize}
 \item
 For each edge $\{ u,v \}$ of $\g$ (i.e., $\{ u,v \} \in \e_{\fg}$),
-the doubleton set $\{ \beta(u), \beta(v) \}$ is an edge of $\h$ (i.e.,
-$\{ \beta(u), \beta(v) \} \in \e_{\fh}$).
+the doubleton set $\{ f(u), f(v) \}$ is an edge of $\h$ (i.e.,
+$\{ f(u), f(v) \} \in \e_{\fh}$).
 \item
 For each edge $\{ x,y \}$ of $\h$ (i.e., $\{ x,y \} \in \e_{\fh}$),
-the doubleton set $\{ \beta^{-1}(x), \beta^{-1}(y) \}$ is an edge of $\g$ (i.e.,
-$\{ \beta^{-1}(x), \beta^{-1}(y) \} \in \e_{\fg}$).
+the doubleton set $\{ f^{-1}(x), f^{-1}(y) \}$ is an edge of $\g$ (i.e.,
+$\{ f^{-1}(x), f^{-1}(y) \} \in \e_{\fg}$).
 \end{itemize}
 We can immediately exemplify this notion via the following example.
 
@@ -1776,7 +1776,7 @@ The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/Isomorphism1}
-       \caption{A representation of $\q_4$.}
+       \caption{A representation of $\q_4$ with partial coding of the vertices.}
   \label{fig:isomorphism1}
 \end{center}
 \end{figure}
@@ -1823,9 +1823,9 @@ common degrees of the network's nodes---this is the ``inverse'' way
 of talking about logarithmic node-degrees---while the space in which
 we (and our computers) live grows only cubically with linear
 distance.  The resulting disparity means that the wires in a large
-hypercube must inevitably be very long---in contrast to the unit-size
+computing platforms connected by an hypercube must inevitably be very long---in contrast to the unit-size
 of idealized network-edges.  Consequently, electrical signals within a
-large hyeprcube must travel long distances, which means that the
+large hypercube must travel long distances, which means that the
 physical computer is much slower than its idealized version.  (One
 finds a more technical discussion of this phenomenon in
 \cite{Ullman84}.)
@@ -1836,7 +1836,7 @@ deploys successively larger instances of the network.  A candidate
 such network was discovered within the domain of coding theorists (as,
 coincidentally, was the hypercube).  
 
-In the mid-20-century, Dutch mathematican Nicolaas Govert de Bruijn
+In the mid-20-century, Dutch mathematician Nicolaas Govert de Bruijn
 \index{de Bruijn, Nicolaas Govert} discovered a way to generate
 compact sequences that contain all possible strings of a prespecified
 length.  Focussing on {\em binary} strings---although de Bruijn's
@@ -1867,7 +1867,7 @@ n & \mbox{\sc Length-$n$ binary strings}
 \hline
 \end{array}
 \end{equation}
-The table in (\ref{eqn:deBruijn-seq}) spawns many interesting
+The table in (\ref{eqn:deBruijn-seq}) spawns several interesting
 questions:
 \begin{itemize}
 \item
@@ -1882,7 +1882,9 @@ Can one always find a de Bruijn sequence of length $2^n +n-1$?
   \item
 Can one find de Bruijn sequences of length $< 2^n +n-1$?
   \end{itemize}
- {\Arny (SOME GOOD EXERCISES HERE)}  
+ \ignore{
+ {\Arny (SOME GOOD EXERCISES HERE)} 
+ }
 \end{itemize}
 The answers to all of these questions---and the connection of de
 Bruijn sequences to the current chapter---reside in the family of
@@ -1910,7 +1912,7 @@ use the names interchangeably.)
 
 For every integer $n \in \N^+$, the {\it order-$n$ de Bruijn network}
 is the {\em directed} graph $\d_n$ whose nodes comprise the set of
-length-$n$ binary strings\footnote{While {\em binary} de Bruijn
+length-$n$ binary strings.\footnote{While {\em binary} de Bruijn
   networks are the most frequently encountered ones, one can also find
   de Bruijn networks whose nodes comprise all length-$n$ strings over
   larger finite alphabets.  Such extended families also find
@@ -2005,7 +2007,7 @@ leads node $000$ to node $111$, by rewriting string $000$ as string
 $111$.  The diameter bound is now an immediate consequence of the
 following result.  The result builds upon a notion that we have not
 yet encountered but will study in some detail in
-Section~\ref{sec:Hamiltonian-cycle}.
+Section~\ref{sec:Hamiltonian-cycle}
 \index{graphs!Hamiltonian cycle} \index{Hamiltonian cycle}.
 
 A {\it Hamiltonian cycle} in an $n$-node graph $\g$ is a length-$n$
@@ -2038,7 +2040,9 @@ All of the ``$y$-nodes'' that appear in cycle
 The simplest proof of this result has two steps, each of which
 introduces a topic we have not yet developed.
 
-\medskip
+{\Denis Add a word here about hamiltonian and Eulerian and refer to the appendix...}
+
+\ignore{
 
 \noindent {\bf (1)}
 %
@@ -2048,7 +2052,7 @@ directed graph.
 \begin{itemize}
 \item
 The nodes of $\Lambda(\g)$ are the arcs of $\g$:
-\[ \n_{{\cal L}({\cal G})} \ = \ \a_{\fg} \]
+\[ \n_{{\Lambda}({\cal G})} \ = \ \a_{\fg} \]
 \item
 For each pair of arcs of $\g$ of the form
 \[ \big[a_{x,y} = (x \ \rightarrow \ y) \big] \ \ \ \mbox{ and } \ \ \ 
@@ -2096,8 +2100,8 @@ where $z$ is a length-$(n-2)$ binary string and $\rho, \sigma, \tau,
 \[ (\rho \sigma z \tau \ \rightarrow \ \sigma z \tau \xi) \]
 This means that the digraph $\d_{n+1}$ is identical to the digraph
 $\Lambda(\d_n)$, modulo a renaming of nodes and arcs.\footnote{Technically,
-  we are asserting that the digraphs ${\cal D}_{n+1}$ and ${\cal
-    L}({\cal D}_n)$ are {\it isomorphic} to one another.  The topic of
+  we are asserting that the digraphs ${\cal D}_{n+1}$ and ${\Lambda}({\cal D}_n)$ 
+  are {\it isomorphic} to one another.  The topic of
   graph isomorphism is beyond the scope of this text, but our informal
   description provides all the details one would need to formalize the
   described isomorphism.}
@@ -2129,6 +2133,7 @@ digraph has a directed Eulerian cycle.  This demonstration will
 combine with Proposition~\ref{thm:deBruin-linegraph} to complete the
 proof of Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
 %\end{proof}
+}
 
 \bigskip
 
