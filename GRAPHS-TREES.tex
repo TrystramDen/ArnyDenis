@@ -2150,6 +2150,1091 @@ computational problems, using de Bruijn networks as using like-sized
 hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Graph Coloring and Chromatic number}
+\label{sec:graph-color}
+\index{graphs!node-coloring}
+
+This section introduces the notion of {\it graph coloring}, and its
+associated notion of the {\it chromatic number}
+\index{graphs!chromatic number} of a graph.
+
+A {\it node-coloring} \index{graphs!node-coloring} of a graph $\g$ is
+an assignment of labels to $\g$'s nodes, in such a way that all of a
+node $v$'s neighbors get a different label than $v$.  Traditionally,
+the labels are called {\it colors}, for that term's evocative power.
+The {\it chromatic number} \index{graphs!chromatic number} of a graph
+$\g$ is the smallest number of colors that can be used in a legal
+node-coloring of $\g$.  In traditional parlance, the assertions
+
+``$\g$ has chromatic number $c$'' \ \ \ \ \ and \ \ \ \ \
+``$\g$ is {\it $c$-colorable}''
+\index{graphs!$c$-colorable}
+
+\noindent
+are considered to be synonymous.
+
+The notion of graph coloring can be used to computational advantage to
+model a broad variety of situations.  An extremely important, and
+illustrative, use of graph coloring is to model {\it distributed}
+computing.  In this setting, the nodes of a computation-graph $\g$
+represent {\it agents}, such as, e.g., processing elements in a
+computer; and $g$'s edges represent {\it communication links} that
+enable each node $u$ to check its neighbors' states before any action
+and to inform its neighbors of state-changes occasioned by an action
+of $u$.  The prohibition against ``monochrome'' edges---i.e., edges
+both of whose incident nodes have the same color---guarantees that
+node $u$ and all of its like-colored nodes can act at the same instant
+with no fear of missing an important input to those actions.  Indeed,
+one often encounters programs for distributed computing that look
+something like
+
+1. All {\em red} nodes perform an action
+
+2. All {\em green} nodes perform an action
+
+3. All {\em blue} nodes perform an action
+
+\hspace*{1in} $\vdots$
+
+
+\subsection{Graphs with Small Chromatic Numbers}
+\label{sec:Graphs-small-Chromatic-No} 
+
+Most of the ``named'' graphs in
+Section~\ref{sec:graphs-important-families} have very small chromatic
+numbers.  This is no accident: These graphs were invented (or, at
+least, placed in the spotlight) because of their importance to the
+topic of parallel and distributed computing---and we suggested only a
+few paragraphs ago how to use graph node-colors to orchestrate some
+such computations.  Accordingly, we devote this section to studying
+graphs with very small chromatic numbers.
+
+\subsubsection{Graphs with chromatic number $2$}
+\label{sec:2-color-graphs}
+
+We begin to garner intuition about graph coloring by exposing a large
+set of graphs with chromatic number $2$.  In fact, we can completely
+characterize these graphs structurally.
+
+A graph $\g$ is {\it leveled} \index{graphs!leveled} if there exists
+an assignment of {\it level numbers} $\{ 1, 2, \ldots, \lambda\}$ to the
+nodes of $\g$ in such a way that every neighbor of a level-$\ell$ node
+$u$ resides either on level $\ell +1$ or on level $\ell -1$.
+
+\begin{prop}
+\label{thm:leveled=2-color}
+A graph $\g$ has chromatic number $2$ if, and only if, it is leveled.
+\end{prop}
+
+\begin{proof}
+Say first that $\g$ is a leveled graph.  Then labeling each node of
+$\g$ with the (odd-even) parity of its level provides a valid
+$2$-coloring of $\g$.
+
+Say next that $\g$ is $2$-colorable.  Pick any node $v$ of $\g$ and
+assign it to be the unique node on level $1$.  Let all neighbors of
+$v$ be assigned to level $2$.  Continuing iteratively, say that the
+largest level-number that we have employed---i.e., assigned nodes
+to---is $\ell$.  Then we now assign to level $\ell +1$ all neighbors
+of level-$\ell$ nodes which have not yet been assigned to a level of
+$\g$.  Because $\g$ is $2$-colorable, each of the levels we have
+specified is monochromatic, so that each edge of $\g$ connects a node
+of one color with a node of the other color.  \qed
+\end{proof}
+
+We can now show that the following named graphs are $2$-colorable.
+
+\begin{corol}
+\label{thm:list-2-colorables}
+The following graphs are leveled, hence have chromatic number $2$.
+
+{\bf (a)}
+any tree (which includes any path-graph $\p_n$)
+
+{\bf (b)}
+any cycle-graph $\cc_n$ that has an even number $n$ of nodes
+
+{\bf (c)}
+any mesh-graph $\m_{m,n}$
+
+{\bf (d)}
+any torus-graph $\widetilde{\m}_{m,n}$ that has an even number of
+diagonals, i.e., even $m+n$
+
+{\bf (e)}
+any hypercube $\q_n$
+\end{corol}
+
+\begin{proof}
+We provide a detailed sketch for each of the five graph families in
+turn.
+
+\noindent {\bf (a)}
+We follow the procedure from the second half of the proof of
+Proposition~\ref{thm:leveled=2-color} to expose a level structure in
+any tree $\t$, as follows.  Pick any node $v$ of $\t$ and make it the
+unique node on level $1$.  Let all neighbors of $v$ be assigned to
+level $2$.  Continuing iteratively, say that the largest level-number
+that we have employed is $\ell$.  Then we now assign to level $\ell
++1$ all neighbors of level-$\ell$ nodes which have not yet been
+assigned to a level of $\t$.
+
+Of course this process can be simplified when $\t$ is a path-graph
+$\p$, by choosing one of $\p$'s end-nodes as node $v$.  We thereby
+have precisely one node on each level, whereas the general procedure
+can have levels with $2$ nodes.  A lesson here is that {\em a graph
+  may admit many distinct level structures}.
+
+\medskip
+
+\noindent {\bf (b)}
+When we apply the procedure of part (a) to an even-length cycle
+$\cc_{2n}$, we produce a level structure in which levels $1$ and $n+1$
+have one node apiece, while all other levels have two nodes apiece.
+
+\medskip
+
+\noindent {\bf (c)}
+The edge-structure of mesh-graphs ensures that the labeling of each
+node $\langle i,j \rangle$ of $\m_{m,n}$ with the odd-even parity of
+the number $i+j$ is a $2$-coloring of $\m_{m,n}$.
+
+\medskip
+
+\noindent {\bf (d)}
+The labeling in part (d) provides a $2$-coloring of any torus-graph
+$\widetilde{\m}_{m,n}$ with even $m+n$.
+
+\medskip
+
+\noindent {\bf (e)}
+Each edge of a hypercube $\q_n$ connects a node $v = \beta_1 \beta_2
+\cdots \beta_n$, where each $\beta_i \in \{0,1\}$, to a node $v' =
+\beta'_1 \beta'_2 \cdots \beta'_n$ where precisely one $\beta_j$
+differs from $\beta'_j$.  Therefore, the following aggregation of
+nodes of $\q_n$ into sets $S_0, S_1, \ldots, S_n$ provides a valid
+leveling of $\q_n$.
+
+Assign node $v = \beta_1 \beta_2 \cdots \beta_n$ to set $S_k$
+precisely if $k$ of the bits $\beta_i$ equal $1$.
+\qed
+\end{proof}
+
+The reader can show that no odd-length cycle $\cc_{2n+1}$ with $n \geq
+1$ is $2$-colorable.  In like fashion, no graph $\g$ that {\em
+  contains} an odd-length cycle can be $2$-colored.  This is the
+problem that plagues the torus $\widetilde{\m}_{m,n}$ when $m+n$ is
+odd.
+  {\Arny Put the odd cycle and torus as Exercises}
+
+The existence of odd-length cycles prevents {\em every} de Bruijn
+network $\d_n$ from being $2$-colorable.  As small examples, one
+observes the $3$-cycle
+\[ 00 \ \rightarrow \ 01 \ \rightarrow \ 10  \rightarrow \ 00 \]
+in $\d_2$ in Fig.~\ref{fig:dB2by2} and the $3$-cycle
+\[ 001 \ \rightarrow \ 010 \ \rightarrow \ 100 \ \rightarrow \ 001 \]
+in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length
+cycles are only the proverbial tip of the iceberg for de Bruijn
+networks.  The following result asserts that de Bruijn networks are
+{\it directed-pancyclic}, \index{graphs!pancyclic} 
+\index{de Bruijn network!pancyclicity} \index{de Bruijn graph!pancyclicity}
+meaning that they contain (even directed!)~cycles of {\em all}
+possible lengths, both odd and even.  The proof of this result is
+outside the scope of this text, but it should be accessible to the
+motivated reader.
+
+\begin{prop}{\cite{Yoeli62}}
+For all $n$, the order-$n$ de Bruijn
+network $\d_n$ is directed-pancylic, i.e., it
+contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
+\end{prop}
+
+\subsubsection{Planar and Outerplanar Graphs}
+\label{sec:planar+outerplanar-color}
+\index{planar graphs}
+\index{outerplanar graphs}
+\index{graphs!planar}
+\index{graphs!outerplanar}
+
+In this section, we focus on two graph families that are defined in
+terms of the way they can be drawn (on a two-dimensional medium, such
+as a piece of paper).
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+The reader should not view this attention to how a graph can be drawn
+as just an abstract game.  The process of designing and implementing
+circuits within the constraints of {\it VLSI}, \index{VLSI} {\it Very
+  Large Scale Integrated Circuit} technology,
+\index{Very Large Scale Integrated Circuit technology}
+\index{VLSI:Very Large Scale
+Integrated Circuit technology} are very similar to drawing a circuit
+on a two-dimensional medium.  We refer the reader to the revolutionary
+1979 text \cite{Mead-Conway} for an introduction to this fascinating
+technology, which requires technical literacy but little specialized
+knowledge.
+\end{minipage}
+}
+\bigskip
+
+\noindent
+A graph is {\it planar} \index{graphs!planar} \index{planar graphs}
+precisely if it can be drawn {\em without any crossing edges}.  A
+graph $\g$ is {\it outerplanar} \index{graphs!outerplanar}
+\index{outerplanar graphs} precisely if it can drawn by {\em placing
+  its nodes along a circle in such a way that its edges can be drawn
+  as noncrossing chords of the circle}.  The latter condition is
+equivalent to demanding that $\g$'s edges can be drawn within the
+circle without any crossings.
+
+We urge the reader to garner intuition about the graphs in these
+families by experimenting with drawing some specific, rather complex
+graphs.
+\begin{itemize}
+\item
+The first set of graphs to draw are cliques, as defined in
+Section~\ref{sec:cliques}.  The cliques $\k_3$, $\k_4$, and
+$\k_5$ will help expose the nature of the planar and outerplanar
+graphs, because:
+  \begin{itemize}
+  \item
+$\k_3$ is outerplanar; 
+  \item
+$\k_4$ is planar but not outerplanar;
+  \item
+$\k_5$ is not planar.
+  \end{itemize}
+
+\item
+The ``bipartite'' cousins of the cliques will also yield valuable
+insights.  For postive integers $m$ and $n$, the $m \times n$
+bipartite clique $\k_{m,n}$ \index{bipartite clique} is the graph
+whose node-set comprises the ordered pairs of integers:
+\[  \n_{\fk_{m,n}} \ = \
+\{ \langle i,j \rangle \ \ | \ \ 1 \leq i \leq m; \ \ 1 \leq j \leq n\}
+\]
+and whose edges connect each node $\langle i,j \rangle$ to every node
+$\langle i,k \rangle$ with $1 \leq k \leq n$ and to every node
+$\langle h,j \rangle$ with $1 \leq h \leq m$.
+
+The second set of graphs to draw are the bipartite cliques $\k_{1,3}$,
+$\k_{2,3}$, and $\k_{3,3}$.  These graphs will also help expose the
+nature of the planar and outerplanar graphs, because:
+  \begin{itemize}
+  \item
+$\k_{1,3}$ is outerplanar; 
+  \item
+$\k_{2,3}$ is planar but not outerplanar;
+  \item
+$\k_{3,3}$ is not planar.
+  \end{itemize}
+\end{itemize}
+
+We selected the preceding cliques and bipartite cliques to ``play
+with'' very carefully.  Using arguments that go beyond the scope of
+this text, one can prove the following {\em characterization via
+  exclusion} result, which characterizes each of our graph families by
+identifying {\it forbidden subgraphs}.  \index{forbidden subgraphs}
+\index{forbidden subgraphs!characterization of planar graphs}
+\index{forbidden subgraphs!characterization of outerplanar graphs} The
+notion of {\it graph homeomorphism} plays a fundamental role in
+\index{graphs!homeomorphism} the characterization.  This is a
+dauntingly named technical term that is easily understood informally.
+A {\it homeomorph} \index{graphs!homeomorph} of a graph $\g$ is
+obtained by adding (degree-$2$) nodes along one or more edges of $\g$.
+The characterization of planar graphs by exclusion resides in a
+celebrated theorem by the Polish mathematician and logician Kazimierz
+Kuratowski; \index{Kuratowski, Kazimierz} the analogous result for
+outerplanar graphs was derived by the French mathematician Gary
+Chartrand \index{Chartrand, Gary} and the American mathematician Frank
+Harary. \index{Harary, Frank}
+
+\begin{theorem}
+\label{thm:planar+outerplanar-exclusion}
+{\bf (a)} {\rm \cite{ChartrandB67}}
+A graph is outerplanar if, and only if, it does not have a subgraph
+that is homeomorphic to either $\k_4$ or $\k_{2,3}$.
+
+{\bf (b)} {\rm \cite{Kuratowski30}}
+A graph is planar if, and only if, it does not have a subgraph
+that is homeomorphic to either $\k_5$ or $\k_{3,3}$.
+\end{theorem}
+
+
+\paragraph{\small\sf A. Outerplanar graphs}
+
+We look first at the smaller of this section's graph families, namely,
+the {\it outerplanar graphs}. \index{outerplanar graphs}
+\index{graphs!outerplanar} (We shall remark in subsection B why these
+graphs are called {\em outer}-planar.)
+
+We begin our discussion of outerplanar graphs with some basic facts
+about the family.
+
+\begin{prop}
+Every tree is outerplanar.
+\end{prop}
+
+We leave to the reader the challenge of drawing a tree in a way that
+exposes its outerplanarity.  {\Arny Another exercise}
+
+\begin{prop}
+\label{thm:basic-outerplanar-stuff}
+Let $\g$ be an outerplanar graph.  Then:
+
+\begin{tabular}{ll}
+{\bf (a)} &
+$\g$ is planar. \\
+{\bf (b)} &
+$\g$ is a subgraph of a Hamiltonian graph. \\
+{\bf (c)} &
+Every subgraph of $\g$ is outerplanar. \\
+{\bf (d)} &
+At least one of $\g$'s nodes has degree $\leq 2$.
+\end{tabular}
+\end{prop}
+
+\begin{proof}
+{\bf (a)} $\g$'s planarity can be inferred from the ability to draw
+$\g$'s edges as noncrossing chords of the circle.
+
+\medskip
+
+\noindent {\bf (b)} $\g$'s ``sub-Hamiltonianicity'' can be inferred
+from the ability to draw $\g$ with its nodes along a circle.
+
+\medskip
+
+\noindent {\bf (c)} We can produce an outerplanarity-witnessing
+drawing of any subgraph of $\g$ by erasing some nodes and/or some
+edges from our outerplanarity-witnessing drawing of $\g$.
+
+\medskip
+
+\noindent {\bf (d)} One verifies easily that this result holds for all
+outerplanar graphs having $3$ or fewer nodes.  Focus, therefore, on an
+arbitrary outerplanar graph $\g$ that has more than $3$ nodes.  Since
+adding more edges to a graph cannot decrease the degree of any node,
+we lose no generality by focusing on a $\g$ that is {\em maximal}
+outerplanar, \index{maximal outerplanar graph} in the sense that
+adding any new edge to $\g$ would destroy its outerplanarity.
+
+Because $\g$ has more than $3$ nodes, and because all of its nodes lie
+on a circle (in the drawing that witnesses its outerplanarity), there
+must be pairs of nodes of $\g$ that are not adjacent along the circle.
+Let $u$ and $v$ be nonadjacent nodes such that the distance between
+$u$ and $v$ (measured in edges that must be traversed to reach one
+from the other) is minimal among pairs of nodes nonadjacent nodes.  We
+consider two cases.
+\begin{itemize}
+\item
+If the distance between $u$ and $v$ were $2$, then the unique node
+that lies between $u$ and $v$ along the circle would have degree $2$.
+\item
+If, on the other hand, the distance between $u$ and $v$ {\em exceeded}
+$2$, then there would be at least {\em two} nodes that lie between $u$
+and $v$ in either direction around the circle.  But in this case,
+there would be two nonadjacent nodes that were closer to one another
+than $u$ and $v$---which contradicts our choice of $u$ and $v$ as a
+pair of closest nonadjacent nodes.
+\end{itemize}
+We conclude that $\g$ must have a node of degree $\leq 2$, completing
+the proof.
+\qed
+\end{proof}
+
+\bigskip
+
+Our primary concern in this section is, of course, on graph coloring.
+We return to this topic now.  The $3$-node cycle $\cc_3$ witnesses the
+fact that not every outerplanar graph is $2$-colorable; $3$ colors is
+the best that we can hope for.  We now show that this hope can be
+realized.  The inductive proof of the following result can easily be
+turned into an efficient node-coloring algorithm for outerplanar
+graphs.
+
+\begin{prop}[The $3$-Color Theorem for Outerplanar Graphs]
+\label{thm:OP-3-colorability}
+Every outerplanar graph is $3$-colorable.
+\end{prop}
+
+\begin{proof}
+We proceed by induction on the number of nodes in the outerplanar
+graph to be colored.
+
+The base cases of the result are provided by small outerplanar
+graphs---say those having $3$ nodes or fewer.
+
+We assume, for induction, that every outerplanar graph having fewer
+than $n$ nodes is $3$-colorable.
+
+Let us now focus on an arbitrary $n$-node outerplanar graph $\g$.  By
+Proposition~\ref{thm:basic-outerplanar-stuff}(d), $\g$ has a node $v$
+of degree $\leq 2$.  Let us remove node $v$ from $\g$, along with the
+edge(s) that connect $v$ to the rest of $\g$; call the resulting graph
+$\g'$.  Now, $\g'$ is clearly outerplanar, once we ``stitch'' together
+the circle we ``damaged'' by removing $v$, and $\g'$ has fewer than
+$n$ nodes.  By induction, therefore, $\g$ is $3$-colorable.  But now
+we can reattach node $v$ to $\g'$ by replacing the edges that attach
+$v$ to $\g$.  Moreover, we can now color $v$ using whichever of the
+$3$ colors on $\g$ that is {\em not} used for $v$'s neighbors in $\g$.
+We have, thus, specified a $3$-coloring of $\g$, which extends the
+induction and completes the proof.  \qed
+\end{proof}
+
+\ignore{**************
+Two remarks about Proposition~\ref{thm:OP-3-colorability}:
+\begin{enumerate}
+\item
+Our proof of the proposition can easily be transformed into an
+algorithm that $3$ colors any $n$-node outerplanar graph in a
+number of inductive stages that is a low-degree polynomial in $n$.
+\item
+The color-bound of the proposition can, of course, not be improved, as
+witnessed by odd-length cycle-graphs.
+\end{enumerate}
+*************}
+
+\paragraph{\small\sf B. Planar graphs}
+
+The larger of this section's two graph families comprises {\it planar
+  graphs} \index{planar graphs} \index{graphs!planar} i.e., graphs
+that can be drawn (on a two-dimensional medium, such as a piece of
+paper) with no crossing edges.  The original focus on planar graphs
+stemmed from viewing them as abstractions of geographical maps.
+
+The $4$-node clique $\k_4$ witnesses the fact that not every planar
+graph is $3$-colorable.  To wit, because every pair of nodes of every
+clique are neighbors of each other, it follows that:
+
+\smallskip
+
+{\em For all $n$, the $n$-node clique $\k_n$ can be colored with $n$
+  colors but no fewer.}.
+
+\smallskip
+
+\noindent
+A century-plus attempt to prove that $4$ colors suffice for planar
+graphs culminated in one of the most fascinating dramas in modern
+mathematics, as American mathematicians Kenneth Appel 
+\index{Appel, Kenneth}
+and Wolfgang Haken, \index{Haken, Wolfgang}---with the help of their
+families and of their computer!---announced their two-article-long
+proof in 1974 of their renowned {\it $4$-Color Theorem for Planar
+  Graphs}.  \index{The $4$-Color Theorem for Planar Graphs}
+\index{coloring planar graphs!the $4$-Color Theorem}
+
+\begin{theorem}[The $4$-Color Theorem for Planar Graphs \cite{AppelH77a,AppelH77b}]
+\label{thm:Four-ColorTheorem}
+Every planar graph is $4$-colorable.
+\end{theorem}
+
+The proof of Theorem~\ref{thm:Four-ColorTheorem} is beyond the scope
+of any introductory text, but the backstory of the proof is truly
+fascinating---and it supplies ample motivation for the proofs of the
+$6$-color and $5$-color analogues of the Theorem.  Beginning with a
+failed attempt, in 1875, to prove that every planar map can be colored
+with four colors with no abutting countries getting the same color,
+the so-called {\it $4$-Color Problem}
+\index{The $4$-Color Problem for planar graphs} 
+held the world of discrete mathematics in thrall for roughly a century
+before But the drama surrounding the $4$-Color Problem persisted,
+because of the Appel-Haken proof's reliance, in a fundamental way, on
+a computer program that checked more than a thousand essential---but
+clerical---assertions (about forbidden subgraphs).  It took the
+mathematics community years before this proof, with its massive
+complexity and unprecedented employment of ``collaboration'' by
+computer, was generally accepted.  In addition to the primary
+references \cite{AppelH77a,AppelH77b} that accompany our statement of
+the Theorem, we recommend to the interested reader the articles
+\cite{AppelH77c,AppelH89} that summarize and, at a rather
+sophisticated level, popularize this marvelous mathematical tale.
+
+We turn now to the $6$-color and $5$-color analogues of the $4$-color
+Theorem.  The weaker, $6$-color, version of the Theorem can be proved
+in much the same way as its outerplanar-graph cousin,
+Proposition~\ref{thm:OP-3-colorability}.  The proof of the stronger,
+$5$-color, version of the Theorem already requires us to break the
+world into multiple cases---but only a single-digit number of cases,
+in contrast to the four-digit case list one encounters with the proof
+of Theorem~\ref{thm:Four-ColorTheorem} \cite{AppelH77a,AppelH77b}.
+
+\bigskip
+
+{\it The $6$-Color Theorem for Planar Graphs.}
+The first step in showing that every planar graph can be colored using
+$6$ colors resides in the following analogue for planar graphs of
+Proposition~\ref{thm:basic-outerplanar-stuff}(d), which asserts that
+every outerplanar graph has a node of degree $2$.
+
+\begin{lemma}
+\label{thm:PlanarGraph-degree5}
+Every planar graph has a node of degree $\leq 5$.
+\end{lemma}
+
+\begin{proof} {\em (Lemma~\ref{thm:PlanarGraph-degree5})}
+Let us focus on a planar drawing of a (perforce) planar graph $\g$,
+which has $n$ nodes, $e$ edges, and $f$ {\it faces}.  A {\it face}
+\index{graphs!planar!face in a drawing}
+\index{planar graph!face in a drawing} 
+in a drawing of $\g$ is a polygon whose sides are edges of
+$\g$, whose points are nodes of $\g$, and whose interiors are empty,
+in that no edge of $\g$ crosses through the interior.
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+Now that we know about faces, we can finally describe the origin of
+the term {\it outerplanar}.  A graph $\g$ is outerplanar if it can be
+drawn with all of its nodes around a single ``outer'' face in such a
+way that all of its edges are drawn in a noncrossing manner within the
+``outer'' face.  In fact, we usually draw $\g$ so that the ``outer''
+face is literally outside the ``outer'' face.
+\end{minipage}
+}
+\bigskip
+
+The following auxiliary result derives a celebrated ``formula'' of
+Euler.  \index{Euler, Leonhard} \index{Euler's Formula}
+
+\begin{prop} [Euler's Formula for Planar Graphs]
+\label{thm:Euler-Formula}
+Given the indicated drawing of $\g$, we have
+\begin{equation}
+\label{eqn:Eulers-formula}
+n \ - \ e \ + \ f \ \ = \ \ 2
+\end{equation}
+\end{prop}
+
+\medskip
+
+We defer proving Proposition~\ref{thm:Euler-Formula} so that we can
+proceed with our ongoing proof of Lemma~\ref{thm:PlanarGraph-degree5}.
+We devote Subsection C to two quite different proofs of Euler's
+celebrated formula.
+
+\medskip
+
+As we approach the next step of the proof, we simplify the setting by
+assuming henceforth that $\g$ is connected and that it is {\em
+  maximal}, \index{graphs!planar!maximal} in the sense that one cannot
+add any new edge to the drawing without crossing an existing edge.
+This step only strengthen's the Lemma's conclusion by apparently
+making it more difficult to find a small-degree node.
+
+With this assumption in place, we now adapt a pedagaogical tool from
+\cite{Berge73}, in order to make the following counting argument
+easier to follow.  We construct a {\em directed bipartite} graph {\bf
+  G} which exposes certain features of $\g$'s structure.  On one side
+of {\bf G} are the $f$ faces of $\g$; on the other side are $\g$'s $e$
+edges.  {\bf G} contains an arc from each face $\varphi$ of $\g$ to
+each edge $\varepsilon$ of $\g$ that forms a ``side'' of the polygonal
+drawing of $\varphi$.  Because $\g$ is a maximal planar graph, we have:
+\begin{itemize}
+\item
+Each face of $\g$ is a $3$-cycle, hence involves three nodes.
+\item
+Each edge of $\g$ touches two faces.
+\item
+Each edge of $\g$ touches two nodes.
+\end{itemize}
+
+Let us now put these facts together, and assume, for contradiction,
+that every node of $\g$ had degree $\geq 6$.  We would then find that
+\[
+\left[ f \ \ \leq \ \ \frac{2}{3} e \right] \ \ \ \ \mbox{ and } \ \ \ \
+\Big[ e \ \ \geq \ \ 3n \Big]
+\]
+Incorporating these two bounds into Euler's Formula
+(\ref{eqn:Eulers-formula}), we arrive at the following contradiction.
+\[ 2 \ \ = \ \ n \ - \ e \  + \ f
+\ \ \leq \ \ \frac{1}{3} e \ - \ e \ + \ \frac{2}{3} e \ \ = \ \ 0
+\]
+This contradiction proves that every planar graph must have a node of
+degree $\leq 5$.
+ \qed-Lemma~\ref{thm:PlanarGraph-degree5}
+\end{proof}
+
+\medskip
+
+We finally have the tools to color planar graphs using $6$ colors.
+\index{The $6$-Color Theorem for Planar Graphs}
+\index{coloring planar graphs!the $6$-Color Theorem}
+
+\begin{prop}[The $6$-Color Theorem for Planar Graphs]
+\label{thm:P-6-colorability}
+Every planar graph is $6$-colorable.
+\end{prop}
+
+\begin{proof}
+The $2$-Color Theorem for Outerplanar Graphs
+(Proposition~\ref{thm:OP-3-colorability}) and this result follows via
+almost-identical inductions on the number of nodes in the graph $\g$
+that is being colored.  Both arguments:
+\begin{enumerate}
+\item
+remark that the coloring goal can be met for small graphs
+
+For outerplanar graphs, ``small'' means ``$3$ or fewer nodes''.  For
+planar graphs, it means ``$4$ or fewer nodes''.
+
+\item
+remove from $\g$ a node $v$ of smallest degree $d_v$, together with
+all its incident edges
+
+For outerplanar graphs, we guarantee that $d_v \leq 2$
+(Proposition~\ref{thm:basic-outerplanar-stuff}(d)).  For planar
+graphs, we guarantee that$d_v \leq 5$
+(Lemma~\ref{thm:PlanarGraph-degree5}).
+
+\item
+inductively color the nodes of the graph $\g'$ left after the removal
+of $v$
+
+For outerplanar graphs, we color $\g'$ with $\leq 3$ colors
+(Proposition~\ref{thm:OP-3-colorability}).  For planar
+graphs, we use an inductive assumption that $\g'$ can be colored with
+$\leq 6$ colors. 
+
+\item
+reattach $v$ via its $d_v$ edges and then color $v$.
+
+Note that the coloring guarantee in both
+results---Proposition~\ref{thm:OP-3-colorability} for outerplanar
+graphs and the current result for planar graphs---allows us to use
+$d_v +1$ colors to color $\g$.  Because $v$ has degree $d_v$, it is a
+neighbor of no more than $d_v$ nodes of $\g'$, so our access to $d_v
++1$ colors guarantees that we can successfully color $v$.
+\end{enumerate}
+The proofs of the $3$-colorability of outerplanar graphs and the
+$6$-colorability of planar graphs thus differ only in the value of
+$d_v$.  \qed
+\end{proof}
+
+\bigskip
+
+{\it The $5$-Color Theorem for Planar Graphs.}
+\index{The $5$-Color Theorem for Planar Graphs}
+\index{coloring planar graphs!the $5$-Color Theorem}
+We now prove that every planar graph can be colored using $5$ colors.
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+The case analysis in the following proof is a bit more complex than in
+most of the results in the text, but a methodical reading should make
+the proof quite accessible.  Moreover, {\em roadmap} of the case
+analysis is a valuable lesson in how mathematics is really done!  For
+instance, the motivated reader will be able to recast the totally
+positive proof we present into the form of a proof by contradiction.
+The positive version should be more to the taste of a computationally
+oriented reader---but both proofs are equally correct.
+\end{minipage}
+}
+\bigskip
+
+\begin{prop}[The $5$-Color Theorem for Planar Graphs \cite{Heawood90}]
+\label{thm:P-5-colorability}
+Every planar graph is $5$-colorable.
+\end{prop}
+
+\ignore{************************
+The proof again (I mean like for 6 colors) is by recurrence but we add
+here a contradiction argument:
+Similarly, we focus on a node with degree 5 (at some points, we will
+have to justify this)
+This node (call it x) has 5 neighbors
+The problem is when they are colored by the 5 colors, otherwise it is
+colored by a missing one.
+Let now label these 5 nodes from 1 to 5.
+Consider the nodes 1 and 3, colored by two different colors and the
+sub-graph composed of nodes with colors 1 and 3
+If these two nodes are in disjoint connected components, (case 1), it is
+easy to color x by reverting the colors 1 and 3 in one component
+(see figure)
+Thus, the problem is when there exists an alternate path (in term of
+colors) between node 1 and node 3
+in this case (case 2), consider nodes 2 and 4, using a similar process
+as in case 1, if there are two connected components
+we are done (x can be colored by reverting the colors along the path
+in one component), otherwise, there is an alternate path
+between 2 and 4.
+However, since the graph is planar, then, both alternate paths will
+intersect, which is impossible
+************************}
+
+
+The proof is rather technical and thus, it is shifted to the Appendix~\ref{Appendix:5colors}.
+It combines a sophisticated analysis of the structure of the
+planar graph we wish to color with an induction that can be converted
+into an efficient algorithm actually achieving the $5$-coloring.
+
+\ignore{
+\begin{proof}
+For brevity, let us henceforth discuss only {\em valid} colorings,
+i.e., colorings of a graph's nodes in which neighboring nodes get
+different colors.
+
+\smallskip
+
+\noindent {\em Base of our induction.}
+Because the $5$-clique $\k_5$ is obviously $5$-colorable, so also must
+be all graphs having $\leq 5$ nodes.  Therefore, we know that any
+non-$5$-colorable graph would have $\geq 6$ nodes.
+
+\smallskip
+
+\noindent {\em Inductive hypothesis.}
+Assume, for induction, that every planar graph having $\leq n$ nodes
+is $5$-colorable.
+
+\smallskip
+
+\noindent {\em Inductive extension.}
+If the proposition were false, then there would exist a planar graph
+$\g$ having $n+1$ nodes which is not $5$-colorable.  By
+Lemma~\ref{thm:PlanarGraph-degree5}, $\g$ would have a node $v$ of
+degree $\leq 5$.  The remainder of the proof focuses on the graph
+$\g$, its minimal-degree node $v$, and on $v$'s $(d_v \leq 5)$
+neighbors in $\g$.
+
+Now, if there were a coloring of $\g$'s nodes in which $\leq 4$ colors
+were used to color $v$'s neighbors, then the following analogue of the
+coloring strategy of Proposition~\ref{thm:P-6-colorability} would
+produce a $5$-coloring of $\g$.
+\begin{enumerate}
+\item
+Remove node $v$ and its incident edges from $\g$, thereby producing
+the $n$-node planar graph $\g'$.
+\item
+Produce a $5$-coloring of $\g'$ that uses only $4$ colors for the
+nodes that are neighbors of $v$ in $\g$.
+\item
+($a$) Reattach node $v$ and its edges to $\g'$, thereby reconstituting
+  $\g$.  ($b$) Color $v$ with whichever of the $5$ available colors is
+  not used to color $v$'s neighbors.
+\end{enumerate}
+
+In order to proceed in pursuit of a contradiction, we must understand
+what structural features of $\g$ make it impossible to use only $4$
+colors on $v$'s neighbors when $5$-coloring $\g$.  There are three
+important situations to recognize.
+\begin{description}
+\item[{\sf Case 1}.]
+Node $v$ has degree $\leq 4$.
+
+\smallskip
+
+By definition, $\leq 4$ colors are used to color $v$'s neighbors in
+this case.
+\end{description}
+Note that, in all remaining cases, node $v$ has precisely $5$
+neighbors---or else, we would have invoked Case 1 to color $\g$ with
+$5$ colors.
+\begin{description}
+\item[{\sf Case 2}.]
+For some $5$-coloring of $\g$, $\geq 2$ neighbors of $v$ get the same
+color.
+
+\smallskip
+
+Because $v$ has exactly $5$ neighbors, in this case, only $4$ colors
+are used to color these neighbors.
+\end{description}
+In all remaining cases, the $5$ neighbors of $v$ receive distinct
+colors.
+\begin{description}
+\item[{\sf Case 3}.]
+For some $5$-coloring of $\g$, some two neighbors of $v$, call them
+$v_1$ and $v_2$, reside in distinct components of $\g$ once $v$ and
+its incident edges are removed from $\g$.
+
+\smallskip
+
+As before, let $\g'$ be the (in this case, disconnected) graph that
+results when $v$ and its incident edges are removed from $\g$.  For $i
+= 1,2$ Let $\g_i$ be the component of $\g'$ that contains node $v_i$.
+
+Say that, under the $5$-coloring of $\g$ that we are focusing on,
+$v_1$ is colored {\it red} and $v_2$ is colored {\it green}.
+
+Let us recolor the nodes of $\g_1$ so that node $v_1$ is now colored
+{\it green}.  (One needs only switch the colors {\it red} and {\it
+  green} in the existing coloring of $\g_1$.)  It is always possible
+to do this in a way that does not affect the valid coloring of $\g_2$
+because $\g_1$ and $\g_2$ are mutually disjoint.
+
+Once we have thus-recolored $\g_1$, we have a $5$-coloring of $\g$ for
+which Case 2 holds.  (In fact, we can color node $v$ {\em red} when we
+reattach it to $\g'$.)
+\end{description}
+
+\noindent
+We now see that Cases 1--3 cannot prevent us from $5$-coloring $\g$, so
+we are left with the following minimally constrained situation.
+\begin{description}
+\item[{\sf Case 4}.]
+\begin{itemize}
+\item
+Every minimum-degree node of $\g$ has $5$ neighbors.
+
+For the minimum-degree node $v$, let us call these neighbors $v_1$,
+$v_2$, $v_3$, $v_4$, $v_5$, in clockwise order within the planar
+drawing.
+\item
+In every $5$-coloring of $\g$, the neighbors of every minimum-degree
+node receive distinct colors.
+
+For node $v$, let us say that neighbor $v_i$ receives color $c_i$.
+\end{itemize}
+The leftmost graph in FIGURE 1 depicts the portion of $\g$ comprising
+node $v$ and its neighbors.  In the figure, we use integer $i$ to
+denote, ambiguously, node $v_i$ and its assigned color $c_i$.  The
+question mark ``?'' that ``colors'' node $v$ indicates that we do not
+yet know what color to assign to $v$.  The other two graphs in the
+figure depict schematically how we have dealt with Case 3 above.
+\begin{itemize}
+\item
+All neighbors of node $v$ remain in the same component of $\g$ when
+$v$ and its incident edges are removed.
+\end{itemize}
+\end{description}
+To analyze Case 4, we focus on nodes $v_1$ and $v_3$ in FIGURE 1.
+Importantly, these nodes have received distinct colors ($c_1$ and $c_3
+\neq c_1$, respectively), and these nodes are not adjacent to one
+another as one makes a clockwise sweep around node $v$.
+
+Now take $\g$ and focus only on the nodes that are colored $c_1$ or
+$c_3$ (as are $v_1$ and $v_3$, respectively) and on the nodes that are
+colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One
+sees from Figure 2 that:
+\begin{itemize}
+\item
+$\g$ can, {\em but need not}, contain a path whose nodes alternate
+  colors $c_1$ and $c_3$---call this a ``$c_1$-$c_3$ path'' between
+  nodes $v_1$ and $v_3$.
+\item
+$\g$ can, {\em but need not}, contain a path whose nodes alternate
+  colors $c_2$ and $c_4$---call this a ``$c_2$-$c_4$ path'' between
+  nodes $v_2$ and $v_4$.
+\item
+$\g$ {\em cannot} contain both of the paths just described, i.e., a
+  $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em and} a $c_2$-$c_4$ path
+  between $v_2$ and $v_4$.
+
+{\em These two paths, if they existed, would cross one another---which
+  is forbidden because $\g$ is a {\em planar} graph.}  See Figure 2.
+\end{itemize}
+It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path
+between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$
+path between $v_2$ and $v_4$.  Say, with no loss of generality, that
+the former path does not exist.  Then we can switch colors $c_1$ and
+$c_3$ beginning with node $v_1$ and obtain a coloring of $\g$ in which
+$v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as
+in Case 2 to get a $5$-coloring of $\g$.
+
+This four-case analysis shows that we can always produce a
+$5$-coloring of $\g$, which completes the proof.  \qed
+\end{proof}
+}
+
+We finish this topic with an overview of the intellectual
+cost-benefit tradeoff we have observed:
+\begin{itemize}
+\item
+A straightforward recursive coloring strategy suffices if one is
+willing to settle for a six-color palette when coloring planar graphs
+(Proposition~\ref{thm:P-6-colorability}).
+\item
+A four-case analysis, in which one case comprises multipl subcases, is
+needed in order to eliminate one of the colors from the palette, to
+achieve a five-color palette (Proposition~\ref{thm:P-5-colorability}).
+\item
+An analysis involving close to $2000$ cases is needed in order to
+achieve the provable optimal, a four-color palette
+(Theorem~\ref{thm:Four-ColorTheorem}).
+\end{itemize}
+
+\paragraph{\small\sf C. Two validations of Euler's Formula}
+\index{Euler's Formula}
+
+We develop two quite different proofs of
+Proposition~\ref{thm:Euler-Formula}.
+
+\medskip
+
+\index{Euler's Formula!validation by structural induction}
+\noindent {\bf Validatinging Euler's Formula by structural induction}.  We
+validate (\ref{eqn:Eulers-formula}) by growing a planar graph $\g$
+edge by edge.  We proceed by induction.
+
+\smallskip
+
+\noindent {\it Base case}.
+The Formula clearly holds for the smallest planar graphs, including
+the smallest interesting one, $\cc_3$, which has $n = e = 3$ and $f =2$
+(the inner and outer faces of the ``triangle'').
+
+\smallskip
+
+\noindent {\it Extension}.
+We grow the current version of $\g$ by adding a new edge.  Two cases
+arise.
+\begin{itemize}
+\item
+{\em The new edge connects existing nodes.}  In this case, this
+augmentation of $\g$ increases the number of edges ($e$) and the
+number of faces ($f$) by $1$ each, while keeping the number of nodes
+($n$) unchanged.  Euler's Formula (\ref{eqn:Eulers-formula}) thus
+continues to hold.
+
+\item
+{\em The new edge adds a new node, which is appended to some
+  preexisting node.}  In this case, this augmentation of $\g$
+increases the number of edges ($e$) and the number of nodes ($n$) by
+$1$ each, while keeping the number of faces ($f$) unchanged.  Euler's
+formula (\ref{eqn:Eulers-formula}) thus continues to hold.
+\end{itemize}
+This augmentation extends the induction, hence validates the Formula.
+\qed
+
+\bigskip
+
+%{\Denis Here is a nice alternative proof for the Euler proposition}
+
+\index{Euler's Formula!validation by deconstruction}
+\noindent {\bf Validating Euler's Formula by deconstruction}.  Let us be
+given a planar graph $\g$ that has $n$ nodes, $e$ edges, and $f$
+faces.  We validate (\ref{eqn:Eulers-formula}) by deconstructing $\g$
+and showing that each step in the process preserves as {\it invariant}
+the expression $\phi(n,e,f) = n+e-f$.  \index{invariants}
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+The concept of \textit{invariance} is an extremely important
+conceptual tool when crafting proofs.  The underlying idea is to find
+an expression $\phi(\cdot)$ whose value is preserved as a process
+proceeds, step by step.  Rather than try to explain the concept in
+abstraction, we recommend that the reader follow this proof of Euler's
+Formula with an eye to keeping track of the invariant expression
+$\phi(n,e,f)$ whose arguments are obtained from the subject planar
+graph $\g$.
+\end{minipage}
+}
+\bigskip
+
+\noindent
+We analyze the following two-step process, whose steps are performed
+in sequence.
+\begin{description}
+\item[{\bf Step 1}.]
+Iterate the following process of removing edges from $\g$ until one
+edge-removal reduces $\g$ to a graph with a single face.  This
+termination condition is equivalent to stopping when the remaining
+graph is a tree.  One can verify that the tree one ends up with is
+{\em connected}.
+
+{\bf The action}.
+If the graph remaining at some step contains an edge that is shared by
+two distinct faces, then remove any such edge.
+
+Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
+(residual) graph with $n=8$ nodes, $e=11$ edges, and $f=5$ faces.
+\begin{figure}[hbt]
+\begin{center}
+   \includegraphics[scale=0.4]{FiguresGraph/planarStep1}
+\caption{Illustrating Step 1: From top left to bottom right, each
+  transformation preserves the invariant $\phi(n,e,f)$.  The first
+  transformation removes the edge shared by faces (1) and (3),
+  creating a new, merged, face (1)'.}
+  \label{fig:planarStep1}
+\end{center}
+\end{figure}
+
+\bigskip
+
+{\bf The analysis}.
+\begin{itemize}
+\item
+The graph remaining after an edge-removal is still planar---edges are
+removed but never added---so we can continue the process.
+\item
+The process preserves the value of function $\phi$.  To wit, $n$ is
+unchanged, while $e$ and $f$ are each reduced by $1$: $\phi(n,e,f) =
+\phi(n,e-1,f-1)$.
+\end{itemize}
+
+\item[{\bf Step 2}.]
+Iterate the following process of removing nodes from the tree produced
+by Step 1, until onlu one node remains.
+
+{\bf The action}.
+Remove any leaf of the current tree, together with its incident edge.
+
+Fig.~\ref{fig:planarStep2} illustrates the action of Step 2
+for a tree  with $n=8$ nodes---hence, $e=7$ edges and $f=1$ face.
+\begin{figure}[hbt]
+\begin{center}
+   \includegraphics[scale=0.4]{FiguresGraph/planarStep2}
+   \caption{Illustrating Step 2: We remove a sequence of leaves, each
+     with its incident edge, until we reach a single node.  Again,
+     $\phi$ remains invariant after each leaf-removal.}
+  \label{fig:planarStep2}
+\end{center}
+\end{figure}
+
+\bigskip
+
+{\bf The analysis}.
+The value of function $\phi$ remains unchanged by each leaf-removal.
+To wit, $f$ is unchanged (it remains at $1$), while $n$ and $e$ are
+each reduced by $1$: $\phi(n,e,f) = \phi(n-1,e-1,f)$
+\end{description}
+
+\noindent {\bf The cumulative analysis}.
+\begin{itemize}
+\item
+Our process executes a number of steps exactly equal to the number of
+edges of the graph $\g$ that we began with.  To wit, the edge-removal
+Step removes $e-n$ edges, while the leaf-removal Step removes $n$
+nodes.
+\item
+At the end of the process, $e=0$ and $n=f=1$, so that the residual
+value of $\phi$ is $2$.  Because each action prescribed by the process
+preserved the value of $\phi$, we know that $\phi$ has the value $2$
+before each edge-removal and leaf-removal.
+\end{itemize}
+We conclude that, at the
+start of the process,  $\phi(n,e,f)$ had the value $2$.  In other
+words, $n-e+f = 2$.  This concludes the proof.  \qed
+
+
+\subsection{Computing Chromatic Number}
+\label{sec:Compute-Chromatic-No}
+
+**HERE
+**FIND REFERENCES
+
+\cite{GareyJ79}
+\cite{Karp72}
+
+It is an {\sf NP}-complete problem to decide, given any fixed $k \geq
+3$, whether a given graph $\g$ is $k$-colorable.
+
+A simple argument shows that it is {\sf NP}-hard to find smallest
+number of colors that provide a valid node-coloring of $\g$.
+
+But one can exhibit ``greedy'' algorithms that give good results.
+
+
+
 \section{Path and Cycle Discovery Problems in Graphs}
 \label{sec:path-cycle-problems}
 
@@ -2855,1086 +3940,6 @@ this text, but we do want the reader to recognize the following.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Graph Coloring and Chromatic number}
-\label{sec:graph-color}
-\index{graphs!node-coloring}
-
-This section introduces the notion of {\it graph coloring}, and its
-associated notion of the {\it chromatic number}
-\index{graphs!chromatic number} of a graph.
-
-A {\it node-coloring} \index{graphs!node-coloring} of a graph $\g$ is
-an assignment of labels to $\g$'s nodes, in such a way that all of a
-node $v$'s neighbors get a different label than $v$.  Traditionally,
-the labels are called {\it colors}, for that term's evocative power.
-The {\it chromatic number} \index{graphs!chromatic number} of a graph
-$\g$ is the smallest number of colors that can be used in a legal
-node-coloring of $\g$.  In traditional parlance, the assertions
-
-``$\g$ has chromatic number $c$'' \ \ \ \ \ and \ \ \ \ \
-``$\g$ is {\it $c$-colorable}''
-\index{graphs!$c$-colorable}
-
-\noindent
-are considered to be synonymous.
-
-The notion of graph coloring can be used to computational advantage to
-model a broad variety of situations.  An extremely important, and
-illustrative, use of graph coloring is to model {\it distributed}
-computing.  In this setting, the nodes of a computation-graph $\g$
-represent {\it agents}, such as, e.g., processing elements in a
-computer; and $g$'s edges represent {\it communication links} that
-enable each node $u$ to check its neighbors' states before any action
-and to inform its neighbors of state-changes occasioned by an action
-of $u$.  The prohibition against ``monochrome'' edges---i.e., edges
-both of whose incident nodes have the same color---guarantees that
-node $u$ and all of its like-colored nodes can act at the same instant
-with no fear of missing an important input to those actions.  Indeed,
-one often encounters programs for distributed computing that look
-something like
-
-1. All {\em red} nodes perform an action
-
-2. All {\em green} nodes perform an action
-
-3. All {\em blue} nodes perform an action
-
-\hspace*{1in} $\vdots$
-
-
-\subsection{Graphs with Small Chromatic Numbers}
-\label{sec:Graphs-small-Chromatic-No} 
-
-Most of the ``named'' graphs in
-Section~\ref{sec:graphs-important-families} have very small chromatic
-numbers.  This is no accident: These graphs were invented (or, at
-least, placed in the spotlight) because of their importance to the
-topic of parallel and distributed computing---and we suggested only a
-few paragraphs ago how to use graph node-colors to orchestrate some
-such computations.  Accordingly, we devote this section to studying
-graphs with very small chromatic numbers.
-
-\subsubsection{Graphs with chromatic number $2$}
-\label{sec:2-color-graphs}
-
-We begin to garner intuition about graph coloring by exposing a large
-set of graphs with chromatic number $2$.  In fact, we can completely
-characterize these graphs structurally.
-
-A graph $\g$ is {\it leveled} \index{graphs!leveled} if there exists
-an assignment of {\it level numbers} $\{ 1, 2, \ldots, \lambda\}$ to the
-nodes of $\g$ in such a way that every neighbor of a level-$\ell$ node
-$u$ resides either on level $\ell +1$ or on level $\ell -1$.
-
-\begin{prop}
-\label{thm:leveled=2-color}
-A graph $\g$ has chromatic number $2$ if, and only if, it is leveled.
-\end{prop}
-
-\begin{proof}
-Say first that $\g$ is a leveled graph.  Then labeling each node of
-$\g$ with the (odd-even) parity of its level provides a valid
-$2$-coloring of $\g$.
-
-Say next that $\g$ is $2$-colorable.  Pick any node $v$ of $\g$ and
-assign it to be the unique node on level $1$.  Let all neighbors of
-$v$ be assigned to level $2$.  Continuing iteratively, say that the
-largest level-number that we have employed---i.e., assigned nodes
-to---is $\ell$.  Then we now assign to level $\ell +1$ all neighbors
-of level-$\ell$ nodes which have not yet been assigned to a level of
-$\g$.  Because $\g$ is $2$-colorable, each of the levels we have
-specified is monochromatic, so that each edge of $\g$ connects a node
-of one color with a node of the other color.  \qed
-\end{proof}
-
-We can now show that the following named graphs are $2$-colorable.
-
-\begin{corol}
-\label{thm:list-2-colorables}
-The following graphs are leveled, hence have chromatic number $2$.
-
-{\bf (a)}
-any tree (which includes any path-graph $\p_n$)
-
-{\bf (b)}
-any cycle-graph $\cc_n$ that has an even number $n$ of nodes
-
-{\bf (c)}
-any mesh-graph $\m_{m,n}$
-
-{\bf (d)}
-any torus-graph $\widetilde{\m}_{m,n}$ that has an even number of
-diagonals, i.e., even $m+n$
-
-{\bf (e)}
-any hypercube $\q_n$
-\end{corol}
-
-\begin{proof}
-We provide a detailed sketch for each of the five graph families in
-turn.
-
-\noindent {\bf (a)}
-We follow the procedure from the second half of the proof of
-Proposition~\ref{thm:leveled=2-color} to expose a level structure in
-any tree $\t$, as follows.  Pick any node $v$ of $\t$ and make it the
-unique node on level $1$.  Let all neighbors of $v$ be assigned to
-level $2$.  Continuing iteratively, say that the largest level-number
-that we have employed is $\ell$.  Then we now assign to level $\ell
-+1$ all neighbors of level-$\ell$ nodes which have not yet been
-assigned to a level of $\t$.
-
-Of course this process can be simplified when $\t$ is a path-graph
-$\p$, by choosing one of $\p$'s end-nodes as node $v$.  We thereby
-have precisely one node on each level, whereas the general procedure
-can have levels with $2$ nodes.  A lesson here is that {\em a graph
-  may admit many distinct level structures}.
-
-\medskip
-
-\noindent {\bf (b)}
-When we apply the procedure of part (a) to an even-length cycle
-$\cc_{2n}$, we produce a level structure in which levels $1$ and $n+1$
-have one node apiece, while all other levels have two nodes apiece.
-
-\medskip
-
-\noindent {\bf (c)}
-The edge-structure of mesh-graphs ensures that the labeling of each
-node $\langle i,j \rangle$ of $\m_{m,n}$ with the odd-even parity of
-the number $i+j$ is a $2$-coloring of $\m_{m,n}$.
-
-\medskip
-
-\noindent {\bf (d)}
-The labeling in part (d) provides a $2$-coloring of any torus-graph
-$\widetilde{\m}_{m,n}$ with even $m+n$.
-
-\medskip
-
-\noindent {\bf (e)}
-Each edge of a hypercube $\q_n$ connects a node $v = \beta_1 \beta_2
-\cdots \beta_n$, where each $\beta_i \in \{0,1\}$, to a node $v' =
-\beta'_1 \beta'_2 \cdots \beta'_n$ where precisely one $\beta_j$
-differs from $\beta'_j$.  Therefore, the following aggregation of
-nodes of $\q_n$ into sets $S_0, S_1, \ldots, S_n$ provides a valid
-leveling of $\q_n$.
-
-Assign node $v = \beta_1 \beta_2 \cdots \beta_n$ to set $S_k$
-precisely if $k$ of the bits $\beta_i$ equal $1$.
-\qed
-\end{proof}
-
-The reader can show that no odd-length cycle $\cc_{2n+1}$ with $n \geq
-1$ is $2$-colorable.  In like fashion, no graph $\g$ that {\em
-  contains} an odd-length cycle can be $2$-colored.  This is the
-problem that plagues the torus $\widetilde{\m}_{m,n}$ when $m+n$ is
-odd.
-  {\Arny Put the odd cycle and torus as Exercises}
-
-The existence of odd-length cycles prevents {\em every} de Bruijn
-network $\d_n$ from being $2$-colorable.  As small examples, one
-observes the $3$-cycle
-\[ 00 \ \rightarrow \ 01 \ \rightarrow \ 10  \rightarrow \ 00 \]
-in $\d_2$ in Fig.~\ref{fig:dB2by2} and the $3$-cycle
-\[ 001 \ \rightarrow \ 010 \ \rightarrow \ 100 \ \rightarrow \ 001 \]
-in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length
-cycles are only the proverbial tip of the iceberg for de Bruijn
-networks.  The following result asserts that de Bruijn networks are
-{\it directed-pancyclic}, \index{graphs!pancyclic} 
-\index{de Bruijn network!pancyclicity} \index{de Bruijn graph!pancyclicity}
-meaning that they contain (even directed!)~cycles of {\em all}
-possible lengths, both odd and even.  The proof of this result is
-outside the scope of this text, but it should be accessible to the
-motivated reader.
-
-\begin{prop}{\cite{Yoeli62}}
-For all $n$, the order-$n$ de Bruijn
-network $\d_n$ is directed-pancylic, i.e., it
-contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
-\end{prop}
-
-\subsubsection{Planar and Outerplanar Graphs}
-\label{sec:planar+outerplanar-color}
-\index{planar graphs}
-\index{outerplanar graphs}
-\index{graphs!planar}
-\index{graphs!outerplanar}
-
-In this section, we focus on two graph families that are defined in
-terms of the way they can be drawn (on a two-dimensional medium, such
-as a piece of paper).
-\bigskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-The reader should not view this attention to how a graph can be drawn
-as just an abstract game.  The process of designing and implementing
-circuits within the constraints of {\it VLSI}, \index{VLSI} {\it Very
-  Large Scale Integrated Circuit} technology,
-\index{Very Large Scale Integrated Circuit technology}
-\index{VLSI:Very Large Scale
-Integrated Circuit technology} are very similar to drawing a circuit
-on a two-dimensional medium.  We refer the reader to the revolutionary
-1979 text \cite{Mead-Conway} for an introduction to this fascinating
-technology, which requires technical literacy but little specialized
-knowledge.
-\end{minipage}
-}
-\bigskip
-
-\noindent
-A graph is {\it planar} \index{graphs!planar} \index{planar graphs}
-precisely if it can be drawn {\em without any crossing edges}.  A
-graph $\g$ is {\it outerplanar} \index{graphs!outerplanar}
-\index{outerplanar graphs} precisely if it can drawn by {\em placing
-  its nodes along a circle in such a way that its edges can be drawn
-  as noncrossing chords of the circle}.  The latter condition is
-equivalent to demanding that $\g$'s edges can be drawn within the
-circle without any crossings.
-
-We urge the reader to garner intuition about the graphs in these
-families by experimenting with drawing some specific, rather complex
-graphs.
-\begin{itemize}
-\item
-The first set of graphs to draw are cliques, as defined in
-Section~\ref{sec:cliques}.  The cliques $\k_3$, $\k_4$, and
-$\k_5$ will help expose the nature of the planar and outerplanar
-graphs, because:
-  \begin{itemize}
-  \item
-$\k_3$ is outerplanar; 
-  \item
-$\k_4$ is planar but not outerplanar;
-  \item
-$\k_5$ is not planar.
-  \end{itemize}
-
-\item
-The ``bipartite'' cousins of the cliques will also yield valuable
-insights.  For postive integers $m$ and $n$, the $m \times n$
-bipartite clique $\k_{m,n}$ \index{bipartite clique} is the graph
-whose node-set comprises the ordered pairs of integers:
-\[  \n_{\fk_{m,n}} \ = \
-\{ \langle i,j \rangle \ \ | \ \ 1 \leq i \leq m; \ \ 1 \leq j \leq n\}
-\]
-and whose edges connect each node $\langle i,j \rangle$ to every node
-$\langle i,k \rangle$ with $1 \leq k \leq n$ and to every node
-$\langle h,j \rangle$ with $1 \leq h \leq m$.
-
-The second set of graphs to draw are the bipartite cliques $\k_{1,3}$,
-$\k_{2,3}$, and $\k_{3,3}$.  These graphs will also help expose the
-nature of the planar and outerplanar graphs, because:
-  \begin{itemize}
-  \item
-$\k_{1,3}$ is outerplanar; 
-  \item
-$\k_{2,3}$ is planar but not outerplanar;
-  \item
-$\k_{3,3}$ is not planar.
-  \end{itemize}
-\end{itemize}
-
-We selected the preceding cliques and bipartite cliques to ``play
-with'' very carefully.  Using arguments that go beyond the scope of
-this text, one can prove the following {\em characterization via
-  exclusion} result, which characterizes each of our graph families by
-identifying {\it forbidden subgraphs}.  \index{forbidden subgraphs}
-\index{forbidden subgraphs!characterization of planar graphs}
-\index{forbidden subgraphs!characterization of outerplanar graphs} The
-notion of {\it graph homeomorphism} plays a fundamental role in
-\index{graphs!homeomorphism} the characterization.  This is a
-dauntingly named technical term that is easily understood informally.
-A {\it homeomorph} \index{graphs!homeomorph} of a graph $\g$ is
-obtained by adding (degree-$2$) nodes along one or more edges of $\g$.
-The characterization of planar graphs by exclusion resides in a
-celebrated theorem by the Polish mathematician and logician Kazimierz
-Kuratowski; \index{Kuratowski, Kazimierz} the analogous result for
-outerplanar graphs was derived by the French mathematician Gary
-Chartrand \index{Chartrand, Gary} and the American mathematician Frank
-Harary. \index{Harary, Frank}
-
-\begin{theorem}
-\label{thm:planar+outerplanar-exclusion}
-{\bf (a)} {\rm \cite{ChartrandB67}}
-A graph is outerplanar if, and only if, it does not have a subgraph
-that is homeomorphic to either $\k_4$ or $\k_{2,3}$.
-
-{\bf (b)} {\rm \cite{Kuratowski30}}
-A graph is planar if, and only if, it does not have a subgraph
-that is homeomorphic to either $\k_5$ or $\k_{3,3}$.
-\end{theorem}
-
-
-\paragraph{\small\sf A. Outerplanar graphs}
-
-We look first at the smaller of this section's graph families, namely,
-the {\it outerplanar graphs}. \index{outerplanar graphs}
-\index{graphs!outerplanar} (We shall remark in subsection B why these
-graphs are called {\em outer}-planar.)
-
-We begin our discussion of outerplanar graphs with some basic facts
-about the family.
-
-\begin{prop}
-Every tree is outerplanar.
-\end{prop}
-
-We leave to the reader the challenge of drawing a tree in a way that
-exposes its outerplanarity.  {\Arny Another exercise}
-
-\begin{prop}
-\label{thm:basic-outerplanar-stuff}
-Let $\g$ be an outerplanar graph.  Then:
-
-\begin{tabular}{ll}
-{\bf (a)} &
-$\g$ is planar. \\
-{\bf (b)} &
-$\g$ is a subgraph of a Hamiltonian graph. \\
-{\bf (c)} &
-Every subgraph of $\g$ is outerplanar. \\
-{\bf (d)} &
-At least one of $\g$'s nodes has degree $\leq 2$.
-\end{tabular}
-\end{prop}
-
-\begin{proof}
-{\bf (a)} $\g$'s planarity can be inferred from the ability to draw
-$\g$'s edges as noncrossing chords of the circle.
-
-\medskip
-
-\noindent {\bf (b)} $\g$'s ``sub-Hamiltonianicity'' can be inferred
-from the ability to draw $\g$ with its nodes along a circle.
-
-\medskip
-
-\noindent {\bf (c)} We can produce an outerplanarity-witnessing
-drawing of any subgraph of $\g$ by erasing some nodes and/or some
-edges from our outerplanarity-witnessing drawing of $\g$.
-
-\medskip
-
-\noindent {\bf (d)} One verifies easily that this result holds for all
-outerplanar graphs having $3$ or fewer nodes.  Focus, therefore, on an
-arbitrary outerplanar graph $\g$ that has more than $3$ nodes.  Since
-adding more edges to a graph cannot decrease the degree of any node,
-we lose no generality by focusing on a $\g$ that is {\em maximal}
-outerplanar, \index{maximal outerplanar graph} in the sense that
-adding any new edge to $\g$ would destroy its outerplanarity.
-
-Because $\g$ has more than $3$ nodes, and because all of its nodes lie
-on a circle (in the drawing that witnesses its outerplanarity), there
-must be pairs of nodes of $\g$ that are not adjacent along the circle.
-Let $u$ and $v$ be nonadjacent nodes such that the distance between
-$u$ and $v$ (measured in edges that must be traversed to reach one
-from the other) is minimal among pairs of nodes nonadjacent nodes.  We
-consider two cases.
-\begin{itemize}
-\item
-If the distance between $u$ and $v$ were $2$, then the unique node
-that lies between $u$ and $v$ along the circle would have degree $2$.
-\item
-If, on the other hand, the distance between $u$ and $v$ {\em exceeded}
-$2$, then there would be at least {\em two} nodes that lie between $u$
-and $v$ in either direction around the circle.  But in this case,
-there would be two nonadjacent nodes that were closer to one another
-than $u$ and $v$---which contradicts our choice of $u$ and $v$ as a
-pair of closest nonadjacent nodes.
-\end{itemize}
-We conclude that $\g$ must have a node of degree $\leq 2$, completing
-the proof.
-\qed
-\end{proof}
-
-\bigskip
-
-Our primary concern in this section is, of course, on graph coloring.
-We return to this topic now.  The $3$-node cycle $\cc_3$ witnesses the
-fact that not every outerplanar graph is $2$-colorable; $3$ colors is
-the best that we can hope for.  We now show that this hope can be
-realized.  The inductive proof of the following result can easily be
-turned into an efficient node-coloring algorithm for outerplanar
-graphs.
-
-\begin{prop}[The $3$-Color Theorem for Outerplanar Graphs]
-\label{thm:OP-3-colorability}
-Every outerplanar graph is $3$-colorable.
-\end{prop}
-
-\begin{proof}
-We proceed by induction on the number of nodes in the outerplanar
-graph to be colored.
-
-The base cases of the result are provided by small outerplanar
-graphs---say those having $3$ nodes or fewer.
-
-We assume, for induction, that every outerplanar graph having fewer
-than $n$ nodes is $3$-colorable.
-
-Let us now focus on an arbitrary $n$-node outerplanar graph $\g$.  By
-Proposition~\ref{thm:basic-outerplanar-stuff}(d), $\g$ has a node $v$
-of degree $\leq 2$.  Let us remove node $v$ from $\g$, along with the
-edge(s) that connect $v$ to the rest of $\g$; call the resulting graph
-$\g'$.  Now, $\g'$ is clearly outerplanar, once we ``stitch'' together
-the circle we ``damaged'' by removing $v$, and $\g'$ has fewer than
-$n$ nodes.  By induction, therefore, $\g$ is $3$-colorable.  But now
-we can reattach node $v$ to $\g'$ by replacing the edges that attach
-$v$ to $\g$.  Moreover, we can now color $v$ using whichever of the
-$3$ colors on $\g$ that is {\em not} used for $v$'s neighbors in $\g$.
-We have, thus, specified a $3$-coloring of $\g$, which extends the
-induction and completes the proof.  \qed
-\end{proof}
-
-\ignore{**************
-Two remarks about Proposition~\ref{thm:OP-3-colorability}:
-\begin{enumerate}
-\item
-Our proof of the proposition can easily be transformed into an
-algorithm that $3$ colors any $n$-node outerplanar graph in a
-number of inductive stages that is a low-degree polynomial in $n$.
-\item
-The color-bound of the proposition can, of course, not be improved, as
-witnessed by odd-length cycle-graphs.
-\end{enumerate}
-*************}
-
-\paragraph{\small\sf B. Planar graphs}
-
-The larger of this section's two graph families comprises {\it planar
-  graphs} \index{planar graphs} \index{graphs!planar} i.e., graphs
-that can be drawn (on a two-dimensional medium, such as a piece of
-paper) with no crossing edges.  The original focus on planar graphs
-stemmed from viewing them as abstractions of geographical maps.
-
-The $4$-node clique $\k_4$ witnesses the fact that not every planar
-graph is $3$-colorable.  To wit, because every pair of nodes of every
-clique are neighbors of each other, it follows that:
-
-\smallskip
-
-{\em For all $n$, the $n$-node clique $\k_n$ can be colored with $n$
-  colors but no fewer.}.
-
-\smallskip
-
-\noindent
-A century-plus attempt to prove that $4$ colors suffice for planar
-graphs culminated in one of the most fascinating dramas in modern
-mathematics, as American mathematicians Kenneth Appel 
-\index{Appel, Kenneth}
-and Wolfgang Haken, \index{Haken, Wolfgang}---with the help of their
-families and of their computer!---announced their two-article-long
-proof in 1974 of their renowned {\it $4$-Color Theorem for Planar
-  Graphs}.  \index{The $4$-Color Theorem for Planar Graphs}
-\index{coloring planar graphs!the $4$-Color Theorem}
-
-\begin{theorem}[The $4$-Color Theorem for Planar Graphs \cite{AppelH77a,AppelH77b}]
-\label{thm:Four-ColorTheorem}
-Every planar graph is $4$-colorable.
-\end{theorem}
-
-The proof of Theorem~\ref{thm:Four-ColorTheorem} is beyond the scope
-of any introductory text, but the backstory of the proof is truly
-fascinating---and it supplies ample motivation for the proofs of the
-$6$-color and $5$-color analogues of the Theorem.  Beginning with a
-failed attempt, in 1875, to prove that every planar map can be colored
-with four colors with no abutting countries getting the same color,
-the so-called {\it $4$-Color Problem}
-\index{The $4$-Color Problem for planar graphs} 
-held the world of discrete mathematics in thrall for roughly a century
-before But the drama surrounding the $4$-Color Problem persisted,
-because of the Appel-Haken proof's reliance, in a fundamental way, on
-a computer program that checked more than a thousand essential---but
-clerical---assertions (about forbidden subgraphs).  It took the
-mathematics community years before this proof, with its massive
-complexity and unprecedented employment of ``collaboration'' by
-computer, was generally accepted.  In addition to the primary
-references \cite{AppelH77a,AppelH77b} that accompany our statement of
-the Theorem, we recommend to the interested reader the articles
-\cite{AppelH77c,AppelH89} that summarize and, at a rather
-sophisticated level, popularize this marvelous mathematical tale.
-
-We turn now to the $6$-color and $5$-color analogues of the $4$-color
-Theorem.  The weaker, $6$-color, version of the Theorem can be proved
-in much the same way as its outerplanar-graph cousin,
-Proposition~\ref{thm:OP-3-colorability}.  The proof of the stronger,
-$5$-color, version of the Theorem already requires us to break the
-world into multiple cases---but only a single-digit number of cases,
-in contrast to the four-digit case list one encounters with the proof
-of Theorem~\ref{thm:Four-ColorTheorem} \cite{AppelH77a,AppelH77b}.
-
-\bigskip
-
-{\it The $6$-Color Theorem for Planar Graphs.}
-The first step in showing that every planar graph can be colored using
-$6$ colors resides in the following analogue for planar graphs of
-Proposition~\ref{thm:basic-outerplanar-stuff}(d), which asserts that
-every outerplanar graph has a node of degree $2$.
-
-\begin{lemma}
-\label{thm:PlanarGraph-degree5}
-Every planar graph has a node of degree $\leq 5$.
-\end{lemma}
-
-\begin{proof} {\em (Lemma~\ref{thm:PlanarGraph-degree5})}
-Let us focus on a planar drawing of a (perforce) planar graph $\g$,
-which has $n$ nodes, $e$ edges, and $f$ {\it faces}.  A {\it face}
-\index{graphs!planar!face in a drawing}
-\index{planar graph!face in a drawing} 
-in a drawing of $\g$ is a polygon whose sides are edges of
-$\g$, whose points are nodes of $\g$, and whose interiors are empty,
-in that no edge of $\g$ crosses through the interior.
-\bigskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-Now that we know about faces, we can finally describe the origin of
-the term {\it outerplanar}.  A graph $\g$ is outerplanar if it can be
-drawn with all of its nodes around a single ``outer'' face in such a
-way that all of its edges are drawn in a noncrossing manner within the
-``outer'' face.  In fact, we usually draw $\g$ so that the ``outer''
-face is literally outside the ``outer'' face.
-\end{minipage}
-}
-\bigskip
-
-The following auxiliary result derives a celebrated ``formula'' of
-Euler.  \index{Euler, Leonhard} \index{Euler's Formula}
-
-\begin{prop} [Euler's Formula for Planar Graphs]
-\label{thm:Euler-Formula}
-Given the indicated drawing of $\g$, we have
-\begin{equation}
-\label{eqn:Eulers-formula}
-n \ - \ e \ + \ f \ \ = \ \ 2
-\end{equation}
-\end{prop}
-
-\medskip
-
-We defer proving Proposition~\ref{thm:Euler-Formula} so that we can
-proceed with our ongoing proof of Lemma~\ref{thm:PlanarGraph-degree5}.
-We devote Subsection C to two quite different proofs of Euler's
-celebrated formula.
-
-\medskip
-
-As we approach the next step of the proof, we simplify the setting by
-assuming henceforth that $\g$ is connected and that it is {\em
-  maximal}, \index{graphs!planar!maximal} in the sense that one cannot
-add any new edge to the drawing without crossing an existing edge.
-This step only strengthen's the Lemma's conclusion by apparently
-making it more difficult to find a small-degree node.
-
-With this assumption in place, we now adapt a pedagaogical tool from
-\cite{Berge73}, in order to make the following counting argument
-easier to follow.  We construct a {\em directed bipartite} graph {\bf
-  G} which exposes certain features of $\g$'s structure.  On one side
-of {\bf G} are the $f$ faces of $\g$; on the other side are $\g$'s $e$
-edges.  {\bf G} contains an arc from each face $\varphi$ of $\g$ to
-each edge $\varepsilon$ of $\g$ that forms a ``side'' of the polygonal
-drawing of $\varphi$.  Because $\g$ is a maximal planar graph, we have:
-\begin{itemize}
-\item
-Each face of $\g$ is a $3$-cycle, hence involves three nodes.
-\item
-Each edge of $\g$ touches two faces.
-\item
-Each edge of $\g$ touches two nodes.
-\end{itemize}
-
-Let us now put these facts together, and assume, for contradiction,
-that every node of $\g$ had degree $\geq 6$.  We would then find that
-\[
-\left[ f \ \ \leq \ \ \frac{2}{3} e \right] \ \ \ \ \mbox{ and } \ \ \ \
-\Big[ e \ \ \geq \ \ 3n \Big]
-\]
-Incorporating these two bounds into Euler's Formula
-(\ref{eqn:Eulers-formula}), we arrive at the following contradiction.
-\[ 2 \ \ = \ \ n \ - \ e \  + \ f
-\ \ \leq \ \ \frac{1}{3} e \ - \ e \ + \ \frac{2}{3} e \ \ = \ \ 0
-\]
-This contradiction proves that every planar graph must have a node of
-degree $\leq 5$.
- \qed-Lemma~\ref{thm:PlanarGraph-degree5}
-\end{proof}
-
-\medskip
-
-We finally have the tools to color planar graphs using $6$ colors.
-\index{The $6$-Color Theorem for Planar Graphs}
-\index{coloring planar graphs!the $6$-Color Theorem}
-
-\begin{prop}[The $6$-Color Theorem for Planar Graphs]
-\label{thm:P-6-colorability}
-Every planar graph is $6$-colorable.
-\end{prop}
-
-\begin{proof}
-The $2$-Color Theorem for Outerplanar Graphs
-(Proposition~\ref{thm:OP-3-colorability}) and this result follows via
-almost-identical inductions on the number of nodes in the graph $\g$
-that is being colored.  Both arguments:
-\begin{enumerate}
-\item
-remark that the coloring goal can be met for small graphs
-
-For outerplanar graphs, ``small'' means ``$3$ or fewer nodes''.  For
-planar graphs, it means ``$4$ or fewer nodes''.
-
-\item
-remove from $\g$ a node $v$ of smallest degree $d_v$, together with
-all its incident edges
-
-For outerplanar graphs, we guarantee that $d_v \leq 2$
-(Proposition~\ref{thm:basic-outerplanar-stuff}(d)).  For planar
-graphs, we guarantee that$d_v \leq 5$
-(Lemma~\ref{thm:PlanarGraph-degree5}).
-
-\item
-inductively color the nodes of the graph $\g'$ left after the removal
-of $v$
-
-For outerplanar graphs, we color $\g'$ with $\leq 3$ colors
-(Proposition~\ref{thm:OP-3-colorability}).  For planar
-graphs, we use an inductive assumption that $\g'$ can be colored with
-$\leq 6$ colors. 
-
-\item
-reattach $v$ via its $d_v$ edges and then color $v$.
-
-Note that the coloring guarantee in both
-results---Proposition~\ref{thm:OP-3-colorability} for outerplanar
-graphs and the current result for planar graphs---allows us to use
-$d_v +1$ colors to color $\g$.  Because $v$ has degree $d_v$, it is a
-neighbor of no more than $d_v$ nodes of $\g'$, so our access to $d_v
-+1$ colors guarantees that we can successfully color $v$.
-\end{enumerate}
-The proofs of the $3$-colorability of outerplanar graphs and the
-$6$-colorability of planar graphs thus differ only in the value of
-$d_v$.  \qed
-\end{proof}
-
-\bigskip
-
-{\it The $5$-Color Theorem for Planar Graphs.}
-\index{The $5$-Color Theorem for Planar Graphs}
-\index{coloring planar graphs!the $5$-Color Theorem}
-We now prove that every planar graph can be colored using $5$ colors.
-\bigskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-The case analysis in the following proof is a bit more complex than in
-most of the results in the text, but a methodical reading should make
-the proof quite accessible.  Moreover, {\em roadmap} of the case
-analysis is a valuable lesson in how mathematics is really done!  For
-instance, the motivated reader will be able to recast the totally
-positive proof we present into the form of a proof by contradiction.
-The positive version should be more to the taste of a computationally
-oriented reader---but both proofs are equally correct.
-\end{minipage}
-}
-\bigskip
-
-\begin{prop}[The $5$-Color Theorem for Planar Graphs \cite{Heawood90}]
-\label{thm:P-5-colorability}
-Every planar graph is $5$-colorable.
-\end{prop}
-
-\ignore{************************
-The proof again (I mean like for 6 colors) is by recurrence but we add
-here a contradiction argument:
-Similarly, we focus on a node with degree 5 (at some points, we will
-have to justify this)
-This node (call it x) has 5 neighbors
-The problem is when they are colored by the 5 colors, otherwise it is
-colored by a missing one.
-Let now label these 5 nodes from 1 to 5.
-Consider the nodes 1 and 3, colored by two different colors and the
-sub-graph composed of nodes with colors 1 and 3
-If these two nodes are in disjoint connex components, (case 1), it is
-easy to color x by reverting the colors 1 and 3 in one component
-(see figure)
-Thus, the problem is when there exists an alternate path (in term of
-colors) between node 1 and node 3
-in this case (case 2), consider nodes 2 and 4, using a similar process
-as in case 1, if there are two connex components
-we are done (x can be colored by reverting the colors along the path
-in one component), otherwise, there is an alternate path
-between 2 and 4.
-However, since the graph is planar, then, both alternate paths will
-intersect, which is impossible
-************************}
-
-\begin{proof}
-The proof combines a sophisticated analysis of the structure of the
-planar graph we wish to color with an induction that can be converted
-into an efficient algorithm actually achieving the $5$-coloring.
-
-\smallskip
-
-For brevity, let us henceforth discuss only {\em valid} colorings,
-i.e., colorings of a graph's nodes in which neighboring nodes get
-different colors.
-
-\smallskip
-
-\noindent {\em Base of our induction.}
-Because the $5$-clique $\k_5$ is obviously $5$-colorable, so also must
-be all graphs having $\leq 5$ nodes.  Therefore, we know that any
-non-$5$-colorable graph would have $\geq 6$ nodes.
-
-\smallskip
-
-\noindent {\em Inductive hypothesis.}
-Assume, for induction, that every planar graph having $\leq n$ nodes
-is $5$-colorable.
-
-\smallskip
-
-\noindent {\em Inductive extension.}
-If the proposition were false, then there would exist a planar graph
-$\g$ having $n+1$ nodes which is not $5$-colorable.  By
-Lemma~\ref{thm:PlanarGraph-degree5}, $\g$ would have a node $v$ of
-degree $\leq 5$.  The remainder of the proof focuses on the graph
-$\g$, its minimal-degree node $v$, and on $v$'s $(d_v \leq 5)$
-neighbors in $\g$.
-
-Now, if there were a coloring of $\g$'s nodes in which $\leq 4$ colors
-were used to color $v$'s neighbors, then the following analogue of the
-coloring strategy of Proposition~\ref{thm:P-6-colorability} would
-produce a $5$-coloring of $\g$.
-\begin{enumerate}
-\item
-Remove node $v$ and its incident edges from $\g$, thereby producing
-the $n$-node planar graph $\g'$.
-\item
-Produce a $5$-coloring of $\g'$ that uses only $4$ colors for the
-nodes that are neighbors of $v$ in $\g$.
-\item
-($a$) Reattach node $v$ and its edges to $\g'$, thereby reconstituting
-  $\g$.  ($b$) Color $v$ with whichever of the $5$ available colors is
-  not used to color $v$'s neighbors.
-\end{enumerate}
-
-In order to proceed in pursuit of a contradiction, we must understand
-what structural features of $\g$ make it impossible to use only $4$
-colors on $v$'s neighbors when $5$-coloring $\g$.  There are three
-important situations to recognize.
-\begin{description}
-\item[{\sf Case 1}.]
-Node $v$ has degree $\leq 4$.
-
-\smallskip
-
-By definition, $\leq 4$ colors are used to color $v$'s neighbors in
-this case.
-\end{description}
-Note that, in all remaining cases, node $v$ has precisely $5$
-neighbors---or else, we would have invoked Case 1 to color $\g$ with
-$5$ colors.
-\begin{description}
-\item[{\sf Case 2}.]
-For some $5$-coloring of $\g$, $\geq 2$ neighbors of $v$ get the same
-color.
-
-\smallskip
-
-Because $v$ has exactly $5$ neighbors, in this case, only $4$ colors
-are used to color these neighbors.
-\end{description}
-In all remaining cases, the $5$ neighbors of $v$ receive distinct
-colors.
-\begin{description}
-\item[{\sf Case 3}.]
-For some $5$-coloring of $\g$, some two neighbors of $v$, call them
-$v_1$ and $v_2$, reside in distinct components of $\g$ once $v$ and
-its incident edges are removed from $\g$.
-
-\smallskip
-
-As before, let $\g'$ be the (in this case, disconnected) graph that
-results when $v$ and its incident edges are removed from $\g$.  For $i
-= 1,2$ Let $\g_i$ be the component of $\g'$ that contains node $v_i$.
-
-Say that, under the $5$-coloring of $\g$ that we are focusing on,
-$v_1$ is colored {\it red} and $v_2$ is colored {\it green}.
-
-Let us recolor the nodes of $\g_1$ so that node $v_1$ is now colored
-{\it green}.  (One needs only switch the colors {\it red} and {\it
-  green} in the existing coloring of $\g_1$.)  It is always possible
-to do this in a way that does not affect the valid coloring of $\g_2$
-because $\g_1$ and $\g_2$ are mutually disjoint.
-
-Once we have thus-recolored $\g_1$, we have a $5$-coloring of $\g$ for
-which Case 2 holds.  (In fact, we can color node $v$ {\em red} when we
-reattach it to $\g'$.)
-\end{description}
-
-\noindent
-We now see that Cases 1--3 cannot prevent us from $5$-coloring $\g$, so
-we are left with the following minimally constrained situation.
-\begin{description}
-\item[{\sf Case 4}.]
-\begin{itemize}
-\item
-Every minimum-degree node of $\g$ has $5$ neighbors.
-
-For the minimum-degree node $v$, let us call these neighbors $v_1$,
-$v_2$, $v_3$, $v_4$, $v_5$, in clockwise order within the planar
-drawing.
-\item
-In every $5$-coloring of $\g$, the neighbors of every minimum-degree
-node receive distinct colors.
-
-For node $v$, let us say that neighbor $v_i$ receives color $c_i$.
-\end{itemize}
-The leftmost graph in FIGURE 1 depicts the portion of $\g$ comprising
-node $v$ and its neighbors.  In the figure, we use integer $i$ to
-denote, ambiguously, node $v_i$ and its assigned color $c_i$.  The
-question mark ``?'' that ``colors'' node $v$ indicates that we do not
-yet know what color to assign to $v$.  The other two graphs in the
-figure depict schematically how we have dealt with Case 3 above.
-\begin{itemize}
-\item
-All neighbors of node $v$ remain in the same component of $\g$ when
-$v$ and its incident edges are removed.
-\end{itemize}
-\end{description}
-To analyze Case 4, we focus on nodes $v_1$ and $v_3$ in FIGURE 1.
-Importantly, these nodes have received distinct colors ($c_1$ and $c_3
-\neq c_1$, respectively), and these nodes are not adjacent to one
-another as one makes a clockwise sweep around node $v$.
-
-Now take $\g$ and focus only on the nodes that are colored $c_1$ or
-$c_3$ (as are $v_1$ and $v_3$, respectively) and on the nodes that are
-colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One
-sees from Figure 2 that:
-\begin{itemize}
-\item
-$\g$ can, {\em but need not}, contain a path whose nodes alternate
-  colors $c_1$ and $c_3$---call this a ``$c_1$-$c_3$ path'' between
-  nodes $v_1$ and $v_3$.
-\item
-$\g$ can, {\em but need not}, contain a path whose nodes alternate
-  colors $c_2$ and $c_4$---call this a ``$c_2$-$c_4$ path'' between
-  nodes $v_2$ and $v_4$.
-\item
-$\g$ {\em cannot} contain both of the paths just described, i.e., a
-  $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em and} a $c_2$-$c_4$ path
-  between $v_2$ and $v_4$.
-
-{\em These two paths, if they existed, would cross one another---which
-  is forbidden because $\g$ is a {\em planar} graph.}  See Figure 2.
-\end{itemize}
-It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path
-between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$
-path between $v_2$ and $v_4$.  Say, with no loss of generality, that
-the former path does not exist.  Then we can switch colors $c_1$ and
-$c_3$ beginning with node $v_1$ and obtain a coloring of $\g$ in which
-$v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as
-in Case 2 to get a $5$-coloring of $\g$.
-
-This four-case analysis shows that we can always produce a
-$5$-coloring of $\g$, which completes the proof.  \qed
-\end{proof}
-
-We finish this topic with an overview of the intellectual
-cost-benefit tradeoff we have observed:
-\begin{itemize}
-\item
-A straightforward recursive coloring strategy suffices if one is
-willing to settle for a six-color palette when coloring planar graphs
-(Proposition~\ref{thm:P-6-colorability}).
-\item
-A four-case analysis, in which one case comprises multipl subcases, is
-needed in order to eliminate one of the colors from the palette, to
-achieve a five-color palette (Proposition~\ref{thm:P-5-colorability}).
-\item
-An analysis involving close to $2000$ cases is needed in order to
-achieve the provable optimal, a four-color palette
-(Theorem~\ref{thm:Four-ColorTheorem}).
-\end{itemize}
-
-\paragraph{\small\sf C. Two validations of Euler's Formula}
-\index{Euler's Formula}
-
-We develop two quite different proofs of
-Proposition~\ref{thm:Euler-Formula}.
-
-\medskip
-
-\index{Euler's Formula!validation by structural induction}
-\noindent {\bf Validatinging Euler's Formula by structural induction}.  We
-validate (\ref{eqn:Eulers-formula}) by growing a planar graph $\g$
-edge by edge.  We proceed by induction.
-
-\smallskip
-
-\noindent {\it Base case}.
-The Formula clearly holds for the smallest planar graphs, including
-the smallest interesting one, $\cc_3$, which has $n = e = 3$ and $f =2$
-(the inner and outer faces of the ``triangle'').
-
-\smallskip
-
-\noindent {\it Extension}.
-We grow the current version of $\g$ by adding a new edge.  Two cases
-arise.
-\begin{itemize}
-\item
-{\em The new edge connects existing nodes.}  In this case, this
-augmentation of $\g$ increases the number of edges ($e$) and the
-number of faces ($f$) by $1$ each, while keeping the number of nodes
-($n$) unchanged.  Euler's Formula (\ref{eqn:Eulers-formula}) thus
-continues to hold.
-
-\item
-{\em The new edge adds a new node, which is appended to some
-  preexisting node.}  In this case, this augmentation of $\g$
-increases the number of edges ($e$) and the number of nodes ($n$) by
-$1$ each, while keeping the number of faces ($f$) unchanged.  Euler's
-formula (\ref{eqn:Eulers-formula}) thus continues to hold.
-\end{itemize}
-This augmentation extends the induction, hence validates the Formula.
-\qed
-
-\bigskip
-
-%{\Denis Here is a nice alternative proof for the Euler proposition}
-
-\index{Euler's Formula!validation by deconstruction}
-\noindent {\bf Validating Euler's Formula by deconstruction}.  Let us be
-given a planar graph $\g$ that has $n$ nodes, $e$ edges, and $f$
-faces.  We validate (\ref{eqn:Eulers-formula}) by deconstructing $\g$
-and showing that each step in the process preserves as {\it invariant}
-the expression $\phi(n,e,f) = n+e-f$.  \index{invariants}
-
-\bigskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-The concept of \textit{invariance} is an extremely important
-conceptual tool when crafting proofs.  The underlying idea is to find
-an expression $\phi(\cdot)$ whose value is preserved as a process
-proceeds, step by step.  Rather than try to explain the concept in
-abstraction, we recommend that the reader follow this proof of Euler's
-Formula with an eye to keeping track of the invariant expression
-$\phi(n,e,f)$ whose arguments are obtained from the subject planar
-graph $\g$.
-\end{minipage}
-}
-\bigskip
-
-\noindent
-We analyze the following two-step process, whose steps are performed
-in sequence.
-\begin{description}
-\item[{\bf Step 1}.]
-Iterate the following process of removing edges from $\g$ until one
-edge-removal reduces $\g$ to a graph with a single face.  This
-termination condition is equivalent to stopping when the remaining
-graph is a tree.  One can verify that the tree one ends up with is
-{\em connected}.
-
-{\bf The action}.
-If the graph remaining at some step contains an edge that is shared by
-two distinct faces, then remove any such edge.
-
-Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
-(residual) graph with $n=8$ nodes, $e=11$ edges, and $f=5$ faces.
-\begin{figure}[hbt]
-\begin{center}
-   \includegraphics[scale=0.4]{FiguresGraph/planarStep1}
-\caption{Illustrating Step 1: From top left to bottom right, each
-  transformation preserves the invariant $\phi(n,e,f)$.  The first
-  transformation removes the edge shared by faces (1) and (3),
-  creating a new, merged, face (1)'.}
-  \label{fig:planarStep1}
-\end{center}
-\end{figure}
-
-\bigskip
-
-{\bf The analysis}.
-\begin{itemize}
-\item
-The graph remaining after an edge-removal is still planar---edges are
-removed but never added---so we can continue the process.
-\item
-The process preserves the value of function $\phi$.  To wit, $n$ is
-unchanged, while $e$ and $f$ are each reduced by $1$: $\phi(n,e,f) =
-\phi(n,e-1,f-1)$.
-\end{itemize}
-
-\item[{\bf Step 2}.]
-Iterate the following process of removing nodes from the tree produced
-by Step 1, until onlu one node remains.
-
-{\bf The action}.
-Remove any leaf of the current tree, together with its incident edge.
-
-Fig.~\ref{fig:planarStep2} illustrates the action of Step 2
-for a tree  with $n=8$ nodes---hence, $e=7$ edges and $f=1$ face.
-\begin{figure}[hbt]
-\begin{center}
-   \includegraphics[scale=0.4]{FiguresGraph/planarStep2}
-   \caption{Illustrating Step 2: We remove a sequence of leaves, each
-     with its incident edge, until we reach a single node.  Again,
-     $\phi$ remains invariant after each leaf-removal.}
-  \label{fig:planarStep2}
-\end{center}
-\end{figure}
-
-\bigskip
-
-{\bf The analysis}.
-The value of function $\phi$ remains unchanged by each leaf-removal.
-To wit, $f$ is unchanged (it remains at $1$), while $n$ and $e$ are
-each reduced by $1$: $\phi(n,e,f) = \phi(n-1,e-1,f)$
-\end{description}
-
-\noindent {\bf The cumulative analysis}.
-\begin{itemize}
-\item
-Our process executes a number of steps exactly equal to the number of
-edges of the graph $\g$ that we began with.  To wit, the edge-removal
-Step removes $e-n$ edges, while the leaf-removal Step removes $n$
-nodes.
-\item
-At the end of the process, $e=0$ and $n=f=1$, so that the residual
-value of $\phi$ is $2$.  Because each action prescribed by the process
-preserved the value of $\phi$, we know that $\phi$ has the value $2$
-before each edge-removal and leaf-removal.
-\end{itemize}
-We conclude that, at the
-start of the process,  $\phi(n,e,f)$ had the value $2$.  In other
-words, $n-e+f = 2$.  This concludes the proof.  \qed
-
-
-\subsection{Computing Chromatic Number}
-\label{sec:Compute-Chromatic-No}
-
-**HERE
-**FIND REFERENCES
-
-\cite{GareyJ79}
-\cite{Karp72}
-
-It is an {\sf NP}-complete problem to decide, given any fixed $k \geq
-3$, whether a given graph $\g$ is $k$-colorable.
-
-A simple argument shows that it is {\sf NP}-hard to find smallest
-number of colors that provide a valid node-coloring of $\g$.
-
-But one can exhibit ``greedy'' algorithms that give good results.
-
-
 
 \section{$\oplus$ Pointers to Advanced Topics}
 \label{sec:advanced-topics}

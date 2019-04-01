@@ -440,3 +440,184 @@ proof of Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
 %\end{proof}
 
 
+\subsection{Coloring a planar graph with 5-colors}
+
+\begin{prop}[The $5$-Color Theorem for Planar Graphs \cite{Heawood90}]
+\label{thm:P-5-colorability}
+Every planar graph is $5$-colorable.
+\end{prop}
+
+
+\begin{proof}
+The proof combines a sophisticated analysis of the structure of the
+planar graph we wish to color with an induction that can be converted
+into an efficient algorithm actually achieving the $5$-coloring.
+
+\smallskip
+
+For brevity, let us henceforth discuss only {\em valid} colorings,
+i.e., colorings of a graph's nodes in which neighboring nodes get
+different colors.
+
+\smallskip
+
+\noindent {\em Base of our induction.}
+Because the $5$-clique $\k_5$ is obviously $5$-colorable, so also must
+be all graphs having $\leq 5$ nodes.  Therefore, we know that any
+non-$5$-colorable graph would have $\geq 6$ nodes.
+
+\smallskip
+
+\noindent {\em Inductive hypothesis.}
+Assume, for induction, that every planar graph having $\leq n$ nodes
+is $5$-colorable.
+
+\smallskip
+
+\noindent {\em Inductive extension.}
+If the proposition were false, then there would exist a planar graph
+$\g$ having $n+1$ nodes which is not $5$-colorable.  By
+Lemma~\ref{thm:PlanarGraph-degree5}, $\g$ would have a node $v$ of
+degree $\leq 5$.  The remainder of the proof focuses on the graph
+$\g$, its minimal-degree node $v$, and on $v$'s $(d_v \leq 5)$
+neighbors in $\g$.
+
+Now, if there were a coloring of $\g$'s nodes in which $\leq 4$ colors
+were used to color $v$'s neighbors, then the following analogue of the
+coloring strategy of Proposition~\ref{thm:P-6-colorability} would
+produce a $5$-coloring of $\g$.
+\begin{enumerate}
+\item
+Remove node $v$ and its incident edges from $\g$, thereby producing
+the $n$-node planar graph $\g'$.
+\item
+Produce a $5$-coloring of $\g'$ that uses only $4$ colors for the
+nodes that are neighbors of $v$ in $\g$.
+\item
+($a$) Reattach node $v$ and its edges to $\g'$, thereby reconstituting
+  $\g$.  ($b$) Color $v$ with whichever of the $5$ available colors is
+  not used to color $v$'s neighbors.
+\end{enumerate}
+
+In order to proceed in pursuit of a contradiction, we must understand
+what structural features of $\g$ make it impossible to use only $4$
+colors on $v$'s neighbors when $5$-coloring $\g$.  There are three
+important situations to recognize.
+\begin{description}
+\item[{\sf Case 1}.]
+Node $v$ has degree $\leq 4$.
+
+\smallskip
+
+By definition, $\leq 4$ colors are used to color $v$'s neighbors in
+this case.
+\end{description}
+Note that, in all remaining cases, node $v$ has precisely $5$
+neighbors---or else, we would have invoked Case 1 to color $\g$ with
+$5$ colors.
+\begin{description}
+\item[{\sf Case 2}.]
+For some $5$-coloring of $\g$, $\geq 2$ neighbors of $v$ get the same
+color.
+
+\smallskip
+
+Because $v$ has exactly $5$ neighbors, in this case, only $4$ colors
+are used to color these neighbors.
+\end{description}
+In all remaining cases, the $5$ neighbors of $v$ receive distinct
+colors.
+\begin{description}
+\item[{\sf Case 3}.]
+For some $5$-coloring of $\g$, some two neighbors of $v$, call them
+$v_1$ and $v_2$, reside in distinct components of $\g$ once $v$ and
+its incident edges are removed from $\g$.
+
+\smallskip
+
+As before, let $\g'$ be the (in this case, disconnected) graph that
+results when $v$ and its incident edges are removed from $\g$.  For $i
+= 1,2$ Let $\g_i$ be the component of $\g'$ that contains node $v_i$.
+
+Say that, under the $5$-coloring of $\g$ that we are focusing on,
+$v_1$ is colored {\it red} and $v_2$ is colored {\it green}.
+
+Let us recolor the nodes of $\g_1$ so that node $v_1$ is now colored
+{\it green}.  (One needs only switch the colors {\it red} and {\it
+  green} in the existing coloring of $\g_1$.)  It is always possible
+to do this in a way that does not affect the valid coloring of $\g_2$
+because $\g_1$ and $\g_2$ are mutually disjoint.
+
+Once we have thus-recolored $\g_1$, we have a $5$-coloring of $\g$ for
+which Case 2 holds.  (In fact, we can color node $v$ {\em red} when we
+reattach it to $\g'$.)
+\end{description}
+
+\noindent
+We now see that Cases 1--3 cannot prevent us from $5$-coloring $\g$, so
+we are left with the following minimally constrained situation.
+\begin{description}
+\item[{\sf Case 4}.]
+\begin{itemize}
+\item
+Every minimum-degree node of $\g$ has $5$ neighbors.
+
+For the minimum-degree node $v$, let us call these neighbors $v_1$,
+$v_2$, $v_3$, $v_4$, $v_5$, in clockwise order within the planar
+drawing.
+\item
+In every $5$-coloring of $\g$, the neighbors of every minimum-degree
+node receive distinct colors.
+
+For node $v$, let us say that neighbor $v_i$ receives color $c_i$.
+\end{itemize}
+The leftmost graph in FIGURE 1 depicts the portion of $\g$ comprising
+node $v$ and its neighbors.  In the figure, we use integer $i$ to
+denote, ambiguously, node $v_i$ and its assigned color $c_i$.  The
+question mark ``?'' that ``colors'' node $v$ indicates that we do not
+yet know what color to assign to $v$.  The other two graphs in the
+figure depict schematically how we have dealt with Case 3 above.
+\begin{itemize}
+\item
+All neighbors of node $v$ remain in the same component of $\g$ when
+$v$ and its incident edges are removed.
+\end{itemize}
+\end{description}
+To analyze Case 4, we focus on nodes $v_1$ and $v_3$ in FIGURE 1.
+Importantly, these nodes have received distinct colors ($c_1$ and $c_3
+\neq c_1$, respectively), and these nodes are not adjacent to one
+another as one makes a clockwise sweep around node $v$.
+
+Now take $\g$ and focus only on the nodes that are colored $c_1$ or
+$c_3$ (as are $v_1$ and $v_3$, respectively) and on the nodes that are
+colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One
+sees from Figure 2 that:
+\begin{itemize}
+\item
+$\g$ can, {\em but need not}, contain a path whose nodes alternate
+  colors $c_1$ and $c_3$---call this a ``$c_1$-$c_3$ path'' between
+  nodes $v_1$ and $v_3$.
+\item
+$\g$ can, {\em but need not}, contain a path whose nodes alternate
+  colors $c_2$ and $c_4$---call this a ``$c_2$-$c_4$ path'' between
+  nodes $v_2$ and $v_4$.
+\item
+$\g$ {\em cannot} contain both of the paths just described, i.e., a
+  $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em and} a $c_2$-$c_4$ path
+  between $v_2$ and $v_4$.
+
+{\em These two paths, if they existed, would cross one another---which
+  is forbidden because $\g$ is a {\em planar} graph.}  See Figure 2.
+\end{itemize}
+It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path
+between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$
+path between $v_2$ and $v_4$.  Say, with no loss of generality, that
+the former path does not exist.  Then we can switch colors $c_1$ and
+$c_3$ beginning with node $v_1$ and obtain a coloring of $\g$ in which
+$v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as
+in Case 2 to get a $5$-coloring of $\g$.
+
+This four-case analysis shows that we can always produce a
+$5$-coloring of $\g$, which completes the proof.  \qed
+\end{proof}
+
