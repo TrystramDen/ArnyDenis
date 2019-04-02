@@ -1,4 +1,4 @@
-%version of 04-01-19
+%version of 04-02-19
 
 \chapter{SETS AND THEIR ALGEBRAS}
 \label{ch:sets-BA-logic}
@@ -11,29 +11,41 @@ introductory section.
 
 \bigskip
 
-{\it Sets.} \index{set} Sets are probably the most basic object of
-mathematical discourse---sets exist to have {\it elements},
-\index{set!element} or {\it members}, \index{set!member} the entities
-that {\em belong to} \index{set!the belong-to relation} the set.
-Despite the conceptual simplicity of the notion {\it set}, that notion
-is surprisingly difficult to specify formally; philosophers have been
-debating the nature of the notion for millennia.  Yet, the intuitive
-grasp of the concept that {\em everyone} develops just in the course
-of living is surprisingly adequate for almost all intellectual
-endeavors---so we join the ranks of the multitude of instructors who
-say that the concept set is so woven into our lives as humans that,
-for all relevant purposes, we all know, and understand, what sets are.
-As soon as we begin to build upon the notion {\it set} in order to
-develop the rudiments of science and/or mathematics, we must impose
-some structure upon the sets of interest and assemble a repertoire of
-operations to manipulate them.  At this point, we can no longer
-proceed based just on life experience: we must proceed based on
-understanding, not just instinct.  This is the point at which our
-joint journey into the wondrous world of mathematics begins.
+{\it Basic sets.} \index{set} (Section~\ref{sec:sets}) Sets are
+probably the most basic object of mathematical discourse.  Sets exist
+to have {\it elements}, \index{set!element} or {\it members},
+\index{set!member} the entities that {\em belong to} 
+\index{set!the belong-to relation} the set.  Despite the conceptual
+simplicity of the notion ``{\it set}'', that notion is surprisingly
+difficult to specify formally; philosophers have been debating the
+nature of the notion for millennia.  Yet, the intuitive grasp of the
+concept that {\em everyone} develops just in the course of living is
+surprisingly adequate for almost all intellectual endeavors regarding
+the concept---so, we take the basic definition of ``set'' as given,
+and we begin our joint journey into the wondrous world of mathematics
+from that point.  We begin to develop the rudiments of science and
+mathematics by imposing structure upon the sets of interest and
+assembling a repertoire of operations to manipulate them.
 
-Once we begin to develop a repertoire of operations on sets, we begin
-to observe the emergence of patterns, which soon become the {\em
-  ``laws''} that govern how operations interact with each other:
+As soon as our mathematical progenitors began to develop a repertoire
+of operations on sets, they began to observe patterns regarding how
+various operations interact with one another.  As understanding of the
+operations increased, many of the patterns evolves into the {\em
+  ``laws''} that govern interactions among the operations.  Two
+familiar ``laws'' assert that one can add a set of numbers in a
+variety of ways without affecting the sum:
+\begin{itemize}
+\item
+{\it The commutative law.}
+\[ (\forall x_1, x_2) \ \big[ x_1 + x_2 \ = \ x_2 + x_1 \big] \]
+
+\item
+{\it The associative law.}
+\[ (\forall x_1, x_2, x_3) \ \big[ \big(x_1 + (x_2 + x_3)\big) \ \
+= \ \ \big((x_1 + x_2) + x_3\big) \big]
+\]
+\end{itemize}
+
 \bigskip
 
 \noindent \fbox{
@@ -56,11 +68,11 @@ We learn in school about certain ``laws'' of physics---the ``law'' of
 gravity, the ``law'' of relativity, the ``law'' of conservation of
 mass, to name just a few.  As time goes by and new science is
 discovered, some of these ``laws'' get amended---we learn, for
-instance, that mass and energy are interchangeable.  Indeed, some
-``laws'' are discovered to have been {\em false}---the tale of {\it
-  phlogiston} comes to mind.  These ``laws'' are approximations to
-reality that will survive until ``laws'' are discovered that are
-better approximations to reality.
+instance, that mass and energy are not conserved: they are, in fact,
+interchangeable.  Indeed, some ``laws'' are discovered to have been
+{\em false}---the tale of {\it phlogiston} comes to mind.  These
+``laws'' are {\em approximations to reality} that will survive until
+``laws'' are discovered that are better approximations.
 
 \item
 We either learn about or discover certain mathematical facts that
@@ -69,96 +81,108 @@ can add a list of numbers in any order without changing the sum.
 These ``laws'' are immutable.  They are not based on human experience
 to any point in time but rather on logical reasoning about specific
 constants of life: numbers, geometrical shapes, etc.  These are the
-``laws'' that we will begin to uncover in this chapter and the ones
-that follow.
+``laws'' that we will begin to uncover in this and subsequent chapters.
 \end{enumerate}
 \end{minipage}
 }
 \bigskip
 
 \noindent
-We illustrate two sample forms for the mathematical ``laws'' we shall
-encounter.
-\begin{itemize}
-\item
-Certain pairs of operations, call them $\circ_1$ and $\circ_2$, can be
-applied in various orders without changing the final value:
-\[ \big(S_1 \circ_1 (S_2 \circ_2 S_3)\big) \ \
-= \ \ \big((S_1 \circ_1 S_2) \circ_2 S_3\big)
-\]
-
-\item
-An operation $\circ$ which is {\it associative} can be applied to its
-arguments in various orders without changing the final value:
-\[ \big(S_1 \circ (S_2 \circ S_3)\big) \ \
-= \ \ \big((S_1 \circ S_2) \circ S_3\big)
-\]
-\end{itemize}
 Having clarified our intent, we shall no longer place the word ``law''
 in quotes.
 
 \bigskip
 
-{\it Structured sets}. \index{set!structured} The first operations on
-sets that we study are those that allow us to endow sets with enough
-structure to begin to talk about ``real life''.  One can view these
-operations as the mathematical analogue of ``systems programs'' within
-the realm of computers.  We formulate rigorous notions for concepts
-such as {\it relation} and {\it function} that are among the central
-concepts of mathematics.  Once we have such notions, we can begin to
-formulate realistic {\it mathematical models} for real-life entities.
-Two features that will stand out are: how naturally the formal notions
-capture the intuitive notions of the vernacular; how technically
-simple the formal notions are---which facilitates using them in
-sophisticated analyses.
+{\it Structured sets}. \index{set!structured}
+(Section~\ref{sec:structured-set}) The first operations on sets that
+we study endow sets with enough structure to talk about ``real life''.
+One can view these operations as the mathematical analogue of
+``systems programs'' within the realm of computers.
+\begin{itemize}
+\item
+We formulate a rigorous analogue of the intuitive concept of {\it
+  relation}.  We can thenceforth talk about relations such as
+``parent-child'', ``set-subset'', ``numbers and their squares'', and
+we can study how some of these relations behave like---or
+unlike---some others.
+\item
+We use various kinds of structure in sets to create complex objects
+that have sub-objects and sub-$\cdots$-objects to arbitrary depths.
+\item
+We identify the notion {\it function}, which is among the central
+concepts of mathematics, and we identify valuable genres of function
+(one-to-one, onto, \ldots).
+\end{itemize}
+Once we have these notions, we can begin to formulate realistic {\it
+  mathematical models} for real-life entities.  Two features that will
+stand out: how naturally the formal notions capture the intuitive
+notions of the vernacular; how technically simple the formal notions
+are---which facilitates using them in sophisticated analyses.
 
 \bigskip
 
-{\it Algebras}.  \index{algebra}\index{algebra!of sets} Once one has
-operations which obey laws, one has an {\it algebra},
-\index{algebra!definition} i.e., a system of objects, together with a
-repertoire of operations on the objects.  There are several natural
-algebras whose objects are sets.  We shall discuss two of them at some
-length.  First, we focus on the algebra that relates to the most basic
-operations on sets: the operation of {\it union}, denoted $S \cup T$,
-which combines the membership of its argument sets, $S$ and $T$, and
-{\it set difference}, denoted $S \setminus T$, which excludes from set
-$S$ all members of set $T$.  Building on these two operations, we can
-build myriad others, including {\it intersection}, denoted $S \cap T$, which
-isolates all elements that sets $S$ and $T$ share, and {\it symmetric
-  difference}, denoted $S+T$, which isolates all elements that belong
-to precisely one of $S$ and $T$.  Importantly, we can begin to study
-the laws that these operations obey.  One of the central topics in
-this study is the class of {\it Boolean} algebras
-\index{algebra!Boolean algebras} whose name derives from that of the
-British mathematician George Boole. \index{Boole, George}
+{\it Algebras}.  (Section~\ref{sec:Boolean-Algebra})
+\index{algebra}\index{algebra!of sets} Once one has a set, plus
+operations on the set which obey laws, one has an {\it algebra}.
+\index{algebra!definition} There are several natural algebras whose
+objects are sets.  We shall discuss two of them at some length.
+\begin{itemize}
+\item
+{\it Boolean algebras}.  We focus first on the algebra that is built
+upon sets and the most basic operations on sets: {\it union} and {\it
+  set difference}.  The first of these, denoted $S \cup T$, combines
+the membership of its argument sets, $S$ and $T$; the second, denoted
+$S \setminus T$, excludes from set $S$ all members of set $T$.  These
+two operations provide a basis for the algebra of sets, in the sense
+that one can combine these two operations in myriad ways to craft an
+immense repertoire of operations on sets.  As an exercise, the reader
+should define the following two operations from union and set
+difference: {\it intersection} ($S \cap T$), which isolates all
+elements that sets $S$ and $T$ share, and {\it symmetric difference}
+($S+T$), which isolates all elements that belong to precisely one of
+$S$ and $T$.
 
-\bigskip
+Importantly, we can now begin to study the laws that these operations
+obey.  One of the central topics in this study is the class of {\it
+  Boolean} algebras \index{algebra!Boolean algebras} whose name
+derives from that of the British mathematician George
+Boole. \index{Boole, George}
 
-{\it (Propositional) Logic}. \index{logic} \index{logic!propositional}
+\item
+{\it Propositional Logic}. \index{logic} \index{logic!propositional}
 It is difficult to explain the meaning of the Boolean set operations
-without using terms such as {\it and}, {\it or}, and {\it not}, which
-fall naturally within the domain of the simplest variety of {\it
-  mathematical logic}---the {\it logic of propositions}.  This branch
-of logic, which is known more familiarly as {\it Propositional Logic},
-deals purely with the way the truth-values ({\sc true} or {\sc false})
-of complex logical expressions combine via operators such as {\it
-  and}, {\it or}, and {\it not} to produce a truth-value for the
-entire expression.  This is the {\em simplest} variety of logic
-becuase it does not entertain any form of subtlety that arises from
-issues such as {\it quantifiers} (e.g., {\sc there exists}
-[symbolically, $\exists$] or {\sc for all}, [symbolically,
-  $\forall$]), or {\it modalities} (e.g., {\sc eventually} or {\sc
-  from some moment on}).  The Propositional Logic is a fascinating
-special form of Boolean algebra for at least two reasons.  First, it
-enjoys a special algebraic feature known as {\it free-ness}, which
-enables one to prove theorems in the Propositional Logic using {\em
-  truth tables:} this amounts to proving theorems within this system
-by symbolic evaluation rather than the axioms plus rules of inference
-that we all found so onerous in our high school geometry course.
-Second, Propositional logical expressions are powerful to model
-certain types of computations faithfully enough to serve as a
-foundation for a methodology for measuring computationa complexity.
+without using ``logical'' terms such as {\it and}, {\it or}, and {\it
+  not}.  These terms fall naturally within the domain of the simplest
+variety of {\it mathematical logic}---the {\it logic of propositions},
+or, more familiarly, {\it Propositional Logic}.  This branch of logic
+studies how the {\em truth-values}, {\sc true} or {\sc false}, of
+elementary logical expressions combine via operators such as {\sc
+  and}, {\sc or}, and {\sc not} to produce a truth-value for complex
+logical expressions.
+
+Propositional Logic is the simplest form of mathematical logic because
+it does not deal with the subtleties that arise from issues such as:
+{\it quantifiers}---such as ``{\sc there exists}'' ($\exists$), or
+``{\sc for all}'' ($\forall$)---or {\it modalities}---such as ``{\sc
+  eventually}'' or ``{\sc from some moment on}''.
+
+Propositional Logic is a fascinating special form of Boolean algebra
+for at least two reasons.
+  \begin{itemize}
+  \item
+Propositional Logic enjoys a special algebraic feature known as {\it
+  free-ness}, which enables one to prove theorems in Propositional
+Logic using {\em truth tables:} this amounts to proving theorems
+within this system by symbolic evaluation rather than the axioms plus
+rules of inference that we all found so onerous in high school
+geometry.
+  \item
+Propositional logical expressions are powerful to model certain types
+of {\em computations} faithfully enough to serve as a foundation for a
+methodology for measuring computationa complexity.
+  \end{itemize}
+\end{itemize}
+
 
 \medskip
 
@@ -404,11 +428,11 @@ C$, the set $S \cap T$ also belongs to $\cal C$.  By De Morgan's laws,
 $\cal C$'s closure under union implies also its closure under
 intersection.
 
-\section{Binary Relations}
-\label{s.relation}
+\section{Structured Sets}
+\label{sec:structured-set}
 
 \subsection{The Formal Notion of Binary Relation}
-\label{s.relation-basic}
+\label{sec.relation}
 
 We begin our discussion of relations by adding a new (binary) set
 operation to our earlier repertoire.  Given (finite or infinite) sets
@@ -954,7 +978,7 @@ $F^{(S \leftrightarrow T)}: S \rightarrow T$.
 
 While the operation of {\it composition},
 \index{composition!functions}
-as introduced in Section~\ref{s.relation-basic}, is important for
+as introduced in Section~\ref{sec:relation}, is important for
 general binary relations, it is a daily staple with relations that are
 functions!  Let us be given two functions on a set $S$
 \[
@@ -1083,7 +1107,7 @@ bijection on $S$.  \qed
 \end{proof}
 
 
-\section{Boolean Algebras}
+\section{Algebras of Sets}
 \label{sec:Boolean-Algebra}
 \index{Boolean Algebra}
 
