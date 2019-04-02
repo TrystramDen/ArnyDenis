@@ -155,10 +155,10 @@ without using ``logical'' terms such as {\it and}, {\it or}, and {\it
   not}.  These terms fall naturally within the domain of the simplest
 variety of {\it mathematical logic}---the {\it logic of propositions},
 or, more familiarly, {\it Propositional Logic}.  This branch of logic
-studies how the {\em truth-values}, {\sc true} or {\sc false}, of
+studies how the {\em truth-values}, {\sc true} and {\sc false}, of
 elementary logical expressions combine via operators such as {\sc
-  and}, {\sc or}, and {\sc not} to produce a truth-value for complex
-logical expressions.
+  and}, {\sc or}, and {\sc not} to produce a truth-value for any
+complex logical expression.
 
 Propositional Logic is the simplest form of mathematical logic because
 it does not deal with the subtleties that arise from issues such as:
@@ -173,13 +173,13 @@ for at least two reasons.
 Propositional Logic enjoys a special algebraic feature known as {\it
   free-ness}, which enables one to prove theorems in Propositional
 Logic using {\em truth tables:} this amounts to proving theorems
-within this system by symbolic evaluation rather than the axioms plus
-rules of inference that we all found so onerous in high school
+within this system by symbolic evaluation rather than via the axioms
+plus rules of inference that we all found so onerous in high school
 geometry.
   \item
-Propositional logical expressions are powerful to model certain types
-of {\em computations} faithfully enough to serve as a foundation for a
-methodology for measuring computationa complexity.
+There is a genre of Propositional logical expression that, by modeling
+a genre of {\em computation} faithfully, can serve as a foundation for
+a theory of computational complexity.
   \end{itemize}
 \end{itemize}
 
@@ -202,13 +202,13 @@ finite sets:
 \item
 the set of words in this book
 
-I do not know how big this set is, but I imagine that you as a reader
-have a better idea than I as an author.
+We do not know how big this set is, but you as a reader likely have a
+better idea than we as authors.
 \item
-the set of characters in any JAVA program
+the set of characters in any {\it JAVA} program
 
-Note that while we are sure that this set is finite, we are not so
-confident about the number of seconds the program will run!
+Note that while this set is surely finite, we are not so confident
+about the number of seconds that a given program will run!
 \item
 the set consisting of {\em you}
 
@@ -218,8 +218,8 @@ unique.''  This set has just one element.
 \item
 the set of unicorns in New York City
 
-I will not argue with you about this, but I believe that this is the
-{\em empty set} $\emptyset$, which has zero members. 
+We will not argue with you about this, but we suspect that this is the
+{\em empty set} $\emptyset$, which has zero members.
 \end{itemize}
 Some familiar infinite sets are:
 \begin{itemize}
@@ -237,8 +237,8 @@ the set of nonnegative {\em real numbers}---which can be viewed
 computationally as the set of numbers that admit infinite decimal
 expansions,
 \item
-the set of nonnegative {\em complex numbers}---which can be viewed as
-ordered pairs of real numbers,
+the set of {\em complex numbers}---which can be viewed as ordered
+pairs of real numbers,
 \item
 the set of {\em all} finite-length binary strings.
 
@@ -252,17 +252,21 @@ Despite this assumption, we begin the chapter by reviewing some basic
 concepts concerning sets and operations thereon.
 
 As noted early, sets were created to contain members/elements.  We
-denote the fact that element $t$ {\it belongs to},\index{set!the
-  belongs to relation} or, {\it is an element of} set $T$ by the
-notation $t \in T$\index{set!membership: $\in$}.  A {\em
-  subset}\index{set!subset} of a set $T$ is a set $S$ each of whose
-members belongs to $T$.  The subset relation occurs in two forms, The
-{\em strong} form of the relation, denoted $S \subset
+denote the fact that element $t$ {\it belongs to},
+\index{set!the belongs-to relation} or, {\it is an element of} set $T$
+by the notation $t \in T$.\index{set!membership: $\in$}  Contrarily,
+we denote the fact that element $t$ {\it does not belong to},
+\index{set!the belongs-to relation} or, {\it is not an element of} set
+$T$ by the notation $t \not\in T$.\index{set!membership: $\not\in$} 
+
+A {\em subset}\index{set!subset} of a set $T$ is a set $S$ each of
+whose members belongs to $T$.  The subset relation occurs in two
+forms, The {\em strong} form of the relation, denoted $S \subset
 T$,\index{set!strong subset relation} says that every element of $S$
 is an element of $T$, but {\em not} conversely; i.e., $T$ contains
 (one or more) elements that $S$ does not.  The {\em weak} form of the
-relation, denoted $S \subseteq T$,\index{set!weak subset relation}
-is defined as follows:
+relation, denoted $S \subseteq T$,\index{set!weak subset relation} is
+defined as follows:
 \[
 [S \subseteq T] \ \ \mbox{ means: } \ \
 \Big[ \mbox{\em either } \ \ [S = T]
@@ -273,28 +277,32 @@ For any finite set $S$, we denote by $|S|$ the {\it cardinality}
 \index{set!cardinality}\index{cardinality!finite set} of $S$, which is
 the number of elements in $S$.  Finite sets having three special
 cardinalities are singled out with special names.  The limiting case
-of finite sets is the unique {\em empty set}, which we denote by
-$\emptyset$; thus, $\emptyset$ is characterized by the equation
-$|\emptyset| = 0$.  (The empty set is often a limiting case of
-set-defined entities.)  If $|S| = 1$, then we call $S$ a {\em
-  singleton};\index{set!singleton set} and if $|S| = 2$, then we call
-$S$ a {\em doubleton}.\index{set!doubleton}
+of finite sets is the {\em empty set}; this set, which we denote by
+$\emptyset$ is {\em unique}.  We say that, $\emptyset$ is {\it
+  characterized} by the equation $|\emptyset| = 0$, meaning that the
+equation can be used as a definition of the set.  (The empty set is
+often a limiting case of set-defined entities.)  If $|S| = 1$, then we
+call $S$ a {\em singleton};\index{set!singleton set} and if $|S| = 2$,
+then we call $S$ a {\em doubleton}.\index{set!doubleton} (One could,
+of course, continue with ``tripletons'' and ``quadrupletons'', etc.,
+but people tend not to do this.)
 
 It is often useful to have a convenient term and notation for {\em the
-  set of all subsets of a set $S$}.  This bigger set---it contains
-$2^{|S|}$ elements when $S$ is finite---is denoted by $\p(S)$ and is
-called the {\em power set}\index{power set:set of all subsets} of
-$S$.\footnote{The name ``power set'' arises from the relative
-  cardinalities of $S$ and ${\cal P}(S)$ for finite $S$.}  Note
-carefully the two set-relations that we are talking about here:
+  set of all subsets of a set $S$}.  This bigger set---we shall see
+that it contains $2^{|S|}$ elements when $S$ is finite---is denoted
+$\p(S)$ and is called the {\em power set}
+\index{power set:set of all subsets} of $S$.\footnote{The name ``power
+  set'' arises from the relative cardinalities of $S$ and ${\cal
+    P}(S)$ for finite $S$.}  Note carefully the two set-relations that
+we are talking about here: 
 
-{\em A set $T$ that is a {\em subset} of set $S$ is an {\em element}
-  of the set $\p(S)$.}
+\hspace*{.5in}{\em If set $T$ is a {\em subset} of set $S$, then $T$
+  is an {\em element} of the set $\p(S)$.}
 
 \noindent
 You should satisfy yourself that the biggest and smallest elements of
 ${\cal P}(S)$ are, respectively, the set $S$ itself and the empty set
-$\emptyset$.
+$\emptyset$.  {\Arny a good simple exercise?}
 
 \subsection{Operations on Sets}
 \label{sec:set-operations}
@@ -322,7 +330,6 @@ is sometimes called {\em inclusive
     \in S \cap T] \Big]
 \]
 
-
 \item
 $S \setminus T$\index{$S \setminus T$: set difference} is the {\em
   (set) difference}\index{set!operations!set difference} of $S$ and
@@ -343,14 +350,26 @@ S \cup T & = & \{a,b,c,d\}, \\
 S \setminus T & = & \{a,b\}.
 \end{eqnarray*}
 
-In many set-related situations, the sets of interest will be subsets
-of some fixed ``universal'' set $U$.\index{set!universal set}
-\begin{quote}
-We use the term ``universal'' as in ``universe of discourse,'' not in
-the self-referencing sense of a set that contains all other sets as
-members, a construct (discussed by philosopher-logician Bertrand
-Russell) \index{Russell, Bertrand} which leads to mind-bending paradoxes.
-\end{quote}
+In many situations where sets are being studied, the sets of interest
+will be subsets of some fixed ``universal'' set
+$U$.\index{set!universal set}
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+We use the term ``universal'' contextually, in the sense of a
+``universe of discourse'', not in the absolute, self-referencing,
+sense of a set that contains all other sets as members.  The absolute
+construct has been discussed by philosopher/logician Bertrand Russell,
+\index{Russell, Bertrand} who showed it to lead to mind-bending
+paradoxes---especially, the eponymous {\it Russell's Paradox}
+\cite{Russell02,Russell03}.
+\end{minipage}
+}
+\bigskip
+
+\noindent
 Given a universal set $U$ and a {\em subset} $S \subseteq U$,
 % (the notation meaning that every element of $S$---if there are any---is
 %also an element of $U$)
@@ -395,14 +414,14 @@ mathematical phrase, ``if and only if.''}
 
 The operations union, intersection, and complementation---and
 operations formed from them, such as set difference---are usually
-called the {\em Boolean (set) operations},
-\index{Boolean set operations}\index{set!operations!Boolean set operations}
-named for the $19$th-century English mathematician George
-Boole. \index{Boole, George} There are several important identities
-involving the Boolean set operations.  Among the most frequently
-invoked are the two ``laws'' attributed to the $19$th-century French
-mathematician Auguste De Morgan:
-\index{set!operations!De Morgan's Laws}\index{De Morgan's Laws}
+called the {\em Boolean (set) operations},\index{Boolean set operations}
+\index{set!operations!Boolean set operations} so named for the
+$19$th-century English mathematician George Boole.
+\index{Boole, George} There are several important identities involving
+the Boolean set operations.  Among the most frequently invoked are the
+two {\em laws} attributed to the $19$th-century French mathematician
+Auguste De Morgan: \index{set!operations!De Morgan's Laws}
+\index{De Morgan's Laws}
 \begin{equation}
 \label{e.de-morgan}
 \mbox{For all sets $S$ and $T$: } \ \left\{
@@ -413,14 +432,20 @@ mathematician Auguste De Morgan:
 \end{array}
 \right.
 \end{equation}
+Elementary logic can be used to verify these laws.  To spell out just
+one case: An element $s$ that belongs to neither $S$ nor $T$ ($s \in
+\left(\overline{S} \cap \overline{T}\right)$) cannot belong to the
+union of $S$ and $T$.
+
+\medskip
 
 \noindent {\em (Algebraic) Closure}.\index{(Algebraic) Closure}
 %
-We end this section with a set-theoretic definition that occurs in
-many contexts.  Let $\cal C$ be any (finite or infinite) collection of
-sets, and let $S$ and $T$ be two elements of $\cal C$.  (Note that
-$\cal C$ is a set whose elements are sets.)  Think, e.g., of the
-concrete example of set intersection.
+We end this section with a set-theoretic definition that one
+encounters in many contexts.  Let $\cal C$ be any (finite or infinite)
+collection of sets, and let $S$ and $T$ be two elements of $\cal C$.
+{\em (Note that $\cal C$ is a set whose elements are sets.)}  Think,
+e.g., of the concrete example of set intersection.
 
 We say that $\cal C$ is {\em closed} under intersection if whenever
 sets $S$ and $T$ (which could be the same set) both belong to $\cal
