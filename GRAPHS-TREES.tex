@@ -2490,7 +2490,10 @@ Let $\g$ be an outerplanar graph.  Then:
 {\bf (a)} &
 $\g$ is planar. \\
 {\bf (b)} &
-$\g$ is a subgraph of a Hamiltonian graph. \\
+$\g$ is a subgraph of a Hamiltonian graph. 
+
+{\Denis Be careful here since Hamiltonian has been shifted after this section.
+Two options: let skip and give a remark in the right section or add a wrod to say that this will be detailed later in section --put the ref--}\\
 {\bf (c)} &
 Every subgraph of $\g$ is outerplanar. \\
 {\bf (d)} &
@@ -3112,7 +3115,7 @@ This augmentation extends the induction, hence validates the Formula.
 given a planar graph $\g$ that has $n$ nodes, $e$ edges, and $f$
 faces.  We validate (\ref{eqn:Eulers-formula}) by deconstructing $\g$
 and showing that each step in the process preserves as {\it invariant}
-the expression $\phi(n,e,f) = n+e-f$.  \index{invariants}
+the expression $\phi(n,e,f) = n-e+f$.  \index{invariants}
 
 \bigskip
 
@@ -3131,15 +3134,15 @@ graph $\g$.
 \bigskip
 
 \noindent
-We analyze the following two-step process, whose steps are performed
-in sequence.
+We analyze the following two-phase process performed in sequence.
 \begin{description}
-\item[{\bf Step 1}.]
+\item[{\bf Phase 1}.]
 Iterate the following process of removing edges from $\g$ until one
 edge-removal reduces $\g$ to a graph with a single face.  This
 termination condition is equivalent to stopping when the remaining
 graph is a tree.  One can verify that the tree one ends up with is
 {\em connected}.
+\bigskip
 
 {\bf The action}.
 If the graph remaining at some step contains an edge that is shared by
@@ -3150,7 +3153,7 @@ Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.4]{FiguresGraph/planarStep1}
-\caption{Illustrating Step 1: From top left to bottom right, each
+\caption{Illustrating Phase 1: From top left to bottom right, each
   transformation preserves the invariant $\phi(n,e,f)$.  The first
   transformation removes the edge shared by faces (1) and (3),
   creating a new, merged, face (1)'.}
@@ -3171,9 +3174,10 @@ unchanged, while $e$ and $f$ are each reduced by $1$: $\phi(n,e,f) =
 \phi(n,e-1,f-1)$.
 \end{itemize}
 
-\item[{\bf Step 2}.]
+\item[{\bf Phase 2}.]
 Iterate the following process of removing nodes from the tree produced
-by Step 1, until onlu one node remains.
+by Step 1, until only one node remains.
+\bigskip
 
 {\bf The action}.
 Remove any leaf of the current tree, together with its incident edge.
@@ -3183,7 +3187,7 @@ for a tree  with $n=8$ nodes---hence, $e=7$ edges and $f=1$ face.
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.4]{FiguresGraph/planarStep2}
-   \caption{Illustrating Step 2: We remove a sequence of leaves, each
+   \caption{Illustrating Phase 2: We remove a sequence of leaves, each
      with its incident edge, until we reach a single node.  Again,
      $\phi$ remains invariant after each leaf-removal.}
   \label{fig:planarStep2}
@@ -3215,12 +3219,19 @@ We conclude that, at the
 start of the process,  $\phi(n,e,f)$ had the value $2$.  In other
 words, $n-e+f = 2$.  This concludes the proof.  \qed
 
+\bigskip
 
-\subsection{Computing Chromatic Number}
-\label{sec:Compute-Chromatic-No}
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
 
-**HERE
-**FIND REFERENCES
+**ADD REFERENCES HERE
+
+We presented several parameters for characterizing a graph.
+The degree of the vertices (which is a local characteristic) 
+and the diameter (which is a global characteristic).
+Both parameters are easy to determine (done in polynomial time).
+The chromatic number is an intermediate concept which provide a global information from local rules.
+It is hard to compute for any graph. 
 
 \cite{GareyJ79}
 \cite{Karp72}
@@ -3232,7 +3243,8 @@ A simple argument shows that it is {\sf NP}-hard to find smallest
 number of colors that provide a valid node-coloring of $\g$.
 
 But one can exhibit ``greedy'' algorithms that give good results.
-
+\end{minipage}
+}
 
 
 \section{Path and Cycle Discovery Problems in Graphs}
