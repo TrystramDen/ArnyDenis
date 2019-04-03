@@ -479,31 +479,31 @@ element of set $T$.  For example, if $S = \{a,b,c\}$ and $T =
 \]
 
 
-
 \subsection{Binary Relations: Sets of Ordered Pairs}
 \label{sec:relation}
 
 The direct-product operation on sets affords us a simple, yet
-powerful, formal notion of binary relation.
-
-Given (finite or infinite) sets $S$ and $T$, a {\it relation $\rho$ on
-  $S$ and $T$}\index{relation on sets} (in that order) is any subset
+powerful, formal notion of binary relation.  Given (finite or
+infinite) sets $S$ and $T$, a {\it relation $\rho$ on $S$ and
+  $T$}\index{relation on sets} (in that order) is any subset
 \[ \rho \ \subseteq \ S \times T. \]
 When $S = T$, we often call $\rho$ a {\em binary relation on (the set)
   $S$}\index{binary relation on a set} (``{\em binary}'' because there
 are {\em two} copies of set $S$ being related by $\rho$).
 
 Relations are so common that we use them in every aspect of our lives
-without even noticing them.  The relations ``equal to,'' ``less than,''
-and ``greater than or equal to'' are simple examples of binary
+without even noticing them.  The relations ``equal to,'' ``less
+than,'' and ``greater than or equal to'' are simple examples of binary
 relations on the integers.  These same three relations apply also to
 other familiar number systems such as the rational and real numbers;
 only ``equal,'' though, holds (in the natural way) for the complex
-numbers.  Some subset of the three relations ``is a parent of,'' ``is
-a child of,'' and ``is a sibling of'' probably are binary relations on
-(the set of people constituting) your family.  To mention just one
-relation with distinct sets $S$ and $T$, the relation ``$A$ is taking
-course $X$'' is a relation on
+numbers. (You will see much more about these sets of numbers in coming
+chapters.)  Some subset of the three relations, ``is a parent of,''
+``is a child of,'' and ``is a sibling of'', are binary relations that
+may apply to (the set of people constituting) your family.  The
+preceding relations all apply to a single set $S$; a familiar relation
+for which the sets $S$ and $T$ are distinct is the relation ``$A$ is
+taking course $X$''; it is a relation on
 \[ \left( \mbox{the set of all students} \right) \times
    \left( \mbox{the set of all courses} \right).
 \]
@@ -556,22 +556,31 @@ of $\rho$ and $\rho'$ (in that order) is the relation
 (\exists t \in S) \Bigl[ [s \rho t] \mbox{ and } [t \rho' u] \Bigr] \Bigr\}.
 \]
 Note that we have used both of our notational conventions for
-relations here.  We also encounter here, for the first time in the
-text, but certainly not the last, a new notational convention: the
-common ``shorthand'' compound symbol ``$\eqdef$'':
-\index{$\eqdef$: ``equals, by definition''}
-The sentence ``$X \eqdef Y$'' should be read ``$X$ {\em is (or, equals),
-  by definition}, $Y$.''
-\begin{quote}
-The operation of composition of relations is quite important in the
-study of ``relational'' databases.
-\end{quote}
+relations in the preceding equation.  We also encounter here, for the
+first time in the text, but certainly not the last, a new notational
+convention: the common ``shorthand'' compound symbol ``$\eqdef$'':
+\index{$\eqdef$: ``equals, by definition''} The sentence ``$X \eqdef
+Y$'' should be read ``$X$ {\em is (or, equals), by definition}, $Y$.''
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+Even at this stage in our study, we encounter concepts that appear
+directly in ``real-life'' applications.  The operation of {\em
+  composing relations} is an essential feature of {\it relational
+  databases;} see, e.g., \cite{Codd70}.  
+\end{minipage}
+}
+\bigskip
 
 \noindent
-It is important to be able to assert that elements $s, t \in S$ are
-{\em not} $\rho$-related,\index{relation negation} i.e., $\langle s, t
-\rangle \not\in S \times S$.  Several notations have been developed
-for this purpose.\index{$\widetilde{\rho}$: the negation of relation $\rho$}
+When we discuss a relation $\rho \subset S \times T$, it is important
+to be able to assert that elements $s \in S$ and $t \in T$ are {\em
+  not} $\rho$-related,\index{relation negation} i.e., $\langle s, t
+\rangle \not\in S \times T$.  Several notations have been developed
+for this purpose, as the following table suggests.
+\index{$\widetilde{\rho}$: the negation of relation $\rho$}
 \begin{equation}
 \label{eq:NOT-rho-notation}
 \begin{array}{|c|c|c|c|}
@@ -598,9 +607,10 @@ for this purpose.\index{$\widetilde{\rho}$: the negation of relation $\rho$}
 \end{array}
 \end{equation}
 
-There are several special classes of binary relations that are so
-important that we must single them out immediately, in the following
-subsections.
+\medskip
+
+Several special classes of binary relations are so important that we
+must single them out immediately, in the upcoming subsections.
 
 
 \subsection{Order Relations}
@@ -618,16 +628,21 @@ A binary relation $\rho$ on a set $S$ is a {\it partial order
 \end{equation}
 The qualifier ``partial'' warns us that some pairs of elements of $S$
 do not occur in relation $\rho$.  Number-related orders supply an easy
-illustrative example.  Given any two distinct integers, $m$ and $n$,
-one of them must be less than the other: either $m < n$, or $n < m$.
-In contrast, if we consider {\it ordered pairs} of integers, then
-there are pairs of pairs that are not related by the ``less than''
-relation in any natural way.  For instance, even though we may agree
-that, by a natural extension of the number-ordering relation ``less
-than'', $\langle 4, 17 \rangle$ is ``less than'' $\langle 22, 19
-\rangle$, we might well not agree on which of $\langle 4, 22 \rangle$
-and $\langle 19, 17 \rangle$ is less than the other---or, indeed,
-whether either is ``less than'' the other.
+illustration.  Given any two {\em distinct} integers, $m$ and $n$, one
+of them must be less than the other: either $m < n$, or $n < m$.  In
+contrast, if we consider {\it ordered pairs} of integers, then there
+are pairs of pairs that are not related by the ``less than'' relation
+in any natural way.  For instance, even though we may agree that(by a
+natural extension of the number-ordering relation ``less than''), the
+ordered-pair $\langle 4, 17 \rangle$ is ``less than'' the ordered-pair
+$\langle 22, 19 \rangle$, we might well not agree on which of the
+ordered-pairs $\langle 4, 22 \rangle$ and $\langle 19, 17 \rangle$ is
+``less than'' the other.
+
+{\Arny The distinction between strong and weak orders is important,
+  but there is probably a less formalistic way to explain the
+  difference.  Please try}
+
 
 In many domains, order relations occur in two ``flavors'', {\em
   strong} and {\em weak}.\index{order!strong}\index{order!weak} For
@@ -636,12 +651,13 @@ integers---the weak version is denoted by underscoring the strong
 one's symbol.  This will be our convention.  Just as $\leq$ denotes
 the weak version of $<$, and $\geq$ denotes the weak version of $>$,
 we shall denote the weak version of a generic order $\rho$ by
-$\underline{\rho}$.\index{$\underline{\rho}$:the weak version of order
-  relation $\rho$}.  Strong and weak versions of an order relation
-$\rho$ (denoted, respectively, $\rho$ and $\underline{\rho}$) are
-distinguished by their behavior under simultaneous membership.  For
-illustration, instantiate the following template with $\rho$ being
-``$<$'' and with $\rho$ being ``$>$'':
+$\underline{\rho}$.
+\index{$\underline{\rho}$:the weak version of order relation $\rho$}
+Strong and weak versions of an order relation $\rho$ (denoted,
+respectively, $\rho$ and $\underline{\rho}$) are distinguished by
+their behavior under simultaneous membership.  For illustration,
+instantiate the following template with $\rho$ being ``$<$'' and with
+$\rho$ being ``$>$'':
 
 \smallskip
 
@@ -652,6 +668,26 @@ For the weak version $\underline{\rho}$ of $\rho$: & &
 {\bf if} $[s \ \underline{\rho} \ t]$ {\bf and} $[t \ \underline{\rho}
   \ s]$, {\bf then} $[s = t]$.
 \end{tabular}
+
+\medskip
+
+It is important to note that negating a strong relation (e.g., $<$)
+yields a weak relation ($\geq$), while negating a weak relation (e.g.,
+$\leq$) yields a strong relation ($>$).  Keep this in mind when we
+study Propositional Logic in Section~\ref{sec:Propositional-logic}.
+We shall note there that the following transformations
+\begin{eqnarray*}
+\mbox{weak order} + \mbox{negation} 
+ & \longrightarrow & \mbox{strong order} \\
+\mbox{strong order} + \mbox{negation}
+ & \longrightarrow & \mbox{weak order}
+\end{eqnarray*}
+result from Proposition~\ref{thm:De-Morgan}, the logical analogue of
+De Morgan's Laws (\ref{e.de-morgan}).
+
+{\Arny This is another easy but important candidate exercise}
+
+
 
 \subsection{Equivalence Relations}
 \label{sec:equiv-relation}
