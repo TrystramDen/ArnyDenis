@@ -1,4 +1,4 @@
-%version of 04-03-19
+%version of 04-04-19
 
 \chapter{SETS AND THEIR ALGEBRAS}
 \label{ch:sets-BA-logic}
@@ -359,10 +359,12 @@ $U$.\index{set!universal set}
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
 We use the term ``universal'' contextually, in the sense of a
-``universe of discourse'', not in the absolute, self-referencing,
-sense of a set that contains all other sets as members.  The absolute
-construct has been discussed by philosopher/logician Bertrand Russell,
-\index{Russell, Bertrand} who showed it to lead to mind-bending
+``universe of discourse''.  We are {\em not} using the term in the
+absolute, self-referencing, sense of a set $S$ that contains all sets
+as members (``self-referencing'' because set $S$ perforce contains
+itself as a member).  The absolute, self-referencing, construct has
+been shown by philosopher/logician Bertrand Russell,
+\index{Russell, Bertrand} to lead to mind-bending
 paradoxes---especially, the eponymous {\it Russell's Paradox}
 \cite{Russell02,Russell03}.
 \end{minipage}
@@ -371,14 +373,12 @@ paradoxes---especially, the eponymous {\it Russell's Paradox}
 
 \noindent
 Given a universal set $U$ and a {\em subset} $S \subseteq U$,
-% (the notation meaning that every element of $S$---if there are any---is
-%also an element of $U$)
 we observe the set-inequalities
 \[ \emptyset \ \subseteq \ S \ \subseteq \ U. \]
-When studying a context within which there exists a universal set $U$
-that contains all other sets of interest, we include within our
-repertoire of set-related operations also the operation of {\it
-  complementation}\index{set!operations!complementation}
+When studying a context within which there exists a universal set $U$,
+we include within our repertoire of set-related operations also the
+operation of {\it complementation}
+\index{set!operations!complementation}
 \begin{itemize}
 \item
 $\overline{S} \ \eqdef \ U \setminus S$,\index{$\overline{S}$: the
@@ -405,8 +405,8 @@ $S \cap T \ = \ S$,
 $S \cup T \ = \ T$.
   \end{enumerate}
 \end{itemize}
-Note, in particular, that\footnote{``iff'' abbreviates the common
-mathematical phrase, ``if and only if.''}
+Note, in particular, that\footnote{``iff'' is the common abbreviation
+  for the mathematical phrase, ``if and only if.''}
 \[ [S = T] \ \mbox{  iff  } \ \ \Bigl[[S \subseteq T] \mbox{
     {\small\sf and} } [T \subseteq S]\Bigr] \ \mbox{  iff  }
 \ \ \Bigl[ (S \setminus T) \cup (T \setminus S) = \emptyset\Bigr].
@@ -692,24 +692,37 @@ De Morgan's Laws (\ref{e.de-morgan}).
 \subsection{Equivalence Relations}
 \label{sec:equiv-relation}
 
-A binary relation $R$ on a set $S$ is an {\it equivalence
-  relation}\index{equivalence relation} if it enjoys the following
-three properties:
-\begin{enumerate}
-\item
-$R$ is {\em reflexive:} for all $s \in S$, we have $sRs$.
-\item
-$R$ is {\em symmetric:} for all $s, s' \in S$, we have $sRs'$ whenever
-  $s'Rs$.
-\item
-$R$ is {\em transitive:} for all $s, s', s'' \in S$, whenever we have
-  $sRs'$ and $s'Rs''$, we also have $sRs''$.
-\end{enumerate}
+A binary relation $\rho$ on a set $S$ is an {\it equivalence relation}
+\index{equivalence relation} \index{relation!equivalence relation} 
+if it enjoys the following three properties:
+
+\medskip
+
+\begin{tabular}{llll}
+1. &
+$\rho$ is {\em reflexive:}
+   & $(\forall s \in S)$ & $[s \rho s]$ \\
+2. &
+$\rho$ is {\em symmetric:}
+   & $(\forall s, s' \in S)$ 
+& $\left[ [s \rho s'] \ \mbox{ iff } \ [s' \rho s] \right]$ \\
+3. &
+$\rho$ is {\em transitive:}
+   & $(\forall s, s', s'' \in S)$ & if both \
+$[s \rho s'] \ \mbox{ and } \ [s' \rho s''], \ \mbox{ then also } \ [s \rho s'']$
+\end{tabular}
+
+\medskip
+
+\noindent
 Sample familiar  equivalence relations are:
 \begin{itemize}
 \item
-The equality relation, $=$, on a set $S$ which relates each $s \in S$
-with itself but with no other element of $S$.
+The equality relation $=$ on a set $S$.
+
+This relation relates each $s \in S$ with itself (i.e., $s=s$) but
+with no other element of $S$.
+
 \item
 The relations $\equiv_{12}$ and $\equiv_{24}$ on integers,
 where\footnote{As usual, $|x|$ is the {\em absolute value}, or, {\em
@@ -723,83 +736,93 @@ $12$.
 $n_1 \equiv_{24} n_2$ if and only if $|n_1 - n_2|$ is divisible by
 $24$.
   \end{enumerate}
-We use relation $\equiv_{12}$ (without formally knowing it) whenever
-we tell time using a $12$-hour clock and relation $\equiv_{24}$
-whenever we tell time using a $24$-hour clock.
+We use relation $\equiv_{12}$ (without formally acknowledging it) when
+we tell time using a $12$-hour clock; we use relation $\equiv_{24}$
+when we tell time using a $24$-hour clock.
 \end{itemize}
 
+\noindent
 Closely related to the notion of an equivalence relation on a set $S$
-is the notion of a {\it partition} of $S$.  A partition of $S$ is a
-nonempty collection of subsets $S_1, S_2, \ldots$ of $S$ that are
-\begin{enumerate}
-\item
+is the notion of a {\it partition} \index{partition}
+\index{set!partition} of $S$---i.e., a nonempty collection of subsets
+$S_1, S_2, \ldots$ of $S$ that are
+
+\smallskip
+
+\begin{tabular}{l}
 {\em mutually exclusive:}
-for distinct indices $i$ and $j$, $S_i \cap S_j = \emptyset$;
-\item
+for distinct indices $i$ and $j$, $S_i \cap S_j = \emptyset$; \\
+and  \\
 {\em collectively exhaustive:}
 $S_1 \cup S_2 \cup \cdots = S$.
-\end{enumerate}
-We call each set $S_i$ a {\it block} of the partition.
+\end{tabular}
 
-One verifies the following Proposition easily.\index{partitions and
-  equivalence relations} 
+\smallskip
+
+\noindent
+We call each set $S_i$ a {\it block} of the partition. \index{partition!block}
+\index{set!partition!block} \index{block of a partition}
+
+\noindent
+One verifies the following Proposition easily.
+\index{partitions!and equivalence relations} 
+\index{equivalence relations!and partitions} 
 
 \begin{prop}
 A partition of a set $S$ and an equivalence relation on $S$ are just
 two ways of looking at the same concept.
 \end{prop}
 
-To verify this, we note the following.
-
-\noindent {\small\sf Getting an equivalence relation from a partition}.
-%
+\begin{proof}[Sketch]
+{\it To get an equivalence relation from a partition}.
 Given any partition $S_1, S_2, \ldots$ of a set $S$, define the
-following relation $R$ on $S$:
+following relation $\rho$ on $S$:
 
-\noindent
-$sRs'$ if and only if $s$ and $s'$ belong to the same block of the
+$s \rho s'$ if and only if $s$ and $s'$ belong to the same block of the
 partition.
 
 \noindent
-{\em Relation $R$ is an equivalence relation on $S$.}
-To wit, $R$ is reflexive, symmetric, and transitive because collective
-exhaustiveness ensures that each $s \in S$ belongs to some block of
-the partition, while mutual exclusivity ensures that it belongs to
-only one block.
+We claim that relation $\rho$ is an equivalence relation on $S$.  To
+wit, the {\em collective exhaustiveness} of the partition ensures that
+each $s \in S$ belongs to some block of the partition, while {\em
+  mutual exclusivity} ensures that $s$ belongs to only one block.
 
-\noindent {\small\sf Getting a partition from an equivalence relation}.
-%
-To obtain the converse, focus on any equivalence relation $R$ on a set
-$S$.  For each $s \in S$, denote by $[s]_R$ the set
-\[ [s]_R \ \eqdef \ \{ s' \in S \ | \ sRs' \}; \]
-we call $[s]_R$ {\it the equivalence class of $s$ under relation
-$R$}.\index{equivalence class}\index{equivalence relation!class}
+\noindent {\it To get a partition from an equivalence relation}.
+Focus on any equivalence relation $\rho$ on a set
+$S$.  For each $s \in S$, denote by $[s]_\rho$ the set
+\[ [s]_\rho \ \eqdef \ \{ s' \in S \ | \ s \rho s' \} \]
+we call $[s]_\rho$ {\it the equivalence class of $s$ under relation
+$\rho$}.\index{equivalence class}\index{equivalence relation!class}
 
 \noindent
-{\em The equivalence classes under $R$ form a partition of $S$}.
-To wit: $R$'s reflexivity ensures that the equivalence classes
-collectively exhaust $S$; $R$'s symmetry and transitivity ensure that
-equivalence classes are mutually disjoint.
+{\em The equivalence classes under $\rho$ form a partition of $S$}.
+To wit: $\rho$'s {\em reflexivity} ensures that the equivalence classes
+collectively exhaust $S$; $\rho$'s symmetry and transitivity ensure that
+equivalence classes are mutually disjoint.  \qed
+\end{proof}
 
-The {\it index}\index{index (of an equivalence relation)} of the
-equivalence relation $R$ is its number of classes---which can be
-finite or infinite.
+The {\it index} \index{index (of an equivalence relation)}
+\index{equivalence relation!index} \index{relation!equivalence
+  relation!index} of the equivalence relation $\rho$ is its number of
+classes---which can be finite or infinite.  Henceforth, we conform to
+common usage and use the symbol $\equiv$, possibly embellished by a
+subscript or superscript, to denote an equivalence relation.
 
-Let\footnote{Conforming to common usage, we typically use the symbol
-  $\equiv$, possibly embellished by a subscript or superscript, to
-  denote an equivalence relation.}~$\equiv_1$ and $\equiv_2$ be two
-equivalence relations on a set $S$.  We say that the relation
-$\equiv_1$ {\em is a refinement of} (or, {\em
-  refines})\index{refinement of an equivalence relation} the relation
-$\equiv_2$ just when each block of $\equiv_1$ is a subset of some
-block of $\equiv_2$.  We leave to the reader the simple verification
-of the following basic result.
+Let $\equiv_1$ and $\equiv_2$ be two equivalence relations on a set
+$S$.  We say that the relation $\equiv_1$ {\em is a refinement of}
+(or, {\em refines})\index{refinement of an equivalence relation} 
+\index{equivalence relation!refinement}
+the relation $\equiv_2$ precisely when each block of $\equiv_1$ is a
+subset of some block of $\equiv_2$.  We leave to the reader the simple
+verification of the following basic result.
+
+{\Arny another simple exercise}
 
 \begin{theorem}
 \label{thm:equality=finest-equiv}
-The equality relation, $=$, on a set $S$ refines every equivalence
-relation on $S$.  In this sense, it is the finest equivalence relation
-on $S$.
+The equality relation, $=$, on a set $S$ is the {\em finest}
+equivalence relation on $S$, in the sense that $=$ refines every
+equivalence relation on $S$.
 \end{theorem}
 
 \subsection{Functions}
