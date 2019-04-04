@@ -827,23 +827,26 @@ equivalence relation on $S$.
 
 \subsection{Functions}
 \label{sec:function}
+\index{function}
 
 One learns early in school that a function from a set $A$ to a set $B$
 is a rule that assigns a unique value from $B$ to every value from
 $A$.  Simple examples illustrate that this notion of function is more
 restrictive than necessary.  Think, e.g., of the operation {\em
   division} on integers.  We learn that division, like multiplication,
-is a function that assigns a number to a given pair of numbers.  Yet
-we are warned almost immediately not to ``divide by $0$'': The
-quotient upon division by $0$ is ``undefined.''  So, division is not
-quite a function as envisioned our initial definition of the notion.
-Indeed, in contrast to an expression such as ``$4 \div 2$,'' which
-should lead to the result $2$ in any programming
-environment,\footnote{We are, of course, ignoring demons such as
-  round-off error.}~expressions such as ``$4 \div 0$'' will lead to
-wildly different results in different programming environments.  Since
-``wildly different'' is anathema in any mathematical setting, we deal
-with situations such as just described by broadening the definition of
+is a function that assigns a number to a given pair of numbers---yet
+we are warned immediately not to ``divide by $0$'': The quotient upon
+division by $0$ is ``undefined.''  So, division is not quite a
+function of the same sort as addition or multiplication, which both
+{\em do} conform to the notion envisioned by our initial definition of
+``function''.  In more homely terms, note that, in contrast to an
+expression such as ``$4 \div 2$,'' which should lead to the result $2$
+in every programming environment,\footnote{We are, of course, ignoring
+  demons such as round-off error.}~expressions such as ``$4 \div 0$''
+can lead to wildly different results in different programming
+environments.  Since ``wildly different'' is anathema in any
+mathematical setting, mathematicians have dealt with situations such
+as one encouters with division by broadening the definition of
 ``function'' in a way that behaves like our initial simple definition
 under ``well-behaved'' circumstances and that extends the notion in an
 intellectually consistent way under ``ill-behaved'' circumstances.
@@ -854,20 +857,15 @@ A {\it (partial) function from set $S$ to set $T$} is a relation $F
 \in S$, there is {\em at most} one $t \in T$ such that $sFt$.  We
 traditionally write ``$F: S \rightarrow T$'' as shorthand for the
 assertion, ``$F$ is a function from the set $S$ to the set $T$''; we
-also traditionally write ``$F(s) = t$'' for the more conservative
-``$sFt$.''  (The single-valuedness of $F$ makes the nonconservative
-notation safe.)  We often call the set $S$ the {\em source (set)},
-\index{function!source set}
-or, the {\it domain}
-\index{function!domain}
-%
-of function $F$, and we call set $T$ the {\em target (set)}
-\index{function!target set}
-or, the {\it range}
-\index{function!range}
-%
-of function $F$.  When there is always a (perforce, unique) $t \in T$
-for each $s \in S$, then we call $F$ a {\em total} function.
+also traditionally write ``$F(s) = t$'' for the more conservative (but
+correct) ``$sFt$.''  (The single-valuedness of $F$ makes the
+nonconservative notation safe.)  We often call the set $S$ the {\em
+  source}, \index{function!source} or, {\it domain}
+\index{function!domain} of function $F$, and we call set $T$ {\em
+  target} \index{function!target} or, the {\it range}
+\index{function!range} of function $F$.  In situations when there is
+always a (perforce, unique) $t \in T$ for each $s \in S$, then we call
+$F$ a {\em total} function.
 
 \ignore{******* 
 Note that our terminology is a bit unexpected: {\em Every total
@@ -894,13 +892,15 @@ positive integers\footnote{The great mathematician Leopold Kronecker
   integers.}~in order to make subtraction a total function.
 
   \item
-They appended the rationals to the preexisting integers in order to
-make division (by nonzero numbers!)~a total function.
+They appended the {\it rational numbers} to the preexisting integers
+in order to make division (by nonzero numbers!)~a total function.
   \end{itemize}
-The irrational algebraic numbers, the nonalgebraic real numbers, and
-the nonreal complex numbers were similarly appended, in turn, to our
-number system in order to make certain (more complicated) functions
-total.
+The {\it irrational algebraic numbers}, the {\it nonalgebraic real
+  (or, transcendental) numbers}, and the {\it nonreal complex (or,
+  imaginary) numbers} were similarly appended, in turn, to our number
+system in order to make certain (more complicated) functions total.
+(Chapter~\ref{ch:numbers-numerals} expands on this brief history of
+our number system's development.)
 
 \item
 They adapted the function.  In programming languages, in particular,
@@ -920,20 +920,19 @@ respectively).
 
 Three special classes of functions merit explicit mention.  For each,
 we give both a down-to-earth name and a more scholarly Latinate one.
-
-A function $F: S \rightarrow T$ is:
 \begin{enumerate}
 \item
-{\it one-to-one} (or {\it injective}) if for each $t \in T$, there is
-at most one $s \in S$ such that $F(s) = t$;
+A function $F: S \rightarrow T$ is {\it one-to-one} (or, {\it
+  injective}) if for each $t \in T$, there is at most one $s \in S$
+such that $F(s) = t$;
 
 \medskip
 
 {\em Example:}
 \begin{itemize}
 \item
- ``multiplication by $2$'' is injective:  If I give you an even
-  integer $2n$, you can always respond by giving me $n$.
+ ``multiplication by $2$'' is injective: If you are given an even
+  integer $2n$, you can always respond with the integer $n$.
 \item
 ``integer division by $2$'' is not injective---because performing the
   operation on arguments $2n$ and $2n+1$ yields the same answer
@@ -947,29 +946,39 @@ An injective function $F$ is called an {\it injection}.
 Importantly, each injection $F$ has a {\it functional inverse},
 \index{inverse of an injection}
 %
-which is commonly denoted $F^{-1}$.
+which is commonly denoted $F^{-1}$,
 \index{$F^{-1}$: functional inverse of injection $F$}
 %
-and which is defined as follows.  For each $t \in T$:
-  \begin{itemize}
-  \item
-If there is an $s \in S$ such that $F(s) = t$, then
-\[ F^{-1}(t) \ = \ s \]
-
-  \item
-If there is no $s \in S$ such that $F(s) = t$, then $F^{-1}(t)$ is not defined.
-  \end{itemize}
-Because $F$ is an {\em injection}, there is at most $s \in S$ such
-that $F(s)= t$.  In other words, an element $t \in T$ can occur in the
+and which is defined as follows.
+\[
+\mbox{For each $t \in T$:} \ \
+F^{-1}(t) \ = \ \left\{
+\begin{array}{cl}
+s &
+\mbox{ if there is an $s \in S$ such that $F(s) = t$} \\
+\mbox{\it undefined } &
+\mbox{ if there is no $s \in S$ such that $F(s) = t$}
+\end{array}
+\right.
+\]
+Because $F$ is {\em injective}, there is at most $s \in S$ such that
+$F(s)= t$.  In other words, an element $t \in T$ can occur in the
 range of $F$ only because of a single element $s \in S$ in the domain
-of $F$.  This means that the preceding definition of $F^{-1}$ is a
-valid definition (it is ``well-defined'') and that $F^{-1}$ is a
-(partial) function $F^{-1}: T \rightarrow S$ whose domain is the range
-of $F$.
+of $F$.  This means that
+\begin{itemize}
+\item
+the preceding definition of $F^{-1}$ is a valid definition---i.e., the
+notion ``functional inverse of an injection'' is {\it
+  ``well-defined''}.
+\item
+$F^{-1}$ is a (partial) function $F^{-1}: T \rightarrow S$ whose
+  domain is the range of $F$.
+\end{itemize}
 
 \item
-{\it onto} (or {\it surjective}) if for each $t \in T$, there is at
-least one $s \in S$ such that $F(s) = t$;
+A function $F: S \rightarrow T$ is {\it onto} (or, {\it surjective}) if
+for each $t \in T$, there is at least one $s \in S$ such that $F(s) =
+t$;
 
 \medskip
 
@@ -1000,8 +1009,9 @@ Proposition~\ref{thm:sqrt(2)}.)
 A surjective function $F$ is called a {\it surjection}.
 
 \item
-{\it one-to-one, onto} (or {\it bijective}) if for each $t \in T$,
-there is precisely one $s \in S$ such that $F(s) = t$.
+A function $F: S \rightarrow T$ is {\it one-to-one, onto} (or, {\it
+  bijective}) if for each $t \in T$, there is precisely one $s \in S$
+such that $F(s) = t$.
 
 \ignore{**********
 {\em Example:} The (total) function $F: \{0,1\}^\star \rightarrow
@@ -1069,7 +1079,7 @@ $F^{(S \leftrightarrow T)}: S \rightarrow T$.
 \medskip
 
 While the operation of {\it composition},
-\index{composition!functions}
+\index{composition!functions} \index{function!composition}
 as introduced in Section~\ref{sec:relation}, is important for
 general binary relations, it is a daily staple with relations that are
 functions!  Let us be given two functions on a set $S$
@@ -1089,15 +1099,16 @@ sides of equation (\ref{eq:functions-composed}) results from the
 existence of two historical schools that both contributed to the
 formulation of this material.
 \index{composition!functions!notation}
-One school cleaved to the tradition of {\it abstract algebra}; they
+One school cleaved to the tradition of {\it abstract algebra}:  they
 wanted all expressions to be written with all operators---including
-the composition operator $\circ$---in infix notation.  Another school,
-which could be called {\it applicative algebraic}, wanted to view
-functions as ``applying'' to their arguments.  Both notations have
-significant advantages in certain contexts, so both have survived.  It
-is a good idea for neophyte readers to be prepared to encounter both
-notations---but they have to keep their eyes open regarding the
-relative orders of $F$ and $G$.
+the composition operator $\circ$---in {\em infix} notation (i.e., in
+the ``$s \rho t$'' form).  Another school, which could be called {\it
+  applicative algebraic}, wanted to view functions as ``applying'' to
+their arguments.  Both notations have significant advantages in
+certain contexts, so both have survived.  It is a good idea for
+neophyte readers to be prepared to encounter both notations---but they
+have to keep their eyes open regarding the relative orders of $F$ and
+$G$.
 
 \medskip
 
@@ -1138,27 +1149,27 @@ possibilities.
 
 \smallskip
 
-\begin{tabular}{llll}
-\hline
-%1. &
+\begin{tabular}{lllll}
+%\hline
+1. &
 {\bf if}
 $F$ is defined at $s \in S$  & & & {\bf then} $F(s) \in S$ is unique \\
-%  &
+  &
 {\bf and if} $G$ is defined at $F(s) \in S$ & & & {\bf then} $G(F(s))
 = F \circ G(s) \in S$ is unique \\
-\hline
-%2. &
+%\hline
+2. &
 {\bf if}
 $F$ is not defined at $s \in S$ & & & {\bf then} $F \circ G$ is not
 defined at $s \in S$ \\
-\hline 
-%3. & 
+%\hline 
+3. & 
 {\bf if}
 $F$ is defined at $s \in S$ & & & {\bf then} $F(s) \in S$ is unique \\
-%  &
+  &
 {\bf and if} $G$ is not defined at $F(s) \in S$ & & & {\bf then}
-$F \circ G$ not defined at $s \in S$ \\
-\hline
+$F \circ G$ not defined at $s \in S$ %\\
+%\hline
 \end{tabular}
 
 \smallskip
