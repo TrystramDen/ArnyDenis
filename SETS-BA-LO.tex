@@ -1300,7 +1300,7 @@ Switching Circuit Theory and Information Theory.
 
 \subsection{The Algebra of Propositional Logic}
 \label{sec:Propositional-logic}
-\index{Propositional logic}%\index{The Propositional Calculus}
+\index{Propositional logic}\index{The Propositional Calculus}
 
 \subsubsection{Logic via algebraic manipulation}
 
@@ -1598,30 +1598,36 @@ mathematical world on its ear!
 }
 \end{enumerate}
 The Propositional Calculus is sufficiently simple that it {\em is}
-semantically complete.  We discusss this fact now.
+semantically complete.  We elaborate on this fact now.
 
 \bigskip
 
-\noindent{\small\sf B. Propositional Logic: {\em free} and {\em complete}}.
+\noindent{\small\sf B. The completeness of Propositional Logic}.
 \index{logical system!completeness}
-
-
-
-
-\bigskip
-
-\noindent{\small\sf C. The Propositional logical connectives via truth tables}.
-\index{logical operations!a functional view}
-%
-If one is willing to view statements in the Propositional Calclulus as
-prescriptions for computations, then one can encapsulate the
-definitions of the basic logical connectives via functions that map
-logical expressions into the truth values {\sc true} and {\sc
-  false}---often denoted $1$ or $0$, respectively.  The following
-tables reproduce the definitions of Subsection~A within this
-computational framework.
-\begin{equation}
-\label{eq:defns-via-tables}
+The {\em completeness} of the Propositional Calculus as a logical
+system results from our ability to view the expressions of the
+Calclulus as Boolean functions, in the following way.
+\begin{itemize}
+\item
+All propositions, $P$, $Q$, \ldots, that appear in expressions are
+uninterpreted ``names'' of actual propositions.
+\item
+As we examine an expressions in the Calculus, the only information we
+need about the propositions that appear in the expression is the array
+of truth-values for $P$, $Q$, \ldots.
+\end{itemize}
+If we tabulate how the truth-values of propositions combine under the
+various logical connectives, then we remark immediately how the
+expressions can be viewed as functions of binary tuples, where the
+-arity of the functions is the number of propositional variables.
+Using this viewpoint, the tables in Fig.~\ref{fig:defns-via-tables}
+reproduce the definitions of logical connectives of
+Section~\ref{sec:Propositional-logic}.B as functions within the
+truth-value space.  Each propositional variable is instantiated with
+its possible truth-values, {\sc true} and {\sc false}---denoted here,
+for convenience, as $1$ and $0$, respectively.
+\begin{figure}[hbt]
+\[
 \begin{array}{|c||c|}
 \hline
 P & \sim P \\
@@ -1647,102 +1653,104 @@ P & Q & P \vee Q  & P \oplus Q & P \wedge Q & P \Rightarrow Q & P \equiv Q  \\
 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
 \hline
 \end{array}
-\end{equation}
-
+\]
+\caption{Tabular presentations of the basic Propositoinal connectives.
+\label{fig:defns-via-tables}}
+\end{figure}
 Note how the truth-value entries in the righthand truth table of
-(\ref{eq:defns-via-tables}) reinforce the lessons of Subsection~A.
-This awareness is especially essential with the implication-related
-operations ($\Rightarrow$ and $\equiv$) that have informal
-counterparts in ``real-life'' reasoning.  Think about whether your
-intuition agrees with the formal specifications of these operations.
+Fig.~\ref{fig:defns-via-tables} reinforce the lessons of
+Section~\ref{sec:Propositional-logic}.B.  This awareness is especially
+essential with the implication-related operations ($\Rightarrow$ and
+$\equiv$) in the light of our earlier discussion of the tension
+between their formal meanings (from the table) and the way they are
+used in ``real-life'' reasoning.
 
 \medskip
 
-\noindent{Logic via truth values}.
-\index{Propositional logic!logic via truth values}
-%
-As demonstrated in Subsection~C, the Propositional Calculus is a
-Boolean Algebra when one interprets the logical connectives of
-Subsection~A as operations on logical expressions that evaluate to
-either {\sc true} (or, $1$) or {\sc false} (or, $0$).  But, the
-calculus forms a very special genre of Boolean Algebra, namely, a {\em
-  free Boolean Algebra}.\index{Boolean algebra!{\em free} algebra}
-
-\bigskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-The meaning of the qualifier {\it free} is easy to state but not so
-easy to understand.  Here is a very informal try.
-
-Any genre of algebra is defined as a set of objects accompanied by a
-set of basic operations, which obey certain ``self-evident''
-\index{axioms as ``self-evident truths''} axioms.  In rough, but
-evocative, terms, the algebra is {\em free} if its operations do not
-relate to one another in any way that is not mandated by the axioms.
-
-Here is an easy illustration of this decidedly {\em not-easy} concept.
-There is a (quite important) genre of algebra called a {\it
-  semi-group}.\index{semi-group} A semi-group $\s$ is specified via a
-set (of objects) $S$, together with a binary operation on $S$, which
-we denote $\otimes$.  For the (algebraic) structure $\s = \langle S,
-\otimes \rangle$ to be a semi-group, it must obey the following two
-axioms.
-\begin{enumerate}
+Every Propositional expression is a binary function, so we can pass
+back and forth between logical and functional/operational
+terminology.  This ability affords us very simple definitions of two
+important concepts that are somewhat harder to define in purely logical
+terms.
+\begin{itemize}
 \item
-$\s$ must be {\it closed} under operation $\otimes$; i.e., for all
-  $s_1, s_2 \in S$, we must have
-\[ (s_1 \otimes s_2) \in S. \]
+{\bf Tautology}.\index{tautology}\index{Propositional logic!tautology} 
+  \begin{itemize}
+  \item
+{\it Mathematical formulation:}
+  
+A Propositional expression is a {\it tautology} iff its corresponding
+function is the constant function $F(x) \equiv 1$.
+  \item
+{\it Logical formulation:}
+  
+A Propositional expression is a {\it tautology} iff it evaluates to
+{\sc true} under every instantiation of truth-values for its
+Propositional variables.
+  \end{itemize}
 \item
-The operation $\otimes$ must obey the {\em associative law;}
-\index{associative law}
-i.e., for all $s_1, s_2, s_3 \in S$,
-\[ (s_1 \otimes s_2) \otimes s_3 \ = \ s_1 \otimes (s_2 \otimes s_3)
-\]
-\end{enumerate}
+{\bf Satisfiable expression}.\index{Satisfiable logical expression} 
+\index{Satisfiable Propositional expression} 
+\index{Propositional logic!satisfiable expression}
+  \begin{itemize}
+  \item
+{\it Mathematical formulation:}
 
-Now, it is easy to verify---we shall discuss this in
-Chapter~\ref{ch:arithmetic}---that the (algebraic) structure formed by
-the integers coupled with the operation of addition forms a semi-group
-(which the notation of Chapter~\ref{ch:arithmetic} would denote
-$\langle \Z, + \rangle$).  But this semi-group is {\em not}
-free, because integer addition obeys laws beyond just closure and
-associativity, namely:
-\begin{enumerate}
-\item
-Addition of integers is {\em commutative}.
-\item
-Integer addition has an {\em identity}, namely $0$.
-\item
-Every integer $z \in \Z$ has an {\it additive inverse} (namely, $-z$).
-\end{enumerate}
+A Propositional expression is {\it satisfiable} iff its corresponding
+function has $1$ in its range; i.e., there is an argument $x$ such
+that $F(x) = 1$.
+  \item
+{\it Logical formulation:}
 
-So, it {\em is} meaningful that the Propositional calculus is a {\em
-  free} Boolean algebra.
-\end{minipage}
-}
-\bigskip
+A Propositional expression is {\it satisfiable} iff there exists
+instantiation of truth-values for its Propositional variables under
+which the expression evaluates to {\sc true}.
+  \end{itemize}
+\end{itemize}
 
 \noindent
-For us, the impact of the ``freeness'' of the Propositional algebra
-is manifest in the following \index{meta-theorem}
-{\em meta-theorem}\footnote{A {\it theorem} exposes some truth within
-  the mathematical structure being discussed.  A {\it meta-theorem}
-  exposes some truth about the way the discussion can proceed.}~which
-is discussed and proved in \cite{Rosser53}, a source that explains
-logic in terms that are accessible to a mathematician.
+We leave the following as an exercise for the reader.  After
+consulting Fig.~\ref{fig:defns-via-tables}:
+
+\begin{tabular}{llcl}
+1. &
+{\it Prove that the Propositional expression} &
+$\sim P \ \Rightarrow \ P$ &
+{\it is a tautology.} \\
+2. &
+{\it Prove that the Propositional expression} &
+$P \ \Rightarrow \ \sim P$ &
+{\it is satisfiable.}
+\end{tabular}
+
+We are now ready to present the main result of this section.
 
 \begin{theorem}[The Completeness Theorem for Propositional Logic]
 \label{thm:Prop-calc-isfree}
-A propositional expression $E(P, Q, \ldots, R)$ is a theorem of
-Propositional logic if, and only if, it to {\sc true} under all truth
-assignments to the propositions $P, Q, \ldots, R$.
+A Propositional expression $E(P, Q, \ldots, R)$ is a theorem of
+Propositional logic if, and only if, it is a tautology, i.e., it
+evaulates to {\sc true} under every assignment of truth-values to the
+propositions $P, Q, \ldots, R$.
 \end{theorem}
 
 Proving Theorem~\ref{thm:Prop-calc-isfree} is beyond the scope of this
-book, but we now present a few illustrative instantiations, annotated
-to suggest their ``real-world'' messages.  Each example is accompanied
-by a ``real-life'' interpretation and a verifying truth table.
+book.  The interested reader can find a proof in myriad logic texts.
+The proof in  \cite{Rosser53} might be particularly interesting to an
+aspiring mathematician because that source exists precisely to explain
+logic in terms that are accessible to a mathematician.
+
+In the next subsection, we present several illustrative applications
+of the Theorem.
+
+
+\bigskip
+
+\noindent{\small\sf C. The laws of Propositional logical as theorems}.
+\index{logical operations!a functional view}
+
+The applications of Theorem~\ref{thm:Prop-calc-isfree} which we have
+chosen to discuss here are the {\em laws} of the logical algebra we
+describe in Section~\ref{sec:Propositional-logic}.
 
 \bigskip
 
@@ -2030,8 +2038,74 @@ identical, as are columns 10 and 11.  By
 Theorem~\ref{thm:Prop-calc-isfree} this fact verifies the distributive
 laws for Propositional logic.
 
-\subsection{Satisfiability Problems: {\sf SAT}, {\sf 3SAT}, {\sf
-    2SAT}}
+
+\subsection{$\oplus$ A Purely Algebraic Setting for Completeness}
+
+In the hope of whetting the appetite of at least some readers, we
+remark here that there is a rather sophisticated algebraic concept
+that can be used to derive Theorem~\ref{thm:Prop-calc-isfree} in a
+purely algebraic setting.  We have noted that the Propositional
+Calculus is a Boolean Algebra.  One can state more: the Propositional
+Calculus is a {\em free} Boolean Algebra.
+\index{Boolean Algebra!free algebra}
+
+\smallskip
+
+The meaning of the qualifier {\it free} is easy to state but not so
+easy to understand.  Here is a very informal try.
+
+An algebra of type $X$---in our case, $X$ is a Boolean Algebra---is
+{\em free} if it obeys no laws except those that it must obey to
+belong to the class of type-$X$ algebras.
+
+In more detail: \\
+Any genre of algebra is defined as a set of objects accompanied by a
+set of basic operations, which obey certain ``self-evident''
+\index{axioms as ``self-evident truths''} axioms.  In rough, but
+evocative, terms, the algebra is {\em free} if its operations do not
+relate to one another in any way that is not mandated by the axioms.
+
+Here is an easy illustration of this decidedly {\em not-easy} concept.
+There is a (quite important) genre of algebra called a {\it
+  semi-group}.\index{semi-group} A semi-group $\s$ is specified via a
+set (of objects) $S$, together with a binary operation on $S$, which
+we denote $\otimes$.  For the (algebraic) structure $\s = \langle S,
+\otimes \rangle$ to be a semi-group, it must obey the following two
+axioms.
+\begin{enumerate}
+\item
+$\s$ must be {\it closed} under operation $\otimes$; i.e., for all
+  $s_1, s_2 \in S$, we must have
+\[ (s_1 \otimes s_2) \in S. \]
+\item
+The operation $\otimes$ must obey the {\em associative law;}
+\index{associative law}
+i.e., for all $s_1, s_2, s_3 \in S$,
+\[ (s_1 \otimes s_2) \otimes s_3 \ = \ s_1 \otimes (s_2 \otimes s_3)
+\]
+\end{enumerate}
+
+Now, it is easy to verify---we shall discuss this in
+Chapter~\ref{ch:arithmetic}---that the (algebraic) structure formed by
+the integers coupled with the operation of addition forms a semi-group
+(which the notation of Chapter~\ref{ch:arithmetic} would denote
+$\langle \Z, + \rangle$).  But this semi-group is {\em not}
+free, because integer addition obeys laws beyond just closure and
+associativity, namely:
+\begin{enumerate}
+\item
+Addition of integers is {\em commutative}.
+\item
+Integer addition has an {\em identity}, namely $0$.
+\item
+Every integer $z \in \Z$ has an {\it additive inverse} (namely, $-z$).
+\end{enumerate}
+
+So, it {\em is} meaningful that the Propositional calculus is a {\em
+  free} Boolean algebra.
+
+
+\subsection{Satisfiability Problems: {\sf SAT}, {\sf 3SAT}, {\sf 2SAT}}
 \label{sec:Satisfiability}
 
 Satisfiability problems deal with propositional formulae that are
