@@ -3387,10 +3387,10 @@ $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
 
 \begin{proof}
 The {\em necessity} of the conditions in both parts {\bf (a)} and {\bf
-  (b)} is established thus.
+  (b)} is established by the two following observations.
 \begin{itemize}
 \item
-By definition, a graph that is not connected does not admit any {\eulerian} cycle.
+By definition, a graph that is not connected does not admit any \textit{eulerian} cycle.
 \item
 Each cycle that a graph admits accounts for two edges per node,
 because the cycle must ``enter'' the node by one edge and ``exit'' the
@@ -3407,7 +3407,12 @@ of an induction that one would encounter in practice, rather than in a
 textbook.
 
 The base case of the induction resides in proving the sufficiency of
-the Proposition's conditions for ``small'' graphs.  While we largely
+the Proposition's conditions for ``small'' graphs.  
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+While we largely
 leave this step to the reader, we do want to discuss the definition of
 ``small''.  Until we understand how to deal with arbitrary $n$-node
 graphs, we will not know how the general step of our induction reduces
@@ -3416,6 +3421,10 @@ practice to ``play'' with several small graph sizes initially.
 Hopefully, in addition to giving our inductive argument a robust base
 case, such ``playing'' will give us valuable intuition for the general
 case of the induction.
+\end{minipage}
+}
+
+
 \begin{itemize}
 \item
 Focusing on {\em undirected} graphs: We note that $2$-node graphs
@@ -3428,7 +3437,7 @@ Focusing on {\em directed} graphs: We note that $2$-node graphs can be
 Eulerian---as witnessed by the $2$-node digraph each of whose nodes
 hosts a single arc that points to the other node.  Once again, one can
 perform an exhaustive enumeration of $3$-node and $4$-node graphs
-andverify that the Proposition correctly separates the Eulerian ones
+and verify that the Proposition correctly separates the Eulerian ones
 from the non-Eulerian ones.
 \end{itemize}
 
@@ -3440,24 +3449,29 @@ Proposition.
 
 Let us consider a connected multi-node undirected graph $\g$ all of
 whose nodes have nonzero even degree.
+{\Denis  should'nt multi-node be defined? What do you mean here?}
+
 \begin{description}
 \item[{\bf Step 1}]
 Initialize the {\it progress parameter} $k$ to $0$.  This parameter
 will help orchestrate our discovery of the Eulerian cycle within $\g$.
+{\Denis no need to step 1}
 
 \item[{\bf Step 2}]
 Choose an arbitrary node of $\g$ some of whose incident edges have not
 yet been traversed.  Call this node $v_k$, and let us henceforth refer
 to $v_k$ as a {\em special} node.  Follow a walk along edges of $\g$
-beginning at special node $v_k$.  The rules of this walk are:
-  \begin{itemize}
-  \item
+beginning at special node $v_k$.  
+{\Denis we should change $v_k$ to $v$ if we change the way to write the proof...}
+The rules of this walk are:
+\begin{itemize}
+\item
 Every step of the walk will traverse an edge of $\g$ that {\em has not
   yet been traversed} during any walk.
-  \item
+\item
 The walk terminates when it encounters a node of $\g$ {\em all of
   whose edges have already been traversed}.
-  \end{itemize}
+\end{itemize}
 The facts that 
 
 \hspace*{.25in}\begin{tabular}{ll}
@@ -3473,11 +3487,17 @@ words: {\em This walk begins and ends with node $v_k$.}
 Note that node $v_k$ will occur in this walk multiple
 times---specifically with multiplicity $\frac{1}{2} \mbox{\sc
   degree}(v_k)$.
+  
+{\Denis Denis I would suggest here to simply a bit, in fact both  steps 1 and 2 aims simply at determining a non-empty cycle in the graph...}
 
+We have completed the walk in $\g$ that begins and ends at node $v_k$.
+
+{\Denis I suggest to skip step 3... I think it is enough -- and more easy-- to build
+the whole eulerian cycle from any cycle. Do I miss something?}
+
+\ignore{\smallskip
 \item[{\bf Step 3}]
 Say that we have completed the walk in $\g$ that begins at node $v_k$.
-
-\smallskip
 
 {\bf If} every edge of $\g$ has been traversed by the end of the
 current walk, then we {\it go to {\bf Step 4}} and invoke procedure
@@ -3491,12 +3511,24 @@ incident edges has not yet been traversed.  Note that we are here
 increasing the value of our progress parameter from $k$ to $k+1$.  We
 now {\it repeat {\bf Step 2}} with the updated progress parameter,
 $k+1$.
+}
 
 \item[{\bf Step 4}]
-We have reached this step because our sequence of walks that begin and
+\ignore{We have reached this step because our sequence of walks that begin and
 end at special nodes has terminated with all of $\g$'s edges having
-been traversed.  We are now ready to stitch together these walks in
-order to expose an Eulerian cycle in $\g$.  The resulting procedure
+been traversed.}
+
+The previous step determined a cycle in graph $\g$,.
+Once it is removed, it remains several connected components,
+denoted by $\mathcal{C}_1$, $\mathcal{C}_2$, $\ldots$ $\mathcal{C}_c$.
+This cycle intersects the strong components at nodes $v_1$, $v_2$ until $v_c$. 
+We are now ready to exhibit an Eulerian cycle in $\g$ by going piece after piece along the cycle 
+starting from $v_k$.
+{\Denis change it to $v$}
+
+\end{description}
+
+\ignore{The resulting procedure
 {\bf Build Eulerian Cycle} proceeds as follows.
 
 For each special node $v_k$, during the walk that begins and ends at
@@ -3504,6 +3536,7 @@ $v_k$, we encounter other special nodes, call them $v_{k,1}$,
 $v_{k,2}$, \ldots, $v_{k,{m_k}}$, in the order of their being
 encountered along the walk.  We then define the following recursive
 procedure.
+{\Denis it is not really recursive since each procedure is only called once...}
 
 \medskip
 
@@ -3548,30 +3581,18 @@ Execute {\bf Build Eulerian Cycle}($v_0$)
 
 \noindent
 produces the Eulerian cycle in $\g$.
+}
 
 \bigskip
 
-When dealing with a {\em directed} graph $\h$, we proceed exactly as
+When dealing with a {\em directed} graph, we proceed exactly as
 with undirected graphs, with one critical difference: for each node
-$v$ of $\h$, we always enter $v$ along one of its {\em in-arcs}, and
+$v$ we always enter $v$ along one of its {\em in-arcs}, and
 we always exit $v$ along one of its {\em out-arcs}.  As in the
-undirected case, each arc of $\h$ is traversed precisely once during
+undirected case, each arc is traversed precisely once during
 the described process.  \qed
 \end{proof}
 
-\medskip
-
-The significance of the de Bruijn network in both coding and
-computation (as discussed in Section~\ref{sec:deBruijn-network}) lends
-considerable weight to the following important application of
-Proposition~\ref{thm:eulerian-cycle}:  When combined with
-Proposition~\ref{thm:deBruin-linegraph}, we obtain a proof of 
-Proposition~\ref{thm:deBruijn-Hamiltonian}.
-
-\begin{corol}
-\label{thm:deBruijn-Eulerian}
-Every de Bruijn network $\d_n$ is (directed)-Eulerian.
-\end{corol}
 
 \ignore{**************
 We offer two proofs of this result: the first merely establishes the
@@ -3622,7 +3643,7 @@ The Eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ 
 \end{itemize}
 *****************}
 
-The simplicity of the preceding characteriation degrades a trifle when
+The simplicity of the preceding characterisation degrades a trifle when
 one seeks Eulerian {\em paths} rather than {\em cycles}.
 
 \begin{prop}[Eulerian Paths]
@@ -3661,6 +3682,21 @@ of the end node of the path.  With these hints, we invite the reader
 to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a
 proof of Proposition~\ref{thm:eulerian-path}.
 
+\subsubsection*{Application }
+
+\medskip
+
+The significance of the de Bruijn network in both coding and
+computation (as discussed in Section~\ref{sec:deBruijn-network}) lends
+considerable weight to the following important application of
+Proposition~\ref{thm:eulerian-cycle}:  When combined with
+Proposition~\ref{thm:deBruin-linegraph}, we obtain a proof of 
+Proposition~\ref{thm:deBruijn-Hamiltonian}.
+
+\begin{corol}
+\label{thm:deBruijn-Eulerian}
+Every de Bruijn network $\d_n$ is (directed)-Eulerian.
+\end{corol}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
