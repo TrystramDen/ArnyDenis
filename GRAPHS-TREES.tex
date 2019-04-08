@@ -814,13 +814,6 @@ original source \cite{Kuhn55} or the encyclopedic algorithms text
 
 
 
-
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Trees}
@@ -2492,9 +2485,22 @@ about the family.
 Every tree is outerplanar.
 \end{prop}
 
+We leave to the reader the challenge of proving this property. 
+As an help, Fig.~\ref{fig:treeoutplanar} shows the way to distribute the nodes along a circle for the graph of Fig.~\ref{fig:tree}.
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/TreeOutplanar}
+       \caption{Outerplanar representation of the tree of Fig~\ref{fig:tree}.}
+  \label{fig:treeoutplanar}
+\end{center}
+\end{figure}
+
+\ignore{
 We leave to the reader the challenge of drawing a tree in a way that
 exposes its outerplanarity.  
 {\Arny Another exercise}
+}
 
 \begin{prop}
 \label{thm:basic-outerplanar-stuff}
@@ -2503,14 +2509,12 @@ Let $\g$ be an outerplanar graph.  Then:
 \begin{tabular}{ll}
 {\bf (a)} &
 $\g$ is planar. \\
-{\bf (b)} &
+\ignore{{\bf (b)} &
 $\g$ is a subgraph of a Hamiltonian graph. 
-
-{\Denis Be careful here since Hamiltonian has been shifted after this section.
-Two options: let skip and give a remark in the right section or add a wrod to say that this will be detailed later in section --put the ref--}\\
-{\bf (c)} &
+{\Denis I removed the second item since Hamiltonian has been shifted after this section.}\\}
+{\bf (b)} &
 Every subgraph of $\g$ is outerplanar. \\
-{\bf (d)} &
+{\bf (c)} &
 At least one of $\g$'s nodes has degree $\leq 2$.
 \end{tabular}
 \end{prop}
@@ -2520,23 +2524,23 @@ At least one of $\g$'s nodes has degree $\leq 2$.
 $\g$'s edges as noncrossing chords of the circle.
 
 \medskip
-
+\ignore{
 \noindent {\bf (b)} $\g$'s ``sub-Hamiltonianicity'' can be inferred
 from the ability to draw $\g$ with its nodes along a circle.
 
-\medskip
+\medskip}
 
-\noindent {\bf (c)} We can produce an outerplanarity-witnessing
+\noindent {\bf (b)} We can produce an outerplanarity-witnessing
 drawing of any subgraph of $\g$ by erasing some nodes and/or some
 edges from our outerplanarity-witnessing drawing of $\g$.
 
 \medskip
 
-\noindent {\bf (d)} One verifies easily that this result holds for all
+\noindent {\bf (c)} One verifies easily that this result holds for all
 outerplanar graphs having $3$ or fewer nodes.  Focus, therefore, on an
 arbitrary outerplanar graph $\g$ that has more than $3$ nodes.  Since
 adding more edges to a graph cannot decrease the degree of any node,
-we lose no generality by focusing on a $\g$ that is {\em maximal}
+we lose no generality by focusing on a graph $\g$ that is {\em maximal}
 outerplanar, \index{maximal outerplanar graph} in the sense that
 adding any new edge to $\g$ would destroy its outerplanarity.
 
@@ -2544,7 +2548,7 @@ Because $\g$ has more than $3$ nodes, and because all of its nodes lie
 on a circle (in the drawing that witnesses its outerplanarity), there
 must be pairs of nodes of $\g$ that are not adjacent along the circle.
 Let $u$ and $v$ be nonadjacent nodes such that the distance between
-$u$ and $v$ (measured in edges that must be traversed to reach one
+$u$ and $v$ (measured in term of number of edges that must be traversed to reach one
 from the other) is minimal among pairs of nodes nonadjacent nodes.  We
 consider two cases.
 \begin{itemize}
@@ -2616,6 +2620,7 @@ witnessed by odd-length cycle-graphs.
 \end{enumerate}
 *************}
 
+
 \paragraph{\small\sf B. Planar graphs}
 
 The larger of this section's two graph families comprises {\it planar
@@ -2646,7 +2651,7 @@ proof in 1974 of their renowned {\it $4$-Color Theorem for Planar
   Graphs}.  \index{The $4$-Color Theorem for Planar Graphs}
 \index{coloring planar graphs!the $4$-Color Theorem}
 
-\begin{theorem}[The $4$-Color Theorem for Planar Graphs \cite{AppelH77a,AppelH77b}]
+\begin{theorem}[The $4$-Color Theorem for Planar Graphs~\cite{AppelH77a,AppelH77b}]
 \label{thm:Four-ColorTheorem}
 Every planar graph is $4$-colorable.
 \end{theorem}
@@ -2732,6 +2737,7 @@ n \ - \ e \ + \ f \ \ = \ \ 2
 
 We defer proving Proposition~\ref{thm:Euler-Formula} so that we can
 proceed with our ongoing proof of Lemma~\ref{thm:PlanarGraph-degree5}.
+\ignore{{\Denis Attention here: the ref is not written correctly after the compilation}}
 We devote Subsection C to two quite different proofs of Euler's
 celebrated formula.
 
@@ -2744,14 +2750,14 @@ add any new edge to the drawing without crossing an existing edge.
 This step only strengthen's the Lemma's conclusion by apparently
 making it more difficult to find a small-degree node.
 
-With this assumption in place, we now adapt a pedagaogical tool from
+With this assumption in place, we now adapt a pedagological tool from
 \cite{Berge73}, in order to make the following counting argument
 easier to follow.  We construct a {\em directed bipartite} graph {\bf
   G} which exposes certain features of $\g$'s structure.  On one side
 of {\bf G} are the $f$ faces of $\g$; on the other side are $\g$'s $e$
-edges.  {\bf G} contains an arc from each face $\varphi$ of $\g$ to
-each edge $\varepsilon$ of $\g$ that forms a ``side'' of the polygonal
-drawing of $\varphi$.  Because $\g$ is a maximal planar graph, we have:
+edges.  {\bf G} contains an arc from each face of $\g$ to
+each edge of $\g$ that forms a ``side'' of the polygonal
+drawing of the face.  Because $\g$ is a maximal planar graph, we have:
 \begin{itemize}
 \item
 Each face of $\g$ is a $3$-cycle, hence involves three nodes.
@@ -2806,7 +2812,7 @@ all its incident edges
 
 For outerplanar graphs, we guarantee that $d_v \leq 2$
 (Proposition~\ref{thm:basic-outerplanar-stuff}(d)).  For planar
-graphs, we guarantee that$d_v \leq 5$
+graphs, we guarantee that $d_v \leq 5$
 (Lemma~\ref{thm:PlanarGraph-degree5}).
 
 \item
@@ -3172,7 +3178,7 @@ Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
    \includegraphics[scale=0.4]{FiguresGraph/planarStep1}
 \caption{Illustrating Phase 1: From top left to bottom right, each
   transformation preserves the invariant $\phi(n,e,f)$.  The first
-  transformation removes the edge shared by faces (1) and (3),
+  transformation removes the edge shared by faces (1) and (2),
   creating a new, merged, face (1)'.}
   \label{fig:planarStep1}
 \end{center}
@@ -3315,9 +3321,11 @@ precisely once is called a {\it Hamiltonian cycle},
 \index{graphs!Hamiltonian cycle} \index{Hamiltonian cycle} (or, often,
 a {\it Hamiltonian circuit}). \index{graphs!Hamiltonian circuit}
 \index{Hamiltonian circuit} This cycle-discovery problem is named in
-honor of the British mathematician William Rowan Hamilton,
+honor of the British mathematician Sir William Rowan Hamilton,
 \index{Hamilton, William Rowan} who is credited with inventing the
-concept in the mid-19th century.  (A node-exhausting {\em path} in
+concept in the mid-19th century.  
+{\Denis even if the problem was introduced some time before in its whole genericity by 
+Thomas Penyngton Kirkman} (A node-exhausting {\em path} in
 $\g$ is referred to in the obvious analogous way.)  When one views a
 Hamiltonian cycle as a ``map'' for traversing a graph, one often calls
 the cycle a {\it Hamiltonian tour}.  \index{graphs!Hamiltonian tour}
@@ -3382,7 +3390,7 @@ The {\em necessity} of the conditions in both parts {\bf (a)} and {\bf
   (b)} is established thus.
 \begin{itemize}
 \item
-By definition, a graph that is not connected does not admit any cycle.
+By definition, a graph that is not connected does not admit any {\eulerian} cycle.
 \item
 Each cycle that a graph admits accounts for two edges per node,
 because the cycle must ``enter'' the node by one edge and ``exit'' the
