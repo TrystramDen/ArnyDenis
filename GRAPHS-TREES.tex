@@ -1,4 +1,4 @@
-%version of 04-05-19
+%version of 04-03-19
 
 \chapter{AN INTRODUCTION TO GRAPHS AND TREES}
 \label{Ch:Graphs-Trees}
@@ -8,26 +8,26 @@ Graphs provide one of the richest technical and conceptual frameworks
 in the world of computing.  They provide concrete representations of
 manifold data structures that should be studied in depth
 \ignore{hence must be well understood }
-in preparation for a ``Data Structures and Algorithms'' course.  They
-embody tangible abstractions of relationships of all sorts, hence must
-be well understood in order to discuss entities as varied as
-web-search engines and social networks with precision and rigor.  As
-with most of the topics we discuss in this text, graph-oriented
-concepts must be taught ``in layers''.  All students should be
-conversant with the use of graphs to represent and reason about a vast
-array of complicated relationships---ranging from taxonomies
-(including intra-family structures) to link-based data structures to
-interconnectivity within social media, and on and on---but the degree
-of sophistication that an individual student requires depends both on
-the abilities of the student and the range of graph-modeled concepts
-that will appear in the student's program.  The most-basic concepts in
-this chapter should be understood by all students in any academic
-program that includes a computation-oriented component---although each
-concept can be developed with more texture and nuance within the
-context of specific application domains; the more advanced concepts
-should be selected with care, based on the instructor's perception of
-students' needs, in the light of the ever-growing importance of
-concepts involving interconnectivity.
+in preparation for a ``Data Structures and Algorithms'' course.  They embody tangible
+abstractions of relationships of all sorts, hence must be well
+understood in order to discuss entities as varied as web-search
+engines and social networks with precision and rigor.  As with most of
+the topics we discuss in this text, graph-oriented concepts must be
+taught ``in layers''.  All students should be conversant with the use
+of graphs to represent and reason about a vast array of complicated
+relationships---ranging from taxonomies (including intra-family
+structures) to link-based data structures to interconnectivity within
+social media, and on and on---but the degree of sophistication that an
+individual student requires depends both on the abilities of the
+student and the range of graph-modeled concepts that will appear in
+the student's program.  The most-basic concepts in this chapter should
+be understood by all students in any academic program that includes a
+computation-oriented component---although each concept can be
+developed with more texture and nuance within the context of specific
+application domains; the more advanced concepts should be selected
+with care, based on the instructor's perception of students' needs, in
+the light of the ever-growing importance of concepts involving
+interconnectivity.
 
 Many developments in computing technology over recent decades have
 made it imperative that graphs no longer be viewed by students as the
@@ -814,13 +814,6 @@ original source \cite{Kuhn55} or the encyclopedic algorithms text
 
 
 
-
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Trees}
@@ -1189,11 +1182,11 @@ many modern distributed computing environments.  {\it How does one
 \item
 The remaining graphs, the {\it mesh and torus networks}\footnote{These
   two structures, though distinct, are usually discussed together
-  because they share so many important properties.}~of~\ref{sec:mesh},
-the {\it hypercube network} of Section~\ref{sec:hypercube}, and the
-{\it de Bruijn network} of Section~\ref{sec:deBruijn}, were selected
-for their importance within the world of parallel and distributed
-computing---as abstract platforms for developing efficient
+  because they share so many important properties.}~of section~\ref{sec:mesh}, 
+  the {\it hypercube network} of section~\ref{sec:hypercube},
+and the {\it de Bruijn network} of section~\ref{sec:deBruijn}, were
+selected for their importance within the world of parallel and
+distributed computing---as abstract platforms for developing efficient
 computational and communicational processes, and as abstract versions
 of the networks that underlie parallel architectures by
 interconnecting its processors.
@@ -1573,7 +1566,7 @@ of the cycle-graph $\cc_n$.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/meshtorus}
-       \caption{The $4 \times 4$ torus.}
+       \caption{$\m_{4,4}$ (left) and $\widetilde{\m}_{4,4}$ (right).}
   \label{fig:torus}
 \end{center}
 \end{figure}
@@ -1807,7 +1800,7 @@ Fig.~\ref{fig:toruslabel}.
 
 
 \subsubsection{The de Bruijn network $\d_n$}
-\label{sec:deBruijn}
+\label{sec:deBruijn-network}
 \index{de Bruijn network}
 \index{de Bruijn graph}
 
@@ -2176,6 +2169,15 @@ node-coloring of $\g$.  In traditional parlance, the assertions
 \noindent
 are considered to be synonymous.
 
+{\Denis I added the following remark, do you agree?}
+This notion is an important characteristic of a graph.
+It is like an intermediate concept between the degree (local)
+and diameter (global), which are easy to compute. 
+The chromatic number is not easy to compute.
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
 The notion of graph coloring can be used to computational advantage to
 model a broad variety of situations.  An extremely important, and
 illustrative, use of graph coloring is to model {\it distributed}
@@ -2184,7 +2186,9 @@ represent {\it agents}, such as, e.g., processing elements in a
 computer; and $g$'s edges represent {\it communication links} that
 enable each node $u$ to check its neighbors' states before any action
 and to inform its neighbors of state-changes occasioned by an action
-of $u$.  The prohibition against ``monochrome'' edges---i.e., edges
+of $u$.  
+{\Denis actually, coloring is useful in any situation to express incompatibility between items}
+The prohibition against ``monochrome'' edges---i.e., edges
 both of whose incident nodes have the same color---guarantees that
 node $u$ and all of its like-colored nodes can act at the same instant
 with no fear of missing an important input to those actions.  Indeed,
@@ -2198,7 +2202,8 @@ something like
 3. All {\em blue} nodes perform an action
 
 \hspace*{1in} $\vdots$
-
+\end{minipage}
+}
 
 \subsection{Graphs with Small Chromatic Numbers}
 \label{sec:Graphs-small-Chromatic-No} 
@@ -2253,6 +2258,7 @@ The following graphs are leveled, hence have chromatic number $2$.
 
 {\bf (a)}
 any tree (which includes any path-graph $\p_n$)
+{\Denis check here is path graph has well been defined before... Or include a reference}
 
 {\bf (b)}
 any cycle-graph $\cc_n$ that has an even number $n$ of nodes
@@ -2328,7 +2334,7 @@ The reader can show that no odd-length cycle $\cc_{2n+1}$ with $n \geq
   contains} an odd-length cycle can be $2$-colored.  This is the
 problem that plagues the torus $\widetilde{\m}_{m,n}$ when $m+n$ is
 odd.
-  {\Arny Put the odd cycle and torus as Exercises}
+\ignore{  {\Arny Put the odd cycle and torus as Exercises}}
 
 The existence of odd-length cycles prevents {\em every} de Bruijn
 network $\d_n$ from being $2$-colorable.  As small examples, one
@@ -2469,7 +2475,7 @@ that is homeomorphic to either $\k_5$ or $\k_{3,3}$.
 
 We look first at the smaller of this section's graph families, namely,
 the {\it outerplanar graphs}. \index{outerplanar graphs}
-\index{graphs!outerplanar} (We shall remark in subsection B why these
+\index{graphs!outerplanar} (We shall remark in the following subsection B why these
 graphs are called {\em outer}-planar.)
 
 We begin our discussion of outerplanar graphs with some basic facts
@@ -2479,8 +2485,22 @@ about the family.
 Every tree is outerplanar.
 \end{prop}
 
+We leave to the reader the challenge of proving this property. 
+As an help, Fig.~\ref{fig:treeoutplanar} shows the way to distribute the nodes along a circle for the graph of Fig.~\ref{fig:tree}.
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/TreeOutplanar}
+       \caption{Outerplanar representation of the tree of Fig~\ref{fig:tree}.}
+  \label{fig:treeoutplanar}
+\end{center}
+\end{figure}
+
+\ignore{
 We leave to the reader the challenge of drawing a tree in a way that
-exposes its outerplanarity.  {\Arny Another exercise}
+exposes its outerplanarity.  
+{\Arny Another exercise}
+}
 
 \begin{prop}
 \label{thm:basic-outerplanar-stuff}
@@ -2489,14 +2509,12 @@ Let $\g$ be an outerplanar graph.  Then:
 \begin{tabular}{ll}
 {\bf (a)} &
 $\g$ is planar. \\
-{\bf (b)} &
+\ignore{{\bf (b)} &
 $\g$ is a subgraph of a Hamiltonian graph. 
-
-{\Denis Be careful here since Hamiltonian has been shifted after this section.
-Two options: let skip and give a remark in the right section or add a wrod to say that this will be detailed later in section --put the ref--}\\
-{\bf (c)} &
+{\Denis I removed the second item since Hamiltonian has been shifted after this section.}\\}
+{\bf (b)} &
 Every subgraph of $\g$ is outerplanar. \\
-{\bf (d)} &
+{\bf (c)} &
 At least one of $\g$'s nodes has degree $\leq 2$.
 \end{tabular}
 \end{prop}
@@ -2506,23 +2524,23 @@ At least one of $\g$'s nodes has degree $\leq 2$.
 $\g$'s edges as noncrossing chords of the circle.
 
 \medskip
-
+\ignore{
 \noindent {\bf (b)} $\g$'s ``sub-Hamiltonianicity'' can be inferred
 from the ability to draw $\g$ with its nodes along a circle.
 
-\medskip
+\medskip}
 
-\noindent {\bf (c)} We can produce an outerplanarity-witnessing
+\noindent {\bf (b)} We can produce an outerplanarity-witnessing
 drawing of any subgraph of $\g$ by erasing some nodes and/or some
 edges from our outerplanarity-witnessing drawing of $\g$.
 
 \medskip
 
-\noindent {\bf (d)} One verifies easily that this result holds for all
+\noindent {\bf (c)} One verifies easily that this result holds for all
 outerplanar graphs having $3$ or fewer nodes.  Focus, therefore, on an
 arbitrary outerplanar graph $\g$ that has more than $3$ nodes.  Since
 adding more edges to a graph cannot decrease the degree of any node,
-we lose no generality by focusing on a $\g$ that is {\em maximal}
+we lose no generality by focusing on a graph $\g$ that is {\em maximal}
 outerplanar, \index{maximal outerplanar graph} in the sense that
 adding any new edge to $\g$ would destroy its outerplanarity.
 
@@ -2530,7 +2548,7 @@ Because $\g$ has more than $3$ nodes, and because all of its nodes lie
 on a circle (in the drawing that witnesses its outerplanarity), there
 must be pairs of nodes of $\g$ that are not adjacent along the circle.
 Let $u$ and $v$ be nonadjacent nodes such that the distance between
-$u$ and $v$ (measured in edges that must be traversed to reach one
+$u$ and $v$ (measured in term of number of edges that must be traversed to reach one
 from the other) is minimal among pairs of nodes nonadjacent nodes.  We
 consider two cases.
 \begin{itemize}
@@ -2602,6 +2620,7 @@ witnessed by odd-length cycle-graphs.
 \end{enumerate}
 *************}
 
+
 \paragraph{\small\sf B. Planar graphs}
 
 The larger of this section's two graph families comprises {\it planar
@@ -2632,7 +2651,7 @@ proof in 1974 of their renowned {\it $4$-Color Theorem for Planar
   Graphs}.  \index{The $4$-Color Theorem for Planar Graphs}
 \index{coloring planar graphs!the $4$-Color Theorem}
 
-\begin{theorem}[The $4$-Color Theorem for Planar Graphs \cite{AppelH77a,AppelH77b}]
+\begin{theorem}[The $4$-Color Theorem for Planar Graphs~\cite{AppelH77a,AppelH77b}]
 \label{thm:Four-ColorTheorem}
 Every planar graph is $4$-colorable.
 \end{theorem}
@@ -2718,6 +2737,7 @@ n \ - \ e \ + \ f \ \ = \ \ 2
 
 We defer proving Proposition~\ref{thm:Euler-Formula} so that we can
 proceed with our ongoing proof of Lemma~\ref{thm:PlanarGraph-degree5}.
+\ignore{{\Denis Attention here: the ref is not written correctly after the compilation}}
 We devote Subsection C to two quite different proofs of Euler's
 celebrated formula.
 
@@ -2730,14 +2750,14 @@ add any new edge to the drawing without crossing an existing edge.
 This step only strengthen's the Lemma's conclusion by apparently
 making it more difficult to find a small-degree node.
 
-With this assumption in place, we now adapt a pedagaogical tool from
+With this assumption in place, we now adapt a pedagological tool from
 \cite{Berge73}, in order to make the following counting argument
 easier to follow.  We construct a {\em directed bipartite} graph {\bf
   G} which exposes certain features of $\g$'s structure.  On one side
 of {\bf G} are the $f$ faces of $\g$; on the other side are $\g$'s $e$
-edges.  {\bf G} contains an arc from each face $\varphi$ of $\g$ to
-each edge $\varepsilon$ of $\g$ that forms a ``side'' of the polygonal
-drawing of $\varphi$.  Because $\g$ is a maximal planar graph, we have:
+edges.  {\bf G} contains an arc from each face of $\g$ to
+each edge of $\g$ that forms a ``side'' of the polygonal
+drawing of the face.  Because $\g$ is a maximal planar graph, we have:
 \begin{itemize}
 \item
 Each face of $\g$ is a $3$-cycle, hence involves three nodes.
@@ -2792,7 +2812,7 @@ all its incident edges
 
 For outerplanar graphs, we guarantee that $d_v \leq 2$
 (Proposition~\ref{thm:basic-outerplanar-stuff}(d)).  For planar
-graphs, we guarantee that$d_v \leq 5$
+graphs, we guarantee that $d_v \leq 5$
 (Lemma~\ref{thm:PlanarGraph-degree5}).
 
 \item
@@ -3158,7 +3178,7 @@ Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
    \includegraphics[scale=0.4]{FiguresGraph/planarStep1}
 \caption{Illustrating Phase 1: From top left to bottom right, each
   transformation preserves the invariant $\phi(n,e,f)$.  The first
-  transformation removes the edge shared by faces (1) and (3),
+  transformation removes the edge shared by faces (1) and (2),
   creating a new, merged, face (1)'.}
   \label{fig:planarStep1}
 \end{center}
@@ -3301,9 +3321,11 @@ precisely once is called a {\it Hamiltonian cycle},
 \index{graphs!Hamiltonian cycle} \index{Hamiltonian cycle} (or, often,
 a {\it Hamiltonian circuit}). \index{graphs!Hamiltonian circuit}
 \index{Hamiltonian circuit} This cycle-discovery problem is named in
-honor of the British mathematician William Rowan Hamilton,
+honor of the British mathematician Sir William Rowan Hamilton,
 \index{Hamilton, William Rowan} who is credited with inventing the
-concept in the mid-19th century.  (A node-exhausting {\em path} in
+concept in the mid-19th century.  
+{\Denis even if the problem was introduced some time before in its whole genericity by 
+Thomas Penyngton Kirkman} (A node-exhausting {\em path} in
 $\g$ is referred to in the obvious analogous way.)  When one views a
 Hamiltonian cycle as a ``map'' for traversing a graph, one often calls
 the cycle a {\it Hamiltonian tour}.  \index{graphs!Hamiltonian tour}
@@ -3365,10 +3387,10 @@ $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
 
 \begin{proof}
 The {\em necessity} of the conditions in both parts {\bf (a)} and {\bf
-  (b)} is established thus.
+  (b)} is established by the two following observations.
 \begin{itemize}
 \item
-By definition, a graph that is not connected does not admit any cycle.
+By definition, a graph that is not connected does not admit any \textit{eulerian} cycle.
 \item
 Each cycle that a graph admits accounts for two edges per node,
 because the cycle must ``enter'' the node by one edge and ``exit'' the
@@ -3385,7 +3407,12 @@ of an induction that one would encounter in practice, rather than in a
 textbook.
 
 The base case of the induction resides in proving the sufficiency of
-the Proposition's conditions for ``small'' graphs.  While we largely
+the Proposition's conditions for ``small'' graphs.  
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+While we largely
 leave this step to the reader, we do want to discuss the definition of
 ``small''.  Until we understand how to deal with arbitrary $n$-node
 graphs, we will not know how the general step of our induction reduces
@@ -3394,6 +3421,10 @@ practice to ``play'' with several small graph sizes initially.
 Hopefully, in addition to giving our inductive argument a robust base
 case, such ``playing'' will give us valuable intuition for the general
 case of the induction.
+\end{minipage}
+}
+
+
 \begin{itemize}
 \item
 Focusing on {\em undirected} graphs: We note that $2$-node graphs
@@ -3406,7 +3437,7 @@ Focusing on {\em directed} graphs: We note that $2$-node graphs can be
 Eulerian---as witnessed by the $2$-node digraph each of whose nodes
 hosts a single arc that points to the other node.  Once again, one can
 perform an exhaustive enumeration of $3$-node and $4$-node graphs
-andverify that the Proposition correctly separates the Eulerian ones
+and verify that the Proposition correctly separates the Eulerian ones
 from the non-Eulerian ones.
 \end{itemize}
 
@@ -3418,24 +3449,29 @@ Proposition.
 
 Let us consider a connected multi-node undirected graph $\g$ all of
 whose nodes have nonzero even degree.
+{\Denis  should'nt multi-node be defined? What do you mean here?}
+
 \begin{description}
 \item[{\bf Step 1}]
 Initialize the {\it progress parameter} $k$ to $0$.  This parameter
 will help orchestrate our discovery of the Eulerian cycle within $\g$.
+{\Denis no need to step 1}
 
 \item[{\bf Step 2}]
 Choose an arbitrary node of $\g$ some of whose incident edges have not
 yet been traversed.  Call this node $v_k$, and let us henceforth refer
 to $v_k$ as a {\em special} node.  Follow a walk along edges of $\g$
-beginning at special node $v_k$.  The rules of this walk are:
-  \begin{itemize}
-  \item
+beginning at special node $v_k$.  
+{\Denis we should change $v_k$ to $v$ if we change the way to write the proof...}
+The rules of this walk are:
+\begin{itemize}
+\item
 Every step of the walk will traverse an edge of $\g$ that {\em has not
   yet been traversed} during any walk.
-  \item
+\item
 The walk terminates when it encounters a node of $\g$ {\em all of
   whose edges have already been traversed}.
-  \end{itemize}
+\end{itemize}
 The facts that 
 
 \hspace*{.25in}\begin{tabular}{ll}
@@ -3451,11 +3487,17 @@ words: {\em This walk begins and ends with node $v_k$.}
 Note that node $v_k$ will occur in this walk multiple
 times---specifically with multiplicity $\frac{1}{2} \mbox{\sc
   degree}(v_k)$.
+  
+{\Denis Denis I would suggest here to simply a bit, in fact both  steps 1 and 2 aims simply at determining a non-empty cycle in the graph...}
 
+We have completed the walk in $\g$ that begins and ends at node $v_k$.
+
+{\Denis I suggest to skip step 3... I think it is enough -- and more easy-- to build
+the whole eulerian cycle from any cycle. Do I miss something?}
+
+\ignore{\smallskip
 \item[{\bf Step 3}]
 Say that we have completed the walk in $\g$ that begins at node $v_k$.
-
-\smallskip
 
 {\bf If} every edge of $\g$ has been traversed by the end of the
 current walk, then we {\it go to {\bf Step 4}} and invoke procedure
@@ -3469,12 +3511,24 @@ incident edges has not yet been traversed.  Note that we are here
 increasing the value of our progress parameter from $k$ to $k+1$.  We
 now {\it repeat {\bf Step 2}} with the updated progress parameter,
 $k+1$.
+}
 
 \item[{\bf Step 4}]
-We have reached this step because our sequence of walks that begin and
+\ignore{We have reached this step because our sequence of walks that begin and
 end at special nodes has terminated with all of $\g$'s edges having
-been traversed.  We are now ready to stitch together these walks in
-order to expose an Eulerian cycle in $\g$.  The resulting procedure
+been traversed.}
+
+The previous step determined a cycle in graph $\g$,.
+Once it is removed, it remains several connected components,
+denoted by $\mathcal{C}_1$, $\mathcal{C}_2$, $\ldots$ $\mathcal{C}_c$.
+This cycle intersects the strong components at nodes $v_1$, $v_2$ until $v_c$. 
+We are now ready to exhibit an Eulerian cycle in $\g$ by going piece after piece along the cycle 
+starting from $v_k$.
+{\Denis change it to $v$}
+
+\end{description}
+
+\ignore{The resulting procedure
 {\bf Build Eulerian Cycle} proceeds as follows.
 
 For each special node $v_k$, during the walk that begins and ends at
@@ -3482,6 +3536,7 @@ $v_k$, we encounter other special nodes, call them $v_{k,1}$,
 $v_{k,2}$, \ldots, $v_{k,{m_k}}$, in the order of their being
 encountered along the walk.  We then define the following recursive
 procedure.
+{\Denis it is not really recursive since each procedure is only called once...}
 
 \medskip
 
@@ -3526,30 +3581,18 @@ Execute {\bf Build Eulerian Cycle}($v_0$)
 
 \noindent
 produces the Eulerian cycle in $\g$.
+}
 
 \bigskip
 
-When dealing with a {\em directed} graph $\h$, we proceed exactly as
+When dealing with a {\em directed} graph, we proceed exactly as
 with undirected graphs, with one critical difference: for each node
-$v$ of $\h$, we always enter $v$ along one of its {\em in-arcs}, and
+$v$ we always enter $v$ along one of its {\em in-arcs}, and
 we always exit $v$ along one of its {\em out-arcs}.  As in the
-undirected case, each arc of $\h$ is traversed precisely once during
+undirected case, each arc is traversed precisely once during
 the described process.  \qed
 \end{proof}
 
-\medskip
-
-The significance of the de Bruijn network in both coding and
-computation (as discussed in Section~\ref{sec:deBruijn}) lends
-considerable weight to the following important application of
-Proposition~\ref{thm:eulerian-cycle}:  When combined with
-Proposition~\ref{thm:deBruin-linegraph}, we obtain a proof of 
-Proposition~\ref{thm:deBruijn-Hamiltonian}.
-
-\begin{corol}
-\label{thm:deBruijn-Eulerian}
-Every de Bruijn network $\d_n$ is (directed)-Eulerian.
-\end{corol}
 
 \ignore{**************
 We offer two proofs of this result: the first merely establishes the
@@ -3600,7 +3643,7 @@ The Eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ 
 \end{itemize}
 *****************}
 
-The simplicity of the preceding characteriation degrades a trifle when
+The simplicity of the preceding characterisation degrades a trifle when
 one seeks Eulerian {\em paths} rather than {\em cycles}.
 
 \begin{prop}[Eulerian Paths]
@@ -3639,6 +3682,21 @@ of the end node of the path.  With these hints, we invite the reader
 to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a
 proof of Proposition~\ref{thm:eulerian-path}.
 
+\subsubsection*{Application }
+
+\medskip
+
+The significance of the de Bruijn network in both coding and
+computation (as discussed in Section~\ref{sec:deBruijn-network}) lends
+considerable weight to the following important application of
+Proposition~\ref{thm:eulerian-cycle}:  When combined with
+Proposition~\ref{thm:deBruin-linegraph}, we obtain a proof of 
+Proposition~\ref{thm:deBruijn-Hamiltonian}.
+
+\begin{corol}
+\label{thm:deBruijn-Eulerian}
+Every de Bruijn network $\d_n$ is (directed)-Eulerian.
+\end{corol}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
