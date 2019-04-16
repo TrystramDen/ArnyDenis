@@ -221,12 +221,90 @@ costly than a real multiplication, so trading one multiplication for
 one addition is an unqualified ``win''.  \qed
 \end{proof}
 
-Extension of the same method: 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Notice that this technique is classical and it has been used in many other situations.
-For instance while multiplying two integers in base 2 (see exercice~{Karatsuba}).
+\subsection{Karatzuba (Extension of the same method)} 
 
 
+Notice that the previous technique is classical and it has been used in many other situations.
+For instance while multiplying two integers in base 2.
+
+Let us first recall the generic divide-and-conquer for designing algorithms.
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be
+decomposed into sub-problems.
+
+Let consider a problem of size $n$ that can be decomposed into $p$ sub-problems.
+(notice, all sub-problems have the same size n/q).
+\bigskip
+
+\noindent {\bf Principle:}
+\begin{enumerate}
+\item Decompose the problem into $a$ sub-problems of size $\frac{n}{q}$.
+\item Solve those sub-problems.
+\item Reconstruct the solution of the initial problem.
+\end{enumerate}
+
+In general, the sub-problems are solved recursively (at least until a certain threshold).
+The cost is governed by the following expression:
+
+$T(n) = p.T(\frac{n}{q}) + c_1(n) + c_3(n)$ 
+
+where $c_1(n)$ et $c_3(n)$ are the costs of phases (1) et (3).
+
+Note: the resolution of this kind of equation is using the Master theorem of section~\ref{sec:linear-recurrence-general}.
+\end{minipage}
+}
+\bigskip
+
+Let $A=(a_na_{n-1}\ldots a_1)_2$ and $B=(b_nb_{n-1}\ldots b_1)_2$
+be two long integers, and assume $n=2^k$ for some positive integer $k$.
+The goal is to compute the product $A \times B$.
+
+The standard (and naive) method is to compute the $n$ partial products 
+$A=(a_na_{n-1}\ldots a_1)_2$ by each of the $b_i$, leading to $O(n^2)$ basic operations. 
+
+The divide-and-conquer version of this problem is to break each integer into two parts
+of $\frac{n}{2}$ bits each:
+
+$A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$.
+
+Denoting by $A_1$ and $A_2$ the two separate terms, we get:
+
+$A.B = (A_1.B_1) 2^n + (A_1.B_2 + A_2.B_1) 2^{n/2} + A_2.B_2$
+\bigskip
+
+\textbf{Cost analysis} :
+The previous computation requires 4 multiplications of integers of $n/2$ bits 
+and 3 additions of integers with at most $2n$ bits. The multiplication of integers in base 2 by powers of 2 
+correspond to simple shifts to the left. 
+
+The cost is given by the following expression: $T(n) = 4.T(\frac{n}{2}) + f(n)$ where $f$ is a linear function
+and $T(1) = 1$.
+
+We obtain $T(n) = \Theta(n^2)$, same as for the naive algorithm.
+\bigskip
+ 
+
+The idea of Karatzuba is to decrease the number of multiplications 
+(at the price of slightly increasing the additions/substractions) by using the following identity:
+
+$A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)$
+\bigskip
+
+We obtain:
+
+$A.B = (A_1.B_1) 2^n + (A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)) 2^{n/2} + A_2.B_2$
+
+
+Cost analysis: 3 multiplications of $n/2$ bits
+
+4 additions and 2 substractions of integers at most $2n$ bits. Again, using the Master Theorem leads to:
+
+$T(n) = 3.T(\frac{n}{2}) + \theta (n) = n^{log_2 3}$
 
 
 \subsection{A Fun Result: A ``Trick'' for Squaring Certain Integers}
