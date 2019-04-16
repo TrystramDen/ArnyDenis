@@ -21,7 +21,7 @@ $\Delta_{n+1} = 1 + \sum_{i=1}^{n+1} i $
 $\Delta_{n+1} = (\sum_{i=1}^{n} i) + \frac{(n+1)(n+2)}{2}$
 }
 
-\section{Tetrahedral numbers}
+\subsection{Tetrahedral numbers}
 
 The sum of the $\Delta_n$ is denoted by $\Theta_n$ and it is called a tetrahedral number:
 
@@ -33,13 +33,20 @@ We proved the expression of $\Delta_n$ by mirroring the developed expression and
 
 Similarly, a way to prove the expression of $\Theta_n$ is to consider three copies and organize them in order to obtain the expected result.
 A tetrahedral number can be arranged as a triangle (see Figure~\ref{fig:TetrahedralBasic}).
-The proof is obtained by Fubini's principle by rotating this triangle as shows in Figure~\ref{fig:Tetrahedral}.
-
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresArithmetic/TetrahedralBasic}
         \caption{Computing $\Theta_n$: basic triangle pattern.}
         \label{fig:TetrahedralBasic}
+\end{center}
+\end{figure}
+
+The proof is obtained by Fubini's principle by rotating this triangle as shows in Figure~\ref{fig:Tetrahedral}.
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresArithmetic/Tetrahedral}
+        \caption{Computing $\Theta_n$ using an adequate arrangement of $3$ triangles.}
+        \label{fig:Tetrahedral}
 \end{center}
 \end{figure}
 
@@ -58,13 +65,7 @@ Thus, the global sum is equal to $n+2$ times $(1+2+...+n)$.
 Finally, $3 \Theta_n = (n+2) \Delta_n$.
 \end{itemize}
 
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.5]{FiguresArithmetic/Tetrahedral}
-        \caption{Computing $\Theta_n$ using an adequate arrangement of $3$ triangles.}
-        \label{fig:Tetrahedral}
-\end{center}
-\end{figure}
+
 
 Summary: we proved the following results:
 \begin{itemize}
@@ -168,7 +169,7 @@ Moreover, the first way of  bounding the sum tells us about its value (actually,
 
 $\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
 
-{\Denis Change the writing of o}
+{\Denis Change the writing of O}
 
 
 
@@ -305,6 +306,33 @@ Cost analysis: 3 multiplications of $n/2$ bits
 4 additions and 2 substractions of integers at most $2n$ bits. Again, using the Master Theorem leads to:
 
 $T(n) = 3.T(\frac{n}{2}) + \theta (n) = n^{log_2 3}$
+
+
+\subsection{What's wrong?}
+
+In this exercice, we investigate a proof which leads to a very surprising result...
+
+\begin{enumerate}
+\item
+Let consider the infinite sum $A = 1-1+1-1+ \ldots$
+
+and show that $A=\frac{1}{2}$ (hint: compute $1-A$)
+\item
+Let now consider the other infinite sum $B=2-3+4-5+6 \ldots$
+
+and show that $B=\frac{1}{4}$ (hint: compute $A+B-1$)
+\item 
+Compute the sum of the integers $C=1+2+3+4+ \ldots$
+
+and show that $C=-\frac{1}{12}$ (hint: compute $C-B=4+8+12+16+ \ldots$)
+\end{enumerate}
+
+What's wrong?
+
+First, summing up positive number should be positive, 
+and second, the sum of the integers should be infinite...
+
+
 
 
 \subsection{A Fun Result: A ``Trick'' for Squaring Certain Integers}
