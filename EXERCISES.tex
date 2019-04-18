@@ -30,8 +30,8 @@ $\Theta_n =  \sum_{k=1}^{n} \Delta_k$.
 %We can show that: $\Theta_n = \frac{n.(n+1).(n+2)}{6}$
 
 We proved the expression of $\Delta_n$ by mirroring the developed expression and adding term by term.
-
-Similarly, a way to prove the expression of $\Theta_n$ is to consider three copies and organize them in order to obtain the expected result.
+Similarly, a way to prove the expression of $\Theta_n$ is to consider three copies and organize them 
+in order to obtain the expected result.
 A tetrahedral number can be arranged as a triangle (see Figure~\ref{fig:TetrahedralBasic}).
 \begin{figure}[h]
 \begin{center}
@@ -50,6 +50,8 @@ The proof is obtained by Fubini's principle by rotating this triangle as shows i
 \end{center}
 \end{figure}
 
+Sum up all the numbers in each row.
+
 \begin{itemize}
 \item 
 The first row is equal to $n+2$.
@@ -59,13 +61,14 @@ The second one is equal to $3 + 2(n-1)+3 = 2(n+2)$.
 Let us sum up the elements in row $k$: 
 
 $\Delta_k + k(n-k+1) + \Delta_k = k(k+1) +kn-k^2+k = k(n+2)$.
-
-Thus, the global sum is equal to $n+2$ times $(1+2+...+n)$.
-
-Finally, $3 \Theta_n = (n+2) \Delta_n$.
 \end{itemize}
 
+Conclusion:
 
+The global sum is equal to $n+2$ times $(1+2+...+n)$.
+
+Finally, $3 \Theta_n = (n+2) \Delta_n$.
+\bigskip
 
 Summary: we proved the following results:
 \begin{itemize}
@@ -74,8 +77,11 @@ Summary: we proved the following results:
 \item $\Theta_n = \Delta_1 + \Delta_2 + ... + \Delta_n = \frac{1}{3} .\Delta_n.(n+2)$
 \end{itemize}
 
-A natural question is if we can go further following the same pattern for computing $ \sum_{k=1}^{n} \Theta_k$, and so on.
+A natural question is if we can go further following the same pattern for computing 
+$ \sum_{k=1}^{n} \Theta_k$, and so on.
+
 Are you able to consider the challenge?
+
 
 \section{More exercises}
 
@@ -83,7 +89,8 @@ Are you able to consider the challenge?
 
 Compute sum of squares with 3 copies and fill the 2D rectangle. 
 
-The idea here is to consider $3$ copies of the sum of squares and to reorganize them in a more simple way (this is Fubini's principle).
+The idea here is to consider $3$ copies of the sum of squares and to reorganize them in a more simple way 
+(this is Fubini's principle).
 The square of $a$ is represented as $a$ copies of the unit square.
 The full process is depicted in figures Fig~\ref{fig:sumSquares1} to Fig~\ref{fig:sumSquares5}.
 
@@ -128,7 +135,8 @@ Thus, $3 \cdot S(n) = \Delta_n \cdot (2n+1)$, $S(n) = \frac{n(2n+1)(n+1)}{3}$.
 
 \subsection{Graphical proofs 2}
 
-Computing the sum of $(\frac{1}{4})^k =\frac{1}{3} $ using a graphical argument.
+Compute the sum of $(\frac{1}{4})^k = \frac{1}{3} $ using a graphical argument.
+\bigskip
 
 The solution is depicted in Fig.~\ref{Fig:SUmgeo1sur4}. 
 \begin{figure}
@@ -141,6 +149,25 @@ The solution is depicted in Fig.~\ref{Fig:SUmgeo1sur4}.
 \end{center}
 \end{figure}
 
+\subsection{Another proof for irrationality of $\sqrt{2}$}
+
+Put the explicit question here.
+
+The solution is depicted in Fig.~\ref{Fig:sqrtbisInit} and~\ref{Fig:sqrtbisFin} . 
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/sqrtbisInit}
+        \caption{First step: folding the big triangle along the side.}
+        \label{Fig:sqrtbisInit}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/sqrtbisFin}
+        \caption{Second step. The sides of the small isocel triangle are integers.}
+        \label{Fig:sqrtbisFin}
+\end{center}
+\end{figure}
 
 \subsection{Harmonic series}
 
@@ -224,7 +251,7 @@ one addition is an unqualified ``win''.  \qed
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Karatzuba (Extension of the same method)} 
+\subsection{Karatsuba (Extension of the same method)} 
 
 
 Notice that the previous technique is classical and it has been used in many other situations.
@@ -290,7 +317,7 @@ We obtain $T(n) = \Theta(n^2)$, same as for the naive algorithm.
 \bigskip
  
 
-The idea of Karatzuba is to decrease the number of multiplications 
+The idea of Karatsuba is to decrease the number of multiplications 
 (at the price of slightly increasing the additions/substractions) by using the following identity:
 
 $A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)$
@@ -306,6 +333,35 @@ Cost analysis: 3 multiplications of $n/2$ bits
 4 additions and 2 substractions of integers at most $2n$ bits. Again, using the Master Theorem leads to:
 
 $T(n) = 3.T(\frac{n}{2}) + \theta (n) = n^{log_2 3}$
+
+
+\subsection{Another fun result dealing with divisibility}
+
+This exercice was a favorite question by Paul Erdos,
+he often use this question to test the young students, apprentis mathematicians...
+\bigskip
+
+Let consider the $2n$ first integers.
+
+Take any $n+1$ integers in this set and prove that there exists a pair $(p,q)$
+such that $p$ divides $q$. 
+
+The sketch of the proof is as follows.
+
+\begin{enumerate}
+\item
+Let $\alpha_i$ be the elements of this set of cardinality $n+1$.
+
+Write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$).
+
+Then, $m$ belongs to $\{1,3,5, \ldots, 2n-1 \}$
+\item
+From the pigeon hole principle, there are two numbers with the same value of $m$. 
+\item 
+Thus, $2^{k1} \times m$ and $2^{k2} \times m$.
+
+$p$ is the smallest one, which divides $q$ (the largest one).
+\end{enumerate}
 
 
 \subsection{What's wrong?}
