@@ -1,4 +1,4 @@
-%version of 04-30-19
+%version of 05-02-19
 
 \chapter{INTRODUCTION}
 \label{ch:intro}
@@ -517,10 +517,11 @@ estimating the solution-sums of summations of consecutive terms of a
 ``smooth'' function.
 
 The mathematics we exploit to derive exact and/or approximate sums for
-many of the summations we study provides us with many opportunities to
-look at numbers and their summations in many quite distinct ways.  For
-this reason, this chapter is one of the most important as the reader
-progresses with the endeavor of ``doing mathematics''.
+many of the classes of summations we study provides us with the
+opportunity of looking at numbers and their summations in many quite
+distinct ways---from textual to pictorial to geometric, and beyond.
+For this reason, this chapter is one of the most important as the
+reader gains traction in the endeavor of ``doing mathematics''.
 
 
 \subsubsection{Chapter~\ref{ch:Recurrences}: Recurrences}
@@ -528,17 +529,67 @@ progresses with the endeavor of ``doing mathematics''.
 The functions discussed in Chapter~\ref{ch:arithmetic} are described
 by static ``closed-form'' expressions.  In contrast,
 Chapter~\ref{ch:Recurrences} is devoted to a family of {\em
-  computational procedures}, {\it recurrences}.  The patterns that
-underlie recurrent computations have been known for millennia to occur
-throughout nature---in the growth patterns of many plants, in the
-demographics of many animals, among other places.  The mathematics
-that describes such computations is as elegant and aesthetic as it is
-useful.  Among the myriad recurrent patterns one could identify, we
-select three main ones for their computational importance.
+  computational procedures}, {\it recurrences}---which calculate the
+value of a function $f$ on an argument $n$ in terms of the values of
+$f$ on smaller arguments.  The patterns that underlie recurrent
+computations have been known for millennia to occur throughout
+nature---in the growth patterns of many plants and in the demographics
+of many animals, among other places.  The mathematics that describes
+such computations is as elegant and aesthetic as it is useful.  Among
+the myriad recurrent patterns that one could identify, we select three
+main ones for their computational importance.
 \begin{enumerate}
 \item
-{\it Linear recurrences} are unavoidable when analyzing basic
-algorithms.  **HERE
+{\it Linear recurrences}.  Recurrences of the form
+\begin{equation}
+\label{eq:general-linear-recurrence}
+f(n) \ = \ a f(bn+c) \ + \ dn \ + e
+\end{equation}
+(where $a, b, c, d, e$ are constants) are a welcome friend when one
+analyzes a host of basic algorithms.  Two simple examples:
+  \begin{itemize}
+  \item
+In somewhat simplified terms, the {\em binary search algorithm}
+requires one to determine whether an item $x$ occurs within a given
+ordered list of $n$ items.  One accomplishes the task by partitioning
+the list in two (so $b = 1/2$ and $c = 0$ in
+(\ref{eq:general-linear-recurrence})) and comparing $x$ with the
+middle item (two, when $n$ is even) of the list (so $d = 0$, and $e$
+is the fixed constant cost of the comparison(s)).  On the basis of the
+comparison, one recurses with a binary search on the half of the list
+that could contain $x$ (so $a = 1$).
+  \item
+In somewhat simplified terms, the {\em merge-sort algorithm} builds on
+a natural $n$-step algorithm for merging two $n$-item lists of
+``order-comparable'' items (i.e., for every pair, $x,y$, of list
+items, either $x < y$ or $y < x$).  The algorithm first merges
+adjacent odd-even pairs of items, to end up with sorted $2$-item
+lists.  Then it merges adjacent $2$-item lists, to end up with sorted
+$4$-item lists.  It continues thus with $8$-item lists, then $16$-item
+lists, and so on, until it finally merges the ``top-level'' two
+$n/2$-item lists to achieve the goal of a sorted $n$-item list.  We
+hope that the reader can see intuitively that the performance of this
+algorithm is given by a recurrence of the form
+(\ref{eq:general-linear-recurrence}) for which $a=2$, $b = 1/2$ and $c
+= 0$, $d=1$, and $e$ is the fixed cost of the $2$-item comparisons that
+orchestrate each merge.
+  \end{itemize}
+The centerpiece of our discussion of linear recurrences is the
+so-called {\em Master Theorem}, which uses geometric summations to
+generate explicit---rather than recurrent---expressions for the values
+of a function $f$ on an arbitrary argument $n$.
+
+\item
+We highlight two {\it bilinear recurrences} of especial computational
+importance.
+  \begin{itemize}
+  \item
+{\it binomial coefficients}
+
+  \item
+{\it Fibonacci numbers}
+  \end{itemize}
+  **HERE
 \end{enumerate}
 Variants on these three provide supplemental material in this chapter.
 
