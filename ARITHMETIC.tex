@@ -1,7 +1,26 @@
-%version of 04-30-19
+%version of 05-06-19
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
+
+
+\hfill
+\begin{quote}
+{\it Die Mathematik ist die K\"{o}nigin der Wissenschaften und die
+Zahlentheorie ist die K\"{o}nigin der Mathematik.}
+
+[Mathematics is the queen of sciences and number theory
+  $\langle$often, ``arithmetic''$\rangle$ is the queen of
+  mathematics.]
+
+\hfill
+\begin{tabular}{l}
+Quoted in {\it Gauss zum Gedächtniss} (1856) by \\
+Wolfgang Sartorius von Waltershausen 
+\end{tabular}
+\end{quote}
+
+\bigskip
 
 Previous chapters have given us sets, numbers, and numerals, the
 simple objects that we use to count and measure and aggregate.  The
@@ -27,15 +46,14 @@ The integers zero ($0$)
 \index{number!zero ($0$), the additive identity} 
 and one ($1$),
 \index{number!one ($1$), the multiplicative identity}
-play special roles as the tools of srithmetic are applied to all four
-classes of numbers we have described in
-Chapter~\ref{ch:numbers-numerals}.
+play special roles as the tools of arithmetic are applied to all four
+classes of numbers described in Chapter~\ref{ch:numbers-numerals}.
 
 \smallskip
 
-\noindent {\small\sf The operations of arithmetic}\index{arithmetic!basic operations}
+\noindent {\small\sf The operations of arithmetic.}\index{arithmetic!basic operations}
 %
-Arithmetic on the four classes of numbers described in
+Arithmetic on the classes of numbers described in
 Chapter~\ref{ch:numbers-numerals} is built upon a rather small
 repertoire of operations.  When we say that an operation produces a
 number ``of the same sort'', we mean that it produces
@@ -68,7 +86,10 @@ that are less familiar but no less important.
 is a {\em total function} on the sets $\Z, \Q, \R, \C$.  It replaces
 a number $a$ by its {\em negative},
 \index{number!negative}
-a number of the same sort, denoted $-a$.
+which is a number of the same sort.
+
+The {\it negative of $a$} is denoted $-a$ and is usually articulated
+``minus $a$'' or ``negative $a$''.
 \item
 is a {\em partial function} on the nonnegative subsets
 of $\Z, \Q, \R, \C$.  It replaces a number $a$ by its negative, $-a$,
@@ -89,11 +110,14 @@ meaning that $0$ is the unique number $a$ such that $a = -a$.
 is a {\em total function} on the sets $\Q, \R, \C$, which replaces each
 number $a$ by its {\em reciprocal}, 
 \index{number!reciprocal}
-a number of the same sort, denoted $1/a$ or $\displaystyle {1 \over
-  a}$.  We shall employ whichever notation enhances legibility.
+a number of the same sort.
+
+The {\it reciprocal of $a$} is denoted $1/a$ or $\displaystyle {1
+  \over a}$; we shall employ whichever notation enhances legibility.
+It is usually articulated ``$1$ over $a$''.
 
 \item
-is {\em undefined} on every integer $a$ except for $1$.
+is {\em undefined} on every integer $a$ except for $a=1$.
 \end{itemize}
 
 \subsubsection{Floors, ceilings, magnitudes}
@@ -109,23 +133,24 @@ are total operations on the sets $\N, \Z, \Q, \R$.
 The {\it floor} of a number $a$, also called {\it the integer part}
 \index{arithmetic!basic operations!integer part of a number}
 \index{arithmetic!basic operations!floor of a number}
-of $a$, denoted $\lfloor a \rfloor$, is the largest integer that does
-not exceed $a$; i.e.,:
+of $a$, is denoted $\lfloor a \rfloor$.  It is the largest integer
+which does not exceed $a$; i.e.,:
 \[
 \lfloor a \rfloor \ \eqdef \ \max_{b \in {\mathbb{N}}} \Big[ b \ \leq a \Big]
 \]
 \item
 The {\it ceiling} of a number $a$
 \index{arithmetic!basic operations!ceiling of a number}
-of $a$, denoted $\lceil a \rceil$, is the smallest integer that is 
+of $a$, denoted $\lceil a \rceil$, is the smallest integer which is 
 not smaller than $a$:
 \[
 \lceil a \rceil \ \eqdef \ \min_{b \in {\mathbb{N}}} \Big[ b \ \geq a \Big]
 \]
 \end{itemize}
-Thus, the operations of taking floors and ceilings are two ways to
-{\em round} rationals and reals to their ``closest''
-integers.\index{arithmetic!basic operations!rounding to ``closest'' integer}
+The the operations of taking floors and ceilings are two ways to {\em
+  round} rationals and reals to their ``closest''
+integers.\index{arithmetic!basic operations!rounding to ``closest''
+  integer}
 
 \medskip
 
@@ -140,9 +165,12 @@ the ``origin'' complex number $0 + 0 \cdot i$.  In detail:
 \[
 |a| \ = \ \left\{
 \begin{array}{cl}
-a & \mbox{ if } \ [a \in \R] \ \ \mbox{ and } [a \geq 0] \\
--a & \mbox{ if } \ [a \in \R] \ \ \mbox{ and } [a < 0] \\
-\sqrt{b^2 + c^2} &  \mbox{ if } \ [a \in \C]  \ \ \mbox{ and } [a = (b+ci)]
+a & \mbox{ if } \ \big[a \in \R \big] \ \ \mbox{ and } \ \ \big[a \geq
+  0\big] \\
+-a & \mbox{ if } \ \big[a \in \R\big] \ \ \mbox{ and } \ \ \big[a <
+  0\big] \\
+\sqrt{b^2 + c^2} &  \mbox{ if } \ \big[a \in \C\big]  \ \ \mbox{ and }
+     \ \ \big[a = (b+ci)\big]
 \end{array}
 \right.
 \]
@@ -164,12 +192,15 @@ n \cdot \mbox{\sc fact}(n-1) & \mbox{  if } \ n>0
 \end{array}
 \right.
 \end{equation}
-By ``unwinding'' the recursion in (\ref{eq:n-factorial-recursion}),
-one finds that, for all $n \in \N$,
+We can ``unwinding'' the recursion in (\ref{eq:n-factorial-recursion})
+to derive an iterative expression for $n!$.  In what follows, we
+denote multiplication by the familiar symbol $\times$ rather than the
+centered dot ($\cdot$) to enhance legibility.  We finds that, for all
+$n \in \N$,
 \begin{equation}
 \label{eq:n-factorial-direct}
 n! \ = \ \mbox{\sc fact}(n) \ = \ 
-n \cdot (n-1) \cdot (n-2) \cdot \cdots \cdot 2 \cdot 1
+n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1
 \end{equation} 
 A $3$-step inductive argument validates this ``unwinding'':
 \begin{enumerate}
@@ -179,8 +210,8 @@ If $n =0$, then {\sc fact}$(n) = 1$, by definition
 \item
 Assume, for induction, that the expansion in
 (\ref{eq:n-factorial-direct}) is valid for a given $k \in N$:
-\[ \mbox{\sc fact}(k) \ = \ k \cdot (k-1) \cdot (k-2) \cdot \cdots
-\cdot 2 \cdot 1 \] 
+\[ \mbox{\sc fact}(k) \ = \ k \times (k-1) \times (k-2) \times \cdots
+\times 2 \times 1 \] 
 \item
 Then:
 \[
@@ -188,7 +219,7 @@ Then:
 \mbox{\sc fact}(k+1) & = & (k+1) \cdot \mbox{\sc fact}(k)
   & & \mbox{by (\ref{eq:n-factorial-recursion})} \\
   & = &
-(k+1) \cdot k \cdot (k-1) \cdot (k-2) \cdot \cdots \cdot 2 \cdot 1
+(k+1) \times k \times (k-1) \times (k-2) \times \cdots \times 2 \times 1
   & & \mbox{by induction}
 \end{array}
 \]
