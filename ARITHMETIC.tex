@@ -936,17 +936,7 @@ A parlor trick has become a mathematical demonstration!
 \section{Polynomials and Their Roots}
 \label{sec:polynomials}
 
-\index{algebraic function} \index{function!algebraic}
-A function is {\it algebraic}, i.e., is an {\it algebraic function},
-if it is formed from {\it variables} and {\it numbers} using the
-algebraic operations of addition/subtraction and
-multiplication/division. 
-
-\subsection{Constructing a polynomial}
-\label{sec:make-a-poly}
-\index{algebraic function!polynomial}
-
-The most basic algebraic function is a {\it polynomial}. 
+Among the most basic functions are {\it polynomials}.
 \index{algebraic function!polynomial}
 \index{function!algebraic!polynomial} \index{polynomial}
 A polynomial on the $k$ {\it variables} \index{polynomial!variables}
@@ -954,9 +944,9 @@ in the set $\{v_1, v_2, \ldots, v_k\}$ is any function that can be
 written as a sum of {\it monomials}, \index{algebraic function!monomial}
 \index{function!algebraic!monomial} \index{monomial}
 each of the form
-\[ a_{\langle c_1, i_1 \rangle, \langle c_2, i_2 \rangle, \ldots 
+\[ a_{\langle c_1, i_1 \rangle, \langle c_2, i_2 \rangle, \ldots, 
 \langle c_k, i_k \rangle} 
-v_1^{c_1} \cdot v_2^{c_2} \cdots v_k^{c_k}.
+v_1^{c_1} \times v_2^{c_2} \times \cdots \times v_k^{c_k}
 \]
 In this expression: the subscripted symbols of the form $a_z$ denote
 numbers that are called the {\it coefficients}
@@ -970,21 +960,38 @@ variable does not appear when its power is $0$.)
 \[ 3 x_1^7 \cdot x_2^{19} \ + \ x_1^3 \cdot x_2 \ + \ 45 x_2^{9} \ + \ 
 7 x_1^{11} \cdot x_2^{5}.
 \]
-When $k=1$, the polynomial is said to be {\it univariate} (a Latinate
-form of ``having a single variable''); \index{polynomial!univariate}
-when $k=2$, the polynomial is said to be {\it bivariate} (a Latinate
-form of ``having two variables'').  Much of our interest will be in
-univariate polynomials; see Section~\ref{sec:univariate-polynomials}.
+Another way to look polynomials is as the class of functions that are
+formed from {\it variables} and {\it numbers} using the basic
+algebraic operations: addition/subtraction and
+multiplication/division.
+
+\smallskip
+
+Polynomials on a single variable---the case $k=1$---are said to be
+{\it univariate} (a Latinate form of ``having a single variable'').
+\index{polynomial!univariate} Polynomials on two variables---the case
+$k=2$---are said to be {\it bivariate} (a Latinate form of ``having
+two variables'').  These simplest polynomials are usually the only
+ones graced by Latinate nicknames.  Our interest in this section will
+mostly be on univariate polynomials
+(Section~\ref{sec:univariate-polynomials}); we do spend some time on
+one particular family of bivariate polynomials which has many
+important applications (Section~\ref{sec:bivariate-polynomials}); and
+we do describe informally an advanced result on general multivariate
+polynomials which has tremendous importance to the foundations of
+computing (Section~\ref{sec:Hilberts-Tenth}).
+
+\bigskip
 
 A problem of particular interest when discussing a polynomial $P(x_1,
 x_2, \ldots, x_k)$ is to discover vectors of values of the variables
-$\{x_i\}$ that cause $P$ to {\em vanish}, i.e., evaluate to $0$.  Each
-such vector, $\langle r_1, r_2, \ldots, r_k)$ is called a {\it root}
-\index{polynomial!root} of $P$.  As one simple example, the roots of
-the polynomial
+$\{x_i\}$ that cause $P$ to {\em vanish}, i.e., to evaluate to $0$.
+Each such vector, $\langle r_1, r_2, \ldots, r_k)$ is called a {\it
+  root} \index{polynomial!root} of $P$.  As a very simple example, the
+roots of the polynomial
 \[ P(x,y) \ \ = \ \ x^2 \ - \ 2xy \ + \ y^2 \]
 are precisely the $2$-place vectors (i.e., ordered pairs)
-$\langle i,i \rangle$, i.e., ordered pairs whose first and second
+$\langle k,k \rangle$, i.e., ordered pairs whose first and second
 components are identical, $x=y$.
 
 The problem of finding the roots of polynomials has garnered
@@ -993,7 +1000,7 @@ applications and its theoretical implications.  Historically, two of
 the major problems regarding roots of polynomials are:
 \begin{itemize}
 \item
-Find all roots of a given polynomial.
+{\em Find all roots of a given polynomial.}
 
 Most of the studies of this problem are found in algorithmic
 settings---courses, books, software.  Yet, there are many valuable
@@ -1002,46 +1009,63 @@ We discuss this problem for univariate polynomials in
 Section~\ref{sec:univariate-polynomials}.
 
 \item
-{\em Decide} whether a given multivariate polynomial has any
-integer roots.
+{\em Determine whether a given multivariate polynomial has any
+integer roots.}
 
 This problem is often found under the rubric of {\it Diophantine
   analysis}, so named in honor of the Greek mathematician Diophantus
 of Alexandria, \index{Diophantus of Alexandria} who has been called
 the father of algebra for his seminal studies of the process of
-equation-solving.  By its very nature---seeking a ``YES''-``NO''
-answer rather than an actual root-finding solution---this problem has
-been studied largely in theoretical or mathematical settings.  While
-most work on this subject uses advanced techniques, hence is beyond
-the scope of the current text, there is one result in this domain
-whose underlying message is so profound that we at least tell its
-``story'' in Section~\ref{sec:Hilberts-Tenth}.
+equation-solving.  By its very nature---seeking a ``{\sc yes}''-``{\sc
+  no}'' answer rather than an actual root-finding solution---this
+problem has been studied largely in theoretical or mathematical
+settings.  While most work on this subject uses advanced techniques,
+hence is beyond the scope of the current text, there is one result in
+this domain whose underlying message is so profound that we at least
+tell its ``story'' in Section~\ref{sec:Hilberts-Tenth}.
 \end{itemize}
+
+\bigskip
+
+\index{algebraic function!polynomial}
+\index{algebraic function} \index{function!algebraic}
+Although our primary focus is on polynomials, our concern with their
+roots forces us to expand our horizon to include functions that are
+{\it algebraic}, in the sense of being solutions of equations of the
+form $p(x) = 0$, where $p$ is a polynomial.  This expanded view
+mandates that we be prepared to discuss and analyze ``polynomials''
+within which variables are raised to fractional powers.
+
 
 \subsection{Univariate Polynomials and Their Roots}
 \label{sec:univariate-polynomials}
 \index{polynomials!univariate}
 
-We focus throughout on univariate polynomials with complex
-coefficients.  We leave to our algorithmic siblings the practicalities
-of actually computing the roots of a given univariate polynomial.  We
-are concerned with using mathematics to elucidate the sturcture of
-solutions.  We discuss two topics with strong lessons for the endeavor
-of doing mathematics.  Section~\ref{sec:fund-thm-algebra} presents a
-number of results about the $d$ complex roots that every degree-$d$
-polynomial has---highlighting the {\it Fundamental Theorem of
-  Algebra}, the storied result that verifies the existence of all
-these roots.  At the other end of the spectrum,
-Section~\ref{sec:poly-by-radical} discusses the quest for ``simple''
-formulas for roots, in terms of algebraic operations and
-\index{radical} {\it radicals}---square roots, cube roots, etc.  We
-will note that such formulas are readily calculated for degree-$2$
-({\it quadratic}) polynomials, \index{quadratic polynomials} arduously
-calculated for degree-$3$ ({\it cubic}) \index{cubic polynomials}
-polynomials, computable only in theory for degree-$4$ ({\it quartic})
-\index{quartic polynomials} polynomials---and {\em nonexistent} for
-polynomials of degree $5$ and higher.
-
+We focus throughout this section on univariate polynomials with
+complex coefficients.  We are concerned with using mathematics to
+elucidate {\em the structure} of the roots of a given univariate
+polynomial; we leave to our algorithmic siblings the practicalities of
+actually computing the roots.  We discuss two topics which have strong
+lessons for the endeavor of doing mathematics.  In
+Section~\ref{sec:fund-thm-algebra}, we discuss univariate polynomials
+of arbitrary (maximum) degree $d$.  We derive a number of results
+about the $d$ complex roots that every degree-$d$ polynomial
+has---highlighting the {\it Fundamental Theorem of Algebra}, the
+storied result that verifies the existence of all these roots.  In
+Section~\ref{sec:poly-by-radical}, we focus on the quest for
+``simple'' formulas for roots, in terms of algebraic operations and
+\index{radical} {\it radicals}---square roots, cube roots, etc.  (Of
+course, ``radicals'' are just another framework for discussing
+fractional powers.)  We will note that such formulas are readily
+calculated for degree-$2$ ({\it quadratic}) polynomials,
+\index{quadratic polynomials} \index{polynomials!univariate!quadratic}
+arduously calculated for degree-$3$
+({\it cubic})\index{cubic polynomials} \index{polynomials!univariate!cubic}
+polynomials, computable only in principle for degree-$4$ ({\it
+  quartic})\index{quartic polynomials} \index{polynomials!univariate!quartic}
+polynomials---and {\em nonexistent} for polynomials of degree $5$
+({\it quintic})\index{quintic polynomials}\index{polynomials!univariate!quintic}
+and higher.
 
 \subsubsection{The $d$ roots of a degree-$d$ polynomial}
 \label{sec:fund-thm-algebra}
@@ -1080,7 +1104,7 @@ attempts of mathematical luminaries such as Fermat,
 The theorem was finally proved in the early 19th century by the
 amateur (!)~French mathematician Jean-Robert Argand.
 \index{Argand, Jean-Robert}
-Argand publicized his proof in 1806, \cite{Argand} but the proof
+Argand publicized his proof in 1806 \cite{Argand}, but the proof
 became well-known only when it appeared in the famous {\it Cours
   d'analyse} \cite{Cauchy21} of Augustin-Louis Cauchy,
 \index{Cauchy, Augustin-Louis}
@@ -1094,7 +1118,7 @@ A few cultural/historical comments are in order.
 The many failed attempts at proving Theorem~\ref{thm:fund-thm-algebra}
 should not be viewed as casting shadows over the luster of any of the
 greats who failed.  In most of the cases, the failures pointed out new
-mathematics that has yet to be developed.  Such is the trajectory of
+mathematics that had yet to be developed.  Such is the trajectory of
 mathematics and the sciences!
 \item
 Despite the word ``fundamental'' in the name of
@@ -1131,68 +1155,74 @@ Known better as {\em Al-Khwarizmi}, this Persian mathematician and
 scholar of the $9$th century lent his name to the modern term {\it
   algorithm}.\index{Al-Khwarizmi!eponym of ``algorithm''} His
 extensive writings, especially the book \cite{Al-Khwarizmi},
-introduced into Europe both Hindu-Arabic numerals
-\index{Al-Khwarizmi!Hindu-Arabic numerals} and the elements of what
-was known in his day of the field of algebra---particularly the
-solution of equations.\footnote{The important role of the Middle East
-  in the development of mathematics is testified to eloquently by the
-  origin of the word ``algebra''.  According to the {\it Oxford
-    English Dictionary}, this word comes from the Arabic ``{\it
-    al-jabr}'', which literally means ``reunion of broken
-  parts''. \index{algebra!etymology of the word}}
+introduced into Europe both the Hindu-Arabic numerals
+\index{Al-Khwarizmi!Hindu-Arabic numerals} that we all use in everyday
+discourse and the elements of what was known  of the field
+of algebra in the $9$th century---particularly the solution of
+equations.\footnote{The important role of the Middle East in the
+  development of mathematics is testified to eloquently by the origin
+  of the word ``algebra''.  According to the {\it Oxford English
+    Dictionary}, this word comes from the Arabic ``{\it al-jabr}'',
+  which literally means ``reunion of broken parts''---an allusion to
+  the manipulation of terms in algebraic
+  computations. \index{algebra!etymology of the word}}
    \item
 {\it Ren\'{e} Descartes}. \index{Descartes, Ren\'{e}}
 The $17$th-century mathematican and philosopher Descartes is credited
-with establishing the mathematical notation that we use to this day.
+with establishing the algebraic notation that we use to this day.
 The reader should not minimize the importance of notation until trying
-to perform arithmetic using Roman numerals.  At a more abstract level,
+to perform arithmetic using Roman numerals!  At a more abstract level,
 Descartes's invention of {\em Analytical Geometry}
 \index{Descartes, Ren\'{e}!inventor of Analytical Geometry}
 enabled the use of geometric concepts and techniques in algebra.  Both
-of these contributions had incalculable value in the history leading
-up to Theorem~\ref{thm:fund-thm-algebra}.
+of these contributions were of incalculable value in the history
+leading to Theorem~\ref{thm:fund-thm-algebra}.
    \end{itemize}
 \end{itemize}
 
 \medskip
 
-Even though the earliest proofs of Theorem~\ref{thm:fund-thm-algebra}
-were not {\em constructive:} They did not provide a roadmap for
+The earliest proofs of Theorem~\ref{thm:fund-thm-algebra} were not
+{\em constructive}---they did not provide a roadmap for actually
 finding the roots of a given polynomial.  There currently do exist
 proofs of the Theorem that are constructive, in the following sense.
-Given a degree-$d$ polynomial $P(x)$, these proofs determine a disk
-$D$ in two-dimensional space which contains all $d$ roots of $P(x)$.
-How might such a disk emerge from a mathematical argument?  Here is a
-{\em very simple illustration} which focuses on a {\em very special
-  type of polynomial}.
+Given a degree-$d$ polynomial $P(x)$, these proofs determine a disk in
+two-dimensional space which contains all $d$ roots of $P(x)$.  How
+might such a disk emerge from a mathematical argument?  Here is a {\em
+  very simple} illustration which focuses on a {\em very special} type
+of polynomial.
 
 Let us be given a degree-$d$ polynomial with real coefficients:
 \[ P(x) \ \ = \ \ a_d x^d \ + \ a_{d-1} x^{d-1} \ + \ a_{d-2} x^{d-2}
 \ + \cdots + \ a_1 x \ + \ a_0
 \]
-Since we are interested only studying the roots of $P(x)$, we lose no
-generality by insisting that $P(x)$ is {\em monic},
-\index{polynomial!monic} i.e., has leading coefficient $a_d = 1$.
-(The reader should verify this assertion.)  Once we do this, we can
-rewrite $P(x)$ in the following form
+Since we are interested only studying {\em the roots of} $P(x)$, we
+lose no generality by insisting that $P(x)$ be {\em monic},
+\index{polynomial!monic} i.e., have leading coefficient $a_d = 1$.
+(The reader should verify this assertion!)  When $P(x)$ is a monic
+polynomial, we can rewrite it in the following form:
 \[ P(x) \ \ = \ \ 
 x^d \cdot \left( 1 \ + \ \frac{a_{d-1}}{x} \ + \ \frac{a_{d-2}}{x^2}
 \ + \cdots + \ \frac{a_1}{x^{d-1}} \ + \ \frac{a_0}{x^d} \right)
 \]
 The important benefit of this rewriting is that it makes the following
 inequality totally clear.
-\[ P(x) \ \ > \ \ 0 \ \ \ \ \ \mbox{ for all } \ \ x >
+\[ P(x) \ \ > \ \ 0 \ \ \ \ \mbox{ for all } \ \ \ x >
 d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}|
 \ + \cdots + \ |a_1| \ + \ |a_0| \right)
 \]
-This means that all real roots of $P(x)$, if there are any, lie within
-the region $x \ \leq \ d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}|
-\ + \cdots + \ |a_1| \ + \ |a_0| \right)$.
+And, this inequality implies that all real roots of $P(x)$, if there
+are any, lie within the region
+\[ x \ \leq \ d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots +
+\ |a_1| \ + \ |a_0| \right) \]
+
+\medskip
 
 This is just one simple example, but it does illustrate that one can
-sometimes find bounded regions within which all of $P(x)$'s roots must
-lie.  Many texts (and research papers) deal with the general problem
-of computing the roots of polynomials; see, e.g., \cite{MacDuffee}.
+sometimes delimit bounded regions within which all of $P(x)$'s roots
+must lie.  Numerous texts (and research papers) deal with the general
+problem of computing the roots of polynomials; see, e.g.,
+\cite{MacDuffee}.
 
 
 \subsubsection{Solving polynomials by radicals}
@@ -1213,8 +1243,8 @@ following algebraic operations: adding/subtracting two quantities,
 multiplying/dividing two quantities, and raising a quantity to a
 rational power.  Because the last of these operations is often
 expressed by using a {\em radical sign}, \index{radical sign} rather
-than an exponent---as when we write ``$\sqrt{x}$'' for
-``$x^{1/2}$''---these formulas are often referred to as {\it solution
+than an exponent---as when we write $\sqrt{x}$ for
+$x^{1/2}$---these formulas are often referred to as {\it solutions
   by radicals}.  \index{polynomial!solution by radicals}
 \index{solution by radicals}  
 
@@ -1230,12 +1260,12 @@ written out; it is instead specified {\em algorithmically}.  The {\em
 degree-$4$ {\it (quartic)} \index{polynomials!quartic} polynomial---is
 so complex that it is virtually never written out.  The courageous
 reader can attack the quartic formula as an exercise, using the
-conceptual techniques we derive here.
+conceptual techniques which we derive here.
 
 It is useless to try to solve polynomials of degrees $> 4$ by
-radicals.  In the early 19th century, a (mathematically brilliant)
-French teenager, Evariste Galois \index{Galois, Evariste}, proved that
-one cannot solve the degree-$5$ {\it (quintic)}
+radicals.  In the early 19th century, a (mathematically brilliant, for
+sure!)~French teenager, Evariste Galois \index{Galois, Evariste},
+proved that one cannot solve the degree-$5$ {\it (quintic)}
 \index{polynomials!quintic} polynomial by radicals, no matter how much
 abstruse computation one is willing to do!  Galois achieved this
 result by developing a mathematical theory, which has since been named
@@ -1251,7 +1281,7 @@ On to solving low-degree polynomials:
 
 \medskip
 
-\noindent {\it i. Solving quadratic polynomials by radicals}
+\paragraph{\small\sf A. Solving quadratic polynomials by radicals}
 
 \noindent
 We derive the {\it quadratic formula}, which solves an arbitrary
@@ -1286,20 +1316,20 @@ x_2 & = & \frac{-b \ - \ \sqrt{b^2 -4ac}}{2a}.
 \begin{proof}
 We find the roots of $P(x)$ by solving the polynomial equation $P(x) =
 0$.  We simplify our task by dividing both sides of this equation by
-$a$; easily, this does not impact the two solutions we seek.  We
-thereby reduce the root-finding problem to the solution of the
-equation
+$a$; easily, this does not impact the two solutions we seek, since it
+merely replaces $P(x)$ by a monic polynomial that shares the same
+roots.  We thereby reduce the root-finding problem to the solution of
+the equation
 \begin{equation}
 \label{eq:generic-quadratic-2}
 x^2 \ + \ \frac{b}{a} x \ = \ - \frac{c}{a}.
 \end{equation}
-
 The technique of {\it completing the square}
 \index{polynomial!quadratic!completing the square} gives us an easy
-path to solving equation (\ref{eq:generic-quadratic-2}).  This
-technique involves adding to both sides of the equation a
-variable-free expression $E$ that turns the lefthand expression into a
-perfect square.  In the current instance, the expression
+path to solving this equation.  This technique involves adding to both
+sides of the equation a variable-free expression $E$ that turns the
+lefthand expression into a perfect square.  In the case of equation
+({eq:generic-quadratic-2}), the expression
 \[ E \ = \ \frac{b^2}{4a^2} \]
 does the job, because
 \[
@@ -1312,41 +1342,84 @@ the equation
 \begin{equation}
 \label{eq:generic-quadratic-3}
 \left( x \ + \ \frac{b}{2a} \right)^2
-  \ = \ \frac{b^2}{4a^2} - \frac{c}{a}
-  \ = \ \frac{b^2 - 4ac}{4a^2}.
+% \ \ = \ \ \frac{b^2}{4a^2} - \frac{c}{a}
+ \ \ = \ \ \frac{b^2 - 4ac}{4a^2}.
 \end{equation}
 Elementary calculation on equation (\ref{eq:generic-quadratic-3})
 identifies $P(x)$'s two roots as the values $x_1$ and $x_2$ specified
 in (\ref{eq:generic-quadratic-4}).  \qed
 \end{proof}
 
+\bigskip
+
+\noindent
+We close our treatment of quadratic polynomials with a few comments
+that may inspire some readers to read further about roots of quadratic
+polynomials.
+
+{\bf 1.}
 Using a common shorthand, the expressions for $x_1$ and $x_2$ in
 (\ref{eq:generic-quadratic-4}) are often abbreviated by using the
-operator $\pm$, for ``plus or minus''.  \index{$\pm$: plus or minus}
-The quadratic formula is then written:
+operator $\pm$, which is a shorthand for ``plus or minus''.
+\index{$\pm$: plus or minus} The quadratic formula can then be written
+in the following familiar form:
 \[
 x \ = \  \frac{1}{2a} \left( -b \ \pm \ \sqrt{b^2 \ - \ 4ac} \right).
 \]
 
-
 \smallskip
 
+{\bf 2.}
 The reader can verify that our proof essentially proceeds by
 replacing $P(x)$'s variable $x$ with the variable
 \[ u \ = \ x + \frac{b}{2a}. \]
 This replacement streamlines the process of completing the square and
-finding the solutions $x_1$ and $x_2$.  We presented the more
-elementary proof to let the reader see the solution process proceed
-step by step.  As we turn now to the clerically more complex solution
-of the cubic polynomial, we get around some of the calculational
-complexity by employing the variable-substitution strategem.
+finding the solutions $x_1$ and $x_2$.  We presented a more elementary
+version of the proof so that the reader could watch the solution
+process proceed step by step.  As we turn now to the clerically more
+complex solution of the cubic polynomial, we get around some of the
+calculational complexity by employing the variable-substitution
+strategem.
 
-\bigskip
+\smallskip
 
-{\Denis Add here a geometric interpretation?}
+{\bf 3.}
+When we look carefully at the roots $x_1$ and $x_2$ in
+(\ref{eq:generic-quadratic-4}), we note that there are three genres of
+solutions.  These can be discriminated in the graphical form of
+$P(x)$, as illustrated in Fig.~\ref{fig:SecondDegreeInit}.  (Note that
+the {\em horizontal} displacement of $P(x)$'s plot is irrelevant; it
+is only the {\em vertical} displacement that affects the nature of
+$P(x)$'s roots.)
+\begin{figure}[htb]
+\begin{center}
+       \includegraphics[scale=0.325]{FiguresArithmetic/SecondDegreeInit}
+\caption{$P(x)$ has: (left) two real roots; (center) one real root;
+  (right) no real root.}
+\label{fig:SecondDegreeInit}
+\end{center}
+\end{figure}
+\begin{itemize}
+\item
+The solutions $x_1$ and $x_2$ are distinct real numbers.
 
-There are three cases to consider while solving the equation
+This corresponds to the lefthand plot in the figure: $P(x)$ crosses
+the (real) $X$-axis at two distinct points.
 
+\item
+The solutions $x_1$ and $x_2$ are identical real numbers.
+
+This corresponds to the central plot in the figure: $P(x)$
+crosses/touches the (real) $X$-axis at precisely one point.
+
+\item
+The solutions $x_1$ and $x_2$ are distinct {\em non}-real numbers.
+
+This corresponds to the righthand plot in the figure: $P(x)$ never
+touches the (real) $X$-axis.
+\end{itemize}
+
+\ignore{***************
 \begin{equation}
 \label{eq:generic-quadratic-geo}
 P(x) \ = \  ax^2 \ + \ bx \ + \ c \ \ \mbox{  where  } \ b,c \in \R;
@@ -1355,13 +1428,7 @@ P(x) \ = \  ax^2 \ + \ bx \ + \ c \ \ \mbox{  where  } \ b,c \in \R;
 
 Let consider that $a>0$, the case where $a<0$ is symmetric.
 Fig.~\ref{fig:SecondDegreeInit} gives an illustration of the possible solutions.
-\begin{figure}[htb]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresArithmetic/SecondDegreeInit}
-\caption{The different cases leading to 2 solutions, 1 solution and no solution (intersection with the $x$ axis).}
-\label{fig:SecondDegreeInit}
-\end{center}
-\end{figure}
+
 
 In the case where there are two solutions, we first determine the coordinates of the minimum of $P(x)$.
 This is obtained by a simple derivative whose solution is equal to~$x^*=\frac{-b}{2a}$,
@@ -1381,37 +1448,14 @@ From Fig.~\ref{fig:SecondDegree}, the two roots we are looking for are symmetric
 \label{fig:SecondDegree}
 \end{center}
 \end{figure}
+******************}
 
-{\Denis I suggest to add the following, may be as an exercice -- or as a concrete illustration, in link with the golden ratio}
-
-The Fibonacci series is given by the recurrence:
-$F(n+1) = F(n) + F(n-1)$ (see section {\Denis to be completed} for details).
-The characteristic equation is thus given by:
-$x^2 = x + 1$ or $x^2 - x - 1 = 0$ whose roots are determined by solving the equation for $a=1$ and $b=c=-1$.
-$\Delta = 1+4 = 5$
-
-As both roots are centered apart $x^*=\frac{-b}{2a}= \frac{1}{2}$, corresponding to $y^*= -\frac{\Delta}{4a} = -\frac{5}{4}$, we can rewrite the equation as:
-
-$(x-\frac{1}{2})^2 - \frac{5}{4} = 0$
-
-This gives: $(x-\frac{1}{2})^2 = \frac{5}{4}$ and thus, $x_1-\frac{1}{2} = - \sqrt{\frac{5}{4}}$ or $x_2-\frac{1}{2} = + \sqrt{\frac{5}{4}}$.
-
-The last value is the Golden ratio: $\Phi = \frac{1}{2} + \sqrt{\frac{5}{4}} = \frac{1+\sqrt{5}}{2}$
-
-\begin{figure}[htb]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresArithmetic/SecondDegreeFibo}
-\caption{Determining the Golden ration ($x_2$).}
-\label{fig:SecondDegreeFibo}
-\end{center}
-\end{figure}
 
 \bigskip
 
-\noindent {\it ii. Solving cubic polynomials by radicals}
+\paragraph{\small\sf B. Solving cubic polynomials by radicals}
 
-\noindent
-We derive a formula that {\it solves} an arbitrary cubic polynomial
+We derive a formula for the roots of an arbitrary cubic polynomial
 \index{Polynomial!cubic!generic} with real coefficients:
 \index{polynomial!solving a cubic polynomial} 
 \begin{equation}
@@ -1428,42 +1472,44 @@ formula's proof/derivation {\em before} presenting the formula.
 
 \begin{proof} {\it (Derivation of the cubic formula)}
 
-\noindent {\it Step 1.} Convert the problem to solving a
-cubic polynomial that is {\em monic}, \index{polynomial!monic}
-i.e., has leading coefficient $1$.
-
+\noindent {\it Step 1.} Convert $P(x)$ to a {\em monic}
+cubic polynomial $P^{(1)}(x)$ which shares $P(x)$'s roots.
 
 \noindent
-We convert the generic cubic polynomial $P(x)$ of
-(\ref{eq:generic-cubic-1}) to the monic cubic polynomial that has the
-same roots as $P(x)$.
-\begin{eqnarray}
+This is accomplished via a change of coefficents that rewrites $P(x)$
+as the monic cubic polynomial
+\begin{equation}
 \label{eq:generic-cubic-2}
-P^{(1)}(x) & = &  x^3 \ + \ Bx^2 \ + \ Cx \ + \ D \\
-\nonumber
-\mbox{where} & &
+P^{(1)}(x) \ = \  x^3 \ + \ Bx^2 \ + \ Cx \ + \ D
+\end{equation}
+The required change of coefficents is specified implicitly as follows
+\[
 B \ = \ \frac{b}{a}; \ \ \
 C \ = \ \frac{c}{a}; \ \ \
 D \ = \ \frac{d}{a}
-\end{eqnarray}
-Monic polynomials lead to somewhat simpler calculation
+\]
 
-It should be clear that the polynomials $P(x)$ and $P^{(1)}(x)$ have
-the same roots.  {\Arny We should include this as a simple exercise.}
+%It should be clear that the polynomials $P(x)$ and $P^{(1)}(x)$ have
+%the same roots.  {\Arny We should include this as a simple exercise.}
 
 \medskip
 
-\noindent {\it Step 2.} Convert $P^{(1)}(x)$ to {\em reduced form}.
+\noindent {\it Step 2.} Convert $P^{(1)}$ to a {\em reduced form}
 \index{polynomial!cubic!monic!reduced form}
+cubic polynomial $P^{(2)}$ which shares $P$'s roots.  By
+``reduced'', we mean that $P^{(2)}$ has no quadratic term---i.e., no
+term in which the variable is raised to the power $2$.
 
 \noindent
-When we make the transformation of variable
+This transformation is accomplished as follows.  We make the
+transformation of variable
 \begin{equation}
 \label{eq:cubic-substitute-y-for-x} 
 y \ = \ x \ + \ \frac{B}{3}
 \end{equation}
-in (\ref{eq:generic-cubic-2}), we convert polynomial $P^{(1)}(x)$ in
-variable $x$ into the polynomial following in variable $y$:
+in (\ref{eq:generic-cubic-2}).  We thereby convert $P^{(1)}(x)$, a
+polynomial in variable $x$, into the following polynomial in variable
+$y$:
 
 \begin{eqnarray}
 \nonumber
@@ -1481,9 +1527,8 @@ y^3 \ + \
 \left( \frac{B^2}{9} \ - \ \frac{2B^2}{3} \ + \ C  \right) y
 \ + \ \left( \frac{2 B^3}{27}  \ - \ \frac{BC}{3}  \ + \ D \right)
 \end{eqnarray}
-Cubic polynomials that lack a quadratic term---i.e., a term involving
-$y^2$---are said to be in {\it reduced form}.  For simplicity, we
-rewrite $P^{(2)}(y)$, which clearly is in reduced form, as
+For simplicity, we rewrite $P^{(2)}(y)$, which clearly is in reduced
+form, as
 \begin{eqnarray}
 \label{eq:generic-cubic-4}
 P^{(2)}(y) & = & y^3 \ + \ E y \ + \ F \\
@@ -1502,12 +1547,12 @@ F & = & \frac{2 B^3}{27}  \ - \ \frac{BC}{3}  \ + \ D
 quadratic polynomial.
 
 \noindent
-We next apply a transformation attributed to the $16$th-century French
-mathematician Fran\c{c}ois Vi\`{e}te \index{Vi\`{e}te, Fran\c{c}ois}
-(often referred to by his Latinized name, Franciscus Vieta)
-\index{Vieta, Franciscus}; see \cite{Hazewinkel}.  Vieta's
-transformation converts $P^{(2)}(y)$ to a quadratic polynomial by means
-of the variable-substitution
+We accomplish this step by applying a transformation attributed to the
+$16$th-century French mathematician Fran\c{c}ois Vi\`{e}te
+\index{Vi\`{e}te, Fran\c{c}ois} (often referred to by his Latinized
+name, Franciscus Vieta) \index{Vieta, Franciscus}; see
+\cite{Hazewinkel}.  Vieta's transformation converts $P^{(2)}(y)$ to a
+quadratic polynomial by means of the variable-substitution
 \begin{equation}
 \label{eq:cubic-substitute-z-for-y}
 y \ = \ z \ - \ \frac{E}{3z}
@@ -1522,10 +1567,11 @@ P^{(3)}(z) & = & \left( z \ - \ \frac{E}{3z} \right)^3
   & = &
 z^3 \ - \ \frac{E^3}{27z^3}  \ + \ F
 \end{eqnarray}
-Clearly, $P^{(3)}(z)$ is not a polynomial in $z$, but it is a valuable
-stepping stone because the function $P^{(3)}(z)$ vanishes---i.e.,
-$P^{(3)}(z) = 0$---precisely when the following polynomial (in the
-``variable'' $z^3$) vanishes.
+Clearly, $P^{(3)}(z)$ is not a polynomial in $z$---because of the term
+in which variable $z$ appears in the denominator---but it is a
+valuable stepping stone because the function $P^{(3)}(z)$
+vanishes---i.e., $P^{(3)}(z) = 0$---precisely when the following
+polynomial (in the ``variable'' $z^3$) vanishes.
 \[ P^{(4)}(z^3) \ = \ (z^3)^2 \ + \ (z^3) F \ - \ \frac{E^3}{27}. \]
 We wrote both instances of $z^3$ in the expression for $P^{(4)}(z^3)$
 within parentheses to facilitate the view of $P^{(4)}(z^3)$ as a
@@ -1555,13 +1601,13 @@ Euler. \index{Euler, Leonhard} This result/formula exposes a
 fundamental relationship among:
 \begin{itemize}
 \item
-the imaginary unit \index{$i$: the imaginary unit} $i$;
+the imaginary unit \index{$i$: the imaginary unit} $i$
 \item
 the ratio of the circumference of a circle to its radius,
-$\pi \ = \ 3.141592653 \cdots$;
+$\pi \ = \ 3.141592653 \cdots$
 \index{$\pi$: the ratio of the circumference of a circle to its radius}
 \item
-the base of natural logarithms, Euler's constant $e \ = \ 2.718281828 \cdots$.
+the base of natural logarithms, Euler's constant $e \ = \ 2.718281828 \cdots$
 \index{Euler's constant}\index{$e$:the base of natural logarithms}
 \end{itemize}
 
@@ -1576,9 +1622,9 @@ number system $\C$, the cubic polynomial
 \[ u^3 \ - \ 1 \]
 has three distinct roots.  These numbers are known as the {\em
   primitive $3$rd roots of unity} \index{primitive $3$rd roots of
-  unity} and are denoted $\omega^0$, $\omega^1$, and $\omega^2$.
-Using Theorem~\ref{thm:Euler's-formula}, we can provide explicit
-values for these numbers, namely:
+  unity} and are traditionally denoted $\omega^0$, $\omega^1$, and
+$\omega^2$.  Using Theorem~\ref{thm:Euler's-formula}, we can provide
+explicit values for these numbers, namely:
 \[ \omega^0 \ = \ 1; \ \ \ \ \
 \omega^1 \ = \ e^{2i \pi/3}; \ \ \ \ \
 \omega^2 \ = \ e^{4i \pi/3}.
@@ -1647,7 +1693,7 @@ with some exercises in which the reader will solve numerical
 instances.  The most interesting and noteworthy feature of these
 exercise will be the observation of ``collapsing'' of intermediate
 expressions, whose impact is to leave us with with only {\em three}
-solutions for $x$---which isthe number promised by
+solutions for $x$---which is the number promised by
 Theorem~\ref{thm:fund-thm-algebra}---rather than the six solutions
 that the array (\ref{eq:cubic-solution-1}) of $z$-values would lead
 one to expect.
@@ -1659,45 +1705,13 @@ important insights.  The curious reader can find renditions of the
 formulas on the web.  \qed
 \end{proof}
 
-{\Arny
-I think that solving specific examples of cubics via radicals, although specialized, does
-involve useful skills for manipulating polynomials.  Therefore, I
-propose to stop the general case here and leave a few exercises.  WHAT DO YOU THINK?}
-
-
-
-{\Arny Because your geometric solution below involves just a single
-  special quadratic --- and one that seems not to have other special
-  interest --- I propose that we include it in some form of ENRICHMENT
-  section.  }
-
-{\ignore {\Denis It is interesting here to stress how hard it was to solve such equations. Algebra raised only in the second half of the last millenium.
-However, there are several nice examples of geometrical solutions.
-One of the oldest comes from babylonians in the 18th century BC.
-The numeral system was in base 60, and the problem was to determine the length of the side of a square which was part of a larger rectangle.
-The following figure details the process.}}
-{\Denis Add here a small introduction about solving polynomial of degree 2 from El Kwharizmi, or remove it and put it as an exercice.}
-\begin{figure}[htb]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresArithmetic/tabletteMesopotamie}
-\caption{Solving $x^2 + x = 45$.
-The idea of the proof is to represent the left hand side by the square $x^2$ beside a rectangle $60 \times x$.
-Then, split the right rectangle into two equal parts and move one part a the bottom of the left square.
-The final figure shows the whole square whose surface is equal to $45$ plus the surface of the white square
-whose surface is equal to $30 \times 30$.
-In base $60$, this is $15$. 
-$45+15 = 60$, thus, the big square is the unit square, its side is $60$.
-Thus, the length of the initial square is equal to $60-30=30$.}
-\label{fig:equationBabillon}
-\end{center}
-\end{figure}
-
-
 \subsection{Bivariate Polynomials: The Binomial Theorem}
 \label{sec:bivariate-polynomials}
 \label{sec:Binomial-thm}
 \index{polynomials!bivariate}
 \index{The Binomial Theorem}
+
+**HERE
 
 {\em Bivariate} polynomials are just polynomials each of whose
 summands/terms has the form $a x^b y^c$: $x$ and $y$ are the polynomial's
