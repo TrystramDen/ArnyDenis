@@ -1,4 +1,4 @@
-%version of 03-21-19
+%version of 05-15-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -327,13 +327,13 @@ $2$   & binary     & $2$-ary  \\
 \hline 
 $4$   & quaternary & $4$-ary  \\
 \hline
-$8$    & octal & $8$-ary \\
+$8$   & octal      & $8$-ary \\
 \hline
-$10$   & decimal & $10$-ary  \\
+$10$  & decimal    & $10$-ary  \\
 \hline
-$12$    & duodecimal & $12$-ary  \\
+$12$  & duodecimal & $12$-ary  \\
 \hline
-$16$     & hexadecimal & $16$-ary \\
+$16$  & hexadecimal & $16$-ary \\
 \hline
 \end{tabular}
 
@@ -475,7 +475,62 @@ it is the numerical value of a numeral of the form
 (\ref{eq:real-numeral}).
 \end{prop}
 
-{\Arny A good exercise ?}
+\bigskip
+
+We close this section with a result that demonstrates the importance
+of choosing the right number representation.  In
+Section~\ref{sec:exponentiation} we defined the operation of
+exponentiation.  Experimenting with computing instantiations of the
+operation, one finds quickly that computing the number $b^n$ for large
+values of $n$ is quite tedious, requiring many multiplications.
+Indeed, a straightforward use of the definition would lead to a
+computation requiring $\Theta(n)$ multiplications to produce $b^n$
+from $b$ and $n$.  Now that we know about positional number
+representations, though, we have access to an algorithm tha requires
+only $O(\log n)$ multiplications.
+
+\begin{prop}
+\label{thm:fast-exponentiation}
+Given positive integers $b$ and $n$, one can compute the number $b^n$
+withn $O(\log n)$ multiplications.
+\end{prop}
+
+\begin{proof}
+We begin by forming the minimal-length base-$2$ numeral for $n$.  (Our
+use of base $2$ is only for convenience.)  We know that this numeral
+has $O(\log n)$ bits nd has the following form.
+\[ n \ = \ a_0 \ + \ a_1 \cdot 2 \ + \ a_2 \cdot 2^2 \ + \cdots +
+\ a_\ell \cdot 2^\ell
+\]
+where
+\begin{itemize}
+\item
+$\ell = O(\log n)$
+\item
+Each $a_i \in \{0,1\}$, and $a_\ell = 1$
+\end{itemize}
+
+By definition of the operation of exponentiation, we know further that
+\begin{eqnarray}
+\nonumber
+ b^n & = &
+b^{a_0  + a_1 \cdot 2  +  a_2 \cdot 2^2  + \cdots + a_\ell \cdot
+  2^\ell} \\
+\label{eq:binary-exponent-n}
+     & = &
+b^{a_0} \times b^{a_1 \cdot 2} \times b^{a_2 \cdot 2^2} \times \cdots
+\times b^{a_\ell \cdot 2^\ell}
+\end{eqnarray}
+
+We can compute all power-of-$2$ powers of $b$ via a string of $\O(\log
+n)$ multiplications, as follows.
+
+DONE
+\qed
+\end{proof}
+**HERE
+fast exponentiation
+
 
 \subsection{$\oplus$ Positional Number Systems with Special Properties}
 \label{sec:numerals-special-properties}
