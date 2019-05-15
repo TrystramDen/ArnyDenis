@@ -521,9 +521,25 @@ b^{a_0  + a_1 \cdot 2  +  a_2 \cdot 2^2  + \cdots + a_\ell \cdot
 b^{a_0} \times b^{a_1 \cdot 2} \times b^{a_2 \cdot 2^2} \times \cdots
 \times b^{a_\ell \cdot 2^\ell}
 \end{eqnarray}
+Equation (\ref{eq:binary-exponent-n}) has an important message.  Say
+that we had access to all ``relevant'' power-of-$2$ powers of $b$, i.e.,
+powers of the form $b^{2^k}$, where the binary representation of $n$
+has a $1$ in digit-position $k$.  Then $\log n$ multiplications of
+these powers would yield $b^n$.
 
-We can compute all power-of-$2$ powers of $b$ via a string of $\O(\log
-n)$ multiplications, as follows.
+In fact, we can generate {\em all} of the power-of-$2$ powers
+of $b$ via a sequence of $O(\log n)$ multiplications, as follows.
+Establish a sequence of $\log n$ bins to store the ``relevant'' powers
+of $b$ as we generate them.
+\begin{itemize}
+\item
+Place copies of $b^0 = 1$ and $b^1 = b$ in the bins set aside for
+these values.
+
+This requires $0$ multiplications.
+\item
+If $b^k$ is the largest power-of-$2$ power of $b$ that we **HERE
+\end{itemize}
 
 DONE
 \qed
