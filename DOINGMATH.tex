@@ -55,7 +55,7 @@ ways: by enabling rigorous argumentation about properties of
 computational structures and processes and by enabling cogent analyses
 of such properties.  This section is devoted to the first of these
 topics.  We survey, explain, and exemplify a range of proof techniques
-tha are among most commonly useful within computational settings.
+that are among most commonly useful within computational settings.
 
 \subsection{Classical vs.~modern proofs and methodologies}
 \label{sec:classical-v-modern-proofs}
@@ -186,9 +186,14 @@ Thus, exponential functions eventually {\em majorize} polynomials.
 
 \subsubsection{The Elements of Formal Reasoning}
 
-induction
+What is solving mathematical problems?
 
-proof by contradiction
+There are many methods for establishing a formal proof.
+In all cases, the problems to solve should be modeled, which means that we 
+they are transformed into mathematical problems using formal parameters. 
+
+Then, use techniques like inference, arithmetic operations, induction,
+proof by contradiction, etc.
 
 \subsubsection{The Elements of Empirical Reasoning}
 
@@ -196,9 +201,7 @@ Empirical reasoning does not convey the certitude that formal
 reasoning does.  
 
 
-
-
-\subsection{What is a ``modern'' proof?}
+\subsection{What is a ``effective'' proof?}
 
 We are interested in helping the reader learn intuitively compelling,
 perspicacious techniques for proving interesting mathematical results.
@@ -215,18 +218,22 @@ to their adherence.''
   d'\'{e}vidence qui entraine l'adh\'{e}sion.}
 \end{quote}
 
-% \textit{a rigorous process that creates a state of
-%  evidence for educated readers who leads their adherence}.
-
-%{\Denis Develop a simple example here? consider a graph and show that the sum of the degrees is equal to twice the number of edges.}
 
 \subsubsection{A discussion of ``rigor''}
 
-\subsubsection{Sample proofs}
+What to fill in this section?
+
+Historical perspective: Cauchy controversy.
+
+Paper from Leslie Lamport?
+
+TOO COMPLICATED TO PROVE?
+
+\subsubsection{Sample proof}
 \label{sec:sample-proofs}
 
 
-\paragraph{\small\sf A. The average length of a carry in a binary counter}
+\paragraph{\small\sf The average length of a carry in a binary counter}
 
 \noindent {\it The problem.}
 %
@@ -236,7 +243,7 @@ there is a {\it carry}.  These carries have varying lengths; for
 instance, when $n = 32 = 100000_2$, the carry-lengths range
 from $0$---whenever you increment an even integer---to $5$---when you
 increment $31 = 11111_2$ to achieve $32 = 100000_2$. \\
-{\em Prove that the average carry as you go from $1$ to $n$ hs length $2$.}
+{\em Prove that the average carry as you go from $1$ to $n$ has length $2$.}
 
 \medskip
 
@@ -267,42 +274,13 @@ Using techniques that we cover in Chapter~\ref{ch:Summation}, one
 verifies that this infinite series converges with the sum $2$.  \qed
 
 
-\paragraph{\small\sf B. On meeting new people}
-
-\noindent {\it The problem.}
-%
-You are attending a cocktail party that is populated by $n$ couples.
-In order to create a warm atmosphere, the host requests that each
-attendee shake the hand of every attendee that he or she does not
-know.  \\
-{\em Prove that some two attendees shake the same number of hands.}
-
-\medskip
-
-\noindent {\it The solution.}
-%
-This observation follows from the {\it pigeonhole principle}, which
-states the following.
-
-{\it If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
-  $2$ pigeons.}
-
-\noindent
-This principle guarantees that some two attendees shake the same
-number of hands.  To wit, the number of people that each attendee {\em
-  does not know} belongs to the set $\{ 0, 1, \ldots, 2n-2 \}$,
-because each person knows him/herself and his/her partner.  Because
-there are $2n$ handshakers (the pigeons) and $2n-1$ numbers of hands
-to shake (the boxes), some two shakers must shake the same numbers of
-hands.  \qed
-
 
 {\Denis Should we add here the concept of Proof by computer?
 Used for instance in the 4-color theorem...}
 
 
 
-
+\section{Overview of the main proof techniques}
 
 \subsection{Proof by (Finite) Induction}
 \label{sec:Induction}
@@ -603,11 +581,6 @@ degree-$3$) polynomial.  What we need now is an induction that will
 verify our result.  With our previous illustrations as models, we
 shall leave this final task to the reader.
 
-%\noindent
-%***************** \\
-% Arny: IS THIS OK? \\
-% Denis: YES
-%***************** 
 \qed
 \end{proof}
 
@@ -754,6 +727,9 @@ numbers.  \qed
 
 \subsubsection{An old and simple example}
 
+Insert solving the second degree equation...
+
+
 \subsubsection{Fubini's principle}
 \label{sec:Fubini}
 
@@ -787,7 +763,7 @@ into boxes must place at least two pigeons into the same box.
 \label{sec:pigeon-apps}
 
 
-\paragraph{\small\sf A. Choosing a pair of matching socks} 
+\paragraph{\small\sf Choosing a pair of matching socks} 
 
 You have $n$ pairs of socks, the socks in each pair having a distinct
 color (one pair of red socks, one pair of blue socks, \ldots).  Since
@@ -798,6 +774,7 @@ principle guarantees that you have at least one monochromatic pair,
 because there are only $n$ distinct sock-colors (the boxes).
 
 
+\ignore{
 \paragraph{\small\sf B. Finding birthday-mates}
 
 You are attending a conference and wander into a lecture that has 367
@@ -806,9 +783,9 @@ share the same birthday: there are 366 possible birthdays (the boxes
 for a leap year) and 367 birthday-possessors (the pigeons).
 
 {\Denis May be we can put this in exercice and add the anniversary paradox which state a similar question with probabilities?}
+}
 
-
-\paragraph{\small\sf D. Friends and strangers at a party}
+\paragraph{\small\sf Friends and strangers at a party}
 
 We turn now to a somewhat more surprising result that can be proved
 using the pigeonhole principle.  While we phrase the result in
@@ -972,7 +949,7 @@ the preceding statements require specication of the number $n$ and
 other details, possibly down to the clock speeds of the host
 computer's circuitry.
 
-\subsubsection{The language of asymptotics}
+\subsection{The language of asymptotics}
 
 The language of asymptotics, which has its origins in the field of
 Number Theory in the late 19th century, builds on the following
@@ -1037,7 +1014,7 @@ $g$, and ($b$) hold up to an unspecified constant of proportionality.
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/NotationAsymptotic}
-\caption{$g$ is a Big O of $f$ and $h$ is a Big Omega of $f$.}
+\caption{Function $g$ is a Big O of $f$ and $h$ is a Big Omega of $f$.}
 \label{fig:Asymptotic}
 \end{center}
 \end{figure}
@@ -1062,7 +1039,7 @@ big-$O$, big-$\Omega$, and big-$\Theta$ notations, which are
 collectively sometimes called {\em asymptotic notation}.\index{asymptotic notation}
 *******}
 
-\subsubsection{The ``uncertainties'' in asymptotic relationships}
+\subsection{The ``uncertainties'' in asymptotic relationships}
 
 The formal definitions of all three of our asymptotic relationships
 are bracketed by two important quantifiers:
@@ -1124,7 +1101,7 @@ asymptotic notations, but they are only rarely encountered in
 discourse about real computations (although they do arise in the
 analysis of algorithms).
 
-\subsubsection{Inescapable complications}
+\subsection{Inescapable complications}
 
 The story we have told thus far is covered in many sources and
 courses.  Two complications to the story are covered less faithfully,
@@ -1183,10 +1160,10 @@ complicated in the multivariate settings engendered by PDC.  But, the
 benefits of being able to reason qualitatively about the quantitative
 aspects of computing increase at least commensurately!
 
+
+
 \section{Coping with Infinity}
 \label{sec:reasoning-infinity}
-
-{\Denis is it the right place here?}
 
 \subsection{Reasoning about Infinity}
 
@@ -1209,7 +1186,7 @@ we aim to determine the value of $S = \sum_{k \geq 0} \frac{1}{2^k}$.
 Defining the infinite sum as the limit leads to the value $2$. 
 This is obtained $2S = S+2$...
 But what happens if we apply the same reasoning to to the sum: $\sum _{k \geq 0} 2^k$?
-Te obtain the value $-1$!
+To obtain the value $-1$!
 This is obviously not correct since the sum of increasing positive numbers should be positive.
 The reason is that the terms of the series grows to $+\infty$.
 
@@ -1576,7 +1553,7 @@ If set $A$ is not a member of itself, then by definition, $A$ is an
 element of $A$.
 \end{itemize}
 
-There have been many attempts to reseolve the dilemma inherent in the
+There have been many attempts to resolve the dilemma inherent in the
 preceding analysis.  Many have striven for logical edifices that
 declare the question ``{\it Is the set $A$ a member of itself?}''
 somehow illegitimate.  One options that appeals to many is to assign
@@ -1584,7 +1561,7 @@ each sentence within a language $L$ a {\it type} (say, a positive
 integer).  One then allows a sentence of $L$ to refer only to
 sentences of lower type-number.
 
-The strategem of typing utterances within a language $L$ disables
+The stratagem of typing utterances within a language $L$ disables
 self-reference within $L$, hence defines away both Russel's paradox
 and G\"{o}del's paradox.
 
