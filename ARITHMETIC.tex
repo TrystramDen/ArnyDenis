@@ -1,4 +1,4 @@
-%version of 05-13-19
+%version of 05-14-19
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -944,10 +944,12 @@ in the set $\{v_1, v_2, \ldots, v_k\}$ is any function that can be
 written as a sum of {\it monomials}, \index{algebraic function!monomial}
 \index{function!algebraic!monomial} \index{monomial}
 each of the form
-\[ a_{\langle c_1, i_1 \rangle, \langle c_2, i_2 \rangle, \ldots, 
+\begin{equation}
+\label{eq:monomial}
+a_{\langle c_1, i_1 \rangle, \langle c_2, i_2 \rangle, \ldots, 
 \langle c_k, i_k \rangle} 
 v_1^{c_1} \times v_2^{c_2} \times \cdots \times v_k^{c_k}
-\]
+\end{equation}
 In this expression: the subscripted symbols of the form $a_z$ denote
 numbers that are called the {\it coefficients}
 \index{polynomial!coefficients} \index{monomial!coefficient} of the
@@ -1711,12 +1713,13 @@ formulas on the web.  \qed
 \index{polynomials!bivariate}
 \index{The Binomial Theorem}
 
-**HERE
-
-{\em Bivariate} polynomials are just polynomials each of whose
-summands/terms has the form $a x^b y^c$: $x$ and $y$ are the polynomial's
-variables; $a$ is the term's coefficient; $b$ and $c$ are the
-respective powers of $x$ and $y$ in this term.
+A polynomial $P$ is {\em bivariate} if each of its summand
+monomials---cf. (\ref{eq:monomial})---has the form
+\[ a \cdot x^b \cdot y^c \]
+In this expression: $x$ and $y$ are the monomial's {\em two} variables
+(``two'' because the polynomial is {\em bivariate}); $a$ is the
+monomial's coefficient; $b$ and $c$ are the respective powers of
+variables $x$ and $y$ in this monomial.
 
 Probably the simplest bivariate polynomials are the ones in the
 following family.
@@ -1725,8 +1728,8 @@ following family.
 \mbox{For } \ n \in \N^+, \ \ \
 P_n(x,y) \ \eqdef \ (x+y)^n.
 \end{equation}
-There are lessons to be learned from the structure of these
-polynomials, so let us begin to expand them using the arithmetic
+There are lessons to be learned from manipulating the structure of
+these polynomials, so let us begin to expand them using the arithmetic
 techniques we have learned earlier.
 \begin{eqnarray*}
 P_1(x,y) \ = \
@@ -1740,9 +1743,10 @@ P_3(x,y) \ = \
    & = & x^3 + 3x^2y + 3xy^2 + y^3  
 \end{eqnarray*}
 
-Let us stop to review what we are seeing.  We have remarked before
-that doing mathematics can sometimes involve a wonderfully exciting
-(quite sophisticated) pattern-matching game.  So, let us pattern-match!
+Let us stop to review what we are observing.  We have remarked before
+that doing mathematics can sometimes involve a wonderfully
+exciting---and quite sophisticated---pattern-matching game.  So, let
+us pattern-match!
 \begin{enumerate}
 \item
 The coefficients of the expanded $P_1(x,y)$ are $\langle 1,1 \rangle$.
@@ -1756,21 +1760,22 @@ seen a pattern of tuples that begins in the same manner?  As a rather
 broad hint, look at Fig.~\ref{fig:pascal-triangle}!  Could the
 coefficients of each $P_n$ possibly be the successive binomial
 coefficients
-\[ {n \choose 0}, \ {n \choose 1}, \ \ldots, \ {n \choose {n-1}}, \ {n
-  \choose n}
+\[ {n \choose 0}, \ \ {n \choose 1}, \ \ \ldots, \ \ {n \choose
+  {n-1}}, \ \ {n \choose n}
 \]
 Let us use induction to explore this possibility by expanding a
 generic $P_n$ with symbolic ``dummy'' coefficients and see what this
 says about $P_{n+1}$.  To this end, let $a_{n,n-r}$ denote the
 coefficient of $x^{n-r} y^r$ in the expansion of $P_n(x,y)$.  Using
-our symbolic coefficients $a_{n,k}$, we have
+our symbolic coefficients $a_{n,k}$, we have (omitting multiplication
+symbols to conserve horizontal space):
 \begin{eqnarray*}
 P_n(x,y) & = &
  x^n \ + \ a_{n,n-1} x^{n-1} y \ + \cdots + \\
-         &   &
+         &   & \hspace*{.15in}
 a_{n,n-r} x^{n-r} y^r \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+1}
 \ + \ a_{n,n-r-2} x^{n-r-2} y^{r+2} \\
-         &   &
+         &   & \hspace*{.15in}
 + \cdots + \ a_{n,1} x y^{n-1} \ + \ y^n
 \end{eqnarray*}
 Continuing with this symbolic evaluation, we have:
@@ -1779,11 +1784,11 @@ Continuing with this symbolic evaluation, we have:
 x \cdot P_n(x,y) & = &
  x^{n+1} \ + \ a_{n,n-1} x^n y \ + \cdots + \\
 \nonumber
-         &   &
+         &   & \hspace*{.15in}
 a_{n,n-r} x^{n-r+1} y^r \ + \ a_{n,n-r-1} x^{n-r} y^{r+1}
 \ + \ a_{n,n-r-2} x^{n-r-1} y^{r+2} \\
 \label{eq:xPk}
-         &   &
+         &   & \hspace*{.15in}
 + \cdots + \ a_{n,1} x^2 y^{n-1} \ + \ x y^n
 \end{eqnarray}
 and
@@ -1792,11 +1797,11 @@ and
 y \cdot P_n(x,y) & = &
  x^n y \ + \ a_{n,n-1} x^n y^2 \ + \cdots + \\
 \nonumber
-         &   &
+         &   & \hspace*{.15in}
 a_{n,n-r} x^{n-r} y^{r+1} \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+2}
 \ + \ a_{n,n-r-2} x^{n-r-2} y^{r+3} \\
 \label{eq:yPk}
-         &   &
+         &   & \hspace*{.15in}
 + \cdots  + \ a_{n,1} x^2 y^n \ + \ y^{n+1}
 \end{eqnarray}
 Because
@@ -1863,32 +1868,34 @@ For all $n \in \N$,
 
 This section is devoted to describing a true milestone in the history
 of mathematics, of logic, and of computing.  Even though the
-mathematical details necessary to fully describe the analyses that lead
-to this blockbuster result go way beyond the scope of an introductory
-text, this result has cultural lessons that make even its story
-valuable.  Moreover, once one {\em really} understands the result, one
-recognizes that the material in Sections~\ref{sec:Q-Z-R-cardinality}
-and~\ref{sec:pairing}---both of which the reader {\em does} have
-access to---supply essential mathematical underpinnings for the result.
+mathematical details necessary to fully describe the analyses that
+lead to this blockbuster result go way beyond the scope of an
+introductory text, this result has cultural lessons that make even its
+story valuable.  Moreover, once one {\em really} understands the
+result, one recognizes that the material in
+Sections~\ref{sec:Q-Z-R-cardinality} and~\ref{sec:pairing}---both of
+which the reader {\em does} have background for, hence, access
+to---supply essential mathematical underpinnings for the result.
 
 In 1900, the influential German mathematician David Hilbert
 \index{Hilbert, David} set forth $23$ problems to serve as a ``bucket
-list''\footnote{The ``bucket'' is not yet empty.  A number of Hilbert's
-  original $23$ are yet to be solved.}~for the world mathematics
-community at the dawn of the twentieth century.\footnote{Hilbert's
-  list was published in 1902 \cite{Hilbert02}, translated into English
-  by Mary Frances Winston Newson. \index{Newson, Mary Frances Winston}
-  Newson was the first American woman to receive a doctorate from the
-  University of G\"{o}ttingen, which was probably the world's premier
-  university for mathematical research in the late 19th and early 20th
-  centuries.}  Of Hilbert's $23$ problems, the $10$th stands out
-within the world of computing. \index{Hilbert's Tenth Problem} Stated
-in modern terminology, with a modern perspective, the Problem can be
-stated as follows.
+list''\footnote{The ``bucket'' is not yet empty.  A number of
+  Hilbert's original $23$ are yet to be solved.}~for the world
+mathematics community at the dawn of the twentieth
+century.\footnote{Hilbert's list was published in 1902
+  \cite{Hilbert02}; it was translated into English by Mary Frances
+  Winston Newson. \index{Newson, Mary Frances Winston} Newson was the
+  first American woman to receive a doctorate from the University of
+  G\"{o}ttingen, which was probably the world's premier university for
+  mathematical research in the late 19th and early 20th centuries.}
+Of Hilbert's $23$ problems, the $10$th stands out within the world of
+computing. \index{Hilbert's Tenth Problem} Stated in modern
+terminology, with a modern perspective, the Problem can be stated as
+follows.
 \begin{description}
 \item[{\bf Hilbert's Tenth Problem}]
-{\it Develop an algorithm that will decide---via a ``YES'' or ``NO''
-  answer---whether a given multivariate polynomial with integer
+{\it Develop an algorithm that will decide---via a {\sc yes} or {\sc
+    no} answer---whether a given multivariate polynomial with integer
   coefficients has any integer roots.  }
 \end{description}
 This problem attracted the attentions of many of the best mathematical
@@ -1912,35 +1919,62 @@ resolution are beyond an introductory text, a few words are in order
 about a fundamental way in which 20th-century mathematics turned the
 tables on all of mathematics to that point in history.
 
+\medskip
+
 Reaching back historically, it is worth pondering that---as we note in
-Section~\ref{sec:classical-v-modern-proofs}---one of the main movements
-in mathematics, beginning in the 19th century, had as its goal to
-codify the notion of ``rigorous proof''.
+Section~\ref{sec:classical-v-modern-proofs}---one of the main
+movements in mathematics, beginning in the 19th century, had as its
+goal to codify the notion of ``rigorous proof''.  Toward this end, one
+of Hilbert's goals in 1900---indeed, his $10$th one---was to have
+mathematicians rigorously prove that the notions of ``Truth'' and
+``Provability'' coincided, at least in ``elementary'' areas of
+mathematics.
+
+\smallskip
+
+This hope was, in fact, the first of Hilbert's dreams to be dashed: In
+the early 1930s, Austrian expatriate, then Princeton professor, Kurt
+G\"{o}del \index{G\"{o}del, Kurt} proved his celebrated {\it
+  Incompleteness Theorem} \cite{Goedel31}.
+\index{G\"{o}del's Incompleteness Theorems}
+Stated {\em very(!)}~informally, this theorem asserts that in any
+``reasonable'' mathematical system, there will always be {\sc true}
+statements that cannot be proved.
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+The crucial word ``reasonable'' in this statement means---again, very
+informally---that the system is capable of asserting elementary facts
+about triples, $x, y, z$, of positive integers:
+\begin{itemize}
+\item
+One of the given integers, say $z$, is the sum of the other two ($z =
+x+y$).
+\item
+One of the given integers, again say $z$, is the product
+of the two others ($z = x \times y$).
+\end{itemize}
+\end{minipage}
+}
+\bigskip
 
 \noindent
-One of Hilbert's goals in 1900 was to have mathematicians rigorously
-prove that the notions of ``Truth'' and ``Provability'' coincided.
-This hope was, inn fact, the first of Hilbert's dreams to be dashed,
-when, in the 1930s, Austrian expatriate Kurt G\"{o}del
-\index{G\"{o}del, Kurt} proved his celebrated {\it Incompleteness
-  Theorems}, \index{G\"{o}del's Incompleteness Theorems}
-which---stated {\em very} informally!---asserted that in any
-reasonable mathematical system, there would always be ``True''
-statements that could not be proved \cite{Goedel31}.  Building upon
-G\"{o}del's insights, English mathematician Alan Turing
-\index{Turing, Alan} soon thereafter proved---again, stated {\em very}
-informally!---that no matter how much ``smarts'' we try to build into
-a digital computer, there would always be functions---even $0$-$1$
-valued functions that the computer could not compute \cite{Turing36}.
-Theorem~\ref{thm:Hilberts-10th} can be reworded to assert that the
-integer-root-finding behavior called for in Hilbert's Tenth Problem is
-precisely one of Turing's {\it uncomputable} \index{uncomputable
-  function} functions!\footnote{The connections between G\"{o}del's
-  results and Turing's, and the manner in which both authors' work
-  connects to the work of German logician Georg Cantor 
-\index{Cantor, Georg} on infinite sets of numbers,
-\cite{Cantor74,Cantor78} are described in \cite{Rosenberg09} using
-consistent terminology to discuss all three authors' work.}
+Building on G\"{o}del's insights, English mathematician Alan Turing
+\index{Turing, Alan} soon thereafter proved---again, stated {\em
+  very(!)}~informally---that no matter how much ``smarts'' we build
+into a digital computer using digital logic, there will always be
+functions---even $0$-$1$ valued functions---that the computer cannot
+compute \cite{Turing36}.  Theorem~\ref{thm:Hilberts-10th} can be
+reworded to assert that the integer-root-finding behavior called for
+in Hilbert's Tenth Problem is one of Turing's {\it uncomputable}
+\index{uncomputable function} functions!\footnote{The connections
+  between G\"{o}del's results and Turing's, and the manner in which
+  both authors' work connects to the work of German logician Georg
+  Cantor \index{Cantor, Georg} on infinite sets of numbers,
+  \cite{Cantor74,Cantor78} are described in \cite{Rosenberg09} using
+  consistent terminology to discuss all three authors' work.}
 
 
 
