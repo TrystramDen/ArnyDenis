@@ -1,4 +1,4 @@
-%version of 05-14-19
+%version of 05-15-19
 
 \chapter{ARITHMETIC}
 \label{ch:arithmetic}
@@ -299,11 +299,20 @@ the integer $a-1$.  It is a {\em partial function} on $\N$, which is
 defined only when the argument $a$ is positive (so that $a-1 \in \N$).
 \end{itemize}
 
-The operations of addition and subtraction are said to be {\em
-  mutually inverse operations}\index{arithmetic!integers!additive
-  inverse} \index{arithmetic!integers!addition and subtraction are
-  mutually inverse} of each other because each can be used to ``undo''
-the other:
+The operations of addition and subtraction are {\em mutually inverse
+  operations}, in the sense of the following definition.  Functions
+$f$ is a {\it functional inverse}\index{functional inverse} of
+function $g$ if for all arguments $x$,
+\begin{equation}
+\label{eq:functional-inverse}
+f(g(x)) \ = \ x
+\end{equation}
+In suggestive terminology, applying function $f$ ``undoes'' the result
+of applying function $g$.  Within the current context, each of
+addition and subtraction is a functional inverse of the other, so that
+equation (\ref{eq:functional-inverse}) takes the following dual form.
+\index{arithmetic!integers!additive inverse} 
+\index{arithmetic!integers!addition and subtraction are mutually inverse}
 \[
 a \ = \ (a+b) -b \ = \ (a-b) +b
 \]
@@ -401,20 +410,21 @@ The number $0$ is the unique multiplicative annihilator.
 
 \medskip
 
-The operations of multiplication and division are said to be {\em
-  inverse operations}\index{arithmetic!integers!multiplicative inverse}
+The operations of multiplication and division are mutually inverse
+operations,
+\index{arithmetic!integers!multiplicative inverse}
 \index{arithmetic!integers!multiplication and division are mutually inverse}
-because, whenever both operations can be applied, each can be used to
-``undo'' the other:
-\[ a = (a \times b) \div b \ = \ (a \div b) \times b.  \]
+in the sense of equation (\ref{eq:functional-inverse}): each can be
+used to ``undo'' the other.
+\[ a = (a \times b) \div b \ = \ (a \div b) \times b  \]
 
-\subsubsection{Exponentiation: Raising a number to a power}
+\subsubsection{Exponentiation and Taking Logarithms}
 \label{sec:exponentiation}
 
 A conceptually powerful notational construct is the operation of {\it
   exponentiation}, \index{arithmetic!basic operations!exponentiation}
 i.e., {\it raising a number to a power}.
-\index{raising a number to a power}
+\index{arithmetic!raising a number to a power}
 For real numbers $a$ and $b$, the {\it $b$th power} of $a$, denoted
 $a^b$ is defined by the system of equations
 \begin{equation}
@@ -476,6 +486,74 @@ a^b.
 
 We are now prepared to manipulate and employ powers that are integral
 or fractional, positive, zero, or negative.
+
+\bigskip
+
+Just as addition has its inverse operation, subtraction, and
+multiplication has its inverse operation, division, the operation of
+exponentiation has its inverse operation, {\it taking logarithms}.
+Our main discussion of logarithms appears in
+Section~\ref{sec:logarithmic-fns}; we just define the operation here.
+
+For positive real numbers $a$ and $b$, the operation of taking
+logarithms is defined by the following dual equation.
+\index{arithmetic!basic operations!taking logarithms}
+\[ \log_b (b^a) \ = \ b^{\log_b a} \ = \ a \]
+We shall note in Section~\ref{sec:logarithmic-fns} that most of the
+main properties of this operation can be inferred from properties of
+the operation of exponentiation.
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+We have remarked in several places about the importance of noticing
+patterns as we ``do'' mathematics.  A pattern that leads to some
+beneficial insights has emerged in the current section.  The pattern
+suggests that in certain senses:
+\begin{itemize}
+\item
+The operations of addition, multiplication, and exponentiation
+``behave'' similarly to one another.
+\item
+The operations of subtraction, division, and taking logarithms
+``behave'' similarly to one another.
+\item
+The operations addition and subtraction relate to one another \\
+\hspace*{.2in}in much the same way as \\
+the operations multiplication and division relate to one another \\
+\hspace*{.2in}and in much the same way as \\
+the operations exponentiation and taking logarithms relate to one
+another.
+\end{itemize}
+This pattern is ``encoded'' by the following suggestive figure.
+\[ 
+\begin{array}{|ccccc|}
+\hline
+\mbox{addition}
+  & \approx &
+\mbox{multiplication}
+  & \approx &
+\mbox{exponentiation} \\
+\updownarrow & &
+\updownarrow & &
+\updownarrow \\
+\mbox{subtraction}
+  & \approx &
+\mbox{division}
+  & \approx &
+\mbox{taking logarithms} \\
+\hline
+\end{array}
+\]
+
+Of course, patterns are {\em de}scriptive rather than {\em
+  pre}scriptive, so one must use them only as hints to be followed,
+not as facts to be depended on.
+\end{minipage}
+}
+\bigskip
+
 
 \subsubsection{Binomial coefficients and Pascal's triangle}
 \label{sec:binomial-coeff}
@@ -1981,19 +2059,16 @@ in Hilbert's Tenth Problem is one of Turing's {\it uncomputable}
 \section{Exponential and Logarithmic Functions}
 \label{sec:exponential+logarithm}
 
-This section introduces the fundamentals of two extremely important
-classes of functions which are functional inverses of each other, in
-the following sense.  Functions $f$ and $g$ are {\it functional
-  inverses}\index{functional inverse} of each other if for all
-arguments $x$
-\begin{equation}
-\label{eq:functional-inverse}
-f(g(x)) \ = \ x.
-\end{equation}
+**HERE
+
+This section introduces the fundamentals of two important
+operations, which are functional inverses of each other, in
+the sense of equation (\ref{eq:functional-inverse}).
 
 \subsection{Basic definitions}
 
 \subsubsection{Exponential functions}.\index{Exponential functions}
+\label{sec:exponentials}
 
 A function $f$ is {\it exponential} if there is a positive number $b$
 such that, for all $x$,
