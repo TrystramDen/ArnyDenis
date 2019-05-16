@@ -2146,13 +2146,14 @@ last terms in the chain yields the claimed equation.
 
 \medskip
 
-As a historical note, Proposition~\ref{thm:log-add-multiply} provides
-the mathematical underpinning of the analogue computing device known
-as a {\it slide rule}. \index{slide rule} Without going into details,
-a slide rule is built from two straight sticks that are both marked
-off into a logarithmic scale and that are attached in a way that
-allows each to slide along the other (whence the name of the device);
-see Fig.~\ref{fig:slide-rule}.
+\noindent {\bf A historical note.}
+Proposition~\ref{thm:log-add-multiply} provides the mathematical
+underpinnings of the analogue computing device known as a {\it slide
+  rule}. \index{slide rule} Without going into details, a slide rule
+is built from two straight sticks that are both marked off according
+to a logarithmic scale.  The sticks are attached in a way that allows
+each to slide along the other (whence the name of the device); see
+Fig.~\ref{fig:slide-rule}.
 \begin{figure}[htb]
 \[
 \begin{array}{ll}
@@ -2176,15 +2177,17 @@ B \hspace*{.35in} &
 \caption{A schematic view of a slide rule performing a multiplication.
   If one slides Stick $A$ to position $a$ of Stick $B$, then position
   $b$ of Stick $A$ appears directly above position $a \cdot b$ of
-  Stick $B$.}
+  Stick $B$.  Thereby, the addition of distances on the rule's
+  logarithmic scale is used to compute products.}
 \label{fig:slide-rule}
 \end{figure}
 The important property of this device is illustrated in the figure:
 When one positions the origin (number $1$ of stick $A$ at the position
 of stick $B$ that corresponds to number $a$, then the number on stick
 $B$ that corresponds to the number $b$ on stick $A$ is $a \times b$.
-In short, the device translates linear motion (the sliding of the
-sticks relative to one another) into numerical multiplication.
+In short, the logarithmic scale on the device's sticks enables it to
+translate linear motion (the sliding of the sticks relative to one
+another) into numerical multiplication.
 
 \bigskip
 
@@ -2285,149 +2288,6 @@ For any integers $a, b >1$,
 \end{equation}
 \end{prop}
 
-
-\subsection{Exponentials and logarithms within information theory}
-\label{sec:count-strings}
-
-**HERE
-
-The student should recognize and be able to reason about the following
-facts.  If one has an alphabet of $a$ letters/symbols and must provide
-distinct string-label ``names'' for $n$ items, then at least one
-string-name must have length no shorter than $\lceil \log_a n \rceil$.
-
-\begin{prop}
-\label{thm:bound-stringnames-lgth-k}
-Say that one must assign distinct labels to $n$ items, via strings
-over an alphabet of $a$ symbols.  Then at least one string-label must
-have length no shorter than $\lceil \log_a n \rceil$.
-\end{prop}
-
-\begin{proof}
-Let $\Sigma$ be an alphabet of $a$ symbols.  For each integer $k \geq
-0$, let $\Sigma^{(k)}$ denote the set of all length-$k$ strings over
-$\Sigma$.  The bound of Proposition~\ref{thm:bound-stringnames-lgth-k}
-follows by counting the number of strings of various lengths over
-$\Sigma$, because each such string can label at most one item.  Let
-us, therefore, inductively evaluate the cardinality $|\Sigma^{(k)}|$
-of each set $\Sigma^{(k)}$.
-\begin{itemize}
-\item
-$|\Sigma^{(0)}| =1$
-
-This is because the null-string $\varepsilon$ \index{$\varepsilon$:
-  the null string, of length $0$} \index{null string $\varepsilon$}
-is the unique string in $\Sigma^{(0)}$; i.e., $\Sigma^{(0)} = \{
-\varepsilon \}$.
-
-\item
-$|\Sigma^{(k+1)}| = |\Sigma| \cdot |\Sigma^{(k)}|$.
-
-This reckoning follows from the following recipe for creating all
-strings over $\Sigma$ of length $k+1$ from all strings of length $k$.
-\[
-\Sigma^{(k+1)} \ = \ \{ \sigma x \ | \ \sigma \in \Sigma \ \ \mbox{
-  and } \ \ x \in \Sigma^{(k)} \}
-\]
-In other words, every length-$(k+1)$ string over $\Sigma$ is obtained
-by taking a length-$k$ string $x$ over $\Sigma$ and {\em prepending}
-\index{prepend a symbol to a string} to it a symbol from $\Sigma$,
-i.e., adding $x$ an additional leftmost symbol.
-
-This recipe is correct because
-  \begin{itemize}
-  \item
-Each string in $\Sigma^{(k+1)}$, as constructed, has length $k+1$.
-
-This is because the recipe adds a single symbol to a length-$k$
-string.
-  \item
-For each string $x \in \Sigma^{(k)}$, there are $|\Sigma|$ distinct
-strings in $\Sigma^{(k+1)}$, as constructed.
-
-This is because each string in $\Sigma^{(k+1)}$ begins with a distinct
-symbol from $\Sigma$.
-
-  \item
-$\Sigma^{(k+1)}$, as constructed, contains all strings of length $k+1$
-over $\Sigma$.
-
-This is because for each $\sigma \in \Sigma$ and each $x \in
-\Sigma^{(k)}$, the string $\sigma x$ is in $\Sigma^{(k+1)}$, as
-constructed.
-  \end{itemize}
-\end{itemize}
-We thus have the following recurrence.
-\begin{eqnarray*}
-|\Sigma^{(0)}| & = & 1 \\
-|\Sigma^{(k+1)}| & = & |\Sigma| \cdot |\Sigma^{(k)}| \ \ \ \ 
-\mbox{ for } \ k \geq 0
-\end{eqnarray*}
-Using the Master Theorem of Section~\ref{sec:masterTheorem}, we thus
-find explicitly that:
-
-\noindent
-For each $\ell \in \N$,
-\[ |\Sigma^{(\ell)}| \ \ = \ \ \frac{|\Sigma|^{\ell+1} \ - \ |\Sigma|}
-{|\Sigma| -1} \ \ \leq \ \ c \cdot |\Sigma|^{\ell}
-\]
-for some constant $c$.  In order for this quantity to reach the value
-$n$, we must have
-\[ \ell \ > \ d \cdot \log_{|\Sigma|} n   \]
-for some small constant $d$.  \qed
-\end{proof}
-
-The following result can be considered anther way of looking at
-Proposition~\ref{thm:bound-stringnames-lgth-k}.
-
-\begin{prop}
-\label{thm:Num-strings-lgth-k}
-The number of distinct strings of length $k$ over an alphabet of $a$
-symbols is $a^k$.
-\end{prop}
-
-\begin{proof}
-As in Proposition~\ref{thm:bound-stringnames-lgth-k}, let us focus on
-the generic $a$-letter alphabet $\Sigma \ = \ \{\sigma_1, \sigma_2,
-\ldots, \sigma_a\}$.  We argue by induction on string-length $k$.
-
-\noindent
-{\it Bases.}
-The induction we develop can start either with strings of length $k=0$
-or with strings of length $k=1$.  Some people countenance the {\it
-  null string} \index{word!the null word} \index{string!the null string}
-$\varepsilon$,  \index{word!$\varepsilon$: the null word}
-\index{string!$\varepsilon$: the null string} which contains no
-symbols, hence has length $0$ as a legitimate string; others insist
-that the status ``string'' can be enjoyed only by non-null strings.
-This is purely a matter of taste.
-
-At any rate, everyone agrees that, if one accepts $\varepsilon$ as a
-legitimate string over alphabet $\Sigma$, then there is only $a^0 = 1$
-such word; this is the case $k=0$ of the proposition.  And, everyone
-agrees that, if you insist on non-null tsrings, then there are $a^1 =
-a$ such strings over $\Sigma$, one for each symbol $\sigma \in
-\Sigma$; this is the case $k=1$ of the proposition.  No matter which
-side of the fence you choose to stand on, we have verified our
-induction's base case.
-
-\noindent
-{\it The inductive hypothesis.}
-Say that for all string-lengths $k$ up through $n$, there are $a^k$
-distinct words of length $k$ over $\Sigma$.
-
-\noindent
-{\it Extending the induction.}
-Take each length-$n$ string $x$ over $\Sigma$, and {\em append}
-\index{append a symbol to a string} to it, in turn, each of $\Sigma$'s
-$a$ symbols, i.e., add each symbol to $x$ as an additional rightmost
-symbol.  One thereby creates $a$ new strings each obviously distinct
-$x$, namely, $x \sigma_1$, $x \sigma_2$, \ldots, $x \sigma_a$.  We
-have thus created $a^{n+1}$ distinct length-$(n+1)$ words over
-$\Sigma$ from $\Sigma$'s $a^n$ distinct length-$n$ words.
-
-The induction is extended, which completes the proof.  \qed
-\end{proof}
 
 \section{$\oplus$ Pointers to Specialized Topics}
 

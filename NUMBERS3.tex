@@ -475,79 +475,6 @@ it is the numerical value of a numeral of the form
 (\ref{eq:real-numeral}).
 \end{prop}
 
-\bigskip
-
-We close this section with a result that demonstrates the importance
-of choosing the right number representation.  In
-Section~\ref{sec:exponentiation} we defined the operation of
-exponentiation.  Experimenting with computing instantiations of the
-operation, one finds quickly that computing the number $b^n$ for large
-values of $n$ is quite tedious, requiring many multiplications.
-Indeed, a straightforward use of the definition would lead to a
-computation requiring $\Theta(n)$ multiplications to produce $b^n$
-from $b$ and $n$.  Now that we know about positional number
-representations, though, we have access to an algorithm tha requires
-only $O(\log n)$ multiplications.
-
-\begin{prop}
-\label{thm:fast-exponentiation}
-Given positive integers $b$ and $n$, one can compute the number $b^n$
-withn $O(\log n)$ multiplications.
-\end{prop}
-
-\begin{proof}
-We begin by forming the minimal-length base-$2$ numeral for $n$.  (Our
-use of base $2$ is only for convenience.)  We know that this numeral
-has $O(\log n)$ bits nd has the following form.
-\[ n \ = \ a_0 \ + \ a_1 \cdot 2 \ + \ a_2 \cdot 2^2 \ + \cdots +
-\ a_\ell \cdot 2^\ell
-\]
-where
-\begin{itemize}
-\item
-$\ell = O(\log n)$
-\item
-Each $a_i \in \{0,1\}$, and $a_\ell = 1$
-\end{itemize}
-
-By definition of the operation of exponentiation, we know further that
-\begin{eqnarray}
-\nonumber
- b^n & = &
-b^{a_0  + a_1 \cdot 2  +  a_2 \cdot 2^2  + \cdots + a_\ell \cdot
-  2^\ell} \\
-\label{eq:binary-exponent-n}
-     & = &
-b^{a_0} \times b^{a_1 \cdot 2} \times b^{a_2 \cdot 2^2} \times \cdots
-\times b^{a_\ell \cdot 2^\ell}
-\end{eqnarray}
-Equation (\ref{eq:binary-exponent-n}) has an important message.  Say
-that we had access to all ``relevant'' power-of-$2$ powers of $b$, i.e.,
-powers of the form $b^{2^k}$, where the binary representation of $n$
-has a $1$ in digit-position $k$.  Then $\log n$ multiplications of
-these powers would yield $b^n$.
-
-In fact, we can generate {\em all} of the power-of-$2$ powers
-of $b$ via a sequence of $O(\log n)$ multiplications, as follows.
-Establish a sequence of $\log n$ bins to store the ``relevant'' powers
-of $b$ as we generate them.
-\begin{itemize}
-\item
-Place copies of $b^0 = 1$ and $b^1 = b$ in the bins set aside for
-these values.
-
-This requires $0$ multiplications.
-\item
-If $b^k$ is the largest power-of-$2$ power of $b$ that we **HERE
-\end{itemize}
-
-DONE
-\qed
-\end{proof}
-**HERE
-fast exponentiation
-
-
 \subsection{$\oplus$ Positional Number Systems with Special Properties}
 \label{sec:numerals-special-properties}
 
@@ -1081,7 +1008,8 @@ evaluated at the point $x=b$:
 $\mbox{\sc val}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ +
 \cdots + \ a_1 b \ + \ a_0$.
 
-\noindent
+\subsubsection{Horner's Rule and fast numeral evaluation}
+
 It appears at first glance that $\Theta(d^2)$ multiplications are
 needed to evaluate the preceding degree-$d$ univariate
 polynomial---which would not give us a very efficient procedure for
@@ -1158,6 +1086,84 @@ Current Remainder \\
 We thereby have the following equation which specifies the base-$2$
 numeral for $143$.
 \[ 143_{10} \ = \ 10001111_2 \]
+
+
+\subsubsection{Horner's Rule and fast exponentiation} 
+
+We close this section with a result that demonstrates the importance
+of choosing the right number representation.  In
+Section~\ref{sec:exponentiation} we defined the operation of
+exponentiation.  Experimenting with computing instantiations of the
+operation, one finds quickly that computing the number $b^n$ for large
+values of $n$ is quite tedious, requiring many multiplications.
+Indeed, a straightforward use of the definition would lead to a
+computation requiring $\Theta(n)$ multiplications to produce $b^n$
+from $b$ and $n$.  Now that we know about positional number
+representations, though, we have access to an algorithm tha requires
+only $O(\log n)$ multiplications.
+
+\begin{prop}
+\label{thm:fast-exponentiation}
+Given positive integers $b$ and $n$, one can compute the number $b^n$
+withn $O(\log n)$ multiplications.
+\end{prop}
+
+\begin{proof}
+We begin by forming the minimal-length base-$2$ numeral for $n$.  (Our
+use of base $2$ is only for convenience.)  We know that this numeral
+has $O(\log n)$ bits nd has the following form.
+\[ n \ = \ a_0 \ + \ a_1 \cdot 2 \ + \ a_2 \cdot 2^2 \ + \cdots +
+\ a_\ell \cdot 2^\ell
+\]
+where
+\begin{itemize}
+\item
+$\ell = O(\log n)$
+\item
+Each $a_i \in \{0,1\}$, and $a_\ell = 1$
+\end{itemize}
+
+By definition of the operation of exponentiation, we know further that
+\begin{eqnarray}
+\nonumber
+ b^n & = &
+b^{a_0  + a_1 \cdot 2  +  a_2 \cdot 2^2  + \cdots + a_\ell \cdot
+  2^\ell} \\
+\label{eq:binary-exponent-n}
+     & = &
+b^{a_0} \times b^{a_1 \cdot 2} \times b^{a_2 \cdot 2^2} \times \cdots
+\times b^{a_\ell \cdot 2^\ell}
+\end{eqnarray}
+Equation (\ref{eq:binary-exponent-n}) has an important message.  Say
+that we had access to all ``relevant'' power-of-$2$ powers of $b$, i.e.,
+powers of the form $b^{2^k}$, where the binary representation of $n$
+has a $1$ in digit-position $k$.  Then $\log n$ multiplications of
+these powers would yield $b^n$.
+
+In fact, we can generate {\em all} of the power-of-$2$ powers
+of $b$ via a sequence of $O(\log n)$ multiplications, as follows.
+Establish a sequence of $\log n$ bins to store the ``relevant'' powers
+of $b$ as we generate them.
+\begin{itemize}
+\item
+Place copies of $b^0 = 1$ and $b^1 = b$ in the bins set aside for
+these values.
+
+This requires $0$ multiplications.
+\item
+If $b^k$ is the largest power-of-$2$ power of $b$ that we **HERE
+\end{itemize}
+
+DONE
+\qed
+\end{proof}
+**HERE
+fast exponentiation
+
+
+
+
+
 
 \ignore{*****
 \bigskip
