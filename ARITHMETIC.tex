@@ -2144,93 +2144,57 @@ last terms in the chain yields the claimed equation.
 \qed
 \end{proof}
 
-{\Arny Can we get a picture of a slide rule?}
-
-As a historical note, Proposition~\ref{thm:log-add-multiply} is the
-mathematical underpinning of the analogue computer known as a {\it
-  slide rule}. \index{slide rule}  Without going into details, a slide
-rule is built from two straight sticks that are both marked off into a
-logarithmic scale and that are attched in a way that allows each to
-slide along the other (whence the name of the device).  When one
-positions the origin of stick $A$ at the position of stick $B$ that
-corresponds to number $a$, then the number 
-is $a \times b$.
-\[
-\begin{array}{c|c|c|c|c|c|c|c|c|c|c}
-\begin{array}{c}
- \\
- \\
-1
-\end{array}
-\begin{array}{c}
-1 \\
-\updownarrow \\
-a
-\end{array}
-\begin{array}{c}
-b \\
-\updownarrow \\
-a \cdot b
-\end{array}
-\begin{array}{c}
- \\
- \\
-2
-\end{array}
-\begin{array}{c}
-2 \\
-  \\
-
-\end{array}
-\begin{array}{c}
- \\
- \\
-3
-\end{array}
-\begin{array}{c}
-3 \\
-  \\
-
-\end{array}
-\begin{array}{c}
- \\
- \\
-4
-\end{array}
-\begin{array}{c}
-4 \\
-  \\
-
-\end{array}
-\begin{array}{c}
- \\
- \\
-5
-\end{array}
-\begin{array}{c}
-5 \\
-  \\
-
-\end{array}
-\end{array}
-\]
-\[
-\begin{array}{ccccccccccc}
-  & \fbox{$1$} & \fbox{$b$} & \fbox{} & \fbox{$2$} & \fbox{} &
-  \fbox{$3$} & \fbox{} & \fbox{$4$} & \fbox{}  & \fbox{$5$}  \\
-  & \updownarrow & \updownarrow &   &   &   &   &   &   &   &  \\
-\fbox{$1$} & \fbox{$a$} & \fbox{$a \cdot b$} & \fbox{$2$} & \fbox{} &
-  \fbox{$3$} & \fbox{} & \fbox{$4$} & \fbox{}  & \fbox{$5$} &
-\end{array}
-\]
-
 \medskip
 
-Many students believe that the following result is a {\em convention}
-rather than a consequence of the basic definitions.  {\em The logarithm
-  of $1$ to any base is $0$.}
+As a historical note, Proposition~\ref{thm:log-add-multiply} provides
+the mathematical underpinning of the analogue computing device known
+as a {\it slide rule}. \index{slide rule} Without going into details,
+a slide rule is built from two straight sticks that are both marked
+off into a logarithmic scale and that are attached in a way that
+allows each to slide along the other (whence the name of the device);
+see Fig.~\ref{fig:slide-rule}.
+\begin{figure}[htb]
+\[
+\begin{array}{ll}
+A \hspace*{.35in} &
+\hspace*{.35in}
+\fbox{$1$ \hspace*{.3in} \fbox{$b$} 
+\hspace*{.7in} $2$ 
+\hspace*{.5in} $3$ 
+\hspace*{.25in} $4$ 
+\hspace*{.125in} $5$} \\ 
+  &
+\hspace*{.4in} \updownarrow \hspace*{.41in} \updownarrow \\
+B \hspace*{.35in} &
+\fbox{$1$\hspace*{.24in}\fbox{$a$}\hspace*{.25in}\fbox{$a \cdot b$}
+\hspace*{.3in} $2$ 
+\hspace*{.5in} $3$ 
+\hspace*{.25in} $4$ 
+\hspace*{.125in} $5$}
+\end{array}
+\]
+\caption{A schematic view of a slide rule performing a multiplication.
+  If one slides Stick $A$ to position $a$ of Stick $B$, then position
+  $b$ of Stick $A$ appears directly above position $a \cdot b$ of
+  Stick $B$.}
+\label{fig:slide-rule}
+\end{figure}
+The important property of this device is illustrated in the figure:
+When one positions the origin (number $1$ of stick $A$ at the position
+of stick $B$ that corresponds to number $a$, then the number on stick
+$B$ that corresponds to the number $b$ on stick $A$ is $a \times b$.
+In short, the device translates linear motion (the sliding of the
+sticks relative to one another) into numerical multiplication.
+
+\bigskip
+
+Many students believe that the following important property of
+logarithms is a {\em convention} rather than a consequence of the
+basic definitions: {\em The logarithm of $1$ to any base is $0$.}  We
+correct this misapprehension now.
 
 \begin{prop}
+\label{thm:log1=0}
 For any base $b >1$,
 \[ \log_b 1 \ = \ 0 \]
 \end{prop}
@@ -2244,6 +2208,9 @@ We note the following chain of equalities.
 Hence, $b^{\log_b 1} \ = \ 1$.  If $\log_b 1$ did not equal $0$, then
 $b^{\log_b 1}$ would exceed $1$.  \qed
 \end{proof}
+
+Similar exploitation of the basic definitions yields the following
+fundamental properties of logarithms (to any base).
 
 \begin{prop}
 For all bases $b > 1$ and all numbers $x, y$,
@@ -2264,11 +2231,11 @@ For any base $b >1$,
 \end{prop}
 
 \begin{proof}
-This follows from the fact that $\log_b 1 =0$, coupled with the
-product law for logarithms.
+By the product law for logarithms,
 \[ \log_b x + \log_b (1/x) \ = \ \log_b (x \cdot (1/x))
-\  = \ \log_b 1 \ = \ 0 
+\  = \ \log_b 1
 \]
+An invocation of Proposition~\ref{thm:log1=0} completes the proof.
 \qed
 \end{proof}
 
@@ -2282,31 +2249,32 @@ For any bases $a, b >1$,
 
 \begin{proof}
 We begin by noting that, by definition,
-Note that
 \begin{equation}
 \label{eq:log-exp-1}
- x \ = \ b^{\log_b x} \ = \ a^{\log_a x} .
+ x \ = \ b^{\log_b x} \ = \ a^{\log_a x}
 \end{equation}
 Let us take the base-$b$ logarithm of the second and third expressions
 in (\ref{eq:log-exp-1}) and then invoke the product law for logarithms.
-From the second expression in (\ref{eq:log-exp-1}), we find that
+From the second expression, we find that
 \begin{equation}
 \label{eq:log-exp-2}
- \log_b \left(b^{\log_b x} \right) \ = \ \log_b x .
+ \log_b \left(b^{\log_b x} \right) \ = \ \log_b x
 \end{equation}
-From the third expression in (\ref{eq:log-exp-1}), we find that
+From the third expression, we find that
 \begin{equation}
 \label{eq:log-exp-3}
  \log_b \left( a^{\log_a x} \right) \ = \
-\left(\log_b a \right) \cdot \left( \log_a x \right).
+\left(\log_b a \right) \cdot \left( \log_a x \right)
 \end{equation}
-We know from (\ref{eq:log-exp-1}) that the righthand expressions in
-(\ref{eq:log-exp-2}) and (\ref{eq:log-exp-3}) are equal, whence
-(\ref{eq:log-exp-0}).   \qed
+We know from the double equation (\ref{eq:log-exp-1}) that the
+righthand expressions in equations (\ref{eq:log-exp-2}) and
+(\ref{eq:log-exp-3}) are equal.  Equation (\ref{eq:log-exp-0}) follows
+by transitivity.  \qed
 \end{proof}
 
-If we set $x = b$ in (\ref{eq:log-exp-0}), then we find the following
-marvelous equation.
+\noindent
+By setting $x = b$ in equation (\ref{eq:log-exp-0}), we discover the
+following marvelous equation.
 
 \begin{prop}
 For any integers $a, b >1$,
@@ -2320,6 +2288,8 @@ For any integers $a, b >1$,
 
 \subsection{Exponentials and logarithms within information theory}
 \label{sec:count-strings}
+
+**HERE
 
 The student should recognize and be able to reason about the following
 facts.  If one has an alphabet of $a$ letters/symbols and must provide
