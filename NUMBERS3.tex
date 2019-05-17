@@ -1,4 +1,4 @@
-%version of 05-16-19
+%version of 05-17-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -1011,15 +1011,15 @@ $\mbox{\sc val}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ +
 \subsubsection{Horner's Rule and fast numeral evaluation}
 
 It appears at first glance that $\Theta(d^2)$ multiplications are
-needed to evaluate the preceding degree-$d$ univariate
-polynomial---which would not give us a very efficient procedure for
-producing a numeral for $n$.  However, we can develop an efficient,
-$O(d)$-multiplication, procedure by adapting a method of rewriting
-univariate polynomials which is known variously as {\it Horner's rule}
-or {\it Horner's scheme} \cite{Horner}. \index{Horner's rule}
-\index{polynomial!Horner's rule} \index{Horner's scheme} 
-\index{polynomial!Horner's scheme}
-By describing Horner's rule on a degree-$3$ polynomial, we should give
+needed to evaluate the degree-$d$ univariate polynomial $\mbox{\sc
+  val}_{b}(x)$---which would not give us a very efficient procedure
+for producing a numeral for $n$.  However, we can develop an
+efficient, $O(d)$-multiplication, procedure by adapting a method of
+rewriting univariate polynomials, which is known as {\it Horner's
+  rule} (the name we shall use) or {\it Horner's scheme}
+\cite{Horner}. \index{Horner's rule} \index{polynomial!Horner's rule}
+\index{Horner's scheme} \index{polynomial!Horner's scheme} By
+describing Horner's rule on a degree-$3$ polynomial, we should give
 the reader adequate preparation for our $O(d)$-division recipe for
 producing a $d$-digit base-$b$ numeral for integer $n$.
 
@@ -1050,16 +1050,21 @@ $P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ + \ a_3 x))$
 \end{itemize}
 
 \noindent
-Described procedurally: We iteratively divide $n$ by $b$, using {\it
-  Euclidean division} (Section~\ref{sec:euclidian}).  It is easy to
-see that the {\em remainder} upon each consecutive division is the
-next lowest-order digit in the base-$b$ numeral for $n$.
+We now describe, by example, our efficient procedure for computing a
+base-$b$ numeral for a given integer $n$.  The procedure iteratively
+divides $n$ by $b$, {\em using Euclidean division} (see
+Section~\ref{sec:euclidian}).  We claim that the {\em remainder} upon
+each consecutive division is the next lowest-order digit in the
+base-$b$ numeral for $n$.  (We leave this verification as an
+exercise.)
+
+{\Arny Let us add this verification to the Exercises for this chapter.}
 
 \bigskip
 
 \noindent {\it Illustrating the procedure.}
-We use the procedure to produce the base-$2$ (binary) numeral for $n =
-143$.
+We produce the base-$2$ (binary) numeral for $n = 143$, (binary) digit
+by (binary) digit.
 
 \medskip
 
@@ -1089,6 +1094,21 @@ numeral for $143$.
 
 
 \subsubsection{Horner's Rule and fast exponentiation} 
+
+**HERE
+
+\begin{eqnarray*}
+19_{10} & = & 10011_{2} \\ 
+        & = & 2^4 \ + \ 2^1 \ + \ 1 \\
+        & = & 1 + 2 \times (1 + 2 \times (0 + 2 \times (0 + 2 \times (1))))
+\end{eqnarray*}
+
+So 
+
+\begin{eqnarray*}
+b^{19_{10}} & = & b^{10011_{2}} \\
+        & = & ((((b^2)^2)^2)^2) \times b^2 \times b
+\end{eqnarray*} 
 
 We close this section with a result that demonstrates the importance
 of choosing the right number representation.  In
