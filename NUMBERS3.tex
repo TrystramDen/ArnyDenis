@@ -1,4 +1,4 @@
-%version of 05-17-19
+%version of 05-18-19
 
 \chapter{NUMBERS III: OPERATIONAL NUMBER REPRESENTATIONS}
 \label{ch:numerals}
@@ -1094,94 +1094,132 @@ numeral for $143$.
 
 
 \subsubsection{Horner's Rule and fast exponentiation} 
+\index{fast exponentiation}
 
-**HERE
+We now develop a procedure for exponentiating which is ``fast'' (the
+popular term): It computes the power
+\[ b^n \]
+where both $b$ and $n$ are positive integers ($b, n \in \N^+$) using a
+number of multiplications that is {\em logarithmic in} $n$, rather
+than the linear number that a direct approach would use.
 
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.97\textwidth}
+Although the problem we attack here falls strictly within the domain
+of {\em algorithmics}, we discuss it in our mathematics text because:
+($a$) it provides a vivid example of the importance of data {\em
+  representation}; ($b$) it illustrates a direct, consequential
+application of Horner's rule, which could be misinterpreted as an
+esoteric puzzle rather than an important technique.
+\end{minipage}
+}
+
+\bigskip
+
+\noindent {\it The setup}.
+Our ``fast'' exponentiator proceeds as follows:
+\begin{enumerate}
+\item
+Compute the (shortest) base-$2$ numeral for the power $n$ that we
+are raising the base $b$ to.
+
+As a running example, if $n \leq 31$, then this numeral has the form
+\[ a_4 a_3 a_2 a_1 a_0 \]
+where each $a_i \in \{0,1\}$ and
+\[ n \ = \
+a_4 \cdot 2^4 \ + \  a_3 \cdot 2^3 \ + \  a_2 \cdot 2^2 \ + \  a_1
+\cdot 2^1 \ + \ a_0
+\] 
+
+\item
+Use Horner's Rule to rewrite the polynomial for $n$ as follows
+\[ n \ = \
+a_0 \ + \ 2 \cdot (a_1 \ + \ 2 \cdot (a_2 \ + \ 2 \cdot (a_3 \ + \
+2 \cdot a_4 ))) \]
+
+\item
+Interpret the ``ground level'' computation of the numeral-polynomial
+within the ``exponent level'' of base $b$.
+
+Keep in mind that this ``promotes'' the operations of the polynomial
+\begin{itemize}
+\item
+Each addition of the polynomial spawns a multiplication at the new
+ground level, because $b^{c + d} \ = \ b^c \cdot b^d$.
+\item
+Each multiplication of the polynomialspawns an exponentiation at the
+new ground level, because $b^{(c \cdot d)} \ = \ (b^c)^d$.
+\end{itemize}
+
+Using our running example, we have
 \begin{eqnarray*}
-19_{10} & = & 10011_{2} \\ 
-        & = & 2^4 \ + \ 2^1 \ + \ 1 \\
-        & = & 1 + 2 \times (1 + 2 \times (0 + 2 \times (0 + 2 \times (1))))
+b^n & = &
+ b^{a_0 \ + \ 2 \cdot (a_1 \ + \ 2 \cdot (a_2 \ + \ 2 \cdot (a_3 \ + \
+          2 \cdot a_4 )))} \\
+    & = &
+ b^{a_0} \ \times \ 
+\left( b^{
+(a_1 \ + \ 2 \cdot (a_2 \ + \ 2 \cdot (a_3 \ + \ 2 \cdot a_4 )))}
+\right)^2 \\
+    & = &
+ b^{a_0} \ \times \
+\left(
+b^{a_1}  \ \times \
+\left(
+b^{(a_2 \ + \ 2 \cdot (a_3 \ + \ 2 \cdot a_4 ))}
+\right)^2
+\right)^2 \\
+    & = &
+b^{a_0} \ \times \
+\left(
+b^{a_1}  \ \times \
+\left(
+b^{a_2}  \ \times \
+\left(
+b^{(a_3 \ + \ 2 \cdot a_4 )}
+\right)^2
+\right)^2
+\right)^2 \\
+    & = &
+b^{a_0} \ \times \
+\left(
+b^{a_1}  \ \times \
+\left(
+b^{a_2}  \ \times \
+\left(
+b^{a_3}  \ \times \
+\left(
+b^{a_4}
+\right)^2
+\right)^2
+\right)^2
+\right)^2
 \end{eqnarray*}
+\end{enumerate}
+Note that the importance of our using base-$2$ numerals is that the
+operation of squaring requires only a single multiplication.
 
-So 
-
+Two simple examples should round out this section:
 \begin{eqnarray*}
 b^{19_{10}} & = & b^{10011_{2}} \\
-        & = & ((((b^2)^2)^2)^2) \times b^2 \times b
+        & = & ((((b^2)^2)^2)^2) \times b^2 \times b \\
+b^{31_{10}} & = & b^{11111_{2}} \\
+        & = & ((((b^2)^2)^2)^2) \times (((b^2)^2)^2) \times ((b^2)^2) \times b^2 \times b
 \end{eqnarray*} 
 
-We close this section with a result that demonstrates the importance
-of choosing the right number representation.  In
-Section~\ref{sec:exponentiation} we defined the operation of
-exponentiation.  Experimenting with computing instantiations of the
-operation, one finds quickly that computing the number $b^n$ for large
-values of $n$ is quite tedious, requiring many multiplications.
-Indeed, a straightforward use of the definition would lead to a
-computation requiring $\Theta(n)$ multiplications to produce $b^n$
-from $b$ and $n$.  Now that we know about positional number
-representations, though, we have access to an algorithm tha requires
-only $O(\log n)$ multiplications.
 
-\begin{prop}
+With only a few additional details, we could flesh out the preceding
+discussion to a formal proof of the following result.
+
+\index{fastexponentiation}
+
+\begin{prop}[Fast Exponentiation]
 \label{thm:fast-exponentiation}
 Given positive integers $b$ and $n$, one can compute the number $b^n$
-withn $O(\log n)$ multiplications.
+within $O(\log n)$ multiplications.
 \end{prop}
-
-\begin{proof}
-We begin by forming the minimal-length base-$2$ numeral for $n$.  (Our
-use of base $2$ is only for convenience.)  We know that this numeral
-has $O(\log n)$ bits nd has the following form.
-\[ n \ = \ a_0 \ + \ a_1 \cdot 2 \ + \ a_2 \cdot 2^2 \ + \cdots +
-\ a_\ell \cdot 2^\ell
-\]
-where
-\begin{itemize}
-\item
-$\ell = O(\log n)$
-\item
-Each $a_i \in \{0,1\}$, and $a_\ell = 1$
-\end{itemize}
-
-By definition of the operation of exponentiation, we know further that
-\begin{eqnarray}
-\nonumber
- b^n & = &
-b^{a_0  + a_1 \cdot 2  +  a_2 \cdot 2^2  + \cdots + a_\ell \cdot
-  2^\ell} \\
-\label{eq:binary-exponent-n}
-     & = &
-b^{a_0} \times b^{a_1 \cdot 2} \times b^{a_2 \cdot 2^2} \times \cdots
-\times b^{a_\ell \cdot 2^\ell}
-\end{eqnarray}
-Equation (\ref{eq:binary-exponent-n}) has an important message.  Say
-that we had access to all ``relevant'' power-of-$2$ powers of $b$, i.e.,
-powers of the form $b^{2^k}$, where the binary representation of $n$
-has a $1$ in digit-position $k$.  Then $\log n$ multiplications of
-these powers would yield $b^n$.
-
-In fact, we can generate {\em all} of the power-of-$2$ powers
-of $b$ via a sequence of $O(\log n)$ multiplications, as follows.
-Establish a sequence of $\log n$ bins to store the ``relevant'' powers
-of $b$ as we generate them.
-\begin{itemize}
-\item
-Place copies of $b^0 = 1$ and $b^1 = b$ in the bins set aside for
-these values.
-
-This requires $0$ multiplications.
-\item
-If $b^k$ is the largest power-of-$2$ power of $b$ that we **HERE
-\end{itemize}
-
-DONE
-\qed
-\end{proof}
-**HERE
-fast exponentiation
-
-
-
 
 
 
