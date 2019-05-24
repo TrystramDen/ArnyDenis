@@ -1,4 +1,4 @@
-%version of 05-16-19
+%version of 05-24-19
 
 \chapter{RECURRENCES}
 \label{ch:Recurrences}
@@ -863,18 +863,20 @@ for the result.
 %$F_n = binomial (n,0,1 ...)$
 
 
-\subsubsection{Alternative generating recurrences for the Fibonacci sequence}
+\subsubsection{Alternative origins for the Fibonacci sequence}
 \label{sec:Fibonacci-other-recurrences}
-\index{Fibonacci sequence!other generating recurrences}
-\index{Fibonacci numbers!other generating recurrences}
 
 Although the classical recurrence (\ref{eq:Fibonacci-defn}) is the
 structurally simplest generator of the Fibonacci sequence, there exist
-other generators that are not much more complex.  We now present two
-other multi-linear recurrences that generate the sequence, in addition
-to a family of binary generating recurrences.
+other generators that are not much more complex.  We now present
+several alternative ways to generate the sequence: (A) two other
+multi-linear recurrences; (B) a family of binary generating
+recurrences; (C) a combinatorial approach.
 
 \paragraph{\small\sf A. Two multi-linear generating recurrences}
+\index{Fibonacci sequence!additional multi-linear generating recurrences}
+\index{Fibonacci numbers!additional multi-linear generating recurrences}
+
 
 \begin{prop}
 \label{thm:FiboSum-1}
@@ -897,20 +899,18 @@ The {\em base case}, $n=2$, holds because $F(2) = 2 =  1 + F(0)$.
 
 \noindent 
 Assume, {\em for induction}, that 
-(\ref{eq:multilinear-Fib-1}) holds for all arguments $2 \leq n < m$.
-
-{\Denis I think the indices n and m are confused here. I suggest to invert them in the following proof...}
+(\ref{eq:multilinear-Fib-1}) holds for all arguments $2 \leq m < n$.
 
 \noindent
 We {\em extend} the induction as follows.  Our inductive hypothesis
-assures us that for all $m \geq 3$,
-\[ F(m-1) \ = \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(m-3). \]
+assures us that for all $n \geq 3$,
+\[ F(m-1) \ = \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(n-3). \]
 Combining this with the classical recurrence
 (\ref{eq:Fibonacci-defn}), we therefore have
 \begin{eqnarray*}
-F(m) & = & F(m-2) \ + \ F(m-1) \\
+F(n) & = & F(n-2) \ + \ F(n-1) \\
      & = &
-F(m-2) \ + \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(m-3)
+F(n-2) \ + \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(n-3)
 \end{eqnarray*}
 
 \noindent
@@ -929,29 +929,20 @@ every other such number.
 \begin{prop}
 \label{thm:FiboSum-2}
 For all integers $n \geq 2$,
-\begin{eqnarray}
+\begin{equation}
 \label{eq:multilinear-Fib-2}
-F(n) & = &
-F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \cdots + \ C(n) \\
-\nonumber
-\mbox{where} &   & \\
-\nonumber
-C(n) & = & \left\{
-\begin{array}{cl}
-F(0) = 1  & \mbox{\rm if } \ n \ \mbox{\rm is even} \\
-F(1) = 1  & \mbox{\rm if } \ n \ \mbox{\rm is odd}
-\end{array}
-\right.
-\end{eqnarray}
-{\Denis Attention here on the values of C, verify! I think the constant are the same, see details in the next paragraph...}
-We thereby sum every other term up to the $(n-1)$th and use a
-``clean-up'' term $C(n)$ to complete the sum.
+F(n) \ \ = \ \
+F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \cdots + \ 1
+\end{equation}
+We thereby sum every other Fibonacci number as long as we can.
 \end{prop}
+%{\Denis Attention here on the values of C, verify! I think the
+%constant are the same, see details in the next paragraph...}
 
 \begin{proof}
 We develop the claimed summation (\ref{eq:multilinear-Fib-2}) by
-iteratively expanding the righthand term ($F(n-2)$) of the classical
-recurrence (\ref{eq:Fibonacci-defn}).  This expansion begins
+iteratively expanding the righthand term (i.e., $F(n-2)$) of the
+classical recurrence (\ref{eq:Fibonacci-defn}).  This expansion begins
 \begin{eqnarray}
 \label{eq:multilinear-Fib-3}
 F(n)
@@ -964,51 +955,24 @@ F(n-1) \ + \ F(n-3) \ + \ F(n-4) \\
 & = &
 F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \ F(n-6)
 \end{eqnarray}
-We continue this expansion process as long as we can, and then we add
-a single {\em clean-up term}, which we have designated $C(n)$ in the
-statement of the proposition.
+Note that all term-indices in the expanded summation have the same
+parity: The sequence of expanded indices begins $n-2$, $n-4$, $n-6$,
+\ldots, so successive expanded indices always differ by $2$;
+therefore, the index $n-k$ that we expand always has the same parity
+as $n$.
 
-Determining the value of $C(n)$ is facilitated by noticing that our
-expansion is ``trying'' to have all term-indices in the expanded
-summation have the same parity.  To wit, the successive indices of the
-expanded summation differ by $2$, beginning with $n-1$, $n-3$, $n-5$,
-and so on; therefore, the index $n-k$ that we expand always has the
-same parity as $n$.  Let us observe the consequence of this fact for
-the ``end game'' of the expansion process.
-\begin{itemize}
-\item
-When $n$ is even, our expansion eventually comes down to
-\[ \begin{array}{cl}
-  & \cdots + F(5) \ + \ F(4) \\
-\longrightarrow 
-  & \cdots + F(5) \ + \ F(3) \ + \ F(2) \\
-  \longrightarrow 
-  & \cdots + F(5) \ + \ F(3) \ + \ F(1) \ + F(0)\\
-\end{array}
-\]
-The expansion must end at this point because we have run out of
-Fibonacci numbers!  We therefore have
-\[ C(n) \ = \ F(0) \ = \ 1 \]
-
-\item
-When $n$ is odd, our expansion eventually comes down to
-\[ \begin{array}{cl}
-  & \cdots + F(4) \ + \ F(3) \\
-\longrightarrow
-  & \cdots + F(4) \ + \ F(2) \ + \ F(1)
-\end{array}
-\]
-The expansion must end at this point because we have run out of
-Fibonacci numbers!  We therefore have
-\[ C(n) \ = \ F(1) \ = \ 1 \]
-\end{itemize}
-In either case, our expanded summation produces the correct value of
-$F(n)$.  \qed
+We continue the expansion process of (\ref{eq:multilinear-Fib-3}) as
+long as we can---i.e., until we encounter either $F(0)$, in the case
+of even $n$, or $F(1)$, in the case of odd $n$.  In both cases, ``we
+have run out of Fibonacci numbers'', so the expansion
+terminates---coincidentally with the final term $1$.  \qed
 \end{proof}
 
-{\Denis I found a little mistake in the original writing, redoing the calculations, t appears the constants are the same in both cases... Please, check my calculus}
+%{\Denis I found a little mistake in the original writing, redoing the calculations, t appears the constants are the same in both cases... Please, check my calculus}
 
 \paragraph{\small\sf B. A family of binary generating recurrences}
+\index{Fibonacci sequence!a family of binary generating recurrences}
+\index{Fibonacci numbers!afamily of binary generating recurrences}
 
 What we have earlier called ``generating recurrences'' or ``formation
 rules'' for binomial coefficients and Fibonacci numbers can also be
@@ -1093,11 +1057,12 @@ family of recurrent equations is just the classical recurrence
 Let us assume that instance $k$ of family
 (\ref{eq:Fib-higher-indices}), namely, the equation
 \[ F(n) \ = \ F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1) \]
-is valid, 
-{\Denis take care here since $k$ should be strictly less than $n-1$}
-and let us observe the result of producing instance $k+1$
-from this instance.  We algebraically combine the just-cited equation
-with the following instantiation of the classical recurrence:
+is valid.  {\em Note that validity requires that $k < n-1$.}
+%{\Denis take care here since $k$ should be strictly less than $n-1$}
+Let us observe, under the validity assumption, the result of producing
+instance $k+1$ from this instance.  We algebraically combine the
+just-cited equation with the following instantiation of the classical
+recurrence:
 \[ F(n-k) \ = \ F(n-k-1) \ + \ F(n-k-2) \]
 We find that
 \begin{eqnarray*}
@@ -1111,6 +1076,88 @@ F(n) & = & F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1) \\
 The induction is thus extended, which establishes the proposition.
 \qed 
 \end{proof}
+
+%{\Denis We have to decide where to put the following example. May be while describing all the possibilities to write proofs at the beginning? or in Recurrence as an alternative proof?}
+
+\paragraph{\small\sf C. A combinatorial setting for the Fibonacci numbers}
+\index{Fibonacci sequence!in binary strings with no consecutive $1$s}
+\index{Fibonacci numbers!in binary strings with no consecutive $1$s}
+\index{Fibonacci sequence!a combinatorial setting}
+\index{Fibonacci numbers!a combinatorial setting}
+
+In Section~\ref{sec:Fibonacci-story}, we described several settings in
+which one can observe the Fibonacci sequence.  The settings we chose
+arose in nature---rabbits, pineapples, etc.  We now describe a {\em
+  mathematical} setting in which the sequence occurs.  In common with
+our rabbits and pineapples, this setting does not involve the solution
+of a system of recurrent equations.  In common with our equational
+settings, this setting is purely mathematical.
+
+Our setting is {\em combinatorial} in nature, in the sense that the
+Fibonacci numbers emerge as we count instances of some phenomenon.
+But, of course, the generating recurrence is still present; it is just
+camouflaged by the counting.
+
+For each positive integer $n$, let $S_n$ be the set of all length-$n$
+binary strings in which {\em every occurrence of bit $1$ is directly
+  preceded by an occurrence of bit $0$}.  Table~\ref{tab:comb-FIB}
+provides the first few instances of $S_n$, with their cardinalities.
+\begin{table}[hbt]
+\label{tab:comb-FIB}
+\caption{The first few instances of $S_n$, with their cardinalities.}
+\[
+\begin{array}{|c|c|c|}
+\hline
+n = & S_n =               & |S_n| = \\
+\hline
+0   & \{ \varepsilon\}    & 1 \\ 
+1   & \{ 0 \}             & 1 \\
+2   & \{ 00, 01 \}        & 2 \\
+3   & \{ 000, 001, 010 \} & 3 \\
+\hline
+\end{array}
+\]
+\end{table}
+
+
+\begin{prop}
+\label{thm:FIBO-from-sparse-bitstrings}
+For each positive integer $n$, the cardinality of the set $S_n$, which
+consists of all length-$n$ binary strings in which each occurrence of
+a $1$ is directly preceded by a $0$, is the Fibonacci number $F(n)$.
+\end{prop}
+
+\begin{proof}
+By definition, every binary string $w \in S_n$ ends either with $0$ or
+with $01$.
+\begin{itemize}
+\item
+If $w$ ends with $0$, then it has the form $w = x0$, where the prefix
+$x$ is a binary string of length $n-1$; moreover, $x$ must belong to
+$S_{n-1}$ in order for $w$ to belong to $S_n$.  $S_n$ therefore
+contains $|S_{n-1}|$ strings of this form.
+
+\item
+If $w$ ends with $01$, then it has the form $w = y01$, where the
+prefix $y$ is a binary string of length $n-2$; moreover, $y$ must
+belong to $S_{n-2}$ in order for $w$ to belong to $S_n$.  $S_n$
+therefore contains $|S_{n-2}|$ strings of this form.
+\end{itemize}
+
+The preceding reasoning implies that the cardinalities of the sets
+$S_n$ obey the following recurrence.
+\[
+\begin{array}{ccll}
+|S_0| & = & 1 & \mbox{see Table~\ref{tab:comb-FIB}} \\
+|S_1| & = & 1 & \mbox{see Table~\ref{tab:comb-FIB}} \\
+|S_n| & = & |S_{n-1}| \ + \ |S_{n-2}| & \mbox{see preceding analysis}
+\end{array}
+\]
+The preceding recurrence is just a relabeled version of the classical
+recurrence (\ref{eq:Fibonacci-defn}).  The Proposition follows.  \qed
+\end{proof}
+
+
 
 \subsubsection{$\oplus$  A closed-form expression for the $n$th Fibonacci number}
 \label{sec:Fib-Golden-Ratio}
@@ -1179,9 +1226,14 @@ x^2 - x - 1 \ = \ 0
 \]
 By the quadratic formula (see
 Proposition~\ref{thm:quadratic-formula}), this polynomial has two roots 
-{\Denis well done, I like the way this is presented, but where is the section on quadratic formula?}
 $\Phi \ = \ {\displaystyle \frac{1+\sqrt{5}}{2}}$ \ \ and \ \
 $\Phi' \ = \ {\displaystyle \frac{1-\sqrt{5}}{2}}$
+
+{\Denis well done, I like the way this is presented, but where is the
+  section on quadratic formula?}
+{\Arny Proposition~\ref{thm:quadratic-formula}) is in Chap 5; this is
+  in Chap 8}
+
 
 \noindent
 Note that $\Phi$, which is known as the \textit{golden ratio},
