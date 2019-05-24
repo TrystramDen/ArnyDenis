@@ -21,6 +21,7 @@ However, there are several nice examples of geometrical solutions.
 One of the oldest comes from babylonians in the 18th century BC.
 The numeral system was in base 60, and the problem was to determine the length of the side of a square which was part of a larger rectangle.
 The following figure details the process.}}
+
 {\Denis Add here a small introduction about solving polynomial of degree 2 from El Kwharizmi, or remove it and put it as an exercice.}
 \begin{figure}[htb]
 \begin{center}
@@ -36,6 +37,50 @@ Thus, the length of the initial square is equal to $60-30=30$.}
 \label{fig:equationBabillon}
 \end{center}
 \end{figure}
+
+
+\section{misc}
+
+
+\subsection{The average length of a carry in a binary counter}
+
+\noindent {\it The problem.}
+%
+You add from $1$ to $n$, in increments of $1$ using a counter of
+binary (or, base-$2$) numerals.  Each time you increment the counter,
+there is a {\it carry}.  These carries have varying lengths; for
+instance, when $n = 32 = 100000_2$, the carry-lengths range
+from $0$---whenever you increment an even integer---to $5$---when you
+increment $31 = 11111_2$ to achieve $32 = 100000_2$. \\
+{\em Prove that the average carry as you go from $1$ to $n$ has length $2$.}
+
+\medskip
+
+\noindent {\it The solution.}
+
+\noindent
+Half of the increments add $1$ to an even number, i.e., a number whose
+binary numeral ends in ``$ \ldots 0$''.  These increments generate no
+carry---or, equivalently, a carry of length $0$.
+
+\noindent
+One-quarter of the increments, which form half of the remaining
+increments, execute a carry of length $1$, because they add $1$ to a
+numeral that ends in ``$ \ldots 01$''.
+
+\noindent
+One-eighth of the increments, which form half of the remaining
+increments, execute a carry of length $2$, because they add $1$ to a
+numeral that ends in ``$ \ldots 011$''.
+
+Continuing in this way, one can show that the average length of a
+carry can be expressed in the form
+\[ 
+\frac{1}{2} \cdot 0 \ + \ \frac{1}{4} \cdot 1 \ + \ \frac{1}{8} \cdot
+3 \ + \ \frac{1}{16} \cdot 4 \ + \ \cdots
+\]
+Using techniques that we cover in Chapter~\ref{ch:Summation}, one
+verifies that this infinite series converges with the sum $2$.  \qed
 
 
 
