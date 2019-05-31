@@ -1,4 +1,4 @@
-%version of 05-26-19
+%version of 05-31-19
 
 \chapter{THE VERTIGO OF INFINITY: \\
 Reasoning about the Very Large and the Infinite}
@@ -121,12 +121,21 @@ One renders the preceding intuitive explanations precise by pointing
 out that the three specifies relations ($a$) take hold {\em
   eventually}, i.e., only for large arguments to the functions $f$ and
 $g$, and ($b$) hold up to an unspecified constant of proportionality.
+The plots in Fig.~\ref{fig:Asymptotic} illustrate the definitions of
+big-$O$ and big-$\Omega$ graphically. 
 
-{\Denis I added a figure for illustrating the notations, do I have to change g and h in g1 and g2 in the figure?}
+%{\Denis I added a figure for illustrating the notations, do I have to change g and h in g1 and g2 in the figure?}
+{\Arny The curve for $f$ should be labeled, and all fonts should be italic}
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/NotationAsymptotic}
-\caption{Function $g$ is a Big O of $f$ and $h$ is a Big Omega of $f$.}
+\caption{Plots of three functions: $f$ (solid curve), $g$ (dotted
+  curve that starts out above $f$, and $h$ (dotted curve that starts
+  out below $f$).  Assume that the three iluustrated trajectories
+  continue in the indicated relationships for all $x > x2$---i.e.,
+  with the plot for $f$ strictly below that for $g$ and strictly above
+  that for $h$.  With this assumption, the figure illustrates the
+  relations: $g = O(f)$ and $h = \Omega(f)$.}
 \label{fig:Asymptotic}
 \end{center}
 \end{figure}
@@ -207,23 +216,28 @@ which are much clumsier to explain in words.
 
 \medskip
 
-\noindent {\bf Beyond the big letters.}
+\noindent {\bf Beyond the big letters.}\index{asymptotics!with little letters}
 %
-There are ``small''-letter analogues of the preceding ``big''-letter
-asymptotic notations, but they are only rarely encountered in
-discourse about real computations (although they do arise in the
-analysis of algorithms).
+There are ``little''-letter analogues of the preceding ``big''-letter
+asymptotic notations: $o$, $\omega$, and $\theta$.  The definition and
+range of application of these notations build on the notion of {\it
+  limit}, which is basic in continuous mathematics---e.g., in the
+calculus---but rare in discrete mathematics.  We therefore do not
+include this topic in this text, instead referring the reader to any
+good text on the calculus.
 
 \subsection{Inescapable Complications}
 \label{sec:asymptotic-complication}
 
-The story we have told thus far is covered in many sources and
-courses.  Two complications to the story are covered less faithfully,
-although lacking them, one cannot perform cogent asymptotic
-reasoning.  Both complications involve the notion of {\em uniformity}.
+The story we have told thus far is more or less standard fare in
+courses on discrete mathematics and algorithms.  Two complications to
+the story are covered less consistently, although lacking them, one
+cannot perform cogent asymptotic reasoning about modern computing
+environments.  Both complications involve the notion of {\em
+  uniformity}. \index{relations!uniformity}
 
 \noindent
-{\bf 1.}
+{\bf 1.}\index{asymptotics!multiple functions}
 {\em Multiple functions}.
 %
 Say that we have four functions, $f, g, h, k$, and we know that both
@@ -243,7 +257,8 @@ one much find witnessing constants $c_{f+h, g+k}$ and $N_{f+h,g+k}$.
 Of course, this task requires only elementary reasoning and
 manipulation --- but it must be done!
 
-{\bf 2.}
+
+\noindent {\bf 2.}\index{asymptotics!multivariate functions}
 {\em Multivariate functions}.
 %
 Finally, we discuss the scenario that almost automatically accompanies
@@ -274,19 +289,49 @@ complicated in the multivariate settings engendered by PDC.  But, the
 benefits of being able to reason qualitatively about the quantitative
 aspects of computing increase at least commensurately!
 
-
-
-\section{Coping with Infinity}
+\section{Reasoning about Infinity}
 \label{sec:reasoning-infinity}
 
-\subsection{Reasoning about Infinity}
-\label{sec:reasoning-infinity}
+\subsection{Coping with infinity}
+\label{sec:coping-infinity}
 
+A recurring challenge when one ``does'' mathematics is dealing with
+{\em infinity}.  Infinite objects, such as sets and summations, behave
+rather differently from the more familiar finite objects that we
+encounter in our daily lives.  Two examples will suffice.  
+\begin{enumerate}
+\item
+We all know that there are ``equally many'' integers with the set of
+odd integers as there are integers within the set $\N$ of all
+integers.  We verify this easily by matching the two sets element by
+element.  We never run out of elements of either set---even though the
+first of these sets is obtained from the second by discarding half of
+its elements.
+\item
+We have seen in Chapter~\ref{ch:Summation} that there exist summations
+of infinitely many positive numbers whose sum is finite, and there
+exist other such summations whose ``sum is infinite'' (in a sense that
+can be made precise.  One instance of the former class of summation is:
+\[ 1 \ + \ {1 \over 2} \ + \ {1 \over 2^2} \ + \cdots + \ {1 \over
+  2^k} \ + \cdots \ \ = \ \ 2;
+\]
+one instance of the latter class of summation is:
+\[ 1 \ + \ {1 \over 2} \ + \ {1 \over 3} \ + \cdots + \ {1 \over k} \ + \cdots \]
+whose sum increases forever as more terms are added in.
+\end{enumerate}
+
+A more subtle challenge when dealing with the world of the infinite
+manifests itself in the myriad {\em paradoxes} that one encounters in
+this world.  Does an arrow ever reach its target---given that it
+begins its journey by traversing half then distance, then traverses
+half of the remaining half, then half of the remaining quarter,
+\ldots?
+
+\ignore{*********
 {\Denis This part should be carefully read}
 
 {\Arny An immediate problem is the forward reference to SUMMATION.  Do
   we need to reorganize?}
-
 
 We presented in the chapter Summations several ways to compute the sum
 of numbers in a given sequence ($a_n$).  If the sequence contains
@@ -305,7 +350,7 @@ But what happens if we apply the same reasoning to to the sum: $\sum _{k \geq 0}
 To obtain the value $-1$!
 This is obviously not correct since the sum of increasing positive numbers should be positive.
 The reason is that the terms of the series grows to $+\infty$.
-
+**********}
 
 \subsection{The ``Point at Infinity''}
 \label{sec:point-at-infinity}
@@ -320,18 +365,17 @@ Two familiar examples of such mathematical machinery are the notions
 of \index{limit} {\it limit} and \index{continuity} {\it continuity}
 (of a function).  A more advanced example of such machinery is the
 {\it Riemann sphere}, \index{Riemann sphere} an invention of the
-19th-century German mathematician Bernhard Riemann, \index{Riemann,
-  Bernhard} which allows one to reason about the infinite
-two-dimensional plane by ``conformally'' wrapping the plane into a
-sphere whose ``south pole'' represents the zero-point (i.e., the
-origin) of the plane and whose ``north pole'' represents the ``point
-at infinity.''  There are many other, less-familiar, examples of such
-mathematical machinery, including advanced topics such as {\it types}
-in the domain of mathematical logic.
+19th-century German mathematician Bernhard Riemann, \index{Riemann, Bernhard} 
+which allows one to reason about the infinite two-dimensional plane by
+``conformally'' wrapping the plane into a sphere whose ``south pole''
+represents the zero-point (i.e., the origin) of the plane and whose
+``north pole'' represents the ``point at infinity.''  There are many
+other, less-familiar, examples of such mathematical machinery,
+including advanced topics such as {\it types} in the domain of
+mathematical logic.
 
-In the remainder of this text beyond the current section, we deal
-successfully with a number of quite sophisticated topics related to
-infinity.  To cite just two examples:
+Of course, we have alreadt dealt successfully with a number of quite
+sophisticated topics related to infinity.  To cite just two examples:
 \begin{enumerate}
 \item
 In Chapter~\ref{ch:numbers-numerals} we successfully answer questions
@@ -345,7 +389,7 @@ such as
 
 \item
 In Chapters~\ref{ch:numbers-numerals} and~\ref{ch:Summation}, we
-successfully sum and manipulate infinite summations.
+successfully summed and manipulated infinite summations.
 \end{enumerate}
 
 The lessons of the preceding paragraphs is that there is no need to
