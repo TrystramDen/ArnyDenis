@@ -1,4 +1,4 @@
-%version of 06-03-19
+%version of 06-04-19
 
 \chapter{INTRODUCTION}
 \label{ch:intro}
@@ -704,19 +704,22 @@ main ones for their computational importance.
 f(n) \ = \ a f(bn+c) \ + \ dn \ + e
 \end{equation}
 (where $a, b, c, d, e$ are constants) are a welcome friend when one
-analyzes a cost of basic algorithms.  Two simple examples:
-{\Denis remark: both next examples are dealing with algorithms, may be too much?}
-  \begin{itemize}
-  \item
-In somewhat simplified terms, the {\em binary search algorithm}
-requires one to determine whether an item $x$ occurs within a given
-ordered list of $n$ items.  One accomplishes the task by partitioning
-the list in two (so $b = 1/2$ and $c = 0$ in
-(\ref{eq:general-linear-recurrence})) and comparing $x$ with the
-middle item (two, when $n$ is even) of the list (so $d = 0$, and $e$
-is the fixed constant cost of the comparison(s)).  On the basis of the
-comparison, one recurses with a binary search on the half of the list
-that could contain $x$ (so $a = 1$).
+analyzes the cost of myriad basic algorithms.  Perhaps the simplest
+nontrivial use of recurrence (\ref{eq:general-linear-recurrence}) is
+in the analysis of 
+%{\Denis remark: both next examples are dealing with algorithms, may be too much?}
+%  \begin{itemize}
+the {\em binary search algorithm}, which determines whether an item
+$x$ occurs within a given ordered list of $n$ items.  The algorithm
+begins by partitioning the list into two (so $b = 1/2$ and $c = 0$ in
+(\ref{eq:general-linear-recurrence})).  It then compares $x$ with the
+list's middle item(s)---there is one middle item when $n$ is odd, two
+when $n$ is even---(so $d = 0$, and $e$ is the fixed constant cost of
+the comparison(s)).  Based on the outcome of the comparison, the
+algorithm recurses with a binary search on the half of the list that
+could contain $x$ (so $a = 1$).
+
+\ignore{**********
   \item
 In somewhat simplified terms, the {\em merge-sort algorithm} builds on
 a natural $n$-step algorithm for merging two $n$-item lists of
@@ -733,65 +736,62 @@ algorithm is given by a recurrence of the form
 = 0$, $d=1$, and $e$ is the fixed cost of the $2$-item comparisons that
 orchestrate each merge.
   \end{itemize}
+*******}
+
 The centerpiece of our discussion of linear recurrences is the
 so-called {\em Master Theorem}, which uses geometric summations to
 generate explicit---rather than recurrent---expressions for the values
 of a function $f$ on an arbitrary argument $n$.
 
 \item
-We highlight two {\it bilinear recurrences} of especial computational
+We highlight two {\it bilinear} recurrences of especial computational
 importance.
   \begin{itemize}
   \item
 The {\it binomial coefficient} articulated as ``$n$ choose $k$'', and
-commonly denoted $\displaystyle {n \choose k}$, plays a central role
-in a very broad range of mathematical domains.  Two rather distinct
-examples:
-{\Denis I found both examples too much detailed.
-I suggest to shorten}
+commonly denoted $\displaystyle {n \choose k}$ or $\Delta_{n,k}$ or
+$C(n;k)$, plays a central role in a broad range of mathematical
+domains.  Two rather distinct examples:
+
+%{\Denis I found both examples too much detailed. I suggest to shorten}
        \begin{itemize}
        \item
-The fact that this number indicates the number of ways to select $k$
-items from within a set of $n$ items hints at the number's importance
-in probability theory and its myriad applications.  (Why, for example,
-does ``three of a kind'' beat ``two pair'' in poker?)
+$C(n;k)$ is the number of ways to select $k$ items out of a set of $n$
+items.  For instance, $C(4;2) =6$, because the $2$-element subsets of
+$\{A, B, C, D\}$ are: $\{A, B\}$, $\{A, C\}$, $\{A, D\}$,  $\{B, C\}$,
+$\{B, D\}$,  and $\{C, D\}$.  Analyzing $C(n, 5)$ will reveal, for
+example, why ``three of a kind'' beats ``two pair'' in poker.
        \item
 These numbers play a prominent role in evaluating arithmetic
 summations; e.g., we derive the following equation (in several ways)
 in later chapters:
-\[ 1 \ + \ 2 \ + \ 3 \ + \cdots + \ n \ \ = \ \ {{n+1} \choose 2} \]
+\[ 1 \ + \ 2 \ + \ 3 \ + \cdots + \ n \ \ = \ \ C(n+1, 2) \]
        \end{itemize}
 The {\em family} of binomial coefficients is defined by the bilinear
 recurrence
-\[ {{n+1} \choose {k+1}} \ \ = \ \ {n \choose k} \ + \ {n \choose {k+1}} \]
-with initial conditions
-\[ {n \choose 0} \ \equiv \ 1 \ \ \ \ \ \mbox{ and } \ \ \ \ \
-{n \choose 1} \ = \ n
-\]
+\begin{eqnarray*}
+C(n, 0) & = & 1 \\
+C(n, 1) & = & n \\
+C(n+1, k+1) & = & C(n, k) \ + \ C(n, k+1)
+\end{eqnarray*}
 
   \item
-  {\Denis I removed the introduction about the name of Fibo since it is already given in the chapter...}
-\ignore{The {\it Fibonacci numbers} are named for the Pisano mathematician
-Leonardo Pisano Bigollo, one of the greatest Western mathematicians of
-the Middle Ages.  Bigollo is often known by the patronymic ``Leonardo,
-son of Bonaccio''; this name translates in Italian to ``filius
-Bonacci'' and has led to the nickname ``Fibonnaci''.
-}
-
-Fibonacci's eponymous numbers are defined by the recurrence
-\[ F(n+1) \ \ = \ \ F(n) \ + \ F(n-1) \]
-with initial conditions
-\[ F(0) \ = \ F(1) \ = \ 1 \]
-Fibonacci came up with this sequence by observing the populations of
-the consecutive generations of progeny produced by a pair of rabbits.
-The sequence is also known to arise in the structure of many plants.
-It further is said to have a mystical, semi-religious aspect in the
-architecture of ancient Greek temples.  The story of the sequence is
-told in a bit more detail in Section~\ref{sec:Fibonacci-story}.
-
-Quite aside from its important descriptive role, the sequence arises
-in several natural contexts, as part of the analysis of algorithms and
-as the basis for a nonstandard system of numerals.
+The sequence of {\it Fibonacci numbers}, named for the Pisano
+mathematician known by the nickname ``Fibonnaci'', are defined by the
+recurrence
+\begin{eqnarray*}
+F(0) & = & F(1) \ = \ 1 \\
+F(n+1) & = & F(n) \ + \ F(n-1)
+\end{eqnarray*}
+Fibonacci invented his eponymous sequence as he observed the
+populations of consecutive generations of progeny produced by a pair
+of rabbits; the sequence also arises in the structure of many plants;
+it further is said to have a semi-religious aspect in the architecture
+of ancient Greek temples.
+%  The story of the sequence is told in a bit more detail in Section~\ref{sec:Fibonacci-story}.
+Aside from its important descriptive role, the sequence plays a
+significant role in the analysis of algorithms and as the basis for a
+nonstandard system of numerals.
   \end{itemize}
 \end{enumerate}
 Variations on the preceding three families of recurrences provide
