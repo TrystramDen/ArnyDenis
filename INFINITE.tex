@@ -75,32 +75,33 @@ text on algorithm design and analysis, flesh out the following ideas.
 \item
 {\em The big-O notation}.
 %
-The assertion $f(x) = O(g(x))$ says, intuitively, that the function
-$f$ grows no faster than function $g$.  It is, thus, the asymptotic
+{\Denis Formally, we should write $\in$ and not equal since it is an equivalence class...}
+The assertion $f(x) = O(f_1(x))$ says, intuitively, that the function
+$f$ grows no faster than function $f_1$.  It is, thus, the asymptotic
 analogue of ``less than''.
 
 Formally:
-$f(x) = O(g(x))$
+$f(x) = O(f1(x))$
 
 means
 
-$(\exists c >0)(\exists x^{\#})(\forall x > x^{\#})
-[f(x) \leq c \cdot g(x)]$
+$(\exists c >0)(\exists x_1)(\forall x > x_1)
+[f(x) \leq c \cdot f_1(x)]$
 
 \item
 {\em The big-$\Omega$ notation}.
 %
-The assertion $f(x) = \Omega(g(x))$ says, intuitively, that the
-function $f$ grows at least as fast as function $g$.  It is, thus, the
+The assertion $f(x) = \Omega(f_2(x))$ says, intuitively, that the
+function $f$ grows at least as fast as function $f_2$.  It is, thus, the
 asymptotic analogue of ``greater than''.
 
 Formally:
-$f(x) = \Omega(g(x))$
+$f(x) = \Omega(f_2(x))$
 
 means
 
-$(\exists c >0)(\exists x^{\#})(\forall x > x^{\#})
-[f(x) \geq c \cdot  g(x)]$ \\
+$(\exists c >0)(\exists x_2)(\forall x > x_2)
+[f(x) \geq c \cdot  f_2(x)]$
 
 \item
 {\em The big-$\Theta$ notation}.
@@ -114,7 +115,7 @@ $f(x) = \Theta(g(x))$
 
 means
 
-$(\exists c_1 >0)(\exists c_2 >0)(\exists x^{\#})(\forall x > x^{\#})
+$(\exists c_1 >0)(\exists c_2 >0)(\exists x_1)(\forall x > x_2)
 [c_1 \cdot g(x) \leq f(x) \leq c_2 \cdot  g(x)]$
 \end{itemize}
 One renders the preceding intuitive explanations precise by pointing
@@ -123,22 +124,20 @@ out that the three specifies relations ($a$) take hold {\em
 $g$, and ($b$) hold up to an unspecified constant of proportionality.
 The plots in Fig.~\ref{fig:Asymptotic} illustrate the definitions of
 big-$O$ and big-$\Omega$ graphically. 
-
-%{\Denis I added a figure for illustrating the notations, do I have to change g and h in g1 and g2 in the figure?}
-{\Arny The curve for $f$ should be labeled, and all fonts should be italic}
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/NotationAsymptotic}
-\caption{Plots of three functions: $f$ (solid curve), $g$ (dotted
-  curve that starts out above $f$, and $h$ (dotted curve that starts
-  out below $f$).  Assume that the three iluustrated trajectories
+\caption{Plots of three functions: $f$ (solid curve), $f_1$ (dotted
+  curve that starts out above $f$, and $f_2$ (dotted curve that starts
+  out below $f$).  Assume that the three illustrated trajectories
   continue in the indicated relationships for all $x > x2$---i.e.,
-  with the plot for $f$ strictly below that for $g$ and strictly above
-  that for $h$.  With this assumption, the figure illustrates the
-  relations: $g = O(f)$ and $h = \Omega(f)$.}
+  with the plot for $f$ strictly below that for $f_1$ and strictly above
+  that for $f_2$.  With this assumption, the figure illustrates the
+  relations: $f_1 = O(f)$ and $f_2 = \Omega(f)$.}
 \label{fig:Asymptotic}
 \end{center}
 \end{figure}
+{\Denis check caption}
 
 \ignore{*********
 \subsubsection{Getting formal}
@@ -453,15 +452,15 @@ S & = & (1 \ - \ 1) \ + \ (1 \ - \ 1) \ + (1 \ - \ 1) \ + \cdots \\
 \end{eqnarray*}
 
 \item
-$S \ = \ - \infty$
+$S \ = \ 1$
 
 This response is justified by the following association of terms in the
 summation that defines $S$.
 \begin{eqnarray*}
 S & = & 1 \ - \ (1 \ + \ 1) \ - \ (1 \ + \ 1) \ - \ (1 \ + \ 1)
           \ + \cdots \\
-  & = & 1 \ - \ 2 \ - \ 2 \ - \ 2 \ - \cdots \\
-  & = & - \infty
+  & = & 1 \ - \ (1-1) \ - \ (1-1) \ - \ (1-1) \ - \cdots \\
+  & = & 1
 \end{eqnarray*}
 
 \item
@@ -469,7 +468,7 @@ There is no valid answer, because the problem statement does not
 specify how to associate terms.  Indeed, by mischievously playing with
 parentheses, one can arrive at many ``plausible'' values for $S$.
 This is one concrete example of how summations with infinitely many
-terms behave differently from those with finitely nany terms.
+terms behave differently from those with finitely many terms.
 \end{enumerate}
 
 
