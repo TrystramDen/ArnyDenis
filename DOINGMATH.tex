@@ -1,4 +1,4 @@
-%version of 06-10-19
+%version of 06-11-19
 
 \chapter{``DOING'' MATHEMATICS: \\
 A Toolkit for Mathematical Reasoning}
@@ -212,8 +212,8 @@ we have rendered more palatable to humans---by peeking ahead into
 Section~\ref{sec:major-proof-techniques}, specifically
 Subsection~\ref{sec:Induction}.  We describe and apply the well-known
 rule of inference called {\it the principle of finite induction}.
-\index{finite induction}  Stated in human-compatible terms, the
-principle asserts the following. 
+\index{finite induction, principle of} Stated in human-compatible
+terms, the principle asserts the following.
 
 \bigskip
 
@@ -241,6 +241,7 @@ Let {\bf P}($k$) be an assertion involving the positive integer $k$.
 We use the principle of finite induction to verify the well-known
 formula for the sum of the first $n$ positive integers.
 
+\index{formulas!sum of the first $n$ integers}
 \begin{prop}
 \label{thm:sum-1-to-n-induction1}
 For all $n \in \N$,
@@ -328,6 +329,15 @@ discussion.
 
 \paragraph{\small\sf Friends and strangers at a party}
 
+While the following result is worded here in an anthropomorphic,
+``homely'' fashion, it is a quite-serious instance of a widely
+applicable genre of {\it inevitable subgraph} problem.
+\index{inevitable subgraph problems} Each such problem has the form:
+If you have $n$ entities that relate to one another is such-and-such a
+way, then some $m < n$ of the entities must relate to one another is
+so-and-so a way.  We shall encounter more such problems in
+Chapter~\ref{ch:Graphs-Trees}.
+
 \begin{prop}
 \label{thm:triangle-cotriangles}
 In any gathering of six people, at least one of the following
@@ -340,6 +350,7 @@ There is a group of three people who know each other.
 There is a group of three people none of whom knows either of the
 others.
 \end{prop}
+\index{friends and strangers problem}
 
 Where to begin?!?  We begin with some discussion about what our goal
 should be.  If we cannt reduce the provable world to sequences of
@@ -363,109 +374,82 @@ adequately educated and prepared reader.
 \bigskip
 
 \noindent
-Thom brings the notion of proof into the domain of humans---much as
-Kronecker did for the the notion of number (see our PREFACE).  This
-importation is expanded upon---at least in regard to the problem of
-proving the correctness of programs---in the thought-provoking essay
-\cite{DeMilloLP79}.  These sources expose the prime endeavor of a
-mathematician---the proving of interesting, valuable theorems---as a
-{\em social exercise}.  Gone forever from the world of the practicing
-mathematician is the rigidity that characterized the proofs and
-analyses of the 19th and early-to-mid-20th century.
-**HERE
-\noindent
-What has replaced the rigid logical systems and rigid prescribed forms
-of ``antiquity'' is a vibrant system of thought that, when convenient,
+Thom transports the notion ``proof'' from the domain of the absolute
+into the domain of humans---much as Kronecker did for the the notion
+``number'' (see our PREFACE).  This importation is expanded upon---at
+least in regard to the problem of proving the correctness of
+programs---in the thought-provoking essay \cite{DeMilloLP79}.  These
+sources expose the prime endeavor of a mathematician---the proving of
+interesting, valuable theorems---as a {\em social exercise}.  The
+rigid formalism that characterized the proofs of the late-19th and
+early-20th century is henceforth replaced within the world of the
+practicing mathematician by a free-form, vibrant system of thought
+that, when convenient,
 \begin{itemize}
 \item
-represents the  number $n$, as convenient, by, e.g.,
+allows one to represent the number $n$, as convenient, by, e.g.,
   \begin{itemize}
   \item
-a numeral in some positional number system, such as we use in daily
-discourse,
+a numeral in some positional number system
   \item
-a set (usually imagined) of $n$ balls or \ldots or widgets,
+a set (usually imagined) of $n$ balls or \ldots or widgets
   \item
-a unit-width rectangle that is $n$ units high.
+a unit-width rectangle that is $n$ units high;
   \end{itemize}
 
 \item
-freely uses different modes of argumentation (e.g., numerical and
-structural induction, contradiction, counting, \ldots), even mixed and
-matched throughout a single analysis;
+freely ``mixes and matches'' different modes of argumentation, even
+within a single proof;
 
 \item
 freely invokes a highly tested computer program to check mind-numbing
 proliferations of clerically verifiable details.
 \end{itemize}
+We provide (for now) just a single instance of modern argumentation,
+which we employ to prove Proposition~\ref{thm:triangle-cotriangles}.
 
-Regrettably, mathematics education has lagged behind practice, despite
-the emergence of technical/technological fields such as computer
-science that cannot advance very far without at least informal
-extensions and adaptations of the now-archaic formal proof systems.
+We now prove Proposition~\ref{thm:triangle-cotriangles}, which exposes
+one particular ``friends and strangers at a party'' prove.  The
+primary technical mechanism---a modern form of ``rule of
+inference''---thet we exploit in the proof is the widely applicable
+{\it Pigeonhole Principle}. \index{pigeonhole principle}
 
-The current volume is dedicated to trying to overcome people's
-resistance to mathematical analysis and argumentation via a modernized
-and humanized---but no less rigorous---methodology for ``thinking
-mathematically'', especially within computational frameworks.  We
-attempt to develop proof systems and methods that the reader can
-comfortably develop facility with.
+\bigskip
 
-Our avenue for promoting mathematical {\em understanding} rather than
-just rote knowledge abjures any specific formalism.  Instead, we
-develop multiple proofs for the topics of discourse, involving
-multiple representations of the objects being discussed and multiple
-modes of argumentation.  The reader will be able to see a variety of
-arguments for the same topic, which will hopefully enhance the
-likelihood of discovering an approach that is congenial to each
-reader's individual way of thinking.  By practicing proofs and
-analyses regarding more and more topics, the reader will begin to find
-it increasingly easy to state informally what ultimately needs to be
-analyzed rigorously and to intuit how to embark on the path toward
-such rigor.
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+{\it The Pigeonhole Principle}
 
+If one places $n+1$ items (the pigeons) into $n$ boxes (the
+pigeonholes), then at least one box must end up with more than one
+item.
+\end{minipage} }
 
-
-We turn now to a somewhat more surprising result that can be proved
-using the pigeonhole principle.  While we phrase the result in
-anthropomorphic, ``homely'', terms, its formal statement identifies it
-as a genre of ``unavoidable subgraph''
-\index{unavoidable subgraph phenomena}
-%
-phenomenon within the theory of {\it graphs}.
-\begin{quote}
-Graphs are an immensely important mathematical construct that models
-myriad situations that involve objects (possibly people) and
-interrelationships between pairs of objects.
-Chapter~\ref{ch:Graphs-Trees} is devoted to studying graphs and the
-situations they can be used to model---including the problem discussed
-here.
-\end{quote}
-Here is the ``homely'' version of the {\it Friends and Strangers} problem.
-\index{friends and strangers problem}
-
-
+\bigskip
 
 \begin{proof}
-Let the gathering consist of six indistinguishable people, named
-$P_1$, $P_2$, $P_3$, $P_4$, $P_5$, $P_6$.  Focus on an arbitrary
-person, say $P_5$.  (This choice ``sounds'' more arbitrary than
-$P_1$---but, of course, is not.)  Now, there are $5$ people, namely,
-$P_1$, $P_2$, $P_3$, $P_4$, $P_6$, each of whom $P_5$ either {\em
-  knows} or {\em doesn't know}.
+Let us observe gathering of six indistinguishable people, named $P_1$,
+$P_2$, $P_3$, $P_4$, $P_5$, $P_6$.  Focus on an arbitrary person, say
+$P_5$.  (This choice ``sounds'' more arbitrary than $P_1$---but, of
+course, is not.)
 
-Clearly, some $3$ of these $5$ people ``lie on the same side of the
-{\em know/don't-know} fence.''  This follows from the pigeonhole
+Now, there are $5$ people, namely, $P_1$, $P_2$, $P_3$, $P_4$, $P_6$,
+each of whom $P_5$ either {\em knows} or {\em doesn't know}.  Some $3$
+of these $5$ people ``lie on the same side of the {\em
+  know/doesn't-know} fence.''  This follows from the pigeonhole
 principle: we have {\em two} boxes ({\em know} and {\em doesn't know})
 and {\em five} pigeons (the people $P_1$, $P_2$, $P_3$, $P_4$, $P_6$).
-Any way of putting the pigeons into the boxes will place three people
-into one of the boxes.
+Any way of putting the pigeons into the boxes will place at least
+three people into one of the boxes.
 
 Say, with no loss of generality, that $P_5$ {\em knows} $P_1$, $P_2$,
-$P_3$.
-\begin{quote}\index{``with no loss of generality'': meaning}
-Why can we claim that the selected situation--- ``$P_5$ {\em knows}
+$P_3$. \index{``with no loss of generality'': meaning}
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+Why can we claim that the selected situation---``$P_5$ {\em knows}
 $P_1$, $P_2$, $P_3$''---can be assumed ``with no loss of generality''?
+
 One should {\em always} ask this question about such a claim!  In the
 current case, the claim follows from the following facts.
 
@@ -475,16 +459,20 @@ related to the {\it Friends and Strangers} problem.  You can repeat
 our argument while choosing arbitrary replacements for $P_1$, $P_2$,
 $P_3$, $P_5$, with no change to the logical outcome.
 
-You can also interchange the {\em know} and {\em don't-know} labels.
+You can also interchange the {\em know} and {\em doesn't-know} labels.
 The underlying logic will not change, although the conclusions
 regarding options A and B in the statement of the proposition will
 clearly ``flip''.
-\end{quote}
+\end{minipage} }
 
+\bigskip
+
+\noindent
 Having decided that $P_5$ {\em knows} $P_1$, $P_2$, and $P_3$, we now
 consider the implications of the possible relations between each of
-the three pairs of people chosen from $\{P_1, P_2, P_3\}$.  There
-are two logical possibilities.
+the three pairs of people chosen from $\{P_1, P_2, P_3\}$, namely, the
+pairs  $\{P_1, P_2\}$, $\{P_1, P_3\}$, and $\{P_2, P_3\}$.  There
+are precisely two logical possibilities.
 \begin{itemize}
 \item
 Some two of $P_1$, $P_2$, $P_3$ know each other---say, with no loss of
@@ -502,34 +490,105 @@ We close the proof by noting that nothing we have stated precludes the
 possibility that {\em both} option A {\em and} option B are true!  \qed
 \end{proof}
 
+Are you convinced?  If you are not, then you can contact one (or both)
+of the authors, and we shall gladly supply more details.  This is the
+essence of the social modality of proof.  At the ``end of the day'',
+we allow the totality of the readers to vote on whether we, the
+authors, have discharged our assertion-proving duties.  The Friends
+and Strangers problem is simple enough that we do not expect a deluge
+of mail requesting more details, but for other, more complex,
+assertions, there could be a need for more details.  This, indeed,
+happened in the case of the famous Four-Color Theorem
+(Theorem~\ref{thm:Four-ColorTheorem}), which talks about coloring
+global maps.  As we related in
+Section~\ref{sec:planar+outerplanar-color}, the Four-Color Theorem
+remained unproven for many decades before a pair of American
+mathematicians, Kenneth Appel \index{Appel, Kenneth} and Wolfgang
+Haken, \index{Haken, Wolfgang} used a {\it computer} to help resolve
+the thousands of cases that had to be verified in the proof.  The
+mathematical world erupted in controversy over this first-ever use of
+a computer in the construction of a mathematical proof.  It took
+years---plus the replicative program of a team of Japanese
+mathematicians---before the global mathematical community accepted the
+claim by Appel and Haken that Theorem~\ref{thm:Four-ColorTheorem} had,
+indeed, been proved!
+
+\bigskip
+
+The current volume is dedicated to trying to overcome people's
+resistance to mathematical analysis and argumentation via a modernized
+and humanized---but no less rigorous---methodology for ``thinking
+mathematically'', especially within computational frameworks.  We
+attempt to develop proof systems and methods that the reader can
+comfortably develop facility with.
+
+Our avenue for promoting mathematical {\em understanding} rather than
+just rote knowledge abjures any specific formalism.  Instead,
+throughout this text, we develop multiple proofs for the topics of
+discourse, involving multiple representations of the objects being
+discussed and multiple modes of argumentation.  The reader will be
+able to see a variety of arguments for the same topic, which will
+hopefully enhance the likelihood of discovering an approach that is
+congenial to each reader's individual way of thinking.  By practicing
+proofs and analyses regarding more and more topics, the reader will
+begin to find it increasingly easy to state informally what ultimately
+needs to be analyzed rigorously and to intuit how to embark on the
+path toward such rigor.
 
 
-\section{The Elements of Rigorous Reasoning}
+\subsubsection{Some elements of rigorous reasoning}
 \label{sec:elements-of-reasoning}
 
-\subsection{Basic Reasoning}
+We close our discussion of proof methodology by highlighting a number
+of ideas for the reader's consideration.  These ideas range from
+pointing out common pitfalls to suggesting ways to develop intuition.
 
-{\em Distinguishing name from object}.
-%
+\medskip
+
+\paragraph{\small\sf A. Distinguishing name from object}
+
 A fundamental stumbling block in the road to cogent reasoning arises
 from the inability to distinguish names from the objects they denote.
-A prime example within the world of computing resides in the inability
-to distinguish a function (which can be viewed as an infinite set of
-argument-value pairs) from a program, which can be viewed as a name
-for the function.  {\bf Note} that the often-used view of a function
-as a {\em rule} for assigning values to arguments should be avoided,
-because it suggests -- \underline{\em erroneously} -- that an
-implementable such rule always exists!
 
-{\em Quantitative reasoning}.
-%
-Students should understand the foundational distinction between
-``growing without bound'' and being innite.  Within this theme, they
-should appreciate situations such as the following.  Every integer,
-and every polynomial with integer coefficients, is finite, but there
-are infinitely many integers and infinitely many polynomials.
-Students should be able to verify (cogently but not necessarily via
-any particular formalism) assertions such as the following.
+Two prime examples within the world of computing reside in the
+following distinctions that are often missed.
+\begin{itemize}
+\item
+A {\it function} is a special genre of infinite set of argument-value
+pairs; see Section~\ref{sec:function}.  {\em A function is not a
+  program}---even when the program computes the values of the
+function.  Indeed, a program that computes a function can/should be
+viewed as a {\it name} for the function.
+
+{\bf Note} that the often-used view of a function as a {\em rule} for
+assigning values to arguments should be avoided, because it
+suggests---\underline{\em erroneously}--that an implementable such
+rule always exists!
+
+\item
+A number is an abstract notion that denotes a quantity.  {\em You
+  cannot touch a number; you cannot compute with a number!}  As we
+discuss at length in our three chapters about numbers:
+Chapters~\ref{ch:numbers-numerals},~\ref{ch:numbers-advanced},
+and~\ref{ch:numerals}, it is {\em numerals}, or, {\em number
+  representations}, that we manipulate in order to compute.
+\end{itemize}
+Myriad other instances of the name-vs.-object distinction must always
+be in the forefront of a person's mind as the person ``does''
+mathematics.
+
+\medskip
+
+\paragraph{\small\sf B. Quantitative reasoning}
+
+Readers who aspire to ``doing'' mathematics must understand the
+foundational distinction between ``growing without bound'' and being
+infinite.  Within this theme, they should appreciate situations such
+as the following.  Every integer, and every polynomial with integer
+coefficients, is finite, but there are infinitely many integers and
+infinitely many polynomials.  Readers should be able to verify
+(cogently but not necessarily via any particular formalism) assertions
+such as the following.
 \begin{itemize}
 \item
 Let us be given polynomials $p(x)$ of degree $a$ and $q(x)$ of degree
@@ -550,59 +609,17 @@ all $x > Y_{c;q}$, $c^x > q(x)$.
 
 Thus, exponential functions eventually {\em majorize} polynomials.
 \end{itemize}
+Here again, we provide just illustrative examples of pervasive
+phenomena.
 
-\subsubsection{The Elements of Formal Reasoning}
+\medskip
 
-What is solving mathematical problems?
+\paragraph{\small\sf C. The elements of {\em empirical} reasoning}
 
-There are many methods for establishing a formal proof.
-In all cases, the problems to solve should be modeled, which means that we 
-they are transformed into mathematical problems using formal parameters. 
-
-Then, use techniques like inference, arithmetic operations, induction,
-proof by contradiction, etc.
-
-\subsubsection{The Elements of Empirical Reasoning}
+{\Arny This section is for Denis}
 
 Empirical reasoning does not convey the certitude that formal
 reasoning does.  
-
-
-\subsection{What is a ``effective'' proof?}
-
-We are interested in helping the reader learn intuitively compelling,
-perspicacious techniques for proving interesting mathematical results.
-But what exactly is a ``mathematical proof"---especially within the
-context of computational systems and artifacts?  To answer this
-question operationally, we follow the lead of the French mathematician
-Ren\'e Thom, \index{Thom, Rene\'{e}} the Fields medal winning inventor
-of catastrophe theory.  Thom famously defined a proof as an argument
-that ``creates a corpus of evidence for educated readers that leads
-to their adherence.''
-\begin{quote}
-{\em Est rigoureuse toute d\'{e}monstration, qui, chez tout lecteur
-  suffisamment instruit et pr\'{e}par\'{e}, suscite un \'{e}tat
-  d'\'{e}vidence qui entraine l'adh\'{e}sion.}
-\end{quote}
-
-
-\subsubsection{A discussion of ``rigor''}
-
-What to fill in this section?
-
-Historical perspective: Cauchy controversy.
-
-Paper from Leslie Lamport?
-
-TOO COMPLICATED TO PROVE?
-
-\subsubsection{Sample proof}
-\label{sec:sample-proofs}
-
-
-{\Denis Add a simple example here of a typical proof 
-with the succession of logical inferences}
-
 
 
 \section{Overview of Some Major Proof Techniques}
@@ -611,117 +628,57 @@ with the succession of logical inferences}
 \subsection{Proof by (Finite) Induction}
 \label{sec:Induction}
 
-It is crucial that the reader appreciate the fact that proofs by
-induction, such as we discuss in this section---and exemplify in
-Section~\ref{sec:positive-integer-power}.C---are important tools for
-{\em verifying} the correctness of alleged results, but induction by
-itself is not a tool for {\em discovering} new results.
+\subsubsection{A second sample proof by induction}
 
+In Section~\ref{sec:formal-proof}, we specified the Principle of
+Finite Induction \index{finite induction, principle of} and
+exemplified by verifying the formula (\ref{eq:sum-first-n1}) for the
+sum of the first $n$ integers
+(Proposition~\ref{thm:sum-1-to-n-induction1}).
 
-\subsubsection{The proof technique}
-
-
-\subsubsection{Sample proof: verifying a summation formula}
-\label{sec:Proof-Induction}
-
-
-We illustrate the proof technique of (Finite) Induction by proving the
-correctness of a familiar summation formula.
-
-\ignore{************8
-\begin{prop}
-\label{thm:sum-1-to-n-induction1}
-For all $n \in \N$,
-\begin{eqnarray}
-\nonumber
-S_n \ \eqdef \ \sum_{i=1}^n \ i
- & \eqdef &
- 1 + 2 + \cdots + (n-1) + n \\
-\label{eq:sum-first-n1}
- & = & {1 \over 2} n (n+1) \\
-%\nonumber
-% & = & {{n+1}  \choose 2}
-\end{eqnarray}
-\end{prop}
-
-\begin{proof}
-For every positive integer $m$, let {\bf P}$(m)$ be the proposition
-\[  1 + 2 + \cdot + m \ = \ \frac{m(m+1)}{2} \]
-Let us proceed according to the standard format of an inductive
-argument.
-
-{\bf 1.} Because $\frac{1(1+1)}{2}  = 1$, proposition {\bf
-  P}$(1)$ is true.
-
-{\bf 2.} Let us assume, for the sake of induction, that proposition
-{\bf P}$(m)$ is true for all positive integers strictly smaller than
-$n$.  In particular, then, {\bf P}$(n-1)$ is true.
-
-{\bf 3.} Consider now the summation
-\[ 1 + 2 + \cdots + (n-1) + n \]
-Because {\bf P}$(n-1)$ is true, we know that
-\[ 1 + 2 + \cdots + (n-1) \ = \ \frac{(n-1)n}{2} \]
-By direct calculation, we see that
-\begin{eqnarray*}
-\frac{(n-1)n}{2} + n
-  & = & \frac{n^2 - n + 2n}{2} \\
-  & = & \frac{n^2 + n}{2} \\
-  & = & \frac{n(n+1)}{2}
-\end{eqnarray*}
-
-Because $n$ is an arbitrary positive integer, we conclude that
-{\bf P}$(n)$ is true whenever
-\begin{itemize}
-\item
-{\bf P}$(1)$ is true
-\item
-{\em and}
-{\bf P}$(m)$ is true for all $m < n$.
-\end{itemize}
-By the Principle of (Finite) Induction, then, we conclude that {\bf
-  P}$(n)$ is true for all $n \in \N^+$.
-\qed
-\end{proof}
-
-\bigskip
-************}
-
-We turn now to a well-nown summation, which asserts that each perfect
-square of a positive integer, say, $n^2$, is the sum of the first $n$
-odd integers, $1, 3, 5, \ldots, 2n-1$.  This proof complements the
+We now provide a second sample application of the Principle.  The
+proof by induction of the following result complements the
 constructive proofs of the same result in
 Proposition~\ref{thm:squares-odd-integers-Gauss}.
 
 \begin{prop}
 \label{thm:squares-odd-integers-induction1}
-For all $n \in \N^+$,
+For all $n \in \N^+$, the $n$th perfect square is the sum of the first
+$n$ odd integers.  Symbolically:
 \[
-\sum_{k=1}^n \ (2k-1)
- \ = \ 1 + 3 + 5 + \cdots + (2n-1) \ = \ n^2.
+n^2 \ \ = \ \
+%\sum_{k=1}^n \ (2k-1)
+1 \ + \ 3 \ + \ 5 \ + \cdots + \ (2n-3) \ + \ (2n-1)
 \]
-That, is, the $n$th perfect square is the sum of the first $n$ odd
-integers.
 \end{prop}
 
-\noindent {\em Verification.}
-%
-For every positive integer $m$, let {\bf P}$(m)$ be the proposition
-\[ m^2 \ = \ 1 + 3 + 5 + \cdots + 2m-1. \]
+\begin{proof}
+For every positive integer $m$, let {\bf P}$(n)$ denote the assertion
+\[ m^2 \ = \ 1 + 3 + 5 + \cdots + (2m-1). \]
 Let us proceed according to the standard format of an inductive
 argument.
 
 {\bf 1.} Because $1 \cdot 1 = 1$, proposition {\bf P}$(1)$ is true.
 
-{\bf 2.} Let us assume, for the sake of induction, that proposition
-{\bf P}$(m)$ is true for all positive integers strictly smaller than
-$n$.  In particular, then, {\bf P}$(n-1)$ is true.
+{\bf 2.} Let us assume, for the sake of induction, that assertion {\bf
+  P}$(m)$ is true for all positive integers strictly smaller than $n$.
+In particular, then, {\bf P}$(n-1)$ is true.
 
 {\bf 3.} Consider now the summation
-\[ 1 + 3 + 5 + \cdots + 2n-3 + 2n-1 \]
+\[ 1 + 3 + 5 + \cdots + (2n-3) + (2n-1) \]
 Because {\bf P}$(n-1)$ is true, we know that
-\[ 1 + 3 + 5 + \cdots + 2n-3 + 2n-1 \ = \ (n-1)^2 + 2n-1.  \]
-By direct calculation, we see that
-\[ (n-1)^2 + 2n-1 \ = \ (n^2 -2n +1) + (2n-1) \ = \ n^2. \]
+\begin{eqnarray*}
+1 + 3 + \cdots + (2n-3) + (2n-1)
+  & = & 
+\big(1 + 3 + \cdots + (2n-3) \big) + (2n-1) \\
+  & = &
+\big(1 + 3 + \cdots + (2(n-1) -1) \big) + (2n-1) \\
+  & = & (n-1)^2 + (2n-1)
+\end{eqnarray*}
+By direct calculation, we now find that
+\[ (n-1)^2 + (2n-1) \ \ = \ \ (n^2 -2n +1) + (2n-1) \ \ = \ \ n^2. \]
+
+\noindent
 Because $n$ is an arbitrary positive integer, we conclude that
 {\bf P}$(n)$ is true whenever
 \begin{itemize}
@@ -731,25 +688,135 @@ Because $n$ is an arbitrary positive integer, we conclude that
 {\em and}
 {\bf P}$(m)$ is true for all $m < n$.
 \end{itemize}
-By the Principle of (Finite) Induction, then, we conclude that {\bf
-  P}$(n)$ is true for all $n \in \N^+$.
-\qed
+The Principle of (Finite) Induction tells us that {\bf P}$(n)$
+is true for all $n \in \N^+$.  \qed
+\end{proof}
 
 
-
-\subsubsection{Making guesses: the method of undetermined coefficients}
+\subsubsection{The method of undetermined coefficients}
 \label{sec:undetermined-coefficients1}
 \index{method of undetermined coefficients}
 
-Proofs by induction, as provided in
-Section~\ref{sec:positive-integer-power}.C, are important tools for
-{\em verifying} the correctness of alleged results, but induction by
-itself is not a tool for {\em discovering} new results.  This section
-is devoted to the {\em Method of Undetermined Coefficients}, a tool
-that sometimes yields the ``guesses'' that can then be verified via
-induction.  We illustrate the method by deriving a formula for the sum
-of the first $n$ perfect squares.  Our derivation builds on prior
-knowledge of two facts:
+
+Proofs by induction are important tools for {\em verifying} the
+correctness of alleged results---but induction by itself is not a tool
+for {\em discovering} new results.  {\em (You cannot {\em verify}
+  assertion {\bf P}($n$) if you do not know {\em exactly} what the
+  assertion is asserting.)}
+
+There are many techniques of analysis that yield {\em approximations}
+to the values of important quantities---but not exact values.  Within
+the purely mathematical realm that we study in this text, the
+summation technique of Section~\ref{sec:riemann-bounds} provides an
+important example.  This technique tells us, for instance, that the
+sum of the first $n$ positive integers grows quadratically with $n$,
+but it does not provide the exact formula in (\ref{eq:sum-first-n1}).
+Similarly, the technique tells us that the sum of the first $n$
+perfect squares grows cubically with $n$, but it does not provide
+the following exact formula for the sum.\index{formulas!sum of the
+  first $n$ squares}
+\begin{equation}
+\label{eq:sum-1-to-nsq1}
+1 \ + \ 4 \ + \cdots + \ (n-1)^2 \ + \ n^2 
+ \ \ = \ \
+{1 \over 3} n^3 \ + \ {1 \over 2} n^2 \ + \ {1 \over 6} n
+\end{equation}
+Moving beyond the purely mathematical realm, there are myriad
+``exhaustive-search'' computational heuristics\footnote{{\it Particle
+    swarm optimization} \cite{KennedyE95} and {\it simulated
+    annealing} \cite{KirkpatrickGV83} are two popular such
+  heuristics.}~that provide {\em approximately optimal} values for various
+optimization problems---but not {\em exactly optimal} values.
+
+\medskip
+
+The {\em Method of Undetermined Coefficients}, which we now describe,
+can sometimes refine the approximate results from various sources to
+exact results that one can then verify via induction.  We illustrate
+the method by deriving a formula for the sum of the first $n$
+integers---assuming that we know that this sum has the form of a
+quadratic (degree-$2$) polynomial in $n$ but that we do not know the
+coefficients of the polynomial.
+
+Assume that we know from some external source---say, for instance,
+from Section~\ref{sec:riemann-bounds}---that {\em for all positive
+  integers} $n$:
+\begin{equation}
+\label{eq:formula-for-n}
+S(n) \ \eqdef \
+ 1 \ + \ 2 \ + \ 3 \ + \cdots + \ n 
+ \ = \ 
+c_2 n^2 \ + \ c_1 n \ + \ c_0
+\end{equation}
+for given numbers $c_0, c_1, c_2$.
+
+\noindent By evaluating formula (\ref{eq:formula-for-n}) at the first
+few positive integers $n$, we find that:
+\begin{eqnarray}
+\label{eq:add-1}
+S(1) = 1
+ & \mbox{so that} &
+ c_2 + c_1 + c_0 \ = \ 1 \\
+\label{eq:add-2}
+S(2) = 3
+ & \mbox{so that} &
+ 4 c_2 + 2 c_1 + c_0 \ = \ 3 \\
+\label{eq:add-3}
+S(3) = 6
+ & \mbox{so that} &
+ 9 c_2 + 3 c_1 + c_0 \ = \ 6
+\end{eqnarray}
+We can now do arithmetic on these equations (adding and/or subtracting
+pairs of them) to obtain new equations which will help us home in on
+the values of $c_2$, $c_1$, and $c_0$.
+\begin{itemize}
+\item
+We combine (\ref{eq:add-1}) and (\ref{eq:add-2}) to get
+\begin{equation}
+\label{eq:add-4}
+3c_2 + c_1 \ = \ 2
+\end{equation}
+
+\item
+We combine (\ref{eq:add-2}) and (\ref{eq:add-3}) to get
+\begin{equation}
+\label{eq:add-5}
+5 c_2 + c_1 \ = \ 3
+\end{equation}
+
+\item
+We combine (\ref{eq:add-4}) and (\ref{eq:add-5}) to get
+\begin{equation}
+\label{eq:add-5}
+2 c_2 \ = \ 1
+\end{equation}
+\end{itemize}
+This last equation, (\ref{eq:add-5}) tells us that \fbox{$c_2 = {1
+    \over 2}$}.  Given this, our first two original equations now
+become
+\begin{eqnarray}
+\label{eq:add-6}
+S(1) = 1
+ & \mbox{so that} &
+c_1 + c_0 \ = \ 1/2 \\
+\label{eq:add-7}
+S(2) = 3
+ & \mbox{so that} &
+2 c_1 + c_0 \ = \ 1
+\end{eqnarray}
+By combining these new equations we find that \fbox{$c_2 = {1 \over
+    2}$}.  Finally, by employing this value in (\ref{eq:add-6}), we
+find that \fbox{$c_0 = 0$}.
+
+\medskip
+
+We have now determined completely that
+\[ S(n) \ = \ {1 \over 2}(n^2 + n) \]
+Of course, we have already verified this formula in
+Proposition~\ref{thm:sum-1-to-n-induction1}.
+
+\ignore{***************
+Our derivation builds on prior knowledge of two facts:
 \begin{enumerate}
 \item
 A trivial proof by counting verifies that
@@ -779,7 +846,7 @@ S^{(2)}_n \ \eqdef \ \sum_{i=1}^n \ i^2
  & = & {1 \over 3} n^3 \ + \ {1 \over 2} n^2 \ + \ {1 \over 6} n
 \end{eqnarray}
 \end{prop}
-\index{formula for the sum of the first $n$ squares}
+
 
 The target quantity $S^{(2)}_n$ in the proposition is often expressed
 in a more aesthetic form:
@@ -908,6 +975,9 @@ shall leave this final task to the reader.
 
 \qed
 \end{proof}
+****************}
+
+\bigskip
 
 With more (calculational) work, but no new (mathematical) ideas, one
 can derive explicit expressions for the sum of the first $n$ $k$th
@@ -917,6 +987,8 @@ powers, i.e., the quantity $S^{(k)}_n$, for any positive integer $k$.
 \subsection{Proof by Contradiction}
 \label{sec:Contradiction}
 \index{proof by contradiction}
+
+**HERE
 
 \begin{quote}
 {\em The importance of this proof technique has been recognized since
