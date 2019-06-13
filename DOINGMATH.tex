@@ -1,4 +1,4 @@
-%version of 06-11-19
+%version of 06-13-19
 
 \chapter{``DOING'' MATHEMATICS: \\
 A Toolkit for Mathematical Reasoning}
@@ -136,7 +136,7 @@ predating the 19th century fall below the standard that we now expect
 even of students---usually by failing to resolve---or even mention---
 every crucial issue raised in a proferred argument.
 
-\medskip
+\bigskip
 
 Perhaps the most famous example of omitted details relates to the
 famous ``last theorem'' of the great French polymath Pierre de Fermat.
@@ -157,7 +157,17 @@ In modern parlance: \\
 Fermat attributed the absence of details to the absence of room to
 supply them in the margin.
 
-{\Denis Do you think it is interesting to quote that this problem was only solved more than 3 centuries later by Wiles by a pretty complex technique?}
+\smallskip
+
+It is, indeed, possible that the small margins in Fermat's copy of
+{\it Arithmetica} were the only cause for his omitting a detailed
+argument.  Subsequent history, though, suggests that the real cause
+for the omission was the absence in the 17th century of the
+mathematics needed to prove the theorem.  A complete proof of the
+theorem was published only in 1995, by the English mathematician (Sir)
+Andrew Wiles, \index{Wiles, Sir Andrew John} using highly novel
+mathematics whose development occupies an entire issue of the journal
+{\it Annals of Mathematics} \cite{Wiles95}.
 \end{minipage}
 }
 \bigskip
@@ -174,44 +184,77 @@ analogue of the Cesium atom that we aspire to and a discussion of the
 mathematical analogue of the tape measure that we actually work with.
 
 
-\subsection{Formal Proofs and Modern Proofs}
-
-{\Denis I found somehow missleading the term of Formal in the title, what do you think about ancient or even classical?}
+\subsection{Formalistic Proofs and Modern Proofs}
 \label{sec:classical-v-modern-proofs}
 
 This section is a rather informal discussion of rather formal topics.
-The material here is introductory and motivational; it is expanded and
-made rigorous in the remainder of the book.  The reader will find in
-Section~\ref{sec:Propositional-logic} a more formal presentation of
+The presentation here is introductory and motivational; it is expanded
+and made rigorous in the remainder of the book.  The reader will find
+in Section~\ref{sec:Propositional-logic} a rigorous presentation of
 much of the coming material.
 
 
-\subsubsection{Formal proofs, with an illustration}
+\subsubsection{Formalistic proofs, with an illustration}
 \label{sec:formal-proof}
 
 The purely formalistic view of mathematical discourse is devoid of
 intuition or imagery.  Each discourse is just a sequence of
 syntactically valid {\it statements}.  Certain designated statements
 are {\em axioms}---meaning ``self-evident truths''.  There are also
-rules known as {\em rules of inference} that allow one to create new
-statements out of pre-existing ones.
-Within this world:
+{\em rules of inference}---formal rewriting rules---which enable one
+to create new statements from sequences of pre-existing ones and to
+append these new statements to the discourse.  Within this world:
 \begin{itemize}
 \item
-A {\em proof} is a sequence of statements.  The first statement in the
-sequence must be an axiom.  Every subsequent statement is either an
-axiom or the result of applying a rule of inference to the statements
-that have been previously added to the sequence.
+A {\em proof} is a sequence of statements.
+  \begin{itemize}
+  \item
+The first statement must be an axiom.
+  \item
+Each subsequent statement must be either an axiom or the result of
+applying a rule of inference to the statements that are already
+present in the sequence.
+  \end{itemize}
 \item
 A {\em theorem} is the last statement of a proof.
-
-{\Denis for me, a theorem should also have a kind of universality which means it can be used in another context?}
 \end{itemize}
+We are raised mathematically to view a ``theorem'' as some kind of
+holy grail, a term that is reserved for the most important of proved
+assertions.  Within the formalistic setting, though, a theorem is any
+assertion that is proved.
 
-One finds the point of view we have just introduced expounded in
-detail in, e.g., the classic {\it Principia Mathematica} by British
-logicians Alfred North Whitehead \index{Whitehead, Alfred North} and
-Bertrand Russell. \index{Russell, Bertrand} \cite{Russell03}
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+To expand on the metaphorical pedestal that we reserve for {\em
+  theorems}:
+
+We typically employ some sort of hierarchy to classify assertions that
+we prove.  There is no generally accepted hierarchy, but the following
+categories of proved assertions will resonate with at least some
+mathematical practitioners.
+
+\smallskip
+
+\hspace*{.15in}\begin{tabular}{ll}
+{\em theorem}: & an assertion having more than local import \\
+{\em proposition}: & an assertion of local import \\
+{\em lemma}: & a stepping stone toward a proposition or theorem \\
+             & --- often of little intrinsic import \\
+{\em corollary}: & a consequence of the proof of a more important
+assertion
+\end{tabular}
+\end{minipage} }
+
+\bigskip
+
+\noindent
+One finds the formalistic point of view we have just introduced
+expounded in detail in, e.g., the classic {\it Principia Mathematica}
+by British logicians Alfred North Whitehead \index{Whitehead, Alfred
+  North} and Bertrand Russell \index{Russell, Bertrand}
+\cite{Russell03}.
 
 We now illustrate the formalistic world we have sketched---in a form
 we have rendered more palatable to humans---by peeking ahead into
@@ -567,11 +610,9 @@ pairs; see Section~\ref{sec:function}.  {\em A function is not a
 function.  Indeed, a program that computes a function can/should be
 viewed as a {\it name} for the function.
 
-{\Denis Why putting Note in bold and same for underlying erroneously, it is still in italic...}
-
-{\bf Note} that the often-used view of a function as a {\em rule} for
+Note that the often-used view of a function as a {\em rule} for
 assigning values to arguments should be avoided, because it
-suggests---\underline{\em erroneously}--that an implementable such
+suggests---\underline{\em erroneously}---that an implementable such
 rule always exists!
 
 \item
@@ -726,19 +767,18 @@ the purely mathematical realm that we study in this text, the
 summation technique of Section~\ref{sec:riemann-bounds} provides an
 important example.  This technique tells us, for instance, that the
 sum of the first $n$ positive integers grows quadratically with $n$,
-but it does not provide the exact formula in (\ref{eq:sum-first-n1}).
-
-{\Denis I suggest to remove the following since it is not useful at this point}
+but it does not provide the exact formula (\ref{eq:sum-first-n1}).
 Similarly, the technique tells us that the sum of the first $n$
-perfect squares grows cubically with $n$, but it does not provide
-the following exact formula for the sum.\index{formulas!sum of the
-  first $n$ squares}
+perfect squares grows cubically with $n$, but it does not provide the
+exact formula for the sum.\footnote{For those curious about the exact
+  formula for the sum of the first $n$ perfect squares:
+  \index{formulas!sum of the first $n$ squares} 
 \begin{equation}
 \label{eq:sum-1-to-nsq1}
 1 \ + \ 4 \ + \cdots + \ (n-1)^2 \ + \ n^2 
  \ \ = \ \
 {1 \over 3} n^3 \ + \ {1 \over 2} n^2 \ + \ {1 \over 6} n
-\end{equation}
+\end{equation}}
 Moving beyond the purely mathematical realm, there are myriad
 ``exhaustive-search'' computational heuristics\footnote{{\it Particle
     swarm optimization} \cite{KennedyE95} and {\it simulated
@@ -1044,8 +1084,7 @@ Proposition~\ref{thm:contraposition}.
 \paragraph{\small\sf There are infinitely many primes}
 
 The following result is traditionally attributed to the Greek
-mathematician Euclid,
-\index{Euclid}
+mathematician Euclid,\index{Euclid}
 one of the patriarchs of mathematics.
 
 \begin{prop}
@@ -1134,6 +1173,51 @@ conclude that the assumption is false!  We conclude from this
 classical proof by contradiction that there are infinitely many prime
 numbers.  \qed
 \end{proof}
+
+
+\subsection{Proofs via the Pigeonhole Principle}
+\label{sec:pigeonhole}
+
+{\Denis Is it a technique by itself like the other ones or should it be integrated into another one -- on thus, which one?}
+
+The proof technique we discuss now builds on an observation that is
+almost embarrassingly obvious---yet its simplicity is exceeded by its
+importance as a source of strikingly surprising results.
+
+\subsubsection{The Proof Technique}
+
+The technique, known variously as {\it the pigeonhole principle}
+\index{pigeonhole principle}
+or {\it Dirichlet's Box Principle}
+\index{Dirichlet's Box Principle}
+(after the French mathematician Peter Gustav Lejeune Dirichlet),
+\index{Dirichlet, Peter Gustav Lejeune}
+exploits the fact that if one has $n$ objects (say, pigeons) and $m <
+n$ boxes (they're the pigeonholes), then any way of putting pigeons
+into boxes must place at least two pigeons into the same box.
+
+
+\subsubsection{Sample Applications/Proofs}
+\label{sec:pigeon-apps}
+
+\noindent {\it Choosing a pair of matching socks}.
+You have $n$ pairs of socks, the socks in each pair having a distinct
+color (one pair of red socks, one pair of blue socks, \ldots).  Since
+you wake up ``very slowly'', you want to grab some number of unpaired
+socks that is certain to yield at least one pair of same-color socks.
+Clearly, if you grab any $n+1$ socks (the pigeons), the pigeonhole
+principle guarantees that you have at least one monochromatic pair,
+because there are only $n$ distinct sock-colors (the boxes).
+
+\medskip
+
+\noindent {\it Finding birthday-mates}.
+You are attending a conference and wander into a lecture that has 367
+attendees (including you).  It is certain that at least two attendees
+share the same birthday: there are 366 possible birthdays (the boxes
+for a leap year) and 367 birthday-possessors (the pigeons).
+
+%{\Denis May be we can put this in exercice and add the anniversary paradox which state a similar question with probabilities?}
 
 
 
@@ -1227,54 +1311,6 @@ since there is a one-to-one correspondence.
 \subsubsection{Sample proofs: Computing the sum of the $n$ first integers}
 
 
-
-\subsection{Proofs via the Pigeonhole Principle}
-\label{sec:pigeonhole}
-
-{\Denis Is it a technique by itself like the other ones or should it be integrated into another one -- on thus, which one?}
-
-The proof technique we discuss now builds on an observation that is
-almost embarrassingly obvious---yet its simplicity is exceeded by its
-importance as a source of strikingly surprising results.
-
-\subsubsection{The Proof Technique}
-
-The technique, known variously as {\it the pigeonhole principle}
-\index{pigeonhole principle}
-or {\it Dirichlet's Box Principle}
-\index{Dirichlet's Box Principle}
-(after the French mathematician Peter Gustav Lejeune Dirichlet),
-\index{Dirichlet, Peter Gustav Lejeune}
-exploits the fact that if one has $n$ objects (say, pigeons) and $m <
-n$ boxes (they're the pigeonholes), then any way of putting pigeons
-into boxes must place at least two pigeons into the same box.
-
-
-\subsubsection{Sample (Fun) Applications/Proofs}
-\label{sec:pigeon-apps}
-
-
-\paragraph{\small\sf Choosing a pair of matching socks} 
-
-You have $n$ pairs of socks, the socks in each pair having a distinct
-color (one pair of red socks, one pair of blue socks, \ldots).  Since
-you wake up ``very slowly'', you want to grab some number of unpaired
-socks that is certain to yield at least one pair of same-color socks.
-Clearly, if you grab any $n+1$ socks (the pigeons), the pigeonhole
-principle guarantees that you have at least one monochromatic pair,
-because there are only $n$ distinct sock-colors (the boxes).
-
-
-\ignore{
-\paragraph{\small\sf B. Finding birthday-mates}
-
-You are attending a conference and wander into a lecture that has 367
-attendees (including you).  It is certain that at least two attendees
-share the same birthday: there are 366 possible birthdays (the boxes
-for a leap year) and 367 birthday-possessors (the pigeons).
-
-{\Denis May be we can put this in exercice and add the anniversary paradox which state a similar question with probabilities?}
-}
 
 
 \subsection{Combinatorial Proofs}
