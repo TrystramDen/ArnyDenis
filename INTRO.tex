@@ -1,4 +1,4 @@
-%version of 06-13-19
+%version of 06-18-19
 
 \chapter{INTRODUCTION}
 \label{ch:intro}
@@ -615,7 +615,7 @@ Asymptotics thereby enables {\em reasoning qualitatively about
 
 \item
 We often have to reason about objects that are actually infinite.  We
-encounter such situations, e.g., in areas that somehow combine
+encounter such situations, e.g., in areas that combine, in some way,
   \begin{itemize}
   \item
 mathematics---e.g., classes of numbers or of functions
@@ -623,7 +623,7 @@ mathematics---e.g., classes of numbers or of functions
 logic---e.g., expressions with special properties, such as theorems or
 proofs
   \item
-linguistics---e.g., sentences that share some syntactic or semantic
+linguistics---e.g., sentences that share (syntactic or semantic)
 characteristics
   \end{itemize}
 Since antiquity, we have been confronted by infinite objects that
@@ -682,7 +682,7 @@ world.  Does an arrow ever reach its target---
 
 \subsubsection{Chapter~\ref{ch:Recurrences}: Recurrences}
 
-Imposing manageable structures on constructs and computations.
+%Imposing manageable structures on constructs and computations.
 
 The functions discussed in Chapter~\ref{ch:arithmetic} are described
 by static ``closed-form'' expressions.  In contrast,
@@ -704,14 +704,20 @@ main ones for their computational importance.
 f(n) \ = \ a f(bn+c) \ + \ dn \ + e
 \end{equation}
 (where $a, b, c, d, e$ are constants) are a welcome friend when one
-analyzes the cost of myriad basic algorithms.  Perhaps the simplest
-nontrivial use of recurrence (\ref{eq:general-linear-recurrence}) is
-in the analysis of 
+analyzes the costs of a broad range of algorithms, using a broad range
+of cost measures (e.g., time, memory usage, power requirements, amount
+of communication).
+
+We introduce two simple, yet nontrivial uses of recurrence
+(\ref{eq:general-linear-recurrence}) in the analysis of algorithms.
+We refer the reader to an algorithms text such as \cite{CLRS} for
+details.
 %{\Denis remark: both next examples are dealing with algorithms, may be too much?}
-%  \begin{itemize}
-the {\em binary search algorithm}, which determines whether an item
-$x$ occurs within a given ordered list of $n$ items.  The algorithm
-begins by partitioning the list into two (so $b = 1/2$ and $c = 0$ in
+  \begin{itemize}
+  \item
+The {\em binary search algorithm}, which determines whether an item
+$x$ occurs within a given ordered list of $n$ items, begins by
+partitioning the list in two (so $b = 1/2$ and $c = 0$ in
 (\ref{eq:general-linear-recurrence})).  It then compares $x$ with the
 list's middle item(s)---there is one middle item when $n$ is odd, two
 when $n$ is even---(so $d = 0$, and $e$ is the fixed constant cost of
@@ -719,24 +725,23 @@ the comparison(s)).  Based on the outcome of the comparison, the
 algorithm recurses with a binary search on the half of the list that
 could contain $x$ (so $a = 1$).
 
-\ignore{**********
   \item
-In somewhat simplified terms, the {\em merge-sort algorithm} builds on
-a natural $n$-step algorithm for merging two $n$-item lists of
-``order-comparable'' items (i.e., for every pair, $x,y$, of list
-items, either $x < y$ or $y < x$).  The algorithm first merges
-adjacent odd-even pairs of items, to end up with sorted $2$-item
-lists.  Then it merges adjacent $2$-item lists, to end up with sorted
-$4$-item lists.  It continues thus with $8$-item lists, then $16$-item
-lists, and so on, until it finally merges the ``top-level'' two
-$n/2$-item lists to achieve the goal of a sorted $n$-item list.  We
-hope that the reader can see intuitively that the performance of this
-algorithm is given by a recurrence of the form
-(\ref{eq:general-linear-recurrence}) for which $a=2$, $b = 1/2$ and $c
-= 0$, $d=1$, and $e$ is the fixed cost of the $2$-item comparisons that
-orchestrate each merge.
+The {\em merge-sort algorithm} builds on a natural $n$-step algorithm
+for merging two $n$-item lists of ``order-comparable'' items (i.e.,
+for every pair, $x,y$, of list items, either $x < y$ or $y < x$).  The
+algorithm first merges adjacent odd-even pairs of items, to end up
+with sorted $2$-item lists.  It then merges adjacent $2$-item lists,
+to end up with sorted $4$-item lists.  It continues thus with $8$-item
+lists, then $16$-item lists, \ldots, until it finally merges the
+``top-level'' two $n/2$-item lists to achieve the goal of a sorted
+$n$-item list.  The performance of this algorithm is given by
+recurrence (\ref{eq:general-linear-recurrence}), with
+$a=2$, $b = 1/2$, $c = 0$, $d=1$, and $e =$ (the fixed cost of
+each $2$-item comparison.
   \end{itemize}
-*******}
+
+
+\smallskip
 
 The centerpiece of our discussion of linear recurrences is the
 so-called {\em Master Theorem}, which uses geometric summations to
@@ -781,7 +786,7 @@ mathematician known by the nickname ``Fibonnaci'', are defined by the
 recurrence
 \begin{eqnarray*}
 F(n+1) & = & F(n) \ + \ F(n-1) \\
-F(0) & = & F(1) \ = \ 1
+F(0) & = & F(1) = 1
 \end{eqnarray*}
 Fibonacci invented his eponymous sequence as he observed the
 populations of consecutive generations of progeny produced by a pair
@@ -799,31 +804,89 @@ supplemental material in this chapter.
 
 
 \subsubsection{Chapter~\ref{ch:combinatorics}: 
-The art of counting, with applications on
-Combinatorics, Probability, and Statistics}
+Combinatorics, Probability, Statistics}
 
-Elements of probability and statistics infuse every area of science where computing is involved. 
-In most fields, the students need a clear and simple introduction to the foundations
-and to the related operational rules.
+Certain subfields of mathematics have been known for centuries as
+``the art of counting''.\footnote{Gottfried Leibniz used the phrase as
+  the title of his 1666 doctoral thesis. 
+\index{Leibniz (Leibnitz), Gottfried Wilhelm}} This chapter introduces
+three related areas of discrete mathematics that are based on that
+art.  Indeed, one can argue that the following chain of applications,
+while grossly oversimplified, is not misleading.
 
-This chapter targets a presentation of the main mathematical aspects beyond both topics.
-It presents first the fundamental rules of counting using finite sets
-(numbers of strings of a given length, cardinality of power sets)
-followed by the concepts of basic mechanisms of permutations, combination and derangements.
-We present discrete probability/likelihood of an event to occur as a ratio between the number of such possible events 
-over the total number of events. 
-This is illustrated by the classical and fun example of Poker. 
-It also present several complementary selected examples 
-that show that it is not so natural to reason about probabilities (namely, Monthy Hall and anniversary paradox).
-Then, the example of rolling 3 dice is taken as an illustration of the statistics thinking.
-We detail two ways for the enumeration of a given configuration (like obtaining a sum equal to $6$).
-Most students whose interest tend to the empirical will likely do statistics with the aid of apps, 
-rather than by explicitly writing programs that perform the required calculations. 
-That said, all students should understand the crucial notion of randomness and should be conversant 
-with the most common statistical distributions.
+\smallskip
 
+\begin{tabular}{lcl}
+{\it Statistics} & can be viewed as applied & {\it Probability} \\
+{\it Probability} & can be viewed as applied & {\it Combinatorics} \\
+{\it Combinatorics} & can be viewed as applied & {\it Counting}
+\end{tabular}
 
-\subsubsection{Chapter~\ref{ch:Graphs-Trees}: An Introduction on Graphs and Their Relatives}
+\smallskip
+
+\noindent
+These are important connections.  Elements of probability and
+statistics infuse every area of endeavor---from science to finances to
+informatics, and beyond---where computing is involved.  In order to
+function successfully in today's world, one needs statistical and
+probabilistic literacy---a command of the foundations and the
+operational rules of ``the art of counting''.
+
+\begin{itemize}
+\item
+This chapter begins by developing the basic {\em rules of counting:}
+How many strings of length $n$ can one form using $c$ characters?  How
+many subsets does a set of $k$ elements have?  We discover that many
+seemingly distinct problems of this type are actually {\em encodings}
+of one another!
+
+\item
+The chapter moves on to concepts related to {\em grouping and
+  arrangement} using mechanisms such as permutations, combinations,
+and derangements.  Variations of these themes allow us to develop {\em
+  selection}-based concepts, such as: In how many deals of five playing
+cards do all cards have the same suit?
+
+\item
+We develop the elements of {\em discrete} (or, {\em combinatorial})
+{\em probability}.  The probability (or, {\it likelihood}) of an event
+is defined as the ratio of the number of ways that the event occurs,
+divided by the total possible number of outcomes.  For instance, the
+probability of achieving the result ``$7$'' when rolling two dice is
+the ratio of the number of rolls that produce ``$7$'', divided by the
+total number of rolls.
+
+We illustrate the elements of probability by simple, fun, examples
+such as assessing the relative values of various deals in the card
+game {\it poker} and of various rolls of a pair of dice in the game
+{\it craps}.
+
+We also discuss the use of the concepts we develop in situations
+wherein it is less common to think in terms of probabilities but in
+which probabilistic thinking can be valuable.  We describe in some
+detail a rather unintuitive such situation that arose in connection
+with a television game show from a few decades ago.  And, we discuss
+the {\it anniversary paradox} which, while whimsical, is a good
+illustration of the elements of probabilistic thinking.
+
+\item
+Finally, we illustrate the {\em statistical} way of thinking by
+carefully analyzing two ways for deriving the likelihood of achieving
+a specific sum---such as $6$---when rolling {\em three} dice.  This
+example will enable us to generalize from the probabilities of
+specific events to (statistical) {\it distributions} of these
+probabilities.
+
+Even if one intends to ``do'' statistics mainly with the aid of
+preprogrammed packages (or apps), it is valuable to understand what
+the numbers produced by an app mean---and what the numbers {\em do
+  not} mean!  Anyone who aspires to designing and/or executing and/or
+analyzing experiments {\em must} understand crucial notions such as
+{\em randomness} and should be conversant with the most common
+statistical distributions.  {\em Lives can depend on such knowledge!}
+\end{itemize}
+
+\subsubsection{Chapter~\ref{ch:Graphs-Trees}: Introducing Graphs and Their Relatives}
 
 Graphs are perhaps the most important representational concept in all
 of mathematics.  In their most basic form, graphs represent any binary
@@ -836,9 +899,10 @@ the structure of an electronic or a communication circuit, where
 certain pairs of entities have the right to intercommunicate---perhaps
 only directionally).
 \end{itemize}
-The structure represented by a graph can not only expose the fact that
-certain pairs of entities can intercommunicate; it can also expose the
-number of ``links'' that must be traversed to achieve communication.
+The structure represented by a graph can expose not only the fact that
+certain pairs of entities can intercommunicate, but also the number of
+inter-entity ``links'' that must be traversed to achieve
+communication.
 
 Even with this rudimentary discussion, one can intuit how myriad
 real-life problems can be modeled using graphs.  Many such problems
@@ -858,11 +922,13 @@ executed concurrently---they are computationally independent.  The
 challenge in this scenario is to color a give task-graph with as few
 colors as possible.  This is a computationally difficult task in
 general, but we expose some of the sophisticated mathematics that has
-been developed in order to study the graph-coloring problem.
-{\em Path problems} in graphs provide another entry to myriad
-scheduling applications.  Of particular interest are problems that
-require some object (e.g., a datum) to passed within a graph so that
-it encounters all of the graph's entities.
+been developed in order to study the graph-coloring problem.  {\em
+  Path problems} in graphs provide another entry to myriad scheduling
+applications.  Of particular interest are problems that require some
+object (e.g., a datum) to be passed around within a graph in a manner
+that achieves a ``coverage'' goal, e.g., so that the object encounters
+all of the graph's entities or traverses all of the graph's
+inter-entity links.
 
 %{\Denis add a sentence on paths, hamiltonian and eulerian, which are
 %the way to establish connections between the entities.}
