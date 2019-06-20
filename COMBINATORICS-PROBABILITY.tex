@@ -573,13 +573,18 @@ We distinguish the two possible cases.
 \item
 If the contestant had selected the jackpot-door at the beginning, then
 holding on to this choice leads to the same probability of success as
-she had from the beginning, namely, one-third.
+she had from the beginning, namely, {\em one-third}.
 \item
-If the contestant had selected a wrong door at the beginning---{\em which
-occurs with probability two-thirds}---then she will win the jackpot if
-she now changes her initial (erroneous) choice.
+If the contestant had selected a wrong door at the beginning---which
+occurs with probability {\em two-thirds}---then she will win the
+jackpot if she now changes her initial (erroneous) choice.
 %because now the choice in among two cases. 
 \end{itemize}
+Thus, quite unintuitively, the contestant should change her original
+choice, based on the information she has now.
+
+\smallskip
+
 You can have fun by confronting your friends with this unintuitive
 analysis.
 
@@ -599,58 +604,112 @@ topic and \cite{Bayes} for the original work.
 \label{sec:birthday-puzzle}
 \index{birthday puzzle}
 
-We present here another application of the rules of enumeration to
-calculate the probabilities~\cite{DumasTrystram}.  It shows in
-particular that it is sometimes easier to calculate the probability
-that an event does not occur than the direct event.
+This section presents another application of the rules of enumeration
+to the calculation of probabilities~\cite{DumasTrystram}.  The main
+message with this application is: {\em it is sometimes easier to
+  calculate the probability that an event {\em does not} occur than
+  the probability that it {\em does} occur.}
 
-As teachers, we are commonly asking the students in the Mathematics
-class if there are some of them who are born the same day.  As the
-class is about 30 students, the answer is usually \textit{yes}.  Is it
-by chance?  Then, we ask how many students do we need to obtain a
-probability at least one half (50\%) to have the same birthday.  We
-develop the method below.
+\medskip
+
+A common way for a teacher of a new class to establish rapport with
+students is to determine whether any students share a birthday.  When
+the class has (at least) around 30 students, the answer is usually
+\textit{yes}.  The frequency of this response suggests that the
+presence of birthday sharers is not mere chance!  If this is a
+mathematics class, then there is a teaching opportunity here!  The
+teacher and students can jointly derive an answer to the following
+question.
+
+{\it How many people must gather before the probability that some two share}
+
+{\it a birthday reaches 50\%?}
+
+\smallskip
+
+\noindent
+We now develop an answer to this question, based on the assumption
+that all dates are equally attractive as potential birthdays.
 
 \bigskip
 
-Let consider a common year with 365 days.  A first and obvious remark
-is that it is sufficient to have 366 people since the worst case is
-obtained when the birthday of the first 365 people is in a
-different day. This is another illustration of the pigeonhole
-principle.  Can we expect to have $366/2 = 183$ people to obtain a
-probability of $50\%$?
+Let us focus on a common year, with 365 days; a simple modification of
+the coming calculation accommodates leap years.  A first, obvious,
+remark is that when there are 366 people in the class---and only
+then---the pigeonhole principle {\em guarantees}---with probability
+100\%---that some two people share a birthday.  If we were to lower
+our demands to a 50\% probability of a shared birthday, how much does
+this lower the required population of 366?  We show now that, somewhat
+unintuitively, this required number is lowered dramatically.
 
 \bigskip
 
-Let us analyze the situation in more detail and consider the dual
-problem of determining the probability not to have the same
-birthday (the initial probability is 1 minus this one...).  Denote
-this probability by $\pi(n)$.
+Surprisingly, we simplify the calculational component of our solution
+considerably by focusing in the {\em dual} \index{dual problem} form
+of our problem.  That is,
+\begin{description}
+\item[{\em Instead of}]
+ determining a {\em lower bound} on the population
+that would guarantee a 50\% probability of a shared birthday,
+\item[we determine]
+an {\em upper bound} on the population that would
+guarantee a 50\% probability of {\em no} shared birthday.
+\end{description}
+Let us denote by $\pi(n)$ the probability that there are no shared
+birthdays in a population of $n$ people.
 
-Consider a class of $n$ student and take one of them randomly ($n \leq
-365$).  She or he can have her birthday any of the 365 days.  and
-similarly for the $n-1$ remaining ones.  Thus, the number of all
-possible cases is $365^n$.  Now, we focus on the first student: there
-are 365 ways to choose her birth date.  As we are looking for
-different dates, there is only 364 choices for the second student and
-so on until $365-(n-1)$ for the last one.  Thus, the number of
-positive choices is equal to $365 \times 364 \times \cdots \times
-(366-n) = \frac{365!}{(365-n)!}$.
+Since we assume that all birthdays are equally likely, the probability
+that any particular person has any particular birthday is $1/365$.  In
+other words, the space of all possible assignments of birthdays to all
+$n$ people has $365^n$ assignments---all of which are equally likely.
 
-\[ 
-\pi(n) = \frac{\mbox{number of positive choices}}{\mbox{number of possible choices}} = \frac{365!}{ (365-n)!  \times 365^n}
+Focus first on person \#1: her birthday can be selected from any of
+the $365$ (indistinguishable) days of the year.  Moving on to person
+\#2: his birthday can be selected only from the $364$
+(indistinguishable) days of the year that person \#1 has not
+``chosen'': otherwise persons \#1 and \#2 would share a birthday!  By
+similar reasoning, person \#3's birthday can be selected from only the
+$363$ days that the first two people have not claimed, person \#4
+chooses from among $362$ days, and so on, until person \#$n$ chooses
+from among $365-(n-1)$ days.
+
+The preceding tally indicates that among the $365^n$ possible
+assignments of birthdays to $n$ people, only
+\[ 365 \times 364 \times 363 \times \cdots \times
+(366-n+1) \ = \ \frac{365!}{(365-n)!} 
 \]
+assignments have no two people sharing a birthday.  Worded as a
+probability, then:
+\begin{eqnarray*}
+\pi(n) & = &
+\frac{\mbox{number of birthday assignments with no shared birthday}}
+{\mbox{total number of birthday assignments}} \\
+ &  = & \frac{365!}{ (365-n)!  \times 365^n}
+\end{eqnarray*}
 
-If we come back to the probability to have the same birthday (which is
-equal to $1-\pi(n)$), we obtain $0.5073$ for $n=23$: in other words,
-we have slightly more than $50\%$ chances to have two students born
-the same day in a class with 23 students.  For our classes with $30$
-students, the probability grows up to $0.70632$.
+\medskip
 
-{\Denis Another interesting variant is to determine the probability of a student to be born the same day as me. This may be a good exercice. Quite easy.}
+Let us return to our original problem, which focuses on assignments in
+which there exists at least one shared birthday.  Since the event \\
+\hspace*{.25in}some two people share a birthday \\
+is the complement of the event \\
+\hspace*{.25in}no two people share a birthday \\
+the probability of a shared birthday is precisely $1-\pi(n)$.  We find
+that for $n=23$, the desired probability is $0.5073$:  In other words,
+
+\begin{prop}
+In any group of $23$ people, the chance that two people share the same
+birthday is slightly greater than $50\%$, assuming a year with $365$
+equally likely days.
+\end{prop}
+
+For our teacher whose class has 30 students, the probability grows up
+to $70.632\%$.
 
 
 \subsection{Sum of three dice}
+
+**HERE
 
 If chess is a pure thinking game, there are pure random games
 (and some intermediate games which mixed smart strategies and randomness like Backgammon).
