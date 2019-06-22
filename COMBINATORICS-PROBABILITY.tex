@@ -1,4 +1,4 @@
-%version of 06-21-19
+%version of 06-22-19
 
 \chapter{THE ART OF COUNTING, WITH APPLICATIONS: \\
 Combinatorics, Probability, and Statistics}
@@ -707,65 +707,75 @@ For our teacher whose class has 30 students, the probability grows up
 to $70.632\%$.
 
 
-\subsection{The Three-Dice Game}
+\subsection{Sum-of-Spots Dice Games}
 \label{sec:three-dice}
-\index{Three-Dice Game}
+\index{Dice games}
 
-Archeology suggests that games have fascinated our species since our
+Archaeology suggests that games have fascinated our species since our
 origins.  The games that have endured span a broad spectrum, from
 those that depend almost entirely on thinking and strategy to those
 that depend on pure chance.  (One would place chess at one end of this
 spectrum and (fair) flipping of a fair coin at the other end.)  A
-number of ancient games that have lasted involve the rolling of
-6-sided dice with distinct numbers (or, {\it spots}) on their faces.
-Traditionally, six faces of each die\footnote{The word ``dice'' is
-  plural.  The singular form is ``die''}~contain spots representing
-the numbers $1, 2, 3, 4, 5, 6$.  (Ancient Egyptians played such games,
-as did Roman legionaries, and such games persist in present-day
-casinos.)
+number of ancient games that have endured involve the rolling of
+6-sided dice, each die\footnote{The word ``dice'' is plural.  The
+  singular form is ``die''.}~having distinct numbers (usually denoted
+by {\it spots}) on its six faces.  For convenience, we refer to each
+die's face-numbers via the numerals $1, 2, 3, 4, 5, 6$.  (Ancient
+Egyptians played such games, as did Roman legionaries; and such games
+persist in present-day casinos.)
 
-The old game we discuss here involves rolling three dice, hoping to
-obtain a prespecified value as the {\em sum} of the spots.  We
-highlight the word ``sum'' to stress that the order in which the dice
-reveal their spots is irrelevant.  This means that the outcomes we
-distinguish consist of triples of the form $abc$, where
+We discuss two ancient dice games: The first, known as ``{\it craps}''
+\index{Dice games!craps} in North America, involves rolling two dice
+at a time; the second, which we call ``{\it sum-of-three}'',
+\index{Dice games!sum-of-three} involves rolling three dice at a time.
+With both games, the outcome of interest is the {\em sum} of the spots
+on the upward-facing faces of the rolled dice.  (For example, the sums
+``$7$'' and ``$11$'' are winning outcomes in craps; ``$2$'', ``$3$'',
+and ``$12$'' are losing outcomes; all other sums are ``roll again''
+outcomes.)  We highlight the word ``sum'' to stress that the order in
+which the dice reveal their spots is irrelevant.  This means that the
+outcomes we distinguish consist of pairs of the form $ab$ in the case
+of craps and triples of the form $abc$ in the case of sum-of-three,
+where:
 \begin{itemize}
 \item
-Each of $a, b, c$ is an integer from the set $\{1, 2, 3, 4, 5, 6\}$
+each of $a, b, c$ is an integer from the set $\{1, 2, 3, 4, 5, 6\}$
 \item
-$ a \leq b \leq c$.  This is just a ``cute'' way of saying that the
+$ a \leq b \leq c$.  This is just a convenient way of saying that the
   order in which the numbers appear is irrelevant.
 \end{itemize}
-We call each such triple a {\it configuration}.
+We call each such pair (in craps) or triple (in sum-of-three) a {\it
+  configuration}.
 
 Under the assumption of a {\em fair} game---i.e., one in which all
-faces of all dice are equally likely to appear---we can analyze the
-game by enumerating all possible outcomes.
-
-%Let us first discuss the enumeration
-%and then, let us extend the analysis where the dices are separate ones.
-\bigskip
-
-We now enumerate the $56$ possible configurations of a play of the
-game.  We develop the enumeration in two distinct ways, in the hope of
-encouraging you to seek multiple ways to think about the enumeration.
-
-\begin{enumerate}
-\item 
-Our first technique of enumeration lists the $16$ possible outcomes of
-a roll of the three dice and, for each, lists all possible
-configuraions that yield that outcome.
-
-The precisely $16$ possible outcomes arise from the fact that dice are
-labeled with the integers $1, 2, 3, 4, 5, 6$, so the smallest possible
-outcome is $3$ (which occurs when all three dice show the number $1$),
-and the largest possible outcome is $18$ (which occurs when all three
-dice show the number $6$).  All possible outcomes are listed in
-Fig.~\ref{fig:dice-outcomes}.
-
+faces of all dice are equally likely to appear---we can analyze both
+craps and sum-of-three by enumerating the $21$ possible outcomes of a
+roll in the game of craps and the $56$ possible outcomes of a roll in
+the game of sum-of-three; see Fig.~\ref{fig:dice-outcomes}.
 \begin{figure}[htb]
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{ccc}
+\begin{tabular}{|c|c|c|r|}
+\hline
+   &    &    & sum \\
+\hline
+11 &    &    & 2 \\
+12 &    &    & 3 \\
+13 & 22 &    & 4 \\
+14 & 23 &    & 5 \\
+15 & 24 & 33 & 6 \\
+16 & 25 & 34 & 7 \\
+26 & 35 & 44 & 8 \\
+36 & 45 &    & 9 \\
+46 & 55 &    & 10 \\
+56 &    &    & 11 \\
+66 &    &    & 12 \\
+\hline
+\end{tabular}
+  &
+\hspace*{.5in}
+  &
+\begin{tabular}{|c|c|c|c|c|c|r|}
 \hline
  & & & & & & sum\\
 \hline
@@ -787,17 +797,41 @@ Fig.~\ref{fig:dice-outcomes}.
 666 & & & & & & 18\\
 \hline
 \end{tabular}
+\end{tabular}
 \end{center}
-\caption{The possible outcomes of the Three-Dice Game.}
+\caption{The possible outcomes of craps (left) and of sum-of-three (right).}
 \label{fig:dice-outcomes}
 \end{figure}
-The table in the figure allows us to easily compute that the
-probability of obtain the sum $6$ in a roll of the dice is
-$p(6) \ = \ 4/56 \ = \ 0.071\ldots$; in other words, we would expect
-to observe this outcome with just a bit more than $7\%$ of rolls.
+
+\bigskip
+
+As one might expect, the analysis of craps is very similar to, and
+much simpler than the analysis of sum-of-three.  Therefore, we provide
+only the latter analysis here, leaving the analysis of craps as an
+exercise.
+
+We develop the enumeration of sum-of-three in two distinct ways, in
+the hope of encouraging the reader to seek multiple ways to think
+about such enumerations.
+\begin{enumerate}
+\item 
+Our first technique of enumeration lists the $16$ possible sums of a
+roll of the three dice and, for each, lists all possible
+configurations that yield that sum.
+
+The precisely $16$ possible sums arise from the fact that dice are
+labeled with the integers $1, 2, 3, 4, 5, 6$, so the smallest possible
+sum is $3$ (which occurs when all three dice show the number $1$), and
+the largest possible sum is $18$ (which occurs when all three dice
+show the number $6$).  All possible sums are listed in
+Fig.~\ref{fig:dice-outcomes}(right).  The table in the figure allows
+us to easily compute that the probability of obtain the sum $6$ in a
+roll of three dice is $p(6) \ = \ 4/56 \ = \ 0.071\ldots$; in other
+words, we would expect to observe this sum with just a bit more than
+$7\%$ of rolls.
 
 \item 
-A rather different way of enumerating outcomes is to partition
+A rather different way of enumerating sums is to partition
 configurations $abc$ based on the number of distinct numbers in the
 set $\{ a, b, c\}$.
 \begin{itemize}
@@ -830,22 +864,23 @@ Of course, we again identify $56$ possible configurations.
 
 \bigskip
 
-To close this section, let us consider the variant of the game in
-which the order of observing outcomes $a$, $b$, and $c$ matters.  To
-observe the difference this attention to order makes, let us look
-again at the table in Fig.~\ref{fig:dice-outcomes}.  In the figure we
-note that three different configurations engendered the outcome $6$:
+To close this section, let us consider the variant of the game
+sum-of-three in which the order of observing outcomes $a$, $b$, and
+$c$ matters.  To expose the difference this attention to order makes,
+let us look again at the table in Fig.~\ref{fig:dice-outcomes}(right).
+We note, focusing for illustration just on sum $6$, that three
+different configurations produce this sum:
 \begin{enumerate}
 \item one die of each value $1$, $2$, $3$
 \item two dice of value $1$ and one of value $4$
 \item three dice of value $2$
 \end{enumerate}
 In contrast, if the order in which values occur matters, then the
-value $6$ arises in {\em ten} different ways.  Specifically, we now
-roll the dice one at a atime instead of as a group of three, and we
-observe the value $6$ arising in the ten ways enumerated in
-Fig.~\ref{fig:dice-ordered-outcomes}; in the figure, each column
-represents a roll of die \#1, then die \#2, then die \#3.
+sum $6$ arises in {\em ten} different ways.  Specifically, we now
+roll the dice one at a time instead of as a group of three, and we
+observe the sum $6$ arising in the ten ways enumerated in
+Fig.~\ref{fig:dice-ordered-outcomes}; in this figure, each column
+represents a roll of die \#1, then of die \#2, then of die \#3.
 \begin{figure}[htb]
 \begin{center}
 \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|}
@@ -858,7 +893,7 @@ Third die & 4 & 1 & 1 & 3 & 2 & 1 & 3 & 2 & 1 & 2  \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Achieving value $6$ via {\em ordered} rolls of three dice}
+\caption{Achieving sum $6$ via {\em ordered} rolls of three dice}
 \label{fig:dice-ordered-outcomes}
 \end{figure}
 
@@ -866,23 +901,23 @@ Third die & 4 & 1 & 1 & 3 & 2 & 1 & 3 & 2 & 1 & 2  \\
 
 We leave it to the reader to verify the table in
 Fig.~\ref{fig:dice-ordered-configs}, which gives the number of
-configurations that engender each possible value (from $3$ to $18$) in
-the ordered-roll version of the Three-Dice game.  Note that each
-possible value $k$ is engendered by the same number of confguratiosn
-as is value $21 - k$.  ({\em Can you figure out why?})  The total
-number of configurations is $6^3 = 216$; easily, this number is equal
-to: $2 \times (1 + 3 + 6 + 10 + 15 + 21 + 25 + 27)$.
+configurations that engender each possible sum (from $3$ to $18$) in
+the ordered-roll version of sum-of-three.  Note that each possible sum
+$k$ is engendered by the same number of configurations as is sum $21
+- k$.  ({\em Can you figure out why?})  The total number of
+configurations is $6^3 = 216$; easily, this number is equal to: $2
+\times (1 + 3 + 6 + 10 + 15 + 21 + 25 + 27)$.
 \begin{figure}[htb]
 \begin{center}
 \begin{tabular}{|l||c|c|c|c|c|c|c|c|}
 \hline
-Sum/value & 3, 18 & 4, 17 & 5, 16 & 6, 15 & 7, 14 & 8, 13 & 9, 12 & 10, 11  \\
+Sum & 3, 18 & 4, 17 & 5, 16 & 6, 15 & 7, 14 & 8, 13 & 9, 12 & 10, 11  \\
 \hline
 number of configurations & 1 & 3 & 6 & 10 & 15 & 21 & 25 & 27  \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Achieving all possible values  via {\em ordered} rolls of three dice}
+\caption{Achieving all possible sums via {\em ordered} rolls of three dice}
 \label{fig:dice-ordered-configs}
 \end{figure}
 
