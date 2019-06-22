@@ -709,7 +709,7 @@ n^2 \ \ = \ \
 \end{prop}
 
 \begin{proof}
-For every positive integer $m$, let {\bf P}$(n)$ denote the assertion
+For every positive integer $m$, let {\bf P}$(m)$ denote the assertion
 \[ m^2 \ = \ 1 + 3 + 5 + \cdots + (2m-1). \]
 Let us proceed according to the standard format of an inductive
 argument.
@@ -718,7 +718,7 @@ Because $1 \cdot 1 = 1$, proposition {\bf P}$(1)$ is true.
 
 Let us assume, for the sake of induction, that assertion {\bf
   P}$(m)$ is true for all positive integers strictly smaller than $n$.
-In particular, then, {\bf P}$(n-1)$ is true.
+%In particular, then, {\bf P}$(n-1)$ is true.
 Consider now the summation
 \[ 1 + 3 + 5 + \cdots + (2n-3) + (2n-1) \]
 Because {\bf P}$(n-1)$ is true, we know that
@@ -768,7 +768,8 @@ sum of the first $n$ positive integers grows quadratically with $n$,
 but it does not provide the exact formula (\ref{eq:sum-first-n1}).
 Similarly, the technique tells us that the sum of the first $n$
 perfect squares grows cubically with $n$, but it does not provide the
-exact formula for the sum.\footnote{For those curious about the exact
+exact formula for the sum.
+\footnote{For those curious about the exact
   formula for the sum of the first $n$ perfect squares:
   \index{formulas!sum of the first $n$ squares} 
 \begin{equation}
@@ -1044,8 +1045,6 @@ powers, i.e., the quantity $S^{(k)}_n$, for any positive integer $k$.
 \label{sec:Contradiction}
 \index{proof by contradiction}
 
-**HERE
-
 \begin{quote}
 {\em The importance of this proof technique has been recognized since
   antiquity, under the Latin names {\em contradictio in contrarium}
@@ -1053,15 +1052,21 @@ powers, i.e., the quantity $S^{(k)}_n$, for any positive integer $k$.
 \end{quote}
 
 
-
 \subsubsection{The Proof Technique}
 \label{sec:contradiction-technique}
 \index{proof by contradiction!technique}
 
+The basic principle that underlies proof by contradiction is based on a chain of correct logical assertions.
 
-The basic principle that underlies proof by contradiction is that the
-following {\em metamathematical} assertions are logically equivalent.
-{\Denis too formal, I suggest to change by another formulation, less abstract...}
+Suppose we want to prove Proposition $P$. 
+
+Let assume that $P$ is false, and transform it by successive assertions
+that leads to a clear and obvious contradiction.
+
+This means that indeed $P$ was true.
+
+\ignore{
+the following {\em metamathematical} assertions are logically equivalent. 
 \begin{itemize}
 \item
 Proposition $P$ {\sc implies} Proposition $Q$
@@ -1073,9 +1078,9 @@ As with many of these {\em metamathematical} principles, there is a
 corresponding {\em mathematical} equivalence, in this case,
 Proposition~\ref{thm:contraposition}.
 \[ [P \Rightarrow Q] \ \equiv \ [(\sim Q) \Rightarrow (\sim P)] \]
+}
 
-
-\subsubsection{Sample Proofs}
+\subsubsection{Sample Proof}
 \label{sec:sample-contradictions}
 \index{proof by contradiction!sample proofs}
 
@@ -1174,8 +1179,6 @@ numbers.  \qed
 
 \subsection{Proofs via the Pigeonhole Principle}
 \label{sec:pigeonhole}
-
-{\Denis Is it a technique by itself like the other ones or should it be integrated into another one -- on thus, which one?}
 
 The proof technique we discuss now builds on an observation that is
 almost embarrassingly obvious---yet its simplicity is exceeded by its
@@ -1312,19 +1315,32 @@ since there is a one-to-one correspondence.
 We introduce here a less conventional type of proofs that look at a result
 as counting using combinatorial arguments.
 This is illustrated by the previous example of computing the sum of the $n$ first integers:
-\[ 1+2+ \ldots + n \ = \ {n \choose 2}.  \]
-Choosing $2$ elements among $n$ can be done by choosing the last element (say at index $k$)
-{\Denis k starts at 2 and goes to n}
+\[ 1+2+ \ldots + n \ = \ C(n,2)  \]
+Choosing $2$ elements among $n$ can be done by choosing the second one (say at index $k$)
 and then, choosing the other one among the $k-1$ remaining ones before $k$, 
 which can be mathematically written as:
-\[ \ {n \choose 2} \ = \  \sum_{k=2}^n  \ {k-1 \choose 1} \ = \  \sum_{k=2}^n  (k-1) \ = \  \sum_{k=1}^{n-1}  k \ = \ \frac{(n)(n-1)}{2}\]
+\[ \ C(n,2) \ = \  \sum_{k=2}^n  \ C(k-1,1)\ = \  \sum_{k=2}^n  (k-1) \ = \  \sum_{k=1}^{n-1}  k \ = \ \frac{(n)(n-1)}{2}\]
 
 
 
 \subsection{Proof by computer}
 
- case of the famous Four-Color Theorem
-(Theorem~\ref{thm:Four-ColorTheorem}), which talks about coloring
+
+\subsubsection{The proof technique}
+
+The performance of the computing devices is always more powerful,
+moreover, we can connect together many processors, up to several millions.
+Modern computers can be used as a good complement for helping to do long and tedious computations. 
+Such as, computers are just a way to help. 
+Thus, it is theoretically possible to transform such verifications into classical formal proofs (since the parameters are discrete).
+However, the computations can be too long and complicated to make it possible for humans to verify \textit{all} the aspects of the proof.
+Note that formal verifications are possible, but verifying all the specifications may be too complicated. 
+
+
+\subsubsection{Sample proof: The 4-colors theorem}
+
+The famous Four-Color Theorem
+(Theorem~\ref{thm:Four-ColorTheorem}) talks about coloring
 global maps.  As we related in
 Section~\ref{sec:planar+outerplanar-color}, the Four-Color Theorem
 remained unproven for many decades before a pair of American
