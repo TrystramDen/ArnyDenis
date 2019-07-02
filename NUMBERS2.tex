@@ -1055,7 +1055,11 @@ can represent---or, {\it encode}---via some sort of iterated formation
 of ordered pairs are the following.
 
 \noindent
-(i) {\em (Ordered) tuples of integers.}\index{tuples of integers}\index{integer!tuples}\index{tuples of integers!via ordered pairs}\index{integer!tuples!via ordered pairs}\index{tuple-spaces}
+(i) {\em (Ordered) tuples of integers.}
+\index{tuples of integers}
+\index{integer!tuples}
+\index{tuples of integers!via ordered pairs}
+\index{integer!tuples!via ordered pairs}\index{tuple-spaces}
 %
 We focus on the set of $k$-tuples of integers, for any integer $k >
 1$.  One way to accomplish this is by recursion, with {\em ordered
@@ -1145,21 +1149,22 @@ What does it mean to {\em encode} \index{encode} one class of
 \subsection{Pairing Functions as Encodings of $\N^+ \times \N^+$ as $\N^+$}
 \label{sec:building-pairing-functions}
 
-The remainder of this section is devoted to developing {\em easily
-  computed} bijections between the set $\N^+ \times \N^+$ and the set
-$\N^+$ of positive integers.  We thereby exhibit easily computed
-mechanisms for \underline{encoding} ordered pairs of integers---hence,
-also, tuples, strings, and binary trees of integers---as single
-integers.  We thereby see that---at least within the world of integers
-and entities encodable as integers---there is no intrinsic new power
-inherent in tuple-spaces: \index{tuple-spaces} {\em Sets of tuples of
-  integers can be effiiciently encoded as sets of integers.}  Because
-of the special role of ordered pairs of integers in our study of
-encodings of structured sets of integers---they form the fundamental
-puzzle from whose solution all else will follow---a special name has
-been associated with bijections between $\N^+ \times \N^+$ and $\N^+$.
-These special bijections are called {\it pairing functions}.
-\index{pairing functions!encodings}
+The remainder of this section---and its companion in the Appendix,
+Chapter~\ref{Appendix:building-pairing-functions}---are devoted to
+developing a few {\em easily computed} bijections between the set
+$\N^+ \times \N^+$ and the set $\N^+$ of positive integers.  We
+exhibit easily computed mechanisms for \underline{encoding} ordered
+pairs of integers---hence, also, tuples, strings, and binary trees of
+integers---as single integers.  We thereby see that---at least within
+the world of integers and entities encodable as integers---there is no
+intrinsic new power inherent in tuple-spaces: \index{tuple-spaces}
+{\em Sets of tuples of integers can be efficiently encoded as sets of
+  integers.}  Because of the special role of ordered pairs of integers
+in our study of encodings of structured sets of integers---they form
+the fundamental puzzle from whose solution all else will follow---a
+special name has been associated with bijections between $\N^+ \times
+\N^+$ and $\N^+$.  These special bijections are called {\it pairing
+  functions}.  \index{pairing functions!encodings}
 
 One of the most valuable by-products of encodings provided by pairing
 functions is that such encodings provide {\em linear orderings} of the
@@ -1191,9 +1196,131 @@ simplification.  We could easily rewrite this section with a focus on
 bijections between $\Z \times \Z$ and $\Z$ or on bijections between
 $\N \times \N$ and $\N$.
 
+\bigskip
+
+We now describe one explicit pairing function---the {\em diagonal}
+pairing function $\d(x,y)$.  This is probably one of the oldest known
+pairing functions, given that it seems to have been known as early as
+1821.  We provide in Chapter~\ref{Appendix:building-pairing-functions}
+both a rather general methodology for crafting pairing functions and
+two explicit siblings of the diagonal pairing function $\d$, which are
+apealing as exemplars of the general construction methodology.
+
+\subsubsection{The Diagonal pairing function $\d$}
+\label{sec:diag-pair-fn}
+\index{The Diagonal pairing function $\d$}
+
+Pairing functions first appeared in the literature early in the 19th
+century.  Perhaps the simplest and ``prettiest'' such function (since
+it is a {\em polynomial}) appears, pictorially, in an 1821 work by the
+great French mathematician Augustin Cauchy \cite{Cauchy21}.
+\index{Cauchy, Augustin}
+%
+This {\em diagonal} pairing function was formally specified a
+half-century later by the German logician Georg Cantor,
+\index{Cantor, Georg}
+%
+whose studies \cite{Cantor74,Cantor78} revolutionized how we think
+about {\em infinite} sets.
+
+\begin{equation}
+\label{eq:diag}
+\d(x, y) \ = \
+{{x+y-1} \choose 2} + (1-y)
+\end{equation}
+($\d$ of course has a twin that exchanges $x$ and $y$).  $\d$'s
+mapping of $\N^+ \times \N^+$ onto $\N^+$, as depicted in
+Fig.~\ref{fig:diag}, exposes that we can view $\d$'s mapping of $\N^+
+\times \N^+$ as a two-step conceptual process:
+\begin{figure}[htb]
+\begin{center}
+      \includegraphics[scale=0.4]{FiguresArithmetic/PairingDiagonal}
+%\begin{tabular}{r|r|r|r|r|r|r|r|r}
+% 1 &  3 &  6 & 10 & \fbox{15} &  21 &  28 &  36 & $\cdots$ \\
+% 2 &  5 &  9 & \fbox{14} & 20 &  27 &  35 &  44 & $\cdots$ \\
+% 4 &  8 & \fbox{13} & 19 & 26 &  34 &  43 &  53 & $\cdots$ \\
+% 7 & \fbox{12} & 18 & 25 & 33 &  42 &  52 &  63 & $\cdots$ \\
+%\fbox{11} & 17 & 24 & 32 & 41 &  51 &  62 &  74 & $\cdots$ \\
+%16 & 23 & 31 & 40 & 50 &  61 &  73 &  86 & $\cdots$ \\
+%22 & 30 & 39 & 49 & 60 &  72 &  85 &  99 & $\cdots$ \\
+%29 & 38 & 48 & 59 & 71 &  84 &  98 & 113 & $\cdots$ \\
+%$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ &
+%  $\vdots$ & $\vdots$ & $\ddots$
+%\end{tabular}
+\end{center}
+\caption{{\it The diagonal pairing function $\d$.  The shell $x+y = 6$
+    is highlighted.}
+\label{fig:diag}}
+\end{figure}
+\begin{enumerate}
+\item
+partitioning $\N^+ \times \N^+$ into ``diagonal shells'' defined as
+\[
+\{ \langle x,y \rangle \ | \ x+y = 2 \}, \ \ 
+\{ \langle x,y \rangle \ | \ x+y = 3 \}, \ \ 
+\{ \langle x,y \rangle \ | \ x+y = 4 \}, \ \ \ldots
+\]
+This is accomplished by the following subexpression in (\ref{eq:diag}).
+\[
+{1 \over 2} (x+y) \cdot (x+y-1) \ = \ {{x+y-1} \choose 2}
+\]
+
+\item
+``climbing up'' these shells in order.
+
+This is accomplished by the additional subexpression ``$+1-y$'' in
+(\ref{eq:diag}).
+\end{enumerate}
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+Keep in mind that we have just described a {\em conceptual}
+  process.  $\d$ is a function, {\em not} an algorithm.  ``Running''
+  this infinite process would take forever.
+\end{minipage}
+}
+\bigskip
+
+Understanding $\d$'s structure leads to a broadly applicable strategy
+for inductively constructing a broad range of pairing functions.  We
+develop this strategy in Subsection B, along with an accompanying
+rather simple inductive verification of bijectiveness.  One finds a
+computationally more satisfying proof of $\d$'s bijectiveness in
+\cite{Davis58}, along with an explicit recipe for computing $\d$'s
+inverse.  The material in \cite{Davis58} builds specifically on $\d$'s
+structure.
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+{\small\sf $\oplus$ Esoterica for enrichment:}
+The fact that $\d$ is a {\em polynomial} in $x$ and $y$ raises
+  the natural (to a mathematician!)~question of whether there exist
+  any other polynomial pairing functions.  This is a quite advanced
+  topic that is beyond the scope of this text.  Indeed, even as a
+  research problem, the question remains largely open.  But, a few
+  nontrivial pieces of an answer are known.
+\begin{enumerate}
+\item
+There is no {\em quadratic} polynomial pairing function other than
+$\d$ (and its twin) \cite{FueterP23,LewR78a}.
+\item
+No {\em cubic} or {\em quartic} polynomial is a pairing function
+\cite{LewR78b}.
+\item
+The development in \cite{LewR78b} excludes large families of
+higher-degree polynomials from being pairing functions; e.g., a {\em
+  super-quadratic} polynomial whose coefficients are all positive
+cannot be a pairing function.
+\end{enumerate}
+\end{minipage}
+}
 
 
-\subsection{There Are {\em No More} Ordered Pairs than Integers}
+
+
+\subsection{There Are {\em Not} More Ordered Pairs than Integers}
 \label{sec:cardinality-NxN}
 
 \subsubsection{Comparing infinite sets via cardinalities}

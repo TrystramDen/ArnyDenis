@@ -1,9 +1,9 @@
-%version of 07-01-19
+%version of 07-02-19
 
 \chapter{INTRODUCING GRAPHS AND TREES: \\
 Representing Relationships Mathematically}
 \label{ch:Graphs-Trees}
-\index{graphs}
+\index{graph}
 
 Graphs provide one of the richest technical and conceptual frameworks
 in the world of computing.  They provide concrete representations of
@@ -54,27 +54,27 @@ academic program that includes a computation-oriented component.
 \label{sec:connectivity-notions}
 
 % general introduction
-The basic components of a graph $\g$ are \index{graphs!nodes}
-\index{graphs!vertices} \index{node (of a graph)} \index{vertex (of a graph)} 
+The basic components of a graph $\g$ are \index{graph!nodes}
+\index{graph!vertices} \index{node (of a graph)} \index{vertex (of a graph)} 
   its {\em nodes/vertices}
   \ignore{\footnote{The singular form of
   ``vertices'' is {\it vertex}.}}~(one encounters both terms in the
-literature) and its {\em edges} \index{graphs!edges}
+literature) and its {\em edges} \index{graph!edges}
 \index{edge (of a graph)} that interconnect them.  (The singular form
-of ``vertices'' is {\it vertex}.)  \index{graphs!vertex} \index{vertex (of a graph)}
+of ``vertices'' is {\it vertex}.)  \index{graph!vertex} \index{vertex (of a graph)}
 
 % undirected case
-When graph $\g$ is {\em undirected}, \index{graphs!undirected} each of
+When graph $\g$ is {\em undirected}, \index{graph!undirected} each of
 its edges connotes some sort of sibling-like relationship among nodes
 of ``equal'' status.  When graph $\g$ is {\em directed}
-\index{graphs!directed} (sometimes referred to as a {\em digraph}),
-\index{digraph} \index{graphs!digraphs} each of its edges connotes an
+\index{graph!directed} (sometimes referred to as a {\em digraph}),
+\index{digraph} \index{graph!digraphs} each of its edges connotes an
 ``unequal'' relationship such as parenthood or priority or dependence;
 edges in directed graphs are often termed {\em
-  arcs}. \index{graphs!arc} \index{arc (of a directed graph)}
+  arcs}. \index{graph!arc} \index{arc (of a directed graph)}
 
 In many situations involving directed graphs, it is important to
-deal with the {\em reverse} \index{graphs!digraph!dual} of a digraph $\g$. 
+deal with the {\em reverse} \index{graph!digraph!dual} of a digraph $\g$. 
 This new graph---which is usually denoted by some notational
 embellishment of ``$\g$'', such as $\widehat{\g}$---is the digraph
 obtained by {\em reversing} all of $\g$'s arcs.  One sometimes
@@ -91,22 +91,22 @@ qualifier ``directed'' or ``undirected,'' it is usually understood
 that $\g$ is an undirected graph.
 \medskip
 
-A {\em path} \index{graphs!path} \index{path (in a graph)} in
+A {\em path} \index{graph!path} \index{path (in a graph)} in
 an undirected graph is a sequence of nodes within which every adjacent
 pair is connected by an edge.  A path is a {\em cycle}
-\index{graphs!cycle} \index{cycle (in a graph)} if all nodes in the
+\index{graph!cycle} \index{cycle (in a graph)} if all nodes in the
 sequence are distinct, except for the first and last, which are
 identical.  Paths and cycles in directed graphs are defined similarly,
 except that every adjacent pair of nodes must be connected by an arc,
 and all arcs must ``point in the same direction.''
 \bigskip
 
-A {\it directed graph} \index{graphs!directed} ({\it digraph},
+A {\it directed graph} \index{graph!directed} ({\it digraph},
 \index{digraph} for short) $\g$ is given by a set of {\it nodes}
-\index{graphs!node}
+\index{graph!node}
 \index{$\n_{\fg}$: set of nodes of graph $\g$}
 $\n_{\fg}$ and a set of {\it arcs}
-\index{graphs!digraph!arcs}
+\index{graph!digraph!arcs}
 (or {\it directed edges}) $\a_{\fg}$.
 In the following, we will omit the subscript if there is no ambiguity.
 \index{$\a_{\fg}$: set of arcs of digraph $\g$}
@@ -114,7 +114,7 @@ Each arc of $\g$ has the form $(u \rightarrow v)$,
 \index{$\rightarrow$: arc in a directed graph}
 where $u, v \in \n$; we say that this arc goes {\em from} $u$
 {\em to} $v$.  A {\it path} 
-\index{graphs!path in a digraph}
+\index{graph!path in a digraph}
 \index{path in a digraph}
 in the digraph $\g$ is a sequence of arcs that share adjacent
 endpoints, as in the following $(n-1)$-arc path from node $u_1$ to
@@ -134,7 +134,7 @@ to $\n$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$,
 belongs to $\a$.  The {\it length} of path (\ref{eq:di-path}) is
 the number of arcs, i.e., $n-1$.  The existence of the path means that
 the {\it distance} \index{distance!in a digraph}
-\index{digraph!distance} \index{graphs!distance!in a digraph} from
+\index{digraph!distance} \index{graph!distance!in a digraph} from
 $u_1$ to $u_n$ in $\g$ is no greater than $n-1$ (where the distance here is taken in term of number of arcs.  
 Notice also there may exist shorter paths in $\g$ from $u_1$ to $u_n$.)
 \bigskip
@@ -191,7 +191,7 @@ and a set $\e$
 \index{$\e_{\fg}$: the set of edges of the undirected  graph $\g$}
 of $2$-element subsets of $\n$.  Each of these subsets is called
 an {\it edge}.
-\index{graphs!edge} \index{edge (of a graph)}
+\index{graph!edge} \index{edge (of a graph)}
 One can, thus, view the undirected graph $\g$ as being obtained from a
 directed graph $\bar{\g}$ by removing the directionality of
 $\bar{\g}$'s arcs.  Whereas we say: \\
@@ -208,7 +208,7 @@ and $v$.
 One can view an undirected graph as asserting ``pure'' connectivity,
 whereas directed graphs assert some form of priority or directionality.
 
-A {\it path} in an undirected graph \index{graphs!path in undirected
+A {\it path} in an undirected graph \index{graph!path in undirected
   graph} \index{path in an undirected graph} is a sequence of
 edges---i.e., of $2$-element sets of nodes---such that adjacent edges
 share a node.  For illustration, an $(n-1)$-edge path that connects
@@ -221,18 +221,18 @@ The path described in (\ref{eq:undi-path}) makes sense only when every
 node $u_i$ belongs to $\n$ and every edge $\{u_i \ u_j\}$ belongs
 to $\e$.  The {\it length} of path (\ref{eq:undi-path}) is the
 number of edges---which is $n-1$ here; and the existence of
-the path means that the {\it distance} \index{graphs!distance} 
+the path means that the {\it distance} \index{graph!distance} 
 \index{distance!in an undirected graph}
 {\it between} $u_1$ and $u_n$ in $\g$ is no greater than $n-1$.  (There
 may exist shorter paths that connect $u$ and $v$.)
 \medskip
 
 For each edge $\{u,v\} \in \e$, we call nodes $u$ and $v$ {\it neighbors} (in $\g$).
-\index{graphs!nodes!neighbor nodes}
+\index{graph!nodes!neighbor nodes}
 \index{neighbor node!in a graph}
 The {\it degree}
-\index{graphs!nodes!degree of a node in an undirected graph}
-\index{graphs!degree of a node in an undirected graph}
+\index{graph!nodes!degree of a node in an undirected graph}
+\index{graph!degree of a node in an undirected graph}
 \index{degree of a node in an undirected graph}
 of a node $u \in \n$ is the number of neighbors that $u$ has.
 
@@ -332,11 +332,11 @@ is an arc of $\g$.
 
 The reader will note that we nowhere guarantee that there is always a
 path that connects each node $u$ with each other node $v$.  We say
-that a graph $\g$ is {\it connected} \index{graphs!connected} if every
+that a graph $\g$ is {\it connected} \index{graph!connected} if every
 pair of nodes $u, v \in \n_{\fg}$ is connected by a path in $\g$.  If
 graph $\g$ is {\em not} connected, then it is the disjoint union of
 some number $c$ of connected subgraphs, usually called $\g$'s {\it
-  (connected) components}.  \index{graphs!connected components} Of
+  (connected) components}.  \index{graph!connected components} Of
 course, $\g$ is connected just when $c=1$; i.e., there is a single
 connected component.
 
@@ -616,7 +616,7 @@ always use {\em directed} paths when defining distance.
 \medskip
 
 \noindent {\it Distance and diameter in an undirected graph.}
-\index{graphs!!distance between two nodes}
+\index{graph!!distance between two nodes}
 \index{diameter in a graph}
 Extrapolating from our discussion of path (\ref{eq:undi-path}): The
 {\it distance between} node $u_1$ and node $u_n$ in the graph $\g$ is
@@ -635,7 +635,7 @@ detail:
 \right.
 \end{equation}
 
-The {\it diameter} \index{diameter in a graph} \index{graphs!diameter}
+The {\it diameter} \index{diameter in a graph} \index{graph!diameter}
 of an undirected graph is the largest distance between two nodes, 
 i.e., the largest number $d$ for which the exist a pair of nodes $u_1,
 u_n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that
@@ -680,7 +680,7 @@ be accomplished ``efficiently''---which in the algorithmic world means
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Matchings in graphs}
-\index{graphs!matching}
+\index{graph!matching}
 
 The notion of a {\it matching} in a graph is fundamental to many
 situations that can be modeled using graphs.  A {\it matching} in an
@@ -720,13 +720,13 @@ often invoked with this genre of matching is to maximize the number of
 edges of $\g$ that belong to the matching.
 
 The target in this ``vanilla-flavored'' matching problem is often a
-matching that is {\em maximal}, \index{graphs!maximal matching}
-\index{graphs!maximal matching!unweighted graph} in the sense that
+matching that is {\em maximal}, \index{graph!maximal matching}
+\index{graph!maximal matching!unweighted graph} in the sense that
 adding any further edge of $\g$ to the matching leaves one with a set
 of edges that is no longer a matching.
 
 Among maximal matchings in a graph $\g$, the ``ultimate treasure'' is
-a matching that is {\it perfect}, \index{graphs!perfect matching} in
+a matching that is {\it perfect}, \index{graph!perfect matching} in
 the sense that every node of $\g$ belongs to some edge of the
 matching.
 
@@ -799,7 +799,7 @@ The other very popular genre of matching problem focuses on graphs
 each of whose edges, say, $\{u,v\}$, is weighted with a number that
 measure the ``affinity'' of  nodes $u$ and $v$ for each other.  The
 challenge is to find a matching that is {\em maximal}
-\index{graphs!maximal matching} in the sense of having a cumulative
+\index{graph!maximal matching} in the sense of having a cumulative
 sum of edge-weights that is not exceeded by any other matching's.
 
 We note in closing that, while edge-weightings often complicate
@@ -824,10 +824,11 @@ original source \cite{Kuhn55} or the encyclopedic algorithms text
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Trees}
+\subsection{Trees and Spanning Trees}
 \label{sec:Trees}
 
-The special class of graphs called {\it trees} \index{graphs!trees}
+
+The special class of graphs called {\it trees} \index{graph!trees}
 \index{trees} occupy a place of honor within both the mathematical
 field called {\it graph theory} and within the vernacular.
 They are identified mathematically as graphs that contain no
@@ -846,7 +847,7 @@ would expect from the vernacular, a set of trees is called a {\it
 \end{figure}
 
 Mathematically speaking, a tree is a graph that contains no cycles,
-i.e., is {\it cycle-free}. \index{graphs!cycle-free} Equivalently, a
+i.e., is {\it cycle-free}. \index{graph!cycle-free} Equivalently, a
 tree is a graph in which each pair of distinct nodes is connected by
 precisely one path.  A tree is thus the embodiment of ``pure''
 connectivity: it provides the minimal interconnection structure that
@@ -1070,14 +1071,13 @@ none
 \end{table}
 *********************}
 
-\subsubsection{Spanning trees}
-
+\noindent{\it Spanning trees}.
 One of the major uses of trees and forests is as a way of succinctly
 ``summarizing'' the connectivity structure inherent in an undirected
 graph.  This role is inherent in the notion of a {\it spanning tree}
-\index{graphs!spanning tree} \index{spanning tree} of a connected
-graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$ whose node-set
-is identical to $\g$'s:
+\index{graph!spanning tree} \index{spanning tree} \index{tree!spanning tree}
+of a connected graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$
+whose node-set is identical to $\g$'s:
 \[ \n_{\ft(\fg)} \ = \ \n_{\fg} \]
 and all of whose edges are edges of $\g$:
 \[ \e_{\ft(\fg)} \ \subseteq \ \e_{\fg}. \]
@@ -1090,7 +1090,7 @@ choose quite different sets of edges.
 
 For a graph $\g$ that is not connected, we replace the notion of
 spanning tree of $\g$ with the analogous notion of a {\it spanning
-  forest} \index{graphs!spanning forest} \index{spanning forest} of
+  forest} \index{graph!spanning forest} \index{spanning forest} of
 $\g$.  We shall typically discuss only spanning trees in this section,
 leaving the reader to extrapolate the discussion to include spanning
 forests of unconnected graphs.
@@ -1101,14 +1101,14 @@ The major use of spanning trees in applications is to ``summarize''
 the full connectivity structure of a graph---and of the entities that
 the graph models, such as a map, the layout of a museum, etc.  When
 used in this way, the edges of spanning trees are typically {\em
-  weighted}, \index{graphs!spanning tree!edge-weighted} in order to
+  weighted}, \index{graph!spanning tree!edge-weighted} in order to
 model a ``cost'' of incorporating that edge in the tree.  The types of
 computational problem modeled via edge-weighted spanning trees
 include: the optimal placement of firehouses, or hospitals, in a town
 and the optimal deployment of security mechanisms in an art museum.
 Reflecting problems wherein edge-weights measure transit costs, it is
 a classical computational problem to seek a {\em minimum-weight
-  spanning tree} \index{graphs!minimum-weight spanning tree}
+  spanning tree} \index{graph!minimum-weight spanning tree}
 \index{minimum-weight spanning tree} (or, in the vernacular, a {\em
   minimum spanning tree}).  Happily, this classical optimization
 problem can be solved within a number of steps that is linear in the
@@ -1159,11 +1159,11 @@ structure systems tend to be rather uniform in structure, in a variety
 of possible ways.  Such graphs, when drawn, often exhibit a lot of
 structural symmetry.  One popular form of symmetry is {\it degree
   regularity}: an undirected graph $\g$ is {\it regular}
-\index{graphs!regular} if all nodes of $\g$ have the same degree.  Not
+\index{graph!regular} if all nodes of $\g$ have the same degree.  Not
 surprisingly, there is a directed version of ``regular'' embodied in the
 symmetric notions of {\it in-regularity}
-\index{graphs!directed!in-regular} and {\it out-regularity}.
-\index{graphs!directed!out-regular}
+\index{graph!directed!in-regular} and {\it out-regularity}.
+\index{graph!directed!out-regular}
 
 \medskip
 
@@ -2009,7 +2009,7 @@ $111$.  The diameter bound is now an immediate consequence of the
 following result.  The result builds upon a notion that we have not
 yet encountered but will study in some detail in
 Section~\ref{sec:Hamiltonian-cycle}
-\index{graphs!Hamiltonian cycle} \index{Hamiltonian cycle}.
+\index{graph!Hamiltonian cycle} \index{Hamiltonian cycle}.
 
 A {\it Hamiltonian cycle} in an $n$-node graph $\g$ is a length-$n$
 cycle that contains every node of $\g$ precisely once.  A {\it
@@ -2156,23 +2156,23 @@ hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
 
 \section{Graph Coloring and Chromatic number}
 \label{sec:graph-color}
-\index{graphs!node-coloring}
+\index{graph!node-coloring}
 
 This section introduces the notion of {\it graph coloring}, and its
 associated notion of the {\it chromatic number}
-\index{graphs!chromatic number} of a graph.
+\index{graph!chromatic number} of a graph.
 
-A {\it node-coloring} \index{graphs!node-coloring} of a graph $\g$ is
+A {\it node-coloring} \index{graph!node-coloring} of a graph $\g$ is
 an assignment of labels to $\g$'s nodes, in such a way that all of a
 node $v$'s neighbors get a different label than $v$.  Traditionally,
 the labels are called {\it colors}, for that term's evocative power.
-The {\it chromatic number} \index{graphs!chromatic number} of a graph
+The {\it chromatic number} \index{graph!chromatic number} of a graph
 $\g$ is the smallest number of colors that can be used in a legal
 node-coloring of $\g$.  In traditional parlance, the assertions
 
 ``$\g$ has chromatic number $c$'' \ \ \ \ \ and \ \ \ \ \
 ``$\g$ is {\it $c$-colorable}''
-\index{graphs!$c$-colorable}
+\index{graph!$c$-colorable}
 
 \noindent
 are considered to be synonymous.
@@ -2232,7 +2232,7 @@ We begin to garner intuition about graph coloring by exposing a large
 set of graphs with chromatic number $2$.  In fact, we can completely
 characterize these graphs structurally.
 
-A graph $\g$ is {\it leveled} \index{graphs!leveled} if there exists
+A graph $\g$ is {\it leveled} \index{graph!leveled} if there exists
 an assignment of {\it level numbers} $\{ 1, 2, \ldots, \lambda\}$ to the
 nodes of $\g$ in such a way that every neighbor of a level-$\ell$ node
 $u$ resides either on level $\ell +1$ or on level $\ell -1$.
@@ -2353,7 +2353,7 @@ in $\d_2$ in Fig.~\ref{fig:dB2by2} and the $3$-cycle
 in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length
 cycles are only the proverbial tip of the iceberg for de Bruijn
 networks.  The following result asserts that de Bruijn networks are
-{\it directed-pancyclic}, \index{graphs!pancyclic} 
+{\it directed-pancyclic}, \index{graph!pancyclic} 
 \index{de Bruijn network!pancyclicity} \index{de Bruijn graph!pancyclicity}
 meaning that they contain (even directed!)~cycles of {\em all}
 possible lengths, both odd and even.  The proof of this result is
@@ -2370,8 +2370,8 @@ contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
 \label{sec:planar+outerplanar-color}
 \index{planar graphs}
 \index{outerplanar graphs}
-\index{graphs!planar}
-\index{graphs!outerplanar}
+\index{graph!planar}
+\index{graph!outerplanar}
 
 In this section, we focus on two graph families that are defined in
 terms of the way they can be drawn (on a two-dimensional medium, such
@@ -2396,9 +2396,9 @@ knowledge.
 \bigskip
 
 \noindent
-A graph is {\it planar} \index{graphs!planar} \index{planar graphs}
+A graph is {\it planar} \index{graph!planar} \index{planar graphs}
 precisely if it can be drawn {\em without any crossing edges}.  A
-graph $\g$ is {\it outerplanar} \index{graphs!outerplanar}
+graph $\g$ is {\it outerplanar} \index{graph!outerplanar}
 \index{outerplanar graphs} precisely if it can drawn by {\em placing
   its nodes along a circle in such a way that its edges can be drawn
   as noncrossing chords of the circle}.  The latter condition is
@@ -2456,9 +2456,9 @@ identifying {\it forbidden subgraphs}.  \index{forbidden subgraphs}
 \index{forbidden subgraphs!characterization of planar graphs}
 \index{forbidden subgraphs!characterization of outerplanar graphs} The
 notion of {\it graph homeomorphism} plays a fundamental role in
-\index{graphs!homeomorphism} the characterization.  This is a
+\index{graph!homeomorphism} the characterization.  This is a
 dauntingly named technical term that is easily understood informally.
-A {\it homeomorph} \index{graphs!homeomorph} of a graph $\g$ is
+A {\it homeomorph} \index{graph!homeomorph} of a graph $\g$ is
 obtained by adding (degree-$2$) nodes along one or more edges of $\g$.
 The characterization of planar graphs by exclusion resides in a
 celebrated theorem by the Polish mathematician and logician Kazimierz
@@ -2483,7 +2483,7 @@ that is homeomorphic to either $\k_5$ or $\k_{3,3}$.
 
 We look first at the smaller of this section's graph families, namely,
 the {\it outerplanar graphs}. \index{outerplanar graphs}
-\index{graphs!outerplanar} (We shall remark in the following subsection B why these
+\index{graph!outerplanar} (We shall remark in the following subsection B why these
 graphs are called {\em outer}-planar.)
 
 We begin our discussion of outerplanar graphs with some basic facts
@@ -2632,7 +2632,7 @@ witnessed by odd-length cycle-graphs.
 \paragraph{\small\sf B. Planar graphs}
 
 The larger of this section's two graph families comprises {\it planar
-  graphs} \index{planar graphs} \index{graphs!planar} i.e., graphs
+  graphs} \index{planar graphs} \index{graph!planar} i.e., graphs
 that can be drawn (on a two-dimensional medium, such as a piece of
 paper) with no crossing edges.  The original focus on planar graphs
 stemmed from viewing them as abstractions of geographical maps.
@@ -2710,7 +2710,7 @@ Every planar graph has a node of degree $\leq 5$.
 \begin{proof} {\em (Lemma~\ref{thm:PlanarGraph-degree5})}
 Let us focus on a planar drawing of a (perforce) planar graph $\g$,
 which has $n$ nodes, $e$ edges, and $f$ {\it faces}.  A {\it face}
-\index{graphs!planar!face in a drawing}
+\index{graph!planar!face in a drawing}
 \index{planar graph!face in a drawing} 
 in a drawing of $\g$ is a polygon whose sides are edges of
 $\g$, whose points are nodes of $\g$, and whose interiors are empty,
@@ -2753,7 +2753,7 @@ celebrated formula.
 
 As we approach the next step of the proof, we simplify the setting by
 assuming henceforth that $\g$ is connected and that it is {\em
-  maximal}, \index{graphs!planar!maximal} in the sense that one cannot
+  maximal}, \index{graph!planar!maximal} in the sense that one cannot
 add any new edge to the drawing without crossing an existing edge.
 This step only strengthen's the Lemma's conclusion by apparently
 making it more difficult to find a small-degree node.
@@ -3303,8 +3303,8 @@ problems that we study in this section.
 
 {\it Eulerian cycles (or, tours)}.  A cycle in a graph $\g$ that
 traverses each of $\g$'s edges precisely once is called an {\it
-  Eulerian cycle},\index{graphs!Eulerian cycle} \index{Eulerian cycle}
-(or, often, an {\it Eulerian circuit}).  \index{graphs!Eulerian
+  Eulerian cycle},\index{graph!Eulerian cycle} \index{Eulerian cycle}
+(or, often, an {\it Eulerian circuit}).  \index{graph!Eulerian
   circuit} \index{Eulerian circuit} The edge-exhausting
 cycles/circiuts/tours referred to by these several names were
 introduced as a topic of study in 1736 by the Swiss mathematician
@@ -3318,16 +3318,16 @@ the fields now called {\it Operations Research} and {\it graph
 the obvious analogous way.)  When one views an Eulerian cycle as a
 ``map'' for traversing a graph---as did Euler when contemplating this
 problem---one often calls the cycle an {\it Eulerian tour}.
-\index{graphs!Eulerian tour} \index{Eulerian tour} Traditionally, a
+\index{graph!Eulerian tour} \index{Eulerian tour} Traditionally, a
 graph that admits an Eulerian cycle is said to be {\it
-  Eulerian}. \index{graphs!Eulerian} \index{Eulerian graph}
+  Eulerian}. \index{graph!Eulerian} \index{Eulerian graph}
 
 \medskip
 
 Dually: A cycle in a graph $\g$ that encounters each of $\g$'s nodes
 precisely once is called a {\it Hamiltonian cycle},
-\index{graphs!Hamiltonian cycle} \index{Hamiltonian cycle} (or, often,
-a {\it Hamiltonian circuit}). \index{graphs!Hamiltonian circuit}
+\index{graph!Hamiltonian cycle} \index{Hamiltonian cycle} (or, often,
+a {\it Hamiltonian circuit}). \index{graph!Hamiltonian circuit}
 \index{Hamiltonian circuit} This cycle-discovery problem is named in
 honor of the British mathematician Sir William Rowan Hamilton,
 \index{Hamilton, William Rowan} who is credited with inventing the
@@ -3336,10 +3336,10 @@ concept in the mid-19th century.
 Thomas Penyngton Kirkman} (A node-exhausting {\em path} in
 $\g$ is referred to in the obvious analogous way.)  When one views a
 Hamiltonian cycle as a ``map'' for traversing a graph, one often calls
-the cycle a {\it Hamiltonian tour}.  \index{graphs!Hamiltonian tour}
+the cycle a {\it Hamiltonian tour}.  \index{graph!Hamiltonian tour}
 \index{Hamiltonian tour} Traditionally, a graph that admits a
 Hamiltonian cycle is said to be {\it
-  Hamiltonian}. \index{graphs!Hamiltonian} \index{Hamiltonian graph}
+  Hamiltonian}. \index{graph!Hamiltonian} \index{Hamiltonian graph}
 
 \medskip
 
@@ -3370,7 +3370,7 @@ an {\it Eulerian cycle} or an {\it Eulerian path} in each connected
 component of a general graph.  As we embark on our adventure, we note
 that the problem of finding an Eulerian cycle in a graph $\g$ is
 equivalent to the problem of drawing $\g$ without ever lifting one's
-pencil. \index{graphs!drawing without lifting pencil}
+pencil. \index{graph!drawing without lifting pencil}
 
 %\subsubsection{Characterizing Eulerian graphs, and finding Eulerian tours}
 %\label{sec:eulerian-cycle-path}
@@ -3728,13 +3728,13 @@ Hamiltonian cycles.  The reader can generate {\it mesh-graphs}
 existence of such non-Hamiltonian graphs has spawned several
 independent paths of inquiry.  One path seeks ``modest'' ways to
 weaken the property of {\it Hamiltonianicity}
-\index{graphs!Hamiltonianicity} in a way that retains many of
+\index{graph!Hamiltonianicity} in a way that retains many of
 Hamiltonianicity's benefits while encompassing a braoder range of
 graph structures.  We describe two avenues toward weakened, more
 inclusive, notions of Hamiltonianicity.
 
 \noindent {\it Be satisfied with paths, rather than cycles}.
-A {\it Hamiltonian path} \index{graphs!Hamiltonian path}
+A {\it Hamiltonian path} \index{graph!Hamiltonian path}
 \index{Hamiltonian path} in a graph $\g$ is a path that passes through
 each of $\g$'s nodes precisely once.  Hamiltonian paths can easily be
 shown to be a strictly weaker notion than Hamiltonian cycles, in the
@@ -3752,7 +3752,7 @@ A Hamiltonian cycle in graph $\g$ is a circular enumeration of $\g$'s
 nodes in which adjacent nodes are at unit distance from one
 another---i.e., are connected by an edge.  We can weaken (or,
 generalize) this notion to create a {\it Hamiltonian $k$-cycle}
-\index{graphs!Hamiltonian $k$-cycle} in $\g$, for any positive integer
+\index{graph!Hamiltonian $k$-cycle} in $\g$, for any positive integer
 $k$: This is a circular enumeration of $\g$'s nodes in which adjacent
 nodes are at distance $\leq k$ from one another---so a Hamiltonian
 $1$-cycle is what we have been calling a Hamiltonian cycle.  In fact,
@@ -3770,7 +3770,7 @@ are at distance $\leq 3$ in $\g$.
 
 \noindent {\bf (b)} {\rm  \cite{Fleischner74}}
 Let $\h$ be any graph that is {\em $2$-connected}
-\index{graphs!$2$-connected} \index{graphs!biconnected} (or, {\it
+\index{graph!$2$-connected} \index{graph!biconnected} (or, {\it
   biconnected}) in the sense that, for every two nodes, $u$ and $v$,
 of $\h$, there exist at least two node-disjoint paths in $\h$ that
 connect $u$ and $v$.  One can cyclically enumerate the nodes of $\h$
@@ -3833,7 +3833,7 @@ alternating directions.
 
 \noindent {\bf (c)}.1.ii.
 This is a consequence of the fact that $\m_{m,n}$ is {\it bipartite}:
-\index{graphs!bipartite} One can color $\m_{m,n}$'s nodes red and blue
+\index{graph!bipartite} One can color $\m_{m,n}$'s nodes red and blue
 in such a way that every edge connect nodes of different colors.
 Details are left to the reader.
 
@@ -4044,17 +4044,17 @@ algorithmics---``dynamic'' in the sense that they {\em do}
 something---and the {\em structural} models provided by graph theory
 can often provide beneficial illumination of one another.
 
-Section~\ref{sec:graph-decompose} \index{graphs!graph separators}
-\index{graphs!graph decomposition} focuses on the myriad computations
+Section~\ref{sec:graph-decompose} \index{graph!graph separators}
+\index{graph!graph decomposition} focuses on the myriad computations
 on graph that can be accomplished efficiently via recursive algorithms
 that decompose, then reassemble, the graphs that they work on.
 
-Section~\ref{sec:graph-evolve} \index{graphs!evolving graphs}
+Section~\ref{sec:graph-evolve} \index{graph!evolving graphs}
 introduces the increasingly important topic of graphs whose structure
 changes dynamically over time.  One timely instance of this dynamic
 evolution is the connectivity graph of the Internet.
 
-Section~\ref{sec:hypergraphs} \index{graphs!hypergraphs}
+Section~\ref{sec:hypergraphs} \index{graph!hypergraphs}
 \index{hypergraphs} introduces {\it hypergraphs}, a generalization of
 graphs that allows multi-entity relationships, in contrast to the
 binary relationships mandated by graphs' two-element edges.
@@ -4092,7 +4092,7 @@ problem---which seeks a tour of a graph which crosses each edge
 precisely once---we discuss an extension of this problem which allows
 us to augment a graph $\g$ by adding multiple edges between the same
 two nodes.  (Terminologically, we thereby convert $\g$ to a {\it
-  multi-graph} \index{multi-graph} \index{graphs!multi-graph}
+  multi-graph} \index{multi-graph} \index{graph!multi-graph}
 consisting of nodes and {\it multi-edges}.) \index{multi-edge} Not
 obviously, adding multi-edges can often convert a graph $\g$ that does
 not admit an Eulerian cycle into a multi-graph that does admit an
@@ -4110,7 +4110,7 @@ This section is devoted to studying the {\it Route Inspection
   Chinese Postman Problem}, \index{Chinese Postman Problem} in honor
 of its inventor, the Chinese mathematician Kwan Mei-Ko \index{Kwan
   Mei-Ko} \cite{Kwan60}.  This problem seeks to add as few multi-edges
-\index{graphs!multi-graph!multi-edge} as possible to a graph $\g$ in
+\index{graph!multi-graph!multi-edge} as possible to a graph $\g$ in
 order to render $\g$ Eulerian.  (A {\it multi-graph} is ``almost'' an
 undirected graph.  It differs from a true graph because of the
 possible presence of multiple multi-edges that connect the same two
@@ -4219,9 +4219,9 @@ implications of that work.
 
 \subsection{Graph Decomposition}
 \label{sec:graph-decompose}
-\index{graphs!decomposition}
-\index{graphs!bisector}
-\index{graphs!separator}
+\index{graph!decomposition}
+\index{graph!bisector}
+\index{graph!separator}
 
 The reader will certainly have noted that some ``named'' graphs are,
 intuitively, more tightly interconnected than others.  From a purely
@@ -4234,7 +4234,7 @@ $e$-edge graph $\g$ has:
 \begin{itemize}
 \item
 an {\it $\alpha$-edge separator} of size $k$, 
-\index{graphs!$\alpha$-edge separator of size $k$} where $\alpha$ is a
+\index{graph!$\alpha$-edge separator of size $k$} where $\alpha$ is a
 real number with $\alpha \leq 1/2$ and $k$ is an integer with $k < n$,
 precisely if:
 
@@ -4246,7 +4246,7 @@ edges from $\g$.
 
 \item
 a {\it $\alpha$-node separator} of size $\ell$,
-\index{graphs!$\alpha$-node separator of size $\ell$}
+\index{graph!$\alpha$-node separator of size $\ell$}
 where $\alpha$ is a real number with $\alpha \leq 1/2$ and $\ell$ is
 an integer with $k < e$, precisely if:
 
@@ -4257,7 +4257,7 @@ subgraphs, each having $\leq \alpha n$ nodes, by removing $\leq \ell$
 nodes from $\g$.
 \end{itemize}
 We replace the term ``separator'' with the term {\em ``bisector''} 
-\index{graphs!edge bisector} \index{graphs!node bisector}
+\index{graph!edge bisector} \index{graph!node bisector}
 if both subgraphs after a separation operation have $\leq \lfloor
 \frac{1}{2} n \rfloor$ nodes.
 
@@ -4302,7 +4302,7 @@ yields upper bounds.
 
 \subsection{Graphs with Evolving Structure}
 \label{sec:graph-evolve}
-\index{graphs!with evolving structure}
+\index{graph!with evolving structure}
 
 Classical problems in the area of graph algorithms will discuss
 graphs, especially trees, whose structures evolve over time.  Such
@@ -4321,8 +4321,8 @@ that is superimposed upon the traditional structures of graph theory:
 the challenge to the reader is to assimilate new algorithmic notions,
 not new mathematics.
 
-\index{graphs!with evolving structure!social networks}
-\index{graphs!with evolving structure!inter-networks}
+\index{graph!with evolving structure!social networks}
+\index{graph!with evolving structure!inter-networks}
 In contrast, the ``modern'' topics we have mentioned do require the
 reader's assimilating new mathematics.  Dealing successfully with the
 algorithmic issues that arise with social networks and inter-networks
@@ -4333,8 +4333,8 @@ pose is: When a new node applies to join an evolving network, which
 node in the network is the best one to connect to, in order to best
 facilitate one's interactions or influence within the community.  The
 latter topic leads, e.g., to the study of {\em power-law} networks.
-\index{graphs!with evolving structure!social networks!power-law networks}
-\index{graphs!with power-law degreegrowth patterns}
+\index{graph!with evolving structure!social networks!power-law networks}
+\index{graph!with power-law degreegrowth patterns}
 \bigskip
 
 \noindent \fbox{
@@ -4361,8 +4361,8 @@ faithfully---see, e.g.,
 
 \subsection{Hypergraphs}
 \label{sec:hypergraphs}
-\index{graphs!generalization to hypergraphs}
-\index{hypergraphs}
+\index{graph!generalization to hypergraphs}
+\index{hypergraph}
 
 A large variety of modern computing-related topics benefit from the
 structure inherent in graph-theoretic models but do not comfortably
@@ -4386,7 +4386,7 @@ from hypergraph-oriented models include the following.
 \begin{itemize}
 \item
 Bus-connected parallel communication has been part of digital computer
-\index{hypergraphs!modeling bus-connected communication} design since
+\index{hypergraph!modeling bus-connected communication} design since
 its earliest days.  The informal picture of such a system is that
 there are communication channels that multiple agents can retrieve
 message from and post messages to.  In hypergraph-oriented terms: the
@@ -4394,12 +4394,12 @@ nodes/communicating agents aggregate into groups/hyperedges.  Each
 group's agents share ``read/write'' access to a specific channel.  A
 specialized genre of hypergraph that was invented to study the
 described scenario is the {\it interval hypergraph}
-\index{hypergraphs!interval hyergraphs} model developed in
+\index{hypergraph!interval hyergraph} model developed in
 \cite{Rosenberg89a}.
 
 \item
 Modern electronic circuits are implemented using integrated circuit
-\index{hypergraphs!modeling integrated circuits} technology,
+\index{hypergraph!modeling integrated circuits} technology,
 specifically, {\em VLSI: Very Large Scale Integrated circuitry}; see,
 e.g., \cite{Mead-Conway}.  These technologies tend to be
 voltage-driven, rather than current-driven.  Accordingly, much of the
@@ -4420,7 +4420,7 @@ interconnectivity have been studied.  In
 Section~\ref{sec:graph-evolve}, we discussed an interconnectivity
 model based on evolving graphs and clustering within such graphs.
 More recently, hypergraph-based models
-\index{hypergraphs!modeling interconnectivity in social networks}
+\index{hypergraph!modeling interconnectivity in social networks}
 have also been proposed; see, e.g., \cite{Amatoetal17,LiuBV10}.
 \end{itemize}
 
