@@ -1,4 +1,4 @@
-%version of 07-01-19
+%version of 07-02-19
 
 \chapter{``DOING'' MATHEMATICS: \\
 A Toolkit for Mathematical Reasoning}
@@ -1127,16 +1127,16 @@ perhaps less accurately, {\em reductio ad absurdum}.
 Suppose that we want to prove some proposition $P$.  Think, as a
 concrete example, of $P$ as the assertion:
 
-{\em There are two distinct {\em multiplicative identities} for the
-  numbers, call them $1$ and $1'$.  In other words, for all numbers
-  $x$, both of the following assertions is true.}
+{\em There are two distinct {\em additive identities} for the
+  numbers, call them $0$ and $0'$.  In other words, for all numbers
+  $x$, both of the following assertions are true.}
 \[ \begin{array}{ccccc}
-x \cdot 1 & = & 1 \cdot x & = & x \\
-x \cdot 1' & = & 1' \cdot x & = & x \\
+x + 0 & = & 0 + x & = & x \\
+x + 0' & = & 0' + x & = & x \\
 \end{array}
 \]
-{\em Note that we are asserting that each multiplicative identity
-  works on both the left and the right.}
+{\em Note that we are asserting that each additive identity works on
+  both the left and the right.}
 
 \noindent
 The basic strategy of a proof by contradiction is
@@ -1150,20 +1150,40 @@ where assertion $P_m$ is known to be false (i.e, is {\it a
   contradiction}).
 
 \noindent
-We infer that Proposition $P$ is false.  Of course, there is a
+We then infer that proposition $P$ is false.  (Of course, there is a
 parallel situation in which we begin by assuming that $P$ is false,
-and infer after the chain of assertions that $P$ is true.
+and infer after the chain of assertions that $P$ is true.)
 
 The chain of reasoning for our simple proposition $P$ is encapsulated
 symbolically in the chain of equations
 \[
 \begin{array}{cccl}
- 1 & = & 1 \cdot 1' & \mbox{ because $1'$ is a {\em right}
-   multiplicative inverse} \\
-   & = & 1' & \mbox{ because $1$ is a {\em left}
-   multiplicative inverse}
+ 0 & = & 0 + 0' & \mbox{ because $0'$ is a {\em right}
+   additive identity} \\
+   & = & 0' & \mbox{ because $0$ is a {\em left}
+   additive identity}
 \end{array}
 \]
+We can rewrite the preceding chain in the form of an explicit
+contradiction, as follows.
+
+Assume, for contradiction, that proposition $P$ is true---i.e., that
+$0$ and $0'$ are {\em distinct} additive identities; i.e., $0 \neq
+0'$.  Then:
+\begin{enumerate}
+\item
+Because $0'$ is a {\em right} additive identity, it follows that $0 +
+0' = 0$.
+\item
+Because $0$ is a {\em left} additive identity, it follows that $0 + 0'
+= 0'$.
+\item
+Combining the previous assertions, we infer that $0 = 0'$, because
+numbers that are equal to the same number are equal to each other.
+\end{enumerate}
+Assertion 3 asserts that $0 = 0'$, which contradicts proposition $P$'s
+assertion that $0 \neq 0'$.  Applying the principle of Proof by
+Contradiction, we now (finally) infer that proposition $P$ is false. \qed
 
 
 \ignore{************
@@ -1510,19 +1530,19 @@ algebraically.
 
 \medskip
 
-A final remark: The method we have outlined is not complete---it
-yields only the {\em positive} solution for $x$.  As we discuss at
-length in Sections~\ref{sec:fund-thm-algebra}
+A final remark: The geometry-based method we have just employed is not
+``complete''---it yields only the {\em positive} solution for $x$.  As
+we discuss at length in Sections~\ref{sec:fund-thm-algebra}
 and~\ref{sec:poly-by-radical}---see, in particular,
 Theorem~\ref{thm:fund-thm-algebra}---there exists another solution for
 $x$, because its defining polynomial is {\em quadratic} (i.e., of base
 $2$).  At the time of Al Khwarizmi {\em and} for the defining
 equation's intended goal of determining the area of a plot of land, a
-single (positive) solution for $x$ was sufficient.
-That said, there are situations wherein one has need of both roots of
-a quadratic polynomial equation, and the algebraic solution methods
-will produce both solutions (although not always in a perspicuous or
-intuitive way).
+single (positive) solution for $x$ was sufficient.  That said, there
+are situations wherein one has need of both roots of a quadratic
+polynomial equation, and the algebraic solution methods will produce
+both solutions (although not always in a perspicuous or intuitive
+way).
 
 Returning to equation (\ref{eq:al-Khwarizimi}):  the second solution
 for $x$  is $x' = -13$, as is witnessed by the equation
@@ -1535,31 +1555,62 @@ also be obtained via our geometric argument:
 This aside, geometric arguments are fun to develop!
 
 
-\subsection{Fubini's principle}
-\label{sec:Fubini}
-\index{Fubini, Guido}
+\subsection{Combinatorial Intuition and Argumentation}
+\label{sec:comb-proofs}
 
-**HERE
-\subsubsection{The proof technique}
+Combinatorics is a branch of discrete mathematics that specializes in
+the following operations (among others): selecting objects from a
+given set; arranging and rearranging the objects; counting the number
+of ways that one can arrive at specified target configurations;
+Chapter~\ref{ch:combinatorics} introduces the foundations of this
+subfield, following with its applications to the kindred fields of
+probability and statistics.
 
-This method can be seen as a particular graphical proof.
-The idea was to construct a figure that leads to an evidence (based on a graphical/geometrical argument).
-Here, we use a slightly different idea while representing natural numbers as a set of objects (tokens).
+\subsubsection{Summation as a selection problem}
+\label{sec:comb-sum-of-first-n}
 
-The principle is to count the objects in two different ways, one being straightforward.
-rearranging the representation obviously does not change the value of the solution
-since there is a one-to-one correspondence.
+Sometimes combinatorial argumentation can be used in unexpected ways.
+We use it here to sum the first $n$ integers, i.e., to derive an
+explicit expression for summation $S_n$:
+\[ S_n \ \ = \ \ 1 \ + \ 2 \ + \cdots + \ n \]
 
+Our summation technique begins, unexpectedly, with the problem of
+counting the number of ways---call it $C(n,2)$---of selecting two
+items from a set of $n$ items.  We describe this selection in a
+slightly unconventional way.
+\begin{itemize}
+\item
+The bigger integer of the two we are selecting can be chosen in $n$
+ways, corresponding to the $n$ elements of the set
+\[ \{ 1, \ 2, \ldots, \ n-1, \ n \} \]
+\item
+If the bigger item was integer $k$, then we can select the second one
+in $k-1$ ways, from the integers smaller than $k$.
+\end{itemize}
+We thereby observe the following summation.
+\begin{eqnarray*}
+C(n,2) & = & n \ + \ \sum_{k=2}^n \ C(k-1,1) \\
+       & = & n \ + \ \sum_{k=2}^n \ (k-1) \\
+       & = & n \ + \ \sum_{k=1}^{n-1} \ k \\
+       & = & S_n
+\end{eqnarray*}
 
-\subsubsection{Sample proofs: Computing the sum of the $n$ first integers}
+\subsubsection{Summation as a rearrangment problem}
+\label{sec:summation-via-Fubini}
 
-\index{Fubini's principle applied to the sum of first integers}
+The proof technique we describe here is a combination of geometry and
+combinatorial rearrangement of a configuration of objects.  The second
+component of this pair incurs an intellectual debt to Guido Fubini,
+\index{Fubini, Guido} whose eponymous Principle \index{Fubini's Principle}
+mandated looking at configurations from multiple points of view and
+garnering new intuitions from each.
 
-Our pictorial proof begins by representing each integer $k$ as a
-horizontal sequence of $k$ tokens, i.e., darkened circles.  The
-problem of summing the first $n$ integers then begins with a
-picture such as appears in Fig.~\ref{fig:sumIntegers1}.
+We apply this two-stage reasoning paradigm to the problem of
+evaluating the summation $S_n \ = \ 1 + 2 + \cdots + n$.
 
+The first idea in our reasoning is to represent each integer $k$ as a
+horizontal sequence of $k$ tokens, depicted as darkened circles in
+Fig.~\ref{fig:sumIntegers1}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumIntegersBasis}
@@ -1568,48 +1619,55 @@ picture such as appears in Fig.~\ref{fig:sumIntegers1}.
        \label{fig:sumIntegers1}
 \end{center}
 \end{figure}
-
-Starting with such a arrangement of the tokens as a \textit{triangle}
-we remark that if we replicate the picture and flip it, both copies can be put in front of each other
-in order to form a perfect rectangle, as shown in Fig.~\ref{fig:sumIntegers2}.
+Using such a reprsentation, we naturally view the summation $S_n$ as a
+\textit{triangular pattern} of tokens.  How can we use this
+representation to evaluate $S_n$ without just counting and summing?
+We call upon an intuition attributed to the great 19th-century
+mathematician Karl Friedrich Gauss \index{Gauss, Karl Friedrich}
+\index{Gauss, Karl Friedrich!summation ``trick''}
+(who famously had this intuition as a pre-teenager).  We remark that
+if we {\em replicate} the triangular pattern in the figure and {\em
+  flip} it, then we can configure the resulting triangles---see
+Fig.~\ref{fig:sumIntegers2}---to form the rectangular pattern depicted
+in Fig~\ref{fig:sumIntegers3}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumIntegersIntermediate}
-              \caption{Putting two copies upside down.}
+   \caption{Putting two copies of a triangle together to form a rectangle.}
        \label{fig:sumIntegers2}
 \end{center}
 \end{figure}
-
-The final touch of this proof to express that this $n \times (n+1)$ rectangle 
-reprensents exactly twice the number of token of the sum.
-Fig~\ref{fig:sumIntegers3}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumIntegersFinal}
-\caption{The final picture organized as an $n \times (n+1)$ rectangle
-  array of tokens.}
+\caption{The two copies of a triangle have become an $n \times (n+1)$
+  rectangular array of tokens.}
        \label{fig:sumIntegerss3}
 \end{center}
 \end{figure}
-Coming back to a more formal expression, we established 
-$2.S = n(n+1)$.
-%\end{proof}
+Next, we observe two important properties of the rectangular pattern
+that we have achieved in Fig~\ref{fig:sumIntegers3}.
+\begin{itemize}
+\item
+The number of tokens in the rectangular pattern is precisely $2 S_n$.
+
+This is the seminal intuition underlying Gauss's summation of $S_n$,
+albeit in a textual, rather than geometric, setting.  See
+Section~\ref{sec:special-arithmetic sums}.A
+
+\item
+The rectangular pattern has $n+1$ columns, each having $n$ tokens.
+
+This means that the rectangular pattern contains $n \cdot (n+1)$
+tokens.
+\end{itemize}
+Combining these observations, we conclude that
+\[ 2 S_n \ = \ n \cdot (n+1) \ \ \ \ \mbox{ so that } \ \ \ \
+S_n \ = \ {1 \over 2} n \cdot (n+1)
+\]
 
 
-\subsection{Combinatorial Proofs}
-
-We introduce here a less conventional type of proofs that look at a result
-as counting using combinatorial arguments.
-This is illustrated by the previous example of computing the sum of the $n$ first integers:
-\[ 1+2+ \ldots + n \ = \ C(n,2)  \]
-Choosing $2$ elements among $n$ can be done by choosing the second one (say at index $k$)
-and then, choosing the other one among the $k-1$ remaining ones before $k$, 
-which can be mathematically written as:
-\[ \ C(n,2) \ = \  \sum_{k=2}^n  \ C(k-1,1)\ = \  \sum_{k=2}^n  (k-1) \ = \  \sum_{k=1}^{n-1}  k \ = \ \frac{(n)(n-1)}{2}\]
-
-
-
-\subsection{Proof by computer}
+\subsection{Proof by Computer}
 
 
 \subsubsection{The proof technique}
