@@ -1,0 +1,68 @@
+
+\chapter{A nice property on GCD}
+\label{Appendix:FiboGCD}
+
+This is a draft, in particular, the notation should be put in coherency with the other chapters
+(F(n) instead of $F_n$)
+\bigskip
+
+Let $F_1=F_2=1$ and $F_{n+1}=F_n+F_{n-1}$.
+\medskip
+
+\noindent We want to prove that $GCD(F_n,F_m) = F_{GCD(n,m)}$.
+{\Denis put it like a proposition?}
+
+Without loss of generality, consider that $n \geq m$.
+
+Check the property on particular cases (gain intuition)...
+
+Let us denote $g=GCD(n,m)$ and $G=GCD(F_n,F_m)$.
+
+As an example, let us check 
+
+$GCD(F_{12},F_{18}) = GCD(144,2584) = 8 = F_6$ (where $6=GCD(12,18)$).
+\medskip
+
+This result is obtained by showing first that $F_g$ divides $G$ and then, $G$ divides $F_g$.
+
+Let us first prove three technical lemmas.
+\\
+
+\noindent {\bf Lemma 1.}
+The following relation holds for any integers $n$ and $k$:
+
+$F_{n+k} = F_k.F_{n+1} + F_{k-1}.F_n$ \footnote{this relation assumes that we are able to define negative Fibonacci numbers. 
+Well, there is a "natural" way of extending
+the definition to negative numbers...}
+
+The proof is straightforward  by induction on $k$ assuming that $n$ is fixed.
+\\
+
+\noindent {\bf Lemma 2.}
+For any integer $k$ $F_{k.n}$ is a multiple of $F_n$.
+
+The proof can be obtained as a consequence of the previous lemma.
+\\
+
+\noindent {\bf Lemma 3.}
+If $a$ divides $b$ then $F_a$ divides $F_b$.
+\\
+
+We are able now to prove the final result:
+\begin{enumerate}
+\item $F_g$ divides $G$.
+
+By definition of the GCD, $g$ divides $n$ and $m$. 
+Using Lemma 3, that means that $F_g$ divides both $F_n$ and $F_m$.
+thus, it divides their GCD.
+\item $G$ divides $F_g$.
+
+As $g$ is the GCD of $n$ and $m$, it can be written as a linear combination of them (in fact it is the smallest one):
+$g = a.n + b.m$.
+
+$F_g = F_{a.n + b.m}$ for some integers $a$ and $b$,
+thus, according to lemma 1, it is a multiple of $n$ (and symmetrically of $m$).
+Thus, it is a multiple of their GCD. 
+\end{enumerate}
+
+
