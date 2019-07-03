@@ -1432,23 +1432,22 @@ operations introduced in Section~\ref{sec:set-operations}.
 \noindent {\small\sf B(i) The {\em unary} logical connective}
 \begin{itemize}
 \item
-\underline{{\sc not} ($\sim$)}
-\index{logical operation!{\sc not} ($\sim$)}
+\underline{{\sc not} ($\neg$)}
+\index{logical operation!{\sc not} ($\neg$)}
 {\bf (Set-theoretic analogue: {\em complementation})}.
 
-{\Denis let discuss the notation...}
 
 Two shorthand notations for ``{\sc not} $P$'' have evolved:
   \begin{itemize}
   \item
-the prefix-operator $\sim$, as in ``$\sim P$''
+the prefix-operator $\sim$, as in ``$\neg P$''
   \item
-the overline-operator, as in ``$\bar{P}$''
+the overline-operator, as in ``$\overline{P}$''
   \end{itemize}
 Whichever notation we use, the defining properties of logical
 complementation are encapsulated in the following pair of equations.
 \[
-[\sim \mbox{\sc true} = \mbox{\sc false}] \ \ \mbox{ and } \ \ [\sim
+[\neg \mbox{\sc true} = \mbox{\sc false}] \ \ \mbox{ and } \ \ [\neg
   \mbox{\sc false} = \mbox{\sc true}].
 \]
 \end{itemize}
@@ -1536,7 +1535,7 @@ $\Rightarrow$; the operation's defining properties are encapsulated as
 follows.
 \[ [[P \ \Rightarrow \ Q] = \mbox{\sc true}]  \ \ \mbox{ if, and only
   if, } \ \
-  [ [\sim P] = \mbox{\sc true}] \mbox{ (inclusive) or } [Q = \mbox{\sc true}]
+  [ [\neg P] = \mbox{\sc true}] \mbox{ (inclusive) or } [Q = \mbox{\sc true}]
 \]
 
 We remark that the operation {\sc implies} differs from the other
@@ -1601,6 +1600,8 @@ One learns as a student of either mathematics or mathematical logic
 that a {\it theorem} is a statement $S$ in the relevant logical
 system---in our case, the Propositional Calculus---such that one of
 the following is true:
+
+{\Denis remark S is not well chosen}
 \begin{itemize}
 \item
 $S$ is an {\it axiom} of the system\footnote{The word ``axiom'' means ``self-evident truth''.}
@@ -1704,7 +1705,7 @@ for convenience, as $1$ and $0$, respectively.
 \[
 \begin{array}{|c||c|}
 \hline
-P & \sim P \\
+P & \neg P \\
 \hline
 \hline
 0 & 1 \\
@@ -1789,11 +1790,11 @@ consulting Fig.~\ref{fig:defns-via-tables}:
 \begin{tabular}{llcl}
 1. &
 {\it Prove that the Propositional expression} &
-$\sim P \ \Rightarrow \ P$ &
+$\neg P \ \Rightarrow \ P$ &
 {\it is a tautology.} \\
 2. &
 {\it Prove that the Propositional expression} &
-$P \ \Rightarrow \ \sim P$ &
+$P \ \Rightarrow \ \neg P$ &
 {\it is satisfiable.}
 \end{tabular}
 
@@ -1838,7 +1839,7 @@ is a positive.''
 \begin{prop}
 \label{thm:double negation}
 For any proposition $P$,
-\[ P \ \ \equiv \ \ \sim [\sim P] \]
+\[ P \ \ \equiv \ \ \neg [\neg P] \]
 \end{prop}
 
 \noindent {\it Proof via truth table.}
@@ -1846,7 +1847,7 @@ For any proposition $P$,
 \label{eq:double-neg}
 \begin{array}{|c|c||c|}
 \hline
-P & \sim P & \sim[\sim P] \\
+P & \neg P & \neg[\neg P] \\
 \hline
 \hline
 0 & 1 & 0 \\
@@ -1875,8 +1876,8 @@ implications of this law for {\em logic} rather than {\em mathematics}.
 \begin{prop}
 \label{thm:contraposition}
 For any propositions $P$ and $Q$,
-\[  \left[ [ P \Rightarrow Q ] \ \ \equiv \ \ [ \sim Q
-    \Rightarrow \sim P ] \right]
+\[  \left[ [ P \Rightarrow Q ] \ \ \equiv \ \ [ \neg Q
+    \Rightarrow \neg P ] \right]
 \]
 \end{prop}
 
@@ -1885,8 +1886,8 @@ For any propositions $P$ and $Q$,
 \label{eq:contraposition}
 \begin{array}{|c|c|c|c||c||c|}
 \hline
-P & \sim P & Q & \sim Q & \underline{P \Rightarrow Q}
- & \underline{\sim Q \Rightarrow \sim P} \\
+P & \neg P & Q & \neg Q & \underline{P \Rightarrow Q}
+ & \underline{\neg Q \Rightarrow \neg P} \\
 \hline
 \hline
 0 & 1 & 0 & 1 & 1 & 1 \\
@@ -1935,9 +1936,9 @@ proposition is either {\sc true} or {\sc false}
 For any propositions $P$ and $Q$:
 \begin{itemize}
 \item
-$[ P \wedge Q ] \ \ \equiv \ \ \sim [ [\sim P] \vee [\sim Q]]$
+$[ P \wedge Q ] \ \ \equiv \ \ \neg [ [\neg P] \vee [\neg Q]]$
 \item
-$[ P \vee Q ] \ \ \equiv \ \ \sim [ [\sim P] \wedge [\sim Q]]$
+$[ P \vee Q ] \ \ \equiv \ \ \neg [ [\neg P] \wedge [\neg Q]]$
 \end{itemize}
 \end{prop}
 
@@ -1946,11 +1947,11 @@ $[ P \vee Q ] \ \ \equiv \ \ \sim [ [\sim P] \wedge [\sim Q]]$
 \label{eq:DeMorgan}
 \begin{array}{|c|c|c|c||c|c|||c|c|}
 \hline
-P & \sim P & Q & \sim Q 
+P & \neg P & Q & \neg Q 
   & [ P \wedge Q ]
-  & [\sim P] \vee [\sim Q]
+  & [\neg P] \vee [\neg Q]
   & [ P \vee Q ]
-  & [\sim P] \wedge [\sim Q] \\
+  & [\neg P] \wedge [\neg Q] \\
 \hline
 \hline
 0 & 1 & 0 & 1
@@ -2106,7 +2107,6 @@ P & Q & R
 \end{equation}
 }
 
-{\Denis the third column is false, should be P and R}
 Note that columns 8 and 9 of truth table (\ref{eq:distrib-law}) are
 identical, as are columns 10 and 11.  By
 Theorem~\ref{thm:Prop-calc-isfree} this fact verifies the distributive
@@ -2204,6 +2204,7 @@ precisely when its associated variable does.
 In its {\em complemented} form, a literal evaluates to {\sc
   true} precisely when its associated variable evaluates to {\sc
   false}.
+  {\Denis are they sc or em?}
 \end{itemize}
 The following simple example should clarify these terms.
 
