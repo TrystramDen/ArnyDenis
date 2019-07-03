@@ -1,6 +1,6 @@
 %version of 07-03-19
 
-\chapter{PAIRING FUNCTIONS: ENCODING $\N^+ \times \N^+$ AS $\N^+$}
+\chapter{PAIRING FUNCTIONS: Encoding $\N^+ \times \N^+$ as $\N^+$}
 \label{Appendix:building-pairing-functions}
 
 This chapter extends our coverage of pairing functions in
@@ -21,7 +21,6 @@ that the diagonal pairing function of Section~\ref{sec:diag-pair-fn}
 and the square-shell pairing function of
 Section~\ref{sec:square-pair-fn} build in essential ways on the
 $L$-norms of Section~\ref{sec:Ln-norms}; cf., Fig.~\ref{fig:Ln-discs}.
-
 
 \ignore{*************
 {\Denis The introduction has been taken from the main part of the book,
@@ -67,7 +66,7 @@ design and analyze algorithms on the sets.
 \bigskip
 ***************}
 
-\section{A methodology for crafting pairing functions}
+\section{A Shell-Based Methodology for Crafting Pairing Functions}
 \label{sec:build-pair-fn}
 \index{constructing pairing functions via ``shells''}
 \index{pairing functions as storage mappings for arrays/tables}
@@ -135,7 +134,7 @@ We have noted how to use Procedure {\small\sf PF-Constructor} to
 construct pairing function $\d$.  We now use the Procedure to design
 two other useful pairing functions.
 
-\section{The Square-shell pairing function $\s$}
+\section{The Square-shell Pairing Function $\s$}
 \label{sec:square-pair-fn}
 \index{The Square-shell pairing function $\s$}
 
@@ -207,7 +206,7 @@ Using somewhat more complicated instantiations of Procedure
 \end{minipage}
 }
 
-\section{$\oplus$ The Hyperbolic-shell pairing function $\h$}
+\section{$\oplus$ The Hyperbolic-Shell Pairing Function $\h$}
 \label{Appendix:hyp-shell-pair-fn}
 \index{The Hyperbolic-shell pairing function $\h$}
 
@@ -334,3 +333,31 @@ $\Omega(n \log n)$ ``addresses.''  \qed
 \end{center}
 \end{figure}
 
+\section{A Pairing Function Built from Disjoint Arithmetic Progressions}
+
+As we noted earlier, the notion of pairing function has applications
+to a broad range of computational situations.  For some of
+these---cf., \cite{Rosenberg03}---it is convenient to have each
+``row'' of the pairing function map onto an arithmetic progression.
+This can be achieved in many ways, as explained in \cite{Rosenberg03}.
+For this chapter, we satisfy ourselves with presenting a single such
+{\em additive} pairing function, let us call it $\a(x,y)$.
+
+For all $\langle x,y \rangle \in \N^+ \times \N^+$
+
+$\a(x,y) \ \eqdef \ 2^{x-1} \cdot (2y -1)$
+
+We leave to the reader the exercise of verifying function $\a$'s
+bijectiveness.  As an aid, we provide the following prefix of $\a$'s
+mapping of $\N^+ \times \N^+$.
+\begin{center}
+\begin{tabular}{r|r|r|r|r|r|r}                                                               
+ 1 &  3 &   5 &   7 &   9 &  11 & $\cdots$ \\                                      
+ 2 &  6 &  10 &  14 &  18 &  22 & $\cdots$ \\                                      
+ 4 & 12 &  20 &  28 &  36 &  44 & $\cdots$ \\                                      
+ 8 & 24 &  40 &  56 &  72 &  88 & $\cdots$ \\                                            
+16 & 48 &  80 & 112 & 144 & 176 & $\cdots$ \\
+32 & 96 & 110 & 224 & 288 & 352 & $\cdots$ \\                                      
+$\vdots$ & $\vdots$ & $\vdots$  & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$
+\end{tabular} 
+\end{center}
