@@ -26,7 +26,6 @@ operate either on the sets or on their objects.
 \end{enumerate}
 We describe these concepts informally in this introductory section.
 
-%{\Denis not so clear which are those 3...}
 
 \bigskip
 
@@ -161,9 +160,6 @@ elements that sets $S$ and $T$ share, and {\it symmetric difference}
 ($S+T$), which isolates all elements that belong to precisely one of
 $S$ and $T$.
 
-%{\Denis make the link with the introduction of chapter 11 where we
-%present basic operations of sets (intersection, union, etc.)}
-
 Importantly, we can now begin to study the laws that these operations
 obey.  One of the central topics in this study is the class of {\it
   Boolean} algebras \index{algebra!Boolean algebras} whose name
@@ -264,11 +260,12 @@ pairs of real numbers,
 \item
 the set of {\em all} finite-length binary strings.
 
-A {\it binary string}\index{Binary string} is a sequence of $0$s and
+A {\it binary string}\index{binary string} is a sequence of $0$s and
 $1$s.  When discussing computer-related matters, one often calls each
-$0$ and $1$ that occurs in a binary string a {\it bit}\index{Bit:
-  binary digit} (for {\it binary digit}).  The term ``bit'' leads to
-the term {\it bit string} as a synonym of {\it binary string}.
+$0$ and $1$ that occurs in a binary string a {\it bit}
+\index{bit: binary digit} (for {\it binary digit}).  The term ``bit''
+leads to the term {\it bit string} \index{bit string} as a synonym of
+{\it binary string}.
 \end{itemize}
 Despite this assumption, we begin the chapter by reviewing some basic
 concepts concerning sets and operations thereon.
@@ -479,8 +476,6 @@ intersection.
 \label{sec:structured-set}
 \index{set!structured}
 
-%{\Denis same: cartesian products are presented later (chapter 11)}
-
 The power of set-theoretic concepts to model complex aspects of
 reality increases immeasurably when we consider sets whose elements
 enjoy even modest structure.  We begin our discussion of structured
@@ -590,7 +585,6 @@ all mathematical theories.  Let $\rho$ and $\rho'$ be binary relations
 on a set $S$.  The {\it composition}
 \index{composition! binary relations}\index{composition of binary relations}
 of $\rho$ and $\rho'$ (in that order) is the relation
-%{\Denis Attention, change t into u in the following equation}
 \[ 
 \rho'' \ \eqdef \ \Bigl\{ \langle s, t \rangle \in S \times S \ | \
 (\exists u \in S) \Bigl[ [s \rho u] \mbox{ and } [u \rho' t] \Bigr] \Bigr\}.
@@ -621,7 +615,7 @@ to be able to assert that elements $s \in S$ and $t \in T$ are {\em
   not} $\rho$-related,\index{relation negation} i.e., $\langle s, t
 \rangle \not\in S \times T$.  Several notations have been developed
 for this purpose, as the following table suggests.
-\index{$\widetilde{\rho}$: the negation of relation $\rho$}
+\index{$\overline{\rho}$: the negation of relation $\rho$}
 \begin{equation}
 \label{eq:NOT-rho-notation}
 \begin{array}{|c|c|c|c|}
@@ -642,15 +636,13 @@ for this purpose, as the following table suggests.
 \hline
 \mbox{greater than (weak)} & \geq & \not\geq \mbox{ or } < & \mbox{yes} \\
 \hline
-\mbox{generic}  & \rho  & \sim\rho \mbox{ or } \widetilde{\rho} &
+\mbox{generic}  & \rho  & \neg\rho \mbox{ or } \overline{\rho} &
 \mbox{no} \\
 \hline
 \end{array}
 \end{equation}
 
 \medskip
-
-{\Denis discuss the notation for negation}
 
 Several special classes of binary relations are so important that we
 must single them out immediately, in the upcoming subsections.
@@ -705,7 +697,7 @@ $\rho$ being ``$>$'':
 
 \begin{tabular}{lll}
 For a strong order $\rho$: & &
-{\bf if} $[s \ \rho \ t]$, {\bf then} $[t \ \widetilde{\rho} \ s]$ \\
+{\bf if} $[s \ \rho \ t]$, {\bf then} $[t \ \overline{\rho} \ s]$ \\
 For the weak version $\underline{\rho}$ of $\rho$: & &
 {\bf if} $[s \ \underline{\rho} \ t]$ {\bf and} $[t \ \underline{\rho}
   \ s]$, {\bf then} $[s = t]$.
@@ -1246,6 +1238,76 @@ us that $F \circ G$ is a surjection on $S$.  Hence, $F \circ G$ is a
 bijection on $S$.  \qed
 \end{proof}
 
+\subsection{An Important Connection, via Abstraction and Interpretation}
+\label{sec:sets-strings-functions}
+
+In his play, {\it Romeo and Juliet},  William Shakespeare
+\index{Shakespeare, William, {\it Romeo and Juliet}}
+pens a question whose significance goes far beyond its poetic origins:
+``What's in a name?''
+
+This section will hopefully get you thinking about that question in
+new ways!
+
+Let us begin with a binary sequence---i.e., a sequence of bits
+\[ \beta \ = \ \beta_0 \beta_1 \beta_2 \cdots \beta_n (\cdots) \]
+where each $\beta_i \in \{0,1\}$.  The rather bizarre notation here,
+where the second set of (centered) dots is parenthesized, is intended
+to encompass both finite, length-$n$, sequences and infinite
+sequences.  The question is:
+
+{\em What does sequence $\beta$ denote (or, name)?}
+
+\noindent
+At least three respectable answers to this question should be
+considered.
+\begin{enumerate}
+\item
+With the most literal interpretation, $\beta$ is just an uninterpreted
+sequence of bits.
+
+\item
+With a little more imagination, one can see each bit $\beta_i$ of
+$\beta$ can be interpreted as telling us something about the (index)
+integer $i$.  For instance, $\beta$ can be viewed as specifying two
+mutually complementary sets of positive integers:
+\begin{eqnarray*}
+S_\beta \ = \ \{ k \in \N^+ \ | \ \beta_k = 1\} \\
+\overline{S}_\beta \ = \ \{ k \in \N^+ \ | \ \beta_k = 0\} \\
+\end{eqnarray*}
+When $\beta$ has (finite) length $n$, then both $S_\beta$ and
+$\overline{S}_\beta$ are viewed as subsets of $\{1, 2, \ldots, n\}$;
+when $\beta$ is infinite, then both $S_\beta$ and $\overline{S}_\beta$
+are viewed as subsets of $\N^+$.
+
+In this scenario, $\beta$ is called the {\it characteristic sequence}
+\index{characteristic sequence}
+\index{set!characteristic sequence}
+\index{characteristic sequence of a set}
+of the set $S_\beta$.
+
+\item
+Finally---{\em and we certainly do not mean to imply that our three
+  alternatives exhaust the possibilities!}---each bit $\beta_i$ of
+$\beta$ can be specifying the value at integer-argument $i$ of a
+function $f_\beta$.  When $\beta$ has (finite) length $n$, then
+$f_\beta$ is viewed as a function $f_\beta: \{1, 2, \ldots, n\}
+\rightarrow \{0,1\}$; when $\beta$ is infinite, then $f_\beta$ is
+viewed as a function $f_\beta: \N \rightarrow \{0,1\}$.
+
+In this scenario, $\beta$ is called the {\it characteristic vector}
+\index{function!characteristic vector}
+\index{characteristic vector}
+\index{characteristic vector of a function}
+of the function $f_\beta$.
+\end{enumerate}
+
+We now have a new way to think about sequences/strings, sets, and
+functions.  Each way conveys insights and tools for reasoning about
+and analyzing these concepts that other ``names'' for the concepts do
+not.  And, we now recognize conceptual ties among these three concepts
+that are not always intuitive.  Our conceptual toolkit has been
+enriched!
 
 \section{Boolean Algebras}
 \label{sec:Boolean-Algebra}
@@ -1398,8 +1460,8 @@ operations introduced in Section~\ref{sec:set-operations}.
 \noindent {\small\sf B(i) The {\em unary} logical connective}
 \begin{itemize}
 \item
-\underline{{\sc not} ($\sim$)}
-\index{logical operation!{\sc not} ($\sim$)}
+\underline{{\sc not} ($\neg$)}
+\index{logical operation!{\sc not} ($\neg$)}
 {\bf (Set-theoretic analogue: {\em complementation})}.
 
 {\Denis let discuss the notation...}
@@ -1407,14 +1469,14 @@ operations introduced in Section~\ref{sec:set-operations}.
 Two shorthand notations for ``{\sc not} $P$'' have evolved:
   \begin{itemize}
   \item
-the prefix-operator $\sim$, as in ``$\sim P$''
+the prefix-operator $\neg$, as in ``$\neg P$''
   \item
 the overline-operator, as in ``$\bar{P}$''
   \end{itemize}
 Whichever notation we use, the defining properties of logical
 complementation are encapsulated in the following pair of equations.
 \[
-[\sim \mbox{\sc true} = \mbox{\sc false}] \ \ \mbox{ and } \ \ [\sim
+[\neg \mbox{\sc true} = \mbox{\sc false}] \ \ \mbox{ and } \ \ [\neg
   \mbox{\sc false} = \mbox{\sc true}].
 \]
 \end{itemize}
@@ -1502,7 +1564,7 @@ $\Rightarrow$; the operation's defining properties are encapsulated as
 follows.
 \[ [[P \ \Rightarrow \ Q] = \mbox{\sc true}]  \ \ \mbox{ if, and only
   if, } \ \
-  [ [\sim P] = \mbox{\sc true}] \mbox{ (inclusive) or } [Q = \mbox{\sc true}]
+  [ [\neg P] = \mbox{\sc true}] \mbox{ (inclusive) or } [Q = \mbox{\sc true}]
 \]
 
 We remark that the operation {\sc implies} differs from the other
@@ -1670,7 +1732,7 @@ for convenience, as $1$ and $0$, respectively.
 \[
 \begin{array}{|c||c|}
 \hline
-P & \sim P \\
+P & \neg P \\
 \hline
 \hline
 0 & 1 \\
@@ -1755,11 +1817,11 @@ consulting Fig.~\ref{fig:defns-via-tables}:
 \begin{tabular}{llcl}
 1. &
 {\it Prove that the Propositional expression} &
-$\sim P \ \Rightarrow \ P$ &
+$\neg P \ \Rightarrow \ P$ &
 {\it is a tautology.} \\
 2. &
 {\it Prove that the Propositional expression} &
-$P \ \Rightarrow \ \sim P$ &
+$P \ \Rightarrow \ \neg P$ &
 {\it is satisfiable.}
 \end{tabular}
 
@@ -1804,7 +1866,7 @@ is a positive.''
 \begin{prop}
 \label{thm:double negation}
 For any proposition $P$,
-\[ P \ \ \equiv \ \ \sim [\sim P] \]
+\[ P \ \ \equiv \ \ \neg [\neg P] \]
 \end{prop}
 
 \noindent {\it Proof via truth table.}
@@ -1812,7 +1874,7 @@ For any proposition $P$,
 \label{eq:double-neg}
 \begin{array}{|c|c||c|}
 \hline
-P & \sim P & \sim[\sim P] \\
+P & \neg P & \neg[\neg P] \\
 \hline
 \hline
 0 & 1 & 0 \\
@@ -1841,8 +1903,8 @@ implications of this law for {\em logic} rather than {\em mathematics}.
 \begin{prop}
 \label{thm:contraposition}
 For any propositions $P$ and $Q$,
-\[  \left[ [ P \Rightarrow Q ] \ \ \equiv \ \ [ \sim Q
-    \Rightarrow \sim P ] \right]
+\[  \left[ [ P \Rightarrow Q ] \ \ \equiv \ \ [ \neg Q
+    \Rightarrow \neg P ] \right]
 \]
 \end{prop}
 
@@ -1851,8 +1913,8 @@ For any propositions $P$ and $Q$,
 \label{eq:contraposition}
 \begin{array}{|c|c|c|c||c||c|}
 \hline
-P & \sim P & Q & \sim Q & \underline{P \Rightarrow Q}
- & \underline{\sim Q \Rightarrow \sim P} \\
+P & \neg P & Q & \neg Q & \underline{P \Rightarrow Q}
+ & \underline{\neg Q \Rightarrow \neg P} \\
 \hline
 \hline
 0 & 1 & 0 & 1 & 1 & 1 \\
@@ -1901,9 +1963,9 @@ proposition is either {\sc true} or {\sc false}
 For any propositions $P$ and $Q$:
 \begin{itemize}
 \item
-$[ P \wedge Q ] \ \ \equiv \ \ \sim [ [\sim P] \vee [\sim Q]]$
+$[ P \wedge Q ] \ \ \equiv \ \ \neg [ [\neg P] \vee [\neg Q]]$
 \item
-$[ P \vee Q ] \ \ \equiv \ \ \sim [ [\sim P] \wedge [\sim Q]]$
+$[ P \vee Q ] \ \ \equiv \ \ \neg [ [\neg P] \wedge [\neg Q]]$
 \end{itemize}
 \end{prop}
 
@@ -1912,11 +1974,11 @@ $[ P \vee Q ] \ \ \equiv \ \ \sim [ [\sim P] \wedge [\sim Q]]$
 \label{eq:DeMorgan}
 \begin{array}{|c|c|c|c||c|c|||c|c|}
 \hline
-P & \sim P & Q & \sim Q 
+P & \neg P & Q & \neg Q 
   & [ P \wedge Q ]
-  & [\sim P] \vee [\sim Q]
+  & [\neg P] \vee [\neg Q]
   & [ P \vee Q ]
-  & [\sim P] \wedge [\sim Q] \\
+  & [\neg P] \wedge [\neg Q] \\
 \hline
 \hline
 0 & 1 & 0 & 1
