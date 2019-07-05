@@ -1460,68 +1460,78 @@ foundations of mathematics might quibble about the verb ``is'' in the
 highlighted sentences, but for all practical purposes, we can accept
 the sentences as written.
 
-\section{$\R$ is uncountable, hence is ``bigger than'' $\Z$ and $\Q$}
-\label{sec:Q-Z-R-cardinality}
-\label{sec:Reals-uncountable}
+\section{$\F$ and $\R$ are uncountable, hence, ``bigger than'' $\Z$ and $\Q$}
+\label{sec:Q-Z-F-cardinality}
+\label{sec:FNS-uncountable}
 
-The main result of this section establishes the uncountability of the
-set $\R$.  We thereby have an argument that the infinitude of real
-numbers is {\em of a higher order} than the infinitude of the
-integers.  In fact, Georg Cantor used this result as the base of
-his study of orders of infinity.
+Let $\F$ denote the set of all functions from $\N$ to $\{0,1\}$.  The
+main result of this section establishes the uncountability of the set
+$\F$.  We thereby have an argument that the infinitude of this set is
+{\em of a higher order} than the infinitude of the set of integers.
+In fact, Georg Cantor used variants of this result as the base of his
+study of orders of infinity.
+
+This section is dedicated to provin the following result.
+
+\begin{prop}
+\label{thm:F-uncountable}
+The set $\F$ of binary-valued functions from $\N$ into $\{0,1\}$ is
+not countable.  In particular, there is no injection $f: \F
+\rightarrow \N$.
+\end{prop}
+
+In Appendix Chapter~\ref{ch:Reals-uncountable}, we prove the following
+qualitatively similar but technically more complicated companion of
+Proposition~\ref{thm:F-uncountable}.
 
 \begin{prop}
 \label{thm:R-uncountable}
 The set $\R$ of real numbers is not countable.
-In particular, there is no injection $f: \R \rightarrow \N$.
+In particular, there is no injection $g: \R \rightarrow \N$.
 \end{prop}
 
 \begin{proof}
-Our multi-step proof shows that the assumption of $\R$'s countability
-leads to a contradiction.  Being built around Georg Cantor's renowned
-{\it diagonalization construction}, \index{diagonalization} this
-argument provides the most sophisticated proof by contradiction in our
-text.  The reader might want to review the reasoning underlying such
+Our multi-step proof of Proposition~\ref{thm:F-uncountable} shows that
+assuming the countability of $\F$ leads to a contradiction.  Being
+built around Georg Cantor's renowned {\it diagonalization
+  construction},\index{diagonalization} upcoming development
+\index{diagonalization argument} this upcoming development provides
+the most sophisticated proofs by contradiction in our text.  The
+reader might want to review the reasoning underlying such
 argumentation, in Section~\ref{sec:Contradiction}, as a ``warm-up.''
+
+{\Arny The version relating to $\R$ appears in NUMBER3-backup.tex}
 
 \subsection{Plotting a strategy to prove uncountability}
 \label{sec:the-diag-strategy}
 
 Invoking the definition of countability, our proof begins with the
-assumption that $|\R| \leq |\N|$ and demonstrates that this assumption
-leads to a contradiction.  We simplify our goal in several steps.
-
-{\it (a) Recasting the problem in terms of bijections.}
-We now set out to recast our goal into a form that will be easier to
-manage mathematically, by invoking our prior knowledge about the sets
-$\N$ and $\R$.  We begin with two simplifying lemmas.
+assumption that $|\F| \leq |\N|$ and demonstrates that this assumption
+leads to a contradiction.  In fact, we can simplify our goal by
+recasting the problem in terms of {\em bijections}.  We begin with two
+simplifying lemmas.
 
 \begin{lemma}
-\label{lem:N-leq-R}
-There exists an injection $f: \N \rightarrow \R$; i.e., $|\N| \leq
-|\R|$.
+\label{lem:N-leq-F}
+There exists an injection $f: \N \rightarrow \F$; i.e., $|\N| \leq
+|\F|$.
 \end{lemma}
 
 \noindent {\it Verification}.
-
-For each nonnegative integer $n \in \N$, let $\mbox{\sc name}_b(n)$
-denote the shortest base-$b$ numeral for $n$, i.e., a numeral with no
-leading $0$s.  The mapping that associates each $n \in \N$ with the
-infinite string
-\[ \mbox{\sc name}_b(n) \ . \ 00 \cdots \]
-is an injection from $\N$ into $\R$.  To wit, when given a real
-numeral that has only $0$s to the right of its radix point, one
-produces the integer $n$ by stripping the numeral of its radix point
-and all $0$s to the right of the point, and then evaluating the
-remaining string of digits, which is $\mbox{\sc name}_b(n)$, according
-to Section~\ref{sec:define-Reals}'s rules for evaluating integer
-numerals.  \qed
+For each nonnegative integer $n \in \N$, define the function $f_n: \N
+\rightarrow \{0,1\}$ as follows: for each integer $k \in \N$,
+\[ f_n(k) \ = \ \mbox{\bf if } \ [k=n] \ \mbox{\bf then } \ 1
+\ \mbox{\bf else } \ 0
+\]
+Clearly, specifying the integer $n$ uniquely identifies the function
+$f_n$.  This means that the defined correspondence specifiess an
+injection from $\N$ into $\F$.  \qed
 
 \begin{lemma}
-\label{lem:N-=-R}
-If there exists an injection $g: \R \rightarrow \N$, then there exists
-a bijection $h: \N \leftrightarrow \R$.  In other words, if $|\R| \leq
-|\N|$, then $|\N| = |\R|$.
+\label{lem:N-=-F}
+If there exists an injection $g: \F \rightarrow \N$, then there exists
+a bijection $h: \N \leftrightarrow \F$.  In other words, if $|\F| \leq
+|\N|$, then $|\N| = |\F|$.
 \end{lemma}
 
 \noindent {\it Verification}.
@@ -1530,46 +1540,29 @@ This is an immediate consequence of the Schr\"{o}der-Bernstein Theorem
 
 \medskip
 
-It is somewhat surprising that our proof is simplified by converting
-our initial assumption \\
-\hspace*{.35in}$|\R| \leq |\N|$ \\
+It is perhaps a bit surprising that our proof is simplified by
+converting our initial assumption \\
+\hspace*{.35in}$|\F| \leq |\N|$ \\
 to the stronger assumption \\
-\hspace*{.35in}$|\R| \ = \ |\N|$,  \\
+\hspace*{.35in}$|\F| \ = \ |\N|$,  \\
 but Cantor's diagonal argument deals quite gracefully with the latter
 assumption.
 
-\medskip
+\subsubsection{Seeking a bijection $g: \N \leftrightarrow \F$}
 
-{\it (b) Focus on real numbers between $0$ and $1$.}
-Our next refinement replaces our target set $\R$ by its proper subset
-$\R_{(0,1)}$, all of whose elements have infinite decimal numerals of
-the form
-\[ 0 \ . \ \delta_0 \delta_1 \cdots \]
-where each $\delta_i$ is a decimal digit: $\delta_i \in \{0, 1, 2, 3,
-4, 5, 6, 7, 8, 9\}$.\footnote{We choose {\em decimal} numerals for
-  convenience: converting the argument to other number
-  bases---especially the base $b=2$---slightly complicates clerical
-  details.}
-
-Of course, if we prove that the proper subset $\R_{(0,1)} \subset \R$
-is uncountable, then it will follow that $\R$ is uncountable.  (In
-informal terms which can be made formal, any putative injection $f: \R
-\rightarrow \N$ ``contains'' an injection $f_{(0,1)}: \R_{(0,1)}
-\rightarrow \N$.)
-
-\subsubsection{Seeking a bijection $h: \N \leftrightarrow \R_{(0,1)}$}
-
-We assume, for contradiction, that the targeted bijection $g$ exists.
-As part of this two-way mapping, there exists an {\em injection}
+We assume, for contradiction, that a bijection $g: \N \leftrightarrow
+\F$ exists.  As part of this two-way mapping, there exists an {\em
+  injection}
 \[ 
-h: \N \ \rightarrow \ \R_{(0,1)},
+h: \N \ \rightarrow \ \F
 \]
-which we view as an {\em enumeration} of the elements of $\R_{(0,1)}$.
-Specifically, for each integer $k \in \N$, we can think of $h(k)$ as
-the ``$k$th number in the set $\R_{(0,1)}$.''  We thereby view $h$ as
-producing an ``infinite-by-infinite'' matrix $\Delta$ of decimal
-digits, whose $k$th row is the infinite string of decimal digits
-$\mbox{\sc name}_{10}(h(k))$.  Let us visualize $\Delta$:
+We view $h$ as an {\em enumeration}---i.e., an ordered listing---of
+the elements of $\F$.  Specifically, for each integer $k \in \N$, we
+can think of $h(k)$ as the ``$k$th binary-valued function in the set
+$\F$.''  We thereby view $h$ as producing an ``infinite-by-infinite''
+matrix $\Delta$ of bits (i.e., binary digits), whose $k$th row is the
+infinite string of bits that is the characteristic vector of the
+function $h(k)$.  Let us visualize $\Delta$:
 \[ \Delta \ = \
 \begin{array}{ccccccc}
 \delta_0 = &
@@ -1595,86 +1588,63 @@ $\mbox{\sc name}_{10}(h(k))$.  Let us visualize $\Delta$:
 \noindent We summarize, for emphasis:
 \begin{itemize}
 \item
-Each row of $\Delta$ consists of the decimal numeral for a number in
-the set $\R_{(0,1)}$.
+Each row of $\Delta$ consists of the characteristic vector of a
+function in the set $\F$ (which can be thought of as a ``name'' for
+the function).
 
 \item
-Each number in the set $\R_{(0,1)}$ contributes at least one numeral
-to the rows of $\Delta$.
-
-A number may contribute more than one numeral because of an artifact
-of positional number systems, which is exemplified by equations such
-as
-\[ 0.25 \ = \ 0.24999\cdots \]
+Each function in the set $\F$ contributes its characteristic vector as
+a row of $\Delta$.
 \end{itemize}
 We can, thus, view the successive rows of $\Delta$, $h(0)$, $h(1)$,
-\ldots, as an enumeration (with possible repetitions) of all of the
-real numbers in the set $\R_{(0,1)}$.
+\ldots, as an enumeration of all of the functions in the set $\F$.  In
+other words, we can view $\Delta$ as ``containing'' each function in
+$\F$ precisely once.
 
-\subsubsection{Every bijection $h: \N \leftrightarrow \R$ ``misses'' some real}
-%$x \in \R_{(0,1)}$}
+\subsubsection{Every bijection $h: \N \leftrightarrow \F$ ``misses'' some function}
 
 We are finally poised to find the contradiction to our assumption that
-$|\R_{(0,1)}| \leq |\N|$.  Specifically, we define from $\Delta$ an
-infinite decimal numeral
+$|\F| \leq |\N|$.  Specifically, we define from $\Delta$ an infinite
+bit-string
 \[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
-that {\em does not} appear in $\Delta$, even though $\mbox{\sc
-  val}_{10}(\Psi) \in \R_{(0,1)}$.  For each index $i \in \N$, we
-define the $i$th digit $\psi_i$ of $\Psi$ from the $i$th {\em diagonal
-  digit}\footnote{Our use of $\Delta$'s ``diagonal digits'' in this
-  definition is the origin of the term ``{\em diagonal argument}'' to
-  describe this proof and its intellectual kin.}~$\delta_{i,i}$ of
-$\Delta$ in the following manner.
-\[ \psi_i \ \eqdef \
-%= \ \overline{\delta}_{i,i} \ \eqdef \
-\left\{
-\begin{array}{cc}
-0 & \mbox{ if } \ \delta_{i,i} \ > \ 5 \\
-9 & \mbox{ if } \ \delta_{i,i} \ \leq \ 5 \\
-\end{array}
-\right.
+that {\em does not} appear in $\Delta$.  For each index $i \in \N$, we
+define the $i$th (binary) digit $\psi_i$ of $\Psi$ from the $i$th {\em
+  diagonal (binary) digit}\footnote{Our use of $\Delta$'s ``diagonal
+  digits'' in this definition is the origin of the term ``{\em
+    diagonal argument}'' \index{diagonal argument} to describe this
+  proof and its intellectual kin.}~$\delta_{i,i}$ of $\Delta$ in the
+following manner.
+\[ \psi_i \ \ \eqdef \ \ \overline{\delta}_{i,i} \ \ = \ \
+\Big[\mbox{\bf if } \ [\delta_{i,i} \ = \ 0] \ \mbox{\bf then } 1 \
+\mbox{\bf else } \ 0 \Big]
 \]
 The important feature of the definition is the following.
 
 \begin{lemma}
 \label{lem:PSI-notin-DELTA}
-The string $\Psi$ does not occur as a row of $\Delta$.
+The bit-string $\Psi$ does not occur as a row of $\Delta$.
 \end{lemma}
 
 \noindent {\it Verification}.
-Focus on an arbitrary row of $\Delta$, say row $k$, and on the numeral,
-$\delta_k$, in that row.
+This is obvious because the bit-string
+$\Psi$ differs from each row $k$ of $\Delta$ in the $k$th position; i.e.,
+$\psi_k \neq \delta_{k,k}$.  \qed
 
-\begin{tabular}{lclc}
-If & $\delta_{k,k} \ > \ 5$ & then & \ \
-$\mbox{\sc name}_{10}(\delta_k) \ - \ \mbox{\sc name}_{10}(\Psi) \ > \ 4
-\cdot 10^{-k}$ \\
-If & $\delta_{k,k} \ \leq \ 5$ & then & \ \
-$\mbox{\sc name}_{10}(\Psi) \ - \ \mbox{\sc name}_{10}(\delta_k) \ > \ 4
-\cdot 10^{-k}$
-\end{tabular}
+\subsection{The denouement: There is no bijection  $h: \N \leftrightarrow \F$}
 
-\noindent
-In either case, we have $\mbox{\sc name}_{10}(\Psi) \ \neq \ \mbox{\sc
-  name}_{10}(\delta_k)$ so that $\Psi$ does not appear as row $k$ of
-$\Delta$.  Since $k \in \N$ is an arbitrary row-index of $\Delta$, we
-conclude that $\Psi$ does not occur as any row of $\Delta$.  \qed
-
-\subsection{The denouement: There is no bijection  $h: \N \leftrightarrow \R$}
-
-Because the infinite decimal string $\Psi$ differs from every row of
-$\Delta$, even though $\mbox{\sc name}_{10}(\Psi) \in \R_{(0,1)}$, we
-have shown that $\Delta$ {\em does not} contain as a row {\em every}
-infinite decimal numeral of a number in $\R_{(0,1)}$.  But this
-contradicts $\Delta$'s assumed defining characteristic!
+The infinite binary string $\Psi$ differs from every row of $\Delta$,
+even though $\Psi$ is the characteristic vector of a binary valued
+function.  Therefore, $\Delta$ {\em does not} contain as a row {\em
+  every} element of $\F$, i.e., the characteristic vector of every
+binary-valued function.  But this contradicts $\Delta$'s assumed
+defining characteristic!
 
 Where could we have gone wrong?  Every step of our argument, save one,
 is backed up by a proof---so the one step that is not so bolstered
-must be the link that has broken.  This one unsubstantiated step is
-our assumption that the set $\R_{(0,1)}$ is countable.  Since this
-assumption has led us to a contradiction, we must conclude that the
-set $\R_{(0,1)}$, and hence, the set $\R$, is {\em not} countable!
-\qed
+must be the link that has broken the argument.  This one
+unsubstantiated step is our assumption that the set $\F$ is countable.
+Since this assumption has led us to a contradiction, we must conclude
+that the set $\F$, is {\em not} countable!  \qed
 \end{proof}
 
 {\Denis The result and the proof are fine, however, I am sure we can simplify 
