@@ -1,4 +1,4 @@
-%version of 07-04-19
+%version of 07-05-19
 
 \chapter{SETS AND THEIR ALGEBRAS: \\
 The Stem Cells of Mathematics}
@@ -1112,33 +1112,108 @@ is multiplied by $b^{i+1}$.
 A bijective function $F$ is called a {\it bijection}.  When $F$ is a
 bijection from $S$ onto $T$, we often write $F: S \leftrightarrow T$.
 \end{enumerate}
-There is a marvelous theorem that must be mentioned here, even though
-it is beyond the scope of the book.\footnote{The theorem can be found
-  in texts such as \cite{Birkhoff-MacLane53}.}
-\index{The Schr\"{o}der-Bernstein Theorem}
-%
-The theorem says that, given sets $S$ and $T$: {\em if} there is an
-injection $F_1$ that maps elements of $S$ one-to-one to elements of
-$T$ {\em and} there is an injection $F_2$ that maps elements of $T$
-one-to-one to elements of $S$, {\em then} there is a single bijection
-$F$ such that
-\begin{itemize}
-\item
-$F$ maps elements of $S$ one-to-one to elements of $T$;
-\item
-$F^{-1}$, the {\it functional inverse} of $F$,
-\index{inverse of an injection}
-maps elements of $T$ one-to-one to elements of $S$.
-\end{itemize}
+There is a marvelous result, the Schr\"{o}der-Bernstein Theorem,
+\index{The Schr\"{o}der-Bernstein Theorem} which can be quite useful
+in reasoning about myriad mathematical scenarios that can be
+formulated using correspondences between the elements of two sets.  We
+encounter such a scenario, for example, when proving
+Lemma~\ref{lem:N-=-F} in Section~\ref{sec:FNS-uncountable}.  The
+Theorem says that for any sets $S$ and $T$, if there exists an {\em
+  injection} from $S$ into $T$ and an {\em injection} from $T$ into
+$S$, then one can ``combine'' these injections in order to craft a
+{\em bijection} between $S$ and $T$.
 
 \begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
-For any sets $S$ and $T$, if there is an {\em injection} $F^{(S
-  \rightarrow T)}: S \rightarrow T$ and an {\em injection} $F^{(T
-  \rightarrow S)}: T \rightarrow S$, then there is a {\em bijection}
-$F^{(S \leftrightarrow T)}: S \rightarrow T$.
+For any sets $S$ and $T$, if there is an {\em injection}
+$F^{(S \rightarrow T)}: S \rightarrow T$ and an {\em injection}
+$F^{(T \rightarrow S)}: T \rightarrow S$,
+then there is a {\em bijection}
+$F^{(S \leftrightarrow T)}: S \leftrightarrow T$.
 \end{theorem}
 
+\begin{proof}[Sketch]
+We sketch the perspicuous proof which appears in \cite{Tonien07}.
+
+Let $S_0 = S$ and $T_0 = T$.  For each index $i$, define
+\[ S_{i+1} \ = \ F^{(T \rightarrow S)}(T_i) \ \ \ \mbox{ and }
+\ \ \ T_{i+1} \ = \ F^{(S \rightarrow T)}(S_i) 
+\]
+We are repeatedly using here the notational convention that for any
+set $A$ and function $f$ of $A$,
+\[ f(A) \ = \ \{ f(a) \ | \ a \in A \} \]
+Because each of the injections maps its domain-set {\em into} its
+range-set, we observe that increasing indices lead to nested
+progressions of sets, in the sense that
+\[ \mbox{Each } \ \  S_{i+1} \subseteq S_i
+ \ \ \ \mbox{ and each } \ \ \ 
+ T_{i+1} \subseteq T_i
+\]
+We now define two new sequences of sets:
+\begin{itemize}
+\item
+The sets $U_\omega$  and $U_0, U_1, U_2, \ldots$ are defined as
+follows:
+\[ \mbox{Each } \ \  U_i \ = \ S_i \setminus S_{i+1} \ \ \ \mbox{ and
+} \ \ \ U_\omega \ = \ \bigcap_i S_i
+\]
+Our reasoning shows that set $S$ is partitioned into the sets
+$U_0, U_1, U_2, \ldots$ and $U_\omega$.
+\item
+The sets $V_\omega$  and $V_0, V_1, V_2, \ldots$ are defined as
+follows:
+\[ \mbox{Each } \ \  V_i \ = \ T_i \setminus Y_{i+1} \ \ \ \mbox{ and
+} \ \ \ V_\omega \ = \ \bigcap_i T_i
+\]
+Our reasoning shows that set $T$ is partitioned into the sets
+$V_0, V_1, V_2, \ldots$ and $V_\omega$.
+\end{itemize}
+Moreover, one sees that:
+\begin{itemize}
+\item
+$F^{(S \rightarrow T)}$ is a {\em bijection} between each $U_i$ and
+  $V_{i+1}$, while
+\item
+$F^{(T \rightarrow S)}$ is a {\em bijection} between each $V_i$ and
+  $U_{i+1}$.
+\end{itemize}
+Finally:
+Since $V_\omega \subseteq F^{(S \rightarrow T)}(S)$, and
+\[ \Big[F^{(S \rightarrow T)}\Big]^{-1} (V_\omega) \ = \
+\Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
+\bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \ = \
+\bigcap S_i \ = \ U_\omega,
+\]
+$F^{(S \rightarrow T)}$ maps $U_\omega$ bijectively onto $V_\omega$.
+
+\smallskip
+
+\noindent
+By similar calculation and reasoning, 
+$F^{(T \rightarrow S)}$ maps $V_\omega$ bijectively onto $U_\omega$.
+
 \medskip
+
+The preceding identifications of bijections between portions of set
+$S$ and portions of set $T$ allow us to piece together the advertised
+bijection $F^{(S \leftrightarrow T)}$ between the complete sets $S$
+and $T$.  To wit:
+\begin{itemize}
+\item
+$F^{(S \leftrightarrow T)}$ maps each set $U_{2i}$ bijectively onto
+  $V_{2i+1}$ in the same way that $F^{(S \rightarrow T)}$ does.
+\item
+$F^{(S \leftrightarrow T)}$ maps each set $U_{2i+1}$ bijectively onto
+  $V_{2i}$ in the same way that $F^{(T \rightarrow S)}$ does.
+\item
+$F^{(S \leftrightarrow T)}$ maps $V_\omega$ bijectively onto
+  $U_\omega$ in the same way that either $F^{(S \rightarrow T)}$ or
+  $\Big[F^{(T \rightarrow S)}\Big]^{-1}$ does.
+\end{itemize}
+This sketch provides all of the salient ingredients of the proof.  The
+reader cann access more details in \cite{Tonien07}.  \qed
+\end{proof}
+
+\bigskip
 
 While the operation of {\it composition},
 \index{composition!functions} \index{function!composition}
