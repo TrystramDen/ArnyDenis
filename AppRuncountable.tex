@@ -1,0 +1,205 @@
+\chapter{$\R$ IS UNCOUNTABLE, HENCE, ``BIGGER THAN'' $\Z$ AND $\Q$}
+\label{ch:Q-Z-R-cardinality}
+\label{ch:Reals-uncountable}
+
+This chapter is a companion to Section~\ref{sec:FNS-uncountable}.  The
+main result of this section establishes the uncountability of the set
+$\R$.  We thereby have an argument that the infinitude of the set of
+real numbers is {\em of a higher order} than the infinitude of the set
+of integers.
+
+We achieve our goal by providing a proof of
+Proposition~\ref{thm:R-uncountable}:
+
+\noindent
+{\em The set $\R$ of real numbers is not countable.
+In particular, there is no injection $g: \R \rightarrow \N$.}
+
+We simplify our exposition by making extensive use of the proof in
+Section~\ref{sec:FNS-uncountable} that the set $\F$ of functions from
+$\N$ into $\{0,1\}$ is not countable
+(Proposition~\ref{thm:F-uncountable}).
+
+Our proof of Proposition~\ref{thm:R-uncountable} begins with the
+following lemmas.
+
+\begin{lemma}
+\label{lem:N-leq-R}
+There exists an injection $f: \N \rightarrow \R$; i.e., $|\N| \leq
+|\R|$.
+\end{lemma}
+
+\noindent {\it Verification}.
+For each nonnegative integer $n \in \N$, let $\mbox{\sc name}_b(n)$
+denote the shortest base-$b$ numeral for $n$, i.e., a numeral with no
+leading $0$s.  The mapping that associates each $n \in \N$ with the
+infinite string
+\[ \mbox{\sc name}_b(n) \ . \ 00 \cdots \]
+is an injection from $\N$ into $\R$.  To wit, when given a real
+numeral that has only $0$s to the right of its radix point, one
+produces the integer $n$ by stripping the numeral of its radix point
+and all $0$s to the right of the point, and then evaluating the
+remaining string of digits, which is $\mbox{\sc name}_b(n)$, according
+to Section~\ref{sec:define-Reals}'s rules for evaluating integer
+numerals.  \qed
+
+\begin{lemma}
+\label{lem:N-=-R}
+If there exists an injection $g: \R \rightarrow \N$, then there exists
+a bijection $h: \N \leftrightarrow \R$.  In other words, if $|\R| \leq
+|\N|$, then $|\N| = |\R|$.
+\end{lemma}
+
+\noindent {\it Verification}.
+This is an immediate consequence of the Schr\"{o}der-Bernstein Theorem
+(Theorem~\ref{thm.S-B}).  \qed
+
+\medskip
+
+We make a few technical assumptions that simplify our proof without
+weakening the result.
+
+\noindent
+{\em We henceforth focus on the proper subset of $\R$ that consists of
+  the set $\R_{(0,1)}$ of real numbers between $0$ and $1$.}
+
+This simplifies our argument because every real number in the set
+$\R_{(0,1)}$ has an infinite decimal numeral of the form
+\[ 0 \ . \ \delta_0 \delta_1 \cdots \]
+where each $\delta_i$ is a decimal digit: $\delta_i \in \{0, 1, 2, 3,
+4, 5, 6, 7, 8, 9\}$.\footnote{We choose {\em decimal} numerals for
+  convenience: converting the argument to other number
+  bases---especially to the base $b=2$---slightly complicates clerical
+  details.}
+
+\smallskip
+
+Of course, if we prove that the proper subset $\R_{(0,1)} \subset \R$
+is uncountable, then it will follow that $\R$ is uncountable.  (In
+informal terms which can be made formal, any putative injection $f: \R
+\rightarrow \N$ ``contains'' an injection $f_{(0,1)}: \R_{(0,1)}
+\rightarrow \N$.)
+
+\bigskip
+
+Now we begin to seek a bijection $h: \N \leftrightarrow \R_{(0,1)}$.
+
+We assume, for contradiction, that the targeted bijection $g$ exists.
+As part of this two-way mapping, there exists an {\em injection}
+\[ 
+h: \N \ \rightarrow \ \R_{(0,1)},
+\]
+which we view as an {\em enumeration} of the elements of $\R_{(0,1)}$.
+Specifically, for each integer $k \in \N$, we can think of $h(k)$ as
+the ``$k$th number in the set $\R_{(0,1)}$.''  We thereby view $h$ as
+producing an ``infinite-by-infinite'' matrix $\Delta$ of decimal
+digits, whose $k$th row is the infinite string of decimal digits
+$\mbox{\sc name}_{10}(h(k))$.  Let us visualize $\Delta$:
+\[ \Delta \ = \
+\begin{array}{ccccccc}
+\delta_0 = &
+\delta_{0,0} & \delta_{0,1} & \delta_{0,2} & \delta_{0,3} &
+	\delta_{0,4} & \cdots \\
+\delta_1 = &
+\delta_{1,0} & \delta_{1,1} & \delta_{1,2} & \delta_{1,3} &
+	\delta_{1,4} & \cdots \\
+\delta_2 = &
+\delta_{2,0} & \delta_{2,1} & \delta_{2,2} & \delta_{2,3} &
+	\delta_{2,4} & \cdots \\
+\delta_3 = &
+\delta_{3,0} & \delta_{3,1} & \delta_{3,2} & \delta_{3,3} &
+	\delta_{3,4} & \cdots \\ 
+\delta_4 = &
+\delta_{4,0} & \delta_{4,1} & \delta_{4,2} & \delta_{4,3} &
+	\delta_{4,4} & \cdots \\ 
+\vdots &
+\vdots  & \vdots  & \vdots  & \vdots  & \vdots  & \ddots
+\end{array}
+\]
+
+\noindent We summarize, for emphasis:
+\begin{itemize}
+\item
+Each row of $\Delta$ consists of the decimal numeral for a number in
+the set $\R_{(0,1)}$.
+
+\item
+Each number in the set $\R_{(0,1)}$ contributes at least one numeral
+to the rows of $\Delta$.
+
+A number may contribute more than one numeral because of an artifact
+of positional number systems, which is exemplified by equations such
+as
+\[ 0.25 \ = \ 0.24999\cdots \]
+\end{itemize}
+We can, thus, view the successive rows of $\Delta$: $h(0)$, $h(1)$,
+\ldots, as an ordered listing (with possible repetitions) of all of
+the real numbers in the set $\R_{(0,1)}$.
+
+\medskip
+
+We show now that every bijection $h: \N \leftrightarrow \R$ ``misses''
+some real $x \in \R_{(0,1)}$.
+
+We are finally poised to find the contradiction to our assumption that
+$|\R_{(0,1)}| \leq |\N|$.  Specifically, we define from $\Delta$ an
+infinite decimal numeral
+\[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
+that {\em does not} appear in $\Delta$, even though $\mbox{\sc
+  val}_{10}(\Psi) \in \R_{(0,1)}$.  For each index $i \in \N$, we
+define the $i$th digit $\psi_i$ of $\Psi$ from the $i$th {\em diagonal
+  digit}\footnote{Our use of $\Delta$'s ``diagonal digits'' in this
+  definition is the origin of the term ``{\em diagonal argument}'' to
+  describe this proof and its intellectual kin.}~$\delta_{i,i}$ of
+$\Delta$ in the following manner.
+\[ \psi_i \ \eqdef \
+%= \ \overline{\delta}_{i,i} \ \eqdef \
+\left\{
+\begin{array}{cc}
+0 & \mbox{ if } \ \delta_{i,i} \ > \ 5 \\
+9 & \mbox{ if } \ \delta_{i,i} \ \leq \ 5 \\
+\end{array}
+\right.
+\]
+The important feature of the definition is the following.
+
+\begin{lemma}
+\label{lem:PSI-notin-DELTA}
+The string $\Psi$ does not occur as a row of $\Delta$.
+\end{lemma}
+
+\noindent {\it Verification}.
+Focus on an arbitrary row of $\Delta$, say row $k$, and on the numeral,
+$\delta_k$, in that row.
+
+\begin{tabular}{lclc}
+If & $\delta_{k,k} \ > \ 5$ & then & \ \
+$\mbox{\sc name}_{10}(\delta_k) \ - \ \mbox{\sc name}_{10}(\Psi) \ > \ 4
+\cdot 10^{-k}$ \\
+If & $\delta_{k,k} \ \leq \ 5$ & then & \ \
+$\mbox{\sc name}_{10}(\Psi) \ - \ \mbox{\sc name}_{10}(\delta_k) \ > \ 4
+\cdot 10^{-k}$
+\end{tabular}
+
+\noindent
+In either case, we have $\mbox{\sc name}_{10}(\Psi) \ \neq \ \mbox{\sc
+  name}_{10}(\delta_k)$ so that $\Psi$ does not appear as row $k$ of
+$\Delta$.  Since $k \in \N$ is an arbitrary row-index of $\Delta$, we
+conclude that $\Psi$ does not occur as any row of $\Delta$.  \qed
+
+\subsection{The denouement: There is no bijection  $h: \N \leftrightarrow \R$}
+
+Because the infinite decimal string $\Psi$ differs from every row of
+$\Delta$, even though $\mbox{\sc name}_{10}(\Psi) \in \R_{(0,1)}$, we
+have shown that $\Delta$ {\em does not} contain as a row {\em every}
+infinite decimal numeral of a number in $\R_{(0,1)}$.  But this
+contradicts $\Delta$'s assumed defining characteristic!
+
+Where could we have gone wrong?  Every step of our argument, save one,
+is backed up by a proof---so the one step that is not so bolstered
+must be the link that has broken.  This one unsubstantiated step is
+our assumption that the set $\R_{(0,1)}$ is countable.  Since this
+assumption has led us to a contradiction, we must conclude that the
+set $\R_{(0,1)}$, and hence, the set $\R$, is {\em not} countable!
+\qed
+
