@@ -1,0 +1,271 @@
+%version of 07-05-19
+\chapter{Signed-digit systems: carry-free addition}
+\label{ch:carry-free}
+
+Say that you have a box that contains a {\it counter}.  There are two
+buttons on top of the box: one {\em red} and one {\em green}.  Each
+time the green button is pushed, the counter increments---i.e., adds
+$+1$ to---its tally; each time the red button is pushed, the counter
+decrements---i.e., adds $11$ to---its tally.  Now, in order for the
+tally on the counter to {\em always be correct}, you must insert
+delays between button-pushes: you must always wait until the
+electronic circuitry inside the box settles into a stable
+configuration with all necessary carries and borrows up to date.  Now,
+if the electronic circuitry that implements the counter was designed
+to mimic the binary representation of the number---in technical
+jargon, \index{carry-ripple adder} the counter implements a {\it
+  carry-ripple adder}; see \cite{Hwang79} for details---then, you
+observe the following.  While you keep pushing only the green
+(increment) button, you do not feel that the delays between
+button-pushes are onerous, for the reason exposed in the following
+analysis.
+\begin{itemize}
+\item
+Roughly half the time, you have no enforced delays between successive
+button-pushes: the update of the tally engenders no carry.
+\item
+Roughly one-quarter of the time, you have a miniscule delay: the
+update engenders a carry of only one place.
+\item
+Roughly one-eighth of the time, you have a slightly longer delay: the
+update engenders a carry of two places.
+\item
+\ldots Continuing this progression: For each integer $k$ roughly the
+fraction $2^{-k}$ of the button-pushes engender a delay commensurate
+with a carry of $k-1$ places.
+\end{itemize}
+Stated differently, the {\em average} delay you must suffer is bounded
+by the time required for a $2$-place carry.  In fact, you can even
+improve on the described pattern of delays, by using more
+sophisticated circuitry for your counter's adder.  If you replace the
+carry-ripple adder by a {\it carry-lookahead adder}---see
+\cite{Hwang79} for details---you can thereby reduce the aggregate
+number of carries engendered by the first $n$ button-pushes from the
+$\Theta(n^2)$ carries of the carry-ripple adder to $O(n \log n)$
+carries for a carry-lookahead adder.
+
+But, the picture changes markedly as soon as you (or an opponent)
+starts using the red button as well as the green one.  If you wait
+until the counter has tallied some number of green-button pushes of
+the form $2^k$, hence contains the binary numeral $100 \cdots 00$ with
+$k$ $0$s, then a push of the red button engenders a delay of $k$
+carry-units---and a subsequent push of the green button incurs the
+same delay!  In fact, if you (and your opponent) begin to toggle the
+two buttons---one red push, then one green push, then one red push,
+then one green push, \ldots---then you incur a delay of $k$
+carry-units with each successive button-push.  If you do this for long
+enough, then your {\em average} delay starts growing toward $k$
+carry-units.
+
+If (the risk of) these long delays is more than you want to deal with,
+then you can employ mathematical and electronic technology to replace
+your counter's adder with one that (almost) eliminates these delays
+completely.  The ``silver bullet'' resides in using a {\em
+  signed-digit} (positional) number representation
+\index{signed-digit number representation}
+\index{positional number representation!signed-digit representation}
+to design a counter that implements {\it carry-free addition}.
+\index{carry-free addition} By changing the form of numerals, one can
+design adders whose constituent digit-adders can operate in parallel.
+While these digit-adders are roughly twice as complex as those of the
+more familiar carry-ripple adders, they do guarantee bounded---i.e.,
+$O(1)$---delay between button-pushes, no matter how long you keep
+pushing a button or which one you choose to push.
+
+The signed-digit number systems that we discuss\footnote{There are
+  many such systems and many places to learn about them; see, e.g.,
+  the encyclopedic work \cite{Knuth69} on ``seminumerical algorithms''
+  and the comprehensive text \cite{Hwang79} on computer
+  arithmetic.}~are positional systems of the same genre as -ary
+systems: Their numerals are also evaluated by the {\sc val} function
+of (\ref{eq:real-numeral-number}).  These systems achieve their
+buffered carries via augmented digit-sets that include {\em negative}
+digits as well as positive ones.  The base-$b$ (or, {\it radix}-$b$)
+redundant number system \index{base-$b$ signed-digit number system}
+\index{radix-$b$ signed-digit number system} has the following set of
+digits.\footnote{($a$) Recall that the overline notation, as in
+  ``$\overline{b-2}$'' is to indicate that we are referring to a
+  single digit.  ($b$) We add parentheses when we describe
+  $\widehat{B}_b$ to enhance legibility.}
+\[ \widehat{B}_b \ = \ \{(-\overline{b-1}), (-\overline{b-2}), \ldots,
+(-1), 0 , 1, \ldots, \overline{b-2}, \overline{b-1}\}
+\]
+For technical reasons, the simple carry-free adder that we describe
+requires that the number base $b$ be n smaller than $3$.  For the
+smallest relevant base, $b=3$, one can use the digit-set
+$\widehat{B}_3 \ = \ \{ (-2), (-1), 0, 1, 2\}$ (parentheses added to
+enhance legibility).  The ``redundancy'' in this system is witnessed
+by the fact that the number $1$ is the numerical value of {\em every}
+numeral of the form
+\[ 1 \ (-2) \ (-2) \ \cdots \ (-2) \ (-2), \]
+because the $d$-digit instance of these numerals has numerical value
+
+\smallskip
+
+$\displaystyle \mbox{\sc val}_3 \big( 1 \ (-2) \ (-2) \ \cdots \ (-2) \ (-2) \big)$
+
+\smallskip
+
+\hspace*{.25in}$= \ 3^{d-1} \ - \ 2 \cdot \big(3^{d-2} \ + \ 3^{d-3}
+\ + \cdots + \ 3 \ + \ 1 \big)$
+
+\hspace*{.25in}$= \ 1$
+
+\bigskip
+
+We now provide a schematic description of ($a$) a carry-ripple adder
+and ($b$) a carry-free adder adding the $b$-ary integer-specifying
+numerals
+\[ x_n x_{n-1} \cdots x_1 x_0 \ \ \ \mbox{ and } \ \ \ 
+y_n y_{n-1} \cdots y_1 y_0
+\]
+In both descriptions, we describe the function of the $i$th
+digit-adder, emphasizing the information that it receives from the
+$(i-1)$th digit-adder and the information that it transmits to the
+$(i+1)$th digit-adder.  Of course, this information is at the heart of
+the issue of carries or no-carries.
+
+A detailed description of both genres of adders---including both
+operational and implementational matters---can be found in sources
+such as \cite{Hwang79}.
+
+\begin{figure}[hbt]
+\[
+\begin{array}{|lcccr|}
+\hline
+ & & x_i \ \ \ y_i & & \\
+ & & \downarrow \ \ \ \downarrow & & \\
+c_{i+1} \ = \ \big( (x_i + y_i + c_i) \ominus \bar{b} \big)
+ & & \longleftarrow \ \fbox{$x_i + y_i + c_i$} \ \longleftarrow & &  c_i 
+  \\
+ & & \downarrow & &
+  \\
+ & & z_i \ = \ \min \big( \bar{b}, \ x_i + y_i + c_i \big)  & & 
+  \\
+\hline
+\end{array}
+\]
+\caption{Digit $i$ of a $b$-ary carry-ripple adder.  The input digits
+  $x_i$ and $y_i$ are summed with the in-carry $c_i$.  If the sum can
+  be represented by a single $b$-ary digit, then it is the output from
+  this digit-adder, and the out-carry $c_{i+1}$ is set to $0$.  If the
+  sum is too big, then the maximum $b$-ary digit $\bar{b}$ is the
+  output from this digit-adder, and the out-carry $c_{i+1}$ is set to
+  the portion of the sum that exceeds $\bar{b}$.}
+\label{fig:carry-ripple-digit}
+\end{figure}
+
+\bigskip
+
+\noindent {\it A Carry-ripple adder}. \index{carry-ripple adder}
+See Fig.~\ref{fig:carry-ripple-digit}.
+\begin{itemize}
+\item
+All digits---input digits $x_i$ and $y_i$, and carry digit $c_i$ (for
+$i>0$) come from $B_b = \{ 0, 1, \ldots, \bar{b}\}$; $c_0 = 0$.
+\item
+Addition is a {\em single-pass} process.  For each digit-index $i$:
+  \begin{itemize}
+  \item
+Digit-adder $i$ admits inputs $x_i$ and $y_i$ (from the ``outside'')
+and carry-in $c_i$: When $i=0$, $c_0 = 0$ by convention; for all other
+indices $i$, $c_i$ is the carry-in from digit-adder $i-1$.
+  \item
+The $i$th sum-digit, $z_i$, and the carry-out, $c_{i+1}$, are
+evaluated as follows.
+\[
+\begin{array}{ccccccc}
+ z_i    & = &  \min \big( \bar{b}, \ x_i + y_i + c_i \big) & & & & \\
+c_{i+1} & = &  (x_i + y_i + c_i) \ominus \bar{b} &
+\mbox{ where } &
+m \ \ominus \ n &  \eqdef & \left\{
+{\displaystyle
+\begin{array}{cl}
+m-n & \mbox{ if } \ \ m \geq n \\
+0   & \mbox{ if } \ \ m \leq n
+\end{array}
+} \right.
+\end{array}
+\]
+  \end{itemize}
+\end{itemize}
+
+\bigskip
+
+
+\begin{figure}[hbt]
+\[
+\begin{array}{|llcccr|}
+\hline
+ & & & x_i \ \ \ y_i & & \\
+ & & & \downarrow \ \ \ \downarrow  & & \\
+\mbox{\bf stage $1$:   } & t_{i+1} & \longleftarrow &
+\fbox{
+\begin{tabular}{c}
+Compute \\
+$\tau_i$ \ \ and \ \ $t_{i+1}$ \\
+via the relation \\
+$b \cdot t_{i+1} + \tau_i \ = \ x_i + y_i$
+\end{tabular}
+} & & \\
+  & & & \downarrow & & \\  
+  & & & \tau_i & & \\
+  & & & \downarrow & & \\ 
+\mbox{\bf stage $2$:   } & & &  \fbox{Compute $\tau_i + t_i$} & \longleftarrow & t_i 
+  \\
+  & & & \downarrow & &
+  \\
+  & & & z_i & &
+  \\
+\hline
+\end{array}
+\]
+\caption{Digit-adder $i$ of a $(b > 2)$-ary carry-free adder.  The
+  outgoing {\it transfer digit} $t_{i+1}$ and the {\it tentative sum}
+  $\tau_i$ are computed from the input digits $x_i$ and $y_i$, using
+  the relation specified in the upper box.  These results are
+  transmitted, respectively, to stage $1$ of digit-adder $i+1$ and
+  stage $2$ of the current digit-adder $i$.}
+\label{fig:carry-free-digit}
+\end{figure}
+
+\noindent {\it A Carry-free adder}. \index{carry-free adder}
+See Fig.~\ref{fig:carry-free-digit}.
+\begin{itemize}
+\item
+This simple carry-free adder operates in {\em two-stages}.  It
+operates on base-$b$ numerals but requires $b > 2$ (for technical
+reasons).
+\item
+There is no ``carry digit''.  In its place, there is a {\it transfer
+  digit} $t_i \in \{-1, 0, 1\}$ 
+\index{carry-free adder!transfer digit} which is generated in stage
+$1$ of the adder and consumed in stage $2$.
+\item
+In addition to transfer digits, there are {\it tentative sum} digits
+$\tau_i$, \index{carry-free adder!tentative-sum digits} 
+which are also generated in stage $1$ and consumed in stage $2$.
+\end{itemize}
+\begin{enumerate}
+\item
+Stage $1$ of the adder
+\begin{enumerate}
+\item
+computes {\it transfer digit} $t_{i+1} \in \{-1, 0 , 1\}$ and {\it
+  tentative-sum digit} $\tau_i$ via the equation
+\[ b \cdot t_{i+1} + \tau_i \ = \ x_i + y_i \]
+\item
+transmits $t_{i+1}$ to digit-adder $i+1$
+\item
+transmits $\tau_i$ to stage $2$.
+\end{enumerate}
+\item
+Stage $2$ of the adder computes the $i$th output digit $z_i$ via by
+adding $\tau_i$ to $t_i$ (which came from digit-adder $i-1$).
+\end{enumerate}
+The important fact to note is that this adder does not have a chain of
+propagated carries!  Digit-adder $i$ computes transfer digit
+$t_{i+1}$---which is the only information that it transmits to
+digit-adder $i+1$---based only on the $i$th input digits $x_i$ and
+$y_i$.  Consequently: {\em All of the adder's digit-adders can operate
+  in parallel!}
