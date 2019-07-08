@@ -1,4 +1,4 @@
-%version of 07-05-19
+%version of 07-08-19
 
 \chapter{SETS AND THEIR ALGEBRAS: \\
 The Stem Cells of Mathematics}
@@ -1132,18 +1132,21 @@ $F^{(S \leftrightarrow T)}: S \leftrightarrow T$.
 \end{theorem}
 
 \begin{proof}[Sketch]
-We sketch the perspicuous proof which appears in \cite{Tonien07}.
+We give the highlights of the perspicuous proof which appears in \cite{Tonien07}.
 
-Let $S_0 = S$ and $T_0 = T$.  For each index $i$, 
-{\Denis we should add the range of $i$ here, start at 0 up to some integer denote by  $\omega$} define
+Let $S_0 = S$ and $T_0 = T$.  We set up a sequence of indices to orchestrate the upcoming argument: We have an index $i$ for each integer $i \in \N$, and we have a special index $\omega$ which takes care of the single case that the integer indices do not.
+
+For each index $i \in \N$, 
+\ignore{\Denis we should add the range of $i$ here, start at 0 up to some integer denote by  $\omega$} define
 \[ S_{i+1} \ = \ F^{(T \rightarrow S)}(T_i) \ \ \ \mbox{ and }
 \ \ \ T_{i+1} \ = \ F^{(S \rightarrow T)}(S_i) 
 \]
 We are repeatedly using here the notational convention that for any
-set $A$ and function $f$ of $A$,
+set $A$ and function $f$ defined on $A$,
 \[ f(A) \ = \ \{ f(a) \ | \ a \in A \} \]
-Because each of the injections maps its domain-set {\em into} its
-range-set, we observe that increasing indices lead to nested
+Because each of our injections, $F^{(S \rightarrow T)}$ and $F^{(T \rightarrow S)}$,
+maps its domain-set {\em into} its
+range-set (and not necessarily {\em onto}), we observe that increasing indices lead to nested
 progressions of sets, in the sense that
 \[ \mbox{Each } \ \  S_{i+1} \subseteq S_i
  \ \ \ \mbox{ and each } \ \ \ 
@@ -1154,19 +1157,17 @@ We now define two new sequences of sets:
 \item
 The sets $U_\omega$  and $U_0, U_1, U_2, \ldots$ are defined as
 follows:
-\[ \mbox{Each } \ \  U_i \ = \ S_i \setminus S_{i+1} \ \ \ \mbox{ and
-} \ \ \ U_\omega \ = \ \bigcap_i S_i
-\]
-Our reasoning shows that set $S$ is partitioned into the sets
+\[ U_\omega \ = \ \bigcap_i S_i \ \ \ \ \
+\mbox{and for each } \  i \in \N \ \ \  U_i \ = \ S_i \setminus S_{i+1} \]
+Our reasoning shows that set $S$ is {\em partitioned} into the sets
 $U_0, U_1, U_2, \ldots$ and $U_\omega$.
 \item
 The sets $V_\omega$  and $V_0, V_1, V_2, \ldots$ are defined as
 follows:
-{\Denis you mean $T$ instead of $Y$...}
-\[ \mbox{Each } \ \  V_i \ = \ T_i \setminus Y_{i+1} \ \ \ \mbox{ and
-} \ \ \ V_\omega \ = \ \bigcap_i T_i
+\[ V_\omega \ = \ \bigcap_i T_i \ \ \ \ \
+\mbox{and for each } \  i \in \N \ \ \  V_i \ = \ T_i \setminus T_{i+1}
 \]
-Our reasoning shows that set $T$ is partitioned into the sets
+Our reasoning shows that set $T$ is {\em partitioned} into the sets
 $V_0, V_1, V_2, \ldots$ and $V_\omega$.
 \end{itemize}
 Moreover, one sees that:
@@ -1183,11 +1184,20 @@ Since $V_\omega \subseteq F^{(S \rightarrow T)}(S)$, and
 \[ \Big[F^{(S \rightarrow T)}\Big]^{-1} (V_\omega) \ = \
 \Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
 \bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \ = \
-\bigcap S_i \ = \ U_\omega,
+\bigcap S_i \ = \ U_\omega
 \]
-$F^{(S \rightarrow T)}$ maps $U_\omega$ bijectively onto $V_\omega$.
+it follows that $F^{(S \rightarrow T)}$ maps $U_\omega$ bijectively onto $V_\omega$.
 
-{\Denis right, but the interchanged of the inverse and the intersection is not obvious, may but a word here would be welcome?}
+\smallskip
+
+Let us briefly "decode" the preceding symbol-heavy chin of equations.  Recall first that $F^{(S \rightarrow T)}$ maps
+each set $S_i$ injectively into $T_{i+1}$.  This means that as we look at the {\em pre-image} under $F^{(S \rightarrow T)}$ 
+of the set $\bigcap T_{i+1}$, the various sets $S_i$ do not get "mixed together"; they retain the separate identities
+that $F^{(S \rightarrow T)}$ endows them with because of the way it maps $S$ into $T$.  In other words,
+\[ \Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
+\bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \]
+
+\ignore{\Denis right, but the interchanged of the inverse and the intersection is not obvious, may but a word here would be welcome?}
 
 \smallskip
 
@@ -1203,19 +1213,23 @@ bijection $F^{(S \leftrightarrow T)}$ between the complete sets $S$
 and $T$.  To wit:
 \begin{itemize}
 \item
+For each $i \in \N$:
+  \begin{itemize}
+  \item
 $F^{(S \leftrightarrow T)}$ maps each set $U_{2i}$ bijectively onto
-  $V_{2i+1}$ in the same way that $F^{(S \rightarrow T)}$ does.
-\item
+$V_{2i+1}$ in the same way that $F^{(S \rightarrow T)}$ does.
+  \item
 $F^{(S \leftrightarrow T)}$ maps each set $U_{2i+1}$ bijectively onto
-  $V_{2i}$ in the same way that $F^{(T \rightarrow S)}$ does.
+$V_{2i}$ in the same way that $F^{(T \rightarrow S)}$ does.
+\end{itemize}
+
 \item
 $F^{(S \leftrightarrow T)}$ maps $V_\omega$ bijectively onto
   $U_\omega$ in the same way that either $F^{(S \rightarrow T)}$ or
   $\Big[F^{(T \rightarrow S)}\Big]^{-1}$ does.
 \end{itemize}
-{\Denis nice and clear, just add the range of $i$ here (since it is bounded by $omega$}
-This sketch provides all of the salient ingredients of the proof.  The
-reader can access more details in \cite{Tonien07}.  \qed
+\ignore{\Denis nice and clear, just add the range of $i$ here (since it is bounded by $omega$}
+This sketch provides all of the salient ingredients of the proof in \cite{Tonien07}.  \qed
 \end{proof}
 
 \bigskip
