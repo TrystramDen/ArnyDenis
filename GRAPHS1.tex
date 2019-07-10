@@ -1803,32 +1803,33 @@ Fig.~\ref{fig:toruslabel}.
 While the family of hypercube networks has few competitors in the
 world of parallel and distributed computing, in terms of performance
 and ease of designing algorithms, it does have one major shortcoming
-regarding its realization in hardware.  The basic problem is that the
-order-$n$ hypercube has large node-degrees, specifically logarithmic
-in the size of the network.  This feature makes the hypercubes actual
-performance much lower than its theoretical performance.
-Specifically, the size of the hypercube grows exponentially with the
-common degrees of the network's nodes---this is the ``inverse'' way
-of talking about logarithmic node-degrees---while the space in which
-we (and our computers) live grows only cubically with linear
-distance.  The resulting disparity means that the wires in a large
-computing platforms connected by an hypercube must inevitably be very long---in contrast to the unit-size
+that relates to its realizability in hardware.  The basic problem is that each node of the
+order-$n$ hypercube has node-degree $n$; i.e., the node-degrees are logarithmic
+in the size of the network.  This feature makes the hypercube's actual
+performance much slower than its theoretical performance: each step of a node $v$ of $\q_n$ is slowed down by $v$'s having
+to get inputs from and supply outputs to its $n$ (directed) neighbors.  The phenomenon we are discussing can actually
+be described {\em geographically}!  The physical area that an order-$n$ hypercube $\q_n$ occupies grows
+{\em exponentially} with the
+common degrees of the network's nodes---because $\q_n$ has $2^n$ nodes which are no more than $n$ 
+edge-traversals from one another.  (This is the ``inverse'' way
+of talking about logarithmic node-degrees.)  In contrast, the space in which we (and our computers) live grows only 
+{\em cubically} with linear distance.  The resulting disparity means that the wires in large hypercube-connected
+computing platforms must inevitably be very long---in contrast to the unit-size
 of idealized network-edges.  Consequently, electrical signals within a
-large hypercube must travel long distances, which means that the
+large hypercube must travel long distances in physical space---which means that the
 physical computer is much slower than its idealized version.  (One
-finds a more technical discussion of this phenomenon in
-\cite{Ullman84}.)
+finds a more technical discussion of this phenomenon in, say, \cite{Ullman84}.)
 
-The preceding shortcoming of hypercubes led researchers to seek a
+The preceding shortcoming of hypercubes has led researchers since the 1970s to seek a
 family of networks whose node-degrees stay constant even as one
-deploys successively larger instances of the network.  A candidate
-such network was discovered within the domain of coding theorists (as,
+deploys successively larger instances of the network.  The candidate
+such network which we are currently focusing on was discovered within the domain of {\it coding theory} (as,
 coincidentally, was the hypercube).  
 
 In the mid-20-century, Dutch mathematician Nicolaas Govert de Bruijn
 \index{de Bruijn, Nicolaas Govert} discovered a way to generate
 compact sequences that contain all possible strings of a prespecified
-length.  Focussing on {\em binary} strings---although de Bruijn's
+length.  Focusing on {\em binary} strings---although de Bruijn's
 strategy works for any finite alphabet---de Bruijn could generate a
 string of length $2^n +n-1$ that contains every length-$n$ binary
 string as a substring.  Quite appropriately, such a string is called a
@@ -2024,9 +2025,10 @@ All of the ``$y$-nodes'' that appear in cycle
 \end{prop}
 
 The simplest proof of this result has two steps, each of which
-introduces a topic we have not yet developed.
+introduces a topic we have not yet developed.  We develop these concepts plus the proof in 
+Section~\ref{Appendix:deBruijn-Hamiltonian}.
 
-{\Denis Add a word here about hamiltonian and Eulerian and refer to the appendix...}
+%{\Denis Add a word here about hamiltonian and Eulerian and refer to the appendix...}
 
 \ignore{************
 
