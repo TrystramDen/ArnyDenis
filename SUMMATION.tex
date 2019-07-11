@@ -98,7 +98,7 @@ moving a bit further ahead.  Thereby, T will always be a positive
 distance ahead of A, so that A can {\em never} catch T.  A similar
 ``argument'' demonstrates that an arrow shot at you by an adversary
 can never reach you, as long as you continually move away from the
-archer.  {\em DO NOT TRY THIS AT HOME!!}
+archer.  {\em DO NOT TRY THIS AT HOME!}
 
 \medskip
 
@@ -278,7 +278,7 @@ result as an opportunity to introduce important notation.
 \paragraph{A. Summing the first $n$ integers}
 
 Our first goal is to sum the first $n$ positive integers:
-\[ 1 \ + \ 2 \ + \cdots + \ n , \]
+\[ 1 \ + \ 2 \ + \cdots + \ n \]
 that is, to find a {\it closed-form expression} 
 \index{closed-form expression}
 for the sum.  In somewhat informal terms, we say that an expression of
@@ -750,6 +750,24 @@ arithmetic exposes the fact that the side of the square consists of
 $1+2n-1 \ = \ 2n$ tokens.  The conclusion is that $4 S(n) \ =
 \ (2n)^2n \ = \ 4n^2$.
 \end{proof}
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+UPDATE ...
+Full disclosure: This proof of is not {\em purely}
+pictorial, because we must somehow verify that the construction is
+completely general, i.e., that the depicted emergence of the
+$\Delta_{2n-1}$ triangle of tokens from four copies of the
+$\Delta_n$-triangle plus the extra row of $n$ tokens is not an
+artifact of the depicted case $n =6$.
+
+Even with this caveat, one must admit that the {\em discovery} of the
+proposition is really pictorial, even if the verification requires
+additional modalities of reasoning. 
+\end{minipage}
+}
+
 
 \ignore{********
 {\Denis I added the following construction in the 2 figures, please, select the one you prefer.
@@ -886,8 +904,6 @@ Once one verifies (say, by induction) that $2 \Delta_{k-1} +2k-1 \ = \ 2
 \end{description}
 This concludes the subproof about groups summing to perfect cubes.
 
-%{\Denis here is my solution... Please, check}
-
 Because each row contains one more integer than its predecessor, row
 $k$ contains the sum of the odd integers from $\Delta_{k-1}+1$ to
 $\Delta_k$.  By direct calculation, we can therefore compute the row's
@@ -1004,90 +1020,6 @@ $\bullet$ the sums of the first $n$ cubes of the integers (the summations $S_3(n
 and so on.  We have, thus begun to establish a base for a summation technique that is inductive, i.e., that computes each summation
 $S_c(n)$ from the lower-index summations: $S_1(n)$, $S_2(n)$, \ldots, $S_{c-1}(n)$.  Our inductive technique awaits a bit more background.
 
-\bigskip
-
-\paragraph{C. A nonobvious identity for arithmetic sums}
-
-We close this subsection by using a ``picture'' to verify an identity for
-arithmetic sums that one would be unlikely to come upon by purely
-textual thinking.
-
-\begin{prop} 
-\label{thm:an-arithmetic-identity}
-For any positive integer $n$,
-\[ \Delta_{2n-1} \ = \ n + 4 \Delta_{n-1}. \]
-\end{prop} 
-
-\begin{proof} 
-Consider the arithmetic series in (\ref{eq:arith-seq}) for the case
-$a=1$ and $b=4$.  By Proposition~\ref{thm:sum-of-arithmetic-series},
-this series, call it $S^{(1,4)}(n)$, has the sum
-\begin{equation}
-\label{eq:triangles}
-S^{(1,4)}(n) \ = \ n + 4 \Delta_{n-1}.
-\end{equation}
-
-Let us represent the sum $\Delta_{n-1}$ in the natural way as a
-triangle of tokens.  This triangle has a base of $n-1$ tokens, upon
-which sits a row of $n-2$ tokens, upon which sits a row of $n-3$
-tokens, \ldots, all the way to the apex, which has a single token.
-
-Now, let us view equation (\ref{eq:triangles}) as giving us access to four
-copies of the preceding triangle of tokens.  Let us arrange these
-triangles in the manner depicted in Fig.~\ref{fig:Delta(n)4}.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.5]{FiguresMaths/Delta4}
- \caption{Arranging the four triangles plus a row to obtain a new (bigger) triangle.}
-       \label{fig:Delta(n)4}
-\end{center}
-\end{figure}
-Now, ``complete the picture'' by adding an ``extra'' row of $n$
-tokens at row $n$ of the figure (these are depicted in dark gray in
-the figure).  The four small triangles, augmented by the ``extra'' row
-of $n$ tokens has clearly become a representation  of $\Delta_{2n-1}$
-by tokens.
-\ignore{******
-The sum is $S(n)=n+4 \Delta_{n-1}$.  From the arrangement given in
-Fig.~\ref{fig:Delta(n)4}, it is easy to see that it is equal to
-$\Delta_{2n-1}$ (4 triangles of size $n$ plus a row of $n$ tokens in
-dark grey form a bigger triangle of size $2n-1$).
-*******}
-
-We now have a purely pictorial proof of the proposition. \qed
-\end{proof} 
-\medskip
-
-\noindent \fbox{
-\begin{minipage}{0.96\textwidth}
-Full disclosure: Our proof of
-Proposition~\ref{thm:an-arithmetic-identity} is not {\em purely}
-pictorial, because we must somehow verify that the construction is
-completely general, i.e., that the depicted emergence of the
-$\Delta_{2n-1}$ triangle of tokens from four copies of the
-$\Delta_n$-triangle plus the extra row of $n$ tokens is not an
-artifact of the depicted case $n =6$.
-
-Even with this caveat, one must admit that the {\em discovery} of the
-proposition is really pictorial, even if the verification requires
-additional modalities of reasoning. 
-\end{minipage}
-}
-
-\ignore{***********
-{\Arny I vote that we leave this  as an exercise}
-
-{\Denis Here is another result that may be put as an exercice...}
-Consider again the sum of the first integers $\Delta_n$. 
-We show graphically that $\Delta_n$ is congruent to $1$ modulo $8$.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/Delta8}
-\caption{8 copies of $\Delta_n$ are filling a square but one token.}
-       \label{fig:Sum8deltas}
-\end{center}
-\end{figure}
-****************}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Geometric Sums and Series}
