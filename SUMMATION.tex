@@ -272,10 +272,8 @@ We can, thus, sum the arithmetic series in (\ref{eq:arith-seq}) by
 determining the sum of the first $n-1$ positive integers.  We use this
 result as an opportunity to introduce important notation.
 
-\subsubsection{Special cases}
+\subsubsection{A first special case: Summing the first $n$ integers}
 \label{sec:special-arithmetic sums}
-
-\paragraph{A. Summing the first $n$ integers}
 
 Our first goal is to sum the first $n$ positive integers:
 \[ 1 \ + \ 2 \ + \cdots + \ n \]
@@ -348,10 +346,11 @@ $2$).
 \end{proof}
 
 \medskip
-
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
 \noindent {\bf Remark.}
 %
-{\em Now is an opportune moment to step back from the specific result
+Now is an opportune moment to step back from the specific result
   in Proposition~\ref{thm:sum-first-integers-Gauss} and concentrate on
   the textual proof.  What Gauss noticed about the sum of the first
   $n$ integers is that when the sum is doubly written as in
@@ -362,9 +361,11 @@ $2$).
   pattern can be exploited to determine the sum of any arithmetic series.
   {\em What seemed to be a ``trick'' turns out to be an insightful
     instance of pattern-matching.}  We shall soon see that the pattern
-  can be exploited to other, related, ends.}
+  can be exploited to other, related, ends.
+  \end{minipage}
+}
+\bigskip
 
-\medskip
 
 Not everyone thinks the same way---even within the context of
 mathematics.  It is, therefore, very important for the reader to
@@ -505,7 +506,7 @@ Section~\ref{sec:binary-operators}.C:\footnote{The sums $\Delta_n$
   as {\it triangular numbers}.  \index{triangular numbers}
   \index{binomial coefficients!triangular numbers} }
 \[ 
-\Delta_n \ = \ {{n+1} \choose 2} \ \eqdef \ \frac{1}{2} n(n+1).
+\Delta_n \ = \ {{n+1} \choose 2} \ \eqdef \ \frac{1}{2} n(n+1)
 \]
 We have thus derived two distinct---but, of course,
 equal---expressions for $S_1(n)$.
@@ -536,12 +537,12 @@ The arithmetic series in (\ref{eq:arith-seq}) has the sum
 \label{eq:sum-arithmetic-series}
 a + (a+b) + (a+2b) + (a+3b) + \cdots + (a+(n-1)b) \ \ = \ \
 %an + b \cdot {n \choose 2}. 
-an + b \cdot \Delta_n. 
+an + b \cdot \Delta_n
 \end{equation}
 \end{prop}
 
 
-\paragraph{B. Perfect squares are sums of odd integers}
+\subsubsection{A second special case: Perfect squares are sums of odd integers}
 
 In this section, we build on
 Proposition~\ref{thm:sum-first-integers-Gauss} to craft multiple
@@ -556,8 +557,8 @@ proof of this result in Section~\ref{sec:positive-integer-power}.C.
 For all $n \in \N^+$,
 \begin{equation}
 \label{eq:sum-of-odds}
-\sum_{k=1}^n \ (2k-1)
- \ = \ 1 + 3 + 5 + \cdots + (2n-1) \ = \ n^2.
+\sum_{i=1}^n \ (2i-1)
+ \ = \ 1 + 3 + 5 + \cdots + (2n-1) \ = \ n^2
 \end{equation}
 That, is, the $n$th perfect square is the sum of the first $n$ odd
 integers.
@@ -566,7 +567,7 @@ integers.
 Before we present our proofs of this result, we want to stress that the
 notation for odd integers in the summation within (\ref{eq:sum-of-odds}) is perfectly
 general: every positive odd integer $n$ can be written in the form
-$2k-1$ for some positive integer $k$. 
+$2i-1$ for some positive integer $i$. 
 
 \medskip
 
@@ -587,12 +588,12 @@ Proposition~\ref{thm:sum-first-integers-Gauss}.
 %
 By direct calculation, we find that
 \begin{eqnarray*}
-\sum_{k=1}^n \ \left( 2k-1 \right)
-   & = & 2 \sum_{k=1}^n \ k \ \ - \ n \\
+\sum_{i=1}^n \ \left( 2i-1 \right)
+   & = & 2 \sum_{i=1}^n \ i \ \ - \ n \\
    & = & 2 \Delta_n \ \ - \ n \ \ \ \ \ \ \ \ \ \ \mbox{ (by
   Proposition~\ref{thm:sum-first-integers-Gauss})} \\
    & = & (n^2 + n) - n \\
-   & = & n^2.
+   & = & n^2
 \end{eqnarray*}
 \end{proof}
 
@@ -606,7 +607,7 @@ Because summation (\ref{eq:sum-of-odds}) is an arithmetic series with
 $a=1$ and $b=2$, we know from
 Proposition~\ref{thm:sum-of-arithmetic-series} that the summation
 evaluates to
-\[ (1 \cdot n) + 2 \Delta_{n-1} \ = \ n + n^2 -n \ = \ n^2. \]
+\[ (1 \cdot n) + 2 \Delta_{n-1} \ = \ n + n^2 -n \ = \ n^2 \]
 \end{proof}
 
 \ignore{***\Denis According to the
@@ -640,7 +641,7 @@ Now add these two representations of $S(n)$ {\em columnwise}.  Because
 each of the $n$ column-sums equals $2n$, we find that
 \begin{equation}
 \label{eq:sum-of-odds-sum}
-2 S(n) \ = \ 2 \sum_{k=1}^n \ (2k-1) \ = \ 2n^2.
+2 S(n) \ = \ 2 \sum_{i=1}^n \ (2i-1) \ = \ 2n^2
 \end{equation}
 We thus derive the sum (\ref{eq:sum-of-odds}) when we halve (i.e., divide by $2$) the three
 equated quantities in equation (\ref{eq:sum-of-odds-sum}).
@@ -657,7 +658,7 @@ a bit of reasoning mixed in.  The only ``sophisticated'' knowledge
 required is that
 \begin{equation}
 \label{eq:(n+1)^2}
-(n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1.
+(n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1
 \end{equation}
 \medskip
 
@@ -673,7 +674,7 @@ We remark that equation (\ref{eq:(n+1)^2}) is the simplest
 The well-known equation (\ref{eq:(n+1)^2}) can be verified by
 explicitly symbolically squaring $n+1$:
 \[ (n+1) \cdot (n+1) \ \ = \ \ n \cdot (n+1) \ + \ (n+1) 
-     \ \ = \ \ n^2 \ + \ n \ + \ n \ + \ 1.
+     \ \ = \ \ n^2 \ + \ n \ + \ n \ + \ 1
 \]
 
 
@@ -754,16 +755,14 @@ $1+2n-1 \ = \ 2n$ tokens.  The conclusion is that $4 S(n) \ =
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-UPDATE ...
 Full disclosure: This proof of is not {\em purely}
 pictorial, because we must somehow verify that the construction is
 completely general, i.e., that the depicted emergence of the
-$\Delta_{2n-1}$ triangle of tokens from four copies of the
-$\Delta_n$-triangle plus the extra row of $n$ tokens is not an
-artifact of the depicted case $n =6$.
+$2n$ by $2n$ square of tokens from four copies of the
+$\Delta_n$-triangle is not an artifact of the depicted case $n =5$.
 
 Even with this caveat, one must admit that the {\em discovery} of the
-proposition is really pictorial, even if the verification requires
+proposition is really pictorial, even if the formal verification requires
 additional modalities of reasoning. 
 \end{minipage}
 }
