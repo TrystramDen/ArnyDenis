@@ -795,7 +795,7 @@ was able to make notable mathematical progress by rearranging
 representations of a variety of structured mathematical objects \cite{Fubini}.  Within the context of the current
 chapter, such rearrangements work on the terms of a summation of
 interest.  Indeed, using this strategy, we obtain a charming nonobvious proof of Proposition~\ref{thm:squares-odd-integers-Gauss}.
-{\Denis This subterfuge will also evidence another incredible property of integers}
+{\Denis This subterfuge will also evidence another amazing property of integers}
 \medskip
 
 Let us take the odd integers in order and arrange them into groups of successive sizes
@@ -815,12 +815,12 @@ as follows.
 the first group, of size $1$, 
 comprises just the smallest odd number, $1$;  the next group, of
 size $2$, comprises the next two odd numbers, $3$ and $5$; and so on, with groups of successively
-bigger sizes.  
+bigger sizes, each new line containing an extra odd number.  
 %We view the groups as arranged in a triangular array, as depicted in the following table.
 %Table~\ref{tab:SumOddsTriangle}.
 
 What we observe is that---at least with the illustrated portion of the
-table---the $i$ elements of the $i$th group adds up to $i^3$.
+following table---the $i$ elements of the $i$th group adds up to $i^3$.
 
 \[
 \begin{array}{llrrrrclcc}
@@ -842,6 +842,10 @@ table---the $i$ elements of the $i$th group adds up to $i^3$.
 %\end{table}
 
 Let us verify by induction that this pattern persists indefinitely.
+{\Denis not really, what we want to show is that the sum of cubes ranging up to $\Delta_n$
+is the square of $\Delta_n$, which is really beautiful!
+This way, using Fubini, the whole sum of odds is also equal to the sum over the rows of the previous representation, 
+which is done graphically...}
 \begin{description}
 \item[{\bf Base.}]
 The singleton in row $1$ provides the base for our induction.
@@ -849,56 +853,75 @@ The singleton in row $1$ provides the base for our induction.
 \medskip
 
 \item[{\bf Inductive hypothesis}.]
-We know from Proposition~\ref{thm:sum-first-integers-Gauss} that the
-$i$th group consists of the $i$ consecutive odd numbers beginning with
-$2 \Delta_{i-1} +1$ ($\left( \Delta_{i-1} +1 \right)$th largest odd number) and ending with
+We know from the previous analysis on triangular numbers
+%Proposition~\ref{thm:sum-first-integers-Gauss} 
+that the
+$i$th group consists of the $i$ consecutive odd numbers beginning with 
+the $\left( \Delta_{i-1} +1 \right)$th odd number---that is
+$2 \Delta_{i-1} +1$---and ending with the $\Delta_i$th one ---that is
 $2\Delta_i -1$.
-%{\Denis the right expression is: beginning with $2\Delta_{k-1} +1$ and ending at $2\Delta_k-1$}
 
-\smallskip
+\medskip
 
 The proof to this point can be represented graphically as follows.  We begin with
-the unit square (the leftmost item in Fig.~\ref{fig:sumCubes1}) as the
-base of our induction.
+the unit square as the base of our induction.
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.35]{FiguresMaths/SumCubes1}
-\caption{The base for the inductive pictorial proof}
+       \includegraphics[scale=0.4]{FiguresMaths/SumCubes1}
+\caption{The two first pictorial representation of the odd numbers: $1$ and $3$--$5$.}
        \label{fig:sumCubes1}
 \end{center}
 \end{figure}
-We next represent the number $8 = 2^3$ (which is the {\em cube} of $2$)
-
-{\Arny How do we know to do this?  What do these two squares have to do with $2^3$?}
-
- by two $2
-\times 2$ squares: the figures following the unit square in
-Fig.~\ref{fig:sumCubes1}.
+The average of the two odd numbers in the second row is equal to $4$,
+ next represent the number $8 = 2^3$ (which is the {\em cube} of $2$)
+\ignore{{\Arny How do we know to do this?  What do these two squares have to do with $2^3$?}}
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumCubes2}
-\caption{Showing graphically that $2^3 +1$ is a perfect square}
-       \label{fig:sumCubes2}
+       \includegraphics[scale=0.5]{FiguresMaths/SumCubes1bis}
+\caption{The first step of the pictorial proof: the two first rows form a perfect square.}
+       \label{fig:sumCubes1bis}
 \end{center}
 \end{figure}
-Fig.~\ref{fig:sumCubes2} illustrates graphically that $1+ 2^3$
+
+ by two $2 \times 2$ squares: the figures following the unit square in
+Fig.~\ref{fig:sumCubes1}.
+Fig.~\ref{fig:sumCubes1bis} illustrates graphically that $1+ 2^3$
 is a perfect square.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes3}
-\caption{The next step in the construction also produces a perfect square}
+\caption{The next step in the construction also produces a perfect square. Here $i=3$}
        \label{fig:sumCubes3}
 \end{center}
 \end{figure}
 Fig.~\ref{fig:sumCubes3} illustrates that iterating the process one more time also
 produces a perfect square. 
+The case of odd indices is easy since we don't need to rearrange the unit squares 
+(the surfaces perfectly fit).
+However, the case of even $i$ needs a little more effort as shown in Fig.~\ref{fig:sumCubesEven}
+and \ref{fig:sumCubesEvenFinal}.
 
 {\Arny How do we know about the geometric arrangement of $1^3 + 2^3 + 3^3$?}
+{\Denis We simply add $3^3$ to the square: I added two figures to explain in the most diffifult case of even $i$...}
 
  Comparing Figs.~\ref{fig:sumCubes2}
 and~\ref{fig:sumCubes3} indicates a parity constraint on the process:
 at even-numbered steps, the subsquares that get ``merged'' are
 overlapping; at odd-numbered steps, they are not.
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumCubesEven}
+\caption{****The next step in the construction also produces a perfect square (here $i=4$).}
+       \label{fig:sumCubesEven}
+\end{center}
+\end{figure}
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumCubesEvenFinal}
+\caption{****How to move one of the overlapped area in order to obtain a perfect square.}
+       \label{fig:sumCubesEvenFinal}
+\end{center}
+\end{figure}
 
 \medskip
 
@@ -973,8 +996,9 @@ columns.
 
 \smallskip
 
-Using Fubini's rearrangement stratagem, we now count all the integers in
+Using again Fubini's rearrangement stratagem, we now count all the integers in
 the table in two different ways.
+{\Denis this is a variant of the previous development...}
 \begin{enumerate}
 \item
 We sum the entries of our table by peeling away successively larger
@@ -1006,6 +1030,8 @@ We conclude that
 \end{proof}
 
 {\Arny Have I lost track?  Why does this prove that the cubes sum to the squares?}
+
+{\Denis since the sum of cubes up to $\Delta_n$ equal the sum of odds!}
 
 \ignore{\Arny More calculation!  BOO!  Please complete this.  I seem to be off by 1}
 %We give another proof that tells us something more on numbers of their interactions.
@@ -1654,7 +1680,7 @@ S_2^{(1)}(n) \ = \ \sum_{k=1}^{n} \ \sum_{i=k}^{n} 2^i.
 This process is illustrated in Fig.~\ref{fig:Sumi2i}.
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.3]{FiguresMaths/Sumi2i}
+\includegraphics[scale=0.4]{FiguresMaths/Sumi2i}
 }
 \caption{Illustrating the case $n=4$ of the exchange of indices in the
   summation.  The original summation is drawn on the left.  In the
@@ -1694,7 +1720,7 @@ complete geometric summation and the partial summation that is
 truncated at the $k$th term.
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.3]{FiguresMaths/Sumi2iDiag}
+\includegraphics[scale=0.4]{FiguresMaths/Sumi2iDiag}
 }
 \caption{The successive diagonal patterns correspond to the single summation obtained after exchanging the two initial sums.}
 \label{fig:Sumi2iDiag}
@@ -1809,7 +1835,7 @@ For convenience we use a finite sum for illustration; the stratagem
 often works with infinite sums also, as our specific examples
 illustrate.
 
-\noindent {\sf Step 1.}
+\noindent {\bf Step 1.}
 Represent the summands seriatim as abutting unit-width rectangles.  
 
 \noindent
@@ -1867,7 +1893,7 @@ righthand corners of the rectangles.
 Because this curve lies completely within the area formed by the
 rectangles, the area under the curve is a {\em lower bound} on the
 aggregate area of the rectangles; this area is
-\[ \int_0^{n-1}  \ \frac{1}{x+1} dx \]
+\[ \int_0^{n-1}  \ x^2 dx \]
 
 %{\Denis I did with the powers of 2, will change to the squares...}
 
@@ -1930,7 +1956,7 @@ aggregate area of the rectangles; the area under curve (b) is
 
 \medskip
 
-\noindent {\sf Step 2.}
+\noindent {\bf Step 2.}
 %
 Construct a continuous curve $\overline{C}(x)$ that passes through the
 corners of the unit-width rectangles specified by the summation, in
@@ -1954,7 +1980,7 @@ summation of interest.
 
 \medskip
 
-\noindent {\sf Step 3.}
+\noindent {\bf Step 3.}
 %
 Construct a continuous curve $\underline{C}(x)$ that passes through
 the corners of the unit-width rectangles
@@ -2284,6 +2310,7 @@ can derive explicit expressions for the sum of the first $n$ $c$th
 powers, i.e., the sum $S_c(n)$, for any positive integer $c$.
 
 \paragraph{C. On validating approximate summations} 
+{I believe this paragraph is not needed since it is done in DOINGMATHS...}
 
 We employ the proof technique of (Finite) Induction by proving the
 correctness of three summation formulas that have occupied our
@@ -2310,7 +2337,7 @@ For every positive integer $m$, let {\bf P}$_1(m)$ be the proposition
 We proceed according to the standard format of an inductive argument.
 
 \begin{description}
-\item[{\sf The base case P$_1(1)$}.]
+\item[{\bf The base case P$_1(1)$}.]
 %
 Because ${\displaystyle {2 \choose 2}} = 1$, proposition {\bf P}$_1(1)$
 is true.
@@ -2321,7 +2348,7 @@ Assume, for the sake of induction, that proposition {\bf P}$_1(m)$ is
 true for every positive integer $m < n$.  In particular, then,
 proposition {\bf P}$_1(n-1)$ is true.
 
-\item[{\sf Extending the induction}.]
+\item[{\bf Extending the induction}.]
 %
 Because proposition {\bf P}$_1(n-1)$ is true, we know that
 \[ S_1(n-1) \ = \ 1 + 2 + \cdots + (n-1) \ = \ {n \choose 2}.  \]
@@ -2417,17 +2444,17 @@ the same result in Proposition~\ref{thm:squares-odd-integers-Gauss}.
 We proceed according to the standard format of an inductive argument.
 
 \begin{description}
-\item[{\sf The base case P$(1)$}.]
+\item[{\bf The base case P$(1)$}.]
 %
 Because $1$ is a perfect square, proposition {\bf P}$(1)$ is true.
 
-\item[{\sf The inductive hypothesis}.]
+\item[{\bf The inductive hypothesis}.]
 %
 Assume, for the sake of induction, that proposition {\bf P}$(m)$ is
 true for every positive integer $m < n$.  In particular, then,
 proposition {\bf P}$(n-1)$ is true.
 
-\item[{\sf Extending the induction}.]
+\item[{\bf Extending the induction}.]
 %
 Because proposition {\bf P}$(n-1)$ is true, we know that
 \[ 
