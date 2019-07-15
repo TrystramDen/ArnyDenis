@@ -771,11 +771,16 @@ $\Delta_n$-triangle is not an artifact of the depicted case $n =5$.  This verifi
 
 \medskip
 
-What is notable about Fig.~\ref{fig:anotherSumOdds},
-even with this caveat, is that it truly facilitates the {\em discovery} of the
-Proposition.  It really illustrates well the use of pictorial reasoning in actually {\em doing}
-mathematics---even if the facts that such reasoning uncovers require
-additional modalities of reasoning for their formal verification.
+What is notable about Fig.~\ref{fig:anotherSumOdds}, even with this caveat, is how
+it truly facilitates the {\em discovery} of the Proposition.
+
+\medskip
+
+Of course, it should not be surprising that pictorial reasoning is useful in highlighting the kinds of patterns
+that lead to discoveries as  we {\em do} mathematics.  It should also come as no surprise that nothing comes
+for free.  As this example indicates: Even when pictorial reasoning leads us to
+intriguing discoveries, it does not obviate the invocation of
+additional modalities of reasoning for rigorously verifying the facts that the patterns reveal.
 \end{minipage}
 }
 
@@ -799,55 +804,92 @@ The side of the square is equal to $1+2n-1=2n$, thus $4 \cdot S(n)=(2n)^2= 4n^2$
 
 \index{$n^2$ as sum of first $n$ odd integers!a proof by rearranging terms}
 \begin{proof}
-{\bf A proof by rearranging terms.}
+{\bf $\oplus$ A proof by rearranging terms.}
 %
 We described in Section~\ref{sec:summation-via-Fubini} how the Italian mathematician
 Guido Fubini \index{Fubini, Guido}
 was able to make notable mathematical progress by rearranging
 representations of a variety of structured mathematical objects \cite{Fubini}.  Within the context of the current
 chapter, such rearrangements work on the terms of a summation of
-interest.  Using a strategy inspired by Fubini's work, we obtain a charming nonobvious proof of
-Proposition~\ref{thm:squares-odd-integers-Gauss}---as we simultaneously evidence another remarkable property of integers.
+interest.  Using a strategy inspired by Fubini's work, we obtain a nonobvious proof of
+Proposition~\ref{thm:squares-odd-integers-Gauss}---as we simultaneously observe a
+remarkable property of integers.
 
 \ignore{\Denis This subterfuge will also evidence another amazing property of integers}
 
 \medskip
 
-Let us take the odd integers in order and arrange them into groups whose successive sizes
-increase by $1$, as depicted in the following triangular table.
+This proof combines facts about the odd numbers $\{2k-1\}$, the perfect cubes $\{k^3\}$, and the triangular numbers
+$\{ \Delta_k \}$.  As with the preceding proof, pictures will play an important role in discovering and explaining
+the facts that we uncover.
+
+\medskip
+
+We begin by taking the odd integers in order and arranging them into groups whose successive sizes
+increase by $1$ at each step, as depicted in the following triangular table.
 \[
 \begin{array}{llrrrrclcc}
-\mbox{group of size 1:} & &
+\mbox{group $1$, of size 1:} & &
 1,  &    &     &      \\
-\mbox{group of size 2:} & &
+\mbox{group $2$, of size 2:} & &
 3,  &  5, &     &      \\
-\mbox{group of size 3:} & &
+\mbox{group $3$, of size 3:} & &
 7,  &  9, & 11, &     \\
-\mbox{group of size 4:} & &
+\mbox{group $4$, of size 4:} & &
 13, & 15, & 17, & 19   \\
 \vdots & & \vdots \\
 \end{array}
 \]
-Thus: the first group has size $1$ and comprises just the smallest odd number, $1$;
-the second group has size $2$ and comprises the next two odd numbers, $3$, $5$; and so on.
+The first group comprises just the smallest odd number, $1$;
+the second group comprises the next two odd numbers, $3$, $5$; and so on.
+Let us observe some of the features of our triangular table.
 
-%We view the groups as arranged in a triangular array, as depicted in the following table.
-%Table~\ref{tab:SumOddsTriangle}.
-
-What we observe is that---at least within the illustrated portion of the triangular table---the $i$ elements
+We observe first that---at least within the illustrated portion of the table---the $i$ elements
 of the $i$th group add up to $i^3$:
 \[
 \begin{array}{llrrrrclcc}
-\mbox{group of size 1:} & &
+\mbox{group $1$, of size 1:} & &
 1,  &    &     &     & \mbox{: sum} = &  1^3 \\
-\mbox{group of size 2:} & &
+\mbox{group $2$, of size 2:} & &
 3,  &  5, &     &    & \mbox{: sum} =  &  2^3 \\
-\mbox{group of size 3:} & &
+\mbox{group $3$, of size 3:} & &
 7,  &  9, & 11, &    &  \mbox{: sum} = &  3^3 \\
-\mbox{group of size 4:} & &
+\mbox{group $4$, of size 4:} & &
 13, & 15, & 17, & 19 & \mbox{: sum} =  &  4^3 \\
 \end{array}
 \]
+
+We observe next that, by construction, the $i$th group/row of odd integers in the table consists of the
+$i$ consecutive odd numbers beginning with the $\left( \Delta_{i-1} +1 \right)$th odd number,
+$2 \Delta_{i-1} +1$.  Since consecutive odd numbers differ by $2$, this means that the $i$th
+group (for $i>1$) comprises the following odd integers:
+\[
+2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 , \
+\ldots, \ 2 \Delta_{i-1} + (2i-1)
+\]
+so that the {\em sum}, call it $G_i$, of the $i$ integers in group $i$ equals
+\begin{eqnarray*}
+G_i  & = & 2 i \Delta_{i-1} \ + \ \big( 1 + 3 + 5 + \cdots + (2i-1) \big) \\
+       & = & 2 i \Delta_{i-1} \ + \ \mbox{(the sum of the first $i$ odd numbers)}
+\end{eqnarray*}
+
+**HERE
+
+
+You should now verify by induction that $2 \Delta_{i-1} +(2i-1) \ = \ 2 \Delta_{i} +1$, which gives us another
+expression for the last odd integer in group $i$.  
+Once one verifies (say, by induction) that $2 \Delta_{i-1} +2i-1 \ = \ 2
+\Delta_{i} +1$, one discovers that this group has the sum
+\[
+2i \Delta_{i-1}  \ - \ 2 \Delta_{i-1} +i  \  = \
+(2i -1) \Delta_i + i \ = \ i^3.
+\]
+
+
+
+  In other words, group $i$ consists
+of the odd numbers
+\[ 2 \Delta_{i-1} +1, \ 2 \Delta_{i-1} +3, \  \ldots, \  2\Delta_i -1 \]
 
 
 Let us verify by induction that this pattern persists indefinitely.
@@ -864,11 +906,7 @@ The singleton in row $1$ provides the base for our induction.
 \item[{\bf Inductive hypothesis}.]
 We know from the previous analysis on triangular numbers
 %Proposition~\ref{thm:sum-first-integers-Gauss} 
-that the
-$i$th group consists of the $i$ consecutive odd numbers beginning with 
-the $\left( \Delta_{i-1} +1 \right)$th odd number---that is
-$2 \Delta_{i-1} +1$---and ending with the $\Delta_i$th one ---that is
-$2\Delta_i -1$.
+
 
 \medskip
 
@@ -2319,6 +2357,8 @@ With more (calculational) work, but no new (mathematical) ideas, one
 can derive explicit expressions for the sum of the first $n$ $c$th
 powers, i.e., the sum $S_c(n)$, for any positive integer $c$.
 
+\ignore{***************
+
 \paragraph{C. On validating approximate summations} 
 {\Denis I believe this paragraph is not needed since it is done in DOINGMATHS...}
 
@@ -2484,7 +2524,7 @@ Because $n$ is an arbitrary positive integer, we conclude that
 By the Principle of (Finite) Induction, then, we conclude that {\bf
   P}$(n)$ is true for all $n \in \N^+$.
 \qed
-
+*****************}
 
 \subsubsection{$S_c(n)$ for general {\em negative} $c$th powers}
 \label{sec:sum-of-i2c<0}
