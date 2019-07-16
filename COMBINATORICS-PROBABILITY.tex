@@ -1,4 +1,4 @@
-%version of 07-09-19
+%version of 07-16-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
@@ -9,48 +9,83 @@ We have named this chapter in honor of the great German mathematician
 Gottfried Leibniz, \index{Leibniz (Leibnitz), Gottfried Wilhelm} whose
 1666 doctoral thesis, ``{\it Dissertatio de Arte Combinatoria}''
 \cite{Leibnitz}, gave us the now-common phrase, ``the art of
-counting.''  The word ``counting'' in this context must be understood
+counting.''\footnote{While Leibniz is best known (at least among students of mathematics) for his
+never-to-be-settled dispute with Isaac Newton \index{Newton, Isaac}
+over prior discovery of the calculus, Leibniz's life was in fact
+dedicated to a broad range of topics in mathematics and philosophy.}
+The word ``counting'' in this context must be understood
 much more broadly than in the vernacular: In days past, the phrase
 encompassed much of the field known nowadays as {\it
   combinatorics}. \index{combinatorics}
 
-Our study of the field of combinatorics can be viewed in certain ways
-as a return to Chapter~\ref{ch:sets-BA-logic}'s study of
-sets---especially finite sets.  Indeed, the first topics we cover in
-this chapter involve looking at sets ``from the inside'', to determine
-how many elements (of a certain type) the set contains
-(Section~\ref{sec:counting}).
+This chapter is devoted to introducing the basics of three closely related mathematical
+subfields: combinatorics, probability, and statistics.
 
-The tools we develop for determinng the cardinalities of finite sets
+\medskip
+
+\noindent {\it Combinatorics} (Section~\ref{sec:counting}).\index{combinatorics}\index{counting}
+Our introduction to combinatorics can be viewed in many ways
+as a return to Chapter~\ref{ch:sets-BA-logic}'s study of
+sets, especially finite sets.  Indeed, the first topics we cover in
+this chapter involve looking at a set $S$ ``from the inside'', to determine
+how many elements (of a certain type) set $S$ contains.
+
+\medskip
+
+\noindent {\it Combinatorial probability} (Section~\ref{sec:combinatorial-prob}).
+The tools we develop for determining the cardinalities of finite sets
 give us access to the important (and fun!)~field known as {\em
   combinatorial probability} \index{combinatorial probability}
-(Section~\ref{sec:prob-stat}).  Have you ever wondered why the game of
-($5$-card) poker values three-of-a-kind more highly than two-pair, or
-why the designers of roulette tables added two (green) extra slots to
-the red and black slots of the wheel?  By the end of
-Section~\ref{sec:prob-stat}, you will have the wherewithal to answer
-myriad such questions.
+(Section~\ref{sec:prob-stat}).  In reality, probability theory is an {\em applied} spin-off
+of combinatorics.  In its most elementary---and, some might say, frivolous---form, combinatorial probability uses counting to 
+answer questions such as:  Why does the game of\index{poker}
+($5$-card) poker value three-of-a-kind\index{poker!three-of-a-kind} more highly than two-pair?\index{poker!two-pair}
+Why did the designers of roulette tables add two (green) extra slots to\index{roulette table}
+the red and black slots of the wheel?  By the end of the section. you will have the wherewithal to answer
+myriad questions of this ilk.
 
- **HERE
+In a more serious vein, the elements of probability theory and statistics infuse every area of
+computing.
+\begin{itemize}
+\item
+The practicality of many algorithms that are experientially the most efficient for their
+target tasks depend on the {\em distributions} of inputs in ``real" situations.
+\item
+Design methodologies for crucial complex circuits must account for the {\em
+  mean times to failure} of the critical components of the circuits.
+\item
+Sophisticated searching algorithms---and even heuristic search strategies---must take into account the relative
+{\em likelihoods} of finding one's goal in the various search directions that one has access to.
+\item
+Analyzing and understanding large corpora of data requires a variety of methodologies that build on the 
+concepts of {\em clustering} and/or {\em decomposition}.
+\end{itemize}
+Every student whose life will be touched by computing---which nowadays means just about
+every student---needs at least an introduction to the foundations of
+probability to even understand, all the more so to master, the terms highlighted in the preceding bulleted items.
 
-Just as engineering can be viewed as the ``applied'' sibling of
-science, {\it statistics} can be viewed as the ``applied'' sibling of
-probability.  (Section~\ref{sec:statistics})
+\medskip
 
+\noindent {\it Statistics} (Section~\ref{sec:statistics}).\index{statisticas}
+Just as engineering can be viewed as the ``applied'' sibling of science, {\it statistics} can be viewed as 
+the ``applied'' sibling of probability.  Whereas combinatorial probability will give the reader the ability to
+calculate the likelihoods of various events' happening, statistics looks as the events ``in the large", by focusing on
+parameters---aptly called ``statistics"---that measure quantities such as\index{statistical moments}
+\begin{itemize}
+\item
+{\em means, medians}, and {\em modes}: different ways to embody concepts 
+such as {\em averages) and {\em likelihood}.  These are attempts to find a single value that captures the essence
+of many observed instances; they are often called the {\it first statistical moments}.
+\index{statistical moments!means}\index{statistical moments!first moments}}
+\item
+{\em variances} and {\em standard deviations}: two closely related ways of measuring the error incurred by
+employing first statistical moments such as means; they are often called the {\it second statistical moments}.
+\index{statistical moments!variance}\index{statistical moments!standard deviation}
+\item
+{\em higher moments}: successive ways of measuring the errors incurred by
+employing lower statistical moments to describe observed measurements.
+\end{itemize}
 
-While
-Leibniz is best known (at least among mathematicians) for his
-never-to-be-settled dispute with Isaac Newton \index{Newton, Isaac}
-over prior discovery of the calculus, Leibniz's life was in fact
-dedicated to a broad range of topics in mathematics and philosophy.
-The title of his 1666 doctoral thesis, ``{\it Dissertatio de Arte
-  Combinatoria}'' \cite{Leibnitz}, gave us the now-common phrase,
-``the art of counting.''  The 
-
- was devoted to the
-underpinnings of the field we know now as {\it combinatorics}; indeed, 
-focused on ``the art oc counting''
-({\it Arte Combinatoria}) 
 
 
 
@@ -153,9 +188,13 @@ now using the set $\N$ as the base set.
 \end{quote}
 
 
-\ignore{****************8
-\section{The Elements of Probability}
-\label{ch:prob-stat}
+
+\section{The Elements of Combinatorial Probability}
+\label{sec:combinatorial-prob}
+
+
+
+
 
  within discrete frameworks, including introducing
 discrete probability/likelihood as a ratio:
@@ -164,24 +203,8 @@ discrete probability/likelihood as a ratio:
 \]
 
 
-Elements of probability theory and statistics infuse every area of
-computing.  The practicality of many algorithms that are
-experientially the most efficient for their target tasks depend on the
-{\em distribution} of inputs in ``real" situations.  Design
-methodologies for crucial complex circuits must acknowledge the {\em
-  mean times to failure} of the critical components of the circuits.
-Sophisticated searching algorithms must take into account the relative
-{\em likelihoods} of finding one's goal in the various optional search
-directions.  Analyzing and understanding large corpora of data
-requires a variety of methodologies that build on the concepts of {\em
-  clustering} and/or {\em decomposition}.
 
-A student needs at least an introduction to the foundations of
-probability and statistics to even understand, all the moreso to
-master, the terms highlighted in the preceding paragraph.  We outline
-many of the key concepts that a student must be exposed to in the
-following subsections.
-**********}
+
 
 {\Denis I don not know where to put the following subsection...}
 
