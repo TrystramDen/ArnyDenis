@@ -101,7 +101,7 @@ are ``complex" in the sense of being formed from other sets by using the algebra
 we discuss in Section~\ref{sec:operations-on-sets}.
 
 
-\subsection{Binary Strings and Power Sets}
+\subsection{Counting Binary Strings and Power Sets}
 \label{sec:b-ary strings}
 \index{strings!$b$-ary strings}
 \index{strings!counting $b$-ary strings}
@@ -205,10 +205,94 @@ in precisely the same way as are finite characteristic vectors, but
 now using the set $\N$ as the base set.
 \end{minipage}
 }
-\bigskip
 
-\subsection{Counting within Complex Sets}
+
+\subsection{Counting Based on Set Algebra}
 \label{sec:count-by-structure}
+\index{counting sets!based on set algebra}
+
+In this section, we assume that we know the cardinalities of certain sets---call them $A$, $B$, and $C$---and
+we want to know the cardinality of a new set which is formed from these sets by the basic operations of the
+algebra of sets, as discussed in Section~\ref{sec:operations-on-sets}.  There are a few commonly invoked counting laws
+which should be in your toolkit.
+
+\begin{itemize}
+\item
+{\it The Bijection rule}
+
+Finite sets whose elements can be put into bijective correspondence have the same cardinality.
+
+\item
+{\it The Additive rule} --- also called the {\it Law of inclusion/exclusion}:
+
+The cardinalities of unions of sets can be expressed by additions and subtractions of the cardinalities of the individual sets.
+
+  \begin{itemize}
+  \item
+When sets $A$ and $B$ are disjoint---i.e., have no common elements---then
+\[ |A \cup B| \ \ = \ \ |A| \ +  \ |B| \]
+
+ \item
+if the sets {\em intersect}---i.e., have non-null intersection---then
+\[ |A \cup B| \ \ = \ \ |A|  \ + \ |B| \ - \ |A \cap B| \]
+We {\em include} the elements of both sets, and we {\em exclude} the common elements, which
+have been double-counted.
+ \end{itemize}
+Figs.~\ref{fig:unionSetsInit} and~\ref{fig:unionSets} illustrate how to generalize the preceding equations to
+collections of three sets; going beyond three adds complexity that is clerical but not conceptual.
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.35]{FiguresMaths/3sets}
+        \caption{Three sets, $A$, $B$ and $C$, in ``general" position, i.e., with all possible overlaps.}
+        \label{fig:unionSetsInit}
+\end{center}
+\end{figure}
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.35]{FiguresMaths/RuleAdditive}
+        \hspace{1cm}
+        \includegraphics[scale=0.35]{FiguresMaths/RuleAdditive2}
+        \caption{The union of sets $A$, $B$, and $C$ (left), and their intersections (right).}
+        \label{fig:unionSets}
+\end{center}
+\end{figure}
+In order to draw explicit expressions that express the content of  Fig.~\ref{fig:unionSets}, one must apply the Law of
+{\em inclusion and exclusion} in multiple ways, as we compensate for the 
+pairwise and triple intersections among  sets $A$, $B$, and $C$.  A careful reckoning using the figure 
+indicates that
+\[ |A \cup B \cup C| \ \ = \ \ 
+\big(|A| + |B| + |C| \big) - \big( |A \cap B| + |A \cap C| + |B \cap C| \big) + |A \cap B \cap C|. \]
+In particular, we begin by {\em including} the union; then we {\em exclude} the pairwise intersections, which
+were double-counted ; and finally, we {\em include} the triple intersection, which was double excluded.
+
+\item
+{\em The Multiplicative rule}:
+
+This rule tells us how to count the cardinalities of Cartesian products of sets, as
+illustrated in Fig.~\ref{fig:cartesianproduct}.
+%\begin{figure}[h]
+%\begin{center}
+%        \includegraphics[scale=0.4]{FiguresMaths/cartesianProduct}
+%        \caption{Cartesian product of the two sets $A$ and $B$.}
+%        \label{fig:cartesianproduct}
+%\end{center}
+%\end{figure}
+\[ |A \times B| \ \ = \ \ |A| \cdot |B| \]
+The multiplicative rule operation extends immediately to multiplicities of sets, for three sets, e.g.:
+\[  |A \times B \times C| \ \ = \ \ |A| \cdot |B| \cdot |C| \]
+
+As an important special case of the Multiplicative rule, we note that
+\[ |A \times A \times \cdots  \times A| \ \  \mbox{ ($p-1$ times) }    \ \ = \ \ |A|^p \]
+The exciting feature here is that the set $A \times A \times \cdots  \times A$ ($p-1$ times) can be viewed as
+representing 
+the set of length-$p$ strings of elements of $A$.  Thereby, the Multiplicative rule gives us an alternative way to 
+view---and to prove---Proposition~\ref{thm:b-ary strings}.
+\end{itemize}
+
+
+**HERE
+
+
 
 Add here a brief introduction,
 in particular, I think we should add a link with what we have already presented many concepts pigeon holes, 
@@ -226,68 +310,8 @@ the most common ones are additive and multiplicative operators.
 
 {\Denis In the original text, the multiplicative rule was presented by means of strings, which is interesting. We should choose what is the most relevant presentation. I like the way to put rules and then, to use the rules in the proofs, but I am open...}
 
-\begin{itemize}
-\item
-Bijection rule:
 
-Two sets in bijection have the same cardinality.
-\item
-Additive rule (also called inclusion/exclusion):
 
-This operation (and subtraction) is obtained by unions of sets, as we described in chapter~\ref{put ref here}.
-When two sets $A$ and $B$ have no common elements, then
-
-$|A \cup B| = |A| + |B|$
-
-if they intersect, then $|A \cup B| = |A| + |B| - |A \cap B|$.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/3sets}
-        \caption{Three sets $A,B$ and $C$.}
-        \label{fig:unionSetsInit}
-\end{center}
-\end{figure}
-
-Fig.~\ref{fig:unionSets} gives a clear way to extend the previous expression to more than two sets (three in the figure).
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/RuleAdditive}
-        \hspace{1cm}
-        \includegraphics[scale=0.4]{FiguresMaths/RuleAdditive2}
-        \caption{Union of sets $A,B$ and $C$ (left) and their intersections (right).}
-        \label{fig:unionSets}
-\end{center}
-\end{figure}
-
-More formally, we have to substract the two-by-two intersections of $A$, $B$ and $C$ (which each counts for $2$), 
-but then, we must add the whole intersection, which counts for $3$. 
-$|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|$.
-
-%Notice here that if the sets are all disjoint, then, the cardinal of the union is the sum of the cardinal of each set.
-
-\item
-Multiplicative rule:
-
-This operation corresponds to the Cartesian products of sets, as
-illustrated in Fig.~\ref{fig:cartesianproduct}.
-%\begin{figure}[h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{FiguresMaths/cartesianProduct}
-%        \caption{Cartesian product of the two sets $A$ and $B$.}
-%        \label{fig:cartesianproduct}
-%\end{center}
-%\end{figure}
-
-$|A \times B| = |A| \cdot |B|$
-
-Such a multiplicative operation can easily be extended to more than 2 dimensions: 
-
-$|A \times B \times C| = |A| \cdot |B| \cdot |C|$.
-
-In particular, $|A \times A ... \times A| = |A|^p$.
-If $A$ is the set of $n$ elements $a_i$,
-the cartesian product is composed of \textit{words} of length $p$.
-\end{itemize}
 
 
 \subsection{Preliminary on permutations}
