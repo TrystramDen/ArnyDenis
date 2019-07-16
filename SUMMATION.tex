@@ -556,6 +556,7 @@ an + b \cdot \Delta_n
 
 
 \subsubsection{Example \#2: Squares as sums of odd integers}
+\label{sec:sumOfOdds}
 
 In this section, we build on
 Proposition~\ref{thm:sum-first-integers-Gauss} to craft multiple
@@ -762,7 +763,7 @@ construction illustrates that $4 S(n) \ = \ (2n)^2  \ = \ 4n^2$.
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-Full disclosure: Fig.~\ref{fig:anotherSumOdds} provides the basis for a proof of 
+\textbf{Full disclosure}: Fig.~\ref{fig:anotherSumOdds} provides the basis for a proof of 
 Proposition~\ref{thm:squares-odd-integers-Gauss}, but it does not provide the complete proof:
 We must somehow
 verify that the construction in the figure is completely general, i.e., that the depicted emergence of the
@@ -815,12 +816,14 @@ interest.  Using a strategy inspired by Fubini's work, we obtain a nonobvious pr
 Proposition~\ref{thm:squares-odd-integers-Gauss}---as we simultaneously observe a
 remarkable property of integers.
 
-\ignore{\Denis This subterfuge will also evidence another amazing property of integers}
+{\Denis My remark only works for particular values of $n$, actually, the $\Delta_k$.
+The idea is to show that the sum of odd up to triangular numbers $\Delta_k$ is equal to the sum of perfect cubes up to $k$.
+On another side, we show graphically  that this sum of cubes is the square of the triangular numbers, thus, the odds are equal to the square...}
 
 \medskip
 
-This proof combines facts about the odd numbers $\{2k-1\}$, the perfect cubes $\{k^3\}$, and the triangular numbers
-$\{ \Delta_k \}$.  As with the preceding proof, pictures will play an important role in discovering and explaining
+This proof combines facts about the odd numbers $\{2i-1\}$, the perfect cubes $\{i^3\}$, and the triangular numbers
+$\{ \Delta_i \}$.  As with the preceding proof, pictures will play an important role in discovering and explaining
 the facts that we uncover.
 
 \medskip
@@ -867,28 +870,27 @@ group (for $i>1$) comprises the following odd integers:
 2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 , \
 \ldots, \ 2 \Delta_{i-1} + (2i-1)
 \]
-so that the {\em sum}, call it $G_i$, of the $i$ integers in group $i$ equals
+so that the {\em sum}, call it $\sigma_i$, of the $i$ integers in group $i$ equals
 \begin{eqnarray*}
-G_i  & = & 2 i \Delta_{i-1} \ + \ \big( 1 + 3 + 5 + \cdots + (2i-1) \big) \\
+\sigma_i  & = & 2 i \Delta_{i-1} \ + \ \big( 1 + 3 + 5 + \cdots + (2i-1) \big) \\
        & = & 2 i \Delta_{i-1} \ + \ \mbox{(the sum of the first $i$ odd numbers)}
 \end{eqnarray*}
+{\Denis we don't need to introduce $\sigma_i$}
 
 **HERE
 
-
-You should now verify by induction that $2 \Delta_{i-1} +(2i-1) \ = \ 2 \Delta_{i} +1$, which gives us another
+You should now verify by induction that $2 \Delta_{i-1} +(2i-1) \ = \ 2 \Delta_{i} +1$, 
+{\Denis there is not correct it should be minus 1 and not +1...} which gives us another
 expression for the last odd integer in group $i$.  
 Once one verifies (say, by induction) that $2 \Delta_{i-1} +2i-1 \ = \ 2
 \Delta_{i} +1$, one discovers that this group has the sum
+{\Denis Induction is not needed, the expression is simply obtained by definition of triangular numbers.}
 \[
 2i \Delta_{i-1}  \ - \ 2 \Delta_{i-1} +i  \  = \
 (2i -1) \Delta_i + i \ = \ i^3.
 \]
 
-
-
-  In other words, group $i$ consists
-of the odd numbers
+In other words, group $i$ consists of the odd numbers
 \[ 2 \Delta_{i-1} +1, \ 2 \Delta_{i-1} +3, \  \ldots, \  2\Delta_i -1 \]
 
 
@@ -925,7 +927,8 @@ The average of the two odd numbers in the second row is equal to $4$,
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresMaths/SumCubes1bis}
-\caption{The first step of the pictorial proof: the two first rows form a perfect square.}
+\caption{The first step of the pictorial proof: the two first rows form a perfect square
+(the first row corresponds to the shaded area).}
        \label{fig:sumCubes1bis}
 \end{center}
 \end{figure}
@@ -951,14 +954,15 @@ and \ref{fig:sumCubesEvenFinal}.
 {\Arny How do we know about the geometric arrangement of $1^3 + 2^3 + 3^3$?}
 {\Denis We simply add $3^3$ to the square: I added two figures to explain in the most diffifult case of even $i$...}
 
- Comparing Figs.~\ref{fig:sumCubes2}
+ Comparing Figs.~\ref{fig:sumCubes1bis}
 and~\ref{fig:sumCubes3} indicates a parity constraint on the process:
 at even-numbered steps, the subsquares that get ``merged'' are
 overlapping; at odd-numbered steps, they are not.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubesEven}
-\caption{****The next step in the construction also produces a perfect square (here $i=4$).}
+\caption{****The next step in the construction also produces a perfect square (here $i=4$).
+The dark grey is the overlapped area.}
        \label{fig:sumCubesEven}
 \end{center}
 \end{figure}
@@ -982,9 +986,11 @@ group consists of the following odd integers ($i>1$):
 2 \Delta_{i-1} + (2i-1)
 \]
 Once one verifies (say, by induction) that $2 \Delta_{i-1} +2i-1 \ = \ 2
-\Delta_{i} +1$, one discovers that this group has the sum
+\Delta_{i} +1$, 
+{\Denis again, this should be a minus not a +1}
+one discovers that this group has the sum
 \[
-2k \Delta_{i-1} \ - \ 2 \Delta_{i-1} +i \ = \
+2i \Delta_{i-1} \ - \ 2 \Delta_{i-1} +i \ = \
 (2i -1) \Delta_i + i \ = \ i^3.
 \]
 \end{description}
@@ -996,6 +1002,7 @@ $\Delta_i$.  By direct calculation, we can therefore compute the row's
 sum as
 
 {\Arny This is the denouement of the argument, and I do not sense the flow of the reasoning.}
+{\Denis I hope this is clear now!}
 
 \[
 \Delta_i^2 \ - \ \Delta_{i-1}^2 
@@ -1015,70 +1022,6 @@ readers to utilize every possible mathematical concept as they hone
 their mathematical and computational skills: {\em Simple proofs often
 lend as much insight as sophisticated ones.}
 
-\medskip
-
-\index{$n^2$ as sum of first $n$ odd integers!a proof from elementary school}
-\begin{proof}
-{\bf A final proof, from elementary school.}
-%
-Consider the following reasoning which emerges from the way
-multiplication tables are developed in elementary school.  We
-illustrate the idea using the case $n=5$.
-\begin{equation}
-\label{eq:Fubini-table}
-\begin{array}{rrrrr}
-1  &  2 &  3 &  4 &  5 \\
-2  &  4 &  6 &  8 & 10 \\
-3  &  6 &  9 & 12 & 15 \\
-4  &  8 & 12 & 16 & 20 \\
-5  & 10 & 15 & 20 & 25 \\
-\end{array}
-\end{equation}
-Write the integers $1, 2, \ldots, n$ in a row.  Below this row, write
-the doubles of these integers.  Below the ``double'' row, write the
-triples of the integers.  Below the ``triple'' row, write the
-quadruples of the integers, then the quintuples, and so on.  Note that
-the resulting table is {\em symmetric:} its rows are identical to its
-columns.
-
-\smallskip
-
-Using again Fubini's rearrangement stratagem, we now count all the integers in
-the table in two different ways.
-{\Denis this is a variant of the previous development...}
-\begin{enumerate}
-\item
-We sum the entries of our table by peeling away successively larger
-reversed instances of the letter ``$L$'' (as in our earlier
-``pictorial'' proof of
-Proposition~\ref{thm:squares-odd-integers-Gauss}).  We find that the
-integers in each ``$L$'' sum to a perfect cube:
-\[
-\begin{array}{rrrrrrrrr|rrc}
-1  &    &    &    &    &   &     &    &   & 1   & = 1^3 \\
-2  &  4 &  2 &    &    &   &     &    &   & 8   & = 2^3 \\
-3  &  6 &  9 &  6 &  3 &   &     &    &   & 27  & = 3^3 \\
-4  &  8 & 12 & 16 & 12 &  8 &  4 &    &   & 64  & = 4^3 \\
-5  & 10 & 15 & 20 & 25 & 20 & 15 & 10 & 5 & 125 & = 5^3
-\end{array}
-\]
-
-\item
-We sum the successive rows of the $n \times n$ table (\ref{eq:Fubini-table}).  The
-first row of the table sums to $\Delta_n$; the second row sums to $2
-\Delta_n$; the third row sums to $3 \Delta_n$; \ldots; the last row sums
-to $n \Delta_n$.  Thus, the aggregate sum of the table's rows is 
-\[ (1 + 2 + \cdots + n) \cdot \Delta_n \ = \ \left(\Delta_n \right)^2 \]
-\end{enumerate}
-We conclude that
-\[
-\sum_{i=1}^n i^3 \ = \  \left(\Delta_n \right)^2
-\]
-\end{proof}
-
-{\Arny Have I lost track?  Why does this prove that the cubes sum to the squares?}
-
-{\Denis since the sum of cubes up to $\Delta_n$ equal the sum of odds!}
 
 \ignore{\Arny More calculation!  BOO!  Please complete this.  I seem to be off by 1}
 %We give another proof that tells us something more on numbers of their interactions.
