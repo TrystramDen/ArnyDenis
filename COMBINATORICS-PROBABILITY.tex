@@ -48,16 +48,16 @@ In a more serious vein, the elements of probability theory and statistics infuse
 computing.
 \begin{itemize}
 \item
-The practicality of many algorithms that are experientially the most efficient for their
-target tasks depend on the {\em distributions} of inputs in ``real" situations.
+The practicality of many algorithms that are experientially efficient often results from the {\em distributions} of 
+the inputs they encounter in ``real" situations.
 \item
-Design methodologies for crucial complex circuits must account for the {\em
+Design methodologies for complex electronic circuits must be aware of the {\em
   mean times to failure} of the critical components of the circuits.
 \item
-Sophisticated searching algorithms---and even heuristic search strategies---must take into account the relative
-{\em likelihoods} of finding one's goal in the various search directions that one has access to.
+Sophisticated searching algorithms---and heuristic search strategies---must take into account the relative
+{\em likelihoods} of finding one's goal by following the various search directions that one has access to.
 \item
-Analyzing and understanding large corpora of data requires a variety of methodologies that build on the 
+Analyzing and understanding large corpora of data require methodologies that build on the 
 concepts of {\em clustering} and/or {\em decomposition}.
 \end{itemize}
 Every student whose life will be touched by computing---which nowadays means just about
@@ -89,11 +89,22 @@ employing lower statistical moments to describe observed measurements.
 
 
 
-\section{The Fundamentals of Counting}
+\section{The Elements of Combinatorics}
 \label{sec:counting}
+
+This section contains two quite distinct, but closely related, lessons about counting.  The first lesson
+is in the form of a single important example.  In Section~\ref{sec:b-ary strings}, we exploit the special
+structure of {\em strings} to count the number of length-$n$ strings over fixed-size alphabets; and we 
+extend this ability to other objects whose structures can be {\em encoded} as strings---notable the power-sets
+of finite sets.  Then, in Section~\ref{sec:count-by-structure}, we illustrate how to count within sets that
+are ``complex" in the sense of being formed from other sets by using the algebraic operations on sets that
+we discuss in Section~\ref{sec:operations-on-sets}.
 
 
 \subsection{Binary Strings and Power Sets}
+\label{sec:b-ary strings}
+\index{strings!$b$-ary strings}
+\index{strings!counting $b$-ary strings}
 
 \begin{prop}
 \label{thm:b-ary strings}
@@ -118,8 +129,12 @@ $n$.  \qed
 
 \medskip
 
-\addcontentsline{toc}{subsubsection}{-- A fun result: $n$-element sets
-  have $2^n$ subsets}
+Proposition~\ref{thm:b-ary strings} has a corollary whose proof is much more important than its
+statement.   By employing the {\em characteristic vectors} of sets, we invoke the case $b=2$ of 
+Proposition~\ref{thm:b-ary strings} to determine how many subsets a finite set $S$ has---i.e., to
+count the elements of $S$'s {\em power set}.  (All technical terms
+come from Chapter~\ref{ch:sets-BA-logic}.)
+
 
 \begin{prop}
 \label{thm:power-sets}
@@ -127,23 +142,23 @@ The power set $\p(S)$ of a finite set $S$ contain $2^{|S|}$ elements.
 \end{prop}
 
 \begin{proof}
-Let us begin by taking an arbitrary finite set $S$---say of $n$
+We begin by taking an arbitrary finite set $S$---say of $n$
 elements---and laying its elements out in a line.  We thereby
-establish a correspondence between $S$'s elements and positive
+establish a one-to-one correspondence between $S$'s elements and the positive
 integers: there is the first element, which we associate with the
 integer $1$, the second element, which we associate with the integer
 $2$, and so on, until the last element along the line gets associated
 with the integer $n$.
 
-Next, let's note that we can specify any subset $S'$ of $S$ by
+Next, we note that we can specify any subset $S'$ of $S$ by
 specifying a length-$n$ {\em binary (i.e., base-$2$) string}, i.e., a
 string of $0$'s and $1$'s.  The translation is as follows.  If an
 element $s$ of $S$ appears in the subset $S'$, then we look at the
-integer we have associated with $s$ (via our linearization of $S$),
+integer we have associated with $s$ (via our linear ordering of $S$),
 and we set the corresponding bit-position of our binary string to $1$;
 otherwise, we set this bit-position to $0$.  In this way, we get a
 distinct subset of $S$ for each distinct binary string, and a distinct
-binary string for each distinct subset of $S$.
+binary string for each distinct subset of $S$.  (We thus have a {\em bijection}.)
 
 Let us pause to illustrate our correspondence between sets and strings
 by focussing on the set $S = \{a,b,c\}$.  Just to make life more
@@ -175,9 +190,12 @@ follows by the ($b=2$) instance of Proposition~\ref{thm:b-ary
   strings}.  \qed
 \end{proof}
 
-\begin{quote}
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
 The binary string that we have constructed to represent each set of
-integers $N \subseteq \{0, 1, \ldots, n-1\}$ is called the {\it
+integers $N \subseteq \{0, 1, \ldots, n-1\}$ is the {\it
 (length-$n$) characteristic vector}\index{characteristic vector}
 {\it of the set} $N$.  Of course, the finite set $N$ has
 characteristic vectors of all finite lengths.  Generalizing this idea,
@@ -185,110 +203,17 @@ characteristic vectors of all finite lengths.  Generalizing this idea,
 infinite, has an {\em infinite} characteristic vector, which is formed
 in precisely the same way as are finite characteristic vectors, but
 now using the set $\N$ as the base set.
-\end{quote}
+\end{minipage}
+}
+\bigskip
 
-
-
-\section{The Elements of Combinatorial Probability}
-\label{sec:combinatorial-prob}
-
-
-
-
-
- within discrete frameworks, including introducing
-discrete probability/likelihood as a ratio:
-\[ 
-\frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
-\]
-
-
-
-
-
-{\Denis I don not know where to put the following subsection...}
-
-\subsection{The Basic Elements of Combinatorial Probability}
-
-Perhaps the easiest and most engaging way to introduce ``probability
-via counting" is by calculating the comparative likelihoods of various
-deals in $5$-card poker and of various rolls of a pair of dice.  The
-arithmetic required for this discussion is elementary and the
-``application" to gambling of interest even to non-gamblers: ``Why is
-such a deal in poker (say, a straight) worth more than another (say,
-three of a kind)?"  One can also introduce in this setting concepts
-such as randomness, bias, etc., that are so important in the design of
-experiments and the analysis of their outcomes.
-
-
-\ignore{************
-\section{Toward a Basic Understanding of Statistics}
-
-Most students whose interest tend to the empirical will likely ``do"
-statistics with the aid of apps, rather than by explicitly writing
-programs that perform the required calculations.  That said, all
-students should understand the crucial notion of {\em random variable}
-and should be conversant with the most common statistical
-distributions.  ``Conversant" in this context should include complete
-understandings of the (low-numbered) moments of {\em at least} the
-{\em uniform} and {\em exponential} distributions.  They should know
-how to compute, say, the means and variances of various distributions
-— and, most importantly, they should {\em understand} the sense in
-which the variance of a distribution give {\em important} information
-that is not available from the mean.  All of this is prerequisite to
-rigor in experimentation.
-
-\subsubsection{The Elements of Empirical Reasoning}
-
-Empirical reasoning does not convey the certitude that formal
-reasoning does.  Students should understand how to craft experiments
-in a way that collects the ``right'' data.  The should then be
-able---perhaps just with statistical packages---to interpret the
-results they collect and to understand what conclusions are
-justifiable.  {\em It is essential that all students understand the                  
-  distinction between {\em positive correlation} and {\em causation}!}
-(Most of the public would seem to flunk that test.)
-
-In order to satisfy the preceding demands, students should understand
-enough about statistics---including definitions and meanings related
-to distributions and their moments---to understand what conclusions
-can be made based on experimental results, and to understand how to
-describe conclusions in a way that is supported by the statistics.
-***********}
-
-\section{Introduction to Probability}
-\label{sec:prob-stat}
-
-
-Elements of probability theory and statistics infuse every area of
-computing.  The practicality of many algorithms that are
-experientially the most efficient for their target tasks depend on the
-{\em distribution} of inputs in ``real" situations.  Design
-methodologies for crucial complex circuits must acknowledge the {\em
-  mean times to failure} of the critical components of the circuits.
-Sophisticated searching algorithms must take into account the relative
-{\em likelihoods} of finding one's goal in the various optional search
-directions.  Analyzing and understanding large corpora of data
-requires a variety of methodologies that build on the concepts of {\em
-  clustering} and/or {\em decomposition}.
-
-A student needs at least an introduction to the foundations of
-probability and statistics to even understand, all the more so to
-master, the terms highlighted in the preceding paragraph.  We outline
-many of the key concepts that a student must be exposed to in the
-following subsections.
-
-{\Denis Here we may be more precise about the content: the probabilities are built upon combinatoric rules, another interesting point is to distinguish between probability and statistics...}
-
-
-\section{Elements of Combinatorics}
+\subsection{Counting within Complex Sets}
+\label{sec:count-by-structure}
 
 Add here a brief introduction,
 in particular, I think we should add a link with what we have already presented many concepts pigeon holes, 
 Pascal's triangle, binomial coefficients, etc..
 
-
-\subsection{Counting}
 
 The idea of counting by the way of using set theory is to establish analogies between an \textit{event}
 and another (usually more abstract) event that can be studied more easily. 
@@ -446,6 +371,106 @@ As the number of objects increases, the probability that none appears in its cor
 $p=lim_{n \rightarrow \infty}\frac{d(n)}{n!}=\frac{1}{e}$. 
 
 {\Denis Interesting: to be detailed in more details...}
+
+
+
+
+
+
+
+
+
+\section{The Elements of Combinatorial Probability}
+\label{sec:combinatorial-prob}
+
+
+
+
+
+ within discrete frameworks, including introducing
+discrete probability/likelihood as a ratio:
+\[ 
+\frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
+\]
+
+
+
+
+
+{\Denis I don not know where to put the following subsection...}
+
+\subsection{The Elements of Combinatorial Probability}
+
+Perhaps the easiest and most engaging way to introduce ``probability
+via counting" is by calculating the comparative likelihoods of various
+deals in $5$-card poker and of various rolls of a pair of dice.  The
+arithmetic required for this discussion is elementary and the
+``application" to gambling of interest even to non-gamblers: ``Why is
+such a deal in poker (say, a straight) worth more than another (say,
+three of a kind)?"  One can also introduce in this setting concepts
+such as randomness, bias, etc., that are so important in the design of
+experiments and the analysis of their outcomes.
+
+
+\ignore{************
+\section{Toward a Basic Understanding of Statistics}
+
+Most students whose interest tend to the empirical will likely ``do"
+statistics with the aid of apps, rather than by explicitly writing
+programs that perform the required calculations.  That said, all
+students should understand the crucial notion of {\em random variable}
+and should be conversant with the most common statistical
+distributions.  ``Conversant" in this context should include complete
+understandings of the (low-numbered) moments of {\em at least} the
+{\em uniform} and {\em exponential} distributions.  They should know
+how to compute, say, the means and variances of various distributions
+— and, most importantly, they should {\em understand} the sense in
+which the variance of a distribution give {\em important} information
+that is not available from the mean.  All of this is prerequisite to
+rigor in experimentation.
+
+\subsubsection{The Elements of Empirical Reasoning}
+
+Empirical reasoning does not convey the certitude that formal
+reasoning does.  Students should understand how to craft experiments
+in a way that collects the ``right'' data.  The should then be
+able---perhaps just with statistical packages---to interpret the
+results they collect and to understand what conclusions are
+justifiable.  {\em It is essential that all students understand the                  
+  distinction between {\em positive correlation} and {\em causation}!}
+(Most of the public would seem to flunk that test.)
+
+In order to satisfy the preceding demands, students should understand
+enough about statistics---including definitions and meanings related
+to distributions and their moments---to understand what conclusions
+can be made based on experimental results, and to understand how to
+describe conclusions in a way that is supported by the statistics.
+***********}
+
+\section{Introduction to Probability}
+\label{sec:prob-stat}
+
+
+Elements of probability theory and statistics infuse every area of
+computing.  The practicality of many algorithms that are
+experientially the most efficient for their target tasks depend on the
+{\em distribution} of inputs in ``real" situations.  Design
+methodologies for crucial complex circuits must acknowledge the {\em
+  mean times to failure} of the critical components of the circuits.
+Sophisticated searching algorithms must take into account the relative
+{\em likelihoods} of finding one's goal in the various optional search
+directions.  Analyzing and understanding large corpora of data
+requires a variety of methodologies that build on the concepts of {\em
+  clustering} and/or {\em decomposition}.
+
+A student needs at least an introduction to the foundations of
+probability and statistics to even understand, all the more so to
+master, the terms highlighted in the preceding paragraph.  We outline
+many of the key concepts that a student must be exposed to in the
+following subsections.
+
+{\Denis Here we may be more precise about the content: the probabilities are built upon combinatoric rules, another interesting point is to distinguish between probability and statistics...}
+
 
 
 \section{The Elements of Combinatorial Probability}
