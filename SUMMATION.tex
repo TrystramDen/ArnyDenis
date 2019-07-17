@@ -803,230 +803,6 @@ The side of the square is equal to $1+2n-1=2n$, thus $4 \cdot S(n)=(2n)^2= 4n^2$
 ***************}
 \medskip
 
-\index{$n^2$ as sum of first $n$ odd integers!a proof by rearranging terms}
-\begin{proof}
-{\bf $\oplus$ A proof by rearranging terms.}
-%
-We described in Section~\ref{sec:summation-via-Fubini} how the Italian mathematician
-Guido Fubini \index{Fubini, Guido}
-was able to make notable mathematical progress by rearranging
-representations of a variety of structured mathematical objects \cite{Fubini}.  Within the context of the current
-chapter, such rearrangements work on the terms of a summation of
-interest.  Using a strategy inspired by Fubini's work, we obtain a nonobvious proof of
-Proposition~\ref{thm:squares-odd-integers-Gauss}.
-
-{\Denis My remark only works for particular values of $n$, actually, the $\Delta_k$.
-The idea is to show that the sum of odd up to triangular numbers $\Delta_k$ is equal to the sum of perfect cubes up to $k$.
-On another side, we show graphically  that this sum of cubes is the square of the triangular numbers, thus, the odds are equal to the square...}
-
-\medskip
-
-The proof establishes relationships among three sets: the odd numbers $\{2i-1\}$, the perfect cubes $\{i^3\}$, 
-and the triangular numbers $\{ \Delta_i \}$.
-\begin{enumerate}
-\item
-We show that the sum of all odd numbers up to the triangular number $\Delta_k$ is equal
-to the sum of perfect cubes up to $k$.
-\item
-We show pictorially that this sum of perfect cubes is equal to the square of triangular numbers.
-\end{enumerate}
-These facts will combine to prove that the perfect squares are the sums of the odd numbers.
-
-\medskip
-
-We begin by taking the odd integers in order and arranging them into groups whose successive sizes
-increase by $1$ at each step, as depicted in the following triangular table.
-\[
-\begin{array}{llrrrrclcc}
-\mbox{group $1$, of size 1:} & &
-1,  &    &     &      \\
-\mbox{group $2$, of size 2:} & &
-3,  &  5, &     &      \\
-\mbox{group $3$, of size 3:} & &
-7,  &  9, & 11, &     \\
-\mbox{group $4$, of size 4:} & &
-13, & 15, & 17, & 19   \\
-\vdots & & \vdots \\
-\end{array}
-\]
-The first group comprises just the smallest odd number, $1$;
-the second group comprises the next two odd numbers, $3$, $5$; and so on.
-Let us observe some of the features of our triangular table.
-
-We observe first that---at least within the illustrated portion of the table---the $i$ elements
-of the $i$th group add up to $i^3$:
-\[
-\begin{array}{llrrrrclcc}
-\mbox{group $1$, of size 1:} & &
-1,  &    &     &     & \mbox{: sum} = &  1^3 \\
-\mbox{group $2$, of size 2:} & &
-3,  &  5, &     &    & \mbox{: sum} =  &  2^3 \\
-\mbox{group $3$, of size 3:} & &
-7,  &  9, & 11, &    &  \mbox{: sum} = &  3^3 \\
-\mbox{group $4$, of size 4:} & &
-13, & 15, & 17, & 19 & \mbox{: sum} =  &  4^3 \\
-\end{array}
-\]
-
-We observe next that, by construction, the $i$th group/row of odd integers in the table consists of the
-$i$ consecutive odd numbers beginning with the $\left( \Delta_{i-1} +1 \right)$th odd number,
-$2 \Delta_{i-1} +1$.  Since consecutive odd numbers differ by $2$, this means that the $i$th
-group (for $i>1$) comprises the following odd integers:
-\[
-2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 , \
-\ldots, \ 2 \Delta_{i-1} + (2i-1)
-\]
-so that the {\em sum}, call it $\sigma_i$, of the $i$ integers in group $i$ equals
-\begin{eqnarray*}
-\sigma_i  & = & 2 i \Delta_{i-1} \ + \ \big( 1 + 3 + 5 + \cdots + (2i-1) \big) \\
-       & = & 2 i \Delta_{i-1} \ + \ \mbox{(the sum of the first $i$ odd numbers)}
-\end{eqnarray*}
-{\Denis we don't need to introduce $\sigma_i$}
-
-**HERE
-
-You should now verify by induction that $2 \Delta_{i-1} +(2i-1) \ = \ 2 \Delta_{i} +1$, 
-{\Denis there is not correct it should be minus 1 and not +1...} which gives us another
-expression for the last odd integer in group $i$.  
-Once one verifies (say, by induction) that $2 \Delta_{i-1} +2i-1 \ = \ 2
-\Delta_{i} +1$, one discovers that this group has the sum
-{\Denis Induction is not needed, the expression is simply obtained by definition of triangular numbers.}
-\[
-2i \Delta_{i-1}  \ - \ 2 \Delta_{i-1} +i  \  = \
-(2i -1) \Delta_i + i \ = \ i^3.
-\]
-
-In other words, group $i$ consists of the odd numbers
-\[ 2 \Delta_{i-1} +1, \ 2 \Delta_{i-1} +3, \  \ldots, \  2\Delta_i -1 \]
-
-
-Let us verify by induction that this pattern persists indefinitely.
-{\Denis not really, what we want to show is that the sum of cubes ranging up to $\Delta_n$
-is the square of $\Delta_n$, which is really beautiful!
-This way, using Fubini, the whole sum of odds is also equal to the sum over the rows of the previous representation, 
-which is done graphically...}
-\begin{description}
-\item[{\bf Base.}]
-The singleton in row $1$ provides the base for our induction.
-
-\medskip
-
-\item[{\bf Inductive hypothesis}.]
-We know from the previous analysis on triangular numbers
-%Proposition~\ref{thm:sum-first-integers-Gauss} 
-
-
-\medskip
-
-The proof to this point can be represented graphically as follows.  We begin with
-the unit square as the base of our induction.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumCubes1}
-\caption{The two first pictorial representation of the odd numbers: $1$ and $3$--$5$.}
-       \label{fig:sumCubes1}
-\end{center}
-\end{figure}
-The average of the two odd numbers in the second row is equal to $4$,
- next represent the number $8 = 2^3$ (which is the {\em cube} of $2$)
-\ignore{{\Arny How do we know to do this?  What do these two squares have to do with $2^3$?}}
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.5]{FiguresMaths/SumCubes1bis}
-\caption{The first step of the pictorial proof: the two first rows form a perfect square
-(the first row corresponds to the shaded area).}
-       \label{fig:sumCubes1bis}
-\end{center}
-\end{figure}
-
- by two $2 \times 2$ squares: the figures following the unit square in
-Fig.~\ref{fig:sumCubes1}.
-Fig.~\ref{fig:sumCubes1bis} illustrates graphically that $1+ 2^3$
-is a perfect square.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumCubes3}
-\caption{The next step in the construction also produces a perfect square. Here $i=3$}
-       \label{fig:sumCubes3}
-\end{center}
-\end{figure}
-Fig.~\ref{fig:sumCubes3} illustrates that iterating the process one more time also
-produces a perfect square. 
-The case of odd indices is easy since we don't need to rearrange the unit squares 
-(the surfaces perfectly fit).
-However, the case of even $i$ needs a little more effort as shown in Fig.~\ref{fig:sumCubesEven}
-and \ref{fig:sumCubesEvenFinal}.
-
-{\Arny How do we know about the geometric arrangement of $1^3 + 2^3 + 3^3$?}
-{\Denis We simply add $3^3$ to the square: I added two figures to explain in the most diffifult case of even $i$...}
-
- Comparing Figs.~\ref{fig:sumCubes1bis}
-and~\ref{fig:sumCubes3} indicates a parity constraint on the process:
-at even-numbered steps, the subsquares that get ``merged'' are
-overlapping; at odd-numbered steps, they are not.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumCubesEven}
-\caption{****The next step in the construction also produces a perfect square (here $i=4$).
-The dark grey is the overlapped area.}
-       \label{fig:sumCubesEven}
-\end{center}
-\end{figure}
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumCubesEvenFinal}
-\caption{****How to move one of the overlapped area in order to obtain a perfect square.}
-       \label{fig:sumCubesEvenFinal}
-\end{center}
-\end{figure}
-
-\medskip
-
-\item[{\bf Inductive extension}.]
-%
-Since consecutive odd numbers differ by $2$, we know that the $i$th
-group consists of the following odd integers ($i>1$):
-\[
-2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 ,
-\ldots, \
-2 \Delta_{i-1} + (2i-1)
-\]
-Once one verifies (say, by induction) that $2 \Delta_{i-1} +2i-1 \ = \ 2
-\Delta_{i} +1$, 
-{\Denis again, this should be a minus not a +1}
-one discovers that this group has the sum
-\[
-2i \Delta_{i-1} \ - \ 2 \Delta_{i-1} +i \ = \
-(2i -1) \Delta_i + i \ = \ i^3.
-\]
-\end{description}
-This concludes the subproof about groups summing to perfect cubes.
-
-Because each row contains one more integer than its predecessor, row
-$i$ contains the sum of the odd integers from $\Delta_{i-1}+1$ to
-$\Delta_i$.  By direct calculation, we can therefore compute the row's
-sum as
-
-{\Arny This is the denouement of the argument, and I do not sense the flow of the reasoning.}
-{\Denis I hope this is clear now!}
-
-\[
-\Delta_i^2 \ - \ \Delta_{i-1}^2 
-%\left( \frac{i(i+1)}{2} \right)^2 \ - \ \left( \frac{i(i-1)}{2} \right)^2
- \ \ =  \ \ \frac{i^2}{4} \left( (i+1)^2 - (i-1)^2 \right)
-% & = & \frac{i^2}{4} (4i) \\
- \ \ = \ \ i^3
-\]
-\end{proof}
-
-\bigskip
-
-We close our treatment of
-Proposition~\ref{thm:squares-odd-integers-Gauss} with another, really
-basic proof.  As stated earlier, our goal is really to encourage
-readers to utilize every possible mathematical concept as they hone
-their mathematical and computational skills: {\em Simple proofs often
-lend as much insight as sophisticated ones.}
 
 
 \ignore{\Arny More calculation!  BOO!  Please complete this.  I seem to be off by 1}
@@ -2205,9 +1981,12 @@ Because we are beginning with a conjecture based on intuition, we
 }
 \medskip
 
-Because the Method becomes computationally cumbersome for large values
-of $c$, we introduce the reader to it via the first few integer values
-of $c$.
+The Method becomes computationally cumbersome for large values
+of $c$, as it involves solving $c$ linear equations in $c$ unknowns---a problem that is
+outside the scope of the text.  Therefore, all we do here is introduce the reader to the
+Method by illustrating the first few positive integer values of $c$.
+
+\medskip
 
 {\it The case $c=1$.}
 %
@@ -2217,11 +1996,9 @@ that
 \[ S_1(n) \ = \ \frac{1}{2} n^2 \ + \ a^{(1)}_1 n \]
 for some positive {\it undetermined coefficient} $a^{(1)}_1$.  We can
 discover the value of the single unknown, $a^{(1)}_1$ by evaluating
-$S_1(n)$ at any single value for the variable $n$.  Any value of $n$
-will work; using the {\em smallest} one, $n=1$, simplifies our
-calculation.
-
-Because $S_1(1) = 1$, we have
+$S_1(n)$ at a single value for the variable $n$.  Since {\em any} value of $n$
+will work---we are solving one linear equation in one unknown---we usie
+the {\em smallest} one, $n=1$, to simplify our calculation.  Because $S_1(1) = 1$, we have
 \[ S_1(1) \ = \ 1 \ = \ \frac{1}{2} \ + \ a^{(1)}_1. \]
 Therefore, $a^{(1)}_1 = 1/2$, which gives us yet one more derivation
 of the value
@@ -2240,15 +2017,15 @@ We derive an explicit expression for $S_2(n) \ \eqdef \  1 + 4 +
 {\em For all} $n \in \N$,
 \begin{equation}
 \label{eq:sum-1-to-nsq}
-S_2(n) \ \eqdef \ \sum_{i=1}^n \ i^2 
- \ = \ \frac{1}{3} n^3 \ + \ \frac{1}{2} n^2 \ + \ \frac{1}{6} n
+S_2(n) \ \ \eqdef \ \ \sum_{i=1}^n \ i^2 
+\ \ = \ \ \frac{1}{3} n^3 \ + \ \frac{1}{2} n^2 \ + \ \frac{1}{6} n
 \end{equation}
 \end{prop}
 
 \noindent
 $S_2(n)$ is often expressed in a more aesthetic form:
-\[ S_2(n) \ = \
-\frac{1}{6} n (n+1)(2n+1) \ = \
+\[ S_2(n) \ \ = \ \
+\frac{1}{6} n (n+1)(2n+1) \ \  = \ \
 \frac{2n+1}{3} \cdot {n \choose 2}.
 \]
 
@@ -2292,189 +2069,283 @@ so that
 \[ a^{(2)}_2 \ = \ 1/2 \]
 which means that
 \[ a^{(2)}_1 \ = \ 1/6. \]
-We have, thus, derived equation~(\ref{eq:sum-1-to-nsq}).  
+We have, thus, derived equation~(\ref{eq:sum-1-to-nsq}).  \qed
 \end{proof}
 
 \medskip
 
-We verify our expressions for $S_1(n)$ and $S_2(n)$ by induction in
-subsection C.
-{\Denis what is this section C?}
+With more (calculational) work, but no new (mathematical) ideas, one
+can derive explicit expressions for the sum $S_c(n)$, for any positive integer $c$.
+
+\medskip 
+
+\paragraph{C. Special cases for $c=3$: Sums of cubes}
+
+We described in Section~\ref{sec:summation-via-Fubini} how the Italian mathematician
+Guido Fubini \index{Fubini, Guido} was able to make notable mathematical progress by rearranging
+the representations of a variety of structured mathematical objects \cite{Fubini}.  Within the context of the current
+chapter, we apply such rearrangements to achieve exact values for some
+special subsums of $S_3(n)$, i.e., special sums of the cubes of integers.
+
+The proof we develop here establishes relationships among three sets:
+the odd numbers $\{2i-1\}$, the perfect cubes $\{i^3\}$, and the triangular numbers $\{ \Delta_i \}$.
+Specifically, the sum of all odd numbers up to the triangular number $\Delta_k$ is equal to
+\begin{enumerate}
+\item
+the square of the triangular number $\Delta_k$
+\item
+the sum of perfect cubes up to $k$.
+\end{enumerate}
+We then provide pictorial reasoning that allows one to observe the equality between the preceding quantities.
+
+\ignore{\Denis My remark only works for particular values of $n$, actually, the $\Delta_k$.
+The idea is to show that the sum of odd up to triangular numbers $\Delta_k$ is equal to the sum of perfect cubes up to $k$.
+On another side, we show graphically  that this sum of cubes is the square of the triangular numbers, thus, the odds are equal to the square...}
+
+\begin{prop}
+\label{thm:odds-sum2-cubes}
+For all $k \in \N^+$,
+\begin{equation}
+\label{eq:sum-odds=Delta-sq=sum-cubes}
+(\Delta_k)^2 \ \  = \ \
+\sum_{i=1}^{\Delta_k} \ (2i-1)  \ \ =  \  \sum_{i=1}^k \ i^3
+\end{equation}
+\end{prop}
+
+\begin{proof}
+The lefthand equation in (\ref{eq:sum-odds=Delta-sq=sum-cubes}) follows from 
+Proposition~\ref{thm:squares-odd-integers-Gauss}: the first $\Delta_k$ odd numbers sum
+to $(\Delta_k)^2$.  Let us focus, therefore, on the righthand equation.
 
 \medskip
 
-With more (calculational) work, but no new (mathematical) ideas, one
-can derive explicit expressions for the sum of the first $n$ $c$th
-powers, i.e., the sum $S_c(n)$, for any positive integer $c$.
+We take the odd integers in order and arrange them into groups whose successive sizes
+increase by $1$ at each step, as in the following triangular table (\ref{eq:triagular-table}).
+\begin{equation}
+\label{eq:triagular-table}
+\begin{array}{llrrrrclcc}
+\mbox{group $1$, of size 1:} & &
+1,  &    &     &      \\
+\mbox{group $2$, of size 2:} & &
+3,  &  5, &     &      \\
+\mbox{group $3$, of size 3:} & &
+7,  &  9, & 11, &     \\
+\mbox{group $4$, of size 4:} & &
+13, & 15, & 17, & 19   \\
+\vdots & & \vdots \\
+\end{array}
+\end{equation}
+Group $1$ comprises just the smallest odd number, $1$;
+group $2$ comprises the next two odd numbers, $3$, $5$; group $3$ comprises the
+three odd numbers $7$,  $9$,  and $11$; and so on.
+Let us observe some of the features of table (\ref{eq:triagular-table}).
 
-\ignore{***************
-
-\paragraph{C. On validating approximate summations} 
-{\Denis I believe this paragraph is not needed since it is done in DOINGMATHS...}
-
-We employ the proof technique of (Finite) Induction by proving the
-correctness of three summation formulas that have occupied our
-attention in this chapter:
-\begin{enumerate}
-\item
-the sum $S_1(n)$ of the first $n$ positive integers; cf., equation
-(\ref{eq:sum-1-to-n})
-
-\item
-the sum $S_2(n)$ of the squares of the first $n$ positive integers;
-cf., equation (\ref{eq:sum-1-to-nsq})
-
-\item
-the sum of the first $n$ odd positive integers; cf.,
-Proposition~\ref{thm:squares-odd-integers-Gauss}.
-\end{enumerate}
-We deal with these formulas in turn.
-
-\noindent {\it 1. Verifying equation (\ref{eq:sum-1-to-n}) for $S_1(n)$.}
-%
-For every positive integer $m$, let {\bf P}$_1(m)$ be the proposition
-\[  1 \ + \ 2 \ +  \cdots  + \ m \ = \ {{m+1} \choose 2}. \]
-We proceed according to the standard format of an inductive argument.
-
-\begin{description}
-\item[{\bf The base case P$_1(1)$}.]
-%
-Because ${\displaystyle {2 \choose 2}} = 1$, proposition {\bf P}$_1(1)$
-is true.
-
-\item[{\sf The inductive hypothesis}.]
-%
-Assume, for the sake of induction, that proposition {\bf P}$_1(m)$ is
-true for every positive integer $m < n$.  In particular, then,
-proposition {\bf P}$_1(n-1)$ is true.
-
-\item[{\bf Extending the induction}.]
-%
-Because proposition {\bf P}$_1(n-1)$ is true, we know that
-\[ S_1(n-1) \ = \ 1 + 2 + \cdots + (n-1) \ = \ {n \choose 2}.  \]
-By direct calculation, then,
-\begin{eqnarray*}
-S_1(n) & = & {n \choose 2} + n \\
-  & = & \frac{n(n-1)}{2}  \ + \ n \\ 
-%  & = & \frac{n^2 - n + 2n}{2} \\
-  & = & \frac{n^2 + n}{2} \\
-  & = & {{n+1} \choose 2},
-\end{eqnarray*}
-as was verified in equation (\ref{eq:sum-1-to-n}).
-\end{description}
-Because $n$ is an arbitrary positive integer, we conclude that
-{\bf P}$_1(n)$ is true whenever
-\begin{itemize}
-\item
-{\bf P}$_1(1)$ is true
-\item
-{\em and}
-{\bf P}$_1(m)$ is true for all $m < n$.
-\end{itemize}
-By the Principle of (Finite) Induction, then, we conclude that
-proposition {\bf P}$_1(n)$ is true for all positive integers $n$.
-\qed
-
-\bigskip
-
-
-\noindent {\it 2. Verifying equation (\ref{eq:sum-1-to-nsq}) for $S_2(n)$.}
-%
-For every positive integer $m$, let {\bf P}$_2(m)$ be the proposition
-\[  1 \ + \ 2^2 \ + \ 3^2 \ + \cdots + \ m^2 \ = \ 
-\frac{1}{6} m (m+1)(2m+1).
+We observe first that---at least within the illustrated portion of the table---the $i$ elements
+of the $i$th group add up to $i^3$:
+\[
+\begin{array}{llrrrrclcc}
+\mbox{group $1$, of size 1:} & &
+1,  &    &     &     & \mbox{: sum} = &  1^3 \\
+\mbox{group $2$, of size 2:} & &
+3,  &  5, &     &    & \mbox{: sum} =  &  2^3 \\
+\mbox{group $3$, of size 3:} & &
+7,  &  9, & 11, &    &  \mbox{: sum} = &  3^3 \\
+\mbox{group $4$, of size 4:} & &
+13, & 15, & 17, & 19 & \mbox{: sum} =  &  4^3 \\
+\end{array}
 \]
-We proceed according to the standard format of an inductive argument.
 
-\begin{description}
-\item[{\sf The base case P$_2(1)$}.]
-%
-Because ${\displaystyle \frac{1}{6} (2 \cdot 3)} = 1$, proposition {\bf
-    P}$_2(1)$ is true.
-
-\item[{\sf The inductive hypothesis}.]
-%
-Assume, for the sake of induction, that proposition {\bf P}$_2(m)$ is
-true for every positive integer $m < n$.  In particular, then,
-proposition {\bf P}$_2(n-1)$ is true.
-
-\item[{\sf Extending the induction}.]
-%
-Because proposition {\bf P}$_2(n-1)$ is true, we know that
-\[ S_2(n-1) \ = \
-\frac{1}{6} (n-1) \cdot n \cdot (2n-1).
+We observe next that, by construction, the $i$th group/row of odd integers in the table consists of the
+$i$ consecutive odd numbers beginning with the $\left( \Delta_{i-1} +1 \right)$th odd number,
+$2 \Delta_{i-1} +1$.  Since consecutive odd numbers differ by $2$, this means that the $i$th
+group (for $i>1$) comprises the following odd integers:
+\[
+2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 , \
+\ldots, \ 2 \Delta_{i-1} + (2i-1)
 \]
-By direct calculation, then,
+Therefore, invoking Proposition~\ref{thm:squares-odd-integers-Gauss},
+the {\em sum} of the $i$ integers in group $i$, call it $\sigma_i$, equals
 \begin{eqnarray*}
-S_2(n) & = &
-\frac{1}{6} (n-1) \cdot n \cdot (2n-1) \ + \ n^2 \\
-  & = &
-\frac{n}{6} \left( (n-1) \cdot (2n-1) + 6n \right) \\
-  & = & \frac{n}{6} \left( 2n^2 +3n + 1 \right) \\ 
-  & = & \frac{n}{6} (n+1)(2n+1),
+\sigma_i & = &
+2 i \Delta_{i-1} \ + \ \big( 1 + 3 + \cdots + (2i-1) \big) \\
+   & = & 2 i \Delta_{i-1} \ + \ \mbox{(the sum of the first $i$ odd numbers)} \\
+   & = & 2 i \Delta_{i-1} \ + \ i^2
 \end{eqnarray*}
-as was verified in equation (\ref{eq:sum-1-to-nsq}).
-\end{description}
-Because $n$ is an arbitrary positive integer, we conclude that
-{\bf P}$_2(n)$ is true whenever
-\begin{itemize}
-\item
-{\bf P}$_2(1)$ is true
-\item
-{\em and}
-{\bf P}$_2(m)$ is true for all $m < n$.
-\end{itemize}
-By the Principle of (Finite) Induction, then, we conclude that
-proposition {\bf P}$_2(n)$ is true for all positive integers $n$.
-\qed
+By direct calculation, then, 
+\[ \sigma_i \ \ = \ \
+2i  \cdot \frac{i(i-1)}{2} \ + \ i^2 \ \ = \ \
+(i^3 - i^2)  \ + \ i^2 \ \ = \ \ i^3
+\]
 
+\noindent
+The proof is now completed by concatenating the rows of table (\ref{eq:triagular-table}) and
+observing the pattern that emerges:
+\[ (1) \ + \ (3 + 5) \ + \ (7 + 9 + 11) \  + \cdots
+\ \ = \ \ 1^3 \ + \ 2^3 \ + \ 3^3 \ + \cdots 
+\]
+Note the ``Fubini-esque" arrangements and groupings throughout this argument.  \qed
+\end{proof}
 
-\bigskip
+\ignore{************
+You should now verify by induction that $2 \Delta_{i-1} +(2i-1) \ = \ 2 \Delta_{i} -1$, 
+which gives us another expression for the last odd integer in group $i$.  
+Once one verifies that $2 \Delta_{i-1} +2i-1 \ = \ 2
+\Delta_{i} +1$, one discovers that this group has the sum
+{\Denis Induction is not needed, the expression is simply obtained by definition of triangular numbers.}
+\[
+2i \Delta_{i-1}  \ - \ 2 \Delta_{i-1} +i  \  = \
+(2i -1) \Delta_i + i \ = \ i^3.
+\]
 
-\noindent {\it 3. Verifying that each perfect square $n^2$ is
-  the sum of the first $n$ odd integers.}
-%
-We turn finally to the assertion that, for every positive integer $n$,
-\[ n^2 \ = \ 1 \ + \  3 \ + \ 5 \ + \cdots + \ 2n-1. \]
-For each positive integer $n$, let {\bf P}$(n)$ denote the proposition
-that the preceding equation holds.
+In other words, group $i$ consists of the odd numbers
+\[ 2 \Delta_{i-1} +1, \ 2 \Delta_{i-1} +3, \  \ldots, \  2\Delta_i -1 \]
+**************}
 
-The following inductive proof complements the constructive proofs of
-the same result in Proposition~\ref{thm:squares-odd-integers-Gauss}.
-We proceed according to the standard format of an inductive argument.
-
+We turn now to a {\em pictorial} illustration that the sum of the perfect cubes up to $k$
+is equal to the square of $\Delta_k$.  We verify this charming fact by an induction that
+reflects the structure of table (\ref{eq:triagular-table}).
 \begin{description}
-\item[{\bf The base case P$(1)$}.]
-%
-Because $1$ is a perfect square, proposition {\bf P}$(1)$ is true.
+\item[{\bf Base cases.}]
+We display the first two cases of the claimed result.
+\[ \begin{array}{ccccc}
+1^3                     & = & 1   & = {\displaystyle {2 \choose 2}^2 } \\
+1^3 + 2^3           & = & 9   & = {\displaystyle {3 \choose 2}^2 } \\
+\end{array}
+\]
+These cases are represented pictorially in Figs.~\ref{fig:sumCubes1} and~\ref{fig:sumCubes1bis},
+which reflect the first two groups in table (\ref{eq:triagular-table}).
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.35]{FiguresMaths/SumCubes1}
+\caption{Pictorially depicting the odd numbers  $\{1\}$ (group $1$ in table (\ref{eq:triagular-table}))
+and $\{3, 5\}$  (group $2$ in table (\ref{eq:triagular-table})).}
+       \label{fig:sumCubes1}
+\end{center}
+\end{figure}
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumCubes1bis}
+\caption{Illustrating how to form a perfect square from the odd integers of
+Fig.~\ref{fig:sumCubes1}.  One arranges the pictorial representation of the integers into the
+depicted figure.  The clear portions of the resulting perfect square come from 
+group $2$ in table (\ref{eq:triagular-table}); the shaded small square comes from 
+group $1$ in table (\ref{eq:triagular-table}).}
+       \label{fig:sumCubes1bis}
+\end{center}
+\end{figure}
 
-\item[{\bf The inductive hypothesis}.]
-%
-Assume, for the sake of induction, that proposition {\bf P}$(m)$ is
-true for every positive integer $m < n$.  In particular, then,
-proposition {\bf P}$(n-1)$ is true.
 
-\item[{\bf Extending the induction}.]
+\item[{\bf Inductive hypothesis}.]
+Say for the sake of the induction that the target equality holds for all $n < k$; i.e.,
+\[ 1^3 \ + \ 2^3 \ + \cdots + \ n^3 \ \ = \ \ (\Delta_n)^2 \ \ = \ \ {{n+1} \choose 2}^2 \]
+
+\medskip
+
+**HERE
+
+
+$2i \Delta_i$ + ($\Delta_{i-1})^2$
+
+$(\Delta_{i-1} + i)^2 \ = \ (\Delta_{i-1})^2 + 2i \Delta_{i-1} + i^2$ 
+
+
+
+Let us compare the quantities  $(\Delta_k)^2$ and $1 + 2^3 + \cdots + k^3$.
+
+
+
+We know from the previous analysis on triangular numbers
+%Proposition~\ref{thm:sum-first-integers-Gauss} 
+
+
+
+The average of the two odd numbers in the second row is equal to $4$,
+ next represent the number $8 = 2^3$ (which is the {\em cube} of $2$)
+\ignore{{\Arny How do we know to do this?  What do these two squares have to do with $2^3$?}}
+
+
+ by two $2 \times 2$ squares: the figures following the unit square in
+Fig.~\ref{fig:sumCubes1}.
+Fig.~\ref{fig:sumCubes1bis} illustrates graphically that $1+ 2^3$
+is a perfect square.
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumCubes3}
+\caption{The next step in the construction also produces a perfect square. Here $i=3$}
+       \label{fig:sumCubes3}
+\end{center}
+\end{figure}
+Fig.~\ref{fig:sumCubes3} illustrates that iterating the process one more time also
+produces a perfect square. 
+The case of odd indices is easy since we don't need to rearrange the unit squares 
+(the surfaces perfectly fit).
+However, the case of even $i$ needs a little more effort as shown in Fig.~\ref{fig:sumCubesEven}
+and \ref{fig:sumCubesEvenFinal}.
+
+{\Arny How do we know about the geometric arrangement of $1^3 + 2^3 + 3^3$?}
+{\Denis We simply add $3^3$ to the square: I added two figures to explain in the most diffifult case of even $i$...}
+
+ Comparing Figs.~\ref{fig:sumCubes1bis}
+and~\ref{fig:sumCubes3} indicates a parity constraint on the process:
+at even-numbered steps, the subsquares that get ``merged'' are
+overlapping; at odd-numbered steps, they are not.
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.35]{FiguresMaths/SumCubesEven}
+\caption{****The next step in the construction also produces a perfect square (here $i=4$).
+The dark grey is the overlapped area.}
+       \label{fig:sumCubesEven}
+\end{center}
+\end{figure}
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/SumCubesEvenFinal}
+\caption{****How to move one of the overlapped area in order to obtain a perfect square.}
+       \label{fig:sumCubesEvenFinal}
+\end{center}
+\end{figure}
+
+\medskip
+
+\item[{\bf Inductive extension}.]
 %
-Because proposition {\bf P}$(n-1)$ is true, we know that
-\[ 
- 1 + 3 + 5 + \cdots + 2n-3 + 2n-1 \ = \ (n-1)^2 + 2n-1.  \]
-By direct calculation, we see that
-\[ (n-1)^2 + 2n-1 \ = \ (n^2 -2n +1) + (2n-1) \ = \ n^2. \]
+Since consecutive odd numbers differ by $2$, we know that the $i$th
+group consists of the following odd integers ($i>1$):
+\[
+2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 ,
+\ldots, \
+2 \Delta_{i-1} + (2i-1)
+\]
+Once one verifies (say, by induction) that $2 \Delta_{i-1} +2i-1 \ = \ 2
+\Delta_{i} +1$, 
+{\Denis again, this should be a minus not a +1}
+one discovers that this group has the sum
+\[
+2i \Delta_{i-1} \ - \ 2 \Delta_{i-1} +i \ = \
+(2i -1) \Delta_i + i \ = \ i^3.
+\]
 \end{description}
-Because $n$ is an arbitrary positive integer, we conclude that
-{\bf P}$(n)$ is true whenever
-\begin{itemize}
-\item
-{\bf P}$(1)$ is true
-\item
-{\em and}
-{\bf P}$(m)$ is true for all $m < n$.
-\end{itemize}
-By the Principle of (Finite) Induction, then, we conclude that {\bf
-  P}$(n)$ is true for all $n \in \N^+$.
-\qed
-*****************}
+This concludes the subproof about groups summing to perfect cubes.
+
+Because each row contains one more integer than its predecessor, row
+$i$ contains the sum of the odd integers from $\Delta_{i-1}+1$ to
+$\Delta_i$.  By direct calculation, we can therefore compute the row's
+sum as
+
+{\Arny This is the denouement of the argument, and I do not sense the flow of the reasoning.}
+{\Denis I hope this is clear now!}
+
+\[
+\Delta_i^2 \ - \ \Delta_{i-1}^2 
+%\left( \frac{i(i+1)}{2} \right)^2 \ - \ \left( \frac{i(i-1)}{2} \right)^2
+ \ \ =  \ \ \frac{i^2}{4} \left( (i+1)^2 - (i-1)^2 \right)
+% & = & \frac{i^2}{4} (4i) \\
+ \ \ = \ \ i^3
+\]
+
+
+
+
 
 \subsubsection{$S_c(n)$ for general {\em negative} $c$th powers}
 \label{sec:sum-of-i2c<0}
@@ -2808,5 +2679,172 @@ From a given value of $i$, each $A_i$ and its successive values have roughly the
 In other words, we go from index $2^i$ to $2^{i+1}$ in $S^{H}$ by a multiplication by $2$ that corresponds to adding a constant. 
 This is exactly what the log means!
 ***************}
+\ignore{***************
 
+\paragraph{C. On validating approximate summations} 
+{\Denis I believe this paragraph is not needed since it is done in DOINGMATHS...}
+
+We employ the proof technique of (Finite) Induction by proving the
+correctness of three summation formulas that have occupied our
+attention in this chapter:
+\begin{enumerate}
+\item
+the sum $S_1(n)$ of the first $n$ positive integers; cf., equation
+(\ref{eq:sum-1-to-n})
+
+\item
+the sum $S_2(n)$ of the squares of the first $n$ positive integers;
+cf., equation (\ref{eq:sum-1-to-nsq})
+
+\item
+the sum of the first $n$ odd positive integers; cf.,
+Proposition~\ref{thm:squares-odd-integers-Gauss}.
+\end{enumerate}
+We deal with these formulas in turn.
+
+\noindent {\it 1. Verifying equation (\ref{eq:sum-1-to-n}) for $S_1(n)$.}
+%
+For every positive integer $m$, let {\bf P}$_1(m)$ be the proposition
+\[  1 \ + \ 2 \ +  \cdots  + \ m \ = \ {{m+1} \choose 2}. \]
+We proceed according to the standard format of an inductive argument.
+
+\begin{description}
+\item[{\bf The base case P$_1(1)$}.]
+%
+Because ${\displaystyle {2 \choose 2}} = 1$, proposition {\bf P}$_1(1)$
+is true.
+
+\item[{\sf The inductive hypothesis}.]
+%
+Assume, for the sake of induction, that proposition {\bf P}$_1(m)$ is
+true for every positive integer $m < n$.  In particular, then,
+proposition {\bf P}$_1(n-1)$ is true.
+
+\item[{\bf Extending the induction}.]
+%
+Because proposition {\bf P}$_1(n-1)$ is true, we know that
+\[ S_1(n-1) \ = \ 1 + 2 + \cdots + (n-1) \ = \ {n \choose 2}.  \]
+By direct calculation, then,
+\begin{eqnarray*}
+S_1(n) & = & {n \choose 2} + n \\
+  & = & \frac{n(n-1)}{2}  \ + \ n \\ 
+%  & = & \frac{n^2 - n + 2n}{2} \\
+  & = & \frac{n^2 + n}{2} \\
+  & = & {{n+1} \choose 2},
+\end{eqnarray*}
+as was verified in equation (\ref{eq:sum-1-to-n}).
+\end{description}
+Because $n$ is an arbitrary positive integer, we conclude that
+{\bf P}$_1(n)$ is true whenever
+\begin{itemize}
+\item
+{\bf P}$_1(1)$ is true
+\item
+{\em and}
+{\bf P}$_1(m)$ is true for all $m < n$.
+\end{itemize}
+By the Principle of (Finite) Induction, then, we conclude that
+proposition {\bf P}$_1(n)$ is true for all positive integers $n$.
+\qed
+
+\bigskip
+
+
+\noindent {\it 2. Verifying equation (\ref{eq:sum-1-to-nsq}) for $S_2(n)$.}
+%
+For every positive integer $m$, let {\bf P}$_2(m)$ be the proposition
+\[  1 \ + \ 2^2 \ + \ 3^2 \ + \cdots + \ m^2 \ = \ 
+\frac{1}{6} m (m+1)(2m+1).
+\]
+We proceed according to the standard format of an inductive argument.
+
+\begin{description}
+\item[{\sf The base case P$_2(1)$}.]
+%
+Because ${\displaystyle \frac{1}{6} (2 \cdot 3)} = 1$, proposition {\bf
+    P}$_2(1)$ is true.
+
+\item[{\sf The inductive hypothesis}.]
+%
+Assume, for the sake of induction, that proposition {\bf P}$_2(m)$ is
+true for every positive integer $m < n$.  In particular, then,
+proposition {\bf P}$_2(n-1)$ is true.
+
+\item[{\sf Extending the induction}.]
+%
+Because proposition {\bf P}$_2(n-1)$ is true, we know that
+\[ S_2(n-1) \ = \
+\frac{1}{6} (n-1) \cdot n \cdot (2n-1).
+\]
+By direct calculation, then,
+\begin{eqnarray*}
+S_2(n) & = &
+\frac{1}{6} (n-1) \cdot n \cdot (2n-1) \ + \ n^2 \\
+  & = &
+\frac{n}{6} \left( (n-1) \cdot (2n-1) + 6n \right) \\
+  & = & \frac{n}{6} \left( 2n^2 +3n + 1 \right) \\ 
+  & = & \frac{n}{6} (n+1)(2n+1),
+\end{eqnarray*}
+as was verified in equation (\ref{eq:sum-1-to-nsq}).
+\end{description}
+Because $n$ is an arbitrary positive integer, we conclude that
+{\bf P}$_2(n)$ is true whenever
+\begin{itemize}
+\item
+{\bf P}$_2(1)$ is true
+\item
+{\em and}
+{\bf P}$_2(m)$ is true for all $m < n$.
+\end{itemize}
+By the Principle of (Finite) Induction, then, we conclude that
+proposition {\bf P}$_2(n)$ is true for all positive integers $n$.
+\qed
+
+
+\bigskip
+
+\noindent {\it 3. Verifying that each perfect square $n^2$ is
+  the sum of the first $n$ odd integers.}
+%
+We turn finally to the assertion that, for every positive integer $n$,
+\[ n^2 \ = \ 1 \ + \  3 \ + \ 5 \ + \cdots + \ 2n-1. \]
+For each positive integer $n$, let {\bf P}$(n)$ denote the proposition
+that the preceding equation holds.
+
+The following inductive proof complements the constructive proofs of
+the same result in Proposition~\ref{thm:squares-odd-integers-Gauss}.
+We proceed according to the standard format of an inductive argument.
+
+\begin{description}
+\item[{\bf The base case P$(1)$}.]
+%
+Because $1$ is a perfect square, proposition {\bf P}$(1)$ is true.
+
+\item[{\bf The inductive hypothesis}.]
+%
+Assume, for the sake of induction, that proposition {\bf P}$(m)$ is
+true for every positive integer $m < n$.  In particular, then,
+proposition {\bf P}$(n-1)$ is true.
+
+\item[{\bf Extending the induction}.]
+%
+Because proposition {\bf P}$(n-1)$ is true, we know that
+\[ 
+ 1 + 3 + 5 + \cdots + 2n-3 + 2n-1 \ = \ (n-1)^2 + 2n-1.  \]
+By direct calculation, we see that
+\[ (n-1)^2 + 2n-1 \ = \ (n^2 -2n +1) + (2n-1) \ = \ n^2. \]
+\end{description}
+Because $n$ is an arbitrary positive integer, we conclude that
+{\bf P}$(n)$ is true whenever
+\begin{itemize}
+\item
+{\bf P}$(1)$ is true
+\item
+{\em and}
+{\bf P}$(m)$ is true for all $m < n$.
+\end{itemize}
+By the Principle of (Finite) Induction, then, we conclude that {\bf
+  P}$(n)$ is true for all $n \in \N^+$.
+\qed
+*****************}
 
