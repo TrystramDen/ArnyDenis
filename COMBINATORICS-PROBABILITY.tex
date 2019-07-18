@@ -319,21 +319,34 @@ discrete probability/likelihood as a counting problem---most specifically, of de
 \]
 as the ``probability" of event $E$.
 
-We focus on three notions of arrangement within the context of a set of $n$ items.
-With no loss of generality, we focus on a set of $n$ abstract objects
+\medskip
+
+We focus on three notions of arranging, and selecting from, a set of $n$ objects:
 \[ \{ x_1, x_2, \ldots , x_n\} \]
+When useful for explaining some idea, we sometimes identify the $x_i$ as some specific type
+of objects, such as numbers, but generally we do not exploit any specific
+characteristics of the $x_i$.
 
 \medskip
 
-\noindent {\it Permutations}.
-A permutation of an $n$-element set is a {\em fixed ordering} of the elements of the set:  
-each element of the set appears precisely once in the ordering.  We denote a permutation
+\noindent {\it Permutations}.\index{permutation}
+A permutation of an $n$-element set $A$ is a {\em fixed ordering} of the elements of $A$:  
+each element of $A$ appears precisely once in the ordering.  We denote a permutation
 of an $n$-element set via the notation
 \[ (x_1,x_2, \ldots , x_n) \]
-where each element $x_i$ appears precisely once.  Note that we use parentheses for grouping,
+where each $x_i$ appears precisely once.  Note that we use parentheses for grouping,
 as in ``$(3,2,1,4)$", instead of braces, as in ``$\{3,2,1,4\}$", to emphasize the ordering.  In
 particular,
 \[ \{3,2,1,4\} \ = \ \{1,2,3, 4\} \ \ \ \mbox{ but } \ \ \ (3,2,1,4) \ \neq \ (1, 2, 3,4) \]
+
+\medskip
+
+In terms of problems relating to {\em selecting}\index{selection problems}
+$m$ elements from a set of $n \geq m$ elements, permutations give rise to the most demanding
+genre of selection: {\em They demand accounting for both the {\em identities}
+of the selected elements and the {\em orders} in which the elements were selected.}
+
+\medskip
 
 It is a straightforward exercise to count the number of permutations of $n$ items.
 
@@ -343,16 +356,17 @@ The number of permutations, $P(n)$, of a $n$-element set equals $n!$
 \end{prop}
 
 \begin{proof}
-Just for the practice, let us consider two inductive proofs of this simple result.  We merely
-sketch the inductions, leaving details for your practice.
+Just for the practice, we describe two inductive proofs of this simple result, based on two
+quite-distinct eays of constructing permutations.  We merely
+sketch the inductions underlying the proofs, leaving details for your practice.
 
 \medskip
 
 \noindent {\bf 1.}
-Let us construct a permutation of the $n$-element set $\{ x_1, x_2, \ldots , x_n\}$.
+To construct a permutation of the $n$-element set $\{ x_1, x_2, \ldots , x_n\}$:
 \begin{itemize}
 \item
-We can select the first element of our permutation in $n$ ways; any $x_i$ will work.
+Select the first element of the permutation in $n$ ways: any $x_i$ will work.
 \item
 Having selected the first item, we are left with the $(n-1)$-element version of the problem.
 \end{itemize}
@@ -370,14 +384,32 @@ By elementary reasoning, we find that $P(n) \ = \ n!$.
 \bigskip
 
 \noindent {\bf 2.}
-Assume that the proposition is true for $n$-element sets, and consider how to 
-construct a permutation $(x_1, \ldots , x_n, x_{n+1})$ of an $(n+1)$-element set,
-starting with a permutation $(x_1, \ldots , x_n)$ of an $n$-element set.  We take a new
-element $x$.  It can occupy any of $n+1$ positions in the new permutation: it can reside
-before any preexisting element, or after all of the preexisting elements, or in between any
-adjacent preexisting elements.  Each of these $n+1$ choices creates a unique
-permutation of the $(n+1)$-element set $\{x_1, \ldots , x_n, x_{n+1}\}$.
-The arithmetic is the same as in case {\bf 1}.  \qed
+To construct a permutation of the $n$-element set $A = \{ x_1, x_2, \ldots , x_n\}$:
+\begin{itemize}
+\item
+Assume, inductively, that you are given a fixed 
+permutation $(x_1, \ldots , x_{n-1})$ of an $(n-1)$-element subset $A'  \subset A$,
+chosen somehow from among the $(n-1)!$ possible orderings of set $A'$.  (Note
+the thinly veiled use of induction.)
+\item
+Take element $x_n$, which does not belong to $A'$, and place it into the ordering of $A'$
+that you are given.  You can place $x_n$ in any of $n$ positions in the new permutation:
+  \begin{itemize}
+  \item
+before (i.e., to the left of) all of the preplaced elements of $A'$;
+  \item
+after (i.e., to the right of) all of the preplaced elements of $A'$;
+  \item
+in between any adjacent preplaced elements of $A'$.
+  \end{itemize}
+Each of the preceding $n$ choices creates a unique permutation of the $n$-element set $A$.
+\end{itemize}
+Using arithmetic virtually identical to case {\bf 1} verifies that $P(n) \ = \ n!$.
+
+\medskip
+
+\noindent
+Other variants on the preceding proof themes will undoubtedly occur to you.   \qed
 \end{proof}
 
 
@@ -385,30 +417,71 @@ The arithmetic is the same as in case {\bf 1}.  \qed
 
 \medskip
 
-\noindent {\it Combinations}.
-The combinations are strongly linked with the binomial coefficients that are presented 
-in Section~\ref{sec:binomial-coeff}.
-We analyzed some properties in Section~\ref{sec:binomial-coeff+Pascal}.
+\noindent {\it Combinations}.\index{combination}
+Within the context of selection problems, combinations are the ``next step down" in
+strictness from permutations.  When one selects $m$ items from a set of $n \geq m$ items,
+combinations are concerned with the {\em identities} of the elements selected, but not with 
+the order in which they elements are chosen.
 
-The expression of the binomial coefficient is:
-\[ {n \choose k} \ = \ \frac{n(n-1)\ldots(n-k)}{k!} \]
-We proved this expression by recurrence, here is a combinatorial argument:
-
-The number of sequences of $k$ elements among $n$ is equal to n(n-1)\ldots(n-k)
-
-The number of orderings of a set of $k$ elements is $k!$
-
-The number of ways to choose $k$ over $n$ is the ratio of both previous factors.
+\noindent (This willingness to ignore order gives a big hint about how to count the number of
+combinations of $m$ items chosen from $n$.  Can you figure out how to use the hint before
+we get to Proposition~\ref{thm:no-combination}?)
 
 \medskip
+
+Factorials play as essential a role in combinational selection as in permutational selection, but
+now it plays a {\em dual} role: choosing the identities of the selected elements {\em and} factoring out
+the order in which the elements were selected.  The binomial coefficients that we introduced
+in Section~\ref{sec:binomial-coeff} and that have arisen several times since then
+throughout our journey are
+(literally!) tailor made for this genre of selection problem.  Recall that
+\[ {n \choose m} \ = \ \frac{n(n-1)\cdots(n-m)}{m!} \ = \  \frac{n!}{m!(n-m)!} 
+\]
+
+\begin{prop}
+\label{thm:no-combination}
+The number of ways of selecting $m$ elements from a set of $n \geq m$ elements, while 
+ignoring the order in which the $m$ elements were selected is $\displaystyle {n \choose m}$.
+\end{prop}
+
+\begin{proof}
+The number of {\em ordered} ways of selecting $m$ elements from a set of $n \geq m$
+elements is 
+\begin{equation}
+\label{eq:combination}
+n \cdot (n-1) \cdot \cdots \cdot (n-m+1) \ = \ \frac{n!}{(n-m)!}
+\end{equation}
+To wit: One can select the first element in any of $n$ ways.  Having selected this element,
+there are $n-1$ ways to choose the second element---and $n-2$ ways to choose the third
+element, $n-3$ ways to choose the fourth element, and so on.
+
+This method of numeration accounts for both the identity of the $i$th chosen element 
+{\em and} the fact that it was the $i$th element chosen.  In other words, if element $x_1$
+is the first element chosen,
+and element $x_2$ is the second one chosen, then the two orders of selection
+\[ x_1, \ x_2, \ \mbox{(a fixed order for the remaining $m-2$ selections)} \]
+and 
+\[ x_2, \ x_1, \ \mbox{(a fixed order for the remaining $m-2$ selections)} \]
+are counted as separate events.  Easily, this overcounting uniformly expands each of the
+events that we {\em do} want to account for by the factor $m!$, for this is the number of orders 
+in which we could have selected the finally chosen $m$ elements.
+ 
+This reasoning indicates that we can compensate for our overcounting by dividing the 
+{\em ordered} tally (\ref{eq:combination}) by $m!$.  This compensation replaces tally
+(\ref{eq:combination}) by $\displaystyle {n \choose m}$, whence the result.  \qed
+\end{proof}
+
+\bigskip
+
+\noindent {\it Derangements}\index{derangement}
+
+**HERE
 
 In the cartesian product  $A \times A ... \times A$, there are words with multiple $a_i$.
 For instance, considering $A=\{ 1,2,3 \}$, the element $(3,2,3,1)$ of $A^4$ contains twice the element $a_3=3$ 
 or $(1,2,1,1)$ contains three times $a_1=1$. 
 A natural question is to study what happens if we want only the words with different components?
 
-
-\subsection{Derangements}
 
 Derangements of a set $A$ is a bijection without \textit{fixed points}.
 This means that we donot allow an element to be associated to itself
@@ -450,18 +523,6 @@ $p=lim_{n \rightarrow \infty}\frac{d(n)}{n!}=\frac{1}{e}$.
 \label{sec:combinatorial-prob}
 
 
-
-
-
-
-
-
-
-
-{\Denis I don not know where to put the following subsection...}
-
-\subsection{The Elements of Combinatorial Probability}
-
 Perhaps the easiest and most engaging way to introduce ``probability
 via counting" is by calculating the comparative likelihoods of various
 deals in $5$-card poker and of various rolls of a pair of dice.  The
@@ -473,42 +534,7 @@ such as randomness, bias, etc., that are so important in the design of
 experiments and the analysis of their outcomes.
 
 
-\ignore{************
-\section{Toward a Basic Understanding of Statistics}
-
-Most students whose interest tend to the empirical will likely ``do"
-statistics with the aid of apps, rather than by explicitly writing
-programs that perform the required calculations.  That said, all
-students should understand the crucial notion of {\em random variable}
-and should be conversant with the most common statistical
-distributions.  ``Conversant" in this context should include complete
-understandings of the (low-numbered) moments of {\em at least} the
-{\em uniform} and {\em exponential} distributions.  They should know
-how to compute, say, the means and variances of various distributions
-— and, most importantly, they should {\em understand} the sense in
-which the variance of a distribution give {\em important} information
-that is not available from the mean.  All of this is prerequisite to
-rigor in experimentation.
-
-\subsubsection{The Elements of Empirical Reasoning}
-
-Empirical reasoning does not convey the certitude that formal
-reasoning does.  Students should understand how to craft experiments
-in a way that collects the ``right'' data.  The should then be
-able---perhaps just with statistical packages---to interpret the
-results they collect and to understand what conclusions are
-justifiable.  {\em It is essential that all students understand the                  
-  distinction between {\em positive correlation} and {\em causation}!}
-(Most of the public would seem to flunk that test.)
-
-In order to satisfy the preceding demands, students should understand
-enough about statistics---including definitions and meanings related
-to distributions and their moments---to understand what conclusions
-can be made based on experimental results, and to understand how to
-describe conclusions in a way that is supported by the statistics.
-***********}
-
-\section{Introduction to Probability}
+\subsection{Introduction to Probability}
 \label{sec:prob-stat}
 
 
@@ -534,7 +560,7 @@ following subsections.
 
 
 
-\section{The Elements of Combinatorial Probability}
+\subsection{The Elements of Combinatorial Probability}
 
 Perhaps the easiest and most engaging way to introduce ``probability
 via counting" is by calculating the comparative likelihoods of various
@@ -1060,6 +1086,7 @@ The second question is the main purpose of statistics that is developed in the n
 
 \section{Toward a Basic Understanding of Statistics}
 \label{sec:statistics}
+
 
 {\Denis I copied the two following paragraphs from the existing text (written a long time ago by you...}
 
