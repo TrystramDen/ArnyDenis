@@ -473,51 +473,98 @@ This reasoning indicates that we can compensate for our overcounting by dividing
 
 \bigskip
 
-\noindent {\it Derangements}\index{derangement}
+\noindent {\it Derangements}.\index{derangement}
+Derangements represent one of the simplest forms of {\em avoidance problems}.  Here is a
+well-known version of such a problem, in preparation for the general definition.
 
-**HERE
+Professor $X$ views it as a win-win strategy for the students in her class to grade each
+others' essays on {\it The Essential Truth in the Universe}.  The essays thereby get graded faster,
+as the grading process becomes a parallel rather than sequential computation.  Moreover,
+each student gets a chance to see how another student has interpreted some basic
+component of the human experience.  The only complication is: How should Professor $X$ 
+allocate essays among her students.  {\em The process must ensure that no student is assigned her
+own essay to critique.}
 
-In the cartesian product  $A \times A ... \times A$, there are words with multiple $a_i$.
-For instance, considering $A=\{ 1,2,3 \}$, the element $(3,2,3,1)$ of $A^4$ contains twice the element $a_3=3$ 
-or $(1,2,1,1)$ contains three times $a_1=1$. 
-A natural question is to study what happens if we want only the words with different components?
+The challenge that Professor $X$ is facing is known as the {\em derangement problems}.
 
-
-Derangements of a set $A$ is a bijection without \textit{fixed points}.
-This means that we donot allow an element to be associated to itself
-or (using a more formal vocabulary), there is no cycle of length 1 in the strings of $A^n$
-($n$ is the cardinal of $A$).
-
-Let denote by $d(n)$ the number of derangements.
 \medskip
 
-Consider for instance the set $A = \{1,2,3 \}$, there are two derangements, namely
-($1 \rightarrow 2$, $2 \rightarrow 3$, $3 \rightarrow 1$)
-and 
-($1 \rightarrow 3$, $2 \rightarrow 1$, $3 \rightarrow 2$).
+\noindent {\em
+A {\em derangement} of a (finite) set $A$ is a {\em bijection} $f: A \leftrightarrow A$ that has no 
+{\em fixed point}.}  In other words, for every $a \in A$, we must have $f(a) \neq a$.
+
 \medskip
 
-$d(1) = 0$ and $d(2) = 1$
+Clearly, derangements always exist.  One can just number the elements of set $A$ by the numbers
+$0, 1, \ldots, |A|-1$ and specify $f(a) = a+1 \bmod |A|$.
 
-$d(n) = (n-1) (d(n-1) + d(n-2))$
+But, playing around with some sets should convince you that derangements are not so common!
+In fact, the set  $A = \{0, 1,2 \}$ admits $6$ self-bijections, but only two are derangements, namely:
+\[
+\begin{array}{lll}
+f(a) = a+1 \bmod 3 &: &(0 \rightarrow 1),  (1 \rightarrow 2), (2 \rightarrow 0) \\
+\mbox{and} &  & \\
+g(a) = a-1 \bmod 3 &: & (0 \rightarrow 2),  (1 \rightarrow 0), (2 \rightarrow 1)
+\end{array}
+\]
+In fact, how many derangements does an arbitrary $n$-element set $A$ have?  We derive some 
+preliminary information about this question---but we basically leave further study of this
+non-elementary topic to the reader.
 
-$d(n) = (-1)^n + n d(n-1)$
-\bigskip
+\medskip
 
-By the principle inclusion/exclusion, we show that the complexity is roughly of order $n!$
+Let us denote by $d(n)$ the number of derangements of an arbitrary $n$-element set $A$.
 
-As the number of objects increases, the probability that none appears in its correct position approaches
+\medskip
+
+\begin{itemize}
+\item
+$n=1$:
+
+$d(1) = 0$: \ \ the unique bijection consists only of a fixed point. 
+
+\item
+$n=2$:
+
+$d(2) = 1$: \ \ there are two bijections, the identity (two fixed points) and the swap (a derangement)
+
+\item
+$n > 2$:
+
+$d(n) = (n-1) (d(n-1) + d(n-2))$:
+
+In any derangement, the first element of $A$, call it $a$, must map to some $b \neq a$.  There
+are $n-1$ ways in which $b$ can be chosen.
+
+\begin{itemize}
+\item
+There are $d(n-2)$ derangements under which element $b$ maps to $a$.  In detail, we know
+everything about $a$ and $b$, so the remaining $n-2$ elements of $A$ can ``derange" in all
+possible ways.
+
+\item
+There are $d(n-1)$ derangements under which element $b$ does not map to $a$.  In detail,
+as the process of ``choosing an image" passes through $A$, every element has two forbidden
+choices: it cannot choose itself (or these would be a fixed point) and it cannot choose one other
+element (for element $b$, this is element $a$).  In some sense, the notion of a
+forbidden element gets passed around, changing its identity at every step.
+\end{itemize}
+%$d(n) = (-1)^n + n d(n-1)$
+\end{itemize}
+
+Interestingly, as the sizes of the sets of interest number of objects grows without bound, the
+proportion of bijections that are derangements tend to the limit $1/e$, where $e$ is Euler's
+constant (the base of natural logarithms).
+
+\ignore{***********
+bability that none appears in its correct position approaches
 $p=lim_{n \rightarrow \infty}\frac{d(n)}{n!}=\frac{1}{e}$. 
 
 {\Denis Interesting: to be detailed in more details...}
+*****************}
 
 
-
-
-
-
-
-
+**HERE
 
 \section{The Elements of Combinatorial Probability}
 \label{sec:combinatorial-prob}
