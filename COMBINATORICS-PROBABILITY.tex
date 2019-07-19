@@ -502,38 +502,34 @@ But, playing around with some sets should convince you that derangements are not
 In fact, the set  $A = \{0, 1,2 \}$ admits $6$ self-bijections, but only two are derangements, namely:
 \[
 \begin{array}{lll}
-f(a) = a+1 \bmod 3 &: &(0 \rightarrow 1),  (1 \rightarrow 2), (2 \rightarrow 0) \\
+f(a) = a+1 \bmod 3 &: \mbox{which maps} &(0 \rightarrow 1),  (1 \rightarrow 2), (2 \rightarrow 0) \\
 \mbox{and} &  & \\
-g(a) = a-1 \bmod 3 &: & (0 \rightarrow 2),  (1 \rightarrow 0), (2 \rightarrow 1)
+g(a) = a-1 \bmod 3 &: \mbox{which maps} & (0 \rightarrow 2),  (1 \rightarrow 0), (2 \rightarrow 1)
 \end{array}
 \]
-In fact, how many derangements does an arbitrary $n$-element set $A$ have?  We derive some 
-preliminary information about this question---but we basically leave further study of this
-non-elementary topic to the reader.
+How many derangements does an arbitrary $n$-element set $A$ have?   We denote this quantity
+by $d(n)$.  While we leave most study of the non-elementary topic of derangements to the reader,
+we do derive a recurrence for $d(n)$. 
 
 \medskip
 
-Let us denote by $d(n)$ the number of derangements of an arbitrary $n$-element set $A$.
-
-\medskip
-
+We compute $d(n)$ for arbitrary $n \in \N^+$ via the following recursion:
 \begin{itemize}
 \item
-$n=1$:
+For $n=1$:  \ $d(1) = 0$.
 
-$d(1) = 0$: \ \ the unique bijection consists only of a fixed point. 
-
-\item
-$n=2$:
-
-$d(2) = 1$: \ \ there are two bijections, the identity (two fixed points) and the swap (a derangement)
+To wit, the unique bijection in this case consists only of a fixed point. 
 
 \item
-$n > 2$:
+For $n=2$:  \ $d(2) = 1$.
 
-$d(n) = (n-1) (d(n-1) + d(n-2))$:
+To wit, there are two bijections in this case, the identity, which has two fixed points, and the swap,
+which is a derangement.
 
-In any derangement, the first element of $A$, call it $a$, must map to some $b \neq a$.  There
+\item
+For $n > 2$: \ $d(n) = (n-1) (d(n-1) + d(n-2))$:
+
+To wit: In any derangement, the first element of $A$, call it $a$, must map to some $b \neq a$.  There
 are $n-1$ ways in which $b$ can be chosen.
 
 \begin{itemize}
@@ -552,6 +548,8 @@ forbidden element gets passed around, changing its identity at every step.
 %$d(n) = (-1)^n + n d(n-1)$
 \end{itemize}
 
+\medskip
+
 Interestingly, as the sizes of the sets of interest number of objects grows without bound, the
 proportion of bijections that are derangements tend to the limit $1/e$, where $e$ is Euler's
 constant (the base of natural logarithms).
@@ -564,9 +562,7 @@ $p=lim_{n \rightarrow \infty}\frac{d(n)}{n!}=\frac{1}{e}$.
 *****************}
 
 
-**HERE
-
-\section{The Elements of Combinatorial Probability}
+\section{A Practical Introduction to Combinatorial Probability}
 \label{sec:combinatorial-prob}
 
 
@@ -581,7 +577,7 @@ such as randomness, bias, etc., that are so important in the design of
 experiments and the analysis of their outcomes.
 
 
-\subsection{Introduction to Probability}
+\subsection{A Practical Introduction to Probability}
 \label{sec:prob-stat}
 
 
