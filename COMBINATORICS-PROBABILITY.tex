@@ -562,24 +562,25 @@ $p=lim_{n \rightarrow \infty}\frac{d(n)}{n!}=\frac{1}{e}$.
 *****************}
 
 
-\section{A Practical Introduction to Combinatorial Probability}
+\section{An Applied Introduction to Combinatorial Probability}
 \label{sec:combinatorial-prob}
 
-
 Perhaps the easiest and most engaging way to introduce ``probability
-via counting" is by calculating the comparative likelihoods of various
-deals in $5$-card poker and of various rolls of a pair of dice.  The
-arithmetic required for this discussion is elementary and the
-``application" to gambling of interest even to non-gamblers: ``Why is
-such a deal in poker (say, a straight) worth more than another (say,
-three of a kind)?"  One can also introduce in this setting concepts
+via counting" is by calculating game-related likelihoods---deals of cards,
+rolls of dice, guesses of various sorts.  ``Why is one specific genre of deal in poker (say, a straight)
+worth more than another (say, three of a kind)?"  The arithmetic required for such a discussion is elementary,
+and the references to ``gedanken" gambling are easily understood and are of some
+interest even to non-gamblers.  One can also introduce in such a setting concepts
 such as randomness, bias, etc., that are so important in the design of
 experiments and the analysis of their outcomes.
 
+This, then, will be our approach to the subject of combinatorial probability.  The reader has already
+seen more than enough ``dry" facts about sets and how to count their elements.  It is time to
+reap the rewards of that material. 
 
+\ignore{***************
 \subsection{A Practical Introduction to Probability}
 \label{sec:prob-stat}
-
 
 Elements of probability theory and statistics infuse every area of
 computing.  The practicality of many algorithms that are
@@ -600,71 +601,160 @@ many of the key concepts that a student must be exposed to in the
 following subsections.
 
 {\Denis Here we may be more precise about the content: the probabilities are built upon combinatoric rules, another interesting point is to distinguish between probability and statistics...}
+*****************}
 
+Before we begin to play, though, let us establish some expectations.
+\begin{itemize}
+\item
+We are going to focus on games of pure chance---because our underlying interest is in
+probability, not game theory.
+\bigskip
 
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+There exists an exciting mathematical field of study that is dedicated to all games:
+games of pure chance (which is our focus), games that combine skill and chance (e.g.,
+backgammon, bridge, or poker), and games of pure skill (e.g., chess or GO).   But, alas,
+the issues one must deal with when studying the broad spectrum of games go beyond the scope of our introductory text.
 
-\subsection{The Elements of Combinatorial Probability}
+We recommend to the reader just two classics works that may be of interest for historical 
+and cultural reasons, as well to supply a foundation for further study.  The first reference is to the
+classic \cite{vonNeumann-Morg} by American polymath John von Neumann \index{von Neumann, John}
+and German economist Oskar Morgenstern, \index{Morgenstern, Oskar} which established the
+connection between the mathematical subject of game theory and the field of economics.  
+(Now-familiar concepts such as ``rational game" and ``zero-sum game" originated in
+\cite{vonNeumann-Morg}.)  The second classic is \cite{Nash50}, by the American mathematician
+John Nash, \index{Nash, John} which introduced the now-familiar notion of ``Nash equilibrium."
+(The story behind \cite{Nash50} was movingly related in the movie ``{\it A beautiful mind}".)
+\end{minipage}
+}
 
-Perhaps the easiest and most engaging way to introduce ``probability
-via counting" is by calculating the comparative likelihoods of various
-deals in $5$-card poker and of various rolls of a pair of dice.  The
-arithmetic required for this discussion is elementary and the
-``application" to gambling of interest even to non-gamblers: ``Why is
-such a deal in poker (say, a straight) worth more than another (say,
-three-of-a-kind)?"  One can also introduce in this setting concepts
-such as randomness, bias, etc., that are so important in the design of
-experiments and the analysis of their outcomes.
+\bigskip
 
-Let recall that games can be characterized by pure gambling -- random games (dices and wheels), 
-mental games (board games like chess or GO)
- {\Denis I don't know the english term for the games that challenge the mind...} 
-and mixed ones (Backgammon, Bridge or Poker).
-\medskip
-
-Introducing discrete probability/likelihood as a ratio:
+\item
+Our definition of the notion of discrete probability, or, likelihood, as a ratio:
 \[ 
 \frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
 \]
+has technical consequences:
+\begin{itemize}
+\item
+The probability of any targeted event is $\leq 1$.  (Every targeted event is a possible event.)
+\item
+The probability of any targeted event is $\geq 0$.  When the probability equals $0$, then
+the event is a ``null event", i.e., cannot occur.
+\item
+The more likely an event is, the closer its probability is to $1$.
+\item
+Invoking the addition rule for counting sets, the joint probability of two disjoint events equals
+the sum of the events' probabilities.
+\item
+As a special case of the preceding rule: the joint probability of two {\em complementary} events
+equals $1$.  This is because the complement of an event whose probability is $p$ has
+probability  $(1-p)$.
+\end{itemize}
+\end{itemize}
 
-We have several immediate consequences:
-
-First, since the number of targeted events is lower than the number of all possible events,
-the probability is lower than $1$. 
-
-It is also positive, and a probability $0$ corresponds to the probability of an empty event.
-
-An event is as probable as its probability is close to 1.
-
-Using the additive rule, the probability of two distinct series of events is equal to the sum of the probabilities
-of both events. 
-In particular, the probability of two complementary events is equal to 1 (obtained by $p + (1-p)$).
 
 
-\subsection{Illustration: Playing Poker}
+\subsection{Illustration: The Game of Poker}
 
-Let us consider a usual deck of 52 cards composed of $n=13$ figures:
+We focus on a typical deck of 52 playing cards: The cards are partitioned into
 
-\textit{(2,3,4,5,6,7,8,9,10,Jack,Queen,King,Ace)} 
+\medskip
 
-on the 4 colors \textit{(club, diamond, heart and spades)}.
+\begin{tabular}{ll}
+four {\em suits}:  & {\sc clubs}, {\sc diamonds}, {\sc hearts}, {\sc spades} \ (in increasing value) \\
+  \\
+$13$ {\em face values}: &
+\begin{tabular}{ll}
+number cards: &
+$2$,
+$3$,
+$4$,
+$5$,
+$6$,
+$7$,
+$8$,
+$9$ \\
+picture cards: &
+{\sc Jack}, {\sc Queen}, {\sc King}, {\sc Ace} \ (in increasing value)
+\end{tabular} 
+\end{tabular} 
 
-The total number of possible \textit{hands} (i.e. set of the 5 cards owns by each player) is 
-${32 \choose 5} = \frac{52!}{5! 47!} = 2 598 960$, this is a huge number of possibilities that makes the Poker game an interesting one.
+\medskip
 
-The patterns that characterize the game in a hand can be classified by their number of occurrences.
-Let survey briefly the principal ones.
+\noindent
+In a popular version of the game of poker, each player is dealt a {\it hand} consisting of five cards.
+The total number of possible $5$-card hands, i.e., of (unordered sets) of $5$ cards, is just the number
+of ways of choosing a $5$-element set from a $52$-element set.  Using the counting techniques from
+Section~\ref{sec:set-arrangement}, we discover that this ``astronomical" number is
+\index{the number of random $5$-card deals in poker} 
+\[
+{32 \choose 5} \ \ = \ \ \frac{52!}{5! 47!} \ \ = \ \ 2, 598, 960 
+\]
+The size of this number explains much of what of makes the game of poker so interesting.
+
+\medskip
+
+Of course, it is the {\em patterns} of the cards in various hands that determines which hands
+beat other ones in the competition that is at the heart of poker.  It is a reasonable
+conjecture that the {\em value} of a given pattern is proportional to the {\em likelihood}
+of that pattern's arising in a random deal of five cards.  (Of course, {\em random} deals are 
+the personification of a fair game.)
+
+We now calculate the likelihoods of a variety of patterns arising in a fair game, in order to study
+the validity of the preceding conjecture.
+
+\medskip
 
 \begin{itemize}
 \item
-There are only 4 different ways to form a royal flush (i.e. the 5 cards  \textit{(10,J,Q,K,Ace)} of the same color). 
-Thus, the probability of getting such an hand is equal to $\frac{4}{2 598 960}$ that is one over $649740$, which is equal to $0.000154$.
+A {\it royal flush}\index{royal flush (in poker)} is a poker hand of the form
+
+\hspace*{.25in}$10$, \ {\sc Jack}, \ {\sc Queen}, \ {\sc King}, \ {\sc Ace} \ \ of the same suit
+
+\noindent
+There are only four ways to form a royal flush---one for each suit.  Therefore, the probability that
+a fair deal will produce such a hand is
+\[ \frac{4}{2,598,960} \ \ = \ \ {1 \over {649,740}} \ \ = \ \ 0.000154 \]
+
 \item
-Now, let us calculate the number of hands within a straight flush, excluding the royal flush.
+A {\it straight flush}\index{straight flush (in poker)} is a poker hand in which the cards share the
+same suit and follow one another in value.  Thus, a royal flush is a straight flush whose highest
+ranked card is an {\sc Ace}.
 
-The reasoning is similar as for the royal flush, taking into account that there are $9$ possible series of $5$ consecutive cards
-(from \textit{(Ace,2,3,4,5)}, \textit{(2,3,4,5,6)}, and so on --- shifted progressively --- to \textit{(9,10,J,Q,K)}).
+Let us calculate the number of straight flushes that are {\em not} royal flushes.
 
-Thus, as the flush requires to have the same color, there are $9 \times 4 = 36$ such hands. 
+The counting is similar as for a royal flush:  For each suit, there are nine sequences of $5$ cards
+that are consecutive in rank.  From lowest rank to highest:
+\[ \begin{array}{llccccc}
+\mbox{Hand \#1}: & &
+2 & 3 & 4 & 5 & 6 \\
+\mbox{Hand \#2}: & &
+3 & 4 & 5 & 6 & 7 \\
+\mbox{Hand \#3}: & &
+4 & 5 & 6 & 7 & 8 \\
+\mbox{Hand \#4}: & &
+5 & 6 & 7 & 8 & 9 \\
+\mbox{Hand \#5}: & &
+6 & 7 & 8 & 9 & 10 \\
+\mbox{Hand \#6}: & &
+7 & 8 & 9 & 10 &  \mbox{J} \\
+\mbox{Hand \#7}: & &
+8 & 9 & 10 &  \mbox{J} &   \mbox{Q} \\
+\mbox{Hand \#8}: & &
+9 & 10 &  \mbox{J} & \mbox{Q} &  \mbox{K}  \\
+\mbox{Hand \#9}: & &
+10 &  \mbox{J}
+     & \mbox{Q}
+     & \mbox{K}
+     & \mbox{A}
+\end{array} \]
+The probability of being dealt a royal flush is, thus, precisely $1/9$ the probability of being dealt a
+straight flush.
+
+**HERE
 \item
 Four-of-a-kind.
 
@@ -693,7 +783,7 @@ thus:
 \end{itemize}
 
 
-\subsection{The Monty Hall Puzzle}
+\subsection{Illustration: The Monty Hall Puzzle}
 \label{sec:monty-hall}
 
 The following real-life situation illustrates that reasoning
@@ -777,7 +867,7 @@ of this text: See \cite{Lee12} for a general presentation of this
 topic and \cite{Bayes} for the original work.
 
 
-\subsection{The Birthday Puzzle}
+\subsection{Illustration: The Birthday Puzzle}
 \label{sec:birthday-puzzle}
 \index{birthday puzzle}
 
@@ -884,7 +974,7 @@ For our teacher whose class has 30 students, the probability grows up
 to $70.632\%$.
 
 
-\subsection{Sum-of-Spots Dice Games}
+\subsection{Illustration: Sum-of-Spots Dice Games}
 \label{sec:three-dice}
 \index{Dice games}
 
@@ -1100,7 +1190,7 @@ number of configurations & 1 & 3 & 6 & 10 & 15 & 21 & 25 & 27  \\
 
 %{\Denis This result is amazing since the series grows like the sum of the first $n_{th}$ integers, except for the last ones which are truncated. This is probably possible to prove it!}
 
-\subsection{Synthesis and transition}
+\section{Synthesis and transition}
 
 **HERE
 
