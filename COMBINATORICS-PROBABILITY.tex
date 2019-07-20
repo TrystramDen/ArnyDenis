@@ -717,7 +717,7 @@ A {\it royal flush}\index{royal flush (in poker)} is a poker hand of the form
 \noindent
 There are only four ways to form a royal flush---one for each suit.  Therefore, the probability that
 a fair deal will produce such a hand is
-\[ \frac{4}{2,598,960} \ \ = \ \ {1 \over {649,740}} \ \ = \ \ 0.000154 \]
+\[ \frac{4}{2,598,960} \ \ = \ \ {1 \over {649,740}} \ \ \approx \ \ 0.00000154 \ \ = \ \ 1.54 \times 10^{-6} \]
 
 \item
 A {\it straight flush}\index{straight flush (in poker)} is a poker hand in which the cards share the
@@ -752,17 +752,48 @@ that are consecutive in rank.  From lowest rank to highest:
      & \mbox{A}
 \end{array} \]
 The probability of being dealt a royal flush is, thus, precisely $1/9$ the probability of being dealt a
-straight flush.
+straight flush; the probability of getting a straight flush is, therefore,
+\[  {3 \over {216,580}} \ \ \approx \ \ 0.0000139  \ \ = \ \ 1.39 \times 10^{-5} \]
 
-**HERE
 \item
-Four-of-a-kind.
+{\it Four-of-a-kind} is a poker hand of the form \\
+\hspace*{.25in}$X, \ X, \ X, \ X, \ Y$ \\
+where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
+and $X \neq Y$.
 
-There are $13$ possible cards. There is a remaining card left that is any one among the 48 remaining ones.
+\medskip
+
+There are $13$ possible face values; each is a candidate for being card $X$.  Having chosen card
+$X$, there are $48$ possible choices for card $Y$.  Each selection  of
+cards $X$ and $Y$ specifies a unique {\it four-of-a-kind} poker hand.
+The multiplication principle thus tells us that there are precisely $13 \times 48 = 624$ {\it four-of-a-kind}
+poker hands, so the probability of being dealt such a hand is
+\[ \frac{624}{2598960 }  \ \ \approx \ \ 2.4 \time 10^{-4} . \]
+
+\ignore{***********
+is a remaining card left that is any one among the 48 remaining ones.
 Indeed, according to the multiplicative principle, it remains ${12 \choose 1}$ in each of the $4$ colors. 
 Thus, $13 \times 48 = 624$, which corresponds to the probability $0.00256$.
+*************}
+
 \item
-Three-of-a-kind and Full Houses.
+We finally look at two closely related hands together because their analyses are so similar.
+\begin{itemize}
+\item
+A {\it Full house} is a poker hand of the form \\
+\hspace*{.25in}$X, \ X, \ X, \ Y ,\ Y$ \\
+where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
+and $X \neq Y$.
+
+\item
+{\it Three of a kind} is a poker hand of the form \\
+\hspace*{.25in}$X, \ X, \ X, \ Y, \ Z$ \\
+where $X, Y,  Z \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
+and $|\{X, Y, Z\}| =3$.  The final equation is a ``cute", succinct, way of saying that $Y$ and $Z$
+differ both from $X$ and from each other.
+\end{itemize}
+
+**HERE
 
 The analysis of the first of these two patterns follows the same logic as for the Four-of-a-kind.
 Again, there are as many possibilities of the $3$ base cards of the pattern than the number of cards in a color ($13$)
