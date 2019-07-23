@@ -35,8 +35,8 @@ how many elements (of a certain type) set $S$ contains.
 \noindent {\it Combinatorial probability} (Section~\ref{sec:combinatorial-prob}).
 The tools we develop for determining the cardinalities of finite sets
 give us access to the important (and fun!)~field known as {\em
-  combinatorial probability} \index{combinatorial probability}
-(Section~\ref{sec:prob-stat}).  In reality, probability theory is an {\em applied} spin-off
+  combinatorial probability}. \index{combinatorial probability}
+In reality, probability theory is an {\em applied} spin-off
 of combinatorics.  In its most elementary---and, some might say, frivolous---form, combinatorial probability uses counting to 
 answer questions such as:  Why does the game of\index{poker}
 ($5$-card) poker value three-of-a-kind\index{poker!three-of-a-kind} more highly than two-pair?\index{poker!two-pair}
@@ -604,13 +604,15 @@ following subsections.
 *****************}
 
 Before we begin to play, though, let us establish some expectations.
-\begin{itemize}
-\item
-Our definition of the (discrete) probability, or, likelihood, of an event is in terms of a ratio:
+
+\bigskip
+
+\noindent
+{\em We define the (discrete) probability, or, likelihood, of an event is in terms of a ratio:}
 \[ 
 \frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
 \]
-This approach has technical consequences which influence our coverage of the topic.
+This approach has technical consequences.
   \begin{itemize}
   \item
 The probability of any targeted event $E$ is $\leq 1$.  This means:
@@ -641,7 +643,34 @@ equals $1$.  This is because the complement of an event whose probability is $p$
 probability  $(1-p)$.
   \end{itemize}
 
-\item
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+As just asserted, we view a probability as a number $p$ in the range $0 \leq p \leq 1$.  
+It is also very common, though, to view a probability as a {\em percent}, as in
+
+\smallskip
+
+\hspace*{.2in}``The likelihood of rain this morning is $50$\%."
+
+\smallskip
+
+In order to understand these competing locutions, the reader should recall that the word
+``percent" derives from the Latin ``{\it per centum}", which means ``per hundred".
+Therefore, one can always interchange the following  locutions
+
+\smallskip
+
+\hspace*{.2in}``Event $E$ occurs with probability $p$."
+
+\hspace*{.2in}``Event $E$ occurs with probability $(100 p)$\%."
+\end{minipage}
+}
+
+\bigskip
+
+\noindent
 We are going to focus on {\em games of pure chance}---because our underlying interest is in
 probability, not game theory.
 
@@ -665,7 +694,7 @@ John Nash, \index{Nash, John} which introduced the now-familiar notion of ``Nash
 (The story behind \cite{Nash50} was movingly related in the movie ``{\it A beautiful mind}".)
 \end{minipage}
 }
-\end{itemize}
+
 
 
 \subsection{Illustration: The Game of Poker}
@@ -961,30 +990,46 @@ computation of likelihoods!
 \index{birthday puzzle}
 
 This section presents another application of the rules of enumeration
-to the calculation of probabilities~\cite{DumasTrystram}.  The main
-message with this application is: {\em it is sometimes easier to
+to the calculation of probabilities.%~\cite{DumasTrystram}.
+The main message with this application is: {\em it is sometimes easier to
   calculate the probability that an event {\em does not} occur than
-  the probability that it {\em does} occur.}
+  the probability that it {\em does} occur.}. (Of course, this is a ``rule of thumb",
+  not a formal proposition. But, we do invite you to replicate the conclusions of
+  this section via a direct argument.)
 
 \medskip
 
-A common way for a teacher of a new class to establish rapport with
-students is to determine whether any students share a birthday.  When
-the class has (at least) around 30 students, the answer is usually
-\textit{yes}.  The frequency of this response suggests that the
-presence of birthday sharers is not mere chance!  If this is a
-mathematics class, then there is a teaching opportunity here!  The
-teacher and students can jointly derive an answer to the following
-question.
+A common way for a teacher who encounters a new class to establish rapport with
+students is to determine whether any students in the class share a birthday.  We
+demonstrate in this section that when the class has (at least) around 30 students, 
+the answer is usually \textit{yes}.  The fact that we can make such a specific claim 
+suggests that the presence of birthday-sharers is not a mere accident---there are
+probabilities at work here!
+
+\smallskip
+
+Let us study the following question.
+
+\smallskip
 
 {\it How many people must gather before the probability that some two share}
 
 {\it a birthday reaches 50\%?}
 
-\smallskip
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+If the teacher's new class focuses on a mathematical subject, then there is a teaching
+opportunity here!  The teacher and the students can collaboratively derive an answer
+to the following question.
+\end{minipage}
+}
+
+\bigskip
 
 \noindent
-We now develop an answer to this question, based on the assumption
+We now develop an answer to the birthday-sharing  question, based on the assumption
 that all dates are equally attractive as potential birthdays.
 
 \bigskip
@@ -992,32 +1037,38 @@ that all dates are equally attractive as potential birthdays.
 Let us focus on a common year, with 365 days; a simple modification of
 the coming calculation accommodates leap years.  A first, obvious,
 remark is that when there are 366 people in the class---and only
-then---the pigeonhole principle {\em guarantees}---with probability
-100\%---that some two people share a birthday.  If we were to lower
-our demands to a 50\% probability of a shared birthday, how much does
-this lower the required population of 366?  We show now that, somewhat
-unintuitively, this required number is lowered dramatically.
+then---the pigeonhole principle {\em guarantees} (with probability
+100\%) that some two people share a birthday.  When we lower our
+birthday-sharing target to a {\em 50\% probability} of a shared birthday, how much does
+this lower the required population of 366?  Somewhat
+unintuitively, the required number is lowered dramatically!
 
 \bigskip
 
-Surprisingly, we simplify the calculational component of our solution
-considerably by focusing in the {\em dual} \index{dual problem} form
-of our problem.  That is,
-\begin{description}
-\item[{\em Instead of}]
- determining a {\em lower bound} on the population
+We simplify the calculational component of our solution considerably by focusing on the 
+{\em dual} \index{dual problem} form of our problem.  That is:
+
+\smallskip
+
+\noindent {\em Instead of} determining a {\em lower bound} on the population
 that would guarantee a 50\% probability of a shared birthday,
-\item[we determine]
-an {\em upper bound} on the population that would
+
+\noindent {\em we determine} an {\em upper bound} on the population that would
 guarantee a 50\% probability of {\em no} shared birthday.
-\end{description}
-Let us denote by $\pi(n)$ the probability that there are no shared
-birthdays in a population of $n$ people.
+
+\medskip
 
 Since we assume that all birthdays are equally likely, the probability
 that any particular person has any particular birthday is $1/365$.  In
 other words, the space of all possible assignments of birthdays to all
 $n$ people has $365^n$ assignments---all of which are equally likely.
+
+Let us perform the following {\em gedanken} experiment (i.e., ``thought-experiment").
+
+\smallskip
+
+Say that we have an assemblage of $n$ ``proto-people"---i.e., people who do not yet have  birthdays.
+Our task is to assign birthdays to these folks in such a way that no two of them share a birthday.
 
 Focus first on person \#1: her birthday can be selected from any of
 the $365$ (indistinguishable) days of the year.  Moving on to person
@@ -1035,9 +1086,10 @@ assignments of birthdays to $n$ people, only
 (366-n+1) \ = \ \frac{365!}{(365-n)!} 
 \]
 assignments have no two people sharing a birthday.  Worded as a
-probability, then:
+probability, then, if we denote by $p(n)$ the probability that there are no shared
+birthdays in a population of $n$ people, we find that
 \begin{eqnarray*}
-\pi(n) & = &
+p(n) & = &
 \frac{\mbox{number of birthday assignments with no shared birthday}}
 {\mbox{total number of birthday assignments}} \\
  &  = & \frac{365!}{ (365-n)!  \times 365^n}
@@ -1050,16 +1102,16 @@ which there exists at least one shared birthday.  Since the event \\
 \hspace*{.25in}some two people share a birthday \\
 is the complement of the event \\
 \hspace*{.25in}no two people share a birthday \\
-the probability of a shared birthday is precisely $1-\pi(n)$.  We find
+the probability of a shared birthday is precisely $1-p(n)$.  We find
 that for $n=23$, the desired probability is $0.5073$:  In other words,
 
 \begin{prop}
-In any group of $23$ people, the chance that two people share the same
+In any group of $23$ people, the likelihood that two people share the same
 birthday is slightly greater than $50\%$, assuming a year with $365$
 equally likely days.
 \end{prop}
 
-For our teacher whose class has 30 students, the probability grows up
+For our teacher whose class has 30 students, the probability of a hared birthday grows
 to $70.632\%$.
 
 
