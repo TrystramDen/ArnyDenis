@@ -8,7 +8,6 @@ Representing Relationships Mathematically}
 Graphs provide one of the richest technical and conceptual frameworks
 in the world of computing.  They provide concrete representations of
 manifold data structures that should be studied in depth
-\ignore{**hence must be well understood**}
 in preparation for a ``Data Structures and Algorithms'' course.  They
 embody tangible abstractions of relationships of all sorts, hence must
 be well understood in order to discuss entities as varied as
@@ -54,7 +53,7 @@ academic program that includes a computation-oriented component.
 % general introduction
 The basic components of a graph $\g$ are \index{graph!nodes}
 \index{graph!vertices} \index{node (of a graph)} \index{vertex (of a graph)} 
-  its {\em nodes/vertices} (one encounters both terms in the
+its {\em nodes/vertices} (one encounters both terms in the
 literature) and its {\em edges} \index{graph!edges}
 \index{edge (of a graph)} that interconnect them.  (The singular form
 of ``vertices'' is {\it vertex}.)  \index{graph!vertex} \index{vertex (of a graph)}
@@ -79,6 +78,9 @@ digraph $\g$ can be ``translated'' to arguments about, or operations
 on, $\widehat{\g}$ with only clerical effort.  A {\em subgraph} $\g'$
 of a graph $\g$ is a graph whose nodes are a subset of $\g$'s and
 whose edges are a subset of $\g$'s that interconnect only nodes of $\g'$.  
+
+{\Denis Attention here, the notation $\widehat{x}$ is different to the one used later 
+in the structured graphs. Do we really need this notation? I guess not, thus, better to remove it here!}
 \medskip
 
 {\em Undirected} graphs are usually the default concept, in the
@@ -140,8 +142,6 @@ Notice also there may exist shorter paths in $\g$ from $u_1$ to $u_n$.)
 In the presentation above, we implicitly considered that there are no
 redundant vertices in a path.
 This is obviously always possible since if a vertex appears twice, we simply skip the sub-path between these two occurrences.
-
-{\Denis Do we introduce here few words here about the Koenig Lemma?}
 \end{minipage}
 }
 \bigskip
@@ -176,10 +176,13 @@ u_1 \ \stackrel{\lambda_1}{\rightarrow} \ u_2
 
 \medskip
 
+{\Denis in the following, there are many redundancies with the presentation above, I put them in bold, please, check and remove them...}
+
 If $u_1 = u_n$, then we call path (\ref{eq:di-path}) a {\em (directed)
   cycle},\index{cycle (in a digraph)} and we call its labeled version
-a {\em labeled (directed) cycle}.  (The qualifier ``directed'' is
-usually included only for emphasis.)
+a {\em labeled (directed) cycle}.  
+\textbf{(The qualifier ``directed'' is
+usually included only for emphasis.)}
 \medskip
 
 An {\em undirected graph} $\g$ is given by a set of nodes $\n$
@@ -189,8 +192,8 @@ of $2$-element subsets of $\n$.  Each of these subsets is called
 an {\it edge}.
 \index{graph!edge} \index{edge (of a graph)}
 One can, thus, view the undirected graph $\g$ as being obtained from a
-directed graph $\bar{\g}$ by removing the directionality of
-$\bar{\g}$'s arcs.  Whereas we say: \\
+directed graph by removing the directionality of
+its arcs.  Whereas we say: \\
 \hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} node $u$ {\em to}
 node $v$ \\
 we say: \\
@@ -220,8 +223,9 @@ to $\e$.  The {\it length} of path (\ref{eq:undi-path}) is the
 number of edges---which is $n-1$ here; and the existence of
 the path means that the {\it distance} \index{graph!distance} 
 \index{distance!in an undirected graph}
-{\it between} $u_1$ and $u_n$ in $\g$ is no greater than $n-1$.  (There
-may exist shorter paths that connect $u$ and $v$.)
+{\it between} $u_1$ and $u_n$ in $\g$ is no greater than $n-1$.  
+\textbf{(There
+may exist shorter paths that connect $u$ and $v$.)}
 \medskip
 
 For each edge $\{u,v\} \in \e$, we call nodes $u$ and $v$ {\it neighbors} (in $\g$).
@@ -269,7 +273,7 @@ $\g$.  After these eliminations, we are left with
 $2$-element subsets of $\n$, from which we choose the edges of
 $\g$. \qed
 \end{proof}
-
+{\Denis In the previous paragraph, the notation $\langle u,v \rangle$ is not introduced...}
 
 \begin{prop}
 \label{thm:even-num-odd-degrees}
@@ -283,11 +287,13 @@ any undirected graph $\g$:
 \[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot
 |\e_{\cal G}|.
 \]
-The equation holds because each edge $e$ of $\g$ ``touches'' two nodes
+The equation holds because each edge of $\g$ ``touches'' two nodes
 of $\g$, namely, $\e$'s two endpoints.  Since the sum of $\g$'s
 node-degrees is even, each odd node-degree must be paired (in the sum)
 with another odd node-degree.  \qed
 \end{proof}
+
+{\Denis I suggest to remove the subscrits of $\g$ and $\e$ in the formula (since there is no ambiguity...)}
 
 \medskip
 
@@ -329,8 +335,9 @@ is an arc of $\g$.
 The reader will note that we nowhere guarantee that there is always a
 path that connects each node $u$ with each other node $v$.  We say
 that a graph $\g$ is {\it connected} \index{graph!connected} if every
-pair of nodes $u, v \in \n_{\fg}$ is connected by a path in $\g$.  If
-graph $\g$ is {\em not} connected, then it is the disjoint union of
+pair of nodes $u, v \in \n_{\fg}$ is connected by a path in $\g$.  
+{\Denis same here, subscript is not needed...}
+If graph $\g$ is {\em not} connected, then it is the disjoint union of
 some number $c$ of connected subgraphs, usually called $\g$'s {\it
   (connected) components}.  \index{graph!connected components} Of
 course, $\g$ is connected just when $c=1$; i.e., there is a single
@@ -382,7 +389,7 @@ Each clause $C_i = (\ell_{i,1} \vee \ell_{i,2})$ is represented by a
 pair of arcs.  Say that literal $\ell_{i,1}$ comes from variable
 $x_1$, and literal $\ell_{i,2}$ comes from variable $x_2$.  These arcs
 represent ``instructions'' for assigning truth-values in a way that
-maximize the number of clauses that receive the value {\sc true}.
+maximizes the number of clauses that receive the value {\sc true}.
   \begin{itemize}
   \item
 There is an arc $(\bar{x_1} \rightarrow x_2)$.
@@ -451,6 +458,7 @@ Proposition~\ref{prop:2SAT}.
 Focus on a POS formula $\Phi$ and its associated digraph $\g(\Phi)$.
 
 {\bf Necessity}.
+{\Denis should we mention here that the proof is by using the contraposition?}
 Say first that $\g(\Phi)$ has a strongly connected component which
 contains vertices arising from a variable $x$ in both positive ($x$)
 and negated ($\bar{x}$) forms.  We claim that $\Phi$ is not
@@ -633,7 +641,7 @@ detail:
 
 The {\it diameter} \index{diameter in a graph} \index{graph!diameter}
 of an undirected graph is the largest distance between two nodes, 
-i.e., the largest number $d$ for which the exist a pair of nodes $u_1,
+i.e., the largest number $d$ for which there exists a pair of nodes $u_1,
 u_n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that
 when discussing undirected graphs, we always use {\em undirected}
 paths when defining distance.
@@ -883,7 +891,8 @@ having no more than $k$ nodes.
 
 Consider, for the purpose of extending the induction, any tree $\t$ on
 $k+1$ nodes.  Easily, $\t$ must contain at least one leaf-node---i.e.,
-a node $v$ of degree $1$---or else $\t$ would contain a cycle.  If we
+a node $v$ of degree $1$---or else $\t$ would contain a cycle.  
+{\Denis is it really obvious for the readers?} If we
 remove $v$ and its incident edge, we now have a tree on $k$ nodes
 which, by induction, has $k-1$ edges.  When we reattach node $v$, to
 restore $\t$ to its original state, we see that $\t$ has $k+1$ nodes
@@ -965,11 +974,14 @@ It is sometimes useful to have a symbolic notation for the ancestor
 and descendant relations.  To this end, we write $(u \Rightarrow v)$
 \index{$\Rightarrow$: ancestor/descendant in a rooted tree} to
 indicate that node $u$ is an {\it ancestor} of node $v$, or
-equivalently, that node $v$ is a {\it descendant} of node $u$.  If we
+equivalently, that node $v$ is a {\it descendant} of node $u$.  
+{\Denis Do we use the notation later? If not, we should remove it...}
+If we
 decide that we are not interested in {\em really distant} descendants
 of the root of a tree $\t$, then we can {\em truncate} \index{truncated}
 $\t$ at a desired depth $d$ by removing all nodes whose depths exceed
 $d$.  We thereby obtain the {\em depth-$d$ prefix} of $\t$.
+
 
 \ignore{****************
 Figure \ref{fig.graph-samples} depicts an arc-labeled rooted tree $\t$
@@ -1065,6 +1077,7 @@ none
   Figure \ref{fig.graph-samples}.  \label{tab.graph-samples}}
 \end{table}
 *********************}
+\medskip
 
 \noindent{\it Spanning trees}.
 One of the major uses of trees and forests is as a way of succinctly
@@ -1081,7 +1094,6 @@ spanning trees.  All such trees share $\g$'s node-set, but they may
 choose quite different sets of edges.
 
 \ignore{***
-
 For a graph $\g$ that is not connected, we replace the notion of
 spanning tree of $\g$ with the analogous notion of a {\it spanning
   forest} \index{graph!spanning forest} \index{spanning forest} of
@@ -1089,7 +1101,6 @@ $\g$.  We shall typically discuss only spanning trees in this section,
 leaving the reader to extrapolate the discussion to include spanning
 forests of unconnected graphs.
 ***}
-
 
 The major use of spanning trees in applications is to ``summarize''
 the full connectivity structure of a graph---and of the entities that
@@ -1121,6 +1132,9 @@ which partially spans the graph by adding at each step the minimum
 neighboring edge while the other add successively the edges of minimal
 weights that do not create a cycle.
 ****}
+
+{\Denis I suggest to move the next paragraph backward since it does not concern spanning trees...
+Actually, I found it rather redundant, may be just remove it?}
 
 Just as with graphs, there is a {\em directed} version of trees which
 is formed by replacing the (unoriented) edges of an undirected tree by
