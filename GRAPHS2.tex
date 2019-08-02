@@ -5,6 +5,7 @@ Graphs within Computation and Communication}
 \label{ch:Graphs2}
 \index{graph}
 
+\ignore{
 Graphs provide one of the richest technical and conceptual frameworks
 in the world of computing.  They provide concrete representations of
 manifold data structures that should be studied in depth
@@ -42,6 +43,22 @@ databases to web-search engines to social networks demand an
 appreciation of graphs as dynamic objects.  This change in perspective
 affects many aspects of the mathematical prerequisites for any
 academic program that includes a computation-oriented component.
+}
+
+{\Denis Introduce here this new chapter. I just checked the content...}
+
+The previous chapter introduced the concept of graphs and their main characteristics/properties.
+An emphasis was put on particular classes of structured graphs.
+
+We are presenting in this chapter how to manipulate graphs:
+
+first, graph coloring (we expose some of the sophisticated mathematics that has
+been developed in order to study this problem).  
+
+then, Path problems in graphs provide another entry to myriad applications. 
+
+finally, we present briefly some new problems.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -68,12 +85,13 @@ node-coloring of $\g$.  In traditional parlance, the assertions
 \noindent
 are considered to be synonymous.
 
-{\Denis I added the following remark, do you agree?}
+\ignore{{\Denis I added the following remark, do you agree?}
 This notion is an important characteristic of a graph.
 It is like an intermediate concept between the degree (local)
-and diameter (global), which are easy to compute. 
-The chromatic number is not easy to compute.
+and diameter (global), which are both easy to compute. 
+Determining the chromatic number is not easy to compute for any graphs.
 \bigskip
+}
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
@@ -94,11 +112,11 @@ with no fear of missing an important input to those actions.  Indeed,
 one often encounters programs for distributed computing that look
 something like
 
-1. All {\em red} nodes perform an action
+1. All {\em red} nodes perform simultaneously an action
 
-2. All {\em green} nodes perform an action
+2. All {\em green} nodes perform simultaneously an action
 
-3. All {\em blue} nodes perform an action
+3. All {\em blue} nodes perform simultaneously an action
 
 \hspace*{1in} $\vdots$
 \end{minipage}
@@ -110,10 +128,10 @@ Most of the ``named'' graphs in
 Section~\ref{sec:graphs-important-families} have very small chromatic
 numbers.  This is no accident: These graphs were invented (or, at
 least, placed in the spotlight) because of their importance to the
-topic of parallel and distributed computing---and we suggested only a
-few paragraphs ago how to use graph node-colors to orchestrate some
+topic of parallel and distributed computing---and we suggested in the previous
+paragraphs how to use graph node-colors to orchestrate some
 such computations.  Accordingly, we devote this section to studying
-graphs with very small chromatic numbers.
+graphs with small chromatic numbers.
 
 \subsection{Graphs with chromatic number $2$}
 \label{sec:2-color-graphs}
@@ -156,7 +174,6 @@ The following graphs are leveled, hence have chromatic number $2$.
 
 {\bf (a)}
 any tree (which includes any path-graph $\p_n$)
-{\Denis check here is path graph has well been defined before... Or include a reference}
 
 {\bf (b)}
 any cycle-graph $\cc_n$ that has an even number $n$ of nodes
@@ -196,7 +213,7 @@ can have levels with $2$ nodes.  A lesson here is that {\em a graph
 
 \noindent {\bf (b)}
 When we apply the procedure of part (a) to an even-length cycle
-$\cc_{2n}$, we produce a level structure in which levels $1$ and $n+1$
+$\cc_{2q}$, we produce a level structure in which levels $1$ and $q+1$
 have one node apiece, while all other levels have two nodes apiece.
 
 \medskip
@@ -227,9 +244,9 @@ precisely if $k$ of the bits $\beta_i$ equal $1$.
 \qed
 \end{proof}
 
-The reader can show that no odd-length cycle $\cc_{2n+1}$ with $n \geq
+The reader can show that no odd-length cycle $\cc_{2q+1}$ with $q \geq
 1$ is $2$-colorable.  In like fashion, no graph $\g$ that {\em
-  contains} an odd-length cycle can be $2$-colored.  This is the
+contains} an odd-length cycle can be $2$-colored.  This is the
 problem that plagues the torus $\widetilde{\m}_{m,n}$ when $m+n$ is
 odd.
 \ignore{  {\Arny Put the odd cycle and torus as Exercises}}
@@ -373,8 +390,9 @@ that is homeomorphic to either $\k_5$ or $\k_{3,3}$.
 
 We look first at the smaller of this section's graph families, namely,
 the {\it outerplanar graphs}. \index{outerplanar graphs}
-\index{graph!outerplanar} (We shall remark in the following subsection B why these
-graphs are called {\em outer}-planar.)
+\index{graph!outerplanar} (We shall remark in the following subsection B 
+{\Denis Attention, reference to update...}
+why these graphs are called {\em outer}planar.)
 
 We begin our discussion of outerplanar graphs with some basic facts
 about the family.
@@ -389,7 +407,7 @@ As an help, Fig.~\ref{fig:treeoutplanar} shows the way to distribute the nodes a
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresGraph/TreeOutplanar}
-       \caption{Outerplanar representation of the tree of Fig~\ref{fig:tree}.}
+       \caption{Outerplanar representation of the tree of Fig.~\ref{fig:tree}.}
   \label{fig:treeoutplanar}
 \end{center}
 \end{figure}
@@ -563,7 +581,7 @@ with four colors with no abutting countries getting the same color,
 the so-called {\it $4$-Color Problem}
 \index{The $4$-Color Problem for planar graphs} 
 held the world of discrete mathematics in thrall for roughly a century
-before But the drama surrounding the $4$-Color Problem persisted,
+before. But the drama surrounding the $4$-Color Problem persisted,
 because of the Appel-Haken proof's reliance, in a fundamental way, on
 a computer program that checked more than a thousand essential---but
 clerical---assertions (about forbidden subgraphs).  It took the
@@ -635,8 +653,7 @@ n \ - \ e \ + \ f \ \ = \ \ 2
 
 We defer proving Proposition~\ref{thm:Euler-Formula} so that we can
 proceed with our ongoing proof of Lemma~\ref{thm:PlanarGraph-degree5}.
-\ignore{{\Denis Attention here: the ref is not written correctly after the compilation}}
-We devote Subsection C to two quite different proofs of Euler's
+We devote Subsection~\ref{subsec:validationEulerFormula} to two quite different proofs of Euler's
 celebrated formula.
 
 \medskip
@@ -647,6 +664,7 @@ assuming henceforth that $\g$ is connected and that it is {\em
 add any new edge to the drawing without crossing an existing edge.
 This step only strengthen's the Lemma's conclusion by apparently
 making it more difficult to find a small-degree node.
+{\Denis I don't think the notion of maximality is simple, may be we should add a figure here?}
 
 With this assumption in place, we now adapt a pedagological tool from
 \cite{Berge73}, in order to make the following counting argument
@@ -714,8 +732,8 @@ graphs, we guarantee that $d_v \leq 5$
 (Lemma~\ref{thm:PlanarGraph-degree5}).
 
 \item
-inductively color the nodes of the graph $\g'$ left after the removal
-of $v$
+inductively color the nodes of the graph left after the removal
+of $v$ (denoted by $\g'$).
 
 For outerplanar graphs, we color $\g'$ with $\leq 3$ colors
 (Proposition~\ref{thm:OP-3-colorability}).  For planar
@@ -974,7 +992,7 @@ A straightforward recursive coloring strategy suffices if one is
 willing to settle for a six-color palette when coloring planar graphs
 (Proposition~\ref{thm:P-6-colorability}).
 \item
-A four-case analysis, in which one case comprises multipl subcases, is
+A four-case analysis, in which one case comprises multiple subcases, is
 needed in order to eliminate one of the colors from the palette, to
 achieve a five-color palette (Proposition~\ref{thm:5colors}).
 \item
@@ -984,6 +1002,7 @@ achieve the provable optimal, a four-color palette
 \end{itemize}
 
 \subsubsection{Two validations of Euler's Formula}
+\label{subsec:validationEulerFormula}
 \index{Euler's Formula}
 
 We develop two quite different proofs of
@@ -1144,7 +1163,12 @@ words, $n-e+f = 2$.  This concludes the proof.  \qed
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
 
-**ADD REFERENCES HERE
+{\Denis This text should be rewritten...
+My feeling is that it is not needed, most being already said before.
+The only remark that is interesting is about the greedy solution
+of this NP-complete problem,
+which is very efficient in practice
+}
 
 We presented several parameters for characterizing a graph.
 The degree of the vertices (which is a local characteristic) 
@@ -1159,7 +1183,7 @@ It is hard to compute for any graph.
 It is an {\sf NP}-complete problem to decide, given any fixed $k \geq
 3$, whether a given graph $\g$ is $k$-colorable.
 
-A simple argument shows that it is {\sf NP}-hard to find smallest
+A simple argument shows that it is {\sf NP}-hard to find the smallest
 number of colors that provide a valid node-coloring of $\g$.
 
 But one can exhibit ``greedy'' algorithms that give good results.
@@ -1183,7 +1207,7 @@ on {\em undirected} paths and cycles in {\em undirected}, {\em
   unweighted} graphs.  Extrapolating the notions we discuss to their
 directed analogues in directed and/or weighted graphs, will be
 accomplished via carefully crafted exercises.  In a similarly, but
-simpler, vein, we shall generally discuss only prolems concerning {\em
+simpler, vein, we shall generally discuss only problems concerning {\em
   cycles}, leaving to the reader the analogous notions that concern
 paths.  We begin by delimiting the two main classes of cycle-discovery
 problems that we study in this section.
@@ -1195,11 +1219,11 @@ traverses each of $\g$'s edges precisely once is called an {\it
   Eulerian cycle},\index{graph!Eulerian cycle} \index{Eulerian cycle}
 (or, often, an {\it Eulerian circuit}).  \index{graph!Eulerian
   circuit} \index{Eulerian circuit} The edge-exhausting
-cycles/circiuts/tours referred to by these several names were
+cycles/circuits/tours referred to by these several names were
 introduced as a topic of study in 1736 by the Swiss mathematician
 \index{Euler, Leonhard} Leonhard Euler, whose name we have already
 encountered multiple times.  Euler allegedly discovered the topic
-while contemplating how to design a tour of the town of K\"{o}nigsberg
+while contemplating how to determine a tour of the town of K\"{o}nigsberg
 that would cross each of the town's bridges precisely once.  The quest
 for Eulerian cycles in graphs is, thus, one of the oldest problems in
 the fields now called {\it Operations Research} and {\it graph
@@ -1222,7 +1246,7 @@ honor of the British mathematician Sir William Rowan Hamilton,
 \index{Hamilton, William Rowan} who is credited with inventing the
 concept in the mid-19th century.  
 {\Denis even if the problem was introduced some time before in its whole genericity by 
-Thomas Penyngton Kirkman} (A node-exhausting {\em path} in
+Thomas Penyngton Kirkman, Hamilton just popularized it...} (A node-exhausting {\em path} in
 $\g$ is referred to in the obvious analogous way.)  When one views a
 Hamiltonian cycle as a ``map'' for traversing a graph, one often calls
 the cycle a {\it Hamiltonian tour}.  \index{graph!Hamiltonian tour}
@@ -1277,10 +1301,13 @@ An undirected graph $\g$ admits an Eulerian cycle if, and only if,
 $\g$ is connected and every node of $\g$ has even degree.
 
 {\bf (b)}
-A directed graph $\h$ admits a directed Eulerian cycle if, and only if,
-$\h$ is connected and, for every node $v$ of $\g$,
+A directed graph $\g$ admits a directed Eulerian cycle if, and only if,
+$\g$ is connected and, for every node $v$ of $\g$,
 $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
 \end{prop}
+
+{\Denis The question of edge multiplicity should be addressed somewhere since in particular
+the chinese postman is based on edge duplicates...}
 
 \begin{proof}
 The {\em necessity} of the conditions in both parts {\bf (a)} and {\bf
@@ -1487,7 +1514,9 @@ with undirected graphs, with one critical difference: for each node
 $v$ we always enter $v$ along one of its {\em in-arcs}, and
 we always exit $v$ along one of its {\em out-arcs}.  As in the
 undirected case, each arc is traversed precisely once during
-the described process.  \qed
+the described process.
+
+{\Denis my proof of the proposition is by induction on the number of edges, not vertices...}  \qed
 \end{proof}
 
 
@@ -1550,8 +1579,8 @@ An undirected graph $\g$ admits an Eulerian path if, and only if,
 $\g$ is connected and at most two nodes of $\g$ have odd degree.
 
 {\bf (b)}
-A directed graph $\h$ admits an Eulerian path if, and only if: $\h$ is
-connected; either $\h$ admits an Eulerian cycle, or $\h$ contains one
+A directed graph $\g$ admits an Eulerian path if, and only if: $\g$ is
+connected; either $\g$ admits an Eulerian cycle, or $\g$ contains one
 node $u$ such that
 
 \hspace*{.5in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
@@ -1569,7 +1598,7 @@ Whereas a cycle has neither beginning nor end, a path has both.
 Proposition~\ref{thm:eulerian-path}(a) asserts that an undirected
 graph which admits an Eulerian path but not an Eulerian cycle has
 precisely two nodes of odd degree.  These odd-degree nodes play the
-role of the two ends of the Eulerian path.  In similar fashion,
+role of the two extreminities of the Eulerian path.  In similar fashion,
 Proposition~\ref{thm:eulerian-path}(b) asserts that a directed graph
 which admits an Eulerian path but not an Eulerian cycle contains one
 node, $u$, whose out-degree exceeds its in-degree and one node, $v$,
@@ -1579,8 +1608,10 @@ of the end node of the path.  With these hints, we invite the reader
 to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a
 proof of Proposition~\ref{thm:eulerian-path}.
 
-\subsubsection*{Application }
+\subsubsection{Application in ``named graphs" }
 
+{\Denis May be we should briefly summarize what happens for these graphs 
+(hypercubes with even orders, etc.)}
 \medskip
 
 The significance of the de Bruijn network in both coding and
@@ -1606,7 +1637,7 @@ a cycle when one exists.  One can envision a number of benefits
 rendered accessible by the presence of a Hamiltonian cycle in a graph
 $\g$.  Most obviously, the cycle specifies a tour of $\g$ (or of a map
 whose structure $\g$ abstracts) which visits each of $\g$'s nodes
-precisely once.  This is the sense in which the cycle ``sumarizes
+precisely once.  This is the sense in which the cycle ``summarizes"
 $\g$'s traversal structure.
 
 \subsubsection{More inclusive notions of Hamiltonianicity}
@@ -1618,7 +1649,7 @@ existence of such non-Hamiltonian graphs has spawned several
 independent paths of inquiry.  One path seeks ``modest'' ways to
 weaken the property of {\it Hamiltonianicity}
 \index{graph!Hamiltonianicity} in a way that retains many of
-Hamiltonianicity's benefits while encompassing a braoder range of
+Hamiltonianicity's benefits while encompassing a broader range of
 graph structures.  We describe two avenues toward weakened, more
 inclusive, notions of Hamiltonianicity.
 
@@ -1627,7 +1658,7 @@ A {\it Hamiltonian path} \index{graph!Hamiltonian path}
 \index{Hamiltonian path} in a graph $\g$ is a path that passes through
 each of $\g$'s nodes precisely once.  Hamiltonian paths can easily be
 shown to be a strictly weaker notion than Hamiltonian cycles, in the
-following sense.  Obviously, every graph that admits a Hamiltonian
+obvious sense where every graph that admits a Hamiltonian
 cycle also admits a Hamiltonian path: one just drops any single edge
 of such a cycle to obtain such a path.  However, there are many graphs
 that admit a Hamiltonian path that do not admit any Hamiltonian cycle.
@@ -1658,13 +1689,13 @@ are at distance $\leq 3$ in $\g$.
 
 
 \noindent {\bf (b)} {\rm  \cite{Fleischner74}}
-Let $\h$ be any graph that is {\em $2$-connected}
+Let $\g$ be any graph that is {\em $2$-connected}
 \index{graph!$2$-connected} \index{graph!biconnected} (or, {\it
   biconnected}) in the sense that, for every two nodes, $u$ and $v$,
-of $\h$, there exist at least two node-disjoint paths in $\h$ that
-connect $u$ and $v$.  One can cyclically enumerate the nodes of $\h$
+of $\g$, there exist at least two node-disjoint paths in $\g$ that
+connect $u$ and $v$.  One can cyclically enumerate the nodes of $\g$
 in such a way that nodes that are adjacent in the cycle are at
-distance $\leq 2$ in $\h$.
+distance $\leq 2$ in $\g$.
 \end{prop}
 
 \subsubsection{Hamiltonianicity in ``named'' graphs}
@@ -1747,7 +1778,7 @@ Details of the formal proof are left to the reader.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/HamiltonTorus}
-       \caption{Principle for building hamiltonian cycles (even-even and odd-odd).}
+       \caption{Principle for building hamiltonian cycles in torus (even-even and odd-odd).}
   \label{fig:HamiltonTorus}
 \end{center}
 \end{figure}
@@ -1864,11 +1895,11 @@ an inductive argument, $u$ and $v$ differ in precisely one
 bit-position---which means that $x$ and $y$ also differ in precisely
 one bit-position.
   \end{itemize}
-  The previous analysis is summarized in Fig.~\ref{fig:HamiltonHypercude}.
+  The previous analysis is summarized in Fig.~\ref{fig:HamiltonHypercude} for $n=4$.
   \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/HamiltonHypercube}
-       \caption{Hamiltonian cycle in Hypercube using reflected Gray codes.}
+       \caption{Hamiltonian cycle (bold) in Hypercube using reflected Gray codes.}
   \label{fig:HamiltonHypercude}
 \end{center}
 \end{figure}
@@ -1967,7 +1998,7 @@ communication.
 \subsection{Relating Computational and Mathematical Problems}
 \label{sec:Relate-CS-Math-Probs}
 
-This 
+
 
 \ignore{*******************
 
@@ -2004,8 +2035,6 @@ order to render $\g$ Eulerian.  (A {\it multi-graph} is ``almost'' an
 undirected graph.  It differs from a true graph because of the
 possible presence of multiple multi-edges that connect the same two
 nodes.)
-
-**HERE
 
 
 We know from Proposition~\ref{thm:eulerian-cycle} that if all of
@@ -2105,6 +2134,7 @@ section, which leds valuable perspective on our brief study of
 Hamiltonian paths and cycles---and, indeed, on the computational
 implications of that work.
 *************************}
+
 
 \subsection{Graph Decomposition}
 \label{sec:graph-decompose}
