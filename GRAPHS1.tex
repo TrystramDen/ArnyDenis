@@ -1,4 +1,4 @@
-%version of 07-08-19
+%version of 08-05-19
 
 \chapter{Graphs I:
 Representing Relationships Mathematically}
@@ -51,58 +51,78 @@ academic program that includes a computation-oriented component.
 \label{sec:connectivity-notions}
 
 % general introduction
-The basic components of a graph $\g$ are \index{graph!nodes}
-\index{graph!vertices} \index{node (of a graph)} \index{vertex (of a graph)} 
-its {\em nodes/vertices} (one encounters both terms in the
-literature) and its {\em edges} \index{graph!edges}
-\index{edge (of a graph)} that interconnect them.  (The singular form
-of ``vertices'' is {\it vertex}.)  \index{graph!vertex} \index{vertex (of a graph)}
+ \index{graph!vertices}
+\index{graph!vertices} 
+\index{vertex (of a graph)} 
+\index{vertex (of a graph)} 
+\index{graph!edges}
+\index{edge (of a graph)}
+\index{graph!vertex} 
+\index{vertex (of a graph)}
+The basic components of a graph $\g$ are its {\it vertices} and its {\it edges}, which interconnect
+(some of) $\g$'s vertices.  Note that:
+\begin{itemize}
+\item
+The singular form of ``vertices'' is ``{\it vertex}''.
+\item
+The word ``{\it node}" is often used as a synonym of ``vertex".  We will usually employ the
+somewhat more common ``vertex", except in special circumstances where ``node" is used
+more commonly.
+\end{itemize}
+A {\it subgraph} $\g'$ of a graph $\g$ is a graph whose vertices
+are a subset of $\g$'s and whose edges are a subset of $\g$'s that interconnect only vertices of $\g'$. 
 
 % undirected case
 When graph $\g$ is {\em undirected}, \index{graph!undirected} each of
-its edges connotes some sort of sibling-like relationship among nodes
-of ``equal'' status.  When graph $\g$ is {\em directed}
-\index{graph!directed} (sometimes referred to as a {\em digraph}),
+its edges connotes some sort of sibling-like relationship among vertices
+of ``symmetric'' status.  When graph $\g$ is {\em directed}
+\index{graph!directed} (often referred to as a {\em digraph}),
 \index{digraph} \index{graph!digraphs} each of its edges connotes an
-``unequal'' relationship such as parenthood or priority or dependence;
+``asymmetric'' relationship such as parenthood or priority or dependence;
 edges in directed graphs are often termed {\em
   arcs}. \index{graph!arc} \index{arc (of a directed graph)}
 
 In many situations involving directed graphs, it is important to
-deal with the {\em reverse} \index{graph!digraph!dual} of a digraph $\g$. 
-This new graph---which is usually denoted by some notational
-embellishment of ``$\g$'', such as $\widehat{\g}$---is the digraph
-obtained by {\em reversing} all of $\g$'s arcs.  One sometimes
-encounters situations when arguments about, or operations on, a
-digraph $\g$ can be ``translated'' to arguments about, or operations
-on, $\widehat{\g}$ with only clerical effort.  A {\em subgraph} $\g'$
-of a graph $\g$ is a graph whose nodes are a subset of $\g$'s and
-whose edges are a subset of $\g$'s that interconnect only nodes of $\g'$.  
+deal not only with a digraph $\g$ but also 
+with the {\em reverse digraph} \index{graph!digraph!reverse} of $\g$. 
+This new graph is the digraph obtained by {\em reversing} all of $\g$'s arcs (so
+that they point in the opposite direction).  There is no universally accepted notation
+for the reverse of digraph $\g$, but one often encounters notational
+embellishments of ``$\g$'', such as $\widehat{\g}$ or $\widetilde{\g}$, used for
+this purpose.  One sometimes encounters situations wherein only clerical details
+need be changed in order to convert an argument about, or an
+operation on, digraph $\g$  to the analogous argument about, or operation
+on, $\g$'s reverse digraph. 
 
 {\Denis Attention here, the notation $\widehat{x}$ is different to the one used later 
 in the structured graphs. Do we really need this notation? I guess not, thus, better to remove it here!}
+{\Arny You are correct!  I have here suggested alternative wording.  I also reworded
+the preceding paragraphs to make them flow better.}
+
+
 \medskip
 
 {\em Undirected} graphs are usually the default concept, in the
 following sense: When $\g$ is described as a ``graph,'' with no
-qualifier ``directed'' or ``undirected,'' it is usually understood
+qualification---i.e., no accompanying adjective ``directed'' or ``undirected''---it is understood
 that $\g$ is an undirected graph.
+
 \medskip
 
-A {\em path} \index{graph!path} \index{path (in a graph)} in
-an undirected graph is a sequence of nodes within which every adjacent
-pair is connected by an edge.  A path is a {\em cycle}
-\index{graph!cycle} \index{cycle (in a graph)} if all nodes in the
-sequence are distinct, except for the first and last, which are
-identical.  Paths and cycles in directed graphs are defined similarly,
-except that every adjacent pair of nodes must be connected by an arc,
-and all arcs must ``point in the same direction.''
+\index{graph!path} \index{path (in a graph)}
+\index{graph!cycle} \index{cycle (in a graph)}
+A {\em path} in an undirected graph is a sequence of vertices within which
+every adjacent pair is connected by an edge.  A path is a {\em cycle} if all vertices in the
+sequence are distinct except for the first and last, which are identical.  Paths and cycles
+in directed graphs are defined similarly, except that now every adjacent pair of vertices must be
+connected by an {\em arc}, and all arcs must ``point in the same direction.''
+
 \bigskip
 
-A {\it directed graph} \index{graph!directed} ({\it digraph},
-\index{digraph} for short) $\g$ is given by a set of {\it nodes}
-\index{graph!node}
-\index{$\n_{\fg}$: set of nodes of graph $\g$}
+ \index{graph!directed}\index{digraph}
+A {\it directed graph} ({\it digraph}, for short) $\g$ is given by a set of {\it vertices}
+\index{graph!vertex}
+\index{$\n_{\fg}$: set of vertices of graph $\g$}
 $\n_{\fg}$ and a set of {\it arcs}
 \index{graph!digraph!arcs}
 (or {\it directed edges}) $\a_{\fg}$.
@@ -115,8 +135,8 @@ where $u, v \in \n$; we say that this arc goes {\em from} $u$
 \index{graph!path in a digraph}
 \index{path in a digraph}
 in the digraph $\g$ is a sequence of arcs that share adjacent
-endpoints, as in the following $(n-1)$-arc path from node $u_1$ to
-node $u_n$ in $\g$:
+endpoints, as in the following $(n-1)$-arc path from vertex $u_1$ to
+vertex $u_n$ in $\g$:
 \begin{equation}
 \label{eq:di-path}
 (u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2}
@@ -127,7 +147,7 @@ The path (\ref{eq:di-path}) is often written in the more succinct form
 u_1 \ \rightarrow \ u_2 \ \rightarrow \ u_3 \ \rightarrow \cdots
 \rightarrow \ u_{n-2} \ \rightarrow \ u_{n-1} \ \rightarrow \ u_n
 \]
-The just-described path makes sense only when every node $u_i$ belongs
+The just-described path makes sense only when every vertex $u_i$ belongs
 to $\n$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$,
 belongs to $\a$.  The {\it length} of path (\ref{eq:di-path}) is
 the number of arcs, i.e., $n-1$.  The existence of the path means that
@@ -185,7 +205,7 @@ a {\em labeled (directed) cycle}.
 usually included only for emphasis.)}
 \medskip
 
-An {\em undirected graph} $\g$ is given by a set of nodes $\n$
+An {\em undirected graph} $\g$ is given by a set of vertices $\n$
 and a set $\e$ 
 \index{$\e_{\fg}$: the set of edges of the undirected  graph $\g$}
 of $2$-element subsets of $\n$.  Each of these subsets is called
@@ -194,13 +214,13 @@ an {\it edge}.
 One can, thus, view the undirected graph $\g$ as being obtained from a
 directed graph by removing the directionality of
 its arcs.  Whereas we say: \\
-\hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} node $u$ {\em to}
-node $v$ \\
+\hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} vertex $u$ {\em to}
+vertex $v$ \\
 we say: \\
-\hspace*{.35in}the undirected edge $\{u,v\}$ goes {\em between} nodes
+\hspace*{.35in}the undirected edge $\{u,v\}$ goes {\em between} vertices
 $u$ and $v$ \\
 or, more simply: \\
-\hspace*{.35in}the undirected edge $\{u,v\}$ {\em connects} nodes $u$
+\hspace*{.35in}the undirected edge $\{u,v\}$ {\em connects} vertices $u$
 and $v$.  
 \medskip
 
@@ -209,16 +229,16 @@ whereas directed graphs assert some form of priority or directionality.
 
 A {\it path} in an undirected graph 
 \index{graph!path in undirected graph} \index{path in an undirected graph}
-is a sequence of edges---i.e., of $2$-element sets of nodes---such
-that adjacent edges share a node.  For illustration, an $(n-1)$-edge
-path that connects nodes $u_1$ and $u_n$ in the undirected graph $\g$
+is a sequence of edges---i.e., of $2$-element sets of vertices---such
+that adjacent edges share a vertex.  For illustration, an $(n-1)$-edge
+path that connects vertices $u_1$ and $u_n$ in the undirected graph $\g$
 has the form
 \begin{equation}
 \label{eq:undi-path}
 \{u_1, u_2\}, \ \{u_2, u_3\}, \ \ldots, \ \{u_{n-2}, u_{n-1}\}, \ \{u_{n-1}, u_{n}\}
 \end{equation}
 The path described in (\ref{eq:undi-path}) makes sense only when every
-node $u_i$ belongs to $\n$ and every edge $\{u_i \ u_j\}$ belongs
+vertex $u_i$ belongs to $\n$ and every edge $\{u_i \ u_j\}$ belongs
 to $\e$.  The {\it length} of path (\ref{eq:undi-path}) is the
 number of edges---which is $n-1$ here; and the existence of
 the path means that the {\it distance} \index{graph!distance} 
@@ -228,14 +248,14 @@ the path means that the {\it distance} \index{graph!distance}
 may exist shorter paths that connect $u$ and $v$.)}
 \medskip
 
-For each edge $\{u,v\} \in \e$, we call nodes $u$ and $v$ {\it neighbors} (in $\g$).
-\index{graph!nodes!neighbor nodes}
-\index{neighbor node!in a graph}
+For each edge $\{u,v\} \in \e$, we call vertices $u$ and $v$ {\it neighbors} (in $\g$).
+\index{graph!vertices!neighbor vertices}
+\index{neighbor vertex!in a graph}
 The {\it degree}
-\index{graph!nodes!degree of a node in an undirected graph}
-\index{graph!degree of a node in an undirected graph}
-\index{degree of a node in an undirected graph}
-of a node $u \in \n$ is the number of neighbors that $u$ has.
+\index{graph!vertices!degree of a vertex in an undirected graph}
+\index{graph!degree of a vertex in an undirected graph}
+\index{degree of a vertex in an undirected graph}
+of a vertex $u \in \n$ is the number of neighbors that $u$ has.
 
 Even at this early moment in our study of graphs, we can observe a few
 important facts that can be useful when analyzing a broad range of
@@ -245,26 +265,26 @@ notions or as subjects of discourse).
 \begin{prop}
 \label{thm:number-edges/arcs}
 {\bf (a)}
-An $n$-node digraph $\g$ has no more than $n^2$ arcs.
+An $n$-vertex digraph $\g$ has no more than $n^2$ arcs.
 
 {\bf (b)}
-An $n$-node graph $\g$ has no more than $\displaystyle {n \choose 2}$ edges.
+An $n$-vertex graph $\g$ has no more than $\displaystyle {n \choose 2}$ edges.
 \end{prop}
 
 \begin{proof}
 {\bf (a)}
 The set $\a$ of arcs of $\g$ is a subset of the set of ordered
-pairs of nodes of $\g$.  This latter number is clearly $n^2$, because
-one can choose the first node in a pair in $n$ ways and then {\em
-  independently} choose the second node in $n$ ways.
+pairs of vertices of $\g$.  This latter number is clearly $n^2$, because
+one can choose the first vertex in a pair in $n$ ways and then {\em
+  independently} choose the second vertex in $n$ ways.
 \medskip
 
 \noindent {\bf (b)}
-The stated number is the number of $2$-node subsets of $\n$.  To
-wit, start by listing the $n^2$ ordered pairs of nodes of $\g$.
+The stated number is the number of $2$-vertex subsets of $\n$.  To
+wit, start by listing the $n^2$ ordered pairs of vertices of $\g$.
 First, eliminate from the list all $n$ pairs whose first and second
 elements are equal: a set of the form $\{ u,u\}$ has only one element,
-hence is not an edge of $\g$.  Then, for each distinct pair of nodes
+hence is not an edge of $\g$.  Then, for each distinct pair of vertices
 $u, v \in \n$, eliminate one of the two ordered pairs, $\langle
 u,v \rangle$ and $\langle u,v \rangle$: both of these ordered pairs
 lead to the same unordered set $\{ u,v\}$, hence the same edge of
@@ -277,7 +297,7 @@ $\g$. \qed
 
 \begin{prop}
 \label{thm:even-num-odd-degrees}
-In any undirected graph, the number of nodes of odd degree is even.
+In any undirected graph, the number of vertices of odd degree is even.
 \end{prop}
 
 \begin{proof}
@@ -287,10 +307,10 @@ any undirected graph $\g$:
 \[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot
 |\e_{\cal G}|.
 \]
-The equation holds because each edge of $\g$ ``touches'' two nodes
+The equation holds because each edge of $\g$ ``touches'' two vertices
 of $\g$, namely, $\e$'s two endpoints.  Since the sum of $\g$'s
-node-degrees is even, each odd node-degree must be paired (in the sum)
-with another odd node-degree.  \qed
+vertex-degrees is even, each odd vertex-degree must be paired (in the sum)
+with another odd vertex-degree.  \qed
 \end{proof}
 
 {\Denis I suggest to remove the subscrits of $\g$ and $\e$ in the formula (since there is no ambiguity...)}
@@ -298,44 +318,44 @@ with another odd node-degree.  \qed
 \medskip
 
 We sometimes use the term {\it neighbor} within the context of {\em
-  directed} graphs also.  If we say that nodes $u$ and $v$ are
+  directed} graphs also.  If we say that vertices $u$ and $v$ are
 neighbors in the directed graph $\g$,
-\index{neighbor node!in a directed graph}
+\index{neighbor vertex!in a directed graph}
 then we mean that $\a_{\fg}$ contains at least one of the arcs $(u
   \rightarrow v)$ or $(v \rightarrow u)$.  More typically, we use
   terminology that is more faithful to digraph $\g$'s directedness.
 If $\a_{\fg}$ contains the arc $(u \rightarrow v)$, then we would call
   $v$ a {\it (direct) successor} of $u$
-\index{digraph!successor node}
-\index{successor node in a directed graph}
+\index{digraph!successor vertex}
+\index{successor vertex in a directed graph}
 and we would call $u$ a {\it (direct) predecessor} of $v$
-\index{digraph!predecessor node}
-\index{predecessor node in a directed graph}
-The term {\it parent} often replaces ``predecessor node'', and the
-term {\it child} often replaces ``successor node'', especially when
+\index{digraph!predecessor vertex}
+\index{predecessor vertex in a directed graph}
+The term {\it parent} often replaces ``predecessor vertex'', and the
+term {\it child} often replaces ``successor vertex'', especially when
 $\g$ is a directed {\em tree}.  Acknowledging the distinction between
 predecessors and successors in digraphs, we usually split the notion
-of the degree of a node within a digraph into the {\it indegree} and
-the {\it outdegree} of node $u$:
+of the degree of a vertex within a digraph into the {\it indegree} and
+the {\it outdegree} of vertex $u$:
 \begin{itemize}
 \item
-The {\it indegree} of node $u \in \n_{\fg}$
+The {\it indegree} of vertex $u \in \n_{\fg}$
 \index{digraph!indegree}
-is the number of nodes $v \in \n_{\fg}$ such that $(u \rightarrow v)$
+is the number of vertices $v \in \n_{\fg}$ such that $(u \rightarrow v)$
 is an arc of $\g$.
 \item
-Symmetrically, the {\it outdegree} of node $u \in \n_{\fg}$
+Symmetrically, the {\it outdegree} of vertex $u \in \n_{\fg}$
 \index{digraph!outdegree}
-is the number of nodes $v \in \n_{\fg}$ such that $(v \rightarrow u)$
+is the number of vertices $v \in \n_{\fg}$ such that $(v \rightarrow u)$
 is an arc of $\g$.
 \end{itemize}
 
 \smallskip
 
 The reader will note that we nowhere guarantee that there is always a
-path that connects each node $u$ with each other node $v$.  We say
+path that connects each vertex $u$ with each other vertex $v$.  We say
 that a graph $\g$ is {\it connected} \index{graph!connected} if every
-pair of nodes $u, v \in \n_{\fg}$ is connected by a path in $\g$.  
+pair of vertices $u, v \in \n_{\fg}$ is connected by a path in $\g$.  
 {\Denis same here, subscript is not needed...}
 If graph $\g$ is {\em not} connected, then it is the disjoint union of
 some number $c$ of connected subgraphs, usually called $\g$'s {\it
@@ -595,9 +615,9 @@ Proposition~\ref{prop:2SAT}.  \qed
 \subsection{Distance-related concepts}
 
 \noindent {\it Distance and diameter in a digraph.}
-\index{digraph!distance between two nodes}
+\index{digraph!distance between two vertices}
 Extrapolating from our discussion of path (\ref{eq:di-path}): The {\it
-  distance} from node $u_1$ to node $u_n$ in the digraph $\g$ is the
+  distance} from vertex $u_1$ to vertex $u_n$ in the digraph $\g$ is the
 smallest number of arcs in any path from $u_1$ to $u_n$.  In detail:
 \begin{equation}
 \label{eq:di-distance-defn}
@@ -613,17 +633,17 @@ smallest number of arcs in any path from $u_1$ to $u_n$.  In detail:
 \end{equation}
 The {\it diameter} \index{diameter in a digraph}
 \index{digraph!diameter} of a directed graph $\g$ is the largest
-distance between two nodes of $\g$, i.e., the largest number $d$ for
-which there exist nodes $u_1, u_n \in \n$ such that {\sc
+distance between two vertices of $\g$, i.e., the largest number $d$ for
+which there exist vertices $u_1, u_n \in \n$ such that {\sc
   distance}$(u_1, u_n) = d$.  Note that when discussing digraphs, we
 always use {\em directed} paths when defining distance.
 \medskip
 
 \noindent {\it Distance and diameter in an undirected graph.}
-\index{graph!!distance between two nodes}
+\index{graph!!distance between two vertices}
 \index{diameter in a graph}
 Extrapolating from our discussion of path (\ref{eq:undi-path}): The
-{\it distance between} node $u_1$ and node $u_n$ in the graph $\g$ is
+{\it distance between} vertex $u_1$ and vertex $u_n$ in the graph $\g$ is
 the smallest number of edges in any path from $u_1$ to $u_n$.  In
 detail:
 \begin{equation}
@@ -640,8 +660,8 @@ detail:
 \end{equation}
 
 The {\it diameter} \index{diameter in a graph} \index{graph!diameter}
-of an undirected graph is the largest distance between two nodes, 
-i.e., the largest number $d$ for which there exists a pair of nodes $u_1,
+of an undirected graph is the largest distance between two vertices, 
+i.e., the largest number $d$ for which there exists a pair of vertices $u_1,
 u_n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that
 when discussing undirected graphs, we always use {\em undirected}
 paths when defining distance.
@@ -666,11 +686,11 @@ Thus, the number of odd vertices is even.% as depicted in Figure~\ref{propertyOd
 \bigskip
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-Our discussion of internode distances within graphs have focused on
+Our discussion of intervertex distances within graphs have focused on
 shortest (or longest) path problems in {\em unweighted} graphs.  A
 variety of important applications can be modeled via path-distance
 problems in graphs $\g$ each of whose edges, say, $\{u,v\}$, is
-weighted with a number that measures the cost of going between nodes
+weighted with a number that measures the cost of going between vertices
 $u$ and $v$ in $\g$.  Of course, when graph $\g$ is directed, then the
 arcs $(u \rightarrow v)$ and $(v \rightarrow u)$ can have different
 weights, to model situations wherein going from $u$ to $v$ is
@@ -688,8 +708,8 @@ be accomplished ``efficiently''---which in the algorithmic world means
 
 The notion of a {\it matching} in a graph is fundamental to many
 situations that can be modeled using graphs.  A {\it matching} in an
-undirected graph $\g$ is a set of edges of $\g$ that have no nodes in
-common.  It is, thus, a formal mechanism for pairing nodes of a graph.
+undirected graph $\g$ is a set of edges of $\g$ that have no vertices in
+common.  It is, thus, a formal mechanism for pairing vertices of a graph.
 The broad array of activities that can be modeled using graph matching
 include: pairing competitors for a tennis tournament; helping a person
 select a potential spouse (which even in the vernacular is often
@@ -731,7 +751,7 @@ of edges that is no longer a matching.
 
 Among maximal matchings in a graph $\g$, the ``ultimate treasure'' is
 a matching that is {\it perfect}, \index{graph!perfect matching} in
-the sense that every node of $\g$ belongs to some edge of the
+the sense that every vertex of $\g$ belongs to some edge of the
 matching.
 
 \begin{prop}
@@ -751,13 +771,13 @@ conditions of the Proposition.
 
 \noindent
 {\it The Process:} \\
-Begin by laying the nodes of $\g$ out, left to right, in any way.
+Begin by laying the vertices of $\g$ out, left to right, in any way.
 
 \noindent
-Repeat the following process until no nodes remain in the layout.
+Repeat the following process until no vertices remain in the layout.
 
 \noindent
-Select the leftmost node, $u$, in the remaining layout of $\n$.
+Select the leftmost vertex, $u$, in the remaining layout of $\n$.
   \begin{itemize}
   \item
 If we succeed in finding such a vertex $v$ neighbor of $u$ (taken from left to right)), 
@@ -765,10 +785,10 @@ then add edge $\{u,v\}$ to
 the matching we are building.  
 Then, remove both $u$ and $v$ from the layout.
   \item
-If there is no neighbor $v$ of $u$, remove node $u$ from the layout.
+If there is no neighbor $v$ of $u$, remove vertex $u$ from the layout.
   \end{itemize}
 The real challenge here is to find a data structure that allows an
-efficient search for a ``remaining'' neighbor-node $v$ at each step of
+efficient search for a ``remaining'' neighbor-vertex $v$ at each step of
 the selection process.
 \qed
 \end{proof}
@@ -777,7 +797,7 @@ the selection process.
 
 In contrast to maximal matchings, there exist myriad simple graphs
 that do not admit any perfect matching.  Contemplating, for instance,
-matchings within any cycle with an odd number of nodes may prepare the
+matchings within any cycle with an odd number of vertices may prepare the
 reader for the challenge of verifying the following necessary
 condition for a graph to admit a perfect matching.
 
@@ -786,7 +806,7 @@ condition for a graph to admit a perfect matching.
 Let $\g$ be a graph that admits a perfect matching.  Then:
 \begin{itemize}
 \item
-$\g$ has an even number of nodes.
+$\g$ has an even number of vertices.
 \item
 The cardinality of the (perfect) matching---i.e., the number of edges
 in the matching---is exactly
@@ -800,7 +820,7 @@ $\frac{1}{2}|\n|$.
 \noindent {\it Matchings in weighted graphs}.
 The other very popular genre of matching problem focuses on graphs
 each of whose edges, say, $\{u,v\}$, is weighted with a number that
-measure the ``affinity'' of  nodes $u$ and $v$ for each other.  The
+measure the ``affinity'' of  vertices $u$ and $v$ for each other.  The
 challenge is to find a matching that is {\em maximal}
 \index{graph!maximal matching} in the sense of having a cumulative
 sum of edge-weights that is not exceeded by any other matching's.
@@ -835,7 +855,7 @@ The special class of graphs called {\it trees} \index{graph!trees}
 \index{trees} occupy a place of honor within both the mathematical
 field called {\it graph theory} and within the vernacular.
 They are identified mathematically as graphs that contain no
-cycles or, equivalently, as graphs in which each pair of nodes is
+cycles or, equivalently, as graphs in which each pair of vertices is
 connected by a unique path: a tree is thus the embodiment of ``pure''
 connectivity (see Fig.~\ref{fig:tree} left for an example of tree).  As one
 would expect from the vernacular, a set of trees is called a {\it
@@ -851,10 +871,10 @@ would expect from the vernacular, a set of trees is called a {\it
 
 Mathematically speaking, a tree is a graph that contains no cycles,
 i.e., is {\it cycle-free}. \index{graph!cycle-free} Equivalently, a
-tree is a graph in which each pair of distinct nodes is connected by
+tree is a graph in which each pair of distinct vertices is connected by
 precisely one path.  A tree is thus the embodiment of ``pure''
 connectivity: it provides the minimal interconnection structure that
-provides paths that connect every pair of nodes.  As one might expect
+provides paths that connect every pair of vertices.  As one might expect
 from the vernacular, a set of trees is called a {\it forest}. \index{forest (of trees)}
 
 We have just given two distinct definitions of ``tree''.  The reader
@@ -870,10 +890,10 @@ only if, the other does.
 \item
 The graph $\t$ is cycle-free.
 \item
-Each pair of distinct nodes of $\t$ is connected by precisely one
+Each pair of distinct vertices of $\t$ is connected by precisely one
 path.
 \item
-An $n$-node connected tree $\t$ has precisely $n-1$ edges.
+An $n$-vertex connected tree $\t$ has precisely $n-1$ edges.
 \end{enumerate}
 \end{prop}
 
@@ -884,21 +904,21 @@ Let us detail the proof of the last property.
 Let us proceed by induction on $n$.
 
 The base case $n=2$ is obvious, because one edge is both necessary and
-sufficient to connect two nodes.
+sufficient to connect two vertices.
 
 Assume for induction that the indicated tally is correct for all trees
-having no more than $k$ nodes.
+having no more than $k$ vertices.
 
 Consider, for the purpose of extending the induction, any tree $\t$ on
-$k+1$ nodes.  Easily, $\t$ must contain at least one leaf-node---i.e.,
-a node $v$ of degree $1$---or else $\t$ would contain a cycle.  
+$k+1$ vertices.  Easily, $\t$ must contain at least one leaf-vertex---i.e.,
+a vertex $v$ of degree $1$---or else $\t$ would contain a cycle.  
 {\Denis is it really obvious for the readers?} If we
-remove $v$ and its incident edge, we now have a tree on $k$ nodes
-which, by induction, has $k-1$ edges.  When we reattach node $v$, to
-restore $\t$ to its original state, we see that $\t$ has $k+1$ nodes
+remove $v$ and its incident edge, we now have a tree on $k$ vertices
+which, by induction, has $k-1$ edges.  When we reattach vertex $v$, to
+restore $\t$ to its original state, we see that $\t$ has $k+1$ vertices
 and $k$ edges.
 
-Because $\t$ was an arbitrary $(k+1)$-node tree, the induction is
+Because $\t$ was an arbitrary $(k+1)$-vertex tree, the induction is
 extended.  \qed
 \end{proof}
 
@@ -910,7 +930,7 @@ Sociologically, the historical {\it atomic family tree}
 \index{family tree} has two roots, representing the matriarch and patriarch of the
 family.  The entirety of the tree represents a single family
 generationally, before any children form their own families.  All
-child-nodes in this genre of tree are the roots of singly-rooted
+child-vertices in this genre of tree are the roots of singly-rooted
 subtrees of the entire family tree.  The leaves of the tree are the
 childless descendants of the roots.  Note that, while we are using
 anthropomorphic language here, we could be discussing other genres of
@@ -921,13 +941,13 @@ anthropomorphic language here, we could be discussing other genres of
 
 Among rooted directed trees, an important subclass comprises those
 that have a {\em single root} which has a directed path to every other
-node.  The length of each such directed path is often used to label
+vertex.  The length of each such directed path is often used to label
 the {\it generation}
-\index{generation of a node in a singly-rooted directed tree}
-of the node at the end of the path: root, child, grandchild,
+\index{generation of a vertex in a singly-rooted directed tree}
+of the vertex at the end of the path: root, child, grandchild,
 great-grandchild, etc.
-Every node of the tree is the root of a singly-rooted directed
-subtree of the entire tree.  All subtrees that are rooted at nodes of
+Every vertex of the tree is the root of a singly-rooted directed
+subtree of the entire tree.  All subtrees that are rooted at vertices of
 the same generation are mutually disjoint.
 \bigskip
 
@@ -947,39 +967,39 @@ digraphs.  Paths in trees which start at the root are often called
 {\em branches}.  The {\em acyclicity} of a tree $\t$ means that for
 any branch of $\t$ of the form (\ref{eq:di-path}), we cannot have $u_1
 = u_n$, for this would create a cycle.  Each singly-rooted tree $\t$
-has a designated {\em root node} \index{trees!root node} $u_n \in
+has a designated {\em root vertex} \index{trees!root vertex} $u_n \in
 \n_{\ft}$ that resides at the end of a branch (\ref{eq:di-path}) that
 starts at $r_{\ft}$ (so $u_1 = r_{\ft}$) is said to reside at {\em
   depth} $n-1$ in $\t$; by convention, $r_{\ft}$ is said to reside at
-depth $0$.  \index{depth of a node in a singly-rooted tree} $\t$'s
+depth $0$.  \index{depth of a vertex in a singly-rooted tree} $\t$'s
 root $r_{\ft}$ has some number (possibly $0$) of arcs that go from
 $r_{\ft}$ to its {\em children,} each of which thus resides at depth
 $1$ in $\t$; in turn, each child has some number of arcs (possibly
 $0$) to its children, and so on.  For each arc $(u \rightarrow v) \in
-A_{\ft}$, we call $u$ a {\it parent} \index{trees!parent node} of $v$,
-and $v$ a {\it child} \index{trees!child node} of $u$, in $\t$;
+A_{\ft}$, we call $u$ a {\it parent} \index{trees!parent vertex} of $v$,
+and $v$ a {\it child} \index{trees!child vertex} of $u$, in $\t$;
 clearly, the depth of each child is one greater than the depth of its
-parent.  Every node of $\t$ except for $r_{\ft}$ has precisely one
-parent; $r_{\ft}$ has no parents.  A childless node of a tree is a
-{\em leaf}, \index{trees!leaf node} i.e., a node of degree $1$.  The
+parent.  Every vertex of $\t$ except for $r_{\ft}$ has precisely one
+parent; $r_{\ft}$ has no parents.  A childless vertex of a tree is a
+{\em leaf}, \index{trees!leaf vertex} i.e., a vertex of degree $1$.  The
 transitive extensions of the parent and child relations are,
-respectively, the {\em ancestor} \index{trees!ancestor node} and {\em
-  descendant} \index{trees!descendant node} relations.  The {\em
-  degree} \index{degree (of a node in a tree)} of a node $v$ in a tree
-is the number of children that the node has, call it $c_v$.  If every
-non-leaf node in a tree has the same degree $c$, then we call $c$ the
+respectively, the {\em ancestor} \index{trees!ancestor vertex} and {\em
+  descendant} \index{trees!descendant vertex} relations.  The {\em
+  degree} \index{degree (of a vertex in a tree)} of a vertex $v$ in a tree
+is the number of children that the vertex has, call it $c_v$.  If every
+non-leaf vertex in a tree has the same degree $c$, then we call $c$ the
 {\em degree of the tree}.  \index{degree of a tree}
 
 It is sometimes useful to have a symbolic notation for the ancestor
 and descendant relations.  To this end, we write $(u \Rightarrow v)$
 \index{$\Rightarrow$: ancestor/descendant in a rooted tree} to
-indicate that node $u$ is an {\it ancestor} of node $v$, or
-equivalently, that node $v$ is a {\it descendant} of node $u$.  
+indicate that vertex $u$ is an {\it ancestor} of vertex $v$, or
+equivalently, that vertex $v$ is a {\it descendant} of vertex $u$.  
 {\Denis Do we use the notation later? If not, we should remove it...}
 If we
 decide that we are not interested in {\em really distant} descendants
 of the root of a tree $\t$, then we can {\em truncate} \index{truncated}
-$\t$ at a desired depth $d$ by removing all nodes whose depths exceed
+$\t$ at a desired depth $d$ by removing all vertices whose depths exceed
 $d$.  We thereby obtain the {\em depth-$d$ prefix} of $\t$.
 
 
@@ -1002,7 +1022,7 @@ relationships are listed in Table~\ref{tab.graph-samples}.
 \multicolumn{5}{c}{The arc-labeled rooted tree $\t$ of
   Figure \ref{fig.graph-samples}} \\
 \hline
-Node            & Children & Parent & Descendants & Ancestors \\
+Vertex            & Children & Parent & Descendants & Ancestors \\
 \hline
 \hline
 $r_{\ft} = u_0$ 
@@ -1085,12 +1105,12 @@ One of the major uses of trees and forests is as a way of succinctly
 graph.  This role is inherent in the notion of a {\it spanning tree}
 \index{graph!spanning tree} \index{spanning tree} \index{tree!spanning tree}
 of a connected graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$
-whose node-set is identical to $\g$'s:
+whose vertex-set is identical to $\g$'s:
 \[ \n_{\ft(\fg)} \ = \ \n_{\fg} \]
 and all of whose edges are edges of $\g$:
 \[ \e_{\ft(\fg)} \ \subseteq \ \e_{\fg}. \]
 Not surprisingly, a connected graph $\g$  typically has {\em many}
-spanning trees.  All such trees share $\g$'s node-set, but they may
+spanning trees.  All such trees share $\g$'s vertex-set, but they may
 choose quite different sets of edges.
 
 \ignore{***
@@ -1139,15 +1159,15 @@ Actually, I found it rather redundant, may be just remove it?}
 Just as with graphs, there is a {\em directed} version of trees which
 is formed by replacing the (unoriented) edges of an undirected tree by
 (oriented) arcs; see the right side of Fig.~\ref{fig:tree}.  Within a directed tree
-$\t$, one often says that an arc goes from a {\it parent node}
-\index{trees!parent node} to a {\it child node}
-\index{trees!child node}.  Extending this anthropomorphic metaphor, one often talks
-about the {\it ancestor(s)} \index{trees!ancestor node} and {\it
-  descendant(s)} \index{trees!descendant node} of a tree-node.  We
-single out two special classes of nodes: A {\it root (node)}
-\index{trees!root (node)} \index{root (of a directed tree)} of $\t$ is
+$\t$, one often says that an arc goes from a {\it parent vertex}
+\index{trees!parent vertex} to a {\it child vertex}
+\index{trees!child vertex}.  Extending this anthropomorphic metaphor, one often talks
+about the {\it ancestor(s)} \index{trees!ancestor vertex} and {\it
+  descendant(s)} \index{trees!descendant vertex} of a tree-vertex.  We
+single out two special classes of vertices: A {\it root (vertex)}
+\index{trees!root (vertex)} \index{root (of a directed tree)} of $\t$ is
 defined by its having no entering arcs, i.e., indegree $0$; a {\it
-  leaf (node)} \index{trees!leaf (node)} 
+  leaf (vertex)} \index{trees!leaf (vertex)} 
 \index{leaf (of a directed tree)} of $\t$ is defined by its having no
 exiting arcs, i.e., outdegree $0$.  The reader is certainly familiar
 with the use of rooted directed trees to represent family trees and
@@ -1167,7 +1187,7 @@ structure systems tend to be rather uniform in structure, in a variety
 of possible ways.  Such graphs, when drawn, often exhibit a lot of
 structural symmetry.  One popular form of symmetry is {\it degree
   regularity}: an undirected graph $\g$ is {\it regular}
-\index{graph!regular} if all nodes of $\g$ have the same degree.  Not
+\index{graph!regular} if all vertices of $\g$ have the same degree.  Not
 surprisingly, there is a directed version of ``regular'' embodied in the
 symmetric notions of {\it in-regularity}
 \index{graph!directed!in-regular} and {\it out-regularity}.
@@ -1186,11 +1206,11 @@ selected these specific graphs for rather different reasons.
 The first two graphs, the {\it cycle-graph} of Section~\ref{sec:cycle}
 and the {\it complete graph} of Section~\ref{sec:clique} were selected
 for representing, respectively, the lowest-degree and highest-degree
-graphs that share two properties: (1) every node of each graph is
-accessible from every other node; (2) all nodes ``look alike'' to
+graphs that share two properties: (1) every vertex of each graph is
+accessible from every other vertex; (2) all vertices ``look alike'' to
 someone traversing the graph.  Elaborating on (2): If we put you down
-on a node of either graph, there is no way that you can determine the
-identity of that node.  This is an important feature to ponder,
+on a vertex of either graph, there is no way that you can determine the
+identity of that vertex.  This is an important feature to ponder,
 because it is a simple instance of the anonymity problem inherent to
 many modern distributed computing environments.  {\it How does one
   orchestrate cooperative activities when all agents ``are
@@ -1222,7 +1242,7 @@ undirected graphs...}
 For each positive integer $n \in \N^+$, both the {\it undirected
   order-$n$ cycle-graph} $\cc_n$ and the {\it directed order-$n$
   cycle-graph} $\widehat{\cc}_n$ \index{cycle graph}
-\index{cycle network} have {\it node-set}
+\index{cycle network} have {\it vertex-set}
 \[ \n_{{\cal C}_n} \ = \ \n_{\widehat{{\cal C}}_n}
 \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
 \begin{itemize}
@@ -1234,19 +1254,19 @@ $\cc_n$ has $n$ edges; its {\it edge-set} is
 \]
 Fig.~\ref{fig:cycle} illustrates a cycle with $8$ vertices.
   \begin{itemize}
-  \item \index{cycle graph!node-degree}
-$\cc_n$ is a regular network: each node has degree $2$.
+  \item \index{cycle graph!vertex-degree}
+$\cc_n$ is a regular network: each vertex has degree $2$.
 
-Specifically, each node $i$ of $\cc_n$ has its {\it predecessor} $i-1
-\bmod n$ \index{cycle graph!predecessor node}
-\index{cycle graph!successor node} and its {\it successor} $i+1 \bmod n$ .
+Specifically, each vertex $i$ of $\cc_n$ has its {\it predecessor} $i-1
+\bmod n$ \index{cycle graph!predecessor vertex}
+\index{cycle graph!successor vertex} and its {\it successor} $i+1 \bmod n$ .
   \item \index{cycle graph!diameter}
 $\cc_n$ has diameter $\lfloor n/2 \rfloor$.
 
 Direct calculation shows that $\cc_n$'s diameter is no larger than
 this.  The fact that this is, in fact, the graphs's diameter is
-witnessed by the distance between each node $k \in \n_{{\cal C}_n}$
-and its antipodal node $k + \lfloor n/2 \rfloor \bmod n$.
+witnessed by the distance between each vertex $k \in \n_{{\cal C}_n}$
+and its antipodal vertex $k + \lfloor n/2 \rfloor \bmod n$.
   \end{itemize}
 
 \item
@@ -1255,17 +1275,17 @@ $\widehat{\cc}_n$ has {\it arc-set}
 \big\{ (i \rightarrow i+1 \bmod n) \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}
 \]
   \begin{itemize}
-  \item \index{cycle graph!directed node-degree}
-$\widehat{\cc}_n$ is a regular network: each node has the same
+  \item \index{cycle graph!directed vertex-degree}
+$\widehat{\cc}_n$ is a regular network: each vertex has the same
     indegree and the same outdegree.  Coincidentally, both the common
     indegree and the common outdegree are $2$.
   \item
 $\widehat{\cc}_n$ has (directed) diameter $n-1$.
 
-Of course, $n-1$ is an upper bound on the diameter of any $n$-node
+Of course, $n-1$ is an upper bound on the diameter of any $n$-vertex
 digraph.  The fact that this is exactly the graph's diameter is
-witnessed by the directed distance from each node $k$ of $\widehat
-{\cc}_n$ to its predecessor node $k-1 \bmod n$.
+witnessed by the directed distance from each vertex $k$ of $\widehat
+{\cc}_n$ to its predecessor vertex $k-1 \bmod n$.
   \end{itemize}
 \end{itemize}
 
@@ -1285,7 +1305,7 @@ For each positive integer $n \in \N^+$, we denote by $\k_n$ the {\em
   undirected} order-$n$ {\it complete-graph} (or, {\it clique}),
 \index{complete graph} \index{clique} and by $\widehat{\k}_n$ the {\em
   directed} order-$n$ {\it complete-graph} (or, {\it clique}).  Both
-$\k_n$ and $\widehat{\k}_n$ have {\it node-set}
+$\k_n$ and $\widehat{\k}_n$ have {\it vertex-set}
 \[ \n_{{\cal K}_n} \ = \ \n_{\widehat{{\cal K}}_n}
 \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
 \begin{itemize}
@@ -1296,14 +1316,14 @@ $\k_n$ has $\displaystyle {n \choose 2}$ edges; its {\it edge-set} is
 \neq j \big\}.
 \]
   \begin{itemize}
-  \item \index{complete graph!node-degrees} \index{clique!node-degrees}
-$\k_n$ is a regular network: each node has degree $n-1$; every node $i
-\in \n_{\fk_n}$ is connected with all other nodes.
+  \item \index{complete graph!vertex-degrees} \index{clique!vertex-degrees}
+$\k_n$ is a regular network: each vertex has degree $n-1$; every vertex $i
+\in \n_{\fk_n}$ is connected with all other vertices.
 
    \item \index{complete graph!diameter}
 $\k_n$ has diameter $1$.
 
-$\k_n$'s diameter is a direct consequence of its node-degrees, and vice versa.
+$\k_n$'s diameter is a direct consequence of its vertex-degrees, and vice versa.
   \end{itemize}
 
 \item
@@ -1314,14 +1334,14 @@ $\widehat{\k}_n$ has $(n-1)n$ arcs; its {\it arc-set} is
 \]
   \begin{itemize}
   \item
-$\widehat{\k}_n$ is a regular network: each node has the same indegree
+$\widehat{\k}_n$ is a regular network: each vertex has the same indegree
     and the same outdegree.  Both the common indegree and the common
     outdegree are $n-1$.
   \item
 $\widehat{\k}_n$ has (directed) diameter $1$.
 
 As in the undirected case, there is a causal relationship between
-$\widehat{\k}_n$'s diameter and its (in- and out-) node-degrees.
+$\widehat{\k}_n$'s diameter and its (in- and out-) vertex-degrees.
   \end{itemize}
 \end{itemize}
 
@@ -1343,7 +1363,7 @@ either $0$---if $n$ is odd---or exponential in $n$ if $n$ is even.
 \end{prop}
 
 \begin{proof}
-The assertion about cliques with odd numbers of nodes is immediate
+The assertion about cliques with odd numbers of vertices is immediate
 from Proposition~\ref{thm:necessary-for-perfect-matching}.
 {\Denis I think we should give directly the argument here instead of refering to another proposition.
 Like: since one vertex can never been paired.}
@@ -1362,7 +1382,7 @@ illustrated in Fig.~\ref{fig:AllPerfectMatchings}.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.55]{FiguresGraph/perfectmatchingAll}
-       \caption{The $4$-nodes Clique graph  $\k_4$ (left) and its three different perfect matchings (right): 
+       \caption{The $4$-vertices Clique graph  $\k_4$ (left) and its three different perfect matchings (right): 
        the matchings' edges are drawn, respectively, with bold lines, dashed lines, and dotted lines.}
   \label{fig:AllPerfectMatchings}
 \end{center}
@@ -1371,16 +1391,16 @@ As the figure illustrates, $\k_4 = \k_{2 \cdot 2}$ can be viewed as a
 $4$-cycle (drawn with bold and dashed lines), augmented by two
 ``cross-edges'' (drawn with dotted lines).  Easily, then, $\k_4$
 admits $3$ different perfect matchings, which can be identified (and
-specified) by the edge that contains the northwesterly node---call it
-$v$---in the figure.  Node $v$ has the choice of three nodes to
+specified) by the edge that contains the northwesterly vertex---call it
+$v$---in the figure.  Vertex $v$ has the choice of three vertices to
 ``boldly'' match with. (In the figure, $v$ has chosen the
-southwesterly node as its ``bold'' match.)  Once $v$ has chosen its
+southwesterly vertex as its ``bold'' match.)  Once $v$ has chosen its
 match, there is only one viable choice for the second edge in the
 matching.  Thus, $M_2=3$.
 
 We jump now to the case of any arbitrary $k > 2$.  We remark that
-there are precisely $2k-1$ nodes of $\k_{2k}$ that node $1$ can
-``choose'' as its mate in a perfect matching.  Once we set node $1$
+there are precisely $2k-1$ vertices of $\k_{2k}$ that vertex $1$ can
+``choose'' as its mate in a perfect matching.  Once we set vertex $1$
 and its chosen mate aside, we confront an independent instance of the
 problem with parameter $k-1$, i.e., the problem of counting the number
 of perfect matchings in $\k_{n-2} = \k_{2k-2}$.  We thereby note that
@@ -1412,7 +1432,7 @@ In summary, $M_k$ grows exponentially with the parameter $k$, as claimed.
 The two families of graphs we have just discussed, cycles and cliques,
 are recommended to our attention by their structural simplicity---they
 epitomize, respectively, the most sparse way (the cycle) and the most
-dense way (the clique) to completely interconnect $n$ nodes.  The
+dense way (the clique) to completely interconnect $n$ vertices.  The
 remainder of this section is devoted to three graph-structures that
 are structurally more complex than cycles and cliques, which have been
 designed to meet specific needs within the real technological world of
@@ -1429,7 +1449,7 @@ computation and communication---that one can achieve using PDC.
 
 For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh
   (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network}
-(or, {\it torus}) $\widetilde{\m}_{m,n}$ have {\it node-set}
+(or, {\it torus}) $\widetilde{\m}_{m,n}$ have {\it vertex-set}
 \begin{eqnarray*}
 \n_{\fm_{m,n}} \ = \ \n_{\widetilde{\fm}_{m,n}}
   & = & 
@@ -1461,14 +1481,14 @@ let discuss if you disagree... }
 
 \begin{itemize}
 \item
-The subgraph of $\m_{m,n}$ defined by the node-set
+The subgraph of $\m_{m,n}$ defined by the vertex-set
 \[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
   m\}\right], \ \ \left[1 \leq j < n\right]\}
 \]
 and all edges both of whose endpoints belong to that set is called the
 $i$th {\it row} of $\m_{m,n}$
 \index{row of a mesh graph}\index{mesh graph!row}
-Dually, the subgraph of $\m_{m,n}$ defined by the node-set
+Dually, the subgraph of $\m_{m,n}$ defined by the vertex-set
 \[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
   n\}\right], \ \ \left[1 \leq i < m\right] \}
 \]
@@ -1478,13 +1498,13 @@ $j$th {\it column} of $\m_{m,n}$.
 \ignore{*********
   \begin{itemize}
      \item
-Nodes $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
-\ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner nodes}
+Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
+\ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner vertices}
 (or, just {\it corners}) of $\m_{m,n}$.
-\index{corner (node) of a mesh graph}
-\index{mesh graph!corner (node)}
+\index{corner (vertex) of a mesh graph}
+\index{mesh graph!corner (vertex)}
      \item
-The path-graph consisting of the node-set
+The path-graph consisting of the vertex-set
 \[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
 \langle 1, \ n \rangle \}
 \]
@@ -1498,7 +1518,7 @@ The other edges of $\m_n$ are defined analogously:
 \smallskip
 
 The {\it bottom edge} of $\m_{m,n}$ is the path-graph built upon the
-node-set
+vertex-set
 \[ \{ \langle m, \ 1 \rangle, \ \langle m, \ 2 \rangle, \ldots, \
 \langle m, \ n \rangle \}
 \]
@@ -1506,7 +1526,7 @@ node-set
 \index{mesh graph!bottom edge}
 
 The {\it left edge} of $\m_{m,n}$ is the path-graph built upon the
-node-set
+vertex-set
 \[ \{ \langle 1, \ 1 \rangle, \ \langle 2, \ 1 \rangle, \ldots, \
 \langle m, \ 1 \rangle \}
 \]
@@ -1514,7 +1534,7 @@ node-set
 \index{mesh graph!left edge}
 
 The {\it right edge} of $\m_{m,n}$ is the path-graph built upon the
-node-set
+vertex-set
 \[ \{ \langle 1, \ n \rangle, \ \langle 2, \ n \rangle, \ldots, \
 \langle m, \ n \rangle \}
 \]
@@ -1524,15 +1544,15 @@ node-set
 ********}
 
   \item 
-$\m_{m,n}$ is {\em not} a regular graph.  Its four corner nodes each has
-    degree $2$; its non-corner extreme edge nodes each has degree $3$; its
-\index{mesh graph!node-degree}\index{internal node of a mesh graph}
-\index{mesh graph!internal node}
-{\em internal nodes} each has degree $4$
+$\m_{m,n}$ is {\em not} a regular graph.  Its four corner vertices each has
+    degree $2$; its non-corner extreme edge vertices each has degree $3$; its
+\index{mesh graph!vertex-degree}\index{internal vertex of a mesh graph}
+\index{mesh graph!internal vertex}
+{\em internal vertices} each has degree $4$
 
   \item \index{mesh graph!undirected diameter}
 The diameter of $\m_{m,n}$ is $m+n-2$, as witnessed by the distance
-between nodes $\langle 1, \ 1 \rangle$ and $\langle m, \ n \rangle$.
+between vertices $\langle 1, \ 1 \rangle$ and $\langle m, \ n \rangle$.
   \end{itemize}
 
 \item
@@ -1551,14 +1571,14 @@ $\widetilde{\m}_{m,n}$ has $2mn$ arcs; its {\it arc-set} is
 \ignore{***********
   \begin{itemize}
   \item
-The subgraph of $\widetilde{\m}_{m,n}$ defined by the node-set
+The subgraph of $\widetilde{\m}_{m,n}$ defined by the vertex-set
 \[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
   m\}\right], \ \ \left[1 \leq j \leq n\right]\}
 \]
 and all edges both of whose endpoints belong to that set is called the
 $i$th {\it row} of $\widetilde{\m}_{m,n}$
 \index{torus graph!row}
-Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the node-set
+Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the vertex-set
 \[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
   n\}\right], \ \ \left[1 \leq i \leq m\right] \}
 \]
@@ -1568,7 +1588,7 @@ $j$th {\it column} of $\widetilde{\m}_{m,n}$.
 **********}
 \begin{itemize}
   \item
-$\widetilde{\m}_{m,n}$ is a regular network; each node has degree $4$.
+$\widetilde{\m}_{m,n}$ is a regular network; each vertex has degree $4$.
     Despite the fact that $\widetilde{\m}_{m,n}$ is an {\em
       undirected} graph, its arcs are commonly referred to via an
     anthropomorphic labeling, either as ``up, down, left, and right''
@@ -1602,38 +1622,38 @@ range of perspectives on the importance of {\it hypercube networks.}
 
 \index{order-$n$ boolean hypercube}
 The {\it order-$n$ boolean hypercube}, traditionally denoted $\q_n$,
-is the $2^n$-node graph defined as follows.
+is the $2^n$-vertex graph defined as follows.
 \begin{itemize}
 \item
 {\it The recursive definition}. 
 \index{order-$n$ boolean hypercube!recursive definition}
   \begin{itemize}
   \item
-The order-$0$ boolean hypercube, $\q_0$, has a single node, and no
+The order-$0$ boolean hypercube, $\q_0$, has a single vertex, and no
 edges.
   \item
 The order-$(k+1)$ boolean hypercube, $\q_{k+1}$, is obtained by taking
 two copies of $\q_k$, call them $\q_k^{(1)}$ and $\q_k^{(2)}$, and
-creating an edge that connects each node of $\q_k^{(1)}$ with the
-corresponding node of $\q_k^{(2)}$.
+creating an edge that connects each vertex of $\q_k^{(1)}$ with the
+corresponding vertex of $\q_k^{(2)}$.
   \end{itemize}
 For illustration:
   \begin{itemize}
   \item
-$\q_1$ consists of two nodes connected by a single edge.
+$\q_1$ consists of two vertices connected by a single edge.
   \item
 $\q_2$ can be viewed as a ``square'', or equivalently, a copy of $\cc_4$.
   \item
 $\q_3$ can be viewed as a ``cube'', i.e., as two copies of $\cc_4$
-    with edges connecting corresponding nodes: Each of the following
-    pairs of nodes are connected by an edge: the upper right
-    corner-nodes, the upper left corner-nodes, the lower right
-    corner-nodes, and the lower left corner-nodes.
+    with edges connecting corresponding vertices: Each of the following
+    pairs of vertices are connected by an edge: the upper right
+    corner-vertices, the upper left corner-vertices, the lower right
+    corner-vertices, and the lower left corner-vertices.
   \end{itemize}
 
 \item
 {\it The direct definition}.
-For each $n \in \N$, the nodes of the order-$n$ boolean hypercube,
+For each $n \in \N$, the vertices of the order-$n$ boolean hypercube,
 $\q_n$, are all length-$n$ binary strings.  For illustration:
 \index{order-$n$ boolean hypercube!direct definition}
 \begin{eqnarray*}
@@ -1655,20 +1675,20 @@ smaller ones is illusrated in Fig.~\ref{fig:hypercube}.
        \includegraphics[scale=0.6]{FiguresGraph/hypercube}
 \caption{The iteration-based construction of order-$n$ hypercubes:
   Take two copies of the order-$(n-1)$ hypercube.  Prepend a $0$ to
-  the node-labels of the first copy and a $1$ to the node-labels of
+  the vertex-labels of the first copy and a $1$ to the vertex-labels of
   the second copy.}
   \label{fig:hypercube}
 \end{center}
 \end{figure}
 
-Easily, for each value of $n$, $\q_n$ has $2^n$ nodes, for this is the
+Easily, for each value of $n$, $\q_n$ has $2^n$ vertices, for this is the
 number of length-$n$ binary strings.
 
 \medskip
 
-For each value of $n$, each edge of $\q_n$ connects two node-strings
+For each value of $n$, each edge of $\q_n$ connects two vertex-strings
 that differ in precisely one position.  This means that $\q_n$ has $n
-2^{n-1}$ edges: To wit, each of its $2^n$ nodes has $n$ neighbors, so
+2^{n-1}$ edges: To wit, each of its $2^n$ vertices has $n$ neighbors, so
 the quantity $n 2^n$ counts each of $\q_n$'s edges twice---one for
 each endpoint.  For illustration:
 \begin{eqnarray*}
@@ -1705,12 +1725,12 @@ each endpoint.  For illustration:
 \noindent
 It is easy to observe $\q_n$'s basic structural properties.
 \begin{itemize}
-\item \index{hypercube!node-degree}
-$\q_n$ is a regular network: each of its $2^n$ nodes has degree $n$.
+\item \index{hypercube!vertex-degree}
+$\q_n$ is a regular network: each of its $2^n$ vertices has degree $n$.
 
 This follows from the fact that each edge of $\q_n$ rewrites a single
 bit-position in the length-$n$ binary string that is the edge's source
-node.
+vertex.
 
 \item \index{hypercube!diameter}
 $\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.\footnote{Recall that
@@ -1726,7 +1746,7 @@ For all $n \in \N^+$, $\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.
 
 \begin{proof}
 We prove this diameter bound by construction.  Focus on two arbitrary
-nodes of $\q_n$:
+vertices of $\q_n$:
 \[ x \ = \ \alpha_1 \alpha_2 \cdots \alpha_n \ \ \ \mbox{ and } \ \ \
 y \ = \ \beta_1 \beta_2 \cdots \beta_n
 \]
@@ -1752,11 +1772,11 @@ computing and communication.
 
 A powerful avenue for understanding the structure of a given family of
 networks is to understand how the perceived ``shape'' of graphs in the
-family can apparently change just by relabeling/renaming the nodes, or
+family can apparently change just by relabeling/renaming the vertices, or
 the edges, of the graphs.  The formal mechanism for studying such
 relabelings/renamings is the concept of {\it graph isomorphism}.
 \index{graph isomorphism} Let $\g$ and $\h$ be undirected graphs that
-have the same numbers of nodes and edges.  (The following definition
+have the same numbers of vertices and edges.  (The following definition
 can easily be adapted to deal with {\em directed} graphs.)  An {\it
   isomorphism} between $\g$ and $\h$ is a {\em
   bijection}\footnote{Recall, from Chapter~\ref{ch:sets-BA-logic} that
@@ -1823,16 +1843,16 @@ Fig.~\ref{fig:toruslabel}.
 While the family of hypercube networks has few competitors in the
 world of parallel and distributed computing, in terms of performance
 and ease of designing algorithms, it does have one major shortcoming
-that relates to its realizability in hardware.  The basic problem is that each node of the
-order-$n$ hypercube has node-degree $n$; i.e., the node-degrees are logarithmic
+that relates to its realizability in hardware.  The basic problem is that each vertex of the
+order-$n$ hypercube has vertex-degree $n$; i.e., the vertex-degrees are logarithmic
 in the size of the network.  This feature makes the hypercube's actual
-performance much slower than its theoretical performance: each step of a node $v$ of $\q_n$ is slowed down by $v$'s having
+performance much slower than its theoretical performance: each step of a vertex $v$ of $\q_n$ is slowed down by $v$'s having
 to get inputs from and supply outputs to its $n$ (directed) neighbors.  The phenomenon we are discussing can actually
 be described {\em geographically}!  The physical area that an order-$n$ hypercube $\q_n$ occupies grows
 {\em exponentially} with the
-common degrees of the network's nodes---because $\q_n$ has $2^n$ nodes which are no more than $n$ 
+common degrees of the network's vertices---because $\q_n$ has $2^n$ vertices which are no more than $n$ 
 edge-traversals from one another.  (This is the ``inverse'' way
-of talking about logarithmic node-degrees.)  In contrast, the space in which we (and our computers) live grows only 
+of talking about logarithmic vertex-degrees.)  In contrast, the space in which we (and our computers) live grows only 
 {\em cubically} with linear distance.  The resulting disparity means that the wires in large hypercube-connected
 computing platforms must inevitably be very long---in contrast to the unit-size
 of idealized network-edges.  Consequently, electrical signals within a
@@ -1841,7 +1861,7 @@ physical computer is much slower than its idealized version.  (One
 finds a more technical discussion of this phenomenon in, say, \cite{Ullman84}.)
 
 The preceding shortcoming of hypercubes has led researchers since the 1970s to seek a
-family of networks whose node-degrees stay constant even as one
+family of networks whose vertex-degrees stay constant even as one
 deploys successively larger instances of the network.  The candidate
 such network which we are currently focusing on was discovered within the domain of {\it coding theory} (as,
 coincidentally, was the hypercube).  
@@ -1904,7 +1924,7 @@ use the names interchangeably.)
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresGraph/dB2by2}
-       \caption{The $4$-node, order-$2$ de Bruijn network.}
+       \caption{The $4$-vertex, order-$2$ de Bruijn network.}
   \label{fig:dB2by2}
 \end{center}
 \end{figure}
@@ -1912,23 +1932,23 @@ use the names interchangeably.)
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/dB2by3}
-       \caption{The $8$-node, order-$3$ de Bruijn network.}
+       \caption{The $8$-vertex, order-$3$ de Bruijn network.}
   \label{fig:dB2by3}
 \end{center}
 \end{figure}
 
 For every integer $n \in \N^+$, the {\it order-$n$ de Bruijn network}
-is the {\em directed} graph $\d_n$ whose nodes comprise the set of
+is the {\em directed} graph $\d_n$ whose vertices comprise the set of
 length-$n$ binary strings.\footnote{While {\em binary} de Bruijn
   networks are the most frequently encountered ones, one can also find
-  de Bruijn networks whose nodes comprise all length-$n$ strings over
+  de Bruijn networks whose vertices comprise all length-$n$ strings over
   larger finite alphabets.  Such extended families also find
   applications in coding theory.}  The sets $\n_{\fd_2}$ and
 $\n_{\fd_3}$ appear in (\ref{eqn:deBruijn-seq}).
 
 
-$\d_n$ is a regular directed graph; its nodes all have in-degree $2$
-and outdegree-$2$.  Each node of $\d_n$ is a binary string of
+$\d_n$ is a regular directed graph; its vertices all have in-degree $2$
+and outdegree-$2$.  Each vertex of $\d_n$ is a binary string of
 length $n \geq 1$; hence it can be written in the form $\beta x$,
 where $\beta \in \{0, \ 1\}$ is a {\it bit} (short for {\it binary
   digit}) {\Denis already presented before, remove?} and $x$ is a length-$(n-1)$ binary string.
@@ -1945,7 +1965,7 @@ We enumerate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
 {\small
 \begin{array}{|ccccc|}
 \hline
-\mbox{\sc Source node} & & \mbox{\sc Target node} & & \mbox{\sc Target node} \\
+\mbox{\sc Source vertex} & & \mbox{\sc Target vertex} & & \mbox{\sc Target vertex} \\
 \hline \hline
 {\displaystyle
 \left.
@@ -2001,26 +2021,26 @@ We enumerate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
 \end{equation}
 
 For each $n \in \N^+$, $\d_n$ has diameter $n$.  To see why this is
-true, note that following any one of $\d_n$'s arcs, say from node $x$
-to node $y$, consists of ``rewriting'' the length-$n$ string $x$ as
+true, note that following any one of $\d_n$'s arcs, say from vertex $x$
+to vertex $y$, consists of ``rewriting'' the length-$n$ string $x$ as
 the length-$n$ string $y$.  The diameter bound therefore follows by
-showing that, for any two string-nodes of $\d_n$, say node $u$ and
-node $v$, one can rewrite string $u$ as string $v$ by traversing a
+showing that, for any two string-vertices of $\d_n$, say vertex $u$ and
+vertex $v$, one can rewrite string $u$ as string $v$ by traversing a
 sequence of arcs---i.e., a directed path---of length at most $n$.
 Observe, for instance, that the path in $\d_3$ described schematically
 as follows
 \[ 000 \ \rightarrow \ 001 \ \rightarrow \ 011 \ \rightarrow \ 111 \]
-leads node $000$ to node $111$, by rewriting string $000$ as string
+leads vertex $000$ to vertex $111$, by rewriting string $000$ as string
 $111$.  The diameter bound is now an immediate consequence of the
 following result.  The result builds upon a notion that we have not
 yet encountered but will study in some detail in
 Section~\ref{sec:Hamiltonian-cycle}
 \index{graph!Hamiltonian cycle} \index{Hamiltonian cycle}.
 
-A {\it Hamiltonian cycle} in an $n$-node graph $\g$ is a length-$n$
-cycle that contains every node of $\g$ precisely once.  A {\it
-  directed Hamiltonian cycle} in an $n$-node digraph $\h$ is a
-length-$n$ directed cycle that contains every node of $\h$ precisely
+A {\it Hamiltonian cycle} in an $n$-vertex graph $\g$ is a length-$n$
+cycle that contains every vertex of $\g$ precisely once.  A {\it
+  directed Hamiltonian cycle} in an $n$-vertex digraph $\h$ is a
+length-$n$ directed cycle that contains every vertex of $\h$ precisely
 once.
 
 \begin{prop}
@@ -2034,12 +2054,12 @@ i.e., a length-$2^n$ directed cycle of the form
  x \ \rightarrow \ y_1 \ \rightarrow \ y_2 \ \rightarrow \cdots
 \ \rightarrow \ y_{2^n-1} \ \rightarrow \ x
 \end{equation}
-that contains every node of $\d_n$ precisely once; i.e.:
+that contains every vertex of $\d_n$ precisely once; i.e.:
 \begin{itemize}
 \item
 $\{x, \ y_1, \ y_2, \ldots, \ y_{2^n-1}\} \ = \ \n_{\fd_n}$.
 \item
-All of the ``$y$-nodes'' that appear in cycle
+All of the ``$y$-vertices'' that appear in cycle
 (\ref{eq:deBruijn-cycle}) differ from $x$ and from each other.
 \end{itemize}
 \end{prop}
@@ -2059,7 +2079,7 @@ For any directed graph $\g$, the {\it line digraph} \index{line graph}
 directed graph.
 \begin{itemize}
 \item
-The nodes of $\Lambda(\g)$ are the arcs of $\g$:
+The vertices of $\Lambda(\g)$ are the arcs of $\g$:
 \[ \n_{{\Lambda}({\cal G})} \ = \ \a_{\fg} \]
 \item
 For each pair of arcs of $\g$ of the form
@@ -2081,22 +2101,22 @@ $\d_{n+1}$ is the line digraph of $\d_n$: $\d_{n+1} \ = \ \Lambda(\d_n)$.
 \end{prop}
 
 \begin{proof}
-Each node of $\Lambda(\d_n)$ is an arc of $\d_n$, hence has the form
+Each vertex of $\Lambda(\d_n)$ is an arc of $\d_n$, hence has the form
 \[ (\beta x \ \rightarrow \ x \gamma) \]
 for $x$ a length-$(n-1)$ binary string and $\beta, \gamma \in
-\{0,1\}$.  Let us associate node $\beta x \gamma$ of $\d_{n+1}$ with
-this node of $\Lambda(\d_n)$.
+\{0,1\}$.  Let us associate vertex $\beta x \gamma$ of $\d_{n+1}$ with
+this vertex of $\Lambda(\d_n)$.
 
 \smallskip
 
 Note first that each arc of $\d_{n+1}$ has the form
 \[ (\delta y \varepsilon \ \rightarrow \ y \varepsilon \varphi), \]
 where $y$ is a length-$(n-2)$ binary string and $\delta, \varepsilon,
-\varphi \in \{0,1\}$.  By our association of nodes of $\d_{n+1}$ with
+\varphi \in \{0,1\}$.  By our association of vertices of $\d_{n+1}$ with
 arcs of $\d_n$, this arc of $\d_{n+1}$ does, indeed, correspond to two
 successive arcs of $\d_n$.   The first of these successive arcs
-{\em enters} node $y \varepsilon$ of $\d_n$; the second {\em leaves}
-that node.
+{\em enters} vertex $y \varepsilon$ of $\d_n$; the second {\em leaves}
+that vertex.
 
 Note next that, given any two successive arcs of $\d_n$, say
 \[
@@ -2107,14 +2127,14 @@ where $z$ is a length-$(n-2)$ binary string and $\rho, \sigma, \tau,
 \xi \in \{0,1\}$, there is, indeed, an arc of $\d_{n+1}$ of the form
 \[ (\rho \sigma z \tau \ \rightarrow \ \sigma z \tau \xi) \]
 This means that the digraph $\d_{n+1}$ is identical to the digraph
-$\Lambda(\d_n)$, modulo a renaming of nodes and arcs.\footnote{Technically,
+$\Lambda(\d_n)$, modulo a renaming of vertices and arcs.\footnote{Technically,
   we are asserting that the digraphs ${\cal D}_{n+1}$ and ${\Lambda}({\cal D}_n)$ 
   are {\it isomorphic} to one another.  The topic of
   graph isomorphism is beyond the scope of this text, but our informal
   description provides all the details one would need to formalize the
   described isomorphism.}
 
-The described correspondence between the nodes and arcs of $\d_{n+1}$
+The described correspondence between the vertices and arcs of $\d_{n+1}$
 and $\Lambda(\d_n)$ completes the proof.  \qed
 \end{proof}
 
@@ -2122,9 +2142,9 @@ and $\Lambda(\d_n)$ completes the proof.  \qed
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/dBlabelEdge}
 \caption{Illustrating how to label each arc of a de Bruijn network by
-  concatenating the labels of the nodes incident to the arc and
+  concatenating the labels of the vertices incident to the arc and
   compacting the common intermediate bits.  In the depicted example,
-  the node-labels $01$ and $11$ combine to yield the arc-label $011$.}
+  the vertex-labels $01$ and $11$ combine to yield the arc-label $011$.}
   \label{fig:dBlabelEdge}
 \end{center}
 \end{figure}
@@ -2136,7 +2156,7 @@ and $\Lambda(\d_n)$ completes the proof.  \qed
 \index{Eulerian tour} A {\it directed Eulerian cycle} in a digraph
 $\g$ is a directed cycle that contains each arc of $\g$ precisely
 once.  We will see, later in this chapter, a truly elementary
-argument, based on node-degrees, which proves that every de Bruijn
+argument, based on vertex-degrees, which proves that every de Bruijn
 digraph has a directed Eulerian cycle.  This demonstration will
 combine with Proposition~\ref{thm:deBruin-linegraph} to complete the
 proof of Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
@@ -2147,12 +2167,12 @@ proof of Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
 
 Stepping back from the structural specifics of $\d_n$, we now see that
 de Bruijn networks provide us with a {\em
-  bounded-degree---specifically, a degree-$2$} family of networks each
-of whose constituent graphs has {\em logarithmic diameter}!  In this
-regard, at least, de Bruijn networks have exactly the same
-cost-performance as hypercubes---i.e., $2^n$-node graphs with diameter
-$n$---with bounded degrees.  Even more dramatic, it has been shown
-that sophisticated algorithmic techniques can achieve roughly
+  bounded-degree}---specifically, a degree-$2$---family of networks
+each of whose constituent graphs has {\em logarithmic diameter}!  In
+this regard, at least, de Bruijn networks have exactly the same
+cost-performance as hypercubes---i.e., $2^n$-vertex graphs with
+diameter $n$---with bounded degrees.  Even more dramatic, it has been
+shown that sophisticated algorithmic techniques can achieve roughly
 equivalent computational efficiency, on a broad range of significant
 computational problems, using de Bruijn networks as using like-sized
 hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
