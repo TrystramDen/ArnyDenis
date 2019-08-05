@@ -111,7 +111,7 @@ that $\g$ is an undirected graph.
 
 \index{graph!path} \index{path (in a graph)}
 \index{graph!cycle} \index{cycle (in a graph)}
-A {\em path} in an undirected graph is a sequence of vertices within which
+A {\em path} in an undirected graph is a {\em nonrepeating} sequence of vertices within which
 every adjacent pair is connected by an edge.  A path is a {\em cycle} if all vertices in the
 sequence are distinct except for the first and last, which are identical.  Paths and cycles
 in directed graphs are defined similarly, except that now every adjacent pair of vertices must be
@@ -120,23 +120,20 @@ connected by an {\em arc}, and all arcs must ``point in the same direction.''
 \bigskip
 
  \index{graph!directed}\index{digraph}
+ \index{graph!vertex}
+\index{$\n_{\fg}$: set of vertices of graph $\g$}\index{graph!digraph!arcs}
 A {\it directed graph} ({\it digraph}, for short) $\g$ is given by a set of {\it vertices}
-\index{graph!vertex}
-\index{$\n_{\fg}$: set of vertices of graph $\g$}
-$\n_{\fg}$ and a set of {\it arcs}
-\index{graph!digraph!arcs}
-(or {\it directed edges}) $\a_{\fg}$.
+$\n_{\fg}$ and a set of {\it arcs} (or {\it directed edges}) $\a_{\fg}$.
 In the following, we will omit the subscript if there is no ambiguity.
 \index{$\a_{\fg}$: set of arcs of digraph $\g$}
-Each arc of $\g$ has the form $(u \rightarrow v)$,
 \index{$\rightarrow$: arc in a directed graph}
-where $u, v \in \n$; we say that this arc goes {\em from} $u$
-{\em to} $v$.  A {\it path} 
+Each arc of $\g$ has the form $(u \rightarrow v)$,
+where $u, v \in \n$; we say that this arc goes {\em from} $u$ {\em to} $v$.  
 \index{graph!path in a digraph}
 \index{path in a digraph}
-in the digraph $\g$ is a sequence of arcs that share adjacent
-endpoints, as in the following $(n-1)$-arc path from vertex $u_1$ to
-vertex $u_n$ in $\g$:
+A {\it path} in a digraph $\g$ is a sequence of arcs that share adjacent
+endpoints, as in the following $(n-1)$-arc path in $\g$ from vertex $u_1$ to
+vertex $u_n$:
 \begin{equation}
 \label{eq:di-path}
 (u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2}
@@ -150,18 +147,25 @@ u_1 \ \rightarrow \ u_2 \ \rightarrow \ u_3 \ \rightarrow \cdots
 The just-described path makes sense only when every vertex $u_i$ belongs
 to $\n$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$,
 belongs to $\a$.  The {\it length} of path (\ref{eq:di-path}) is
-the number of arcs, i.e., $n-1$.  The existence of the path means that
-the {\it distance} \index{distance!in a digraph}
-\index{digraph!distance} \index{graph!distance!in a digraph} from
-$u_1$ to $u_n$ in $\g$ is no greater than $n-1$ (where the distance here is taken in term of number of arcs.  
+the number of arcs, i.e., $n-1$.  
+ \index{distance!in a digraph}
+\index{digraph!distance} \index{graph!distance!in a digraph} 
+The existence of the path means that the {\it distance}from
+$u_1$ to $u_n$ in $\g$ is no greater than $n-1$ (where the distance here is taken
+in term of number of arcs.  
 Notice also there may exist shorter paths in $\g$ from $u_1$ to $u_n$.)
+
 \bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-In the presentation above, we implicitly considered that there are no
-redundant vertices in a path.
-This is obviously always possible since if a vertex appears twice, we simply skip the sub-path between these two occurrences.
+In the presentation above, we have considered only ``valid", nonredundant, paths,
+i.e., sequences of vertices with no repetitions.  At times, say, when devising algorithms,
+one often wishes to employ path-related concepts without checking sequences of vertices
+for repetition-freeness.  One can always avoid problems via the following ploy.  When dealing
+with a sequence of vertices of unknown validity, simply enforce validity by proceeding along a
+given sequence of vertices and skipping every subsequence that appears between consecutive
+occurrences of the same vertex.
 \end{minipage}
 }
 \bigskip
@@ -201,19 +205,16 @@ u_1 \ \stackrel{\lambda_1}{\rightarrow} \ u_2
 If $u_1 = u_n$, then we call path (\ref{eq:di-path}) a {\em (directed)
   cycle},\index{cycle (in a digraph)} and we call its labeled version
 a {\em labeled (directed) cycle}.  
-\textbf{(The qualifier ``directed'' is
-usually included only for emphasis.)}
+%\textbf{(The qualifier ``directed'' is usually included only for emphasis.)}
+
 \medskip
 
-An {\em undirected graph} $\g$ is given by a set of vertices $\n$
-and a set $\e$ 
 \index{$\e_{\fg}$: the set of edges of the undirected  graph $\g$}
-of $2$-element subsets of $\n$.  Each of these subsets is called
-an {\it edge}.
-\index{graph!edge} \index{edge (of a graph)}
+An {\em undirected graph} $\g$ is given by a set of vertices $\n$
+and a set $\e$ of {\em edges}, each edge being a
+$2$-element subset of $\n$.\index{graph!edge} \index{edge (of a graph)}
 One can, thus, view the undirected graph $\g$ as being obtained from a
-directed graph by removing the directionality of
-its arcs.  Whereas we say: \\
+directed graph by removing the directionality of its arcs.  Whereas we say: \\
 \hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} vertex $u$ {\em to}
 vertex $v$ \\
 we say: \\
@@ -221,14 +222,15 @@ we say: \\
 $u$ and $v$ \\
 or, more simply: \\
 \hspace*{.35in}the undirected edge $\{u,v\}$ {\em connects} vertices $u$
-and $v$.  
+and $v$. 
+
 \medskip
 
 One can view an undirected graph as asserting ``pure'' connectivity,
 whereas directed graphs assert some form of priority or directionality.
 
-A {\it path} in an undirected graph 
 \index{graph!path in undirected graph} \index{path in an undirected graph}
+A {\it path} in an undirected graph 
 is a sequence of edges---i.e., of $2$-element sets of vertices---such
 that adjacent edges share a vertex.  For illustration, an $(n-1)$-edge
 path that connects vertices $u_1$ and $u_n$ in the undirected graph $\g$
@@ -244,18 +246,17 @@ number of edges---which is $n-1$ here; and the existence of
 the path means that the {\it distance} \index{graph!distance} 
 \index{distance!in an undirected graph}
 {\it between} $u_1$ and $u_n$ in $\g$ is no greater than $n-1$.  
-\textbf{(There
-may exist shorter paths that connect $u$ and $v$.)}
+%\textbf{(There may exist shorter paths that connect $u$ and $v$.)}
+
 \medskip
 
-For each edge $\{u,v\} \in \e$, we call vertices $u$ and $v$ {\it neighbors} (in $\g$).
 \index{graph!vertices!neighbor vertices}
 \index{neighbor vertex!in a graph}
-The {\it degree}
 \index{graph!vertices!degree of a vertex in an undirected graph}
 \index{graph!degree of a vertex in an undirected graph}
 \index{degree of a vertex in an undirected graph}
-of a vertex $u \in \n$ is the number of neighbors that $u$ has.
+For each edge $\{u,v\} \in \e$, we call vertices $u$ and $v$ {\it neighbors} (in $\g$).
+The {\it degree} of a vertex $u \in \n$ is the number of neighbors that $u$ has.
 
 Even at this early moment in our study of graphs, we can observe a few
 important facts that can be useful when analyzing a broad range of
@@ -275,25 +276,27 @@ An $n$-vertex graph $\g$ has no more than $\displaystyle {n \choose 2}$ edges.
 {\bf (a)}
 The set $\a$ of arcs of $\g$ is a subset of the set of ordered
 pairs of vertices of $\g$.  This latter number is clearly $n^2$, because
-one can choose the first vertex in a pair in $n$ ways and then {\em
+one can choose the first vertex of a pair in $n$ ways and then {\em
   independently} choose the second vertex in $n$ ways.
+
 \medskip
 
 \noindent {\bf (b)}
-The stated number is the number of $2$-vertex subsets of $\n$.  To
+The stated quantity is the number of $2$-vertex subsets of $\n$.  To
 wit, start by listing the $n^2$ ordered pairs of vertices of $\g$.
 First, eliminate from the list all $n$ pairs whose first and second
 elements are equal: a set of the form $\{ u,u\}$ has only one element,
 hence is not an edge of $\g$.  Then, for each distinct pair of vertices
 $u, v \in \n$, eliminate one of the two ordered pairs, $\langle
 u,v \rangle$ and $\langle u,v \rangle$: both of these ordered pairs
-lead to the same unordered set $\{ u,v\}$, hence the same edge of
+lead to the same unordered set $\{ u,v\}$, hence to the same edge of
 $\g$.  After these eliminations, we are left with
 \[ \frac{n^2 - n}{2} \ = \ {n \choose 2} \]
 $2$-element subsets of $\n$, from which we choose the edges of
 $\g$. \qed
 \end{proof}
 {\Denis In the previous paragraph, the notation $\langle u,v \rangle$ is not introduced...}
+{\Arny It was introduced (I think) in SETS, when we discussed ordered pairs.  Please check}
 
 \begin{prop}
 \label{thm:even-num-odd-degrees}
@@ -308,19 +311,20 @@ any undirected graph $\g$:
 |\e_{\cal G}|.
 \]
 The equation holds because each edge of $\g$ ``touches'' two vertices
-of $\g$, namely, $\e$'s two endpoints.  Since the sum of $\g$'s
+of $\g$, namely, $\e_{\fg}$'s two endpoints.  Since the sum of $\g$'s
 vertex-degrees is even, each odd vertex-degree must be paired (in the sum)
 with another odd vertex-degree.  \qed
 \end{proof}
 
 {\Denis I suggest to remove the subscrits of $\g$ and $\e$ in the formula (since there is no ambiguity...)}
+{\Arny I actually ADDED the subscript in the last paragraph :).  I tried the equation without 
+subscripts and it looked "naked" -- especially if a reader just refers back to it without reading the text.}
 
 \medskip
 
-We sometimes use the term {\it neighbor} within the context of {\em
-  directed} graphs also.  If we say that vertices $u$ and $v$ are
-neighbors in the directed graph $\g$,
 \index{neighbor vertex!in a directed graph}
+We often use the term {\it neighbor} within the context of {\em directed} graphs also.
+If we say that vertices $u$ and $v$ are neighbors in the directed graph $\g$,
 then we mean that $\a_{\fg}$ contains at least one of the arcs $(u
   \rightarrow v)$ or $(v \rightarrow u)$.  More typically, we use
   terminology that is more faithful to digraph $\g$'s directedness.
