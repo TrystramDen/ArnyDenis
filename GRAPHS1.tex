@@ -323,50 +323,62 @@ subscripts and it looked "naked" -- especially if a reader just refers back to i
 \medskip
 
 \index{neighbor vertex!in a directed graph}
-We often use the term {\it neighbor} within the context of {\em directed} graphs also.
-If we say that vertices $u$ and $v$ are neighbors in the directed graph $\g$,
-then we mean that $\a_{\fg}$ contains at least one of the arcs $(u
-  \rightarrow v)$ or $(v \rightarrow u)$.  More typically, we use
-  terminology that is more faithful to digraph $\g$'s directedness.
-If $\a_{\fg}$ contains the arc $(u \rightarrow v)$, then we would call
-  $v$ a {\it (direct) successor} of $u$
 \index{digraph!successor vertex}
 \index{successor vertex in a directed graph}
-and we would call $u$ a {\it (direct) predecessor} of $v$
 \index{digraph!predecessor vertex}
 \index{predecessor vertex in a directed graph}
+We sometimes use the term {\it neighbor} also when speaking of a {\em directed} graph,
+$\g$, by using an obvious analogy to the undirected version of $\g$ (in which arcs lose
+their directionality).  In detail, when we say that vertices $u$ and $v$ are ``neighbors'' in the
+digraph $\g$, we mean that $\a_{\fg}$ contains at least one of the arcs $(u \rightarrow v)$ 
+or $(v \rightarrow u)$.  More typically, we use terminology that is more faithful to digraph $\g$'s 
+directedness.  If $\a_{\fg}$ contains the arc $(u \rightarrow v)$, then we call $v$ a
+{\it (direct) successor} of $u$, and we call $u$ a {\it (direct) predecessor} of $v$.
 The term {\it parent} often replaces ``predecessor vertex'', and the
 term {\it child} often replaces ``successor vertex'', especially when
 $\g$ is a directed {\em tree}.  Acknowledging the distinction between
 predecessors and successors in digraphs, we usually split the notion
 of the degree of a vertex within a digraph into the {\it indegree} and
 the {\it outdegree} of vertex $u$:
+\index{digraph!indegree}
+\index{digraph!outdegree}
 \begin{itemize}
 \item
-The {\it indegree} of vertex $u \in \n_{\fg}$
-\index{digraph!indegree}
-is the number of vertices $v \in \n_{\fg}$ such that $(u \rightarrow v)$
-is an arc of $\g$.
+The {\it indegree} of vertex $u \in \n_{\fg}$ is the number of vertices $v \in \n_{\fg}$ such
+that $(u \rightarrow v)$ is an arc of $\g$.
 \item
-Symmetrically, the {\it outdegree} of vertex $u \in \n_{\fg}$
-\index{digraph!outdegree}
-is the number of vertices $v \in \n_{\fg}$ such that $(v \rightarrow u)$
-is an arc of $\g$.
+The {\it outdegree} of vertex $u \in \n_{\fg}$ is the number of vertices $v \in \n_{\fg}$ such
+that $(v \rightarrow u)$ is an arc of $\g$.
 \end{itemize}
 
 \smallskip
 
-The reader will note that we nowhere guarantee that there is always a
-path that connects each vertex $u$ with each other vertex $v$.  We say
-that a graph $\g$ is {\it connected} \index{graph!connected} if every
-pair of vertices $u, v \in \n_{\fg}$ is connected by a path in $\g$.  
+\index{graph!vertex accessibility}
+\index{graph!connected}
+\index{graph!connected components}
+\index{digraph!vertex accessibility}
+\index{digraph!connected}
+\index{digraph!connected components}
+\index{digraph!strongly connected}
+\index{digraph!strongly connected components}
+The reader will note that we have nowhere guaranteed that there is always a
+path that connects each vertex $u$ with each other vertex $v$.  Indeed, we have
+important adjectives that describe when such {\em inter-vertex access} is possible.
+We say that a graph $\g$ is {\it connected} if every pair of vertices $u, v \in \n_{\fg}$
+is connected by a path in $\g$.  If graph $\g$ is {\em not} connected, then it is the
+disjoint union of some number $c$ of connected subgraphs, usually called $\g$'s
+{\it (connected) components}.  Of course, $\g$ is connected just when $c=1$; i.e., 
+there is a single connected component.  There are, of course, analogous connectivity-related
+adjectives for directed graphs.  Most notions involving connectivity and inter-vertex
+accessibility are discussed using the same adjectives for undirected graphs and directed
+graphs---but with the word ``directed" prominently asserted in the latter case.
+{\em One must be meticulous in distinguishing the directed and undirected versions of
+accessibility and connectedness when discussing digraphs.}  There is one exception to
+the terminological looseness we have just mentioned: We say that a digraph $\g$ is
+{\it strongly connected} if there is a directed path from every vertex of $\g$ to every
+other vertex.
 {\Denis same here, subscript is not needed...}
-If graph $\g$ is {\em not} connected, then it is the disjoint union of
-some number $c$ of connected subgraphs, usually called $\g$'s {\it
-  (connected) components}.  \index{graph!connected components} Of
-course, $\g$ is connected just when $c=1$; i.e., there is a single
-connected component.
-
+{\Arny We should discuss this}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -475,14 +487,32 @@ its literals are assigned value {\sc false}.  This contradicts the
 assumption that $t$ is a satisfying assignment for $\Phi$.  \qed
 \end{proof}
 
-We finally prove the main result of this section,
-Proposition~\ref{prop:2SAT}.
+We finally prove the main result of this section, Proposition~\ref{prop:2SAT}.
 
 \begin{proof}[Proposition~\ref{prop:2SAT}]
+The overall form of the assertion we wish to prove is that of a {\em biconditional},
+i.e., an assertion of the form
+\[ \mbox{\bf P} \ \Leftrightarrow \ \mbox{\bf Q} \]
+This is, of course, a shorthand for the conjunction
+\[  \big[ \mbox{\bf P} \ \Rightarrow \ \mbox{\bf Q} \big] \ \ 
+\mbox{\bf and} \ \  
+\big[ \mbox{\bf Q} \ \Rightarrow \ \mbox{\bf P} \big]
+\]
+We are able to derive a simplified proof here by the stratagem of replacing one of the
+two implications by its {\em contraposition}; i.e., instead of proving
+\[ \mbox{\bf P} \ \Rightarrow \ \mbox{\bf Q} \]
+for the {\em necessity} component of the biconditional, we prove the {\em logically equivalent}
+\[  \neg \mbox{\bf Q} \ \Rightarrow \ \neg \mbox{\bf P} \]
+The reader should read the {\em Necessity} component of the proof with an eye to 
+identifying the contraposed implication.
+
+\medskip
+
 Focus on a POS formula $\Phi$ and its associated digraph $\g(\Phi)$.
 
+\smallskip
+
 {\bf Necessity}.
-{\Denis should we mention here that the proof is by using the contraposition?}
 Say first that $\g(\Phi)$ has a strongly connected component which
 contains vertices arising from a variable $x$ in both positive ($x$)
 and negated ($\bar{x}$) forms.  We claim that $\Phi$ is not
