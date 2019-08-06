@@ -392,12 +392,14 @@ other vertex.
 {\Arny We should discuss this}
 }
 
-\begin{prop}{Equivalence relation}
-\label{thm:Equivalence}
-Connectivity is an equivalence relation.
+There is an important connection between graph-connectivity and equivalence relations.
+
+\begin{prop}
+\label{thm:Accessibility-Equivalence}
+The property of inter-vertex accessibility in graphs is an equivalence relation.
 \end{prop}
 
-The proof is put as an exercice.
+The proof is left as an exercise.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -408,7 +410,7 @@ Now that we have the basic notions relating to connectivity in graphs,
 we can develop the proof of Proposition~\ref{thm:2SAT}.  For the
 reader's convenience, we restate the Proposition here.
 
-\begin{prop}{Restatement of Proposition~\ref{thm:2SAT}}
+\begin{prop}[Restatement of Proposition~\ref{thm:2SAT}]
 \label{thm:2SAT-reprise}
 The {\sf 2SAT} problem can be solved in polynomial time.
 
@@ -930,52 +932,123 @@ connectivity: it provides the minimal interconnection structure that
 provides paths that connect every pair of vertices.  As one might expect
 from the vernacular, a set of trees is called a {\it forest}. \index{forest (of trees)}
 
-We have just given two distinct definitions of ``tree''.  The reader
-should prove that both definitions define the same class of graphs.
+We have just given two distinct definitions of ``tree''.  The following result proves
+that both definitions define the same class of graphs.
 
 \begin{prop}
 \label{thm:2defns-trees}
-Prove that the two definitions of ``tree'' are equivalent.  In other
-words, prove that the following assertions about a connected graph
-$\t$ are equivalent, in the sense that one assertion holds if, and
-only if, the other does.
+The two definitions of ``tree'' are equivalent, in the sense that they define the same
+class of graphs.  In detail, the following assertions about a connected graph $\t$ are 
+logically equivalent. 
 \begin{enumerate}
 \item
 The graph $\t$ is cycle-free.
 \item
-Each pair of distinct vertices of $\t$ is connected by precisely one
-path.
-\item
-An $n$-vertex connected tree $\t$ has precisely $n-1$ edges.
+Each pair of distinct vertices of $\t$ is connected by precisely one path.
 \end{enumerate}
 \end{prop}
 
-Let us detail the proof of the last property.
+We leave the proof of Proposition~\ref{thm:2defns-trees} as an exercise.
 
-\begin{proof}
-\noindent 
-Let us proceed by induction on $n$.
+\medskip
 
-The base case $n=2$ is obvious, because one edge is both necessary and
+The following property of connected trees provides a valuable insight in myriad
+tree-related phenomena.  The property is a subtle  corollary of Proposition~\ref{thm:2defns-trees}.
+
+\begin{prop}
+\label{thm:edges-vs-nodes-tree}
+An $n$-vertex connected tree $\t$ has precisely $n-1$ edges.
+\end{prop}
+
+We precede the proof by an essential lemma.
+
+\begin{lemma}
+\label{lem:vtx-deg-connected}
+{\bf (a)}
+Let $\g$ be a connected graph having $n \geq 2$ vertices.  Every vertex of $\g$ has degree $\geq 1$.
+
+\noindent {\bf (b)}
+Let $\t$ be a connected tree having $n \geq 1$ vertices.  At least one vertex of $\t$ has degree $1$.
+\end{lemma}
+
+\begin{proof}[Lemma~\ref{lem:vtx-deg-connected}]
+{\bf (a)} Any vertex of $\g$ that had degree $0$ would have no neighbors, 
+so $\g$ would not be connected if it had such a vertex.
+
+\noindent {\bf (b)}
+Our proof derives a contradiction with the help of the Pigeonhole Principle.
+
+Say, for contradiction, that every vertex of $\t$ had degree $\geq 2$.  Let us view $\t$ as a park:
+Every vertex of $\t$ is a statue, and every edge is a lane between two statues.  (We use the word
+``lane" rather than the more common ``path" because of the technical meaning of ``path"
+within the world of graphs.)   The fact that every vertex of $\t$ has degree $\geq 2$ means that if
+we take a stroll through Park $\t$, then every time we leave a vertex $v \in \n{\ft}$, we can use a 
+different edge/lane than we used when we came to $v$.
+
+Consider now the following {\em gedanken} experiment.  Say that we initially paint every statue in
+Park $\t$ {\em green}.  Say further that as we stroll through Park $\t$, we repaint every statue we
+encounter {\em red}.  So we begin at statue $v_0$, and we paint that statue {\em red}.  Then we 
+leave $v_0$ via some lane, and we encounter some other statue $v_1$.  We paint $v_1$ {\em red},
+and we leave $v_1$ via a lane that is distinct from the one we used to get to $v_1$.  (The degree
+property of $\t$ guarantees that this new lane exists.)  This new lane leads us to a statue $v$.  Now,
+if statue $v$ is {\em red}, then we have discovered a cycle in $\t$!  If statue $v$ is {\em green}, then
+we rename $v$ as $v_2$, and we paint $v_2$ {\em red}.  We continue in the described
+manner.  At stage $m$ of this process, we leave the newly-painted statue $v_m$ via a lane distinct
+from the one we used to get to it, and we reach a statue $v$.  If statue $v$ is {\em red}, then we
+have discovered a cycle in $\t$!  If statue $v$ is {\em green}, then we rename $v$ as $v_{m+1}$,
+and we paint $v_{m+1}$ {\em red}.
+
+Since Park/Tree $\t$ is {\em finite}, having precisely $n$ statues/vertices, we can hope to encounter
+{\em green} statues along our stroll no more than $n$ times.  After this point, every lane will lead
+us to a {\em red} statue---i.e., to a cycle in $\t$.
+
+Since $\t$, being a tree, is cycle-free (by Proposition~\ref{thm:2defns-trees}) we conclude that
+not every vertex of $\t$ can have degree $\geq 2$.  Invoking part {\bf (a)}, then, we conclude
+that at least one vertex of tree $\t$ has degree $1$.  \qed
+\end{proof}
+
+\begin{proof}[Proposition~\ref{thm:edges-vs-nodes-tree}]
+We proceed by induction on $n$.
+
+The base case, $n=2$, is obvious, because one edge is both necessary and
 sufficient to connect two vertices.
 
 Assume for induction that the indicated tally is correct for all trees
-having no more than $k$ vertices.
+having no more than $k$ vertices.  Consider, for the purpose of extending the induction,
+any tree $\t$ on $k+1$ vertices.  
 
-Consider, for the purpose of extending the induction, any tree $\t$ on
-$k+1$ vertices.  Easily, $\t$ must contain at least one leaf-vertex---i.e.,
-a vertex $v$ of degree $1$---or else $\t$ would contain a cycle.  
-{\Denis is it really obvious for the readers?} If we
-remove $v$ and its incident edge, we now have a tree on $k$ vertices
+By Lemma~\ref{lem:vtx-deg-connected}, $\t$ must contain at least one leaf-vertex---i.e.,
+a vertex $v$ of degree $1$.  
+%{\Denis is it really obvious for the readers?} 
+If we remove $v$ and its incident edge, we now have a tree on $k$ vertices
 which, by induction, has $k-1$ edges.  When we reattach vertex $v$, to
 restore $\t$ to its original state, we see that $\t$ has $k+1$ vertices
 and $k$ edges.
 
-Because $\t$ was an arbitrary $(k+1)$-vertex tree, the induction is
-extended.  \qed
+Because $\t$ was an arbitrary $(k+1)$-vertex tree, the induction is extended.  \qed
 \end{proof}
 
 \bigskip
+
+\index{trees!parent vertex}
+\index{trees!child vertex}
+\index{trees!ancestor vertex}
+\index{trees!descendant vertex}
+\index{trees!root (vertex)} \index{root (of a directed tree)} 
+\index{trees!leaf (vertex)}\index{leaf (of a directed tree)}
+Just as with graphs, there is a {\em directed} version of trees which is formed by replacing
+the (nonoriented) edges of an undirected tree by (oriented) arcs; see the right side of 
+Fig.~\ref{fig:tree}.  Within a directed tree $\t$, one often says that an arc goes from
+a {\it parent vertex} to a {\it child vertex}.  Extending this anthropomorphic metaphor,
+one often talks about the {\it ancestor(s)}  and {\it descendant(s)} of a tree-vertex.  We
+single out two special classes of vertices: A {\it root (vertex)} of $\t$ is
+defined by having no entering arcs, i.e., indegree $0$; a {\it leaf (vertex)} of $\t$ is defined by
+having no exiting arcs, i.e., outdegree $0$.  The reader is certainly familiar
+with the use of rooted directed trees to represent family trees and corporate hierarchies, as
+described in the following examples.
+
+\bigskip
+
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
@@ -1013,8 +1086,11 @@ subtrees is a descendant of the root of the other, or the two subtrees
 are are mutually disjoint.
 \end{minipage}
 }
+
 \bigskip
 
+
+\ignore{****************
 More formally: {\em rooted trees} are a class of {\em acyclic}
 digraphs.  Paths in trees which start at the root are often called
 {\em branches}.  The {\em acyclicity} of a tree $\t$ means that for
@@ -1055,8 +1131,6 @@ of the root of a tree $\t$, then we can {\em truncate} \index{truncated}
 $\t$ at a desired depth $d$ by removing all vertices whose depths exceed
 $d$.  We thereby obtain the {\em depth-$d$ prefix} of $\t$.
 
-
-\ignore{****************
 Figure \ref{fig.graph-samples} depicts an arc-labeled rooted tree $\t$
 whose arc labels come from the alphabet $\{a,b\}$.  $\t$'s arc-induced
 relationships are listed in Table~\ref{tab.graph-samples}.
@@ -1150,7 +1224,7 @@ none
   Figure \ref{fig.graph-samples}.  \label{tab.graph-samples}}
 \end{table}
 *********************}
-\medskip
+
 
 \noindent{\it Spanning trees}.
 One of the major uses of trees and forests is as a way of succinctly
@@ -1206,25 +1280,9 @@ neighboring edge while the other add successively the edges of minimal
 weights that do not create a cycle.
 ****}
 
-{\Denis I suggest to move the next paragraph backward since it does not concern spanning trees...
-Actually, I found it rather redundant, may be just remove it?}
+%{\Denis I suggest to move the next paragraph backward since it does not concern spanning trees...
+%Actually, I found it rather redundant, may be just remove it?}
 
-Just as with graphs, there is a {\em directed} version of trees which
-is formed by replacing the (unoriented) edges of an undirected tree by
-(oriented) arcs; see the right side of Fig.~\ref{fig:tree}.  Within a directed tree
-$\t$, one often says that an arc goes from a {\it parent vertex}
-\index{trees!parent vertex} to a {\it child vertex}
-\index{trees!child vertex}.  Extending this anthropomorphic metaphor, one often talks
-about the {\it ancestor(s)} \index{trees!ancestor vertex} and {\it
-  descendant(s)} \index{trees!descendant vertex} of a tree-vertex.  We
-single out two special classes of vertices: A {\it root (vertex)}
-\index{trees!root (vertex)} \index{root (of a directed tree)} of $\t$ is
-defined by its having no entering arcs, i.e., indegree $0$; a {\it
-  leaf (vertex)} \index{trees!leaf (vertex)} 
-\index{leaf (of a directed tree)} of $\t$ is defined by its having no
-exiting arcs, i.e., outdegree $0$.  The reader is certainly familiar
-with the use of rooted directed trees to represent family trees and
-corporate hierarchies.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
