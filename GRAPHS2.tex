@@ -1,82 +1,47 @@
-%version of 07-0-19
+%version of 08-07-19
 
 \chapter{Graphs II:
 Graphs within Computation and Communication}
 \label{ch:Graphs2}
 \index{graph}
 
-\ignore{
-Graphs provide one of the richest technical and conceptual frameworks
-in the world of computing.  They provide concrete representations of
-manifold data structures that should be studied in depth
-in preparation for a ``Data Structures and Algorithms'' course.  They
-embody tangible abstractions of relationships of all sorts, hence must
-be well understood in order to discuss entities as varied as
-web-search engines and social networks with precision and rigor.  As
-with most of the topics we discuss in this text, graph-oriented
-concepts must be taught ``in layers''.  All students should be
-conversant with the use of graphs to represent and reason about a vast
-array of complicated relationships---ranging from taxonomies
-(including intra-family structures) to link-based data structures to
-interconnectivity within social media, and on and on---but the degree
-of sophistication that an individual student requires depends both on
-the abilities of the student and the range of graph-modeled concepts
-that will appear in the student's program.  The most-basic concepts in
-this chapter should be understood by all students in any academic
-program that includes a computation-oriented component---although each
-concept can be developed with more texture and nuance within the
-context of specific application domains; the more advanced concepts
-should be selected with care, based on the instructor's perception of
-students' needs, in the light of the ever-growing importance of
-concepts involving interconnectivity.
+Chapter~\ref{ch:Graphs1} has laid the groundwork for an intensive study of the many 
+ways in which graphs and graph-related concepts find application within the fields of 
+computing and communicating.  That chapter largely focused on properties of
+graphs---and families of graphs---that are local and descriptive: What is the essence of
+a graph's being a tree? a hypercube?  The current chapter takes the next step and studies
+how the described local structure influences some of the dynamically applicable characteristics
+of graphs.  Two major foci in this chapter are {\em vertex-coloring} (Section~\ref{sec:graph-color})
+and {\em path discovery} (Section~\ref{sec:path-cycle-problems}).  Both of these topics are used
+algorithmically in myriad applications of graphs, from circuit layout to computation scheduling
+to interprocessor communication scheduling.  We provide a layered presentation to both topics:
+we completely cover the basic aspects of both topics; we offer extended material in appendices,
+providing further study opportunities for the interested reader; and we provide pointers to the 
+literature for a number of fascinating more-advanced topics.  We close the chapter with capsule
+discussions of several specialized topics which go beyond the scope of any introductory text.  We 
+hope that the reader will be excited by these preliminary excursions into some occurrences of
+graph theory in ``real life".
 
-Many developments in computing technology over recent decades have
-made it imperative that graphs no longer be viewed by students as the
-static objects introduced early in the history of computational
-studies.  For instance, while it was innovative in the 1960s to employ
-graphs and trees computationally as abstractions of data structures, such a view
-is standard today.  Similar remarks, perhaps with differing dates, can
-be made about graphs as vehicles for representing the flow of control
-and information and as vehicles for representing interconnectivity
-among both concepts and populations.  Applications ranging from
-databases to web-search engines to social networks demand an
-appreciation of graphs as dynamic objects.  This change in perspective
-affects many aspects of the mathematical prerequisites for any
-academic program that includes a computation-oriented component.
-}
 
-{\Denis Introduce here this new chapter. I just checked the content...}
-
-The previous chapter introduced the concept of graphs and their main characteristics/properties.
-An emphasis was put on particular classes of structured graphs.
-
-We are presenting in this chapter how to manipulate graphs:
-
-first, graph coloring (we expose some of the sophisticated mathematics that has
-been developed in order to study this problem).  
-
-then, Path problems in graphs provide another entry to myriad applications. 
-
-finally, we present briefly some new problems.
-
+%{\Denis Introduce here this new chapter. I just checked the content...}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Graph Coloring and Chromatic number}
 \label{sec:graph-color}
-\index{graph!node-coloring}
+\index{graph!vertex-coloring}
 
+\index{graph!chromatic number}
 This section introduces the notion of {\it graph coloring}, and its
-associated notion of the {\it chromatic number}
-\index{graph!chromatic number} of a graph.
+associated notion of the {\it chromatic number} of a graph.
 
-A {\it node-coloring} \index{graph!node-coloring} of a graph $\g$ is
-an assignment of labels to $\g$'s nodes, in such a way that all of a
-node $v$'s neighbors get a different label than $v$.  Traditionally,
-the labels are called {\it colors}, for that term's evocative power.
-The {\it chromatic number} \index{graph!chromatic number} of a graph
+\index{graph!vertex-coloring}
+\index{graph!chromatic number} 
+A {\it vertex-coloring} of a graph $\g$ is an assignment of labels to $\g$'s vertices, 
+in such a way that all of a vertex $v$'s neighbors get a different label than $v$.  Traditionally,
+the labels are called {\it colors}, for that term's evocative power.  The {\it chromatic number} of a graph
 $\g$ is the smallest number of colors that can be used in a legal
-node-coloring of $\g$.  In traditional parlance, the assertions
+vertex-coloring of $\g$.  In traditional parlance, the assertions
 
 ``$\g$ has chromatic number $c$'' \ \ \ \ \ and \ \ \ \ \
 ``$\g$ is {\it $c$-colorable}''
@@ -85,38 +50,38 @@ node-coloring of $\g$.  In traditional parlance, the assertions
 \noindent
 are considered to be synonymous.
 
-\ignore{{\Denis I added the following remark, do you agree?}
+\ignore{********
+{\Denis I added the following remark, do you agree?}
 This notion is an important characteristic of a graph.
 It is like an intermediate concept between the degree (local)
 and diameter (global), which are both easy to compute. 
 Determining the chromatic number is not easy to compute for any graphs.
 \bigskip
-}
+*********}
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
 The notion of graph coloring can be used to computational advantage to
 model a broad variety of situations.  An extremely important, and
 illustrative, use of graph coloring is to model {\it distributed}
-computing.  In this setting, the nodes of a computation-graph $\g$
+computing.  In this setting, the vertices of a computation-graph $\g$
 represent {\it agents}, such as, e.g., processing elements in a
 computer; and $g$'s edges represent {\it communication links} that
-enable each node $u$ to check its neighbors' states before any action
+enable each vertex $u$ to check its neighbors' states before any action
 and to inform its neighbors of state-changes occasioned by an action
 of $u$.  
 %{\Denis actually, coloring is useful in any situation to express incompatibility between items}
 The prohibition against ``monochrome'' edges---i.e., edges
-both of whose incident nodes have the same color---guarantees that
-node $u$ and all of its like-colored nodes can act at the same instant
+both of whose incident vertices have the same color---guarantees that
+vertex $u$ and all of its like-colored vertices can act at the same instant
 with no fear of missing an important input to those actions.  Indeed,
-one often encounters programs for distributed computing that look
-something like
+one often encounters programs for distributed computing that look something like
 
-1. All {\em red} nodes perform simultaneously an action
+1. All {\em red} vertices perform simultaneously an action
 
-2. All {\em green} nodes perform simultaneously an action
+2. All {\em green} vertices perform simultaneously an action
 
-3. All {\em blue} nodes perform simultaneously an action
+3. All {\em blue} vertices perform simultaneously an action
 
 \hspace*{1in} $\vdots$
 \end{minipage}
@@ -129,7 +94,7 @@ Section~\ref{sec:graphs-important-families} have very small chromatic
 numbers.  This is no accident: These graphs were invented (or, at
 least, placed in the spotlight) because of their importance to the
 topic of parallel and distributed computing---and we suggested in the previous
-paragraphs how to use graph node-colors to orchestrate some
+paragraphs how to use graph vertex-colors to orchestrate some
 such computations.  Accordingly, we devote this section to studying
 graphs with small chromatic numbers.
 
@@ -142,7 +107,7 @@ characterize these graphs structurally.
 
 A graph $\g$ is {\it leveled} \index{graph!leveled} if there exists
 an assignment of {\it level numbers} $\{ 1, 2, \ldots, \lambda\}$ to the
-nodes of $\g$ in such a way that every neighbor of a level-$\ell$ node
+vertices of $\g$ in such a way that every neighbor of a level-$\ell$ vertex
 $u$ resides either on level $\ell +1$ or on level $\ell -1$.
 
 \begin{prop}
@@ -151,32 +116,32 @@ A graph $\g$ has chromatic number $2$ if, and only if, it is leveled.
 \end{prop}
 
 \begin{proof}
-Say first that $\g$ is a leveled graph.  Then labeling each node of
+Say first that $\g$ is a leveled graph.  Then labeling each vertex of
 $\g$ with the (odd-even) parity of its level provides a valid
 $2$-coloring of $\g$.
 
-Say next that $\g$ is $2$-colorable.  Pick any node $v$ of $\g$ and
-assign it to be the unique node on level $1$.  Let all neighbors of
+Say next that $\g$ is $2$-colorable.  Pick any vertex $v$ of $\g$ and
+assign it to be the unique vertex on level $1$.  Let all neighbors of
 $v$ be assigned to level $2$.  Continuing iteratively, say that the
-largest level-number that we have employed---i.e., assigned nodes
+largest level-number that we have employed---i.e., assigned vertices
 to---is $\ell$.  Then we now assign to level $\ell +1$ all neighbors
-of level-$\ell$ nodes which have not yet been assigned to a level of
+of level-$\ell$ vertices which have not yet been assigned to a level of
 $\g$.  Because $\g$ is $2$-colorable, each of the levels we have
-specified is monochromatic, so that each edge of $\g$ connects a node
-of one color with a node of the other color.  \qed
+specified is monochromatic, so that each edge of $\g$ connects a vertex
+of one color with a vertex of the other color.  \qed
 \end{proof}
 
 We can now show that the following named graphs are $2$-colorable.
 
 \begin{corol}
 \label{thm:list-2-colorables}
-The following graphs are leveled, hence have chromatic number $2$.
+The following graphs are leveled, hence have chromatic number $2$:
 
 {\bf (a)}
 any tree (which includes any path-graph $\p_n$)
 
 {\bf (b)}
-any cycle-graph $\cc_n$ that has an even number $n$ of nodes
+any cycle-graph $\cc_n$ that has an even number $n$ of vertices
 
 {\bf (c)}
 any mesh-graph $\m_{m,n}$
@@ -190,23 +155,22 @@ any hypercube $\q_n$
 \end{corol}
 
 \begin{proof}
-We provide a detailed sketch for each of the five graph families in
-turn.
+We provide a detailed sketch for each of the five graph families in turn.
 
 \noindent {\bf (a)}
 We follow the procedure from the second half of the proof of
 Proposition~\ref{thm:leveled=2-color} to expose a level structure in
-any tree $\t$, as follows.  Pick any node $v$ of $\t$ and make it the
-unique node on level $1$.  Let all neighbors of $v$ be assigned to
+any tree $\t$, as follows.  Pick any vertex $v$ of $\t$ and make it the
+unique vertex on level $1$.  Let all neighbors of $v$ be assigned to
 level $2$.  Continuing iteratively, say that the largest level-number
 that we have employed is $\ell$.  Then we now assign to level $\ell
-+1$ all neighbors of level-$\ell$ nodes which have not yet been
++1$ all neighbors of level-$\ell$ vertices which have not yet been
 assigned to a level of $\t$.
 
 Of course this process can be simplified when $\t$ is a path-graph
-$\p$, by choosing one of $\p$'s end-nodes as node $v$.  We thereby
-have precisely one node on each level, whereas the general procedure
-can have levels with $2$ nodes.  A lesson here is that {\em a graph
+$\p$, by choosing one of $\p$'s end-vertices as vertex $v$.  We thereby
+have precisely one vertex on each level, whereas the general procedure
+can have levels with $2$ vertices.  A lesson here is that {\em a graph
   may admit many distinct level structures}.
 
 \medskip
@@ -214,13 +178,13 @@ can have levels with $2$ nodes.  A lesson here is that {\em a graph
 \noindent {\bf (b)}
 When we apply the procedure of part (a) to an even-length cycle
 $\cc_{2q}$, we produce a level structure in which levels $1$ and $q+1$
-have one node apiece, while all other levels have two nodes apiece.
+have one vertex apiece, while all other levels have two vertices apiece.
 
 \medskip
 
 \noindent {\bf (c)}
 The edge-structure of mesh-graphs ensures that the labeling of each
-node $\langle i,j \rangle$ of $\m_{m,n}$ with the odd-even parity of
+vertex $\langle i,j \rangle$ of $\m_{m,n}$ with the odd-even parity of
 the number $i+j$ is a $2$-coloring of $\m_{m,n}$.
 
 \medskip
@@ -232,28 +196,33 @@ $\widetilde{\m}_{m,n}$ with even $m+n$.
 \medskip
 
 \noindent {\bf (e)}
-Each edge of a hypercube $\q_n$ connects a node $v = \beta_1 \beta_2
-\cdots \beta_n$, where each $\beta_i \in \{0,1\}$, to a node $v' =
+Each edge of a hypercube $\q_n$ connects a vertex $v = \beta_1 \beta_2
+\cdots \beta_n$, where each $\beta_i \in \{0,1\}$, to a vertex $v' =
 \beta'_1 \beta'_2 \cdots \beta'_n$ where precisely one $\beta_j$
 differs from $\beta'_j$.  Therefore, the following aggregation of
-nodes of $\q_n$ into sets $S_0, S_1, \ldots, S_n$ provides a valid
+vertices of $\q_n$ into sets $S_0, S_1, \ldots, S_n$ provides a valid
 leveling of $\q_n$.
 
-Assign node $v = \beta_1 \beta_2 \cdots \beta_n$ to set $S_k$
+\smallskip
+
+Assign vertex $v = \beta_1 \beta_2 \cdots \beta_n$ to set $S_k$
 precisely if $k$ of the bits $\beta_i$ equal $1$.
+
+\medskip
+
+\noindent
+The preceding five discussoins complete the proof.
 \qed
 \end{proof}
 
 The reader can show that no odd-length cycle $\cc_{2q+1}$ with $q \geq
 1$ is $2$-colorable.  In like fashion, no graph $\g$ that {\em
 contains} an odd-length cycle can be $2$-colored.  This is the
-problem that plagues the torus $\widetilde{\m}_{m,n}$ when $m+n$ is
-odd.
+problem that plagues the torus $\widetilde{\m}_{m,n}$ when $m+n$ is odd.
 \ignore{  {\Arny Put the odd cycle and torus as Exercises}}
 
-The existence of odd-length cycles prevents {\em every} de Bruijn
-network $\d_n$ from being $2$-colorable.  As small examples, one
-observes the $3$-cycle
+The existence of odd-length cycles in de Bruijn networks prevents us from 
+$2$-coloring these networks.  As small examples: one observes the $3$-cycle
 \[ 00 \ \rightarrow \ 01 \ \rightarrow \ 10  \rightarrow \ 00 \]
 in $\d_2$ in Fig.~\ref{fig:dB2by2} and the $3$-cycle
 \[ 001 \ \rightarrow \ 010 \ \rightarrow \ 100 \ \rightarrow \ 001 \]
@@ -264,8 +233,8 @@ networks.  The following result asserts that de Bruijn networks are
 \index{de Bruijn network!pancyclicity} \index{de Bruijn graph!pancyclicity}
 meaning that they contain (even directed!)~cycles of {\em all}
 possible lengths, both odd and even.  The proof of this result is
-outside the scope of this text, but it should be accessible to the
-motivated reader.
+outside the scope of an introductory text, but the treatment in \cite{Yoeli62}
+should be accessible to the motivated reader.
 
 \begin{prop}{\cite{Yoeli62}}
 For all $n$, the order-$n$ de Bruijn
@@ -307,7 +276,7 @@ A graph is {\it planar} \index{graph!planar} \index{planar graphs}
 precisely if it can be drawn {\em without any crossing edges}.  A
 graph $\g$ is {\it outerplanar} \index{graph!outerplanar}
 \index{outerplanar graphs} precisely if it can drawn by {\em placing
-  its nodes along a circle in such a way that its edges can be drawn
+  its vertices along a circle in such a way that its edges can be drawn
   as noncrossing chords of the circle}.  The latter condition is
 equivalent to demanding that $\g$'s edges can be drawn within the
 circle without any crossings.
@@ -334,12 +303,12 @@ $\k_5$ is not planar.
 The ``bipartite'' cousins of the cliques will also yield valuable
 insights.  For postive integers $m$ and $n$, the $m \times n$
 bipartite clique $\k_{m,n}$ \index{bipartite clique} is the graph
-whose node-set comprises the ordered pairs of integers:
+whose vertex-set comprises the ordered pairs of integers:
 \[  \n_{\fk_{m,n}} \ = \
 \{ \langle i,j \rangle \ \ | \ \ 1 \leq i \leq m; \ \ 1 \leq j \leq n\}
 \]
-and whose edges connect each node $\langle i,j \rangle$ to every node
-$\langle i,k \rangle$ with $1 \leq k \leq n$ and to every node
+and whose edges connect each vertex $\langle i,j \rangle$ to every vertex
+$\langle i,k \rangle$ with $1 \leq k \leq n$ and to every vertex
 $\langle h,j \rangle$ with $1 \leq h \leq m$.
 
 The second set of graphs to draw are the bipartite cliques $\k_{1,3}$,
@@ -366,13 +335,14 @@ notion of {\it graph homeomorphism} plays a fundamental role in
 \index{graph!homeomorphism} the characterization.  This is a
 dauntingly named technical term that is easily understood informally.
 A {\it homeomorph} \index{graph!homeomorph} of a graph $\g$ is
-obtained by adding (degree-$2$) nodes along one or more edges of $\g$.
+obtained by adding (degree-$2$) vertices along one or more edges of $\g$.
 The characterization of planar graphs by exclusion resides in a
 celebrated theorem by the Polish mathematician and logician Kazimierz
 Kuratowski; \index{Kuratowski, Kazimierz} the analogous result for
 outerplanar graphs was derived by the French mathematician Gary
 Chartrand \index{Chartrand, Gary} and the American mathematician Frank
-Harary. \index{Harary, Frank}
+Harary\index{Harary, Frank} (who invented the name ``outerplanar", as
+we describe in Section~\ref{sec:planar-graphs}).
 
 \begin{theorem}
 \label{thm:planar+outerplanar-exclusion}
@@ -390,19 +360,15 @@ that is homeomorphic to either $\k_5$ or $\k_{3,3}$.
 
 We look first at the smaller of this section's graph families, namely,
 the {\it outerplanar graphs}. \index{outerplanar graphs}
-\index{graph!outerplanar} (We shall remark in the following subsection B 
-{\Denis Attention, reference to update...}
-why these graphs are called {\em outer}planar.)
-
-We begin our discussion of outerplanar graphs with some basic facts
-about the family.
+We begin our discussion with some basic facts about this family.
 
 \begin{prop}
 Every tree is outerplanar.
 \end{prop}
 
-We leave to the reader the challenge of proving this property. 
-As an help, Fig.~\ref{fig:treeoutplanar} shows the way to distribute the nodes along a circle for the graph of Fig.~\ref{fig:tree}.
+We leave to the reader the challenge of proving this property.   As an aid, we note that
+Fig.~\ref{fig:treeoutplanar} shows how to distribute the vertices of the tree in Fig.~\ref{fig:tree}
+around a circle in a way that allows noncrossing edges.
 
 \begin{figure}[hbt]
 \begin{center}
@@ -431,7 +397,7 @@ $\g$ is a subgraph of a Hamiltonian graph.
 {\bf (b)} &
 Every subgraph of $\g$ is outerplanar. \\
 {\bf (c)} &
-At least one of $\g$'s nodes has degree $\leq 2$.
+At least one of $\g$'s vertices has degree $\leq 2$.
 \end{tabular}
 \end{prop}
 
@@ -442,44 +408,44 @@ $\g$'s edges as noncrossing chords of the circle.
 \medskip
 \ignore{
 \noindent {\bf (b)} $\g$'s ``sub-Hamiltonianicity'' can be inferred
-from the ability to draw $\g$ with its nodes along a circle.
+from the ability to draw $\g$ with its vertices along a circle.
 
 \medskip}
 
 \noindent {\bf (b)} We can produce an outerplanarity-witnessing
-drawing of any subgraph of $\g$ by erasing some nodes and/or some
+drawing of any subgraph of $\g$ by erasing some vertices and/or some
 edges from our outerplanarity-witnessing drawing of $\g$.
 
 \medskip
 
 \noindent {\bf (c)} One verifies easily that this result holds for all
-outerplanar graphs having $3$ or fewer nodes.  Focus, therefore, on an
-arbitrary outerplanar graph $\g$ that has more than $3$ nodes.  Since
-adding more edges to a graph cannot decrease the degree of any node,
+outerplanar graphs having $3$ or fewer vertices.  Focus, therefore, on an
+arbitrary outerplanar graph $\g$ that has more than $3$ vertices.  Since
+adding more edges to a graph cannot decrease the degree of any vertex,
 we lose no generality by focusing on a graph $\g$ that is {\em maximal}
 outerplanar, \index{maximal outerplanar graph} in the sense that
 adding any new edge to $\g$ would destroy its outerplanarity.
 
-Because $\g$ has more than $3$ nodes, and because all of its nodes lie
+Because $\g$ has more than $3$ vertices, and because all of its vertices lie
 on a circle (in the drawing that witnesses its outerplanarity), there
-must be pairs of nodes of $\g$ that are not adjacent along the circle.
-Let $u$ and $v$ be nonadjacent nodes such that the distance between
+must be pairs of vertices of $\g$ that are not adjacent along the circle.
+Let $u$ and $v$ be nonadjacent vertices such that the distance between
 $u$ and $v$ (measured in term of number of edges that must be traversed to reach one
-from the other) is minimal among pairs of nodes nonadjacent nodes.  We
+from the other) is minimal among pairs of vertices nonadjacent vertices.  We
 consider two cases.
 \begin{itemize}
 \item
-If the distance between $u$ and $v$ were $2$, then the unique node
+If the distance between $u$ and $v$ were $2$, then the unique vertex
 that lies between $u$ and $v$ along the circle would have degree $2$.
 \item
 If, on the other hand, the distance between $u$ and $v$ {\em exceeded}
-$2$, then there would be at least {\em two} nodes that lie between $u$
+$2$, then there would be at least {\em two} vertices that lie between $u$
 and $v$ in either direction around the circle.  But in this case,
-there would be two nonadjacent nodes that were closer to one another
+there would be two nonadjacent vertices that were closer to one another
 than $u$ and $v$---which contradicts our choice of $u$ and $v$ as a
-pair of closest nonadjacent nodes.
+pair of closest nonadjacent vertices.
 \end{itemize}
-We conclude that $\g$ must have a node of degree $\leq 2$, completing
+We conclude that $\g$ must have a vertex of degree $\leq 2$, completing
 the proof.
 \qed
 \end{proof}
@@ -487,11 +453,11 @@ the proof.
 \bigskip
 
 Our primary concern in this section is, of course, on graph coloring.
-We return to this topic now.  The $3$-node cycle $\cc_3$ witnesses the
+We return to this topic now.  The $3$-vertex cycle $\cc_3$ witnesses the
 fact that not every outerplanar graph is $2$-colorable; $3$ colors is
 the best that we can hope for.  We now show that this hope can be
 realized.  The inductive proof of the following result can easily be
-turned into an efficient node-coloring algorithm for outerplanar
+turned into an efficient vertex-coloring algorithm for outerplanar
 graphs.
 
 \begin{prop}[The $3$-Color Theorem for Outerplanar Graphs]
@@ -500,23 +466,23 @@ Every outerplanar graph is $3$-colorable.
 \end{prop}
 
 \begin{proof}
-We proceed by induction on the number of nodes in the outerplanar
+We proceed by induction on the number of vertices in the outerplanar
 graph to be colored.
 
 The base cases of the result are provided by small outerplanar
-graphs---say those having $3$ nodes or fewer.
+graphs---say those having $3$ vertices or fewer.
 
 We assume, for induction, that every outerplanar graph having fewer
-than $n$ nodes is $3$-colorable.
+than $n$ vertices is $3$-colorable.
 
-Let us now focus on an arbitrary $n$-node outerplanar graph $\g$.  By
-Proposition~\ref{thm:basic-outerplanar-stuff}(d), $\g$ has a node $v$
-of degree $\leq 2$.  Let us remove node $v$ from $\g$, along with the
+Let us now focus on an arbitrary $n$-vertex outerplanar graph $\g$.  By
+Proposition~\ref{thm:basic-outerplanar-stuff}(d), $\g$ has a vertex $v$
+of degree $\leq 2$.  Let us remove vertex $v$ from $\g$, along with the
 edge(s) that connect $v$ to the rest of $\g$; call the resulting graph
 $\g'$.  Now, $\g'$ is clearly outerplanar, once we ``stitch'' together
 the circle we ``damaged'' by removing $v$, and $\g'$ has fewer than
-$n$ nodes.  By induction, therefore, $\g$ is $3$-colorable.  But now
-we can reattach node $v$ to $\g'$ by replacing the edges that attach
+$n$ vertices.  By induction, therefore, $\g$ is $3$-colorable.  But now
+we can reattach vertex $v$ to $\g'$ by replacing the edges that attach
 $v$ to $\g$.  Moreover, we can now color $v$ using whichever of the
 $3$ colors on $\g$ that is {\em not} used for $v$'s neighbors in $\g$.
 We have, thus, specified a $3$-coloring of $\g$, which extends the
@@ -528,7 +494,7 @@ Two remarks about Proposition~\ref{thm:OP-3-colorability}:
 \begin{enumerate}
 \item
 Our proof of the proposition can easily be transformed into an
-algorithm that $3$ colors any $n$-node outerplanar graph in a
+algorithm that $3$ colors any $n$-vertex outerplanar graph in a
 number of inductive stages that is a low-degree polynomial in $n$.
 \item
 The color-bound of the proposition can, of course, not be improved, as
@@ -538,6 +504,7 @@ witnessed by odd-length cycle-graphs.
 
 
 \subsubsection{Planar graphs}
+\label{sec:planar-graphs}
 
 The larger of this section's two graph families comprises {\it planar
   graphs} \index{planar graphs} \index{graph!planar} i.e., graphs
@@ -545,13 +512,13 @@ that can be drawn (on a two-dimensional medium, such as a piece of
 paper) with no crossing edges.  The original focus on planar graphs
 stemmed from viewing them as abstractions of geographical maps.
 
-The $4$-node clique $\k_4$ witnesses the fact that not every planar
-graph is $3$-colorable.  To wit, because every pair of nodes of every
+The $4$-vertex clique $\k_4$ witnesses the fact that not every planar
+graph is $3$-colorable.  To wit, because every pair of vertices of every
 clique are neighbors of each other, it follows that:
 
 \smallskip
 
-{\em For all $n$, the $n$-node clique $\k_n$ can be colored with $n$
+{\em For all $n$, the $n$-vertex clique $\k_n$ can be colored with $n$
   colors but no fewer.}.
 
 \smallskip
@@ -589,39 +556,42 @@ mathematics community years before this proof, with its massive
 complexity and unprecedented employment of ``collaboration'' by
 computer, was generally accepted.  In addition to the primary
 references \cite{AppelH77a,AppelH77b} that accompany our statement of
-the Theorem, we recommend to the interested reader the articles
+the Theorem, we recommend to the reader the articles
 \cite{AppelH77c,AppelH89} that summarize and, at a rather
 sophisticated level, popularize this marvelous mathematical tale.
 
 We turn now to the $6$-color and $5$-color analogues of the $4$-color
 Theorem.  The weaker, $6$-color, version of the Theorem can be proved
 in much the same way as its outerplanar-graph cousin,
-Proposition~\ref{thm:OP-3-colorability}.  The proof of the stronger,
-$5$-color, version of the Theorem already requires us to break the
+Proposition~\ref{thm:OP-3-colorability}.  We present this proof in detail.
+The proof of the stronger, $5$-color, version of the Theorem already requires us to break the
 world into multiple cases---but only a single-digit number of cases,
 in contrast to the four-digit case list one encounters with the proof
-of Theorem~\ref{thm:Four-ColorTheorem} \cite{AppelH77a,AppelH77b}.
+of Theorem~\ref{thm:Four-ColorTheorem} \cite{AppelH77a,AppelH77b}.  That said,
+the complexity of the $5$-color theorem has led us to include its proof only in an appendix; see
+Chapter~\ref{Appendix:5colors}.
+
 
 \bigskip
 
-{\it The $6$-Color Theorem for Planar Graphs.}
+\noindent {\it The $6$-Color Theorem for Planar Graphs.}
 The first step in showing that every planar graph can be colored using
 $6$ colors resides in the following analogue for planar graphs of
 Proposition~\ref{thm:basic-outerplanar-stuff}(d), which asserts that
-every outerplanar graph has a node of degree $2$.
+every outerplanar graph has a vertex of degree $2$.
 
 \begin{lemma}
 \label{thm:PlanarGraph-degree5}
-Every planar graph has a node of degree $\leq 5$.
+Every planar graph has a vertex of degree $\leq 5$.
 \end{lemma}
 
 \begin{proof} {\em (Lemma~\ref{thm:PlanarGraph-degree5})}
 Let us focus on a planar drawing of a (perforce) planar graph $\g$,
-which has $n$ nodes, $e$ edges, and $f$ {\it faces}.  A {\it face}
+which has $n$ vertices, $e$ edges, and $f$ {\it faces}.  A {\it face}
 \index{graph!planar!face in a drawing}
 \index{planar graph!face in a drawing} 
 in a drawing of $\g$ is a polygon whose sides are edges of
-$\g$, whose points are nodes of $\g$, and whose interiors are empty,
+$\g$, whose points are vertices of $\g$, and whose interiors are empty,
 in that no edge of $\g$ crosses through the interior.
 \bigskip
 
@@ -629,7 +599,7 @@ in that no edge of $\g$ crosses through the interior.
 \begin{minipage}{0.95\textwidth}
 Now that we know about faces, we can finally describe the origin of
 the term {\it outerplanar}.  A graph $\g$ is outerplanar if it can be
-drawn with all of its nodes around a single ``outer'' face in such a
+drawn with all of its vertices around a single ``outer'' face in such a
 way that all of its edges are drawn in a noncrossing manner within the
 ``outer'' face.  In fact, we usually draw $\g$ so that the ``outer''
 face is literally outside the ``outer'' face.
@@ -658,15 +628,17 @@ celebrated formula.
 
 \medskip
 
+ \index{graph!planar!maximal}
 As we approach the next step of the proof, we simplify the setting by
-assuming henceforth that $\g$ is connected and that it is {\em
-  maximal}, \index{graph!planar!maximal} in the sense that one cannot
-add any new edge to the drawing without crossing an existing edge.
-This step only strengthen's the Lemma's conclusion by apparently
-making it more difficult to find a small-degree node.
+assuming henceforth that $\g$ is connected and that it is {\em maximal}, in the sense that one cannot
+add any new edge to the drawing without crossing an existing edge.  This step only strengthen's the
+Lemma's conclusion by apparently making it more difficult to find a small-degree vertex.
 {\Denis I don't think the notion of maximality is simple, may be we should add a figure here?}
+{\Arny The notion certainly helps ME to think about the proof ... but I am probably not
+a typical reader, right?}
 
-With this assumption in place, we now adapt a pedagological tool from
+{\Arny Whoops!  We never defined "bipartite".  I'll do it right now.}
+With the maximality assumption in place, we now adapt a pedagogical tool from
 \cite{Berge73}, in order to make the following counting argument
 easier to follow.  We construct a {\em directed bipartite} graph {\bf
   G} which exposes certain features of $\g$'s structure.  On one side
@@ -676,15 +648,15 @@ each edge of $\g$ that forms a ``side'' of the polygonal
 drawing of the face.  Because $\g$ is a maximal planar graph, we have:
 \begin{itemize}
 \item
-Each face of $\g$ is a $3$-cycle, hence involves three nodes.
+Each face of $\g$ is a $3$-cycle, hence involves three vertices.
 \item
 Each edge of $\g$ touches two faces.
 \item
-Each edge of $\g$ touches two nodes.
+Each edge of $\g$ touches two vertices.
 \end{itemize}
 
 Let us now put these facts together, and assume, for contradiction,
-that every node of $\g$ had degree $\geq 6$.  We would then find that
+that every vertex of $\g$ had degree $\geq 6$.  We would then find that
 \[
 \left[ f \ \ \leq \ \ \frac{2}{3} e \right] \ \ \ \ \mbox{ and } \ \ \ \
 \Big[ e \ \ \geq \ \ 3n \Big]
@@ -694,7 +666,7 @@ Incorporating these two bounds into Euler's Formula
 \[ 2 \ \ = \ \ n \ - \ e \  + \ f
 \ \ \leq \ \ \frac{1}{3} e \ - \ e \ + \ \frac{2}{3} e \ \ = \ \ 0
 \]
-This contradiction proves that every planar graph must have a node of
+This contradiction proves that every planar graph must have a vertex of
 degree $\leq 5$.
  \qed-Lemma~\ref{thm:PlanarGraph-degree5}
 \end{proof}
@@ -713,17 +685,17 @@ Every planar graph is $6$-colorable.
 \begin{proof}
 The $2$-Color Theorem for Outerplanar Graphs
 (Proposition~\ref{thm:OP-3-colorability}) and this result follows via
-almost-identical inductions on the number of nodes in the graph $\g$
+almost-identical inductions on the number of vertices in the graph $\g$
 that is being colored.  Both arguments:
 \begin{enumerate}
 \item
 remark that the coloring goal can be met for small graphs
 
-For outerplanar graphs, ``small'' means ``$3$ or fewer nodes''.  For
-planar graphs, it means ``$4$ or fewer nodes''.
+For outerplanar graphs, ``small'' means ``$3$ or fewer vertices''.  For
+planar graphs, it means ``$4$ or fewer vertices''.
 
 \item
-remove from $\g$ a node $v$ of smallest degree $d_v$, together with
+remove from $\g$ a vertex $v$ of smallest degree $d_v$, together with
 all its incident edges
 
 For outerplanar graphs, we guarantee that $d_v \leq 2$
@@ -732,7 +704,7 @@ graphs, we guarantee that $d_v \leq 5$
 (Lemma~\ref{thm:PlanarGraph-degree5}).
 
 \item
-inductively color the nodes of the graph left after the removal
+inductively color the vertices of the graph left after the removal
 of $v$ (denoted by $\g'$).
 
 For outerplanar graphs, we color $\g'$ with $\leq 3$ colors
@@ -747,7 +719,7 @@ Note that the coloring guarantee in both
 results---Proposition~\ref{thm:OP-3-colorability} for outerplanar
 graphs and the current result for planar graphs---allows us to use
 $d_v +1$ colors to color $\g$.  Because $v$ has degree $d_v$, it is a
-neighbor of no more than $d_v$ nodes of $\g'$, so our access to $d_v
+neighbor of no more than $d_v$ vertices of $\g'$, so our access to $d_v
 +1$ colors guarantees that we can successfully color $v$.
 \end{enumerate}
 The proofs of the $3$-colorability of outerplanar graphs and the
@@ -757,12 +729,26 @@ $d_v$.  \qed
 
 \bigskip
 
-{\it The $5$-Color Theorem for Planar Graphs.}
+\noindent {\it The $5$-Color Theorem for Planar Graphs.}
 \index{The $5$-Color Theorem for Planar Graphs}
 \index{coloring planar graphs!the $5$-Color Theorem}
-We now prove that every planar graph can be colored using $5$ colors.
+
 \bigskip
 
+\begin{prop}[The $5$-Color Theorem for Planar Graphs \cite{Heawood90}]
+\label{thm:5colors}
+\label{thm:P-5-colorability}
+Every planar graph is $5$-colorable.
+\end{prop}
+
+\medskip
+
+The proof, being rather technical, is relegated to the
+Appendix, as Chapter~\ref{Appendix:5colors}.
+
+\medskip
+
+\ignore{***********
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
 The case analysis in the following proof is a bit more complex than in
@@ -775,30 +761,23 @@ The positive version should be more to the taste of a computationally
 oriented reader---but both proofs are equally correct.
 \end{minipage}
 }
-\bigskip
 
-\begin{prop}[The $5$-Color Theorem for Planar Graphs \cite{Heawood90}]
-\label{thm:5colors}
-Every planar graph is $5$-colorable.
-\end{prop}
-
-\ignore{************************
 The proof again (I mean like for 6 colors) is by recurrence but we add
 here a contradiction argument:
-Similarly, we focus on a node with degree 5 (at some points, we will
+Similarly, we focus on a vertex with degree 5 (at some points, we will
 have to justify this)
-This node (call it x) has 5 neighbors
+This vertex (call it x) has 5 neighbors
 The problem is when they are colored by the 5 colors, otherwise it is
 colored by a missing one.
-Let now label these 5 nodes from 1 to 5.
-Consider the nodes 1 and 3, colored by two different colors and the
-sub-graph composed of nodes with colors 1 and 3
-If these two nodes are in disjoint connected components, (case 1), it is
+Let now label these 5 vertices from 1 to 5.
+Consider the vertices 1 and 3, colored by two different colors and the
+sub-graph composed of vertices with colors 1 and 3
+If these two vertices are in disjoint connected components, (case 1), it is
 easy to color x by reverting the colors 1 and 3 in one component
 (see figure)
 Thus, the problem is when there exists an alternate path (in term of
-colors) between node 1 and node 3
-in this case (case 2), consider nodes 2 and 4, using a similar process
+colors) between vertex 1 and vertex 3
+in this case (case 2), consider vertices 2 and 4, using a similar process
 as in case 1, if there are two connected components
 we are done (x can be colored by reverting the colors along the path
 in one component), otherwise, there is an alternate path
@@ -807,53 +786,48 @@ However, since the graph is planar, then, both alternate paths will
 intersect, which is impossible
 ************************}
 
-
-The proof is rather technical and is therefore relegated to the
-Appendix, specifically as Chapter~\ref{Appendix:5colors}.
-
-
 \ignore{***********
 \begin{proof}
 For brevity, let us henceforth discuss only {\em valid} colorings,
-i.e., colorings of a graph's nodes in which neighboring nodes get
+i.e., colorings of a graph's vertices in which neighboring vertices get
 different colors.
 
 \smallskip
 
 \noindent {\em Base of our induction.}
 Because the $5$-clique $\k_5$ is obviously $5$-colorable, so also must
-be all graphs having $\leq 5$ nodes.  Therefore, we know that any
-non-$5$-colorable graph would have $\geq 6$ nodes.
+be all graphs having $\leq 5$ vertices.  Therefore, we know that any
+non-$5$-colorable graph would have $\geq 6$ vertices.
 
 \smallskip
 
 \noindent {\em Inductive hypothesis.}
-Assume, for induction, that every planar graph having $\leq n$ nodes
+Assume, for induction, that every planar graph having $\leq n$ vertices
 is $5$-colorable.
 
 \smallskip
 
 \noindent {\em Inductive extension.}
 If the proposition were false, then there would exist a planar graph
-$\g$ having $n+1$ nodes which is not $5$-colorable.  By
-Lemma~\ref{thm:PlanarGraph-degree5}, $\g$ would have a node $v$ of
+$\g$ having $n+1$ vertices which is not $5$-colorable.  By
+Lemma~\ref{thm:PlanarGraph-degree5}, $\g$ would have a vertex $v$ of
 degree $\leq 5$.  The remainder of the proof focuses on the graph
-$\g$, its minimal-degree node $v$, and on $v$'s $(d_v \leq 5)$
+$\g$, its minimal-degree vertex $v$, and on $v$'s $(d_v \leq 5)$
 neighbors in $\g$.
 
-Now, if there were a coloring of $\g$'s nodes in which $\leq 4$ colors
+Now, if there were a coloring of $\g$'s vertices in which $\leq 4$ colors
 were used to color $v$'s neighbors, then the following analogue of the
 coloring strategy of Proposition~\ref{thm:P-6-colorability} would
 produce a $5$-coloring of $\g$.
 \begin{enumerate}
 \item
-Remove node $v$ and its incident edges from $\g$, thereby producing
-the $n$-node planar graph $\g'$.
+Remove vertex $v$ and its incident edges from $\g$, thereby producing
+the $n$-vertex planar graph $\g'$.
 \item
 Produce a $5$-coloring of $\g'$ that uses only $4$ colors for the
-nodes that are neighbors of $v$ in $\g$.
+vertices that are neighbors of $v$ in $\g$.
 \item
-($a$) Reattach node $v$ and its edges to $\g'$, thereby reconstituting
+($a$) Reattach vertex $v$ and its edges to $\g'$, thereby reconstituting
   $\g$.  ($b$) Color $v$ with whichever of the $5$ available colors is
   not used to color $v$'s neighbors.
 \end{enumerate}
@@ -864,14 +838,14 @@ colors on $v$'s neighbors when $5$-coloring $\g$.  There are three
 important situations to recognize.
 \begin{description}
 \item[{\sf Case 1}.]
-Node $v$ has degree $\leq 4$.
+Vertex $v$ has degree $\leq 4$.
 
 \smallskip
 
 By definition, $\leq 4$ colors are used to color $v$'s neighbors in
 this case.
 \end{description}
-Note that, in all remaining cases, node $v$ has precisely $5$
+Note that, in all remaining cases, vertex $v$ has precisely $5$
 neighbors---or else, we would have invoked Case 1 to color $\g$ with
 $5$ colors.
 \begin{description}
@@ -896,19 +870,19 @@ its incident edges are removed from $\g$.
 
 As before, let $\g'$ be the (in this case, disconnected) graph that
 results when $v$ and its incident edges are removed from $\g$.  For $i
-= 1,2$ Let $\g_i$ be the component of $\g'$ that contains node $v_i$.
+= 1,2$ Let $\g_i$ be the component of $\g'$ that contains vertex $v_i$.
 
 Say that, under the $5$-coloring of $\g$ that we are focusing on,
 $v_1$ is colored {\it red} and $v_2$ is colored {\it green}.
 
-Let us recolor the nodes of $\g_1$ so that node $v_1$ is now colored
+Let us recolor the vertices of $\g_1$ so that vertex $v_1$ is now colored
 {\it green}.  (One needs only switch the colors {\it red} and {\it
   green} in the existing coloring of $\g_1$.)  It is always possible
 to do this in a way that does not affect the valid coloring of $\g_2$
 because $\g_1$ and $\g_2$ are mutually disjoint.
 
 Once we have thus-recolored $\g_1$, we have a $5$-coloring of $\g$ for
-which Case 2 holds.  (In fact, we can color node $v$ {\em red} when we
+which Case 2 holds.  (In fact, we can color vertex $v$ {\em red} when we
 reattach it to $\g'$.)
 \end{description}
 
@@ -919,50 +893,50 @@ we are left with the following minimally constrained situation.
 \item[{\sf Case 4}.]
 \begin{itemize}
 \item
-Every minimum-degree node of $\g$ has $5$ neighbors.
+Every minimum-degree vertex of $\g$ has $5$ neighbors.
 
-For the minimum-degree node $v$, let us call these neighbors $v_1$,
+For the minimum-degree vertex $v$, let us call these neighbors $v_1$,
 $v_2$, $v_3$, $v_4$, $v_5$, in clockwise order within the planar
 drawing.
 \item
 In every $5$-coloring of $\g$, the neighbors of every minimum-degree
-node receive distinct colors.
+vertex receive distinct colors.
 
-For node $v$, let us say that neighbor $v_i$ receives color $c_i$.
+For vertex $v$, let us say that neighbor $v_i$ receives color $c_i$.
 \end{itemize}
 The leftmost graph in FIGURE 1 
 {Denis Put right ref here}
 depicts the portion of $\g$ comprising
-node $v$ and its neighbors.  In the figure, we use integer $i$ to
-denote, ambiguously, node $v_i$ and its assigned color $c_i$.  The
-question mark ``?'' that ``colors'' node $v$ indicates that we do not
+vertex $v$ and its neighbors.  In the figure, we use integer $i$ to
+denote, ambiguously, vertex $v_i$ and its assigned color $c_i$.  The
+question mark ``?'' that ``colors'' vertex $v$ indicates that we do not
 yet know what color to assign to $v$.  The other two graphs in the
 figure depict schematically how we have dealt with Case 3 above.
 \begin{itemize}
 \item
-All neighbors of node $v$ remain in the same component of $\g$ when
+All neighbors of vertex $v$ remain in the same component of $\g$ when
 $v$ and its incident edges are removed.
 \end{itemize}
 \end{description}
-To analyze Case 4, we focus on nodes $v_1$ and $v_3$ in FIGURE 1.
+To analyze Case 4, we focus on vertices $v_1$ and $v_3$ in FIGURE 1.
 {Denis Put right ref here}
-Importantly, these nodes have received distinct colors ($c_1$ and $c_3
-\neq c_1$, respectively), and these nodes are not adjacent to one
-another as one makes a clockwise sweep around node $v$.
+Importantly, these vertices have received distinct colors ($c_1$ and $c_3
+\neq c_1$, respectively), and these vertices are not adjacent to one
+another as one makes a clockwise sweep around vertex $v$.
 
-Now take $\g$ and focus only on the nodes that are colored $c_1$ or
-$c_3$ (as are $v_1$ and $v_3$, respectively) and on the nodes that are
+Now take $\g$ and focus only on the vertices that are colored $c_1$ or
+$c_3$ (as are $v_1$ and $v_3$, respectively) and on the vertices that are
 colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One
 sees from Figure 2 that:
 \begin{itemize}
 \item
-$\g$ can, {\em but need not}, contain a path whose nodes alternate
+$\g$ can, {\em but need not}, contain a path whose vertices alternate
   colors $c_1$ and $c_3$---call this a ``$c_1$-$c_3$ path'' between
-  nodes $v_1$ and $v_3$.
+  vertices $v_1$ and $v_3$.
 \item
-$\g$ can, {\em but need not}, contain a path whose nodes alternate
+$\g$ can, {\em but need not}, contain a path whose vertices alternate
   colors $c_2$ and $c_4$---call this a ``$c_2$-$c_4$ path'' between
-  nodes $v_2$ and $v_4$.
+  vertices $v_2$ and $v_4$.
 \item
 $\g$ {\em cannot} contain both of the paths just described, i.e., a
   $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em and} a $c_2$-$c_4$ path
@@ -975,29 +949,31 @@ It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path
 between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$
 path between $v_2$ and $v_4$.  Say, with no loss of generality, that
 the former path does not exist.  Then we can switch colors $c_1$ and
-$c_3$ beginning with node $v_1$ and obtain a coloring of $\g$ in which
+$c_3$ beginning with vertex $v_1$ and obtain a coloring of $\g$ in which
 $v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as
 in Case 2 to get a $5$-coloring of $\g$.
 
 This four-case analysis shows that we can always produce a
 $5$-coloring of $\g$, which completes the proof.  \qed
 \end{proof}
-}
+*****************}
 
-We finish this topic with an overview of the intellectual
-cost-benefit tradeoff we have observed:
+\medskip
+
+We  close our study of vertex-colorability with an overview of the intellectual
+cost-benefit tradeoff that we have observed:
 \begin{itemize}
 \item
 A straightforward recursive coloring strategy suffices if one is
-willing to settle for a six-color palette when coloring planar graphs
+willing to settle for a $6$-color palette when coloring planar graphs
 (Proposition~\ref{thm:P-6-colorability}).
 \item
-A four-case analysis, in which one case comprises multiple subcases, is
-needed in order to eliminate one of the colors from the palette, to
-achieve a five-color palette (Proposition~\ref{thm:5colors}).
+A four-case analysis, in which one case comprises several subcases, is
+needed in order to eliminate one of the colors from our palette, i.e., to
+achieve a $5$-coloring strategy (Proposition~\ref{thm:5colors}).
 \item
 An analysis involving close to $2000$ cases is needed in order to
-achieve the provable optimal, a four-color palette
+achieve the provable optimal, a $4$-color palette that always works
 (Theorem~\ref{thm:Four-ColorTheorem}).
 \end{itemize}
 
@@ -1029,16 +1005,16 @@ We grow the current version of $\g$ by adding a new edge.  Two cases
 arise.
 \begin{itemize}
 \item
-{\em The new edge connects existing nodes.}  In this case, this
+{\em The new edge connects existing vertices.}  In this case, this
 augmentation of $\g$ increases the number of edges ($e$) and the
-number of faces ($f$) by $1$ each, while keeping the number of nodes
+number of faces ($f$) by $1$ each, while keeping the number of vertices
 ($n$) unchanged.  Euler's Formula (\ref{eqn:Eulers-formula}) thus
 continues to hold.
 
 \item
-{\em The new edge adds a new node, which is appended to some
-  preexisting node.}  In this case, this augmentation of $\g$
-increases the number of edges ($e$) and the number of nodes ($n$) by
+{\em The new edge adds a new vertex, which is appended to some
+  preexisting vertex.}  In this case, this augmentation of $\g$
+increases the number of edges ($e$) and the number of vertices ($n$) by
 $1$ each, while keeping the number of faces ($f$) unchanged.  Euler's
 formula (\ref{eqn:Eulers-formula}) thus continues to hold.
 \end{itemize}
@@ -1051,7 +1027,7 @@ This augmentation extends the induction, hence validates the Formula.
 
 \index{Euler's Formula!validation by deconstruction}
 \noindent {\bf Validating Euler's Formula by deconstruction}.  Let us be
-given a planar graph $\g$ that has $n$ nodes, $e$ edges, and $f$
+given a planar graph $\g$ that has $n$ vertices, $e$ edges, and $f$
 faces.  We validate (\ref{eqn:Eulers-formula}) by deconstructing $\g$
 and showing that each step in the process preserves as {\it invariant}
 the expression $\phi(n,e,f) = n-e+f$.  \index{invariants}
@@ -1088,7 +1064,7 @@ If the graph remaining at some step contains an edge that is shared by
 two distinct faces, then remove any such edge.
 
 Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
-(residual) graph with $n=8$ nodes, $e=11$ edges, and $f=5$ faces.
+(residual) graph with $n=8$ vertices, $e=11$ edges, and $f=5$ faces.
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.4]{FiguresGraph/planarStep1}
@@ -1114,20 +1090,20 @@ unchanged, while $e$ and $f$ are each reduced by $1$: $\phi(n,e,f) =
 \end{itemize}
 
 \item[{\bf Phase 2}.]
-Iterate the following process of removing nodes from the tree produced
-by Step 1, until only one node remains.
+Iterate the following process of removing vertices from the tree produced
+by Step 1, until only one vertex remains.
 \bigskip
 
 {\bf The action}.
 Remove any leaf of the current tree, together with its incident edge.
 
 Fig.~\ref{fig:planarStep2} illustrates the action of Step 2
-for a tree  with $n=8$ nodes---hence, $e=7$ edges and $f=1$ face.
+for a tree  with $n=8$ vertices---hence, $e=7$ edges and $f=1$ face.
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.4]{FiguresGraph/planarStep2}
    \caption{Illustrating Phase 2: We remove a sequence of leaves, each
-     with its incident edge, until we reach a single node.  Again,
+     with its incident edge, until we reach a single vertex.  Again,
      $\phi$ remains invariant after each leaf-removal.}
   \label{fig:planarStep2}
 \end{center}
@@ -1147,7 +1123,7 @@ each reduced by $1$: $\phi(n,e,f) = \phi(n-1,e-1,f)$
 Our process executes a number of steps exactly equal to the number of
 edges of the graph $\g$ that we began with.  To wit, the edge-removal
 Step removes $e-n$ edges, while the leaf-removal Step removes $n$
-nodes.
+vertices.
 \item
 At the end of the process, $e=0$ and $n=f=1$, so that the residual
 value of $\phi$ is $2$.  Because each action prescribed by the process
@@ -1184,7 +1160,7 @@ It is an {\sf NP}-complete problem to decide, given any fixed $k \geq
 3$, whether a given graph $\g$ is $k$-colorable.
 
 A simple argument shows that it is {\sf NP}-hard to find the smallest
-number of colors that provide a valid node-coloring of $\g$.
+number of colors that provide a valid vertex-coloring of $\g$.
 
 But one can exhibit ``greedy'' algorithms that give good results.
 \end{minipage}
@@ -1201,7 +1177,7 @@ often useful to ``summarize'' aspects of $\g$'s traversal structure.
 This section is devoted to a range of problems related to determining
 the existence in a graph $\g$ of a path or a cycle that {\em
   completely} ``summarizes'' $\g$'s traversal structure, either by
-containing each node of $\g$ precisely once or by containing each edge
+containing each vertex of $\g$ precisely once or by containing each edge
 of $\g$ precisely once.  We shall generally focus in this section only
 on {\em undirected} paths and cycles in {\em undirected}, {\em
   unweighted} graphs.  Extrapolating the notions we discuss to their
@@ -1237,7 +1213,7 @@ graph that admits an Eulerian cycle is said to be {\it
 
 \medskip
 
-Dually: A cycle in a graph $\g$ that encounters each of $\g$'s nodes
+Dually: A cycle in a graph $\g$ that encounters each of $\g$'s vertices
 precisely once is called a {\it Hamiltonian cycle},
 \index{graph!Hamiltonian cycle} \index{Hamiltonian cycle} (or, often,
 a {\it Hamiltonian circuit}). \index{graph!Hamiltonian circuit}
@@ -1246,19 +1222,18 @@ honor of the British mathematician Sir William Rowan Hamilton,
 \index{Hamilton, William Rowan} who is credited with inventing the
 concept in the mid-19th century.  
 {\Denis even if the problem was introduced some time before in its whole genericity by 
-Thomas Penyngton Kirkman, Hamilton just popularized it...} (A node-exhausting {\em path} in
+Thomas Penyngton Kirkman, Hamilton just popularized it...} (A vertex-exhausting {\em path} in
 $\g$ is referred to in the obvious analogous way.)  When one views a
 Hamiltonian cycle as a ``map'' for traversing a graph, one often calls
 the cycle a {\it Hamiltonian tour}.  \index{graph!Hamiltonian tour}
 \index{Hamiltonian tour} Traditionally, a graph that admits a
-Hamiltonian cycle is said to be {\it
-  Hamiltonian}. \index{graph!Hamiltonian} \index{Hamiltonian graph}
+Hamiltonian cycle is said to be {\it Hamiltonian}. \index{graph!Hamiltonian} \index{Hamiltonian graph}
 
 \medskip
 
 Despite the conceptual duality between the edge-encountering goal that
 underlies Eulerian paths and cycles, on the one hand, and the
-node-encountering goal that underlies Hamiltonian paths and cycles,
+vertex-encountering goal that underlies Hamiltonian paths and cycles,
 these two graph-traversing goals differ in virtually every significant
 respect.  It is rather easy to characterize the family of graphs that
 admit Eulerian tours and to find such a tour if it exists
@@ -1298,11 +1273,11 @@ desired result in the following statement.
 \label{thm:eulerian-cycle}
 {\bf (a)}
 An undirected graph $\g$ admits an Eulerian cycle if, and only if,
-$\g$ is connected and every node of $\g$ has even degree.
+$\g$ is connected and every vertex of $\g$ has even degree.
 
 {\bf (b)}
 A directed graph $\g$ admits a directed Eulerian cycle if, and only if,
-$\g$ is connected and, for every node $v$ of $\g$,
+$\g$ is connected and, for every vertex $v$ of $\g$,
 $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
 \end{prop}
 
@@ -1316,9 +1291,9 @@ The {\em necessity} of the conditions in both parts {\bf (a)} and {\bf
 \item
 By definition, a graph that is not connected does not admit any \textit{eulerian} cycle.
 \item
-Each cycle that a graph admits accounts for two edges per node,
-because the cycle must ``enter'' the node by one edge and ``exit'' the
-node by a different edge.
+Each cycle that a graph admits accounts for two edges per vertex,
+because the cycle must ``enter'' the vertex by one edge and ``exit'' the
+vertex by a different edge.
 \end{itemize}
 
 \smallskip
@@ -1338,7 +1313,7 @@ the Proposition's conditions for ``small'' graphs.
 \begin{minipage}{0.95\textwidth}
 While we largely
 leave this step to the reader, we do want to discuss the definition of
-``small''.  Until we understand how to deal with arbitrary $n$-node
+``small''.  Until we understand how to deal with arbitrary $n$-vertex
 graphs, we will not know how the general step of our induction reduces
 the graph size $n$ at each step.  Because of this, it is a good
 practice to ``play'' with several small graph sizes initially.
@@ -1351,29 +1326,29 @@ case of the induction.
 
 \begin{itemize}
 \item
-Focusing on {\em undirected} graphs: We note that $2$-node graphs
-cannot have even node-degrees---and, indeed, as promised by the
+Focusing on {\em undirected} graphs: We note that $2$-vertex graphs
+cannot have even vertex-degrees---and, indeed, as promised by the
 Proposition, they cannot be Eulerian.  One can exhaustively enumerate
-$3$-node and $4$-node graphs and verify that the Proposition correctly
+$3$-vertex and $4$-vertex graphs and verify that the Proposition correctly
 separates the Eulerian ones from the non-Eulerian ones.
 \item
-Focusing on {\em directed} graphs: We note that $2$-node graphs can be
-Eulerian---as witnessed by the $2$-node digraph each of whose nodes
-hosts a single arc that points to the other node.  Once again, one can
-perform an exhaustive enumeration of $3$-node and $4$-node graphs
+Focusing on {\em directed} graphs: We note that $2$-vertex graphs can be
+Eulerian---as witnessed by the $2$-vertex digraph each of whose vertices
+hosts a single arc that points to the other vertex.  Once again, one can
+perform an exhaustive enumeration of $3$-vertex and $4$-vertex graphs
 and verify that the Proposition correctly separates the Eulerian ones
 from the non-Eulerian ones.
 \end{itemize}
 
 We now develop a complete proof of the {\em sufficiency} of the
-conditions in part {\bf (a)} of the Proposition, for general $n$-node
+conditions in part {\bf (a)} of the Proposition, for general $n$-vertex
 undirected graphs.  Throughout the discussion, we intersperse hints
 regarding the sufficiency of the conditions in part {\bf (b)} of the
 Proposition.
 
-Let us consider a connected multi-node undirected graph $\g$ all of
-whose nodes have nonzero even degree.
-{\Denis  should'nt multi-node be defined? What do you mean here?}
+Let us consider a connected multi-vertex undirected graph $\g$ all of
+whose vertices have nonzero even degree.
+{\Denis  should'nt multi-vertex be defined? What do you mean here?}
 
 \begin{description}
 \item[{\bf Step 1}]
@@ -1382,10 +1357,10 @@ will help orchestrate our discovery of the Eulerian cycle within $\g$.
 {\Denis no need to step 1}
 
 \item[{\bf Step 2}]
-Choose an arbitrary node of $\g$ some of whose incident edges have not
-yet been traversed.  Call this node $v_k$, and let us henceforth refer
-to $v_k$ as a {\em special} node.  Follow a walk along edges of $\g$
-beginning at special node $v_k$.  
+Choose an arbitrary vertex of $\g$ some of whose incident edges have not
+yet been traversed.  Call this vertex $v_k$, and let us henceforth refer
+to $v_k$ as a {\em special} vertex.  Follow a walk along edges of $\g$
+beginning at special vertex $v_k$.  
 {\Denis we should change $v_k$ to $v$ if we change the way to write the proof...}
 The rules of this walk are:
 \begin{itemize}
@@ -1393,35 +1368,35 @@ The rules of this walk are:
 Every step of the walk will traverse an edge of $\g$ that {\em has not
   yet been traversed} during any walk.
 \item
-The walk terminates when it encounters a node of $\g$ {\em all of
+The walk terminates when it encounters a vertex of $\g$ {\em all of
   whose edges have already been traversed}.
 \end{itemize}
 The facts that 
 
 \hspace*{.25in}\begin{tabular}{ll}
-(1) & each node of $\g$ has even degree; \\
-(2) & the walk begins at node $v_k$ (which crosses one of $v_k$'s edges); \\
+(1) & each vertex of $\g$ has even degree; \\
+(2) & the walk begins at vertex $v_k$ (which crosses one of $v_k$'s edges); \\
 (3) & no edge of $\g$ is traversed more than once
 \end{tabular}
 
 \noindent
-mean that the last node encountered in this walk is $v_k$.  In other
-words: {\em This walk begins and ends with node $v_k$.}
+mean that the last vertex encountered in this walk is $v_k$.  In other
+words: {\em This walk begins and ends with vertex $v_k$.}
 
-Note that node $v_k$ will occur in this walk multiple
+Note that vertex $v_k$ will occur in this walk multiple
 times---specifically with multiplicity $\frac{1}{2} \mbox{\sc
   degree}(v_k)$.
   
 {\Denis Denis I would suggest here to simply a bit, in fact both  steps 1 and 2 aims simply at determining a non-empty cycle in the graph...}
 
-We have completed the walk in $\g$ that begins and ends at node $v_k$.
+We have completed the walk in $\g$ that begins and ends at vertex $v_k$.
 
 {\Denis I suggest to skip step 3... I think it is enough -- and more easy-- to build
 the whole eulerian cycle from any cycle. Do I miss something?}
 
 \ignore{\smallskip
 \item[{\bf Step 3}]
-Say that we have completed the walk in $\g$ that begins at node $v_k$.
+Say that we have completed the walk in $\g$ that begins at vertex $v_k$.
 
 {\bf If} every edge of $\g$ has been traversed by the end of the
 current walk, then we {\it go to {\bf Step 4}} and invoke procedure
@@ -1430,7 +1405,7 @@ Eulerian cycle in $\g$.
 
 \smallskip
 
-{\bf Else}, there is a node of $\g$, call it $v_{k+1}$, one of whose
+{\bf Else}, there is a vertex of $\g$, call it $v_{k+1}$, one of whose
 incident edges has not yet been traversed.  Note that we are here
 increasing the value of our progress parameter from $k$ to $k+1$.  We
 now {\it repeat {\bf Step 2}} with the updated progress parameter,
@@ -1439,13 +1414,13 @@ $k+1$.
 
 \item[{\bf Step 4}]
 \ignore{We have reached this step because our sequence of walks that begin and
-end at special nodes has terminated with all of $\g$'s edges having
+end at special vertices has terminated with all of $\g$'s edges having
 been traversed.}
 
 The previous step determined a cycle in graph $\g$,.
 Once it is removed, it remains several connected components,
 denoted by $\mathcal{C}_1$, $\mathcal{C}_2$, $\ldots$ $\mathcal{C}_c$.
-This cycle intersects the strong components at nodes $v_1$, $v_2$ until $v_c$. 
+This cycle intersects the strong components at vertices $v_1$, $v_2$ until $v_c$. 
 We are now ready to exhibit an Eulerian cycle in $\g$ by going piece after piece along the cycle 
 starting from $v_k$.
 {\Denis change it to $v$}
@@ -1455,8 +1430,8 @@ starting from $v_k$.
 \ignore{The resulting procedure
 {\bf Build Eulerian Cycle} proceeds as follows.
 
-For each special node $v_k$, during the walk that begins and ends at
-$v_k$, we encounter other special nodes, call them $v_{k,1}$,
+For each special vertex $v_k$, during the walk that begins and ends at
+$v_k$, we encounter other special vertices, call them $v_{k,1}$,
 $v_{k,2}$, \ldots, $v_{k,{m_k}}$, in the order of their being
 encountered along the walk.  We then define the following recursive
 procedure.
@@ -1510,7 +1485,7 @@ produces the Eulerian cycle in $\g$.
 \bigskip
 
 When dealing with a {\em directed} graph, we proceed exactly as
-with undirected graphs, with one critical difference: for each node
+with undirected graphs, with one critical difference: for each vertex
 $v$ we always enter $v$ along one of its {\em in-arcs}, and
 we always exit $v$ along one of its {\em out-arcs}.  As in the
 undirected case, each arc is traversed precisely once during
@@ -1576,17 +1551,17 @@ one seeks Eulerian {\em paths} rather than {\em cycles}.
 \label{thm:eulerian-path}
 {\bf (a)}
 An undirected graph $\g$ admits an Eulerian path if, and only if,
-$\g$ is connected and at most two nodes of $\g$ have odd degree.
+$\g$ is connected and at most two vertices of $\g$ have odd degree.
 
 {\bf (b)}
 A directed graph $\g$ admits an Eulerian path if, and only if: $\g$ is
 connected; either $\g$ admits an Eulerian cycle, or $\g$ contains one
-node $u$ such that
+vertex $u$ such that
 
 \hspace*{.5in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
 
 \noindent
-and one node $v$ such that
+and one vertex $v$ such that
 
 \hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
 \end{prop}
@@ -1597,14 +1572,14 @@ Proposition~\ref{thm:eulerian-cycle}, with one major difference.
 Whereas a cycle has neither beginning nor end, a path has both.
 Proposition~\ref{thm:eulerian-path}(a) asserts that an undirected
 graph which admits an Eulerian path but not an Eulerian cycle has
-precisely two nodes of odd degree.  These odd-degree nodes play the
+precisely two vertices of odd degree.  These odd-degree vertices play the
 role of the two extreminities of the Eulerian path.  In similar fashion,
 Proposition~\ref{thm:eulerian-path}(b) asserts that a directed graph
 which admits an Eulerian path but not an Eulerian cycle contains one
-node, $u$, whose out-degree exceeds its in-degree and one node, $v$,
-whose in-degree exceeds its out-degree.  Node $u$ plays the role of
-the beginning node of the Eulerian path, and node $v$ plays the role
-of the end node of the path.  With these hints, we invite the reader
+vertex, $u$, whose out-degree exceeds its in-degree and one vertex, $v$,
+whose in-degree exceeds its out-degree.  Vertex $u$ plays the role of
+the beginning vertex of the Eulerian path, and vertex $v$ plays the role
+of the end vertex of the path.  With these hints, we invite the reader
 to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a
 proof of Proposition~\ref{thm:eulerian-path}.
 
@@ -1636,7 +1611,7 @@ has a {\it Hamiltonian cycle}---and the allied problem of finding such
 a cycle when one exists.  One can envision a number of benefits
 rendered accessible by the presence of a Hamiltonian cycle in a graph
 $\g$.  Most obviously, the cycle specifies a tour of $\g$ (or of a map
-whose structure $\g$ abstracts) which visits each of $\g$'s nodes
+whose structure $\g$ abstracts) which visits each of $\g$'s vertices
 precisely once.  This is the sense in which the cycle ``summarizes"
 $\g$'s traversal structure.
 
@@ -1656,7 +1631,7 @@ inclusive, notions of Hamiltonianicity.
 \noindent {\it Be satisfied with paths, rather than cycles}.
 A {\it Hamiltonian path} \index{graph!Hamiltonian path}
 \index{Hamiltonian path} in a graph $\g$ is a path that passes through
-each of $\g$'s nodes precisely once.  Hamiltonian paths can easily be
+each of $\g$'s vertices precisely once.  Hamiltonian paths can easily be
 shown to be a strictly weaker notion than Hamiltonian cycles, in the
 obvious sense where every graph that admits a Hamiltonian
 cycle also admits a Hamiltonian path: one just drops any single edge
@@ -1669,12 +1644,12 @@ of a mesh-graph {\it seriatim}, in alternating directions.
 
 \noindent {\it Be satisfied with short paths, rather than edges}.
 A Hamiltonian cycle in graph $\g$ is a circular enumeration of $\g$'s
-nodes in which adjacent nodes are at unit distance from one
+vertices in which adjacent vertices are at unit distance from one
 another---i.e., are connected by an edge.  We can weaken (or,
 generalize) this notion to create a {\it Hamiltonian $k$-cycle}
 \index{graph!Hamiltonian $k$-cycle} in $\g$, for any positive integer
-$k$: This is a circular enumeration of $\g$'s nodes in which adjacent
-nodes are at distance $\leq k$ from one another---so a Hamiltonian
+$k$: This is a circular enumeration of $\g$'s vertices in which adjacent
+vertices are at distance $\leq k$ from one another---so a Hamiltonian
 $1$-cycle is what we have been calling a Hamiltonian cycle.  In fact,
 the following result shows that one need not let $k$ be very big
 before one encompasses all connected graphs.  Regrettably, the proof
@@ -1684,17 +1659,17 @@ of this result is beyond the current text.
 \label{thm:weak-Hamiltonianicity}
 {\bf (a)} {\rm \cite{ChartrandK69}}
 Let $\g$ be any connected graph.  One can cyclically enumerate the
-nodes of $\g$ in such a way that nodes that are adjacent in the cycle
+vertices of $\g$ in such a way that vertices that are adjacent in the cycle
 are at distance $\leq 3$ in $\g$.
 
 
 \noindent {\bf (b)} {\rm  \cite{Fleischner74}}
 Let $\g$ be any graph that is {\em $2$-connected}
 \index{graph!$2$-connected} \index{graph!biconnected} (or, {\it
-  biconnected}) in the sense that, for every two nodes, $u$ and $v$,
-of $\g$, there exist at least two node-disjoint paths in $\g$ that
-connect $u$ and $v$.  One can cyclically enumerate the nodes of $\g$
-in such a way that nodes that are adjacent in the cycle are at
+  biconnected}) in the sense that, for every two vertices, $u$ and $v$,
+of $\g$, there exist at least two vertex-disjoint paths in $\g$ that
+connect $u$ and $v$.  One can cyclically enumerate the vertices of $\g$
+in such a way that vertices that are adjacent in the cycle are at
 distance $\leq 2$ in $\g$.
 \end{prop}
 
@@ -1741,7 +1716,7 @@ This is a tautology, by definition of $\cc_n$.
 
 \noindent {\bf (b)}
 This is immediate because, by definition, $\k_n$ contains every
-$n$-node graph---including $\cc_n$---as a subgraph.
+$n$-vertex graph---including $\cc_n$---as a subgraph.
 
 \medskip
 
@@ -1753,8 +1728,8 @@ alternating directions.
 
 \noindent {\bf (c)}.1.ii.
 This is a consequence of the fact that $\m_{m,n}$ is {\it bipartite}:
-\index{graph!bipartite} One can color $\m_{m,n}$'s nodes red and blue
-in such a way that every edge connect nodes of different colors.
+\index{graph!bipartite} One can color $\m_{m,n}$'s vertices red and blue
+in such a way that every edge connect vertices of different colors.
 Details are left to the reader.
 
 \noindent {\bf (c)}.1.iii.
@@ -1772,8 +1747,8 @@ $\m_{m,n}$.
 When $mn$ is even, the Hamiltonianicity of $\widetilde{\m}_{m,n}$
 follows from the fact that $\m_{m,n}$ is a spanning subgraph of
 $\widetilde{\m}_{m,n}$.  (Think about it!)  When $mn$ is odd, one
-needs just traverse $\widetilde{\m}_{m,n}$'s nodes row by row, going
-to the cyclically next node after completing each row (see Fig.~\ref{fig:HamiltonTorus}).  
+needs just traverse $\widetilde{\m}_{m,n}$'s vertices row by row, going
+to the cyclically next vertex after completing each row (see Fig.~\ref{fig:HamiltonTorus}).  
 Details of the formal proof are left to the reader.
 \begin{figure}[hbt]
 \begin{center}
@@ -1935,7 +1910,7 @@ this text, but we do want the reader to recognize the following.
 \begin{description}
 \item
 {\it The problem of deciding, given a graph $\g$ that is presented via
-  a list of nodes and a list of edges, whether $\g$ admits a
+  a list of vertices and a list of edges, whether $\g$ admits a
   Hamiltonian path or a Hamiltonian cycle is {\sf NP}-complete.}
 \end{description}
 
@@ -1985,7 +1960,7 @@ Hypergraph-based models find application in areas as diverse as:
 and collusion.
 \item
 {\it electronic networks:} Hyperedges can enable the design of
-equi-potential nodes in voltage-driven technologies such as {\it
+equi-potential vertices in voltage-driven technologies such as {\it
   VLSI}.
 \item
 {\it communication networks:} Hyperedges can model bus-oriented
@@ -2011,9 +1986,9 @@ After solving the preceding ``pure'' version of the Eulerian-tour
 problem---which seeks a tour of a graph which crosses each edge
 precisely once---we discuss an extension of this problem which allows
 us to augment a graph $\g$ by adding multiple edges between the same
-two nodes.  (Terminologically, we thereby convert $\g$ to a {\it
+two vertices.  (Terminologically, we thereby convert $\g$ to a {\it
   multi-graph} \index{multi-graph} \index{graph!multi-graph}
-consisting of nodes and {\it multi-edges}.) \index{multi-edge} Not
+consisting of vertices and {\it multi-edges}.) \index{multi-edge} Not
 obviously, adding multi-edges can often convert a graph $\g$ that does
 not admit an Eulerian cycle into a multi-graph that does admit an
 Eulerian cycle.  The problem of finding the {\em smallest} such
@@ -2034,11 +2009,11 @@ of its inventor, the Chinese mathematician Kwan Mei-Ko \index{Kwan
 order to render $\g$ Eulerian.  (A {\it multi-graph} is ``almost'' an
 undirected graph.  It differs from a true graph because of the
 possible presence of multiple multi-edges that connect the same two
-nodes.)
+vertices.)
 
 
 We know from Proposition~\ref{thm:eulerian-cycle} that if all of
-$\g$'s nodes have even node-degrees, then---{\em and only then}---$\g$
+$\g$'s vertices have even vertex-degrees, then---{\em and only then}---$\g$
 admits an Eulerian cycle.  Therefore, in this case, {\em zero}
 multi-edges need be added to $\g$ to render it Eulerian.  
 
@@ -2061,7 +2036,7 @@ Fig.~\ref{fig:EulerianInitial} presents an example of the chinese postman proble
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/EulerienInitial}
-       \caption{An instance of the Chinese postman with $10$ cross-nodes.}
+       \caption{An instance of the Chinese postman with $10$ cross-vertices.}
               \label{fig:EulerianInitial}
 \end{center}
 \end{figure}
@@ -2148,7 +2123,7 @@ intellectual vantage point, it would be of interest to be able to
 quantify the tightness of interconnection.  Among the various measures
 that have been proposed, one stands out for its myriad algorithmic
 implications: the notion of {\it graph separator}.  In fact, this
-notion appears in the literature in several flavors.  An $n$-node,
+notion appears in the literature in several flavors.  An $n$-vertex,
 $e$-edge graph $\g$ has:
 \begin{itemize}
 \item
@@ -2160,25 +2135,25 @@ precisely if:
 \smallskip
 
 one can partition $\g$ into two disjoint (not-necessarily connected)
-subgraphs, each having $\leq \alpha n$ nodes, by removing $\leq k$
+subgraphs, each having $\leq \alpha n$ vertices, by removing $\leq k$
 edges from $\g$.
 
 \item
-a {\it $\alpha$-node separator} of size $\ell$,
-\index{graph!$\alpha$-node separator of size $\ell$}
+a {\it $\alpha$-vertex separator} of size $\ell$,
+\index{graph!$\alpha$-vertex separator of size $\ell$}
 where $\alpha$ is a real number with $\alpha \leq 1/2$ and $\ell$ is
 an integer with $k < e$, precisely if:
 
 \smallskip
 
 one can partition $\g$ into two disjoint (not-necessarily connected)
-subgraphs, each having $\leq \alpha n$ nodes, by removing $\leq \ell$
-nodes from $\g$.
+subgraphs, each having $\leq \alpha n$ vertices, by removing $\leq \ell$
+vertices from $\g$.
 \end{itemize}
 We replace the term ``separator'' with the term {\em ``bisector''} 
-\index{graph!edge bisector} \index{graph!node bisector}
+\index{graph!edge bisector} \index{graph!vertex bisector}
 if both subgraphs after a separation operation have $\leq \lfloor
-\frac{1}{2} n \rfloor$ nodes.
+\frac{1}{2} n \rfloor$ vertices.
 
 \medskip
 
@@ -2188,10 +2163,10 @@ graphs of Section~\ref{sec:graphs-important-families}:
 \begin{itemize}
 \item
 It is certainly obvious that cycles are easier to bisect than cliques,
-as measured by either edge or node bisectors.
+as measured by either edge or vertex bisectors.
 \item
 It is far less clear that de Bruijn networks and hypercubes are
-roughly equal in ease to bisect, as measured by node bisectors.
+roughly equal in ease to bisect, as measured by vertex bisectors.
 \end{itemize}
 But similar separation behavior has very important algorithmic
 consequences.  For instance, the closeness in separation
@@ -2210,7 +2185,7 @@ computation and communication (see, e.g.,
 There is a large literature that develops the algorithmics of finding
 small separators for significant families of graphs.  An early star in
 the firmament of such studies is the discovery in \cite{LiptonT79} of
-a $1/3$-node separator of size $\sqrt{8n}$ for $n$-node planar graphs.
+a $1/3$-vertex separator of size $\sqrt{8n}$ for $n$-vertex planar graphs.
 The dual problem of finding lower bounds on the sizes of graph
 separators is a bit sparser but, of course, no less significant.  The
 reader can find a comprehensive exposition on the theory of graph
@@ -2248,8 +2223,8 @@ algorithmic issues that arise with social networks and inter-networks
 requires the reader to understand the structures of the evolving
 graph-oriented systems and how evolution changes these structures.
 Among the interesting (and valuable) mathematical questions one can
-pose is: When a new node applies to join an evolving network, which
-node in the network is the best one to connect to, in order to best
+pose is: When a new vertex applies to join an evolving network, which
+vertex in the network is the best one to connect to, in order to best
 facilitate one's interactions or influence within the community.  The
 latter topic leads, e.g., to the study of {\em power-law} networks.
 \index{graph!with evolving structure!social networks!power-law networks}
@@ -2260,7 +2235,7 @@ latter topic leads, e.g., to the study of {\em power-law} networks.
 \begin{minipage}{0.95\textwidth}
 An evolving network is said to {\it obey a power law} if there exists
 a real number $\gamma >0$ such that, for sufficiently large values of
-the integer parameter $k$, the fraction of nodes in the network having
+the integer parameter $k$, the fraction of vertices in the network having
 degree $k$ is proportional to $k^{-\gamma}$.
 \end{minipage}
 }
@@ -2286,15 +2261,15 @@ faithfully---see, e.g.,
 A large variety of modern computing-related topics benefit from the
 structure inherent in graph-theoretic models but do not comfortably
 conform to the {\em binary} relationships imposed by graphs' having
-{\em two} nodes per edge.  A model that retains the structure of
+{\em two} vertices per edge.  A model that retains the structure of
 graph-theoretic models without the binary constraint is the
 generalization of graphs called {\em hypergraphs}.  A hypergraph has
-nodes that play exactly the same role as with graphs, but in place of
+vertices that play exactly the same role as with graphs, but in place of
 a graph's binary edges, a hypergraph has {\em hyperedges}, each being
-a set of nodes whose size is not restricted to $2$.  A rather general
+a set of vertices whose size is not restricted to $2$.  A rather general
 treatment of hypergraphs can be found in the comprehensive
 graph-theory text \cite{Berge73}; a specialized article that focuses
-on some of the topics of this chapter, such as node-coloring, is
+on some of the topics of this chapter, such as vertex-coloring, is
 \cite{Lovasz73}.  Because of their inherent complexity, hypergraphs as
 graph-theoretic objects are usually relegated to advanced courses.
 However, the literature contains many studies of hypergraphs that are
@@ -2309,7 +2284,7 @@ Bus-connected parallel communication has been part of digital computer
 its earliest days.  The informal picture of such a system is that
 there are communication channels that multiple agents can retrieve
 message from and post messages to.  In hypergraph-oriented terms: the
-nodes/communicating agents aggregate into groups/hyperedges.  Each
+vertices/communicating agents aggregate into groups/hyperedges.  Each
 group's agents share ``read/write'' access to a specific channel.  A
 specialized genre of hypergraph that was invented to study the
 described scenario is the {\it interval hypergraph}
