@@ -738,7 +738,8 @@ $d_v$.  \qed
 \begin{prop}[The $5$-Color Theorem for Planar Graphs \cite{Heawood90}]
 \label{thm:5colors}
 \label{thm:P-5-colorability}
-Every planar graph is $5$-colorable.
+Every planar \\
+graph is $5$-colorable.
 \end{prop}
 
 \medskip
@@ -958,10 +959,10 @@ $5$-coloring of $\g$, which completes the proof.  \qed
 \end{proof}
 *****************}
 
-\medskip
+\bigskip
 
-We  close our study of vertex-colorability with an overview of the intellectual
-cost-benefit tradeoff that we have observed:
+We  close our study of vertex-colorings of planar graphs with an overview of the intellectual
+cost-benefit tradeoff that we have exposed:
 \begin{itemize}
 \item
 A straightforward recursive coloring strategy suffices if one is
@@ -981,15 +982,14 @@ achieve the provable optimal, a $4$-color palette that always works
 \label{subsec:validationEulerFormula}
 \index{Euler's Formula}
 
-We develop two quite different proofs of
-Proposition~\ref{thm:Euler-Formula}.
+We develop two quite different proofs of Proposition~\ref{thm:Euler-Formula}.
 
 \medskip
 
-\index{Euler's Formula!validation by structural induction}
-\noindent {\bf Validatinging Euler's Formula by structural induction}.  We
-validate (\ref{eqn:Eulers-formula}) by growing a planar graph $\g$
-edge by edge.  We proceed by induction.
+\index{Euler's Formula!validation via structural induction}
+\noindent {\bf Validation via structural induction}. 
+Our first approach validates (\ref{eqn:Eulers-formula}) by growing a planar graph $\g$
+inductively, edge by edge.
 
 \smallskip
 
@@ -1001,73 +1001,78 @@ the smallest interesting one, $\cc_3$, which has $n = e = 3$ and $f =2$
 \smallskip
 
 \noindent {\it Extension}.
-We grow the current version of $\g$ by adding a new edge.  Two cases
-arise.
+We grow the current version of $\g$ by adding a new edge.  Two cases arise.
 \begin{itemize}
 \item
-{\em The new edge connects existing vertices.}  In this case, this
-augmentation of $\g$ increases the number of edges ($e$) and the
+{\em The new edge connects existing vertices.}
+In this case, this augmentation of $\g$ increases the number of edges ($e$) and the
 number of faces ($f$) by $1$ each, while keeping the number of vertices
-($n$) unchanged.  Euler's Formula (\ref{eqn:Eulers-formula}) thus
-continues to hold.
+($n$) unchanged.
 
 \item
-{\em The new edge adds a new vertex, which is appended to some
-  preexisting vertex.}  In this case, this augmentation of $\g$
-increases the number of edges ($e$) and the number of vertices ($n$) by
-$1$ each, while keeping the number of faces ($f$) unchanged.  Euler's
-formula (\ref{eqn:Eulers-formula}) thus continues to hold.
+{\em The new edge adds a new vertex, which is appended to some preexisting vertex.}
+In this case, this augmentation of $\g$ keeps the number of faces ($f$) unchanged while
+it increases by $1$ both the number of edges ($e$) and the number of vertices ($n$). 
 \end{itemize}
-This augmentation extends the induction, hence validates the Formula.
+In both cases Euler's Formula (\ref{eqn:Eulers-formula}) continues to hold as we augment
+$\g$.  The augmentation thereby extends the induction, hence validates the Formula.
 \qed
 
 \bigskip
 
 %{\Denis Here is a nice alternative proof for the Euler proposition}
 
-\index{Euler's Formula!validation by deconstruction}
-\noindent {\bf Validating Euler's Formula by deconstruction}.  Let us be
-given a planar graph $\g$ that has $n$ vertices, $e$ edges, and $f$
-faces.  We validate (\ref{eqn:Eulers-formula}) by deconstructing $\g$
-and showing that each step in the process preserves as {\it invariant}
-the expression $\phi(n,e,f) = n-e+f$.  \index{invariants}
+\index{Euler's Formula!validation via deconstruction}
+\noindent {\bf Validation via deconstruction}.
+Let us be given a planar graph $\g$ that has $n$ vertices, $e$ edges, and $f$
+faces.  We validate Formula (\ref{eqn:Eulers-formula}) by deconstructing $\g$ and showing
+that each step in the process preserves as {\it invariant} the expression
+\begin{equation}
+\label{eq:phi-in-euler-formula}
+ \phi(n,e,f) \ = \ n-e+f
+\end{equation}
 
 \bigskip
 
+\index{invariants}
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-The concept of \textit{invariance} is an extremely important
-conceptual tool when crafting proofs.  The underlying idea is to find
-an expression $\phi(\cdot)$ whose value is preserved as a process
-proceeds, step by step.  Rather than try to explain the concept in
-abstraction, we recommend that the reader follow this proof of Euler's
-Formula with an eye to keeping track of the invariant expression
-$\phi(n,e,f)$ whose arguments are obtained from the subject planar
-graph $\g$.
+The notion of \textit{invariant} is an extremely important conceptual tool when crafting proofs.
+The underlying idea is to find an expression $\phi(\cdot)$ whose value is preserved (i.e., ``holds
+invariant") as some relevant process proceeds.
+
+Rather than try to explain the concept in abstraction, we recommend that the reader follow this
+validation of Euler's Formula while keeping track of the invariance of expression
+$\phi(n,e,f)$ of (\ref{eq:phi-in-euler-formula}).
 \end{minipage}
 }
 \bigskip
 
 \noindent
-We analyze the following two-phase process performed in sequence.
+Focus on the following two-phase process.
 \begin{description}
 \item[{\bf Phase 1}.]
-Iterate the following process of removing edges from $\g$ until one
-edge-removal reduces $\g$ to a graph with a single face.  This
-termination condition is equivalent to stopping when the remaining
-graph is a tree.  One can verify that the tree one ends up with is
-{\em connected}.
+Iterate the process of removing edges from $\g$ until one edge-removal reduces $\g$ to
+a graph with a single face.
+
+One can verify that this termination condition is  equivalent to stopping when the remaining
+graph is a tree.  One can verify that the tree one ends up with is {\em connected}.
+
+{\Arny The termination with a connected tree should be an exercise.}
+
 \bigskip
 
 {\bf The action}.
 If the graph remaining at some step contains an edge that is shared by
 two distinct faces, then remove any such edge.
 
+\smallskip
+
 Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
 (residual) graph with $n=8$ vertices, $e=11$ edges, and $f=5$ faces.
 \begin{figure}[hbt]
 \begin{center}
-   \includegraphics[scale=0.4]{FiguresGraph/planarStep1}
+   \includegraphics[scale=0.35]{FiguresGraph/planarStep1}
 \caption{Illustrating Phase 1: From top left to bottom right, each
   transformation preserves the invariant $\phi(n,e,f)$.  The first
   transformation removes the edge shared by faces (1) and (2),
@@ -1084,26 +1089,27 @@ Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
 The graph remaining after an edge-removal is still planar---edges are
 removed but never added---so we can continue the process.
 \item
-The process preserves the value of function $\phi$.  To wit, $n$ is
-unchanged, while $e$ and $f$ are each reduced by $1$: $\phi(n,e,f) =
-\phi(n,e-1,f-1)$.
+The process preserves the value of function $\phi$; i.e., $\phi(n,e,f) \ = \ \phi(n,e-1,f-1)$.
+This is because $n$ is unchanged, while $e$ and $f$ are each reduced by $1$.
 \end{itemize}
+
+\smallskip
 
 \item[{\bf Phase 2}.]
 Iterate the following process of removing vertices from the tree produced
-by Step 1, until only one vertex remains.
+by Phase 1, until only one vertex remains.
 \bigskip
 
 {\bf The action}.
 Remove any leaf of the current tree, together with its incident edge.
 
-Fig.~\ref{fig:planarStep2} illustrates the action of Step 2
+Fig.~\ref{fig:planarStep2} illustrates the action of Phase  2
 for a tree  with $n=8$ vertices---hence, $e=7$ edges and $f=1$ face.
 \begin{figure}[hbt]
 \begin{center}
-   \includegraphics[scale=0.4]{FiguresGraph/planarStep2}
+   \includegraphics[scale=0.35]{FiguresGraph/planarStep2}
    \caption{Illustrating Phase 2: We remove a sequence of leaves, each
-     with its incident edge, until we reach a single vertex.  Again,
+     with its incident edge, until we reach a single vertex.  Here again,
      $\phi$ remains invariant after each leaf-removal.}
   \label{fig:planarStep2}
 \end{center}
@@ -1112,57 +1118,49 @@ for a tree  with $n=8$ vertices---hence, $e=7$ edges and $f=1$ face.
 \bigskip
 
 {\bf The analysis}.
-The value of function $\phi$ remains unchanged by each leaf-removal.
-To wit, $f$ is unchanged (it remains at $1$), while $n$ and $e$ are
-each reduced by $1$: $\phi(n,e,f) = \phi(n-1,e-1,f)$
+The value of function $\phi$ remains invariant under each leaf-removal; i.e.,
+$\phi(n,e,f) \ = \ \phi(n-1,e-1,f)$.
+To wit, $f$ is unchanged (remaining at $f=1$), while $n$ and $e$ are
+each reduced by $1$.
 \end{description}
+
+\medskip
 
 \noindent {\bf The cumulative analysis}.
 \begin{itemize}
 \item
 Our process executes a number of steps exactly equal to the number of
-edges of the graph $\g$ that we began with.  To wit, the edge-removal
-Step removes $e-n$ edges, while the leaf-removal Step removes $n$
-vertices.
+edges of the graph $\g$ that we began with.  Specifically, the edge-removing
+Phase 1 removes $e-n$ edges, while the leaf-removing Phase 2 removes $n$ vertices.
 \item
 At the end of the process, $e=0$ and $n=f=1$, so that the residual
 value of $\phi$ is $2$.  Because each action prescribed by the process
-preserved the value of $\phi$, we know that $\phi$ has the value $2$
+preserves the value of $\phi$, we know that $\phi$ has the value $2$
 before each edge-removal and leaf-removal.
 \end{itemize}
-We conclude that, at the
-start of the process,  $\phi(n,e,f)$ had the value $2$.  In other
-words, $n-e+f = 2$.  This concludes the proof.  \qed
+We conclude, therefore, that at the start of the process, $\phi(n,e,f)$ had the value $2$.
+In other words, $n-e+f = 2$, as asserted by Euler's Formula.   \qed
 
 \bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
+We have focused almost entirely on the problems of vertex-coloring planar and
+outerplanar graphs because these problems can be studied within a mathematical setting
+(which is our focus) rather than an algorithmic setting (which is not our focus).  In closing,
+though, we remark that there are many interesting algorithmic problems relating to 
+vertex-coloring arbitrary graphs.  A central such result dates to the earliest days of the 
+study of {\sf NP}-completeness.
 
-{\Denis This text should be rewritten...
-My feeling is that it is not needed, most being already said before.
-The only remark that is interesting is about the greedy solution
-of this NP-complete problem,
-which is very efficient in practice
-}
+\smallskip
 
-We presented several parameters for characterizing a graph.
-The degree of the vertices (which is a local characteristic) 
-and the diameter (which is a global characteristic).
-Both parameters are easy to determine (done in polynomial time).
-The chromatic number is an intermediate concept which provide a global information from local rules.
-It is hard to compute for any graph. 
+{\em For any fixed $k \geq 3$, the problem ``Is graph $\g$ $k$-colorable"
+is {\sf NP}-complete} \cite{GareyJ79,Karp72}.
 
-\cite{GareyJ79}
-\cite{Karp72}
+\smallskip
 
-It is an {\sf NP}-complete problem to decide, given any fixed $k \geq
-3$, whether a given graph $\g$ is $k$-colorable.
-
-A simple argument shows that it is {\sf NP}-hard to find the smallest
-number of colors that provide a valid vertex-coloring of $\g$.
-
-But one can exhibit ``greedy'' algorithms that give good results.
+Lending greater interest to this result is the existence of ``greedy'' vertex-coloring
+algorithms that give quite good results.  {\Arny reference?}
 \end{minipage}
 }
 
@@ -1171,68 +1169,67 @@ But one can exhibit ``greedy'' algorithms that give good results.
 \label{sec:path-cycle-problems}
 
 Just as various genres of {\it spanning trees} are used to
-``summarize'' aspects of the connectivity structure of a connected
+``summarize'' aspects of the connectivity structure of a 
 graph $\g$, various genres of {\it paths} and {\it cycles} in $\g$ are
 often useful to ``summarize'' aspects of $\g$'s traversal structure.
 This section is devoted to a range of problems related to determining
 the existence in a graph $\g$ of a path or a cycle that {\em
   completely} ``summarizes'' $\g$'s traversal structure, either by
 containing each vertex of $\g$ precisely once or by containing each edge
-of $\g$ precisely once.  We shall generally focus in this section only
+of $\g$ precisely once.  We generally focus in this section only
 on {\em undirected} paths and cycles in {\em undirected}, {\em
   unweighted} graphs.  Extrapolating the notions we discuss to their
 directed analogues in directed and/or weighted graphs, will be
-accomplished via carefully crafted exercises.  In a similarly, but
-simpler, vein, we shall generally discuss only problems concerning {\em
-  cycles}, leaving to the reader the analogous notions that concern
-paths.  We begin by delimiting the two main classes of cycle-discovery
-problems that we study in this section.
+accomplished via carefully crafted exercises.  In a similar, but simpler, vein, we 
+generally discuss only problems concerning {\em cycles}, leaving to the reader
+the analogous path-related notion.  We begin by delimiting the two main
+classes of cycle-discovery problems that we study in this section.
 
 \smallskip
 
+\index{graph!Eulerian cycle} \index{Eulerian cycle}
+\index{graph!Eulerian circuit} \index{Eulerian circuit} 
+\index{Euler, Leonhard}
 {\it Eulerian cycles (or, tours)}.  A cycle in a graph $\g$ that
-traverses each of $\g$'s edges precisely once is called an {\it
-  Eulerian cycle},\index{graph!Eulerian cycle} \index{Eulerian cycle}
-(or, often, an {\it Eulerian circuit}).  \index{graph!Eulerian
-  circuit} \index{Eulerian circuit} The edge-exhausting
-cycles/circuits/tours referred to by these several names were
-introduced as a topic of study in 1736 by the Swiss mathematician
-\index{Euler, Leonhard} Leonhard Euler, whose name we have already
+traverses each of $\g$'s edges precisely once is called an {\it Eulerian cycle}
+(or, often, an {\it Eulerian circuit}).  The edge-exhausting cycles/circuits/tours
+referred to by these several names were introduced as a topic of study in 1736 
+by the Swiss mathematician Leonhard Euler, whose name we have already
 encountered multiple times.  Euler allegedly discovered the topic
 while contemplating how to determine a tour of the town of K\"{o}nigsberg
 that would cross each of the town's bridges precisely once.  The quest
 for Eulerian cycles in graphs is, thus, one of the oldest problems in
-the fields now called {\it Operations Research} and {\it graph
-  theory}.  (An edge-exhausting {\em path} in $\g$ is referred to in
+the fields now called {\it Operations Research} and {\it graph theory}.  
+(An edge-exhausting {\em path} in $\g$ is referred to in
 the obvious analogous way.)  When one views an Eulerian cycle as a
 ``map'' for traversing a graph---as did Euler when contemplating this
-problem---one often calls the cycle an {\it Eulerian tour}.
-\index{graph!Eulerian tour} \index{Eulerian tour} Traditionally, a
-graph that admits an Eulerian cycle is said to be {\it
-  Eulerian}. \index{graph!Eulerian} \index{Eulerian graph}
+problem---one often calls the cycle an {\it Eulerian tour}. Traditionally, a
+graph that admits an Eulerian cycle is said to be {\it Eulerian}. 
+ \index{graph!Eulerian tour} \index{Eulerian tour}
+ \index{graph!Eulerian} \index{Eulerian graph}
 
 \medskip
 
+\index{graph!Hamiltonian cycle} \index{Hamiltonian cycle}
+\index{graph!Hamiltonian circuit} \index{Hamiltonian circuit}
+\index{Hamilton, William Rowan} \index{Kirkman, Thomas Pennington}
 Dually: A cycle in a graph $\g$ that encounters each of $\g$'s vertices
-precisely once is called a {\it Hamiltonian cycle},
-\index{graph!Hamiltonian cycle} \index{Hamiltonian cycle} (or, often,
-a {\it Hamiltonian circuit}). \index{graph!Hamiltonian circuit}
-\index{Hamiltonian circuit} This cycle-discovery problem is named in
-honor of the British mathematician Sir William Rowan Hamilton,
-\index{Hamilton, William Rowan} who is credited with inventing the
-concept in the mid-19th century.  
-{\Denis even if the problem was introduced some time before in its whole genericity by 
-Thomas Penyngton Kirkman, Hamilton just popularized it...} (A vertex-exhausting {\em path} in
-$\g$ is referred to in the obvious analogous way.)  When one views a
-Hamiltonian cycle as a ``map'' for traversing a graph, one often calls
-the cycle a {\it Hamiltonian tour}.  \index{graph!Hamiltonian tour}
-\index{Hamiltonian tour} Traditionally, a graph that admits a
-Hamiltonian cycle is said to be {\it Hamiltonian}. \index{graph!Hamiltonian} \index{Hamiltonian graph}
+precisely once is called a {\it Hamiltonian cycle}, (or, often, a {\it Hamiltonian circuit}).  
+This cycle-discovery problem is named in honor of the British mathematician 
+Sir William Rowan Hamilton, who is credited with inventing the
+concept in the mid-19th century.  (In fact, Hamilton's work on his eponymous cycles
+was anticipated by many decades in the work of fellow British mathematician 
+Thomas Pennington Kirkman.)  When one views a Hamiltonian cycle as a ``map'' for 
+traversing a graph, one often calls the cycle a {\it Hamiltonian tour}.  Traditionally, a graph
+that admits a Hamiltonian cycle is said to be {\it Hamiltonian}.  (A vertex-exhausting {\em path} 
+in a graph is referred to in the obvious analogous way.)  
+ \index{graph!Hamiltonian tour}\index{Hamiltonian tour}
+ \index{graph!Hamiltonian} \index{Hamiltonian graph}
 
 \medskip
 
 Despite the conceptual duality between the edge-encountering goal that
-underlies Eulerian paths and cycles, on the one hand, and the
+underlies Eulerian paths and cycles and the
 vertex-encountering goal that underlies Hamiltonian paths and cycles,
 these two graph-traversing goals differ in virtually every significant
 respect.  It is rather easy to characterize the family of graphs that
@@ -1255,18 +1252,18 @@ constructive: they consist of algorithms that efficiently find such a
 cycle or such a path when one exists.  We focus on graphs that are
 connected: the algorithms we present can actually be adapted to find
 an {\it Eulerian cycle} or an {\it Eulerian path} in each connected
-component of a general graph.  As we embark on our adventure, we note
+component of a general graph.
+
+As we embark on our adventure, we note the amusing fact that
 that the problem of finding an Eulerian cycle in a graph $\g$ is
 equivalent to the problem of drawing $\g$ without ever lifting one's
 pencil. \index{graph!drawing without lifting pencil}
 
-%\subsubsection{Characterizing Eulerian graphs, and finding Eulerian tours}
-%\label{sec:eulerian-cycle-path}
+\medskip
 
-There is a simple and elegant characterization of graphs that admit
-Eulerian cycles and paths, which is accompanied by a simple and
-efficent algorithm for testing a given graph for finding such a tour
-in a graph that admits one.  We encapsulate four versions of the
+There is a simple, elegant characterization of graphs that admit Eulerian cycles and paths.
+The characterization is accompanied by a simple and efficient algorithm for determining
+whether a given graph admits such a tour.  We encapsulate four versions of the
 desired result in the following statement.
 
 \begin{prop}[Eulerian Cycles]
@@ -1285,8 +1282,7 @@ $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
 the chinese postman is based on edge duplicates...}
 
 \begin{proof}
-The {\em necessity} of the conditions in both parts {\bf (a)} and {\bf
-  (b)} is established by the two following observations.
+The {\em necessity} of the conditions in parts {\bf (a)} and {\bf (b)} is established by the two following observations.
 \begin{itemize}
 \item
 By definition, a graph that is not connected does not admit any \textit{eulerian} cycle.
