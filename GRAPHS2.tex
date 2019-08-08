@@ -1261,10 +1261,10 @@ pencil. \index{graph!drawing without lifting pencil}
 
 \medskip
 
-There is a simple, elegant characterization of graphs that admit Eulerian cycles and paths.
-The characterization is accompanied by a simple and efficient algorithm for determining
-whether a given graph admits such a tour.  We encapsulate four versions of the
-desired result in the following statement.
+We now develop simple, elegant characterizations of graphs that admit Eulerian cycles and paths.
+These characterization are validated via simple and efficient algorithms for determining
+whether a given graph admits such a path or such a cycle.  In the next two propositions, we
+provide the characterizations for both cycles and paths, in both undirected and directed graphs.
 
 \begin{prop}[Eulerian Cycles]
 \label{thm:eulerian-cycle}
@@ -1280,16 +1280,27 @@ $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
 
 {\Denis The question of edge multiplicity should be addressed somewhere since in particular
 the chinese postman is based on edge duplicates...}
+{\Arny I do not understand what you are proposing.  If multiple edges occur just in one special
+environment, then M. Occam tells us to introduce that complication JUST in that environment,
+using the simpler more general situation in the body of the text.  We should discuss}
 
 \begin{proof}
-The {\em necessity} of the conditions in parts {\bf (a)} and {\bf (b)} is established by the two following observations.
+The {\em necessity} of the conditions asserted in parts {\bf (a)} and {\bf (b)} follows from
+the following observations.  
+
+{\Arny The original conditions were wrong.  An unconnected
+graph CAN have an Eulerian cycle of the type we define, since we do not demand that 
+the cycle contains all vertices.  Thus, by our definition, an Eulerian graph remains Eulerian 
+if we add isolated vertices to it.  We must discuss this -- should we demand that the cycle
+touches all vertices??}
+
+
 \begin{itemize}
 \item
-By definition, a graph that is not connected does not admit any \textit{eulerian} cycle.
+A graph that has no isolated vertices does not admit an Eulerian cycle.
 \item
-Each cycle that a graph admits accounts for two edges per vertex,
-because the cycle must ``enter'' the vertex by one edge and ``exit'' the
-vertex by a different edge.
+Each Eulerian cycle that a graph admits accounts for two edges per vertex,
+because the cycle must ``enter'' the vertex by one edge and ``exit'' by a different edge.
 \end{itemize}
 
 \smallskip
@@ -1325,26 +1336,32 @@ case of the induction.
 Focusing on {\em undirected} graphs: We note that $2$-vertex graphs
 cannot have even vertex-degrees---and, indeed, as promised by the
 Proposition, they cannot be Eulerian.  One can exhaustively enumerate
-$3$-vertex and $4$-vertex graphs and verify that the Proposition correctly
-separates the Eulerian ones from the non-Eulerian ones.
+all $3$-vertex and $4$-vertex graphs and verify that the Proposition correctly
+separates the ones that are Eulerian from those that are not.
 \item
-Focusing on {\em directed} graphs: We note that $2$-vertex graphs can be
+Focusing on {\em directed} graphs: We note that $2$-vertex digraphs can be
 Eulerian---as witnessed by the $2$-vertex digraph each of whose vertices
 hosts a single arc that points to the other vertex.  Once again, one can
-perform an exhaustive enumeration of $3$-vertex and $4$-vertex graphs
+perform an exhaustive enumeration of $3$-vertex and $4$-vertex digraphs
 and verify that the Proposition correctly separates the Eulerian ones
 from the non-Eulerian ones.
 \end{itemize}
 
 We now develop a complete proof of the {\em sufficiency} of the
-conditions in part {\bf (a)} of the Proposition, for general $n$-vertex
+conditions in part {\bf (a)} of the Proposition for general $n$-vertex
 undirected graphs.  Throughout the discussion, we intersperse hints
-regarding the sufficiency of the conditions in part {\bf (b)} of the
-Proposition.
+regarding the sufficiency of the conditions in part {\bf (b)} of the Proposition.
 
-Let us consider a connected multi-vertex undirected graph $\g$ all of
+Let us consider a connected $n$-vertex undirected graph $\g$ all of
 whose vertices have nonzero even degree.
-{\Denis  should'nt multi-vertex be defined? What do you mean here?}
+%{\Denis  should'nt multi-vertex be defined? What do you mean here?}
+
+{\Arny Please draft your proposed proof, and we can compare the two approaches.  It is
+really hard to discuss this piece by piece.}
+
+{\Arny Also, yesterday I inserted details for a proof similar to this in order to show that a tree has
+a vertex of degree $1$.  Please look at that proof and at this proof to see whether a single
+more general (abstract?) argument works for both.}
 
 \begin{description}
 \item[{\bf Step 1}]
