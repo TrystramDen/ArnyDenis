@@ -1,199 +1,131 @@
 
-\chapter{Coloring a planar graph with 5-colors}
-\label{Appendix:5colors}
-
-\begin{prop}[The $5$-Color Theorem for Planar Graphs \cite{Heawood90}]
-\label{thm:P-5-colorability}
-Every planar graph is $5$-colorable.
-\end{prop}
+\chapter{The Route Inspection/ Chinese Postman Problem}
+\label{Appendix:ChinesePostman}
 
 
-\begin{proof}
-The proof combines a sophisticated analysis of the structure of the
-planar graph we wish to color with an induction that can be converted
-into an efficient algorithm actually achieving the $5$-coloring.
+After solving the preceding ``pure'' version of the Eulerian-tour
+problem---which seeks a tour of a graph which crosses each edge
+precisely once---we discuss an extension of this problem which allows
+us to augment a graph $\g$ by adding multiple edges between the same
+two vertices.  (Terminologically, we thereby convert $\g$ to a {\it
+  multi-graph} \index{multi-graph} \index{graph!multi-graph}
+consisting of vertices and {\it multi-edges}.) \index{multi-edge} Not
+obviously, adding multi-edges can often convert a graph $\g$ that does
+not admit an Eulerian cycle into a multi-graph that does admit an
+Eulerian cycle.  The problem of finding the {\em smallest} such
+augmentation of $\g$---i.e., of adding the fewest multi-edges---is
+called the \index{Route Inspection Problem} {\it Route Inspection
+  Problem}; it is also often called the {\it Chinese Postman Problem},
+\index{Chinese Postman Problem} in honor of its inventor, the Chinese
+mathematician Kwan Mei-Ko \index{Kwan Mei-Ko} \cite{Kwan60}.
 
-\smallskip
 
-For brevity, let us henceforth discuss only {\em valid} colorings,
-i.e., colorings of a graph's nodes in which neighboring nodes get
-different colors.
 
-\smallskip
+This section is devoted to studying the {\it Route Inspection
+  Problem}, \index{Route Inspection Problem} also known as the {\it
+  Chinese Postman Problem}, \index{Chinese Postman Problem} in honor
+of its inventor, the Chinese mathematician Kwan Mei-Ko \index{Kwan
+  Mei-Ko} \cite{Kwan60}.  This problem seeks to add as few multi-edges
+\index{graph!multi-graph!multi-edge} as possible to a graph $\g$ in
+order to render $\g$ Eulerian.  (A {\it multi-graph} is ``almost'' an
+undirected graph.  It differs from a true graph because of the
+possible presence of multiple multi-edges that connect the same two
+vertices.)
 
-\noindent {\em Base of our induction.}
-Because the $5$-clique $\k_5$ is obviously $5$-colorable, so also must
-be all graphs having $\leq 5$ nodes.  Therefore, we know that any
-non-$5$-colorable graph would have $\geq 6$ nodes.
 
-\smallskip
+We know from Proposition~\ref{thm:eulerian-cycle} in Section~\ref{sec:EulerianCycle} that if all of
+$\g$'s vertices have even vertex-degrees, then---{\em and only then}---$\g$
+admits an Eulerian cycle.  Therefore, in this case, {\em zero}
+multi-edges need be added to $\g$ to render it Eulerian.  
 
-\noindent {\em Inductive hypothesis.}
-Assume, for induction, that every planar graph having $\leq n$ nodes
-is $5$-colorable.
+Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
+there exist some odd vertices. From the previous section, we know that there is no Eulerian cycle in this case and thus, 
+any feasible solution should duplicate some edges.
+The problem is to duplicate the minimum.
+This problem is known as the {\it chinese postman} and it is described below (in a french equivalent version).
 
-\smallskip
+A postman moved recently from Grenoble to a small village in the country side. 
+He asked himself how to organize his daily tour by bike for distributing the letters in the shortest possible time. 
+The director of the post office gives him the map and 
+fortunately, the postman had some old souvenir of previous lectures in Graph Theory.  
+The tour starts from the post office and of course, the postman has to go through every roads for distributing the letters before coming back
+to his office.
+The underlying graph is $G=(V,E)$ where $V$ is the (finite) set of cross points and $E$ is the set of the links between the cross roads
+weighted by the distances.  
 
-\noindent {\em Inductive extension.}
-If the proposition were false, then there would exist a planar graph
-$\g$ having $n+1$ nodes which is not $5$-colorable.  By
-Lemma~\ref{thm:PlanarGraph-degree5}, $\g$ would have a node $v$ of
-degree $\leq 5$.  The remainder of the proof focuses on the graph
-$\g$, its minimal-degree node $v$, and on $v$'s $(d_v \leq 5)$
-neighbors in $\g$.
-
-Now, if there were a coloring of $\g$'s nodes in which $\leq 4$ colors
-were used to color $v$'s neighbors, then the following analogue of the
-coloring strategy of Proposition~\ref{thm:P-6-colorability} would
-produce a $5$-coloring of $\g$.
-\begin{enumerate}
-\item
-Remove node $v$ and its incident edges from $\g$, thereby producing
-the $n$-node planar graph $\g'$.
-\item
-Produce a $5$-coloring of $\g'$ that uses only $4$ colors for the
-nodes that are neighbors of $v$ in $\g$.
-\item
-($a$) Reattach node $v$ and its edges to $\g'$, thereby reconstituting
-  $\g$.  ($b$) Color $v$ with whichever of the $5$ available colors is
-  not used to color $v$'s neighbors.
-\end{enumerate}
-
-In order to proceed in pursuit of a contradiction, we must understand
-what structural features of $\g$ make it impossible to use only $4$
-colors on $v$'s neighbors when $5$-coloring $\g$.  There are three
-important situations to recognize.
-\begin{description}
-\item[{\sf Case 1}.]
-Node $v$ has degree $\leq 4$.
-
-\smallskip
-
-By definition, $\leq 4$ colors are used to color $v$'s neighbors in
-this case.
-\end{description}
-Note that, in all remaining cases, node $v$ has precisely $5$
-neighbors---or else, we would have invoked Case 1 to color $\g$ with
-$5$ colors.
-\begin{description}
-\item[{\sf Case 2}.]
-For some $5$-coloring of $\g$, $\geq 2$ neighbors of $v$ get the same
-color.
-
-\smallskip
-
-Because $v$ has exactly $5$ neighbors, in this case, only $4$ colors
-are used to color these neighbors.
-\end{description}
-In all remaining cases, the $5$ neighbors of $v$ receive distinct
-colors.
-\begin{description}
-\item[{\sf Case 3}.]
-For some $5$-coloring of $\g$, some two neighbors of $v$, call them
-$v_1$ and $v_2$, reside in distinct components of $\g$ once $v$ and
-its incident edges are removed from $\g$.
-
-\smallskip
-
-As before, let $\g'$ be the (in this case, disconnected) graph that
-results when $v$ and its incident edges are removed from $\g$.  For $i
-= 1,2$ Let $\g_i$ be the component of $\g'$ that contains node $v_i$.
-
-Say that, under the $5$-coloring of $\g$ that we are focusing on,
-$v_1$ is colored {\it red} and $v_2$ is colored {\it green}.
-
-Let us recolor the nodes of $\g_1$ so that node $v_1$ is now colored
-{\it green}.  (One needs only switch the colors {\it red} and {\it
-  green} in the existing coloring of $\g_1$.)  It is always possible
-to do this in a way that does not affect the valid coloring of $\g_2$
-because $\g_1$ and $\g_2$ are mutually disjoint.
-
-Once we have thus-recolored $\g_1$, we have a $5$-coloring of $\g$ for
-which Case 2 holds.  (In fact, we can color node $v$ {\em red} when we
-reattach it to $\g'$.)
-\end{description}
-
-\noindent
-We now see that Cases 1--3 cannot prevent us from $5$-coloring $\g$, so
-we are left with the following minimally constrained situation.
-\begin{description}
-\item[{\sf Case 4}.]
-\begin{itemize}
-\item
-Every minimum-degree node of $\g$ has $5$ neighbors.
-
-For the minimum-degree node $v$, let us call these neighbors $v_1$,
-$v_2$, $v_3$, $v_4$, $v_5$, in clockwise order within the planar
-drawing.
-\item
-In every $5$-coloring of $\g$, the neighbors of every minimum-degree
-node receive distinct colors.
-
-For node $v$, let us say that neighbor $v_i$ receives color $c_i$.
-\end{itemize}
-{\Denis Check carefully the ref to the figures...}
-
+Fig.~\ref{fig:EulerianInitial} presents an example of the chinese postman problem. 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresGraph/5colorsCase1}
-\caption{to be completed}
-  \label{fig:5colorsCase1}
-\end{center}
-\end{figure}
-The leftmost graph in Fig.~\ref{fig:5colorsCase1} depicts the portion of $\g$ comprising
-node $v$ and its neighbors.  In the figure, we use integer $i$ to
-denote, ambiguously, node $v_i$ and its assigned color $c_i$.  The
-question mark ``?'' that ``colors'' node $v$ indicates that we do not
-yet know what color to assign to $v$.  The other two graphs in the
-figure depict schematically how we have dealt with Case 3 above.
-{\Denis Clarify which are the concerned graphs here}
-\begin{itemize}
-\item
-All neighbors of node $v$ remain in the same component of $\g$ when
-$v$ and its incident edges are removed.
-\end{itemize}
-\end{description}
-To analyze Case 4, we focus on nodes $v_1$ and $v_3$ in Fig.~\ref{fig:5colorsCase2}.
-Importantly, these nodes have received distinct colors ($c_1$ and $c_3
-\neq c_1$, respectively), and these nodes are not adjacent to one
-another as one makes a clockwise sweep around node $v$.
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresGraph/5colorsCase2}
-\caption{{\Denis to be completed}}
-  \label{fig:5colorsCase2}
+       \includegraphics[scale=0.6]{FiguresGraph/EulerienInitial}
+       \caption{An instance of the Chinese postman with $10$ cross-vertices.}
+              \label{fig:EulerianInitial}
 \end{center}
 \end{figure}
 
-Now take $\g$ and focus only on the nodes that are colored $c_1$ or
-$c_3$ (as are $v_1$ and $v_3$, respectively) and on the nodes that are
-colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One
-sees from Fig.~\ref{fig:5colorsCase2} that:
+\bigskip
+
+This problem can be formulated mathematically in term of Eulerian
+cycles.  Intuitively, the basic idea is to duplicate some edges that
+are carefully chosen in order to use the previous construction of an
+Eulerian tour of Section~\ref{sec:EulerianCycle} that will help the
+postman to determine the optimal tour (of minimal length) using some
+simple mathematical properties.
+\bigskip
+
+First, we know that there is an even number of odd vertices.
+Considering the previous instance of the postman problem, there are $4$ such vertices (represented in grey in Fig.~\ref{fig:EulerianVodd}).
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/EulerienVodd}
+       \caption{The $4$ vertices with an odd degree in the previous instance.}
+              \label{fig:EulerianVodd}
+\end{center}
+\end{figure}
+\bigskip
+
+As there exists a path between any pair of vertices of odd degree in $V_{odd}$,
+we consider the complete graph whose vertices are the odd degree vertices weighting the edges with the shortest paths (denoted by $K_{odd}$).
+As we mentioned in the preliminary properties, computing the shortest paths is a classical problem, which can be solved in polynomial time. 
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/EulerienPerfectMatching}
+       \caption{The minimum weight perfect matching labelled by the shortest distances between the vertices of $V_{odd}$.}
+              \label{fig:Eulerianperfectmatching}
+\end{center}
+\end{figure}
+\bigskip
+
+Then, it is possible to do the correspondence between the optimal solution of the postman problem and a perfect matching of minimal weight in $K_{odd}$
+%Recall that a matching is a set of edges without common vertices. It is perfect if it has the maximum number of edges. 
+by duplicating the edges of the minimal perfect matching.
+
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.6]{FiguresGraph/EulerienFinal}
+       \caption{Final step: adding the edges of the minimum perfect matching.}
+              \label{fig:EulerianFinal}
+\end{center}
+\end{figure}
+
+The main steps of the algorithm for determining the optimal tour are the following:
+
 \begin{itemize}
-\item
-$\g$ can, {\em but need not}, contain a path whose nodes alternate
-  colors $c_1$ and $c_3$---call this a ``$c_1$-$c_3$ path'' between
-  nodes $v_1$ and $v_3$.
-\item
-$\g$ can, {\em but need not}, contain a path whose nodes alternate
-  colors $c_2$ and $c_4$---call this a ``$c_2$-$c_4$ path'' between
-  nodes $v_2$ and $v_4$.
-\item
-$\g$ {\em cannot} contain both of the paths just described, i.e., a
-  $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em and} a $c_2$-$c_4$ path
-  between $v_2$ and $v_4$.
-
-{\em These two paths, if they existed, would cross one another---which
-  is forbidden because $\g$ is a {\em planar} graph.}  See Figure 2.
+\item Consider the complete graph with the odd vertices and compute its weight by the shortest paths.
+Compute a perfect matching of minimal weight between these vertices. 
+\item Duplicate all the edges along the paths of this matching.
+\item Determine an Eulerian tour in this new graph with even degrees.
 \end{itemize}
-It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path
-between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$
-path between $v_2$ and $v_4$.  Say, with no loss of generality, that
-the former path does not exist.  Then we can switch colors $c_1$ and
-$c_3$ beginning with node $v_1$ and obtain a coloring of $\g$ in which
-$v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as
-in Case 2 to get a $5$-coloring of $\g$.
 
-This four-case analysis shows that we can always produce a
-$5$-coloring of $\g$, which completes the proof.  \qed
-\end{proof}
+The optimality of this algorithm comes from the fact that the duplicated edges are the minimum possible ones.
+% This is straightforward for two odd vertices.
+Finally, all the vertices of the new graph are even since the degree of the odd vertices in $G$ is augmented by $1$
+(extremities of the paths) and the other even vertices which are intermediate vertices of the paths remain even. 
+
+\medskip
+
+This short discussion is a good segu\'{e} to the material in the next
+section, which led valuable perspective on our brief study of
+Hamiltonian paths and cycles---and, indeed, on the computational
+implications of that work.
