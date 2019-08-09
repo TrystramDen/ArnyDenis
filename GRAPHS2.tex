@@ -1,4 +1,4 @@
-%version of 08-07-19
+%version of 08-09-19
 
 \chapter{Graphs II:
 Graphs within Computation and Communication}
@@ -68,8 +68,7 @@ computing.  In this setting, the vertices of a computation-graph $\g$
 represent {\it agents}, such as, e.g., processing elements in a
 computer; and $g$'s edges represent {\it communication links} that
 enable each vertex $u$ to check its neighbors' states before any action
-and to inform its neighbors of state-changes occasioned by an action
-of $u$.  
+and to inform its neighbors of state-changes occasioned by an action of $u$.  
 %{\Denis actually, coloring is useful in any situation to express incompatibility between items}
 The prohibition against ``monochrome'' edges---i.e., edges
 both of whose incident vertices have the same color---guarantees that
@@ -89,21 +88,20 @@ one often encounters programs for distributed computing that look something like
 
 \bigskip
 
-Most of the ``named'' graphs in
-Section~\ref{sec:graphs-important-families} have very small chromatic
-numbers.  This is no accident: These graphs were invented (or, at
-least, placed in the spotlight) because of their importance to the
-topic of parallel and distributed computing---and we suggested in the previous
-paragraphs how to use graph vertex-colors to orchestrate some
-such computations.  Accordingly, we devote this section to studying
-graphs with small chromatic numbers.
+Most of the ``named'' graphs in Section~\ref{sec:graphs-important-families} have 
+quite small chromatic numbers.  This is no accident: These graphs were invented (or, at
+least, placed in the spotlight) because of their importance to the arena of parallel and
+distributed computing---and we suggested in the previous paragraphs how to use graph
+vertex-colors to efficiently orchestrate many such computations.  Motivated by this
+application of graph models, we devote the current section to studying graphs that
+have small chromatic numbers.
 
 \subsection{Graphs with chromatic number $2$}
 \label{sec:2-color-graphs}
 
-We begin to garner intuition about graph coloring by exposing a large
-set of graphs with chromatic number $2$.  In fact, we can completely
-characterize these graphs structurally.
+We begin our study of graphs having small chromatic numbers by focusing on
+$2$-colorable graphs, which enjoy the smallest nontrivial chromatic number.
+It is not difficult to characterize these graphs structurally.
 
 A graph $\g$ is {\it leveled} \index{graph!leveled} if there exists
 an assignment of {\it level numbers} $\{ 1, 2, \ldots, \lambda\}$ to the
@@ -211,34 +209,35 @@ precisely if $k$ of the bits $\beta_i$ equal $1$.
 \medskip
 
 \noindent
-The preceding five discussoins complete the proof.
+The preceding explanations complete the proof.
 \qed
 \end{proof}
 
-The reader can show that no odd-length cycle $\cc_{2q+1}$ with $q \geq
-1$ is $2$-colorable.  In like fashion, no graph $\g$ that {\em
-contains} an odd-length cycle can be $2$-colored.  This is the
-problem that plagues the torus $\widetilde{\m}_{m,n}$ when $m+n$ is odd.
-\ignore{  {\Arny Put the odd cycle and torus as Exercises}}
+A simple argument verifies that no odd-length cycle $\cc_{2q+1}$ with
+$q \geq 1$ is $2$-colorable.  One can craft such an argument by trying to $2$-color
+such a cycle.  One can then extend this argument to prove that no graph $\g$
+that {\em contains} an odd-length cycle can be $2$-colored.
+Containing odd-length cycles is the feature that prevents $2$-colorings of many graphs, 
+including the torus $\widetilde{\m}_{m,n}$ when $m+n$ is odd and all de Bruijn networks.
 
-The existence of odd-length cycles in de Bruijn networks prevents us from 
-$2$-coloring these networks.  As small examples: one observes the $3$-cycle
+Let us focus momentarily on de Bruijn networks, because they have quite interesting
+cyclic sub-digraphs.  One observes the directed $3$-cycle
 \[ 00 \ \rightarrow \ 01 \ \rightarrow \ 10  \rightarrow \ 00 \]
 in $\d_2$ in Fig.~\ref{fig:dB2by2} and the $3$-cycle
 \[ 001 \ \rightarrow \ 010 \ \rightarrow \ 100 \ \rightarrow \ 001 \]
-in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length
-cycles are only the proverbial tip of the iceberg for de Bruijn
-networks.  The following result asserts that de Bruijn networks are
-{\it directed-pancyclic}, \index{graph!pancyclic} 
-\index{de Bruijn network!pancyclicity} \index{de Bruijn graph!pancyclicity}
-meaning that they contain (even directed!)~cycles of {\em all}
-possible lengths, both odd and even.  The proof of this result is
-outside the scope of an introductory text, but the treatment in \cite{Yoeli62}
-should be accessible to the motivated reader.
+in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length cycles are only the
+proverbial tip of the proverbial iceberg for de Bruijn networks.  The following result
+asserts that de Bruijn networks are {\it directed-pancyclic}, meaning that 
+{\em they contain (even directed!)~cycles of {\em all} possible lengths, both odd and even}.
+The proof of this result is outside the scope of an introductory text, but the treatment
+in \cite{Yoeli62} should be accessible to the motivated reader.
+\index{graph!pancyclic} 
+\index{de Bruijn network!pancyclicity}
+\index{de Bruijn graph!pancyclicity}
+
 
 \begin{prop}{\cite{Yoeli62}}
-For all $n$, the order-$n$ de Bruijn
-network $\d_n$ is directed-pancylic, i.e., it
+For all $n$, the order-$n$ de Bruijn network $\d_n$ is directed-pancylic, i.e., it
 contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
 \end{prop}
 
@@ -258,32 +257,29 @@ as a piece of paper).
 \begin{minipage}{0.95\textwidth}
 The reader should not view this attention to how a graph can be drawn
 as just an abstract game.  The process of designing and implementing
-circuits within the constraints of {\it VLSI}, \index{VLSI} {\it Very
-  Large Scale Integrated Circuit} technology,
+circuits within the constraints of {\it VLSI}, {\it Very Large Scale Integrated Circuit}
+technology, are very similar to drawing a circuit on a two-dimensional medium. 
+\index{VLSI} 
 \index{Very Large Scale Integrated Circuit technology}
-\index{VLSI:Very Large Scale
-Integrated Circuit technology} are very similar to drawing a circuit
-on a two-dimensional medium.  We refer the reader to the revolutionary
-1979 text \cite{Mead-Conway} for an introduction to this fascinating
-technology, which requires technical literacy but little specialized
-knowledge.
+\index{VLSI:Very Large Scale Integrated Circuit technology} 
+We refer the reader to the revolutionary 1979 text \cite{Mead-Conway} for an introduction 
+to this fascinating technology, which requires technical literacy but little specialized knowledge.
 \end{minipage}
 }
 \bigskip
 
+\index{planar graphs}
+\index{graph!planar}
+\index{graph!outerplanar}
+\index{outerplanar graphs}
 \noindent
-A graph is {\it planar} \index{graph!planar} \index{planar graphs}
-precisely if it can be drawn {\em without any crossing edges}.  A
-graph $\g$ is {\it outerplanar} \index{graph!outerplanar}
-\index{outerplanar graphs} precisely if it can drawn by {\em placing
-  its vertices along a circle in such a way that its edges can be drawn
-  as noncrossing chords of the circle}.  The latter condition is
-equivalent to demanding that $\g$'s edges can be drawn within the
-circle without any crossings.
+A graph is {\it planar} \index{graph!planar} precisely if it can be drawn {\em without any crossing edges}.
+A graph $\g$ is {\it outerplanar} precisely if it can drawn by {\em placing its vertices along a circle
+in such a way that its edges can be drawn as noncrossing chords of the circle}.  The latter condition is
+equivalent to demanding that $\g$'s edges can be drawn within the circle without any crossings.
 
 We urge the reader to garner intuition about the graphs in these
-families by experimenting with drawing some specific, rather complex
-graphs.
+families by experimenting with drawing some specific, rather complex graphs.
 \begin{itemize}
 \item
 The first set of graphs to draw are cliques, as defined in
@@ -300,10 +296,9 @@ $\k_5$ is not planar.
   \end{itemize}
 
 \item
-The ``bipartite'' cousins of the cliques will also yield valuable
-insights.  For postive integers $m$ and $n$, the $m \times n$
-bipartite clique $\k_{m,n}$ \index{bipartite clique} is the graph
-whose vertex-set comprises the ordered pairs of integers:
+The {\em bipartite} cousins of the cliques will also yield valuable insights.  For positive 
+integers $m$ and $n$, the $m \times n$ bipartite clique $\k_{m,n}$ is the graph
+whose vertex-set comprises the ordered pairs of integers:\index{bipartite clique}
 \[  \n_{\fk_{m,n}} \ = \
 \{ \langle i,j \rangle \ \ | \ \ 1 \leq i \leq m; \ \ 1 \leq j \leq n\}
 \]
@@ -324,26 +319,25 @@ $\k_{3,3}$ is not planar.
   \end{itemize}
 \end{itemize}
 
-We selected the preceding cliques and bipartite cliques to ``play
-with'' very carefully.  Using arguments that go beyond the scope of
-this text, one can prove the following {\em characterization via
-  exclusion} result, which characterizes each of our graph families by
+We selected the preceding cliques and bipartite cliques to ``play with'' very carefully.
+Using arguments that go beyond the scope of this text, one can prove the following
+{\em characterization via exclusion} result, which characterizes each of our graph families by
 identifying {\it forbidden subgraphs}.  \index{forbidden subgraphs}
 \index{forbidden subgraphs!characterization of planar graphs}
-\index{forbidden subgraphs!characterization of outerplanar graphs} The
-notion of {\it graph homeomorphism} plays a fundamental role in
-\index{graph!homeomorphism} the characterization.  This is a
-dauntingly named technical term that is easily understood informally.
-A {\it homeomorph} \index{graph!homeomorph} of a graph $\g$ is
-obtained by adding (degree-$2$) vertices along one or more edges of $\g$.
-The characterization of planar graphs by exclusion resides in a
-celebrated theorem by the Polish mathematician and logician Kazimierz
-Kuratowski; \index{Kuratowski, Kazimierz} the analogous result for
-outerplanar graphs was derived by the French mathematician Gary
-Chartrand \index{Chartrand, Gary} and the American mathematician Frank
-Harary\index{Harary, Frank} (who invented the name ``outerplanar", as
+\index{forbidden subgraphs!characterization of outerplanar graphs}
+The notion of {\it graph homeomorphism} plays a fundamental role in the characterization.
+\index{graph!homeomorphism}\index{graph!homeomorph}
+This is a dauntingly named technical term that is easily understood informally.
+A {\it homeomorph} of a graph $\g$ is obtained by adding (degree-$2$) vertices along one
+or more edges of $\g$.  The characterization of planar graphs by exclusion resides in a
+celebrated theorem by the Polish mathematician and logician Kazimierz Kuratowski; the
+analogous result for outerplanar graphs was derived by the French mathematician Gary
+Chartrand and the American mathematician Frank Harary (who invented the name ``outerplanar", as
 we describe in Section~\ref{sec:planar-graphs}).
-
+\index{Kuratowski, Kazimierz}
+\index{Chartrand, Gary}
+\index{Harary, Frank}
+ 
 \begin{theorem}
 \label{thm:planar+outerplanar-exclusion}
 {\bf (a)} {\rm \cite{ChartrandB67}}
