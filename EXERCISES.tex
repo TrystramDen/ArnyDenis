@@ -387,6 +387,7 @@ The solution is simply depicted in Fig.~\ref{Fig:SUmgeo1sur4}.
 \end{center}
 \end{figure}
 
+
 \subsection{Another graphical proof}
 
 A nonobvious identity for arithmetic sums.
@@ -439,6 +440,7 @@ dark grey form a bigger triangle of size $2n-1$).
 
 We now have a purely pictorial proof of the proposition. \qed
 \end{proof} 
+
 
 \subsection{A variant about $\Delta_n$}
 
@@ -869,7 +871,7 @@ $s_b(n)$ is.
 
 \subsection{What's wrong?}
 
-In this exercice, we investigate a proof which leads to a very surprising result...
+In this exercice, we investigate a proof which leads to a surprising result...
 
 \begin{enumerate}
 \item
@@ -887,11 +889,10 @@ and show that $C=-\frac{1}{12}$ (hint: compute $C-B=4+8+12+16+ \ldots$)
 \end{enumerate}
 
 What's wrong?
-
 First, summing up positive number should be positive, 
 and second, the sum of the integers should be infinite...
 
-
+Then, how to analyze the previous result/proof?
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -904,7 +905,7 @@ and second, the sum of the integers should be infinite...
 
 \section{Graphs}
 
-\subsection{Spanning Trees}
+\subsection{Graph Isomorphism}
 \label{Exercice:isomorphism}
 
 Recall here the problem:
@@ -917,12 +918,14 @@ The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
 
 \medskip
 
+The solution:
+
 To do, describe the both codings. 
 
 
 
 \subsection{Spanning Trees}
-\label{Appendix:spanningTrees}
+\label{Exercice:spanningTrees}
 
 Recall here the problem
 \medskip
@@ -936,9 +939,112 @@ neighboring edge while the other add successively the edges of minimal
 weights that do not create a cycle.
 
 
+\subsection{Formal definition of mesh graphs}
+\label{Exercice:FormalDefinitionMesh}
+
+The definition of mesh is very easy to capture with a drawing.
+{\Denis Refer to the figure in GRAPHS1 here or put again the figure in the section?}
+
+For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh
+  (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network}
+(or, {\it torus}) $\widetilde{\m}_{m,n}$ have {\it vertex-set}
+\begin{eqnarray*}
+\n_{\fm_{m,n}} \ = \ \n_{\widetilde{\fm}_{m,n}}
+  & = & 
+\{1, \ 2, \ldots, \ m\} \ \times \ \{1, \ 2, \ldots, \ n\} \\
+  & = & 
+\big\{ \langle i, \ j \rangle \ \ | \ \ 
+\big[ i \in \{1, \ 2, \ldots, \ m\} \big], \ \
+\big[ j \in \{1, \ 2, \ldots, \ n\} \big]
+\big\}
+\end{eqnarray*}
+
+
+$\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
+\begin{eqnarray*}
+\e_{\fm_{m,n}} & = & 
+\big\{
+\{ \{ i, j \}, \ \{ i+1, j \} \ \ | \ \
+1 \leq i < m, \ \ 1 \leq j \leq n \} \\
+  &  & \hspace*{.1in} \cup
+\{ \{ i, j \}, \ \{ i, j+1 \} \ \ | \ \
+1 \leq i \leq m, \ \ 1 \leq j < n \}
+\big\}
+\end{eqnarray*}
+
+\bigskip
+
+The subgraph of $\m_{m,n}$ defined by the vertex-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
+  m\}\right], \ \ \left[1 \leq j < n\right]\}
+\]
+and all edges both of whose endpoints belong to that set is called the
+$i$th {\it row} of $\m_{m,n}$
+Dually, the subgraph of $\m_{m,n}$ defined by the vertex-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
+  n\}\right], \ \ \left[1 \leq i < m\right] \}
+\]
+and all edges both of whose endpoints belong to that set is called the
+$j$th {\it column} of $\m_{m,n}$.
+
+
+\begin{itemize}
+     \item
+Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
+\ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner vertices}
+(or, just {\it corners}) of $\m_{m,n}$.
+     \item
+The path-graph consisting of the vertex-set
+\[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
+\langle 1, \ n \rangle \}
+\]
+together with all edges of $\m_{m,n}$ both of whose endpoints belong
+to this set, is the {\it top edge} of $\m_{m,n}$.
+
+The other edges of $\m_n$ are defined analogously:
+
+\medskip
+
+The {\it bottom edge} of $\m_{m,n}$ is the path-graph built upon the
+vertex-set
+\[ \{ \langle m, \ 1 \rangle, \ \langle m, \ 2 \rangle, \ldots, \
+\langle m, \ n \rangle \}
+\]
+
+The {\it left edge} of $\m_{m,n}$ is the path-graph built upon the
+vertex-set
+\[ \{ \langle 1, \ 1 \rangle, \ \langle 2, \ 1 \rangle, \ldots, \
+\langle m, \ 1 \rangle \}
+\]
+
+The {\it right edge} of $\m_{m,n}$ is the path-graph built upon the
+vertex-set
+\[ \{ \langle 1, \ n \rangle, \ \langle 2, \ n \rangle, \ldots, \
+\langle m, \ n \rangle \}
+\]
+
+\end{itemize}
+
+Same for the torus graphs:
+
+The subgraph of $\widetilde{\m}_{m,n}$ defined by the vertex-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
+  m\}\right], \ \ \left[1 \leq j \leq n\right]\}
+\]
+and all edges both of whose endpoints belong to that set is called the
+$i$th {\it row} of $\widetilde{\m}_{m,n}$
+Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the vertex-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
+  n\}\right], \ \ \left[1 \leq i \leq m\right] \}
+\]
+and all edges both of whose endpoints belong to that set is called the
+$j$th {\it column} of $\widetilde{\m}_{m,n}$.
+
 
 \subsection{Hamiltonian and Eulerian in de Bruijn}
 \label{Appendix:hamiltonianDeBruijn}
+
+This should be removed since it has been put as an appendix...
 
 \noindent {\bf (1)}
 %
@@ -1029,6 +1135,7 @@ digraph has a directed Eulerian cycle.  This demonstration will
 combine with Proposition~\ref{thm:deBruin-linegraph-EX} to complete the
 proof of Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
 %\end{proof}
+
 
 \ignore{
 \subsection{Coloring a planar graph with 5-colors}
