@@ -1685,6 +1685,7 @@ distance $\leq 2$ in $\g$.
 \end{prop}
 
 \subsubsection{Hamiltonianicity in ``named'' graphs}
+\label{sec:hamilonian-named-graphs}
 
 Yet another direction of inquiry is to determine whether specific
 graphs of interest are Hamiltonian.  We illustrate this avenue by
@@ -1835,20 +1836,19 @@ The following table illustrates the first few steps of this process.
 \end{array} }
 \end{equation}
 
-We now sketch a proof that for each index $n \in \N^+$, the order-$n$
-Gray code sequence specifies a Hamiltonian cycle in $\q_n$; exercises
-will give the reader the opportunity to fill in details.  We verify
-the following two assertions in turn:
+We now sketch a proof that for each index $n \in \N^+$, the order-$n$ Gray code sequence
+specifies a Hamiltonian cycle in $\q_n$; exercises will give the reader the opportunity to fill 
+in details.  We verify the following two assertions in turn:
 \begin{enumerate}
 \item
-{\it The order-$n$ Gray code contains all $2^n$ length-$n$ binary
-  strings.}
+{\it The order-$n$ Gray code contains all $2^n$ length-$n$ binary strings.}
 \item
-{\it Every pair of cyclically adjacent strings in the order-$n$ Gray
-  code differ in a single bit-position.}
+{\it Every pair of cyclically adjacent strings in the order-$n$ Gray code differ in a single bit-position.}
 \end{enumerate}
+{\it Verification}.
 
-(1) We sketch the induction.  When $n=1$, the Gray code consists of
+\noindent {\it Assertion} 1.
+We sketch the induction.  When $n=1$, the Gray code consists of
 the two distinct strings $0$ and $1$.  Assume that the assertion holds
 for $n=k$.  The order-$(k+1)$ code is obtained by taking two copies of
 the order-$k$ code and prepending $0$ to the strings in one copy and
@@ -1856,9 +1856,11 @@ $1$ to the strings in the other copy.  The $2^k$ distinct binary
 strings from the order-$k$ code thereby produce $2^{k+1}$ distinct
 binary strings in the order-$(k+1)$ code.
 
-(2) We distinguish three situations.  Let the adjacent strings be
-string $x$, which appears in position $i$ of the code, and string $y$,
-which appears in position $i+1 \bmod 2^n$ of the code.
+\medskip
+
+\noindent {\it Assertion} 2.
+We distinguish three situations.  Let the adjacent strings be string $x$, which appears in 
+position $i$ of the code, and string $y$, which appears in position $i+1 \bmod 2^n$ of the code.
   \begin{itemize}
   \item
 Say that $i = 2^n-1$.  In this case $x$ is the last string in the
@@ -1892,37 +1894,31 @@ one bit-position.
 
 
 \noindent {\bf (e)}
-By Proposition~\ref{thm:deBruin-linegraph}, each de Bruijn network
-$\d_n$ is the line-digraph of the next bigger de Bruijn network,
-$\d_{n+1}$.  Therefore, by definition of ``line (di)graph'', the fact
-that $\d_n$ is (directed)-Eulerian
-(Corollary~\ref{thm:deBruijn-Eulerian}) means that $\d_{n+1}$ is
-(directed)-Hamiltonian.  \qed
+By Proposition~\ref{thm:deBruin-linegraph}, each de Bruijn network $\d_n$ is the 
+line-digraph of the next bigger de Bruijn network, $\d_{n+1}$.  Therefore, by definition
+of ``line (di)graph'', the fact that $\d_n$ is (directed)-Eulerian (Corollary~\ref{thm:deBruijn-Eulerian})
+means that $\d_{n+1}$ is (directed)-Hamiltonian.  \qed
 \end{proof}
 
 
 \subsubsection{Testing general graphs for Hamiltonianicity}
 \label{sec:Hamiltonian-unweighted}
 
-The techniques we use in Subsection~{\small\sf B} to investigate the
-Hamiltonianicity of our ``named'' graphs exploit the detailed
-structures of the individual graphs.  Thus, we cannot expect the proof
-of Proposition~\ref{thm:named-graph-Hamiltonian} to suggest avenues
-for determining whether an arbitrary given graph is Hamiltonian.  In
-fact, quite sophisticated results proved in the early 1970s make a
-strong mathematical argument that no set of case studies is likely to
-have a major impact on the problem of testing general graphs for
-Hamiltonianicity.  This is because, in common with the Satisfibility
-problem {\sf 3SAT} of Section~\ref{sec:Satisfiability}, the
-Hamiltonianicity-detection problem is {\sf NP}-complete.  We repeat
-from our discussion in Section~\ref{sec:Satisfiability} that the
+The techniques we use in Section~\ref{sec:hamilonian-named-graphs} to investigate 
+the Hamiltonianicity of our ``named'' graphs exploit the detailed structures of the individual 
+graphs.  Thus, we cannot expect the proof of Proposition~\ref{thm:named-graph-Hamiltonian} 
+to suggest avenues for determining whether an arbitrary given graph is Hamiltonian.  In
+fact, quite sophisticated results proved in the early 1970s make a strong mathematical
+argument that no set of case studies is likely to have a major impact on the problem of 
+testing general graphs for Hamiltonianicity.  This is because, in common with the Satisfibility
+problem {\sf 3SAT} of Section~\ref{sec:Satisfiability}, the Hamiltonianicity-detection problem is 
+{\sf NP}-complete.  We repeat from our discussion in Section~\ref{sec:Satisfiability} that the
 details of the theory of {\sf NP}-completeness are beyond the scope of
 this text, but we do want the reader to recognize the following.
 \begin{description}
 \item
-{\it The problem of deciding, given a graph $\g$ that is presented via
-  a list of vertices and a list of edges, whether $\g$ admits a
-  Hamiltonian path or a Hamiltonian cycle is {\sf NP}-complete.}
+{\it The problem of deciding, given a graph $\g$ that is presented via a list of vertices and a 
+list of edges, whether $\g$ admits a Hamiltonian path or a Hamiltonian cycle is {\sf NP}-complete.}
 \end{description}
 
 
@@ -1938,7 +1934,7 @@ typically not covered---at least in depth---early in the curriculum,
 but that are important enough that the reader should at least be aware
 of them.  The topics we mention are motivated by virtually every
 computational area that benefits from graph-theoretic models.  We have
-tried to present each topic we touch on at a level of discourse that
+tried to present each topic at a level of discourse that
 will prepare the interested reader to delve more deeply into the
 material, yet at a level of informality that will make the material
 accessible to the more casual reader.  We thus strive for an intuitive
@@ -1950,40 +1946,36 @@ algorithmics---``dynamic'' in the sense that they {\em do}
 something---and the {\em structural} models provided by graph theory
 can often provide beneficial illumination of one another.
 
-Section~\ref{sec:graph-decompose} \index{graph!graph separators}
-\index{graph!graph decomposition} focuses on the myriad computations
-on graph that can be accomplished efficiently via recursive algorithms
+\index{graph!graph separators}\index{graph!graph decomposition}
+Section~\ref{sec:graph-decompose} focuses on the myriad computations
+on graphs that can be accomplished efficiently via recursive algorithms
 that decompose, then reassemble, the graphs that they work on.
 
-Section~\ref{sec:graph-evolve} \index{graph!evolving graphs}
-introduces the increasingly important topic of graphs whose structure
-changes dynamically over time.  One timely instance of this dynamic
-evolution is the connectivity graph of the Internet.
+\index{graph!evolving graphs}
+Section~\ref{sec:graph-evolve}  introduces the increasingly important topic of graphs whose structure
+changes dynamically over time.  One timely instance of such dynamic evolution is the connectivity 
+graph of the Internet.
 
-Section~\ref{sec:hypergraphs} \index{graph!hypergraphs}
-\index{hypergraphs} introduces {\it hypergraphs}, a generalization of
-graphs that allows multi-entity relationships, in contrast to the
-binary relationships mandated by graphs' two-element edges.
+\index{graph!hypergraphs}
+\index{hypergraphs}
+Section~\ref{sec:hypergraphs} introduces {\it hypergraphs}, a generalization of
+graphs that allows relationships among {\em multiple} entities, in contrast to the restriction to
+{\em binary} relationships imposed by graphs' {\em two-element} edges.
 Hypergraph-based models find application in areas as diverse as:
 \begin{itemize}
 \item
-{\it social networks:} Hyperedges can describe, e.g., collaboration
-and collusion.
+{\it social networks:} Hyperedges can describe, e.g., collaboration and collusion.
 \item
-{\it electronic networks:} Hyperedges can enable the design of
-equi-potential vertices in voltage-driven technologies such as {\it
-  VLSI}.
+{\it electronic networks:} Hyperedges can enable the design of equi-potential vertices in 
+voltage-driven technologies such as {\it VLSI}.
 \item
-{\it communication networks:} Hyperedges can model bus-oriented
-communication.
+{\it communication networks:} Hyperedges can model bus-oriented communication.
 \end{itemize}
 
 
 
 \subsection{Relating Computational and Mathematical Problems}
 \label{sec:Relate-CS-Math-Probs}
-
-
 
 \subsection{Graph Decomposition}
 \label{sec:graph-decompose}
@@ -1994,40 +1986,35 @@ communication.
 The reader will certainly have noted that some ``named'' graphs are,
 intuitively, more tightly interconnected than others.  From a purely
 intellectual vantage point, it would be of interest to be able to
-quantify the tightness of interconnection.  Among the various measures
+quantify the tightness of such interconnectedness.  Among the various measures
 that have been proposed, one stands out for its myriad algorithmic
 implications: the notion of {\it graph separator}.  In fact, this
 notion appears in the literature in several flavors.  An $n$-vertex,
 $e$-edge graph $\g$ has:
 \begin{itemize}
 \item
-an {\it $\alpha$-edge separator} of size $k$, 
-\index{graph!$\alpha$-edge separator of size $k$} where $\alpha$ is a
-real number with $\alpha \leq 1/2$ and $k$ is an integer with $k < n$,
-precisely if:
+an {\it $\alpha$-edge separator} of size $k$---where $\alpha$ is a real number with $\alpha \leq 1/2$ 
+and $k$ is an integer with $k < n$---precisely if:
+\index{graph!$\alpha$-edge separator of size $k$}
 
 \smallskip
 
-one can partition $\g$ into two disjoint (not-necessarily connected)
-subgraphs, each having $\leq \alpha n$ vertices, by removing $\leq k$
-edges from $\g$.
+one can partition $\g$ into two disjoint (not-necessarily connected) subgraphs, each having 
+$\leq \alpha n$ vertices, by removing $\leq k$ edges from $\g$.
 
 \item
-a {\it $\alpha$-vertex separator} of size $\ell$,
+a {\it $\alpha$-vertex separator} of size $\ell$, where $\alpha$ is a real number with 
+$\alpha \leq 1/2$ and $\ell$ is an integer with $k < e$, precisely if:
 \index{graph!$\alpha$-vertex separator of size $\ell$}
-where $\alpha$ is a real number with $\alpha \leq 1/2$ and $\ell$ is
-an integer with $k < e$, precisely if:
 
 \smallskip
 
-one can partition $\g$ into two disjoint (not-necessarily connected)
-subgraphs, each having $\leq \alpha n$ vertices, by removing $\leq \ell$
-vertices from $\g$.
+one can partition $\g$ into two disjoint (not-necessarily connected) subgraphs, each having
+$\leq \alpha n$ vertices, by removing $\leq \ell$ vertices from $\g$.
 \end{itemize}
-We replace the term ``separator'' with the term {\em ``bisector''} 
+We replace the term ``separator'' with the term {\em ``bisector''}  if both subgraphs after a 
+separation operation have $\leq \left\lfloor \frac{1}{2} n \right\rfloor$ vertices.
 \index{graph!edge bisector} \index{graph!vertex bisector}
-if both subgraphs after a separation operation have $\leq \lfloor
-\frac{1}{2} n \rfloor$ vertices.
 
 \medskip
 
@@ -2042,22 +2029,20 @@ as measured by either edge or vertex bisectors.
 It is far less clear that de Bruijn networks and hypercubes are
 roughly equal in ease to bisect, as measured by vertex bisectors.
 \end{itemize}
-But similar separation behavior has very important algorithmic
+Similar separation behavior has very important algorithmic
 consequences.  For instance, the closeness in separation
 characteristics between de Bruijn networks and hypercubes manifests
 itself in a large range of algorithmic applications.  The range of
 such applications is hinted at by sources that study the algorithmics
-of laying out VLSI circuits (see, e.g., \cite{Leiserson85}) and
+of laying out VLSI circuits (e.g., \cite{Leiserson85}) and
 sources that study the ability of a network's interconnections to host
 a range of communication patterns that enable efficient parallel
-computation and communication (see, e.g.,
-\cite{AnnexsteinBR90,Leiserson85,Ullman84}).
-
+computation and communication (e.g., \cite{AnnexsteinBR90,Leiserson85,Ullman84}).
 
 \medskip
 
 There is a large literature that develops the algorithmics of finding
-small separators for significant families of graphs.  An early star in
+small separators for computationally significant families of graphs.  An early star in
 the firmament of such studies is the discovery in \cite{LiptonT79} of
 a $1/3$-vertex separator of size $\sqrt{8n}$ for $n$-vertex planar graphs.
 The dual problem of finding lower bounds on the sizes of graph
@@ -2072,58 +2057,50 @@ yields upper bounds.
 \label{sec:graph-evolve}
 \index{graph!with evolving structure}
 
-Classical problems in the area of graph algorithms will discuss
-graphs, especially trees, whose structures evolve over time.  Such
-evolution is observed, e.g., in the study of ``classical'' algorithmic
-problems such as {\it Minimum Spanning Tree} and {\it Branch and
-  Bound}; see, e.g., \cite{CLRS}.  What is certain to be more exciting
-to the reader, though, are the ``modern'' topics where one encounters
-graphs with evolving structure, such as {\it social networks} and {\it
-  inter-networks} (e.g., the {\it Internet of Things}).
+A large variety of problems in the area of graph algorithms involve graphs---especially 
+trees---whose structures evolve over time.  Such evolution is observed, e.g., in the study
+of ``classical" algorithmic problems such as {\it Minimum Spanning Tree} and 
+{\it Branch and Bound}; see, e.g., \cite{CLRS}.  What is certain to be more exciting to the
+reader, though, are the ``modern'' topics where one encounters graphs with evolving 
+structure, such as {\it social networks} and {\it inter-networks} (e.g., the {\it Internet of Things}).
 
-For ``classical'' topics, as exemplified by the two we have mentioned,
-the mathematics covered in this chapter will provide the reader with
-the background necessary to deal with graph evolution.  Indeed, this
-evolution emerges as an inevitable concomitant of the algorithmics
-that is superimposed upon the traditional structures of graph theory:
-the challenge to the reader is to assimilate new algorithmic notions,
-not new mathematics.
+For ``classical'' topics, as exemplified by the two we have mentioned, the mathematics covered
+in this chapter will provide the reader with the background necessary to deal with graph evolution.
+Indeed, this evolution emerges as an inevitable concomitant of the algorithmics that is superimposed 
+upon the traditional structures of graph theory: the challenge to the reader is to assimilate new 
+algorithmic notions, not new mathematics.
 
 \index{graph!with evolving structure!social networks}
 \index{graph!with evolving structure!inter-networks}
-In contrast, the ``modern'' topics we have mentioned do require the
-reader's assimilating new mathematics.  Dealing successfully with the
-algorithmic issues that arise with social networks and inter-networks
-requires the reader to understand the structures of the evolving
-graph-oriented systems and how evolution changes these structures.
-Among the interesting (and valuable) mathematical questions one can
-pose is: When a new vertex applies to join an evolving network, which
-vertex in the network is the best one to connect to, in order to best
-facilitate one's interactions or influence within the community.  The
-latter topic leads, e.g., to the study of {\em power-law} networks.
+In contrast, the ``modern'' topics we have mentioned do require the assimilation of new 
+mathematics.  Dealing successfully with the algorithmic issues that arise with social 
+networks and inter-networks requires the reader to understand the structures of the
+evolving graph-oriented systems and how evolution changes these structures.
+Among the interesting (and valuable) mathematical questions that one can pose is: 
+If you are a new vertex ``applying" to join an evolving network, which vertex in the network 
+is the best one to connect to, in order to best facilitate your interactions or influence within 
+the community.  The latter topic leads, e.g., to the study of {\em power-law} networks.
 \index{graph!with evolving structure!social networks!power-law networks}
-\index{graph!with power-law degreegrowth patterns}
+\index{graph!with power-law degree growth patterns}
+
 \bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-An evolving network is said to {\it obey a power law} if there exists
-a real number $\gamma >0$ such that, for sufficiently large values of
-the integer parameter $k$, the fraction of vertices in the network having
-degree $k$ is proportional to $k^{-\gamma}$.
+An evolving network is said to {\it obey a power law} if there exists a real number $\gamma >0$
+with the following property.  For all network nodes having sufficiently large vertex-degrees, the
+fraction of nodes in the network that have degree $k$ is proportional to $k^{-\gamma}$.
 \end{minipage}
 }
 \bigskip
 
-Little of the abstract work on power-law networks would likely be
-studied in depth in any early course; indeed, the structure of these
-networks is not yet well understood even in advanced settings.
-Attempts to understand power laws with rigor have given rise to a
-number of competing, rather sophisticated, abstract models---see,
+Little of the abstract work on power-law networks would likely be studied in depth in any early
+course; indeed, the structure of these networks is not yet well understood even in advanced settings.
+Indeed, attempts to understand power laws with rigor have given rise to a number of competing, 
+rather sophisticated, abstract models---see,
 e.g., \cite{AielloCL00,BarabasiA99,Bollobas85,ChenCGJSW}---and
-numerous studies have attempted to understand the specific situations
-wherein the abstract models reflect reality more or less
-faithfully---see, e.g.,
+numerous studies have attempted to understand the specific situations wherein the abstract models
+reflect reality more or less faithfully---see, e.g.,
 \cite{BuT02,FaloutsosFF99,JaiswalRT04,TangmunarunkitGJSW02,ZeguraCD97}.
 
 
@@ -2132,64 +2109,53 @@ faithfully---see, e.g.,
 \index{graph!generalization to hypergraphs}
 \index{hypergraph}
 
-A large variety of modern computing-related topics benefit from the
-structure inherent in graph-theoretic models but do not comfortably
-conform to the {\em binary} relationships imposed by graphs' having
-{\em two} vertices per edge.  A model that retains the structure of
-graph-theoretic models without the binary constraint is the
-generalization of graphs called {\em hypergraphs}.  A hypergraph has
-vertices that play exactly the same role as with graphs, but in place of
-a graph's binary edges, a hypergraph has {\em hyperedges}, each being
-a set of vertices whose size is not restricted to $2$.  A rather general
-treatment of hypergraphs can be found in the comprehensive
-graph-theory text \cite{Berge73}; a specialized article that focuses
-on some of the topics of this chapter, such as vertex-coloring, is
-\cite{Lovasz73}.  Because of their inherent complexity, hypergraphs as
-graph-theoretic objects are usually relegated to advanced courses.
-However, the literature contains many studies of hypergraphs that are
-``fine-tuned'' for specific computing-related application areas, and
-many of these should be accessible without extensive mathematical
-background.  Sample  computing-related application areas that benefit
+A large variety of modern computing-related topics benefit from the structure inherent in 
+graph-theoretic models but do not comfortably conform to the {\em binary} relationships 
+imposed by graphs' having {\em two} vertices per edge.  A model that retains the general 
+structure of graph-theoretic models while it abandons the {\em binary} constraint in
+edge-membership is the generalization of graphs called {\em hypergraphs}.  A hypergraph has
+vertices that play exactly the same role as with graphs, but in place of a graph's $2$-element 
+edges, a hypergraph has {\em hyperedges}, each being a set of vertices whose size is not
+restricted to $2$.  A rather general treatment of hypergraphs can be found in the comprehensive
+graph-theory text \cite{Berge73}; a specialized article that focuses on some of the topics of this 
+chapter, such as vertex-coloring, is \cite{Lovasz73}.  Because of their inherent complexity, 
+hypergraphs as graph-theoretic objects are usually relegated to advanced courses.
+However, the literature contains many studies of hypergraphs that are ``fine-tuned'' for specific
+computing-related application areas.  Many of these studies should be accessible without 
+extensive mathematical background.  Sample  computing-related application areas that benefit
 from hypergraph-oriented models include the following.
 \begin{itemize}
 \item
-Bus-connected parallel communication has been part of digital computer
-\index{hypergraph!modeling bus-connected communication} design since
-its earliest days.  The informal picture of such a system is that
-there are communication channels that multiple agents can retrieve
-message from and post messages to.  In hypergraph-oriented terms: the
-vertices/communicating agents aggregate into groups/hyperedges.  Each
-group's agents share ``read/write'' access to a specific channel.  A
-specialized genre of hypergraph that was invented to study the
-described scenario is the {\it interval hypergraph}
-\index{hypergraph!interval hyergraph} model developed in
-\cite{Rosenberg89a}.
+Bus-connected parallel communication has been part of digital-computer design since
+its earliest days.  The informal picture of such a system is that there are communication 
+channels which multiple agents can retrieve messages from and post messages to.  In
+hypergraph-oriented terms: the vertices/communicating agents aggregate into 
+groups/hyperedges.  Each group's agents share ``read/write'' access to a specific channel.  A
+specialized genre of hypergraph that was invented to study the described scenario is the 
+{\it interval hypergraph}  model developed in \cite{Rosenberg89a}.
+\index{hypergraph!modeling bus-connected communication}
+\index{hypergraph!interval hyergraph}
 
 \item
-Modern electronic circuits are implemented using integrated circuit
-\index{hypergraph!modeling integrated circuits} technology,
+Modern electronic circuits are implemented using integrated circuit technology,
 specifically, {\em VLSI: Very Large Scale Integrated circuitry}; see,
-e.g., \cite{Mead-Conway}.  These technologies tend to be
-voltage-driven, rather than current-driven.  Accordingly, much of the
-attention when designing circuits centers on the coordination of
-equi-potential points in a network, rather than on point-to-point
-transmission of signals.  Hypercubes are tailor-made for such
-technologies.  A crucially important issue that arises because of the
-design strengths and weaknesses of  VLSI technology is {\it fault
-  tolerance}---how to cope with the inevitable faulty transistors in
-massive VLSI systems.  Even mathematically quite-accessible ideas can
-provide provocative ideas about this important topics; see, e.g.,
-\cite{Rosenberg85a}
+e.g., \cite{Mead-Conway}.  These technologies are often voltage-driven, rather than 
+current-driven.  Accordingly, much of the attention when designing circuits centers on 
+the coordination of equi-potential points in a network, rather than on point-to-point
+transmission of signals.  Hypergraphs are tailor-made for such technologies.  A crucially 
+important issue that arises because of the design strengths and weaknesses of VLSI 
+technology is {\it fault tolerance}---how to cope with the inevitable faulty transistors in
+massive VLSI systems.  A variety of quite-accessible mathematical ideas can
+provide provocative ideas about this important topics; see, e.g., \cite{Rosenberg85a}.
+\index{hypergraph!modeling integrated circuits}
 
 \item
-Social networks have become so prevalent in society that no one will
-be surprised to learn that many approaches to modeling the networks'
-interconnectivity have been studied.  In
-Section~\ref{sec:graph-evolve}, we discussed an interconnectivity
-model based on evolving graphs and clustering within such graphs.
-More recently, hypergraph-based models
-\index{hypergraph!modeling interconnectivity in social networks}
+Social networks have become so prevalent in society that no one will be surprised to 
+learn that many approaches to modeling the networks' interconnectivity have been studied.  In
+Section~\ref{sec:graph-evolve}, we discussed an interconnectivity model based on evolving
+graphs and clustering within such graphs.  More recently, hypergraph-based models
 have also been proposed; see, e.g., \cite{Amatoetal17,LiuBV10}.
+\index{hypergraph!modeling interconnectivity in social networks}
 \end{itemize}
 
 
