@@ -1058,9 +1058,9 @@ Iterate the process of removing edges from $\g$ until one edge-removal reduces $
 a graph with a single face.
 
 The reader should verify that this termination condition is  equivalent to stopping when the remaining
-graph is a {\em connected} tree.
+graph is a (connected) tree.
 
-{\Arny The termination with a connected tree should be an exercise.}
+{\Arny The proof of termination with a connected tree should be an exercise.}
 
 \bigskip
 
@@ -1070,7 +1070,7 @@ two distinct faces, then remove any such edge.
 
 \smallskip
 
-Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
+Fig.~\ref{fig:planarStep1} illustrates the action of Phase 1 for a
 (residual) graph with $n=8$ vertices, $e=11$ edges, and $f=5$ faces.
 \begin{figure}[hbt]
 \begin{center}
@@ -1088,10 +1088,11 @@ Fig.~\ref{fig:planarStep1} illustrates the action of Step 1 for a
 {\bf The analysis}.
 \begin{itemize}
 \item
-The graph remaining after an edge-removal is still planar---edges are
+The graph remaining after an edge-removal is still planar---because edges are
 removed but never added---so we can continue the process.
 \item
-The process preserves the value of function $\phi$; i.e., $\phi(n,e,f) \ = \ \phi(n,e-1,f-1)$.
+The process preserves the value of function $\phi$; i.e.,
+\[ \phi(n,e,f) \ = \ \phi(n,e-1,f-1) \]
 This is because $n$ is unchanged, while $e$ and $f$ are each reduced by $1$.
 \end{itemize}
 
@@ -1100,6 +1101,7 @@ This is because $n$ is unchanged, while $e$ and $f$ are each reduced by $1$.
 \item[{\bf Phase 2}.]
 Iterate the following process of removing vertices from the tree produced
 by Phase 1, until only one vertex remains.
+
 \bigskip
 
 {\bf The action}.
@@ -1121,8 +1123,8 @@ for a tree  with $n=8$ vertices---hence, $e=7$ edges and $f=1$ face.
 
 {\bf The analysis}.
 The value of function $\phi$ remains invariant under each leaf-removal; i.e.,
-$\phi(n,e,f) \ = \ \phi(n-1,e-1,f)$.
-To wit, $f$ is unchanged (remaining at $f=1$), while $n$ and $e$ are
+\[ \phi(n,e,f) \ = \ \phi(n-1,e-1,f) \]
+To wit, $f$ is unchanged ($f \equiv 1$ for a tree), while $n$ and $e$ are
 each reduced by $1$.
 \end{description}
 
@@ -1132,26 +1134,27 @@ each reduced by $1$.
 \begin{itemize}
 \item
 Our process executes a number of steps exactly equal to the number of
-edges of the graph $\g$ that we began with.  Specifically, the edge-removing
-Phase 1 removes $e-n$ edges, while the leaf-removing Phase 2 removes $n$ vertices.
+edges of the graph $\g$ that we begin with.  Specifically, the edge-removing
+Phase 1 removes $e-n$ edges, while the leaf-removing Phase 2 removes $n-1$ vertices.
 \item
 At the end of the process, $e=0$ and $n=f=1$, so that the residual
 value of $\phi$ is $2$.  Because each action prescribed by the process
 preserves the value of $\phi$, we know that $\phi$ has the value $2$
 before each edge-removal and leaf-removal.
 \end{itemize}
-We conclude, therefore, that at the start of the process, $\phi(n,e,f)$ had the value $2$.
+We conclude, in summation, that at the start of the process, $\phi(n,e,f)$ had the value $2$.
 In other words, $n-e+f = 2$, as asserted by Euler's Formula.   \qed
 
 \bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-We have focused almost entirely on the problems of vertex-coloring planar and
-outerplanar graphs because these problems can be studied within a mathematical setting
-(which is our focus) rather than an algorithmic setting (which is not our focus).  In closing,
-though, we remark that there are many interesting algorithmic problems relating to 
-vertex-coloring arbitrary graphs.  A central such result dates to the earliest days of the 
+Our study of vertex-coloring in graphs has focused almost entirely on planar and outerplanar graphs.
+This is because, aside from the importance of such graphs in applications,  their vertex-coloring
+problems can be studied entirely within a mathematical setting (which is our focus).  Vertex-coloring
+for broader families of graphs usually proceeds within an algorithmic setting (which is not our focus).
+In closing this topic, though, we remark that there are many interesting algorithmic problems relating
+to vertex-coloring arbitrary graphs.  The following central such result dates to the earliest days of the 
 study of {\sf NP}-completeness.
 
 \smallskip
@@ -1161,8 +1164,12 @@ is {\sf NP}-complete} \cite{GareyJ79,Karp72}.
 
 \smallskip
 
-Lending greater interest to this result is the existence of ``greedy'' vertex-coloring
-algorithms that give quite good results.  {\Arny reference?}
+The preceding result suggests that {\em optimal} vertex-coloring is computationally difficult.  This
+contrasts with the existence of ``greedy'', hence efficient, vertex-coloring algorithms that give quite
+good results in practice.  (``Greedy" here refers to algorithms that allocate a yet-unused color to a
+vertex only when no uncolored vertex can be validly colored with an already-used color.  See
+Footnote~\ref{foot:greedy} in Chapter~\ref{ch:Graphs1}.)
+{\Arny (reference?)}
 \end{minipage}
 }
 
@@ -1175,36 +1182,32 @@ Just as various genres of {\it spanning trees} are used to
 graph $\g$, various genres of {\it paths} and {\it cycles} in $\g$ are
 often useful to ``summarize'' aspects of $\g$'s traversal structure.
 This section is devoted to a range of problems related to determining
-the existence in a graph $\g$ of a path or a cycle that {\em
-  completely} ``summarizes'' $\g$'s traversal structure, either by
-containing each vertex of $\g$ precisely once or by containing each edge
-of $\g$ precisely once.  We generally focus in this section only
-on {\em undirected} paths and cycles in {\em undirected}, {\em
-  unweighted} graphs.  Extrapolating the notions we discuss to their
-directed analogues in directed and/or weighted graphs, will be
-accomplished via carefully crafted exercises.  In a similar, but simpler, vein, we 
+the existence in a graph $\g$ of a path or a cycle that {\em completely} ``summarizes'' $\g$'s 
+traversal structure---either by containing each vertex of $\g$ precisely once or by containing
+each edge of $\g$ precisely once.  We generally focus in this section only
+on {\em undirected} paths and cycles in {\em undirected}, {\em unweighted} graphs.
+Extrapolating the notions we discuss to their directed analogues in directed and/or weighted
+graphs, will be accomplished via carefully crafted exercises.  In a similar, but simpler, vein, we 
 generally discuss only problems concerning {\em cycles}, leaving to the reader
 the analogous path-related notion.  We begin by delimiting the two main
-classes of cycle-discovery problems that we study in this section.
+classes of cycle-discovery problems that we study.
 
 \smallskip
 
 \index{graph!Eulerian cycle} \index{Eulerian cycle}
 \index{graph!Eulerian circuit} \index{Eulerian circuit} 
 \index{Euler, Leonhard}
-{\it Eulerian cycles (or, tours)}.  A cycle in a graph $\g$ that
-traverses each of $\g$'s edges precisely once is called an {\it Eulerian cycle}
-(or, often, an {\it Eulerian circuit}).  The edge-exhausting cycles/circuits/tours
-referred to by these several names were introduced as a topic of study in 1736 
-by the Swiss mathematician Leonhard Euler, whose name we have already
-encountered multiple times.  Euler allegedly discovered the topic
-while contemplating how to determine a tour of the town of K\"{o}nigsberg
+{\it Eulerian cycles (or, tours)}.  A cycle in a graph $\g$ that traverses each of $\g$'s {\em edges} 
+precisely once is called an {\it Eulerian cycle} (or, often, an {\it Eulerian circuit}).  The 
+edge-exhausting cycles/circuits/tours referred to by these several names were introduced
+as a topic of study in 1736  by the Swiss mathematician Leonhard Euler, whose name we 
+have already encountered multiple times.  Euler allegedly identified the topic
+while contemplating how to devise a tour of the town of K\"{o}nigsberg
 that would cross each of the town's bridges precisely once.  The quest
-for Eulerian cycles in graphs is, thus, one of the oldest problems in
-the fields now called {\it Operations Research} and {\it graph theory}.  
-(An edge-exhausting {\em path} in $\g$ is referred to in
-the obvious analogous way.)  When one views an Eulerian cycle as a
-``map'' for traversing a graph---as did Euler when contemplating this
+for Eulerian cycles in graphs is certainly one of the oldest problems---perhaps literally the oldest 
+problem---in the fields now called {\it operations research} and {\it graph theory}.  
+(An edge-exhausting {\em path} in $\g$ is referred to in the obvious analogous way.)  When one 
+views an Eulerian cycle as a ``map'' for traversing a graph---as did Euler when contemplating this
 problem---one often calls the cycle an {\it Eulerian tour}. Traditionally, a
 graph that admits an Eulerian cycle is said to be {\it Eulerian}. 
  \index{graph!Eulerian tour} \index{Eulerian tour}
@@ -1215,7 +1218,7 @@ graph that admits an Eulerian cycle is said to be {\it Eulerian}.
 \index{graph!Hamiltonian cycle} \index{Hamiltonian cycle}
 \index{graph!Hamiltonian circuit} \index{Hamiltonian circuit}
 \index{Hamilton, William Rowan} \index{Kirkman, Thomas Pennington}
-Dually: A cycle in a graph $\g$ that encounters each of $\g$'s vertices
+Dually: A cycle in a graph $\g$ that encounters each of $\g$'s {\em vertices}
 precisely once is called a {\it Hamiltonian cycle}, (or, often, a {\it Hamiltonian circuit}).  
 This cycle-discovery problem is named in honor of the British mathematician 
 Sir William Rowan Hamilton, who is credited with inventing the
@@ -1230,16 +1233,14 @@ in a graph is referred to in the obvious analogous way.)
 
 \medskip
 
-Despite the conceptual duality between the edge-encountering goal that
-underlies Eulerian paths and cycles and the
-vertex-encountering goal that underlies Hamiltonian paths and cycles,
-these two graph-traversing goals differ in virtually every significant
-respect.  It is rather easy to characterize the family of graphs that
-admit Eulerian tours and to find such a tour if it exists
-(Section~\ref{sec:EulerianCycle}); in contrast, there is no known
-characterization of the family of graphs that admit Hamiltonian tours,
-and the computational problem of efficiently determining whether a
-graph admits such a tour is one of the major classical problems in the
+Despite the conceptual duality between the edge-exhausting goal that underlies Eulerian 
+paths and cycles and the vertex-exhausting goal that underlies Hamiltonian paths and cycles,
+these two graph-traversing goals differ from one another in virtually every significant
+mathematical and algorithmic respect.  It is rather easy to characterize the family of graphs that
+admit Eulerian tours and to find such a tour if it exists (Section~\ref{sec:EulerianCycle}); in 
+contrast, there is no known characterization of the family of graphs that admit Hamiltonian tours,
+and the computational problem of efficiently determining whether a graph admits such a tour is 
+one of the major classical problems in the
 field of computational complexity  (Section~\ref{sec:Hamiltonian-cycle}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1247,37 +1248,34 @@ field of computational complexity  (Section~\ref{sec:Hamiltonian-cycle}).
 \subsection{Eulerian Cycles and Paths}
 \label{sec:EulerianCycle}
 
-The main results in this section characterize the families of directed
-and undirected graphs that admit an {\it Eulerian cycle} or an {\it
-  Eulerian path}.  The proofs of these characterizations are
-constructive: they consist of algorithms that efficiently find such a
-cycle or such a path when one exists.  We focus on graphs that are
-connected: the algorithms we present can actually be adapted to find
-an {\it Eulerian cycle} or an {\it Eulerian path} in each connected
-component of a general graph.
+The main results in this section characterize the families of directed and undirected graphs
+that admit {\it Eulerian cycles} or {\it Eulerian paths}.  The proofs of these characterizations are
+constructive: they consist of algorithms that efficiently find such a cycle or such a path when 
+one exists.  We focus on graphs that are connected: the algorithms we present can actually be 
+adapted to find an Eulerian cycle or an Eulerian path in each connected component of a general graph.
 
-As we embark on our adventure, we note the amusing fact that
-that the problem of finding an Eulerian cycle in a graph $\g$ is
+As we embark on our adventure, we note the following amusing fact: \\
+{\em The problem of finding an Eulerian cycle in a graph $\g$ is
 equivalent to the problem of drawing $\g$ without ever lifting one's
-pencil. \index{graph!drawing without lifting pencil}
+pencil.} \index{graph!drawing without lifting pencil}
 
 \medskip
 
-We now develop simple, elegant characterizations of graphs that admit Eulerian cycles and paths.
-These characterization are validated via simple and efficient algorithms for determining
-whether a given graph admits such a path or such a cycle.  In the next two propositions, we
-provide the characterizations for both cycles and paths, in both undirected and directed graphs.
+In the next two propositions, we develop---for both cycles and paths, in both undirected and directed
+graphs---simple, elegant characterizations of graphs that admit Eulerian cycles and paths.
+These characterization are validated via simple and efficient algorithms that determine
+whether a given graph admits such a path or such a cycle.
 
 \begin{prop}[Eulerian Cycles]
 \label{thm:eulerian-cycle}
 {\bf (a)}
-An undirected graph $\g$ admits an Eulerian cycle if, and only if,
-$\g$ is connected and every vertex of $\g$ has even degree.
+A connected undirected graph $\g$ admits an Eulerian cycle if, and only if,
+every vertex of $\g$ has even degree.
 
 {\bf (b)}
-A directed graph $\g$ admits a directed Eulerian cycle if, and only if,
-$\g$ is connected and, for every vertex $v$ of $\g$,
-$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$.
+A connected directed graph $\g$ admits a directed Eulerian cycle if, and only if,
+$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$
+for every vertex $v$ of $\g$.
 \end{prop}
 
 {\Denis The question of edge multiplicity should be addressed somewhere since in particular
@@ -1362,8 +1360,9 @@ whose vertices have nonzero even degree.
 really hard to discuss this piece by piece.}
 
 {\Arny Also, yesterday I inserted details for a proof similar to this in order to show that a tree has
-a vertex of degree $1$.  Please look at that proof and at this proof to see whether a single
-more general (abstract?) argument works for both.}
+a vertex of degree $1$ --- See Lemma~\ref{lem:vtx-deg-connected}.  Please look at that proof and 
+at this proof to see whether we should craft  a single more general (abstract?) argument 
+that works for both.}
 
 \begin{description}
 \item[{\bf Step 1}]
@@ -1565,13 +1564,12 @@ one seeks Eulerian {\em paths} rather than {\em cycles}.
 \begin{prop}[Eulerian Paths]
 \label{thm:eulerian-path}
 {\bf (a)}
-An undirected graph $\g$ admits an Eulerian path if, and only if,
-$\g$ is connected and at most two vertices of $\g$ have odd degree.
+A connected undirected graph $\g$ admits an Eulerian path if, and only if,
+at most two vertices of $\g$ have odd degree.
 
 {\bf (b)}
-A directed graph $\g$ admits an Eulerian path if, and only if: $\g$ is
-connected; either $\g$ admits an Eulerian cycle, or $\g$ contains one
-vertex $u$ such that
+A connected directed graph $\g$ admits an Eulerian path if, and only if: either $\g$ admits an 
+Eulerian cycle, or $\g$ contains one vertex $u$ such that
 
 \hspace*{.5in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
 
@@ -1581,22 +1579,19 @@ and one vertex $v$ such that
 \hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
 \end{prop}
 
-The proof of the path-oriented Proposition~\ref{thm:eulerian-path} has
-the same overall structure as the cycle-oriented
-Proposition~\ref{thm:eulerian-cycle}, with one major difference.
-Whereas a cycle has neither beginning nor end, a path has both.
-Proposition~\ref{thm:eulerian-path}(a) asserts that an undirected
-graph which admits an Eulerian path but not an Eulerian cycle has
-precisely two vertices of odd degree.  These odd-degree vertices play the
-role of the two extreminities of the Eulerian path.  In similar fashion,
-Proposition~\ref{thm:eulerian-path}(b) asserts that a directed graph
-which admits an Eulerian path but not an Eulerian cycle contains one
-vertex, $u$, whose out-degree exceeds its in-degree and one vertex, $v$,
-whose in-degree exceeds its out-degree.  Vertex $u$ plays the role of
-the beginning vertex of the Eulerian path, and vertex $v$ plays the role
-of the end vertex of the path.  With these hints, we invite the reader
-to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a
-proof of Proposition~\ref{thm:eulerian-path}.
+The proof of the path-oriented Proposition~\ref{thm:eulerian-path} shares its overall structure
+with the proof of the cycle-oriented Proposition~\ref{thm:eulerian-cycle}, with one major difference.
+Whereas a cycle has neither beginning nor end, a path has both. 
+Proposition~\ref{thm:eulerian-path}(a) asserts that an undirected graph which admits an
+Eulerian path but not an Eulerian cycle has precisely two vertices of odd degree, and these 
+odd-degree vertices play the roles of the endpoints of the Eulerian path.  In similar fashion,
+Proposition~\ref{thm:eulerian-path}(b) asserts that a directed graph which admits an Eulerian
+path but not an Eulerian cycle contains one vertex, $u$, whose out-degree exceeds its
+in-degree and one vertex, $v$, whose in-degree exceeds its out-degree: vertex $u$ plays the role of
+the beginning vertex of the Eulerian path, and vertex $v$ plays the role of the end vertex of the path.
+With these hints, we invite the reader to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to
+obtain a proof of Proposition~\ref{thm:eulerian-path}.
+
 
 
 \subsubsection{Application in ``named graphs" }
