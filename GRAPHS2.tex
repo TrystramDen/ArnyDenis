@@ -1,4 +1,4 @@
-%version of 08-09-19
+%version of 08-13-19
 
 \chapter{Graphs II:
 Graphs within Computation and Communication}
@@ -1166,10 +1166,9 @@ is {\sf NP}-complete} \cite{GareyJ79,Karp72}.
 
 The preceding result suggests that {\em optimal} vertex-coloring is computationally difficult.  This
 contrasts with the existence of ``greedy'', hence efficient, vertex-coloring algorithms that give quite
-good results in practice.  (``Greedy" here refers to algorithms that allocate a yet-unused color to a
-vertex only when no uncolored vertex can be validly colored with an already-used color.  See
-Footnote~\ref{foot:greedy} in Chapter~\ref{ch:Graphs1}.)
-{\Arny (reference?)}
+good results in practice \cite{CLRS}.  (``Greedy" here refers to algorithms that allocate a yet-unused
+color to a vertex only when no uncolored vertex can be validly colored with an already-used color.  
+See Footnote~\ref{foot:greedy} in Chapter~\ref{ch:Graphs1}.)
 \end{minipage}
 }
 
@@ -1379,8 +1378,7 @@ beginning at special vertex $v_k$.
 The rules of this walk are:
 \begin{itemize}
 \item
-Every step of the walk will traverse an edge of $\g$ that {\em has not
-  yet been traversed} during any walk.
+Every step of the walk will traverse an edge of $\g$ that {\em has not yet been traversed} during any walk.
 \item
 The walk terminates when it encounters a vertex of $\g$ {\em all of
   whose edges have already been traversed}.
@@ -1396,6 +1394,17 @@ The facts that
 \noindent
 mean that the last vertex encountered in this walk is $v_k$.  In other
 words: {\em This walk begins and ends with vertex $v_k$.}
+
+{\Arny
+\noindent \fbox{
+Proposition~\ref{thm:cycle-in-graph} proves that every graph with all degrees $\geq 2$
+contains a cycle.}
+
+\noindent \fbox{
+Uses pigeonhole to show that  ``leave by a different edge" strategy runs out of new edges.
+}
+}
+
 
 Note that vertex $v_k$ will occur in this walk multiple
 times---specifically with multiplicity $\frac{1}{2} \mbox{\sc
@@ -1558,7 +1567,7 @@ The Eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ 
 \end{itemize}
 *****************}
 
-The simplicity of the preceding characterisation degrades a trifle when
+The simplicity of the preceding characterization degrades a trifle when
 one seeks Eulerian {\em paths} rather than {\em cycles}.
 
 \begin{prop}[Eulerian Paths]
@@ -1592,10 +1601,36 @@ the beginning vertex of the Eulerian path, and vertex $v$ plays the role of the 
 With these hints, we invite the reader to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to
 obtain a proof of Proposition~\ref{thm:eulerian-path}.
 
+\bigskip
 
+We close this section by applying Proposition~\ref{thm:eulerian-cycle}
+to the ``named graphs" of Section~\ref{sec:graphs-important-families}.
 
-\subsubsection{Application in ``named graphs" }
+\medskip
 
+{\small
+\begin{tabular}{|l|l|l|}
+\hline
+Graph & Eulerian? & Explanation \\
+\hline \hline
+Cycle                          & Yes                          & Every vertex has degree $2$ \\
+\hline
+Clique                         & Odd index only       & $\k_{2n}$ has odd vertex-degrees \\
+\hline
+2-Dim.~Mesh  & No                           & Non-corner top and side edges have degree $3$ \\  
+\hline                     
+2-Dim.~Torus  & Yes                          & Every vertex has degree $4$ \\
+\hline
+Hypercube                  & Even index only & Every vertex of $\q_n$ has degree $n$ \\
+\hline
+de Bruijn                     & Yes  & Directed: Vertices have equal {\sc indegree} and {\sc outdegree} \\
+                                   &         & Undirected $\d_n$: vertices $\overline{0}$ and $\overline{1}$ have
+                                                  degree $2n-2$ each; \\
+                                    &.       & \hspace*{.77in}all other vertices have degree $2n$ \\
+\hline
+\end{tabular}
+}
+\ignore{******************
 {\Denis May be we should briefly summarize what happens for these graphs 
 (hypercubes with even orders, etc.)}
 \medskip
@@ -1611,6 +1646,7 @@ Proposition~\ref{thm:deBruijn-Hamiltonian}.
 \label{thm:deBruijn-Eulerian}
 Every de Bruijn network $\d_n$ is (directed)-Eulerian.
 \end{corol}
+********************}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1694,6 +1730,7 @@ Section~\ref{sec:graphs-important-families}.
 
 \begin{prop}
 \label{thm:named-graph-Hamiltonian}
+\label{thm:deBruijn-Hamiltonian}
 {\bf (a)}
 Every cycle-graph $\cc_n$ is Hamiltonian.
 
@@ -1764,34 +1801,32 @@ to the cyclically next vertex after completing each row (see Fig.~\ref{fig:Hamil
 Details of the formal proof are left to the reader.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/HamiltonTorus}
-       \caption{Principle for building hamiltonian cycles in torus (even-even and odd-odd).}
+       \includegraphics[scale=0.5]{FiguresGraph/HamiltonTorus}
+       \caption{The principles for building Hamiltonian cycles in tori (even-even and odd-odd).}
   \label{fig:HamiltonTorus}
 \end{center}
 \end{figure}
+
 \medskip
 
+\index{Gray code} \index{binary reflected Gray code} \index{Gray, Frank}
 \noindent {\bf (d)}
-One can craft a Hamiltonian cycle in $\q_n$ by
-generating an {\it order-$n$ binary reflected Gray code}---so named
-for its inventor, Bell Laboratories researcher \index{Gray, Frank}
-Frank Gray; see \cite{PetersonW81}.  \index{Gray code} \index{binary
-  reflected Gray code} Such a ``code'' is a cyclic enumeration of all
-$2^n$ binary strings of length $n$ having the property that cyclically
-adjacent \index{strings!cyclically adjacent} strings differ in only
-one bit-position.  Length-$n$ strings $x_i$ and $x_j$ are {\it
-  cyclically adjacent} in the Gray code $\langle x_0, \ x_1, \ldots,
-x_{2^n-1} \rangle$ if $j = i+1 \bmod 2^n$.
+One can craft a Hamiltonian cycle in $\q_n$ by generating an
+{\it order-$n$ binary reflected Gray code}---so named
+for its inventor, Bell Laboratories researcher Frank Gray; see \cite{PetersonW81}.   
+Such a ``code'' is a cyclic enumeration of all $2^n$ binary strings of length $n$, having 
+the property that cyclically adjacent strings differ in only one bit-position.  Length-$n$ 
+strings $x_i$ and $x_j$ are {\it cyclically adjacent} in the Gray code
+$\langle x_0, \ x_1, \ldots, x_{2^n-1} \rangle$ if $j = i+1 \bmod 2^n$.
+\index{strings!cyclically adjacent} 
 
 \noindent
 It is computationally easy to generate an order-$n$ Gray code from an
 order-$(n-1)$ Gray code, as follows.
 
-We note first that the order-$1$ code is the sequence $\langle 0, 1
-\rangle$.
+We note first that the order-$1$ code is the sequence $\langle 0, 1 \rangle$.
 
-Inductively, to generate the order-$(k+1)$ Gray code from the
-order-$k$ code:
+Inductively, to generate the order-$(k+1)$ Gray code from the order-$k$ code:
 \begin{itemize}
 \item
 Concatenate the order-$k$ code with a {\em reversed} copy of itself.
@@ -1874,30 +1909,137 @@ Precisely the same argument shows that when $i = 2^{n-1} -1$, strings
 $x$ and $y$ again differ precisely in bit-position $0$.
 
   \item
-In all other cases, namely, when $i \in \{0,1, \ldots, 2^n-1\}
-\setminus \{2^{n-1} -1, 2^n-1\}$, strings $x$ and $y$ share the same
-first bit-position.  In fact, for some bit $\beta \in \{0,1\}$, $x =
-\beta u$ and $y = \beta v$ for length-$(n-1)$ binary strings $u$ and
-$v$ which are cyclically adjacent in the order-$(n-1)$ Gray code.  By
-an inductive argument, $u$ and $v$ differ in precisely one
-bit-position---which means that $x$ and $y$ also differ in precisely
-one bit-position.
+In all other cases---i.e., when $i \in \{0,1, \ldots, 2^n-1\} \setminus \{2^{n-1} -1, 2^n-1\}$---strings 
+$x$ and $y$ share the same first bit-position.  In fact, for some bit $\beta \in \{0,1\}$, 
+$x = \beta u$ and $y = \beta v$ for length-$(n-1)$ binary strings $u$ and $v$ which are 
+cyclically adjacent in the order-$(n-1)$ Gray code.  By an inductive argument, $u$ and $v$ 
+differ in precisely one bit-position---which means that $x$ and $y$ also differ in precisely one bit-position.
   \end{itemize}
-  The previous analysis is summarized in Fig.~\ref{fig:HamiltonHypercude} for $n=4$.
+The previous analysis is summarized in Fig.~\ref{fig:HamiltonHypercude} for $n=4$.
   \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/HamiltonHypercube}
-       \caption{Hamiltonian cycle (bold) in Hypercube using reflected Gray codes.}
+       \caption{A Hamiltonian cycle (bold) in $\q_4$ built using a
+       binary reflected Gray code.}
   \label{fig:HamiltonHypercude}
 \end{center}
 \end{figure}
 
-
 \noindent {\bf (e)}
-By Proposition~\ref{thm:deBruin-linegraph}, each de Bruijn network $\d_n$ is the 
-line-digraph of the next bigger de Bruijn network, $\d_{n+1}$.  Therefore, by definition
-of ``line (di)graph'', the fact that $\d_n$ is (directed)-Eulerian (Corollary~\ref{thm:deBruijn-Eulerian})
-means that $\d_{n+1}$ is (directed)-Hamiltonian.  \qed
+de Bruijn networks require the most complex analysis of Hamiltonianicity among our  ``named" graphs .  
+We begin to deal with them by restating the result in more detail in order to establish some notation.
+
+\smallskip
+
+\noindent
+{\em
+For all $n \in \N^+$, $\d_n$ contains a {\em directed Hamiltonian cycle}, i.e., a length-$2^n$ 
+directed cycle of the form
+\[
+ x \ \rightarrow \ y_1 \ \rightarrow \ y_2 \ \rightarrow \cdots \ \rightarrow \ y_{2^n-1} \ \rightarrow \ x
+\]
+which contains every vertex of $\d_n$ precisely once; i.e.:
+\begin{itemize}
+\item
+$\{x, \ y_1, \ y_2, \ldots, \ y_{2^n-1}\} \ = \ \n_{\fd_n}$.
+\item
+All of the ``$y$-vertices'' that appear in cycle (\ref{eq:deBruijn-cycle}) differ from $x$ and from each other.
+\end{itemize}
+}
+
+The simplest proof of this result has two steps.  The first step introduces a significant, rather
+sophisticated, concept, the {\it line (di)graph}.
+
+\bigskip
+
+\index{line graph} \index{line digraph}
+
+\noindent {\bf (1)}
+For any directed graph $\g$, the {\it line digraph} of $\g$, denoted $\Lambda(\g)$, is the
+following directed graph.
+\begin{itemize}
+\item
+The vertices of $\Lambda(\g)$ are the arcs of $\g$:
+\[ \n_{{\Lambda}({\cal G})} \ = \ \a_{\fg} \]
+
+\item
+For each pair of arcs of $\g$ of the form
+\[ \big[a_{x,y} = (x \ \rightarrow \ y) \big] \ \ \ \mbox{ and } \ \ \ 
+\big[a_{y,z} = (y \ \rightarrow \ z) \big]
+\]
+i.e, arcs such that the target of the first arc is the source of the
+second arc, $\Lambda(\g)$ contains an arc $(a_{x,y} \ \rightarrow \ a_{y,z})$.
+\end{itemize}
+The relevance of this concept to this section is that the line graph of every de Bruijn network
+$\d_n$ is the ``next bigger'' de Bruijn network, $\d_{n+1}$.  Let us verify this claim.
+
+\begin{prop}
+\label{thm:deBruin-linegraph}
+For all $n \in \N^+$, $\d_{n+1}$ is the line digraph of $\d_n$; symbolically,
+\[ \d_{n+1} \ = \ \Lambda(\d_n) \]
+\end{prop}
+
+\begin{proof}[Proposition~\ref{thm:deBruin-linegraph}]
+Each vertex of $\Lambda(\d_n)$ is an arc of $\d_n$, hence has the form
+\[ (\beta x \ \rightarrow \ x \gamma) \]
+where $x$ is a length-$(n-1)$ binary string and $\beta, \gamma \in \{0,1\}$.  Let us 
+associate vertex $\beta x \gamma$ of $\d_{n+1}$ with this vertex of $\Lambda(\d_n)$.
+See Fig.~\ref{fig:dBlabelEdge-App}.
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/dBlabelEdge}
+\caption{Illustrating how to label each arc of a de Bruijn network by concatenating the labels
+of the vertices incident to the arc and compacting the common intermediate bits.  In the 
+depicted example, the vertex-labels $01$ and $11$ combine to yield the arc-label $011$.}
+  \label{fig:dBlabelEdge-App}
+\end{center}
+\end{figure}
+
+\smallskip
+
+Note first that each arc of $\d_{n+1}$ has the form
+\[ (\delta y \varepsilon \ \rightarrow \ y \varepsilon \varphi), \]
+where $y$ is a length-$(n-2)$ binary string and $\delta, \varepsilon, \varphi \in \{0,1\}$.  
+By our association of vertices of $\d_{n+1}$ with arcs of $\d_n$, this arc of $\d_{n+1}$ does, 
+indeed, correspond to two successive arcs of $\d_n$.   The first of these successive arcs
+{\em enters} vertex $y \varepsilon$ of $\d_n$; the second {\em leaves} that vertex.
+
+Note next that, given any two successive arcs of $\d_n$, say
+\[
+(\rho \sigma z \ \rightarrow \ \sigma z \tau) \ \ \ \mbox { and } \ \ \
+(\sigma z \tau \ \rightarrow \  z \tau \xi)
+\]
+where $z$ is a length-$(n-2)$ binary string and $\rho, \sigma, \tau,
+\xi \in \{0,1\}$, there is, indeed, an arc of $\d_{n+1}$ of the form
+\[ (\rho \sigma z \tau \ \rightarrow \ \sigma z \tau \xi) \]
+This means that the digraph $\d_{n+1}$ is identical to the digraph
+$\Lambda(\d_n)$, modulo a renaming of vertices and arcs.\footnote{Technically,
+  we are asserting that the digraphs ${\cal D}_{n+1}$ and ${\Lambda}({\cal D}_n)$ 
+  are {\it isomorphic} to one another.  The topic of graph isomorphism is beyond the 
+  scope of this text, but our informal description provides all the details one would 
+  need to formalize the described isomorphism.}
+
+The just-described correspondence between the vertices and arcs of digraphs $\d_{n+1}$
+and $\Lambda(\d_n)$ completes the proof.  \qed-Proposition~\ref{thm:deBruin-linegraph}
+\end{proof}
+
+\medskip
+
+\index{Eulerian cycle} \index{Eulerian tour} 
+
+\noindent {\bf (2)}
+The table following Proposition~\ref{thm:eulerian-cycle} contains the seeds of a proof of
+the following corollary to the proposition.
+
+\begin{corol}
+\label{thm:deBruijn-Eulerian}
+Every de Bruijn network $\d_n$ admits a (directed) Eulerian cycle.
+\end{corol}
+
+This corollary combines with Proposition~\ref{thm:deBruin-linegraph} to complete the proof of 
+Proposition~\ref{thm:named-graph-Hamiltonian}(e).  To wit:  Each $\d_n$ is the line-digraph of  $\d_{n+1}$. 
+Therefore, by definition of  ``line (di)graph'', the fact that $\d_n$ is (directed)-Eulerian
+(Corollary~\ref{thm:deBruijn-Eulerian}) means that $\d_{n+1}$ is (directed)-Hamiltonian.  \qed
 \end{proof}
 
 
@@ -2088,8 +2230,8 @@ the community.  The latter topic leads, e.g., to the study of {\em power-law} ne
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
 An evolving network is said to {\it obey a power law} if there exists a real number $\gamma >0$
-with the following property.  For all network nodes having sufficiently large vertex-degrees, the
-fraction of nodes in the network that have degree $k$ is proportional to $k^{-\gamma}$.
+with the following property.  For all network vertices having sufficiently large vertex-degrees, the
+fraction of vertices in the network that have degree $k$ is proportional to $k^{-\gamma}$.
 \end{minipage}
 }
 \bigskip

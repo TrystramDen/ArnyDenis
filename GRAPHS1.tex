@@ -1,4 +1,4 @@
-%version of 08-07-19
+%version of 08-13-19
 
 \chapter{Graphs I:
 Representing Relationships Mathematically}
@@ -97,31 +97,28 @@ of ``symmetric'' status.  When graph $\g$ is {\em directed}
 edges in directed graphs are often termed {\em
   arcs}. \index{graph!arc} \index{arc (of a directed graph)}
 
-In many situations involving directed graphs, it is important to
-deal not only with a digraph $\g$ but also 
-with the {\em reverse digraph} \index{graph!digraph!reverse} of $\g$. 
-This new graph is the digraph obtained by {\em reversing} all of $\g$'s arcs (so
-that they point in the opposite direction).  There is no universally accepted notation
-for the reverse of digraph $\g$, but one often encounters notational
+\index{graph!digraph!reverse}
+In many situations involving directed graphs, it is important to deal not only with a digraph $\g$
+but also  with the {\em reverse digraph} of $\g$, which is the digraph obtained by {\em reversing}
+all of $\g$'s arcs (so that they point in the opposite direction).  There is no universally accepted 
+notation for the reverse of digraph $\g$, but one often encounters notational
 embellishments of ``$\g$'', such as $\widehat{\g}$ or $\widetilde{\g}$, used for
-this purpose.  One sometimes encounters situations wherein only clerical details
-need be changed in order to convert an argument about, or an
-operation on, digraph $\g$  to the analogous argument about, or operation
-on, $\g$'s reverse digraph. 
+this purpose.  One sometimes encounters situations wherein only clerical details need be changed 
+in order to convert an argument about, or an operation on, digraph $\g$  to the analogous argument 
+about, or operation on, $\g$'s reverse digraph. 
 
-\ignore{
+\ignore{*********
 {\Denis Attention here, the notation $\widehat{x}$ is different to the one used later 
 in the structured graphs. Do we really need this notation? I guess not, thus, better to remove it here!}
 {\Arny You are correct!  I have here suggested alternative wording.  I also reworded
 the preceding paragraphs to make them flow better.}
-}
+**************}
 
 \medskip
 
-{\em Undirected} graphs are usually the default concept, in the
-following sense: When $\g$ is described as a ``graph,'' with no
-qualification---i.e., no accompanying adjective ``directed'' or ``undirected''---it is understood
-that $\g$ is an undirected graph.
+{\em Undirected} graphs are usually the default concept, in the following sense: When 
+$\g$ is described as a ``graph,'' with no qualification---i.e., no accompanying adjective 
+``directed'' or ``undirected''---it is understood that $\g$ is an {\em undirected} graph.
 
 \medskip
 
@@ -132,6 +129,48 @@ every adjacent pair is connected by an edge.  A path is a {\em cycle} if all ver
 sequence are distinct except for the first and last, which are identical.  Paths and cycles
 in directed graphs are defined similarly, except that now every adjacent pair of vertices must be
 connected by an {\em arc}, and all arcs must ``point in the same direction.''
+
+Even at this early stage of our discussion of graphs, we can state and prove an important
+nontrivial fact.  All graphs that have edges contain paths; all graphs having sufficiently many
+edges also contain cycles.
+
+\begin{prop}
+\label{thm:cycle-in-graph}
+If every vertex of a graph $\g$ has degree $\geq 2$, then $\g$ contains a cycle.
+\end{prop}
+
+\begin{proof}
+Let us assume that we have a cycle-free graph $\g$ all of whose vertices
+have degree $\geq 2$.  We invoke the Pigeonhole Principle to find a cycle in $\g$.
+
+Let us view graph $\g$ as a park:  Every vertex of $\g$ is a statue, and every edge is a
+lane between two statues.  (We use the word ``lane" rather than the more common ``path" 
+because of the technical meaning of ``path" within the world of graphs.)   The fact that 
+every vertex of $\g$ has degree $\geq 2$ means that if we take a stroll through Park $\g$,
+then every time we leave a vertex $v \in \n{\fg}$, we can use a  different edge/lane than we 
+used when we came to $v$.
+
+\index{{\em gedanken} experiment}
+Consider now the following {\em gedanken} experiment (i.e., ``thought" experiment).  Say
+that we initially paint every statue in Park $\g$ {\em green}.  Say further that as we stroll 
+through Park $\g$, we repaint every statue we encounter {\em red}.  So, we begin our
+stroll at some statue $v_0$, and we paint that statue {\em red}.  Then we  leave $v_0$ via 
+some lane, and we encounter some other statue $v_1$.  Because we have not encountered
+$v_1$ before on our stroll, it is {\em green}.  Now that we encounter $v_1$ on our stroll, we
+paint it {\em red}.  Next, we leave $v_1$ via a different lane from the one we used to get to it. 
+(The degree property of $\g$ guarantees that this new lane exists.)  This new lane leads us
+to a statue $v$.  Now, if statue $v$ is {\em red}, then we have discovered a cycle in $\g$!  If
+statue $v$ is {\em green}, then we rename $v$ as $v_2$, and we paint $v_2$ {\em red}.  We
+continue out stroll in the described manner.  At stage $m$ of this process, we leave the 
+newly-painted statue $v_m$ via a lane that is distinct from the lane we used to get to $v_m$, 
+and we reach a statue $v$.  If statue $v$ is {\em red}, then we have discovered a cycle in $\g$!
+If statue $v$ is {\em green}, then we rename $v$ as $v_{m+1}$, and we paint $v_{m+1}$ {\em red},
+and we continue our stroll.
+
+Because Park $\g$ is {\em finite}, having precisely $n$ statues/vertices, we can hope to encounter
+{\em green} statues along our stroll no more than $n$ times.  After this point, every lane will lead
+us to a {\em red} statue---i.e., to a cycle in $\g$.  \qed
+\end{proof}
 
 \bigskip
 
@@ -500,8 +539,7 @@ $x$ to vertex $y$, is left to the reader.
 If $\g(\Phi)$ contains a path from vertex $x$ to vertex $y$, then for
 every truth assignment $t$ that satisfies formula $\Phi$ (i.e.,
 evaluates $\Phi$ to {\sc true}), if $t$ assigns variable $x$ the
-truth-value {\sc true}, then $t$ also assigns variable $y$ the
-truth-value {\sc true}.
+truth-value {\sc true}, then $t$ also assigns variable $y$ the truth-value {\sc true}.
 \end{lemma}
 
 \begin{proof}
@@ -903,16 +941,14 @@ original source \cite{Kuhn55} or the encyclopedic algorithms text
 \section{Trees and Spanning Trees}
 \label{sec:Trees}
 
-
-The special class of graphs called {\it trees} \index{graph!trees}
-\index{trees} occupy a place of honor within both the mathematical
-field called {\it graph theory} and within the vernacular.
-They are identified mathematically as graphs that contain no
-cycles or, equivalently, as graphs in which each pair of vertices is
+\index{graph!trees}
+\index{trees}
+The special class of graphs called {\it trees} occupy a place of honor within both the mathematical
+field called {\it graph theory} and within the vernacular.  They are identified mathematically as graphs 
+that contain no cycles or, equivalently, as graphs in which each pair of vertices is
 connected by a unique path: a tree is thus the embodiment of ``pure''
 connectivity (see Fig.~\ref{fig:tree} left for an example of tree).  As one
-would expect from the vernacular, a set of trees is called a {\it
-  forest}. \index{forest (of trees)}
+would expect from the vernacular, a set of trees is called a {\it forest}. \index{forest (of trees)}
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/tree}
@@ -922,13 +958,12 @@ would expect from the vernacular, a set of trees is called a {\it
 \end{center}
 \end{figure}
 
-Mathematically speaking, a tree is a graph that contains no cycles,
-i.e., is {\it cycle-free}. \index{graph!cycle-free} Equivalently, a
-tree is a graph in which each pair of distinct vertices is connected by
-precisely one path.  A tree is thus the embodiment of ``pure''
-connectivity: it provides the minimal interconnection structure that
-provides paths that connect every pair of vertices.  As one might expect
-from the vernacular, a set of trees is called a {\it forest}. \index{forest (of trees)}
+\index{graph!cycle-free}
+Mathematically speaking, a tree is a graph that contains no cycles, i.e., is {\it cycle-free}.  
+Equivalently, a tree is a graph in which each pair of distinct vertices is connected by
+precisely one path.  A tree is thus the embodiment of ``pure'' connectivity: it provides the 
+minimal interconnection structure that provides paths that connect every pair of vertices.  
+As one might expect from the vernacular, a set of trees is called a {\it forest}. \index{forest (of trees)}
 
 We have just given two distinct definitions of ``tree''.  The following result proves
 that both definitions define the same class of graphs.
@@ -974,35 +1009,10 @@ Let $\t$ be a connected tree having $n \geq 1$ vertices.  At least one vertex of
 so $\g$ would not be connected if it had such a vertex.
 
 \noindent {\bf (b)}
-Our proof derives a contradiction with the help of the Pigeonhole Principle.
-
-Say, for contradiction, that every vertex of $\t$ had degree $\geq 2$.  Let us view $\t$ as a park:
-Every vertex of $\t$ is a statue, and every edge is a lane between two statues.  (We use the word
-``lane" rather than the more common ``path" because of the technical meaning of ``path"
-within the world of graphs.)   The fact that every vertex of $\t$ has degree $\geq 2$ means that if
-we take a stroll through Park $\t$, then every time we leave a vertex $v \in \n{\ft}$, we can use a 
-different edge/lane than we used when we came to $v$.
-
-Consider now the following {\em gedanken} experiment.  Say that we initially paint every statue in
-Park $\t$ {\em green}.  Say further that as we stroll through Park $\t$, we repaint every statue we
-encounter {\em red}.  So we begin at statue $v_0$, and we paint that statue {\em red}.  Then we 
-leave $v_0$ via some lane, and we encounter some other statue $v_1$.  We paint $v_1$ {\em red},
-and we leave $v_1$ via a lane that is distinct from the one we used to get to $v_1$.  (The degree
-property of $\t$ guarantees that this new lane exists.)  This new lane leads us to a statue $v$.  Now,
-if statue $v$ is {\em red}, then we have discovered a cycle in $\t$!  If statue $v$ is {\em green}, then
-we rename $v$ as $v_2$, and we paint $v_2$ {\em red}.  We continue in the described
-manner.  At stage $m$ of this process, we leave the newly-painted statue $v_m$ via a lane distinct
-from the one we used to get to it, and we reach a statue $v$.  If statue $v$ is {\em red}, then we
-have discovered a cycle in $\t$!  If statue $v$ is {\em green}, then we rename $v$ as $v_{m+1}$,
-and we paint $v_{m+1}$ {\em red}.
-
-Since Park/Tree $\t$ is {\em finite}, having precisely $n$ statues/vertices, we can hope to encounter
-{\em green} statues along our stroll no more than $n$ times.  After this point, every lane will lead
-us to a {\em red} statue---i.e., to a cycle in $\t$.
-
-Since $\t$, being a tree, is cycle-free (by Proposition~\ref{thm:2defns-trees}) we conclude that
-not every vertex of $\t$ can have degree $\geq 2$.  Invoking part {\bf (a)}, then, we conclude
-that at least one vertex of tree $\t$ has degree $1$.  \qed
+By Proposition~\ref{thm:cycle-in-graph} every graph whose vertices all have degree $\geq 2$
+contains a cycle.  Since $\t$, being a tree, is cycle-free (by Proposition~\ref{thm:2defns-trees}), 
+we conclude that not every vertex of $\t$ can have degree $\geq 2$.  Invoking part {\bf (a)}, then, 
+we conclude that at least one vertex of tree $\t$ has degree $1$.  \qed
 \end{proof}
 
 \begin{proof}[Proposition~\ref{thm:edges-vs-nodes-tree}]
@@ -1321,9 +1331,8 @@ someone traversing the graph.  Elaborating on (2): If we put you down
 on a vertex of either graph, there is no way that you can determine the
 identity of that vertex.  This is an important feature to ponder,
 because it is a simple instance of the anonymity problem inherent to
-many modern distributed computing environments.  {\it How does one
-  orchestrate cooperative activities when all agents ``are
-  identical''?}
+many modern distributed computing environments.
+{\it How does one orchestrate cooperative activities when all agents are ``indistinguishable''?}
 \item
 The remaining graphs, the {\it mesh and torus networks}\footnote{These
   two structures, though distinct, are usually discussed together
@@ -1333,12 +1342,10 @@ the {\it hypercube network} of Section~\ref{sec:hypercube}, and the
 for their importance within the world of parallel and distributed
 computing---as abstract platforms for developing efficient
 computational and communicational processes, and as abstract versions
-of the networks that underlie parallel architectures by
-interconnecting its processors.
+of the networks that underlie parallel architectures by interconnecting its processors.
 \end{itemize}
 Throughout, the parameters that describe our graph families range over
-the positive integers; i.e., each occurrence of $n$ below ranges over
-$\N^+$.
+the positive integers; i.e., each occurrence of $n$ below ranges over $\N^+$.
 
 \subsection{The {\it Cycle-graph} $\cc_n$}
 \label{sec:cycle}
@@ -2124,26 +2131,26 @@ the length-$n$ string $y$.  The diameter bound therefore follows by
 showing that, for any two string-vertices of $\d_n$, say vertex $u$ and
 vertex $v$, one can rewrite string $u$ as string $v$ by traversing a
 sequence of arcs---i.e., a directed path---of length at most $n$.
-Observe, for instance, that the path in $\d_3$ described schematically
-as follows
+Observe, for instance, that the path in $\d_3$ described schematically as follows
 \[ 000 \ \rightarrow \ 001 \ \rightarrow \ 011 \ \rightarrow \ 111 \]
 leads vertex $000$ to vertex $111$, by rewriting string $000$ as string
 $111$.  The diameter bound is now an immediate consequence of the
 following result.  The result builds upon a notion that we have not
-yet encountered but will study in some detail in
-Section~\ref{sec:Hamiltonian-cycle}
+yet encountered but will study in some detail in Section~\ref{sec:Hamiltonian-cycle}
 \index{graph!Hamiltonian cycle} \index{Hamiltonian cycle}.
 
-A {\it Hamiltonian cycle} in an $n$-vertex graph $\g$ is a length-$n$
-cycle that contains every vertex of $\g$ precisely once.  A {\it
-  directed Hamiltonian cycle} in an $n$-vertex digraph $\h$ is a
-length-$n$ directed cycle that contains every vertex of $\h$ precisely
-once.
+A {\it Hamiltonian cycle} in an $n$-vertex graph $\g$ is a length-$n$ cycle that contains 
+every vertex of $\g$ precisely once.  A {\it directed Hamiltonian cycle} in an $n$-vertex 
+digraph $\h$ is a length-$n$ directed cycle that contains every vertex of $\h$ precisely once.
+We prove in Section~\ref{sec:hamilonian-named-graphs} that every de Bruijn network is
+directed-Hamiltonian; see Proposition~\ref{thm:named-graph-Hamiltonian}(e).
+
+
+\ignore{**********
 
 \begin{prop}
 \label{thm:deBruijn-Hamiltonian}
-For all $n \in \N^+$, $\d_n$ contains a {\em directed Hamiltonian
-  cycle}, 
+For all $n \in \N^+$, $\d_n$ contains a {\em directed Hamiltonian cycle}, 
 \index{directed Hamiltonian cycle in a digraph}
 i.e., a length-$2^n$ directed cycle of the form
 \begin{equation}
@@ -2161,9 +2168,11 @@ All of the ``$y$-vertices'' that appear in cycle
 \end{itemize}
 \end{prop}
 
-The simplest proof of this result has two steps, each of which
-introduces a topic we have not yet developed.  We develop these concepts plus the proof in 
+The simplest proof of this result has two steps, each of which introduces a topic that we have not 
+yet developed.  We develop these concepts plus the proof in 
 Appendix~\ref{Appendix:deBruijn-Hamiltonian}.
+
+***********}
 
 %{\Denis Add a word here about hamiltonian and Eulerian and refer to the appendix...}
 
