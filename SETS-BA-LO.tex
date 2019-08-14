@@ -1,4 +1,4 @@
-%version of 07-23-19
+%version of 08-14-19
 
 \chapter{Sets and Their Algebras:
 The Stem Cells of Mathematics}
@@ -891,6 +891,9 @@ equivalence relation on $S$.
 \label{sec:function}
 \index{function}
 
+\subsubsection{The basics: definitions and basic properties}
+\label{sec:basic-functions}
+
 One learns early in school that a function from a set $A$ to a set $B$
 is a rule that assigns a unique value from $B$ to every value from
 $A$.  Simple examples illustrate that this notion of function is more
@@ -914,6 +917,8 @@ under ``well-behaved'' circumstances and that extends the notion in an
 intellectually consistent way under ``ill-behaved'' circumstances.
 Let us begin to get formal.
 
+\index{function!source} \index{function!domain}
+\index{function!target} \index{function!range}
 A {\it (partial) function from set $S$ to set $T$} is a relation $F
 \subseteq S \times T$ that is {\it single-valued;} i.e., for each $s
 \in S$, there is {\em at most} one $t \in T$ such that $sFt$.  We
@@ -922,12 +927,11 @@ assertion, ``$F$ is a function from the set $S$ to the set $T$''; we
 also traditionally write ``$F(s) = t$'' for the more conservative (but
 correct) ``$sFt$.''  (The single-valuedness of $F$ makes the
 nonconservative notation safe.)  We often call the set $S$ the {\em
-  source}, \index{function!source} or, {\it domain}
-\index{function!domain} of function $F$, and we call set $T$ {\em
-  target} \index{function!target} or, the {\it range}
-\index{function!range} of function $F$.  In situations when there is
-always a (perforce, unique) $t \in T$ for each $s \in S$, then we call
-$F$ a {\em total} function.
+  source}, or, {\it domain} of function $F$, and we call set $T$ {\em
+  target} or, the {\it range} of function $F$.  In situations when
+there is always a (perforce, unique) $t \in T$ for each $s \in S$,
+then we call $F$ a {\em total} function.
+
 
 \ignore{******* 
 Note that our terminology is a bit unexpected: {\em Every total
@@ -943,26 +947,22 @@ make your world so neat.  Their choreography took two complementary
 forms.
 \begin{enumerate}
 \item
-They expanded the target set $T$ on numerous occasions.  As just two
-instances:
+They expanded the target set $T$ on numerous occasions.  As just two instances:
   \begin{itemize}
   \item
 They appended both $0$ and the negative integers to the preexisting
 positive integers in order to make subtraction a total function.
-%\footnote{The great mathematician Leopold Kronecker
-% said, ``God made the integers, all else is the work of man'';
-% Kronecker was referring, of course, to the {\em positive} integers.}
 
   \item
 They appended the {\it rational numbers} to the preexisting integers
 in order to make division (by nonzero numbers!)~a total function.
   \end{itemize}
-The {\it irrational algebraic numbers}, the {\it nonalgebraic real
-  (or, transcendental) numbers}, and the {\it nonreal complex (or,
-  imaginary) numbers} were similarly appended, in turn, to our number
-system in order to make certain (more complicated) functions total.
-(Chapter~\ref{ch:numbers-numerals} expands on this brief history of
-our number system's development.)
+The {\it irrational algebraic numbers}, the 
+{\it nonalgebraic real (or, transcendental) numbers}, and the
+{\it nonreal complex (or, imaginary) numbers} were similarly appended,
+in turn, to our number system in order to make certain (more
+complicated) functions total.  (Chapter~\ref{ch:numbers-numerals}
+expands on this brief history of our number system's development.)
 
 \item
 They adapted the function.  In programming languages, in particular,
@@ -977,8 +977,8 @@ encoding thereof).  The price for such ``pureness'' is that we must
 allow functions to be undefined on some arguments.  Thus the theory
 renders such functions as ``division by $2$'' and ``taking square
 roots'' as being {\em nontotal}: both are defined only on subsets of
-the positive integers (the even integers and the perfect squares,
-respectively).
+the positive integers (the even integers and the perfect squares, respectively).
+\index{Computation Theory}
 
 Three special classes of functions merit explicit mention.  For each,
 we give both a down-to-earth name and a more scholarly Latinate one.
@@ -1112,18 +1112,47 @@ is multiplied by $b^{i+1}$.
 A bijective function $F$ is called a {\it bijection}.  When $F$ is a
 bijection from $S$ onto $T$, we often write $F: S \leftrightarrow T$.
 \end{enumerate}
-There is a marvelous result, the Schr\"{o}der-Bernstein Theorem,
-\index{The Schr\"{o}der-Bernstein Theorem} which can be quite useful
+
+
+\subsubsection{$\oplus$ The Schr\"{o}der-Bernstein Theorem}
+\label{sec:schroeder-bernstein}
+
+There is a remarkable theorem which states that bijections and paired
+injections always travel together.  In detail, for all sets $S$ and $T$:
+If there exists both \\
+\hspace*{.25in}{\em an injection from $S$ to $T$ and an injection from $T$ to $S$}
+then there exists
+\hspace*{.25in}{\em a bijection between $\N$ and $\N \times \N$}.
+
+\index{The Schr\"{o}der-Bernstein Theorem}
+\index{Bernstein, Felix}
+\index{Schr\"{o}der, Ernst}
+\index{The Cantor-Bernstein Theorem}
+\index{Cantor, Georg}
+
+\noindent
+This is the celebrated theorem of Ernst Schr\"{o}der and Felix
+Bernstein; it is, alternatively, attributed to (Georg) Cantor and
+Bernstein.  As this complex attribution suggests, the theorem has a
+rather complicated history.  Picking just a few high points associated
+with the theorem's namesakes: The theorem was first stated without
+proof by Cantor in \cite{Cantor87}.  Roughly a decade later,
+Schr\"{o}der provided a flawed proof in \cite{Schroeder98a}.  As
+reported in \cite{Deiser2010}, Schr\"{o}der soon thereafter provided a
+correct proof, as, independently, did Bernstein.
+
+We shall refer to the Theorem by its customary name, the
+Schr\"{o}der-Bernstein Theorem.  This result can be immensely useful
 in reasoning about myriad mathematical scenarios that can be
 formulated using correspondences between the elements of two sets.  We
-encounter such a scenario, for example, when proving
-Lemma~\ref{lem:N-=-F} in Section~\ref{sec:FNS-uncountable}.  The
-Theorem says that for any sets $S$ and $T$, if there exists an {\em
-  injection} from $S$ into $T$ and an {\em injection} from $T$ into
-$S$, then one can ``combine'' these injections in order to craft a
-{\em bijection} between $S$ and $T$.
+encounter such a scenario, for example, when we prove
+Lemma~\ref{lem:N-=-F} in Section~\ref{sec:FNS-uncountable}.
+Acknowledging the importance of the Theorem, we now provide a formal
+statement and a somewhat informal sketch of its proof.
 
+\index{The Schr\"{o}der-Bernstein Theorem}
 \begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
+\label{thm.S-B}
 For any sets $S$ and $T$, if there is an {\em injection}
 $F^{(S \rightarrow T)}: S \rightarrow T$ and an {\em injection}
 $F^{(T \rightarrow S)}: T \rightarrow S$,
@@ -1134,10 +1163,14 @@ $F^{(S \leftrightarrow T)}: S \leftrightarrow T$.
 \begin{proof}[Sketch]
 We give the highlights of the perspicuous proof which appears in \cite{Tonien07}.
 
-Let $S_0 = S$ and $T_0 = T$.  We set up a sequence of indices to orchestrate the upcoming argument: We have an index $i$ for each integer $i \in \N$, and we have a special index $\omega$ which takes care of the single case that the integer indices do not.
+Let $S_0 = S$ and $T_0 = T$.  We set up a sequence of indices to
+orchestrate the upcoming argument: We have an index $i$ for each
+integer $i \in \N$, and we have a special index $\omega$ which takes
+care of the single case that the integer indices do not.
 
-For each index $i \in \N$, 
-\ignore{\Denis we should add the range of $i$ here, start at 0 up to some integer denote by  $\omega$} define
+\ignore{\Denis we should add the range of $i$ here, start at 0 up to some integer denote by $\omega$}
+
+For each index $i \in \N$, define
 \[ S_{i+1} \ = \ F^{(T \rightarrow S)}(T_i) \ \ \ \mbox{ and }
 \ \ \ T_{i+1} \ = \ F^{(S \rightarrow T)}(S_i) 
 \]
@@ -1190,10 +1223,13 @@ it follows that $F^{(S \rightarrow T)}$ maps $U_\omega$ bijectively onto $V_\ome
 
 \smallskip
 
-Let us briefly "decode" the preceding symbol-heavy chin of equations.  Recall first that $F^{(S \rightarrow T)}$ maps
-each set $S_i$ injectively into $T_{i+1}$.  This means that as we look at the {\em pre-image} under $F^{(S \rightarrow T)}$ 
-of the set $\bigcap T_{i+1}$, the various sets $S_i$ do not get "mixed together"; they retain the separate identities
-that $F^{(S \rightarrow T)}$ endows them with because of the way it maps $S$ into $T$.  In other words,
+Let us briefly "decode" the preceding symbol-heavy chain of equations.
+Recall first that $F^{(S \rightarrow T)}$ maps each set $S_i$
+injectively into $T_{i+1}$.  This means that as we look at the {\em
+  pre-image} under $F^{(S \rightarrow T)}$ of the set $\bigcap
+T_{i+1}$, the various sets $S_i$ do not get "mixed together"; they
+retain the separate identities that $F^{(S \rightarrow T)}$ endows
+them with because of the way it maps $S$ into $T$.  In other words,
 \[ \Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
 \bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \]
 
@@ -1228,17 +1264,17 @@ $F^{(S \leftrightarrow T)}$ maps $V_\omega$ bijectively onto
   $U_\omega$ in the same way that either $F^{(S \rightarrow T)}$ or
   $\Big[F^{(T \rightarrow S)}\Big]^{-1}$ does.
 \end{itemize}
-\ignore{\Denis nice and clear, just add the range of $i$ here (since it is bounded by $omega$}
 This sketch provides all of the salient ingredients of the proof in \cite{Tonien07}.  \qed
 \end{proof}
+\ignore{\Denis nice and clear, just add the range of $i$ here (since it is bounded by $omega$}
 
 \bigskip
 
-While the operation of {\it composition},
 \index{composition!functions} \index{function!composition}
-as introduced in Section~\ref{sec:relation}, is important for
-general binary relations, it is a daily staple with relations that are
-functions!  Let us be given two functions on a set $S$
+While the operation of {\it composition}, as introduced in
+Section~\ref{sec:relation}, is important for general binary relations,
+it is a daily staple with relations that are functions!  Let us be
+given two functions on a set $S$
 \[
 F: S \rightarrow S \ \ \ \ \mbox{ and } \ \ \ \ G: S \rightarrow S
 \]
