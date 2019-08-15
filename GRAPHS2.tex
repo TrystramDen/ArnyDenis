@@ -1,4 +1,4 @@
-%version of 08-13-19
+%version of 08-15-19
 
 \chapter{Graphs II:
 Graphs within Computation and Communication}
@@ -1248,8 +1248,9 @@ field of computational complexity  (Section~\ref{sec:Hamiltonian-cycle}).
 The main results in this section characterize the families of directed and undirected graphs
 that admit {\it Eulerian cycles} or {\it Eulerian paths}.  The proofs of these characterizations are
 constructive: they consist of algorithms that efficiently find such a cycle or such a path when 
-one exists.  We focus on graphs that are connected: the algorithms we present can actually be 
-adapted to find an Eulerian cycle or an Eulerian path in each connected component of a general graph.
+one exists.  We focus on graphs that are connected---but the algorithms we present can actually be 
+adapted to find an Eulerian cycle or an Eulerian path in each connected component of a general
+graph.
 
 As we embark on our adventure, we note the following amusing fact: \\
 {\em The problem of finding an Eulerian cycle in a graph $\g$ is
@@ -1651,14 +1652,16 @@ Every de Bruijn network $\d_n$ is (directed)-Eulerian.
 \subsection{Hamiltonian Paths and Cycles/Tours}
 \label{sec:Hamiltonian-cycle}
 
-We turn now to the problem of determining when a connected graph $\g$
-has a {\it Hamiltonian cycle}---and the allied problem of finding such
-a cycle when one exists.  One can envision a number of benefits
-rendered accessible by the presence of a Hamiltonian cycle in a graph
-$\g$.  Most obviously, the cycle specifies a tour of $\g$ (or of a map
-whose structure $\g$ abstracts) which visits each of $\g$'s vertices
-precisely once.  This is the sense in which the cycle ``summarizes"
-$\g$'s traversal structure.
+We turn now to the problem of determining when a connected graph $\g$ has a
+{\it Hamiltonian cycle}---and the allied problem of finding such a cycle when one exists.
+Supplementary material related to cycles in general graphs, as well as in our ``named'' 
+graphs can be found in the survey \cite{Rosenberg91}.
+
+One can envision a number of benefits rendered accessible by the
+presence of a Hamiltonian cycle in a graph $\g$.  Most obviously, the
+cycle specifies a tour of $\g$ (or of a map whose structure $\g$
+abstracts) which visits each of $\g$'s vertices precisely once.  This
+is the sense in which the cycle ``summarizes" $\g$'s traversal structure.
 
 \subsubsection{More inclusive notions of Hamiltonianicity}
 
@@ -1707,15 +1710,13 @@ Let $\g$ be any connected graph.  One can cyclically enumerate the
 vertices of $\g$ in such a way that vertices that are adjacent in the cycle
 are at distance $\leq 3$ in $\g$.
 
+\index{graph!$2$-connected} \index{graph!biconnected}
 
 \noindent {\bf (b)} {\rm  \cite{Fleischner74}}
-Let $\g$ be any graph that is {\em $2$-connected}
-\index{graph!$2$-connected} \index{graph!biconnected} (or, {\it
-  biconnected}) in the sense that, for every two vertices, $u$ and $v$,
-of $\g$, there exist at least two vertex-disjoint paths in $\g$ that
-connect $u$ and $v$.  One can cyclically enumerate the vertices of $\g$
-in such a way that vertices that are adjacent in the cycle are at
-distance $\leq 2$ in $\g$.
+Let $\g$ be any graph that is {\em $2$-connected} (or, {\it biconnected}) in the sense 
+that, for every two vertices, $u$ and $v$, of $\g$, there exist at least two vertex-disjoint 
+paths in $\g$ that connect $u$ and $v$.  One can cyclically enumerate the vertices of
+$\g$ in such a way that vertices that are adjacent in the cycle are at distance $\leq 2$ in $\g$.
 \end{prop}
 
 \subsubsection{Hamiltonianicity in ``named'' graphs}
@@ -1754,8 +1755,16 @@ Every hypercube $\q_n$  is Hamiltonian.
 \noindent {\bf (e)}
 Every de Bruijn network $\d_n$ is (directed)-Hamiltonian.
 \end{prop}
+ 
+\index{graph!pancyclic} \index{digraph!directed-pancyclic} \index{pancyclic}\index{directed-pancyclic}
+Before we embark on our proof Proposition~\ref{thm:named-graph-Hamiltonian}, we
+remark that some of the assertions in the Proposition can be strengthened to assert
+the presence in the target graph of cycles of many lengths; cf.~\cite{Rosenberg91}.
+In particular, we devote Section~\ref{Appendix:deBruijn-Pancyclic} to proving that the
+$2^n$-vertex de Bruijn network $\d_n$ is {\it directed-pancyclic}---meaning that it contains
+directed cycles of every length, from length $1$ to length $2^n$.
 
-\begin{proof}
+\begin{proof}[Proposition~\ref{thm:named-graph-Hamiltonian}]
 \noindent {\bf (a)}
 This is a tautology, by definition of $\cc_n$.
 
