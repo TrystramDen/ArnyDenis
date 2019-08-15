@@ -10,31 +10,56 @@
 This section is devoted to the following marvelous extension of
 Proposition~\ref{thm:deBruijn-Hamiltonian}.
 
+\index{self-loop}
+
 \begin{prop}
 \label{thm:deBruijn-pancyclic}
-Every de Bruijn network $\d_n$ is (directed)-pancyclic.
-
-In detail:  $\d_n$ has directed cycles of every length from $1$ to $2^n$.
+Every de Bruijn network $\d_n$ is directed-pancyclic.
+In detail:  $\d_n$ has directed cycles of every length from $1$ to $2^n$.\footnote{The cycles of
+length $1$ arise from  the {\it self-loops} on vertices $0 \cdots 0$ and $1 \cdots 1$ of every
+de Bruijn network.}
 \end{prop}
 
 \begin{proof}
-We build heavily on two results from Section~\ref{sec:path-cycle-problems}, namely,
-Corollary~\ref{corol:eulerian-named-graphs} which asserts that
+We argue by induction on the index $n$ of de Bruijn network $\d_n$.
 
-{\em Every de Bruijn network $\d_n$ is directed-Eulerian}
+Our base case is provided by $\d_2$ and $\d_3$.  A brief perusal of Figs.~\ref{fig:dB2by2} 
+and~\ref{fig:dB2by3} will verify that both networks are directed-pancyclic.
 
-\noindent
-and Proposition~\ref{thm:deBruin-linegraph} which asserts that
+Let us assume inductively that every de Bruijn network $\d_m$ with $\m \leq n$ is 
+directed-pancyclic.  Our progress from this assumption to a proof that $\d_{n+1}$ is 
+directed-pancyclic relies heavily on two results from Section~\ref{sec:path-cycle-problems}, 
+namely:
+\begin{itemize}
+\item
+Corollary~\ref{corol:eulerian-named-graphs}: {\em Each $\d_n$ admits a directed Eulerian cycle.}
+\item
+Proposition~\ref{thm:deBruin-linegraph}: {\em The line-graph of $\d_n$ is (isomorphic to) $\d_{n+1}$.}
+\end{itemize}
+Our extension of the inductive hypothesis focuses separately on ``small"  and ``large" cycles.
 
-{\em Every de Bruijn network $\d_{n+1}$ is the line digraph of $\d_n$}
+\medskip
+
+\noindent {\bf Case (a)} {\em ``Small" cycles in $\d_{n+1}$: lengths $\ell \in \{1, \ldots, 2^n\}$.} \\
+We know by the inductive hypothesis that $\d_n$ contains directed cycles of every length
+$\ell \in \{1, \ldots, 2^n\}$.  Focus on one such cycle, say the length-$k$ cycle $\cc$.  Clearly,
+the line-digraph of $\cc$ is another length-$k$ cycle, which is isomorphic to $\cc$.  The proof of
+Proposition~\ref{thm:deBruin-linegraph} therefore tells us that the line-digraph of $\cc$ is
+isomorphic to a length-$k$ cycle in $\d_{n+1}$.
+
+It follows that $\d_{n+1}$ contains directed cycles of all lengths $\ell \in \{1, \ldots, 2^n\}$.
+
+\medskip
+
+\noindent {\bf Case (b)} {\em ``Large" cycles in $\d_{n+1}$: lengths $\ell \in \{2^n+ 1, \ldots, 2^{n+1}\}$.} \\
+Focus on an integer $m = 2^n +k$, where $k \in \[1, \ldots, 2^n\}$.  Let us verify that $\d_{n+1}$
+contains a directed cycle of length $m$.
+
+By Case (a) we know that $\d_{n+1}$ contains a directed cycle of length $k$.
 
 
-\noindent {\em Cycles of small lengths $\ell$: $1 \leq \ell \leq 2^{n-1}$}
-
-
-
-\noindent {\em Cycles of large lengths $\ell$: $2^{n-1}+ 1 \leq \ell \leq 2^n$}
-
+TBD
+\qed
 \end{proof}
 
 
