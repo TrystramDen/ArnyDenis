@@ -1,4 +1,4 @@
-%version of 08-15-19
+%version of 08-16-19
 \chapter{$\oplus \oplus$ The Diverse Delights of de Bruijn Networks}
 \label{ch:de-Bruijn-delights}
 
@@ -52,20 +52,85 @@ It follows that $\d_{n+1}$ contains directed cycles of all lengths $\ell \in \{1
 \medskip
 
 \noindent {\bf Case 2.} {\em ``Large" cycles in $\d_{n+1}$: lengths $\ell \in \{2^n+ 1, \ldots, 2^{n+1}\}$.} \\
-Focus on an arbitrary integer $m = 2^n +k$, where $k \in \[1, \ldots, 2^n\}$.  We verify that $\d_{n+1}$
+Focus on an arbitrary integer $m = 2^n +k$, where $k \in \{1, \ldots, 2^n\}$.  We verify that $\d_{n+1}$
 contains a directed cycle of length $m$.
 
 By Case 1 and our inductive hypothesis, we know that $\d_{n+1}$ contains a directed cycle, call
 it $\cc$, of length $M = 2^{n+1} - m \ = \ 2^n -k$.  By Lemma~\ref{thm:deBruin-linegraph}, the
-existence  of cycle $\cc$ implies that $\d_n$ contains a connected Eulerian subgraph
-containing $M$ arcs.  We claim that $\d_n$ {\em also} contains a connected Eulerian subgraph
+existence  of cycle $\cc$ implies that $\d_n$ has a connected Eulerian subgraph
+containing $M$ arcs.  We claim that $\d_n$ {\em also} has a connected Eulerian subgraph
 containing $m$ arcs.  Once we verify this claim, an invocation of
 Lemma~\ref{thm:deBruin-linegraph} will establish the existence in $\d_{n+1}$ of a cycle that
 contains $m = 2^n +k$ vertices.  Therefore, Case 2 will follow from a proof of the following lemma.
 
+\begin{lemma}
+\label{lem:compl-cycle}
+For any $p \in \{0, \ldots, 2^{n+1}\}$, if $\d_n$ has a connected Eulerian sub-digraph $\g$ that
+contains $p$ arcs, then it also has such a sub-digraph that contains $2^{n+1} - p$ arcs.
+\end{lemma}
 
-TBD
-\qed
+\begin{proof}{Lemma~\ref{lem:compl-cycle}}
+Fix an arbitrary $p$ for which $\d_n$ has a connected $p$-arc Eulerian sub-digraph $\g$.  Because
+both $\g$ and $\d_n$ are Eulerian, each vertex of each of these digraphs has equal indegree and
+outdegree.  Therefore, if we remove from $\d_n$ the $p$ arcs of $\g$, then we are left with a
+(not-necessarily connected) Eulerian sub-digraph $\h$ of $\d_n$ that contains $2^{n+1} - p$ arcs.
+Let $\f_1, \ldots, \f_r$ be all of the maximal connected components of $\h$ that are {\em nontrivial}
+in the sense of containing at least one arc apiece.  Of course, each $\f_i$ is connected and
+Eulerian.
+
+If $r=1$, then $\h$ is the sub-digraph $\g$ of $\d_n$ guaranteed by the Lemma.
+If $r>1$, then we need to do some work to create $\g$ from the $\f_i$.
+
+Because $\d_n$ is connected, and all of its arcs reside in either $\g$ or $\h$, $\g$ must contain
+some arc $(u \rightarrow v)$ where $u$ is a vertex of some $\f_i$ and $v$ is a vertex of some
+different $\f_j$ (i.e., $i \neq j$).  The existence of this arc implies that vertex $u$ has outdegree
+$\leq 1$ in $\h$, even though $u$ has outdegree $2$ in $\d_n$.  Because $\h$ is Eulerian, we know
+that $u$ has equal equal indegree and outdegree in $\h$.  Moreover, because $\h$ is connected 
+and contains at least one arc, we know that $u$ cannot be an isolated vertex in $\h$.  Therefore:
+{\em vertex $u$ has outdegree {\em exactly} $=1$ in $\h$}.  It follows that there must be an arc
+$(u \rightarrow w)$ in $\f_i$ for some vertex $w$ of $\f_i$.  By symmetric reasoning (using 
+indegrees instead of outdegrees), there must be an arc  $(t \rightarrow v)$ in $\f_j$ for some 
+vertex $t$ of $\f_j$.  Because $(u \rightarrow v)$, $(u \rightarrow w)$, and $(t \rightarrow v)$ are
+all arcs of $\d_n$, there must exist a length-$(n-1)$ bit-string $x$ and bits
+$\beta, \gamma, \delta, \varepsilon \in \{0,1\}$ such that
+\begin{eqnarray*}
+t & = & \beta x    \\
+u & = & \gamma x   \\
+v & = & x \delta   \\
+w & = & x \varepsilon
+\end{eqnarray*}
+It follows that $\g$ contains an arc $(t \rightarrow w)$.  This arc resides in $\d_n$ by definition;
+it cannot reside in either $\f_i$ or $\f_j$ because it would connect these two components which
+are disconnected in $\h$.
+
+We now transform sub-digraph $\h$ in the following way. We remove from $\h$ two arcs: 
+$(u \rightarrow w)$, which belongs to $\f_i$, and $(t \rightarrow v)$, which belongs to $\f_j$.  We
+add in place of these arcs the arcs $(t \rightarrow w)$ and $(u \rightarrow v)$.  The resulting
+new version of $\h$, call it $\h'$:
+\begin{itemize}
+\item
+{\em contains the same number of arcs as $\h$ does};
+\item
+{\em is Eulerian}, because we just exchanged one arc that enters each of vertices $u$ and $w$
+for another, and made a similar exchange for arcs that leave vertices $t$ and $u$;
+\item
+{\em is connected}, because each of $\f_i$ and $\f_j$, being directed-Eulerian, admit directed walks
+that cross each arc precisely once---and our exchanged arcs connect these directed walks into
+a composite directed walk through the new component.
+\item
+{\em has one fewer nontrivial maximal connected component than $\h$ does.}
+\end{itemize}
+
+If we now iterate the just-described transformation, each iteration yields an Eulerian sub-digraph
+of $\d_n$ which has $p$ arcs (as desired) and has one fewer nontrivial maximal connected 
+component than its predecessor.  After $r-1$ iterations, we therefore achieve the desired connected
+Eulerian sub-digraph of $\d_n$.
+\qed-Lemma~\ref{lem:compl-cycle}
+\end{proof}
+
+The $m$-arc connected Eulerian sub-digraph of $\d_n$ guaranteed by
+Lemma~\ref{lem:compl-cycle} implies the existence of an $m$-vertex cycle in $\d_{n+1}$.  Since
+the number $k$, hence the number $m$, was arbitrary, this completes the proof.  \qed
 \end{proof}
 
 
