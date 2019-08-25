@@ -134,9 +134,69 @@ the number $k$, hence the number $m$, was arbitrary, this completes the proof.  
 \end{proof}
 
 
-\section{A Connection between Trees and DeBruijn Networks} 
+\section{DeBruijn Networks as ``Escherian" Trees} 
 \label{Appendix:tree-DB}
 
+\index{DeBruijn networks!and binary trees}
+\index{Escher, Maurits Cornelis (M. C.)}
+This section is devoted to exposing a mathematically charming connection between a genre of
+directed rooted tree and the family of DeBruijn networks.  The section title alludes to the fact that
+the connection we develop can be viewed as mirroring some of the art of the Dutch artist Maurits
+Cornelis (M. C.) Escher.  The shared nationality of the artist Escher and the mathematician DeBruijn
+is an amusing coincidence.
+
+\index{digraph!algebraically generated arc-labeled digraphs}
+The root of the connection lies in the following algebraic way of representing certain 
+arc-labeled directed graphs.  Let us be given a set $V$ (which may be finite or infinite),  
+together with functions $F_1$,  $F_2$, \ldots, $F_k$, each $F_i$ being a function from 
+$V$ to $V$.  In our examples, the $F_i$ will be total injections from $V$ to $V$, but neither 
+of these qualifiers (``total" or ``injection") is necessary for the concept we describe.  One 
+can generate an arc-labeled digraph $\g = \g(V; F_1, \ldots, F_k)$ as follows.
+\begin{itemize}
+\item
+The set $V$ comprises the vertices of $\g$.
+\item
+For each vertex $v \in V$ and each function $F_i$, $\g$ will have an arc with label $F_i$:
+\[ (v \ \rightarrow F_i(v) \]
+\end{itemize}
+We provide three examples, the second two providing the correspondence that motivates this section.
+{\Arny We will need a few figures here.  We should discuss exactly what.}
+
+
+\index{the directed infinite binary tree represented algebraically}
+\noindent {\it 1. The directed infinite binary tree.}
+Let the set $V$ be the set $\N$ of nonnegative integers.  Define the arc-generating functions
+\begin{eqnarray*}
+F_0(v) & = & 2v \\
+F_1(v) & = & 2v+1
+\end{eqnarray*}
+The rationale for the subscripts of $F_0$ and $F_2$ becomes clearer when we write the
+the vertices of $\g(\N; F_0, F_1)$ as their shortest base-$2$ numerals.  We note that the
+action of $F_0$ is to append a $0$ to the base-$2$ numeral for $v$, while the  
+action of $F_1$ is to append a $1$ to that numeral.
+\[ \begin{array}{|c|cc|}
+\hline
+v & F_0(v) & F_1(v) \\
+\hline
+\hline
+1 & 2 & 3  \\
+\hline
+2 & 4 & 5  \\
+3 & 6 & 7 
+\end{array}
+\]
+
+\noindent {\it 2. The root-looped directed infinite binary tree.}
+One achieves an interesting cousin of the directed infinite binary tree if one uses the set
+$\N$ of {\em nonnegative} integers for vertices, instead of the {\em positive} integers.  The digraph
+that one thereby obtains is the directed infinite binary tree with a new, extra,  ``root", which
+has a {\em self-loop}---because $F_0(0) = 2 \times 0 = 0$.  The remainder of this new digraph is the
+directed infinite binary tree of the preceding example.
+
+
+
+\index{the DeBruijn network represented algebraically}
+\noindent {\it 23. The DeBruijn network as the Escherian root-looped directed infinite binary tree.}
 \[
 \begin{array}{|ccccccc|}
 \hline
