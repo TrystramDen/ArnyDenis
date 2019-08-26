@@ -1271,7 +1271,9 @@ graph.
 
 As we embark on our adventure, we note the following amusing fact: \\
 {\em The problem of finding an Eulerian cycle in a graph $\g$ is
-equivalent to the problem of drawing $\g$ without ever lifting one's
+equivalent to the problem of drawing $\g$ 
+{\Denis and coming back to the initial position}
+without ever lifting one's
 pencil.} \index{graph!drawing without lifting pencil}
 
 \medskip
@@ -1293,11 +1295,14 @@ $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$
 for every vertex $v$ of $\g$.
 \end{prop}
 
+\ignore{
 {\Denis The question of edge multiplicity should be addressed somewhere since in particular
 the chinese postman is based on edge duplicates...}
 {\Arny I do not understand what you are proposing.  If multiple edges occur just in one special
 environment, then M. Occam tells us to introduce that complication JUST in that environment,
 using the simpler more general situation in the body of the text.  We should discuss}
+{\Denis right, my concern was on the basis of the induction proof...}
+}
 
 \begin{proof}
 The {\em necessity} of the conditions asserted in parts {\bf (a)} and {\bf (b)} follows from
@@ -1308,11 +1313,13 @@ graph CAN have an Eulerian cycle of the type we define, since we do not demand t
 the cycle contains all vertices.  Thus, by our definition, an Eulerian graph remains Eulerian 
 if we add isolated vertices to it.  We must discuss this -- should we demand that the cycle
 touches all vertices??}
-
+{\Denis yes, for me, an eulerian cycle should touch all the vertices, I don't see any problem 
+as we assumed that the graph is connected...}
 
 \begin{itemize}
 \item
 A graph that has no isolated vertices does not admit an Eulerian cycle.
+{\Denis again, this is not needed as we assumed that the graph is connected.}
 \item
 Each Eulerian cycle that a graph admits accounts for two edges per vertex,
 because the cycle must ``enter'' the vertex by one edge and ``exit'' by a different edge.
@@ -1342,6 +1349,7 @@ practice to ``play'' with several small graph sizes initially.
 Hopefully, in addition to giving our inductive argument a robust base
 case, such ``playing'' will give us valuable intuition for the general
 case of the induction.
+\medskip
 \end{minipage}
 }
 
@@ -1372,11 +1380,62 @@ whose vertices have nonzero even degree.
 
 {\Arny Please draft your proposed proof, and we can compare the two approaches.  It is
 really hard to discuss this piece by piece.}
+{\Denis, OK then, here is my proof...}
+
+The proof is by induction on the number of edges (denoted by $m$).
+
+The basis is for $m=3$ (for $m=1$ and $m=2$, there are no possible cycles),
+there is only one choice which corresponds to $\cc_3$/$\k_3$.
+
+Consider now that the proposition holds for any integer $k$ lower than $m$ and
+take a connected graph $\g$ with $m+1$ edges whose vertices have all an even degree.
+
+Using the central argument of proposition~\ref{thm:even-num-odd-degrees},
+there exists a non-empty cycle in this graph (as shown in Fig.~\ref{fig:eulerianProof1}). 
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/EulerianProof1}
+       \caption{Considering a graph whose vertices have all an even degree.
+       As shown just before in this section, there exists a cycle (we did not represent the other vertices and corresponding edges).}
+  \label{fig:eulerianProof1}
+\end{center}
+\end{figure}
+Now, consider the sub-graph of $\g$ obtained by removing this cycle.
+It has less than $m-3$ edges.
+May be the process of removing the cycle disconnected the graph, thus, we apply
+the recurrence assumption to each of its connected component,
+which obviously have all less than $m-3$ edges.
+Fig.~\ref{fig:eulerianProof2} illustrates this process. 
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/EulerianProof2}
+       \caption{Sub-graph reduced to the connected components after removing the edges of the cycle
+       (in dotted line).
+       In this example, there are 4 such components (denoted by $C_1$ to $C_4$, two being reduced to a single vertex.}
+  \label{fig:eulerianProof2}
+\end{center}
+\end{figure}
+The last step is to exhibit the whole eulerian cycle.
+It is the union of all the eulerian cycles of each connected component not limited to a single vertex
+plus de removed cycle.
+This way, all the edges are covered exactly once. 
+\medskip
+
+The final touch is to actually \textit{construct} the eulerian cycle. 
+Let start by any vertex on a cycle (thus, any vertex since they are all on a cycle...)
+and to start following the cycle, as soon as we encounter a vertex in a non-empty connected component, 
+we call the recursive construction on the eulerian cycle in this new component
+(that is find another cycle and take the sub-connected component, and so on...).
+{\Denis This is somehow what you did in your proof with the help of parameter $k$ but do we really need it?}
 
 {\Arny Also, yesterday I inserted details for a proof similar to this in order to show that a tree has
 a vertex of degree $1$ --- See Lemma~\ref{lem:vtx-deg-connected}.  Please look at that proof and 
 at this proof to see whether we should craft  a single more general (abstract?) argument 
 that works for both.}
+{\Denis I think it is done in \ref{thm:eulerian-cycle}.
+It is enough to say that the even degree vertices have at least one in-coming edge and one out-coming edge.
+As the graph is connected, we simply follow a path according to the in and out edges, step by step.
+This process ends up within at most $n$ steps, and may be less if it goes again through a vertex that was already considered...}
 
 \begin{description}
 \item[{\bf Step 1}]
