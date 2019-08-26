@@ -240,10 +240,9 @@ $-2 \Delta_n + (n+1) =  (n+1)^2$
 
 $\Delta_n =  (n+1)^2-(n+1) = n(n+1)$
 
-
 \subsection{Tetrahedral numbers}
 
-\noindent {\it The problem.}
+\noindent \textit{The problem.}
 The sum of the triangular numbers $\Delta_n$ is denoted by $\Theta_n$ and it is called a tetrahedral number:
 
 Our objective here is to prove:
@@ -252,11 +251,11 @@ $\Theta_n =  \sum_{k=1}^{n} \Delta_k = \frac{n.(n+1).(n+2)}{6}$
 
 \medskip
 
-\noindent {\it The solution.}
-We proved the expression of $\Delta_n$ by mirroring the developed expression and adding term by term.
-Similarly, a way to prove the expression of $\Theta_n$ is to consider three copies and organize them 
-in order to obtain the expected result.
-A tetrahedral number can be arranged as a triangle (see Figure~\ref{fig:TetrahedralBasic}).
+\noindent \textit{Hint.}
+The idea is to use Fubini's principle.
+
+Write the expression in a developed form using a triangle shape as shown in 
+A tetrahedral number can be arranged as a triangle (see Fig.~\ref{fig:TetrahedralBasic}).
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresArithmetic/TetrahedralBasic}
@@ -264,8 +263,27 @@ A tetrahedral number can be arranged as a triangle (see Figure~\ref{fig:Tetrahed
         \label{fig:TetrahedralBasic}
 \end{center}
 \end{figure}
+and draw two copies by rotating the dimensions.
 
-The proof is obtained by Fubini's principle by rotating this triangle as shows in Figure~\ref{fig:Tetrahedral}.
+Fubini is used by summing up the successive rows.
+
+Prove as an intermediate result that the sum of the elements over the rows of the three triangles is proportional to $n+2$.
+\medskip
+
+\noindent \textit{The detailed solution.}
+We proved the expression of $\Delta_n$ by mirroring the developed expression and adding term by term.
+Similarly, a way to prove the expression of $\Theta_n$ is to consider three copies and organize them 
+in order to obtain the expected result.
+A tetrahedral number can be arranged as a triangle (see Fig.~\ref{fig:TetrahedralBasic}).
+%\begin{figure}[h]
+%\begin{center}
+%        \includegraphics[scale=0.5]{FiguresArithmetic/TetrahedralBasic}
+%        \caption{Computing $\Theta_n$: basic triangle pattern.}
+%        \label{fig:TetrahedralBasic}
+%\end{center}
+%\end{figure}
+
+The proof is obtained by Fubini's principle by rotating this triangle as shows in Fig.~\ref{fig:Tetrahedral}.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresArithmetic/Tetrahedral}
@@ -647,7 +665,7 @@ $A=(a_na_{n-1}\ldots a_1)_2$ by each of the $b_i$, leading to $O(n^2)$ basic ope
 The divide-and-conquer version of this problem is to break each integer into two parts
 of $\frac{n}{2}$ bits each:
 
-$A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$.
+$A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$
 
 Denoting by $A_1$ and $A_2$ the two separate terms, we get:
 
@@ -679,7 +697,7 @@ $A.B = (A_1.B_1) 2^n + (A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)) 2^{n/2} + A_2.B
 
 Cost analysis: 3 multiplications of $n/2$ bits
 
-4 additions and 2 substractions of integers at most $2n$ bits. Again, using the Master Theorem leads to:
+4 additions and 2 subtractions of integers at most $2n$ bits. Again, using the Master Theorem leads to:
 
 $T(n) = 3.T(\frac{n}{2}) + \theta (n) = n^{log_2 3}$
 
@@ -701,16 +719,29 @@ to complete
 
 \subsection{Another fun result dealing with divisibility}
 
+mixed technique between divisibility and pigeon holes.
+
 This exercice was a favorite question by Paul Erdos,
-he often use this question to test the young students, apprentis mathematicians...
+he often used this question to test the ability of young students in mathematics. 
 \bigskip
 
+\noindent \textit{The problem}
 Let consider the $2n$ first integers.
 
 Take any $n+1$ integers in this set and prove that there exists a pair $(p,q)$
 such that $p$ divides $q$. 
+\medskip
 
-The sketch of the proof is as follows.
+\noindent \textit{Hint}
+
+Let $\alpha_i$ be the elements of this set of cardinality $n+1$...
+Write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$).
+
+\medskip
+
+\noindent \textit{The detailed solution.}
+
+%The sketch of the proof is as follows.
 
 \begin{enumerate}
 \item
@@ -722,7 +753,7 @@ Then, $m$ belongs to $\{1,3,5, \ldots, 2n-1 \}$
 \item
 From the pigeon hole principle, there are two numbers with the same value of $m$. 
 \item 
-Thus, $2^{k1} \times m$ and $2^{k2} \times m$.
+Thus, $2^{k1} \times m$ and $2^{k2} \times m$
 
 $p$ is the smallest one, which divides $q$ (the largest one).
 \end{enumerate}
