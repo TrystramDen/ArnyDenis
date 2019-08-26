@@ -1279,10 +1279,19 @@ pencil.} \index{graph!drawing without lifting pencil}
 
 \medskip
 
-In the next two propositions, we develop---for both cycles and paths, in both undirected and directed
-graphs---simple, elegant characterizations of graphs that admit Eulerian cycles and paths.
+In the next two propositions, we develop---for both cycles and paths, in both undirected and
+directed graphs---simple, elegant characterizations of graphs that admit Eulerian cycles and paths.
 These characterization are validated via simple and efficient algorithms that determine
-whether a given graph admits such a path or such a cycle.
+whether a given graph admits such a path or such a cycle.  To avoid ``special cases" that
+disrupt the flow of a proof, let us restrict attention to graphs and digraphs that are {\em nontrivial}
+in the sense that
+\begin{itemize}
+\item
+each (di)graph has at least three vertices;
+\item
+each (di)graph is connected.
+\end{itemize}
+Within this domain, we have the following characterizations.
 
 \begin{prop}[Eulerian Cycles]
 \label{thm:eulerian-cycle}
@@ -1292,23 +1301,27 @@ every vertex of $\g$ has even degree.
 
 {\bf (b)}
 A connected directed graph $\g$ admits a directed Eulerian cycle if, and only if,
-$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$
-for every vertex $v$ of $\g$.
+$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$ for every vertex $v$ of $\g$.
 \end{prop}
 
-\ignore{
+\ignore{*********
 {\Denis The question of edge multiplicity should be addressed somewhere since in particular
 the chinese postman is based on edge duplicates...}
 {\Arny I do not understand what you are proposing.  If multiple edges occur just in one special
 environment, then M. Occam tells us to introduce that complication JUST in that environment,
 using the simpler more general situation in the body of the text.  We should discuss}
 {\Denis right, my concern was on the basis of the induction proof...}
-}
+**********}
 
 \begin{proof}
-The {\em necessity} of the conditions asserted in parts {\bf (a)} and {\bf (b)} follows from
-the following observations.  
+{\em Necessity.}
+The conditions asserted in parts {\bf (a)} and {\bf (b)} are {\em necessary} because of
+the following fact.  Every time any cycle traverses a vertex $v$ of a (di)graph $\g$, that 
+encounter accounts for {\em two} edges that are incident to $v$: the cycle must ``enter'' $v$
+using one edge and ``exit'' $v$ using a different edge.  (By assumption, the degenerate case 
+of a (di)graph having just one vertex is not relevant here.)
 
+\ignore{**********
 {\Arny The original conditions were wrong.  An unconnected
 graph CAN have an Eulerian cycle of the type we define, since we do not demand that 
 the cycle contains all vertices.  Thus, by our definition, an Eulerian graph remains Eulerian 
@@ -1316,48 +1329,59 @@ if we add isolated vertices to it.  We must discuss this -- should we demand tha
 touches all vertices??}
 {\Denis yes, for me, an eulerian cycle should touch all the vertices, I don't see any problem 
 as we assumed that the graph is connected...}
-
-\begin{itemize}
-\item
-A graph that has no isolated vertices does not admit an Eulerian cycle.
-{\Denis again, this is not needed as we assumed that the graph is connected.}
-\item
-Each Eulerian cycle that a graph admits accounts for two edges per vertex,
-because the cycle must ``enter'' the vertex by one edge and ``exit'' by a different edge.
-\end{itemize}
+************}
 
 \smallskip
 
-\noindent
-We turn now to the verification of the {\em sufficiency} of the
-Proposition's conditions.  Our argument resides in the following
-``streamlined'' version of an induction---this is closer to the form
-of an induction that one would encounter in practice, rather than in a
-textbook.
+\noindent {\em Sufficiency.} 
+We now verify that Proposition's conditions are also {\em sufficient}.  We can prove this
+fact either by induction on the number of vertices in a graph or by induction on the number
+of edges in the graph.  While we invite the reader to construct the vertex-based proof, we
+shall develop here the technically more streamlined edge-based proof. 
 
-The base case of the induction resides in proving the sufficiency of
-the Proposition's conditions for ``small'' graphs.  
+The base of our induction resides in proving the sufficiency of the Proposition's conditions
+for ``small'' graphs.  For undirected graphs, it suffices to look at $3$-vertex graphs.  Since the
+only relevant such graph is the $3$-vertex cycle $\cc_3 = \k_3$, the base case holds 
+automatically.
+
 \bigskip
+
+{\Arny Clearly the following discussion should not be here.  Where should it be?}
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-While we largely
-leave this step to the reader, we do want to discuss the definition of
-``small''.  Until we understand how to deal with arbitrary $n$-vertex
-graphs, we will not know how the general step of our induction reduces
-the graph size $n$ at each step.  Because of this, it is a good
-practice to ``play'' with several small graph sizes initially.
-Hopefully, in addition to giving our inductive argument a robust base
-case, such ``playing'' will give us valuable intuition for the general
-case of the induction.
-\medskip
+Regading the ``small'' cases that provide adequate base cases for inductions.
+
+\smallskip
+
+By definition, an inductive proof is required to cover all cases.  It accomplishes this
+by explicitly treating some ``small" cases individually and then showing that the inductive rule 
+at the heart of the proof---which resides implicitly within the inductive assumption---enables one
+to generate all non-``small" cases from the ``small" cases.
+
+\smallskip
+
+In some domains, it is rather simple to determine what cases provide an adequate set of
+``small" cases.  This is usually the case, e.g., when one solves numerical recurrences, because
+the required ``small" cases often coincide with the recurrence's boundary conditions.  The
+challenge of verifying propositions about graphs is quite often no so easy.  For a given
+proposition, we often do not know how the general step of our induction reduces
+the graph size $n$ at each step---until we understand how to deal with arbitrary $n$-vertex
+graphs.  Because of this, it is a good practice to ``play'' with several small graph sizes initially.
+
+\smallskip
+
+Hopefully, in addition to giving our inductive argument a robust base case, such ``playing'' will
+give us valuable intuition for the general case of the induction.
 \end{minipage}
 }
 
+\medskip
 
+\ignore{**************
 \begin{itemize}
 \item
-Focusing on {\em undirected} graphs: We note that $2$-vertex graphs
+{\it For {\em undirected} graphs:} We note that $2$-vertex graphs
 cannot have even vertex-degrees---and, indeed, as promised by the
 Proposition, they cannot be Eulerian.  One can exhaustively enumerate
 all $3$-vertex and $4$-vertex graphs and verify that the Proposition correctly
@@ -1370,11 +1394,13 @@ perform an exhaustive enumeration of $3$-vertex and $4$-vertex digraphs
 and verify that the Proposition correctly separates the Eulerian ones
 from the non-Eulerian ones.
 \end{itemize}
+***************}
 
-We now develop a complete proof of the {\em sufficiency} of the
-conditions in part {\bf (a)} of the Proposition for general $n$-vertex
-undirected graphs.  Throughout the discussion, we intersperse hints
-regarding the sufficiency of the conditions in part {\bf (b)} of the Proposition.
+We now develop a complete proof of the {\em sufficiency} of the conditions in 
+part {\bf (a)} of the Proposition for general $n$-vertex undirected graphs.  We 
+provide only hints regarding the sufficiency of the conditions in part {\bf (b)} of the Proposition.
+
+**HERE
 
 Let us consider a connected $n$-vertex undirected graph $\g$ all of
 whose vertices have nonzero even degree.
