@@ -1,4 +1,4 @@
-%version of 07-08-19
+%version of 08-27-19
 
 \chapter{``Doing'' Mathematics:
 A Toolkit for Mathematical Reasoning}
@@ -816,6 +816,83 @@ Because $n$ is an arbitrary positive integer, we conclude that
 The Principle of (Finite) Induction tells us that {\bf P}$(n)$
 is true for all $n \in \N^+$.  \qed
 \end{proof}
+
+\subsubsection{A false ``proof'' by induction: The importance of valid base cases}
+\label{sec:false-induction}
+
+Let us (mis)use the method of Finite Induction to craft a fallacious
+proof of the following absurd ``fact''.
+
+\noindent {\bf Non-Proposition.}
+All monochromatic horses are the same color.
+
+\noindent {\it Non-Proof.}
+We proceed by induction.
+
+\smallskip
+
+{\bf The base case}.  If there is only a single monochromatic horsein
+the set, then all horses in the set are the same color.
+
+\smallskip
+
+{\bf Inductive hypothesis.}  Say that in every set of $n$
+monochromatic horses, all all horses in theset arethe same color.
+
+\smallskip
+
+{\bf Extension to $n+1$ horses.}
+Let us be given a set of $n+1$ monochromatic horses.  If we remove one
+horse from the set, then the remaining set, call it $S$ has $n$ horses.  By our
+inductive hypothesis, all of the horses in $S$ have the same color.  Now
+remove one horse from $S$ and replace it with the horse that we
+earlier removed from the $(n+1)$-horse set.  We now have a new
+$n$-horse set, call it $S'$.  Once again we invoke the inductive
+hypothesis to conclude that all horses in $S'$ have the same color.
+If we now reunite all of the horses, the {\em transitivity} of the
+relation ``have the same color''---which, loosely speaking, says that
+things that are both equal to to a third thing are equal to each
+other---guarantees that all of the horses in the $(n+1)$-horse set
+have the same color.  \qed-NOT!
+
+\medskip
+
+We all know that all horses do {\em not} share the same color.  Where
+have we gone wrong?  In a word, the base case was not adequate for the
+``proof''.  When we remove first one hors and then another horse and
+still have a horse left to compare those two horses to, {\em we must
+  have started with at least {\em three} horses!}  This means that
+  {\em $n+1$ must be no smaller than $3$, so $n$ must be no smaller
+    than $2$.}  The base of the induction must, therefore, be sets
+  that contain $2$ horses---and the ``proposition'' is absurd for such sets!
+
+This brings us to the critical issue of how to select the ``small''
+cases that comprise the base of our induction.
+
+\index{finite induction!the base case}
+Regarding the ``small'' cases that provide adequate base cases for inductions.
+
+\smallskip
+
+By definition, an inductive proof is required to cover all cases.  It accomplishes this
+by explicitly treating some ``small" cases individually and then showing that the inductive rule 
+at the heart of the proof---which resides implicitly within the inductive assumption---enables one
+to generate all non-``small" cases from the ``small" cases.
+
+\smallskip
+
+In some domains, it is rather simple to determine what cases provide an adequate set of
+``small" cases.  This is usually the case, e.g., when one solves numerical recurrences, because
+the required ``small" cases often coincide with the recurrence's boundary conditions.  The
+challenge of verifying propositions about graphs is quite often no so easy.  For a given
+proposition, we often do not know how the general step of our induction reduces
+the graph size $n$ at each step---until we understand how to deal with arbitrary $n$-vertex
+graphs.  Because of this, it is a good practice to ``play'' with several small graph sizes initially.
+
+\smallskip
+
+Hopefully, in addition to giving our inductive argument a robust base case, such ``playing'' will
+give us valuable intuition for the general case of the induction.
 
 
 \subsubsection{The method of undetermined coefficients}
