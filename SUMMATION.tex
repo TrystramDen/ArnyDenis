@@ -2158,7 +2158,7 @@ of the $i$th group add up to $i^3$:
 We observe next that, by construction, the $i$th group/row of odd integers in the table consists of the
 $i$ consecutive odd numbers beginning with the $\left( \Delta_{i-1} +1 \right)$th odd number,
 $2 \Delta_{i-1} +1$.  Since consecutive odd numbers differ by $2$, this means that the $i$th
-group (for $i>1$) comprises the following odd integers:
+group (for $i>1$) comprises the following $i$ odd integers:
 \[
 2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 , \
 \ldots, \ 2 \Delta_{i-1} + (2i-1)
@@ -2206,107 +2206,117 @@ is equal to the square of $\Delta_k$.  We verify this charming fact by an induct
 reflects the structure of table (\ref{eq:triagular-table}).
 \begin{description}
 \item[{\bf Base cases.}]
-We display the first two cases of the claimed result.
+We display the first case of the claimed result.
 \[ \begin{array}{ccccc}
-1^3                     & = & 1   & = {\displaystyle {2 \choose 2}^2 } \\
-1^3 + 2^3           & = & 9   & = {\displaystyle {3 \choose 2}^2 } \\
+1^3                     & = & 1   & = {\displaystyle \Delta_1^2 } \\
+%1^3 + 2^3           & = & 9   & = {\displaystyle {3 \choose 2}^2 } \\
+%1^3                     & = & 1   & = {\displaystyle \delta_1^2 {2 \choose 2}^2 } \\
+%1^3 + 2^3           & = & 9   & = {\displaystyle {3 \choose 2}^2 } \\
 \end{array}
 \]
-These cases are represented pictorially in Figs.~\ref{fig:sumCubes1} and~\ref{fig:sumCubes1bis},
-which reflect the first two groups in table (\ref{eq:triagular-table}).
+This first---straightforward--- case is enough for the induction, 
+but it does not tell us too much about the structure of the problem, 
+thus, let us also consider the next step (for $k=2$):
+\[ \begin{array}{ccccc}
+%1^3                     & = & 1   & = {\displaystyle \Delta_1^2 } \\
+1^3 + 2^3           & = & 9   & = {\displaystyle \Delta_2^2} \\
+%1^3                     & = & 1   & = {\displaystyle \delta_1^2 {2 \choose 2}^2 } \\
+%1^3 + 2^3           & = & 9   & = {\displaystyle {3 \choose 2}^2 } \\
+\end{array}
+\]
+This result is represented pictorially in Fig.~\ref{fig:sumCubes1},
+which reflects the first two groups in table (\ref{eq:triagular-table}).
+We observe that the shapes perfectly fit one together to form a square of side $\Delta_2$.
+%\begin{figure}[ht]
+%\begin{center}
+%       \includegraphics[scale=0.35]{FiguresMaths/SumCubes1}
+%\caption{Pictorially depicting the odd numbers  $\{1\}$ (group $1$ in table (\ref{eq:triagular-table}))
+%and $\{3, 5\}$  (group $2$ in table (\ref{eq:triagular-table})).}
+%\end{center}
+%\end{figure}
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.35]{FiguresMaths/SumCubes1}
-\caption{Pictorially depicting the odd numbers  $\{1\}$ (group $1$ in table (\ref{eq:triagular-table}))
-and $\{3, 5\}$  (group $2$ in table (\ref{eq:triagular-table})).}
+       \includegraphics[scale=0.35]{FiguresMaths/SumCubes1} \hspace{2cm}
+       \includegraphics[scale=0.4]{FiguresMaths/SumCubes1bis}
+\caption{Left: Pictorially depicting the odd numbers  $\{1\}$ (group $1$) and $\{3, 5\}$  (group $2$)
+in table (\ref{eq:triagular-table}).
+%and $\{3, 5\}$  (group $2$ in table (\ref{eq:triagular-table})).\\
+Right: Illustrating how to form a perfect square from the odd integers. 
+One arranges the pictorial representation of the integers into the
+depicted figure. The clear portions of the resulting perfect square come from 
+group $2$; the shaded small square at the top comes from 
+group $1$.}
        \label{fig:sumCubes1}
 \end{center}
 \end{figure}
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumCubes1bis}
-\caption{Illustrating how to form a perfect square from the odd integers of
-Fig.~\ref{fig:sumCubes1}.  One arranges the pictorial representation of the integers into the
-depicted figure.  The clear portions of the resulting perfect square come from 
-group $2$ in table (\ref{eq:triagular-table}); the shaded small square comes from 
-group $1$ in table (\ref{eq:triagular-table}).}
-       \label{fig:sumCubes1bis}
-\end{center}
-\end{figure}
 
-
-\item[{\bf Inductive hypothesis}.]
-Say for the sake of the induction that the target equality holds for all $n < k$; i.e.,
-\[ 1^3 \ + \ 2^3 \ + \cdots + \ n^3 \ \ = \ \ (\Delta_n)^2 \ \ = \ \ {{n+1} \choose 2}^2 \]
-
+If we are going one step further, we see that the number of odd integers in the next group is odd.
+In this case, the puzzle for forming the whole square of side $\Delta_3$
+is easier since there is not overlap in the rightmost bottom diagonal square.
 \medskip
 
-**HERE
+\item[{\bf Inductive hypothesis}.]
+Say for the sake of the induction that the target equality holds for all $i < k$; i.e.,
+\[ 1^3 \ + \ 2^3 \ + \cdots + \ i^3 \ \ = \ \ (\Delta_i)^2 \ \ = \ \ {{i+1} \choose 2}^2 \]
+
+We prove this result successively for odd and even $k$.
 
 
-$2i \Delta_i$ + ($\Delta_{i-1})^2$
-
-$(\Delta_{i-1} + i)^2 \ = \ (\Delta_{i-1})^2 + 2i \Delta_{i-1} + i^2$ 
-
-
+\item[{\bf Inductive extension for odd $k$}]
 
 Let us compare the quantities  $(\Delta_k)^2$ and $1 + 2^3 + \cdots + k^3$.
+From the induction hypothesis, we should prove: $(\Delta_k)^2$ equals $(\Delta_{k-1})^2 + k^3$. 
 
-
-
-We know from the previous analysis on triangular numbers
-%Proposition~\ref{thm:sum-first-integers-Gauss} 
-
-
-
-The average of the two odd numbers in the second row is equal to $4$,
- next represent the number $8 = 2^3$ (which is the {\em cube} of $2$)
-\ignore{{\Arny How do we know to do this?  What do these two squares have to do with $2^3$?}}
-
-
- by two $2 \times 2$ squares: the figures following the unit square in
-Fig.~\ref{fig:sumCubes1}.
-Fig.~\ref{fig:sumCubes1bis} illustrates graphically that $1+ 2^3$
-is a perfect square.
+We write $k^3$ as $k \times k^2$ and the idea is to distributed these $k$ square blocks
+around the large square of side $\Delta_{k-1}$ as shown for $k=3$ in Fig.~\ref{fig:sumCubes3}. 
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes3}
-\caption{The next step in the construction also produces a perfect square. Here $i=3$}
+\caption{The construction for odd $k$ produces a perfect square. The drawing is done for $k=3$}
        \label{fig:sumCubes3}
 \end{center}
 \end{figure}
-Fig.~\ref{fig:sumCubes3} illustrates that iterating the process one more time also
-produces a perfect square. 
-The case of odd indices is easy since we don't need to rearrange the unit squares 
-(the surfaces perfectly fit).
-However, the case of even $i$ needs a little more effort as shown in Fig.~\ref{fig:sumCubesEven}
+As $k$ is odd, the packing of these squares is perfect and $(k-1)$ is divisible by $2$. 
+This comes directly from the definition of triangular numbers $k \times \frac{k-1}{2} = \Delta_k$.
+
+
+\item[{\bf Inductive extension for even $k$}]
+
+The idea is the same as before, but in this case, 
+there is a parity constraint on the process since
+two subsquares are overlapping; at odd-numbered steps, they are not
+(see Fig.~\ref{fig:sumCubesEven}).
+This needs a little more effort to pack the block as shown in Fig.~\ref{fig:sumCubesEven}
 and \ref{fig:sumCubesEvenFinal}.
 
-{\Arny How do we know about the geometric arrangement of $1^3 + 2^3 + 3^3$?}
-{\Denis We simply add $3^3$ to the square: I added two figures to explain in the most diffifult case of even $i$...}
+The formal proof is easy to get since $k-2$ is still even 
+and thus, can be divided them in both sides of the initial square $(\Delta_{k-1})^2$
+There is a little space left that is filled by half of the other squares.
 
- Comparing Figs.~\ref{fig:sumCubes1bis}
-and~\ref{fig:sumCubes3} indicates a parity constraint on the process:
-at even-numbered steps, the subsquares that get ``merged'' are
-overlapping; at odd-numbered steps, they are not.
+{\Denis Here we can detail if needed...}
+%$(k-2) \times \frac{k-2}{2} = (k-1) \times \frac{k-2}{2} $
+
+\ignore{
+{\Arny How do we know about the geometric arrangement of $1^3 + 2^3 + 3^3$?}
+{\Denis We simply add $3^3$ to the square: I added two figures to explain in the most difficult case of even $i$...}
+}
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumCubesEven}
-\caption{****The next step in the construction also produces a perfect square (here $i=4$).
-The dark grey is the overlapped area.}
+\caption{The construction for even $k$ produces  an overlapped area
+represented in dark grey (the picture was drawn for $k=4$).}
        \label{fig:sumCubesEven}
 \end{center}
 \end{figure}
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubesEvenFinal}
-\caption{****How to move one of the overlapped area in order to obtain a perfect square.}
+\caption{How to move one of the overlapped area in order to obtain a perfect square.}
        \label{fig:sumCubesEvenFinal}
 \end{center}
 \end{figure}
 
-\medskip
-
+\ignore{
 \item[{\bf Inductive extension}.]
 %
 Since consecutive odd numbers differ by $2$, we know that the $i$th
@@ -2324,6 +2334,7 @@ one discovers that this group has the sum
 2i \Delta_{i-1} \ - \ 2 \Delta_{i-1} +i \ = \
 (2i -1) \Delta_i + i \ = \ i^3.
 \]
+}
 \end{description}
 This concludes the subproof about groups summing to perfect cubes.
 
