@@ -1,29 +1,30 @@
-%version of 07-23-19
+%version of 08-27-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
 \label{ch:prob-stat}
 \label{ch:combinatorics}
 
+\index{Leibniz (Leibnitz), Gottfried Wilhelm}
+ \index{Newton, Isaac}
 We have named this chapter in honor of the great German mathematician
-Gottfried Leibniz, \index{Leibniz (Leibnitz), Gottfried Wilhelm} whose
-1666 doctoral thesis, ``{\it Dissertatio de Arte Combinatoria}''
+Gottfried Leibniz,  whose 1666 doctoral thesis, ``{\it Dissertatio de Arte Combinatoria}''
 \cite{Leibnitz}, gave us the now-common phrase, ``the art of
 counting.''\footnote{While Leibniz is best known (at least among students of mathematics) for his
-never-to-be-settled dispute with Isaac Newton \index{Newton, Isaac}
-over prior discovery of the calculus, Leibniz's life was in fact
-dedicated to a broad range of topics in mathematics and philosophy.}
-The word ``counting'' in this context must be understood
-much more broadly than in the vernacular: In days past, the phrase
-encompassed much of the field known nowadays as {\it
-  combinatorics}. \index{combinatorics}
+never-to-be-settled dispute with Isaac Newton over prior discovery of the calculus, Leibniz's life
+was in fact dedicated to a broad range of topics in mathematics and philosophy.}
+The word ``counting'' in this context must be understood much more broadly than in the 
+vernacular: In days past, the phrase encompassed much of the field known nowadays as
+{\it combinatorics}. \index{combinatorics}
 
 This chapter is devoted to introducing the basics of three closely related mathematical
 subfields: combinatorics, probability, and statistics.
 
 \medskip
 
-\noindent {\it Combinatorics} (Section~\ref{sec:counting}).\index{combinatorics}\index{counting}
+\index{combinatorics}\index{counting}
+
+\noindent {\it Combinatorics} (Section~\ref{sec:counting}).
 Our introduction to combinatorics can be viewed in many ways
 as a return to Chapter~\ref{ch:sets-BA-logic}'s study of
 sets, especially finite sets.  Indeed, the first topics we cover in
@@ -32,27 +33,27 @@ how many elements (of a certain type) set $S$ contains.
 
 \medskip
 
+\index{combinatorial probability} \index{poker}
+\index{poker!three-of-a-kind} \index{poker!two-pair}
 \noindent {\it Combinatorial probability} (Section~\ref{sec:combinatorial-prob}).
 The tools we develop for determining the cardinalities of finite sets
-give us access to the important (and fun!)~field known as {\em
-  combinatorial probability}. \index{combinatorial probability}
-In reality, probability theory is an {\em applied} spin-off
-of combinatorics.  In its most elementary---and, some might say, frivolous---form, combinatorial probability uses counting to 
-answer questions such as:  Why does the game of\index{poker}
-($5$-card) poker value three-of-a-kind\index{poker!three-of-a-kind} more highly than two-pair?\index{poker!two-pair}
-Why did the designers of roulette tables add two (green) extra slots to\index{roulette table}
-the red and black slots of the wheel?  By the end of the section. you will have the wherewithal to answer
-myriad questions of this ilk.
+give us access to the important (and fun!)~field known as {\em combinatorial probability}. 
+In reality, probability theory is an {\em applied} spin-off of combinatorics.  In its most 
+elementary---and, some might say, frivolous---form, combinatorial probability uses counting to 
+answer questions such as:  Why does the game of ($5$-card) poker value three-of-a-kind
+more highly than two-pair?  Why did the designers of roulette tables add two (green) extra 
+slots to the red and black slots of the wheel?  By the end of the section. you will have the 
+wherewithal to answer myriad questions of this ilk. \index{roulette table}
 
 In a more serious vein, the elements of probability theory and statistics infuse every area of
 computing.
 \begin{itemize}
 \item
-The practicality of many algorithms that are experientially efficient often results from the {\em distributions} of 
-the inputs they encounter in ``real" situations.
+The practicality of many algorithms that are experientially efficient often results from the 
+{\em distributions} of the inputs they encounter in ``real" situations.
 \item
-Design methodologies for complex electronic circuits must be aware of the {\em
-  mean times to failure} of the critical components of the circuits.
+Design methodologies for complex electronic circuits must be aware of the 
+{\em mean times to failure} of the critical components of the circuits.
 \item
 Sophisticated searching algorithms---and heuristic search strategies---must take into account the relative
 {\em likelihoods} of finding one's goal by following the various search directions that one has access to.
@@ -66,11 +67,13 @@ probability to even understand, all the more so to master, the terms highlighted
 
 \medskip
 
-\noindent {\it Statistics} (Section~\ref{sec:statistics}).\index{statisticas}
+\index{statistics}
+
+\noindent {\it Statistics} (Section~\ref{sec:statistics}).
 Just as engineering can be viewed as the ``applied'' sibling of science, {\it statistics} can be viewed as 
 the ``applied'' sibling of probability.  Whereas combinatorial probability will give the reader the ability to
-calculate the likelihoods of various events' happening, statistics looks as the events ``in the large", by focusing on
-parameters---aptly called ``statistics"---that measure quantities such as\index{statistical moments}
+calculate the likelihoods of various events' happening, statistics looks as the events ``in the large", by focusing 
+on parameters---aptly called ``statistics"---that measure quantities such as\index{statistical moments}
 \begin{itemize}
 \item
 {\em means, medians}, and {\em modes}: different ways to embody concepts 
@@ -85,8 +88,6 @@ employing first statistical moments such as means; they are often called the {\i
 {\em higher moments}: successive ways of measuring the errors incurred by
 employing lower statistical moments to describe observed measurements.
 \end{itemize}
-
-
 
 
 \section{The Elements of Combinatorics}
@@ -108,8 +109,7 @@ we discuss in Section~\ref{sec:operations-on-sets}.
 
 \begin{prop}
 \label{thm:b-ary strings}
-For every integer $b > 1$, there are $b^n$ $b$-ary strings of length
-$n$.
+For every integer $b > 1$, there are $b^n$ $b$-ary strings of length $n$.
 \end{prop}
 
 \begin{proof}
@@ -375,7 +375,7 @@ We thereby find that $P(n)$ is specified recursively as follows.
 P(n) \ = \ \left\{
 \begin{array}{cl}
 1 & \mbox{ if } \ n=1 \\
-n \cdot P(n-1) & \mbox{ if } \ n>1
+n \times P(n-1) & \mbox{ if } \ n>1
 \end{array}
 \right.
 \]
@@ -435,7 +435,7 @@ the order in which the elements were selected.  The binomial coefficients that w
 in Section~\ref{sec:binomial-coeff} and that have arisen several times since then
 throughout our journey are
 (literally!) tailor made for this genre of selection problem.  Recall that
-\[ {n \choose m} \ = \ \frac{n(n-1)\cdots(n-m)}{m!} \ = \  \frac{n!}{m!(n-m)!} 
+\[ {n \choose m} \ = \ \frac{n \times (n-1) \times \cdots \times (n-m)}{m!} \ = \  \frac{n!}{m!(n-m)!} 
 \]
 
 \begin{prop}
@@ -449,7 +449,7 @@ The number of {\em ordered} ways of selecting $m$ elements from a set of $n \geq
 elements is 
 \begin{equation}
 \label{eq:combination}
-n \cdot (n-1) \cdot \cdots \cdot (n-m+1) \ = \ \frac{n!}{(n-m)!}
+n \times (n-1) \times \cdots \times (n-m+1) \ = \ \frac{n!}{(n-m)!}
 \end{equation}
 To wit: One can select the first element in any of $n$ ways.  Having selected this element,
 there are $n-1$ ways to choose the second element---and $n-2$ ways to choose the third
@@ -470,6 +470,21 @@ This reasoning indicates that we can compensate for our overcounting by dividing
 {\em ordered} tally (\ref{eq:combination}) by $m!$.  This compensation replaces tally
 (\ref{eq:combination}) by $\displaystyle {n \choose m}$, whence the result.  \qed
 \end{proof}
+
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+Binomial coefficients have made yet anther appearance in our journey!  The many meanings
+of this construct are only suggested by their occurrence here, in respect to probabilities, as well
+as in Chapter~\ref{ch:Summation} within the context of evaluating summations and in
+Chapter~\ref{ch:Recurrences} within the context of solving recurrences.  The multiple occurrences
+of binomial coefficients within these apparently unrelated contexts provides a powerful argument
+for the value of abstracting beyond the superficial details of phenomena in the direction of
+their deep essentials.  This insight will only be reinforced as we proceed with our study of
+combinatorial probabilities.
+\end{minipage}
+}
 
 \bigskip
 
@@ -691,7 +706,7 @@ connection between the mathematical subject of game theory and the field of econ
 (Now-familiar concepts such as ``rational game" and ``zero-sum game" originated in
 \cite{vonNeumann-Morg}.)  The second classic is \cite{Nash50}, by the American mathematician
 John Nash, \index{Nash, John} which introduced the now-familiar notion of ``Nash equilibrium."
-(The story behind \cite{Nash50} was movingly related in the movie ``{\it A beautiful mind}".)
+(The story behind \cite{Nash50} was movingly related in the movie ``{\it A Beautiful Mind}".)
 \end{minipage}
 }
 
@@ -1332,14 +1347,10 @@ configurations is $6^3 = 216$; easily, this number is equal to
 
 %{\Denis This result is amazing since the series grows like the sum of the first $n_{th}$ integers, except for the last ones which are truncated. This is probably possible to prove it!}
 
-\noindent {\it Summing up}
-
-**HERE
-
-We have developed several examples, which illustrate how to compute the probability of an event,
-by means of enumeration of favorable and possible cases. 
-This is still valid for examples composed of many occurrences of an event,
-like rolling a die or tossing coins. 
+\noindent {\it Summing up.}
+We have developed several examples which illustrate how to compute the probability of an event,
+by enumerating both favorable and possible cases.  This approach can be made to work also for examples composed of repeated occurrences of an event, such as repeated rolls of a die or repeated tosses of
+a coin. 
 
 Two kind of questions may be studied.
 First, "how the probability of the occurrence of an event (like obtaining a $6$) is related to practical results?"
