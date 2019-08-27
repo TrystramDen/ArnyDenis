@@ -1412,16 +1412,26 @@ Fig.~\ref{fig:eulerianProof2}.
 \end{figure}
 But, no matter how many components $\g'$ has, we know that each such component has no
 more than $m-2$ edges.  This means that each connected component of $\g'$ is either an
-isolated vertex---meaning a graph with $1$ vertex and $0$ edges---or a graph that our
-inductive hypothesis guarantees has an Eulerian cycle.
+isolated vertex---meaning a graph with $1$ vertex and $0$ edges---or a {\em nontrivial component},
+meaning a graph that our inductive hypothesis guarantees has an Eulerian cycle.
 
+\smallskip
 
-The last step is to exhibit the whole eulerian cycle.
-It is the union of all the eulerian cycles of each connected component not limited to a single vertex
-plus de removed cycle.
-This way, all the edges are covered exactly once. 
+The final step in extending the induction is to ``knit" the structure we have derived---namely,
+cycle $\cc$ plus graph $\g'$ into  single Eulerian cycle for graph $\g$.  We accomplish this 
+via the following {\em gendanken} process.  We begin to traverse cycle $\cc$, continuing
+to walk until we encounter a nontrivial component, call it $\g"$, that we have never before
+encountered.  We now pause in our walk along $\cc$ to traverse the Eulerian cycle in $\g"$
+that the induction hypothesis guarantees.  When we conclude the traversal of $\g"$---perforce
+at the same vertex where the traversal began---we resume out walk along $\cc$.  Once the
+walk along $\cc$---punctuated by traversals of Eulerian cycles in connected 
+components---terminates, we are guaranteed to have crossed every edges of the original graph
+$\g$ exactly once.
 
-\medskip
+This walk exposes the presence of an Eulerian cycle in $\g$, as claimed.   \qed
+\end{proof}
+
+\ignore{**************
 
 The final touch is to actually \textit{construct} the eulerian cycle. 
 Let start by any vertex on a cycle (thus, any vertex since they are all on a cycle...)
@@ -1471,15 +1481,6 @@ The facts that
 mean that the last vertex encountered in this walk is $v_k$.  In other
 words: {\em This walk begins and ends with vertex $v_k$.}
 
-{\Arny
-\noindent \fbox{
-Proposition~\ref{thm:cycle-in-graph} proves that every graph with all degrees $\geq 2$
-contains a cycle.}
-
-\noindent \fbox{
-Uses pigeonhole to show that  ``leave by a different edge" strategy runs out of new edges.
-}
-}
 
 
 Note that vertex $v_k$ will occur in this walk multiple
@@ -1580,7 +1581,16 @@ Execute {\bf Build Eulerian Cycle}($v_0$)
 \noindent
 produces the Eulerian cycle in $\g$.
 }
+******************}
 
+\medskip
+
+We have not dealt here with the challenge of algorithmically producing the Eulerian
+cycle in graph $\g$.  Our proof gives major hints about how to produce a {\em recursive}
+algorithm that constructs the cycle.  Developing an iterative construction requires 
+nontrivial data structuring that is outside the scope of this text.
+
+\ignore{***********
 \bigskip
 
 When dealing with a {\em directed} graph, we proceed exactly as
@@ -1592,7 +1602,7 @@ the described process.
 
 {\Denis my proof of the proposition is by induction on the number of edges, not vertices...}  \qed
 \end{proof}
-
+*****************}
 
 \ignore{**************
 We offer two proofs of this result: the first merely establishes the
@@ -1642,6 +1652,8 @@ The Eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ 
 
 \end{itemize}
 *****************}
+
+\bigskip
 
 The simplicity of the preceding characterization degrades a trifle when
 one seeks Eulerian {\em paths} rather than {\em cycles}.
