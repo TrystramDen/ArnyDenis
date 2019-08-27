@@ -1,4 +1,4 @@
-%version of 08-19-19
+%version of 08-27-19
 
 \chapter{Graphs II:
 Graphs within Computation and Communication}
@@ -1331,52 +1331,20 @@ touches all vertices??}
 as we assumed that the graph is connected...}
 ************}
 
-\smallskip
+\medskip
 
 \noindent {\em Sufficiency.} 
-We now verify that Proposition's conditions are also {\em sufficient}.  We can prove this
-fact either by induction on the number of vertices in a graph or by induction on the number
-of edges in the graph.  While we invite the reader to construct the vertex-based proof, we
-shall develop here the technically more streamlined edge-based proof. 
-
-The base of our induction resides in proving the sufficiency of the Proposition's conditions
-for ``small'' graphs.  For undirected graphs, it suffices to look at $3$-vertex graphs.  Since the
-only relevant such graph is the $3$-vertex cycle $\cc_3 = \k_3$, the base case holds 
-automatically.
-
-\bigskip
-
-{\Arny Clearly the following discussion should not be here.  Where should it be?}
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-Regading the ``small'' cases that provide adequate base cases for inductions.
+We now verify that Proposition's conditions are also {\em sufficient}.  We provide 
+a complete proof of sufficiency only for part {\bf (a)} of the Proposition; we 
+provide only hints regarding the sufficiency of the conditions in part {\bf (b)}.
 
 \smallskip
 
-By definition, an inductive proof is required to cover all cases.  It accomplishes this
-by explicitly treating some ``small" cases individually and then showing that the inductive rule 
-at the heart of the proof---which resides implicitly within the inductive assumption---enables one
-to generate all non-``small" cases from the ``small" cases.
+We have a choice of proving sufficiency either by induction on the number of vertices in a 
+graph or by induction on the number of edges in the graph.  While we invite the reader to 
+develop the vertex-based proof, we focus only on the technically more streamlined edge-based proof. 
 
 \smallskip
-
-In some domains, it is rather simple to determine what cases provide an adequate set of
-``small" cases.  This is usually the case, e.g., when one solves numerical recurrences, because
-the required ``small" cases often coincide with the recurrence's boundary conditions.  The
-challenge of verifying propositions about graphs is quite often no so easy.  For a given
-proposition, we often do not know how the general step of our induction reduces
-the graph size $n$ at each step---until we understand how to deal with arbitrary $n$-vertex
-graphs.  Because of this, it is a good practice to ``play'' with several small graph sizes initially.
-
-\smallskip
-
-Hopefully, in addition to giving our inductive argument a robust base case, such ``playing'' will
-give us valuable intuition for the general case of the induction.
-\end{minipage}
-}
-
-\medskip
 
 \ignore{**************
 \begin{itemize}
@@ -1394,58 +1362,65 @@ perform an exhaustive enumeration of $3$-vertex and $4$-vertex digraphs
 and verify that the Proposition correctly separates the Eulerian ones
 from the non-Eulerian ones.
 \end{itemize}
-***************}
+******************} 
 
-We now develop a complete proof of the {\em sufficiency} of the conditions in 
-part {\bf (a)} of the Proposition for general $n$-vertex undirected graphs.  We 
-provide only hints regarding the sufficiency of the conditions in part {\bf (b)} of the Proposition.
+\smallskip
 
-**HERE
+Focus on a connected undirected graph $\g$ that has $m$ edges and $n$ vertices, each
+vertex having nonzero even degree.  We prove by induction on $m$ that $\g$ is Eulerian.
 
-Let us consider a connected $n$-vertex undirected graph $\g$ all of
-whose vertices have nonzero even degree.
+%{\Arny Please draft your proposed proof, and we can compare the two approaches.  It is really hard to discuss this piece by piece.} {\Denis, OK then, here is my proof...}
 
-{\Arny Please draft your proposed proof, and we can compare the two approaches.  It is
-really hard to discuss this piece by piece.}
-{\Denis, OK then, here is my proof...}
+{\bf Base case.}
+The base case for our induction is the case $m=3$.  (Graphs with $m=1$ or $m=2$ edges
+cannot be Eulerian.)  For $m=3$, there is only one Eulerian graph, namely, $\cc_3 \ = \ \k_3$.
 
-The proof is by induction on the number of edges (denoted by $m$).
+\smallskip
 
-The basis is for $m=3$ (for $m=1$ and $m=2$, there are no possible cycles),
-there is only one choice which corresponds to $\cc_3$/$\k_3$.
+{\bf Inductive hypothesis.}
+Assume now that the Proposition holds for any number of edges $k \leq m$.
 
-Consider now that the proposition holds for any integer $k$ lower than $m$ and
-take a connected graph $\g$ with $m+1$ edges whose vertices have all an even degree.
+\smallskip
 
-Using the central argument of proposition~\ref{thm:even-num-odd-degrees},
-there exists a non-empty cycle in this graph (as shown in Fig.~\ref{fig:eulerianProof1}). 
+{\bf Inductive extension.}
+Consider any connected graph $(m+1)$-edge graph $\g$ all of whose vertices have even degree.
+By Proposition~\ref{thm:cycle-in-graph}, $\g$ contains a nonempty cycle $\cc$
+(see Fig.~\ref{fig:eulerianProof1}). 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresGraph/EulerianProof1}
-       \caption{Considering a graph whose vertices have all an even degree.
-       As shown just before in this section, there exists a cycle (we did not represent the other vertices and corresponding edges).}
+       \caption{A cycle in graph $\g$ (ignoring its other vertices and their incident edges).}
   \label{fig:eulerianProof1}
 \end{center}
 \end{figure}
-Now, consider the sub-graph of $\g$ obtained by removing this cycle.
-It has less than $m-3$ edges.
-May be the process of removing the cycle disconnected the graph, thus, we apply
-the recurrence assumption to each of its connected component,
-which obviously have all less than $m-3$ edges.
-Fig.~\ref{fig:eulerianProof2} illustrates this process. 
+Focus on the subgraph $\g'$ of $\g$ that is obtained by removing cycle $\cc$.  Clearly $\g'$
+contains fewer than $m-2$ edges, because $\g$ has $m+1$ edges and $\cc$ contains at
+least $3$ edges.
+
+Now,  graph $\g'$ may have multiple connected components because the process of 
+removing cycle $\cc$ from $\g$ could have disconnected the residual graph $\g'$; see
+Fig.~\ref{fig:eulerianProof2}.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresGraph/EulerianProof2}
-       \caption{Sub-graph reduced to the connected components after removing the edges of the cycle
-       (in dotted line).
-       In this example, there are 4 such components (denoted by $C_1$ to $C_4$, two being reduced to a single vertex.}
+       \caption{Subgraph $\g'$ and its connected components after we removed the 
+       edges of cycle $\cc$ (whose edges are dotted lines).  In this example, there are
+       four connected components, $C_1$, $C_2$, $C_3$, $C_4$; two of these, namely,
+       $C_2$ and $C_4$ are isolated vertices.}
   \label{fig:eulerianProof2}
 \end{center}
 \end{figure}
+But, no matter how many components $\g'$ has, we know that each such component has no
+more than $m-2$ edges.  This means that each connected component of $\g'$ is either an
+isolated vertex---meaning a graph with $1$ vertex and $0$ edges---or a graph that our
+inductive hypothesis guarantees has an Eulerian cycle.
+
+
 The last step is to exhibit the whole eulerian cycle.
 It is the union of all the eulerian cycles of each connected component not limited to a single vertex
 plus de removed cycle.
 This way, all the edges are covered exactly once. 
+
 \medskip
 
 The final touch is to actually \textit{construct} the eulerian cycle. 
@@ -1712,6 +1687,8 @@ to the ``named graphs" of Section~\ref{sec:graphs-important-families}.
 \begin{corol}
 \label{corol:eulerian-named-graphs}
 The following facts about Eulerian cycles are consequences of Proposition~\ref{thm:eulerian-cycle}.
+
+\medskip
 
 {\small
 \begin{tabular}{|l|l|l|}
