@@ -2204,9 +2204,9 @@ In other words, group $i$ consists of the odd numbers
 \[ 2 \Delta_{i-1} +1, \ 2 \Delta_{i-1} +3, \  \ldots, \  2\Delta_i -1 \]
 **************}
 
-We now present a {\em pictorial} illustration of a portion of Proposition~\ref{thm:odds-sum2-cubes},
+We now present a {\em pictorial} proof of a portion of Proposition~\ref{thm:odds-sum2-cubes},
 namely, the relation between sums of perfect cubes  and squares of triangular numbers.
-This illustration provides a non-textual way to understand this result, and---at least
+This illustration provides a {\em non-textual} way to understand this result, and---at least
 as importantly---it provides a fertile setting for seeking other facts of this ilk.
 
 \begin{prop}
@@ -2217,84 +2217,81 @@ For all $k \in \N^+$,
 
 \begin{proof}
 We develop an induction that reflects the structure of Table (\ref{eq:triagular-table}).
-\begin{description}
-\item[{\bf Base cases.}]
-We display the first case of the claimed result.
-\[ \begin{array}{ccccc}
-1^3                     & = & 1   & = {\displaystyle \Delta_1^2 } \\
-%1^3 + 2^3           & = & 9   & = {\displaystyle {3 \choose 2}^2 } \\
-%1^3                     & = & 1   & = {\displaystyle \delta_1^2 {2 \choose 2}^2 } \\
-%1^3 + 2^3           & = & 9   & = {\displaystyle {3 \choose 2}^2 } \\
-\end{array}
-\]
-This first---straightforward--- case is enough for the induction, 
-but it does not tell us too much about the structure of the problem, 
-thus, let us also consider the next step (for $k=2$):
-\[ \begin{array}{ccccc}
-%1^3                     & = & 1   & = {\displaystyle \Delta_1^2 } \\
-1^3 + 2^3           & = & 9   & = {\displaystyle \Delta_2^2} \\
-%1^3                     & = & 1   & = {\displaystyle \delta_1^2 {2 \choose 2}^2 } \\
-%1^3 + 2^3           & = & 9   & = {\displaystyle {3 \choose 2}^2 } \\
-\end{array}
-\]
-This result is represented pictorially in Fig.~\ref{fig:sumCubes1},
-which reflects the first two groups in table (\ref{eq:triagular-table}).
-We observe that the shapes perfectly fit one together to form a square of side $\Delta_2$.
-%\begin{figure}[ht]
-%\begin{center}
-%       \includegraphics[scale=0.35]{FiguresMaths/SumCubes1}
-%\caption{Pictorially depicting the odd numbers  $\{1\}$ (group $1$ in table (\ref{eq:triagular-table}))
-%and $\{3, 5\}$  (group $2$ in table (\ref{eq:triagular-table})).}
-%\end{center}
-%\end{figure}
-\begin{figure}[ht]
+
+{\bf Base cases.}
+The base of our induction is the first case of the claimed result:
+\[  1^3 \  = \ 1 \ = \ \Delta_1^2 \]
+
+While this first (and obvious) case is enough for the induction, it does not tell us much 
+about the structure of the problem.  Therefore, we consider also the next step, namely,
+the case $k=2$:
+\[  1^3 + 2^3 \ = \ 9 \ = \ \Delta_2^2 \]
+We depict in Fig.~\ref{fig:sumCubes1} how to obtain a ``larger" base case for our induction
+by pictorially summing the numbers from the first two groups in Table (\ref{eq:triagular-table}).
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumCubes1} \hspace{2cm}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes1bis}
-\caption{Left: Pictorially depicting the odd numbers  $\{1\}$ (group $1$) and $\{3, 5\}$  (group $2$)
-in table (\ref{eq:triagular-table}).
-%and $\{3, 5\}$  (group $2$ in table (\ref{eq:triagular-table})).\\
-Right: Illustrating how to form a perfect square from the odd integers. 
-One arranges the pictorial representation of the integers into the
-depicted figure. The clear portions of the resulting perfect square come from 
-group $2$; the shaded small square at the top comes from 
-group $1$.}
+\caption{(Left) Pictorially depicting the first two groups from Table (\ref{eq:triagular-table})
+as stacked unit-side squares: the set $\{1\}$ of group $1$ and the set $\{3, 5\}$ of group $2$.
+(Right) Illustrating how to form a $3 \times 3$ square by pictorially summing the numbers
+$1$, $3$, and $5$.  The clear portions of the square come from 
+group $2$; the shaded small square at the top comes from group $1$.}
        \label{fig:sumCubes1}
 \end{center}
 \end{figure}
+Observe that we can fit the shapes from the left side of the figure together to form
+the $\Delta_2 \times \Delta_2$ square.
 
-If we are going one step further, we see that the number of odd integers in the next group is odd.
-In this case, the puzzle for forming the whole square of side $\Delta_3$
-is easier since there is not overlap in the rightmost bottom diagonal square.
 \medskip
 
-\item[{\bf Inductive hypothesis}.]
+{\bf Inductive hypothesis}.
 Say for the sake of the induction that the target equality holds for all $i < k$; i.e.,
 \[ 1^3 \ + \ 2^3 \ + \cdots + \ i^3 \ \ = \ \ (\Delta_i)^2 \ \ = \ \ {{i+1} \choose 2}^2 \]
+p
+\medskip
 
-We prove this result successively for odd and even $k$.
+{\Arny Maybe pictorially do one more step to illustrate the first nontrivial odd case.  This gives
+a concrete instance of the overlap and the shift.}
 
+\medskip
 
-\item[{\bf Inductive extension for odd $k$}]
+If we go one step further, to incorporate group $3$, i.e., the set $\{7, 9, 11\}$, into our
+pictorial summation process, then we discover that mimicking the process of
+Fig.~\ref{fig:sumCubes1} is a bit more complicated for this case.  A bit of analysis
+exposes that the more complicated manipulation required to form the $\Delta_3 \times \Delta_3$
+square is a consequence of the odd cardinality of the group-$3$ set.  Accordingly, we must extend
+our induction in slightly different ways for the cases of odd and even $k$.
 
-Let us compare the quantities  $(\Delta_k)^2$ and $1 + 2^3 + \cdots + k^3$.
-From the induction hypothesis, we should prove: $(\Delta_k)^2$ equals $(\Delta_{k-1})^2 + k^3$. 
+\medskip
 
-We write $k^3$ as $k \times k^2$ and the idea is to distributed these $k$ square blocks
-around the large square of side $\Delta_{k-1}$ as shown for $k=3$ in Fig.~\ref{fig:sumCubes3}. 
+{\bf Inductive extension for odd $k$}.
+In order to extend the induction hypothesis in this case, we need to prove that
+\[ \Delta_k^2 \ \ = \ \ \Delta_{k-1}^2 \ + \ k^3 \]
+We begin to garner intuition for this extension by comparing the quantities  
+$\Delta_k^2$ and $1 + 2^3 + \cdots + k^3$.
+
+Moving to the pictorial domain, we write $k^3$ as $k \cdot k^2$, and we
+distribute $k \times k$ square blocks around the $\Delta_{k-1} \times \Delta_{k-1}$
+square, as shown in Fig.~\ref{fig:sumCubes3} for the case $k=3$. 
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumCubes3}
-\caption{The construction for odd $k$ produces a perfect square. The drawing is done for $k=3$}
+\caption{Extending the inductive summation-by-manipulation for the case of odd $k$:
+The manipulation of small squares produces the next bigger perfect square. 
+(The case $k=3$ is depicted.)}
        \label{fig:sumCubes3}
 \end{center}
 \end{figure}
-As $k$ is odd, the packing of these squares is perfect and $(k-1)$ is divisible by $2$. 
-This comes directly from the definition of triangular numbers $k \times \frac{k-1}{2} = \Delta_k$.
+Because $k$ is odd, the small squares pack perfectly---because $(k-1)$ is even,
+hence divisible by $2$.   The depicted case depicts pictorially the definition of triangular numbers:
+$k \cdot \frac{1}{2}(k-1) \ = \ \Delta_k$.
 
+\medskip
 
-\item[{\bf Inductive extension for even $k$}]
+**HERE
 
+{\bf Inductive extension for even $k$}.
 The idea is the same as before, but in this case, 
 there is a parity constraint on the process since
 two subsquares are overlapping; at odd-numbered steps, they are not
@@ -2319,10 +2316,6 @@ The argument is:
 }
 %$(k-2) \times \frac{k-2}{2} = (k-1) \times \frac{k-2}{2} $
 
-\ignore{************
-{\Arny How do we know about the geometric arrangement of $1^3 + 2^3 + 3^3$?}
-{\Denis We simply add $3^3$ to the square: I added two figures to explain in the most difficult case of even $i$...}
-************}
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumCubesEven}
@@ -2358,8 +2351,8 @@ one discovers that this group has the sum
 (2i -1) \Delta_i + i \ = \ i^3.
 \]
 ***************}
-\end{description}
-This concludes the subproof about groups summing to perfect cubes.  \qed
+
+This concludes the proof .  \qed
 \end{proof}
 
 \ignore{*************
