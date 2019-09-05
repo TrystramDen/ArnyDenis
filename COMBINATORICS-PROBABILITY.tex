@@ -1,4 +1,4 @@
-%version of 08-27-19
+%version of 09-05-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
@@ -1451,16 +1451,96 @@ in a manner that will give a reliable summary of the import of the data.  The fi
  
  \medskip
  
- \subsection{Summarization by a Single Number}
- \label{sec:single-statistic}
+ \index{experiment!trial}  \index{experiment!outcome}  
+ \index{experiment!probability of an outcome}
+ \index{experiment!frequency of an outcome}
+There are two complementary ways to provide information about the data which one might obtain,
+say, from an extensive experiment.  We illustrate these via the trivial experiment of rolling a
+(possibly biased) $6$-sided die $n$ times.  Within the context of discussing such an experiment,
+one typically refers to each roll of the die as a {\it trial} and to the number observed from the roll
+as an {\it outcome}.  When discussing this experiment, we can associate with each possible
+outcome $x \in \{1,2,3,4,5,6\}$:
+\begin{itemize}
+\item
+the {\em probability} of $x$ occurring.  In this scenario, one thinks of the $n$ outcomes as a
+{\em multiset} $S$, and one associates with outcome $x$ the probability, $m/n$, of achieving
+outcome $x$ when randomly drawing an element from $S$.
+\item
+the {\em frequency} with which $x$ occurs in the sequence of outcomes; for instance, $x$ may
+occur $m$ times throughout the $n$ rolls.  One typically uses a {\em frequency function} $f$ to
+expose this kind of information---noting that $f(x) = m$.
+\end{itemize}
+Note that the frequency approach does not explicitly mention the number of trials $n$, while
+the probability approach does.  As we proceed with our discussion of statistics, we repeatedly
+use this die-rolling experiment for illustration.  
+
+\index{Law of Large Numbers} \index{fair} \index{unbiased}
+Keep in mind that in the ideal world of probabilities, all six outcomes are equiprobable, hence, 
+each has probability $1/6$.  The field of statistics operates in the real world, hence must 
+account for the fact that experimental outcomes only approximate the ideal mathematical world.  
+The {\it Law of Large Numbers}, which we discuss later, is a theorem that guarantees that over 
+``sufficiently long" periods of time, the real world becomes a progressively closer approximation 
+to the ideal. In fact, this Law underlies the entire endeavor of ``quality control": if we continue to 
+observe that our die produces outcome $3$ inordinately often over a ``sufficiently long" 
+experiment, then we conclude that the die is not {\em fair}, or, {\em unbiased}!  (The terms
+``fair" and ``unbiased" are synonyms.) Elements of the theory of statistics that go way beyond 
+the scope of this text develop tests that determine when an experiment is ``sufficiently long" to 
+determine whether our die is unbiased.  Of course, such a determination is not absolute---it
+draws its conclusions within some {\em confidence level}.
+\index{confidence level}
+
+With this introduction, we now embark on our introduction to statistics.
+
  
- Summarize a set of numbers by a small set of numbers
+\subsection{Summarization by a Single Number}
+\label{sec:single-statistic}
  
- a single number: mode, median, mean (expectation -- a probabiity-weighted average)
+Summarize a set of numbers by a small set of numbers
  
- \subsection{Summarization by a Fixed-Size Set of Numbers}
- \label{sec:mean-plus-moments}
+Let us be given an $n$-element set $S$ with an associates frequency function $f_S$.  The
+following definitions are idealizations in the sense that they may specify more than one
+element of $S$.
+
+\index{mode}
+
+\noindent
+The {\em mode} of $S$, denoted {\sc mode}($S$), is the element that has maximum frequency:
+\[ f_S(\mbox{\sc mode}(S)) \ = \ \max_{x \in S} \ f_S(x) \]
+
+\index{median}
+
+\noindent
+The {\em median} of $S$, denoted {\sc median}($S$), is the element $x \in S$ whose 
+frequency is the midpoint of all frequencies:
+\[ |\{ y \in S \ | \ f_S(y) \ \leq \ f_s(\mbox{\sc median}(S))\}| \ = \
+|\{ z \in S \ | \ f_S(z) \ \geq \ f_s(\mbox{\sc median}(S))\}| 
+\]
+
+\index{mean}
+
+\noindent
+The {\em mean} of $S$, denoted {\sc mean}($S$), is a number---which does not necessarily
+belong to $S$---that has average frequency; it is usually denoted $\bar{x}$:
+\[ \bar{x} \ = \ {1 \over n} \sum_{x \in S} \ x \cdot f_S(x) \]
+The mean of $S$ is also often called its {\it expected value}, denoted {\sc expected value}($S$),
+or, for short, its {\it expectation}, denoted {\sc expectation}($S$).
+
+\index{expected value} \index{expectation}
  
+\subsection{Summarization by a Fixed-Size Set of Numbers}
+\label{sec:mean-plus-moments}
+
+Applied to statistics:
+
+\begin{eqnarray*}
+\mbox{\sc mean}(S)             & \eqdef & \bar{x} \ \eqdef  \ {1 \over n} \sum_{x \in S} \ x  \cdot f_S(x) \\
+\mbox{\sc variance}(S)        & \eqdef & {1 \over n} \sum_{x \in S} \ (x - \bar{x})^2 \cdot f_S(x)  \\
+\mbox{\sc moment}^{(k)}(S) & \eqdef & {1 \over n} \sum_{x \in S} \ (x - \bar{x})^k \cdot f_S(x) \\
+\mbox{\sc standard-deviation}(S)  & \eqdef & \sqrt{\mbox{\sc variance}(S)}
+\end{eqnarray*} 
+
+
+
  more numbers: mean is weak because, e.g., $\{0,1\}$ with equiprobable elements has 
  average element $1/2$, even though that element does not occur in the set. SO we add 
  {\em higher moments}.  The first---and by far most popular---candidate is the variance (often
