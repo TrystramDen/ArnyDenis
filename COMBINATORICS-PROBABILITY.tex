@@ -1492,8 +1492,10 @@ draws its conclusions within some {\em confidence level}.
 With this introduction, we now embark on our introduction to statistics.  We stress that this
 field has developed and deployed immensely sophisticated mathematical and
 computational tools.  We wish here only to given the reader a taste of what the field is
-about, so we hope only to hint at its goals and methodology.
-
+about, so we strive only to hint at its goals and methodology.  We refer the readers to sources
+such as \cite{Hoel58} (which focuses on the mathematical aspects of the field) and 
+\cite{Bremaud17}  (which provides a comprehensive introduction) for two rather differently
+focused comprehensive introductions to this important field.
 
 \section{``Doing" Statistics}
 \label{sec:doing-statistics}
@@ -1514,28 +1516,16 @@ capture important elements of the truth exposed via experimentation by analyzing
 behavior of random variables.  Specifically, each experiment is associated with a
 random variable that ranges over the set of possible outcomes of the experiment.  
 
-Let us abstract the environment in which statistics is practiced by focussing on:
-\begin{itemize}
-\item
-an $n$-element sequence $S$ of numbers which represent the sequence of outcomes
-of an experiment, each element belonging to the set of possible outcomes.
+Let us abstract the environment in which statistics is practiced by focussing on a
+sequence $S$of $n$ numbers which represent the sequence of outcomes of an
+$n$-trial experiment.
 
 \smallskip
 
-Let $S$ be, for instance: (1) the sequence of occurrences of the numbers $\{1,2,3,4,5,6\}$ 
-which result from repeated rolls of a $6$-side die; (2) the sequence of occurrences of 
-elements from the set $\{\mbox{\sc heads, tails}\}$ which result from repeated tosses of a 
-$2$-side coin.  
-\item
-a {\em frequency function} $f_S$ that exposes how often a possible outcome from the
-experiment occurs as an element of  $S$.
-
-Of course, $f_S$ comes automatically with $S$; it is not specified independently!  But,
-it does provide a useful ``summary" of $S$---and a useful tool for discussing statistical
-measures of $S$. 
-\end{itemize}
-We introduce the basics of statistics using set $S$ and function $f_S$.
-
+Sample sequences $S$: (1) the $n$-element sequence of numbers from the set
+$\{1,2,3,4,5,6\}$ which result from $n$ rolls of a $6$-side die; (2) the $n$-element 
+sequence of elements from the set $\{\mbox{\sc heads, tails}\}$ which result from $n$
+tosses of a $2$-side coin.  
 
 \ignore{************
 Statistics is complementary to probability theory in a sense that can be illustrated by the 
@@ -1557,27 +1547,56 @@ of the possible outcomes.
 \subsection{Summarization by a Single Number}
 \label{sec:single-statistic}
  
-The simplest possible framework for summarizing set $S$ and function $f_S$ is via a
-single summarizing number.  Several such numbers have been introduced, each being 
-valuable within certain domains of inquiry.  The reader should be forewarned that 
-summarizing numbers are idealizations in certain ways that we point out during our 
-discussion.  We illustrate the following definitions using the sequence
-\[ S \ = \  011010011001011 \]  
+The simplest possible framework for summarizing sequence $S$ is via a
+single summarizing number. The reader should be forewarned that any attempt to
+summarize a long sequence of numbers $S$ via a small set of numbers whose sizes are 
+commensurate with those in $S$ must lead to loss of information---and/or to possible 
+frustration.  The inevitability of losing information is clear just from the shrinkage in the 
+number of bits used to represent the outcomes of the experiment.
 
-\index{mode}
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+This might be an opportune time for the reader to review our discussions
+of {\it encodings} and of {\it pairing functions}.  Both of those topics involve creating small 
+sets of numbers to encode large sets of numbers.  The fact that the small sets must
+retain all of the information resident in the large sets guarantees that the encoding numbers
+must become large.  You cannot shrink bits!
+\end{minipage}
+}
+
+\bigskip
 
 \noindent
-The {\em mode} of $S$, denoted {\sc mode}($S$), is the element that has maximum frequency:
-\[ f_S(\mbox{\sc mode}(S)) \ = \ \max_{x \in S} \ f_S(x) \]
+The possible frustration results from the fact that acceptable summarizations may not
+always exist.   That being said, several summarizing numbers have been introduced, and
+each is valuable within certain domains of inquiry. 
+
+\medskip
+
+\index{mode} \index{{\sc mode}($S$)}
+
+\noindent
+If there is a single maximum element $x \in S$, then that element $x$ is called the 
+{\em mode} of $S$ and is denoted {\sc mode}($S$).
+
+\medskip
 
 \index{median}
 
 \noindent
-The {\em median} of $S$, denoted {\sc median}($S$), is the element $x \in S$ whose 
-frequency is the midpoint of all frequencies:
-\[ |\{ y \in S \ | \ f_S(y) \ \leq \ f_s(\mbox{\sc median}(S))\}| \ = \
-|\{ z \in S \ | \ f_S(z) \ \geq \ f_s(\mbox{\sc median}(S))\}| 
+The {\em median} of $S$, denoted {\sc median}($S$), is the middle value in $S$:
+\[ 
+|\{ y \in S \ | \ y \leq \mbox{\sc median}(S)\}| \ = \
+|\{ z \in S \ | \ z \ \geq \mbox{\sc median}(S)\}| 
 \]
+A sequence $S$ can obviously have two medians; in such cases, some sources average
+the two values while others just accept the existence of two medians.  One must choose
+between two undesirable options: having two distinct medians and having a single median
+which does not belong to sequence $S$.
+
+\medskip
 
 \index{mean}
 
