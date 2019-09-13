@@ -1524,17 +1524,35 @@ capture important elements of the truth exposed via experimentation by analyzing
 behavior of random variables.  Specifically, each experiment is associated with a
 random variable that ranges over the set of possible outcomes of the experiment.  
 
-Let us abstract the environment in which statistics is practiced by focussing on a
-sequence $S$ of $n$ numbers which represents the outcomes of an $n$-trial 
-experiment.   Because our real concern
-For convenience of analysis, we order the 
+\smallskip
+
+Let us abstract the environment in which statistics is practiced by focussing on:
+\begin{itemize}
+\item
+a sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$ of $n$ numbers which 
+represent the outcomes of an $n$-trial experiment.
 
 \smallskip
 
-Sample sequences $S$: (1) the $n$-element sequence of numbers from the set
-$\{1,2,3,4,5,6\}$ which result from $n$ rolls of a $6$-side die; (2) the $n$-element 
-sequence of elements from the set $\{\mbox{\sc heads, tails}\}$ which result from $n$
-tosses of a $2$-side coin.  
+Sample sequences $S$: (1) the sequence of numbers from the set $\{1, 2, 3, 4, 5, 6\}$ 
+which result from $n$ rolls of a $6$-side die; (2) the noontime temperatures observed in 
+Grenoble over a period of $n$ days; (3) the observed diameters of $n$ roller bearings 
+after a given run at Factory $X$.  
+\item
+a {\it frequency function} $f_S$ which reports on the multiplicity of each outcome $s_i$ 
+within the sequence $S$.
+  \begin{itemize}
+  \item
+For illustration, if 
+\begin{equation}
+\label{eq:sample-seq-10}
+S \ = \ \langle 1, 2, 2, 3, 3, 3, 4, 4, 4, 4 \rangle
+\end{equation}
+then for each $i \in \{1, 2, 3, 4\}$ (the set that underlies sequence $S$), $f_S(i) = i$.
+  \item
+Note that $f_S(s_1) + f_S(s_2) + \cdots + f_S(s_n) \ = \ n$.
+  \end{itemize}
+\end{itemize}
 
 \ignore{************
 Statistics is complementary to probability theory in a sense that can be illustrated by the 
@@ -1567,11 +1585,10 @@ number of bits used to represent the outcomes of the experiment.
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-This might be an opportune time for the reader to review our discussions
-of {\it encodings} and of {\it pairing functions}.  Both of those topics involve creating small 
-sets of numbers to encode large sets of numbers.  The fact that the small sets must
-retain all of the information resident in the large sets guarantees that the encoding numbers
-must become large.  You cannot shrink bits!
+This might be an opportune time for the reader to review our discussions of {\it encodings} (Section~\ref{sec:apply-FTA}) and of {\it pairing functions} (Section~\ref{sec:pairing}).  Both 
+of these topics involve creating small sets of numbers to encode large sets of numbers.  The 
+fact that the small sets must retain all of the information resident in the large sets guarantees 
+that the encoding numbers must become large.  You cannot shrink bits!
 \end{minipage}
 }
 
@@ -1582,26 +1599,74 @@ The possible frustration results from the fact that acceptable summarizations ma
 always exist.   That being said, several summarizing numbers have been introduced, and
 each is valuable within certain domains of inquiry. 
 
-\subsubsection{The {\it mean} of sampled outcomes}
+\subsubsection{The (arithmetic) mean of sampled outcomes: Expectations}
 \label{sec:mean}
 
-\index{mean}
+\index{mean} \index{arithmetic mean} \index{mean!arithmetic} \index{expected value}
+For any outcome-sequence $S$, with associate frequency function $f_S$, 
+the {\it arithmetic mean} of $S$ is the weighted average of $S$'s elements:
+\[ {1 \over n} \sum_{x \in S} \ x \cdot f_S(x) \]
+This quantity is denoted $\mbox{\sc mean}(S)$ or, when the set $S$ being discussed
+is clear from context, simply $\bar{x}$.  For the $10$-element sequence $S$ of 
+(\ref{eq:sample-seq-10}), we have:
+\begin{eqnarray*}
+\mbox{\sc mean}(S) & = &
+{1 \over 10} \left(1 \cdot f_S(1) \ + \ 2 \cdot f_S(2) \ + \ 3 \cdot f_S(3) \ + \ 4 \cdot f_S(4) \right) \\
+ & = &
+{1 \over 10} \left(1 \cdot 1 \ + \ 2 \cdot 2 \ + \ 3 \cdot 3 \ + \ 4 \cdot 4 \right) \\
+ & = &
+\frac{1 + 4 + 9 + 16}{10} \\
+ & = & 3
+\end{eqnarray*}
+In this example, $\mbox{\sc mean}(S)$ is an element of $S$.  In general, it need not be.
 
-\noindent
-The {\em mean} of $S$, denoted {\sc mean}($S$), is a number---which does not necessarily
-belong to $S$---that has average frequency; it is usually denoted $\bar{x}$:
-\[ \bar{x} \ = \ {1 \over n} \sum_{x \in S} \ x \cdot f_S(x) \]
-The mean of $S$ is also often called its {\it expected value}, denoted {\sc expected value}($S$),
-or, for short, its {\it expectation}, denoted {\sc expectation}($S$).
-
+In addition to its {\it a posteriori} analytical value, arithmetic means can also be used as a
+an aid to prediction.  (We often do this, for example, when we consult mean temperatures
+before we pack for a trip to an unfamiliar location.)  When used predictively, the mean of 
+a sequence $S$ is often called its {\it expected value} or, more succinctly, its {\it expectation}.
 \index{expected value} \index{expectation}
-
-
 
 \subsubsection{Further measures of ``average"}
 \label{sec:median-mode}
 
+\[ S. = \langle 
+1,
+3,3,
+5,5,5,5,
+7,7,7,7,7,7,
+9,9,9,9,9,9,9,9,
+11,11,11,11,11,11,11,11,11,11
+\rangle \]
+so for $i \in \{1,3,5,7,9,11\}$, $f_S(i) = i-1$
+so
+\begin{eqnarray*}
+\mbox{\sc mean}(S)
+ & = & 
+{1 \over 45}
+\left(
+1 \cdot 1 +
+3 \cdot 3 +
+6 \cdot 6 +
+10 \cdot 10 +
+15 \cdot 15 +
+21 \cdot 21
+\right)
+ \\
+  & = & 
+{1 \over 31}
+\left(
+ 1 + 9 + 36 + 100 + 225 + 441
+\right)
+ \\
+  & = & 
+\frac{812}{56}
+ \\
+  & = & 14.5
+\end{eqnarray*}
 
+$\mbox{\sc median}(S) = 21$
+
+A better sample value from $S$
 
 \index{median}
 
@@ -1626,9 +1691,10 @@ If there is a single maximum element $x \in S$, then that element $x$ is called 
 
 \medskip
 
+geometric mean
 
  
-\subsection{Summarization by a Fixed-Size Set of Numbers}
+\subsubsection{Refined summarizations via higher statistical moments}
 \label{sec:mean-plus-moments}
 
 Applied to statistics:
