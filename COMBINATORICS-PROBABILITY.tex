@@ -1629,21 +1629,30 @@ a sequence $S$ is often called its {\it expected value} or, more succinctly, its
 \subsubsection{Further measures of ``average"}
 \label{sec:median-mode}
 
-There are two sources of discontent with the arithmetic mean as a summarization of a 
-sequence $S$. 
-\begin{enumerate}
+The major source of discontent with the arithmetic mean as a summarization tool is that, 
+while the mean correctly identifies the ``center of gravity", or, ``balancing point" of a
+sequence $S$, it gives no information about the ``denseness" or the ``skewness" of the 
+sequence.  We illustrate these deficiencies using two simple sequences.
+\index{sequence!center of gravity} \index{sequence!denseness} \index{sequence!skewness}
+\begin{itemize}
 \item
-Not only does {\sc mean}($S$) not have to be an element of $S$, it can actually be 
-maximally far from any element of $S$: the admittedly degenerate but nonetheless 
-legitimate examples $S = \langle 0, 0, \ldots, 0, 1, 1, \ldots, 1 \rangle$, where there are 
-equally many $0$s and $1$s, illustrate this point, as all have $\mbox{\sc mean}(S) = 1/2$.
+Regarding ``denseness":
+Consider an $n$-element sequence of the form
+\[ S_1 = \langle 1, 1, \ldots, 1, k, \ldots, k, k \rangle \]
+which contains equally many $1$s as $k$s.  One would imagine that any analysis of an 
+experimental setting that yielded the sequence $S_1$ of outcomes would have to 
+{\em prominently} mention the sequence's sparseness---the fact that all outcomes are at the
+extremes of their range.  The arithmetic mean
+\[  \mbox{\sc mean}(S_1) \ = \ \frac{(k+1)n}{2n} \ = \ {k+1 \over 2} \]
+gives no information other than the ``center of gravity" of $S_1$.
 
 \item
-The descriptive value of {\sc mean}($S$) diminishes as the ``skewness" of sequence $S$
-increases.  For illustration consider the sequences that share the construction formula of
+Regarding ``skewness":
+Consider $n$-element sequences that share the following construction formula, which
+we illustrate for the case $n=31$.
 
 {\small
-\[ S = \langle 
+\[ S_2 \ = \ \langle 
 1,
 3,3,
 5,5,5,5,
@@ -1653,10 +1662,11 @@ increases.  For illustration consider the sequences that share the construction 
 \rangle \]
 }
 
-so for $i \in \{1,3,5,7,9,11\}$, $f_S(i) = i-1$
-The mean of $\mbox{\sc mean}(S) = 8.1$, as the following calculation indicates. 
+\noindent
+$S_2$ is constructed via the formula: for $i \in \{1,3,5,7,9,11\}$, $f_{S_2}(i) = i-1$.  The 
+following calculation verifies that $\mbox{\sc mean}(S_2) = 8.1$. 
 \begin{eqnarray*}
-\mbox{\sc mean}(S)
+\mbox{\sc mean}(S_2)
  & = & 
 {1 \over 31}
 \left(
@@ -1677,16 +1687,19 @@ The mean of $\mbox{\sc mean}(S) = 8.1$, as the following calculation indicates.
   & = & 
 \frac{251}{31}
 \end{eqnarray*}
-Not only does $\mbox{\sc mean}(S)$ not reside in sequence $S$, it also ``points"
-to a place in $S$ that is very far from the sequence's ``center of gravity".
-\end{enumerate}
-The second of the preceding complaints can be mitigated, even if not eliminated, by using
-the {\it median} of $S$, rather than its mean, to summarize the sequence.
+Here again, one would expect the analysis of an experiment that yielded the sequence
+$S_2$ of outcomes to focus {\em prominently} on the ``skew" of the outcomes toward the
+larger values.  While $\mbox{\sc mean}(S_2)$ correctly identifies the sequence's ``center 
+of gravity", it provides no information about how the outcome values are spread out
+within the sequence.
+\end{itemize}
+To cope with the second of the preceding complaints, namely, the issue ``skewness", 
+many empiricists advocate reporting on a sequence's {\it median}, in addition to its mean.
 \index{median}
 
 \noindent
-The {\em median} of $S$, denoted {\sc median}($S$), determines the middle of 
-$S = \langle s_1, s_2, \ldots, s_n \rangle$:
+The {\em median} of an $n$-element sequence $S$, denoted {\sc median}($S$), determines 
+the middle of  $S = \langle s_1, s_2, \ldots, s_n \rangle$:
 
 \medskip
 
@@ -1713,7 +1726,7 @@ $\mbox{\sc median}(S)  \ = \ {1 \over 2} \left(s_{\lfloor n/2 \rfloor} + \ s_{\l
 \end{itemize}
 For our $56$-element sequence $S$, we have $\mbox{\sc median}(S) = 11$
 
-
+**HERE
 
 A sequence $S$ can obviously have two medians; in such cases, some sources average
 the two values while others just accept the existence of two medians.  One must choose
