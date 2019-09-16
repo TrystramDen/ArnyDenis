@@ -1626,7 +1626,7 @@ before we pack for a trip to an unfamiliar location.)  When used predictively, t
 a sequence $S$ is often called its {\it expected value} or, more succinctly, its {\it expectation}.
 \index{expected value} \index{expectation}
 
-\subsubsection{Further measures of ``average"}
+\subsubsection{Additional measures of ``average"}
 \label{sec:median-mode}
 
 The major source of discontent with the arithmetic mean as a summarization tool is that, 
@@ -1660,11 +1660,9 @@ we illustrate for the case $n=31$.
 9,9,9,9,9,9,9,9,
 11,11,11,11,11,11,11,11,11,11
 \rangle \]
-}
-
-\noindent
-$S_2$ is constructed via the formula: for $i \in \{1,3,5,7,9,11\}$, $f_{S_2}(i) = i-1$.  The 
-following calculation verifies that $\mbox{\sc mean}(S_2) = 8.1$. 
+} 
+\hspace*{-.1in} $S_2$ is constructed via the formula: for $i \in \{1,3,5,7,9,11\}$, 
+$f_{S_2}(i) = i-1$.  The following calculation verifies that $\mbox{\sc mean}(S_2) = 8.1$. 
 \begin{eqnarray*}
 \mbox{\sc mean}(S_2)
  & = & 
@@ -1693,61 +1691,103 @@ larger values.  While $\mbox{\sc mean}(S_2)$ correctly identifies the sequence's
 of gravity", it provides no information about how the outcome values are spread out
 within the sequence.
 \end{itemize}
+
+\paragraph{A. The median of a sequence} 
 To cope with the second of the preceding complaints, namely, the issue ``skewness", 
 many empiricists advocate reporting on a sequence's {\it median}, in addition to its mean.
 \index{median}
 
 \noindent
 The {\em median} of an $n$-element sequence $S$, denoted {\sc median}($S$), determines 
-the middle of  $S = \langle s_1, s_2, \ldots, s_n \rangle$:
+the ``weighted midpoint" of  sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$:
 
 \medskip
 
-\noindent When $n$ is odd:
+\noindent When $n$ is odd, sequence $S$ has a single midpoint:
 
 \hspace*{.35in}
 $\mbox{\sc median}(S)  \ = \ s_{\lfloor n/2 \rfloor}$
 
 \bigskip
 
-\noindent When $n$ is even:
+\noindent When $n$ is even, sequence $S$ has two midpoints, $s_{\lfloor n/2 \rfloor}$
+and $s_{\lfloor n/2 \rfloor +1}$.  In this case,
 \begin{itemize}
 \item
-Some say that there are two medians:
+some say that $S$ has two medians:
 
 \hspace*{.35in}
 $\mbox{\sc median}(S)  \ = \ \langle s_{\lfloor n/2 \rfloor}, \ s_{\lfloor n/2 \rfloor +1} \rangle$
 
 \item
-Others use interpolation to maintain the existence of a single median:
+others use interpolation to maintain the existence of a single median:
 
 \hspace*{.35in}
 $\mbox{\sc median}(S)  \ = \ {1 \over 2} \left(s_{\lfloor n/2 \rfloor} + \ s_{\lfloor n/2 \rfloor +1} \right)$
 \end{itemize}
-For our $56$-element sequence $S$, we have $\mbox{\sc median}(S) = 11$
+Our $56$-element sequence $S$ has two medians, but, happily, they are equal:
 
-**HERE
+\hspace*{.35in}
+$s_{\lfloor n/2 \rfloor} \ = \ s_{\lfloor n/2 \rfloor +1} \ = \ 11$.  
 
-A sequence $S$ can obviously have two medians; in such cases, some sources average
-the two values while others just accept the existence of two medians.  One must choose
-between two undesirable options: having two distinct medians and having a single median
-which does not belong to sequence $S$.
+\noindent
+For this reason, we are comfortable declaring that $\mbox{\sc median}(S) = 11$.
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+The median appears rather often in the news media, especially in regard to skewed 
+economic distributions such as individual wealth or annual income.  In many countries, the 
+mass of wealth is so concentrated in the possession of a small fraction of the population 
+that arithmetic means such as {\em per capita} income or wealth give no meaningful 
+information about the economic state of the vast majority of the population.  Economists 
+find the median income or wealth to be a much more meaningful measure than the
+arithmetic mean in such environments.
+\end{minipage}
+}
+\bigskip
+
+\paragraph{B. Specialized measures: mode and geometric mean}
+
+Two other measures of ``average" have garnered support in specialized communities.
+We mention them just for completeness, so that the reader can consider more options
+when seeking useful summarizations of sequences of empirical outcomes.
 
 \medskip
 
 \index{mode} \index{{\sc mode}($S$)}
 
 \noindent
-If there is a single maximum element $x \in S$, then that element $x$ is called the 
-{\em mode} of $S$ and is denoted {\sc mode}($S$).
+If there is a single maximum element $s \in S$, then that element is called the 
+{\em mode} of sequence $S$ and is denoted {\sc mode}($S$).
 
 \medskip
 
-geometric mean
+\index{mean!geometric}  \index{geometric mean} \index{{\sc geometric-mean}($S$)}
 
+\noindent
+The {\it geometric mean} of an $n$-element sequence $S$ is defined in terms of 
+$S$'s frequency function $f_S$:
+\[ \mbox{\sc geometric-mean}(S) \ \eqdef \  \left(\prod_{s \in S} \ s^{f_S(s)} \right)^{1/n}
+\]
+Thus, the geometric mean is defined by the following property:
+
+{\em 
+\begin{tabular}{l}
+The logarithm of {\sc geometric-mean}($S$) is the arithmetic mean of the \\
+logarithms of the elements of sequence $S$.
+\end{tabular}
+}
+
+\noindent
+Of course, we do not have to specify the bases of the logarithms---as long as all 
+have the same base.
  
 \subsubsection{Refined summarizations via higher statistical moments}
 \label{sec:mean-plus-moments}
+
+**HERE
 
 Applied to statistics:
 
