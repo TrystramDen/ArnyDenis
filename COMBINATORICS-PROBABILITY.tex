@@ -1773,6 +1773,8 @@ $S$'s frequency function $f_S$:
 \]
 Thus, the geometric mean is defined by the following property:
 
+\smallskip
+
 {\em 
 \begin{tabular}{l}
 The logarithm of {\sc geometric-mean}($S$) is the arithmetic mean of the \\
@@ -1780,37 +1782,76 @@ logarithms of the elements of sequence $S$.
 \end{tabular}
 }
 
+\smallskip
+
 \noindent
 Of course, we do not have to specify the bases of the logarithms---as long as all 
 have the same base.
  
-\subsubsection{Refined summarizations via higher statistical moments}
+\subsubsection{Refining summarizations via higher statistical moments}
 \label{sec:mean-plus-moments}
 
-**HERE
+\index{actual mean $\mu$ of a random variable}
+\index{experimental mean $\bar{x}$ of random variable $x$}
+\index{mean!actual value $\mu$}
+\index{mean!experimental value $\bar{x}$ of random variable $x$}
 
-Applied to statistics:
+We have thus far discussed measures of ``midpoint" in terms of the sequence of outcomes
+of a fixed experiment.  The more common use of means---and of other statistical 
+measures---in daily life involves the means of theoretically infinite sequences: the average
+July rainfall in Buenos Aires, the mean time to failure of transistors produced in a given
+foundry, the average wealth of residents of Monaco.  Within this expanded framework, we
+distinguish between the {\em actual mean} of an ideal random variable, which is often denoted
+$\mu$, and the {\em experimental mean} of a random variable $x$, which is usually denoted
+$\bar{x}$.
 
-\begin{eqnarray*}
-\mbox{\sc mean}(S)             & \eqdef & \bar{x} \ \eqdef  \ {1 \over n} \sum_{x \in S} \ x  \cdot f_S(x) \\
-\mbox{\sc variance}(S)        & \eqdef & {1 \over n} \sum_{x \in S} \ (x - \bar{x})^2 \cdot f_S(x)  \\
-\mbox{\sc moment}^{(k)}(S) & \eqdef & {1 \over n} \sum_{x \in S} \ (x - \bar{x})^k \cdot f_S(x) \\
-\mbox{\sc standard-deviation}(S)  & \eqdef & \sqrt{\mbox{\sc variance}(S)}
-\end{eqnarray*} 
+\index{moments in statistics}
+\index{moments in statistics!the first moment: the mean}
+\index{moments in statistics!the second moment: the variance}
+\index{variance} \index{standard deviation}
 
+Once we distinguish between actual and experimental means, we must address the question 
+of the quality of predictions based on the approximate mean $\bar{x}$ that arises from a
+given experiment, rather than on the actual mean $\mu$.  The standard approach to this
+question takes the form of the {\em higher moments} of the random variable $x$ and of the
+distribution that it ranges over.  Within this framework:
+\begin{itemize}
+\item
+The {\em first moment} of a distribution is its mean $\mu$.  The  {\em first moment} of a 
+sequence $S$ of experimental outcomes is {\sc mean}($S$).
+\item
+The {\em second moment} of a sequence $S$ of experimental outcomes is termed the
+{\it variance} of the sequence.   It measures the {\em distance} between the actual and
+experimental means of the distribution that $S$ represents:\footnote{Note that the 
+variance and standard deviation are adaptations of the $L^2$-{\it norm} of 
+Section~\ref{sec:Ln-norms} to our statistical setting.}
+\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{x \in S} \ (x - \bar{x})^2 \cdot f_S(x) \]
 
+The fact that the variance is defined in terms of the {\em squares} of the components of the
+distance measure can make it hard to reason with.  To compensate for this, it is common to
+use the {\it standard deviation}
+\[ \mbox{\sc standard-deviation}(S) \ \eqdef \ \sqrt{\mbox{\sc variance}(S)} \]
+rather than the variance when reasoning about how well $\bar{x}$ approximates $\mu$.
 
- more numbers: mean is weak because, e.g., $\{0,1\}$ with equiprobable elements has 
- average element $1/2$, even though that element does not occur in the set. SO we add 
- {\em higher moments}.  The first---and by far most popular---candidate is the variance (often
- represented by its square root, the standard deviation, for scaling reasons std is linear in the
- $x_i$ while the variance is quadratic)
- 
- variances, skews --- each higher moment compensates for the weaknesses of lower moments
+\item
+Any finite approximation to a measure that is based on infinitely many data points is 
+bound to have imperfections.  The variance exposes some of the imperfections of the
+mean as a summarization tool, but it is just one step in exposing such imperfections.  In
+response, an increasingly fine infinite sequence of moments has been developed, the
+$k$th being defined as follows.
+\[
+\mbox{\sc moment}^{(k)}(S) \ \eqdef \ {1 \over n} \sum_{x \in S} \ (x - \bar{x})^k \cdot f_S(x)
+\]
 
+The third and fourth moments (the cases $k = 3,4$) report on further aspects of the
+``spread" of the distribution, including ``skew".  In general, each higher moment exposes
+some of the weaknesses of lower moments.
+\end{itemize}
 
 \subsection{Probability distributions}
 \label{sec:prob-distributions}
+
+**HERE
 
 a function: what is the probability that a randomly selected value has a given value; this gives 
 us the notion of a {\em distribution}
