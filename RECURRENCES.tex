@@ -1305,7 +1305,7 @@ depicted in Fig.~\ref{fig:jeujetonsInit}.
         \includegraphics[scale=0.35]{FiguresMaths/GameTokenInit.png}
 \caption{The initial configuration of the Token Game: Each of the $n$
   tokens appears as a grey circle, and the empty bank has $n$ slots.
-  In the figure, $n=7$.}
+  In the figure, $n=8$.}
         \label{fig:jeujetonsInit}
 \end{center}
 \end{figure}
@@ -1369,18 +1369,29 @@ number of moves from an initially empty bank to the finally full bank.
 \subsection{An Optimal Strategy for Playing the Game}
 \label{sec:Token-Game-Strategies}
 
-The initial move of the game always involves a Type-1 move, because
-the bank is initially empty.  But, thereafter, the player may possibly
-have access to more than one move.  The question is how the player
-should choose successive moves, with the goal of filling the bank as
-quickly as possible.
-
+The question is how the player should choose successive moves, 
+with the goal of filling the bank as quickly as possible. 
 While one can garner some strategic observations about how to play the
-Game by playing small instances---a trivial example: Do not choose two
-successive type-$1$ moves, because the second one just undoes the
-first---it is not easy to discern a complete strategy.  In fact,
-though, one can rather easily specify a {\em recursive} solution to
+Game by looking at small instances.
+The basic case $n=1$ is simply to fill the slot by a Type-$1$ move.
+For $n=2$, we must first play a Type-$2$ move followed by a Type-$1$ move. 
+An observation of playing the Game for the next small values of $n$ (say $n=3, 4$ or $5$)
+evidences that the initial move involves alternatively both types: a Type-$1$ move if $n$ is odd
+and a Type-$2$ move if it is even. 
+Another easy observation is: Do not play
+two successive moves of the same type, because the second one just undoes the first.
+Thus, as the moves are imposed, a strategy is easy to deduce: 
+start by the right initial move depending of the parity of $n$ and change alternatively the type
+of the successive moves.
+How are we sure that the game provides the required terminal state? How to evaluate its cost?
+
+The answer is given by specifying a {\em recursive} solution to
 the game, which can be proved optimal using recurrences.
+
+\ignore{
+While one can garner some strategic observations about how to play the
+Game by playing small instances---a trivial example: 
+
 
 %WhileEven is not easy to describe and its cost is not easy to
 %establish.  We lay the groundwork for devising an optimal strategy
@@ -1394,6 +1405,7 @@ the game, which can be proved optimal using recurrences.
 %is obvious for Rule 1 since applying it twice consecutively leads to
 %the initial position, and easy to check for Rule 2 on the first
 %ranks).
+}
 
 \bigskip
 
@@ -1410,15 +1422,19 @@ in the following configuration, reading rightward from bank-slot $1$:
  \big[ \mbox{no token in slot } \ n-1 \big],
  \big[ \mbox{no token in slot } \ n \big]
 \]
+This requires that the first $n-2$ slots have been filled.
+Notice here that this number has the same parity as $n$.
 Once  having achieved this configuration, and then executed the move
 \begin{center}
 {\sc move token from pile into bank-slot} $n$,
 \end{center}
-the player can execute a sequence of $n-2$ type-$2$ moves of the form
+\ignore{the player can execute a sequence of $n-2$ type-$2$ moves of the form
 \begin{center}
 {\sc move token from bank-slot} \ $k$ \ {\sc to the pile},
 \end{center}
-for $k = n-2, \ n-3, \ldots, \ 1$, in turn.  At this point, if one
+for $k = n-2, \ n-3, \ldots, \ 1$, in turn.  
+}
+At this point, if one
 henceforth ignores the token in bank-slot $n$, then the player is now
 confronted with the initial configuration of the order-$(n-1)$ version
 of the Game.  You can see the recursion coming!
@@ -1436,24 +1452,25 @@ on successively smaller banks and piles.
         \label{fig:jeujetonsPrinciple}
 \end{center}
 \end{figure}
-When the {\em active} size of the bank is $k$:
+
+Let summarize these super-steps:
 \begin{enumerate}
 \item
 {\it Topmost bank configuration $\longrightarrow$ Second bank
   configuration}
 
-Move tokens into the leftmost $k-2$ slots of the bank, leaving the
+Move tokens into the leftmost $n-2$ slots of the bank, leaving the
 rightmost two slots empty.
 
 \item
 {\it Second bank configuration $\longrightarrow$ Third bank configuration}
 
-Move a token into bank-slot $k$, i.e., the current rightmost slot
+Move a token into bank-slot $n$, i.e., the current rightmost slot
 
 \item
 {\it Third bank configuration $\longrightarrow$ Fourth bank configuration}
 
-Empty  bank-slots $1, 2, \ldots k-1$; i.e., leave the current
+Empty  bank-slots $1, 2, \ldots n-1$; i.e., leave the current
 rightmost slot filled, but empty all slots to its left.
 
 \item
@@ -1465,7 +1482,7 @@ The Game is complete!
 %Thus, flipping the first tokens of the same color is different if they are all blue or red.
 %Notice that flipping the first reds can be obtained using the reverse process as for the blue ones (see coding at the end of this document).
 
-\medskip
+\ignore{\medskip
 
 We can specify the preceding recursive algorithm in the following more
 formal format:
@@ -1497,6 +1514,8 @@ $n>2$ & 1 & Fill-Bank($n-2$) & via recursive invocation \\
 %\item FillBank(n-1)
 \hline
 \end{tabular}
+}
+
 
 \subsection{An analysis of the recursive strategy}
 \label{sec:analysis-of-Token-Game}
@@ -1548,6 +1567,62 @@ F(n-1) \ + \ 2 F(n-2) + 1 & \mbox{ if } \  n > 2
 \end{array}
 \right.
 \end{equation}
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+There is a point to clarify here since the moves of the Game are not \textit{symmetric}
+(we proceed from left to right). 
+
+The recursive solution involves a step to empty a bank of size $n-2$.
+It appears that filling or emptying a bank are mirroring operations. 
+We let the reader check on small instances of $n$ that the operations for emptying 
+the bank are the reverse operations of filling the bank (the first step becomes the last one,
+the second one becomes the penultimate and so on).
+
+This observation can be proved formally as follows.
+
+Let $F^{-1}$ denote the emptying operation. 
+The cost expression of the recursive solution is precisely:
+
+\begin{equation}
+F(n) \ = \ \left\{
+\begin{array}{ll}
+1 & \mbox{ if } \ n=1 \\
+2 & \mbox{ if } \ n=2 \\
+% F(n-2) + 1 + F(n-2) + F(n-1) = 
+F(n-2) \ + 1 \ + F^{-1}(n-2) \ + F(n-1) & \mbox{ if } \  n > 2
+\end{array}
+\right.
+\end{equation}
+
+It is not difficult to derive a recursive solution for the emptying operation
+(think that they are mirrors):
+\begin{equation}
+F^{-1}(n) \ = \ \left\{
+\begin{array}{ll}
+1 & \mbox{ if } \ n=1 \\
+2 & \mbox{ if } \ n=2 \\
+F^{-1}(n-1) \ + F(n-2)  \ + 1 \ + F^{-1}(n-2) & \mbox{ if } \  n > 2
+\end{array}
+\right.
+\end{equation}
+
+Now, make the difference between both expression:
+
+$F(n) - F^{-1}(n)$
+
+$= F(n-2) \ + 1 \ + F^{-1}(n-2) \ + F(n-1) $
+
+$- F^{-1}(n-1) \ - F(n-2)  \  1 \ - F^{-1}(n-2)$
+
+$= F(n-1) - F^{-1}(n-1) = \cdots = F(1) - F^{-1}(1) = 0$
+
+Thus, the cost of $F(n)$ and $F^{-1}(n)$ are the same!
+\end{minipage}
+}
+\bigskip
+
 We can dramatically simplify recurrence
 (\ref{eq:Token-cost-recurrence}) by focusing on the function
 \[ g(n) \ \eqdef \ F(n) \ + \ F(n-1) \ \ \mbox{ for } \ n \geq 2 \]
