@@ -1871,22 +1871,74 @@ $\displaystyle {n \choose k}$ is the number of ways of selecting $k$ items from 
 $n$ items.  Hence, it is also the number of $k$-elements subsets of a set of $n$ elements.
 \item
 The binomial coefficients with upper argument $n$ sum to $2^n$:
-$\displaystyle \sum_{k=0}^n \ {n \choose k} \ = \ 2^n$
+\[ \sum_{k=0}^n \ {n \choose k} \ = \ 2^n \]
 \end{itemize}
-These facts combine to afford us an analysis of the following simple single-player 
-{\sc select-and-replace} game.  The game involves a set $S$ of $n$ tokens, labeled $1$, 
-$2$, \ldots, $n$.  (The  important thing is that the labels are distinct, not that they comprise
-the first $n$ integers.)  The  game has $n$ $3$-stage moves.  In each move, the player: \\
-(1) {\em removes a token from set $S$}; \\
-(2) {\em records the label of the removed token}; \\
-(3) {\em replaces the token into set $S$}.  \\
-At the end of these moves, we tally the number of {\em distinct} tokens that the player had 
-removed (and replaced) over the course of the $n$ moves.
+These facts combine to afford us a complete analysis of the following simple 
+{\sc select-and-replace} game, which is played by a single-player $P$.  The game
+involves a set $S$ of $n$ tokens, labeled $1$, $2$, \ldots, $n$.  (The important 
+thing is that the labels are distinct, not that they comprise the first $n$ integers.)
+The  game has $n$ $3$-stage moves.  In each move, $P$:
+
+(1) {\em removes a token from set $S$};
+
+(2) {\em records the label of the removed token};
+
+(3) {\em replaces the token into set $S$}.
+
+\noindent
+At the end of the $n$ moves, we assign player $P$ a score that is the number of 
+{\em distinctly labeled} tokens that $P$ had removed (and replaced) during this
+play of the game.
+
+Let us denote by $X$ the random variable that on a particular play of the game
+assumes the value $k \in \{1, 2, \ldots, n\}$ just when player $P$ achieves score $k$ 
+during that play.  Elementary reasoning verifies that for any play,
+\[ f(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \cdot 2^{-n}  \]
+By definition, then, random variable $X$ admits the thus-defined probability frequency 
+function $f$.
+
+We illustrate the probabilities associated with the {\sc select-and-replace} game for 
+$n = 10, 15$ in Table~\ref{tab:select-replace}.  
+
+\begin{table}[htb]
+\label{tab:select-replace}
+\caption{Probabilities associated with the {\sc select-and-replace} game for 
+$n = 10, 15$}
+\begin{tabular}{|c||r|l||r|l|}
+\hline
+Value of $k$ & $\displaystyle {10 \choose k}$ & $f_{10}(k)$ 
+& $\displaystyle {15 \choose k}$ & $f_{15}(k)$ \\
+\hline
+\hline
+$1$   &   $10$ & $0.010$ &     $15$ & $0.000458$ \\
+$2$   &   $45$ & $0.044$ &   $105$ & $0.00320$ \\
+$3$   & $120$ & $0.117$ &   $455$ & $0.0139$ \\
+$4$   & $210$ & $0.205$ & $1365$ & $0.0417$ \\
+$5$   & $252$ & $0.246$ & $3003$ & $0.0916$ \\
+$6$   & $210$ & $0.205$ & $5005$ & $0.153$ \\
+$7$   & $120$ & $0.117$ & $6435$ & $0.196$ \\
+$8$   &   $45$ & $0.044$ & $6435$ & $0.196$ \\
+$9$   &   $10$ & $0.010$ & $5005$  & $0.153$ \\
+$10$ &     $1$ & $0.001$ & $3003$  & $0.0916$ \\
+$11$ & --        & --            & $1365$  & $0.0417$ \\
+$12$ & --        & --            &    $455$ &  $0.0139$ \\
+$13$ & --       & --             &    $105$ & $0.00320$ \\
+$14$ & --       & --             &      $15$ & $0.000458$ \\
+$15$ & --       & --             &        $1$ & $0.0000305$  \\
+\hline
+\end{tabular}
+\end{table}
+
+In Fig.~\ref{fig:gaussiandistribution}, we illustrate via histograms the values of 
+$\displaystyle {n \choose k}$ that are associated with the probabilities in 
+Table~\ref{tab:select-replace}: these values are, of course, rows of the 
+appropriate instance of Pascal's triangle.
+
 **HERE
 
 
 
-The distribution of some rows of the Pascal's triangle is given in Fig.~\ref{fig:gaussiandistribution}.
+The distribution of some rows of the Pascal's triangle is given 
 
 $1,10,45,120,210,252,210,120,45,10,1$ and
 
