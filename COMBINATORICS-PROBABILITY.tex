@@ -1890,69 +1890,97 @@ At the end of the $n$ moves, we assign player $P$ a score that is the number of
 {\em distinctly labeled} tokens that $P$ had removed (and replaced) during this
 play of the game.
 
-Let us denote by $X$ the random variable that on a particular play of the game
-assumes the value $k \in \{1, 2, \ldots, n\}$ just when player $P$ achieves score $k$ 
-during that play.  Elementary reasoning verifies that for any play,
-\[ f(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \cdot 2^{-n}  \]
-By definition, then, random variable $X$ admits the thus-defined probability frequency 
-function $f$.
+Let us denote by $X$ the random variable that assumes the value $k \in \{1, 2, \ldots, n\}$
+on a particular play of the {\sc select-and-replace} game just when player $P$ achieves 
+score $k$ during that play.  Elementary reasoning provides an explicit expression for
+the probability $p(k)$ of achieving the score $k$ during a play of the game:
+\[ p(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \cdot 2^{-n}  \]
+By definition, $p$ is a probability frequency function for random variable $X$.
 
 We illustrate the probabilities associated with the {\sc select-and-replace} game for 
 $n = 10, 15$ in Table~\ref{tab:select-replace}.  
-
 \begin{table}[htb]
 \label{tab:select-replace}
-\caption{Probabilities associated with the {\sc select-and-replace} game for 
-$n = 10, 15$}
+\caption{Probabilities (to $3$ significant figures) associated with the 
+{\sc select-and-replace} game, for sets of sizes $n = 10, 15$}
 \begin{tabular}{|c||r|l||r|l|}
 \hline
-Value of $k$ & $\displaystyle {10 \choose k}$ & $f_{10}(k)$ 
-& $\displaystyle {15 \choose k}$ & $f_{15}(k)$ \\
+Value of $k$ & $\displaystyle {10 \choose k}$ & \ $p_{10}(k)$ 
+& $\displaystyle {15 \choose k}$ & \ $p_{15}(k)$ \\
 \hline
 \hline
-$1$   &   $10$ & $0.010$ &     $15$ & $0.000458$ \\
-$2$   &   $45$ & $0.044$ &   $105$ & $0.00320$ \\
-$3$   & $120$ & $0.117$ &   $455$ & $0.0139$ \\
-$4$   & $210$ & $0.205$ & $1365$ & $0.0417$ \\
-$5$   & $252$ & $0.246$ & $3003$ & $0.0916$ \\
-$6$   & $210$ & $0.205$ & $5005$ & $0.153$ \\
-$7$   & $120$ & $0.117$ & $6435$ & $0.196$ \\
-$8$   &   $45$ & $0.044$ & $6435$ & $0.196$ \\
-$9$   &   $10$ & $0.010$ & $5005$  & $0.153$ \\
-$10$ &     $1$ & $0.001$ & $3003$  & $0.0916$ \\
-$11$ & --        & --            & $1365$  & $0.0417$ \\
-$12$ & --        & --            &    $455$ &  $0.0139$ \\
-$13$ & --       & --             &    $105$ & $0.00320$ \\
-$14$ & --       & --             &      $15$ & $0.000458$ \\
-$15$ & --       & --             &        $1$ & $0.0000305$  \\
+$1$   &   $10$ & \ $0.010$ &     $15$ &  \ $0.000458$ \\
+$2$   &   $45$ & \ $0.044$ &   $105$ &  \ $0.00320$ \\
+$3$   & $120$ & \ $0.117$ &   $455$ &  \ $0.0139$ \\
+$4$   & $210$ & \ $0.205$ & $1365$ &  \ $0.0417$ \\
+$5$   & $252$ & \ $0.246$ & $3003$ &  \ $0.0916$ \\
+$6$   & $210$ & \ $0.205$ & $5005$ &  \ $0.153$ \\
+$7$   & $120$ & \ $0.117$ & $6435$ &  \ $0.196$ \\
+$8$   &   $45$ & \ $0.044$ & $6435$ &  \ $0.196$ \\
+$9$   &   $10$ & \ $0.010$ & $5005$  & \ $0.153$ \\
+$10$ &     $1$ & \ $0.001$ & $3003$  & \ $0.0916$ \\
+$11$ & --        & \ --            & $1365$  & \ $0.0417$ \\
+$12$ & --        & \ --            &    $455$ & \ $0.0139$ \\
+$13$ & --       & \ --             &    $105$ & \ $0.00320$ \\
+$14$ & --       & \ --             &      $15$ & \ $0.000458$ \\
+$15$ & --       & \ --             &        $1$ & \ $0.0000305$  \\
 \hline
 \end{tabular}
 \end{table}
+Fig.~\ref{fig:gaussiandistribution} is a companion to Table~\ref{tab:select-replace},
+in which we present histograms depicting the values of 
+$\displaystyle {n \choose k}$ that are associated with the probabilities in the table;
+these values are, of course, rows of the appropriate instance of Pascal's triangle.
 
-In Fig.~\ref{fig:gaussiandistribution}, we illustrate via histograms the values of 
-$\displaystyle {n \choose k}$ that are associated with the probabilities in 
-Table~\ref{tab:select-replace}: these values are, of course, rows of the 
-appropriate instance of Pascal's triangle.
-
-**HERE
-
-
-
-The distribution of some rows of the Pascal's triangle is given 
-
+\ignore{*********
 $1,10,45,120,210,252,210,120,45,10,1$ and
-
 $1,15,105,455,1365,3003,5005,6435,6435,5005,3003,1365,455,105,15,1$.
-They show a Gaussian distribution.
+***************}
+
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresMaths/ProbaGaussianDistribution}
-        \caption{Distribution of the binomial coefficients in the 10th row (left) and the 15th row (right) of the Pascal's triangle.
-        The scale of the right histogram is 1/20.}
+        \caption{Histograms of the binomial coefficients in the $10$th row (left) and the $15$th
+         row (right) of Pascal's triangle. The scale of the righthand histogram is 1:20.}
         \label{fig:gaussiandistribution}
 \end{center}
 \end{figure}
 
+\index{normal distribution} \index{normal distribution!mean} \index{Gaussian distribution}
+\index{normal distribution!variance} \index{normal distribution!standard deviation}
+The histograms of Fig.~\ref{fig:gaussiandistribution} are discrete versions of the
+familiar Bell curve of a {\em normal}, or, {\it Gaussian} distribution.  (The word ``normal" 
+in this context emphasizes that these distribution are defined by their ``norms", namely, 
+their means and variances.) Although our focus in this text is entirely on {\em discrete} 
+mathematical phenomena, it is important to recognize concepts and insights that 
+emerge from the {\em continuous} versions of these phenomena.  A (continuous) normal 
+distribution is one whose probability frequency function has the form
+\[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
+In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ 
+(resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  Indeed, as is clear
+from the formula, parameters $\mu$ and $\sigma$ {\em specify} each individual normal 
+distribution.
+
+Here are a few noteworthy features of discrete and continuous normal distributions.
+\begin{itemize}
+\item
+In the {\em discrete} version of the concept:
+  \begin{itemize}
+  \item
+In common with the underlying binomial coefficients
+\[ \left\{ {n \choose k} \ | \ k = 0, 1, \ldots, n \right\} \]
+the distribution has a single maximum when $n$ is even but {\em two}
+maxima when $n$ is odd.
+
+  \end{itemize}
+
+In the {\em continuous} version of the concept:
+  \begin{itemize}
+  \item
+As a cultural note, the normal probability frequency function involves two of the
+fundamental constants of mathematics: $e$ and $\pi$.
+  \end{itemize}
+\end{itemize}
 
 \index{probability!distribution function} \index{probability!cumulative distribution function}
 
