@@ -631,9 +631,10 @@ that sets the tone for this section.
 
 \noindent
 {\em  The (discrete) {\em probability}, or, {\em likelihood}, of an event is the ratio:}
-\[ 
+\begin{equation}
+\label{eq:prob-def-ratio}
 \frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
-\]
+\end{equation}
 
 \noindent
 This approach to probabilities has important technical consequences.
@@ -1389,54 +1390,124 @@ binomial coefficients.}
 \label{sec:prob-distributions}
 
 \index{probability!frequency function} 
+\index{probability!sample space}
+\index{probability!random variable} \index{sample space}
+\index{random variable} 
 
-Let us focus on a random variable $X$ that ranges over a sample space $S$.  Each value
-$x \in S$ has an associated probability which we denote $Pr[X=x]$.  The function $f$ on 
-$S$ defined as follows for $x \in S$:
-\[ f(x) \ = \ Pr[X=x] \]
-is called a {\it probability frequency function (for $S$)}.
+Applications of probability theory usually operate with sets whose
+elements represent the outcomes of individual moves in an
+experiment---think, for instance of the deal of a single card or the
+roll of a single die.  The range of possible outcomes is termes a {\it
+  sample space}; and, a variable that ranges over the frequencies of
+outcomes from the sample space is called a {\it random variable}.  The
+goal of a probabilistic analysis is to capture important elements of
+``{\em the truth}'', as exposed via experiments that produce sequences
+of {\em outcomes}, each being an instantiaiton of a rendom variable
+with a value from its sample space.
+
+\subsection{Probability Frequency Functions}
+
+Let us abstract the preceding environment, by focussing on:
+\begin{itemize}
+\item
+a sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$ of $n$ values
+from an underlying sample space $\Sigma$.  Each value $s_i$ represents
+one outcome of the $n$ produced by an $n$-trial experiment.
 
 \smallskip
 
-We have already seen probability frequency function, which we discussed without using the
-term, because it had not yet been introduced.  The binomial coefficients, which have arisen
-in many of our discussions, provide access to one such example.  We know the following 
-about the binomial coefficients:
-\begin{itemize}
-\item
-$\displaystyle {n \choose k}$ is the number of ways of selecting $k$ items from a set of 
-$n$ items.  Hence, it is also the number of $k$-elements subsets of a set of $n$ elements.
-\item
-The binomial coefficients with upper argument $n$ sum to $2^n$:
-\[ \sum_{k=0}^n \ {n \choose k} \ = \ 2^n \]
-\end{itemize}
-These facts combine to afford us a complete analysis of the following simple 
-{\sc select-and-replace} game, which is played by a single-player $P$.  The game
-involves a set $S$ of $n$ tokens, labeled $1$, $2$, \ldots, $n$.  (The important 
-thing is that the labels are distinct, not that they comprise the first $n$ integers.)
-The  game has $n$ $3$-stage moves.  In each move, $P$:
+Exemplary sequences $S$: (1) the sequence of numbers from the sample
+space $\Sigma = \{1, 2, 3, 4, 5, 6\}$ which result from $n$ rolls of a
+$6$-side die; (2) the noontime temperatures observed in Grenoble,
+France, over a period of $n$ days; (3) the observed diameters of $n$
+roller bearings after a given run at Factory $X$.  The sample space
+for example (2) might be number $t$ within the range $-10 \leq t \leq
+45$; the sample space for example (3) would be numbers that represent
+the range of diameters of roller bearings.
 
-(1) {\em removes a token from set $S$};
+\item
+a {\it frequency function} $f_S$ which reports on the multiplicity of each outcome $s_i$ 
+within the sequence $S$.
+  \begin{itemize}
+  \item
+For illustration, if 
+\begin{equation}
+\label{eq:sample-seq-10}
+S \ = \ \langle 1, 2, 2, 3, 3, 3, 4, 4, 4, 4 \rangle
+\end{equation}
+then for each $i \in \{1, 2, 3, 4\}$ (this is the relevant sample
+space $\Sigma$, i.e., the set that underlies sequence $S$), $f_S(i) = i$.
+  \item
+Note that $f_S(s_1) + f_S(s_2) + \cdots + f_S(s_n) \ = \ n$.
+  \end{itemize}
+\end{itemize}
+
+\smallskip
+
+Now, we focus on a random variable $X$ that ranges over a sample space
+$\Sigma$.  Each value $x \in \Sigma$ has an associated probability
+which we denote $Pr[X=x]$.  (Note that traditionally, the name of the
+relevant sample space is assumed to be known, hence is not mentioned
+explicitly.)  The function $f$ on $S$ defined as follows for $x \in
+S$:
+\[ f(x) \ = \ Pr[X=x] \]
+is called a {\it probability frequency function (for sequence $S$)}.
+(We have already seen probability frequency functions, but we have
+thus far discussed them without using the term.)
+
+\subsection{An Illustrative Game}
+
+The following simple game illustrates probability frequency functions and
+gives us access to other important probability-related functions.
+
+The {\sc select-and-replace} game is played by a single-player $P$, using a
+set $\Sigma$ of $n$ tokens, labeled $1$, $2$, \ldots, $n$; set $\Sigma$
+also serves as our sample space. (The important thing in this setting is that 
+the token labels are distinct, not that they comprise the first $n$ integers.)
+Each move of the game has $3$ stages.  In each move, player $P$:
+
+(1) {\em removes a token from set $\Sigma$};
 
 (2) {\em records the label of the removed token};
 
-(3) {\em replaces the token into set $S$}.
+(3) {\em replaces the token into set $\Sigma$}.
 
 \noindent
 At the end of the $n$ moves, we assign player $P$ a score that is the number of 
-{\em distinctly labeled} tokens that $P$ had removed (and replaced) during this
-play of the game.  ($P$ may have removed and replaced the same token multiple
-times; the token counts only once toward $P$'s score.)
+{\em distinctly labeled} tokens that $P$ had removed (and replaced) over the
+course of this $n$-move play of the game.  (Even if $P$ removes and replaces
+a given token $\tau \in \Sigma$ multiple times, token $\tau$ counts only once toward $P$'s score.)
 
-Let us denote by $X$ the random variable that assumes the value $k \in \{1, 2, \ldots, n\}$
-on a particular play of the {\sc select-and-replace} game just when player $P$ achieves 
-score $k$ during that play.  Elementary reasoning provides an explicit expression for
-the probability $p(k)$ of achieving the score $k$ during a play of the game:
-\[ p(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \cdot 2^{-n}  \]
-By definition, $p$ is a probability frequency function for random variable $X$.
+Let us denote by $X$ the random variable which assumes the value 
+$k \in \{1, 2, \ldots, n\}$ on a particular play of the {\sc select-and-replace} game 
+just when player $P$ achieves score $k$ during that play.  We can calculate the
+probability $p(k)$ of achieving score $k$ by directly invoking the
+definitional ratio (\ref{eq:prob-def-ratio}).  We argue using basic facts involving 
+binomial coefficients.
+\begin{itemize}
+\item
+For each integer $k$, $\displaystyle {n \choose k}$ is the number of ways to 
+select $k$ items from a set of $n$ items.
+Hence, it is also the number of $k$-elements subsets of the $n$-element 
+set $\Sigma$.
+\item
+The binomial coefficients with upper argument $n$ sum to $2^n$:
+\[ \sum_{k=0}^n \ {n \choose k} \ = \ 2^n \]
+Hence, $2^n$ is the total number of subsets of the $n$-element set $\Sigma$,
+and $2^n -1$ is the number of {\em nonempty} such sets.
+(We already knew this, of course.)
+\end{itemize}
+Thus, $P$'s score can result from selecting any of $\Sigma$'s $(k > 0)$-element 
+subsets---which are $\displaystyle {n \choose k}$ in number---from among 
+$\Sigma$'s $2^n -1$ nonempty subsets.  It follows, therefore, that
+\[ p(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \div (2^n -1)  \]
 
-We illustrate the probabilities associated with the {\sc select-and-replace} game for 
-$n = 10, 15$ in Table~\ref{tab:select-replace}.  
+By definition, $p(x)$ is a probability frequency function for random variable $X$.
+
+\smallskip
+
+Table~\ref{tab:select-replace} illustrates the probabilities associated with the 
+possible scores of the {\sc select-and-replace} game for $n = 10, 15$.  
 \begin{table}[htb]
 \label{tab:select-replace}
 \caption{Probabilities (to $3$ significant figures) associated with the 
@@ -1656,7 +1727,7 @@ focused comprehensive introductions to this important field.
 \section{``Doing" Statistics}
 \label{sec:doing-statistics}
 
-\index{sample space} \index{random variable}
+
 The person who wants to discover truth by ``doing" statistics has two primary tools:
 \begin{itemize}
 \item
@@ -1673,42 +1744,6 @@ enables to draw inferences about the real world.
 Note the role that the Law of Large Numbers plays here by ensuring that performing
 more trials yields experimental results that more closely resemble reaity
 
-The field of statistics usually encodes results as sets of numbers whose values
-range over a suitable {\it sample space}.  A variable that ranges over the frequencies
-of outcomes in the sample space is called a {\it random variable}.  Statistics strives to 
-capture important elements of the truth exposed via experimentation by analyzing the 
-behavior of random variables.  Specifically, each experiment is associated with a
-random variable that ranges over the set of possible outcomes of the experiment.  
-
-\smallskip
-
-Let us abstract the environment in which statistics is practiced by focussing on:
-\begin{itemize}
-\item
-a sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$ of $n$ numbers which 
-represent the outcomes of an $n$-trial experiment.
-
-\smallskip
-
-Sample sequences $S$: (1) the sequence of numbers from the set $\{1, 2, 3, 4, 5, 6\}$ 
-which result from $n$ rolls of a $6$-side die; (2) the noontime temperatures observed in 
-Grenoble over a period of $n$ days; (3) the observed diameters of $n$ roller bearings 
-after a given run at Factory $X$.  
-\item
-a {\it frequency function} $f_S$ which reports on the multiplicity of each outcome $s_i$ 
-within the sequence $S$.
-  \begin{itemize}
-  \item
-For illustration, if 
-\begin{equation}
-\label{eq:sample-seq-10}
-S \ = \ \langle 1, 2, 2, 3, 3, 3, 4, 4, 4, 4 \rangle
-\end{equation}
-then for each $i \in \{1, 2, 3, 4\}$ (the set that underlies sequence $S$), $f_S(i) = i$.
-  \item
-Note that $f_S(s_1) + f_S(s_2) + \cdots + f_S(s_n) \ = \ n$.
-  \end{itemize}
-\end{itemize}
 
 \ignore{************
 Statistics is complementary to probability theory in a sense that can be illustrated by the 
