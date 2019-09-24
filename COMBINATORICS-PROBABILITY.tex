@@ -1,4 +1,4 @@
-%version of 09-19-19
+%version of 09-24-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
@@ -579,21 +579,24 @@ $p=lim_{n \rightarrow \infty}\frac{d(n)}{n!}=\frac{1}{e}$.
 *****************}
 
 
-\section{An Applied Introduction to Combinatorial Probability}
+\section{Introducing Combinatorial Probability via Examples}
 \label{sec:combinatorial-prob}
 
-Perhaps the easiest and most engaging way to introduce ``probability
-via counting" is by calculating game-related likelihoods---deals of cards,
-rolls of dice, guesses of various sorts.  ``Why is one specific genre of deal in poker
-(say, a straight) worth more than another (say, three of a kind)?"  The arithmetic required
-for such a discussion is elementary, and the references to ``gedanken" gambling are easily
-understood and are of some interest even to non-gamblers.  One can also introduce in such
-a setting concepts such as randomness, bias, etc., that are so important in the design of
-experiments and the analysis of their outcomes.
+Perhaps the easiest and most engaging way to introduce ``combinatorial
+probability''---i.e., probability via counting"---is by calculating
+game-related likelihoods---deals of cards, rolls of dice, and guessing
+games of various sorts.  ``Why is one specific genre of deal in poker
+(say, a straight) worth more than another (say, three of a kind)?"
+The arithmetic required for such a discussion is elementary, and the
+references to ``{\it gedanken} gambling'' are easily understood and
+are of some interest even to non-gamblers.  One can also introduce in
+such a setting concepts such as randomness, bias, etc., that are so
+important in the design of experiments and the analysis of their
+outcomes.
 
 This, then, will be our approach to the subject of combinatorial probability.  The reader has already
 seen more than enough ``dry" facts about sets and how to count their elements.  It is time to
-reap the rewards of that material. 
+reap the rewards of acquiring access to that material. 
 
 \ignore{***************
 \subsection{A Practical Introduction to Probability}
@@ -620,16 +623,20 @@ following subsections.
 {\Denis Here we may be more precise about the content: the probabilities are built upon combinatoric rules, another interesting point is to distinguish between probability and statistics...}
 *****************}
 
-Before we begin to play, though, let us establish some expectations.
+Before we begin to play, though, we establish some expectations,
+beginning with the combinatorics-based definition of ``probability''
+that sets the tone for this section.
 
 \bigskip
 
 \noindent
-{\em We define the (discrete) probability, or, likelihood, of an event is in terms of a ratio:}
+{\em  The (discrete) {\em probability}, or, {\em likelihood}, of an event is the ratio:}
 \[ 
 \frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
 \]
-This approach has technical consequences.
+
+\noindent
+This approach to probabilities has important technical consequences.
   \begin{itemize}
   \item
 The probability of any targeted event $E$ is $\leq 1$.  This means:
@@ -688,7 +695,8 @@ Therefore, one can always interchange the following  locutions
 \bigskip
 
 \noindent
-We are going to focus on {\em games of pure chance}---because our underlying interest is in
+We are going to focus on {\em games of pure chance}---with no
+complicating notion of strategy---because our underlying interest is in
 probability, not game theory.
 
 \bigskip
@@ -715,30 +723,27 @@ John Nash, which introduced the now-familiar notion of ``Nash equilibrium."
 }
 
 
-\subsection{Illustration: The Game of Poker}
+\subsection{The Game of Poker: Counting Joint Events}
 
 We focus on a typical deck of 52 playing cards: The cards are partitioned into
 
 \medskip
 
-\hspace*{-.1in}
-\begin{tabular}{ll}
+\noindent
+\begin{tabular}{cll}
+$*$ &
 four {\em suits}:  & {\sc clubs}, {\sc diamonds}, {\sc hearts}, {\sc spades} \ (in increasing value) \\
   \\
+$*$ &
 $13$ {\em face values}: &
-\begin{tabular}{ll}
-number cards: &
-$2$,
-$3$,
-$4$,
-$5$,
-$6$,
-$7$,
-$8$,
-$9$ \\
-picture cards: &
-{\sc Jack}, {\sc Queen}, {\sc King}, {\sc Ace} \ (in increasing value)
-\end{tabular} 
+$\displaystyle \left\{
+\begin{array}{l}
+\mbox{number cards}: 
+2, 3, 4, 5, 6, 7, 8, 9 \\
+\mbox{picture cards}: 
+\mbox{{\sc Jack, Queen, King, Ace}  (in increasing value)}
+\end{array}
+\right.$ 
 \end{tabular} 
 
 \medskip
@@ -834,7 +839,7 @@ The multiplication principle thus tells us that there are precisely $13 \times 4
 {\it four-of-a-kind} poker hands, so the probability of being dealt such a hand is
 \[ 
 Pr(\mbox{four of a kind}) \ \ = \ \
-\frac{624}{2,598,960 }  \ \ \approx \ \ 2.4 \time 10^{-4} . \]
+\frac{624}{2,598,960 }  \ \ \approx \ \ 2.4 \times 10^{-4} . \]
 
 \ignore{***********
 is a remaining card left that is any one among the 48 remaining ones.
@@ -918,7 +923,7 @@ results---but it s fun to see why the various poker hands have their relative va
 
 
 
-\subsection{Illustration: The Monty Hall Puzzle}
+\subsection{The Monty Hall Puzzle: {\em Conditional} Probabilities}
 \label{sec:monty-hall}
 
 The following real-life situation illustrates that reasoning
@@ -1003,7 +1008,7 @@ And---see the interactive sites on the Internet that actually perform the
 computation of likelihoods!
 
 
-\subsection{Illustration: The Birthday Puzzle}
+\subsection{The Birthday Puzzle: {\em Complementary} Counting}
 \label{sec:birthday-puzzle}
 \index{birthday puzzle}
 
@@ -1133,7 +1138,7 @@ When our teacher's class grows to 30 students, the probability of a shared birth
 to $70.632\%$.
 
 
-\subsection{Illustration: Sum-of-Spots Dice Games}
+\subsection{Sum-of-Spots Dice Games: Counting with Complex Events}
 \label{sec:three-dice}
 \index{Dice games}
 
@@ -1378,6 +1383,157 @@ The second question is the main purpose of statistics that is developed in the n
 {\Denis We have to mention the links with the two other places where we discussed Binomial coefficients, recurrences and arithmetic, in this last case, we presented a question of computing the probability of getting 25 tails over 40 trials while flipping coins...}
 {\Arny I believe that we have already stressed in a few places how many conceptual uses one can make of 
 binomial coefficients.}
+
+
+\section{Probability Functions: Frequencies and Distributions}
+\label{sec:prob-distributions}
+
+\index{probability!frequency function} 
+
+Let us focus on a random variable $X$ that ranges over a sample space $S$.  Each value
+$x \in S$ has an associated probability which we denote $Pr[X=x]$.  The function $f$ on 
+$S$ defined as follows for $x \in S$:
+\[ f(x) \ = \ Pr[X=x] \]
+is called a {\it probability frequency function (for $S$)}.
+
+\smallskip
+
+We have already seen probability frequency function, which we discussed without using the
+term, because it had not yet been introduced.  The binomial coefficients, which have arisen
+in many of our discussions, provide access to one such example.  We know the following 
+about the binomial coefficients:
+\begin{itemize}
+\item
+$\displaystyle {n \choose k}$ is the number of ways of selecting $k$ items from a set of 
+$n$ items.  Hence, it is also the number of $k$-elements subsets of a set of $n$ elements.
+\item
+The binomial coefficients with upper argument $n$ sum to $2^n$:
+\[ \sum_{k=0}^n \ {n \choose k} \ = \ 2^n \]
+\end{itemize}
+These facts combine to afford us a complete analysis of the following simple 
+{\sc select-and-replace} game, which is played by a single-player $P$.  The game
+involves a set $S$ of $n$ tokens, labeled $1$, $2$, \ldots, $n$.  (The important 
+thing is that the labels are distinct, not that they comprise the first $n$ integers.)
+The  game has $n$ $3$-stage moves.  In each move, $P$:
+
+(1) {\em removes a token from set $S$};
+
+(2) {\em records the label of the removed token};
+
+(3) {\em replaces the token into set $S$}.
+
+\noindent
+At the end of the $n$ moves, we assign player $P$ a score that is the number of 
+{\em distinctly labeled} tokens that $P$ had removed (and replaced) during this
+play of the game.  ($P$ may have removed and replaced the same token multiple
+times; the token counts only once toward $P$'s score.)
+
+Let us denote by $X$ the random variable that assumes the value $k \in \{1, 2, \ldots, n\}$
+on a particular play of the {\sc select-and-replace} game just when player $P$ achieves 
+score $k$ during that play.  Elementary reasoning provides an explicit expression for
+the probability $p(k)$ of achieving the score $k$ during a play of the game:
+\[ p(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \cdot 2^{-n}  \]
+By definition, $p$ is a probability frequency function for random variable $X$.
+
+We illustrate the probabilities associated with the {\sc select-and-replace} game for 
+$n = 10, 15$ in Table~\ref{tab:select-replace}.  
+\begin{table}[htb]
+\label{tab:select-replace}
+\caption{Probabilities (to $3$ significant figures) associated with the 
+{\sc select-and-replace} game, for sets of sizes $n = 10, 15$}
+\begin{tabular}{|c||r|l||r|l|}
+\hline
+Value of $k$ & $\displaystyle {10 \choose k}$ & \ $p_{10}(k)$ 
+& $\displaystyle {15 \choose k}$ & \ $p_{15}(k)$ \\
+\hline
+\hline
+$1$   &   $10$ & \ $0.010$ &     $15$ &  \ $0.000458$ \\
+$2$   &   $45$ & \ $0.044$ &   $105$ &  \ $0.00320$ \\
+$3$   & $120$ & \ $0.117$ &   $455$ &  \ $0.0139$ \\
+$4$   & $210$ & \ $0.205$ & $1365$ &  \ $0.0417$ \\
+$5$   & $252$ & \ $0.246$ & $3003$ &  \ $0.0916$ \\
+$6$   & $210$ & \ $0.205$ & $5005$ &  \ $0.153$ \\
+$7$   & $120$ & \ $0.117$ & $6435$ &  \ $0.196$ \\
+$8$   &   $45$ & \ $0.044$ & $6435$ &  \ $0.196$ \\
+$9$   &   $10$ & \ $0.010$ & $5005$  & \ $0.153$ \\
+$10$ &     $1$ & \ $0.001$ & $3003$  & \ $0.0916$ \\
+$11$ & --        & \ --            & $1365$  & \ $0.0417$ \\
+$12$ & --        & \ --            &    $455$ & \ $0.0139$ \\
+$13$ & --       & \ --             &    $105$ & \ $0.00320$ \\
+$14$ & --       & \ --             &      $15$ & \ $0.000458$ \\
+$15$ & --       & \ --             &        $1$ & \ $0.0000305$  \\
+\hline
+\end{tabular}
+\end{table}
+Fig.~\ref{fig:gaussiandistribution} is a companion to Table~\ref{tab:select-replace},
+in which we present histograms depicting the values of 
+$\displaystyle {n \choose k}$ that are associated with the probabilities in the table;
+these values are, of course, rows of the appropriate instance of Pascal's triangle.
+
+\ignore{*********
+$1,10,45,120,210,252,210,120,45,10,1$ and
+$1,15,105,455,1365,3003,5005,6435,6435,5005,3003,1365,455,105,15,1$.
+***************}
+
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresMaths/ProbaGaussianDistribution}
+        \caption{Histograms of the binomial coefficients in the $10$th row (left) and the $15$th
+         row (right) of Pascal's triangle. The scale of the righthand histogram is 1:20.}
+        \label{fig:gaussiandistribution}
+\end{center}
+\end{figure}
+
+\index{normal distribution} \index{normal distribution!mean} \index{Gaussian distribution}
+\index{normal distribution!variance} \index{normal distribution!standard deviation}
+The histograms of Fig.~\ref{fig:gaussiandistribution} are discrete versions of the
+familiar Bell curve of a {\em normal}, or, {\it Gaussian} distribution.  (The word ``normal" 
+in this context emphasizes that these distribution are defined by their ``norms", namely, 
+their means and variances.) Although our focus in this text is entirely on {\em discrete} 
+mathematical phenomena, it is important to recognize concepts and insights that 
+emerge from the {\em continuous} versions of these phenomena.  A (continuous) normal 
+distribution is one whose probability frequency function has the form
+\[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
+In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ 
+(resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  Indeed, as is clear
+from the formula, parameters $\mu$ and $\sigma$ {\em specify} each individual normal 
+distribution.
+
+Here are a few noteworthy features of discrete and continuous normal distributions.
+\begin{itemize}
+\item
+In the {\em discrete} version of the concept:
+  \begin{itemize}
+  \item
+In common with the underlying binomial coefficients
+\[ \left\{ {n \choose k} \ | \ k = 0, 1, \ldots, n \right\} \]
+the distribution has a single maximum when $n$ is even but {\em two}
+maxima when $n$ is odd.
+
+  \end{itemize}
+
+In the {\em continuous} version of the concept:
+  \begin{itemize}
+  \item
+As a cultural note, the normal probability frequency function involves two of the
+fundamental constants of mathematics: $e$ and $\pi$.
+  \end{itemize}
+\end{itemize}
+
+\index{probability!distribution function} \index{probability!cumulative distribution function}
+
+In addition to the point-wise information that a probability frequency function yields, we are
+often interested in the {\em cumulative} information yielded by the 
+{\it (cumulative) distribution function}\footnote{Mathematicians usually refer to function $F$
+simply as a distribution function; statisticians usually add the qualifier ``cumulative".}~$F$ 
+on $S$, which is defined as follows for $x \in S$:
+\[ F(x) \ = \ Pr[X \leq x] \]
+In discrete settings, we can redefine $F(x)$ as a summation:
+\[ F(x) \ = \ \sum_{y \leq x} \ f(y) \]
+
+{\Arny Examples .. maybe this is the place to define and exemplify the normal distribution
+and the exponential distribution?}
+
 
 
 \section{Statistics: The Art of Summarization}
@@ -1847,156 +2003,6 @@ The third and fourth moments (the cases $k = 3,4$) report on further aspects of 
 ``spread" of the distribution, including ``skew".  In general, each higher moment exposes
 some of the weaknesses of lower moments.
 \end{itemize}
-
-\subsection{Probability functions: frequencies and distributions}
-\label{sec:prob-distributions}
-
-\index{probability!frequency function} 
-
-Let us focus on a random variable $X$ that ranges over a sample space $S$.  Each value
-$x \in S$ has an associated probability which we denote $Pr[X=x]$.  The function $f$ on 
-$S$ defined as follows for $x \in S$:
-\[ f(x) \ = \ Pr[X=x] \]
-is called a {\it probability frequency function (for $S$)}.
-
-\smallskip
-
-We have already seen probability frequency function, which we discussed without using the
-term, because it had not yet been introduced.  The binomial coefficients, which have arisen
-in many of our discussions, provide access to one such example.  We know the following 
-about the binomial coefficients:
-\begin{itemize}
-\item
-$\displaystyle {n \choose k}$ is the number of ways of selecting $k$ items from a set of 
-$n$ items.  Hence, it is also the number of $k$-elements subsets of a set of $n$ elements.
-\item
-The binomial coefficients with upper argument $n$ sum to $2^n$:
-\[ \sum_{k=0}^n \ {n \choose k} \ = \ 2^n \]
-\end{itemize}
-These facts combine to afford us a complete analysis of the following simple 
-{\sc select-and-replace} game, which is played by a single-player $P$.  The game
-involves a set $S$ of $n$ tokens, labeled $1$, $2$, \ldots, $n$.  (The important 
-thing is that the labels are distinct, not that they comprise the first $n$ integers.)
-The  game has $n$ $3$-stage moves.  In each move, $P$:
-
-(1) {\em removes a token from set $S$};
-
-(2) {\em records the label of the removed token};
-
-(3) {\em replaces the token into set $S$}.
-
-\noindent
-At the end of the $n$ moves, we assign player $P$ a score that is the number of 
-{\em distinctly labeled} tokens that $P$ had removed (and replaced) during this
-play of the game.
-
-Let us denote by $X$ the random variable that assumes the value $k \in \{1, 2, \ldots, n\}$
-on a particular play of the {\sc select-and-replace} game just when player $P$ achieves 
-score $k$ during that play.  Elementary reasoning provides an explicit expression for
-the probability $p(k)$ of achieving the score $k$ during a play of the game:
-\[ p(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \cdot 2^{-n}  \]
-By definition, $p$ is a probability frequency function for random variable $X$.
-
-We illustrate the probabilities associated with the {\sc select-and-replace} game for 
-$n = 10, 15$ in Table~\ref{tab:select-replace}.  
-\begin{table}[htb]
-\label{tab:select-replace}
-\caption{Probabilities (to $3$ significant figures) associated with the 
-{\sc select-and-replace} game, for sets of sizes $n = 10, 15$}
-\begin{tabular}{|c||r|l||r|l|}
-\hline
-Value of $k$ & $\displaystyle {10 \choose k}$ & \ $p_{10}(k)$ 
-& $\displaystyle {15 \choose k}$ & \ $p_{15}(k)$ \\
-\hline
-\hline
-$1$   &   $10$ & \ $0.010$ &     $15$ &  \ $0.000458$ \\
-$2$   &   $45$ & \ $0.044$ &   $105$ &  \ $0.00320$ \\
-$3$   & $120$ & \ $0.117$ &   $455$ &  \ $0.0139$ \\
-$4$   & $210$ & \ $0.205$ & $1365$ &  \ $0.0417$ \\
-$5$   & $252$ & \ $0.246$ & $3003$ &  \ $0.0916$ \\
-$6$   & $210$ & \ $0.205$ & $5005$ &  \ $0.153$ \\
-$7$   & $120$ & \ $0.117$ & $6435$ &  \ $0.196$ \\
-$8$   &   $45$ & \ $0.044$ & $6435$ &  \ $0.196$ \\
-$9$   &   $10$ & \ $0.010$ & $5005$  & \ $0.153$ \\
-$10$ &     $1$ & \ $0.001$ & $3003$  & \ $0.0916$ \\
-$11$ & --        & \ --            & $1365$  & \ $0.0417$ \\
-$12$ & --        & \ --            &    $455$ & \ $0.0139$ \\
-$13$ & --       & \ --             &    $105$ & \ $0.00320$ \\
-$14$ & --       & \ --             &      $15$ & \ $0.000458$ \\
-$15$ & --       & \ --             &        $1$ & \ $0.0000305$  \\
-\hline
-\end{tabular}
-\end{table}
-Fig.~\ref{fig:gaussiandistribution} is a companion to Table~\ref{tab:select-replace},
-in which we present histograms depicting the values of 
-$\displaystyle {n \choose k}$ that are associated with the probabilities in the table;
-these values are, of course, rows of the appropriate instance of Pascal's triangle.
-
-\ignore{*********
-$1,10,45,120,210,252,210,120,45,10,1$ and
-$1,15,105,455,1365,3003,5005,6435,6435,5005,3003,1365,455,105,15,1$.
-***************}
-
-\begin{figure}[htb]
-\begin{center}
-        \includegraphics[scale=0.5]{FiguresMaths/ProbaGaussianDistribution}
-        \caption{Histograms of the binomial coefficients in the $10$th row (left) and the $15$th
-         row (right) of Pascal's triangle. The scale of the righthand histogram is 1:20.}
-        \label{fig:gaussiandistribution}
-\end{center}
-\end{figure}
-
-\index{normal distribution} \index{normal distribution!mean} \index{Gaussian distribution}
-\index{normal distribution!variance} \index{normal distribution!standard deviation}
-The histograms of Fig.~\ref{fig:gaussiandistribution} are discrete versions of the
-familiar Bell curve of a {\em normal}, or, {\it Gaussian} distribution.  (The word ``normal" 
-in this context emphasizes that these distribution are defined by their ``norms", namely, 
-their means and variances.) Although our focus in this text is entirely on {\em discrete} 
-mathematical phenomena, it is important to recognize concepts and insights that 
-emerge from the {\em continuous} versions of these phenomena.  A (continuous) normal 
-distribution is one whose probability frequency function has the form
-\[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
-In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ 
-(resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  Indeed, as is clear
-from the formula, parameters $\mu$ and $\sigma$ {\em specify} each individual normal 
-distribution.
-
-Here are a few noteworthy features of discrete and continuous normal distributions.
-\begin{itemize}
-\item
-In the {\em discrete} version of the concept:
-  \begin{itemize}
-  \item
-In common with the underlying binomial coefficients
-\[ \left\{ {n \choose k} \ | \ k = 0, 1, \ldots, n \right\} \]
-the distribution has a single maximum when $n$ is even but {\em two}
-maxima when $n$ is odd.
-
-  \end{itemize}
-
-In the {\em continuous} version of the concept:
-  \begin{itemize}
-  \item
-As a cultural note, the normal probability frequency function involves two of the
-fundamental constants of mathematics: $e$ and $\pi$.
-  \end{itemize}
-\end{itemize}
-
-\index{probability!distribution function} \index{probability!cumulative distribution function}
-
-In addition to the point-wise information that a probability frequency function yields, we are
-often interested in the {\em cumulative} information yielded by the 
-{\it (cumulative) distribution function}\footnote{Mathematicians usually refer to function $F$
-simply as a distribution function; statisticians usually add the qualifier ``cumulative".}~$F$ 
-on $S$, which is defined as follows for $x \in S$:
-\[ F(x) \ = \ Pr[X \leq x] \]
-In discrete settings, we can redefine $F(x)$ as a summation:
-\[ F(x) \ = \ \sum_{y \leq x} \ f(y) \]
-
-{\Arny Examples .. maybe this is the place to define and exemplify the normal distribution
-and the exponential distribution?}
-
-
 
 
 
