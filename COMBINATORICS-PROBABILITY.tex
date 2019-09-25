@@ -1653,7 +1653,7 @@ logarithms of the elements of sequence $S$.
 \noindent
 Of course, we do not have to specify the bases of the logarithms---as long as all have the same base.
  
-\subsubsection{Refining summarizations via higher statistical moments}
+\subsubsection{Higher statistical moments}
 \label{sec:mean-plus-moments}
 
 \index{actual mean $\mu$ of a random variable}
@@ -1673,23 +1673,43 @@ Once we distinguish between actual and experimental means, we must address the q
 \item
 The {\em first moment} of a distribution is its mean $\mu$.  The  {\em first moment} of a sequence $S$ of experimental outcomes is $\bar{x}  =  \mbox{\sc mean}(S)$.
 \item
-The {\em second moment} of a sequence $S$ of experimental outcomes is termed the {\it variance} of the sequence.   It measures the {\em distance} between the actual and experimental means of the distribution that $S$ represents:\footnote{Note that the variance and standard deviation are adaptations of the $L^2$-{\it norm} of Section~\ref{sec:Ln-norms} to our statistical setting.}
-\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{x \in S} \ (x - \bar{x})^2 \cdot f_S(x) \]
+The {\em second moment} of a sequence $S$ of experimental outcomes is termed the {\it variance} of the sequence.   It measures the {\em distance} between the actual and experimental means of the distribution that $S$ represents:\footnote{Note that the variance and standard deviation are adaptations of the $L^2$-{\it norm} of Section~\ref{sec:Ln-norms} to the setting of probability and statistics.}
+\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{k \in \Sigma} \ (k - \bar{x})^2 \cdot f_S(x) \]
 
 The fact that the variance is defined in terms of the {\em squares} of the components of the distance measure can make it awkward to reason with.  To compensate for this, it is common to use the {\it standard deviation}
 \[ \mbox{\sc standard-deviation}(S) \ \eqdef \ \sqrt{\mbox{\sc variance}(S)} \]
 rather than the variance when reasoning about how well $\bar{x}$ approximates $\mu$.
 
 \item
-Any finite approximation to a measure that is based on infinitely many data points is bound to have imperfections.  The variance exposes some of the imperfections of the mean as a summarization tool, but it is just one step in exposing such imperfections.  In. response, an increasingly fine infinite sequence of moments has been developed, the $k$th being defined as follows.
+Any finite approximation to a measure that is based on infinitely many data points is bound to have imperfections.  The variance exposes some of the imperfections of the mean as a summarization tool, but it is just one step in exposing such imperfections.  In response, an increasingly fine infinite sequence of moments has been developed, the $c$th being defined as follows.
 \[
-\mbox{\sc moment}^{(k)}(S) \ \eqdef \ {1 \over n} \sum_{x \in S} \ (x - \bar{x})^k \cdot f_S(x)
+\mbox{\sc moment}^{(c)}(S) \ \eqdef \ {1 \over n} \sum_{k \in \Sigma} \ (k - \bar{x})^c \cdot f_S(k)
 \]
-The third and fourth moments (the cases $k = 3,4$) report on further aspects of the ``spread" of the distribution, including ``skew".  In general, each higher moment exposes some of the weaknesses of lower moments.
+The third and fourth moments (the cases $c = 3,4$) report on further aspects of the ``spread" of the distribution, including ``skew".  In general, each higher moment exposes some of the weaknesses of lower moments.
 \end{itemize}
 
+\subsection{Probability Distributions}
+\label{sec:prob-distr}
 
+\index{probability distribution}
+We now take one further step backwards to note that many commonly encountered (outcome sequence)--(frequency function) pairs clearly belong to the same mathematical family.  There are often sets of parameters whose values determine a family member's probability frequency function
+or a family member's summarizing measures (means or variances, or \ldots).  These families are called {\em probability distributions}.  Rather than discuss this topic via abstractions, we present and analyze a small set of commonly encountered distributions.
 
+\subsubsection{The {\em binomial distribution}}
+\label{sec:binomial-distribution}
+
+Focus on an experiment that involves a sequence of repeated identical events.  (A sample event might be: (a) a single toss of a coin or (b) a single roll of a die or (c) a single roll of a pair of dice.)  Choose one or more outcomes---say: (a) {\sc heads} for the coin toss; (b) a $3$ for the roll of a single die; (c) a $7$ or $11$ for the roll of a pair of dice---to be a {\em success}, while any other outcome is a {\em failure}.  Our sample space $\Sigma$ is defined to be all events that are {\em successes}, so we can discuss and analyze a random variable $X$ that ranges over this space.
+
+By convention, we use the parameter $p$ to represent the probability of a {\em success} from any event, and we use the parameter $q$ to represent the probability of a {\em failure}; of course, we insist that $q = 1-p$.
+
+\index{binomial distribution} \index{binomially distributed random variable} 
+Consider an experiment that consists of $n$ independent trials.  If the probability of $k$ {\em successes} in this experiment is given by
+\[ Pr[X=k] \ = \ {n \choose k} p^k q^{n-k} \ = \ {n \choose k} p^k (1-p)^{n-k} \]
+then we say that random variable $X$ obeys a {\em binomial distribution} or, equivalently, that $X$ is a {\em binomially distributed random variable}.
+
+\bigskip
+
+**HERE
 
 
 **************
