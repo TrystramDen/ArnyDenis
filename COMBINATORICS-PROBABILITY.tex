@@ -1,4 +1,4 @@
-%version of 09-24-19
+%version of 09-25-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
@@ -1504,267 +1504,77 @@ $\Sigma$'s $2^n -1$ nonempty subsets.  It follows, therefore, that
 
 By definition, $p(x)$ is a probability frequency function for random variable $X$.
 
-\smallskip
+\medskip
 
 Table~\ref{tab:select-replace} illustrates the probabilities associated with the 
-possible scores of the {\sc select-and-replace} game for $n = 10, 15$.  
+possible scores of the {\sc select-and-replace} game for sets of sizes $n = 10$
+and $n= 15$.  
 \begin{table}[htb]
 \label{tab:select-replace}
 \caption{Probabilities (to $3$ significant figures) associated with the 
-{\sc select-and-replace} game, for sets of sizes $n = 10, 15$}
+{\sc select-and-replace} game, for sets of sizes $n = 10$ and $n= 15$}
+\begin{center}
 \begin{tabular}{|c||r|l||r|l|}
 \hline
 Value of $k$ & $\displaystyle {10 \choose k}$ & \ $p_{10}(k)$ 
 & $\displaystyle {15 \choose k}$ & \ $p_{15}(k)$ \\
 \hline
 \hline
-$1$   &   $10$ & \ $0.010$ &     $15$ &  \ $0.000458$ \\
-$2$   &   $45$ & \ $0.044$ &   $105$ &  \ $0.00320$ \\
-$3$   & $120$ & \ $0.117$ &   $455$ &  \ $0.0139$ \\
-$4$   & $210$ & \ $0.205$ & $1365$ &  \ $0.0417$ \\
-$5$   & $252$ & \ $0.246$ & $3003$ &  \ $0.0916$ \\
-$6$   & $210$ & \ $0.205$ & $5005$ &  \ $0.153$ \\
-$7$   & $120$ & \ $0.117$ & $6435$ &  \ $0.196$ \\
-$8$   &   $45$ & \ $0.044$ & $6435$ &  \ $0.196$ \\
-$9$   &   $10$ & \ $0.010$ & $5005$  & \ $0.153$ \\
-$10$ &     $1$ & \ $0.001$ & $3003$  & \ $0.0916$ \\
-$11$ & --        & \ --            & $1365$  & \ $0.0417$ \\
+$1$   &   $10$ & \ $0.00978$ &     $15$ &  \ $0.000458$ \\
+$2$   &   $45$ & \ $0.0440$   &   $105$ &  \ $0.00320$ \\
+$3$   & $120$ & \ $0.117$     &   $455$ &  \ $0.0139$ \\
+$4$   & $210$ & \ $0.205$    & $1365$ &  \ $0.0417$ \\
+$5$   & $252$ & \ $0.246$    & $3003$ &  \ $0.0916$ \\
+$6$   & $210$ & \ $0.205$    & $5005$ &  \ $0.153$ \\
+$7$   & $120$ & \ $0.117$    & $6435$ &  \ $0.196$ \\
+$8$   &   $45$ & \ $0.0440$  & $6435$ &  \ $0.196$ \\
+$9$   &   $10$ & \ $0.00978$ & $5005$  & \ $0.153$ \\
+$10$ &     $1$ & \ $0.000978$ & $3003$  & \ $0.0916$ \\
+$11$ & --        & \ --                 & $1365$  & \ $0.0417$ \\
 $12$ & --        & \ --            &    $455$ & \ $0.0139$ \\
 $13$ & --       & \ --             &    $105$ & \ $0.00320$ \\
 $14$ & --       & \ --             &      $15$ & \ $0.000458$ \\
 $15$ & --       & \ --             &        $1$ & \ $0.0000305$  \\
 \hline
 \end{tabular}
+\end{center}
 \end{table}
 Fig.~\ref{fig:gaussiandistribution} is a companion to Table~\ref{tab:select-replace},
-in which we present histograms depicting the values of 
-$\displaystyle {n \choose k}$ that are associated with the probabilities in the table;
-these values are, of course, rows of the appropriate instance of Pascal's triangle.
-
-\ignore{*********
-$1,10,45,120,210,252,210,120,45,10,1$ and
-$1,15,105,455,1365,3003,5005,6435,6435,5005,3003,1365,455,105,15,1$.
-***************}
-
+which presents histograms depicting the values of $\displaystyle {n \choose k}$,
+i.e., the unnormalized probabilities in the table; these values are, of course,
+rows $n =10$ and $n=15$ of Pascal's triangle, with the value
+$\displaystyle {n \choose 0} = 1$ deleted.  (This deletion reflects the fact that every
+score in the {\sc select-and-replace} game is positive.)
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresMaths/ProbaGaussianDistribution}
         \caption{Histograms of the binomial coefficients in the $10$th row (left) and the $15$th
-         row (right) of Pascal's triangle. The scale of the righthand histogram is 1:20.}
+         row (right) of Pascal's triangle, with the entries corresponding to
+         $\displaystyle {n \choose 0} = 1$ deleted.
+         The scale of the righthand histogram is 1:20.}
         \label{fig:gaussiandistribution}
 \end{center}
 \end{figure}
 
-\index{normal distribution} \index{normal distribution!mean} \index{Gaussian distribution}
-\index{normal distribution!variance} \index{normal distribution!standard deviation}
-The histograms of Fig.~\ref{fig:gaussiandistribution} are discrete versions of the
-familiar Bell curve of a {\em normal}, or, {\it Gaussian} distribution.  (The word ``normal" 
-in this context emphasizes that these distribution are defined by their ``norms", namely, 
-their means and variances.) Although our focus in this text is entirely on {\em discrete} 
-mathematical phenomena, it is important to recognize concepts and insights that 
-emerge from the {\em continuous} versions of these phenomena.  A (continuous) normal 
-distribution is one whose probability frequency function has the form
-\[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
-In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ 
-(resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  Indeed, as is clear
-from the formula, parameters $\mu$ and $\sigma$ {\em specify} each individual normal 
-distribution.
+\index{binomial distribution} \index{binomial distribution!mean}
+\index{binomial distribution!variance} \index{binomial distribution!standard deviation}
 
-Here are a few noteworthy features of discrete and continuous normal distributions.
-\begin{itemize}
-\item
-In the {\em discrete} version of the concept:
-  \begin{itemize}
-  \item
-In common with the underlying binomial coefficients
-\[ \left\{ {n \choose k} \ | \ k = 0, 1, \ldots, n \right\} \]
-the distribution has a single maximum when $n$ is even but {\em two}
-maxima when $n$ is odd.
+The histograms in Fig.~\ref{fig:gaussiandistribution} are---when the entries 
+corresponding to $\displaystyle {n \choose 0} = 1$ are restored---instances of the
+familiar Bell curve of a {\em binomial (probability) distribution}.
 
-  \end{itemize}
+\medskip
 
-In the {\em continuous} version of the concept:
-  \begin{itemize}
-  \item
-As a cultural note, the normal probability frequency function involves two of the
-fundamental constants of mathematics: $e$ and $\pi$.
-  \end{itemize}
-\end{itemize}
+Before we discuss probability distributions, we should understand why
+they are important.  In a word, distributions give us a global
+perspective on very long (possibly infinite) sequences of events.
 
-\index{probability!distribution function} \index{probability!cumulative distribution function}
-
-In addition to the point-wise information that a probability frequency function yields, we are
-often interested in the {\em cumulative} information yielded by the 
-{\it (cumulative) distribution function}\footnote{Mathematicians usually refer to function $F$
-simply as a distribution function; statisticians usually add the qualifier ``cumulative".}~$F$ 
-on $S$, which is defined as follows for $x \in S$:
-\[ F(x) \ = \ Pr[X \leq x] \]
-In discrete settings, we can redefine $F(x)$ as a summation:
-\[ F(x) \ = \ \sum_{y \leq x} \ f(y) \]
-
-{\Arny Examples .. maybe this is the place to define and exemplify the normal distribution
-and the exponential distribution?}
-
-
-
-\section{Statistics: The Art of Summarization}
-\label{sec:statistics}
- 
- You have a large corpus of numerical data which has been generated by some manner of
- experiment.
- 
-\bigskip
- 
- \noindent \fbox{
- \begin{minipage}{0.95\textwidth}
-Such corpora of  numbers are generated, e.g., when one measures the results of some process
-or when one observes some natural or artificial phenomenon.
-\begin{enumerate}
-\item
-An example of the former situation is a Physics 101 Lab experiment that empirically develops an  
-estimate of the value of the gravitational force by having students repeatedly drop a ball of known 
-mass and time the moment of the ball's impact  with the earth.
-
-\item
-An example of the latter situation is an observational experiment that records over fixed periods 
-of time the percentage of births in which the newborn has a specific gender.
-\end{enumerate}
-
-The second of these examples actually played a significant role in the development of statistics 
-and its operational methodology.
-
-\smallskip
-
-\index{Arbuthnot, John} \index{Laplace, Pierre Simon}
-The curiosity of the British polymath John Arbuthnot was piqued by the popular belief that males
-occur more often than females among newborns.  In an effort to determine the truth or falsity of
-this belief, Arbuthnot studied an archive reporting on births in London in the 82-year period
-1629--1710.  As reported in his paper,  ``An argument for Divine Providence taken from the 
-constant regularity  observed in the births of both sexes" ({\it Philosophical Transactions} of 
-the Royal Society, 1710), Arbuthnot observed results such as the following: In 1629, there were 
-5218 males born, versus only 4683 females; and in 1710, the corresponding numbers were
-7640 versus 7288.  In fact, much to his surprise, the archives exposed a consistent surfeit of
-male births over females!  Roughly a century later, the French mathematician Pierre Simon 
-Laplace---who, in fact, invented much of the mathematics relating to probability and 
-statistics---calculated that male births exceeded female births in the proportion of about
-22 to 21 (reported in Laplace's celebrated {\it Essai philosophique sur les probabilit\'{e}s}, 1814).
-
-\smallskip
-
-Interestingly the gender imbalance in births can still be observed today---and the reason for
-the imbalance has not yet been clearly identified.
-
-\smallskip
-
-We discuss the technicalities of Arbuthnot's observational experiment a bit later.
-\end{minipage}
- }
- 
-\bigskip
- 
-The sheer volume of data in the corpus makes it impossible to understand the phenomenon 
-being studied.  You really need to summarize them 
-in a manner that will give a reliable summary of the import of the data.  The field of statistics provides well-studied approaches to this important challenge.
- 
- \medskip
- 
- \noindent \fbox{
- \begin{minipage}{0.95\textwidth}
- Our very informal introduction to the field of statistics would be considered irreverent---perhaps
- even blasphemous---to many practitioners of this field.  But, it does provide a reasonably
- accurate way to begin thinking about the field.
- \end{minipage}
- }
- 
- \medskip
- 
- \index{experiment!trial}  \index{experiment!outcome}  
- \index{experiment!probability of an outcome}
- \index{experiment!frequency of an outcome}
-There are two complementary ways to provide information about the data which one might obtain,
-say, from an extensive experiment.  We illustrate these via the trivial experiment of rolling a
-(possibly biased) $6$-sided die $n$ times.  Within the context of discussing such an experiment,
-one typically refers to each roll of the die as a {\it trial} and to the number observed from the roll
-as an {\it outcome}.  When discussing this experiment, we can associate with each possible
-outcome $x \in \{1,2,3,4,5,6\}$:
-\begin{itemize}
-\item
-the {\em probability} of $x$ occurring.  In this scenario, one thinks of the $n$ outcomes as a
-{\em multiset} $S$, and one associates with outcome $x$ the probability, $m/n$, of achieving
-outcome $x$ when randomly drawing an element from $S$.
-\item
-the {\em frequency} with which $x$ occurs in the sequence of outcomes; for instance, $x$ may
-occur $m$ times throughout the $n$ rolls.  One typically uses a {\em frequency function} $f$ to
-expose this kind of information---noting that $f(x) = m$.
-\end{itemize}
-Note that the frequency approach does not explicitly mention the number of trials $n$, while
-the probability approach does.  As we proceed with our discussion of statistics, we repeatedly
-use this die-rolling experiment for illustration.  
-
-\index{Law of Large Numbers} \index{fair} \index{unbiased}
-Keep in mind that in the ideal world of probabilities, all six outcomes are equiprobable, hence, 
-each has probability $1/6$.  The field of statistics operates in the real world, hence must 
-account for the fact that experimental outcomes only approximate the ideal mathematical world.  
-The {\it Law of Large Numbers}, which we discuss later, is a theorem that guarantees that over 
-``sufficiently long" periods of time, the real world becomes a progressively closer approximation 
-to the ideal. In fact, this Law underlies the entire endeavor of ``quality control": if we continue to 
-observe that our die produces outcome $3$ inordinately often over a ``sufficiently long" 
-experiment, then we conclude that the die is not {\em fair}, or, {\em unbiased}!  (The terms
-``fair" and ``unbiased" are synonyms.) Elements of the theory of statistics that go way beyond 
-the scope of this text develop tests that determine when an experiment is ``sufficiently long" to 
-determine whether our die is unbiased.  Of course, such a determination is not absolute---it
-draws its conclusions within some {\em confidence level}.
-\index{confidence level}
-
-With this introduction, we now embark on our introduction to statistics.  We stress that this
-field has developed and deployed immensely sophisticated mathematical and
-computational tools.  We wish here only to given the reader a taste of what the field is
-about, so we strive only to hint at its goals and methodology.  We refer the readers to sources
-such as \cite{Hoel58} (which focuses on the mathematical aspects of the field) and 
-\cite{Bremaud17}  (which provides a comprehensive introduction) for two rather differently
-focused comprehensive introductions to this important field.
-
-\section{``Doing" Statistics}
-\label{sec:doing-statistics}
-
-
-The person who wants to discover truth by ``doing" statistics has two primary tools:
-\begin{itemize}
-\item
-{\em experimentation}, which gives one a tunable approximation to how the real world 
-operates.
-
-The tunability comes from one's freedom to design the experiments and to decide how
-many trials to perform.
-
-\item 
-{\em summarization} of the observed outcomes of the experiments, in a manner that 
-enables to draw inferences about the real world.
-\end{itemize}
-Note the role that the Law of Large Numbers plays here by ensuring that performing
-more trials yields experimental results that more closely resemble reaity
-
-
-\ignore{************
-Statistics is complementary to probability theory in a sense that can be illustrated by the 
-example of tossing a $2$-sided coin.  In this case, the random variable $X$ varies over the set
-$\{0,1\}$ (as an encoding of the set $\{\mbox{\sc heads, tails}\}$).  Say that one tosses the
-coin $n$ times.  Probability theory captures one element of the ``truth" of the experiment by 
-reporting the proportion of tosses in which variable $X$ assumes each of its possible outcomes.  
-Statistics captures a somewhat different element of truth by reporting results such as the 
-observed {\em average} value observed---even if this average never actually occurred!  Thus,
-if $n=100$ and the coin is observed to come up {\sc heads} on $52\%$ of the tosses, then one
-might infer that the probability 
-
-strives focuses on the 
-frequencies of the various possible outcomes; probability theory focuses on the relative ratios 
-of the possible outcomes.  
-***************}
-
- 
-\subsection{Summarization by a Single Number}
+\subsection{Summarizing Sequences of Events by a Single Number}
 \label{sec:single-statistic}
  
+
+**HERE
+
 The simplest possible framework for summarizing sequence $S$ is via a
 single summarizing number. The reader should be forewarned that any attempt to
 summarize a long sequence of numbers $S$ via a small set of numbers whose sizes are 
@@ -2038,6 +1848,217 @@ The third and fourth moments (the cases $k = 3,4$) report on further aspects of 
 ``spread" of the distribution, including ``skew".  In general, each higher moment exposes
 some of the weaknesses of lower moments.
 \end{itemize}
+
+**HERE
+
+\index{normal distribution} \index{normal distribution!mean} \index{Gaussian distribution}
+\index{normal distribution!variance} \index{normal distribution!standard deviation}
+
+discrete versions of the
+familiar Bell curve of a 
+{\em normal}, or, {\it Gaussian} probability distribution.  
+(The word ``normal" in this context emphasizes that these distribution are defined by their ``norms", namely, 
+their means and variances.) Although our focus in this text is entirely on {\em discrete} 
+mathematical phenomena, it is important to recognize concepts and insights that 
+emerge from the {\em continuous} versions of these phenomena.  A (continuous) normal 
+distribution is one whose probability frequency function has the form
+\[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
+In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ 
+(resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  Indeed, as is clear
+from the formula, parameters $\mu$ and $\sigma$ {\em specify} each individual normal 
+distribution.
+
+Here are a few noteworthy features of discrete and continuous normal distributions.
+\begin{itemize}
+\item
+In the {\em discrete} version of the concept:
+  \begin{itemize}
+  \item
+In common with the underlying binomial coefficients
+\[ \left\{ {n \choose k} \ | \ k = 0, 1, \ldots, n \right\} \]
+the distribution has a single maximum when $n$ is even but {\em two}
+maxima when $n$ is odd.
+
+  \end{itemize}
+
+In the {\em continuous} version of the concept:
+  \begin{itemize}
+  \item
+As a cultural note, the normal probability frequency function involves two of the
+fundamental constants of mathematics: $e$ and $\pi$.
+  \end{itemize}
+\end{itemize}
+
+\index{probability!distribution function} \index{probability!cumulative distribution function}
+
+In addition to the point-wise information that a probability frequency function yields, we are
+often interested in the {\em cumulative} information yielded by the 
+{\it (cumulative) distribution function}\footnote{Mathematicians usually refer to function $F$
+simply as a distribution function; statisticians usually add the qualifier ``cumulative".}~$F$ 
+on $S$, which is defined as follows for $x \in S$:
+\[ F(x) \ = \ Pr[X \leq x] \]
+In discrete settings, we can redefine $F(x)$ as a summation:
+\[ F(x) \ = \ \sum_{y \leq x} \ f(y) \]
+
+{\Arny Examples .. maybe this is the place to define and exemplify the normal distribution
+and the exponential distribution?}
+
+
+
+\section{Statistics: The Art of Summarization}
+\label{sec:statistics}
+ 
+ You have a large corpus of numerical data which has been generated by some manner of
+ experiment.
+ 
+\bigskip
+ 
+ \noindent \fbox{
+ \begin{minipage}{0.95\textwidth}
+Such corpora of  numbers are generated, e.g., when one measures the results of some process
+or when one observes some natural or artificial phenomenon.
+\begin{enumerate}
+\item
+An example of the former situation is a Physics 101 Lab experiment that empirically develops an  
+estimate of the value of the gravitational force by having students repeatedly drop a ball of known 
+mass and time the moment of the ball's impact  with the earth.
+
+\item
+An example of the latter situation is an observational experiment that records over fixed periods 
+of time the percentage of births in which the newborn has a specific gender.
+\end{enumerate}
+
+The second of these examples actually played a significant role in the development of statistics 
+and its operational methodology.
+
+\smallskip
+
+\index{Arbuthnot, John} \index{Laplace, Pierre Simon}
+The curiosity of the British polymath John Arbuthnot was piqued by the popular belief that males
+occur more often than females among newborns.  In an effort to determine the truth or falsity of
+this belief, Arbuthnot studied an archive reporting on births in London in the 82-year period
+1629--1710.  As reported in his paper,  ``An argument for Divine Providence taken from the 
+constant regularity  observed in the births of both sexes" ({\it Philosophical Transactions} of 
+the Royal Society, 1710), Arbuthnot observed results such as the following: In 1629, there were 
+5218 males born, versus only 4683 females; and in 1710, the corresponding numbers were
+7640 versus 7288.  In fact, much to his surprise, the archives exposed a consistent surfeit of
+male births over females!  Roughly a century later, the French mathematician Pierre Simon 
+Laplace---who, in fact, invented much of the mathematics relating to probability and 
+statistics---calculated that male births exceeded female births in the proportion of about
+22 to 21 (reported in Laplace's celebrated {\it Essai philosophique sur les probabilit\'{e}s}, 1814).
+
+\smallskip
+
+Interestingly the gender imbalance in births can still be observed today---and the reason for
+the imbalance has not yet been clearly identified.
+
+\smallskip
+
+We discuss the technicalities of Arbuthnot's observational experiment a bit later.
+\end{minipage}
+ }
+ 
+\bigskip
+ 
+The sheer volume of data in the corpus makes it impossible to understand the phenomenon 
+being studied.  You really need to summarize them 
+in a manner that will give a reliable summary of the import of the data.  The field of statistics provides well-studied approaches to this important challenge.
+ 
+ \medskip
+ 
+ \noindent \fbox{
+ \begin{minipage}{0.95\textwidth}
+ Our very informal introduction to the field of statistics would be considered irreverent---perhaps
+ even blasphemous---to many practitioners of this field.  But, it does provide a reasonably
+ accurate way to begin thinking about the field.
+ \end{minipage}
+ }
+ 
+ \medskip
+ 
+ \index{experiment!trial}  \index{experiment!outcome}  
+ \index{experiment!probability of an outcome}
+ \index{experiment!frequency of an outcome}
+There are two complementary ways to provide information about the data which one might obtain,
+say, from an extensive experiment.  We illustrate these via the trivial experiment of rolling a
+(possibly biased) $6$-sided die $n$ times.  Within the context of discussing such an experiment,
+one typically refers to each roll of the die as a {\it trial} and to the number observed from the roll
+as an {\it outcome}.  When discussing this experiment, we can associate with each possible
+outcome $x \in \{1,2,3,4,5,6\}$:
+\begin{itemize}
+\item
+the {\em probability} of $x$ occurring.  In this scenario, one thinks of the $n$ outcomes as a
+{\em multiset} $S$, and one associates with outcome $x$ the probability, $m/n$, of achieving
+outcome $x$ when randomly drawing an element from $S$.
+\item
+the {\em frequency} with which $x$ occurs in the sequence of outcomes; for instance, $x$ may
+occur $m$ times throughout the $n$ rolls.  One typically uses a {\em frequency function} $f$ to
+expose this kind of information---noting that $f(x) = m$.
+\end{itemize}
+Note that the frequency approach does not explicitly mention the number of trials $n$, while
+the probability approach does.  As we proceed with our discussion of statistics, we repeatedly
+use this die-rolling experiment for illustration.  
+
+\index{Law of Large Numbers} \index{fair} \index{unbiased}
+Keep in mind that in the ideal world of probabilities, all six outcomes are equiprobable, hence, 
+each has probability $1/6$.  The field of statistics operates in the real world, hence must 
+account for the fact that experimental outcomes only approximate the ideal mathematical world.  
+The {\it Law of Large Numbers}, which we discuss later, is a theorem that guarantees that over 
+``sufficiently long" periods of time, the real world becomes a progressively closer approximation 
+to the ideal. In fact, this Law underlies the entire endeavor of ``quality control": if we continue to 
+observe that our die produces outcome $3$ inordinately often over a ``sufficiently long" 
+experiment, then we conclude that the die is not {\em fair}, or, {\em unbiased}!  (The terms
+``fair" and ``unbiased" are synonyms.) Elements of the theory of statistics that go way beyond 
+the scope of this text develop tests that determine when an experiment is ``sufficiently long" to 
+determine whether our die is unbiased.  Of course, such a determination is not absolute---it
+draws its conclusions within some {\em confidence level}.
+\index{confidence level}
+
+With this introduction, we now embark on our introduction to statistics.  We stress that this
+field has developed and deployed immensely sophisticated mathematical and
+computational tools.  We wish here only to given the reader a taste of what the field is
+about, so we strive only to hint at its goals and methodology.  We refer the readers to sources
+such as \cite{Hoel58} (which focuses on the mathematical aspects of the field) and 
+\cite{Bremaud17}  (which provides a comprehensive introduction) for two rather differently
+focused comprehensive introductions to this important field.
+
+\section{``Doing" Statistics}
+\label{sec:doing-statistics}
+
+
+The person who wants to discover truth by ``doing" statistics has two primary tools:
+\begin{itemize}
+\item
+{\em experimentation}, which gives one a tunable approximation to how the real world 
+operates.
+
+The tunability comes from one's freedom to design the experiments and to decide how
+many trials to perform.
+
+\item 
+{\em summarization} of the observed outcomes of the experiments, in a manner that 
+enables to draw inferences about the real world.
+\end{itemize}
+Note the role that the Law of Large Numbers plays here by ensuring that performing
+more trials yields experimental results that more closely resemble reaity
+
+
+\ignore{************
+Statistics is complementary to probability theory in a sense that can be illustrated by the 
+example of tossing a $2$-sided coin.  In this case, the random variable $X$ varies over the set
+$\{0,1\}$ (as an encoding of the set $\{\mbox{\sc heads, tails}\}$).  Say that one tosses the
+coin $n$ times.  Probability theory captures one element of the ``truth" of the experiment by 
+reporting the proportion of tosses in which variable $X$ assumes each of its possible outcomes.  
+Statistics captures a somewhat different element of truth by reporting results such as the 
+observed {\em average} value observed---even if this average never actually occurred!  Thus,
+if $n=100$ and the coin is observed to come up {\sc heads} on $52\%$ of the tosses, then one
+might infer that the probability 
+
+strives focuses on the 
+frequencies of the various possible outcomes; probability theory focuses on the relative ratios 
+of the possible outcomes.  
+***************}
+
 
 
 
