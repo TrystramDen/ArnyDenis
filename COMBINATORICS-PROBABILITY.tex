@@ -1490,7 +1490,6 @@ This might be an opportune time for the reader to review the discussions of {\it
 
 \bigskip
 
-
 \noindent
 The possible frustration results from the fact that acceptable summarizations may not
 always exist.   That being said, several summarizing numbers have been introduced, and
@@ -1502,7 +1501,9 @@ each is valuable within certain domains of inquiry.
 \index{mean} \index{arithmetic mean} \index{mean!arithmetic} \index{expected value}
 For any outcome-sequence $S$ over a sample space $\Sigma$, with associate frequency function $f_S$, the {\it arithmetic mean} of $S$ is the weighted average of $S$'s elements:
 \[ {1 \over n} \sum_{k \in \Sigma} \ k \cdot f_S(k) \]
-This quantity is often denoted $\mbox{\sc mean}(S)$.  For the $10$-element sequence $S$ of (\ref{eq:sample-seq-10}), we have:
+This quantity is often denoted $\mbox{\sc mean}(S)$.  
+
+For illustration: Given the $10$-element sequence $S$ of (\ref{eq:sample-seq-10}), we have:
 \begin{eqnarray*}
 \mbox{\sc mean}(S) & = &
 {1 \over 10} \left(1 \cdot f_S(1) \ + \ 2 \cdot f_S(2) \ + \ 3 \cdot f_S(3) \ + \ 4 \cdot f_S(4) \right) \\
@@ -1513,6 +1514,25 @@ This quantity is often denoted $\mbox{\sc mean}(S)$.  For the $10$-element seque
  & = & 3
 \end{eqnarray*}
 In this example, $\mbox{\sc mean}(S)$ is an element of $S$.  In general, it need not be.
+
+We close our introduction to means by presenting two important
+attributes of the measure $\mbox{\sc mean}(X)$, where $X$ is a random
+variable.  We leave to the reader the task of proving the following
+formal assertions of these attributes.
+
+\begin{prop} 
+\label{thm:mean-linear}
+Let $X$ be a random variable over a given sample space.
+
+{\bf (a)} For any constants $a$ and $b$,
+\[ \mbox{\sc mean}(aX+b) \ = \ a \cdot \mbox{\sc mean}(X) + b  \]
+Thus, the mean is a {\em linear} masure.
+
+{\bf (b)} For any function $f$ of variable $X$,
+\[ \mbox{\sc mean}(f(X)) \ = \ \sum_{k=0}^n \ f(k) \cdot Pr[X = k] \]
+\end{prop}
+
+\bigskip
 
 In addition to its {\em a posteriori} analytical value, arithmetic means can be used as aids to prediction.  (We often do this, for example, when we consult mean temperatures before we pack for a trip to an unfamiliar location.)  When used predictively, the mean of a sequence $S$ is often called its {\it expected value} or, more succinctly, its {\it expectation}.
 \index{expected value} \index{expectation}
@@ -1680,7 +1700,30 @@ Once we distinguish between actual and experimental means, we must address the q
 The {\em first moment} of a distribution is its mean $\mu$.  The  {\em first moment} of a sequence $S$ of experimental outcomes is $\bar{x}  =  \mbox{\sc mean}(S)$.
 \item
 The {\em second moment} of a sequence $S$ of experimental outcomes is termed the {\it variance} of the sequence.   It measures the {\em distance} between the actual and experimental means of the distribution that $S$ represents:\footnote{Note that the variance and standard deviation are adaptations of the $L^2$-{\it norm} of Section~\ref{sec:Ln-norms} to the setting of probability and statistics.}
-\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{k \in \Sigma} \ (k - \bar{x})^2 \cdot f_S(x) \]
+\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{k \in \Sigma}
+\ (k - \bar{x})^2 \cdot f_S(x) 
+\]
+The preceding expression for variance can be replaced with the
+following streamlined expression.
+
+\begin{prop}
+\label{thm:variance-formula}
+For any random variable $X$,
+\[ \mbox{\sc variance}(X) \ = \ \mbox{\sc mean}(X^2) \ - \ \big(\mbox{\sc mean}(X)\big)^2 \]
+\end{prop}
+
+\begin{proof}{Sketch}
+The argument centers on the follwoing chain of equations.
+\begin{eqnarray*}
+\mbox{\sc variance}(X) & = &
+  \mbox{\sc mean}(X \ - \ \bar{x})^2 \\
+ & = &
+\mbox{\sc mean}(X^2) \ - \ 2 \mbox{\sc mean}(X) \cdot \bar{x} \ + \ \bar{x})^2 \\
+ & = &
+\mbox{\sc mean}(X^2) \ - \ \big(\mbox{\sc mean}(X)\big)^2
+\end{eqnarray*}
+\end{proof}
+
 
 The fact that the variance is defined in terms of the {\em squares} of the components of the distance measure can make it awkward to reason with.  To compensate for this, it is common to use the {\it standard deviation}
 \[ \mbox{\sc standard-deviation}(S) \ \eqdef \ \sqrt{\mbox{\sc variance}(S)} \]
@@ -1754,16 +1797,47 @@ np \cdot \big(p + (1-p) \big)^{n-1} \\
 np
 \end{eqnarray*}
 
-**HERE
-
 \noindent {\bf (b)} For the variance of $X$:
+
+We invoke the various properties of means and variances that we have derived, including, importantly, part {\bf (a)} and Proposition~\ref{thm:mean-linear}.  We then find:
 \begin{eqnarray*} 
-\mbox{\sc variance}(X) & = & \mbox{\sc mean}(X^2) \ - \  \big(\mbox{\sc mean}(X) \big)^2 \\
+\mbox{\sc variance}(X) & = & 
+\mbox{\sc mean}(X^2) \ - \  \big(\mbox{\sc mean}(X) \big)^2 \\
+  & = &
+\left( \sum_{k=0}^n \ k^2 {n \choose k} p^k (1-p)^{n-k} \right)
+ \ - \ (np)^2  \\
+  & = &
+\left( \sum_{k=0}^n \ k(k-1) {n \choose k} p^k (1-p)^{n-k} \right)
+ \ + \ np
+ \ - \ (np)^2  \\
+  & = &
+\left( \sum_{k=2}^n \ k(k-1) \frac{n!}{k! (n-k)!} p^k (1-p)^{n-k} \right)
+ \ + \ np
+ \ - \ (np)^2  \\
+  & = &
+\left( \sum_{k=2}^n \ \frac{n!}{(k-2)! (n-k)!} p^k (1-p)^{n-k} \right)
+ \ + \ np
+ \ - \ (np)^2 \\
+  & = &
+\left( \sum_{j=0}^{n-2} \ \frac{n!}{j! (n-(j+2))!} p^(j+2) (1-p)^{n-(j+2)} \right)
+ \ + \ np
+ \ - \ (np)^2 \\
+   & = &
+n(n-1)p^2 \left( \sum_{j=0}^{n-2} \ \frac{(n-2)!}{j! ((n-2)-j)!} p^j (1-p)^{(n-2)-j} \right)
+ \ + \ np
+ \ - \ (np)^2 \\
+     & = &
+n(n-1)p^2  \ + \ np \ - \ (np)^2 \\
+     & = &
+n^2 p^2 \ - \ n p^2  \ + \ np \ - \ (np)^2 \\
+     & = &
+n p (1-p)
 \end{eqnarray*}
+This completes the proof. \qed
 \end{proof}
 
 
-{\Arny Should these results be set off as a Proposition -- with the derivations as proof?} 
+{\Arny Since I never trust my arithmetic, I presented the proof of this proposition with total detail.  I will leave it to you to decide which steps can be combined, etc.} 
 
 **HERE
 
