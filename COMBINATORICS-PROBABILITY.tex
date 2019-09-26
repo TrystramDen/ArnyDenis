@@ -1,4 +1,4 @@
-%version of 09-25-19
+%version of 09-26-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
@@ -1402,8 +1402,9 @@ roll of a single die.  The range of possible outcomes is termes a {\it
 outcomes from the sample space is called a {\it random variable}.  The
 goal of a probabilistic analysis is to capture important elements of
 ``{\em the truth}'', as exposed via experiments that produce sequences
-of {\em outcomes}, each being an instantiaiton of a rendom variable
+of {\em outcomes}, each being an instantiation of a rendom variable
 with a value from its sample space.
+
 
 \subsection{Probability Frequency Functions and Related Measures}
 \label{sec:prob-freq-fns+measures}
@@ -1431,6 +1432,11 @@ $\Sigma = \{ t \ | \ -10 \leq t \leq 45\}$
 The observed diameters of $n$ roller bearings after a given run at Factory $X$:
 $\Sigma =$ the range of diameters of roller bearings.
 \end{enumerate}
+
+{\em Another way to look at this setup is that the sample space
+  $\Sigma$ comprises the range of values of a random variable $X$ and
+  that the outcome-sequence $S$ announces the values that $X$ achieves
+  during the course of the subject experiment.}
 
 \item
 a {\it frequency function} $f_S$ which reports on the multiplicity of each outcome
@@ -1688,14 +1694,15 @@ Any finite approximation to a measure that is based on infinitely many data poin
 The third and fourth moments (the cases $c = 3,4$) report on further aspects of the ``spread" of the distribution, including ``skew".  In general, each higher moment exposes some of the weaknesses of lower moments.
 \end{itemize}
 
+
 \subsection{Probability Distributions}
 \label{sec:prob-distr}
 
 \index{probability distribution}
-We now take one further step backwards to note that many commonly encountered (outcome sequence)--(frequency function) pairs clearly belong to the same mathematical family.  There are often sets of parameters whose values determine a family member's probability frequency function
+We now take one further step bin the direction of abstraction, and note that many commonly encountered (outcome sequence)--(frequency function) pairs clearly belong to the same mathematical family.  There are often sets of parameters whose values determine a family member's probability frequency function
 or a family member's summarizing measures (means or variances, or \ldots).  These families are called {\em probability distributions}.  Rather than discuss this topic via abstractions, we present and analyze a small set of commonly encountered distributions.
 
-\subsubsection{The {\em binomial distribution}}
+\subsubsection{The binomial distribution}
 \label{sec:binomial-distribution}
 
 Focus on an experiment that involves a sequence of repeated identical events.  (A sample event might be: (a) a single toss of a coin or (b) a single roll of a die or (c) a single roll of a pair of dice.)  Choose one or more outcomes---say: (a) {\sc heads} for the coin toss; (b) a $3$ for the roll of a single die; (c) a $7$ or $11$ for the roll of a pair of dice---to be a {\em success}, while any other outcome is a {\em failure}.  Our sample space $\Sigma$ is defined to be all events that are {\em successes}, so we can discuss and analyze a random variable $X$ that ranges over this space.
@@ -1707,7 +1714,56 @@ Consider an experiment that consists of $n$ independent trials.  If the probabil
 \[ Pr[X=k] \ = \ {n \choose k} p^k q^{n-k} \ = \ {n \choose k} p^k (1-p)^{n-k} \]
 then we say that random variable $X$ obeys a {\em binomial distribution} or, equivalently, that $X$ is a {\em binomially distributed random variable}.
 
+We remark, as a kind of sanity check, that the Binomial Theorem (Theorem~\ref{thm:Binomial-theorem}) ensures that the joint event
+\[ [X=0] \ \vee \ [X=1] \ \vee \cdots  \vee \ [X=n] \]
+has probability
+\[ \sum_{k=0}^n \ {n \choose k} p^k (1-p)^{n-k} \ \ = \ \  \big(p + (1-p) \big)^n \ \ \equiv \ \ 1 \] 
+hence is certainly {\sc true}.
+
 \bigskip
+
+One can derive simple explicit expressions for the mean and variance of binomially distributed random variables.  Let us continue with the random variable $X$.
+
+\begin{prop}
+\label{thm:bin-vble-mean+variance}
+Consider the binomially distributed random variable $X$ that varies over $n$ trials with per-trial success probability $p$:
+
+{\bf (a)} $\mbox{\sc mean}(X) \ = \ np$.
+
+{\bf (b)} $\mbox{\sc variance}(X) \ = \ np(1-p)$.
+\end{prop}
+
+\begin{proof}
+The proof is by direct calculation.
+
+\smallskip
+
+\noindent {\bf (a)} For the mean of $X$:
+\begin{eqnarray*} 
+\mbox{\sc mean}(X) & = &
+\sum_{k=1}^n \ k {n \choose k} p^k (1-p)^{n-k} \ \ \ \ \ \ \ \mbox{(the $(k=0)$ term vanishes)} \\
+  & = &
+\sum_{k=1}^n \ k \cdot \frac{n!}{k! (n-k)!} p^k (1-p)^{n-k} \\
+  & = &
+np \cdot \sum_{k=1}^n \ \frac{(n-1)!}{(k-1)! (n-k)!} p^{k-1} (1-p)^{n-k} \\
+  & = &
+np \cdot \sum_{j=0}^{n-1} \ \frac{(n-1)!}{j! (n-j)!} p^{j} (1-p)^{(n-1)-(j-1)} \\
+  & = &
+np \cdot \big(p + (1-p) \big)^{n-1} \\
+  & = &
+np
+\end{eqnarray*}
+
+**HERE
+
+\noindent {\bf (b)} For the variance of $X$:
+\begin{eqnarray*} 
+\mbox{\sc variance}(X) & = & \mbox{\sc mean}(X^2) \ - \  \big(\mbox{\sc mean}(X) \big)^2 \\
+\end{eqnarray*}
+\end{proof}
+
+
+{\Arny Should these results be set off as a Proposition -- with the derivations as proof?} 
 
 **HERE
 
