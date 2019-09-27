@@ -1,4 +1,4 @@
-%version of 09-26-19
+%version of 09-27-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
@@ -1495,7 +1495,7 @@ The possible frustration results from the fact that acceptable summarizations ma
 always exist.   That being said, several summarizing numbers have been introduced, and
 each is valuable within certain domains of inquiry. 
 
-\subsubsection{The (arithmetic) mean of sampled outcomes: Expectations}
+\subsubsection{The (arithmetic) mean: Expectations}
 \label{sec:mean}
 
 \index{mean} \index{arithmetic mean} \index{mean!arithmetic} \index{expected value}
@@ -1595,7 +1595,9 @@ With this sample sequence also, one would expect the analysis of an experiment t
 larger values.  While $\mbox{\sc mean}(S_2)$ correctly identifies the sequence's ``center of gravity", it provides no information about how the outcome values are spread out within the sequence.
 \end{itemize}
 
-\paragraph{A. The median of a sequence} 
+\bigskip
+
+\noindent {\em The median of a sequence.} 
 To cope with the second of the preceding complaints, namely, the issue of ``skewness", many empiricists advocate reporting on a sequence's {\it median}, in addition to its mean.
 \index{median}
 
@@ -1644,8 +1646,7 @@ The median appears rather often in the news media, especially in regard to skewe
 }
 \bigskip
 
-\paragraph{B. Specialized measures: mode and geometric mean}
-
+\noindent {\em Modes and geometric means.}
 Two other measures of ``average" have garnered support in specialized communities.  We mention them just for completeness, so that the reader can consider more options when seeking useful summarizations of sequences of empirical outcomes.
 
 \medskip
@@ -1661,8 +1662,7 @@ If there is a single maximum element $s \in S$, then that element is called the 
 
 \noindent
 The {\it geometric mean} of an $n$-element sequence $S$ is a weighted {\em product} of $S$'s elements.  As with the arithmetic mean, the geometric mean is defined in terms of $S$'s frequency function $f_S$:
-\[ \mbox{\sc geometric-mean}(S) \ \eqdef \  \left(\prod_{s \in S} \ s^{f_S(s)} \right)^{1/n}
-\]
+\[ \mbox{\sc geometric-mean}(S) \ \eqdef \  \left(\prod_{s \in S} \ s^{f_S(s)} \right)^{1/n} \]
 A bit of arithmetic verifies that the geometric mean is defined by the following property:
 
 \smallskip
@@ -1753,9 +1753,12 @@ Focus on an experiment that involves a sequence of repeated identical events.  (
 By convention, we use the parameter $p$ to represent the probability of a {\em success} from any event, and we use the parameter $q$ to represent the probability of a {\em failure}; of course, we insist that $q = 1-p$.
 
 \index{binomial distribution} \index{binomially distributed random variable} 
-Consider an experiment that consists of $n$ independent trials.  If the probability of $k$ {\em successes} in this experiment is given by
-\[ Pr[X=k] \ = \ {n \choose k} p^k q^{n-k} \ = \ {n \choose k} p^k (1-p)^{n-k} \]
-then we say that random variable $X$ obeys a {\em binomial distribution} or, equivalently, that $X$ is a {\em binomially distributed random variable}.
+Consider an experiment that consists of $n$ independent trials.  If the probability of $k$ {\em successes} in this experiment is given by the probability frequency function
+\begin{equation}
+\label{eq:binomial-prob-freq}
+f_{n,p}(k) \ = \ Pr[X=k] \ = \ {n \choose k} p^k q^{n-k} \ = \ {n \choose k} p^k (1-p)^{n-k}
+\end{equation}
+then we say that random variable $X$ obeys a {\em binomial distribution} or, equivalently, that $X$ is a {\em binomially distributed random variable}.  In more detail, the subscript on the probability frequency function $f_{n,p}$ identifies this as {\em the binomial distribution on $n$ items, with probability $p$ of success}.
 
 We remark, as a kind of sanity check, that the Binomial Theorem (Theorem~\ref{thm:Binomial-theorem}) ensures that the joint event
 \[ [X=0] \ \vee \ [X=1] \ \vee \cdots  \vee \ [X=n] \]
@@ -1836,15 +1839,97 @@ n p (1-p)
 This completes the proof. \qed
 \end{proof}
 
-
 {\Arny Since I never trust my arithmetic, I presented the proof of this proposition with total detail.  I will leave it to you to decide which steps can be combined, etc.} 
 
-**HERE
+\bigskip
+
+\index{bell-shaped distribution} \index{coin tossing}
+The binomial distribution is the discrete avatar of a {\em bell-shaped} distribution.  We can see this most easily by focusing on the probability frequency function associated with the {\em coin-tossing} game.  The focus here is on determining the probability of achieving precisely $k$ {\sc head}s via $n$ tosses of a fair coin.  This problem is clearly an instance of a binomial distribution with success probability $p = 1/2$; hence, it obeys the probability frequency function 
+\[ f_{n,1/2}(k) \ = \  {n \choose k} \ 2^{-n} \] 
+cf., (\ref{eq:binomial-prob-freq}).  This simple example is a good starting point for observing the ``bell-shape" in such distributions.
+
+Table~\ref{tab:select-replace} illustrates the probabilities associated with the possible numbers of {\sc head}s achieved in two instances of the coin-tossing game, namely, $n = 10$ tosses and $n= 15$ tosses.  
+\begin{table}[htb]
+\label{tab:select-replace}
+\caption{Probabilities (to $3$ significant figures) associated with achieving $k$ {\sc head}s in the coin-tossing game, for $n = 10$ coin tosses and $n= 15$ coin tosses}
+\begin{center}
+\begin{tabular}{|c||r|l||r|l|}
+\hline
+Value of $k$ & $\displaystyle {10 \choose k}$ & \ $p_{10}(k)$ 
+& $\displaystyle {15 \choose k}$ & \ $p_{15}(k)$ \\
+\hline
+\hline
+$0$   &   $  1$ & \ $0.000977$ &     $   1$ &  \ $0.0000305$ \\
+$1$   &   $10$ & \   $0.00977$ &      $15$ &  \   $0.000458$ \\
+$2$   &   $45$ & \     $0.0439$ &    $105$ &  \     $0.00320$ \\
+$3$   & $120$ & \       $0.117$ &    $455$ &  \       $0.0139$ \\
+$4$   & $210$ & \      $0.205$ &   $1365$ &  \       $0.0417$ \\
+$5$   & $252$ & \      $0.246$ &   $3003$ &  \       $0.0916$ \\
+$6$   & $210$ & \      $0.205$ &   $5005$ &  \         $0.153$ \\
+$7$   & $120$ & \      $0.117$ &   $6435$ &  \         $0.196$ \\
+$8$   &   $45$ & \    $0.0439$ &   $6435$ &  \         $0.196$ \\
+$9$   &   $10$ & \  $0.00977$ &   $5005$ & \          $0.153$ \\
+$10$ &     $1$ & \ $0.000977$ &  $3003$ & \        $0.0916$ \\
+$11$ & --        & \ --                  &   $1365$ & \        $0.0417$ \\
+$12$ & --        & \ --                 &      $455$ & \        $0.0139$ \\
+$13$ & --       & \ --                  &      $105$ & \      $0.00320$ \\
+$14$ & --       & \ --                  &        $15$ & \    $0.000458$ \\
+$15$ & --       & \ --                  &          $1$ & \  $0.0000305$  \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+Fig.~\ref{fig:gaussiandistribution} is a companion to Table~\ref{tab:select-replace}, which presents histograms depicting the values of $\displaystyle {n \choose k}$, i.e., the unnormalized probabilities in the table; these values are, of course, rows $n =10$ and $n=15$ of Pascal's triangle.
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresMaths/ProbaGaussianDistribution}
+        \caption{Histograms of the binomial coefficients in the $10$th row (left) and the $15$th row (right) of Pascal's triangle.  The righthand histogram has been scaled---in the proportions 1:20---in order to fit on the page.}
+        \label{fig:gaussiandistribution}
+\end{center}
+\end{figure}
+
+It is worth noting in Fig.~\ref{fig:gaussiandistribution} that the set of binomial coefficients
+\[ \left\{ {n \choose k} \ | \ k = 0, 1, \ldots, n \right\} \]
+hence, also the probabilities within a binomial distribution, has a single maximum when $n$ is even but {\em two} maxima when $n$ is odd.  This is important to keep in mind during analyses, so that one does not inadvertently miscount cases.
+
+
+\subsubsection{The normal and exponential distributions}
+\label{sec:normal-expon-distr}
+
+\index{normal distribution} \index{normal distribution!mean} \index{Gaussian distribution}
+\index{normal distribution!variance} \index{normal distribution!standard deviation}
+
+\noindent {\em Normal distributions.}
+The most familiar version of the Bell curve distribution are the continuous {\em normal}, or, {\it Gaussian} probability distributions.  (The word ``normal" in this context emphasizes that these distributions are defined by their ``norms", namely, their means and variances; it does not mean ``usual".)  Although our focus in this text is entirely on {\em discrete} mathematical phenomena, it is important to recognize concepts and insights that emerge from the {\em continuous} versions of these phenomena.  A (continuous) normal probability distribution is one whose probability frequency function has the form
+\[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
+In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ (resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  Indeed, as is clear from the formula, parameters $\mu$ and $\sigma$ {\em specify} each individual normal distribution.
+
+\bigskip
+
+\fbox{
+\begin{minipage}{0.96\textwidth}
+We note that the normal probability frequency function involves two of the fundamental constants of mathematics: $e$ and $\pi$.  The ubiquity of these constants throughout disparate areas in mathematics testifies eloquently to how fully they deserve to be labeled {\em fundamental}.
+\end{minipage}
+}
+
+\bigskip
+
+\index{exponential distribution} \index{exponential distribution!mean}
+\index{exponential distribution!variance} \index{exponential distribution!standard deviation}
+
+\noindent {\em Exponential distributions.}
+
+
+
+
+\subsection{The Elements of Empirical Reasoning}
 
 
 **************
 
-\subsection{An Illustrative Game}
+{\Arny I have changed my mind about the {\sc select-and-replace} game.  I now propose that we use it as an exercise.  The following writeup also contains the solution, so it should be easy to port to the EXERCISE section, if you agree with my assessment.}
+
+{An Illustrative Game}
 
 The following simple game illustrates probability frequency functions and
 gives us access to other important probability-related functions.
@@ -1895,55 +1980,6 @@ By definition, $p(x)$ is a probability frequency function for random variable $X
 
 \medskip
 
-Table~\ref{tab:select-replace} illustrates the probabilities associated with the 
-possible scores of the {\sc select-and-replace} game for sets of sizes $n = 10$
-and $n= 15$.  
-\begin{table}[htb]
-\label{tab:select-replace}
-\caption{Probabilities (to $3$ significant figures) associated with the 
-{\sc select-and-replace} game, for sets of sizes $n = 10$ and $n= 15$}
-\begin{center}
-\begin{tabular}{|c||r|l||r|l|}
-\hline
-Value of $k$ & $\displaystyle {10 \choose k}$ & \ $p_{10}(k)$ 
-& $\displaystyle {15 \choose k}$ & \ $p_{15}(k)$ \\
-\hline
-\hline
-$1$   &   $10$ & \ $0.00978$ &     $15$ &  \ $0.000458$ \\
-$2$   &   $45$ & \ $0.0440$   &   $105$ &  \ $0.00320$ \\
-$3$   & $120$ & \ $0.117$     &   $455$ &  \ $0.0139$ \\
-$4$   & $210$ & \ $0.205$    & $1365$ &  \ $0.0417$ \\
-$5$   & $252$ & \ $0.246$    & $3003$ &  \ $0.0916$ \\
-$6$   & $210$ & \ $0.205$    & $5005$ &  \ $0.153$ \\
-$7$   & $120$ & \ $0.117$    & $6435$ &  \ $0.196$ \\
-$8$   &   $45$ & \ $0.0440$  & $6435$ &  \ $0.196$ \\
-$9$   &   $10$ & \ $0.00978$ & $5005$  & \ $0.153$ \\
-$10$ &     $1$ & \ $0.000978$ & $3003$  & \ $0.0916$ \\
-$11$ & --        & \ --                 & $1365$  & \ $0.0417$ \\
-$12$ & --        & \ --            &    $455$ & \ $0.0139$ \\
-$13$ & --       & \ --             &    $105$ & \ $0.00320$ \\
-$14$ & --       & \ --             &      $15$ & \ $0.000458$ \\
-$15$ & --       & \ --             &        $1$ & \ $0.0000305$  \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-Fig.~\ref{fig:gaussiandistribution} is a companion to Table~\ref{tab:select-replace},
-which presents histograms depicting the values of $\displaystyle {n \choose k}$,
-i.e., the unnormalized probabilities in the table; these values are, of course,
-rows $n =10$ and $n=15$ of Pascal's triangle, with the value
-$\displaystyle {n \choose 0} = 1$ deleted.  (This deletion reflects the fact that every
-score in the {\sc select-and-replace} game is positive.)
-\begin{figure}[htb]
-\begin{center}
-        \includegraphics[scale=0.5]{FiguresMaths/ProbaGaussianDistribution}
-        \caption{Histograms of the binomial coefficients in the $10$th row (left) and the $15$th
-         row (right) of Pascal's triangle, with the entries corresponding to
-         $\displaystyle {n \choose 0} = 1$ deleted.
-         The scale of the righthand histogram is 1:20.}
-        \label{fig:gaussiandistribution}
-\end{center}
-\end{figure}
 
 \index{binomial distribution} \index{binomial distribution!mean}
 \index{binomial distribution!variance} \index{binomial distribution!standard deviation}
@@ -1954,56 +1990,13 @@ familiar Bell curve of a {\em binomial (probability) distribution}.
 
 \medskip
 
-Before we discuss probability distributions, we should understand why
-they are important.  In a word, distributions give us a global
-perspective on very long (possibly infinite) sequences of events.
+
 
 \subsection{Summarizing Sequences of Events by a Single Number}
 \label{sec:single-statistic}
  
 
 **HERE
-
-
-**HERE
-
-\index{normal distribution} \index{normal distribution!mean} \index{Gaussian distribution}
-\index{normal distribution!variance} \index{normal distribution!standard deviation}
-
-discrete versions of the
-familiar Bell curve of a 
-{\em normal}, or, {\it Gaussian} probability distribution.  
-(The word ``normal" in this context emphasizes that these distribution are defined by their ``norms", namely, 
-their means and variances.) Although our focus in this text is entirely on {\em discrete} 
-mathematical phenomena, it is important to recognize concepts and insights that 
-emerge from the {\em continuous} versions of these phenomena.  A (continuous) normal 
-distribution is one whose probability frequency function has the form
-\[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
-In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ 
-(resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  Indeed, as is clear
-from the formula, parameters $\mu$ and $\sigma$ {\em specify} each individual normal 
-distribution.
-
-Here are a few noteworthy features of discrete and continuous normal distributions.
-\begin{itemize}
-\item
-In the {\em discrete} version of the concept:
-  \begin{itemize}
-  \item
-In common with the underlying binomial coefficients
-\[ \left\{ {n \choose k} \ | \ k = 0, 1, \ldots, n \right\} \]
-the distribution has a single maximum when $n$ is even but {\em two}
-maxima when $n$ is odd.
-
-  \end{itemize}
-
-In the {\em continuous} version of the concept:
-  \begin{itemize}
-  \item
-As a cultural note, the normal probability frequency function involves two of the
-fundamental constants of mathematics: $e$ and $\pi$.
-  \end{itemize}
-\end{itemize}
 
 \index{probability!distribution function} \index{probability!cumulative distribution function}
 
