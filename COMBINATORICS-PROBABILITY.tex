@@ -1906,7 +1906,7 @@ The most familiar Bell curve probability distributions are the continuous {\em n
 \[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
 In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ (resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  In this setting, parameters $\mu$ and $\sigma$ {\em specify} each individual normal distribution.  Many people demand a stricter definition under which $\mu = 0$ and $\sigma^2 = 1$, so that the probability distribution has the form
 \[ f(x) \ = \ \frac{1}{\sqrt{2 \pi}} \ e^{x^2/2} \]
-In this view, the version of the probability frequency function that specifies values of $\mu$ and $\sigma^2$ is a generalized normal distribution: of course, these values shift and change the aspect ratio of the specified Bell curve.
+In this view, the version of the probability frequency function that specifies values of $\mu$ and $\sigma^2$ is a generalized normal distribution: of course, these values shift the specified Bell curve and change the slope of its ascent and descent.
 
 \bigskip
 
@@ -1924,11 +1924,48 @@ The normal distribution is of immense importance in empirical studies of phenome
 
 \bigskip
 
-\index{exponential distribution} \index{exponential distribution!mean}
-\index{exponential distribution!variance} \index{exponential distribution!standard deviation}
+\index{exponential distribution}
 
 \noindent {\em Exponential distributions.}
+Distributions whose probabilities of success fall off at an exponential rate are roughly as familiar to experimenters as are normal distributions, because---as we shall discuss momentarily---such distributions are {\em memoryless}.
 
+\index{exponential distribution!decay rate}
+\index{exponential distribution!probability frequency function}
+\index{exponential distribution!cumulative frequency function}
+A probability frequency function describes an exponential probability distribution just when there exists a {\em rate parameter}---traditionally denoted by $\lambda$---for which
+\[ f(x) \ \eqdef \ Pr[X=x] \ = \ \lambda \cdot e^{-\lambda x} \]
+The parameter $\lambda$ is often termed the {\em decay rate} of the distribution because of the behavior of the distribution's {\em cumulative frequency function} $F$---specifically its exponential dropoff, or, decay, with increasing $\lambda$.
+\[ F(x) \ \eqdef \ Pr[X \leq x] \ = \ 1 - e^{-\lambda x} \]
+
+\index{exponential distribution!mean}
+\index{exponential distribution!variance} \index{exponential distribution!standard deviation}
+\index{memoryless probability distributions}
+
+The detailed derivations of the properties of the exponential distribution employ continuous mathematical concepts that are outside the scope of this discrete text.  But the properties themselves are worth mentioning, both for their (scientific and mathematical) cultural value and as an enticement to acquire the mathematical tools that will give access to this material, which is indispensable to empirical studies in the computational domain.
+
+\begin{prop}
+\label{thm:exponential-moments}
+For any exponentially distributed random variable $X$ with rate parameter $\lambda$:
+
+{\bf (a)}
+$\displaystyle \mbox{\sc mean}(X) \ = \ 1 / \lambda$.
+
+\smallskip
+
+{\bf (b)}
+$\displaystyle \mbox{\sc variance}(X) \ = \ 1 / \lambda^2$.
+
+\smallskip
+
+{\bf (c)}
+$\displaystyle  \mbox{\sc standard-deviation}(X) \ = \  \mbox{\sc mean}(X)$.
+
+\medskip
+
+{\bf (d)}
+The memoryless property:  For all $x, y \geq 0$,
+\[ Pr[X > x+y \ \ | \ \ X > y] \ = \ Pr[X > x] \]
+\end{prop}
 
 
 
