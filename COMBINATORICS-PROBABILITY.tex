@@ -1,4 +1,4 @@
-%version of 09-27-19
+%version of 10-03-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
@@ -999,14 +999,16 @@ You can have fun by confronting your friends with this unintuitive analysis.
 \medskip
 
 \index{conditional probability} \index{Bayes's Theorem}
-Of course, this is not just a trick!  It is a demonstration that you can improve your chances 
-of winning by taking advantage of all available information!  The ``science'' behind this 
-analysis is built upon the topic of {\em conditional probability}, in general, and Bayes's 
-Theorem, in particular.  Both topics are beyond the scope of this text: See \cite{Lee12} for 
-a general presentation of this topic, and see \cite{Bayes} for the original work.
 
-And---see the interactive sites on the Internet that actually perform the
-computation of likelihoods!
+Of course, this is not just a trick!  It is a demonstration that you can improve your chances of winning by taking advantage of all available information!  The ``science'' behind this analysis builds upon the topic of {\em conditional probability}.  Rather than looking only at the probability of an event $E$ in isolation, one focuses on the probability of event $E$, {\em given that some event $F$ has occurred}.  The {\em notation}that traditionally indicates this shift in focus is the following: If one uses the notation $Pr[E]$ to denote the probability of event $E$ in isolation, then one uses the embellishment $Pr[E \ | \ F]$ to denote, the probability of the compound event: ``$E$, given $F$''.
+
+A complete development of the theory that explains the Monty Hall puzzle would augment the use of conditional probabilities with an invocation of Bayes's Theorem, a seminal result within the theory of
+conditional probabilities.
+
+The topic of conditional probability and the development of Bayes's Theorem are beyond the scope of this text.  We refer the interested reader to \cite{Lee12} for a general presentation of this area, and to
+\cite{Bayes} for the original work on the Theorem.
+
+And---see the interactive sites on the Internet that actually perform the computation of likelihoods!
 
 
 \subsection{The Birthday Puzzle: {\em Complementary} Counting}
@@ -1022,11 +1024,7 @@ proposition. But, we do invite you to replicate the conclusions of this section 
 
 \medskip
 
-A common technique that teachers employ to establish rapport with a new class is to determine 
-whether any students in the class share a birthday.  We demonstrate in this section that when 
-the class has (at least) around 30 students, the answer is usually \textit{yes}.  The fact that we 
-can make such a specific claim  suggests that the presence of birthday-sharers is not a mere 
-accident---there are probabilities at work here!
+A common technique that teachers employ to establish rapport with a new class is to determine whether any students in the class share a birthday.  We demonstrate in this section that when the class has (at least) around 30 students, the answer is usually \textit{yes}.  The fact that we can make such a specific claim  suggests that the presence of birthday-sharers is not a mere accident---there are probabilities at work here!
 
 \smallskip
 
@@ -1957,7 +1955,7 @@ The parameter $\lambda$ is often termed the {\em decay rate} of the distribution
 
 \index{exponential distribution!mean}
 \index{exponential distribution!variance} \index{exponential distribution!standard deviation}
-\index{memoryless probability distributions}
+\index{memoryless probability distributions} \index{conditional probabilty}
 
 The detailed derivations of the properties of the exponential distribution employ continuous mathematical concepts that are outside the scope of this discrete text.  But the properties themselves are worth mentioning, both for their (scientific and mathematical) cultural value and as an enticement to acquire the mathematical tools that will give access to this material, which is indispensable to empirical studies in the computational domain.
 
@@ -1985,6 +1983,10 @@ The memoryless property:  For all $x, y \geq 0$,
 \[ Pr[X > x+y \ \ | \ \ X > y] \ = \ Pr[X > x] \]
 \end{prop}
 
+Note our invocation in Part (d) of {\em conditional} probabilities; cf.,
+Section~\ref{sec:monty-hall}: We are concerned with the probability
+that the random variable $X$ exceeds the quantity $x+y$ {\em given
+  that} $X$ exceeds the quantity $y$.
 
 
 \subsection{The Elements of Empirical Reasoning}
@@ -2003,14 +2005,17 @@ An example of the former situation:  A Physics 101 Laboratory experiment that em
 An example of the latter situation:  An observational experiment that records over fixed periods of time the percentage of births in which the newborn has a specific gender.
 \end{enumerate}
 
-An experiment of the second type actually played a historically significant role in the development of statistics and its operational methodology.
+An experiment of the second type actually played a historically significant role in the development of statistics and its operational methodology.  The experiment arose from the curiosity of the 18th-century British polymath John Arbuthnot.
+\index{Arbuthnot, John}
 
 \smallskip
 
-\index{Arbuthnot, John} \index{Laplace, Pierre Simon}
-The curiosity of the British polymath John Arbuthnot was piqued by the popular belief that males occur more often than females among newborn humans.  In an effort to determine the truth or falsity of this belief, Arbuthnot studied an archive reporting on births in London in the 82-year period 1629--1710.  As reported in his paper
+Arbuthnot's curiosity was piqued by a popular belief of the period that more boys are born than girls.  In an effort to test the truth of this belief, Arbuthnot studied an archive reporting on births in London in the 82-year period 1629--1710.  As reported in his paper
 
-\hspace*{.2in }``An argument for Divine Providence taken from the constant regularity observed in the births of both sexes"
+\begin{tabular}{l}
+``An argument for Divine Providence taken from the constant regularity \\
+\hspace*{.05in}observed in the births of both sexes"
+\end{tabular}
 
 \noindent
 ({\it Philosophical Transactions} of the Royal Society, 1710), Arbuthnot observed results such as the following:
@@ -2020,12 +2025,11 @@ In 1629, 5218 males were born, versus only 4683 females;
 \item
 in 1710, the corresponding numbers were 7640 versus 7288.
 \end{itemize}
-In fact, much to Arbuthnot's surprise, the archives exposed that male births consistently exceeded female births throughout the period!  Roughly a century later, the French mathematician Pierre Simon Laplace---who, in fact, invented much of the mathematics relating to probability and statistics---calculated that male births exceeded female births in the proportion of about 22 to 21 (reported in his celebrated {\it Essai philosophique sur les probabilit\'{e}s}, 1814).
+In fact, much to Arbuthnot's surprise, the archives exposed that male births consistently outnumbered female births throughout the period covered by the archives!  Roughly a century after Arbuthnot, the French mathematician Pierre Simon Laplace---who invented much of the mathematics relating to probability and statistics---calculated that male births outnumbered female births in the proportion of about 22 to 21 (reported in his celebrated {\it Essai philosophique sur les probabilit\'{e}s}, 1814).
+ \index{Laplace, Pierre Simon}
 
-\smallskip
-
-Interestingly the gender imbalance in births can still be observed today---and the reason for
-the imbalance has not yet been clearly identified.
+\noindent
+Interestingly the gender imbalance in births exposed by Arbuthnot can still be observed today---and the reason for the imbalance has not yet been clearly identified.
 
 \smallskip
 
