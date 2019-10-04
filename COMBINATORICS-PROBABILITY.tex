@@ -1378,8 +1378,9 @@ The second question is the main purpose of statistics that is developed in the n
 binomial coefficients.}
 *********}
 
-\section{Probability Functions: Frequencies and Distributions}
+\section{Probability Functions: Frequencies and Moments}
 \label{sec:prob-distributions}
+\label{sec:prob-freq-fns+measures}
 
 \index{probability!frequency function} 
 \index{probability!sample space}
@@ -1397,11 +1398,7 @@ goal of a probabilistic analysis is to capture important elements of
 of {\em outcomes}, each being an instantiation of a random variable
 with a value from its sample space.
 
-
-\subsection{Probability Frequency Functions and Related Measures}
-\label{sec:prob-freq-fns+measures}
-
-\subsubsection{Probability frequency functions}
+\subsection{Probability frequency functions}
 \label{sec:prob-freq-fns}
 
 Let us abstract the preceding environment, by focussing on:
@@ -1451,18 +1448,10 @@ Note that $f_S(s_1) + f_S(s_2) + \cdots + f_S(s_n) \ = \ n$.
 
 \index{probability frequency function}
 
-Now, we focus on a random variable $X$ that ranges over a sample space $\Sigma$.  
-Each value $k \in \Sigma$ has an associated probability, which we denote $Pr[X=k]$.  
-(Note that the identity of the relevant sample space is traditionally assumed to be known
-from context, hence is not mentioned explicitly.)
+Now, we focus on a random variable $X$ that ranges over a sample space $\Sigma$.  Each value $k \in \Sigma$ has an associated probability, which we denote $Pr[X=k]$.  (Note that the identity of the relevant sample space is traditionally assumed to be known from context, hence is not mentioned explicitly.)
 The function $f$ on $\Sigma$ defined as follows
 \[ f(x) \ = \ Pr[X=x] \]
-is called a {\it probability frequency function (for sequence $S$)}.
-(We have already seen probability frequency functions, but we have
-not yet used the term.)
-
-%\subsubsection{Measures that summarize probability frequencies}
-%\label{sec:measures-prob-freq-fns}
+is called a {\it probability frequency function (for sequence $S$)}.  (We have already seen probability frequency functions, but we have not yet used the term.)
 
 \bigskip
 
@@ -1487,7 +1476,7 @@ The possible frustration results from the fact that acceptable summarizations ma
 always exist.   That being said, several summarizing numbers have been introduced, and
 each is valuable within certain domains of inquiry. 
 
-\subsubsection{The (arithmetic) mean: Expectations}
+\subsection{The (arithmetic) mean: Expectations}
 \label{sec:mean}
 
 \index{mean} \index{arithmetic mean} \index{mean!arithmetic} \index{expected value}
@@ -1529,7 +1518,7 @@ Thus, the mean is a {\em linear} masure.
 In addition to its {\em a posteriori} analytical value, arithmetic means can be used as aids to prediction.  (We often do this, for example, when we consult mean temperatures before we pack for a trip to an unfamiliar location.)  When used predictively, the mean of a sequence $S$ is often called its {\it expected value} or, more succinctly, its {\it expectation}.
 \index{expected value} \index{expectation}
 
-\subsubsection{Additional measures of ``average"}
+\subsection{Additional measures of ``average"}
 \label{sec:median-mode}
 
 The major source of discontent with the arithmetic mean as a summarization tool is that, while the mean correctly identifies the ``center of gravity", or, ``balancing point" of a sequence $S$, it gives no information about the ``denseness" or ``skewness" of the sequence.  We illustrate these deficiencies using two simple sequences.
@@ -1626,7 +1615,6 @@ other empiricists use interpolation to maintain the existence of a single median
 $\mbox{\sc median}(S)  \ = \ {1 \over 2} \left(s_{\lfloor n/2 \rfloor} + \ s_{\lfloor n/2 \rfloor +1} \right)$
 \end{itemize}
 Our $31$-element sequence $S_2$ has two medians, but, happily, they are equal:
-%{\Denis Attention, I don't understand this 56, should be 31?}
 
 \hspace*{.35in}
 $s_{\lfloor n/2 \rfloor} \ = \ s_{\lfloor n/2 \rfloor +1} \ = \ 9$.  
@@ -1676,7 +1664,7 @@ logarithms of the elements of sequence $S$.
 \noindent
 Of course, we do not have to specify the bases of the logarithms---as long as all have the same base.
  
-\subsubsection{Higher statistical moments}
+\subsection{Higher statistical moments}
 \label{sec:mean-plus-moments}
 
 \index{actual mean $\mu$ of a random variable}
@@ -1735,12 +1723,29 @@ The third and fourth moments (the cases $c = 3,4$) report on further aspects of 
 \end{itemize}
 
 
+\section{The Elements of Empirical/Statistical Reasoning}
+\label{sec:empirical}
+
+In the ``real world", we pragmatically employ a variety of modalities of reasoning.  When the setting is appropriate, we can employ (usually simplified and relaxed) versions of the tools for strict {\em deductive} reasoning that dominate this text.  Suitable settings for such tools must be predictably small and stable.  When such a setting is either unavailable or inconvenient, we employ reasoning tools that are {\em inferential} rather than deductive.  This is the world of {\em empirical reasoning}, which we discuss in this section.
+
+\bigskip
+
+Empirical reasoning strives to draw reliable conclusions from the analysis of large corpora of (often numerical) data which has been generated by some manner of experiment.  The experiments in question usually involve measuring either the outcomes of some process or instances of some natural or artificial phenomenon.
+\begin{enumerate}
+\item
+An example of the former situation:  A Physics 101 Laboratory experiment that empirically derives an estimate of the value of Earth's gravitational force by having students repeatedly drop a ball of known mass and time the duration of the ball's fall before it hits the floor.
+
+\item
+An example of the latter situation:  An observational experiment that records over fixed periods of time the percentage of human births in which the newborn has a specific gender.
+\end{enumerate}
+
+Our ability to derive reliable truths from mountains of observed data relies on two monumental theorems that the edifice of empirical reasoning stands on.  We cannot even state these results without discussing our ability to aggregate commonly encountered (outcome sequence)--(frequency function) pairs into well-behaved {\it probability distributions} that help us (approximately) observe analyzable structure within the data.  We begin our study of empirical reasoning by introducing a small number of distributions that are arguably the most useful to experimental researchers.
+
 \subsection{Probability Distributions}
 \label{sec:prob-distr}
 
 \index{probability distribution}
-We now take one further step in the direction of abstraction, and note that many commonly encountered (outcome sequence)--(frequency function) pairs clearly belong to the same mathematical family.  There are often sets of parameters whose values determine a family member's probability frequency function
-or a family member's summarizing measures (means or variances, or \ldots).  These families are called {\em probability distributions}.  Rather than discuss this topic via abstractions, we present and analyze a small set of commonly encountered distributions.
+We now take an important step in the direction of abstraction, by noting that many probability frequency functions can fruitfully be viewed as belonging to the same mathematical family.  There are often sets of parameters whose values determine a particular family member's probability frequency function or its summarizing measures (means or variances, or \ldots).  These families are called {\em probability distributions}.  Rather than discuss this topic via abstractions, we present and analyze a small set of distributions that are very useful in empirical studies.
 
 \subsubsection{The binomial distribution}
 \label{sec:binomial-distribution}
@@ -1836,13 +1841,11 @@ n p (1-p)
 This completes the proof. \qed
 \end{proof}
 
-\ignore{
-{\Arny Since I never trust my arithmetic, I presented the proof of this proposition with total detail.  I will leave it to you to decide which steps can be combined, etc.} 
-}
 
 \bigskip
 
 \index{bell-shaped distribution} \index{coin tossing}
+
 The binomial distribution is the discrete avatar of a {\em bell-shaped} distribution.  We can see this most easily by focusing on the probability frequency function associated with the {\em coin-tossing} game.  The focus here is on determining the probability of achieving precisely $k$ {\sc head}s via $n$ tosses of a fair coin.  This problem is clearly an instance of a binomial distribution with success probability $p = 1/2$; hence, it obeys the probability frequency function 
 \[ f_{n,1/2}(k) \ = \  {n \choose k} \ 2^{-n} \] 
 cf., (\ref{eq:binomial-prob-freq}).  This simple example is a good starting point for observing the ``bell-shape" in such distributions.
@@ -1917,9 +1920,28 @@ We note that the normal probability frequency function involves two of the funda
 
 \bigskip
 
-\index{Central Limit Theorem}
-The normal distribution is of immense importance in empirical studies of phenomena whose true distribution is unknown.  For such studies, the {\em Central Limit Theorem} of probability theory and statistics guarantees the following (stated informally).  Say that we design an experiment whose outcomes comprise the sample space of interest.  Say further that the trials from the experiment are mutually independent---so that their outcomes can be viewed as independently drawings of random variables from the sample space.  Then, no matter how the original random variables are distributed---in particular, {\em they need not be distributed normally!}---the averages of the outcomes become normally distributed when the number of outcomes is sufficiently large.  There are many versions of the Central Limit Theorem, which instantiate its various conditions in various ways.  The earliest of these versions seems to date to a 1738 edition of the text {\it The Doctrine of Chances} by the French mathematician Abraham de Moivre.
-\index{de Moivre, Abraham}
+\index{Central Limit Theorem} \index{de Moivre, Abraham}
+
+The normal distribution is of immense importance in empirical studies of phenomena whose true distribution is unknown.  For such studies, the {\em Central Limit Theorem} of probability theory and statistics guarantees the following (stated informally).  Say that we design an experiment whose outcomes comprise the sample space of interest.  Say further that the trials from the experiment are mutually
+independent---so that their outcomes can be viewed as independently drawings of random variables from the sample space.  Then, no matter how the original random variables are distributed---in particular,
+{\em they need not be distributed normally!}---the averages of the outcomes become normally distributed when the number of outcomes is sufficiently large.  There are many versions of the Central Limit
+Theorem, which instantiate its various conditions in various ways.  The earliest of these versions seems to date to a 1738 edition of the text {\it The Doctrine of Chances} by the French mathematician Abraham
+de Moivre.  In this work, which is widely viewed as his main contribution, de Moivre conceived a brilliant idea while observing the pattern of the various summands in Newton's binomial formula
+(Theorem~\ref{thm:Binomial-theorem}).  He observed that as the Theorem expanded the polynomial $(x+y)^n$, one could picture $x$ and $y$ as alternative events of a compound event $x+y$ and view $n$ as a measure of the number of observations one has made thus far of the $2$-event system the polynomial describes.  This amazing intuition suggests that {\em maybe}, over sufficiently many observations, one might observe the regularity in the $2$-event system that the Binomial Theorem guarantees in the bivariate polynomial.
+
+\smallskip
+
+\noindent
+This intuition turned out to be correct---as verified by the Central Limit Theorem.   We now provide---{\em just for those readers who want to see such formalism}---a semi-formal statement of the Theorem, of course without proof.  The quite informal statement of the preceding paragraph supplies adequate detail for thinking about the Theorem.
+
+\begin{theorem}[The Central Limit Theorem] {\rm (A semi-formal statement)}
+\label{thm:CLT}
+Let $X_1$, $X_2$, \ldots, $X_n$ be random variables which are all drawn from a distribution that has mean $\mu$ and finite variance $\sigma^2$.  As the number $n$ of such variables grows without limit, the random variable
+\[ S_n \ = \ \frac{X_1 + X_2 + cdots + X_n}{n} \]
+converges to the normal distribution with mean $\mu$ and variance $\sigma^2$.
+\end{theorem}
+
+\noindent Back to the real world \ldots
 
 \bigskip
 
@@ -1935,9 +1957,9 @@ on $S$, which is defined in one of the following dual forms for $x \in S$:
 In {\em discrete} settings, cumulative distributions are usually defined via summation:
 \[ F^{(\leq)}(x) \ = \ \sum_{y \leq x} \ f(y)  \ \ \ \ \mbox{ or} \ \ \ \ F^{(\geq)}(x) \ = \ \sum_{y \geq x} \ f(y) \]
 
-\ignore{
+\ignore{***
 {\Arny What should we do here?  Are there examples we should describe?}
-}
+***}
 
 The computational relation of a probability frequency function $f$ to its associated cumulative distribution functions can be quite complicated.  For one probability distribution that is very important in empirical studies of manifold phenomena, this relation is very simple.  We refer here to the so-called {\em exponential distributions.}
 
@@ -1992,28 +2014,17 @@ that the random variable $X$ exceeds the quantity $x+y$ {\em given
   that} $X$ exceeds the quantity $y$.
 
 
-\section{The Elements of Empirical Reasoning}
-\label{sec:empirical}
 
-In the ``real world", we pragmatically employ a variety of modalities of reasoning.  When the setting is appropriate, we can employ tools for reasoning that are (usually simplified and relaxed) versions of the strict reasoning that dominates this text.  Suitable settings for this type of reasoning must be predictably small and stable.  When this genre of setting is either unavailable or inconvenient, we employ reasoning tools that are {\em inferential} rather than deductive.  This is the world of {\em empirical reasoning}, which we turn to now.
 
-\bigskip
+\subsection{A Historically Important Observational Experiment}
+\label{sec:Arbuthnot}
 
-Empirical reasoning strives to draw reliable conclusions from the analysis of large corpora of (often numerical) data which has been generated by some manner of experiment.  The experiments in question can be obtained from measuring the results of some process performed by the experimenter or by observing some natural or artificial phenomenon.
-\begin{enumerate}
-\item
-An example of the former situation:  A Physics 101 Laboratory experiment that empirically develops an estimate of the value of gravitational force by having students repeatedly drop a ball of known mass and then time the duration of the ball's fall before it impacts the earth.
-
-\item
-An example of the latter situation:  An observational experiment that records over fixed periods of time the percentage of births in which the newborn has a specific gender.
-\end{enumerate}
-
-An experiment of the second type actually played a historically significant role in the development of statistics and its operational methodology.  The experiment arose from the curiosity of the 18th-century British polymath John Arbuthnot.
+An observational experiment that dates to the early 18th century played a historically significant role in the development of statistics and its operational methodology.  The experiment arose from the curiosity of the 18th-century British polymath John Arbuthnot.
 \index{Arbuthnot, John}
 
 \smallskip
 
-Arbuthnot's curiosity was piqued by a popular belief of the period that more boys are born than girls.  In an effort to test the truth of this belief, Arbuthnot studied an archive reporting on births in London in the 82-year period 1629--1710.  As reported in his paper
+Arbuthnot's curiosity, so the story goes, was piqued by a popular belief of the period that more boys are born than girls.  In an effort to assess this belief, Arbuthnot studied an archive that he had access to, which reported on births in London in the $82$-year period 1629--1710.  As reported in his paper
 
 \begin{tabular}{l}
 ``An argument for Divine Providence taken from the constant regularity \\
@@ -2021,42 +2032,47 @@ Arbuthnot's curiosity was piqued by a popular belief of the period that more boy
 \end{tabular}
 
 \noindent
-({\it Philosophical Transactions} of the Royal Society, 1710), Arbuthnot observed results such as the following:
+({\it Philosophical Transactions} of the Royal Society, 1710), Arbuthnot observed results such as the following (taken just from the first and last years he reported on):\footnote{London's population was growing during this period, which accounts for the roughly $50\%$ growth in the total number of births.}
 \begin{itemize}
 \item
-In 1629, 5218 males were born, versus only 4683 females;
+In 1629, male births were $52.7\%$ of the total: 5218 males, versus 4683 females;
 \item
-in 1710, the corresponding numbers were 7640 versus 7288.
+in 1710, male births were $51.8\%$ of the total: 7640 males, versus 7288 females.
 \end{itemize}
-In fact, to Arbuthnot's surprise, the archives exposed that male births consistently outnumbered female births throughout the period covered by the archives!  Roughly a century after Arbuthnot, the French mathematician Pierre Simon Laplace---who invented much of the mathematics relating to probability and statistics---calculated that male births outnumbered female births in the proportion of about 22 to 21 (reported in his celebrated {\it Essai philosophique sur les probabilit\'{e}s}, 1814).
+In fact, to Arbuthnot's surprise, the archives exposed that male births consistently outnumbered female births throughout the $82$ years covered by the archives!  Roughly a century after Arbuthnot, the French mathematician Pierre Simon Laplace---who invented much of the mathematics underlying the fields of probability and statistics---reported in his celebrated {\it Essai philosophique sur les probabilit\'{e}s} (1814)
+that the total number of male births outnumbered the total number of female births in the proportion of roughly $22$ ($51.2\%$) to $21$ ($48.8\%$).
  \index{Laplace, Pierre Simon}
 
-\smallskip
+\medskip
 
 \noindent
 So \ldots Are male births actually more common than female ones?
 
-\smallskip
+\medskip
 
 \noindent
-Arbuthnot would have voted YES to this query, based on the following reasoning.  Model the question as a coin-tossing experiment.  If the ``coin" is unbiased, so that observed genders-of-newborns is a random process, then we would expect to see each new birth be a male or a female with probability $1/2$.  Over the course of $n$ years, then, the probability of seeing more boys than girls should equal 
-$p=(1/2)^{n}$, which approaches $0$ quite quickly as $n$ grows.  The fact that he observed more male births than female births {\em over a period of $82$ years} therefore convinced Arbuthnot that he was observing a true deviation from randomness---there was an actual bias toward male births!
+Arbuthnot would have responded YES to this query, based on the following reasoning, which is inspired by how one would analyze a coin-tossing experiment.  If the ``coin" is unbiased---so that the genders-of-newborns observations are reporting on a random process with two equiprobable outcomes---then we would expect to see each new birth be a male or a female with probability $1/2$.  Over the course of $82$ years, with (very roughly) $10,000$ births per year, then, the probability of seeing more boys than girls should equal $p=(1/2)^{820,000}$, which should be {\em very} close to $0$.  The fact that he observed more male births than female births over the entire period of his observations therefore convinced Arbuthnot that he was observing a true deviation from randomness---i.e., there {\em is} an actual bias toward male births!
 
-\smallskip
+\medskip
 
 \noindent
 (Interestingly the gender imbalance in births exposed by Arbuthnot can still be observed today---and the reason for the imbalance has not yet been clearly identified.)
 
-\smallskip
+\medskip
 
-Would we draw the same conclusion today as Arbuthnot did roughly three centuries ago?  Is the probability $22/43 \approx 0.512$ of male births that Laplace observed sufficiently larger than the random expectation $1/2 = 0.500$ for us too reject the hypothesis that this deviation was pure chance?  {\em This is precisely the kind of question that the field of statistics specializes in!}
+Would we draw the same conclusion today as Arbuthnot did roughly three centuries ago?  Is the probability $22/43 \approx 0.512$ of male births that Laplace observed sufficiently larger than the random expectation $1/2 = 0.5$ for us to reject the hypothesis that this deviation could be pure chance?  {\em This is precisely the kind of question that the field of statistics specializes in!}
 
-\smallskip
+\subsection{The Law of Large Numbers}
+\label{sec:Large-Numbers}
+
+\index{Law of Large Numbers} \index{{\it Loi des grands nombres}}
+
+Pointers to an answer to The Arbuthnot-Laplace question can be gleaned from a second probabilistic theorem, whose significance is commensurate with that of the Central Limit Theorem.  In fact, the upcoming result yields to reasoning that is quite similar to that of the Central Limit Theorem.
 
 
 
 
-**HERE
+**HERE -- NOTE THAT THE CLT BUILDS ON THIS
 
 
 \bigskip
@@ -2077,12 +2093,18 @@ can be made based on experimental results, and to understand how to
 describe conclusions in a way that is supported by the statistics.
 
 
-
+With this introduction, we now embark on our introduction to statistics.  We stress that this
+field has developed and deployed immensely sophisticated mathematical and
+computational tools.  We wish here only to given the reader a taste of what the field is
+about, so we strive only to hint at its goals and methodology.  We refer the readers to sources
+such as \cite{Hoel58} (which focuses on the mathematical aspects of the field) and 
+\cite{Bremaud17}  (which provides a comprehensive introduction) for two rather differently
+focused comprehensive introductions to this important field.
 
 **************
 
 **************
-
+\ignore{******************
 {\Arny I have changed my mind about the {\sc select-and-replace} game.  I now propose that we use it as an exercise.  The following writeup also contains the solution, so it should be easy to port to the EXERCISE section, if you agree with my assessment.}
 
 {An Illustrative Game}
@@ -2133,16 +2155,7 @@ $\Sigma$'s $2^n -1$ nonempty subsets.  It follows, therefore, that
 \[ p(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \div (2^n -1)  \]
 
 By definition, $p(x)$ is a probability frequency function for random variable $X$.
-
-\medskip
-
-
-\index{binomial distribution} \index{binomial distribution!mean}
-\index{binomial distribution!variance} \index{binomial distribution!standard deviation}
-
-The histograms in Fig.~\ref{fig:gaussiandistribution} are---when the entries 
-corresponding to $\displaystyle {n \choose 0} = 1$ are restored---instances of the
-familiar Bell curve of a {\em binomial (probability) distribution}.
+*****************}
 
 \medskip
  
@@ -2150,7 +2163,7 @@ The sheer volume of data in the corpus makes it impossible to understand the phe
 being studied.  You really need to summarize them 
 in a manner that will give a reliable summary of the import of the data.  The field of statistics provides well-studied approaches to this important challenge.
  
-  
+
 
 \index{Law of Large Numbers} \index{fair} \index{unbiased}
 Keep in mind that in the ideal world of probabilities, all six outcomes are equiprobable, hence, 
@@ -2167,13 +2180,7 @@ determine whether our die is unbiased.  Of course, such a determination is not a
 draws its conclusions within some {\em confidence level}.
 \index{confidence level}
 
-With this introduction, we now embark on our introduction to statistics.  We stress that this
-field has developed and deployed immensely sophisticated mathematical and
-computational tools.  We wish here only to given the reader a taste of what the field is
-about, so we strive only to hint at its goals and methodology.  We refer the readers to sources
-such as \cite{Hoel58} (which focuses on the mathematical aspects of the field) and 
-\cite{Bremaud17}  (which provides a comprehensive introduction) for two rather differently
-focused comprehensive introductions to this important field.
+
 
 \section{``Doing" Statistics}
 \label{sec:doing-statistics}
@@ -2211,13 +2218,8 @@ which the variance of a distribution give {\em important} information
 that is not available from the mean.  All of this is prerequisite to
 rigor in experimentation.
 
-{\Arny In the next subsections you seem to be trying to illustrate the Law of Large Numbers --- but
-you have not yet defined it.  More importantly, you have not defined the notions that underlie the
-Law}
 
-This is an illustration of the large number law, which says that the probability can be interpreted 
-as a limit of experimental measures (frequency of occurence of an event). 
-\bigskip
+
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
