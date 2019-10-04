@@ -1,4 +1,4 @@
-%version of 10-03-19
+%version of 10-04-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
@@ -17,19 +17,14 @@ The word ``counting'' in this context must be understood much more broadly than 
 vernacular: In days past, the phrase encompassed much of the field known nowadays as
 {\it combinatorics}. \index{combinatorics}
 
-This chapter is devoted to introducing the basics of three closely related mathematical
-subfields: combinatorics, probability, and statistics.
+The chapter is devoted to the basics of three closely related subfields of mathematics: combinatorics, probability, and the mathematical underpinnings of statistics.
 
 \medskip
 
 \index{combinatorics}\index{counting}
 
 \noindent {\it Combinatorics} (Section~\ref{sec:counting}).
-Our introduction to combinatorics can be viewed in many ways
-as a return to Chapter~\ref{ch:sets-BA-logic}'s study of
-sets, especially finite sets.  Indeed, the first topics we cover in
-this chapter involve looking at a set $S$ ``from the inside'', to determine
-how many elements (of a certain type) set $S$ contains.
+Our introduction to combinatorics can be viewed in many ways as a return to Chapter~\ref{ch:sets-BA-logic}'s study of sets, especially finite sets.  Indeed, the first topics we cover in this chapter involve looking at a set $S$ ``from the inside'', to determine how many elements (of a certain type) set $S$ contains.
 
 \medskip
 
@@ -823,13 +818,12 @@ that are consecutive in rank.  From lowest rank to highest:
 The probability of being dealt a royal flush is, thus, precisely $1/9$ the probability of being dealt a
 straight flush.  The probability of getting a straight flush is, therefore,
 \[  Pr(\mbox{straight flush}) \ \ = \ \
-{3 \over {216,580}} \ \ \approx \ \ 0.0000139  \ \ = \ \ 1.39 \times 10^{-5} \]
+{9 \over {649,740}} \ \ \approx \ \ 0.0000139  \ \ = \ \ 1.39 \times 10^{-5} \]
 
-{\Denis the result is good, but why the ratio 3/216580?}
 \item
 {\it Four-of-a-kind} is a poker hand of the form \\
 \hspace*{.25in}$X, \ X, \ X, \ X, \ Y$ \\
-where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
+where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
 and $X \neq Y$.
 \index{four of a kind (in poker)}
 
@@ -857,7 +851,7 @@ respective patterns are so similar.
 \item
 A {\it Full house} is a poker hand of the form \\
 \hspace*{.25in}$X, \ X, \ X, \ Y ,\ Y$ \\
-where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
+where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
 and $X \neq Y$.
  \index{full house (in poker)} 
 
@@ -867,7 +861,7 @@ and $X \neq Y$.
 \item
 {\it Three of a kind} is a poker hand of the form \\
 \hspace*{.25in}$X, \ X, \ X, \ Y, \ Z$ \\
-where $X, Y,  Z \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
+where $X, Y,  Z \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
 and $|\{X, Y, Z\}| =3$.  The final equation here  is a ``cute", succinct, way of saying that $Y$ and $Z$
 differ both from $X$ and from each other.
 \end{itemize}
@@ -1355,6 +1349,7 @@ repeated tosses of a coin.  (Continuing the trivial example of coin tosses: the 
 
 \bigskip
 
+\ignore{***************
 {\Arny I have to think about this.  I am not sure that I really understand the points you are making.}
 Probabilities are typically used in two complementary ways.
 
@@ -1375,14 +1370,13 @@ whether one observes (roughly) equally many {\sc head}s as {\sc tail}s.
 
 This use of probability is common: study the probability and then, deduce the future behaviors.
 The second question is the main purpose of statistics that is developed in the next section.
-
-
+****************}
 % discuss Probability versus Statistics...
-\ignore{
+\ignore{*******
 {\Denis We have to mention the links with the two other places where we discussed Binomial coefficients, recurrences and arithmetic, in this last case, we presented a question of computing the probability of getting 25 tails over 40 trials while flipping coins...}
 {\Arny I believe that we have already stressed in a few places how many conceptual uses one can make of 
 binomial coefficients.}
-}
+*********}
 
 \section{Probability Functions: Frequencies and Distributions}
 \label{sec:prob-distributions}
@@ -1565,9 +1559,11 @@ we illustrate for the case $n=31$.
 11,11,11,11,11,11,11,11,11,11
 \rangle \]
 } 
-\hspace*{-.1in} $S_2$ is constructed via the formula: for $i \in \{1,3,5,7,9,11\}$, 
-$f_{S_2}(i) = i-1$.  
-{\Denis Attention here: f S2(1) = 1 and not 0...}
+\hspace*{-.1in} $S_2$ is constructed via the following formula.  For $i \in \{1,3,5,7,9,11\}$
+\begin{eqnarray*}
+\hspace*{-.35in} f_{S_2}(1)  & = & 1 \\
+\hspace*{-.35in} \mbox{ for } 1 > 1 \ \ \ \ f_{S_2}(i)   & = & i-1
+\end{eqnarray*}  
 The following calculation verifies that $\mbox{\sc mean}(S_2) = 8.1$. 
 \begin{eqnarray*}
 \mbox{\sc mean}(S_2)
@@ -1629,14 +1625,14 @@ other empiricists use interpolation to maintain the existence of a single median
 \hspace*{.35in}
 $\mbox{\sc median}(S)  \ = \ {1 \over 2} \left(s_{\lfloor n/2 \rfloor} + \ s_{\lfloor n/2 \rfloor +1} \right)$
 \end{itemize}
-Our $56$-element sequence $S$ has two medians, but, happily, they are equal:
+Our $31$-element sequence $S_2$ has two medians, but, happily, they are equal:
+%{\Denis Attention, I don't understand this 56, should be 31?}
 
-{\Denis Attention, I don't understand this 56, should be 31?}
 \hspace*{.35in}
-$s_{\lfloor n/2 \rfloor} \ = \ s_{\lfloor n/2 \rfloor +1} \ = \ 11$.  
+$s_{\lfloor n/2 \rfloor} \ = \ s_{\lfloor n/2 \rfloor +1} \ = \ 9$.  
 
 \noindent
-For this reason, we are comfortable declaring that $\mbox{\sc median}(S) = 11$.
+For this reason, we are comfortable declaring that $\mbox{\sc median}(S_2) = 9$.
 
 \bigskip
 
@@ -1996,7 +1992,7 @@ that the random variable $X$ exceeds the quantity $x+y$ {\em given
   that} $X$ exceeds the quantity $y$.
 
 
-\subsection{The Elements of Empirical Reasoning}
+\section{The Elements of Empirical Reasoning}
 \label{sec:empirical}
 
 In the ``real world", we pragmatically employ a variety of modalities of reasoning.  When the setting is appropriate, we can employ tools for reasoning that are (usually simplified and relaxed) versions of the strict reasoning that dominates this text.  Suitable settings for this type of reasoning must be predictably small and stable.  When this genre of setting is either unavailable or inconvenient, we employ reasoning tools that are {\em inferential} rather than deductive.  This is the world of {\em empirical reasoning}, which we turn to now.
@@ -2307,7 +2303,7 @@ His idea was to link with the probability of an event $n$ being the number of ti
 
 The binomial expression is:
 
-$(1+x)^n = \sum_{k=0,n-1} {n \choose k} x^k = (1+x)(1+x)\ldots(1+x)$
+$(1+x)^n = \sum_{k=0,n} {n \choose k} x^k = (1+x)(1+x)\cdots(1+x)$
 
 in each of the $n$ factors $(1+x)$, choose $1$ or $x$, we obtain the coefficient of $x^k$.
 
