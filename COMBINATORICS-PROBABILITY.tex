@@ -1895,15 +1895,16 @@ It is worth noting in Fig.~\ref{fig:gaussiandistribution} that the set of binomi
 hence, also the probabilities within a binomial distribution, has a single maximum when $n$ is even but {\em two} maxima when $n$ is odd.  This is important to keep in mind during analyses, so that one does not inadvertently miscount cases.
 
 
-\subsubsection{Two important continuous probability distributions}
-\label{sec:normal-expon-distr}
+\subsubsection{Normal distributions and the {\it Central Limit Theorem}} 
+\label{sec:normal-distr}
 
 \index{normal distribution} \index{normal distribution!mean} \index{Gaussian distribution}
 \index{normal distribution!variance} \index{normal distribution!standard deviation}
 
-Although our focus in this text is entirely on {\em discrete} mathematical phenomena, it is important to recognize concepts and insights that emerge from related {\em continuous} phenomena.
+Although our focus is squarely on {\em discrete} mathematical phenomena, it is important to point out concepts and insights that emerge from related {\em continuous} phenomena.  This subsection and the next focus on two of the most important continuous probability distributions.
 
-\noindent {\em Normal distributions.}
+\bigskip
+
 The most familiar Bell curve probability distributions are the continuous {\em normal}, or, {\it Gaussian} distributions.  The term ``normal" does not refer to a specific probability distribution but rather to a large family of distributions all of whose ``higher moments"---meaning all moments other than the mean and variance (or, equivalently, the standard deviation) are identically $0$.  Despite this rigorous specification, most non-statisticians identify a normal probability distribution as any one whose probability frequency function has the form
 \[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
 In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ (resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  In this setting, parameters $\mu$ and $\sigma$ {\em specify} each individual normal distribution.  Many people demand a stricter definition under which $\mu = 0$ and $\sigma^2 = 1$, so that the probability distribution has the form
@@ -1976,17 +1977,15 @@ on $S$, which is defined in one of the following dual forms for $x \in S$:
 In {\em discrete} settings, cumulative distributions are usually defined via summation:
 \[ F^{(\leq)}(x) \ = \ \sum_{y \leq x} \ f(y)  \ \ \ \ \mbox{ or} \ \ \ \ F^{(\geq)}(x) \ = \ \sum_{y \geq x} \ f(y) \]
 
-\ignore{***
-{\Arny What should we do here?  Are there examples we should describe?}
-***}
 
 The computational relation of a probability frequency function $f$ to its associated cumulative distribution functions can be quite complicated.  For one probability distribution that is very important in empirical studies of manifold phenomena, this relation is very simple.  We refer here to the so-called {\em exponential distributions.}
 
-\bigskip
 
 \index{exponential distribution}
 
-\noindent {\em Exponential distributions.}
+\subsubsection{Exponential distributions} 
+\label{sec:exponential-distr}
+
 Distributions whose probabilities of success fall off at an exponential rate are roughly as familiar to experimenters as are normal distributions, because---as we shall discuss momentarily---such distributions are {\em memoryless}.
 
 \index{exponential distribution!decay rate}
@@ -2086,12 +2085,87 @@ Would we draw the same conclusion today as Arbuthnot did roughly three centuries
 
 \index{Law of Large Numbers} \index{{\it Loi des grands nombres}}
 
-Pointers to an answer to The Arbuthnot-Laplace question can be gleaned from a second probabilistic theorem, whose significance is commensurate with that of the Central Limit Theorem.  In fact, the formal reasoning that yields the upcoming {\it Law of Large Numbers} is quite similar to the formal underpinnings of the Central Limit Theorem.
+Pointers to an answer to The Arbuthnot-Laplace question can be gleaned from a second probabilistic theorem, which is known as the {\it Law of Large Numbers}, or, {\it le Loi des grands nombres}.  The significance of the {\it Law} is commensurate with that of the Central Limit Theorem; if fact, the two results are linked by the formal reasoning that underlies both.
 
 
 
 
-**HERE -- NOTE THAT THE CLT BUILDS ON THIS
+**HERE -- 
+
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+Probability or Statistics?
+Two faces of the same thing!
+
+Repeating a random experience more and more gives a better (accurate) value
+of the relative frequency of the events, which tends to a limit. 
+
+This is another way to look at the probability that an event occurs. 
+\end{minipage}
+}
+\bigskip
+
+The next section is devoted to give more details on this important law.
+
+
+
+
+{\Denis add ref: Jocobi Bernoulli, Ars conjectandiopus posthumum}
+
+The former traces of the large numbers law are in a book from Jakob von Bielfeld in 1767.
+Later, with the emergence of the probability theory and in particular via the swiss mathematician Jacques Bernoulli
+and his nephew Nicholas who finished the work of his uncle when he died, 
+the law of large numbers was given as a theorem for describing the result of performing the same experiments
+ a large number of times. 
+ According to this result, the average of the results obtained from a large number of experiences is close 
+ to the expected value. 
+For instance, a single roll of a die produces evenly one of the numbers 1 to 6.
+Thus, the According to the law, if a large number of dice are rolled, the average of their values 
+is likely to be close to the value $\frac{1+2+3+4+5+6}{6}=3.5$.
+The precision is increasing with the number the dices are rolled. 
+
+\bigskip
+
+Let consider a hat containing white and black balls.
+We will discuss two variants: first, the number of balls is known and second, it is not.
+
+\begin{itemize}
+\item If the proportion is known (say for instance 300 white balls and 200 black balls
+(thus, $60\%$ of white and $40\%$ of black).
+
+Clearly, there is more chance to get a white than a black.
+But the Loi des grands nombres tell us a bit more: the probability to get a white is close to $60\%$
+if we are drawing a ball a large number of times and putting it back in the hat.
+
+If we are doing only one trial, the result is simply $1$ or $0$ (if I get a black or not)...
+How many trials do we have to do to be sure that the probability is $60\%$?
+For instance, draw ten balls, are we sure to obtain $6$ white balls? What about $100$ or $1000$?
+\item If the number of balls is not known.
+The experience consists in determining the probability to draw a white ball without knowing 
+We proceed as before:
+draw a ball, note his color and put it back in the hat, and do it again and again...
+%(then, the proportion of white/black balls remains unchanged)
+
+The loi des grands nombres will provide the answer (the limit) for an infinite number of trials.
+If we want to be sure to obtain the result with a precision of $1\%$,
+how many trials do we have to do to get a probability in the interval $(59.9,60.1)$?
+\end{itemize}
+
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+In the loi des grands nombres, called also the \textit{golden theorem} (Th\'eor\`eme d'or) by Jacques Bernouilli,
+large numbers refer to the convergence of the frequency of occurrence of an experience to a limit, which is the probability
+that the event occurs. 
+
+The Loi des grands nombres gives also a solution to the problem of how many trials are needed to obtain a given
+precision...
+
+\end{minipage}
+}
+\bigskip
 
 
 \bigskip
@@ -2176,11 +2250,6 @@ $\Sigma$'s $2^n -1$ nonempty subsets.  It follows, therefore, that
 By definition, $p(x)$ is a probability frequency function for random variable $X$.
 *****************}
 
-\medskip
- 
-The sheer volume of data in the corpus makes it impossible to understand the phenomenon 
-being studied.  You really need to summarize them 
-in a manner that will give a reliable summary of the import of the data.  The field of statistics provides well-studied approaches to this important challenge.
  
 
 
@@ -2200,18 +2269,6 @@ draws its conclusions within some {\em confidence level}.
 \index{confidence level}
 
 
-
-\section{``Doing" Statistics}
-\label{sec:doing-statistics}
-
-
-I have now gotten into Sec 11.4.2.  My proposals:
-
-1. We move Fig. 11.8 to illustrate the def?n of frequency function (with a very different, statistics-based, caption) and that we add the cumulative version of 11.8 as Fig. 11.9.
-
-2. Once we have step 1, it is natural to introduce the normal distribution ? emphasizing that ?normal? means ?coming from a norm?, not anything to do with the vernacular use of ?normal? as ?usual?.
-
-3. While we do this, I propose that we add the exponential distribution also ? with analogs of Figs. 11.8 and 11.9.  Our friend YR suggests over a glass of wine that the normal and exponential distributions are all one needs for empirical work :)
 
 4. Now, we move to Empirical Reasoning.  The subsections will consist of
 (a) births of boys and girls
@@ -2240,97 +2297,7 @@ rigor in experimentation.
 
 
 
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-Probability or Statistics?
-Two faces of the same thing!
-
-Repeating a random experience more and more gives a better (accurate) value
-of the relative frequency of the events, which tends to a limit. 
-
-This is another way to look at the probability that an event occurs. 
-\end{minipage}
-}
-\bigskip
-
-The next section is devoted to give more details on this important law.
-
-
-\subsection{The Law of Large Numbers} 
-\label{subsec:LawLargeNumbers}
-%\textit{Loi des grands nombres}}
-
-{\Denis add ref: Jocobi Bernoulli, Ars conjectandiopus posthumum}
-
-The former traces of the large numbers law are in a book from Jakob von Bielfeld in 1767.
-Later, with the emergence of the probability theory and in particular via the swiss mathematician Jacques Bernoulli
-and his nephew Nicholas who finished the work of his uncle when he died, 
-the law of large numbers was given as a theorem for describing the result of performing the same experiments
- a large number of times. 
- According to this result, the average of the results obtained from a large number of experiences is close 
- to the expected value. 
-For instance, a single roll of a die produces evenly one of the numbers 1 to 6.
-Thus, the According to the law, if a large number of dice are rolled, the average of their values 
-is likely to be close to the value $\frac{1+2+3+4+5+6}{6}=3.5$.
-The precision is increasing with the number the dices are rolled. 
-
-\bigskip
-
-Let consider a hat containing white and black balls.
-We will discuss two variants: first, the number of balls is known and second, it is not.
-
-\begin{itemize}
-\item If the proportion is known (say for instance 300 white balls and 200 black balls
-(thus, $60\%$ of white and $40\%$ of black).
-
-Clearly, there is more chance to get a white than a black.
-But the Loi des grands nombres tell us a bit more: the probability to get a white is close to $60\%$
-if we are drawing a ball a large number of times and putting it back in the hat.
-
-If we are doing only one trial, the result is simply $1$ or $0$ (if I get a black or not)...
-How many trials do we have to do to be sure that the probability is $60\%$?
-For instance, draw ten balls, are we sure to obtain $6$ white balls? What about $100$ or $1000$?
-\item If the number of balls is not known.
-The experience consists in determining the probability to draw a white ball without knowing 
-We proceed as before:
-draw a ball, note his color and put it back in the hat, and do it again and again...
-%(then, the proportion of white/black balls remains unchanged)
-
-The loi des grands nombres will provide the answer (the limit) for an infinite number of trials.
-If we want to be sure to obtain the result with a precision of $1\%$,
-how many trials do we have to do to get a probability in the interval $(59.9,60.1)$?
-\end{itemize}
-
-\medskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-In the loi des grands nombres, called also the \textit{golden theorem} (Th\'eor\`eme d'or) by Jacques Bernouilli,
-large numbers refer to the convergence of the frequency of occurrence of an experience to a limit, which is the probability
-that the event occurs. 
-
-The Loi des grands nombres gives also a solution to the problem of how many trials are needed to obtain a given
-precision...
-
-\end{minipage}
-}
-\bigskip
-
 {\Denis I think we should conclude by the Loi normale and the gaussian distribution. }
-
-The story is very interesting, it has been the main work of Abraham de Moivre (1667-1754), 
-which studied the sum of the terms that appear in the binomial formula of Newton when the power $n$ is large.
-His idea was to link with the probability of an event $n$ being the number of times this event occurs.
-
-The binomial expression is:
-
-$(1+x)^n = \sum_{k=0,n} {n \choose k} x^k = (1+x)(1+x)\cdots(1+x)$
-
-in each of the $n$ factors $(1+x)$, choose $1$ or $x$, we obtain the coefficient of $x^k$.
-
-\medskip
-
-
 
 
 \section{Beyond the Basics}
