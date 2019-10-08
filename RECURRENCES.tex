@@ -627,7 +627,7 @@ This result is an immediate consequence of the Binomial Theorem
 (Theorem~\ref{thm:Binomial-theorem}).  That seminal result tells us
 that, for all $n \in \N$,
 \[
-(x+y)^n \ \ = \ \ \sum_{i=0}^n \ \ {n \choose i} x^{n-i} y^i.
+(x+y)^n \ \ = \ \ \sum_{i=0}^n \ \ {n \choose i} x^{n-i} y^i
 \]
 If we instantiate this polynomial equation with the values $x = y =
 1$, then we obtain the present result.
@@ -1077,7 +1077,6 @@ The induction is thus extended, which establishes the proposition.
 \qed 
 \end{proof}
 
-%{\Denis We have to decide where to put the following example. May be while describing all the possibilities to write proofs at the beginning? or in Recurrence as an alternative proof?}
 
 \paragraph{C. A combinatorial setting for the Fibonacci numbers}
 \index{Fibonacci sequence!in binary strings with no consecutive $1$s}
@@ -1167,7 +1166,8 @@ The Fibonacci series is given by the recurrence:
 $F(n+1) = F(n) + F(n-1)$.
 The characteristic equation is thus given by:
 $x^2 = x + 1$ or $x^2 - x - 1 = 0$ whose roots are determined by solving the equation for $a=1$ and $b=c=-1$.
-$\Delta = 1+4 = 5$
+
+$\Delta = b^2 - 4.a.c = 1+4 = 5$
 
 As both roots are centered apart $x^*=\frac{-b}{2a}= \frac{1}{2}$, corresponding to $y^*= -\frac{\Delta}{4a} = -\frac{5}{4}$, we can rewrite the equation as:
 
@@ -1180,7 +1180,7 @@ The last value is the Golden ratio: $\Phi = \frac{1}{2} + \sqrt{\frac{5}{4}} = \
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresArithmetic/SecondDegreeFibo}
-\caption{Determining the Golden ration ($x_2$).}
+\caption{Determining graphically the Golden ratio (second root, denoted by $x_2$).}
 \label{fig:SecondDegreeFibo}
 \end{center}
 \end{figure}
@@ -1263,20 +1263,16 @@ For all $n$,
 \]
 \end{prop}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ignore{*********
-In this section, we present the general methodology for determining
-the close form of $F(n)$, that is an direct expression that only
-depends on $n$ and not on the other terms of the sequence.  The
-characteristic equation of $F(n+2) - F(n+1) - F(n) =0$ is:
-Let determine its discriminant: $\Delta = 5$.
-Since it is positive, this equation has two distinct roots:
+\subsection{A fun variant: the Lucas' numbers}
 
-The first one $\Phi$ is known as the \textit{golden ratio}. 
 
-The general term $F(n)$ is equal to $a.\Phi^n + a'.\Phi'^n$ where $a$
-and $a'$ are determined by two particular values $n=0$ and $n=1$:
-*******************}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{$\oplus$ Recurrences ``in action'': The Token Game}
 \label{sec:TokenGame}
@@ -1867,26 +1863,17 @@ geometrically that $3 F(n)+1 \ = \ 2^{n+1}$, which {\em of
 
 \bigskip
 
-We leave as an exercise the (somewhat easier) derivation of the value
-of $F(n)$ for the case of even $n$.
+We derive immediately the expression for even $n$ using the definition of $g(n)$:
+
+$F(n) = 2^n -1 + F(n-1)$ for $n \geq 2$
+
+$= 2^n -1 + \frac{1}{3} \left(2^{n} - 1 \right) $
+
+$= \frac{1}{3} \left(2^{n+1} - 2 \right)$
 \qed
 \end{proof}
 
 
-\ignore{***********
-The previous construction may be adapted in the even case in a similar way.
-The details are left to the readers. 
-
-We propose below another proof obtained by using the results for the odd case:
-
-We start by the expression $F(n) + F(n-1) = 2^n -1$
-that is $F(2k) = 2^{2k} - F(2k-1) -1$ for even $n=2k$.
-
-Now, apply the final expression of $f$ to $2k-1$, which is odd: $F(2k-1) = \frac{1}{3} (2^{2k+1}-1)$.
-
-$F(2k) = 2^{2k} - \frac{1}{3} (2^{2k-1+1}-1) -1 = 2^{2k} (1-\frac{1}{3}) + \frac{1}{3} -1= \frac{1}{3} (2^{2k+1} -2)$.
-\bigskip
-*************}
 %
 %Figures~\ref{fig:alternatePowers2even} and~\ref{fig:alternatePowers2finalEven} illustrate the construction in the even case.
 %The details are left to the readers. 
@@ -1970,7 +1957,7 @@ $F(n+2)^2 = 4.F(n+1).F(n) + F(n-1)^2$
   cover anywhere.  Since this is not a true paradox, this material
   does not belong in that section.}
 
-{\Denis Right, put this as an excercice. }
+{\Denis Right, put this as an exercice. }
 
 {\Arny Both of my preceding comments build on the question, Why should
   we include this material?  Obviously, when new techniques are
@@ -1981,10 +1968,9 @@ $F(n+2)^2 = 4.F(n+1).F(n) + F(n-1)^2$
 
 
 \ignore{**************
-\subsection{$\oplus$ Cassini's Identity and Carroll's Puzzle}
-\label{sec:Cassini+Carroll}
+\subsection{$\oplus$ Cassini's Identity}
+\label{sec:Cassini}
 \index{Fibonacci numbers!Cassini's Identity}
-\index{Fibonacci numbers!Carroll's Puzzle}
 
 
 \noindent \textbf{Property. (Cassini's identity)} 
@@ -2043,33 +2029,227 @@ In other words, it always remains (for any $n$) an empty space (corresponding to
 The greater $n$, the better the paradox because the deformation of the surface of this basic square becomes more tiny. 
 ***********************}
 
-%\subsection{Using Fibonacci numbers}
+\newpage
 
+\section{Exercices: more on recurrences}
+
+\subsection{Karatsuba (application of the Master Theorem)} 
+
+\noindent \textit{The aim:}
+Notice that the previous technique is classical and it has been used in many other situations.
+For instance while multiplying two integers in base 2.
+
+Change the presentation...
+Let us first recall the generic divide-and-conquer for designing algorithms.
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be
+decomposed into sub-problems.
+
+Let consider a problem of size $n$ that can be decomposed into $p$ sub-problems.
+(notice, all sub-problems have the same size n/q).
+\bigskip
+
+\noindent {\bf Principle:}
+\begin{enumerate}
+\item Decompose the problem into $a$ sub-problems of size $\frac{n}{q}$.
+\item Solve those sub-problems.
+\item Reconstruct the solution of the initial problem.
+\end{enumerate}
+
+In general, the sub-problems are solved recursively (at least until a certain threshold).
+The cost is governed by the following expression:
+
+$T(n) = p.T(\frac{n}{q}) + c_1(n) + c_3(n)$ 
+
+where $c_1(n)$ et $c_3(n)$ are the costs of phases (1) et (3).
+
+Note: the resolution of this kind of equation is using the Master theorem of section~\ref{sec:linear-recurrence-general}.
+\end{minipage}
+}
+\bigskip
+
+\noindent \textit{The problem:}
+Let $A=(a_na_{n-1}\ldots a_1)_2$ and $B=(b_nb_{n-1}\ldots b_1)_2$
+be two long integers, and assume $n=2^k$ for some positive integer $k$.
+The goal is to compute the product $A \times B$.
+
+The standard (and naive) method is to compute the $n$ partial products 
+$A=(a_na_{n-1}\ldots a_1)_2$ by each of the $b_i$, leading to $O(n^2)$ basic operations. 
+
+The divide-and-conquer version of this problem is to break each integer into two parts
+of $\frac{n}{2}$ bits each:
+
+$A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$
+
+Denoting by $A_1$ and $A_2$ the two separate terms, we get:
+
+$A.B = (A_1.B_1) 2^n + (A_1.B_2 + A_2.B_1) 2^{n/2} + A_2.B_2$
+\bigskip
+
+\textbf{Cost analysis} :
+The previous computation requires 4 multiplications of integers of $n/2$ bits 
+and 3 additions of integers with at most $2n$ bits. The multiplication of integers in base 2 by powers of 2 
+correspond to simple shifts to the left. 
+
+The cost is given by the following expression: $T(n) = 4.T(\frac{n}{2}) + f(n)$ where $f$ is a linear function
+and $T(1) = 1$.
+
+We obtain $T(n) = \Theta(n^2)$, same as for the naive algorithm.
+\bigskip
+ 
+\noindent \textit{The second problem:}
+The idea of Karatsuba is to decrease the number of multiplications 
+(at the price of slightly increasing the additions/subtractions) by using the following identity:
+
+$A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)$
+\bigskip
+
+\noindent \textit{The solution:}
+
+$A.B = (A_1.B_1) 2^n + (A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)) 2^{n/2} + A_2.B_2$
+
+
+Cost analysis: 3 multiplications of $n/2$ bits
+
+4 additions and 2 subtractions of integers at most $2n$ bits. Again, using the Master Theorem leads to:
+
+$T(n) = 3.T(\frac{n}{2}) + \theta (n) = n^{log_2 3}$
+
+
+\subsection{Fast Fibonacci}
+\label{sec:FastFibo}
+
+\noindent \textit{The aim:} 
+Show a new computational scheme for the Fibonacci numbers.
+
+Notice that it is generic and related to the scheme of fast exponentiation.
+\medskip
+
+
+\noindent \textit{The problem:} Verify the following expression and develop an argument for its interest.
+
+$F(2n) = F(n)^2 + F(n-1)^2$
+
+$F(2n+1) = (2.F(n-1) + F(n)).F(n)$
+\medskip
+
+\noindent \textit{The solution:}
+
+The proof is by induction.
+
+The basis case is obtained for $n=1$.
+It is true since:
+
+$F(2) = F(1)^2+F(0)^2 = 2$
+
+$F(3) = (2.F(0)+F(1)).(F(1)) = 3$
+\medskip
+
+Let assume for proving the induction step that the property holds at rank $n$ for both $F(2n)$ and $F(2n+1)$ and compute $F(2(n+1))$:
+
+Apply first the definition of Fibonacci numbers: 
+
+$F(2n+2) = F(2n+1)+F(2n)$ 
+
+Replace both terms by the recurrence hypothesis:
+
+$= F(n)^2 + F(n-1)^2 + (2.F(n-1) + F(n)).F(n)$
+
+$= F(n)^2 + F(n-1)^2 + 2.(F(n).F(n-1)) + F(n)^2$
+
+$= (F(n) + F(n-1))^2 + F(n)^2$
+
+We obtain the result by applying again the definition of Fibonacci numbers at order $n+1$:
+
+$F(2(n+1)) = F(n+1)^2 + F(n)^2$
+\medskip
+
+The second part of the proposition is obtained by applying the definition of Fibonacci numbers:
+
+$F(2(n+1)+1) = F(2(n+1)) + F(2n+1)$
+
+and replace both terms by their expressions respectively :
+
+$= F(n+1)^2 + F(n)^2 + (2.F(n-1) + F(n)).F(n)$
+
+$= F(n+1)^2 + 2.(F(n-1) + F(n)).F(n)$
+
+$= F(n+1)^2 + 2.F(n+1).F(n)$
+\medskip
+
+We provide in Fig.~\ref{fig:fastFibo} a pictorial argument to show why this decomposition 
+is particularly fast while \textit{computing} Fibonacci numbers:
+each $F(n)$ is computed by a complete binary tree of its predecessors in $log_2 (n)$ steps.
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresMaths/FiboFast.png}
+        \label{fig:fastFibo}
+        \caption{Dependency relations for computing the pairs $(F(2n),F(2n+1))$.
+       }
+\end{center}
+\end{figure}
+
+\noindent \textit{Conclusion:}
+Any Fibonacci number $F(n)$ can be computed very fast in $log_2 (n)$ steps.
+
+
+\section{Cassini's identity}
+
+\noindent \textit{The aim:}
+Prove a classical identity involving Fibonacci numbers, which is a nice example of proof by recurrence.
+
+\noindent \textit{The problem:}
+$F(n-1).F(n+1) = F(n)^2 + (-1)^{n+1}$ for $n \geq 1$
+\medskip
+
+%Let check the expression on the first ranks:
 %
-%Figures~\ref{fig:alternatePowers2even} and~\ref{fig:alternatePowers2finalEven} illustrate the construction in the even case.
-%The details are left to the readers. 
-%We obtain $3.F(n)+2= 2^{n+1}$ by a similar analysis.
-%However, we can deduce directly the even case from the odd case by remarking that $F(2k)=2.F(2k-1) +1$.
+%$n=1$, $F(0).F(2) = F(1)^2 +1 = 2$
 %
-%This is obtained by the basic relations $F(n) = 2^{n} - F(n-1) -1$ and $F(2k-1) = \frac{1}{3} (2^{2k} -1)$.
+%$n=2$, $F(1).F(3) = F(2)^2 -1 = 3$
 %
-%$n=2k$, $F(n) = 2^{2k} - \frac{1}{3} (2^{2k} -1) -1 = \frac{1}{3} (2^{n+1} -2)$.
+%$n=3$, $F(2).F(4) = F(3)^2 +1 = 10$
 %
-%\begin{figure} [h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{FIGmaths/alternatePowers2initEven.png}
-%        \caption{Representation of the alternate series of powers of $2$ for $n=6$.
-%        F(6)=32+8+2.}
-%        \label{fig:alternatePowers2even}
-%\end{center}
-%\end{figure}
+%$n=4$, $F(3).F(5) = F(4)^2 -1 = 24$
 %
-%
-%\begin{figure} [h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{FIGmaths/alternatePowers2even.png}
-%        \caption{Case odd: Geometric proof in the odd case. Notice here that there are 2 small rectangles left at the extreme corners on the right,
-%        whose surface is $1$ each.}
-%        \label{fig:alternatePowers2finalEven}
-%\end{center}
-%\end{figure}
+%...
+%\medskip
+
+\noindent \textit{The solution:}
+The proof is by induction.
+
+The basis case $n=1$ holds since $F(0).F(2) = F(1)^2 +1 = 2$.
+
+The induction step is proved assuming the Cassini's identity holds at rank $n$.
+Replace $F(n+2)$ by its definition in the expression:
+ 
+$F(n).F(n+2) = F(n) (F(n+1)+F(n)) = F(n)^2 + F(n).F(n+1)$
+
+Then, replace the last term using the recurrence hypothesis:
+
+$F(n)^2 = F(n-1).F(n+1) - (-1)^{n+1} =F(n-1).F(n+1) + (-1)^{n+2} $
+
+Thus,
+$F(n).F(n+2) = F(n).F(n+1) + F(n-1).F(n+1) + (-1)^{n+2} = F(n+1) (F(n) + F(n-1)) + (-1)^{n+2}$ 
+
+Apply again the definition of Fibonacci sequence $F(n) + F(n-1) = F(n+1)$, we obtain:
+
+$F(n).F(n+2) = F(n+1)^2 + (-1)^{n+2}$
+
+This concludes the proof. 
+
+
+\subsection{Lucas' numbers} 
+
+\noindent \textit{The aim:}
+Link with the Fibonacci numbers:
+average of two Fibo numbers right before and right after...
+\medskip
+
+\noindent \textit{The problem:}
+\medskip
+
+\noindent \textit{The solution:}

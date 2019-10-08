@@ -209,7 +209,7 @@ Using techniques that we cover in Chapter~\ref{ch:Summation}, one
 verifies that this infinite series converges with the sum $2$.  \qed
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Summations}
 
@@ -252,7 +252,7 @@ $\Theta_n =  \sum_{k=1}^{n} \Delta_k = \frac{n.(n+1).(n+2)}{6}$
 \medskip
 
 \noindent \textit{Hint.}
-The idea is to use Fubini's principle.
+The idea is to use the double counting principle (Fubini).
 
 Write the expression in a developed form using a triangle shape as shown in 
 A tetrahedral number can be arranged as a triangle (see Fig.~\ref{fig:TetrahedralBasic}).
@@ -283,7 +283,7 @@ A tetrahedral number can be arranged as a triangle (see Fig.~\ref{fig:Tetrahedra
 %\end{center}
 %\end{figure}
 
-The proof is obtained by Fubini's principle by rotating this triangle as shows in Fig.~\ref{fig:Tetrahedral}.
+The proof is obtained by the double counting Fubini's principle by rotating this triangle as shows in Fig.~\ref{fig:Tetrahedral}.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresArithmetic/Tetrahedral}
@@ -396,7 +396,7 @@ We conclude that
 
 \section{More exercises}
 
-\subsection{A first graphical proof}
+\subsection{A graphical proof for a specific geometric series}
 
 \noindent {\it The problem.}
 Compute the sum of $(\frac{1}{4})^k = \frac{1}{3} $ using a graphical argument.
@@ -404,12 +404,17 @@ Compute the sum of $(\frac{1}{4})^k = \frac{1}{3} $ using a graphical argument.
 
 \noindent {\it The solution.}
 The solution is simply depicted in Fig.~\ref{Fig:SUmgeo1sur4}. 
+Finding such a pattern may not be considered as an easy task.
+However, as stated in the problem, the main point is to divide an elementary surface
+(to be determined) into four equal pieces. 
+Squares (or even worse disks) are not simple to use in this context while equilateral triangles 
+are a \textit{natural} structure. 
 \begin{figure}
 \begin{center}
         \includegraphics[scale=0.3]{FiguresArithmetic/SumGeometric1sur4}
         \caption{Graphical construction. Assuming the total area is 1, the area of the grey internal triangle (left) is $\frac{1}{4}$.
         As the grey area is one third at each layer (right), the whole area is $\frac{1}{3}$.
-        By Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
+        By the double counting Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
         \label{Fig:SUmgeo1sur4}
 \end{center}
 \end{figure}
@@ -535,6 +540,8 @@ $\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
 
 {\Denis Change the writing of O}
 
+
+
 \subsection{On meeting new people}
 
 Illustration of pigeon's hole...
@@ -548,7 +555,7 @@ know.  \\
 
 \medskip
 
-\noindent {\it Solution.}
+\noindent {\it The solution.}
 %
 This observation follows from the {\it pigeonhole principle}, which
 states the following.
@@ -616,95 +623,14 @@ costly than a real multiplication, so trading one multiplication for
 one addition is an unqualified ``win''.  \qed
 \end{proof}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Karatsuba (Extension of the same method)} 
-
-
-Notice that the previous technique is classical and it has been used in many other situations.
-For instance while multiplying two integers in base 2.
-
-Let us first recall the generic divide-and-conquer for designing algorithms.
-\bigskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be
-decomposed into sub-problems.
-
-Let consider a problem of size $n$ that can be decomposed into $p$ sub-problems.
-(notice, all sub-problems have the same size n/q).
-\bigskip
-
-\noindent {\bf Principle:}
-\begin{enumerate}
-\item Decompose the problem into $a$ sub-problems of size $\frac{n}{q}$.
-\item Solve those sub-problems.
-\item Reconstruct the solution of the initial problem.
-\end{enumerate}
-
-In general, the sub-problems are solved recursively (at least until a certain threshold).
-The cost is governed by the following expression:
-
-$T(n) = p.T(\frac{n}{q}) + c_1(n) + c_3(n)$ 
-
-where $c_1(n)$ et $c_3(n)$ are the costs of phases (1) et (3).
-
-Note: the resolution of this kind of equation is using the Master theorem of section~\ref{sec:linear-recurrence-general}.
-\end{minipage}
-}
-\bigskip
-
-Let $A=(a_na_{n-1}\ldots a_1)_2$ and $B=(b_nb_{n-1}\ldots b_1)_2$
-be two long integers, and assume $n=2^k$ for some positive integer $k$.
-The goal is to compute the product $A \times B$.
-
-The standard (and naive) method is to compute the $n$ partial products 
-$A=(a_na_{n-1}\ldots a_1)_2$ by each of the $b_i$, leading to $O(n^2)$ basic operations. 
-
-The divide-and-conquer version of this problem is to break each integer into two parts
-of $\frac{n}{2}$ bits each:
-
-$A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$
-
-Denoting by $A_1$ and $A_2$ the two separate terms, we get:
-
-$A.B = (A_1.B_1) 2^n + (A_1.B_2 + A_2.B_1) 2^{n/2} + A_2.B_2$
-\bigskip
-
-\textbf{Cost analysis} :
-The previous computation requires 4 multiplications of integers of $n/2$ bits 
-and 3 additions of integers with at most $2n$ bits. The multiplication of integers in base 2 by powers of 2 
-correspond to simple shifts to the left. 
-
-The cost is given by the following expression: $T(n) = 4.T(\frac{n}{2}) + f(n)$ where $f$ is a linear function
-and $T(1) = 1$.
-
-We obtain $T(n) = \Theta(n^2)$, same as for the naive algorithm.
-\bigskip
- 
-
-The idea of Karatsuba is to decrease the number of multiplications 
-(at the price of slightly increasing the additions/substractions) by using the following identity:
-
-$A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)$
-\bigskip
-
-We obtain:
-
-$A.B = (A_1.B_1) 2^n + (A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)) 2^{n/2} + A_2.B_2$
-
-
-Cost analysis: 3 multiplications of $n/2$ bits
-
-4 additions and 2 subtractions of integers at most $2n$ bits. Again, using the Master Theorem leads to:
-
-$T(n) = 3.T(\frac{n}{2}) + \theta (n) = n^{log_2 3}$
 
 
 \subsection{A property about binomial coefficients}
 
-Prove the following property by two ways (recurrence and by using a cominatorial argument
+Prove the following property by two ways (recurrence and by using a combinatorial argument
 \begin{prop}
 $\forall n,k$ $1 \leq k \leq n$
 
@@ -939,6 +865,57 @@ Then, how to analyze the previous result/proof?
 
 \section{Recurrences}
 
+\subsection{Cassini's identity}
+
+\subsection{Lucas' numbers}
+
+\begin{prop} 
+$F(n+1) = \frac{1}{2} (F(0).L(n) + F(n).L(0))$
+\end{prop}
+\medskip
+
+\noindent
+The proof comes from direct arithmetic manipulations:
+
+$2.F(n+1) = F(n+1) +  F(n+1) =  F(n+1) + F(n) + F(n-1)$
+
+$= L(n) + F(n) $
+
+$= F(0).L(n) + F(n).L(0)$
+\medskip
+
+
+The previous property can be extended for any $m>1$ as follows:
+\medskip
+
+\begin{prop} 
+$2.F(n+m) = F(m-1).L(n) + F(n).L(m-1)$
+\end{prop}
+
+\begin{proof}
+The proof is by recurrence on $m$ considering any fixed $n$.
+\begin{itemize}
+\item
+The \textbf{basis case} (for $m=1$) is given by the previous proposition.
+
+\item
+\textbf{Induction step:} 
+Assume the property holds at rank $m > 1$ and consider $F(n+m+1)$:
+
+Apply the definition of Fibonacci numbers: 
+
+$F(n+m+1) = F(n+m)+F(n+m-1)$ 
+
+Replace both terms by the recurrence hypothesis:
+
+$= \frac{1}{2} (F(m-1).L(n) + F(n).L(m-1)) + \frac{1}{2} (F(m-2).L(n) + F(n).L(m-2))$
+
+$= \frac{1}{2} \left( (F(m-1)+F(m-2)).L(n) + F(n).(L(m-1)+L(m-2))\right)$
+
+$= \frac{1}{2} \left(F(m).L(n) + F(n).(L(m)\right)$
+\end{itemize}
+
+\end{proof}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
