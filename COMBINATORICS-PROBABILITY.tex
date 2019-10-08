@@ -1,23 +1,14 @@
-%version of 10-07-19
+%version of 10-08-19
 
 \chapter{The Art of Counting:
 Combinatorics, Probability, and Statistics}
 \label{ch:prob-stat}
 \label{ch:combinatorics}
 
-\index{Leibniz (Leibnitz), Gottfried Wilhelm}
- \index{Newton, Isaac}
-We have named this chapter in honor of the great German mathematician
-Gottfried Leibniz,  whose 1666 doctoral thesis, ``{\it Dissertatio de Arte Combinatoria}''
-\cite{Leibnitz}, gave us the now-common phrase, ``the art of
-counting.''\footnote{While Leibniz is best known (at least among students of mathematics) for his
-never-to-be-settled dispute with Isaac Newton over prior discovery of the calculus, Leibniz's life
-was in fact dedicated to a broad range of topics in mathematics and philosophy.}
-The word ``counting'' in this context must be understood much more broadly than in the 
-vernacular: In days past, the phrase encompassed much of the field known nowadays as
-{\it combinatorics}. \index{combinatorics}
+\index{Leibniz (Leibnitz), Gottfried Wilhelm} \index{Newton, Isaac}
+We have named this chapter in honor of the great German mathematician Gottfried Leibniz, whose 1666 doctoral thesis, ``{\it Dissertatio de Arte Combinatoria}'' \cite{Leibnitz}, gave us the now-common phrase, ``the art of counting.''\footnote{While Leibniz is best known (at least among students of mathematics) for his never-to-be-settled dispute with Isaac Newton over prior discovery of the calculus, Leibniz's life was in fact dedicated to a broad range of topics in mathematics and philosophy.}  The word ``counting'' in this context must be understood much more broadly than in the vernacular: In days past, the phrase encompassed much of the field known nowadays as {\it combinatorics}. \index{combinatorics}
 
-The chapter is devoted to the basics of three closely related subfields of mathematics: combinatorics, probability, and the mathematical underpinnings of statistics.
+The chapter is devoted to the basics of three closely related subfields of mathematics: combinatorics, probability theory, and the mathematical underpinnings of statistics. These subfields are treated within the text in an order that allows each topic to flow gracefully from its predecessors.  The four major sections in the chapter unfold as follows.
 
 \medskip
 
@@ -30,60 +21,53 @@ Our introduction to combinatorics can be viewed in many ways as a return to Chap
 
 \index{combinatorial probability} \index{poker}
 \index{poker!three-of-a-kind} \index{poker!two-pair}
-\noindent {\it Combinatorial probability} (Section~\ref{sec:combinatorial-prob}).
-{\Denis We nox have 5 subsections, this presentation should be updated... Frequency distributions and Doing stats are missing}
-The tools we develop for determining the cardinalities of finite sets
-give us access to the important (and fun!)~field known as {\em combinatorial probability}. 
-In reality, probability theory is an {\em applied} spin-off of combinatorics.  In its most 
-elementary---and, some might say, frivolous---form, combinatorial probability uses counting to 
-answer questions such as:  Why does the game of ($5$-card) poker value three-of-a-kind
-more highly than two-pair?  Why did the designers of roulette tables add two (green) extra 
-slots to the red and black slots of the wheel?  By the end of the section. you will have the 
-wherewithal to answer myriad questions of this ilk. \index{roulette table}
 
-In a more serious vein, the elements of probability theory and statistics infuse every area of
-computing.
+\noindent {\it Combinatorial probability} (Section~\ref{sec:combinatorial-prob}).
+The tools we develop for determining the cardinalities of finite sets give us access to the important (and, often, fun!)~field known as {\em combinatorial probability}. In reality, probability theory is an {\em applied} spin-off of combinatorics.  In its most elementary form, combinatorial probability uses counting to answer myriad important questions about the relative frequencies of occurrences that range from the important---Is one more likely to die while crossing the street or while crossing the ocean?---to those some might call frivolous---Why does the game of ($5$-card) poker value three-of-a-kind more highly than two-pair?  By the end of the section, you will have the wherewithal to answer myriad questions of this ilk.
+
+The elements of probability theory and statistics infuse many aspects of life---and every area of computing.
 \begin{itemize}
 \item
-The practicality of many algorithms that are experientially efficient often results from the 
-{\em distributions} of the inputs they encounter in ``real" situations.
+The practicality of many algorithms that are experientially efficient often results from the {\em distributions} of the inputs they encounter in ``real" situations.
 \item
-Design methodologies for complex electronic circuits must be aware of the 
-{\em mean times to failure} of the critical components of the circuits.
+Design methodologies for complex electronic circuits must be aware of the {\em mean times to failure} of the critical components of the circuits.
 \item
 Sophisticated searching algorithms---and heuristic search strategies---must take into account the relative
 {\em likelihoods} of finding one's goal by following the various search directions that one has access to.
 \item
-Analyzing and understanding large corpora of data require methodologies that build on the 
-concepts of {\em clustering} and/or {\em decomposition}.
+Analyzing and understanding large corpora of data require methodologies that build on the  concepts of {\em clustering} and/or {\em decomposition}.
 \end{itemize}
-Every student whose life will be touched by computing---which nowadays means just about
-every student---needs at least an introduction to the foundations of
-probability to even understand, all the more so to master, the terms highlighted in the preceding bulleted items.
+Every reader whose life will be touched by computing---which nowadays means just about every reader---needs at least an introduction to the foundations of probability theory to even understand, all the more so to master, the terms highlighted in the preceding bulleted items.
 
 \medskip
 
-\index{statistics}
+\index{probability distributions} 
+\index{statistical moments}
 
-\noindent {\it Statistics} (Section~\ref{sec:statistics}).
+\noindent {\it The structures of probability theory} (Section~\ref{sec:prob-distributions}).
 Just as engineering can be viewed as the ``applied'' sibling of science, {\it statistics} can be viewed as 
 the ``applied'' sibling of probability.  Whereas combinatorial probability will give the reader the ability to
-calculate the likelihoods of various events' happening, statistics looks as the events ``in the large", by focusing 
-on parameters---aptly called ``statistics"---that measure quantities such as\index{statistical moments}
+calculate the likelihoods of various events' happening, statistics looks as the events ``in the large".  One mechanism used in statistics are parameters---aptly called ``statistics"---that can be viewed as {\em summarizing} large corpora of data.  Such summarizing measures include:
 \begin{itemize}
 \item
-{\em means, medians}, and {\em modes}: different ways to embody concepts 
-such as {\em averages) and {\em likelihood}.  These are attempts to find a single value that captures the essence
-of many observed instances; they are often called the {\it first statistical moments}.
-\index{statistical moments!means}\index{statistical moments!first moments}}
+{\em means, medians}, and {\em modes}: different ways to embody concepts such as {\em averages} and {\em likelihood}.  These are attempts to find single values that capture the essence of many observed instances; they are often called the {\it first statistical moments}.
+\index{statistical moments!means}\index{statistical moments!first moments}
+\index{statistical moments!medians} \index{statistical moments!modes}
 \item
-{\em variances} and {\em standard deviations}: two closely related ways of measuring the error incurred by
-employing first statistical moments such as means; they are often called the {\it second statistical moments}.
+{\em variances} and {\em standard deviations}: two closely related ways of measuring the error incurred if one employs only {\em first} statistical moments; they are often called the {\it second statistical moments}.
 \index{statistical moments!variance}\index{statistical moments!standard deviation}
 \item
 {\em higher moments}: successive ways of measuring the errors incurred by
 employing lower statistical moments to describe observed measurements.
 \end{itemize}
+A second mechanism used in statistics are {\em distributions}.  These can be viewed as families of functions that measure probabilities of kindred events.  Perhaps the most familiar probability distribution in daily life is the {\it normal distribution} that is readily recognized via its {\it Bell-shaped curve}.  The curve tells us visually that the probabilities of the items that are produced by the event of interest are very small when the items are very small or very large---and the probabilities are (roughy) symmetric around the ``average" item.  The items could be, for illustration, the observed diameters of roller bearings produced by a particular manufacturing process: Almost all bearings have diameters that are very close to the target, and very few bearings have diameters that deviate a lot from the target.
+
+\medskip
+
+\index{the deductive paradigm} \index{the inferential paradigm}
+
+\noindent {\it The elements of empirical reasoning} (Section~\ref{sec:empirical}).
+In earlier chapters, we have discussed at length the {\em deductive paradigm} for uncovering truth.  We all know, though, that only a small fraction of situations we encounter in ``real life" are amenable to the deductive paradigm.  For all other situation, we use some form of empirical reasoning---{\em we learn from experience}.  Fortunately, even ``experience" has mathematical underpinnings, at least over ``large" numbers of trials.  One simple, but illustrative, example of the principle of {\em experientia docet}--Latin for ``experience teaches"---is that if a repeatedly tossed coin does not come out {\sc head}s roughly half the time over a very long sequence of tosses, then we can infer that the coin is not unbiased.  More advanced techniques enable one to quantify the adjective ``large" in the preceding sentences.  Since much of the mathematics relevant to empirical reasoning is beyond the scope of a beginning text, most of our effort in this section is devoted to imbuing the reader with a level of literacy adequate to understand relevant concepts and their significance:  Rather than supplying proofs of truly advanced theorems, we supply only introductory discussions and pointers to more advanced treatment.
 
 
 \section{The Elements of Combinatorics}
@@ -2088,11 +2072,6 @@ Arbuthnot would have responded YES to this query, based on the following reasoni
 
 \medskip
 
-\noindent
-(Interestingly the gender imbalance in births exposed by Arbuthnot can still be observed today---and the reason for the imbalance has not yet been clearly identified.)
-
-\medskip
-
 Would we draw the same conclusion today as Arbuthnot did roughly three centuries ago?  Is the probability $22/43 \approx 0.512$ of male births that Laplace observed sufficiently larger than the random expectation $1/2 = 0.5$ for us to reject the hypothesis that this deviation could be pure chance?  {\em This is precisely the kind of question that the field of statistics specializes in!}
 
 \subsection{The Law of Large Numbers}
@@ -2220,13 +2199,29 @@ By definition, $p(x)$ is a probability frequency function for random variable $X
 
 \medskip
 
-A brief return to the Arbuthnot--Laplace question:
-(82 years, more than 10,000 births per year --- close to 1,000,000 ``trials")
+We return briefly to the Arbuthnot--Laplace question in the light of the Law of Large Numbers.  Laplace's calculation of $22/43$ as the ratio of  male births to total births was based on literally hundreds of thousands of births.  It is highly unlikely, therefore, that male births did not exceed female births, at least in the London of the period 1629--1710 by the ratio $22$ to $21$.
+
+\medskip
+
+\noindent
+Interestingly the gender imbalance in births exposed by Arbuthnot can still be observed today---we are not sure what the current ratio is---and the reason for the imbalance has not yet been clearly identified.
+
+\subsection{Pointers to Advanced Topics}
+\label{sec:advanced-stat}
 
 **HERE
 
 
-\section{Beyond the Basics}
+\subsubsection{Statistical tests}
+\label{sec:stat-tests}
+
+Advanced probability theory and statistics does not occupy itself with only with means, or even only with normal distributions.
+
+INCLUDE STATISTICAL TESTS -- $\chi^2$, Student's t-test --- check what they test for.
+
+\subsubsection{Advanced topics}
+
+OTHER topics that relate to this chapter but are too advanced and/or specialized for inclusion in this text.
 
 As students are introduced to modern topics within computing, whether
 at the level of a Computing Literacy course or a post-core technical
@@ -2237,26 +2232,17 @@ essay, some may be appropriate prerequisites to programs that have
 some specialized foci.
 \begin{itemize}
 \item
-Issues relating to {\em clustering} find application in applications as
-diverse as: {\em linear-algebraic computations}, {\em data mining},
+Issues relating to {\em clustering} according to various affinity measures find application in applications as
+diverse as: {\em linear-algebraic computations},
+ {\em data mining},
 {\em design and layout of digital circuitry}.
 
-\item
-Issues building on {\em graph separation/decomposition} are
-encountered when studying: {\em linear-algebraic computing}, {\em
-  fault-tolerant design}, {\em load balancing}.
 
 \item
 Many issues relating to {\em fault/failure tolerance} and {\em data
   analytics} benefit from study using {\em random walks} (at least in
 one dimension).
-
-\item
-Many useful ideas regarding the {\em encoding and manipulation of
-  data} can be gleaned from the elements of {\em information theory}
-and {\em computer arithmetic}.
 \end{itemize}
-The preceding list is really endless.  Hopefully readers will be
-inspired by our few examples to compile a longer version that is
-appropriate for their particular environments.
+
+The preceding list is really endless.  Hopefully readers will be inspired by our few examples to compile a longer version that is appropriate for their particular environments.
 
