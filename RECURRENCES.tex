@@ -2180,14 +2180,23 @@ $= F(n+1)^2 + 2.F(n+1).F(n)$
 \medskip
 
 We provide in Fig.~\ref{fig:fastFibo} a pictorial argument to show why this decomposition 
-is particularly fast while \textit{computing} Fibonacci numbers:
-each $F(n)$ is computed by a complete binary tree of its predecessors in $log_2 (n)$ steps.
+is particularly fast while computing Fibonacci numbers:
+each $F(n)$ is computed in $log_2 (n)$ steps.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths/FiboFast.png}
-        \label{fig:fastFibo}
-        \caption{Dependency relations for computing the pairs $(F(2n),F(2n+1))$.
-       }
+        \caption{Dependency relations for computing the pairs $(F(2n),F(2n+1))$.}
+                \label{fig:fastFibo}
+\end{center}
+\end{figure}
+In particular, we show how to compute an element ($F(13)$) using the fast Fibonacci scheme in Fig.~\ref{fig:fastFibo13}.
+The pattern is embedded into a complete binary tree of predecessors (with some redundancies)
+whose depth is logarithmic.
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresMaths/FiboFast13.png}
+        \caption{Ancestors involved in the computation of $F(13)$. }
+        \label{fig:fastFibo13}
 \end{center}
 \end{figure}
 
