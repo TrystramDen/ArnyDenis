@@ -3,15 +3,6 @@
 \chapter{EXERCISES}
 \label{ch:Exercises}
 
-
-*************
-
-{\Arny The proof of termination with a connected tree should be an
-  exercise --- Phase 1 of the proof by deconstruction of Euler's
-  formula} --- page 334
-
-
-
 *************
 
 For all $\langle x,y \rangle \in \N^+ \times \N^+$
@@ -47,29 +38,6 @@ $P \ \Rightarrow \ \sim P$ &
 \end{tabular}
 
 
-
-**************
-
-Analyze the game of craps in the same way as we did for sum-of-three
-
-Verify the table in Fig.~\ref{fig:dice-ordered-configs}
-
-In the ordered version of sum-of-three, sum$k$ is engendered by the
-same number of configurations as is sum $21 - k$.  Why is this the
-case?
-
-
-***************
-
-An interesting variant of the birthday puzzle: determine the
-probability of a student to be born the same day as me.
-
-****************
-
-Say that you are told that the sum of the first $n$ perfect squares is
-a {\em cubic} polynomial in $n$.  Use the mthod of undetermined
-coefficients to derive the exact formula (\ref{eq:sum-1-to-nsq1}) for
-the sum.
 
 *****************
 
@@ -165,50 +133,6 @@ Thus, the length of the initial square is equal to $60-30=30$.}
 \end{figure}
 
 
-\section{misc}
-
-
-\subsection{The average length of a carry in a binary counter}
-
-\noindent {\it The problem.}
-%
-You add from $1$ to $n$, in increments of $1$ using a counter of
-binary (or, base-$2$) numerals.  Each time you increment the counter,
-there is a {\it carry}.  These carries have varying lengths; for
-instance, when $n = 32 = 100000_2$, the carry-lengths range
-from $0$---whenever you increment an even integer---to $5$---when you
-increment $31 = 11111_2$ to achieve $32 = 100000_2$. \\
-{\em Prove that the average carry as you go from $1$ to $n$ has length $2$.}
-
-\medskip
-
-\noindent {\it The solution.}
-
-\noindent
-Half of the increments add $1$ to an even number, i.e., a number whose
-binary numeral ends in ``$ \ldots 0$''.  These increments generate no
-carry---or, equivalently, a carry of length $0$.
-
-\noindent
-One-quarter of the increments, which form half of the remaining
-increments, execute a carry of length $1$, because they add $1$ to a
-numeral that ends in ``$ \ldots 01$''.
-
-\noindent
-One-eighth of the increments, which form half of the remaining
-increments, execute a carry of length $2$, because they add $1$ to a
-numeral that ends in ``$ \ldots 011$''.
-
-Continuing in this way, one can show that the average length of a
-carry can be expressed in the form
-\[ 
-\frac{1}{2} \cdot 0 \ + \ \frac{1}{4} \cdot 1 \ + \ \frac{1}{8} \cdot
-3 \ + \ \frac{1}{16} \cdot 4 \ + \ \cdots
-\]
-Using techniques that we cover in Chapter~\ref{ch:Summation}, one
-verifies that this infinite series converges with the sum $2$.  \qed
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Summations}
@@ -240,15 +164,36 @@ $-2 \Delta_n + (n+1) =  (n+1)^2$
 
 $\Delta_n =  (n+1)^2-(n+1) = n(n+1)$
 
-\subsection{Tetrahedral numbers}
+
+
+\subsection{Training on undetermined coefficient method}
 
 \noindent \textit{The problem.}
-The sum of the triangular numbers $\Delta_n$ is denoted by $\Theta_n$ and it is called a tetrahedral number:
+Say that you are told that the sum of the first $n$ perfect squares is
+a {\em cubic} polynomial in $n$.  Use the method of undetermined
+coefficients to derive the exact formula (\ref{eq:sum-1-to-nsq1}) for
+the sum.
+\medskip
 
-Our objective here is to prove:
+\noindent \textit{The solution.}
 
-$\Theta_n =  \sum_{k=1}^{n} \Delta_k = \frac{n.(n+1).(n+2)}{6}$
+to be done
 
+
+\subsection{Tetrahedral numbers}
+
+\noindent \textit{The aim.}
+$\Theta_n$ is defined as the sum of the triangular numbers $\Delta_n$:
+
+$\Theta_n =  \sum_{k=1}^{n} \Delta_k$
+
+Our objective here is to give an expression of these numbers.
+\medskip
+
+\noindent \textit{The problem.}
+Prove the following expression
+
+$\Theta_n = \frac{n.(n+1).(n+2)}{6}$
 \medskip
 
 \noindent \textit{Hint.}
@@ -283,7 +228,7 @@ A tetrahedral number can be arranged as a triangle (see Fig.~\ref{fig:Tetrahedra
 %\end{center}
 %\end{figure}
 
-The proof is obtained by the double counting Fubini's principle by rotating this triangle as shows in Fig.~\ref{fig:Tetrahedral}.
+The proof is obtained by the double counting principle by rotating the three faces of triangles as shown in Fig.~\ref{fig:Tetrahedral}.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresArithmetic/Tetrahedral}
@@ -309,9 +254,9 @@ Conclusion:
 the global sum is equal to $n+2$ times $(1+2+...+n)$.
 
 Finally, $3 \Theta_n = (n+2) \Delta_n$.
-\bigskip
+\medskip
 
-\noindent {\it Going further}
+\noindent \textit{Going further.}
 
 Summary: we proved the following results:
 \begin{itemize}
@@ -393,16 +338,66 @@ We conclude that
 \end{proof}
 
 
+\subsection{Harmonic series}
 
-\section{More exercises}
+\noindent \textit{The aim.}
+Show another way to prove that the sum is infinite.
+\medskip
+
+\noindent \textit{The problem}
+Recall the definition of Harmonic series:
+
+$H_{n} = \sum_{k=1}^{n} \frac{1}{k}$.
+
+Show that the series diverges (it goes to infinity).
+\medskip
+
+ \noindent \textit{The solution.}
+The analysis is as follows.
+Group the terms according to powers of $2$. 
+The sum within each group is between $\frac{1}{2}$ and $1$, thus,
+$H_n > \frac{1}{2}.n$
+\medskip
+
+Another (more precise) way is to gather the terms 3 by 3 as follows:
+
+$S_k = (\frac{1}{3k-1} + \frac{1}{3k} + \frac{1}{3k+1} )$ for $k\geq1$, 
+
+$H = 1 + S_1 + ... + S_k + ... > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + ... + 3.\frac{1}{3k} + ... $
+
+since $S_k > 3.\frac{1}{k} $.
+
+The proof is by contradiction, if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
+\medskip
+
+Moreover, the first way of  bounding the sum tells us about its value (actually, we know the value at a factor of $2$):
+
+$\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
+
+{\Denis Change the writing of O}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Proof techniques}
+
+
+
+\section{Graphical proofs}
 
 \subsection{A graphical proof for a specific geometric series}
 
-\noindent {\it The problem.}
+\noindent \textit{Aim.}
+To develop more intuition in solving using geometrical arguments.
+
+Particular case of geometric series.
+\medskip
+
+\noindent \textit{The problem.}
 Compute the sum of $(\frac{1}{4})^k = \frac{1}{3} $ using a graphical argument.
 \medskip
 
-\noindent {\it The solution.}
+\noindent \textit{The solution.}
 The solution is simply depicted in Fig.~\ref{Fig:SUmgeo1sur4}. 
 Finding such a pattern may not be considered as an easy task.
 However, as stated in the problem, the main point is to divide an elementary surface
@@ -418,7 +413,10 @@ are a \textit{natural} structure.
         \label{Fig:SUmgeo1sur4}
 \end{center}
 \end{figure}
+\medskip
 
+\noindent \textit{Lesson learned.}
+Training. 
 
 \subsection{Another graphical proof}
 
@@ -463,14 +461,9 @@ tokens at row $n$ of the figure (these are depicted in dark gray in
 the figure).  The four small triangles, augmented by the ``extra'' row
 of $n$ tokens has clearly become a representation  of $\Delta_{2n-1}$
 by tokens.
-\ignore{******
-The sum is $S(n)=n+4 \Delta_{n-1}$.  From the arrangement given in
-Fig.~\ref{fig:Delta(n)4}, it is easy to see that it is equal to
-$\Delta_{2n-1}$ (4 triangles of size $n$ plus a row of $n$ tokens in
-dark grey form a bigger triangle of size $2n-1$).
-*******}
 
-We now have a purely pictorial proof of the proposition. \qed
+
+We now have a purely pictorial proof of the proposition. 
 \end{proof} 
 
 
@@ -511,51 +504,23 @@ The solution is depicted in Fig.~\ref{Fig:sqrtbisInit} and~\ref{Fig:sqrtbisFin} 
 \end{center}
 \end{figure}
 
-\subsection{Harmonic series}
-
-$H_{n} = \sum_{k=1}^{n} \frac{1}{k}$.
-
-Another way to prove that the sum is infinite:
- 
-The analysis is as follows.
-Group the terms according to powers of $2$. 
-The sum within each group is between $\frac{1}{2}$ and $1$, thus,
-$H_n > \frac{1}{2}.n$
-\\
-
-Another (more precise) way is to gather the terms 3 by 3 as follows:
-
-$S_k = (\frac{1}{3k-1} + \frac{1}{3k} + \frac{1}{3k+1} )$ for $k\geq1$, 
-
-$H = 1 + S_1 + ... + S_k + ... > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + ... + 3.\frac{1}{3k} + ... $
-
-since $S_k > 3.\frac{1}{k} $.
-
-The proof is by contradiction, if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
-\bigskip
-
-Moreover, the first way of  bounding the sum tells us about its value (actually, we know the value at a factor of $2$):
-
-$\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
-
-{\Denis Change the writing of O}
-
 
 
 \subsection{On meeting new people}
 
-Illustration of pigeon's hole...
+\noindent \textit{The aim.}
+Illustration of pigeon's hole principle.
 \medskip
 
+\noindent \textit{The problem.}
 You are attending a cocktail party that is populated by $n$ couples.
 In order to create a warm atmosphere, the host requests that each
 attendee shake the hand of every attendee that he or she does not
 know.  \\
 {\em Prove that some two attendees shake the same number of hands.}
-
 \medskip
 
-\noindent {\it The solution.}
+\noindent \textit{The solution.}
 %
 This observation follows from the {\it pigeonhole principle}, which
 states the following.
@@ -563,15 +528,17 @@ states the following.
 {\it If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
   $2$ pigeons.}
 
-\noindent
 This principle guarantees that some two attendees shake the same
 number of hands.  To wit, the number of people that each attendee {\em
   does not know} belongs to the set $\{ 0, 1, \ldots, 2n-2 \}$,
 because each person knows him/herself and his/her partner.  Because
 there are $2n$ handshakers (the pigeons) and $2n-1$ numbers of hands
 to shake (the boxes), some two shakers must shake the same numbers of
-hands.  \qed
+hands. 
+\medskip
 
+\noindent \textit{Lesson learned.}
+Training for mastering different types of proofs, here Pigeonhole...
 
 
 \section{Arithmetic}
@@ -580,13 +547,17 @@ hands.  \qed
   multiplication via $3$ real multiplications}
 \index{complex number!multiplication via 3 real multiplications}
 
-\begin{prop}
-%\label{thm:complex-mult-3real}
-One can compute the product of two complex numbers using {\em three}
-real multiplications rather than four.
-\end{prop}
+\noindent {\it The aim.}
+To be completed...
+\medskip
 
-\begin{proof}
+\noindent {\it The problem.}
+%\label{thm:complex-mult-3real}
+Show that it is possible to compute the product of two complex numbers using only {\em three}
+real multiplications rather than four.
+\medskip
+
+\noindent {\it The solution.}
 Although implementing (\ref{eq:complex-mult}) ``directly'' correctly
 produces the product $\kappa = (a+bi) \cdot (c+di)$, there is another
 implementation that is {\em more efficient}.  Specifically, the
@@ -612,6 +583,9 @@ and then noting that
 We thereby achieve the result of the complex multiplication described
 in (\ref{eq:complex-mult}) while using only {\em three} real
 multiplications.
+\medskip
+
+\noindent {\it Lesson learned.}
 
 Of course, a full reckoning of the costs of the two implementations we
 have discussed exposes the fact that the implementation that invokes
@@ -620,52 +594,34 @@ have discussed exposes the fact that the implementation that invokes
 the ``direct'' implementation.  But this entire exercise was
 predicated on the observation that each real addition is much less
 costly than a real multiplication, so trading one multiplication for
-one addition is an unqualified ``win''.  \qed
-\end{proof}
+one addition is an unqualified ``win''. 
+
+{\Denis do the link with Karatzuba?}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A fun result dealing with divisibility}
 
-
-
-\subsection{A property about binomial coefficients}
-
-Prove the following property by two ways (recurrence and by using a combinatorial argument
-\begin{prop}
-$\forall n,k$ $1 \leq k \leq n$
-
-$k.{n \choose k} = n.{{n-1} \choose {k-1}}$
-\end{prop}
-
-\begin{proof}
-to complete
-\end{proof}
-
-
-
-\subsection{Another fun result dealing with divisibility}
-
+\noindent \textit{The aim:}
 mixed technique between divisibility and pigeon holes.
 
 This exercice was a favorite question by Paul Erdos,
 he often used this question to test the ability of young students in mathematics. 
-\bigskip
+\medskip
 
-\noindent \textit{The problem}
+\noindent \textit{The problem:}
 Let consider the $2n$ first integers.
 
 Take any $n+1$ integers in this set and prove that there exists a pair $(p,q)$
 such that $p$ divides $q$. 
 \medskip
 
-\noindent \textit{Hint}
+\noindent \textit{Hint:}
 
 Let $\alpha_i$ be the elements of this set of cardinality $n+1$...
 Write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$).
-
 \medskip
 
-\noindent \textit{The detailed solution.}
+\noindent \textit{The detailed solution:}
 
 %The sketch of the proof is as follows.
 
@@ -716,6 +672,10 @@ then your response is
 
 \noindent
 Let's make this ``game'' mathematical.
+\medskip
+
+
+\noindent \textit{The problem:}
 
 \begin{prop}
 \label{thm:75x65=4925}
@@ -753,16 +713,18 @@ A parlor trick has become a mathematical demonstration!
 \end{proof}
 
 
-\subsection{A fun result via geometric sums: When is integer  $n$
+\subsection{A fun result via geometric sums: When is integer $n$
   divisible by $9$?}
 \label{sec:divisible-by-9}
 
-We now exploit our ability to evaluate geometric summations to
+\noindent \textit{The aim:}
+We exploit our ability to evaluate geometric summations to
 illustrate a somewhat surprising, nontrivial fact.  One can deduce
 information about the divisibility of an integer $n$ from $n$'s
-positional numerals.  We hope that this ``fun'' result will inspire
-the reader to seek kindred numeral-encoded properties of numbers.
+positional numerals.  
 
+
+\noindent \textit{The problem:}
 \begin{prop}
 \label{thm:div-by-b-bar}
 An integer $n$ is divisible by an integer $m$ if, and only if, $m$
@@ -774,7 +736,8 @@ traditional use of base-$10$ (decimal) numerals. \\
 {\it An integer $n$ is divisible by $9$ if, and only if, the sum of
   the digits of $n$'s base-$10$ numeral is divisible by $9$.}
 
-\smallskip
+\medskip
+\noindent \textit{The solution:}
 
 \begin{proof}
 ({\it Argument for general number-base $b$}).
@@ -819,7 +782,9 @@ positive integer, so that $1 + b + \cdots + b^{a-2} + b^{a-1}$ is also
 a positive integer, we infer that {\em the integer $b^a -1$ is
   divisible by $b-1$.}
 
-We are almost home.  Look at the equation for $n - s_b(n)$ in the
+We are almost home.  
+
+Look at the equation for $n - s_b(n)$ in the
 system (\ref{eq:sum-of-digits}).  As we have just seen, every term on
 the righthand side of that equation is divisible by $b-1$.  It follows
 therefore, that the lefthand expression, $n - s_b(n)$, is also
@@ -828,16 +793,66 @@ An easy calculation, which we leave to the reader, now shows that this
 final fact means that $n$ is divisible by $b-1$ if, and only if,
 $s_b(n)$ is.
 \end{proof}
+\medskip
+
+\noindent \textit{Lesson learned:}
+We hope that this ``fun'' result will inspire
+the reader to seek kindred numeral-encoded properties of numbers.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Combinatorics}
+
+\subsection{Going further in a game analysis}
+
+\noindent \textit{The problem:}
+Analyze the game of craps in the same way as we did for sum-of-three
+
+Verify the table in Fig.~\ref{fig:dice-ordered-configs}
+
+In the ordered version of sum-of-three, sum$k$ is engendered by the
+same number of configurations as is sum $21 - k$.  
+Why is this the case?
+
+\noindent \textit{The solution:}
+
+\subsection{more about the Birthday paradox}
+
+\noindent \textit{The aim:}
+An interesting variant of the birthday puzzle
+\medskip
+
+\noindent \textit{The problem:}
+Determine the
+probability of a student to be born the same day as me.
+\medskip
+
+\noindent \textit{The solution:}
+
+
+\subsection{A property about binomial coefficients}
+
+Prove the following property by two ways (recurrence and by using a combinatorial argument
+\begin{prop}
+$\forall n,k$ $1 \leq k \leq n$
+
+$k.{n \choose k} = n.{{n-1} \choose {k-1}}$
+\end{prop}
+
+\begin{proof}
+to complete
+\end{proof}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Infinite}
-
+\section{Infinity}
 
 \subsection{What's wrong?}
 
-In this exercice, we investigate a proof which leads to a surprising result...
+In these successive exercices, we investigate proofs which lead to surprising results...
 
 \begin{enumerate}
 \item
@@ -865,9 +880,12 @@ Then, how to analyze the previous result/proof?
 
 \section{Recurrences}
 
-\subsection{Cassini's identity}
+Selected exercices have been moved at the end of the corresponding chapter.
+%\subsection{Cassini's identity}
 
 \subsection{Lucas' numbers}
+
+{\Denis Put in Appendix?}
 
 \begin{prop} 
 $F(n+1) = \frac{1}{2} (F(0).L(n) + F(n).L(0))$
@@ -921,6 +939,13 @@ $= \frac{1}{2} \left(F(m).L(n) + F(n).(L(m)\right)$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Graphs}
+
+
+{\Arny The proof of termination with a connected tree should be an
+  exercise --- Phase 1 of the proof by deconstruction of Euler's
+  formula} ---
+
+
 
 \subsection{Graph Isomorphism}
 \label{Exercice:isomorphism}
@@ -1056,5 +1081,53 @@ Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the vertex-set
 \]
 and all edges both of whose endpoints belong to that set is called the
 $j$th {\it column} of $\widetilde{\m}_{m,n}$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{misc}
+
+\subsection{The average length of a carry in a binary counter}
+
+\noindent {\it The aim.}
+\medskip
+
+\noindent {\it The problem.}
+%
+You add from $1$ to $n$, in increments of $1$ using a counter of
+binary (or, base-$2$) numerals.  Each time you increment the counter,
+there is a {\it carry}.  These carries have varying lengths; for
+instance, when $n = 32 = 100000_2$, the carry-lengths range
+from $0$---whenever you increment an even integer---to $5$---when you
+increment $31 = 11111_2$ to achieve $32 = 100000_2$. \\
+{\em Prove that the average carry as you go from $1$ to $n$ has length $2$.}
+\medskip
+
+\noindent {\it The solution.}
+
+\noindent
+Half of the increments add $1$ to an even number, i.e., a number whose
+binary numeral ends in ``$ \ldots 0$''.  These increments generate no
+carry---or, equivalently, a carry of length $0$.
+
+\noindent
+One-quarter of the increments, which form half of the remaining
+increments, execute a carry of length $1$, because they add $1$ to a
+numeral that ends in ``$ \ldots 01$''.
+
+\noindent
+One-eighth of the increments, which form half of the remaining
+increments, execute a carry of length $2$, because they add $1$ to a
+numeral that ends in ``$ \ldots 011$''.
+
+Continuing in this way, one can show that the average length of a
+carry can be expressed in the form
+\[ 
+\frac{1}{2} \cdot 0 \ + \ \frac{1}{4} \cdot 1 \ + \ \frac{1}{8} \cdot
+3 \ + \ \frac{1}{16} \cdot 4 \ + \ \cdots
+\]
+Using techniques that we cover in Chapter~\ref{ch:Summation}, one
+verifies that this infinite series converges with the sum $2$.  \qed
 
 
