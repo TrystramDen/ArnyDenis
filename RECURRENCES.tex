@@ -2026,10 +2026,16 @@ The greater $n$, the better the paradox because the deformation of the surface o
 
 \section{Exercices: more on recurrences}
 
-\subsection{Karatsuba (application of the Master Theorem)} 
+\subsection{Karatsuba multiplication} 
 
-\noindent \textit{The aim:}
+\noindent \textit{The aim.}
 The purpose here is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical example.
+
+recall first the standard method for computing the product of two $n$-bits integers $A$ and $B$ in basis 2 is to compute the $n$ partial products as follows:
+
+$A=(a_na_{n-1} \ldots a_1)_2$ by each of the $b_i$
+
+This leads to $O(n^2)$ basic operations. 
 \medskip
 
 Let us first recall the generic divide-and-conquer for designing algorithms.
@@ -2062,16 +2068,14 @@ where $c_1(n)$ et $c_3(n)$ are the costs of phases (1) et (3).
 }
 \bigskip
 
-\noindent \textit{The problem:}
+\noindent \textit{The problem.}
 Let $A=(a_na_{n-1}\ldots a_1)_2$ and $B=(b_nb_{n-1}\ldots b_1)_2$
-be two long integers, and assume $n=2^k$ for some positive integer $k$.
+be two \textit{long} integers, and assume $n=2^k$ for some positive integer $k$.
+
 The goal is to compute the product $A \times B$.
 \medskip
 
-\noindent \textit{The basic solution}
-The standard (and naive) method is to compute the $n$ partial products 
-$A=(a_na_{n-1}\ldots a_1)_2$ by each of the $b_i$, leading to $O(n^2)$ basic operations. 
-
+\noindent \textit{A first solution.}
 The divide-and-conquer version of this problem is to break each integer into two parts
 of $\frac{n}{2}$ bits each:
 
@@ -2119,9 +2123,9 @@ $T(n) = 3.T(\frac{n}{2}) + \theta (n) = n^{log_2 3}$
 \noindent \textit{Lesson learned.}
 The analysis done in this exercice showed a clear use of the Master Theorem.
 
-It introduced also the classical technique of divide-and-conquer in algorithm design.
+It introduced also the classical technique of divide-and-conquer for designing algorithms.
 
-The cost is obtained by the sum of two terms, and Karatzuba evidences how to obtain a better trade-off between both terms.
+The cost is obtained by the sum of two terms, and Karatsuba evidences how to obtain a better trade-off between both terms.
 It leads finally to a better cost. 
 
 
