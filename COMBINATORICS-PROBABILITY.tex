@@ -2231,9 +2231,19 @@ The ``appropriateness" of a particular distance metric presupposes our ability t
 
 \smallskip
 
-Therefore, one must analyze the distribution(s) that the sequences come from, to determine the probability that two targeted sequences will achieve the observed distance between the two targeted sequences.
+Therefore, one must analyze the distribution(s) that the sequences come from, to determine the probability that two targeted sequences will achieve each possible observed distance between the targeted sequences.
 \item
 One selects a {\em confidence level} to determine whether the observed probability that the targeted sequences are related is large enough for us to accept them as related in the sense of interest.
+
+\smallskip
+
+Confidence levels are another way to look at probabilities.  To wit, the statement
+
+\hspace*{.2in}the probability that the assertion $A$ is true is $p\%$
+
+is equivalent to the statement
+
+\hspace*{.2in}assertion $A$ is true with a confidence level of $(100-p)\%$.
 \end{enumerate}
 
 \medskip
@@ -2248,36 +2258,68 @@ Accepting the targeted sequences as related is {\em accepting the null hypothesi
 \end{minipage}
 }
 
-\bigskip
+\subsubsection{Testing means of binomially distributed random variables}
+
+We can illustrate the described steps by returning briefly to the Arbuthnot-Laplace question of Section~\ref{sec:Arbuthnot}.   We dealt with this question in a rather informal manner earlier.  If we were interested in a more formal analysis of the question, we could end up with a statement such as the following
+
+\begin{tabular}{l}
+{\em To within the confidence level $c$} (choose a number here) {\em the London records} \\
+{\em demonstrate that there were more male births than female births in the} \\
+{\em $82$-year period period 1629--1710.}
+\end{tabular}
 
 \noindent
-We can illustrate the described steps by returning briefly to the Arbuthnot-Laplace question of Section~\ref{sec:Arbuthnot}.  
-
-
-
-
-
-Advanced probability theory and statistics does not occupy itself with only with means, or even only with normal distributions, or even {\em bi}-nomial distributions.
-\index{multinomial distributions}  \index{statistical tests!the $\chi^2$ test} 
+We would develop this more formal statement by studying the Arbuthnot-Laplace question within the framework of statistical testing, in the following manner.
 \begin{itemize}
 \item
-{\em multinomial distributions} -- a generalization of the binomial distribution to many variables
-\item \index{null hypothesis} 
-Statistical tests are basically distance measures---these measures are often computed via expressions that look sort of like the expression [REFERENCE] for the variance---between an ideal (expected) sequence of values and an observed sequence of values.  Each specific test provides the probability that the ideal sequence of values and the observed sequence of values come from the same distribution.
+The target sequences of interest have length $82$, corresponding to the $82$ years of births that the London records report on. 
+\item
+For each $i \in \{1,2, \ldots, 82\}$:
 
+\smallskip
 
+The $i$th entry in the {\em observed} sequence $\langle o_1, o_2, \ldots, o_{82} \rangle$ reports on the {\em observed} fraction of male births for year $i$ of the $82$-year stretch.
 
-\noindent
-The computed probability provides a {\em confidence level} for accepting the null hypothesis.  For insance, if the probability is $95\%$, then one can accept the null hypothesis with a $5\% \ [= (100-95)\%]$ level of confidence.
+\smallskip
+
+Every entry in the {\em expected} sequence $\langle e_1, e_2, \ldots, e_{82} \rangle$ is ``$e_i \equiv 1/2$", for this is what the observed fraction {\em would be} if there were no disparity in the relative numbers of male and female births.
 
 \item
-The $\chi^2$ test measures distance via a {\em relative error}.  Say that there are $m$ trials:  The $m$-element sequence  of {\em observed} values is $\langle o_1, o_2, \ldots, o_m \rangle$.  The  corresponding sequence of {\em expected} values is $\langle e_1, e_2, \ldots, e_m \rangle$.  The $\chi^2$ distance/error corresponding to these sequences is
+If we assume---as Arbuthnot did---that the birth patterns of males and females obeys a binomial distribution, then our analysis in Section~\ref{sec:binomial-distribution} provides the probabilities of the various possible proportions of male and female births.  Table~\ref{tab:select-replace} provides concrete values for these probabilities for the cases $n=10$ and $n=15$.
+
+\item
+Since we are interested only in means rather than more highly structured distributions, we can choose a simple distance metric to measure the distance between the observed and expected sequences.  We choose the metric based on the $L^2$-norm of Section~\ref{sec:Ln-norms}, i.e., the distance
+\[ {1 \over 82} \sum_{i=1}^{82} \ (o_i -e_i)^2 \ = \ {1 \over 82} \sum_{i=1}^{82} \ (o_i - 1/2)^2 \]
+
+\item
+One can now choose a confidence interval $c$, which would give one access to a formal statement.
+\end{itemize}
+
+\subsubsection{The $\chi^2$ test for multinomially distributed random variables}
+\index{multinomial distributions}
+
+Probability theory and statistics do not restrict themselves to simple metrics or simple distributions.  Once one allows even moderately more sophisticated distributions, a whole range of important practical situations can be discussed and analyzed.
+ \index{statistical tests!the $\chi^2$ test} 
+
+The $\chi^2$ test is a statistical test that allows one to test that two given sequences of values come from the same {\em multinomial distributions}---a generalization to many variables of the binomial distribution that we studied in Section~\ref{sec:binomial-distribution}.  In contrast to the $L^2$-distance measure that we used as we analyzed the Arbuthnot-Laplace question, we now discuss a more ambitious question, and, accordingly, we invoke a stronger statistical test.
+
+As before, we begin with two sequences that can be viewed as representing $m$ trials of an experiment or $m$ sample values taken from a given sample space:  There is the sequence 
+\[ \langle e_i \rangle_{i=1}^m \ \ \eqdef \ \ \langle e_1, e_2, \ldots, e_m \rangle \]
+of {\em expected} values and the  sequence
+\[ \langle o_i \rangle_{i=1}^m \ \ \eqdef \ \ \langle o_1, o_2, \ldots, o_m \rangle \]
+of {\em observed} values.  We seek to determine the probability that both sequences arise from sampling values from the same random variable.
+
+The $\chi^2$ test measures the distance between sequences $\langle e_i \rangle_{i=1}^m$ and $\langle o_i \rangle_{i=1}^m$ via a calculation that can be viewed as the {\em relative error} incurred by trying to pass either of these sequences off as the other.  Specifically, the $\chi^2$ distance/error corresponding to these sequences is
 \[ \chi^2 \ = \ \sum_{i=1}^m \ \frac{(o_i- e_i)^2}{e_i} \]
-The $\chi^2$ test invokes an analysis of the multinomial distribution---analogous to our analysis of the {\em bi-nomial} distribution---to calculate the probability that the observed sequence $\langle o_i \rangle_{i=1}^m$ and the {\em expected} sequence $\langle e_i \rangle_{i=1}^m$ come from the same multinomial distribution.
+The $\chi^2$ test invokes an analysis of the multinomial distribution---analogous to our analysis of the {\em bi}-nomial distribution---to calculate the probability that the observed and expected sequences come from the same multinomial distribution.
+
+\medskip
+
+We illustrate the domain of the test via a simple but illustrative example that we excerpt from \cite{Hoel58}.
 
 \bigskip
 
-EXAMPLE FROM \cite{Hoel58}:  We role a die $60$ times.  We expect to see $10$ each of the $6$ possible outcomes.  The $\chi^2$ test computes the distance between:
+We role a ($6$-sided, allegedly fair) die $60$ times.  We expect to see $10$ each of the $6$ possible outcomes.  The $\chi^2$ test computes the distance between:
 \[ \begin{array}{|l||c|c|c|c|c|c|}
 \hline
 \mbox{60 Rolls of a die}  &
@@ -2296,21 +2338,19 @@ EXAMPLE FROM \cite{Hoel58}:  We role a die $60$ times.  We expect to see $10$ ea
 \hline
 \end{array}
 \]
-The $\chi^2$ test calculates the probability that the observed sequence $\langle f_1, f_2, f_3, f_4, f_5, f_6 \rangle$ comes from the same multinomial distribution as does the expected sequence $\langle 10, 10, 10, 10, 10, 10 \rangle$. 
-\end{itemize}
+The test then calculates the probability $p$ that the observed sequence $\langle f_1, f_2, f_3, f_4, f_5, f_6 \rangle$ comes from the same multinomial distribution as does the expected sequence $\langle 10, 10, 10, 10, 10, 10 \rangle$. 
 
-INCLUDE STATISTICAL TESTS -- $\chi^2$, Student's t-test --- check what they test for.
+As usual, one selects a confidence level $c$, which is equal to $1-p$, and one announces that, to within the confidence level $c$, the observed sequence $\langle o_i \rangle_{i=1}^{60}$ does come from the same distribution as the expected sequence $\langle e_i \rangle_{i=1}^{60}$.
 
-
-
-The Central Limit Theorem and the Law of Large Numbers highlight situations in which one does not need to know the details of how a random variable's values are distributed, specifically when one samples those values repeatedly and randomly.  But there are situations where one does need to know whether the values of two (or more) random variables' values come from the same distribution.
+If the confidence level $c$ must be chosen too high before it mandates accepting the null hypothesis, then one could decide that the rolled die is not fair!  This is the way that our setting can be used in applications such as fault analysis and quality analysis.
 
 
 
 \subsection{Pointers to Advanced Topics}
 \label{sec:advanced-stat}
 
-\index{statistical tests}
+**HERE
+
 This chapter has presented the tools needed to understand the ethos of the field of statistics and to plant the seeds for an operational understanding of the field.  The two probabilistic-statistical ``blockbusters" that we have discussed, the Central Limit Theorem and the Law of Large Numbers, point the way to further topics in the field of mathematical statistics, that are more specialized and/or more advanced.  We close the section with two subsections that introduce some of this material that is beyond the scope of this text.
 
 
