@@ -1850,64 +1850,99 @@ can derive explicit expressions for the sum $S_c(n)$, for any positive integer $
 
 \medskip 
 
-\paragraph{C. A pictorial solution for $c=2$: Sums of squares}
+\paragraph{C. A pictorial solution for $c=2$}
 
-We now provide a pictorial 
-%proof of Proposition~\ref{thm:summing-squares}, i.e., a pictorial 
-derivation of the solution (\ref{eq:sum-1-to-nsq}) to the problem of summing the first $n$ perfect squares.
-The derivation begins with three depictions of the first $n$ squares and then reorganizes---in a rather Fubini-esque manner---to produce a depiction of the desired sum. 
+We now provide a pictorial, rather Fubini-esque,\footnote{See Section~\ref{sec:summation-via-Fubini}.}~derivation of the sum of the first $n$ perfect squares; cf., (\ref{eq:sum-1-to-nsq}).  The summation process begins with each perfect square $k^2$ depicted as a $k \times k$ square array of copies of the unit-side square.  We then progressively rearrange these arrays in a way that sums the squares. 
 
-Throughout, we depict the square of an integer $k$ as a $k \times k$ array of copies of the: The first four perfect squares, namely, $1^2$, $2^2$, $3^2$, and $4^2$, are depicted at the top of each of Figs.~\ref{fig:sumSquares2}, \ref{fig:sumSquares3}, \ref{fig:sumSquares4}, and~\ref{fig:sumSquares5}.  The darkened unit-side squares in these depictions will be used in our pictorial summation process.
+We pictorially sum the first four perfect squares, $1^2$, $2^2$, $3^2$, and $4^2$, to illustrate the process.  The depiction of these four perfect squares appears at the top of each of Figs.~\ref{fig:sumSquares2}, \ref{fig:sumSquares3}, \ref{fig:sumSquares4}, and~\ref{fig:sumSquares5}.In each figure, we have darkened certain component unit-side squares.  These darkened squares are the ones that will play a lead role in each successive rearrangement in our pictorial summation process.
 
-The overall strategy of our summation process is depicted schematically in Fig.~\ref{fig:sumSquares1}.
+\medskip
 
-
-The full process is depicted in figures Fig~\ref{fig:sumSquares1} to Fig~\ref{fig:sumSquares5}.
-
-The height of the final rectangle is $\Delta_ n$ and its width is $2+2n-1=2n+1$. 
-
-Thus, $3 \cdot S(n) = \Delta_n \cdot (2n+1)$, $S(n) = \frac{n(2n+1)(n+1)}{3}$.
-{\Denis I have another proof which does not consider such a graphical way, by considering three triangles --I mean well-arranged integers in a triangle-- , 
-at least we have to put it as an exercice,
-but may be even as an alternative proof?}
+\noindent {\bf 1.}
+Fig.~\ref{fig:sumSquares1} 
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares1}
-\caption{Computing the sum of squares: initial configuration.}
+       \includegraphics[scale=0.3]{FiguresMaths/SumSquares1}
+\caption{The initial configuration for pictorially computing the sum of squares: the ``scaffolding".}
        \label{fig:sumSquares1}
 \end{center}
 \end{figure}
+provides a schematic ``scaffolding" for the process:  The figure depicts two mirrored copies of the perfect squares $1^2$, $2^2$, $3^2$, and $4^2$ piled in decreasing order of size from bottom to top.  (So, the beginning of the $1^2$--$5^2$ of the summation process would just place the $5 \times 5$ square array beneath the $4 \times 4$ array in Fig.~\ref{fig:sumSquares1}.)  The two piles are positioned in such a manner that there is:
+\begin{itemize}
+\item
+a unit-width height-$(k=4)$ ``alley" between the $k \times k$ squares at the bottom of the ``scaffolding"
+\item
+a width-$3$ height-$(k-1)$ ``alley" between the $(k-1) \times (k-1)$ squares at the next lowest level of the ``scaffolding"
+\item
+a width-$5$ height-$(k-2)$ ``alley" between the $(k-2) \times (k-2)$ squares at the third lowest level of the ``scaffolding"
+\item
+$\vdots$
+\item
+a width-$(2k-1)$ unit-height ``alley" between the two unit-side squares at the top level of the ``scaffolding"
+\end{itemize}
+
+\medskip
+
+\noindent {\bf 2.}
+Fig.~\ref{fig:sumSquares2}
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares2}
-\caption{Step 1 for computing the sum of squares: fill in the surface at the bottom.}
+       \includegraphics[scale=0.3]{FiguresMaths/SumSquares2}
+\caption{Step 1 for pictorially computing the sum of squares: filling the unit-width ``alley" with the lower-lefthand unit-side squares.}
        \label{fig:sumSquares2}
 \end{center}
 \end{figure}
+depicts the first rearrangement step.  The $(k=4)$ lower left unit-side squares are copied from their initial locations and moved to fill the height-$(k=4)$ ``alley" in the ``scaffolding".
+
+\medskip
+
+\noindent {\bf 3.}
+Fig.~\ref{fig:sumSquares3}
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares3}
-\caption{Step 2 for computing the sum of squares.}
+       \includegraphics[scale=0.3]{FiguresMaths/SumSquares3}
+\caption{Step 2 for pictorially computing the sum of squares: filling the width-$3$ ``alley" with the width-$3$
+``bars" produced by flattening the length-$3$ inverted L's.}
        \label{fig:sumSquares3}
 \end{center}
 \end{figure}
+depicts the next step in the process.  From each perfect-square $k > 1$, we copy the $3$-square inverted-L that sits atop the lower lefthand square.  We use the resulting length-$3$ ``bars" to fill in the width-$3$ ``alley" at the next lowest level in the ``scaffolding".
+
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+The reader should recognize the kinship of the just-described process of taking inverted-L shapes and flattening them into ``bars" with an analogous process in our pictorial proof of
+Proposition~\ref{thm:squares-odd-integers-Gauss}.  In that proof, we represented each odd integer $2k+1$ as a length-$(2k+1)$ ``bar", and we bent the ``bar" into an inverted-L whose horizontal and vertical sub-``bars" each had length $k+1$.  In the current process, we are performing the exact inverse process.
+\end{minipage}
+}
+
+\bigskip
+
+\noindent {\bf 4,5.}
+Figs. ~\ref{fig:sumSquares4} and~\ref{fig:sumSquares5}
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares4}
-\caption{Step 3 for computing the sum of squares.}
+       \includegraphics[scale=0.3]{FiguresMaths/SumSquares4}
+\caption{Step 3 for pictorially computing the sum of squares: filling the width-$5$ ``alley" with the width-$5$
+``bars" produced by flattening the length-$5$ inverted L's.}
        \label{fig:sumSquares4}
 \end{center}
 \end{figure}
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumSquares5}
-\caption{Final step for computing the sum of squares: the rectangle is filled.}
+       \includegraphics[scale=0.3]{FiguresMaths/SumSquares5}
+\caption{Final step for pictorially computing the sum of squares: filling the width-$7$ ``alley" with the width-$7$ ``bars" produced by flattening the length-$7$ inverted L's.}
        \label{fig:sumSquares5}
 \end{center}
 \end{figure}
+peel off successive-size inverted-L arrays from the adequately large initial square arrays, flatten these L's into ``bars", and use these ``bars" to fill in the next largest ``alley" in the scaffolding.
 
+\medskip
 
-\paragraph{D. Semi-pictorial solutions for $c=3$: Sums of cubes}
+We leave the detailed validation of the described process to the reader.
+
+\paragraph{D. $\oplus$ Semi-pictorial solutions for $c=3$}
 
 \index{Fubini, Guido} 
 
