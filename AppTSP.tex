@@ -1,136 +1,86 @@
-
+%version of 10-15-19
 \chapter{Hamiltonianicity in Weighted Graphs: the TSP}
 \label{sec:TSP}
 \index{Traveling Salesman Problem}
-
-In Section~\ref{sec:Hamiltonian-unweighted}, we suggested how daunting
-it is computationally to determine whether an unweighted graph admits
-a Hamiltonian cycle.  There is an important, practically significant,
-analogue of this problem for edge-weighted graphs, which has
-traditionally been known as the {\it Traveling Salesman Problem}; we
-shall use the modern abbreviation {\it TSP}.
-\index{Traveling Salesman Problem}
 \index{TSP: the Traveling Salesman Problem}
-The TSP is a classical problem in Operations Research, whose familiar
-name arises from the following story.
+
+In Section~\ref{sec:Hamiltonian-unweighted}, we suggested how daunting it is computationally to determine whether an unweighted graph admits a Hamiltonian cycle.  There is an important, practically significant, analogue of this problem for edge-weighted graphs, which has traditionally been known as the {\it Traveling Salesman Problem}; we shall use instead the modern abbreviation {\it TSP}.  The TSP is a classical problem in the field of Operations Research, whose familiar name arises from the following story.
 \index{Traveling Salesman Problem!origin of the name}
 
-We consider a saleswoman who wants to make a call on all of her $n$
-clients, who live in the $n$ cities, $C_1, C_2, \ldots, C_n$.  In
-order to minimize the {\it cost} of her tour, she studies the
-$\displaystyle {n \choose 2}$ real numbers $\{c_{i,j} \ | \ 1 \leq i,j
-\leq n\}$, where each $c_{i,j}$ is the {\it cost} of traveling between
-cities $C_i$ and $C_j$ (in either direction).  
+\smallskip
+
+We consider a saleswoman who wants to make a call on all of her $n$ clients, who live in the $n$ cities, $C_1, C_2, \ldots, C_n$.  In order to minimize the cost of her tour, she studies the
+$\displaystyle {n \choose 2}$ real numbers $\{c_{i,j} \ | \ 1 \leq i,j \leq n\}$, where each $c_{i,j}$ is the {\it cost} of traveling from city $C_i$ to city $C_j$.  Since our prime concern is in the underlying mathematics rather than in the governing algorithmics, we shall simplify the setting of the TSP to situations wherein intercity costs are {\em commutative}, so that each  $c_{i,j}$ is the {\it cost} of traveling {\em between} city $C_i$ and city $C_j$ {\em in either direction}.
+
 \bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-We are purposely vague about the meaning of the word ``cost'' here.
-The costs represented by the unknowns $c_{i,j}$ could be intercity
-driving distances or inter-region travel times or international
-airfares.  Instances of the TSP can be formulated with {\em any}
-notion of cost that can be represented by positive real numbers.
+We are purposely vague about the meaning of the word ``cost'' in this problem.  The costs represented by the unknowns $c_{i,j}$ could be intercity driving distances or inter-region travel times or international airfares.  Instances of the TSP can be formulated with {\em any} notion of cost that can be represented by positive real numbers.
 
 \smallskip
 
-The importance of being vague is that, in particular, {\em none of
-  these costs is assumed to obey any of the laws that one commonly
-  associates with the distances we encounter in our daily lives}.  The
-{\it triangle inequality} is a prime example of such a law.
-\index{triangle inequality} Intuitively, this law insists that the
-distance between any two cities is never decreased by placing an
-intermediate stopover city between them.  It is a discretization of
-the geometric postulate, {\em A straight line is the shortest distance
-  between two points.}  Cost measures that obey the triangle
-inequality are termed {\it Euclidean} \index{Euclidean distance
-  measure} \index{Euclid} because the distances studied in Euclidean
-geometry are assumed to obey this law.
+\index{triangle inequality} \index{Euclidean distance measure} \index{Euclid}
+The importance of being vague is that {\em costs are not assumed to obey any of the laws that one commonly associates with the distances we encounter in our daily lives}.  The
+{\it triangle inequality} is a prime example of such a law.  Essentially, this law insists that the
+distance between two cities is never decreased by placing an intermediate stopover city between them: It is a discretization of the geometric postulate, {\em A straight line is the shortest distance between two points.}  Cost measures that obey the triangle inequality are termed {\it Euclidean} because the distances studied in Euclidean plane geometry are assumed to obey this law.
 
 \smallskip
 
-Some people like to think of general intercity costs as
-airfares---which clearly obey no immutable laws.)
+Some people like to think of general intercity costs as airfares---which clearly obey no immutable laws.
 \end{minipage}
 }
 \bigskip
 
-The saleswoman's objective is to schedule the order of visiting her
-clients' $n$ cities in the most economical way.  Formally, the
-challenge of the TSP is to discover a minimum-cost tour of all $n$
-cities.  Such a tour would be a cycle of the form
-\[ C_{i_1} \ - \ C_{i_2} \ - \cdots - \ C_{i_n} \ - \ C_{i_1} \]
-such that:
+The saleswoman's objective is to schedule the order of visiting her clients' $n$ cities in the most economical way.  Formally, the challenge of the TSP is to discover a {\em minimum-cost tour} of all $n$ cities.  Such a tour would be a cycle of the form
+
+\hspace*{.35in} $C_{i_1}$--$C_{i_2}$-- $\cdots$ --$C_{i_n}$--$C_{i_1}$
+
+\noindent such that:
 \begin{itemize}
 \item
 all $n$ cities appear in the tour precisely once;
 \item
 no tour has cost smaller than the cost
-\[ c_{i_1,i_2} \ + \ c_{i_2, i_3} \ + \cdots + \  
-c_{i_{n-1}, i_n} \ + \ c_{i_n, i_1} \]
+\[ c_{i_1,i_2} \ + \ c_{i_2, i_3} \ + \cdots + \ c_{i_{n-1}, i_n} \ + \ c_{i_n, i_1}
+\]
 of the indicated tour.
 \end{itemize}
-The main connection of the TSP to the current chapter is twofold.
+The main connection of the TSP to our study of paths and cycles in graphs is twofold.
 \begin{enumerate}
 \item
-The TSP can be represented as a weighted analogue of the problem of
-detecting Hamiltonian cycles.  Within this representation, the TSP's
-$n$ cities are depicted as an instance of the complete graph $\k_n$,
-and its intercity costs are real-number weights on the edges of
-$\k_n$.  We describe this representation via the following informal,
-but precise, encoding of a graph $\g$ as an instance of the TSP.
+The TSP can be represented as a weighted analogue of the problem of detecting Hamiltonian cycles (as studied in Section~\ref{sec:Hamiltonian-cycle}).  Within this representation: the TSP's $n$ cities are depicted as an instance of the complete graph $\k_n$; its intercity costs are real-number weights on the edges of $\k_n$.\footnote{When intercity distances are not commutative, we must deal with the {\em directed} version of $\k_n$.}  We describe this representation via the following informal, but precise, encoding of an arbitrary $n$-vertex graph $\g$ as an instance of the TSP.
   \begin{itemize}
   \item
-Each node of $\g$ becomes a ``city'' that must be visited.
+Each vertex of $\g$ becomes a city that must be visited.  To emphasize this representation, we denote $\g$'s vertex-set as $\{C_1, C_2, \ldots, C_n\}$.
   \item
-For each pair of cities/nodes $A$ and $B$:
-\[ \mbox{\sc cost}(A,B) \ = \ \left\{
+We posit the following intercity costs.  For each pair of cities $C_i$ and $C_j$:
+\[ c_{i,j} \ = \ \left\{
 \begin{array}{ccl}
-1 & & \mbox{if there is an edge between $A$ and $B$ in $\g$} \\
-\infty & & \mbox{if there is no edge between $A$ and $B$ in $\g$} \\
-       & & \mbox{\small\sf (if the idea of ``infinite'' cost bothers
-  you, then} \\
-       & & \mbox{\small\sf make this some ridiculousy large number)}
+1 & & \mbox{if there is an edge between $C_i$ and $C_j$ in $\g$} \\
+\infty & & \mbox{if there is no edge between $C_i$ and $C_j$ in $\g$} \\
+       & & \mbox{\small\sf (if the idea of ``infinite'' costs bothers you, then} \\
+       & & \mbox{\small\sf make this some ``ridiculously large" number)}
 \end{array}
 \right.
 \]
-{\Denis Attention notations are not consistent between COST and $c_{i,j}$}
-  \end{itemize}
+\end{itemize}
 
 \item
-The TSP is computationally ``no easier'' than the
-Hamiltonianicity-detection problem, in a very strong sense.  By
-definition, the target of the TSP is a tour of minimum {\em overall
-  cost}, as measured by the sum of the costs of the edges traversed in
-the tour.  But, of course, {\em every} tour has some cost, according
-to this measure.  The computational difficulty of the TSP is suggested
-by the following result, which we state without proof.
+The TSP is computationally ``no easier'' than the Hamiltonianicity-detection problem, in a very strong sense.  By definition, the target of the TSP is a tour of minimum {\em cumulative cost}, as measured by the sum of the costs of the edges traversed in the tour.  But, of course, {\em every} tour has some cost, according to this measure.  The computational difficulty of the TSP is suggested by the following result, which we state without proof.
 \end{enumerate}
 
 \begin{prop}[\cite{GareyJ79}]
 \label{thm:Approx-TSP-NPC}
-For any fixed positive constant $\kappa$, the problem of finding a
-tour for an instance of the TSP that is within a factor of $\kappa$ of
-minimal is an {\sf NP}-complete problem.
+For any fixed positive constant $\kappa$, the problem of finding a tour for an instance of the TSP that is within a factor of $\kappa$ of minimal is an {\sf NP}-complete problem.
 \end{prop}
 
-
-The fact that TSP is a computationally complex problem is not very
-surprising, because the TSP can be framed in a way that encompasses a
-form of the Hamiltonianicity-detection problem.
-What {\em is} surprising, though, is that if we restrict attention to
-{\em Euclidean} instances of the TSP---i.e., instances whose ``costs''
-measure Euclidean \index{Euclidean TSP problem} distances---say,
-driving distances---then there exists a rather efficient algorithm
-that solves such instances of the TSP {\em approximately} optimally,
+\index{Euclidean TSP problem} 
 \index{Traveling Salesman Problem!approximately optimal solution}
 \index{TSP: the Traveling Salesman Problem!approximately optimal solution} 
-in the sense of Proposition~\ref{thm:Approx-TSP-NPC}.  That is, there
-exists a fixed constant $\kappa > 0$ such that, for each Euclidean
-instance $\i$ of the TSP, if an {\em optimal}---i.e., {\em
-  cost-minimal}---tour for instance $\i$ has cost $c^\star$, then the
-cost of the tour discovered by the algorithm is no larger than $\kappa
-\cdot c^\star$.  The algorithm that achieves this approximation is
-named for its inventor, Nicos Christofides.
+
+It should be no surprise to the reader that the TSP is a computationally complex problem, in the light of our just-described encoding of the TSP as a form of the Hamiltonianicity-detection problem.  What {\em is} surprising, though, is that if we restrict attention to {\em Euclidean} instances of the TSP---i.e., instances whose ``costs'' measure Euclidean distances (say, e.g.,
+driving distances), then there exists a rather efficient algorithm, call it $\a$ that solves such instances of the TSP {\em approximately} optimally, in the sense of Proposition~\ref{thm:Approx-TSP-NPC}.  Specifically, for each {\em Euclidean} instance $\i$ of the TSP that has an {\em optimal/cost-minimal} of cost $c[\i]$, algorithm $\a$ discovers a tour whose cost is no larger than $\kappa \cdot c[\i]$.  Algorithm $\a$ is typically known by the name of its inventor, Nicos Christofides.
 \index{Christofides, Nicos}
 
 \ignore{*********
@@ -152,18 +102,14 @@ larger if the path is going through any other vertex.
 *****************}
 
 \begin{prop}[\cite{Christofides76}]
-There exists an algorithm for the Euclidean TSP that produces
-approximately optimal tours, specifically, tours whose costs are no
-greater than $1.5$ times the cost of an optimal tour.
+There exists an algorithm for the Euclidean TSP that produces tours whose costs are no greater than $1.5$ times the cost of an optimal tour.
 \end{prop}
 
-Proving this result is the domain of an algorithms text such as
-\cite{CLRS}.  We remark only that the algorithm combines a number of
-classical computational problems that admit efficient solutions:
-minimum-weight spanning trees, preorder walks within trees, and
+Proving this result is the domain of an algorithms text---see, e.g., \cite{CLRS}.  We remark here only that the algorithm of Christofides combines a number of classical computational problems that admit efficient solutions: minimum-weight spanning trees, preorder walks within trees, and
 minimum-weight perfect matchings.
 
 \bigskip
+
 We construct an efficient solution for the Euclidean TSP, which is
 known as {\it the Christofides algorithm}, \index{Christofides algorithm} 
 after its inventor, Nicos Christofides.
