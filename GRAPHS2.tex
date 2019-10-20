@@ -2298,26 +2298,56 @@ Section~\ref{sec:graph-evolve}, we discussed an interconnectivity model based on
 \index{graph!multigraph}
 \index{multigraph}
 
-A {\it multigraph} is a graph-like structure that allows a {\em multiset} of edges, rather than a set.  In detail, a multigraph $\h$ has a set $N_{\fh}$ of vertices and a {\em multiset} of edges, each being a $2$-element set of vertices.  Viewed differently, a pair of vertices in a multigraph can be connected by more than one edge.  {\Arny a picture?}
+A {\it multigraph} is a graph-like structure that allows a {\em multiset} of edges, rather than a set.  In detail, a multigraph $\h$ has a set $N_{\fh}$ of vertices and a {\em multiset} of edges, each being a $2$-element set of vertices.  Viewed differently, a pair of vertices in a multigraph can be connected by more than one edge.  Fig.~\ref{fig:EulerianFinal} depicts a $10$-vertex multigraph
+with $3$ multi-edges.
+ \begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresGraph/EulerienFinal}
+       \caption{A $10$-vertex multigraph with $3$ multi-edges.}
+              \label{fig:EulerianFinal}
+\end{center}
+\end{figure}
 
-Proposition~\ref{thm:eulerian-cycle} completely solves the  ``pure'' version of the Euler-tour problem for {\em graphs}.  We learn from that result that a graph $\g$ admits a tour that crosses each edge precisely once if, and only if, every vertex $v \in N_{\fg}$ has even degree.
+\smallskip
 
-From an applied vantage point, if one is confronting a situation that does not satisfy the criteria that allow an efficient solution to the ``pure'' version of a practically important problem, then one is often willing to ``bend the rules"---if such distortion will give one access to an efficient solution to a version of the problem that is not ``not quite pure''.  When some manner of uniformity of vertex-degrees---such as parity---is the inaccessible feature of the ``pure'' version of a problem, then multigraphs can sometimes give one access to ``impurities" that can be overcome by clever algorithmics.  
+Proposition~\ref{thm:eulerian-cycle} completely settles the ``pure'' version of the Euler-tour problem for {\em graphs}.  We learn from that result that a graph $\g$ admits a tour that crosses each edge precisely once if, and only if, every vertex $v \in N_{\fg}$ has even degree.
 
-This section is devoted to such a ``distorted" solution to the Euler-tour problem.  The problem we study exposes a form of the Euler-tour problem that admits optimal tours even for graphs that have some odd-degree vertices.  The ``distortion" that enables such solutions is the license to replace the edge-set of a graph $\g$ to an edge-{\em multiset} that preserves the neighbor relation of $\g$.  In other words, as we add the new edges that convert $\g$'s edge-set to an edge-{\em multiset}, we never create new adjacencies, i.e., we never add an edge that connects vertices that were not connected in $\g$.
+From an applied vantage point, pragmatism is often preferable to purity!  When one does not have access to an efficient solution for the ``pure'' version of a practically important problem, because some essential precondition is violated, then one is often willing to ``bend the rules" if such ``distortion" will give one access to an efficient solution to the resulting ``not-quite-pure'' version of the problem. 
 
- \index{Route Inspection Problem} \index{Chinese Postman Problem} \index{Kwan Mei-Ko}
+\medskip
 
-As we convert $\g$ from a graph to a multgraph, we convert the Euler-tour problem to a problem that is known either as the {\it Route Inspection Problem} or the {\it Chinese Postman Problem}---in honor of the Chinese mathematician Kwan Mei-Ko who invented the problem in \cite{Kwan60}.  This weighted version of the Euler-tour problem challenges one to {\em find the {\em smallest} augmentation of $\g$---measured in terms of the number of added multi-edges---under which the multigraph $\g$ admits a tour that crosses each edge precisely once.}
+The preceding dictum can be illustrated via the Euler-tour problem.
+\begin{description}
+\item
+{\em If a {\em connected} graph $\g$ has an {\em even number of odd-degree vertices}, then we can augment $\g$ by adding new edges, so that $\g$ becomes a {\em multigraph} $\g^+$ which admits a tour 
+that crosses every edge precisely once.}
+\end{description}
+In fact, we can solve this ``distorted" version of the Euler-tour in a manner that is algorithmically efficient in the following senses.
+\begin{itemize}
+\item
+{\em The newly added edges preserve the neighbor relation of $\g$.}
 
-**HERE
+\smallskip
 
-Let us now present the more general problem of determining a cycle that contains all the edges in any graph, in particular when
-there exist some odd vertices. From the previous section, we know that there is no Eulerian cycle in this case and thus, 
-any feasible solution should duplicate some edges.
-The problem is to duplicate the minimum.
-This problem is known as the {\it chinese postman} and it is described below (in a french equivalent version).
+In other words, as we add the new edges that convert $\g$'s edge-set to an edge-{\em multiset}, we never create new adjacencies: Every new edge that we add connects vertices that were already connected in $\g$.
 
+\item
+{\em The algorithm adds the fewest number of new edges possible in order to achieve the described tour.}
+
+\smallskip
+
+In other words, if $\g'$ is a multigraph produced by adding edges to $\g$, and if $\g'$ has fewer edges than $\g^+$, then $\g'$ does {\em not} admit a tour that crosses each edge precisely once.
+\item
+{\em The algorithm is computationally efficient: it operates in time polynomial in the size of the. graph $\g$.}
+\end{itemize}
+
+\medskip
+
+\index{Route Inspection Problem} \index{Chinese Postman Problem} \index{Kwan Mei-Ko}
+
+Our ``distorted" version of the Euler-tour problem is actually a well-known combinatorial optimization problem, which is known either as the {\it Route Inspection Problem} or the {\it Chinese Postman Problem}---the latter name in honor of the Chinese mathematician Kwan Mei-Ko who invented the problem \cite{Kwan60}.  These colorful names arise from stories about a person---either a route inspector or a postal employee---who must traverse all of the roads in a village and who wants to avoid extraneous road traversals.
+
+\ignore{******************
 A postman moved recently from Grenoble to a small village in the country side. 
 He asked himself how to organize his daily tour by bike for distributing the letters in the shortest possible time. 
 The director of the post office gives him the map and 
@@ -2326,80 +2356,83 @@ The tour starts from the post office and of course, the postman has to go throug
 to his office.
 The underlying graph is $G=(V,E)$ where $V$ is the (finite) set of cross points and $E$ is the set of the links between the cross roads
 weighted by the distances.  
-
-Fig.~\ref{fig:EulerianInitial} presents an example of the chinese postman problem. 
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/EulerienInitial}
-       \caption{An instance of the Chinese postman with $10$ cross-vertices.}
-              \label{fig:EulerianInitial}
-\end{center}
-\end{figure}
-
-\bigskip
-
-This problem can be formulated mathematically in term of Eulerian
-cycles.  Intuitively, the basic idea is to duplicate some edges that
-are carefully chosen in order to use the previous construction of an
-Eulerian tour of Section~\ref{sec:EulerianCycle} that will help the
-postman to determine the optimal tour (of minimal length) using some
-simple mathematical properties.
-\bigskip
-
-First, we know that there is an even number of odd vertices.
-Considering the previous instance of the postman problem, there are $4$ such vertices (represented in grey in Fig.~\ref{fig:EulerianVodd}).
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/EulerienVodd}
-       \caption{The $4$ vertices with an odd degree in the previous instance.}
-              \label{fig:EulerianVodd}
-\end{center}
-\end{figure}
-\bigskip
-
-As there exists a path between any pair of vertices of odd degree in $V_{odd}$,
-we consider the complete graph whose vertices are the odd degree vertices weighting the edges with the shortest paths (denoted by $K_{odd}$).
-As we mentioned in the preliminary properties, computing the shortest paths is a classical problem, which can be solved in polynomial time. 
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/EulerienPerfectMatching}
-       \caption{The minimum weight perfect matching labelled by the shortest distances between the vertices of $V_{odd}$.}
-              \label{fig:Eulerianperfectmatching}
-\end{center}
-\end{figure}
-\bigskip
-
-Then, it is possible to do the correspondence between the optimal solution of the postman problem and a perfect matching of minimal weight in $K_{odd}$
-%Recall that a matching is a set of edges without common vertices. It is perfect if it has the maximum number of edges. 
-by duplicating the edges of the minimal perfect matching.
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/EulerienFinal}
-       \caption{Final step: adding the edges of the minimum perfect matching.}
-              \label{fig:EulerianFinal}
-\end{center}
-\end{figure}
-
-The main steps of the algorithm for determining the optimal tour are the following:
-
-\begin{itemize}
-\item Consider the complete graph with the odd vertices and compute its weight by the shortest paths.
-Compute a perfect matching of minimal weight between these vertices. 
-\item Duplicate all the edges along the paths of this matching.
-\item Determine an Eulerian tour in this new graph with even degrees.
-\end{itemize}
-
-The optimality of this algorithm comes from the fact that the duplicated edges are the minimum possible ones.
-% This is straightforward for two odd vertices.
-Finally, all the vertices of the new graph are even since the degree of the odd vertices in $G$ is augmented by $1$
-(extremities of the paths) and the other even vertices which are intermediate vertices of the paths remain even. 
+************}
 
 \medskip
 
-This short discussion is a good segu\'{e} to the material in the next
-section, which led valuable perspective on our brief study of
-Hamiltonian paths and cycles---and, indeed, on the computational
-implications of that work.
+We illustrate the problem and an algorithm that solves it.
+
+\smallskip
+
+Fig.~\ref{fig:EulerianInitial} presents a $10$-vertex input $\g$ to our ``distorted" Euler-tour problem. 
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresGraph/EulerienInitial}
+       \caption{A $10$-vertex graph which is not Eulerian.}
+              \label{fig:EulerianInitial}
+\end{center}
+\end{figure}
+Note that $\g$ is not Eulerian because it has four odd-degree vertices (happily, an even number), which are highlighted in Fig.~\ref{fig:EulerianVodd}.
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresGraph/EulerienVodd}
+       \caption{$\g$ with its $4$ odd-degree vertices highlighted.}
+              \label{fig:EulerianVodd}
+\end{center}
+\end{figure}
+
+{\Arny XXX We need labeling on the vertices and edges so that we can refer to them}
+
+\medskip
+
+We sketch a process that adds a minimally many edges to $\g$, which convert converts $\g$ to a  multigraph which admits a ``distorted" Euler tour. 
+\begin{enumerate}
+\item
+Record, for each pair of vertices $u, v \in N_{\fg}$, the  length $\ell(u,v)$ of a {\em shortest path} between $u$ and $v$.  (Recall that $\g$ is connected.)
+
+\smallskip
+
+Computing the lengths $\ell(u,v)$ can be accomplished efficiently, i.e., in low-degree polynomial time; see \cite{CLRS}.
+
+\item
+Say that $\g$ has $m$ odd-degree vertices $w_1, \ldots, w_m$ ($m=4$ in our illustration).  Create a copy of the $m$-clique $\k_m$ on these $m$ vertices.
+
+\item
+Label each edge $\{u,v\}$ of the clique with the path-length $\ell(u,v)$.
+
+\item
+Compute a perfect matching of minimal weight in the edge-weighted clique $\k_m$.
+
+\smallskip
+
+Computing minimal-weight perfect matchings can be accomplished efficiently, i.e., in low-degree polynomial time; see \cite{CLRS}.
+
+\smallskip
+
+Fig.~\ref{fig:Eulerianperfectmatching} illustrates the results of this process on our sample graph $\g$.
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresGraph/EulerienPerfectMatching}
+       \caption{A minimum weight perfect matching labelled by the shortest-distances $\ell(u,v)$.}
+              \label{fig:Eulerianperfectmatching}
+\end{center}
+\end{figure}
+
+{\Arny XXX Is something wrong here?  Why do we need a "double edge" for the two vertices at the top of the graph?  Maybe the single version of that edge should not have been in the original $\g$?  In that case, the two top vertices would have been distance-2 apart initially.}
+
+
+\item
+Replace each weighted edge produced by the process by an appropriate number of multi-edges.
+
+\smallskip
+
+Fig.~\ref{fig:EulerianFinal} performs this last step for the weighted graph of Fig.~\ref{fig:Eulerianperfectmatching}.
+\end{enumerate}
+
+\smallskip
+
+Our augmented multigraph $\g^+$ now has all even vertex-degrees.  We can, therefore, adapt the Euler-tour algorithm from . in order to produce a tour of $\g^+$ that crosses each multi-edge precisely once.
+
+\medskip
+
+The importance of the notion of multigraph in this story is that it gave us a perspicuous bridge between the strongly algorithmic world of edge-weighted graphs and the purely graph-theoretic world that underlies Proposition~\ref{thm:eulerian-cycle}.
