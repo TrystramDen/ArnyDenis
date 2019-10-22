@@ -1,25 +1,14 @@
-%version of 10-21-19
+%version of 10-22-19
 
 \chapter{Recurrences:
-Rendering Complex Structures Manageable}
+Rendering Complex Structure Manageable}
 \label{ch:Recurrences}
 
-One of the intellectually most powerful strategies for all manner of
-human endeavor is to ``learn from the past''---i.e., to {\em re}-use
-knowledge that one has acquired earlier in order to acquire new
-knowledge.  Within the domain of computing, this strategy is
-exemplified by computations that derive the value of a function $F$ at
-an argument $n \in \N^+$ by invoking the (hopefully, earlier-computed)
-values of $F$ at arguments $1, 2, \ldots, n-1$.  The classical first
-example of such a {\it recurrent} mode of computing involves the {\it
-  factorial function} {\sc Fact} of Section~\ref{sec:unary-ops}.C.
-\index{arithmetic!basic operations!factorial (of a nonnegative integer)}
-The ``direct'' mode of computing {\sc Fact} at an argument $n \in
+One of the intellectually most powerful strategies for all manner of human endeavor is to ``learn from the past''---i.e., to {\em re}-use knowledge that one has acquired earlier in order to acquire new knowledge.  Within the domain of computing, this strategy is exemplified by computations that derive the value of a function $F$ at an argument $n \in \N^+$ by invoking the (hopefully, earlier-computed) values of $F$ at arguments $1, 2, \ldots, n-1$.  The classical first example of such a {\it recurrent} mode of computing involves the {\it factorial function} {\sc Fact} of Section~\ref{sec:unary-ops}.C.  The ``direct'' mode of computing {\sc Fact} at an argument $n \in
 \N^+$ is:
+\index{arithmetic!basic operations!factorial (of a nonnegative integer)}
 \[ \mbox{\sc Fact}(n) \ = \ 1 \times 2 \times \cdots \times n. \]
-The {\em recurrent} mode of computing {\sc Fact}($n$) is more
-compact---and it better exposes the inherent structure of the
-function.
+The {\em recurrent} mode of computing {\sc Fact}($n$) is more compact---and it better exposes the inherent structure of the function.
 \[ \mbox{\sc Fact}(n) \ = \ \left\{
 \begin{array}{cl}
  n \times \mbox{\sc Fact}(n-1) & \mbox{ if } \ n > 1 \\
@@ -27,10 +16,7 @@ function.
 \end{array}
 \right.
 \]
-This chapter is devoted to deriving and solving a variety of types of
-recurrences.  In common with the rest of this text, our treatment of
-this subject emphasizes exploiting recurrent structure in reasoning
-and analysis: increased understanding will enable improved computing.
+This chapter is devoted to deriving and solving a variety of types of recurrences.  In common with the rest of this text, our treatment of this subject emphasizes exploiting recurrent structure in reasoningand analysis: increased understanding will enable improved computing.
 
 
 \section{Linear Recurrences}
@@ -1909,20 +1895,29 @@ In other words, it always remains (for any $n$) an empty space (corresponding to
 The greater $n$, the better the paradox because the deformation of the surface of this basic square becomes more tiny. 
 ***********************}
 
-\newpage
+%\newpage
 
-\section{Exercises: More on Recurrences}
+\section{Exercises Involving Recurrences}
 
 \subsection{Karatsuba Multiplication} 
 
 \noindent \textit{The aim.}
-The purpose here is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical example.
+The purpose here is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical problem.
 
-recall first the standard method for computing the product of two $n$-bits integers $A$ and $B$ in basis 2 is to compute the $n$ partial products as follows:
+\medskip
 
-$A=(a_na_{n-1} \ldots a_1)_2$ by each of the $b_i$
+The classical elementary-school method for computing the base-$2$ product of two $n$-bit integers (using their standard numerals)
+\[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
+is to compute the $n$ partial products:
+\[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
+and to sumthese partial products.
 
-This leads to $O(n^2)$ basic operations. 
+This approach leads to $O(n^2)$ basic operations. 
+
+\medskip
+
+We can do better.
+
 \medskip
 
 Let us first recall the generic divide-and-conquer for designing algorithms.
@@ -1930,11 +1925,11 @@ Let us first recall the generic divide-and-conquer for designing algorithms.
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be
-decomposed into sub-problems.
+{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be decomposed into sub-problems.
 
 Let consider a problem of size $n$ that can be decomposed into $p$ sub-problems.
-(notice, all sub-problems have the same size n/q).
+(notice, all sub-problems have the same size $n/q$).
+
 \bigskip
 
 \noindent {\bf Principle:}
@@ -1944,27 +1939,25 @@ Let consider a problem of size $n$ that can be decomposed into $p$ sub-problems.
 \item Reconstruct the solution of the initial problem.
 \end{enumerate}
 
-In general, the sub-problems are solved recursively (at least until a certain threshold).
-The cost is governed by the following expression:
+In general, the sub-problems are solved recursively (at least until a certain threshold value of the parameter, where the base case(s) govern the computation).
 
-$T(n) = p.T(\frac{n}{q}) + c_1(n) + c_3(n)$ 
-
-where $c_1(n)$ et $c_3(n)$ are the costs of phases (1) et (3).
-
+The time-cost of the computation is governed by the following expression:
+\[  T(n) \ = \ p \cdot T(\frac{n}{q}) + c_1(n) + c_3(n) \] 
+where $c_1(n)$ and $c_3(n)$ are the costs of phases (1) and (3).
 \end{minipage}
 }
 \bigskip
 
 \noindent \textit{The problem.}
-Let $A=(a_na_{n-1}\ldots a_1)_2$ and $B=(b_nb_{n-1}\ldots b_1)_2$
-be two \textit{long} integers, and assume $n=2^k$ for some positive integer $k$.
+Say that we have the earlier-mentioned $n$-bit numbers $A$ and $B$.  Let us assume that $n$ is a very large power of $2$: $n=2^k$ for some positive integer $k$.
 
-The goal is to compute the product $A \times B$.
+The goal is to compute the product $A \times B$ in fewer operations than the classic $O(n^2)$.
+
 \medskip
 
 \noindent \textit{A first solution.}
 The divide-and-conquer version of this problem is to break each integer into two parts
-of $\frac{n}{2}$ bits each:
+of $n/2$ bits each:
 
 $A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$
 
@@ -2004,11 +1997,11 @@ The cost analysis is 3 multiplications of $n/2$ bits,
 
 Again, using the Master Theorem leads to:
 
-$T(n) = 3.T(\frac{n}{2}) + \theta (n) = n^{log_2 3}$
+$T(n) = 3.T(n/2) + \Theta (n) = n^{\log_2 3}$
 \medskip
 
 \noindent \textit{Lesson learned.}
-The analysis done in this exercice showed a clear use of the Master Theorem.
+The analysis done in this exercise showed a clear use of the Master Theorem.
 
 It introduced also the classical technique of divide-and-conquer for designing algorithms.
 
