@@ -4,6 +4,7 @@
 \label{ch:FIBO-enrich}
 
 \section{$\oplus$ Computations on the Fibonacci Numbers}
+\label{sec:FIBO-enrich-ops}
 
 \index{The Fibonacci Quartlerly}
 One reason that the Fibonacci sequence has captivated an entire mathematically oriented community are the myriad identities involving Fibonacci numbers, which are simply presented and gracefully verified.\footnote{An entire research journal, {\it The Fibonacci Quarterly}, is dedicated to the mathematics of recursively defined sequences of numbers---the genre epitomized by the Fibonacci numbers.}  This section is dedicated to two particularly beautiful,  unintuitive, identities.
@@ -171,49 +172,73 @@ This completes the proof.   \qed
 \label{sec:numerals-special-families}
 \label{sec:Fibo-numbers}
 
-
 \subsection{Preliminaries}
-{\Denis write a short introduction here}
+\label{sec:FIBO-num-intro}
 
-In a variety of application areas, the special properties of certain
-families of numbers can be exploited if one uses the numbers in the
-family to devise representations of all integers.  We illustrate this
-fact while using the Fibonacci numbers---see
-Section~\ref{sec:Fibonacci}---as our basis family.
+This section continues our mathematical-cultural tour of the Fibonacci numbers, the recursively defined sequence of numbers which has been of considerable significance for centuries.  Our study of the sequence until now, in Sections~\ref{sec:Fibonacci} and~\ref{sec:FIBO-enrich-ops}, has focused ``inward", deriving results that are important for understanding the sequence.  In contrast, we focus on the ``outward"-looking application of the sequence.
 
-We shall repeatedly find the following nonstandard notation useful:
+History has lent us many examples of nonstandard representations of the integers proving significant for reasons that go far beyond the representation of numbers.  We have repeatedly benefited from such unexpected uses of number representations, which arise from the ability of mathematical objects to ``encode" a broad range of situations.  (Two simple examples: ($a$) the use of base-$2$ numerals to count in various combinatorial applications; ($b$) the use of prime-power representations within the realm of coding.)  This section is devoted to developing a system for representing integers, which is based on the family of Fibonacci numbers.
 
-For integers $m$ and $n$, we write $[m \gg n]$ to mean that $m \geq
-n+2$.
+\subsection{Zeckendorf's Theorem}
+\label{sec:Zeckendorf's-Theorem}
+
+\index{Zeckendorf, Edouard}
+
+The endeavor of using Fibonacci numbers to represent arbitrary integers is based on the following theorem by the Belgian mathematician Edouard Zeckendorf \cite{Zeckendorf72}.
+
+\smallskip
+
+To simplify exposition, we employ two nonstandard conventions in what follows.
+\begin{enumerate}
+\item
+{\em We index the Fibonacci sequence starting at index $1$, not the traditional $0$.}
+\item
+{\em For integers $m$ and $n$, we write ``$m \gg n$" to mean that $m \geq n+2$.}
+\end{enumerate}
+
+\begin{prop}[Zeckendorf's Theorem]
+Every positive integer $n$ has a unique representation of the form
+
+\smallskip
+
+\hspace*{.25in} $n \ = \ F(k_1) \ + \ F(k_2) \ + \cdots + \ F(k_r)$
+
+\smallskip
+
+\noindent
+where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_r \ \geq \ 2$.
+\end{prop}
 
 \medskip
 
+We remark that the injunction against employing $F(1)$ in a representation is no real restriction because under our nonstandard convention for the indices of Fibonacci numbers, $F(1)=F(2)$.
 
-We will first prove the \textit{Zeckendorf's theorem} which informally states
-that every positive integer $n$ has a unique representation of the
-form:  **CITATION**
+\medskip
 
-$n = F(k_1) + F(k_2) + ... + F(k_r)$ where $k_1 \gg k_2 \gg ... \gg k_r$ and $k_r \geq 2$.
+\noindent {\it Illustrations.}
 
-Here, we assume that the Fibonacci sequence starts at index $1$ and not $0$,
-moreover, the decompositions will never consider $F(1)$ (since $F(1)=F(2$)). 
-For instance, the representation of $12345$ turns out to be:
+\noindent $\bullet$
+The Zeckendorf representation of the integer $12345$ is:
+\begin{eqnarray*}
+12345 & =  & 10946 \ + \ 987 \ + \ 377 \ + \ 34  \ + \ 1 \\
+           & =  & F(21) \ + \ F(16)  \ + \ F(14) \ +  \ F(9) \ + \ F(2)
+\end{eqnarray*}     
 
-$12345 = 10946 + 987 + 377 + 34 + 1 = F(21) + F(16) + F(14) + F(9) + F(2)$
-\bigskip
+\medskip
 
-Figure~\ref{zeckendorf} shows the decomposition of the first 26 integers written in this system. 
+\noindent $\bullet$
+Fig.~\ref{fig:zeckendorf} illustrates the Zeckendorf representations of the first $26$ integers. 
 \begin{figure}[h]
 \begin{center}
 %\includegraphics[width=0.4\textwidth]{../FIGmaths/zeckendorf_representations.png}
         \includegraphics[scale=0.6]{FiguresArithmetic/Zeckendorf}
-        \caption{The first integers (on the Y-axis) broken down into the Zeckendorf representation.
-        The shaded rows corresponds to pure Fibonacci numbers.}
-\label{zeckendorf}
+        \caption{The first $26$ integers (on the vertical [Y] axis), represented in the Zeckendorf system.  The breaks in the horizontal bars represent the summations of Fibonacci numbers.  The shaded horizontal bars correspond to pure Fibonacci numbers.}
+\label{fig:zeckendorf}
 \end{center}
 \end{figure}
 
-\subsection{Proof of Zeckendorf's Theorem}
+\subsection{A Proof of Zeckendorf's Theorem}
+\label{sec:Zeckendorf-proof}
 
 The proof is done by induction on $n$ for proving simultaneously both construction and uniqueness.
 
