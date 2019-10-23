@@ -167,7 +167,6 @@ This completes the proof.   \qed
 \end{proof}
 
 
-
 \section{$\oplus \oplus$ A Number System Based on the Fibonacci Sequence}
 \label{sec:numerals-special-families}
 \label{sec:Fibo-numbers}
@@ -197,16 +196,17 @@ To simplify exposition, we employ two nonstandard conventions in what follows.
 \end{enumerate}
 
 \begin{prop}[Zeckendorf's Theorem]
-Every positive integer $n$ has a unique representation of the form
+\label{thm:Zeckendorf}
+Every positive integer $n$ has a unique representation as the sum of nonconsecutive Fibonacci numbers with indices $k \geq 2$.  In detail, this representation has the form
 
 \smallskip
 
-\hspace*{.25in} $n \ = \ F(k_1) \ + \ F(k_2) \ + \cdots + \ F(k_r)$
+\hspace*{.25in} $n \ = \ F(k_1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell)$
 
 \smallskip
 
 \noindent
-where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_r \ \geq \ 2$.
+where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
 \end{prop}
 
 \medskip
@@ -215,14 +215,20 @@ We remark that the injunction against employing $F(1)$ in a representation is no
 
 \medskip
 
-\noindent {\it Illustrations.}
+\index{Zeckendorf representation}
+
+Call a representation of an integer $n$ a {\it Zeckendorf representation} if it satisfies the conditions of Proposition~\ref{thm:Zeckendorf}.
+
+\medskip
+
+\noindent {\it Illustrating the Zeckendorf representation.}
 
 \noindent $\bullet$
 The Zeckendorf representation of the integer $12345$ is:
-\begin{eqnarray*}
-12345 & =  & 10946 \ + \ 987 \ + \ 377 \ + \ 34  \ + \ 1 \\
-           & =  & F(21) \ + \ F(16)  \ + \ F(14) \ +  \ F(9) \ + \ F(2)
-\end{eqnarray*}     
+\[ \begin{array}{ccccccccccc}
+12345 & =  & 10946 & + & 987    & +  &   377  & + & 34   & + & 1 \\
+           & =  & F(21)  & + & F(16)  & +  & F(14) & + & F(9) & + & F(2)
+\end{array} \]     
 
 \medskip
 
@@ -231,7 +237,7 @@ Fig.~\ref{fig:zeckendorf} illustrates the Zeckendorf representations of the firs
 \begin{figure}[h]
 \begin{center}
 %\includegraphics[width=0.4\textwidth]{../FIGmaths/zeckendorf_representations.png}
-        \includegraphics[scale=0.6]{FiguresArithmetic/Zeckendorf}
+        \includegraphics[scale=0.5]{FiguresArithmetic/Zeckendorf}
         \caption{The first $26$ integers (on the vertical [Y] axis), represented in the Zeckendorf system.  The breaks in the horizontal bars represent the summations of Fibonacci numbers.  The shaded horizontal bars correspond to pure Fibonacci numbers.}
 \label{fig:zeckendorf}
 \end{center}
@@ -240,39 +246,68 @@ Fig.~\ref{fig:zeckendorf} illustrates the Zeckendorf representations of the firs
 \subsection{A Proof of Zeckendorf's Theorem}
 \label{sec:Zeckendorf-proof}
 
-The proof is done by induction on $n$ for proving simultaneously both construction and uniqueness.
-
+Our proof accomplishes three goals simultaneously:
 \begin{itemize}
 \item
-The basis is true since the decomposition is obviously unique for $n=2$ (and also for $n=3$). 
-Notice that for $n=4$, we have $4 = 3 + 1 = F(4) + F(2)$. 
-
+It specifies an algorithm for constructing a Zeckendorf representation of every argument integer $n$.
 \item
-Assume for the induction step that any integer strictly lower than $F(k)$ can be decomposed uniquely as the sum of non-consecutive Fibonacci numbers.
-We will prove as a consequence that an integer $n$ in the next interval between two consecutive Fibonacci numbers $F(k) \leq n < F(k+1)$ may be decomposed. 
-
-If $n=F(k)$ is a Fibonacci number, the decomposition is reduced to $F(k)$.
-
-Moreover, it is not difficult to check that it is unique.
-
-%by using Property~\ref{prop:FiboSum}:
-%$F(k) = 2+ \sum_{i=1}^{k-2} F(i)$ (the 2 comes from the shift of the starting element of the sequence...).
-
-\medskip
-
-If $n \neq F(k)$ write $n = F(k) + N$.
-
-As $N$ is strictly lower than $F(k)$, we apply the recurrence hypothesis to decompose it into non-consecutive Fibonacci numbers:
-
-$n = F(k) + F(k_1) + F(k_2) + \cdots + F(r)$ where $k_2 \gg ... \gg k_r \geq 2$. 
-
-The last point to verify is that $F(k)$ and $F(k_1)$ are not consecutive ($F(k) \gg F(k_1)$), which is done by contradiction:
-
-Assuming $k$ and $k_1$ are consecutive ($k_1=k-1$) leads to $n = F(k+1) + F(k_2) + \cdots + F(r)$
-which contradicts $n < F(k+1)$.
+It verifies that the resulting representation is
+  \begin{itemize}
+  \item
+{\em valid}---the Fibonacci numbers that it uses in the representation do, indeed, sum to $n$
+  \item
+{\em unique}---no other selection of Fibonacci numbers that satisfy Proposition~\ref{thm:Zeckendorf} yields numbers that sum to $n$.
+  \end{itemize}
 \end{itemize}
+A single induction on $n$ accomplishes all three goals.  Keep in mind our nonstandard indexing of the Fibonacci sequence.
 
+\smallskip
 
+\noindent {\sf Base cases}.
+The base of the induction is the case $n=2$.  To wit, $F(3) = 2$, and no other sum of Fibonacci numbers that satisfy Proposition~\ref{thm:Zeckendorf} yield the value $n=2$.
+
+Similarly, Proposition~\ref{thm:Zeckendorf} holds for the cases $n=3$ and $n=4$ also.  To wit, $F(4) = 3$, and $F(4) + F(2) = 3 + 1 = 4$; uniqueness is left as an exercise.
+
+\smallskip
+
+\noindent {\sf Inductive hypothesis}.
+Assume for induction that any integer $m < F(r)$ admits a unique representation of the form specified in Proposition~\ref{thm:Zeckendorf}.
+
+\smallskip
+
+\noindent {\sf Inductive extension}.
+Focus on an arbitrary integer $n$ in the interval
+\[ [F(r) \leq n < F(r+1)] \]
+We claim that every $n$ in this interval admits a unique Zeckendorf representation.
+
+Of course, this claim is true for the smallest $n$ in the interval, namely, $n=F(r)$, because the equation ``$n=F(r)$" obviously specifies a valid Zeckendorf representation of $n$.  (We leave it to the reader to verify that this representation is unique.)
+
+Focus, therefore, for an arbitrary $n \neq F(r)$ within the interval.  Write this $n$ in the form $n = F(r) + m$.  Note that we must have $m < F(r)$, by specification of the interval and by the defining recurrence of the Fibonacci sequence.  Consequently, our inductive hypothesis tells us that the integer $m$ admits a unique Zeckendorf representation:
+
+\hspace*{.25in} $m \ = \ F(k_1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell)$
+
+\smallskip
+
+\noindent
+where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
+
+\noindent
+This means that the integer $n$ admits a representation of the form
+
+\hspace*{.25in} $n \ = \ F(r) \ + \ F(k_1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell)$
+
+\smallskip
+
+\noindent
+where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
+
+\smallskip 
+
+Our final task is to verify that $F(r)$ and $F(k_1)$ are not consecutive Fibonacci numbers, or equivalently, to verify that $F(k) \gg F(k_1)$.  To this end, assume, for contradiction, that $k_1=r-1$.  Were this the case, we would have (from the Fibonacci recurrence)
+\[ n \ = \ F(r+1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell) \]
+which would contradict the fact that $n < F(r+1)$.  This argument verifies the uniqueness as well as the validity of $n$'s Zeckendorf representation.
+
+**HERE
 \subsection{Applications of the Fibonacci number system}
 
 Any unique system of representation is a numbering system.
