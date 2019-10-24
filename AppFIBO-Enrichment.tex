@@ -1,6 +1,6 @@
 %version of 10-22-19
 
-\chapter{$\oplus$ Additional Material on the Fibonacci Numbers}
+\chapter{A Deeper Look at the Fibonacci Numbers}
 \label{ch:FIBO-enrich}
 
 \section{$\oplus$ Computations on the Fibonacci Numbers}
@@ -9,7 +9,7 @@
 \index{The Fibonacci Quartlerly}
 One reason that the Fibonacci sequence has captivated an entire mathematically oriented community are the myriad identities involving Fibonacci numbers, which are simply presented and gracefully verified.\footnote{An entire research journal, {\it The Fibonacci Quarterly}, is dedicated to the mathematics of recursively defined sequences of numbers---the genre epitomized by the Fibonacci numbers.}  This section is dedicated to two particularly beautiful,  unintuitive, identities.
 
-\subsection{$\oplus$ Products of Consecutive Fibonacci Numbers}
+\subsection{Products of Consecutive Fibonacci Numbers}
 \label{sec:product-Fn-Fn+1}
 \index{Fibonacci numbers!product of consecutive}
 
@@ -31,20 +31,20 @@ the identity with the following induction.
 
 \medskip
 
-\noindent {\it Base case.}
+\noindent {\sf Base case.}
 Instance $n=1$ of identity (\ref{eq:FiboSumConsecutive}) is valid
 because
 \[ F(0) \cdot F(1) \ = \ 1 \cdot 1 \ = \ 1^2 \ = \ (F(0))^2. \]
 
 \medskip
 
-\noindent {\it Inductive hypothesis.}
+\noindent {\sf Inductive hypothesis.}
 Assume that identity (\ref{eq:FiboSumConsecutive}) is valid for all $n
 \leq m$.
 
 \medskip
 
-\noindent {\it Inductive extension.}
+\noindent {\sf Inductive extension.}
 Let us focus on the product $F(m+1) \cdot F(m)$.  Invoking the defining Fibonacci recurrence
 (\ref{eq:Fibonacci-defn}) and the inductive hypothesis, we generate the following chain of identities.
 \begin{eqnarray*}
@@ -64,7 +64,7 @@ The induction is thus extended, which completes the proof.
 
 
 
-\subsection{$\oplus \oplus$ Greatest Common Divisors of Fibonacci Numbers}
+\subsection{Greatest Common Divisors of Fibonacci Numbers}
 \label{Appendix:FiboGCD}
 
 Our second identity exposes the marvelous fact that the {\em greatest common divisor} ({\sc gcd}) of an arbitrary pair of Fibonacci numbers is again a Fibonacci number!
@@ -107,7 +107,7 @@ $\mbox{\sc gcd}(F(n), F(m))$ divides $\mbox{\sc gcd}(n,m)$
 \smallskip
 
 \noindent
-We leave to the reader the exercise of verifying the following three technical lemmas.
+We leave it to the reader to verify the following technical lemmas.
 
 {\Arny Verifying these lemmas is exactly what I would define as an EXERCISE}
 
@@ -307,54 +307,88 @@ Our final task is to verify that $F(r)$ and $F(k_1)$ are not consecutive Fibonac
 \[ n \ = \ F(r+1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell) \]
 which would contradict the fact that $n < F(r+1)$.  This argument verifies the uniqueness as well as the validity of $n$'s Zeckendorf representation.
 
-**HERE
-\subsection{Applications of the Fibonacci number system}
+\medskip
 
-Any unique system of representation is a numbering system.
+Our inductive proof yields an effective way to compute the Zeckendorf representation of any number $n$.  There are likely more efficient conversion procedures.
 
-The previous theorem ensures that any non-negative integer can be written
-as a sequence of bits $b_i$, in other words,
+\subsection{Zeckendorf Representations as a Number System}
+\label{sec:Zeck-rep-number-system}
 
-$n = (b_mb_{m-1}...b_2)_F$ iff $n = \Sigma_{k=2}^m b_k F(k)$.
+\index{Fibonacci number system}
+One can employ Zeckendorf representations as a numbering system for positive integers:  As we just showed, each $n \in \N^+$ admits a unique such representation; we can expand the system to the set $\N$ by explicitly appending the number $0$ to the system.  This section discusses some of the pros and cons of this system.
 
-Note: we wrote here the representation of $n$ in the Fibonacci numbering system using parenthesis in order to avoid confusions 
-on the indices.
+\smallskip
 
-Let us compare this system to the binary representation.
-For instance, the Fibonacci representation of $12345$ is $100001010000100000010_F$
-while  $12345 = 2^{13} + 2^{12} + 2^{5} + 2^{4} + 2^{3} + 2^{0} = 1100000111001_2$.
-The binary representation is more compact. 
-\bigskip
+\noindent {\it The system's numerals.}
+The natural way to represent numerals within the Fibonacci number system is as bit-strings.  We employ a somewhat strange system of indexing in order to be consistent with the notation of Proposition~\ref{thm:Zeckendorf}.
+\begin{itemize}
+\item
+$0$ is the unique numeral for the number $0$.
+\item
+For all {\em positive} integers $n$: Each length-$\ell$ bit-string $b_{\ell+1} b_{\ell} \cdots b_2$, where each $b_i \in \{0,1\}$, is the unique numeral for the positive integer
+\[ n \ = \ (b_{\ell+1} b_\ell \cdots b_2)_F \ \eqdef \  \sum_{k=2}^{\ell+1} \ b_k \cdot F(k) \]
+\end{itemize}
+%Note: we wrote here the representation of $n$ in the Fibonacci numbering system using parenthesis in order to avoid confusions on the indices.
 
-The decomposition in the Fibonacci basis of the first integers (starting from $1 = 00001_F$) is as follows:
+\smallskip
 
- $2 = 0010_2 = F(3) = 00010_F$
+\noindent {\it Observations about the numerals.}
+Let us compare this system to the binary (base-$2$) number system.
+
+The first thing we notice is that base-$2$ numerals are often shorter than Fibonacci numerals. The integer $12345$ provides an illustrative example.  The {\em shortest} Fibonacci numeral for $12345$---i.e., the numeral with no leading $0$s---is the $21$-bit string
+\[ 12345 \ = \ 1 00001 01000 01000 00010_F \]
+The corresponding base-$2$ numeral has only $13$ bits:
+\[ 12345 \ = \ 110 00001 11001_2 \]
+
+\medskip
+A second observation is that Fibonacci numerals never have consecutive $1$s.  This feature endows the Fibonacci system with a modicum of {\em error detectability}---which can be a significant practical issue.
+
+\medskip
+
+One gets a better perspective on numeral lengths and the impact of no consecutive $1$s from the following table.
+
+\smallskip
+
+\begin{tabular}{|rclclcl|}
+\multicolumn{7}{c}{\sf Base-$2$ and Fibonacci Numerals $1$--$15$} \\
+\hline
+$n$ & & Base-$2$  & & Fibonacci  & & Relevant Fibonacci numbers \\
+       & & ($4$-bit)    & & ($5$-bit)   & & \\
+\hline
+\hline
+$1$ & & $0001_2$ & & $00001_F$ & & $F(2) =1$ \\
+\hline
+$2$ & & $0010_2$ & & $00010_F$ & & $F(3) = 2$ \\
+\hline
+$3$ & & $0011_2$ & &  $00100_F$ & & $F(4) = 3$ \\
+\hline
+$4$ & & $0100_2$ & &  $00101_F$ & & $F(4) + F(2) = 3+1$ \\ 
+\hline
+$5$ & & $0101_2$ & &  $01000_F$ & & $F(5) = 5$ \\
+\hline
+$6$ & & $0110_2$ & &  $01001_F$ & & $F(5) + F(2) = 4+1$ \\
+\hline 
+$7$ & & $0111_2$ & &  $01010_F$ & &  $F(5) + F(3) = 5+2$ \\
+\hline 
+$8$ & & $1000_2$ & & $10000_F$ & &  $F(6) = 8$ \\ 
+\hline
+$9$ & & $1001_2$ & & $10001_F$ & &  $F(6) + F(2) = 8 +1$ \\ 
+\hline
+$10$ & & $1010_2$ & & $10010_F$ & &  $F(6) + F(3) = 8 +2$ \\ 
+\hline
+$11$ & & $1011_2$ & & $10100_F$ & &  $F(6) + F(4) = 8 +3$ \\ 
+\hline
+$12$ & & $1100_2$ & & $10101_F$ & &  $F(6) + F(4) + F(2) = 8 +3 +1$ \\ 
+\hline
+$13$ & & $1101_2$ & & $10000_F$ & &  $F(7) = 13$ \\ 
+\hline
+$14$ & & $1110_2$ & & $10001_F$ & &  $F(7)  + F(2) = 13 +1$ \\ 
+\hline
+$15$ & & $1111_2$ & & $10010_F$ & &  $F(7) + F(3) = 13 +2$ \\ 
+\hline
+\end{tabular}
  
- $3 = 0011_2 = F(4) = 00100_F$
-  
- $4 = 100_2 = 3+1 = 00101_F$
- 
- $5 = 101_2 = F(5) = 01000_F$
- 
- $6 = 110_2 = 5+1 = 01001_F$
- 
- $7 = 111_2 = 5+2 = 01010_F$
- 
- $8 = 1000_2 = F(6) = 10000_F$
- 
- $9 = 1001_2 = 10001_F$
- 
- $10 = 1010_2 = 10010_F$
- 
- $11 = 1011_2 = 10100_F$
- 
- $12 = 1100_2 = 10101_F$
- 
- $13 = 1101_2 = F(7) = 100000_F$
- 
- ...
- 
-There is no consecutive digits equal to $1$ in such representations.
+
 \medskip
 
 {\Denis I can write briefly how to perform an addition within this system, what do you think?}
