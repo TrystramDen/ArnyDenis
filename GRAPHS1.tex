@@ -666,38 +666,37 @@ We close with two small examples to illustrate Proposition~\ref{prop:2SAT}
 \begin{enumerate}
 \item
 Fig.~\ref{2SATyes} illustrates $\g(\Phi_1)$, for the formula
-\[ \Phi_1 \ = \ (\bar{x}_{3} \vee \bar{x}_{1}) \ \wedge \
- (x_{1} \vee \bar{x}_{2}) \ \wedge \ (x_{2} \vee x_{3})
+\[ \Phi_1 \ = \ (a \vee \bar{b}) \ \wedge \
+ (b \vee \bar{c}) \ \wedge \ (c \vee \bar{a})
 \]
 The graph has the two strongly connected components illustrated in the
 figure.  One can thereby read off the following satisfying truth-value
-assignment $t$ for formula $\Phi_1$: $t(x_1) = \mbox{\sc false}$;
-$t(x_2) = \mbox{\sc false}$; $t(x_3) = \mbox{\sc true}$.
+assignment $t$ for formula $\Phi_1$: $t(a) = t(b) = t(c) = \mbox{\sc true}$
+or symmetrically $t(a) = t(b) = t(c) = \mbox{\sc false}$.
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=0.3\textwidth]{FiguresGraph/2SATyes.png}
-\caption{A portion of the digraph $\g(\Phi_1)$.  The graph's two
-  strong components provide a truth assignment for $\Phi_1$: $t(x_1) =
-  \mbox{\sc false}$; $t(x_2) = \mbox{\sc false}$; $t(x_3) = \mbox{\sc
-    true}$.}
+\caption{The digraph $\g(\Phi_1)$ and its two
+  strong components.}
+  % provide a truth assignment for $\Phi_1$: $t(x_1) =  \mbox{\sc false}$; $t(x_2) = \mbox{\sc false}$; $t(x_3) = \mbox{\sc   true}$.}
 \label{2SATyes}
 \end{center}
 \end{figure}
 
 \item
 Fig.~\ref{2SATno} illustrates $\g(\Phi_2)$, for the formula
-\[ \Phi_2 \ = \ (\bar{x}_{3} \vee \bar{x}_{1}) \ \wedge \                                      
-(\bar{x}_{1} \vee x_{3}) \ \wedge \ (x_{2} \vee x_{3})
+\[ \Phi_2 \ = \ (a \vee \bar{b}) \ \wedge \
+ (b \vee \bar{c}) \ \wedge \ (c \vee \bar{a})
+ \ \wedge \ (a \vee c) \ \wedge \ (\bar{a} \vee \bar{c})
 \]
-Because the graph contains a (directed) path from vertex $x_1$ to
-vertex $\bar{x}_1$, Proposition~\ref{prop:2SAT} assures us that formula
+Because the graph it strongly connected and contains a (directed) path from vertex $a$ to
+vertex $\bar{a}$ and another one from $\bar{a}$ to $a$, Proposition~\ref{prop:2SAT} assures us that formula
 $\Phi_2$ does not admit any satisfying truth-assignment.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=0.3\textwidth]{FiguresGraph/2SATno.png}
-\caption{A portion of the digraph $\g(\Phi_2)$.  Because the graph
-  contains  a path from vertex $x_1$ to vertex $\bar{x}_1$,  formula
-  $\Phi_2$ does not admit any satisfying truth-assignment.}
+\caption{The digraph $\g(\Phi_2)$}. 
+% Because the graph  contains  a path from vertex $a$ to vertex $\bar{a}$,  formula  $\Phi_2$ does not admit any satisfying truth-assignment.}
 \label{2SATno}
 \end{center}
 \end{figure}
