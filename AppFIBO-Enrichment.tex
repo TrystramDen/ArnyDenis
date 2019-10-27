@@ -317,11 +317,11 @@ Our inductive proof yields an effective way to compute the Zeckendorf representa
 \index{Fibonacci number system}
 One can employ Zeckendorf representations as a numbering system for positive integers:  As we just showed, each $n \in \N^+$ admits a unique such representation; we can expand the system to the set $\N$ by explicitly appending the number $0$ to the system.  This section discusses some of the pros and cons of this system.
 
-\smallskip
 
 \index{Fibonacci number system!numerals}
 
-\noindent {\it The system's numerals.}
+\subsubsection{The system's numerals}
+
 The natural way to represent numerals within the Fibonacci number system is as bit-strings.  We employ a somewhat strange system of indexing in order to be consistent with the notation of Proposition~\ref{thm:Zeckendorf}.
 \begin{itemize}
 \item
@@ -332,10 +332,9 @@ For all {\em positive} integers $n$: Each length-$\ell$ bit-string $b_{\ell+1} b
 \end{itemize}
 %Note: we wrote here the representation of $n$ in the Fibonacci numbering system using parenthesis in order to avoid confusions on the indices.
 
-\smallskip
+\subsubsection{Observations about the system's numerals}
 
-\noindent {\it Observations about the numerals.}
-Let us compare this system to the binary (base-$2$) number system.
+We offer a few comparisons between the numerals of the Fibonacci number system and those of the binary (base-$2$) number system.
 
 The first thing we notice is that base-$2$ numerals are often shorter than Fibonacci numerals. The integer $12345$ provides an illustrative example.  The {\em shortest} Fibonacci numeral for $12345$---i.e., the numeral with no leading $0$s---is the $21$-bit string
 \[ 12345 \ = \ 1 00001 01000 01000 00010_F \]
@@ -347,12 +346,12 @@ A second observation is that Fibonacci numerals never have consecutive $1$s.  Th
 
 \medskip
 
-One gets a better perspective on numeral lengths and on the impact of not allowing consecutive $1$s from the following table.
+One gets a better perspective on numeral lengths and on the impact of not allowing consecutive $1$s from Table~\ref{tab:FIBO1-15}.
 
-\smallskip
-
+\begin{table}[htb]
+\caption{Comparing the base-$2$ and Fibonacci numerals for integers $1$--$15$}
+\label{tab:FIBO1-15}
 \begin{tabular}{|rclclcl|}
-\multicolumn{7}{c}{\sf Base-$2$ and Fibonacci Numerals $1$--$15$} \\
 \hline
 $n$ & & Base-$2$  & & Fibonacci  & & Relevant Fibonacci numbers \\
        & & ($4$-bit)    & & ($5$-bit)   & & \\
@@ -389,19 +388,82 @@ $14$ & & $1110_2$ & & $10001_F$ & &  $F(7)  + F(2) = 13 +1$ \\
 $15$ & & $1111_2$ & & $10010_F$ & &  $F(7) + F(3) = 13 +2$ \\ 
 \hline
 \end{tabular}
+\end{table}
  
-\bigskip
+\subsubsection{On incrementing Fibonacci numerals}
 
-\noindent {\it Incrementing numbers; observing carries}.
-Our final look at the Fibonacci system illustrates how differently the system's numerals behave  when being manipulated, as compared with the numerals from positional number systems.  We describe a procedure for {\em incrementing} numbers---i.e., adding $1$---within the system.  Of course, Fibonacci representations must lengthen as numbers grow---a simple consequence of the Pigeonhole Principle.  It is interesting to observe how the {\em carries} that embody this lengthening reflect the underlying Fibonacci recurrence---and to compare this process with the way carries operate within standard positional number systems.
+Our final look at the Fibonacci system illustrates how differently the system's numerals behave  when being manipulated, as compared with the numerals from positional number systems.  We describe a procedure for {\em incrementing} numbers---i.e., adding $1$---within the Fibonacci system.  Of course, one must employ ever-longer Fibonacci numerals as one deals with ever-larger numbers---a simple consequence of the Pigeonhole Principle.\footnote{To wit, only finitely many number can be represented by numerals of any fixed length.}  It is interesting to observe how the {\em carries} that embody the lengthening of numerals reflect the underlying Fibonacci recurrences---and to compare this process with the way carries operate within standard positional number systems (which the reader learned in elementary school).
 
 \index{Fibonacci number system!carries}
 \index{Fibonacci number system!incrementing numerals}
+\index{Fibonacci number system!incrementing integers}
 
-PLACE INCREMENT PROCEDURE HERE
+\smallskip
 
-We leave it to the reader to build on the preceding procedure to devise an algorithm for performing general additions within the Fibonacci system.
+\noindent
+For the sake of precision, what we shall present is a procedure that transforms a Fibonacci-system numeral
+\[ a_n a_{n-1} \cdots a_1 a_0 \]
+that denotes the integer
+\[ (a_n a_{n-1} \cdots a_1 a_0)_F \]
+to a Fibonacci-system numeral
+\[ b_m b_{m-1} \cdots b_1 b_0 \]
+that denotes the integer
+\[ (b_m b_{m-1} \cdots b_1 b_0)_F \ = \ 1 \ + \ (a_n a_{n-1} \cdots a_1 a_0)_F \]
 
-{\Denis I can write briefly how to perform an addition within this system, what do you think?}
-{\Arny Definitely yes}
+Perhaps the simplest procedure for achieving this transformation---and achieving it {\em efficiently}---relies on the system of equations (\ref{eq:multilinear-Fib-2}) from Proposition~\ref{thm:FiboSum-2}.  We repeat the system for the reader's convenience:
+
+\medskip
+
+\noindent For all integers $n \geq 2$,
+\[
+F(n) \ \ = \ \
+F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \cdots + \ 1
+\]
+
+\medskip
+
+By combining this system with the fact that the Fibonacci system prominently avoids consecutive $1$s in numerals, one verifies that the procedure we describe now correctly computes the {\em increment} operation.  Let us begin with the input Fibonacci-system numeral
+\[ \alpha \ = \  a_n a_{n-1} \cdots a_1 \]
+
+\bigskip
+
+\noindent {\bf begin} {\em increment} procedure
+\begin{description}
+\item[{\sf Step} 1]
+Prepend two consecutive $0$s to $\alpha$, to produce the bit-string
+\[  \alpha^{(00)} \ \eqdef \  0 0 a_n a_{n-1} \cdots a_1 \]
+
+\item[{\sf Step} 2]
+Find the rightmost position in $\alpha^{(00)}$ that consists of two consecutive $0$s.  Say that the portion of $\alpha^{(00)}$ beginning with the discovered two consecutive $0$s and proceeding rightward from there has the form
+\[  \alpha^{(right)} \ \eqdef \  0 0 a_\ell a_{\ell-1} \cdots a_1 \]
+\begin{itemize}
+\item
+Because of our prepending step, index $\ell$ will always exist---i.e., the search will always succeed.   Index $\ell$ will be smaller than index $n$ precisely if the input numeral $\alpha$ contains two consecutive $0$s (in one or more places).
+\item
+A binary search (\cite{CLRS}) can accomplish this search in $O(\log n)$ steps.
+\end{itemize}
+
+\item[{\sf Step} 3]
+Replace the bit-string $\alpha^{(right)}$ within the numeral $\alpha$ by the bit-string
+\[ 0 1 0 0 \cdots 0 \ \ \ \mbox{ ($n$ terminal $0$s)} \]
+\end{description}
+\noindent {\bf end} {\em increment} procedure
+
+\bigskip
+
+\noindent We extract two illustrations from Table~\ref{tab:FIBO1-15}:
+\[ \begin{array}{ccrcrcccrcr}
+n_1 & = & 7 & = & 1010_F & \hspace*{.25in} & 
+     \mbox{incr}(n_1) & = & 8 & = & 10000_F  \\ 
+n_2 & = & 9 & = & 10001_F & \hspace*{.25in} &
+     \mbox{incr}(n_2 ) & = & 10 &  = &10010_F
+\end{array}
+\]
+
+\bigskip
+
+We leave it to the reader to build on our incrementation procedure to devise an algorithm for performing general additions within the Fibonacci system.
+
+%{\Denis I can write briefly how to perform an addition within this system, what do you think?}
+%{\Arny Definitely yes}
 
