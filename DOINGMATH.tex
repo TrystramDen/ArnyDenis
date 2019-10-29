@@ -446,21 +446,13 @@ To sum up: empirical exploration can be extremely useful in the endeavor of ``do
 
 \subsubsection{A second sample proof by induction}
 
-In Section~\ref{sec:formal-proof}, we specified the Principle of
-Finite Induction \index{finite induction, principle of} and
-exemplified by verifying the formula (\ref{eq:sum-first-n1}) for the
-sum of the first $n$ integers
-(Proposition~\ref{thm:sum-1-to-n-induction1}).
-
-We now provide a second sample application of the Principle.  The
-proof by induction of the following result complements the
-constructive proofs of the same result in
-Proposition~\ref{thm:squares-odd-integers-Gauss}.
+\index{finite induction, principle of}
+In Section~\ref{sec:formal-proof}, we specified the Principle of Finite Induction and exemplified its use by verifying the formula (\ref{eq:sum-first-n1}) for the sum of the first $n$ integers
+(Proposition~\ref{thm:sum-1-to-n-induction1}).  We now provide a second sample application of the Principle.  The proof by induction of the following result complements the constructive proofs of the same result in Proposition~\ref{thm:squares-odd-integers-Gauss}.
 
 \begin{prop}
 \label{thm:squares-odd-integers-induction1}
-For all $n \in \N^+$, the $n$th perfect square is the sum of the first
-$n$ odd integers.  Symbolically:
+For all $n \in \N^+$, the $n$th perfect square is the sum of the first $n$ odd integers.  Symbolically:
 \[
 n^2 \ \ = \ \
 %\sum_{k=1}^n \ (2k-1)
@@ -471,14 +463,21 @@ n^2 \ \ = \ \
 \begin{proof}
 For every positive integer $m$, let {\bf P}$(m)$ denote the assertion
 \[ m^2 \ = \ 1 + 3 + 5 + \cdots + (2m-1). \]
-Let us proceed according to the standard format of an inductive
-argument.
+We proceed according to the standard format of an inductive argument.
 
-Because $1 \cdot 1 = 1$, proposition {\bf P}$(1)$ is true.
+\smallskip
 
-Let us assume, for the sake of induction, that assertion {\bf
-  P}$(m)$ is true for all positive integers strictly smaller than $n$.
-%In particular, then, {\bf P}$(n-1)$ is true.
+\noindent {\sf Base case}.
+Assertion {\bf P}$(1)$ is true because $1 \cdot 1 = 1$.
+
+\smallskip
+
+\noindent {\sf Inductive hypothesis}.
+Assume, for the sake of induction, that assertion {\bf P}$(m)$ is true for all positive integers strictly smaller than $n$.
+
+\smallskip
+
+\noindent {\sf Inductive extension}.
 Consider now the summation
 \[ 1 + 3 + 5 + \cdots + (2n-3) + (2n-1) \]
 Because {\bf P}$(n-1)$ is true, we know that
@@ -493,93 +492,69 @@ Because {\bf P}$(n-1)$ is true, we know that
 By direct calculation, we now find that
 \[ (n-1)^2 + (2n-1) \ \ = \ \ (n^2 -2n +1) + (2n-1) \ \ = \ \ n^2. \]
 
+\smallskip
+
 \noindent
-Because $n$ is an arbitrary positive integer, we conclude that
-{\bf P}$(n)$ is true whenever
-\begin{itemize}
-\item
-{\bf P}$(1)$ is true
-\item
-{\em and}
-{\bf P}$(m)$ is true for all $m < n$.
-\end{itemize}
-The Principle of (Finite) Induction tells us that {\bf P}$(n)$
-is true for all $n \in \N^+$.  \qed
+Because $n$ is an arbitrary positive integer, we conclude that {\bf P}$(n)$ is true whenever
+
+\hspace*{.35in}[{\bf P}$(1)$ is true] \ \ \ \ {\em and} \ \ \ \
+[{\bf P}$(m)$ is true for all $m < n$]
+
+\noindent
+The Principle of (Finite) Induction tells us that {\bf P}$(n)$ is true for all $n \in \N^+$.  \qed
 \end{proof}
 
-\subsubsection{A false ``proof'' by induction: The critical base case}
+\subsubsection{A {\em false ``proof''} by induction: The critical base case}
 \label{sec:false-induction}
 
-Let us (mis)use the method of Finite Induction to craft a fallacious
-proof of the following absurd ``fact''.
+Let us (mis)use the Principle of Finite Induction to craft a fallacious ``proof" of the following absurd ``fact''.
+
+\medskip
 
 \noindent {\bf Non-Proposition.}
 All monochromatic horses are the same color.
 
+\smallskip
+
 \noindent {\it Non-Proof.}
-We proceed by induction.
+We craft an argument that follows the form of an induction.  Focus on a set $S$ of monochromatic horses.
 
 \smallskip
 
-{\bf The base case}.  If there is only a single monochromatic horsein
-the set, then all horses in the set are the same color.
+\noindent {\sf Base case}.
+If there is only a single monochromatic horse in set $S$, then all monochromatic horses in the set are the same color.
 
 \smallskip
 
-{\bf Inductive hypothesis.}  Say that in every set of $n$
-monochromatic horses, all all horses in theset arethe same color.
+\noindent {\sf Inductive hypothesis.}
+Say, for induction, that if set $S$ contains no more than $n$ monochromatic horses, then all monochromatic horses in $S$ are the same color.
 
 \smallskip
 
-{\bf Extension to $n+1$ horses.}
-Let us be given a set of $n+1$ monochromatic horses.  If we remove one
-horse from the set, then the remaining set, call it $S$ has $n$ horses.  By our
-inductive hypothesis, all of the horses in $S$ have the same color.  Now
-remove one horse from $S$ and replace it with the horse that we
-earlier removed from the $(n+1)$-horse set.  We now have a new
-$n$-horse set, call it $S'$.  Once again we invoke the inductive
-hypothesis to conclude that all horses in $S'$ have the same color.
-If we now reunite all of the horses, the {\em transitivity} of the
-relation ``have the same color''---which, loosely speaking, says that
-things that are both equal to to a third thing are equal to each
-other---guarantees that all of the horses in the $(n+1)$-horse set
-have the same color.  \qed-NOT!
+\noindent {\sf Inductive extension}.
+Let us be given a set $S'$ that consists of $n+1$ monochromatic horses.  If we remove a single 
+horse from $S'$, then the remaining set, call it $S''$ consists of $n$ monochromatic horses.  By our inductive hypothesis, all of the horses in $S''$ have the same color.
+
+Now remove a single horse from $S''$ and replace it with the horse that we earlier removed from the $(n+1)$-horse set $S'$.  We now have a new $n$-horse set, call it $S'''$.  Because $S'''$ contains only $n$ horses, we can once again invoke the inductive hypothesis to conclude that all horses in $S'''$ have the same color.
+
+\smallskip
+
+Finally, let us reunite all of the horses---which reconstitutes the ($n+1$)-horse set $S'$.  Because the relation ``have the same color'' is {\em transitive}---which, loosely speaking, says that things that are both equal to a third thing are equal to each other---we may conclude, by induction, that all of the horses in set $S'$ have the same color.  \qed-NOT!
 
 \medskip
 
-We all know that all horses do {\em not} share the same color.  Where
-have we gone wrong?  In a word, the base case was not adequate for the
-``proof''.  When we remove first one horse from the set of $n+1$ horses
-and then another horse from that set, and we still have a horse left to compare 
-those two horses to, {\em we must have started with at least {\em three} horses!}  
-This means that {\em $n+1$ must be no smaller than $3$, so $n$ must be no smaller than $2$.} 
-The base of the induction must, therefore, be sets that contain $2$ horses---and the 
-same-color ``proposition'' is, of course, absurd for such sets!
+Well---we all know that all horses do {\em not} share the same color.  Where has our argumentation gone wrong?  In a word, the base case that we used was not adequate for the ``proof'' we were crafting.  In detail, we have argued that when we remove a horse from set $S'$ and then we remove another (different!) horse from set $S'$, we still have a (third!) horse left to compare those two horses to.  {\em This means that we must have started with at least {\em three} horses in set $S'$!}  Said differently, this means that {\em $n+1$ must be no smaller than $3$, so $n$ must be no smaller than $2$.}  The base case of the induction must, therefore, be valid for sets that contain {\em two} horses!  Since the same-color ``assertion'' is clearly absurd for such sets, the base case of our induction is {\em false}---which invalidates the entire argument!
 
-This brings us to the critical issue of how to select the ``small''
-cases that comprise the base of our induction.
+\smallskip
+
+This analysis brings us to the critical issue of how to select the ``small'' cases that comprise the base of a valid inductive argument.
 \index{finite induction!the base case}
 
-\smallskip
+\medskip
 
-By definition, an inductive proof is required to cover all cases.  It accomplishes this
-by explicitly treating some ``small" cases individually and then showing that the inductive rule 
-at the heart of the proof---which resides implicitly within the inductive assumption---enables one
-to generate all non-``small" cases from the ``small" cases.
+By definition, an inductive proof is required to cover all cases (``for all positive integers, \ldots").  It accomplishes this by explicitly treating some ``small" cases individually and then showing that the inductive rule at the heart of the argument---which resides implicitly within the inductive assumption---enables one to generate all non-``small" cases from the ``small" cases.
 
-\smallskip
-
-In some domains, it is rather simple to determine what cases provide an adequate set of
-``small" cases.  This is usually the case, e.g., when one solves numerical recurrences, as
-in Chapter~\ref{ch:Recurrences}, because
-the required ``small" cases often coincide with a target recurrence's boundary conditions.
-In contrast, the challenge of verifying propositions about graphs, as in
-Chapter~\ref{ch:Graphs2}, is quite often not at all easy.  For a given
-proposition, we often do not know how the general step of our induction reduces
-the graph size $n$ at each step until we understand how to deal with arbitrary $n$-vertex
-graphs.  Because of this, it is a good practice to ``play'' with several small graph sizes initially.
-Hopefully, in addition to giving our inductive argument a robust base case, such ``playing'' will
-give us valuable intuition for the general case of the induction.
+In some domains, it is rather simple to determine what cases provide an adequate set of ``small" cases.  This is usually the case, e.g., when one solves numerical recurrences, as in Chapter~\ref{ch:Recurrences}, because the required ``small" cases often coincide with a target recurrence's boundary conditions.  In contrast, the challenge of verifying assertions about, say, graphs, as in Chapters~\ref{ch:Graphs1} and~~\ref{ch:Graphs2}, is quite often not at all easy.  For newly proposed propositions, we may not know {\em a priori} how the extension step of an inductive argument reduces the graph size $n$ until we understand relevant characteristics of general $n$-vertex graphs.  Because of this, when arguing about complex objects such as graphs , it is a good practice to ``play'' with several small graph sizes initially.  Hopefully, in addition to giving your inductive argument a robust base case, such ``playing'' will give you valuable intuition for the general case of the induction.
 
 
 \subsubsection{The method of undetermined coefficients}
@@ -587,51 +562,28 @@ give us valuable intuition for the general case of the induction.
 \index{method of undetermined coefficients}
 
 
-Proofs by induction are important tools for {\em verifying} the
-correctness of alleged results---but induction by itself is not a tool
-for {\em discovering} new results.  {\em (You cannot {\em verify}
-  assertion {\bf P}($n$) if you do not know {\em exactly} what the
-  assertion is asserting.)}
+Proofs by induction are important tools for {\em verifying} the correctness of alleged results---but induction by itself is not a tool for {\em discovering} new results.  {\em (You cannot {\em verify} assertion {\bf P}($n$) if you do not know {\em exactly} what the assertion is asserting.)}
 
-There are many techniques of analysis that yield {\em approximations}
-to the values of important quantities---but not exact values.  Within
-the purely mathematical realm that we study in this text, the
-summation technique of Section~\ref{sec:riemann-bounds} provides an
-important example.  This technique tells us, for instance, that the
-sum of the first $n$ positive integers grows quadratically with $n$,
-but it does not provide the exact formula (\ref{eq:sum-first-n1}).
-Similarly, the technique tells us that the sum of the first $n$
-perfect squares grows cubically with $n$, but it does not provide the
-exact formula for the sum.
-\footnote{For those curious about the exact
-  formula for the sum of the first $n$ perfect squares:
-  \index{formulas!sum of the first $n$ squares} 
+\medskip
+
+ \index{formulas!sum of the first $n$ squares}
+
+There are many techniques of analysis that yield {\em approximations} to the values of important quantities---but not exact values.  Within the purely mathematical realm that we study in this text, the summation technique of Section~\ref{sec:riemann-bounds} provides an important example.  This technique tells us, for instance, that the sum of the first $n$ positive integers grows quadratically with $n$, but it does not provide the exact formula (\ref{eq:sum-first-n1}).   Similarly, the technique tells us that the sum of the first $n$ perfect squares grows cubically with $n$, but it does not provide the exact formula for the sum.\footnote{For those curious about the exact formula for the sum of the first $n$ perfect squares:
 \begin{equation}
 \label{eq:sum-1-to-nsq1}
 1 \ + \ 4 \ + \cdots + \ (n-1)^2 \ + \ n^2 
  \ \ = \ \
 {1 \over 3} n^3 \ + \ {1 \over 2} n^2 \ + \ {1 \over 6} n
 \end{equation}}
-Moving beyond the purely mathematical realm, there are myriad
-``exhaustive-search'' computational heuristics\footnote{{\it Particle
-    swarm optimization} \cite{KennedyE95} and {\it simulated
-    annealing} \cite{KirkpatrickGV83} are two popular such
-  heuristics.}~that provide {\em approximately optimal} values for various
-optimization problems---but not {\em exactly optimal} values.
+Moving beyond the purely mathematical realm, there are myriad ``exhaustive-search'' computational heuristics\footnote{{\it Particle swarm optimization} \cite{KennedyE95} and {\it simulated annealing} \cite{KirkpatrickGV83} are two popular such heuristics.}~that provide {\em approximately optimal} values for various optimization problems---but not {\em exactly optimal} values.
 
 \medskip
 
-The {\em Method of Undetermined Coefficients}, which we now describe,
-can sometimes refine the approximate results from various sources to
-exact results that one can then verify via induction.  We illustrate
-the method by deriving a formula for the sum of the first $n$
-integers---assuming that we know that this sum has the form of a
-quadratic (degree-$2$) polynomial in $n$ but that we do not know the
-coefficients of the polynomial.
+The {\em Method of Undetermined Coefficients}, which we now describe, can sometimes refine the approximate results from various sources to exact results that one can then verify via induction.  We illustrate the method by deriving a formula for the sum of the first $n$ integers---assuming that we know that this sum has the form of a quadratic (degree-$2$) polynomial in $n$ but that we do not know the coefficients of the polynomial.
 
-Assume that we know from some external source---say, for instance,
-from Section~\ref{sec:riemann-bounds}---that {\em for all positive
-  integers} $n$:
+\smallskip
+
+Assume that we know from some external source---say, for instance, from Section~\ref{sec:riemann-bounds}---that {\em for all positive integers} $n$:
 \begin{equation}
 \label{eq:formula-for-n}
 S(n) \ \eqdef \
@@ -641,8 +593,9 @@ c_2 n^2 \ + \ c_1 n \ + \ c_0
 \end{equation}
 for given numbers $c_0, c_1, c_2$.
 
-\noindent By evaluating formula (\ref{eq:formula-for-n}) at the first
-few positive integers $n$, we find that:
+\smallskip
+
+\noindent By evaluating formula (\ref{eq:formula-for-n}) at the first few positive integers $n$, we find that:
 \begin{eqnarray}
 \label{eq:add-1}
 S(1) = 1
@@ -657,9 +610,7 @@ S(3) = 6
  & \mbox{so that} &
  9 c_2 + 3 c_1 + c_0 \ = \ 6
 \end{eqnarray}
-We can now do arithmetic on these equations (adding and/or subtracting
-pairs of them) to obtain new equations which will help us home in on
-the values of $c_2$, $c_1$, and $c_0$.
+We can now do arithmetic on these equations (adding and/or subtracting pairs of them) to obtain new equations which will help us home in on the values of $c_2$, $c_1$, and $c_0$.
 \begin{itemize}
 \item
 We combine (\ref{eq:add-1}) and (\ref{eq:add-2}) to get
@@ -682,9 +633,7 @@ We combine (\ref{eq:add-4}) and (\ref{eq:add-5}) to get
 2 c_2 \ = \ 1
 \end{equation}
 \end{itemize}
-This last equation, (\ref{eq:add-6}) tells us that \fbox{$c_2 = {1
-    \over 2}$}.  Given this, our first two original equations now
-become
+This last equation, (\ref{eq:add-6}), tells us that \fbox{$c_2 = {1 \over 2}$}.  Given this, our first two original equations now become
 \begin{eqnarray}
 \label{eq:add-7}
 S(1) = 1
@@ -695,16 +644,14 @@ S(2) = 3
  & \mbox{so that} &
 2 c_1 + c_0 \ = \ 1
 \end{eqnarray}
-By combining these new equations we find that \fbox{$c_2 = {1 \over
-    2}$}.  Finally, by employing this value in (\ref{eq:add-7}), we
-find that \fbox{$c_0 = 0$}.
+By combining these new equations we find that \fbox{$c_2 = {1 \over 2}$}.  Finally, by employing this value in (\ref{eq:add-7}), we find that \fbox{$c_0 = 0$}.
 
 \medskip
 
-We have now determined completely that
+\noindent
+By analyzing the initially-undetermined coefficients, we have now determined that
 \[ S(n) \ = \ {1 \over 2}(n^2 + n) \]
-Of course, we have already verified this formula in
-Proposition~\ref{thm:sum-1-to-n-induction1}.
+Of course, we have already verified this formula in Proposition~\ref{thm:sum-1-to-n-induction1}.
 
 \ignore{***************
 Our derivation builds on prior knowledge of two facts:
@@ -870,55 +817,50 @@ shall leave this final task to the reader.
 
 \bigskip
 
-With more (calculational) work, but no new (mathematical) ideas, one
-can derive explicit expressions for the sum of the first $n$ $k$th
-powers, i.e., the quantity $S^{(k)}_n$, for any positive integer $k$.
+With more (calculational) work, but no new (mathematical) ideas, one can derive explicit expressions for the sum of the first $n$ $k$th powers, i.e., the quantity $S^{(k)}_n$, for any positive integer $k$.
 
 
 \subsection{Proof by Contradiction}
 \label{sec:Contradiction}
 \index{proof by contradiction}
 
-The importance of this proof technique has been recognized since
-antiquity, under the Latin names {\em contradictio in contrarium} and,
-perhaps less accurately, {\em reductio ad absurdum}.
+The importance of this proof technique has been recognized since antiquity, under the Latin names {\em contradictio in contrarium} and, perhaps less accurately,  as {\em reductio ad absurdum}.
 
 \subsubsection{The proof technique}
 \label{sec:contradiction-technique}
 \index{proof by contradiction!technique}
 
-Suppose that we want to prove some proposition $P$.  Think, as a
-concrete example, of $P$ as the assertion:
+Suppose that we want to prove some proposition $P$.  Think, as a concrete example, of $P$ as the (false) assertion:
 
-{\em There are two distinct {\em additive identities} for the
-  numbers, call them $0$ and $0'$.  In other words, for all numbers
-  $x$, both of the following assertions are true.}
+\medskip
+
+{\em There are two distinct {\em additive identities} for the numbers, call them $0$ and $0'$.  In other words, for all numbers $x$, both of the following assertions are true.}
 \[ \begin{array}{ccccc}
 x + 0 & = & 0 + x & = & x \\
 x + 0' & = & 0' + x & = & x \\
 \end{array}
 \]
-{\em Note that we are asserting that each additive identity works on
-  both the left and the right.}
+{\em Note that we are asserting that $0$ and $0'$ are both left and right additive identities.}
+
+\medskip
 
 \noindent
-The basic strategy of a proof by contradiction is
+The basic strategy of a proof by contradiction is:
 
-Beginning with Proposition $P$---i.e., assuming that $P$ is
-true---craft a logically valid chain of correct logical assertions
+Beginning with Assertion $P$---i.e., assuming that $P$ is true---craft a logically valid chain of correct logical assertions
 \[ P \ \mbox{ implies } \ P_1  \ \mbox{ implies } \ P_2  \ 
 \mbox{ implies } \cdots \mbox{ implies } \ P_m
 \]
-where assertion $P_m$ is known to be false (i.e, is {\it a
-  contradiction}).
+where Assertion $P_m$ is known to be false (i.e, is {\it a contradiction}).
+
+\medskip
 
 \noindent
-We then infer that proposition $P$ is false.  (Of course, there is a
-parallel situation in which we begin by assuming that $P$ is false,
-and infer after the chain of assertions that $P$ is true.)
+We then infer that Assertion $P$ is false.  (Of course, there is a parallel situation in which we begin by assuming that $P$ is false, and infer after the chain of assertions that $P$ is true.)
 
-The chain of reasoning for our simple proposition $P$ is encapsulated
-symbolically in the chain of equations
+\smallskip
+
+The chain of reasoning for our simple Assertion $P$ is encapsulated symbolically in the chain of equations
 \[
 \begin{array}{cccl}
  0 & = & 0 + 0' & \mbox{ because $0'$ is a {\em right}
@@ -927,26 +869,20 @@ symbolically in the chain of equations
    additive identity}
 \end{array}
 \]
-We can rewrite the preceding chain in the form of an explicit
-contradiction, as follows.
+We can rewrite the preceding chain to yield an explicit contradiction, as follows.
 
-Assume, for contradiction, that proposition $P$ is true---i.e., that
-$0$ and $0'$ are {\em distinct} additive identities; i.e., $0 \neq
-0'$.  Then:
+\medskip
+
+Assume, for contradiction, that Assertion $P$ is true---i.e., that $0$ and $0'$ are {\em distinct} additive identities; i.e., $0 \neq 0'$.  Then:
 \begin{enumerate}
 \item
-Because $0'$ is a {\em right} additive identity, it follows that $0 +
-0' = 0$.
+Because $0'$ is a {\em right} additive identity, it follows that $0 + 0' = 0$.
 \item
-Because $0$ is a {\em left} additive identity, it follows that $0 + 0'
-= 0'$.
+Because $0$ is a {\em left} additive identity, it follows that $0 + 0' = 0'$.
 \item
-Combining the previous assertions, we infer that $0 = 0'$, because
-numbers that are equal to the same number are equal to each other.
+Combining the previous assertions, we infer that $0 = 0'$, because the relation ``$=$" is {\em transitive}, i.e., because numbers that are equal to the same number are equal to each other.
 \end{enumerate}
-Assertion 3 asserts that $0 = 0'$, which contradicts proposition $P$'s
-assertion that $0 \neq 0'$.  Applying the principle of Proof by
-Contradiction, we now (finally) infer that proposition $P$ is false. \qed
+Assertion 3 asserts that $0 = 0'$, which contradicts $P$'s contention that $0 \neq 0'$.   The principle of Proof by Contradiction now states (finally) that $P$ is false. \qed
 
 
 \ignore{************
@@ -964,17 +900,13 @@ Proposition~\ref{thm:contraposition}.
 \[ [P \Rightarrow Q] \ \equiv \ [(\sim Q) \Rightarrow (\sim P)] \]
 ***********}
 
-\subsubsection{A sample proof}
+\subsubsection{Another sample proof: There are infinitely many prime numbers}
 \label{sec:sample-contradictions}
 \index{proof by contradiction!sample proofs}
 
-We develop as nontrivial proof by contradiction, focusing on a result
-that is traditionally attributed to the Greek mathematician
-Euclid,\index{Euclid} one of the patriarchs of mathematics.  Recall
-that an {\it integer} $n$ (known also as a {\it counting number} or a
-{\it whole number}) is {\it prime} \index{prime number}
-\index{number!integer!prime}\index{number!prime} if $n$ is
-(exactly) divisible only by $1$ and by $n$ itself.
+\index{Euclid} \index{prime number}
+\index{number!integer!prime}\index{number!prime}
+We develop a nontrivial proof by contradiction to establish a result which is traditionally attributed to the Greek mathematician Euclid, one of the patriarchs of mathematics.  We say that an {\it integer} $n$ (known also as a {\it counting number} or a {\it whole number}) is {\it prime} if $n$ is (exactly) divisible only by $1$ and by $n$ itself.
 
 \begin{prop}
 \label{thm:Primes-infinite}
@@ -982,9 +914,9 @@ There are infinitely many prime numbers.
 \end{prop}
 
 \begin{proof}
-Let us assume, contrarily, that there are only finitely many primes.
-Say, in particular, that the following $r$-element sequence enumerates
-all (and only) primes, in order of magnitude:
+Let us assume, contrarily, that there are only finitely many primes.  Say, in particular, that the following $r$-element sequence enumerates all (and only) primes, in increasing order of magnitude:
+
+\medskip
 
 $\mbox{\bf Prime-Numbers} \ = \ 
 \langle P_1, \ P_2, \ \ldots, \ P_r \rangle$
@@ -999,18 +931,18 @@ $P_2 = 3$
 $P_i < P_{i+1}$ for all $i \in \{1, 2, \ldots, r-1\}$.
 \end{itemize}
 
-We verify the {\em falseness} of the alleged completeness of the sequence
-{\bf Prime-Numbers} by analyzing the positive integer
+\medskip
+
+We verify the {\em falseness} of the alleged exhaustiveness of the sequence {\bf Prime-Numbers} by analyzing the positive integer
 \[ n \ = \ 1 + \prod_{i=1}^r \ P_i \ = \ 1 \ + \ 
-\left(P_1 \cdot P_2 \cdot \cdots \cdot P_r \right).
+\left(P_1 \times P_2 \times \cdots \times P_r \right).
 \]
-
 We make three crucial observations.
-
 \begin{enumerate}
 \item
-We note first that {\em the number $n$ is not divisible by any prime
-number  in the sequence {\bf Prime-Numbers}.}
+{\em The number $n$ is not divisible by any number in the sequence {\bf Prime-Numbers}.}
+
+\smallskip
 
 To see this, note that for each $P_k$ in the sequence,
 \[
@@ -1020,46 +952,29 @@ Because $P_k \geq 2$, we see that $n / P_k$ obeys the inequalities
 \[
 \prod_{i \neq k} \ P_i \ < \ n/P_k \ < \ 1 + \prod_{i \neq k} \ P_i.
 \] 
-The discreteness of the set $\Z$---see
-Section~\ref{sec:integers}.A---implies that $n / P_k$ is not an
-integer, because it lies strictly between two adjacent integers.
+The discreteness of the set $\Z$---see Section~\ref{sec:integers}.A---implies that $n / P_k$ is not an integer, because it lies strictly between two adjacent integers.
 
 \item
-We note next that, because of assertion 1, if the sequence {\bf
-  Prime-Numbers} actually contained {\em all} of the prime numbers,
-then we would have to conclude that {\em the number $n$ is not
-  divisible by any prime number.}
+Because of assertion 1, if the sequence {\bf Prime-Numbers} actually contained {\em all} of the prime numbers, then we would have to conclude that {\em the number $n$ is not divisible by any prime number.}
 
 \item
-Finally, we remark that the Fundamental Theorem of Arithmetic
-(Theorem~\ref{thm:Fund-Thm-Arith}) implies that {\em every integer is
-  divisible by (at least one) prime number}.
+The Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}) implies that {\em every integer is divisible by (at least one) prime number}.
 \end{enumerate}
 
-We have a chain of assertions that lead to a mutual inconsistency: on
-the one hand, the integer $n$ has no prime-integer divisor; on the
-other hand, no integer can fail to have a prime-integer divisor!  Let
-us analyze how we arrived at this uncomfortable place.
+We thus have a chain of assertions that lead to a mutual inconsistency: On the one hand, integer $n$ has no prime-integer divisor.  On the other hand, no integer can fail to have a prime-integer divisor!
+
+\medskip
+
+Let us analyze how we arrived at this uncomfortable place.
 \begin{itemize}
 \item
-At the front end of this uncomfortable string of assertions we have
-the assumption that there are only finitely many prime numbers.  We
-have (as yet) no substantiation for this assertion.
+At the front end of this uncomfortable string of assertions we have the assumption that there are only finitely many prime numbers.  We have (as yet) no substantiation for this assertion.
 \item
-At the back end of this uncomfortable string of assertions we have
-the ({\em rock solid}) Fundamental Theorem of Arithmetic
-(Theorem~\ref{thm:Fund-Thm-Arith}).
+At the back end of this uncomfortable string of assertions we have the ({\em rock solid}) Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}).
 \item
-In between these two assertions we have a sequence of assertions, each
-of which follows from its predecessors via irrefutable rules of
-inference.
+In between these two assertions we have a sequence of assertions, each of which follows from its predecessors via irrefutable rules of inference.
 \end{itemize}
-It follows that the {\em only} brick in this edifice that could be
-faulty---i.e., the only assertion that could be false---is the
-assumption that there are only finitely many prime numbers.  Since
-this assumption leads to an inconsistent set of assertions, we must
-conclude that the assumption is false!  We conclude from this
-classical proof by contradiction that there are infinitely many prime
+It follows that the {\em only} brick in this edifice that could be faulty---i.e., the only assertion that could be false---is the assumption that there are only finitely many prime numbers.  Since this assumption leads to an inconsistent set of assertions, we must conclude that the assumption is false!  We conclude from this classical proof by contradiction that there are infinitely many prime
 numbers.  \qed
 \end{proof}
 
@@ -1067,60 +982,38 @@ numbers.  \qed
 \subsection{Proofs via the Pigeonhole Principle}
 \label{sec:pigeonhole}
 
-The proof technique we discuss now builds on an observation that is
-almost embarrassingly obvious---yet its simplicity is exceeded by its
-importance as a source of strikingly surprising results.
+The proof technique we discuss now builds on an observation that is almost embarrassingly obvious---yet its simplicity is exceeded by its importance as a source of strikingly surprising results.
 
 \subsubsection{The proof technique}
 
-The technique, known variously as {\it the pigeonhole principle}
-\index{pigeonhole principle}
-or {\it Dirichlet's Box Principle}
-\index{Dirichlet's Box Principle}
-(after the French mathematician Peter Gustav Lejeune Dirichlet),
 \index{Dirichlet, Peter Gustav Lejeune}
-exploits the fact that if one has $n$ objects (say, pigeons) and $m <
-n$ boxes (they're the pigeonholes), then any way of putting pigeons
-into boxes must place at least two pigeons into the same box.
+\index{pigeonhole principle} \index{Dirichlet's Box Principle}
+
+The technique, known variously as {\it the pigeonhole principle} or {\it Dirichlet's Box Principle}
+(after the French mathematician Peter Gustav Lejeune Dirichlet), exploits the fact that if one has $n$ objects (say, pigeons) and $m < n$ boxes (they're the pigeonholes), then any way of putting pigeons into boxes must place at least two pigeons into the same box.
 
 
 \subsubsection{Sample applications/proofs}
 \label{sec:pigeon-apps}
 
 \noindent {\it Choosing a pair of matching socks}.
-You have $n$ pairs of socks, the socks in each pair having a distinct
-color (one pair of red socks, one pair of blue socks, \ldots).  Since
-you wake up ``very slowly'', you want to grab some number of unpaired
-socks that is certain to yield at least one pair of same-color socks.
-Clearly, if you grab any $n+1$ socks (the pigeons), the pigeonhole
-principle guarantees that you have at least one monochromatic pair,
-because there are only $n$ distinct sock-colors (the boxes).
+You have $n$ pairs of socks, the socks in each pair having a distinct color (one pair of red socks, one pair of blue socks, \ldots).  Since you wake up ``very slowly'', you want to grab some number of unpaired socks that is certain to yield at least one pair of same-color socks.  Clearly, if you grab any $n+1$ socks (the pigeons), the pigeonhole principle guarantees that you have at least one monochromatic pair, because there are only $n$ distinct sock-colors (the boxes).
 
 \medskip
 
 \noindent {\it Finding birthday-mates}.
-You are attending a conference and wander into a lecture that has 367
-attendees (including you).  It is certain that at least two attendees
-share the same birthday: there are 366 possible birthdays (the boxes
-for a leap year) and 367 birthday-possessors (the pigeons).
+You are attending a conference and wander into a lecture that has 367 attendees (including you).  It is certain that at least two attendees share the same birthday: there are 366 possible birthdays (the boxes for a leap year) and 367 birthday-possessors (the pigeons).  You can now add the punchline!
 
 %{\Denis May be we can put this in exercice and add the anniversary paradox which state a similar question with probabilities?}
-
 
 \section{Nontraditional Proof Strategies}
 \label{sec:nontraditionalProofs}
 
-\subsection{Graphical Reasoning}
+\subsection{Pictorial Reasoning}
 \label{sec:graphicalproofs}
 
-We present in this section a special type of nontraditional proof that
-complements well the more traditional proofs (which build on arguments
-from algebra, analysis, number theory, \ldots).  The underlying idea
-is to employ representations of (natural) numbers via geometrical
-patterns---construing the term ``pattern'' very broadly---e.g., view
-numbers as sets of tokens or as dimensions of some geometric object.
-We remark that the stratagem of reasoning geometrically has its
-origins in antiquity:
+We present in this section a special type of nontraditional proof that complements well the more traditional proofs (which build on arguments from algebra, analysis, number theory, \ldots).  The underlying idea is to employ representations of (natural) numbers via geometrical, or, pictorial
+patterns---construing the term ``pattern'' very broadly---e.g., view numbers as sets of tokens or as dimensions of some geometric object.  We remark that this manner of reasoning has its origins in antiquity:
 
 \begin{quote}
 {\it Que nul n'entre ici s'il n'est g\'eom\`etre.}
@@ -1137,19 +1030,13 @@ We develop two examples of such proofs.
 
 \medskip
 
-\noindent {\it Expanding $(n+1)^2$}.
-In this example, we employ basic geometrical objects---in this case
-the surfaces of squares and rectangles---to solve the underlying
-problem.  Let us focus on the following equation:
+\noindent {\it Expanding the expression $(n+1)^2$}.
+In this example, we employ basic geometrical objects---in this case the surfaces of squares and rectangles---to solve the underlying problem.  Let us focus on the following equation:
 \begin{equation}
 (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1.
 \end{equation}
-This equation can be validated as a special case of the {\em
-  restricted Binomial Theorem}
-(Theorem~\ref{thm:restricted-binomial-thm}), which we prove
-algebraically in Section~\ref{sec:bivariate-polynomials}.  The
-equation can also be validated using a highly perspicuous argument
-based on Fig.~\ref{fig:proofa2plusb2}.
+This equation can be validated as a special case of the {\em restricted Binomial Theorem}
+(Theorem~\ref{thm:restricted-binomial-thm}), which we prove algebraically in Section~\ref{sec:bivariate-polynomials}.  The equation can also be validated using a highly perspicuous pictorial argument based on Fig.~\ref{fig:proofa2plusb2}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/proofa2plusb2}
@@ -1157,21 +1044,14 @@ based on Fig.~\ref{fig:proofa2plusb2}.
        \label{fig:proofa2plusb2}
 \end{center}
 \end{figure}
-The figure tells its tale by exhibiting four rectangles that make up
-an $(n+1) \times (n+1)$ square; the area of this square is, of course,
-$(n+1)^2$.  This large square is made up of four rectangles.
+The figure tells its tale by exhibiting four rectangles that make up an $(n+1) \times (n+1)$ square; the area of this square is, of course, $(n+1)^2$.  This large square is made up of four rectangles.
 \begin{itemize}
 \item
-Reading across the top of the figure, we encounter a darkly shaded $n
-\times n$ square (area $= n^2$) and an unshaded $n \times 1$ rectangle
-(area $= n$).
+Reading across the top of the figure, we encounter a darkly shaded $n \times n$ square (area $= n^2$) and an unshaded $n \times 1$ rectangle (area $= n$).
 \item
-Reading across the bottom of the figure, we encounter an unshaded $1
-\times n$ rectangle (area $= n$) and a lightly shaded $1 \times 1$
-square (area = $1$).
+Reading across the bottom of the figure, we encounter an unshaded $1 \times n$ rectangle (area $= n$) and a lightly shaded $1 \times 1$ square (area = $1$).
 \end{itemize}
-The overall message is that $(n+1)^2$ (the area of the large,
-composite, square)
+The overall message is that $(n+1)^2$ (the area of the large, composite, square)
 
 \begin{tabular}{ll}
 is the sum of & \\
@@ -1185,31 +1065,19 @@ plus & \\
 \medskip
 
 \noindent
-The preceding geometric validation does not ``look like'' the proofs
-whose stilted forms we struggled with in our earlier student years.
-But our geometrical proof is as valid as any algebraic one---and it
-can be a lot more fun to come up with.
+The preceding geometric validation does not ``look like'' the proofs whose stilted forms we struggled with in our earlier student years.  But our geometrical proof is as valid as any algebraic one---and it can be a lot more fun to come up with.
 
 \bigskip
 
-\noindent {\it Solving a quadratic equation}.  We now develop a more
-complex example of reasoning via geometry.  The spirit of the
-following proof was provided by the 12th-century mathematician Al
-Khwarizmi, \index{Al-Khwarizmi!Muhammad ibn Musa al-Khwarizmi} whose
-seminal work \cite{Al-Khwarizmi} was indispensable in transmitting
-mathematical and computational ideas into Europe.  The following proof
-builds on Al Khwarizmi's work on solving the second-degree equation
+\index{Al-Khwarizmi!Muhammad ibn Musa al-Khwarizmi}
+
+\noindent {\it Solving a quadratic equation}.
+We now develop a more complex example of pictorial reasoning.  The spirit of the following proof was provided by the 12th-century mathematician Al Khwarizmi, whose seminal work \cite{Al-Khwarizmi} was indispensable in transmitting mathematical and computational ideas into Europe.  The following proof builds on Al Khwarizmi's work on solving the second-degree equation
 \begin{equation}
 \label{eq:al-Khwarizimi}
 x^2 + 10 x \ = \ 39
 \end{equation}
-The methodology that Al Khwarizmi employed for solving quadratic
-polynomial equations such as (\ref{eq:al-Khwarizimi}) builds solutions
-in terms of the areas of squares and rectangles and employs both
-algebraic and geometric representations of the lefthand sides of the
-target equations.  For equation (\ref{eq:al-Khwarizimi}) specifically,
-Al Khwarizmi found the perspicuous geometric representation of the
-lefthand side depicted in Fig.~\ref{fig:EqElKwarismi1}.
+The methodology that Al Khwarizmi employed for solving quadratic polynomial equations such as (\ref{eq:al-Khwarizimi}) builds solutions in terms of the areas of squares and rectangles and employs both algebraic and geometric representations of the lefthand sides of the target equations.  For equation (\ref{eq:al-Khwarizimi}) specifically, Al Khwarizmi found the perspicuous geometric representation of the lefthand side depicted in Fig.~\ref{fig:EqElKwarismi1}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/EquationElKwarismi1}
@@ -1219,28 +1087,17 @@ lefthand side depicted in Fig.~\ref{fig:EqElKwarismi1}.
        \label{fig:EqElKwarismi1}
 \end{center}
 \end{figure}
-In the figure, the shaded perfect square on the left and the unshaded
-perfect square on the right both have side $x$, hence, area $x^2$.  Of
-the four shaded rectangles around the unshaded perfect square, two
-have dimensions $\frac{5}{2} \times x$, and two have dimensions $x
-\times \frac{5}{2}$.  The figure's representation of the lefthand side
-of equation (\ref{eq:al-Khwarizimi}) is matched by the following
-rewriting of the lefthand side of (\ref{eq:al-Khwarizimi}):
+In the figure, the shaded perfect square on the left and the unshaded perfect square on the right both have side $x$, hence, area $x^2$.  Of the four shaded rectangles around the unshaded perfect square, two have dimensions $\frac{5}{2} \times x$, and two have dimensions $x \times \frac{5}{2}$.  The figure's representation of the lefthand side of equation (\ref{eq:al-Khwarizimi}) is matched by the following rewriting of the lefthand side of (\ref{eq:al-Khwarizimi}):
 \[ x^2 + 10 x \ \ = \ \ x^2 + \left( 4 \times \frac{5}{2} \right) x \]
 
 We finally turn to solving the equation.
 \begin{enumerate}
 \item
-The area of the entire shaded surface in Fig.~\ref{fig:EqElKwarismi1}
-is given by the righthand side of equation (\ref{eq:al-Khwarizimi}),
-that is $39$.
+The area of the entire shaded surface in Fig.~\ref{fig:EqElKwarismi1} is given by the righthand side of equation (\ref{eq:al-Khwarizimi}), that is $39$.
 \item
-Hence, $39$ is also the area of the ``cross'' on the righthand side of
-the Fig.~\ref{fig:EqElKwarismi1} which would be created by moving the
-shaded $x \times x$ square into the unshaded $x \times x$ square.
+Hence, $39$ is also the area of the ``cross'' on the righthand side of Fig.~\ref{fig:EqElKwarismi1} which would be created by moving the shaded $x \times x$ square into the unshaded $x \times x$ square.
 \item
-Finally, $39$ is also the area of the unshaded ``cross'' in
-Fig.~\ref{fig:EqElKwarismi2}.
+Finally, $39$ is also the area of the unshaded ``cross'' in Fig.~\ref{fig:EqElKwarismi2}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/EquationElKwarismi2}
@@ -1251,30 +1108,22 @@ Fig.~\ref{fig:EqElKwarismi2}.
        \label{fig:EqElKwarismi2}
 \end{center}
 \end{figure}
-(The color scheme in this figure has been changed to highlight the new
-corner squares.)
+(The color scheme in this figure has been changed to highlight the new corner squares.)
 
 \item
-As in Fig.~\ref{fig:EqElKwarismi2}, let us append to the area-$39$
-unshaded ``cross'' four small shaded squares whose addition augments
-the ``cross'' to the big, bi-color, square of
+As in Fig.~\ref{fig:EqElKwarismi2}, let us append to the area-$39$ unshaded ``cross'' four small shaded squares whose addition augments the ``cross'' to the big, bi-color, square of
 Fig.~\ref{fig:EqElKwarismi2}.
 
 \item
-We see from Fig.~\ref{fig:EqElKwarismi1} that each of the small
-shaded squares has dimensions $\frac{5}{2} \times \frac{5}{2}$, hence,
-area $25/4$.
+We see from Fig.~\ref{fig:EqElKwarismi1} that each of the small shaded squares has dimensions $\frac{5}{2} \times \frac{5}{2}$, hence, area $25/4$.
 
 This means that the area of the large square is
-\[ 39 \ + \ \left( 4 \times \frac{5}{2} \right) \ = \ 39 + 25 \ =
-\ 64. \]
+\[ 39 \ + \ \left( 4 \times \frac{5}{2} \right) \ = \ 39 + 25 \ = \ 64. \]
 \end{enumerate}
 
 \smallskip
 
-We now have the information needed to compute a value of $x$ that
-satisfies equation (\ref{eq:al-Khwarizimi}).  Consider the large
-square of Fig.~\ref{fig:EqElKwarismi2}.
+We now have the information needed to compute a value of $x$ that satisfies equation (\ref{eq:al-Khwarizimi}).  Consider the large square of Fig.~\ref{fig:EqElKwarismi2}.
 
 \begin{itemize}
 \item
@@ -1288,67 +1137,42 @@ On the other hand, the side-length is
 Since all sides of the square are identical, we infer that
 \[ x \ = \ 8-5 \ = \ 3 \]
 
-Indeed, we can---but do not need to!---verify this value
-algebraically.
+\noindent
+Indeed, we can---but do not need to!---verify this value algebraically.
 
 \medskip
 
-A final remark: The geometry-based method we have just employed is not
-``complete''---it yields only the {\em positive} solution for $x$.  As
-we discuss at length in Sections~\ref{sec:fund-thm-algebra}
-and~\ref{sec:poly-by-radical}---see, in particular,
-Theorem~\ref{thm:fund-thm-algebra}---there exists another solution for
-$x$, because its defining polynomial is {\em quadratic} (i.e., of base
-$2$).  At the time of Al Khwarizmi {\em and} for the defining
-equation's intended goal of determining the area of a plot of land, a
-single (positive) solution for $x$ was sufficient.  That said, there
-are situations wherein one has need of both roots of a quadratic
-polynomial equation, and the algebraic solution methods will produce
-both solutions (although not always in a perspicuous or intuitive
-way).
+A final remark: The pictorial/geometric method we that have just employed is not ``complete''---it yields only the {\em positive} solution for $x$.  As we discuss at length in Sections~\ref{sec:fund-thm-algebra} and~\ref{sec:poly-by-radical}---see, in particular, Theorem~\ref{thm:fund-thm-algebra}---there exists another solution for $x$, because its defining polynomial is {\em quadratic} (i.e., of base $2$).  At the time of Al Khwarizmi {\em and} for the defining equation's intended goal of determining the area of a plot of land, a single (positive) solution for $x$ was sufficient.  That said, there are situations wherein one has need of both roots of a quadratic
+polynomial equation, and the algebraic solution methods will produce both solutions (although not always in a perspicuous or intuitive way).
 
-Returning to equation (\ref{eq:al-Khwarizimi}):  the second solution
-for $x$  is $x' = -13$, as is witnessed by the equation
+Returning to equation (\ref{eq:al-Khwarizimi}):  the second solution for $x$  is $x' = -13$, as is witnessed by the equation
 \[ x^2 + 10x - 39 \ = \ (x-3)(x+13) \]
 The surprising factin this example is that \\
 \hspace*{.2in}{\em $64$ is also the square of $-8$} \\
-so, {\em for this example}, the negative solution-value for $x$ can
-also be obtained via our geometric argument:
+so, {\em for this example}, the negative solution-value for $x$ can also be obtained via our geometric argument:
 \[ x - 5 \ = \ -8 -5 \ = \ -13 \]
-This aside, geometric arguments are fun to develop!
+This aside, geometric arguments can be fun to develop!
 
 
 \subsection{Combinatorial Intuition and Argumentation}
 \label{sec:comb-proofs}
 
-Combinatorics is a branch of discrete mathematics that specializes in
-the following operations (among others): selecting objects from a
-given set; arranging and rearranging the objects; counting the number
-of ways that one can arrive at specified target configurations;
-Chapter~\ref{ch:combinatorics} introduces the foundations of this
-subfield, following with its applications to the kindred fields of
-probability and statistics.
+Combinatorics is a branch of discrete mathematics that specializes in the following operations (among others): selecting objects from a given set; arranging and rearranging the objects; counting the number of ways that one can arrive at specified target configurations.
+Chapter~\ref{ch:combinatorics} introduces the foundations of this subfield, following with its applications to the kindred fields of probability and statistics.
 
 \subsubsection{Summation as a selection problem}
 \label{sec:comb-sum-of-first-n}
 
-Sometimes combinatorial argumentation can be used in unexpected ways.
-We use it here to sum the first $n$ integers, i.e., to derive an
-explicit expression for summation $S_n$:
+Sometimes combinatorial argumentation can be used in unexpected ways.  We use it here to sum the first $n$ integers, i.e., to derive an explicit expression for summation $S_n$:
 \[ S_n \ \ = \ \ 1 \ + \ 2 \ + \cdots + \ n \]
 
-Our summation technique begins, unexpectedly, with the problem of
-counting the number of ways---call it $C(n,2)$---of selecting two
-items from a set of $n$ items.  We describe this selection in a
-slightly unconventional way.
+Our summation technique begins, unexpectedly, with the problem of counting the number of ways---call it $C(n,2)$---of selecting two items from a set of $n$ items.  We describe this selection in a somewhat unconventional way.
 \begin{itemize}
 \item
-The bigger integer of the two we are selecting can be chosen in $n$
-ways, corresponding to the $n$ elements of the set
+The bigger integer of the two we are selecting can be chosen in $n$ ways, corresponding to the $n$ elements of the set
 \[ \{ 1, \ 2, \ldots, \ n-1, \ n \} \]
 \item
-If the bigger item was integer $k$, then we can select the second,
-smaller, one in $k-1$ ways, from the integers smaller than $k$.
+If the bigger item was integer $k$, then we can select the second, smaller, one in $k-1$ ways, from the integers smaller than $k$.
 \end{itemize}
 We thereby observe the following summation.
 \begin{eqnarray*}
@@ -1364,12 +1188,11 @@ C(n,2) & = & n \ + \ \sum_{k=2}^n \ C(k-1,1) \\
 The proof technique we describe here is a combination of geometry and combinatorial rearrangement of a configuration of objects.  The second component of this pair incurs an intellectual debt to Guido Fubini, whose eponymous {\em Principle} mandates {\em looking at configurations from multiple points of view and garnering new intuitions from each}.
 \index{Fubini, Guido} \index{Fubini's Principle}
 
-We apply this two-stage reasoning paradigm to the problem of
-evaluating the summation $S_n \ = \ 1 + 2 + \cdots + n$.
+We apply this two-stage reasoning paradigm to the problem of evaluating the summation $S_n \ = \ 1 + 2 + \cdots + n$.
 
-The first idea in our reasoning is to represent each integer $k$ as a
-horizontal sequence of $k$ tokens, depicted as darkened circles in
-Fig.~\ref{fig:sumIntegers1}.
+\index{Gauss, Karl Friedrich}
+\index{Gauss, Karl Friedrich!summation ``trick''}
+The first idea in our reasoning is to represent each integer $k$ as a horizontal sequence of $k$ tokens, depicted as darkened circles in Fig.~\ref{fig:sumIntegers1}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersBasis}
@@ -1378,17 +1201,7 @@ Fig.~\ref{fig:sumIntegers1}.
        \label{fig:sumIntegers1}
 \end{center}
 \end{figure}
-Using such a representation, we naturally view the summation $S_n$ as
-a \textit{triangular pattern} of tokens.  How can we use this
-representation to evaluate $S_n$ without just counting and summing?
-We call upon an intuition attributed to the great 19th-century
-mathematician Karl Friedrich Gauss \index{Gauss, Karl Friedrich}
-\index{Gauss, Karl Friedrich!summation ``trick''} (who famously had
-this intuition as a pre-teenager).  We remark that if we {\em
-  replicate} the triangular pattern in the figure and {\em flip} it,
-then we can configure the resulting triangles---see
-Fig.~\ref{fig:sumIntegers2}---to form the rectangular pattern depicted
-in Fig~\ref{fig:sumIntegers3}.
+Using such a representation, we naturally view the summation $S_n$ as a \textit{triangular pattern} of tokens.  How can we use this representation to evaluate $S_n$ without just counting and summing?  We call upon an intuition attributed to the great 19th-century mathematician Karl Friedrich Gauss---who famously had this intuition as a pre-teenager.  We remark that if we {\em replicate} the triangular pattern in the figure and {\em flip} it, then we can configure the resulting triangles---see Fig.~\ref{fig:sumIntegers2}---to form the rectangular pattern depicted in Fig~\ref{fig:sumIntegers3}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersIntermediate}
@@ -1404,21 +1217,21 @@ in Fig~\ref{fig:sumIntegers3}.
        \label{fig:sumIntegers3}
 \end{center}
 \end{figure}
-Next, we observe two important properties of the rectangular pattern
-that we have achieved in Fig~\ref{fig:sumIntegers3}.
+Next, we observe two important properties of the rectangular pattern that we have achieved in Fig~\ref{fig:sumIntegers3}.
 \begin{itemize}
 \item
 The number of tokens in the rectangular pattern is precisely $2 S_n$.
 
-This is the seminal intuition underlying Gauss's summation of $S_n$,
-albeit in a textual, rather than geometric, setting.  See
-Section~\ref{sec:special-arithmetic sums}.A.
+\smallskip
+
+This is a pictorial version of the seminal intuition that underlies Gauss's (text-based) summation of the series $S_n$; see Proposition~\ref{thm:sum-first-integers-Gauss} in Section~\ref{sec:special-arithmetic sums}.A.
 
 \item
 The rectangular pattern has $n+1$ columns, each having $n$ tokens.
 
-This means that the rectangular pattern contains $n \cdot (n+1)$
-tokens.
+\smallskip
+
+This means that the rectangular pattern contains $n \cdot (n+1)$ tokens.
 \end{itemize}
 Combining these observations, we conclude that
 \[ 2 S_n \ = \ n \cdot (n+1) \ \ \ \ \mbox{ so that } \ \ \ \
@@ -1428,13 +1241,10 @@ S_n \ = \ {1 \over 2} n \cdot (n+1)
 
 \subsection{The Computer as a Mathematician's Assistant}
 
-Computers have played an essential role in the process of ``doing''
-mathematics from the earliest times when computers had enough power to
-explore the mathematical terrain, searching and verifying.
+Computers have played an essential role in the process of ``doing'' mathematics from the earliest times when computers had enough power to explore the mathematical terrain, searching and verifying.
 \begin{itemize}
 \item
-Some of the calculations performed by these ``silicon assistants''
-have a game-like quality to them:
+Some of the calculations performed by these ``silicon assistants'' have a game-like quality to them:
   \begin{itemize}
   \item
 Calculate more digits of $\pi$ than anyone else has done
@@ -1443,14 +1253,12 @@ Calculate a bigger Mersenne prime than anyone else has
   \end{itemize}
 
 \item
-Yet other calculations represent attempts to hone intuition for what
-will someday morph into serious attempts at proofs:
+Yet other calculations represent attempts to hone intuition for what will someday morph into serious attempts at proofs:
   \begin{itemize}
   \item
 Search for an odd perfect number
   \item
-Determine the relative frequencies of the decimal digits in the
-infinite decimal expansion of $\pi$
+Determine the relative frequencies of the decimal digits in the infinite decimal expansion of $\pi$
   \end{itemize}
 
 \item
@@ -1459,51 +1267,19 @@ essential details to already-serious attempts at proofs: These are our
 interest here.
 \end{itemize}
 
-Many significant theorems languished as conjectures for decades, some
-even for centuries, awaiting elevation to theoremhood.  While many of
-these eventual theorems languished in mathematical limbo as they
-awaited the development of new mathematics---Fermat's Last Theorem
-(Theorem~\ref{thm:Fermat-last}) is a prime example---yet others have
-suffered their fates because of a plethora of cases that needed
-(often-minor) calculational verification.
+Many significant theorems languished as conjectures for decades, some even for centuries, awaiting elevation to theoremhood.  While many of these eventual theorems languished in mathematical limbo as they awaited the development of new mathematics---Fermat's Last Theorem (Theorem~\ref{thm:Fermat-last}) is a prime example---yet others have suffered their fates because of a plethora of cases that needed (often-minor) calculational verification.
 
-The latter category of conjecture can increasingly be tackled with the
-aid of the ever-more powerful computers that are being developed with
-ever-increasing frequency.  When used in this way, computers are
-clearly ``junior'' partners to their mathematican-users.  When the
-domain of discourse within a conjecture is discrete---i.e., does {\em
-  not} involve real numbers ``to infinite precision'' nor any
-continuity-related notions---then it is always possible---in principle
-at least---to eliminate the computer from the ``team'' by transforming
-such a verification into a classical formal proof.  The role of the
-computer in the ``team'' is solely to assist the mathematicans---by
-performing calculations that are too long and/or too numerous and/or
-too complicated for humans to perform reliably and efficiently.
+The latter category of conjecture can increasingly be tackled with the aid of the ever-more powerful computers that are being developed with ever-increasing frequency.  When used in this way, computers are clearly ``junior'' partners to their mathematican-users.  When the domain of discourse within a conjecture is discrete---i.e., does {\em not} involve real numbers ``to infinite precision'' nor any continuity-related notions---then it is always possible---at least in principle---to eliminate the computer from the ``team'' by transforming such a verification into a classical formal proof.  The role of the computer in the ``team'' is solely to assist the mathematicians---by
+performing calculations that are too long and/or too numerous and/or too complicated for humans to perform reliably and efficiently.
 
-The renowned Four-Color Theorem (Theorem~\ref{thm:Four-ColorTheorem})
-was a landmark in the use of computers as partners to humans in
-proving theorems.  The Theorem asserts---ignoring a few technical
-details---that any map on Earth (or on a topologically similar planet)
-can be colored using four colors in such a way that distinct countries
-that share a border receive distinct colors.  As we discuss in some
-detail in Section~\ref{sec:planar+outerplanar-color}, this result
-languished in mathematical limbo for many decades before a pair of
-American mathematicians, Kenneth Appel \index{Appel, Kenneth} and
-Wolfgang Haken, \index{Haken, Wolfgang} used a computer to help
-resolve the thousands of cases that had to be verified-via-calculation
-in the proof.
+ \index{Appel, Kenneth} \index{Haken, Wolfgang}
+The renowned Four-Color Theorem (Theorem~\ref{thm:Four-ColorTheorem}) was a landmark in the use of computers as partners to humans in proving theorems.  The Theorem asserts---ignoring a few technical details---that any map on Earth (or on a topologically similar planet) can be colored using four colors in such a way that distinct countries that share a border receive distinct colors.  As we discuss in some detail in Section~\ref{sec:planar+outerplanar-color}, this result languished in mathematical limbo for many decades before a pair of American mathematicians, Kenneth Appel and Wolfgang Haken, used a computer to help resolve the thousands of cases that had to be verified-via-calculation in the proof.
 
-The mathematical world erupted in controversy over this first-ever use
-of a computer in an essential way to construct a mathematical proof.
-It took years---plus the replicative program of a team of Japanese
-mathematicians---before the global mathematical community accepted the
-claim by Appel and Haken that Theorem~\ref{thm:Four-ColorTheorem} had,
-indeed, been proved!
+The mathematical world erupted in controversy over this first-ever use of a computer in an essential way to construct a mathematical proof.  It took years---plus the result-replicating program of a team of Japanese mathematicians---before the global mathematical community accepted the claim by Appel and Haken that Theorem~\ref{thm:Four-ColorTheorem} had, indeed, been proved!
 
-There may be many conjectures currently in mathematical limbo that
-could be elevated to the status of theorem if some team of
-mathematicians would feel free to employ computers to offload needed
-but onerous computational drudgery.
+\medskip
+
+There may be many conjectures currently in mathematical limbo that could be elevated to the status of theorem if some team of mathematicians would feel free to employ computers to offload needed but onerous computational drudgery.
 
 
 
