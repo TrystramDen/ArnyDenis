@@ -846,16 +846,29 @@ is multiplied by $b^{i+1}$.
 A bijective function $F$ is called a {\it bijection}.  When $F$ is a bijection from $S$ onto $T$, we often write $F: S \leftrightarrow T$.
 \end{enumerate}
 
+\medskip
+
+Finally, we present two terms that appear frequently in discussions of functions and their source and target sets.
+
+\smallskip
+
+\index{image, under a mapping} \index{preimage, under a mapping}
+Focus on a function $f$ that maps a set $A$ {\em into} a set $B$; symbolically, we write $f: A \rightarrow B$.  The {\it image} of the set $A$ under $f$ is the subset of $B$
+\[  \mbox{\sc image}(A) \ \eqdef \  \{f(a) \ | \ a \in A\} \]
+The {\it preimage} of the set $B$ under $f$ is the subset of $A$
+\[  \mbox{\sc preimage}(B) \ \eqdef \  \{a \in A \ | \ f(a) \in B\} \]
+
 
 \subsubsection{$\oplus$ The Schr\"{o}der-Bernstein Theorem}
 \label{sec:schroeder-bernstein}
 
-There is a remarkable theorem which states that bijections and paired
-injections always travel together.  In detail, for all sets $S$ and $T$:
-If there exists both \\
-\hspace*{.25in}{\em an injection from $S$ to $T$ and an injection from $T$ to $S$}
-then there exists
-\hspace*{.25in}{\em a bijection between $\N$ and $\N \times \N$}.
+There is a remarkable theorem which states that {\em bijections} ($S \leftrightarrow T$) and {\em paired injections} ($S \rightarrow T$, $T \rightarrow S$) always travel together.  In detail, for all sets $S$ and $T$: If there exists both
+
+\hspace*{.2in}{\em an injection from $S$ to $T$ and an injection from $T$ to $S$}
+
+\noindent then there exists
+
+\hspace*{.2in}{\em a bijection between $S$ and $T$}.
 
 \index{The Schr\"{o}der-Bernstein Theorem}
 \index{Bernstein, Felix}
@@ -864,56 +877,37 @@ then there exists
 \index{Cantor, Georg}
 
 \noindent
-This is the celebrated theorem of Ernst Schr\"{o}der and Felix
-Bernstein; it is, alternatively, attributed to (Georg) Cantor and
-Bernstein.  As this complex attribution suggests, the theorem has a
-rather complicated history.  Picking just a few high points associated
-with the theorem's namesakes: The theorem was first stated without
-proof by Cantor in \cite{Cantor87}.  Roughly a decade later,
-Schr\"{o}der provided a flawed proof in \cite{Schroeder98a}.  As
-reported in \cite{Deiser2010}, Schr\"{o}der soon thereafter provided a
-correct proof, as, independently, did Bernstein.
+This is the celebrated theorem of Ernst Schr\"{o}der and Felix Bernstein; it is, alternatively, attributed to (Georg) Cantor and Bernstein.  As this complex attribution suggests, the theorem has a rather complicated history.  Picking just a few high points associated with the theorem's namesakes: The theorem was first stated without proof by Cantor in \cite{Cantor87}.  Roughly a decade later, Schr\"{o}der produced a flawed proof in \cite{Schroeder98a}.  As reported in \cite{Deiser2010}, Schr\"{o}der soon thereafter provided a correct proof---as, independently, did Bernstein.
 
-We shall refer to the Theorem by its customary name, the
-Schr\"{o}der-Bernstein Theorem.  This result can be immensely useful
-in reasoning about myriad mathematical scenarios that can be
-formulated using correspondences between the elements of two sets.  We
-encounter such a scenario, for example, when we prove
-Lemma~\ref{lem:N-=-F} in Section~\ref{sec:FNS-uncountable}.
-Acknowledging the importance of the Theorem, we now provide a formal
-statement and a somewhat informal sketch of its proof.
+We shall refer to the Theorem by its customary name, the {\it Schr\"{o}der-Bernstein Theorem}. This result can be immensely useful when reasoning about myriad mathematical scenarios that can be formulated using correspondences between the elements of two sets.  We encounter such a scenario, for example, when we prove Lemma~\ref{lem:N-=-F} in Section~\ref{sec:FNS-uncountable}.  Acknowledging the importance of the Theorem, we now provide a formal statement and a somewhat informal sketch of its proof.
 
 \index{The Schr\"{o}der-Bernstein Theorem}
 \begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
 \label{thm.S-B}
-For any sets $S$ and $T$, if there is an {\em injection}
-$F^{(S \rightarrow T)}: S \rightarrow T$ and an {\em injection}
-$F^{(T \rightarrow S)}: T \rightarrow S$,
-then there is a {\em bijection}
-$F^{(S \leftrightarrow T)}: S \leftrightarrow T$.
+For any sets $S$ and $T$, if there exist both an {\em injection}
+\[ F^{(S \rightarrow T)}: S \rightarrow T \]
+and an {\em injection}
+\[ F^{(T \rightarrow S)}: T \rightarrow S \]
+then there exists a {\em bijection}
+\[ F^{(S \leftrightarrow T)}: S \leftrightarrow T \]
 \end{theorem}
 
 \begin{proof}[Sketch]
 We give the highlights of the perspicuous proof which appears in \cite{Tonien07}.
 
-Let $S_0 = S$ and $T_0 = T$.  We set up a sequence of indices to
-orchestrate the upcoming argument: We have an index $i$ for each
-integer $i \in \N$, and we have a special index $\omega$ which takes
-care of the single case that the integer indices do not.
+\smallskip
+
+Let $S_0 = S$ and $T_0 = T$.  We set up a sequence of indices to orchestrate the upcoming argument: We have an index $i$ for each integer $i \in \N$, and we have a special index $\omega$ which takes care of the single case that the integer indices do not.
 
 \ignore{\Denis we should add the range of $i$ here, start at 0 up to some integer denote by $\omega$}
 
 For each index $i \in \N$, define
-\[ S_{i+1} \ = \ F^{(T \rightarrow S)}(T_i) \ \ \ \mbox{ and }
-\ \ \ T_{i+1} \ = \ F^{(S \rightarrow T)}(S_i) 
+\[ S_{i+1} \ = \ F^{(T \rightarrow S)}(T_i) \ \ \ \ \mbox{ and }
+\ \ \ \ T_{i+1} \ = \ F^{(S \rightarrow T)}(S_i) 
 \]
-We are repeatedly using here the notational convention that for any
-set $A$ and function $f$ defined on $A$,
+We are repeatedly using here the notational convention that for any set $A$ and function $f$ defined on $A$,
 \[ f(A) \ = \ \{ f(a) \ | \ a \in A \} \]
-Because each of our injections, $F^{(S \rightarrow T)}$ and $F^{(T \rightarrow S)}$,
-maps its domain-set {\em into} its
-range-set (and not necessarily {\em onto}), we observe that increasing indices lead to nested
-progressions of sets, in the sense that
+Because each of our injections, $F^{(S \rightarrow T)}$ and $F^{(T \rightarrow S)}$, maps its domain-set {\em into} its range-set (and not necessarily {\em onto}), we observe that increasing indices lead to nested progressions of sets, in the sense that
 \[ \mbox{Each } \ \  S_{i+1} \subseteq S_i
  \ \ \ \mbox{ and each } \ \ \ 
  T_{i+1} \subseteq T_i
@@ -921,48 +915,35 @@ progressions of sets, in the sense that
 We now define two new sequences of sets:
 \begin{itemize}
 \item
-The sets $U_\omega$  and $U_0, U_1, U_2, \ldots$ are defined as
-follows:
+The sets $U_\omega$  and $U_0, \ U_1, \ U_2, \ldots$ are defined as follows:
 \[ U_\omega \ = \ \bigcap_i S_i \ \ \ \ \
 \mbox{and for each } \  i \in \N \ \ \  U_i \ = \ S_i \setminus S_{i+1} \]
-Our reasoning shows that set $S$ is {\em partitioned} into the sets
-$U_0, U_1, U_2, \ldots$ and $U_\omega$.
+Our reasoning shows that set $S$ is {\em partitioned} into the sets $U_0, \ U_1, \ U_2, \ldots$ and $U_\omega$.
 \item
-The sets $V_\omega$  and $V_0, V_1, V_2, \ldots$ are defined as
-follows:
+The sets $V_\omega$  and $V_0, \ V_1, \ V_2, \ldots$ are defined as follows:
 \[ V_\omega \ = \ \bigcap_i T_i \ \ \ \ \
 \mbox{and for each } \  i \in \N \ \ \  V_i \ = \ T_i \setminus T_{i+1}
 \]
-Our reasoning shows that set $T$ is {\em partitioned} into the sets
-$V_0, V_1, V_2, \ldots$ and $V_\omega$.
+Our reasoning shows that set $T$ is {\em partitioned} into the sets $V_0, \ V_1, \ V_2, \ldots$ and $V_\omega$.
 \end{itemize}
 Moreover, one sees that:
 \begin{itemize}
 \item
-$F^{(S \rightarrow T)}$ is a {\em bijection} between each $U_i$ and
-  $V_{i+1}$, while
+$F^{(S \rightarrow T)}$ is a {\em bijection} between each $U_i$ and $V_{i+1}$, while
 \item
-$F^{(T \rightarrow S)}$ is a {\em bijection} between each $V_i$ and
-  $U_{i+1}$.
+$F^{(T \rightarrow S)}$ is a {\em bijection} between each $V_i$ and $U_{i+1}$.
 \end{itemize}
-Finally:
-Since $V_\omega \subseteq F^{(S \rightarrow T)}(S)$, and
+Finally: Since $V_\omega \subseteq F^{(S \rightarrow T)}(S)$, and
 \[ \Big[F^{(S \rightarrow T)}\Big]^{-1} (V_\omega) \ = \
 \Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
 \bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \ = \
 \bigcap S_i \ = \ U_\omega
 \]
-it follows that $F^{(S \rightarrow T)}$ maps $U_\omega$ bijectively onto $V_\omega$.
+it follows that $F^{(S \rightarrow T)}$ maps $U_\omega$ {\em bijectively} onto $V_\omega$.
 
 \smallskip
 
-Let us briefly "decode" the preceding symbol-heavy chain of equations.
-Recall first that $F^{(S \rightarrow T)}$ maps each set $S_i$
-injectively into $T_{i+1}$.  This means that as we look at the {\em
-  pre-image} under $F^{(S \rightarrow T)}$ of the set $\bigcap
-T_{i+1}$, the various sets $S_i$ do not get "mixed together"; they
-retain the separate identities that $F^{(S \rightarrow T)}$ endows
-them with because of the way it maps $S$ into $T$.  In other words,
+Let us briefly ``decode" the preceding symbol-heavy chain of equations.  Recall first that $F^{(S \rightarrow T)}$ maps each set $S_i$ {\em injectively} into $T_{i+1}$.  This means that as we look at the {\it preimage} of the set $\bigcap T_{i+1}$ under $F^{(S \rightarrow T)}$, the various sets $S_i$ do not get ``mixed together"; they retain the separate identities that $F^{(S \rightarrow T)}$ endows them with because of the way it maps $S$ into $T$.  In other words,
 \[ \Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
 \bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \]
 
@@ -971,31 +952,23 @@ them with because of the way it maps $S$ into $T$.  In other words,
 \smallskip
 
 \noindent
-By similar calculation and reasoning, 
-$F^{(T \rightarrow S)}$ maps $V_\omega$ bijectively onto $U_\omega$.
+By similar calculation and reasoning, $F^{(T \rightarrow S)}$ maps $V_\omega$ bijectively onto $U_\omega$.
 
 \medskip
 
-The preceding identifications of bijections between portions of set
-$S$ and portions of set $T$ allow us to piece together the advertised
-bijection $F^{(S \leftrightarrow T)}$ between the complete sets $S$
-and $T$.  To wit:
+The preceding identifications of bijections between portions of set $S$ and portions of set $T$ allow us to piece together the advertised bijection $F^{(S \leftrightarrow T)}$ between the complete sets $S$ and $T$.  To wit:
 \begin{itemize}
 \item
 For each $i \in \N$:
   \begin{itemize}
   \item
-$F^{(S \leftrightarrow T)}$ maps each set $U_{2i}$ bijectively onto
-$V_{2i+1}$ in the same way that $F^{(S \rightarrow T)}$ does.
+$F^{(S \leftrightarrow T)}$ maps each set $U_{2i}$ bijectively onto $V_{2i+1}$ in the same way that $F^{(S \rightarrow T)}$ does.
   \item
-$F^{(S \leftrightarrow T)}$ maps each set $U_{2i+1}$ bijectively onto
-$V_{2i}$ in the same way that $F^{(T \rightarrow S)}$ does.
+$F^{(S \leftrightarrow T)}$ maps each set $U_{2i+1}$ bijectively onto $V_{2i}$ in the same way that $F^{(T \rightarrow S)}$ does.
 \end{itemize}
 
 \item
-$F^{(S \leftrightarrow T)}$ maps $V_\omega$ bijectively onto
-  $U_\omega$ in the same way that either $F^{(S \rightarrow T)}$ or
-  $\Big[F^{(T \rightarrow S)}\Big]^{-1}$ does.
+$F^{(S \leftrightarrow T)}$ maps $V_\omega$ bijectively onto $U_\omega$ in the same way that either $F^{(S \rightarrow T)}$ or $\Big[F^{(T \rightarrow S)}\Big]^{-1}$ does.
 \end{itemize}
 This sketch provides all of the salient ingredients of the proof in \cite{Tonien07}.  \qed
 \end{proof}
@@ -1004,14 +977,11 @@ This sketch provides all of the salient ingredients of the proof in \cite{Tonien
 \bigskip
 
 \index{composition!functions} \index{function!composition}
-While the operation of {\it composition}, as introduced in
-Section~\ref{sec:relation}, is important for general binary relations,
-it is a daily staple with relations that are functions!  Let us be
-given two functions on a set $S$
+While the operation of {\it (functional) composition}, as introduced in Section~\ref{sec:relation}, is important for general binary relations, it is a daily staple with relations that are functions!  Let us be given two functions on a set $S$
 \[
 F: S \rightarrow S \ \ \ \ \mbox{ and } \ \ \ \ G: S \rightarrow S
 \]
-The composition of $F$ and $G$, {\em in that order}, is the function
+The {\it composition} of $F$ and $G$, {\em in that order}, is the function
 \[ F \circ G: S \rightarrow S \]
 defined as follows.
 \begin{equation}
@@ -1019,218 +989,146 @@ defined as follows.
 \mbox{For each } \ s \in S \ \ \
 F \circ G(s) \ = \ G(F(s)).
 \end{equation}
-The unexpected change in the orders of writing $F$ and $G$ on the two
-sides of equation (\ref{eq:functions-composed}) results from the
-existence of two historical schools that both contributed to the
-formulation of this material.
-\index{composition!functions!notation}
-One school cleaved to the tradition of {\it abstract algebra}:  they
-wanted all expressions to be written with all operators---including
-the composition operator $\circ$---in {\em infix} notation (i.e., in
-the ``$s \rho t$'' form).  Another school, which could be called {\it
-  applicative algebraic}, wanted to view functions as ``applying'' to
-their arguments.  Both notations have significant advantages in
-certain contexts, so both have survived.  It is a good idea for
-neophyte readers to be prepared to encounter both notations---but they
-have to keep their eyes open regarding the relative orders of $F$ and
-$G$.
+The unexpected change in the orders of writing $F$ and $G$ on the two sides of equation (\ref{eq:functions-composed}) results from the existence of two historical schools that both contributed to the formulation of this material.  One school cleaved to the tradition of {\it abstract algebra}:  they wanted expressions to be written with {\em all} operators, including the composition operator $\circ$, in {\em infix} notation---i.e., in the form ``$s \rho t$''.  Another school, which could be called the {\it applicative algebraic school}, wanted to view functions as ``applying'' to their arguments.  Both notations have significant advantages in certain contexts, so both have survived.  It is a good idea for neophyte readers to be prepared to encounter both notations---but they have to keep their eyes open regarding the relative orders of $F$ and
+$G$.  \index{composition!functions!notation}
 
 \medskip
 
-Before progressing with new material, it is worth taking a moment to
-verify that the important operation of composition behaves the way one
-would want and expect it to---by preserving the type of function being
-composed.
+Before we proceed with new material, let us take a moment to verify that the important operation of composition behaves the way one would want and expect it to---by preserving the type of function being composed.
 
 \begin{prop}
 \label{thm:fn-composition}
-Let us be given functions $F: S \rightarrow S$ and $G: S \rightarrow
-S$ on the set $S$, together with their composition $F \circ G$, as
-defined in (\ref{eq:functions-composed}).
+Let us be given functions $F: S \rightarrow S$ and $G: S \rightarrow S$ on the set $S$, together with their composition $F \circ G$, as defined in equation (\ref{eq:functions-composed}).
 
-\noindent {\rm (a)}
+\noindent {\bf (a)}
 $F \circ G$ is a function on $S$.
 
-\noindent {\rm (b)}
+\noindent {\bf (b)}
 If $F$ and $G$ are injections, then so also is $F \circ G$.
 
-\noindent {\rm (c)}
+\noindent {\bf (c)}
 If $F$ and $G$ are surjections, then so also is $F \circ G$.
 
-\noindent {\rm (d)}
+\noindent {\bf (d)}
 If $F$ and $G$ are bijections, then so also is $F \circ G$.
 \end{prop}
 
 \begin{proof}
-We prove each of the four assertions by invoking the underlying
-definitions.
+We prove each of the four assertions by invoking the underlying definitions.
 
-\noindent (a)
-%
-Because $F$ and $G$ are functions on $S$: For each $s \in S$, there is
-at most one $t_1 \in S$ such that $F(s) = t_1$ and at most one $t_2
-\in S$ such that $G(s) = t_2$.  Hence, we identify three
-possibilities.
+\noindent ({\bf a})
+Because $F$ and $G$ are functions on $S$: For each $s \in S$, there is at most one $t_1 \in S$ such that $F(s) = t_1$ and at most one $t_2 \in S$ such that $G(s) = t_2$.  Hence, we identify three possibilities.
 
 \smallskip
 
 \begin{tabular}{lllll}
-%\hline
 1. &
 {\bf if}
 $F$ is defined at $s \in S$  & & & {\bf then} $F(s) \in S$ is unique \\
   &
 {\bf and if} $G$ is defined at $F(s) \in S$ & & & {\bf then} $G(F(s))
 = F \circ G(s) \in S$ is unique \\
-%\hline
 2. &
 {\bf if}
 $F$ is not defined at $s \in S$ & & & {\bf then} $F \circ G$ is not
-defined at $s \in S$ \\
-%\hline 
+defined at $s \in S$ \\ 
 3. & 
 {\bf if}
 $F$ is defined at $s \in S$ & & & {\bf then} $F(s) \in S$ is unique \\
   &
 {\bf and if} $G$ is not defined at $F(s) \in S$ & & & {\bf then}
-$F \circ G$ not defined at $s \in S$ %\\
-%\hline
+$F \circ G$ not defined at $s \in S$ 
 \end{tabular}
 
 \smallskip
 
 \noindent
-Hence, for each $s \in S$, there is at most one $t \in S$ such that $F
-\circ G(s) = t$; in other words, $F \circ G$ is a function on $S$.
+Hence, for each $s \in S$, there is at most one $t \in S$ such that $F \circ G(s) = t$; in other words, $F \circ G$ is a function on $S$.
 
 \medskip
 
-\noindent (b)
-%
-Focus on any $s \in S$.  Because $F$ is an injection on $S$, there
-exists at most one $t \in S$ such that $F(t) = s$.  Because $G$ is an
-injection on $S$, there exists at most one $u \in S$ such that $G(u) =
-t$.  Thus, there exists at most one $u \in S$ such that $F \circ G(u)
-= s$.  Hence, $F \circ G(u)$ is an injection on $S$.
+\noindent ({\bf b})
+Focus on any $s \in S$.  Because $F$ is an injection on $S$, there exists at most one $t \in S$ such that $F(t) = s$.  Because $G$ is an injection on $S$, there exists at most one $u \in S$ such that $G(u) = t$.  Thus, there exists at most one $u \in S$ such that $F \circ G(u) = s$.  Hence, $F \circ G(u)$ is an injection on $S$.
 
 \medskip
 
-\noindent (c)
-%
-Focus on any $s \in S$.  Because $F$ is a surjection on $S$, there
-exists $t \in S$ such that $F(t) = s$.  Because $G$ is a surjection on
-$S$, there exists $u \in S$ such that $G(u) = t$.  This means,
-however, that $F \circ G(u) = s$.  Because $s \in S$ was arbitrary, it
-follows that $F \circ G(u)$ is a surjection on $S$.
+\noindent ({\bf c})
+Focus on any $s \in S$.  Because $F$ is a surjection on $S$, there exists $t \in S$ such that $F(t) = s$.  Because $G$ is a surjection on $S$, there exists $u \in S$ such that $G(u) = t$.  This means, however, that $F \circ G(u) = s$.  Because $s \in S$ was arbitrary, it follows that $F \circ G(u)$ is a surjection on $S$.
 
 \medskip
 
-\noindent (d)
-%
-If each of $F$ and $G$ is a bijection on $S$, then each is an
-injection on $S$, and each is a surjection on $S$.  Then Part (b)
-tells us that $F \circ G$ is an injection on $S$, and Part (c) tells
-us that $F \circ G$ is a surjection on $S$.  Hence, $F \circ G$ is a
-bijection on $S$.  \qed
+\noindent ({\bf d})
+If each of $F$ and $G$ is a bijection on $S$, then each is an injection on $S$, and each is a surjection on $S$.  Then Part (b) tells us that $F \circ G$ is an injection on $S$, and Part (c) tells
+us that $F \circ G$ is a surjection on $S$.  Hence, $F \circ G$ is a bijection on $S$.  \qed
 \end{proof}
 
 \subsection{Sets, Strings, Functions: Important Connections}
 \label{sec:sets-strings-functions}
 
-In his play, {\it Romeo and Juliet}, William Shakespeare
-\index{Shakespeare, William, {\it Romeo and Juliet}} pens a question
-whose significance goes far beyond its poetic origins: ``What's in a
-name?''  This section will hopefully get you thinking about that
-question in new ways!
+\index{Shakespeare, William, {\it Romeo and Juliet}}
+In his play, {\it Romeo and Juliet}, William Shakespeare pens a question whose significance goes far beyond its poetic origins: ``What's in a name?''  This section will hopefully get you thinking about that question in new ways!
 
 Let us begin with a binary sequence---i.e., a sequence of bits
 \[ \beta \ = \ \beta_0 \beta_1 \beta_2 \cdots \beta_n (\cdots) \]
-where each $\beta_i \in \{0,1\}$.  The rather bizarre notation here,
-where the second set of (centered) dots is parenthesized, is intended
-to encompass both finite, length-$n$, sequences and infinite
-sequences.  The question is:
+where each $\beta_i \in \{0,1\}$.  The rather bizarre notation here, where the second set of (centered) dots is parenthesized, is intended to encompass both finite, length-$n$, sequences and infinite sequences.  The question is:
+
+\smallskip
 
 {\em What does sequence $\beta$ denote (or, name)?}
 
+\smallskip
+
 \noindent
-At least three respectable answers to this question should be
-considered.
+At least three respectable answers to this question should be considered.
 \begin{enumerate}
 \item
-With the most literal interpretation, $\beta$ is just an uninterpreted
-sequence of bits.
+With the most literal interpretation, $\beta$ is just an uninterpreted sequence of bits.
 
 \item
-With a little more imagination, one can interpret each bit $\beta_i$
-of $\beta$ as information about the (index) integer $i$.  For example,
-$\beta$ can be viewed as specifying two mutually complementary sets of
-positive integers:
+With a little more imagination, one can interpret each bit $\beta_i$ of $\beta$ as information about the (index) integer $i$.  For example, $\beta$ can be viewed as specifying two mutually complementary sets of positive integers:
 \begin{eqnarray*}
 S_\beta \ = \ \{ k \in \N^+ \ | \ \beta_k = 1\} \\
 \overline{S}_\beta \ = \ \{ k \in \N^+ \ | \ \beta_k = 0\}
 \end{eqnarray*}
-When $\beta$ has (finite) length $n$, then both $S_\beta$ and
-$\overline{S}_\beta$ are viewed as subsets of $\{1, 2, \ldots, n\}$;
-when $\beta$ is infinite, then both $S_\beta$ and $\overline{S}_\beta$
-are viewed as subsets of $\N^+$.
+When $\beta$ has (finite) length $n$, then both $S_\beta$ and $\overline{S}_\beta$ are viewed as subsets of the set $\{1, 2, \ldots, n\}$; when $\beta$ is infinite, then both $S_\beta$ and $\overline{S}_\beta$ are viewed as subsets of the set $\N^+$.
 
-In this scenario, $\beta$ is called the {\it characteristic sequence}
+\smallskip
+
+In this scenario, $\beta$ is called the {\it characteristic sequence} of the set $S_\beta$.
 \index{characteristic sequence}
 \index{set!characteristic sequence}
 \index{characteristic sequence of a set}
-of the set $S_\beta$.
-
 
 \medskip
 
-\noindent {\em The notion of characteristic sequence leads to a
-  quite simple way of counting the number of distinct subsets that an
-  $n$-element set has.}
+\noindent {\em The notion of characteristic sequence leads to a quite simple way of counting the number of distinct subsets that an $n$-element set has.}
 
-The number of length-$n$ binary strings is determined in
-Proposition~\ref{thm:b-ary strings} and is then used in
-Proposition~\ref{thm:power-sets} to count the subsets of an
-$n$-element set.
+\smallskip
+
+The number of length-$n$ binary strings is determined in Proposition~\ref{thm:b-ary strings} and is then used in Proposition~\ref{thm:power-sets} to count the subsets of an $n$-element set.
 
 \item
-Finally---{\em and we certainly do not mean to imply that our three
-  alternatives exhaust the possibilities!}---each bit $\beta_i$ of
-$\beta$ can be interpreted as specifying the value at integer-argument
-$i$ of a function $f_\beta$.  When $\beta$ has (finite) length $n$,
-then $f_\beta$ is viewed as a function $f_\beta: \{1, 2, \ldots, n\}
-\rightarrow \{0,1\}$; when $\beta$ is infinite, then $f_\beta$ is
-viewed as a function $f_\beta: \N \rightarrow \{0,1\}$.
+Finally---{\em and we certainly do not mean to imply that our three alternatives exhaust the possibilities!}---each bit $\beta_i$ of $\beta$ can be interpreted as specifying the value at integer-argument $i$ of a function $f_\beta$.  When $\beta$ has (finite) length $n$, then $f_\beta$ is viewed as a function $f_\beta: \{1, 2, \ldots, n\} \rightarrow \{0,1\}$; when $\beta$ is infinite, then $f_\beta$ is viewed as a function $f_\beta: \N \rightarrow \{0,1\}$.
 
-In this scenario, $\beta$ is called the {\it characteristic vector}
+\smallskip
+
+In this scenario, $\beta$ is called the {\it characteristic vector} of the function $f_\beta$.
 \index{function!characteristic vector}
 \index{characteristic vector}
 \index{characteristic vector of a function}
-of the function $f_\beta$.
 
 \medskip
 
-\noindent {\em The notion of characteristic vector leads to a rather
-  straightforward proof that there does not exist a bijection between
-  the set $\N^+$ of positive integers and the set of all functions
-  from $\N^+$ to $\{0,1\}$, i.e., the set $\big\{ f:\N^+ \rightarrow
-  \{0,1\} \big\}$.}  See Proposition~\ref{thm:R-uncountable}.
-
+\noindent {\em The notion of characteristic vector leads to a rather straightforward proof that there does {\em not} exist a bijection between the set $\N^+$ of positive integers and the set of all functions from $\N^+$ to $\{0,1\}$, i.e., the set $\big\{ f:\N^+ \rightarrow \{0,1\} \big\}$.}  See Proposition~\ref{thm:R-uncountable}.
 \end{enumerate}
 
-We now have a new way to think about sequences/strings, sets, and
-functions.  Each way conveys insights and tools for reasoning about
-and analyzing these concepts that other ``names'' for the concepts do
-not.  And, we now recognize conceptual ties among these three concepts
-that are not always intuitive.  Our conceptual toolkit has been
-enriched!
+We now have a new way to think about sequences/strings, sets, and functions.  Each way conveys insights and tools for reasoning about and analyzing these concepts that other ``names'' for the concepts do not.  And, we now recognize conceptual ties among these three concepts that are not always intuitive.  Our conceptual toolkit has been enriched!
 
 \section{Boolean Algebras}
 \label{sec:Boolean-Algebra}
 \index{Boolean Algebra}
 
-We remarked in Section~\ref{sec:operations-on-sets} that there is an
-extensive repertoire of operations on sets.  It is not difficult to
-compile a list of laws that various subsets of these operations obey.
+We remarked in Section~\ref{sec:operations-on-sets} that there is an extensive repertoire of operations on sets.  It is not difficult to compile a list of laws that various subsets of these operations obey.
 \begin{itemize}
 \item
 The {\em commutativity} of union and intersection is one example:
@@ -1240,16 +1138,15 @@ S \cap T & = & T \cap S
 \end{eqnarray*}
 
 \item
-The {\em distributivity} of either of union and intersection over the
-other provides another example:
+The {\em distributivity} of either of union and intersection over the other provides another example:
 \begin{eqnarray*}
 R \cup (S \cap T) & = & (R \cup S) \cap (R \cup T) \\
 R \cap (S \cup T) & = & (R \cap S) \cup (R \cap T)
 \end{eqnarray*}
-Notice that arithmetic has an analogue of the second of these
-equations---with multiplication playing the role of intersection and
-addition playing the role of union---but it does {\em not} have an
-analogue of the first.
+
+\smallskip
+
+Notice that arithmetic (of numbers) has an analogue of the second of these equations---with multiplication playing the role of intersection and addition playing the role of union---but it does {\em not} have an analogue of the first.
 
 \item
 The {\em idempotence} of complementation provides a third example:
@@ -1264,53 +1161,22 @@ S \cup \emptyset \ = \ S \cup S \ = \ S \cap S \ = \ S \\
 \end{array}
 \]
 
-The English logician/mathematician George Boole \index{Boole, George}
-is historically credited with developing the system that we are
-describing here, with the goal of encapsulating a simple version of
+\index{Boole, George}
+The English logician/mathematician George Boole is historically credited with developing the system that we are describing here, with the goal of encapsulating a simple version of
 mathematical logic within an algebraic framework; see
-\cite{Boole54}.\footnote{The cited source seems to be an expansion on
-  Boole's original exposition of these thoughts, in {\it The
-    Mathematical Analysis of Logic} (1847).}  The system that Boole
-developed has been named {\it Boolean algebra}, in his honor.
+\cite{Boole54}.\footnote{The cited source seems to be an expansion on Boole's original exposition of these thoughts, in {\it The Mathematical Analysis of Logic} (1847).}  The system that Boole developed has been named {\it Boolean algebra}, in his honor.
 
-Rather than provide an extensive description of Boolean algebras in
-terms of their operations and axioms, we turn directly to the system
-of logic that was Boole's inspiration and that has since his day
-provided a mathematical foundation for areas of immeasurable
-importance to technology.  We list citations to just three areas: the
-first citation is to Boole's original work; the other two are seminal
-studies by one of the greatest ``technology-theorists'' of the $20$th
-century, Claude E.~Shannon. \index{Shannon, Claude E.}
+Rather than provide an extensive description of ``abstract" Boolean algebras in terms of their operations and axioms, we turn directly to the system of logic that was Boole's inspiration and that has since his day provided a mathematical foundation for areas of immeasurable importance to technology.  (Much of an exposition of ``abstract" Boolean algebra would just repeat material from the ``applied" areas.)  We list citations to just three areas: the first citation is to Boole's original work; the other two are seminal studies by one of the greatest ``technology-theorists'' of the $20$th century, Claude E.~Shannon. \index{Shannon, Claude E.}
 \begin{itemize}
 \item
 the foundations of mathematical logic \cite{Boole54}
 \item
-the mathematical foundations of switching-circuit theory
-\cite{Shannon38}
+the mathematical foundations of switching-circuit theory \cite{Shannon38}
 \item
 the mathematical foundations of information theory \cite{Shannon48}
 \end{itemize}
-The genius of the mathematical system invented by Boole is manifest in
-the fact that it provides a starting point for formally understanding
-many seemingly disparate disciplines.  Indeed, if one develops a level
-of understanding of Boole's algebraic framework for Propositional
-Logic, then one can translate that understanding almost seamlessly to
-at least the preliminaries of Shannon's mathematical settings for
-Switching Circuit Theory and Information Theory.
+The genius of the mathematical system invented by Boole is manifest in the fact that it provides a starting point for formally understanding many seemingly disparate disciplines.  Indeed, if one develops a level of understanding of Boole's algebraic framework for Propositional Logic, then one can translate that understanding almost seamlessly to at least the preliminaries of Shannon's mathematical settings for Switching Circuit Theory and Information Theory.
 \index{Switching Circuit Theory} \index{Information Theory}
-
-\ignore{*************
-\subsection{The Boolean Algebra of Sets}
-\label{sec:BA-Sets}
-
-\subsubsection{Boolean operations and their laws}
-\subsubsection{The Boolean operations}
-\index{Boolean Algebra!Operations}
-
-\noindent{\it The Axioms of Boolean Algebra}.
-\index{Boolean Algebra!axioms}
-*******************}
-
 
 \subsection{The Algebra of Propositional Logic}
 \label{sec:Propositional-logic}
@@ -1323,10 +1189,7 @@ Switching Circuit Theory and Information Theory.
 \index{propositional logic!propositions}
 
 \noindent
-As we noted earlier in this chapter, what distinguishes Propositional
-Logic from more general mathematical logic is the absence of
-quantifiers ({\sc there exists}, {\sc for all}, etc.).  The objects of
-Propositional Logic are {\it propositions}: fixed assertions
+As we noted earlier in this chapter, what distinguishes Propositional Logic from more general mathematical logic is the absence of quantifiers ({\sc there exists}, {\sc for all}, etc.).  The objects of Propositional Logic are {\it propositions}: fixed assertions
 
 \smallskip
 
@@ -1335,15 +1198,11 @@ Propositional Logic are {\it propositions}: fixed assertions
 \smallskip
 
 \noindent 
-the assertions need not be factually true.  The algebra that underlies
-Propositional Logic uses operations that are reminiscent of the
-set-theoretic operations to combine simple assertions into complex
-ones
+the assertions need not be factually true.  The algebra that underlies Propositional Logic uses operations that are reminiscent of the set-theoretic operations to combine simple assertions into complex ones
 
 \smallskip
 
-{\bf if} ``the bananas are ripe'' {\bf and} ``you are hungry'' {\bf then}
- ``you should buy bananas''
+{\bf if} ``the bananas are ripe'' {\bf and} ``you are hungry'' {\bf then} ``you should buy bananas''
 
 \smallskip
 
@@ -1352,12 +1211,8 @@ ones
 \smallskip
 
 \noindent
-Two special propositions---the constants of the algebra---are denoted
-{\sc true} and {\sc false}.  They are {\em intended} to represent factual
-truth and factual falsehood, but they are {\em defined} by the way
-they interact with each other and with other propositions.  In order
-to specify these interactions, we have to specify the logic's {\it
-  connectives}: the operations of the algebra.
+Two special propositions---the constants of the algebra---are denoted {\sc true} and {\sc false}.  They are {\em intended} to represent factual truth and factual falsehood, but they are {\em defined} by the way they interact with each other and with other propositions.  In order
+to specify these interactions, we have to specify the logic's {\it connectives}: the operations of the algebra.
 
 \bigskip
 
@@ -1366,9 +1221,7 @@ to specify these interactions, we have to specify the logic's {\it
 \index{propositional logic!logical connectives}
 
 \noindent
-As we describe and define the basic connectives of the Propositional
-Logic, we point out their relationships to the Boolean set-related
-operations introduced in Section~\ref{sec:operations-on-sets}.
+As we describe and define the basic connectives of the Propositional Logic, we point out their relationships to the Boolean set-related operations introduced in Section~\ref{sec:operations-on-sets}.
 
 \medskip
 
