@@ -1,4 +1,4 @@
-%version of 08-29-19
+%version of 11-01-19
 
 \chapter{Numbers I:
 The Basics of Our Number System}
@@ -12,54 +12,37 @@ the Portuguese'' 43
 
 \section{Introducing the Three Chapters on Numbers}
 
-Many, perhaps most, of us take for granted the brilliant notations
-that have been developed for the many arithmetic constructs that we
-use daily.  Our mathematical ancestors have bequeathed us notations
-that are not only perspicuous but also convenient for computing and
-for discovering and verifying new mathematical truths.  Several
-chapters in this text are devoted to sharing the elements of this
-legacy with the reader.  Three of these chapters focus on numbers
-themselves: the objects and how we represent them.
+\index{numbers}
+Many, perhaps most, of us take for granted the brilliant notations that have been developed for the many arithmetic constructs that we use daily.  Our mathematical ancestors have bequeathed us notations that are not only perspicuous but also convenient for computing and for discovering and verifying new mathematical truths.  Several chapters in this text are devoted to sharing the elements of this legacy with the reader.  Three of these chapters focus on numbers themselves: the objects and how we represent them.
 \begin{enumerate}
 \item
-This chapter focuses on elementary concepts and techniques of
-reasoning relating to the most familiar objects of mathematical
-discourse, namely, the four families of numbers that underlie all of
-quantitative mathematics.
+The current chapter focuses on elementary concepts and techniques of reasoning relating to the most familiar objects of mathematical discourse, namely, the four families of numbers that underlie all of quantitative mathematics.
 \item
-Chapter~\ref{ch:numbers-advanced} extends this introductory material,
-by introducing some more advanced topics concerning numbers.  We look
-``inward'' as we discuss important special classes of numbers which
-expose deep insights into the intrinsic nature of numbers.  And, we
-look ``outward'' as we reveal how numbers can ``encode'' structured
-data.  In this latter regard, we suggest some nonobvious implications
-of being able to perform such encodings.
+Chapter~\ref{ch:numbers-advanced} extends this introductory material, by introducing some more advanced topics concerning numbers.  We look ``inward'' as we discuss important special classes of numbers which expose deep insights into the intrinsic nature of all numbers.  And, we
+look ``outward'' as we reveal how numbers can ``encode'' structured data.  In this latter regard, we suggest some nonobvious implications of being able to perform such encodings.
 \item
-Chapter~\ref{ch:numerals} looks at {\it numerals}, \index{numerals}
-the strings that we use to manipulate and analyze numbers.
-\index{numbers vs.~numerals} We discuss how much one can learn
-about various classes of numbers based only on the types of strings
-that we can use to name the numbers in the class.
+Chapter~\ref{ch:numerals} looks at {\it numerals}, the strings that we use to manipulate and analyze numbers.  Among a variety of representation-related topics, we discuss how much one can learn about intrinsics of various classes of numbers based only on the types of strings that we can use to name the numbers in the class.
 \end{enumerate}
+ \index{numerals} \index{numbers vs.~numerals}
 
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-Numbers and numerals embody what is certainly the most familiar
-instance of a very important dichotomy that pervades our intellectual
-lives: the distinction between objects and their names:
+\begin{minipage}{0.96\textwidth}
+Numbers and numerals embody what is certainly the most familiar instance of a very important dichotomy that pervades our intellectual lives: the distinction between objects and their names:
+
+\smallskip
 
 \hspace*{.2in}{\em Numbers are intangible, abstract objects.} \index{numbers!as objects}
 
 \hspace*{.2in}{\em Numerals are the names we use to refer to and manipulate numbers.} 
 \index{numerals!as names of numbers}
 
+\smallskip
+
+\index{numerals!operational}
+
 \noindent
-This is a critically important distinction!  You can ``touch'' a
-numeral: break it into pieces, combine two (or more) numerals via a
-large range of operations.  When numerals are {\em operational},
-\index{numerals!operational} then you can compute with them.  Numbers are
-intangible abstractions, or, conceptualizations: you reason with
-numbers.
+This is a critically important distinction!  You can ``touch'' a numeral: break it into pieces, combine two (or more) numerals via a large range of operations.  When the representations we use as numerals are {\em operational}, then you can {\em compute} using them.  Numbers are
+intangible abstractions, or, conceptualizations: you {\em reason} using numbers.
 \end{minipage}
 }
 
@@ -68,211 +51,126 @@ numbers.
 \index{number system!biography}
 \label{sec:numbers}
 
-We begin our study of numbers and numerals with a short taxonomy of
-our number system.  Although we assume that the reader is familiar
-with the most common classes of numbers, we do spend some time
-highlighting important features of each class, partly, at least, in
-the hope of heightening the reader's interest in this most basic
-object of mathematical discourse.
+We begin our study of numbers and numerals with a short taxonomy of our number system.  Although we assume that the reader is familiar with the most common classes of numbers, we do spend some time highlighting important features of each class, partly, at least, in the hope of heightening the reader's interest in this most basic object of mathematical discourse.
 
-We present the four most common classes of numbers in what is almost
-certainly the chronological order of their discovery/invention.
+We present the four most common classes of numbers in what is almost certainly the chronological order of their discovery/invention.
 %{\Denis the quotation of Kronecker is done 3 times...}
 
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-Did humans {\em invent} these classes of numbers to fill specific
-needs, or did we just {\em discover} their pre-existing selves as
-needs prompted us to search for them?  The great German mathematician
-Leopold Kronecker, \index{Kronecker, Leopold} as
-cited in \cite{Weber91} (on page 19), has asserted
+Did humans {\em invent} these classes of numbers to fill specific needs, or did we just {\em discover} their pre-existing selves as needs prompted us to search for them?  The great German mathematician Leopold Kronecker, \index{Kronecker, Leopold} as cited in \cite{Weber91} (on page 19), has asserted
 
 \smallskip
 
 \noindent
-{\em Die ganzen Zahlen hat der liebe Gott gemacht, alles andere ist
-Menschenwerk.}
+{\em Die ganzen Zahlen hat der liebe Gott gemacht, alles andere ist Menschenwerk.}
 
 \smallskip
 
 \noindent
 [God made the integers, all else is the work of man].
 
+\smallskip
+
 \noindent
 [Dieu a cr\'e\'e les nombres entiers, tout le reste est invention humaine].
 \end{minipage}
 }
+
 \medskip
+
+\index{number!integer} \index{number!zero ($0$)} \index{number!negative}
 
 \noindent
-A pleasing narrative can be fabricated to account for our multi-class
-system of numbers.  In the beginning, the story goes, we needed to
-count things (sheep, bottles of oil, weapons, \ldots), and the
-positive {\it integers}\index{number!integer} were discovered to serve
-this need.  As accounting practices matured, we needed to augment this
-class with the number zero \index{number!zero ($0$)} ($0$) and with the negative integers.
-\index{number!negative} 
-The former addition (zero) allowed
-Merchant $A$ to keep track of the inventory remaining after the last
-flask of wine is sold; the latter addition (the negative numbers)
-allowed Merchant $A$'s banker to record $A$'s
-credit balance after taking a loan.
-The class of integers was now complete---although a variety of
-special classes of integers remained to be discovered, motivated by
-reasons ranging from the religious to the intellectual.
+A pleasing narrative can be fabricated to account for our multi-class system of numbers.  In the beginning, the story goes, we needed to count things (sheep, bottles of oil, weapons, \ldots), and the positive {\it integers} were discovered to serve this need.  As accounting practices matured, we needed to augment this class with the number zero ($0$) and with the negative integers.  The former augmentation (of zero) allowed Merchant $A$ to keep track of the inventory remaining after the last flask of wine is sold; the latter augmentation (of the negative numbers) allowed Merchant $A$'s banker to record $A$'s credit balance after taking a loan.  The class of integers was now complete---although a variety of special classes of integers remained to be discovered, motivated by reasons ranging from the religious to the intellectual.
 
-Moving on: As society matured, humans began to share materials that
-had to be subdivided---cloth, grain, etc.---rather than partitioned into
-discrete units.  We needed to invent the {\it rational numbers}
-\index{number!rational} to deal with such materials.  Happily for the
-mathematically inclined, the rational numbers could be developed in a
-manner that allowed one to view an integer as a special type of rational.
-This meant that our ancestors could build upon the systems they had
-developed to deal with integers, rather than scrapping those systems
-and starting anew.
+\index{number!rational}
 
-\medskip
+Moving on: As society matured, humans began to share materials that had to be subdivided---cloth, grain, etc.---rather than partitioned into discrete units.  We needed to invent the {\it rational numbers} to deal with such materials.  Happily for the mathematically inclined, the rational numbers could be developed in a manner that allowed one to view an integer as a special type of rational.  This meant that our ancestors could build upon the systems they had developed to deal with integers, rather than having to scrap those systems and start anew.
+
+\bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.97\textwidth}
-{\em This quest for {\em extendible} frameworks rather than isolated
-  unrelated frameworks is a hallmark of mathematical thinking.}
+\begin{minipage}{0.96\textwidth}
+{\em The quest for {\em extendible} frameworks rather than isolated unrelated frameworks is a hallmark of mathematical thinking.}
 \end{minipage}
 }
-\medskip
+
+\bigskip
+
+\index{Euclid} \index{Pythagoras}
 
 \noindent
-We now enter the realm of ``semi-recorded'' history in the West: the
-Babylonians, the Egyptians, the Greeks, and others.  ``Practical''
-mathematics was invented---and reinvented---to accommodate pursuits as
-varied as astronomy, commerce, navigation and architecture.  Our
-mathematical stalwarts, the integers and the rationals, did not seem
-to be able to deal with all of the measurements that we wanted to
-make, calculations that we wanted to do, structures that we wanted to
-design.  So, we approximated and ``fudged'' and got pretty much where
-we wanted to get.  The standard story at this point (at least in the
-West) is that the ancient Greeks began to try to systematize
-mathematical knowledge and practice.  The Greek mathematician and
-geometer Euclid, \index{Euclid} and members of his school,
-verified---via one of the first {\em proofs} in recorded history---the
-uncomfortable fact that the lengths of portions of eminently buildable
-structures were not ``measurable,'' by which they meant {\em not
-  rational}.  The poster child for this phenomenon was the hypotenuse
-of the isosceles right triangle $T$ with unit-length legs.  Thanks to
-the well-known theorem of the Greek mathematician Pythagoras,
-\index{Pythagoras} even schoolchildren nowadays know that the length
-of this eminently ``buildable'' line is $\sqrt{2}$.  What Euclid
-discovered is: {\em There is---provably!---no way to find integers $p$
-  and $q$ whose ratio is $\sqrt{2}$, the length of $T$'s
-  hypotenuse.}\footnote{We present a version of Euclid's proof in
-  Proposition~\ref{thm:sqrt(2)}.}
+We now enter the realm of ``semi-recorded'' history in the West: our legacy from the Babylonians, the Egyptians, the Greeks, and others.  ``Practical'' mathematics was invented---and reinvented---to accommodate pursuits as varied as astronomy, commerce, navigation and architecture.  Our mathematical stalwarts, the integers and the rationals, were not adequate to deal with all of the measurements that we wanted to make, calculations that we wanted to do, structures that we wanted to design.  So, we approximated and ``fudged'' and got pretty much where we wanted to get.  The standard story at this point (at least in the West) is that the ancient Greeks began to try to systematize mathematical knowledge and practice.  The Greek mathematician and geometer Euclid,  and members of his school, verified---via one of the first {\em proofs} in recorded history---the uncomfortable fact that the lengths of portions of eminently buildable structures were not ``measurable''---in modern lingo, the lengths {\em were not rational}.  The poster child for this phenomenon was the {\em hypotenuse of the isosceles right triangle $T$ with unit-length legs}.  Thanks to the well-known theorem of the Greek mathematician Pythagoras, even schoolchildren nowadays know that the length of this eminently ``buildable'' line is $\sqrt{2}$.  What Euclid discovered is: {\em There is---provably!---no way to find integers $p$ and $q$ whose ratio is $\sqrt{2}$, the length of $T$'s hypotenuse.}\footnote{We present a version of Euclid's proof in Proposition~\ref{thm:sqrt(2)}.}
+
+\bigskip
+
+\index{The Pythagorean Theorem}
+
+\noindent{\bf $\oplus$ Digression: {\em The Pythagorean Theorem}}.
+The famed theorem of Pythagoras is widely known, at least informally.  We pause now to provide a {\em formal} statement of this seminal result and to provide a proof of the special case that relates to our current discussion of the square-root of $2$.  Quite aside from reviewing the Theorem's important content, this statement will provide the reader one more opportunity to ponder the ``music'' of mathematical discourse.
 
 \medskip
 
-\noindent{\bf $\oplus$ A Digression: The Pythagorean Theorem}.
-\index{The Pythagorean Theorem}
-The famed Theorem of Pythagoras is widely known, at least informally.
-We pause now to provide a {\em formal} statement of this seminal
-result and to provide a proof of the special case that relates to our
-current discussion of the square-root of $2$.  Quite aside from
-reviewing the Theorem's important content, this statement will provide
-the reader one more opportunity to ponder the ``music'' of
-mathematical discourse.
+\index{triangle} 
+\index{triangle!right triangle}
+\index{right angle} 
+\index{right angle!$90^\circ$} 
+\index{right angle!$90$ degrees}
+\index{right angle!$\pi/2$ radians} 
+\index{triangle!right triangle!side}
+\index{triangle!right triangle!leg}
+\index{triangle!right triangle!hypotenuse}
+\index{triangle!isosceles triangle}
+\index{triangle!isosceles triangle}
 
-Let us be given a triangle $T$ with vertices $A$, $B$, and $C$.
-\index{triangle} Use the lefthand grey triangle in
+Let us be given a triangle $T$ with vertices $A$, $B$, and $C$.  Use the lefthand grey triangle in
 Fig.~\ref{fig:unitsquare} as a model.
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresArithmetic/UnitSquareSQRT2}
-\caption{A pictorial schematic proof of The Pythagorian Theorem for
-  the special case of an isosceles right triangle.
+\caption{A pictorial schematic proof of The Pythagorian Theorem for the special case of an isosceles right triangle.
 \label{fig:unitsquare}}
 \end{center}
 \end{figure}
-%
-\ignore{\Arny Please edit the figure to follow this story ... label the
-  vertices of triangle $T$.  Any other labels? ... hypotenuse?  }
-%
-Say that $T$ is a {\it right triangle}, \index{triangle!right triangle}
-meaning that one of its angles is a {\em right angle},
-\index{right angle} i.e., that its measure is $90^\circ$
-\index{right angle!$90^\circ$} \index{right angle!$90$ degrees}
-\index{right angle!$\pi/2$ radians} 
-(read: ``$90$ degrees'') or, equivalently, $\pi/2$ radians.  In our
-example, $T$'s right angle occurs at vertex $A$.  Because $T$ is a
-right triangle, the line from vertex $A$ to vertex $B$ and the line
-from vertex $A$ to vertex $C$ are called the {\em sides}
-\index{triangle!right triangle!side}
-\index{triangle!right triangle!leg} (or the {\it legs}) of $T$, while
-the line from vertex $B$ to vertex $C$ is called the {\em hypotenuse}
-\index{triangle!right triangle!hypotenuse} of $T$.  Triangle $T$ is
-{\em isosceles} \index{triangle!isosceles triangle} precisely when its
-two sides have the same length.  The grey triangle in
-Fig.~\ref{fig:unitsquare} is an isosceles right triangle.
+Say that $T$ is a {\it right triangle}, meaning that one of its angles is a {\em right angle}, i.e., that its measure is $90^\circ$ (read: ``$90$ degrees'') or, equivalently, $\pi/2$ radians.  In our example, $T$'s right angle occurs at vertex $A$.  Because $T$ is a right triangle, the line from vertex $A$ to vertex $B$ and the line from vertex $A$ to vertex $C$ are called the {\em sides} (or the {\it legs}) of $T$, while the line from vertex $B$ to vertex $C$ is called the {\em hypotenuse} of $T$.  Triangle $T$ has a very special ``shape": it is {\em isosceles} meaning that its two sides /legs have the same length.  The grey triangle in Fig.~\ref{fig:unitsquare} is an isosceles right triangle.
 
 \begin{theorem}[{\bf The Pythagorean Theorem}]
 \label{thm:Pythagorean-thm}
-Let $T$ be a right triangle whose two sides have respective lengths
-$s_1$ and $s_2$, and whose hypotenuse has length $h$.  Then
+Let $T$ be a right triangle whose two sides have respective lengths $s_1$ and $s_2$, and whose hypotenuse has length $h$.  Then
 \[ h^2 \ = \ s_1^2 + s_2^2. \]
-Consequently, when $T$ is an {\em isosceles} right triangle, then $h^2
-= 2 s_1^2$.
+Consequently, when $T$ is an {\em isosceles} right triangle, then $h^2 = 2 s_1^2$.
 \end{theorem}
 
-\ignore{\Denis I put here a figure for proving the result, may be it
-  is not at the right place, feel free to put it elsewhere... I
-  developed later a graphical proof of the theorem...}
+The special case of the Pythagorean Theorem that deals with isosceles right triangles admits the very perspicuous proof presented pictorially in Fig.~\ref{fig:unitsquare}.  Follow along in the figure as we review this proof.
 
-The special case of the Pythagorean Theorem which deals with
-isosceles right triangles admits the very perspicuous proof presented
-pictorially in Fig.~\ref{fig:unitsquare}.  Let us review this proof.
+\smallskip
 
-We begin with the unit-side square $S$ on the left of the figure.  We
-partition $S$ by its diagonal into two unit-side isosceles right
-triangles, one grey and one white.  In this construction the diagonal
-of $S$ is the (common) hypotenuse of the two triangles.  On the
-righthand side of Fig.~\ref{fig:unitsquare}, we use our partitioned
-version of $S$ to construct a new, bigger square, call it
-$\widehat{S}$, whose side-length is the hypotenuse-length of the grey
-triangle.  The dotted lines in the figure tell us how big
-$\widehat{S}$ is (measured in area).
+We focus first on the unit-side square $S$ on the left of the figure.  We partition $S$ by its diagonal into two unit-side isosceles right triangles, one grey and one white.  In this construction the diagonal of $S$ is the (shared) hypotenuse of the two triangles.  On the righthand side of Fig.~\ref{fig:unitsquare}, we use our partitioned version of $S$ to construct a new, bigger square, call it $\widehat{S}$, whose side-length is the hypotenuse-length of the grey triangle.  The dotted lines in the figure tell us how big $\widehat{S}$ is (measured by its area).
 \begin{itemize}
 \item
-Square $S$ is unit-sided, hence has unit area.
+Square $S$ is unit-sided, hence has {\em unit area}, i.e., area $=1$.
 \item
-The grey triangle is (geometrically) half of $S$, hence has area
-$1/2$.
+The grey triangle is (geometrically) half of $S$, hence has area $1/2$.
 \item
-Square $\widehat{S}$ is built from four copies of the grey
-triangle, hence has area $4 \cdot 1/2 \ = \ 2$.
+Square $\widehat{S}$ is built from four copies of the grey triangle, hence has area $4 \cdot 1/2 \ = \ 2$.
 \end{itemize}
-Because the hypotenuse of the grey triangle is a side of an area-$2$
-square, we have just proved the following special case of the
-Pythagorean Theorem.
+Because the hypotenuse of the grey triangle is a side of an area-$2$ square, we have just proved the following special case of the Pythagorean Theorem\qed.\footnote{We generally signal the end of a proof via the symbol\qed, which can be read ``Q.E.D.", for ``{\em Quod Erat Demonstrandum}" [Latin for ``Which was to be proved"].}
 
 \begin{prop}
 \label{thm:unit-isosceles-PythThm}
-The hypotenuse of the unit-side isosceles right triangle has length
-$\sqrt{2}$.
+The hypotenuse of the unit-side isosceles right triangle has length $\sqrt{2}$.
 \end{prop}
   
 \noindent \textbf{End of digression}
 
 \bigskip
-  
-As part of the movement toward formalizing mathematics, the
-Sicilian-based Greek mathematician and polymath Archimedes \index{Archimedes}
-was systematically observing that squares are better approximations to
-circles than triangles are; regular pentagons are better than squares;
-regular hexagons are better than pentagons; and so on.  
-Fig.~\ref{fig:approxcircle} illustrates this evidence.
-%
-\ignore{\Denis I added a figure here, feel free to remove it if you
-  believe it is not appropriate. I can also extend the figure with
-  higher degree polygons....} 
+
+\index{Archimedes}
+
+As part of the movement toward formalizing mathematics, the Sicily-based Greek mathematician and polymath Archimedes was systematically observing that squares are better approximations to circles than triangles are; regular pentagons are better approximations than squares; regular hexagons are better than pentagons; and so on.  Fig.~\ref{fig:approxcircle} illustrates this evidence.
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.25]{FiguresArithmetic/ApproxCircle}
@@ -280,56 +178,43 @@ Fig.~\ref{fig:approxcircle} illustrates this evidence.
 \label{fig:approxcircle}}
 \end{center}
 \end{figure}
-In fact, observed Archimedes, as the number of sides, $n$, in a
-regular polygon grows without bound (or, as we might say today, tends
-to infinity), each increase in $n$ brings a regular polygon closer to
-being a circle.
+In fact, observed Archimedes, as the number of sides, $n$, in a regular polygon grows without bound (or, as we might say today, tends to infinity), each increase in $n$ brings a regular polygon closer to being a circle.
 
-In order to pursue their respective observations to their completion,
-both Euclid and Archimedes would have to leave the world of the
-rationals and enter the world of the {\it real numbers}
+\medskip
+
 \index{number!real}
-(so named by the French mathematician-philosopher Ren\'{e} Descartes).
 \index{Descartes, Ren\'{e}}
-It would take roughly two-thousand years from the time of Euclid and
-Archimedes before the real numbers were {\em formally} introduced to
-the world, by mathematical luminaries such as the early-19th-century
-French mathematician-scientist Augustin-Louis Cauchy
 \index{Cauchy, Augustin-Louis}
-and the late-19th-century German mathematician Richard Dedekind.
 \index{Dedekind, Richard}
-It turned out to be much easier to recognize instances of non-rational
-real numbers than to formally delimit the entire family of such
-numbers.  Once again, happily, one could develop the real numbers in a
-way that allowed one to view a rational number as a special type of
-real number.  
+\index{numbers!real numbers}
+\index{real numbers!non-rational}
+\index{real numbers!irrational}
 
-During the millennia between the discoveries of Euclid, Archimedes, and
-their friends and the full development of the real numbers,
-mathematics was enriched repeatedly by the discovery of new conceptual
-structures.  One of these---polynomials
-\index{polynomial}
-and their
+In order to pursue their respective observations to their completion, both Euclid and Archimedes would have had to leave the world of the rationals and enter the world of the {\it real numbers} (so named by the French mathematician-philosopher Ren\'{e} Descartes)---but this world did not yet exist!  It would take roughly two-thousand years from the days of Euclid and Archimedes before the real numbers were {\em formally} introduced to the world, by mathematical luminaries such as the early-19th-century French mathematician-scientist Augustin-Louis Cauchy and the late-19th-century German mathematician Richard Dedekind.  It turned out to be much easier to recognize instances of non-rational real numbers---better known as the {\it irrational} real numbers---than to formally delimit the entire family of such numbers.  Once again, happily, one could develop the real numbers in a way that allowed one to view a rational number as a special type of real number.  
+
+\medskip
+
+\index{polynomial} \index{polynomial!root}
+
+During the millennia between the discoveries of Euclid, Archimedes, and their friends and the full development of the real numbers, mathematics was enriched repeatedly by the discovery of new conceptual structures.  One of these---polynomials and their roots---ultimately led to the final major subsystem of our number system.  In Chapter~\ref{sec:function}, we discussed the important notion of {\em function}.  Polynomials are a practically important class of functions that are delimited by the operations needed to compute them.  Specifically, an $n$-argument polynomial function---typically just called a {\it polynomial}---is a function $P(x_1, x_2, \ldots, x_n)$ whose values can be calculated using just the basic operations of arithmetic: addition/subtraction and multiplication/division.
+
+\bigskip
+
+\index{mutually inverse operations}
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+We pair the operations in this way because addition and subtraction are {\em mutually inverse
+operations}, as are multiplication and division.  This means that one can undo an operation (say, an addition) by performing its inverse operation (in this case, a subtraction).  But {\em be careful:} one cannot undo multiplication by $0$.  
+\end{minipage}
+}
+
+\bigskip
+
 \index{polynomial!root}
-%
-roots---ultimately led to the final major subsystem of our number
-system.  In Chapter~\ref{sec:function}, we discussed the important
-notion of {\em function}.  Polynomials \index{polynomial} are a
-practically important class of functions that are delimited by the
-operations needed to compute them.  Specifically, an $n$-argument
-polynomial function---typically just called a polynomial---is a
-function $P(x_1, x_2, \ldots, x_n)$ whose values can be calculated
-using just the basic operations of arithmetic: addition/subtraction
-and multiplication/division.\footnote{We pair the operations in this
-  way because addition and subtraction are {\em mutually inverse
-    operations}, \index{mutually inverse operations} as are
-  multiplication and division.  This means that one can undo an
-  operation (say, an addition) by performing its inverse operation (in
-  this case, a subtraction).  But {\em be careful:} one cannot undo
-  multiplication by $0$.}  A {\it root} \index{polynomial!root} of a
-polynomial (function) $P(x_1, x_2, \ldots, x_n)$ is an argument
-$\langle r_1, r_2, \ldots, r_n \rangle$ that causes $P$ to {\it
-  vanish}, meaning that $P(r_1, r_2, \ldots, r_n) = 0$.  In Fig.~\ref{fig:sample-polys},
+
+A {\it root}  of a
+polynomial (function) $P(x_1, x_2, \ldots, x_n)$ is an argument $\langle r_1, r_2, \ldots, r_n \rangle$ that causes $P$ to {\it vanish}, meaning that $P(r_1, r_2, \ldots, r_n) = 0$.  In Fig.~\ref{fig:sample-polys},
  \begin{figure}[htb]
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -358,95 +243,63 @@ $x^2 + 2$ & {\em no real root} \\
  \caption{A sampler of univariate polynomials.}
  \label{fig:sample-polys}
  \end{figure}
- we illustrate a few sample {\em univariate} (i.e., {\em
-  single-variable}) polynomials. \index{polynomial!univariate}\index{polynomial!single-variable}
+we illustrate a few sample {\em univariate}---i.e., {\em single-variable}---polynomials. \index{polynomial!univariate} \index{polynomial!single-variable}
 
 \medskip
 
 \noindent
 There are lessons, both major and minor, to be gleaned from the examples in Fig.~\ref{fig:sample-polys}.
-
 \begin{itemize}
 \item
-Entries 3 and 4 illustrate that even simple polynomials can often be
-written in several different ways.  These entries illustrate also that
-roots can occur {\em with multiplicity:}
-\index{polynomial!root!multiplicity} one can view the value $x = -1$
-as causing the polynomial $x^2 + 2x +1 = (x+1)\cdot (x+1)$ to vanish
-in two ways---(1) by setting the lefthand factor $x+1$ to $0$ and (2)
-by setting the righthand factor $x+1$ to $0$.
+Entries 3 and 4 in the table illustrate that even simple polynomials can often be written in several different ways.  These entries illustrate also that roots can occur {\em with multiplicity:} one can view the value $x = -1$ as causing the polynomial $x^2 + 2x +1 = (x+1)\cdot (x+1)$ to vanish
+in two ways---(1) by setting the lefthand factor $x+1$ to $0$ and (2) by setting the righthand factor $x+1$ to $0$.
+
+\index{polynomial!root!multiplicity}
 
 \item
-Entries 5 and 7 illustrate that polynomials can have multiple distinct
-roots.
+Entries 5 and 7 illustrate that polynomials can have multiple distinct roots.
 
 \item
-Perhaps most importantly, entries 6 and 8 provide explicit, simple
-polynomials---whose expressions involve only positive integers---that
-fail to have any real roots!
-
-The fact that the indicated polynomials have no real roots is
-immediate, because the square of a real number can never be negative.
-Hence, for instance, there is no positive integer $c$ such that $c^2 =
--1$, or, equivalently, $c^2 + 1 = 0$.
-\end{itemize}
+Perhaps most importantly, entries 6 and 8 provide explicit, simple polynomials---whose expressions involve only positive integers---that fail to have any real roots!
 
 \smallskip
 
-For both applied and purely intellectual reasons, there has always
-been considerable interest in developing techniques for finding the
-roots of polynomials.  Indeed, much seminal mathematics was developed
-in the quest for such techniques;\footnote{A giant in the development
-  and transmission of this work was the $9$th-century mathematician
-  and astronomer Muhammad ibn Musa al-Khwarizmi \index{al-Khwarizmi,
-    Muhammad}.  We describe more about his seminal contributions in
-  Chapter~\ref{ch:arithmetic}.}~we study the topic at length in
-Section~\ref{sec:polynomials}.
-
-Closely related to this interest in a polynomial's roots was the
-considerable discomfort within the mathematical and technical world at
-the fact that the then-current number system---built upon the
-integers, the rationals, and the reals---was inadequate to the
-important task of providing roots for every polynomial.  The reaction
-to this deficiency was similar in kind to all earlier recognized
-deficiencies: a way was found to expand the number system!  Centuries
-would pass before mathematics developed adequately to find the needed
-expansion.  Once discovered, the expansion was based in the
-conception, in the $16$th century, of a new {\it imaginary} number,
-\index{number!imaginary} so designated by \index{Descartes, Ren\'{e}}
-Descartes.\footnote{The term ``imaginary'' is reputed to be a
-  derogation of these numbers that flouted tradition.}  This new
-number was named $i$ \index{imaginary number $i = \sqrt{-1}$}
-\index{$i$: the imaginary unit} (for ``imaginary'') and was defined to
-be a root of the polynomial $P_{-1}(x) = x^2 +1$.  The number $i$ was
-evocatively often defined via the equation, $i = \sqrt{-1}$.  By
-keeping our extended arithmetic consistent with our former arithmetic,
-$-i$ also became a root of $P_{-1}(x)$.  When the imaginary number $i$
-was added to the real number system, and the combination was blended
-via the rules of arithmetic, the {\it complex number
-  system}\index{number!complex} was born.
-
-Thankfully, the imaginary number $i$ was the only totally new concept
-that was needed to mend the observed deficiency in the real numbers.
-In formal terms, the complex numbers were shown to be {\it
-  algebraically complete} \index{complex numbers!algebraically
-  complete} in the sense expressed in the landmark {\it Fundamental
-  Theorem of Algebra}: \index{Fundamental Theorem of Algebra}
-
-\begin{theorem}[The Fundamental Theorem of Algebra]
-Every polynomial of degree $n$ with complex coefficients has $n$ roots
-over the complex numbers.
-\end{theorem}
-
-The proof of the Theorem is beyond the scope of our introductory text,
-but the result is a notable milestone in our mathematical/technical
-culture.
+The fact that the indicated polynomials have no real roots is immediate, because the square of a real number can never be negative. Hence, for instance, there is no positive integer $c$ such that $c^2 = -1$, or, equivalently, $c^2 + 1 = 0$.
+\end{itemize}
 
 \medskip
 
-Our historical tour is now complete, so we can---finally---begin to
-get acquainted with the several components our number system and the operations that bring
-each component to life in applications.
+\index{al-Khwarizmi, Muhammad}
+
+For both applied and purely intellectual reasons, there has always been considerable interest in developing techniques for finding the roots of polynomials.  Indeed, much seminal mathematics was developed in the quest for such techniques;\footnote{A giant in the development and transmission of this work was the $9$th-century mathematician and astronomer Muhammad ibn Musa al-Khwarizmi.  We discuss his seminal contributions at greater length in Chapter~\ref{ch:arithmetic}.}~we study the topic at length in Section~\ref{sec:polynomials}.
+
+\smallskip
+
+\index{number!imaginary} \index{Descartes, Ren\'{e}} 
+\index{imaginary number $i = \sqrt{-1}$}
+\index{$i$: the imaginary unit}
+\index{number!complex}
+
+Closely related to this interest in a polynomial's roots was the considerable discomfort within the mathematical and technical world at the fact that the then-current number system---built upon the integers, the rationals, and the reals---was inadequate to the important task of providing roots for every polynomial.  The reaction to this deficiency was similar in kind to all earlier recognized deficiencies: a way was found to expand the number system!  Centuries would pass before mathematics developed adequately to find the needed expansion.  Once discovered, the expansion was based in the conception, in the $16$th century, of a new {\it imaginary} number, so designated by Descartes.\footnote{The term ``imaginary'' is reputed to be a derogation of these numbers that flouted tradition.}  This new number was named $i$ (for ``imaginary'') and was defined to be a root of the polynomial $P_{-1}(x) = x^2 +1$.  The number $i$ was evocatively often defined via the equation, $i = \sqrt{-1}$.  By keeping our extended arithmetic consistent with our former arithmetic, $-i$ also became a root of $P_{-1}(x)$.  When the imaginary number $i$ was added to the real number system, and the combination was blended
+via the rules of arithmetic, the {\it complex number system} was born.
+
+\smallskip
+
+ \index{complex numbers!algebraically complete}
+ 
+Thankfully, the imaginary number $i$ was the only totally new concept that was needed to mend the observed deficiency in the real numbers.  In formal terms, the complex numbers were shown to be {\it algebraically complete} in the sense expressed in the landmark {\it Fundamental Theorem of Algebra}:
+
+ \index{Fundamental Theorem of Algebra}
+
+\begin{theorem}[The Fundamental Theorem of Algebra]
+Every polynomial of degree $n$ with complex coefficients has $n$ roots over the complex numbers.
+\end{theorem}
+
+The proof of the Theorem is beyond the scope of our introductory text, but the result is a notable milestone in our mathematical/technical culture.
+
+\bigskip
+
+Our historical tour is now complete, so we can---finally---begin to get acquainted with the several components our number system and the operations that bring each component to life in applications.
 
 \section{Integers: The ``Whole'' Numbers}
 \label{sec:integers}
