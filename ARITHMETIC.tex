@@ -1,4 +1,4 @@
-%version of 11-04-19
+%version of 11-05-19
 
 \chapter{Arithmetic: Putting Numbers to Work}
 \label{ch:arithmetic}
@@ -863,7 +863,7 @@ This problem is often found under the rubric of {\it Diophantine analysis}, so n
 
 \index{algebraic function!polynomial} \index{algebraic function} \index{function!algebraic}
 \index{number!algebraic}
-Our concern with the roots of polynomials, as well as with the functions themselves, forces us to expand our horizon to consider a new classification of numbers and functions.  This new classification goes by the name {\it algebraic}; it encompasses number and functions that arise in the solutions of equations of the form $p(x) = 0$, where $p$ is a polynomial.  This expanded view mandates that we be prepared to discuss and analyze ``polynomials'' within which variables are raised to fractional powers.
+Our concern with the roots of polynomials, as well as with the functions themselves, forces us to expand our horizon to consider a new classification of numbers and functions.  This new classification goes by the name {\it algebraic}; it encompasses number and functions that arise in the solutions of equations of the form $P(x) = 0$, where $P$ is a polynomial.  This expanded view mandates that we be prepared to discuss and analyze ``polynomials'' within which variables are raised to fractional powers.
 
 
 \subsection{Univariate Polynomials and Their Roots}
@@ -953,29 +953,28 @@ The complete march toward Theorem~\ref{thm:fund-thm-algebra} took literally mill
 
 \medskip
 
-The earliest proofs of Theorem~\ref{thm:fund-thm-algebra} were not {\em constructive}---they did not provide a roadmap for actually finding the roots of a given polynomial.  There currently do exist proofs of the Theorem that are constructive, in the following sense.  Given a degree-$d$ polynomial $p(x)$, these proofs determine a disk in two-dimensional space which contains all $d$ roots of $p(x)$.  How might such a disk emerge from a mathematical argument?  Here is a {\em very simple} illustration which focuses on a {\em very special} type of polynomial.
+The earliest proofs of Theorem~\ref{thm:fund-thm-algebra} were not {\em constructive}---they did not provide a roadmap for actually finding the roots of a given polynomial.  There currently do exist proofs of the Theorem that are constructive, in the following sense.  Given a degree-$d$ polynomial $P(x)$, these proofs determine a disk in two-dimensional space which contains all $d$ roots of $P(x)$.  How might such a disk emerge from a mathematical argument?  Here is a {\em very simple} illustration which focuses on a {\em very special} type of polynomial.
 
 Let us be given a degree-$d$ polynomial with real coefficients:
 \[ p(x) \ \ = \ \ a_d x^d \ + \ a_{d-1} x^{d-1} \ + \ a_{d-2} x^{d-2}
 \ + \cdots + \ a_1 x \ + \ a_0
 \]
-Since we are interested only studying {\em the roots of} $p(x)$, we lose no generality by insisting that $p(x)$ be {\em monic}, i.e., have leading coefficient $a_d = 1$.  ({\em The reader should verify this assertion!})  When $p(x)$ is a monic polynomial, we can rewrite it in the following form:
-\[ p(x) \ = \ 
+Since we are interested only studying {\em the roots of} $P(x)$, we lose no generality by insisting that $P(x)$ be {\em monic}, i.e., have leading coefficient $a_d = 1$.  ({\em The reader should verify this assertion!})  When $P(x)$ is a monic polynomial, we can rewrite it in the following form:
+\[ P(x) \ = \ 
 x^d \cdot \left( 1 \ + \ \frac{a_{d-1}}{x} \ + \ \frac{a_{d-2}}{x^2}
 \ + \cdots + \ \frac{a_1}{x^{d-1}} \ + \ \frac{a_0}{x^d} \right)
 \]
 The benefit of this rewriting is that it makes the following inequality totally clear.
-\[ p(x) \ >  \ 0 \ \ \ \ \mbox{ for all } \ \ \ x >
+\[ P(x) \ >  \ 0 \ \ \ \ \mbox{ for all } \ \ \ x >
 d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots + \ |a_1| \ + \ |a_0| \right)
 \]
-And, this inequality implies that all real roots of $p(x)$, if there are any, lie within the region
+And, this inequality implies that all real roots of $P(x)$, if there are any, lie within the region
 \[ x \ \leq \ d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots + \ |a_1| \ + \ |a_0| \right) \]
-
 \index{polynomial!monic}
 
 \medskip
 
-This is just one very simple example, but it does illustrate that one can sometimes delimit bounded regions within which all of $p(x)$'s roots must lie.  Numerous texts (and research papers) deal with the general problem of computing the roots of polynomials; see, e.g., \cite{MacDuffee}.
+This is just one very simple example, but it does illustrate that one can sometimes delimit bounded regions within which all of $P(x)$'s roots must lie.  Numerous texts (and research papers) deal with the general problem of computing the roots of polynomials; see, e.g., \cite{MacDuffee}.
 
 
 \subsubsection{Solving polynomials by radicals}
@@ -1143,80 +1142,65 @@ From Fig.~\ref{fig:SecondDegree}, the two roots we are looking for are symmetric
 
 \paragraph{B. Solving cubic polynomials by radicals}
 
-We derive a formula for the roots of an arbitrary cubic polynomial
-\index{Polynomial!cubic!generic} with real coefficients:
-\index{polynomial!solving a cubic polynomial} 
+\index{Polynomial!cubic!generic} \index{polynomial!solving a cubic polynomial} 
+
+We derive a formula for the roots of the general cubic polynomial  with real coefficients:
 \begin{equation}
 \label{eq:generic-cubic-1}
 P(x) \ = \  ax^3 \ + \ bx^2 \ + \ cx \ + \ d \ \ \mbox{  where  }
 \ b,c, d  \in \R;\ a \in \R \setminus \{0\}
 \end{equation}
-Although the so-called {\em cubic formula} that we derive, and its
-derivation, are specialized to the structure of degree-$3$
-polynomials, the reader will recognize several aspects of the
-derivation that are akin to our derivation of the quadratic formula.
-Because the cubic formula is so complex in form, we present the
-formula's proof/derivation {\em before} presenting the formula.
+Although the so-called {\em cubic formula}, which we derive now, is daunting in form, its proof and derivation should be quite accessible because they follow the same flow as the clerically much simpler proof and derivation of the quadratic formula.  For this reason, we derive the 
+Because the cubic formula is so complex in form, we present the cubic formula step by step {\em before} we present the formula.
 
 \begin{proof} {\it (Derivation of the cubic formula)}
 
-\noindent {\it Step 1.} Convert $P(x)$ to a {\em monic}
-cubic polynomial $P^{(1)}(x)$ which shares $P(x)$'s roots.
+\smallskip
+
+\noindent {\it Step 1.} Convert $P(x)$ to a {\em monic} cubic polynomial $P^{(1)}(x)$ which shares $P(x)$'s roots.
+
+\smallskip
 
 \noindent
-This is accomplished via a change of coefficents that rewrites $P(x)$
-as the monic cubic polynomial
+We accomplish this via a change of coefficients that rewrites $P(x)$ as the monic cubic polynomial
 \begin{equation}
 \label{eq:generic-cubic-2}
 P^{(1)}(x) \ = \  x^3 \ + \ Bx^2 \ + \ Cx \ + \ D
 \end{equation}
-The required change of coefficents is specified implicitly as follows
+The required change of coefficients is specified implicitly as follows
 \[
 B \ = \ \frac{b}{a}; \ \ \
 C \ = \ \frac{c}{a}; \ \ \
 D \ = \ \frac{d}{a}
 \]
 
-%It should be clear that the polynomials $P(x)$ and $P^{(1)}(x)$ have
-%the same roots.  {\Arny We should include this as a simple exercise.}
-
 \medskip
 
-\noindent {\it Step 2.} Convert $P^{(1)}$ to a {\em reduced form}
 \index{polynomial!cubic!monic!reduced form}
-cubic polynomial $P^{(2)}$ which shares $P$'s roots.  By
-``reduced'', we mean that $P^{(2)}$ has no quadratic term---i.e., no
-term in which the variable is raised to the power $2$.
+
+\noindent {\it Step 2.} Convert $P^{(1)}$ to a {\em reduced form} cubic polynomial $P^{(2)}$ which shares $P$'s roots.  By ``reduced'', we mean that $P^{(2)}$ has no quadratic term---i.e., no term in which the variable is raised to the power $2$.
+
+\smallskip
 
 \noindent
-This transformation is accomplished as follows.  We make the
-transformation of variable
+We accomplish this transformation as follows.  We make the following change of variable in (\ref{eq:generic-cubic-2}).
 \begin{equation}
 \label{eq:cubic-substitute-y-for-x} 
 y \ = \ x \ + \ \frac{B}{3}
 \end{equation}
-in (\ref{eq:generic-cubic-2}).  We thereby convert $P^{(1)}(x)$, a
-polynomial in variable $x$, into the following polynomial in variable
-$y$:
-
+We thereby convert $P^{(1)}(x)$, a polynomial in variable $x$, into the following polynomial in variable $y$:
 \begin{eqnarray}
 \nonumber
 P^{(2)}(y) & = &  \left(y - \frac{B}{3} \right)^3
  \ + \ B \left(y - \frac{B}{3} \right)^2
  \ + \ C \left(y - \frac{B}{3} \right) \ + \ D \\
-%\nonumber
-%           & = &
-%y^3 \ - \ B y^2 \ + \ \frac{B^2}{9} y \ - \ \frac{B^3}{27}
-%\ + \ By^2 \ - \ \frac{2B^2}{3} y \ + \ \frac{B^3}{9} 
-%\ + \ Cy \ - \ \frac{BC}{3}  \ + \ D \\
 \label{eq:generic-cubic-3}
            & = &
 y^3 \ + \
 \left( \frac{B^2}{9} \ - \ \frac{2B^2}{3} \ + \ C  \right) y
 \ + \ \left( \frac{2 B^3}{27}  \ - \ \frac{BC}{3}  \ + \ D \right)
 \end{eqnarray}
-For simplicity, we rewrite $P^{(2)}(y)$, which clearly is in reduced
-form, as
+For simplicity, we rewrite $P^{(2)}(y)$, which clearly is in reduced form, as
 \begin{eqnarray}
 \label{eq:generic-cubic-4}
 P^{(2)}(y) & = & y^3 \ + \ E y \ + \ F \\
@@ -1231,22 +1215,17 @@ F & = & \frac{2 B^3}{27}  \ - \ \frac{BC}{3}  \ + \ D
 
 \medskip
 
-\noindent {\it Step 3.} Convert $P^{(2)}(y)$ to its {\em associated}
-quadratic polynomial.
+\noindent {\it Step 3.} Convert $P^{(2)}(y)$ to its {\em associated} quadratic polynomial.
+
+\index{Vi\`{e}te, Fran\c{c}ois} \index{Vieta, Franciscus}
 
 \noindent
-We accomplish this step by applying a transformation attributed to the
-$16$th-century French mathematician Fran\c{c}ois Vi\`{e}te
-\index{Vi\`{e}te, Fran\c{c}ois} (often referred to by his Latinized
-name, Franciscus Vieta) \index{Vieta, Franciscus}; see
-\cite{Hazewinkel}.  Vieta's transformation converts $P^{(2)}(y)$ to a
-quadratic polynomial by means of the variable-substitution
+We accomplish this step by applying a transformation that is attributed to the $16$th-century French mathematician Fran\c{c}ois Vi\`{e}te (often referred to by his Latinized name, Franciscus Vieta) ; see \cite{Hazewinkel}.  Vieta's transformation converts $P^{(2)}(y)$ to a quadratic polynomial by means of the following variable-substitution in (\ref{eq:generic-cubic-4}):
 \begin{equation}
 \label{eq:cubic-substitute-z-for-y}
 y \ = \ z \ - \ \frac{E}{3z}
 \end{equation}
-in (\ref{eq:generic-cubic-4}).  We thereby obtain (after calculations
-involving several cancellations) an expression
+We thereby obtain (after calculations involving several cancellations) an expression
 \begin{eqnarray}
 \nonumber
 P^{(3)}(z) & = & \left( z \ - \ \frac{E}{3z} \right)^3
@@ -1255,30 +1234,18 @@ P^{(3)}(z) & = & \left( z \ - \ \frac{E}{3z} \right)^3
   & = &
 z^3 \ - \ \frac{E^3}{27z^3}  \ + \ F
 \end{eqnarray}
-Clearly, $P^{(3)}(z)$ is not a polynomial in $z$---because of the term
-in which variable $z$ appears in the denominator---but it is a
-valuable stepping stone because the function $P^{(3)}(z)$
-vanishes---i.e., $P^{(3)}(z) = 0$---precisely when the following
-polynomial (in the ``variable'' $z^3$) vanishes.
+Clearly, $P^{(3)}(z)$ is not a polynomial in $z$---because of the term in which variable $z$ appears in the denominator.  But it is a valuable stepping stone because the function $P^{(3)}(z)$ vanishes---i.e., $P^{(3)}(z) = 0$---precisely when the following polynomial (in the ``variable'' $z^3$) vanishes.
 \[ P^{(4)}(z^3) \ = \ (z^3)^2 \ + \ (z^3) F \ - \ \frac{E^3}{27} \]
-We wrote both instances of $z^3$ in the expression for $P^{(4)}(z^3)$
-within parentheses to facilitate the view of $P^{(4)}(z^3)$ as a
-(quadratic) polynomial in the ``variable'' $z^3$.  The quadratic
-formula (\ref{eq:generic-quadratic-4}) provides us with two roots for
-$P^{(4)}$, which we express as the following two values for $z^3$
-(abbreviated via the shorthand operator $\pm$).
- \index{$\pm$: plus or minus}
+We wrote both instances of $z^3$ in the expression for $P^{(4)}(z^3)$ within parentheses to facilitate the view of $P^{(4)}(z^3)$ as a (quadratic) polynomial in the ``variable'' $z^3$.  The quadratic formula (\ref{eq:generic-quadratic-4}) provides us with two roots for $P^{(4)}$, which we express as the following two values for $z^3$ (abbreviated via the shorthand operator $\pm$).   \index{$\pm$: plus or minus}
 \begin{equation}
 \label{eq:solve-cubic-for-z3}
 (z^3) \ = \
 %\frac{1}{2} \left(-F \ \pm \ \sqrt{F^2 + 4 \frac{E^3}{27}} \right) \ = \ 
 - \frac{F}{2} \ \pm \ \sqrt{\frac{F^2}{4} + \frac{E^3}{27}}
 \end{equation}
+We can now derive all solutions for the variable $z$ in equation (\ref{eq:solve-cubic-for-z3}) via back-substitution in transformation (\ref{eq:cubic-substitute-z-for-y}).  But completing this derivation requires a bit of background.
 
-We can now derive all solutions for the variable $z$ in equation
-(\ref{eq:solve-cubic-for-z3}) via back-substitution in transformation
-(\ref{eq:cubic-substitute-z-for-y}).  But completing this derivation
-requires a bit of background.
+\smallskip
 
 Theorem~\ref{thm:fund-thm-algebra} assures us that the polynomial
 $P^{(2)}(z)$ has three roots.  In order to compute these roots, we
