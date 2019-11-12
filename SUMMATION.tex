@@ -1,4 +1,4 @@
-%version of 10-14-19
+%version of 11-12-19
 
 \chapter{Summations:
 Complex Operations from Simple Components}
@@ -9,7 +9,9 @@ Complex Operations from Simple Components}
 \label{sec:intro}
 
 The operation of {\it summation}---adding up aggregations of numbers---is of fundamental importance in the world of digital computing.  While we humans are able to deal handily with abstractions such as ``smoothness'' and ``continuity'', we must employ sophisticated {\em discretizations} of these concepts in order to enlist the aid of digital computers in dealing with such abstractions.  Summations provide a very useful discretization of ``continuous'' or
-``smooth'' phenomena that are typically dealt with by humans with the aid of the (differential and integral) calculus, which was invented by Newton and Leibniz for such dealings.
+``smooth'' phenomena that are typically dealt with by humans with the aid of the (differential and integral) calculus. %, which was invented by Newton and Leibniz for such dealings.
+
+\medskip
 
 This chapter is dedicated to exploring how to employ summations as a computational tool.  We deal throughout with {\it series}, {\it i.e.}, (possibly infinite) sequences of numbers
 \[ a_1, a_2, a_3, \ldots \]
@@ -24,198 +26,134 @@ is the target of interest.
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-Of course, when we deal with {\em infinite} series, wherein there are
-infinitely many numbers $a_i$, we must address the question of whether
-the sum (\ref{eq:abstract-sum}) exists as a finite number.  For some
-infinite series the sum {\em does} exist; we note the well-known sum
+Of course, when we deal with {\em infinite} series, wherein there are infinitely many numbers $a_i$, we must address the question of whether the sum (\ref{eq:abstract-sum}) exists as a finite number.  For some infinite series the sum {\em does} exist:  We note, for example, the well-known sum
 \begin{equation}
 \label{eq:sample-sum-2^(-k)}
  1 \ + \ \frac{1}{2} \ + \ \frac{1}{4} \ + \ \frac{1}{8} \ +
 \ \frac{1}{16} \ + \ \cdots \ + \ \frac{1}{2^k}  \ +
 \ \frac{1}{2^{k+1}} \ + \ \cdots \ = \ 2 
 \end{equation}
-(We shall encounter this summation in several guises during our journey.)
-Infinite series such as (\ref{eq:sample-sum-2^(-k)}) are said to {\em converge}.
+(We shall encounter this summation in several guises during our journey through this text.)  Infinite series such as (\ref{eq:sample-sum-2^(-k)}) are said to {\em converge}.
 \index{infinite series!convergent}
 \end{minipage}
 }
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-But sometimes an infinite series {\em does not} have a finite sum.  
-This is true, for instance, with the well-known {\it harmonic} series \index{harmonic series}
+But sometimes an infinite series does {\em not} have a finite sum.  This is true, for instance, with the well-known {\it harmonic} series \index{harmonic series}
 \begin{equation}
 \label{eq:sample-sum-harmonic}
 1 \ + \ \frac{1}{2} \ + \ \frac{1}{3} \ + \ \frac{1}{4} \ +
 \ \frac{1}{5} \ + \ \cdots \ + \ \frac{1}{k} \ + \ \frac{1}{k+1} \ +
 \ \cdots
 \end{equation}
-As more and more terms are added, the accumulated sum eventually
-exceeds every number.  Such an infinite series is said to {\em diverge}.
+As more and more terms are added to this summation, the accumulated sum eventually exceeds every number.  Such an infinite series is said to {\em diverge}.
 \index{infinite series!divergent}
-
 %{\Denis There is a link between harmonic series and the frequencies
 %of the notes in music (each note corresponds to the fundamental
 %divided by 2, 3, 4, ... May be it would be nice here to develop?}
 %{\Arny I do not know enough to say anything intelligent about this.}
 \end{minipage}
 }
+
 \medskip
 
-Sums such as (\ref{eq:sample-sum-2^(-k)}) and
-(\ref{eq:sample-sum-harmonic}) illustrate some of the complexity of
-dealing with infinite entities.  Most obviously, as we have just
-remarked, when the summations are infinite, some of them have finite sums
-while others do not.  Even more subtle, the series that {\em do} have
-(finite) sums illustrate the unintuitive fact that, sometimes finite
-objects or entities---such as the integer $2$ in equation
-(\ref{eq:sample-sum-2^(-k)})---have infinite ``names''; in this example, the
-series is an infinite "name" of integer $2$.  Lots to think about!
+Sums such as (\ref{eq:sample-sum-2^(-k)}) and (\ref{eq:sample-sum-harmonic}) illustrate some of the complexity of dealing with infinite entities.  Most obviously, as we have just remarked, when the summations are infinite, some of them have finite sums while others do not.  Even more subtle, the series that {\em do} have (finite) sums illustrate the unintuitive fact that sometimes finite objects or entities---such as the integer $2$ in equation (\ref{eq:sample-sum-2^(-k)})---have infinite ``names'':  In this example, the series is an infinite "name" of integer $2$.  Lots to think about!
+
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-The complexity of the concept of convergent infinite objects such as series has been recognized in
-various forms for more than $25$ centuries.  Several charming and
-familiar examples appear in the paradoxes attributed to Zeno of
-Elea. \index{Zeno of Elea} \index{Zeno!Zeno's paradox} In his {\it
-  Paradox of Achilles and the Tortoise}, for instance, Zeno appears at
-first glance to prove that all motion is illusory.  In this story, the
-slow-footed Tortoise (T) tries to convince the speedy Achilles (A) of
-the futility of trying to win any race in which A gives T even the
-smallest head start.  As long as T is ahead of A, says T, every time A
-traverses half the distance between the competitors, T will respond by
-moving a bit further ahead.  Thereby, T will always be a positive
-distance ahead of A, so that A can {\em never} catch T.  A similar
-``argument'' demonstrates that an arrow shot at you by an adversary
-can never reach you, as long as you continually move away from the
-archer.  {\em DO NOT TRY THIS AT HOME!}
+The conceptual dissonance of dealing with {\em infinite objects} that have {\em finite values}---as exemplified by the series (\ref{eq:sample-sum-2^(-k)})---has been recognized in various forms for more than $25$ centuries.  Several charming and familiar examples appear in the paradoxes attributed to Zeno of Elea. \index{Zeno of Elea} \index{Zeno!Zeno's paradox} 
+
+\smallskip
+
+In his {\it Paradox of Achilles and the Tortoise}, for instance, Zeno appears at first glance to prove that all motion is illusory!  In this story, the slow-of-foot Tortoise (T) tries to convince the speedy Achilles (A) of the futility of trying to win any race in which A gives T even the most minute head start.  As long as T is ahead of A, argues T, every time A traverses half the distance between the competitors, T will respond by moving a bit further ahead.  Thereby, T will always be a positive distance ahead of A, so that A can {\em never} catch T.
+
+\smallskip
+
+A similar ``argument'' demonstrates that an arrow shot at you by an adversary can never reach you, as long as you continually move away from the archer.  {\em DO NOT TRY THIS AT HOME!}
 
 \medskip
 
-The notion of {\em infinitesimals}, \index{infinitesimals} which
-explains the fallacy of assertions such as the Tortoise's, were not
-well understood until just a few hundred years ago.  This notion plays a
-huge role in modern mathematics, underlying such foundational concepts
-as {\em limits} \index{limits} and {\em continuity} 
-\index{continuity (of functions)}(of functions).
+\index{infinitesimals} \index{Newton, Isaac} \index{Leibniz (Leibnitz), Gottfried Wilhelm}
+The notion of {\em infinitesimals},  as invented by Isaac Newton and Gottfried Wilhelm Leibniz, explains the fallacy of assertions such as the Tortoise's.  This notion, which plays a huge role in modern mathematics, underlying such foundational concepts as {\em limits} and {\em continuity} (of functions), was not well understood until just a few hundred years ago.
+ \index{limits}  \index{continuity (of functions)}
 
 \medskip
 
-The general topic of the convergence or divergence of infinite series
-is beyond the scope of this text.  It is a fascinating subject for further study.
+The general topic of the convergence or divergence of infinite series is beyond the scope of this text, but we shall observe several examples of each concept throughout this chapter.  It is a fascinating subject for further study.
 \end{minipage}
 }
 
 \medskip
 
-Toward the end of guiding the reader through the forest of
-abstractions and operations and techniques associated with summations,
-we categorize the targets of our discussions in three ways.
+Toward the end of guiding the reader through the forest of abstractions and operations and techniques associated with summations, we categorize the targets of our discussions in three ways.
 \begin{enumerate}
 \item
-We study a number of {\it fundamental summations} that have intrinsic
-interest.
+We study a number of {\it fundamental summations} which have intrinsic interest.
 
 \smallskip
 
-Examples of this topic category include {\it arithmetic summations},
-{\it geometric summations}, and {\it mathematically ``smooth''
-  summations}, including sums of positive and negative powers of
-integers.  Here is a sampler of six summations that appear later in this
-chapter.
+Examples of this topic category include {\it arithmetic summations}, {\it geometric summations}, and {\it mathematically ``smooth'' summations}, including sums of positive and negative powers of integers.  Here is a sampler of six summations that appear later in this chapter.
 \[
 \begin{array}{lclcl}
 1.  & &
-1 \ + \ 2 \ + \ 3 \ + \ 4 \ + \ 5 \ + & \cdots & + \ k  \ + \ (k+1) \ +
-\ \cdots \ + \ n \\
+1 \ + \ 2 \ + \ 3 \ + \ 4 \ + \ 5 \ + & \cdots & + \ k  \ + \ (k+1) \ + \ \cdots \ + \ n \\
 2. & &
-1 \ + \ 2 \ + \ 4 \ + \ 8 \ + \ 16 \ + & \cdots & + \ 2^k  \ +
-\ 2^{k+1} \ + \ \cdots \ + \ 2^n \\
+1 \ + \ 2 \ + \ 4 \ + \ 8 \ + \ 16 \ + & \cdots & + \ 2^k  \ + \ 2^{k+1} \ + \ \cdots \ + \ 2^n \\
 3. & &
-1 \ + \ 4 \ + \ 9 \ + \ 16 \ + \ 25 \ + & \cdots & + \ k^2  \ + \ (k+1)^2 \ +
-\ \cdots \ + \ n^2 \\
+1 \ + \ 4 \ + \ 9 \ + \ 16 \ + \ 25 \ + & \cdots & + \ k^2  \ + \ (k+1)^2 \ + \ \cdots \ + \ n^2 \\
 4. & &
-1 \ + \ \frac{1}{2} \ + \ \frac{1}{4} \ + \ \frac{1}{16} \ +
-\ \frac{1}{32} \ + & \cdots & + \ \frac{1}{2^k}  \ + \ \frac{1}{2^{k+1}} \ +
-\ \cdots \\
+1 \ + \ \frac{1}{2} \ + \ \frac{1}{4} \ + \ \frac{1}{16} \ + \ \frac{1}{32} \ + & \cdots & + \ \frac{1}{2^k}  \ + \ \frac{1}{2^{k+1}} \ + \ \cdots \\
 5. & &
-1 \ + \ \frac{1}{2} \ + \ \frac{1}{3} \ + \ \frac{1}{4} \ +
-\ \frac{1}{5} \ + & \cdots & + \ \frac{1}{k}  \ + \ \frac{1}{k+1} \ +
-\ \cdots \\
+1 \ + \ \frac{1}{2} \ + \ \frac{1}{3} \ + \ \frac{1}{4} \ + \ \frac{1}{5} \ + & \cdots & + \ \frac{1}{k}  \ + \ \frac{1}{k+1} \ + \ \cdots \\
 6. & &
-1 \ + \ \frac{1}{4} \ + \ \frac{1}{9} \ + \ \frac{1}{16} \ +
-\ \frac{1}{25} \ + & \cdots & + \ \frac{1}{k^2}  \ + \ \frac{1}{(k+1)^2} \ +
-\ \cdots
+1 \ + \ \frac{1}{4} \ + \ \frac{1}{9} \ + \ \frac{1}{16} \ + \ \frac{1}{25} \ + & \cdots & + \ \frac{1}{k^2}  \ + \ \frac{1}{(k+1)^2} \ + \ \cdots
 \end{array}
 \]
 
 \item
-We study a variety of {\it fundamental techniques} for evaluating
-summations.
+We study a variety of {\it fundamental techniques} for evaluating summations.
 
 \smallskip
 
-We include specialized techniques that work for specific classes of
-summations, as well as more general techniques that work in a broad
-range of situations.
+We include specialized techniques that work for specific classes of summations, as well as more general techniques that work in a broad range of situations.
 
 \smallskip
 
-Examples of such techniques include, e.g.: estimating summations by
-integrating functions related to the summation; grouping/replication
-of terms within a summation; verifying ``guessed'' sums via induction.
+Examples of such techniques include, e.g.: estimating summations by integrating functions related to the summation; grouping/replication of terms within a summation; verifying ``guessed'' sums via induction.
 
 \item
-We study a variety of {\it fundamental representations} of the
-elements being summed.  We observe that being able to study the same
-phenomenon in a variety of seemingly unrelated ways often gives one
-unexpected mathematical understanding of and operational control over
-the phenomenon.
+We study a variety of {\it fundamental representations} of the elements being summed.  We observe that being able to study the same phenomenon in a variety of seemingly unrelated ways often gives one unexpected mathematical understanding of, and operational control over, the phenomenon.
 
 \smallskip
 
-Examples of such representations include, among others,
-representations of numbers by: numerals in a positional number system;
-slices of pie; tokens arranged in stylized ways; basic geometrical
-structures, including the unit-width rectangles of so-called Riemann sums.
+Examples of such representations include, among others, representations of numbers by: numerals in a positional number system; slices of pie; tokens arranged in stylized ways; basic geometrical structures, including the unit-width rectangles of so-called Riemann sums.
 \end{enumerate}
 
 \medskip
 
 \noindent
-{\em In conclusion, we treat each topic in multiple ways, as long as
-  each new way supplies new intuition and teaches a new lesson.}
+{\em In conclusion, we treat each topic in multiple ways, as long as each new way supplies new intuition and teaches a new lesson.}
 
 \bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\ignore{\Denis Again, as I said before, I am not really convinced by this example.
+\ignore{********\Denis Again, as I said before, I am not really convinced by this example.
 Keeping the same sum, I prefer the story of Sissa, telling an old legende:
 where wheat or rice is placed upon each square of the chess board in the following way:
 put one grain on the first square, and then, double this number on each of the subsequent squares,
-$2$ in the second case, $4$ in the third and so on.}
+$2$ in the second case, $4$ in the third and so on.
+**********}
 
 \ignore{\Denis add cross reference for computing the sum of powers of 2 in DOINGMATHS}
 
-To illustrate the power of summation methodology, consider the
-following modernized version of the {\it legend of Sissa ibn Dahir}.
-\index{Sissa ibn Dahir, legend of}  Sissa, goes the legend, has invented a marvelous game that is played on a chessboard,
-i.e., an $8 \times 8$ array of
-unit-size squares.  An entrepreneur proposes to buy the rights of this marvelous game from Sissa.
-The entrepreneur offers Sissa a one-time payment of {\em one million million (i.e., $10^{12} =
-  1,000,000,000,000$) euros} in return for all rights to the new game.  As
-a counter-offer, Sissa asked the entrepreneur instead for all of the money
-amassed in the following way.  Sissa requested that the entrepreneur proceed row
-by row along a chessboard, placing money in the board's squares,
-according to the following regimen.  The entrepreneur should place $1$
-euro in the first square, $2$ euros in the second square, $4 \ (= 2
-\times 2)$ euros in the third square, $8 \ (= 4 \times 2)$ euros in the
-fourth square, and so on, doubling the number of euros at each step of the
-procedure---so the last square would contain $2^{63}$ euros.
-Fig.~\ref{fig:Sissa} illustrates the growth of the pile of euros during first few steps of the procedure.
+\index{Sissa ibn Dahir, legend of} 
+To illustrate the power of summation methodology, consider the following modernized version of the {\it legend of Sissa ibn Dahir}.  Sissa, goes the legend, has invented a marvelous game that is played on a chessboard, i.e., an $8 \times 8$ array of unit-size squares.  An entrepreneur proposes to buy the rights of this marvelous game from Sissa.  The entrepreneur offers Sissa a one-time payment of {\em one million million (i.e., $10^{12} = 1,000,000,000,000$) euros} in return for all rights to the new game.  As a counter-offer, Sissa asked the entrepreneur instead for all of the money amassed in the following way.  Sissa requested that the entrepreneur proceed row by row along a chessboard, placing money in the board's squares, according to the following regimen.  The entrepreneur should place $1$ euro in the first square, $2$ euros in the second square, $4 \ (= 2 \times 2)$ euros in the third square, $8 \ (= 4 \times 2)$ euros in the
+fourth square, and so on, doubling the number of euros at each step of the procedure---so the last square would contain $2^{63}$ euros. Fig.~\ref{fig:Sissa} illustrates the growth of the pile of euros during first few steps of the procedure.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresMaths/chess}
@@ -224,19 +162,15 @@ Fig.~\ref{fig:Sissa} illustrates the growth of the pile of euros during first fe
 \end{center}
 \end{figure}
 
-\smallskip
+\medskip
 
 \noindent
 {\em Has Sissa made a good bargain?}
 
-\smallskip
+\medskip
 
 \noindent
-By the end of this chapter, you will be able to determine in minutes
-that under the procedure that amasses money on the chessboard, Sissa  
-would receive $2^{64} -1$ euros---which is more than $10^{20}$ euros!  Sissa would, therefore, amass
-{\em much} more money via his counteroffer than the mere $10^{12}$ euros that the entrepreneur
-offered!
+By the end of this chapter, you will be able to determine in minutes that under the procedure that amasses money on the chessboard, Sissa would receive $2^{64} -1$ euros---which is more than $10^{20}$ euros!  Sissa would, therefore, amass {\em much} more money via his counteroffer than the mere $10^{12}$ euros that the entrepreneur offered!
 %{\Denis I think the previous value is -1 and not -2}
 
 \noindent
