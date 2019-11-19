@@ -187,53 +187,42 @@ By the end of this chapter, you will be able to determine in minutes that under 
 
 \subsubsection{General development}
 
-We define arithmetic sequences and learn how to calculate their sums.
-
+We define the concept of arithmetic sequences and learn how to calculate their sums.
+\index{arithmetic sequence} \index {arithmetic series}
 \begin{equation}
 \label{eq:arith-seq}
 \begin{array}{l}
-\mbox{An $n$-term arithmetic sequence:} \\
+\mbox{An $n$-term {\em arithmetic sequence}:} \\
 \hspace*{.25in}a, \ a+b, \ a+2b, \ a+3b, \ \ldots, a+(n-1)b \\
-\\
-\mbox{The corresponding arithmetic series:} \\
+  \\
+\mbox{The corresponding {\em arithmetic series}:} \\
 \hspace*{.25in}a + (a+b) + (a+2b) + (a+3b) + \cdots + (a+(n-1)b) \\
 \hspace*{.5in} = \
 an + b \cdot (1 + 2 + \cdots + n-1)
 \end{array}
 \end{equation}
-We can, thus, sum the arithmetic series in (\ref{eq:arith-seq}) by
-determining the sum of the first $n-1$ positive integers.  We use this
-result as an opportunity to introduce important notation.
+The message from the factorization of the arithmetic series in (\ref{eq:arith-seq}) is that we can calculate the sum of the series by determining the sum of the first $n-1$ positive integers.  In the next subsection, we use this fact as an opportunity to introduce important notation.
 
 \subsubsection{Example \#1: Summing the first $n$ integers}
 \label{sec:special-arithmetic sums}
 
-Our first goal is to sum the first $n$ positive integers:
-\[ 1 \ + \ 2 \ + \cdots + \ n \]
-that is, to find a {\it closed-form expression} 
 \index{closed-form expression}
-for the sum.  In somewhat informal terms, we say that an expression of
-the form
+Our first goal in this section is to sum the first $n$ positive integers:
+\[ 1 \ + \ 2 \ + \cdots + \ n \]
+that is, to find a {\it closed-form expression} for the sum.  In somewhat informal terms, we say that an expression of the type
 \begin{equation}
 \label{eq:sigma-summation}
 f(n) \ \eqdef \ \sum_{i=1}^n \ i
 \end{equation}
-is in {\it closed form} if it exposes a prescription for evaluating
-the sum using a {\em fixed-length} sequence of arithmetic operations
-(e.g., addition/subtraction, multiplication/division,
-exponentiation/taking logarithms).  The notion "closed form" contrasts with the recipe implicit in the notation
-(\ref{eq:sigma-summation}), which takes $n-1$ additions to evaluate.  (Depending on the value of 
-the input $n$, the indicated computation does not have {\em fixed} length.) 
+is in {\it closed form} if it provides a prescription for evaluating the sum using a {\em fixed-length} sequence of arithmetic operations (e.g., addition/subtraction, multiplication/division, exponentiation/taking logarithms).  The notion "closed form" contrasts with the recipe implicit in the notation (\ref{eq:sigma-summation}), which takes $n-1$ additions to evaluate---because its length depends on input $n$, the indicated computation does not have {\em fixed} length. 
 
-The sum $f(n)$ of the special summation  (\ref{eq:sigma-summation}) is commonly denoted $\Delta_n$.
 \index{$\Delta_n$: sum of the first $n$ integers}
-Within this chapter, we usually prefer the notation $S_1(n)$ for this sum, because it
-exposes this summation as one instance of a related family of such
-summations that will occupy us through this chapter; we denote the sums of these summations as $S_c(n)$ for various
-values of parameter $c$.
+The sum $f(n)$ of the special summation  (\ref{eq:sigma-summation}) is commonly denoted $\Delta_n$.  Within this chapter, we usually prefer the notation $S_1(n)$ for this sum, because it
+exposes this summation as one instance of a related family of such summations that will occupy us through this chapter; we denote the sums of these summations by the notation $S_c(n)$ for various values of parameter $c$.
 
-The remainder of this section is devoted to developing multiple ways
-to derive the following {\em closed-form} expression for $\Delta_n = S_1(n)$.
+\smallskip
+
+The remainder of this section develops multiple ways to derive the following {\em closed-form} expression for $\Delta_n = S_1(n)$.
 
 \begin{prop}
 \label{thm:sum-first-integers-Gauss}
@@ -241,8 +230,7 @@ to derive the following {\em closed-form} expression for $\Delta_n = S_1(n)$.
 For all $n \in \N$,
 \begin{equation}
 \label{eq:sum-1-to-n}
-S_1(n) \ = \ \sum_{i=1}^n \ i \
-  \ = \  \frac{1}{2} n (n+1) 
+S_1(n) \ = \ \sum_{i=1}^n \ i \  \ = \  \frac{1}{2} n (n+1) 
 \end{equation}
 \end{prop}
 \index{Sum of the first $n$ integers: $\Delta_n = S_1(n)$}
@@ -252,17 +240,10 @@ S_1(n) \ = \ \sum_{i=1}^n \ i \
 
 \index{Sum of the first $n$ integers: $\Delta_n = S_1(n)$!a {\bf textual} derivation}
 \index{Gauss, Karl Friedrich} \index{Gauss, Karl Friedrich!summation ``trick''}
+\index{sum of first $n$ integers!a textual reckoning}
 \begin{proof}
 {\bf A textual proof.}
-\index{sum of first $n$ integers!a textual reckoning}
-%
-We begin with a {\em constructive} proof\footnote{The proof is {\em
-    constructive} in that it actually derives an answer.  This is in
-  contrast to, say, the inductive validation of the sum in
-  Section~\ref{sec:positive-integer-power}.C, which just verifies a
-  ``guessed'' answer.}~of summation (\ref{eq:sum-1-to-n}) that employs
-an approach known to the eminent German mathematician Karl Friedrich
-Gauss as a pre-teenager.  This approach proceeds in two steps.
+We begin with a {\em constructive, textual} proof\footnote{The proof is {\em constructive} in that it actually derives an explicit answer.  This is in contrast to, say, the inductive validation of the sum $S_1(n)$ in Section~\ref{sec:positive-integer-power}.C, which just verifies a ``guessed'' answer.}~of summation (\ref{eq:sum-1-to-n}) which employs an approach that was, famously,  used in a school exercise by the eminent German mathematician Karl Friedrich Gauss---as a pre-teenager.  This approach proceeds in two steps.
 \begin{equation}
 \label{eq:arith-series}
 \begin{array}{llccccccccc}
@@ -273,11 +254,7 @@ Gauss as a pre-teenager.  This approach proceeds in two steps.
 \hspace*{.2in}\sum_{i=n}^1 \ i \ = & n & + & (n-1) & + & \cdots & + & 2   & + & 1
 \end{array}
 \end{equation}
-Now add the two representations of $S_1(n)$ in (\ref{eq:arith-series})
-{\em columnwise}.  Because each of the $n$ column-sums equals $n+1$,
-we find that $2 S_1(n) = n(n+1)$, which we easily rewrite in the form
-(\ref{eq:sum-1-to-n}) (after multiplying both sides of the equation by
-$2$).
+Now add the two representations of $S_1(n)$ in (\ref{eq:arith-series}){\em column by column}.  Because each of the $n$ column-sums equals $n+1$, we find that $2 S_1(n) = n(n+1)$, which we easily rewrite in the form (\ref{eq:sum-1-to-n})---after we multiply both sides of the equation by $2$.
 \end{proof}
 
 \medskip
@@ -285,85 +262,51 @@ $2$).
 \begin{minipage}{0.96\textwidth}
 \noindent {\bf Remark.}
 %
-Now is an opportune moment to step back from the specific result
-  in Proposition~\ref{thm:sum-first-integers-Gauss} and concentrate on
-  the textual proof.  What Gauss noticed about the sum of the first
-  $n$ integers is that when the sum is doubly written as in
-  (\ref{eq:arith-series}), the column-sums are all the same.  This
-  phenomenon of {\em finding invariants} is a ``pattern'' of the form
-  referred to in Chapter~\ref{ch:doingmath} as we discussed how
-  mathematicians ``do mathematics''.  We see in the proof how the
-  pattern can be exploited to determine the sum of any arithmetic series.
-  {\em What seemed to be a ``trick'' turns out to be an insightful
-    instance of pattern-matching.}  We shall soon see that the pattern
-  can be exploited to other, related, ends.
+Let us step back from the specific result in Proposition~\ref{thm:sum-first-integers-Gauss} and concentrate on the textual proof.  What Gauss noticed about the problem of computing $S_1(n)$ is that when the sum is doubly written as in (\ref{eq:arith-series}), the column-sums are all the same.  This phenomenon of finding {\em invariants} is a ``pattern'' of the form referred to in Chapter~\ref{ch:doingmath} as we discussed how to ``do mathematics''.  We observe how the pattern can be exploited to determine the sum of any arithmetic series.  {\em What seemed to be a ``trick'' turns out to be an insightful instance of pattern-matching!}  We soon see how to employ the pattern for other, related, ends.
   \end{minipage}
 }
+
 \bigskip
 
-
-Not everyone thinks the same way---even within the context of
-mathematics.  It is, therefore, very important for the reader to
-recognize that even the simplest mathematical facts can be proved and
-analyzed in a broad variety of ways.  We illustrate this assertion by
-developing more proofs of Proposition~\ref{thm:sum-first-integers-Gauss}.
+Not everyone thinks the same way---even within the context of mathematics.  It is, therefore, very important for the reader to recognize that even the simplest mathematical facts can be proved and analyzed in a broad variety of ways.  We illustrate this assertion by developing several more proofs of Proposition~\ref{thm:sum-first-integers-Gauss}.
 
 \index{Sum of the first $n$ integers: $\Delta_n = S_1(n)$!a {\bf ``pictorial'', graphic} derivation}
+\index{unit-side square}
 \begin{proof}
-{\bf A ``pictorial'', graphic proof.}
-%
-The idea now is to look at the problem of summing the first $n$
-integers as a problem of estimating the area of a simple (in the
-\textit{good sense} of the word) surface.  In this worldview, integers
-are represented by concatenating {\it unit-side} (i.e., $1
-\times 1$ \index{unit-side square} {\it squares}), as in
-Fig.~\ref{fig:sumIntegersGeo1}.
+{\bf A ``pictorial'', graphical proof.}
+Now we shall look at the problem of summing $S_1(n)$ by estimating the area of a simple (in the \textit{good sense} of the word) surface.  In this worldview, integers are represented by concatenating {\it unit-side} (i.e., $1 \times 1$ {\it squares}), as in Fig.~\ref{fig:sumIntegersGeo1}.
 
-Our summation process can be obtained in three steps, in the manner
-illustrated in
-Figs.~\ref{fig:sumIntegersGeo1},~\ref{fig:sumIntegersGeo2},
-and~\ref{fig:sumIntegersGeo3}.
-\begin{figure}[ht]
+Our summation process proceeds in the three steps illustrated in Figs.~\ref{fig:sumIntegersGeo1}-\ref{fig:sumIntegersGeo3}.
+\begin{enumerate}
+\item
+We begin, in Fig.~\ref{fig:sumIntegersGeo1}, by depicting the problem of calculating $S_1(n)$ as the problem of determining the area of a surface built from unit-side squares.
+\begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersGeometricBasis}
 \caption{Representing the first $n$ integers using unit squares; $n=6$ in this example.}
        \label{fig:sumIntegersGeo1}
 \end{center}
 \end{figure}
-\begin{figure}[ht]
+\item
+Next, we illustrate in Fig.~\ref{fig:sumIntegersGeo2} that the area of the lower-right triangle of the $n \times n$ square---colored light grey in the figure---is one-half the area of the entire $n \times n$ square.
+\begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersGeometricIntermediate}
-\caption{The area of the lower-right triangle (light grey) is one-half that of
-  the entire $n \times n$ square.}
+\caption{The area of the lower-right triangle (light grey) is one-half that of the entire $n \times n$ square.}
        \label{fig:sumIntegersGeo2}
 \end{center}
 \end{figure}
-\begin{figure}[ht]
+
+\item
+Finally, we indicate in Fig.~\ref{fig:sumIntegersGeo3} that the area of the small (dark grey in the figure) triangles that cover the upper diagonal of the $n \times n$ square is $\frac{1}{2} n$.  This
+reckoning notes that there are $n$ triangles, each of area equal to one-half the area of a unit-side square.
+\begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersGeometricFinal}
-\caption{The area of the (dark) triangles sitting on the upper
-  diagonal of the $n \times n$ square is $\frac{1}{2} n$.}
+\caption{The area of the (dark) triangles sitting on the upper diagonal of the $n \times n$ square is $\frac{1}{2} n$.}
        \label{fig:sumIntegersGeo3}
 \end{center}
 \end{figure}
-\begin{enumerate}
-\item
-We begin, in Fig.~\ref{fig:sumIntegersGeo1}, by depicting the problem of
-calculating $S_1(n)$ as the problem of determining the area of a
-surface built from unit-side squares.
-
-\item
-Next, we illustrate in Fig.~\ref{fig:sumIntegersGeo2} that the area of
-the lower-right triangle of the $n \times n$ square---colored
-light grey in the figure---is one-half the area of the entire $n \times n$
-square.
-
-\item
-Finally, we indicate in Fig.~\ref{fig:sumIntegersGeo3} that the area
-of the small (dark grey in the figure) triangles that cover the upper
-diagonal of the $n \times n$ square is $\frac{1}{2} n$.  This
-reckoning notes that there are $n$ triangles, each of area equal to
-one-half the area of a unit-side square.
 \end{enumerate}
 We thereby reckon the area of the surface depicting $S_1(n)$ as
 
@@ -378,30 +321,21 @@ i.e., $\frac{1}{2} n$}
 \smallskip
 
 \noindent
-We have, thus, derived the value of $S_1(n)$.
+This reasoning has, thus, derived the value of $S_1(n)$.
 \end{proof}
 
 \medskip
 
-We present one final proof of
-Proposition~\ref{thm:sum-first-integers-Gauss}.
+We present one final, combinatorial, proof of Proposition~\ref{thm:sum-first-integers-Gauss}.
 
 \index{Sum of the first $n$ integers: $\Delta_n = S_1(n)$!a {\bf combinatorial} derivation}
 \begin{proof}
 {\bf A combinatorial proof.}
-%
-The following argument is {\it combinatorial} in that it achieves its
-goal by {\em counting} instances of the first $n$ integers, laid out
-in a line.
+The following argument is {\it combinatorial} in that it achieves its goal by {\em counting} instances of the first $n$ integers, laid out in a line.
 
-Place (tokens that represent) the integers $0$ to $n$ along a line.
-For each integer $i$, count how many integers $j > i$ lie to its
-right.  We see that in general, there is a {\it block} of $n-i$
-integers that lie to the right of integer $i$.  In detail: the block
-of integers lying to the right of $i=0$ contains $n$ values of $j$;
-the block to the right of $i=1$ contains $n-1$ values of $j$, and so
-on, as suggested in Fig.~\ref{fig:rightward-instances}.
+\smallskip
 
+Place (tokens that represent) the integers $0$ to $n$ along a line.  For each integer $i$, count how many integers $j > i$ lie to its right.  We see that in general, there is a {\it block} of $n-i$ integers that lie to the right of integer $i$.  In detail: the block of integers lying to the right of $i=0$ contains $n$ values of $j$; the block to the right of $i=1$ contains $n-1$ values of $j$, and so on, as suggested in Fig.~\ref{fig:rightward-instances}.
 \begin{figure}[htb]
 \[
 \begin{array}{lcccccc}
@@ -417,54 +351,35 @@ on, as suggested in Fig.~\ref{fig:rightward-instances}.
  &   &   &   &   & 4
 \end{array}
 \]
-\caption{A two-dimensional (triangular) depiction of the right-lying
-  integer-instances.}
+\caption{A two-dimensional (triangular) depiction of the right-lying integer-instances.}
 \label{fig:rightward-instances}
 \end{figure}
 
-On the one hand, we see that the total number of right-lying integers
-$j$ equals $n+(n-1)+ \cdots + 1 \ = \ S_1(n)$.
+\smallskip
 
-On the other hand, every instance of a right-lying integer can be
-identified uniquely by the pair of nonnegative integers, $i$ (the
-instance's block) and $j>i$ (the instance's position-within-block).
-The total number of right-lying integer-instances corresponds to the
-number of ways one can select two objects (here, integers) from among $n+1$ objects.\footnote{We
-  study such counting techniques in depth in
-  Section~\ref{sec:counting}.}  This number is the binomial
-coefficient whose definition we specialize from equation
-(\ref{eq:binom-coeff}) in
-Section~\ref{sec:binary-operators}.C:\footnote{The sums $\Delta_n$
-  are, thus, special binomial coefficients, namely, those whose ``bottom" parameter is $2$.
-  The many ways of viewing the underlying summation in terms of triangles---as in
-  Figs.~\ref{fig:sumIntegersGeo1}--\ref{fig:rightward-instances}---have
-  led to the naming of these special binomial coefficients
-  as {\it triangular numbers}.  \index{triangular numbers}
-  \index{binomial coefficients!triangular numbers} }
+On the one hand, we see that the total number, $j$, of right-lying integers equals $n+(n-1)+ \cdots + 1 \ = \ S_1(n)$.
+
+\smallskip
+
+On the other hand, every instance of a right-lying integer can be identified uniquely by the pair of nonnegative integers, $i$ (the instance's block) and $j>i$ (the instance's position-within-block).
+The total number of right-lying integer-instances corresponds to the number of ways one can select two objects (here, integers) from among $n+1$ objects.\footnote{We study such counting techniques in depth in Section~\ref{sec:counting}.}  This number is the {\it binomial coefficient }, whose definition we specialize from equation (\ref{eq:binom-coeff}) in Section~\ref{sec:binary-operators}.C:\footnote{The sums $\Delta_n$ are, thus, special binomial coefficients, namely, those whose ``bottom" parameter is $2$.  The many ways of viewing the underlying summation in terms of triangles---as in Figs.~\ref{fig:sumIntegersGeo1}--\ref{fig:rightward-instances}---have led to the naming of these special binomial coefficients as {\it triangular numbers}.  \index{triangular numbers}  \index{binomial coefficients!triangular numbers} }
 \[
 \Delta_n  \ = \  {{n+1} \choose 2}  \  \eqdef  \  \frac{1}{2} n(n+1)
 \]
-We have thus derived two distinct---but, of course,
-equal---expressions for $S_1(n)$.
+We have thus derived two distinct---but, of course, equal---expressions for $S_1(n)$.
 \end{proof}
+
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-Our combinatorial derivation of summation (\ref{eq:sum-1-to-n})
-illustrates one of the most important roles of mathematical
-abstraction.  There is no obvious intuition to explain the
-relationship between the activity of summing $n$ consecutive integers
-and the activity of extracting two objects out of a set of $n$ objects.
-Yet, our combinatorial derivation exposes an intimate connection
-between the two.
+Our combinatorial derivation of summation (\ref{eq:sum-1-to-n}) illustrates one of the most important roles of mathematical abstraction.  There is no obvious intuition to explain the relationship between the activity of summing $n$ consecutive integers and the activity of extracting two objects out of a set of $n$ objects.  Yet, our combinatorial derivation exposes an intimate connection between the two.
 \end{minipage}
 }
-\medskip
 
-Now that we know---{\em and understand}---how to derive the value of
-$S_1(n)$, we can finally evaluate our original series in
-(\ref{eq:arith-seq}).  \index{arithmetic series:explicit sum}
+\bigskip
+
+Now that we know---{\em and understand}---how to derive the value of $S_1(n)$, we can finally evaluate our original series in (\ref{eq:arith-seq}).  \index{arithmetic series:explicit sum}
 
 \begin{prop}
 \label{thm:sum-of-arithmetic-series}
@@ -472,8 +387,7 @@ The arithmetic series in (\ref{eq:arith-seq}) has the sum
 \begin{equation}
 \label{eq:sum-arithmetic-series}
 a + (a+b) + (a+2b) + (a+3b) + \cdots + (a+(n-1)b) \ \ = \ \
-%an + b \cdot {n \choose 2}. 
-an + b \cdot \Delta_n
+an + b \cdot \Delta_n.
 \end{equation}
 \end{prop}
 
@@ -481,11 +395,7 @@ an + b \cdot \Delta_n
 \subsubsection{Example \#2: Squares as sums of odd integers}
 \label{sec:sumOfOdds}
 
-In this section, we build on
-Proposition~\ref{thm:sum-first-integers-Gauss} to craft multiple
-constructive proofs of the fact that each perfect square $n^2$
-is the sum of the first $n$ odd integers, $1, 3, 5, \ldots, 2n-1$.
-All of these proofs complement the ``guess-and-verify'' inductive
+In this section, we build on Proposition~\ref{thm:sum-first-integers-Gauss} to craft multiple constructive proofs of the fact that each perfect square $n^2$ is the sum of the first $n$ odd integers, $1, 3, 5, \ldots, 2n-1$.  All of these proofs complement the ``guess-and-verify'' inductive
 proof of this result in Section~\ref{sec:positive-integer-power}.C.
 
 \begin{prop}
@@ -497,28 +407,20 @@ For all $n \in \N^+$,
 \sum_{i=1}^n \ (2i-1)
  \ = \ 1 + 3 + 5 + \cdots + (2n-1) \ = \ n^2
 \end{equation}
-That, is, the $n$th perfect square is the sum of the first $n$ odd
-integers.
+That, is, the $n$th perfect square is the sum of the first $n$ odd integers.
 \end{prop}
 
-Before we present our proofs of this result, we want to stress that the
-notation for odd integers in the summation within (\ref{eq:sum-of-odds}) is completely
-general: {\em Every positive odd integer $n$ can be written in the form
-$2i-1$ for some positive integer $i$.}
+Before we present our proofs of this result, we want to stress that the notation for odd integers in the summation within (\ref{eq:sum-of-odds}) is completely general: {\em Every positive odd integer $n$ can be written in the form $2i-1$ for some positive integer $i$.}
 
-\medskip
+\bigskip
 
-Our first two proofs of
-Proposition~\ref{thm:squares-odd-integers-Gauss} note that the result
-is a corollary of both Proposition~\ref{thm:sum-first-integers-Gauss}
-and Proposition~\ref{thm:sum-of-arithmetic-series}.
+Our first two proofs of Proposition~\ref{thm:squares-odd-integers-Gauss} note that the result is a corollary of both Proposition~\ref{thm:sum-first-integers-Gauss} and Proposition~\ref{thm:sum-of-arithmetic-series}.
 
 \medskip
 
 \index{$n^2$ as sum of first $n$ odd integers!a proof using algebra}
 \begin{proof}
 {\bf A proof using algebra.}
-%
 By direct calculation, we find that
 \begin{eqnarray*}
 \sum_{i=1}^n \ \left( 2i-1 \right)
@@ -536,9 +438,7 @@ By direct calculation, we find that
 \begin{proof}
 {\bf A proof by calculation.}
 %
-Because summation (\ref{eq:sum-of-odds}) is an arithmetic series with
-$a=1$ and $b=2$, we know from
-Proposition~\ref{thm:sum-of-arithmetic-series} that it evaluates to
+Because summation (\ref{eq:sum-of-odds}) is an arithmetic series with parameters $a=1$ and $b=2$, we know from Proposition~\ref{thm:sum-of-arithmetic-series} that the summation evaluates to
 \[ (1 \cdot n) + 2 \Delta_{n-1} \ = \ n + n^2 -n \ = \ n^2 \]
 \end{proof}
 
@@ -549,17 +449,12 @@ Proposition~\ref{thm:sum-of-arithmetic-series} that it evaluates to
 
 \medskip
 
-Our next proof builds on the stratagem of {\em finding invariants} that we exploited in the textual proof of
-Proposition~\ref{thm:sum-first-integers-Gauss}.
+Our next proof builds on the stratagem of {\em finding invariants} that we exploited in the textual proof of Proposition~\ref{thm:sum-first-integers-Gauss}.
 
 \index{$n^2$ as sum of first $n$ odd integers!a textual proof}
 \begin{proof}
 {\bf A textual proof.}
-%
-We adapt to this summation Gauss's ``trick'', wherein one adds the series written
-forwards to the series written backwards.  Let us
-denote the target summation $\sum_{k=1}^n \ (2k-1)$ by $S(n)$.  We record
-$S(n)$ in two ways:
+We adapt Gauss's ``trick'' to this summation ; i.e., we write the current summation both forwards and backwards, and then add the two summations term by term.  Let us denote the target summation $\sum_{k=1}^n \ (2k-1)$ by $S(n)$.  We record $S(n)$ both forwards and backwards:
 \begin{equation}
 \label{eq:add-odds}
 \begin{array}{llccccccccc}
@@ -572,8 +467,7 @@ S(n) \ =
 & (2n-1) & + & (2n-3) & + & \cdots & + & 3 & + & 1
 \end{array}
 \end{equation}
-Now add these two representations of $S(n)$ {\em columnwise}.  Because
-each of the $n$ column-sums equals $2n$, we find that
+Now, we add these two representations of $S(n)$ {\em column by column}.  Because each of the $n$ column-sums equals $2n$, we find that
 \begin{equation}
 \label{eq:sum-of-odds-sum}
 2 S(n) \ = \ 2 \sum_{i=1}^n \ (2i-1) \ = \ 2n^2
@@ -584,19 +478,16 @@ equated quantities in equation (\ref{eq:sum-of-odds-sum}).
 
 \medskip
 
-\index{$n^2$ as sum of first $n$ odd integers!a proof ``by pictures''}
+\index{$n^2$ as sum of first $n$ odd integers!a ``pictorial" proof}
 \begin{proof}
-{\bf A proof ``by pictures''.}
-%
-We now build up to a proof that is almost purely pictorial, with just
-a bit of reasoning mixed in.  The only ``sophisticated'' knowledge
-required is that
+{\bf A ``pictorial" proof.}
+We now build up to a proof that is almost purely pictorial, with only a bit of reasoning turning the pictures into a narrative.  The only ``sophisticated'' knowledge this proof requires is that
 \begin{equation}
 \label{eq:(n+1)^2}
 (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1
 \end{equation}
-This well-known equation can be verified by symbolically squaring $n+1$:
-\[ (n+1) \cdot (n+1) \ \ = \ \ n \cdot (n+1) \ + \ (n+1) 
+This well-known equation is verified by symbolically {\em squaring} expression $n+1$:
+\[ (n+1) \times (n+1) \ \ = \ \ n \cdot (n+1) \ + \ (n+1) 
      \ \ = \ \ n^2 \ + \ n \ + \ n \ + \ 1
 \]
 
@@ -604,37 +495,22 @@ This well-known equation can be verified by symbolically squaring $n+1$:
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-We remark that equation (\ref{eq:(n+1)^2}) is the simplest
-  instance of the {\em restricted Binomial Theorem}, which appears
-  later in this chapter as Theorem~\ref{thm:restricted-binomial-thm}.
+We remark that equation (\ref{eq:(n+1)^2}) is the simplest instance of the {\em restricted Binomial Theorem}, which appears later in this chapter as Theorem~\ref{thm:restricted-binomial-thm}.
 \end{minipage}
 }
 
-\bigskip
+\medskip
 
-\noindent
-%Back to our proof of Proposition~\ref{thm:squares-odd-integers-Gauss}.
-%
-Our pictorial proof begins by representing each integer $n$ as a
-horizontal sequence of $n$ tokens, i.e., darkened circles.  The
-problem of summing the first $n$ odd integers then begins with a
-picture such as appears in Fig.~\ref{fig:sumOdds1}, for the
-illustrative case $n=5$.
-\begin{figure}[ht]
+Our pictorial proof begins by representing the generic positive integer $n$ as a horizontal sequence of $n$ tokens, i.e., darkened circles.  The problem of summing the first $n$ odd integers then begins with a picture such as appears in Fig.~\ref{fig:sumOdds1}, for the illustrative case $n=5$.
+\begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsBasis}
-\caption{Representing the first $n$ odd integers using tokens.  In
-  this illustration, $n=5$.}
+\caption{Representing the first $n$ odd integers using tokens.  In this illustration, $n=5$.}
        \label{fig:sumOdds1}
 \end{center}
 \end{figure}
 
-Starting with such a picture, we take each row of $2i-1$ tokens and
-fold it at its midpoint so that it becomes a reversed letter ``$L$''.
-The row of $2i-1$ tokens becomes an ``$L$'' whose horizontal portion
-(at the bottom of the reversed ``$L$'') is a row of $i$ tokens and
-whose vertical portion (at the right of the reversed ``$L$'') is a
-column of $i$ tokens (the ``hinge" token is in both portions).
+Starting with this picture, we take each row of $2i-1$ tokens and ``fold" it at its midpoint so that it becomes a reversed letter ``$L$''.  The row of $2i-1$ tokens becomes an ``$L$'' whose horizontal portion (at the bottom of the reversed ``$L$'') is a row of $i$ tokens and whose vertical portion (at the right of the reversed ``$L$'') is a column of $i$ tokens (the ``hinge" token resides in both portions).
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsIntermediate}
@@ -643,68 +519,48 @@ column of $i$ tokens (the ``hinge" token is in both portions).
 \end{center}
 \end{figure}
 
-Once we have folded every row of tokens into a reversed ``$L$'', we
-nest the occurrences of ``$L$'' in the manner depicted in
-Fig~\ref{fig:sumOdds3}.
+Once we have folded every row of tokens into a reversed ``$L$'', we nest the different-size occurrences of ``$L$'' into one another, in the manner depicted in Fig~\ref{fig:sumOdds3}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsFinal}
-\caption{The final picture organized as an $n \times n$ square
-  array of tokens.}
+\caption{The final picture organized as an $n \times n$ square array of tokens.}
        \label{fig:sumOdds3}
 \end{center}
 \end{figure}
-Clearly, this nesting produces an $n \times n$ square array of
-(perforce, $n^2$) tokens.
+Clearly, this nesting produces an $n \times n$ square array of (perforce, $n^2$) tokens.
 \end{proof}
 
 \medskip
 
 \index{$n^2$ as sum of first $n$ odd integers!another proof ``by pictures''}
 \begin{proof}
-{\bf Another proof ``by pictures''.}
-%
-The reader who enjoyed the preceding ``proof 'by pictures''' may be amused by
-the challenge of completing the kindred slightly more complex proof illustrated by
-Fig.~\ref{fig:anotherSumOdds}.
-\begin{figure}[ht]
+{\bf Another ``pictorial" proof.}
+The reader who enjoyed the preceding ```pictorial' proof'' may be amused by the challenge of completing the kindred slightly more complex proof illustrated by Fig.~\ref{fig:anotherSumOdds}.
+\begin{figure}[htb]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/Deltaodd}
-\caption{Four copies of $S(n)$ represented as a triangle of tokens.
-  The triangles are arranged to yield a $2n \times 2n$ square of
-  tokens.}
+       \includegraphics[scale=0.35]{FiguresMaths/Deltaodd}
+\caption{Four copies of $S(n)$ represented as a triangle of tokens.  The triangles are arranged to yield a $2n \times 2n$ square of tokens.}
        \label{fig:anotherSumOdds}
 \end{center}
 \end{figure}
-In the figure we have arranged four copies of the triangle of tokens which
-depicts summation $S(n)$ (the first $n$ odd numbers).  We have arranged
-the triangles in a way that produces a $2n \times 2n$ square of tokens.  In the
-arrangement, each side of the square is a line of $1+2n-1 \ = \ 2n$ tokens.  This
-construction illustrates that $4 S(n) \ = \ (2n)^2  \ = \ 4n^2$.
+In the figure we have illustrate four copies of the triangle of tokens which depicts summation $S(n)$ (which sums the first $n$ odd numbers).  We have arranged the triangles in a way that produces a $2n \times 2n$ square of tokens.  In the arrangement, each side of the square is a line of $1+2n-1 \ = \ 2n$ tokens.  This construction illustrates that $4 S(n) \ = \ (2n)^2  \ = \ 4n^2$.
 \end{proof}
+
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 \textbf{Full disclosure}: Fig.~\ref{fig:anotherSumOdds} provides the basis for a proof of 
-Proposition~\ref{thm:squares-odd-integers-Gauss}, but it does not provide the complete proof:
-We must somehow
-verify that the construction in the figure is completely general, i.e., that the depicted emergence of the
-$2n \times 2n$ square of tokens from four copies of the
+Proposition~\ref{thm:squares-odd-integers-Gauss}, but it does not provide the complete proof: We must somehow verify that the construction in the figure is completely general, i.e., that the depicted emergence of the $2n \times 2n$ square of tokens from four copies of the
 $\Delta_n$-triangle is not an artifact of the depicted case $n =5$.  This verification is not difficult.
 
 \medskip
 
-What is notable about Fig.~\ref{fig:anotherSumOdds}, even with this caveat, is how
-it truly facilitates the {\em discovery} of the Proposition.
+What is notable about Fig.~\ref{fig:anotherSumOdds}, even with this caveat, is how it truly facilitates the {\em discovery} of the Proposition.
 
 \medskip
 
-Of course, it should not be surprising that pictorial reasoning is useful in highlighting the kinds of patterns
-that lead to discoveries as  we {\em do} mathematics.  It should also come as no surprise that nothing comes
-for free.  As this example indicates: Even when pictorial reasoning leads us to
-intriguing discoveries, it does not obviate the invocation of
-additional modalities of reasoning for rigorously verifying the facts that the patterns reveal.
+Of course, it should not be surprising that pictorial reasoning is useful in highlighting the kinds of patterns that lead to discoveries as  we {\em do} mathematics.  It should also come as no surprise that nothing comes for free.  As this example indicates: Even when pictorial reasoning leads us to intriguing discoveries, it does not obviate the invocation of additional modalities of reasoning for rigorously verifying the facts that the patterns reveal.
 \end{minipage}
 }
 
@@ -744,16 +600,15 @@ The side of the square is equal to $1+2n-1=2n$, thus $4 \cdot S(n)=(2n)^2= 4n^2$
 \noindent {\em A preview of coming attractions}.
 In Section~\ref{sec:sum-of-i2c>0}, we develop the underpinnings of
 techniques that incrementally compute:
-
-$\bullet$ the sums of the first $n$ consecutive integers (the summations $S_1(n)$), 
-
-$\bullet$ the sums of the first $n$ squares of the integers (the summations $S_2(n)$), 
-
-$\bullet$ the sums of the first $n$ cubes of the integers (the summations $S_3(n)$),
-
-\noindent
-and so on.  We have, thus begun to establish a base for a summation technique that is inductive, i.e., that computes each summation
-$S_c(n)$ from the lower-index summations: $S_1(n)$, $S_2(n)$, \ldots, $S_{c-1}(n)$.  Our inductive technique awaits a bit more background.
+\begin{itemize}
+\item
+the sums of the first $n$ consecutive integers (the summations $S_1(n)$), 
+\item
+the sums of the first $n$ squares of the integers (the summations $S_2(n)$), 
+\item
+the sums of the first $n$ cubes of the integers (the summations $S_3(n)$),
+\end{itemize}
+and so on.  We have, thus begun to establish a base for a summation technique that is {\em inductive}, i.e., that computes each summation $S_c(n)$ from the lower-index summations: $S_1(n)$, $S_2(n)$, \ldots, $S_{c-1}(n)$.  Our inductive technique awaits a bit more background.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
