@@ -619,11 +619,12 @@ and so on.  We have, thus begun to establish a base for a summation technique th
 
 \subsubsection{Overview and main results}
 
-We define geometric sequences and learn how to calculate their sums
-via the following generic examples.
+We define geometric sequences and series and learn how to calculate their sums via the following generic examples.
 \index{geometric sequence}
 \index{geometric summations}
 \index{geometric series}
+
+\medskip
 
 An $n$-term geometric sequence:
 \begin{equation}
@@ -650,30 +651,30 @@ S_{a,b}^{(\infty)} \ \ \eqdef \ \  \sum_{i=0}^\infty a b^i
  \ \  = \ \   a + ab + ab^2 + \cdots 
 \end{equation}
 
-It is clear from these definitions that we can evaluate the summation
-(\ref{eq:genl-geom-summation}) by evaluating just the sub-summation
-\begin{equation}
-\label{eq:geom-summation}
-S_{b}(n) \ \eqdef \ \sum_{i=0}^{n-1} b^i \ = \
-1+ b + b^2 + \cdots + b^{n-1}
-\end{equation}
-and we can evaluate the series (\ref{eq:genl-geom-series}) by
-evaluating just the sub-series
-\begin{equation}
-\label{eq:geom-series}
-S_{b}^{(\infty)} \ \ \eqdef \ \ \sum_{i=0}^\infty b_i \ \ = \ \
-1+ b + b^2 + \cdots 
-\end{equation}
-
 \medskip
 
-The major results that we develop in this section are:
+It is clear from these definitions that:  We can evaluate the summation (\ref{eq:genl-geom-summation}) by evaluating just the sub-summation
+\begin{equation}
+\label{eq:geom-summation}
+S_{b}(n) \ \eqdef \ \sum_{i=0}^{n-1} b^i \ = \ 1+ b + b^2 + \cdots + b^{n-1}
+\end{equation}
+we can evaluate the series (\ref{eq:genl-geom-series}) by evaluating just the sub-series
+\begin{equation}
+\label{eq:geom-series}
+S_{b}^{(\infty)} \ \ \eqdef \ \ \sum_{i=0}^\infty b_i \ \ = \ \ 1+ b + b^2 + \cdots 
+\end{equation}
+
+\bigskip
 
 \index{evaluating geometric sums and series}
+The major results that we develop in this section are embodied in the following proposition.
+
 \begin{prop}
 \label{thm:sum-finite-geometric-series}
 Let $S_{b}(n)$ be a geometric summation, as defined in
 (\ref{eq:geom-summation}).
+
+\smallskip
 
 \noindent {\bf (a)}
 When $b > 1$, $S_{b}(n)$ evaluates to the following sum.
@@ -681,6 +682,8 @@ When $b > 1$, $S_{b}(n)$ evaluates to the following sum.
 \label{eq:geom-sum:b>1}
 S^{(b>1)}_{b}(n) \ = \ \frac{b^{n}- 1}{b - 1}
 \end{equation}
+
+\smallskip
 
 \noindent {\bf (b)}
 When $b < 1$, $S_{b}(n)$ evaluates to the following sum.
@@ -690,16 +693,35 @@ S^{(b<1)}_{b}(n) \ = \ \frac{1 - b^n}{1-b}
 \end{equation}
 \end{prop}
 
-Of course, in the uninteresting degenerate case $b=1$
-\[ S^{(b=1)}_{b}(n) \ = \ 1 + 1 + \cdots + 1 \ \ \ \mbox{($n$ times)}
-  \ \ \ \ = \ n \]
+\smallskip
 
-\medskip
+\noindent
+Of course, in the uninteresting {\em degenerate} case $b=1$
+\[ S^{(b=1)}_{b}(n) \ = \ 1 + 1 + \cdots + 1 \ \ \mbox{($n$ times)} \ \ = \ n \]
 
-The infinite case (\ref{eq:geom-series}) can be dealt with as a
-corollary to Proposition~\ref{thm:sum-finite-geometric-series}(b), by
-letting $n$ grow without bound and observing that the resulting
-sequence of values converges.
+\bigskip
+
+\index{degenerate cases in mathematics}
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+The Apple$^{\mbox{\scriptsize{\sc tm}}}$ dictionary defines the word ``degenerate" as follows:
+
+\smallskip
+
+``lacking some property, order, or distinctness of structure previously or usually present.
+
+``{\em Mathematics} relating to or denoting an example of a particular type of equation, curve, or other entity that is equivalent to a simpler type, often occurring when a variable or parameter is set to zero."
+
+\smallskip
+
+In our case, the structures of the terms in summations (\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) play a critical role in determining the sums of the summations.  In the case $b=1$, all terms lack structure: they ``degenerate" to value $1$.
+\end{minipage}
+}
+
+\bigskip
+
+The infinite case (\ref{eq:geom-series}) can be dealt with as a corollary of Proposition~\ref{thm:sum-finite-geometric-series}(b), by letting $n$ grow without bound and observing that the resulting sequence of values converges.
 
 \begin{prop}
 \label{thm:sum-infinite-geometric-series}
@@ -714,41 +736,29 @@ When $b < 1$,  the {\em infinite} series $S^{(\infty)}_{b}$ {\em
 \subsubsection{Techniques for summing geometric series}
 \label{sec:summing-geometric-series:techniques}
 
-We turn now to a sequence of proofs of
-Propositions~\ref{thm:sum-finite-geometric-series}
-and~\ref{thm:sum-infinite-geometric-series}.
+We turn now to a sequence of proofs of Propositions~\ref{thm:sum-finite-geometric-series} and~\ref{thm:sum-infinite-geometric-series}.
 
 \medskip
 
 \index{evaluating geometric sums and series!by textual replication}
 \begin{proof}
-{\bf A proof by textual replication.}
-%
-Toward the end of developing our first method for summing $S_{b}(n)$,
-we note that we can rewrite the sum in two ways that are {\em
-  (textually) recurrent}.
+{\bf A proof via textual replication.}
+Toward the end of developing our first method for summing $S_{b}(n)$, we note that we can rewrite the sum in two ways that are {\em (textually) recurrent}.
 
 \bigskip
 
 \noindent
-{\em This phenomenon of {\em finding recurrent subexpressions} is a
-  ``pattern'' of the form described in Chapter~\ref{ch:doingmath} as
-  we discussed how mathematicians ``do mathematics''.  We now
-  exemplify how this pattern can be exploited to find explicit sums
-  for geometric summations and series.}
+This phenomenon of {\em finding recurrent subexpressions} is a ``pattern'' of the form described in Chapter~\ref{ch:doingmath}.  We now describe how this pattern can be exploited to find explicit sums for geometric summations and series.
 
 \bigskip
 
 \noindent
-Both of the recurrent expressions for $S_{b}(n)$ have the following form.
+Both of the recurrent expressions for $S_{b}(n)$ have the form
 \begin{equation}
 \label{eq:geom-series-recurrent}
 S_b(n) \ = \ \alpha \cdot S_b(n) \ + \ \beta(n)
 \end{equation}
-where $\alpha$ is a constant and $\beta(n)$ is a function of $n$; both
-$\alpha$ and $\beta(n)$ may depend on the parameter $b$.  We provide
-two recurrent expressions for $S_b(n)$, one of which is more
-interesting when $b>1$, the other when $b<1$.
+where $\alpha$ is a constant and $\beta(n)$ is a function of $n$; both $\alpha$ and $\beta(n)$ may depend on the parameter $b$.  We provide two recurrent expressions for $S_b(n)$, one of which is more interesting when $b>1$, the other when $b<1$.
 \begin{eqnarray}
 \label{eq:geom-series-replicate}
 \nonumber
@@ -758,128 +768,84 @@ S_{b}(n)
 \nonumber
   &   &  \\
 \label{eq:geom-series-replicate-1}
-%  & = & 1 + b \cdot S_{b}(n) - b^n
    & = & b \cdot S_{b}(n) \ + \ (1 - b^n) \\
 \nonumber
    &  & \\
-%  & = & {\displaystyle
-%b^{n-1} + \frac{1}{b} \cdot S_{b}(n) - \frac{1}{b}}
 \label{eq:geom-series-replicate-2}
   & = &
 \frac{1}{b} \cdot S_{b}(n) \ + \ \frac{b^n -1}{b} 
 \end{eqnarray}
-The significance of a recurrent expression of the form
-(\ref{eq:geom-series-recurrent}) is that it exposes an explicit value
-for $S_b(n)$:
+The significance of a recurrent expression of the type (\ref{eq:geom-series-recurrent}) is that it exposes an explicit value for $S_b(n)$:
 \begin{equation}
 \label{eq:geom-series-generic}
 S_b(n) \ = \ \frac{\beta(n)}{1 - \alpha}
 \end{equation}
 
-We now combine the generic value (\ref{eq:geom-series-generic}) of
-$S_b(n)$ with the specialized recurrent expressions in
-(\ref{eq:geom-series-replicate-1}) and
-(\ref{eq:geom-series-replicate-2}) to derive two explicit solutions
-for $S_b(n)$.
+\medskip
+
+We now combine the generic value (\ref{eq:geom-series-generic}) of $S_b(n)$ with the specialized recurrent expressions in (\ref{eq:geom-series-replicate-1}) and (\ref{eq:geom-series-replicate-2}) to derive two explicit solutions for $S_b(n)$.
 \begin{enumerate}
 \item
-The first solution is most useful and perspicuous when $b>1$.  In this
-case, we find that
-\[ \left( 1 - \frac{1}{b} \right)  S^{(b>1)}_{b}(n) \ = \ b^{n-1} -
-\frac{1}{b} \]
-which can easily be rearranged to the equivalent and more
-perspicuous form (\ref{eq:geom-sum:b>1}).
+The first solution is most useful and perspicuous when $b>1$.  In this case:
+\[ \left( 1 - \frac{1}{b} \right)  S^{(b>1)}_{b}(n) \ = \ b^{n-1} - \frac{1}{b} \]
+which is easily rearranged to the equivalent and more perspicuous form (\ref{eq:geom-sum:b>1}).
 
 \item
-The second solution is most useful and perspicuous when $b < 1$.  In this
-case, we find that
+The second solution is most useful and perspicuous when $b < 1$.  In this case:
 \[ (1-b) S^{(b<1)}_{b}(n) \ = \ 1 \ - \ b^n \]
-which can easily be rearranged to the equivalent and more
-perspicuous form (\ref{eq:geom-sum:b<1}).
+which is easily rearranged to the equivalent and more perspicuous form (\ref{eq:geom-sum:b<1}).
 \end{enumerate}
 \end{proof}
 
-Note that both $S^{(b>1)}_{b}(n)$ and $S^{(b<1)}_{b}(n)$ have simple
-{\em approximate} values which are useful in ``back-of-the-envelope''
-calculations: For very large values of $n$, we have
+\medskip
+
+Note that both $S^{(b>1)}_{b}(n)$ and $S^{(b<1)}_{b}(n)$ have simple {\em approximate} values which are useful in ``back-of-the-envelope'' calculations: For very large values of $n$, we have
 \begin{equation}
 \label{eq:geom-sum:approx}
-S^{(b>1)}_{b}(n) \ \approx \ \frac{b^n}{b-1} \ \ \
-\mbox{and} \ \ \
+S^{(b>1)}_{b}(n) \ \approx \ \frac{b^n}{b-1} \ \ \ \
+\mbox{and} \ \ \ \
 S^{(b<1)}_{b}(n) \ \approx \ \frac{1}{1-b} 
 \end{equation}
-The expression for $S^{(b<1)}_{b}(n)$ in (\ref{eq:geom-sum:approx}) is
-actually a rewording of
+The expression for $S^{(b<1)}_{b}(n)$ in (\ref{eq:geom-sum:approx}) is actually a rewording of
 Proposition~\ref{thm:sum-infinite-geometric-series}.
 
 \medskip
 
-\index{evaluating geometric sums and series!a pictorial way to sum
-  $S^{(\infty)}_{1/2}$ using cascading shrinking squares}
+\index{evaluating geometric sums and series!a pictorial way to sum $S^{(\infty)}_{1/2}$ using cascading shrinking squares}
 \begin{proof}
-{\bf A pictorial representation for summing $S^{(\infty)}_{1/2}$.}
-%
-Fig.~\ref{fig:sumGeoBasis} depicts a pictorial process whose analysis
-provides a rigorous proof of
-Proposition~\ref{thm:sum-infinite-geometric-series} for the case $b =
-1/2$, \textit{i.e.}, a rigorous argument that the series $S^{(\infty)}_{1/2} =
-\sum_{i=0}^\infty \ 2^{-i}$ sums to $2$.
-\begin{figure}[ht]
+{\bf A ``pictorial" summation of $S^{(\infty)}_{1/2}$.}
+Fig.~\ref{fig:sumGeoBasis} pictorially depicts a process whose analysis provides a rigorous proof of Proposition~\ref{thm:sum-infinite-geometric-series} for the case $b = 1/2$, \textit{i.e.}, a rigorous argument that the series $S^{(\infty)}_{1/2} = \sum_{i=0}^\infty \ 2^{-i}$ sums to $2$.
+\begin{figure}[htb]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur2Bis}
+       \includegraphics[scale=0.35]{FiguresMaths/SumGeometric1sur2Bis}
  \caption{Arranging successive rectangles to evaluate $S^{(\infty)}_{1/2}$.}
        \label{fig:sumGeoBasis}
 \end{center}
 \end{figure}
-In this evaluation of $S^{(\infty)}_{1/2}$, we measure fractional
-quantities by the portion of a unit-side rectangle that they fill.
-Thus (follow in the figure): the initial term of $S^{(\infty)}_{1/2}$,
-namely $1$, is represented by the unit square that is labeled ``$1$''
-in the figure.  The next term of the series, namely $1/2$, is
-represented by the rectangle labeled ``$1/2$'' in the figure, and so
-on, with successively smaller rectangles.  By designing each rectangle
-to have half the area of its predecessor, the sequence of rectangles
-thus represents successively smaller inverse powers of $2$.  As the
-process proceeds, we observe increasingly more of the righthand
-unit-side square being filled.  In fact, one can argue that {\em
-  every} point in the righthand unit-side square eventually gets
-covered by some small rectangle (as $n$ tends to $\infty$), thereby
-establishing that the infinite series $S^{(\infty)}_{1/2}$
-does, indeed, sum to $2$.
+In this evaluation of $S^{(\infty)}_{1/2}$, we measure fractional quantities by the portion of a unit-side rectangle that they fill.  Thus (follow in the figure): the initial term of $S^{(\infty)}_{1/2}$, namely, $1$, is represented by the unit square that is labeled ``$1$'' in the figure.  The next term of the series, namely, $1/2$, is represented by the rectangle labeled ``$1/2$'' in the figure.  And so on, with successively smaller rectangles.  Because we design each rectangle to have half the area of its predecessor, the sequence of rectangles represents successively smaller inverse powers of $2$.  As the process proceeds, we observe increasingly more of the righthand unit-side square being filled.  In fact, one can verify, via an elementary induction, that {\em every} point in the righthand unit-side square eventually gets covered by some small rectangle (as $n$ tends to $\infty$), thereby establishing that the infinite series $S^{(\infty)}_{1/2}$ does, indeed, sum to $2$.
 
-\ignore{*******
-The result is immediate while considering a basic unit square and its
-successive decompositions while divided by $2$.
-Thus, the whole surface corresponds to the sum of $(\frac{1}{2})^k$. 
-It is equal to $2$ (surface of the two big squares) and it is completely filled. 
-***********}
+\bigskip
 
-This procedure is difficult, but not impossible, to adapt to values of
-$b <1$ other than $1/2$.  The sequence Fig.~\ref{fig:sumGeoGeneral1},
-\begin{figure}[ht]
+The preceding procedure is difficult, but not impossible, to adapt to values of $b <1$ other than $1/2$.  The sequence Fig.~\ref{fig:sumGeoGeneral1}--Fig.~\ref{fig:sumGeoGeneral3}
+\begin{figure}[htb]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral1}
+       \includegraphics[scale=0.35]{FiguresMaths/SumGeometricGeneral1}
 \caption{Initial state: the unit square and the base $b$.}
        \label{fig:sumGeoGeneral1}
 \end{center}
 \end{figure}
-Fig.~\ref{fig:sumGeoGeneral2},
-\begin{figure}[ht]
+\begin{figure}[htb]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral2}
-\caption{Beginning to craft the geometric series by cascading
-  shrinking squares.}
+       \includegraphics[scale=0.35]{FiguresMaths/SumGeometricGeneral2}
+\caption{Beginning to develop the geometric series via cascading shrinking squares.}
        \label{fig:sumGeoGeneral2}
 \end{center}
 \end{figure}
-Fig.~\ref{fig:sumGeoGeneral3} suggests how to achieve such an
-adaptation for any value of $b$ with $0 \leq b <1$, by an
-appropriate cascade of shrinking squares.
+suggests how to achieve such an adaptation for any value of $b$ with $0 \leq b <1$, via an appropriate cascade of shrinking squares.
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumGeometricGeneral3}
-\caption{The complete process for computing a geometric series using a
-  cascade of shrinking squares.}
+       \includegraphics[scale=0.35]{FiguresMaths/SumGeometricGeneral3}
+\caption{The complete process for computing a geometric series by using a cascade of shrinking squares.}
        \label{fig:sumGeoGeneral3}
 \end{center}
 \end{figure}
@@ -915,163 +881,74 @@ $\frac{S^{(\infty)}_{b} }{1} = \frac{1}{1-b}$.
 
 \index{evaluating geometric sums and series!a pictorial way to sum $S^{(\infty)}_{1/2}$}
 \begin{proof}
-{\bf Another pictorial representation for summing $S^{(\infty)}_{1/2}$.}
-%
-The pictorial derivation of the sum $S^{(\infty)}_{1/2}$ can be accomplished using geometric shapes other than squares.  We now present a natural derives the sum $S^{(\infty)}_{1/2}$ by vigorously slicing a pie.
+{\bf Another ``pictorial" summation of $S^{(\infty)}_{1/2}$.}
+The pictorial derivation of the sum $S^{(\infty)}_{1/2}$ can be accomplished using geometric shapes other than squares.  We now present a natural derivation of the sum $S^{(\infty)}_{1/2}$ by vigorously slicing a pie.
 
 The process of pie-slicing works most naturally with the modified series
 \[ \overline{S}^{(\infty)}_{1/2} \ \ = \ \ \sum_{i=1}^\infty 2^{-i}
  \ \ = \ \ S^{(\infty)}_{1/2} \ - \ 1. \]
-which omits the initial summand $1$ from $S^{(\infty)}_{1/2}$.  Of course, 
-$\overline{S}^{(\infty)}_{1/2}$ sums to $1$, because $S^{(\infty)}_{1/2}$ sums to $2$.
-
-The pie-slicing evaluation of $\overline{S}^{(\infty)}_{1/2}$ is depicted in Fig~\ref{fig:sumGeo1sur2circle}.  In the figure, the inverse powers of $2$ are represented by appropriate fractions of a unit-diameter disk (the pie).  The evaluation begins with this disk before it is sliced: this represents the number $1$, which we eventually show to be the sum
-$\overline{S}^{(\infty)}_{1/2}$.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur2circle}
-\caption{Computing the sum of $1/2^i$ using a unit disk.}
-       \label{fig:sumGeo1sur2circle}
-\end{center}
-\end{figure}
-We slice the disk in half using the depicted diameter; we label one of the resulting half-disks ``$1/2$''.  Next, we slice one of the half-disks in half using a radius of the unit disk; we label one of the quarter-disks ``$1/4$''.  We continue in this manner {\em ad infinitum}.  The analysis that yields the sum $\overline{S}^{(\infty)}_{1/2}$ amounts to a proof that every point in the unit-diameter disk eventually resides in a slice that is not further
-sliced.  Details are left to the interested reader.
-\end{proof}
-
-\ignore{***************
-Another variation refers to the surface of an unit equilateral triangle. 
-We are looking for the sum of the $1/4^i$ is equal to $1/3$ by two ways
-refering to Fig~\ref{fig:sumGeo1sur4}: The area of the infinite sum represented in dark grey is obviously one third of the total area
-(easy to see if we remark that the dark triangles are one third in each layer...). 
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumGeometric1sur4}
-\caption{Computing the sum of $1/4^i$.}
-       \label{fig:sumGeo1sur4}
-\end{center}
-\end{figure}
-
-\subsubsection{A fun result via geometric sums: When is integer  $n$
-  divisible by $9$?}
-\label{sec:divisible-by-9}
-
-We now exploit our ability to evaluate geometric summations to
-illustrate a somewhat surprising, nontrivial fact.  One can deduce
-information about the divisibility of an integer $n$ from $n$'s
-positional numerals.  We hope that this ``fun'' result will inspire
-the reader to seek kindred numeral-encoded properties of numbers.
-
-\begin{prop}
-\label{thm:div-by-b-bar}
-An integer $n$ is divisible by an integer $m$ if, and only if, $m$
-divides the sum of the digits in the base-$(m+1)$ numeral for $n$.
-\end{prop}
-
-The most familiar instance of this result is phrased in terms of our
-traditional use of base-$10$ (decimal) numerals. \\
-{\it An integer $n$ is divisible by $9$ if, and only if, the sum of
-  the digits of $n$'s base-$10$ numeral is divisible by $9$.}
-
-\smallskip
-
-\begin{proof}
-({\it Argument for general number-base $b$}).
-%
-Of course, we lose no generality by focusing on numerals without
-leading $0$'s, because leading $0$'s do not alter a numeral's sum of
-digits.
-
-Let us focus on the base-$b$ numeral for a number $n$ (so $b = m+1$ in
-the statement of the proposition).  There therefore exist base-$b$
-digits---i.e., integers from the set $\{0, 1, \ldots, b-1\}$---call
-them $\delta_k \neq 0$, $\delta_{k-1}$, \ldots $\delta_1$, $\delta_0$,
-such that
-\[ n \ = \ \delta_k \cdot b^k + \delta_{k-1} \cdot b_{k-1} + \cdots +
-\delta_1 \cdot b + \delta_0. \]
-The sum of the digits of $n$'s base-$b$ numeral is, then
-\[ s_b(n) \ \eqdef \ \delta_k + \delta_{k-1} + \cdots + \delta_1 +
-\delta_0. \]
-Let us calculate the difference $n - s_b(n)$ in the following manner,
-digit by digit.
-\begin{equation}
-\label{eq:sum-of-digits}
-\begin{array}{ccccccccccc}
-n & = &
-\delta_k \cdot b^k & + & \delta_{k-1} \cdot b^{k-1} & + & \cdots
-  & + & \delta_1 \cdot b & + & \delta_0 \\
-s_b(n) & = &
-\delta_k & + & \delta_{k-1} & + & \cdots & + & \delta_1 & + & \delta_0 \\
-\hline
-n - s_b(n) & = &
-\delta_k \cdot (b^k -1) & + &
-\delta_{k-1} \cdot (b^{k-1} -1) & + &
-\cdots & + &
-\delta_1 \cdot (b-1) & & 
-\end{array}
-\end{equation}
+which omits the initial summand $1$ from $S^{(\infty)}_{1/2}$.  Of course, $\overline{S}^{(\infty)}_{1/2}$ sums to $1$, because $S^{(\infty)}_{1/2}$ sums to $2$.
 
 \medskip
 
-We now revisit summation (\ref{eq:geom-sum:b>1}).  Because $b$ is a
-positive integer, so that $1 + b + \cdots + b^{a-2} + b^{a-1}$ is also
-a positive integer, we infer that {\em the integer $b^a -1$ is
-  divisible by $b-1$.}
-
-We are almost home.  Look at the equation for $n - s_b(n)$ in the
-system (\ref{eq:sum-of-digits}).  As we have just seen, every term on
-the righthand side of that equation is divisible by $b-1$.  It follows
-therefore, that the lefthand expression, $n - s_b(n)$, is also
-divisible by $b-1$.
-An easy calculation, which we leave to the reader, now shows that this
-final fact means that $n$ is divisible by $b-1$ if, and only if,
-$s_b(n)$ is.
+The pie-slicing evaluation of $\overline{S}^{(\infty)}_{1/2}$ is depicted in Fig~\ref{fig:sumGeo1sur2circle}.  In the figure, the inverse powers of $2$ are represented by appropriate fractions of a unit-diameter disk (the pie).  The evaluation begins with this disk before it is sliced: this represents the number $1$, which we eventually show to be the sum
+$\overline{S}^{(\infty)}_{1/2}$.
+\begin{figure}[htb]
+\begin{center}
+       \includegraphics[scale=0.35]{FiguresMaths/SumGeometric1sur2circle}
+\caption{Computing the sum of $1/2^i$ by slicing a unit disk.}
+       \label{fig:sumGeo1sur2circle}
+\end{center}
+\end{figure}
+We slice the disk in half using the depicted diameter and label one of the resulting half-disks ``$1/2$''.  Next, we slice one of the half-disks in half using a radius of the unit disk and label one of the quarter-disks ``$1/4$''.  We continue in this manner {\em ad infinitum}.  The analysis that yields the sum $\overline{S}^{(\infty)}_{1/2}$ amounts to a proof that every point in the unit-diameter disk eventually resides in a slice that is not further sliced.  Details are left to the reader.  \qed
 \end{proof}
-******************}
-
 
 
 \subsubsection{Extended geometric series and their sums}
 \label{sec:extended-geom-series}
 \index{extended geometric sums: $\sum_{i=1}^n \ i^c b^i$}
 
-We now build on our ability to evaluate geometric summations of the forms
-(\ref{eq:geom-sum:b>1}, \ref{eq:geom-sum:b<1}) to evaluate summations that we shall term {\em extended} geometric summations (not a standard term), i.e., summations of the form
+We now build on our ability to evaluate geometric summations of the forms (\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) to evaluate summations that we term {\em extended} geometric summations (not a standard term), i.e., summations of the form
 \[ S_b^{(c)}(n) \ \eqdef \ \sum_{i=1}^n \ i^c b^i, \]
 where $c$ is an arbitrary fixed positive integer, and $b$ is an arbitrary fixed real number.
 
-We restrict attention here to the situation defined by the joint
-non-equalities $c \neq 0$ and $b \neq 1$.
+\smallskip
+
+We restrict attention in this section to summations $S_b^{(c)}(n)$ that satisfy the joint inequalities $c \neq 0$ and $b \neq 1$.
+
+\medskip
+
 \begin{itemize}
 \item
-We have already adequately studied the case $c=0$, which characterizes
-``ordinary'' geometric summations.
+We have already adequately studied the case $c=0$, which characterizes ``ordinary'' geometric summations.
 \item
-The case $b = 1$ removes the ``geometric growth'' of the sequence underlying the summation.  We study various aspects of this {\it summation-of-fixed-powers} case in Section~\ref{sec:smooth-series}, with special treatment of summations of fixed powers of consecutive integers in Section~\ref{sec:sum-of-i2c}.
+The degenerate case $b = 1$ removes the ``geometric growth'' of the sequence underlying the summation.  We study various aspects of this {\it summation-of-fixed-powers} case in Section~\ref{sec:smooth-series}, with special treatment of summations of fixed powers of consecutive integers in Section~\ref{sec:sum-of-i2c}.
 \end{itemize}
 
-The method we now develop for evaluating all other summations $S_b^{(c)}(n)$, i.e., those with $b \neq 1$ and $c \neq 0$, has two notable properties.
-\begin{enumerate}
-\item
-The method is {\em inductive in parameter} $c$, in the sense that we can express our sum for $S_b^{(c)}(n)$ in terms of sums for summations $S_b^{(c-1)}(n)$, $S_b^{(c-2)}(n)$, \ldots,
-$S_b^{(1)}(n)$, $S_b^{(0)}(n) = S_b(n)$.  And, for each fixed value of
-$c$, the method is {\em inductive in the argument} $n$.
+\medskip
 
-%{\Denis I am not  so clear here, is it an induction on c or on n? We develop for n  later on...}
+The summation method that we now develop for evaluating all other summations $S_b^{(c)}(n)$---i.e., those with $b \neq 1$ and $c \neq 0$---has the following notable properties.
+\begin{itemize}
+\item
+The method is {\em inductive in parameter} $c$.
+
+\smallskip
+
+Specifically, we will express our sum for $S_b^{(c)}(n)$ in terms of sums for summations $S_b^{(c-1)}(n)$, $S_b^{(c-2)}(n)$, \ldots, $S_b^{(1)}(n)$, and $S_b^{(0)}(n) = S_b(n)$.
 
 \item
-The method will rely on the recurrent-subexpression strategy which we used
-effectively in Section~\ref{sec:general-geometric-sums}.
-\end{enumerate}
+For each fixed value of $c$, the method is {\em inductive in the argument} $n$.
+
+\item
+The method relies on the recurrent-subexpression strategy which we used effectively in Section~\ref{sec:general-geometric-sums}.
+\end{itemize}
 
 \medskip
 
 \index{extended geometric sums: $\sum_{i=1}^n \ i^c b^i$!the case $c=1$}
 \paragraph{A. The summation $S^{(1)}_b(n) = \sum_{i=1}^n i b^i$}
 
-We illustrate our strategy in detail for the case $c=1$ and sketch
-only briefly how it deals with larger values of $c$.  Elementary
-algebraic manipulations which are suggested by the analysis in the
-case $c=1$ should thereby allow the reader to deal with any value $c > 1$.
+We illustrate our strategy in detail for the case $c=1$ and sketch only briefly how it deals with larger values of $c$.  Elementary algebraic manipulations which are suggested by the analysis of the case $c=1$ should thereby allow the reader to deal with any value $c > 1$.
 
 \begin{prop}
 \label{thm:sum-i2i}
@@ -1088,7 +965,6 @@ S_b^{(1)}(n) \ \ = \ \
 \index{extended geometric sums: $\sum_{i=1}^n \ i^c b^i$!the case $c=1$!summing via algebraic manipulation}
 \begin{proof}
 {\bf Deriving a sum via algebraic manipulation.}
-%
 We begin to develop our strategy by writing the natural expression for
 \[ S_b^{(1)}(n) \ \ = \ \ b \ + \ 2b^2 \ + \ 3 b^3 \ + \cdots + \ n b^n  \]
 in two different ways.  First, we isolate the summation's last term:
@@ -1126,8 +1002,7 @@ b \cdot \left( S_b^{(1)}(n) \ +  \frac{b^{n+1} -1}{b-1} -1 \right) \ + \ b \\
     & = &
 b \cdot S_b^{(1)}(n) \ + \ b \cdot \frac{b^{n+1} - 1}{b-1}
 \end{eqnarray}
-Combining expressions (\ref{eq:ext-geom-c=1.1}) and (\ref{eq:ext-geom-c=1.2}) for 
-$S_b^{(1)}(n+1)$, we finally find that
+Combining expressions (\ref{eq:ext-geom-c=1.1}) and (\ref{eq:ext-geom-c=1.2}) for $S_b^{(1)}(n+1)$, we finally find that
 \begin{eqnarray}
 \nonumber
 (b-1) \cdot S_b^{(1)}(n) & = &
@@ -1136,8 +1011,7 @@ $S_b^{(1)}(n+1)$, we finally find that
  & = &
 \left( n - \frac{1}{b-1} \right) \cdot b^{n+1} \ + \ \frac{b}{b-1}
 \end{eqnarray}
-We now use standard algebraic manipulations to derive expression
-(\ref{eq:sum-i2i}) from equation (\ref{eq:sum-i2i-source}).  \qed
+We now use standard algebraic manipulations to derive expression (\ref{eq:sum-i2i}) from equation (\ref{eq:sum-i2i-source}).  \qed
 \end{proof}
 
 %{\Denis I add below a particular case,
@@ -1146,20 +1020,21 @@ We now use standard algebraic manipulations to derive expression
 \index{extended geometric sums: $\sum_{i=1}^n \ i^c b^i$!the case $c=1$!solving the case $b=2$ using subsum rearrangement}
 \begin{proof}
 {\bf Solving the case $b=2$ using subsum rearrangement.}
-%
 We can evaluate the sum
 \[
 S_2^{(1)}(n) \ = \ \sum_{i=1}^n \ i 2^i
 \]
 in an especially interesting way, by rearranging the sub-summations of the target summation.
-\medskip
+
+\bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-The reader should pay careful attention to this technique.  It can sometimes decompose a cumbersome expression for a summation into a readily manipulated one.
+The reader should pay careful attention to this technique.  It shows that one can sometimes decompose a cumbersome expression for a summation into a readily manipulated one.
 \end{minipage}
 }
-\medskip
+
+\bigskip
 
 Note that we can rewrite summation $S_2^{(1)}(n)$ as a {\em double summation:}
 \begin{equation}
@@ -1167,27 +1042,19 @@ Note that we can rewrite summation $S_2^{(1)}(n)$ as a {\em double summation:}
 S_2^{(1)}(n) \ = \ \sum_{i=1}^n \ \sum_{k=1}^{i} 2^i
 \end{equation}
 
-By suitable applications of the laws of arithmetic Section~\ref{sec:Arithmetic-Laws}---specifically, the distributive, associative, and commutative laws---we can perform the required double
-summation in a different order than that specified in (\ref{eq:geom-double-sum}).  In fact, we can exchange the indices of summation, to compute $S_2^{(1)}(n)$ as specified via the following expression:
+By suitable applications of the laws of arithmetic that appear in Section~\ref{sec:Arithmetic-Laws}---specifically, the distributive, associative, and commutative laws---we can perform the required double summation in a different order than that specified in (\ref{eq:geom-double-sum}).  In fact, we can exchange the indices of summation, to compute $S_2^{(1)}(n)$ as specified via the following expression:
 \[
 S_2^{(1)}(n) \ = \ \sum_{k=1}^{n} \ \sum_{i=k}^{n} 2^i
 \]
-This process is illustrated in Fig.~\ref{fig:Sumi2i}.
+This process is depicted in Fig.~\ref{fig:Sumi2i}.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.4]{FiguresMaths/Sumi2i}
 }
-\caption{Illustrating the case $n=4$ of the exchange of indices in the
-  summation.  The original summation is drawn on the left.  In the
-  righthand drawing, we reproduce each term $i \cdot 2^i$ $i$ times
-  within column $i$.  We then express the summation on the right by
-  introducing a new index $k$ and scanning the terms of the summation
-  row by row (on the right).  The arrows represent the flow of the
-  scan.}
+\caption{Illustrating the case $n=4$ of the exchange of indices in the summation.  The original summation is drawn on the left.  In the righthand drawing, we reproduce each term $i \cdot 2^i$ $i$ times within column $i$.  We then express the summation on the right by introducing a new index $k$ and scanning the terms of the summation row by row (on the right).  The arrows represent the flow of the scan.}
 \label{fig:Sumi2i}
 \end{figure}
-The indicated summation is much easier to perform in this order, because its core consists of instances of the ``ordinary'' geometric summation $\sum_{i=k}^{n} 2^i$
-(Proposition~\ref{thm:sum-finite-geometric-series}).  Expanding these instances, we find finally that
+The indicated summation is much easier to perform in this order, because its core consists of instances of the ``ordinary'' geometric summation $\sum_{i=k}^{n} 2^i$(Proposition~\ref{thm:sum-finite-geometric-series}).  Expanding these instances, we find finally that
 \begin{eqnarray*}
 S_2^{(1)}(n)
   & = &
@@ -1206,17 +1073,16 @@ We remark that the process of obtaining the original summation can also be seen 
 complete geometric summation and the partial summation that is truncated at the $k$th term.
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.4]{FiguresMaths/Sumi2iDiag}
+\includegraphics[scale=0.35]{FiguresMaths/Sumi2iDiag}
 }
 \caption{The successive diagonal patterns correspond to the single summation obtained after exchanging the two initial sums.}
 \label{fig:Sumi2iDiag}
 \end{figure}
 
-\smallskip
 
 \paragraph{B. The summations $S^{(c)}_b(n) =  \sum_{i=1}^n i^c b^i$}
 
-We now develop a strategy that adapts the evaluation of summation $S_b^{(1)}(n)$ in the proof of Proposition~\ref{thm:sum-i2i} to an evaluation of the general extended geometric summation
+We now develop a strategy which adapts the evaluation of summation $S_b^{(1)}(n)$ in the proof of Proposition~\ref{thm:sum-i2i} to an evaluation of the general extended geometric summation
 \[
 S_b^{(c)}(n) \ \ = \ \ \sum_{i=1}^n \ i^c b^i
  \ \ = \ \
@@ -1224,8 +1090,9 @@ b \ + \ 2^{c} b^2\ + \ 3^{c} b^3 \ + \ \cdots \ + \ n^{c} b^{n}
 \]
 The strategy is {\em recursive}, in that it computes a value for $S^{(c)}_b(n)$ from values for $S^{(c-1)}_b(n)$, $S^{(c-2)}_b(n)$, \ldots, $S^{(0)}_b(n)$.  It proceeds in three steps.
 
+\smallskip
+
 \noindent {\bf Step 1.}
-%
 As in the case $c=1$, we write summation $S_b^{(c)}(n)$ in two ways.  The expression that embodies the first way isolates the summation's first term:
 \[ S_b^{(c)}(n+1) \ = \ b + \sum_{i=1}^n \ (i+1)^c b^{i+1} \]
 The expression that embodies the second way isolates the summation's last term:
@@ -1242,11 +1109,10 @@ b \cdot \left(
 \right)
 \end{equation}
 
+\smallskip
 
 \noindent {\bf Step 2.}
-%
-We next invoke the Restricted Binomial Theorem
-(Theorem~\ref{thm:restricted-binomial-thm}) to see that
+We next invoke the Restricted Binomial Theorem (Theorem~\ref{thm:restricted-binomial-thm}) to see that
 \[ (i+1)^c \ = \ i^c \ + \ c \cdot i^{c-1} \ + \ {c \choose 2} \cdot
 i^{c-2} \ + \cdots + \ {c \choose k} \cdot i^{c-k}  \ + \cdots + \ 1
 \]
@@ -1264,6 +1130,8 @@ S_b^{(c)}(n)
  \ + \cdots + \
 S_b^{(0)}(n)
 \end{eqnarray}
+
+\smallskip
 
 \noindent {\bf Step 3.}
 %
@@ -1286,6 +1154,10 @@ S_b^{(0)}(n)
 
 We thus have the promised method of evaluating the extended geometric summation $S_b^{(c)}(n)$ associated with the fixed power $c$ in terms of the sums of extended geometric summations associated with smaller fixed powers.
 
+\bigskip
+
+Each incremental step in our summation technique is an elementary application of an idea that we have seen previously.  Careful pattern-matching---primarily always focusing on the ``top-level" of the target summation, i.e., on the largest current values of parameters $b$ and $c$---has enabled us to achieve a decidedly non-elementary goal via a sequence of elementary steps.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{On Summing ``Smooth'' Series}
@@ -1294,49 +1166,49 @@ We thus have the promised method of evaluating the extended geometric summation 
 \subsection{Approximate Sums via Integration}
 \label{sec:riemann-bounds}
 
-This section illustrates a powerful strategy for obtaining nontrivial upper and lower bounds on the values of sum, by finding continuous {\em envelopes} that bound the discrete summations both above and below.  The areas under the enveloping continuous functions---which we can
-calculate via integration---provide the desired bounds on the summations.
+This section develops and illustrates a powerful strategy for obtaining nontrivial upper and lower bounds on the sums of summations and series, by finding continuous {\em envelopes} that bound the summations both above and below.  The areas under the enveloping continuous functions---which we can calculate via integration---provide the desired bounds on the summations.
 
-The strategem operates via the following three steps.  Say that we have a summation
-\[ a_1 \ + \ a_2 \ + \ \cdots \ + \ a_n \]
-We use a finite summation for illustration; the stratagem often works with infinite sums also, as we shall see with our specific examples.
+\medskip
+
+The stratagem operates via the following three-step procedure.  Focus on a summation
+\[ A \ = \ a_1 \ + \ a_2 \ + \ \cdots \ + \ a_n \]
+whose sum we want to determine.  We have specified $A$ as a {\em finite} summation to simplify exposition; our stratagem often works with infinite sums also, as we shall see via specific examples.
+
+\medskip
 
 \noindent {\bf Step 1.}
-Represent the summands seriatim as abutting unit-width rectangles.  
+Represent the summands $a_i$ seriatim as abutting unit-width rectangles.  
+
+\smallskip
 
 \noindent
 Our generic example has $n$ unit-width rectangles, of respective heights $a_1$, $a_2$, \ldots, $a_n$.  We describe two special cases, to demonstrate how to apply the stratagem.
 \begin{enumerate}
 \item
-Figs.~\ref{fig:riemann-n2-1} and~\ref{fig:riemann-n2-2} illustrate our stratagem applied to the summation $S_2(n) = \sum_{i=1}^n i^2$.  In both figures, we represent $S_2(n)$ by the aggregate area of a sequence of unit-width rectangles.  The rectangles that represent the
-respective addends in this example have respective heights $1$, $4$, $9$, $16$, $25$, $36$ and $49$.  If we were to extend the figures rightward (to extend the summation by encompassing more addends thereby increasing $n$), then the next rectangle would have height $64$.
+Figs.~\ref{fig:riemann-n2-1} and~\ref{fig:riemann-n2-2} illustrate our stratagem as it applies to the first seven terms of the summation $S_2(n) = \sum_{i=1}^n i^2$.  Both figures represent the illustrated terms, namely, $1$, $4$, $9$, $16$, $25$, $36$ and $49$, as seven abutting unit-width rectangles whose respective heights are given by the terms.  Summation $S_2(n)$ is represented as the aggregate area of the abutting rectangles.  If we were to extend the figures rightward (which increases $n$ and thereby extends the summation by encompassing more addends), then the next rectangle would have height $64$.
 
-The rectangles in Fig.~\ref{fig:riemann-n2-1} are accompanied by a continuous curve (labeled (a) in the figure) which connects their upper lefthand corners.
+\smallskip
+
+The rectangles in Fig.~\ref{fig:riemann-n2-1} are embellished by a continuous curve (labeled (a) in the figure) that connects their upper lefthand corners.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.3]{FiguresMaths/SumSquaresContinuous1}
 }
-\caption{The summation $S_2(n) = \sum_{i=1}^n i^2$ represented by the
-  aggregate area of a sequence of unit-width shaded rectangles.  The
-  summation is bounded above by the area under the continuous curve (a)
-  that connects the upper lefthand corners of the rectangles.  The
-  area under curve (a) is $\int_0^n \ (x+1)^2 dx$.  }
+\caption{The summation $S_2(n) = \sum_{i=1}^n i^2$ represented as the aggregate area of a sequence of unit-width shaded rectangles.  The summation is bounded above by the area under the continuous curve (a) that connects the upper lefthand corners of the rectangles.  The area under curve (a) is $\int_0^n \ (x+1)^2 dx$.  }
 \label{fig:riemann-n2-1}
 \label{fig:SumIntegral1}
 \end{figure}
 Because this curve completely ``covers'' the rectangles (which we emphasize by shading the rectangles), the area under the curve is an {\em upper bound} on the aggregate area of the rectangles; this area is
 \[ \int_1^n \ x^2 dx \]
 
-The rectangles in Fig.~\ref{fig:riemann-n2-2} are accompanied by a continuous curve (labeled (b) in the figure) which connects the upper righthand corners of the rectangles.
+\smallskip
+
+The rectangles in Fig.~\ref{fig:riemann-n2-2} are accompanied by a continuous curve (labeled (b) in the figure) that connects the upper righthand corners of the rectangles.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.3]{FiguresMaths/SumSquaresContinuous2}
 }
-\caption{The summation $S_2(n)$ represented by the aggregate area of
-  a sequence of unit-width unshaded rectangles.  The summation is
-  bounded from below by the area under the continous curve (b) that
-  connects the upper righthand corners of the rectangles.  The area
-  under curve (b) is $\int_1^n \ x^2 dx$.}
+\caption{The summation $S_2(n)$ represented as the aggregate area of a sequence of unit-width unshaded rectangles.  The summation is bounded from below by the area under the continuous curve (b) that connects the upper righthand corners of the rectangles.  The area under curve (b) is $\int_1^n \ x^2 dx$.}
 \label{fig:riemann-n2-2}
 %\label{fig:SumIntegral2}
 \end{figure}
@@ -1344,43 +1216,35 @@ Because this curve lies completely within the area formed by the rectangles, the
 \[ \int_0^{n-1}  \ x^2 dx \]
 
 \item
-In Figs.~\ref{fig:riemann-harmonic1} and~\ref{fig:riemann-harmonic2},
-we represent the {\em harmonic} sum
-\[ S^{(H)}(n) \ = \ \sum_{i=1}^n \ i^{-1} \ = \ \sum_{i=1}^n \ 1/i
-\]
-In both figures, $S^{(H)}(n)$ is represented by the aggregate area of a sequence of abutting unit-width rectangles, of respective heights $1$, $1/2$, $1/3$, \ldots, $1/10$ (so the figures represent the case $n=10$).  It would be only a clerical task to add more rectangles, of
-heights $1/11$, $1/12$, etc., to represent larger values of $n$.
+In Figs.~\ref{fig:riemann-harmonic1} and~\ref{fig:riemann-harmonic2}, we represent the {\em harmonic} sum
+\[ S^{(H)}(n) \ = \ \sum_{i=1}^n \ i^{-1} \ = \ \sum_{i=1}^n \ 1/i \]
+In both figures, $S^{(H)}(n)$ is represented as the aggregate area of a sequence of abutting unit-width rectangles, of respective heights $1$, $1/2$, $1/3$, \ldots, $1/10$ (so the figures represent the case $n=10$).  It would be only a clerical task to add more rectangles, of
+heights $1/11$, $1/12$, etc., to represent larger values of $n$. \index{harmonic sum}
+
+\smallskip
 
 In Fig.~\ref{fig:riemann-harmonic1}, the rectangles are accompanied by a continuous curve (marked (a) in the figure) that passes through their upper righthand corners.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.3]{FiguresMaths/RiemannSum1}
 }
-\caption{The summation $S^{(H)}(n) \ = \ \sum_{i=1}^n \ 1/i$
-  represented by the aggregate area of a sequence of unit-width
-  rectangles, $S^{(H)}(n)$ is bounded from above by the area under a
-  continuous curve (a) that passes through the upper righthand corners
-  of the rectangles.  This area is $ \int_1^n \ \frac{1}{x} dx$. }
+\caption{The summation $S^{(H)}(n) \ = \ \sum_{i=1}^n \ 1/i$ represented as the aggregate area of a sequence of unit-width rectangles.  $S^{(H)}(n)$ is bounded from above by the area under a continuous curve (a) that passes through the upper righthand corners of the rectangles.  This area is $ \int_1^n \ \frac{1}{x} dx$. }
 \label{fig:riemann-harmonic1}
 \end{figure}
 Because this curve completely ``covers'' the rectangles (which we emphasize by shading the rectangles), the area under the curve is an {\em upper bound} on the aggregate area of the rectangles; the area under curve (a) is
 \[ \int_1^n \ \frac{1}{x} dx \]
+
+\smallskip
 
 In Fig.~\ref{fig:riemann-harmonic2}, the rectangles are accompanied by a continuous curve (marked (b) in the figure) that passes through their upper lefthand corners.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.3]{FiguresMaths/RiemannSum2}
 }
-\caption{Representing the summation $S^{(H)}(n)$ as in
-  Fig.~\ref{fig:riemann-harmonic1}, the summation is bounded from
-  below by the area under a continuous curve (b) that passes through
-  the upper lefthand corners of the rectangles.  The area under curve
-  (b) is $\int_0^{n-1} \ \frac{1}{x+1} dx$.}
+\caption{Representing the summation $S^{(H)}(n)$ as in Fig.~\ref{fig:riemann-harmonic1}, the summation is bounded from below by the area under a continuous curve (b) that passes through the upper lefthand corners of the rectangles.  The area under curve (b) is $\int_0^{n-1} \ \frac{1}{x+1} dx$.}
 \label{fig:riemann-harmonic2}
 \end{figure}
-Because curve (b) lies completely within the aggregate area of the
-rectangles, the area under the curve is a {\em lower bound} on the
-aggregate area of the rectangles; the area under curve (b) is
+Because curve (b) lies completely within the aggregate area of the rectangles, the area under the curve is a {\em lower bound} on the aggregate area of the rectangles; the area under curve (b) is
 \[ \int_0^{n-1}  \ \frac{1}{x+1} dx \]
   \end{enumerate}
 %
@@ -1393,17 +1257,13 @@ aggregate area of the rectangles; the area under curve (b) is
 \medskip
 
 \noindent {\bf Step 2.}
-%
-Construct a continuous curve $\overline{C}(x)$ that passes through the corners of the unit-width rectangles specified by the summation, in such a way that the aggregate areas of the rectangles lies completely
-within the area under $\overline{C}(x)$.
+Construct a continuous curve $\overline{C}(x)$ that passes through the corners of the unit-width rectangles specified by the summation, in such a way that the aggregate areas of the rectangles lies completely within the area under $\overline{C}(x)$.
 
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-The curves labeled (a) in Figs.~\ref{fig:riemann-n2-1}
-and~\ref{fig:riemann-harmonic1} are instances of the mandated
-continuous curve $\overline{C}(x)$.
+The curves labeled (a) in Figs.~\ref{fig:riemann-n2-1} and~\ref{fig:riemann-harmonic1} are instances of the mandated continuous curve $\overline{C}(x)$.
 \end{minipage}
 }
 \medskip
@@ -1413,49 +1273,36 @@ Because the aggregate areas of the abutting rectangles lies completely under cur
 \medskip
 
 \noindent {\bf Step 3.}
-%
 Construct a continuous curve $\underline{C}(x)$ that passes through the corners of the unit-width rectangles specified by the summation, in such a way that the area under $\underline{C}(x)$ lies completely within the aggregate areas of the rectangles.
 
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-The curves labeled (b) in Figs.~\ref{fig:riemann-n2-2}
-  and~\ref{fig:riemann-harmonic2} are instances of the mandated
-  continuous curve $\underline{C}(x)$. 
+The curves labeled (b) in Figs.~\ref{fig:riemann-n2-2} and~\ref{fig:riemann-harmonic2} are instances of the mandated continuous curve $\underline{C}(x)$. 
 \end{minipage}
 }
 \bigskip
 
-Because the area under the curve $\underline{C}(x)$ lies completely
-within the aggregate area of the abutting rectangles, the area under
-the curve---which we obtain by integrating $\underline{C}$---affords
-{\em a lower bound} on the summation of interest.
+Because the area under the curve $\underline{C}(x)$ lies completely within the aggregate area of the abutting rectangles, the area under the curve---which we obtain by integrating $\underline{C}$---affords {\em a lower bound} on the summation of interest.
 
 \medskip
 
-In the next subsection, we apply this stratagem to summations of fixed
-powers of successive integers---i.e., summations of the form
-$\displaystyle S_c(n) \eqdef \sum_{i=1}^n i^c$---for various (classes
-of) values of the fixed power $c$.
+In the next subsection, we apply this stratagem to summations of fixed powers of successive integers---i.e., summations of the form $\displaystyle S_c(n) \eqdef \sum_{i=1}^n i^c$---for various (classes of) values of the fixed power $c$.
 
 
 \subsection{Sums of Fixed Powers of Consecutive Integers: $\sum i^c$}
 \label{sec:sum-of-i2c}
 
-We obtain bounds on the summations $S_c(n)$ that are rather good for
-large values of $n$.  In special cases, our bounds are good, sometimes
-even exact, for all values of $n$.
+We obtain bounds on the summations $S_c(n)$, which are rather good for large values of $n$.  In special cases, our bounds are very good, sometimes even exact, for all values of $n$.
 
 \subsubsection{$S_c(n)$ for general {\em nonnegative} real $c$th powers}
 \label{sec:sum-of-i2c>0}
 
-We begin to illustrate the technique of bounding summations via
-integrals by focusing on summations of the form
+We begin to illustrate the technique of bounding summations via integrals by focusing on summations of the form
 \[ S_c(n) \ \eqdef \ \sum_{i=1}^n \ i^c \]
 for arbitrary positive numbers $c$.  The reader can garner intuition for the upcoming bounds from the general shape of the rectangles and continuous curves in Figs.~\ref{fig:riemann-n2-1}
-and~\ref{fig:riemann-n2-2} We obtain our upper bound on $S_c(n)$ by evaluating the integral that yields the area $\overline{C}_c(n)$ under the lefthand continuous curve ($a$) in Fig.~\ref{fig:riemann-n2-1},
-namely,
+and~\ref{fig:riemann-n2-2}.  We obtain our upper bound on the summations $S_c(n)$ by evaluating the integrals that yield the area $\overline{C}_c(n)$ under the lefthand continuous curve ($a$) in Fig.~\ref{fig:riemann-n2-1}, namely,
 \begin{eqnarray}
 \label{eq:upper-integral-xc}
 \overline{C}_c(n) \ = \
@@ -1479,13 +1326,20 @@ Combining these bounds, we finally have the following two-sided bound on $S_c(n)
   \ \ \leq \ \ S_c(n)
   \ \ \leq \ \ \frac{1}{c+1} n^{c+1} \ + \ O(n^c)
 \end{equation}
-The main message here is:
 
-{\em The behavior of $S_c(n)$ as a function of $n$ is dominated by
-  $\displaystyle \frac{1}{c+1} n^{c+1}$} \\
-\hspace*{.2in}{\em as $n$ grows without bound.  }
+\medskip
 
+\noindent
+The main message here is that when one views each $S_c(n)$ as a function of $n$:
 
+\smallskip
+
+\begin{center}
+\fbox{
+{\em The behavior of $S_c(n)$ is dominated by \ \
+  $\displaystyle \frac{1}{c+1} n^{c+1}$ \ \ as $n$ grows without bound.  }
+  }
+\end{center}
 
 \subsubsection{Nonnegative integer $c$th powers}
 \label{sec:positive-integer-power}
@@ -1493,10 +1347,8 @@ The main message here is:
 \paragraph{A. A better bound via the Binomial Theorem}
 
 \index{The Binomial Theorem!restricted form}
-When $c$ is a positive integer, the following special case of Newton's
-{\it Binomial Theorem}.\footnote{The general form of the Binomial Theorem expands the polynomial $(x+y)^k$ rather than $(x+1)^k$.  See Section~\ref{sec:Binomial-thm}.}
-affords us a much more detailed version of the upper bound
-(\ref{eq:upper-integral-xc}) on the sum $S_c(n)$.
+When $c$ is a positive integer, the following special case of Newton's {\it Binomial Theorem}\footnote{The general form of the Binomial Theorem expands the polynomial $(x+y)^k$ rather than $(x+1)^k$.  See Section~\ref{sec:Binomial-thm}.}~affords us a much more detailed upper bound %(\ref{eq:upper-integral-xc}) 
+on the sum of $S_c(n)$.
 
 \begin{theorem}[The Restricted Binomial Theorem]
 \label{thm:restricted-binomial-thm}
@@ -1521,13 +1373,11 @@ yields the area $\overline{C}_c(n)$ under the continuous curve that passes throu
   & = &
 \sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \ O(1)
 \end{eqnarray}
-This is a proper upper bound because the region defined by this curve
-totally contains the region subtended by the rectangles.
+This is a proper upper bound because the region defined by this curve totally contains the region subtended by the rectangles.
 
 \smallskip
 
-Using this strategy, we find that for any positive integer $c$,
-summation $S_c(n)$ enjoys the following two-sided bound:
+Using this strategy, we find that for any positive integer $c$, summation $S_c(n)$ enjoys the following two-sided bound:
 \begin{equation}
 \label{eq:bounds-sum-xk}
 \frac{1}{c+1} n^{c+1} \ + \ O(1)
@@ -1536,7 +1386,7 @@ summation $S_c(n)$ enjoys the following two-sided bound:
 \sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \ O(1)
 \end{equation}
 
-We have, of course, not changed the dominant behavior of $S_c(n)$ as $n$ grows without bound, but we have taken a significant step toward developing explicit expressions for the summations $S_c(n)$ when $c$ is a positive integer.
+We have, of course, not changed the dominant behavior of $S_c(n)$ as $n$ grows without bound, but we have taken a significant step toward developing explicit expressions for the sums of the summatons $S_c(n)$ when $c$ is a positive integer.
 
 \paragraph{B. Using {\em undetermined coefficients} to refine sums}
 
