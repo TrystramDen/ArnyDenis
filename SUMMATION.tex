@@ -1,4 +1,4 @@
-%version of 11-12-19
+%version of 11-20-19
 
 \chapter{Summations:
 Complex Operations from Simple Components}
@@ -1036,13 +1036,13 @@ The reader should pay careful attention to this technique.  It shows that one ca
 
 \bigskip
 
-Note that we can rewrite summation $S_2^{(1)}(n)$ as a {\em double summation:}
+Underlying our evaluation of $S_2^{(1)}(n)$ is the fact that we can rewrite the summation as a {\em double} summation:
 \begin{equation}
 \label{eq:geom-double-sum}
 S_2^{(1)}(n) \ = \ \sum_{i=1}^n \ \sum_{k=1}^{i} 2^i
 \end{equation}
 
-By suitable applications of the laws of arithmetic that appear in Section~\ref{sec:Arithmetic-Laws}---specifically, the distributive, associative, and commutative laws---we can perform the required double summation in a different order than that specified in (\ref{eq:geom-double-sum}).  In fact, we can exchange the indices of summation, to compute $S_2^{(1)}(n)$ as specified via the following expression:
+By suitably applying the laws of arithmetic that appear in Section~\ref{sec:Arithmetic-Laws}---specifically, the distributive, associative, and commutative laws---we can perform the required double summation in a different order than that specified in (\ref{eq:geom-double-sum}).  In fact, we can exchange the indices of summation in a manner that enables us to compute $S_2^{(1)}(n)$ in the order implied by the following expression:
 \[
 S_2^{(1)}(n) \ = \ \sum_{k=1}^{n} \ \sum_{i=k}^{n} 2^i
 \]
@@ -1069,7 +1069,7 @@ n \cdot 2^{n+1}\ - ( 2^{n+1} -1) +1 \\
 This completes the proof.  \qed
 \end{proof}
 
-We remark that the process of obtaining the original summation can also be seen in the figure, by scanning the elements of the summation along the diagonals, as we portray in Fig.~\ref{fig:Sumi2iDiag}.  Each of the $n$ diagonals contains exactly the difference between the
+We remark that the process of obtaining the original summation can also be seen in the figure, by scanning the elements of the summation along diagonals, as depicted in Fig.~\ref{fig:Sumi2iDiag}.  Each of the $n$ diagonals contains exactly the difference between the
 complete geometric summation and the partial summation that is truncated at the $k$th term.
 \begin{figure}[htb]
 \centerline{
@@ -1152,7 +1152,7 @@ S_b^{(0)}(n)
 \ - \ 1
 \end{eqnarray}
 
-We thus have the promised method of evaluating the extended geometric summation $S_b^{(c)}(n)$ associated with the fixed power $c$ in terms of the sums of extended geometric summations associated with smaller fixed powers.
+We now have the promised method of evaluating the summation $S_b^{(c)}(n)$ associated with the fixed power $c$ in terms of the sums of kindred summations associated with smaller fixed powers.
 
 \bigskip
 
@@ -1398,14 +1398,14 @@ a^{(c)}_{c-1} n^{c-1} \ + \ \cdots \ + \ a^{(c)}_2 n^2 \ + \ a^{(c)}_1 n
 \]
 for some nonnegative numbers $a^{(c)}_c$, \ldots, $a^{(c)}_0$.  To begin, we know that $a^{(c)}_0 = 0$, because $S_c(0) = 0$.
 
-\medskip
+\bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 Because our starting point is a conjecture based only on intuition, we will have to verify the explicit expressions that we derive.  We do this after deriving the expressions.
 \end{minipage}
 }
-\medskip
+\bigskip
 
 The Method becomes computationally cumbersome for large values of $c$, as it involves solving $c$ linear equations in $c$ unknowns---a problem that is outside the scope of the text.  Therefore, all we do here is introduce the Method by illustrating its use with the first few positive integer values of $c$.
 
@@ -1417,10 +1417,8 @@ We begin with the sum $S_1(n)$, whose value we already know.  Reasoning from the
 \[ S_1(n) \ = \ \frac{1}{2} n^2 \ + \ a^{(1)}_1 n \]
 for some positive {\it undetermined coefficient} $a^{(1)}_1$.  We can discover the value of the single unknown, $a^{(1)}_1$ by evaluating $S_1(n)$ at a single value for the variable $n$.  Since {\em any} value of $n$ will work---because we are solving {\em one linear equation in one unknown}---we use the {\em smallest} one, $n=1$, to simplify our calculation.  Because $S_1(1) = 1$, we have
 \[ S_1(1) \ = \ 1 \ = \ \frac{1}{2} \ + \ a^{(1)}_1 \]
-Therefore, $a^{(1)}_1 = 1/2$, which gives us yet one more derivation
-of the value
-\[ S_1(n) \ = \ \frac{1}{2} \left( n^2 + n \right) \ = \ 
-\frac{n(n+1)}{2} \]
+Therefore, $a^{(1)}_1 = 1/2$, which gives us yet one more derivation of the value
+\[ S_1(n) \ = \ \frac{1}{2} \left( n^2 + n \right) \ = \  \frac{n(n+1)}{2} \]
 
 \medskip
 
@@ -1446,7 +1444,7 @@ $S_2(n)$ is often expressed in a more aesthetic form:
 \]
 
 \begin{proof}
-Reasoning from the case $c=2$ of (\ref{eq:bounds-sum-xk}), we propose the conjecture that
+Reasoning from the case $c=2$ of (\ref{eq:bounds-sum-xk}), we propose the conjecture:
 \begin{equation}
 \label{eq:symbolic-cubic}
 S_2(n) \ \ = \ \
@@ -1476,15 +1474,14 @@ These equations reveal that
 \[ 2/3 \ - \ a^{(2)}_2 \ = \ 7/6 \ - \ 2 a^{(2)}_2 \]
 so that 
 \[ a^{(2)}_2 \ = \ 1/2 \]
-which means that
+By back-substitution, then,
 \[ a^{(2)}_1 \ = \ 1/6 \]
 We have, thus, derived equation~(\ref{eq:sum-1-to-nsq}).  \qed
 \end{proof}
 
 \medskip
 
-With more (calculational) work, but no new (mathematical) ideas, one
-can derive explicit expressions for the sum $S_c(n)$, for any positive integer $c$.
+Extending the preceding examples via more (calculational) work but no new (mathematical) ideas, one can derive explicit expressions for the sum $S_c(n)$, for any positive integer $c$.
 
 \medskip 
 
@@ -1492,20 +1489,22 @@ can derive explicit expressions for the sum $S_c(n)$, for any positive integer $
 
 We now provide a pictorial, rather Fubini-esque,\footnote{See Section~\ref{sec:summation-via-Fubini}.}~derivation of the sum of the first $n$ perfect squares; cf., (\ref{eq:sum-1-to-nsq}).  The summation process begins with each perfect square $k^2$ depicted as a $k \times k$ square array of copies of the unit-side square.  We then progressively rearrange these arrays in a way that sums the squares. 
 
-We pictorially sum the first four perfect squares, $1^2$, $2^2$, $3^2$, and $4^2$, to illustrate the process.  The depiction of these four perfect squares appears at the top of each of Figs.~\ref{fig:sumSquares2}, \ref{fig:sumSquares3}, \ref{fig:sumSquares4}, and~\ref{fig:sumSquares5}.In each figure, we have darkened certain component unit-side squares.  These darkened squares are the ones that will play a lead role in each successive rearrangement in our pictorial summation process.
+\smallskip
+
+We pictorially sum the first four perfect squares, $1^2$, $2^2$, $3^2$, and $4^2$, to illustrate the process.  The depiction of these four perfect squares appears at the top of each of Figs.~\ref{fig:sumSquares2}--\ref{fig:sumSquares5}.  In each of the four figures, we have darkened certain component unit-side squares.  These darkened squares are the ones that will play a lead role in each successive rearrangement in our pictorial summation process.
 
 \medskip
 
 \noindent {\bf 1.}
 Fig.~\ref{fig:sumSquares1} 
-\begin{figure}[ht]
+\begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresMaths/SumSquares1}
 \caption{The initial configuration for pictorially computing the sum of squares: the ``scaffolding".}
        \label{fig:sumSquares1}
 \end{center}
 \end{figure}
-provides a schematic ``scaffolding" for the process:  The figure depicts two mirrored copies of the perfect squares $1^2$, $2^2$, $3^2$, and $4^2$ piled in decreasing order of size from bottom to top.  (So, the beginning of the $1^2$--$5^2$ of the summation process would just place the $5 \times 5$ square array beneath the $4 \times 4$ array in Fig.~\ref{fig:sumSquares1}.)  The two piles are positioned in such a manner that there is:
+provides a schematic ``scaffolding" for the process:  The figure depicts two mirrored copies of the perfect squares $1^2$, $2^2$, $3^2$, and $4^2$ piled in decreasing order of size from bottom to top.  (To emphasize the pattern embodied by our procedure: the process of summing the first {\em five} perfect squares, $1^2$, $2^2$, $3^2$, $4^2$, $5^2$ would begin by just placing the $5 \times 5$ square array beneath the $4 \times 4$ array in Fig.~\ref{fig:sumSquares1}.)  The two piles are positioned in such a manner that there is:
 \begin{itemize}
 \item
 a unit-width height-$(k=4)$ ``alley" between the $k \times k$ squares at the bottom of the ``scaffolding"
@@ -1513,7 +1512,7 @@ a unit-width height-$(k=4)$ ``alley" between the $k \times k$ squares at the bot
 a width-$3$ height-$(k-1)$ ``alley" between the $(k-1) \times (k-1)$ squares at the next lowest level of the ``scaffolding"
 \item
 a width-$5$ height-$(k-2)$ ``alley" between the $(k-2) \times (k-2)$ squares at the third lowest level of the ``scaffolding"
-\item
+
 $\vdots$
 \item
 a width-$(2k-1)$ unit-height ``alley" between the two unit-side squares at the top level of the ``scaffolding"
@@ -1523,7 +1522,7 @@ a width-$(2k-1)$ unit-height ``alley" between the two unit-side squares at the t
 
 \noindent {\bf 2.}
 Fig.~\ref{fig:sumSquares2}
-\begin{figure}[ht]
+\begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresMaths/SumSquares2}
 \caption{Step 1 for pictorially computing the sum of squares: filling the unit-width ``alley" with the lower-lefthand unit-side squares.}
@@ -1536,7 +1535,7 @@ depicts the first rearrangement step.  The $(k=4)$ lower left unit-side squares 
 
 \noindent {\bf 3.}
 Fig.~\ref{fig:sumSquares3}
-\begin{figure}[ht]
+\begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresMaths/SumSquares3}
 \caption{Step 2 for pictorially computing the sum of squares: filling the width-$3$ ``alley" with the width-$3$
@@ -1558,7 +1557,7 @@ Proposition~\ref{thm:squares-odd-integers-Gauss}.  In that proof, we represented
 \bigskip
 
 \noindent {\bf 4,5.}
-Figs. ~\ref{fig:sumSquares4} and~\ref{fig:sumSquares5}
+Figs.~\ref{fig:sumSquares4} and~\ref{fig:sumSquares5}
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresMaths/SumSquares4}
@@ -1583,26 +1582,18 @@ We leave the detailed validation of the described process to the reader.
 \paragraph{D. $\oplus$ Semi-pictorial solutions for $c=3$}
 
 \index{Fubini, Guido} 
-
 We described in Section~\ref{sec:summation-via-Fubini} how the Italian mathematician Guido Fubini was able to make notable mathematical progress by rearranging the representations of a variety of structured mathematical objects; see \cite{Fubini}.  Within the context of the current chapter, we apply such rearrangements to achieve exact values for some special subsums of $S_3(n)$, i.e., special sums of the cubes of integers.
 
-The proof we develop here establishes relationships among three sets:
-the odd numbers $\{2i-1\}$, the perfect cubes $\{i^3\}$, and the triangular numbers $\{ \Delta_i \}$.
-Specifically, the sum of all odd numbers up to the triangular number $\Delta_k$ is equal to
-\begin{enumerate}
+\smallskip
+
+The proof we develop here establishes relationships among three sets: the odd numbers $\{2i-1\}$, the perfect cubes $\{i^3\}$, and the triangular numbers $\{ \Delta_i \}$.  Specifically, we show that the sum of all odd numbers up to the triangular number $\Delta_k$ is equal to each of the following quantities:
+\begin{itemize}
 \item
 the square of the triangular number $\Delta_k$
 \item
 the sum of perfect cubes up to $k$.
-\end{enumerate}
-We then provide pictorial reasoning that allows one to observe the equality between the preceding quantities.
-
-\ignore{*********
-{\Denis My remark only works for particular values of $n$, actually, the $\Delta_k$.
-The idea is to show that the sum of odd up to triangular numbers $\Delta_k$ is equal to the sum of perfect cubes up to $k$.
-On another side, we show graphically  that this sum of cubes is the
-square of the triangular numbers, thus, the odds are equal to the square...}
-*********}
+\end{itemize}
+We provide pictorial reasoning that allows one to observe the equality between the preceding quantities.  Stated formally:
 
 \begin{prop}
 \label{thm:odds-sum2-cubes}
@@ -1617,56 +1608,46 @@ For all $k \in \N^+$,
 \begin{proof}
 The lefthand equation in (\ref{eq:sum-odds=Delta-sq=sum-cubes}) follows from 
 Proposition~\ref{thm:squares-odd-integers-Gauss}: the first $\Delta_k$ odd numbers sum
-to $(\Delta_k)^2$.  Let us focus, therefore, on the righthand equation.
+to $(\Delta_k)^2$.  We focus, therefore, only on the righthand equation.
 
 \medskip
 
-We take the odd integers in order and arrange them into groups whose successive sizes
-increase by $1$ at each step, as in the following triangular table (\ref{eq:triagular-table}).
+We take the odd integers in order and arrange them into groups whose successive sizes increase by $1$ at each step, as in the following triangular table (\ref{eq:triagular-table}).
 \begin{equation}
 \label{eq:triagular-table}
 \begin{array}{llrrrrclcc}
-\mbox{group $1$, of size 1:} & &
+\mbox{group $1$ (size $1$):} & &
 1,  &    &     &      \\
-\mbox{group $2$, of size 2:} & &
+\mbox{group $2$ (size $2$):} & &
 3,  &  5, &     &      \\
-\mbox{group $3$, of size 3:} & &
+\mbox{group $3$ (size $3$):} & &
 7,  &  9, & 11, &     \\
-\mbox{group $4$, of size 4:} & &
+\mbox{group $4$ (size $4$):} & &
 13, & 15, & 17, & 19   \\
 \vdots & & \vdots \\
 \end{array}
 \end{equation}
-Group $1$ comprises just the smallest odd number, $1$;
-group $2$ comprises the next two odd numbers, $3$, $5$; group $3$ comprises the
-three odd numbers $7$,  $9$,  and $11$; and so on.
-Let us observe some of the features of table (\ref{eq:triagular-table}).
+Group $1$ comprises just the smallest odd number, $1$; group $2$ comprises the next two odd numbers, $3$, $5$; group $3$ comprises the three odd numbers $7$,  $9$,  and $11$; and so on.  Let us observe some of the features of table (\ref{eq:triagular-table}).
 
-We observe first that---at least within the illustrated portion of the table---the $i$ elements
-of the $i$th group add up to $i^3$:
+We observe first that---at least within the illustrated portion of the table---the $i$ elements of the $i$th group add up to $i^3$:
 \[
 \begin{array}{llrrrrclcc}
-\mbox{group $1$, of size 1:} & &
+\mbox{group $1$ (size $1$):} & &
 1,  &    &     &     & \mbox{: sum} = &  1^3 \\
-\mbox{group $2$, of size 2:} & &
+\mbox{group $2$ (size $2$):} & &
 3,  &  5, &     &    & \mbox{: sum} =  &  2^3 \\
-\mbox{group $3$, of size 3:} & &
+\mbox{group $3$ (size $3$):} & &
 7,  &  9, & 11, &    &  \mbox{: sum} = &  3^3 \\
-\mbox{group $4$, of size 4:} & &
+\mbox{group $4$ (size $4$):} & &
 13, & 15, & 17, & 19 & \mbox{: sum} =  &  4^3 \\
 \end{array}
 \]
 
-We observe next that, by construction, the $i$th group/row of odd integers in the table consists of the
-$i$ consecutive odd numbers beginning with the $\left( \Delta_{i-1} +1 \right)$th odd number,
-$2 \Delta_{i-1} +1$.  Since consecutive odd numbers differ by $2$, this means that the $i$th
-group (for $i>1$) comprises the following $i$ odd integers:
+We observe next that, by construction, the $i$th group/row of odd integers in the table consists of the $i$ consecutive odd numbers beginning with the $\left( \Delta_{i-1} +1 \right)$th odd number, $2 \Delta_{i-1} +1$.  Since consecutive odd numbers differ by $2$, this means that the $i$th group (for $i>1$) comprises the following $i$ odd integers:
 \[
-2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 , \
-\ldots, \ 2 \Delta_{i-1} + (2i-1)
+2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 , \ \ldots, \ 2 \Delta_{i-1} + (2i-1)
 \]
-Therefore, invoking Proposition~\ref{thm:squares-odd-integers-Gauss},
-the {\em sum} of the $i$ integers in group $i$, call it $\sigma_i$, equals
+Therefore, invoking Proposition~\ref{thm:squares-odd-integers-Gauss}, the {\em sum} of the $i$ integers in group $i$, call it $\sigma_i$, equals
 \begin{eqnarray*}
 \sigma_i & = &
 2 i \Delta_{i-1} \ + \ \big( 1 + 3 + \cdots + (2i-1) \big) \\
@@ -1674,8 +1655,7 @@ the {\em sum} of the $i$ integers in group $i$, call it $\sigma_i$, equals
    & = & 2 i \Delta_{i-1} \ + \ i^2
 \end{eqnarray*}
 By direct calculation, then, 
-\[ \sigma_i \ \ = \ \
-2i  \cdot \frac{i(i-1)}{2} \ + \ i^2 \ \ = \ \
+\[ \sigma_i \ \ = \ \ 2i  \cdot \frac{i(i-1)}{2} \ + \ i^2 \ \ = \ \
 (i^3 - i^2)  \ + \ i^2 \ \ = \ \ i^3
 \]
 
@@ -1685,8 +1665,7 @@ observing the pattern that emerges:
 \[ (1) \ + \ (3 + 5) \ + \ (7 + 9 + 11) \  + \cdots
 \ \ = \ \ 1^3 \ + \ 2^3 \ + \ 3^3 \ + \cdots 
 \]
-Note the ``Fubini-esque" arrangements and groupings throughout this argument. (To
-understand this reference, see Fubini's role in Section~\ref{sec:summation-via-Fubini}.)  \qed
+Note the ``Fubini-esque" arrangements and groupings throughout this argument. (To understand this reference, see Fubini's role in Section~\ref{sec:summation-via-Fubini}.)  \qed
 \end{proof}
 
 \ignore{************
@@ -1704,10 +1683,7 @@ In other words, group $i$ consists of the odd numbers
 \[ 2 \Delta_{i-1} +1, \ 2 \Delta_{i-1} +3, \  \ldots, \  2\Delta_i -1 \]
 **************}
 
-We now present a {\em pictorial} proof of a portion of Proposition~\ref{thm:odds-sum2-cubes},
-namely, the relation between sums of perfect cubes  and squares of triangular numbers.
-This illustration provides a {\em non-textual} way to understand this result, and---at least
-as importantly---it provides a fertile setting for seeking other facts of this ilk.
+We now present a {\em pictorial} proof of a portion of Proposition~\ref{thm:odds-sum2-cubes}, namely, the relation between sums of perfect cubes  and squares of triangular numbers.  This illustration provides a {\em non-textual} way to understand this result, and---at least as importantly---it provides a fertile setting for seeking other facts of this type.
 
 \begin{prop}
 \label{thm:cubes-sumto-Delta-saquared}
@@ -1718,140 +1694,80 @@ For all $k \in \N^+$,
 \begin{proof}
 We develop an induction that reflects the structure of Table (\ref{eq:triagular-table}).
 
-{\bf Base cases.}
+\smallskip
+
+\noindent {\sf Base cases.}
 The base of our induction is the first case of the claimed result:
 \[  1^3 \  = \ 1 \ = \ \Delta_1^2 \]
 
-While this first (and obvious) case is enough for the induction, it does not tell us much 
-about the structure of the problem.  Therefore, we consider also the next step, namely,
-the case $k=2$:
+While this first (and obvious) case is enough for the induction, it does not tell us much about the structure of the problem.  Therefore, we consider also the next step, namely, the case $k=2$:
 \[  1^3 + 2^3 \ = \ 9 \ = \ \Delta_2^2 \]
-We depict in Fig.~\ref{fig:sumCubes1} how to obtain a ``larger" base case for our induction
-by pictorially summing the numbers from the first two groups in Table (\ref{eq:triagular-table}).
+We depict in Fig.~\ref{fig:sumCubes1} how to obtain a ``larger" base case for our induction by pictorially summing the numbers from the first two groups in Table (\ref{eq:triagular-table}).
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumCubes1} \hspace{2cm}
-       \includegraphics[scale=0.4]{FiguresMaths/SumCubes1bis}
-\caption{(Left) Pictorially depicting the first two groups from Table (\ref{eq:triagular-table})
-as stacked unit-side squares: the set $\{1\}$ of group $1$ and the set $\{3, 5\}$ of group $2$.
-(Right) Illustrating how to form a $3 \times 3$ square by pictorially summing the numbers
-$1$, $3$, and $5$.  The clear portions of the square come from 
-group $2$; the shaded small square at the top comes from group $1$.}
+       \includegraphics[scale=0.35]{FiguresMaths/SumCubes1bis}
+\caption{(Left) Pictorially depicting the first two groups from Table (\ref{eq:triagular-table}) as stacked unit-side squares: the set $\{1\}$ of group $1$ and the set $\{3, 5\}$ of group $2$. (Right) Illustrating how to form a $3 \times 3$ square by pictorially summing the numbers $1$, $3$, and $5$.  The clear portions of the square come from  group $2$; the shaded small square at the top comes from group $1$.}
        \label{fig:sumCubes1}
 \end{center}
 \end{figure}
-Observe that we can fit the shapes from the left side of the figure together to form
-the $\Delta_2 \times \Delta_2$ square.
+Observe that we can fit the shapes from the left side of the figure together to form the $\Delta_2 \times \Delta_2$ square.
 
 \medskip
 
-{\bf Inductive hypothesis}.
+\noindent {\sf Inductive hypothesis}.
 Say for the sake of the induction that the target equality holds for all $i < k$; i.e.,
 \[ 1^3 \ + \ 2^3 \ + \cdots + \ i^3 \ \ = \ \ (\Delta_i)^2 \ \ = \ \ {{i+1} \choose 2}^2 \]
 
 \medskip
 
-If we go one step further, to incorporate group $3$, i.e., the set $\{7, 9, 11\}$, into our
-pictorial summation process, then we discover that mimicking the process of
-Fig.~\ref{fig:sumCubes1} is a bit more complicated for this case.  A bit of analysis
-exposes that the more complicated manipulation required to form the $\Delta_3 \times \Delta_3$
-square is a consequence of the odd cardinality of the group-$3$ set.  Accordingly, we must extend
-our induction in slightly different ways for the cases of odd and even $k$.
+If we go one step further, to incorporate group $3$, i.e., the set $\{7, 9, 11\}$, into our pictorial summation process, then we discover that mimicking the process of Fig.~\ref{fig:sumCubes1} is a bit more complicated for this case.  A bit of analysis exposes that the more complicated manipulation required to form the $\Delta_3 \times \Delta_3$ square is a consequence of the odd cardinality of the group-$3$ set.  Accordingly, we must extend our induction in slightly different ways for the cases of odd and even $k$.
 
 \medskip
 
-{\bf Inductive extension for odd $k$}.
+\noindent {\sf Inductive extension for odd $k$}.
 In order to extend the induction hypothesis in this case, we need to prove that
 \[ \Delta_k^2 \ \ = \ \ \Delta_{k-1}^2 \ + \ k^3 \]
-We begin to garner intuition for this extension by comparing the quantities  
-$\Delta_k^2$ and $1 + 2^3 + \cdots + k^3$.
+We begin to garner intuition for this extension by comparing the quantities $\Delta_k^2$ and $1 + 2^3 + \cdots + k^3$.
 
-Moving to the pictorial domain, we write $k^3$ as $k \cdot k^2$, and we
-distribute $k \times k$ square blocks around the $\Delta_{k-1} \times \Delta_{k-1}$
-square, as shown in Fig.~\ref{fig:sumCubes3} for the case $k=3$. 
+\smallskip
+
+Moving to the pictorial domain, we write $k^3$ as $k \cdot k^2$, and we distribute $k \times k$ square blocks around the $\Delta_{k-1} \times \Delta_{k-1}$ square, as shown in Fig.~\ref{fig:sumCubes3} for the case $k=3$. 
 \begin{figure}[ht]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/SumCubes3}
-\caption{Extending the inductive summation-by-manipulation for the case of odd $k$:
-The manipulation of small squares produces the next bigger perfect square. 
-(The case $k=3$ is depicted.)}
+       \includegraphics[scale=0.35]{FiguresMaths/SumCubes3}
+\caption{Extending the inductive summation-by-manipulation for the case of odd $k$:  The manipulation of small squares produces the next bigger perfect square.  (The case $k=3$ is depicted.)}
        \label{fig:sumCubes3}
 \end{center}
 \end{figure}
-Because $k$ is odd, the small squares pack perfectly---because $(k-1)$ is even,
-hence divisible by $2$.   The depicted case depicts pictorially the definition of triangular numbers:
-$k \cdot \frac{1}{2}(k-1) \ = \ \Delta_{k-1}$.
+Because $k$ is odd, the small squares pack perfectly---sine $(k-1)$ is even, hence divisible by $2$.   The depicted case depicts pictorially the definition of triangular numbers: $k \cdot \frac{1}{2}(k-1) \ = \ \Delta_{k-1}$.
 
 \medskip
 
-{\bf Inductive extension for even $k$}.
-The basic reasoning here mirrors that for odd $k$, with one small, but major difference.   Now, 
-as we assemble small squares around the large square, two subsquares overlap, as depicted
-in Fig.~\ref{fig:sumCubesEven}.
+\noindent {\sf Inductive extension for even $k$}.
+The basic reasoning here mirrors that for odd $k$, with one small, but major difference.   Now,  as we assemble small squares around the large square, two subsquares overlap, as depicted in Fig.~\ref{fig:sumCubesEven}.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumCubesEven}
-\caption{The construction for even $k$ produces  an overlapped area
-represented in dark grey (the figure depicts the case $k=4$).}
+\caption{The construction for even $k$ produces  an overlapped area represented in dark grey (the figure depicts the case $k=4$).}
        \label{fig:sumCubesEven}
 \end{center}
 \end{figure}
-We must manipulate the overlapped region in the manner depicted in Fig.~\ref{fig:sumCubesEvenFinal} 
-in order to get a tight packing around the large square.
+We must manipulate the overlapped region in the manner depicted in Fig.~\ref{fig:sumCubesEvenFinal} in order to get a tight packing around the large square.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumCubesEvenFinal}
-\caption{How to obtain a large ($\Delta_k \times \Delta_k$) square by sliding
-the overlapped small square region into the like-sized small square empty region.}
+\caption{How to obtain a large ($\Delta_k \times \Delta_k$) square by sliding the overlapped small square region into the like-sized small square empty region.}
        \label{fig:sumCubesEvenFinal}
 \end{center}
 \end{figure}
-Happily, when there is a small overlapping square region, there is also an identically
-shaped empty square region, as suggested by these two figures.  We provide a bit more
-detail.  Because $(k-2)$ is even, the like-configured square blocks can be allocated to two sides of
-of the initial $\Delta_{k-1} \times \Delta_{k-1}$ square---namely, its right side and its
-bottom---in the manner depicted in Fig.~\ref{fig:sumCubesEven}.  One can discern in the
-figure the overlap we described: it has the shape of a square that measures 
-${1 \over 2} \left( \Delta_k - \Delta_{k-1}\right)$ on a side.  One also sees in the figure an
-empty square in the extreme bottom right of the composite $\Delta_k \times \Delta_k$ square,
-which matches the overlapped square identically.  This situation is the pictorial version of the
-equation
+Happily, when there is a small overlapping square region, there is also an identically shaped empty square region, as suggested by these two figures.  We provide a bit more detail.  Because $(k-2)$ is even, the like-configured square blocks can be allocated to two sides of the initial $\Delta_{k-1} \times \Delta_{k-1}$ square---namely, its right side and its bottom---in the manner depicted in Fig.~\ref{fig:sumCubesEven}.  One can discern in the figure the overlap we described: it has the shape of a square that measures  ${1 \over 2} \left( \Delta_k - \Delta_{k-1}\right)$ on a side.  One also sees in the figure an empty square in the extreme bottom right of the composite $\Delta_k \times \Delta_k$ square, which matches the overlapped square identically.  This situation is the pictorial version of the equation
 \[ \Delta_k^2 \ - \ \Delta_{k-1}^2 
- \ \ =  \ \ {1 \over 4} k^2 \left( (k+1)^2 - (k-1)^2 \right)
- \ \ = \ \ k^3 \]
+ \ \ =  \ \ {1 \over 4} k^2 \left( (k+1)^2 - (k-1)^2 \right)  \ \ = \ \ k^3 \]
 
 We have thus extended the inductive hypothesis for both odd and even $k$, whence the
 result.  \qed
 \end{proof}
-
-
-\ignore{*********
-\item[{\bf Inductive extension}.]
-%
-Since consecutive odd numbers differ by $2$, we know that the $i$th
-group consists of the following odd integers ($i>1$):
-\[
-2 \Delta_{i-1} +1, \ 2 \Delta_{i-1}  +3, \ 2 \Delta_{i-1}  +5 ,
-\ldots, \
-2 \Delta_{i-1} + (2i-1)
-\]
-Once one verifies (say, by induction) that $2 \Delta_{i-1} +2i-1 \ = \ 2
-\Delta_{i} +1$, 
-{\Denis again, this should be a minus not a +1}
-one discovers that this group has the sum
-\[
-2i \Delta_{i-1} \ - \ 2 \Delta_{i-1} +i \ = \
-(2i -1) \Delta_i + i \ = \ i^3.
-\]
-
-Because each row contains one more integer than its predecessor, row
-$i$ contains the sum of the odd integers from $\Delta_{i-1}+1$ to
-$\Delta_i$.  By direct calculation, we can therefore compute the row's
-sum as
-
-{\Arny This is the denouement of the argument, and I do not sense the flow of the reasoning.}
-{\Denis I hope this is clear now!}
-****************}
 
 
 \subsubsection{$S_c(n)$ for general {\em negative} $c$th powers}
@@ -1859,10 +1775,7 @@ sum as
 
 We focus finally on summations of the form
 \[ S_c(n) \ \eqdef \ \sum_{i=1}^n \ i^c \]
-for arbitrary {\em negative} numbers $c$.  The reader can garner
-intuition for the upcoming bounds from the general shape of the
-rectangles and continuous curves in Figs.~\ref{fig:riemann-harmonic1}
-and~\ref{fig:riemann-harmonic2}.
+for arbitrary {\em negative} numbers $c$.  The reader can garner intuition for the upcoming bounds from the general shape of the rectangles and continuous curves in Figs.~\ref{fig:riemann-harmonic1} and~\ref{fig:riemann-harmonic2}.
 
 \begin{prop}
 \label{thm:general-bounds-negative-xc}
@@ -1870,40 +1783,28 @@ For summations $S_c(n)$ with fixed negative powers $c<0$,
 \begin{equation} 
 \label{eq:general-bounds-negative-xc}
 \left[
-\underline{C}_c(n) \ = \
-\int_0^{n-1} \ (x+1)^c dx
+\underline{C}_c(n) \ = \ \int_0^{n-1} \ (x+1)^c dx
 \right]
 \ \leq \ S_c(n) \ \leq \
 \left[
-\overline{C}_c(n) \ = \
-\int_1^n \ x^c dx
+\overline{C}_c(n) \ = \ \int_1^n \ x^c dx
 \right]
 \end{equation}
 \end{prop}
 
 \begin{proof}
-We obtain our upper bound on the sum of $S_c(n)$ by evaluating the
-integral that yields the area $\overline{C}_c(n)$ under the righthand
-continuous curve ($a$) in the analogue of
-Fig.~\ref{fig:riemann-harmonic1} for $S_c(n)$.  We obtain our lower
-bound on $S_c(n)$ by evaluating the integral that yields the area
-$\underline{C}_c(n)$ under the lefthand continuous curve ($b$) in the
-analogue of Fig.~\ref{fig:riemann-harmonic2} for $S_c(n)$.
+We obtain our upper bound on the sum of $S_c(n)$ by evaluating the integral that yields the area $\overline{C}_c(n)$ under the righthand continuous curve ($a$) in the analogue of Fig.~\ref{fig:riemann-harmonic1} for $S_c(n)$.  We obtain our lower bound on $S_c(n)$ by evaluating the integral that yields the area $\underline{C}_c(n)$ under the lefthand continuous curve ($b$) in the analogue of Fig.~\ref{fig:riemann-harmonic2} for $S_c(n)$.  \qed
 \end{proof}
 
-When $c \neq -1$,\footnote{We need to avoid the case $c = -1$ so that
-  we do not attempt to divide by $0$.}~we can provide more detail,
-using reasoning similar to that underlying the bounds
-(\ref{eq:bounds-sum-xc}) that hold for positive values of $c$.
+When $c \neq -1$,\footnote{We need to avoid the case $c = -1$ so that we do not attempt to divide by $0$.}~we can provide more detail, by using reasoning similar to that underlying the bounds (\ref{eq:bounds-sum-xc}) that hold for positive values of $c$.
 
 \paragraph{A. Negative powers $-1 < c < 0$}
 
-In this case, we obtain essentially the same bounds as in the case of
-nonnegative $c$.  To wit,
+In this case, we obtain essentially the same bounds as in the case of nonnegative $c$.  To wit,
 
 \begin{prop}
 \label{thm:bounds-(-1)<c<0}
-For sums $S_c(n)$ with fixed negative powers in the range $-1 < c<0$,
+For summations $S_c(n)$ with fixed negative powers in the range $-1 < c<0$,
 \begin{equation}
 \label{eq:bounds-(-1)<c<0}
 \begin{array}{l}
@@ -1917,25 +1818,15 @@ For sums $S_c(n)$ with fixed negative powers in the range $-1 < c<0$,
 \end{array}
 \end{equation}
 The infinite version of summation $S_c(n)$, namely, the series
-\[ S_c^{(\infty)} \ \eqdef \ \sum_{i=0}^\infty i^c \]
+$\displaystyle S_c^{(\infty)} \ \eqdef \ \sum_{i=0}^\infty i^c$,
 diverges.
 \end{prop}
 
-We thus observe that $S_c(n)$ has the same growth {\em pattern} as $n$
-grows as it does when $c$ is positive, but that $S_c(n)$'s growth {\em
-  rate} is slower because of the damping effect the negative $c$ in
-the exponent.  This damped growth notwithstanding, the infinite series
-$S_c^{(\infty)}$ diverges because $n^{c+1}$, which is the variable
-portion of the lower bound on $S_c(n)$, grows without bound as $n$
-grows without bound.
+We thus observe that $S_c(n)$ has the same growth {\em pattern} with increasing $n$ as it does when $c$ is positive, but that $S_c(n)$'s growth {\em rate} is slower because of the damping effect the negative $c$ in the exponent.  This damped growth notwithstanding, the infinite series $S_c^{(\infty)}$ diverges because $n^{c+1}$, which is the variable portion of the lower bound on $S_c(n)$, grows without bound as $n$ grows without bound.
 
 \paragraph{B. Negative powers $c < -1$}
 
-When $c$ is ``very negative'', specifically, when $c < -1$, then the
-infinite version of $S_c(n)$, call it $S_c^{(\infty)}$, is a {\em
-  convergent} infinite series.  Because $n^c$ {\em shrinks} in this
-case as $n$ grows, an analysis mirroring the one that leads to
-(\ref{eq:bounds-(-1)<c<0}) provides the following sum for $S_c^{(\infty)}$.
+When $c$ is ``very negative'', specifically, when $c < -1$, the infinite version of $S_c(n)$, call it $S_c^{(\infty)}$, is a {\em convergent} infinite series.  In this case, $n^c$ {\em shrinks} as $n$ grows, so an analysis mirroring the one that leads to (\ref{eq:bounds-(-1)<c<0}) provides the following sum for $S_c^{(\infty)}$.
 
 \begin{prop}
 \label{thm:bounds-negative-(not-1)-sum-xc}
@@ -1949,113 +1840,79 @@ S_c^{(\infty)} \ = \ \frac{1}{c+1}
 \end{prop}
 
 \begin{proof}
-We see as in (\ref{eq:bounds-(-1)<c<0}) that, for $c<-1$, as $n$ grows
-without bound, $S_c(n)$ tends to the value ${\displaystyle
-  \frac{1}{c+1}}$.
+We see as in (\ref{eq:bounds-(-1)<c<0}) that, for $c<-1$, as $n$ grows without bound, $S_c(n)$ tends to the value ${\displaystyle \frac{1}{c+1}}$.  \qed
 \end{proof}
 
 \paragraph{C. Negative powers $c = -1$: the {\em harmonic} series}
 
-The singular case defined by the value $c = -1$ defines the important
-{\it harmonic series},
 \index{harmonic series $S^{(H)}$}
+The singular case defined by the value $c = -1$ defines the important {\it harmonic series},
 \[ S^{(H)} \ = \ \sum_{i=1}^\infty \ \frac{1}{i} \]
 and its finite prefixes that comprise the {\it harmonic summation}
 \[ S^{(H)}(n) \ = \ \sum_{i=1}^n \ \frac{1}{i} \]
 \index{harmonic summation $S^{(H)}(n)$}
 
+\smallskip
 
+\index{harmonic summation $S^{(H)}(n)$!asymptotic behavior} \index{Euler, Leonhard}
+\index{Napier, John} \index{Euler's constant}
 {\it (i) The asymptotic behavior of $S^{(H)}(n)$.}
-\index{harmonic summation $S^{(H)}(n)$!asymptotic behavior}
-%
-It has been known since the time of the well-traveled Swiss
-mathematician Leonhard Euler \index{Euler, Leonhard} that $S^{(H)}$
-and $S^{(H)}(n)$ are closely related to the {\em natural}, or,
-\index{Napier, John}
-{\it Napierian},\footnote{The natural logarithm, i.e., the logarithm
-  to the base $e$, is commonly referred to as the {\it Napierian
-    logarithm}, in honor of the Scottish polymath John
-  Napier.}~logarithm $\ln n$, \textit{i.e.}, the logarithm whose base is
-Euler's constant \index{Euler's constant} $e = 2.718281828 \ldots$.
+It has been known since the time of the well-traveled Swiss mathematician Leonhard Euler that $S^{(H)}$ and $S^{(H)}(n)$ are closely related to the {\em natural}, or, {\it Napierian}\footnote{The natural logarithm, i.e., the logarithm to the base $e$, is commonly referred to as the {\it Napierian logarithm}, in honor of the Scottish polymath John Napier.}~logarithm $\ln n$, i.e., the logarithm whose base is Euler's constant $e = 2.718281828 \ldots$.
 
 \begin{prop}
 \label{thm:harmonic}
-The behavior of the harmonic summation $S^{(H)}(n)$ as a function of
-$n$ is given by
+The behavior of the harmonic summation $S^{(H)}(n)$ as a function of $n$ is given by
 \[ S^{(H)}(n) \ \approx \ \ln n \]
 It follows, in particular, that the harmonic series $S^{(H)}$ diverges.
 \end{prop}
-\medskip
+
+\bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 \index{harmonic series  $S^{(H)}$!relation to music}
-The adjective ``harmonic'' calls to mind a number of concepts
-  associated with {\em music}, such as ``harmonics'' and ``harmony''.
-  The association between our series and these musical concepts is not
-  a coincidence.  The name of the harmonic series derives from the
-  concept of {\em overtones}, or {\em harmonics}, in music.  When one
-  observes a vibrating string, one finds that the wavelengths of its
-  overtones, as fractions of the string's fundamental wavelength, are
-  the terms of the {\em harmonic sequence}, namely, $\frac{1}{2}$,
-  $\frac{1}{3}$, $\frac{1}{4}$, \ldots.  
+The adjective ``harmonic'' calls to mind a number of concepts associated with {\em music}, such as ``harmonics'' and ``harmony''.  The association between our series and these musical concepts is not a coincidence.  The name of the harmonic series derives from the concept of {\em overtones}, or {\em harmonics}, in music.  When one observes a vibrating string, one finds that the wavelengths of its overtones, as fractions of the string's fundamental wavelength, are the terms of the {\em harmonic sequence}, namely, $\frac{1}{2}$, $\frac{1}{3}$, $\frac{1}{4}$, \ldots.  
 \end{minipage}
 }
-\medskip
+\bigskip
 
 %{\Denis I developed a graphical way to interpret the harmonic sum and its link with the neperian log (this is I believe very interesting and original.
 %May be this is the wrong place, tell me (we can also split the
 %following into smaller pieces...)}
 
-{\it (ii) Bounds on the asymptotic behavior of $S^{(H)}(n)$.}
 \index{harmonic summation $S^{(H)}(n)$!understanding logarithmic behavior}
-%
-Fig~\ref{fig:HarmonicSumInitial} depicts the harmonic summation
-$S^{(H)}(n)$ as the area of abutting unit-width rectangles of
-respective heights (from left to right) of $1$, $1/2$, $1/3$, \ldots,
-$1/n$.
+{\it (ii) Bounds on the asymptotic behavior of $S^{(H)}(n)$.}
+Fig~\ref{fig:HarmonicSumInitial} depicts the harmonic summation $S^{(H)}(n)$ as the area of abutting unit-width rectangles of respective heights (from left to right) of $1$, $1/2$, $1/3$, \ldots, $1/n$.
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.3]{FiguresMaths/HarmonicSumInitial}
+\includegraphics[scale=0.2]{FiguresMaths/HarmonicSumInitial}
 }
-\caption{The harmonic summation $S^{(H)}(n)$ represented by the area
-  of abutting unit-width rectangles of decreasing heights.}
+\caption{The harmonic summation $S^{(H)}(n)$ represented by the area of abutting unit-width rectangles whose (decreasing) heights form the sequence of consecutive integer reciprocals.}
 \label{fig:HarmonicSumInitial}
 \end{figure}
 
-In order to better understand the behavior of $S^{(H)}(n)$ as a
-function of $n$, let us group the summation's consecutive terms into
-subsums composed from groups of summands whose sizes are consecutive
-powers of $2$:
-\begin{eqnarray*}
-\left( 1 \right) \ + \ \left( \frac{1}{2} + \frac{1}{3} \right)\\
-+ \left( \frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7} \right) \\
-+ \left( \frac{1}{8} +\frac{1}{9} + \frac{1}{10} + \frac{1}{11}
-       + \frac{1}{12} + \frac{1}{13} + \frac{1}{14} + \frac{1}{15} \right) \ + \cdots
-\end{eqnarray*}
-Next, we isolate each grouped subsum and list the subsums in order of
-size, measured as number of inverse-integer summands.
+\medskip
+
+We now reorganize the sequence of $S^{(H)}(n)$'s summands in a way that helps us better understand the behavior of $S^{(H)}(n)$ as a function of $n$.
+\begin{itemize}
+\item
+We group $S^{(H)}(n)$'s summands into sub-summations whose sizes are the consecutive powers of $2$:
 \[ \begin{array}{llcl}
-\mbox{Sum of $(2^0 =1)$ consecutive inverses:} &
+\mbox{The first $(2^0 =1)$ reciprocal:} &
 A_0 & = &  {\displaystyle 1 } \\
-\mbox{Sum of $(2^1 =2)$ consecutive inverses:} &
+\mbox{the next $(2^1 =2)$ consecutive reciprocals:} &
 A_1 & = &  {\displaystyle \frac{1}{2} + \frac{1}{3} }  \\
-\mbox{Sum of $(2^2 =4)$ consecutive inverses:} &
+\mbox{the next $(2^2 =4)$ consecutive reciprocals:} &
 A_2 & = &  {\displaystyle \frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7} } \\
- & \vdots & & \vdots \\
-\mbox{Sum of $2^i$ consecutive inverses:} &
+\vdots &  & & \vdots \\
+\mbox{the next $2^i$ consecutive reciprocals:} &
 A_i & = &  {\displaystyle \frac{1}{2^i} + \frac{1}{2^i+1} + \cdots +
      \frac{1}{2^{i+1}-1}  } \\
- & \vdots & & \vdots \\
+\vdots &  & & \vdots \\
 \end{array}
 \]
-
-Finally, we derive absolute-constant upper and lower bounds that hold
-for all of the subsums.  To derive these bounds, we focus on the
-generic subsum $A_i$, which consists of $2^i$ summands.  When we focus
-on the largest and smallest inverse-integers in $A_i$---which are,
-respectively, $1/2^i$ and $1/(2^{i+1}-1)$---we note the following
-absolute bounds.
+\item
+We derive constant upper and lower bounds for each subsum.  Focus on the $2^i$ consecutive reciprocals of the generic subsum $A_i$.  The largest of these reciprocals is $1/2^i$; the smallest is $1/(2^{i+1}-1)$.  We therefore note that
 \[
 \frac{1}{2}
  \ < \
@@ -2066,42 +1923,40 @@ absolute bounds.
 \frac{2^i}{2^i}
   \ = \ 1
 \]
-We thereby have absolute constant upper and lower bounds on every 
-subsum $A_i$.
 
-Referring back to Fig.~\ref{fig:HarmonicSumInitial}, what the
-just-derived bounds mean is the following.  Let us proceed left to
-right along the abutting rectangles in the figure, and let us recall,
-from Section~\ref{sec:exponential+logarithm}.B, the definition of
-``logarithm to the base $b$''.  As we double the number of rectangles
-we have traversed:
+In summary: each subsum $A_i$ lies strictly between $2^{-i-1}$ and $2^{-1}$.
+\end{itemize}
+
+We can interpret our bounds on the subsums $A_i$ in the light of Fig.~\ref{fig:HarmonicSumInitial}.   Let us proceed left to right along the abutting rectangles in the figure, and let us recall, from Section~\ref{sec:exponential+logarithm}.B, the definition of
+``logarithm to the base $b$''.  As we double the number of rectangles that we have traversed, consider the increase in the aggregate area of the thus-far traversed rectangles:
 \begin{enumerate}
 \item
-We increase the aggregate area of the thus-far traversed rectangles by
-at most $1$.
+{\em This increase is no larger than} $1$.
 
-{\em This means that $S^{(H)}(n)$ grows no faster than $\log_2 n$.}
+\smallskip
+
+This means that {\em $S^{(H)}(n)$ grows no faster than $\log_2 n$.}
 
 \item
-We increase the aggregate area of the thus-far traversed rectangles by
-more than $1/2$.
+{\em This increase is greater than} $1/2$.
 
-{\em This means that $S^{(H)}(n)$ grows faster than $\log_4 n$.}
+\smallskip
+
+This means that {\em $S^{(H)}(n)$ grows faster than $\log_4 n$.}
 \end{enumerate}
-Of course, these observations are consistent with the verified actual
-natural-logarithmic growth rate of $S^{(H)}(n)$, because $2 < e < 4$.
+Of course, these observations are consistent with the verified actual natural-logarithmic growth rate of $S^{(H)}(n)$, because $2 < e < 4$.
 
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.3]{FiguresMaths/HarmonicSumUpperbound}
+\includegraphics[scale=0.25]{FiguresMaths/HarmonicSumUpperbound}
 }
-\caption{Upper bound of $A_i$ by larger unit-size rectangles in the harmonic sum.}
+\caption{Upper-bounding $A_i$ by larger unit-size rectangles in the harmonic sum.}
 \label{fig:HarmonicSumUpperbound}
 \end{figure}
 
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.3]{FiguresMaths/HarmonicSumLowerbound}
+\includegraphics[scale=0.25]{FiguresMaths/HarmonicSumLowerbound}
 }
 \caption{A pictorial lower bound for the harmonic summation.}
 \label{fig:HarmonicSumLowerbound}
