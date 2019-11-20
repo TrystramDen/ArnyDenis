@@ -1,4 +1,4 @@
-%version of 08-30-19
+%version of 11-20-19
 
 \chapter{The Vertigo of Infinity:
 Handling the Very Large and the Infinite}
@@ -9,330 +9,245 @@ Handling the Very Large and the Infinite}
 \hspace*{1in}George Gamow, 1947 book
 \end{quote}
 
+\medskip
+
 \noindent
-An incredibly powerful attribute of the way we deal with quantity is
-our ability---in principle, at least---to use identical reasoning and
-tools of analysis to manipulate all finite objects: We do not need,
-for instance, a hierarchy of arithmetics to deal with real numbers of
-various sizes.  This situation changes, however, when we deal with
-sets or numbers whose sizes can change {\em dynamically} or with sets
-that contain {\em infinitely many} objects.  In order to reason
-rigorously about quantities that are growing---or, equivalently,
-shrinking---without bound, we need new conceptual machinery.  This is
-true whether or not the growth can continue forever!  And, we need yet
-other new tools to deal with sets that are actually infinite.  This
-chapter is devoted to supplying the needed tools and to heightening
-the readers' awareness of the care that they must take when reasoning
-in the domain of this chapter's title: the {\em large}, the {\em very
-  large}, and the {\em Infinite}.
+An immensely powerful attribute of the way mathematics allows us to deal with quantity is our ability---in principle, at least---to use identical reasoning and tools of analysis to manipulate all finite objects: We do not need---to cite just two examples---a hierarchy of arithmetics to deal with real numbers of various sizes nor a variety of logical calculi to deal with propositions having various numbers of satisfying assignments of truth values.  This situation changes, however, when we deal with objects---say, sets or numbers---whose sizes can change {\em dynamically} or that are composed of {\em infinitely many} distinguishable objects.  In order to reason rigorously about quantities that can grow---or, equivalently, can shrink---without bound, we need new conceptual machinery.  This is true whether or not the growth can continue forever!  And, we need yet other new conceptual tools to deal with objects that are actually infinite.
 
+\smallskip
 
+This chapter is devoted to developing the needed tools and to heightening readers' awareness of the care that they must take when reasoning in the domain of this chapter's title: the {\em large}, the {\em very large}, and the {\em Infinite}.
 
 \section{Asymptotics}
 \label{sec:asymptotics}
 
-{\em Asymptotics} \index{asymptotics} can be viewed as a language and
-a system of reasoning that allow one to talk in a {\em qualitative}
-voice about {\em quantitative} topics.  We thereby generalize to
-arbitrary growth functions terms such as ``linear'', ``quadratic'',
-``exponential'', and ``logarithmic''.
+\index{asymptotics}
+{\em Asymptotics} can be viewed as a language and a system of reasoning that allow one to talk in a {\em qualitative} voice about {\em quantitative} topics.  We thereby generalize to arbitrary growth functions terms such as ``linear'', ``quadratic'', ``exponential'', and ``logarithmic''.
 
-Such a language and system are indispensable if one needs to reason
-about computational topics over a range of situations, such as a range
-(``all existing''?)~computer architectures and software systems.  As
-two simple examples: (1) Carry-ripple adders perform additions in time
-linear in the lengths $n$ of the summands (measured in number of bits)
-no matter what these lengths are. (2) Comparison-based sorting
-algorithms can sort lists of $n$ keys in time proportional to $n \log
-n$, but no faster---where the base of the logarithm depends on the
-characteristics of the computing platform.  More precise versions of
-the preceding statements require specification of the number $n$ and
-other details, possibly down to the clock speeds of the host
-computer's circuitry.
+Such a language and system are indispensable if one needs to reason about computational topics over a range of situations, such as a range (``all existing''?)~of computer architectures and software systems.  As two simple examples: (1) Carry-ripple adders perform additions in a number of steps that is linear in the lengths $n$ of the summands (measured in number of bits)---no matter what these lengths are.  (2) Comparison-based sorting algorithms can sort lists of $n$ keys in a number of steps proportional to $n \log n$, but no faster---where the base of the logarithm depends on the characteristics of the computing platform and the set of keys being sorted.  More precise versions of the preceding statements require specification of the number $n$ and other details, possibly down to the clock speeds of the host computer's circuitry.
 
-The need for the material in this section can be discerned (almost)
-daily, as the news media report---and all too often {\em
-  misreport}---about dynamic quantities: the word ``exponential'' is
-very often used when ``fast'' is what is actually meant.  It is not
-true that ``Country A's GDP'' or ``The X-virus epidemic'' is growing
-{\em exponentially}.  Country B's strategic planning, in the first
-example, and the government's public health department, in the second
-example, cannot proceed rationally without trustworthy quantitative
-information.
+\smallskip
 
+The need for the material in this section can be discerned (almost) daily, as the news media report---and all too often {\em misreport}---about dynamic quantities: the word ``exponential'' is
+very often used when ``fast'' or ``large" is what is actually meant.  It is not true (usually) that ``Country A's GDP'' or ``The X-virus epidemic'' is growing {\em exponentially}.  Country B's strategic planning, in the first example, and the government's public health department, in the second example, cannot proceed rationally without trustworthy quantitative information.
 
 \subsection{The Language of Asymptotics}
 \label{sec:language-asymptotics}
 
-The language of asymptotics has its origins in the subfield of
-mathematics known as Number Theory, in the late $19$th century.  The
-basic version of the language---which handles almost all situations
-one encounters when studying the discrete mathematics germane to
-computational phenomena---builds on the following terminology.  There
-is an advanced companion to the following notions, which builds on
-nondiscrete concepts such as limits; this advanced material will be
-beyond the likely needs of most students of computing, aside from
-specialists in advanced courses.  The basics of the language build on
-three primitive notations and notions.  We need only the rudiments of
-this material within this text, so we refer the reader to standard
-texts on algorithm design and analysis (e.g.,\cite{CLRS}) or number
-theory (e.g., \cite{NivenZ80}), to go beyond the basics of the
-following ideas.
-
-The following notation actually has several variants in both symbology
-and articulation.  We elaborate on this situation only for our first
-notation, the ``big-$O$''.  The reader should be aware that analogous
-complications accompany our other two notations, the ``big-$\Omega$''
-and the ``big-$\Theta$''. \index{big-$O$}\index{big-$\Omega$}\index{big-$\Theta$}
-\begin{itemize}
-\item
-{\em The big-$O$ notation}.
-%
-%{\Denis Formally, we should write $\in$ and not equal since it is an equivalence class...}
-The assertion $f(x) = O(f_1(x))$ says, intuitively, that the function
-$f$ grows no faster than the function $f_1$.  It is, thus, the asymptotic
-analogue of ``less than''.
-
-Formally:
-$f(x) = O(f_1(x))$
-
-means
-
-$(\exists c >0)(\exists x_1)(\forall x > x_1)
-[f(x) \leq c \cdot f_1(x)]$
+The language of asymptotics has its origins in the subfield of mathematics known as {\it Number Theory}, in the late 19th century.  The basic version of the language---which handles almost all situations one encounters when studying the discrete mathematics germane to computational phenomena---builds on the terminology we discuss here.  There is an advanced companion to the following notions, which builds on nondiscrete concepts such as limits; this advanced material will be beyond the likely needs of most students of computing---excepting, of course, specialists in specific, advanced subject areas.  The basics of the language of asymptotics build on three primitive notations and notions.  We need only the rudiments of this material within this text, so we refer the reader to standard texts on algorithm design and analysis (e.g.,\cite{CLRS}) or number theory (e.g., \cite{NivenZ80}), to go beyond the basics of the following ideas.
 
 \smallskip
 
+The following notation actually has several variants in both symbology and articulation.  We elaborate on this situation only for our first notation, the ``big-$O$'' (articulated ``big $O$").  The reader should be aware that analogous complications accompany our other two notations, the ``big-$\Omega$'' (articulated ``big Omega") and the ``big-$\Theta$'' (articulated ``big Theta"). \index{big-$O$}\index{big-$\Omega$}\index{big-$\Theta$} \index{asymptotic notation}
+\begin{itemize}
+\item
+{\em The big-$O$ notation}.
+The assertion $f(x) = O(f_1(x))$ says, intuitively, that the function $f$ {\em grows no faster than} the function $f_1$.  It is, thus, the asymptotic analogue of ``less than''.
+
+\smallskip
+
+Formally, the assertion
+
+\hspace*{.2in}$f(x) = O(f_1(x))$
+
+means
+
+\hspace*{.2in}
+$(\exists c >0)(\exists x_1)(\forall x > x_1)
+[f(x) \leq c \cdot f_1(x)]$
+
+\medskip
+
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
+\begin{minipage}{0.96\textwidth}
 {\bf The complication}.
 
-{\em The ``equal sign'' in the notation $f(x) = O(f_1(x))$ does {\em
-    not} mean ``equals''.}
+The ``equal sign'' in the notation $f(x) = O(f_1(x))$ does {\em not} mean ``equals''.
 
-In fact, the assertion ``$fx) = O(f_1(x))$'' actually means that
-function $f$ {\em belongs to the class of functions that {\em
-    eventually} grow no faster than function $f_1$ does.}
+\smallskip
+
+In fact, the assertion ``$fx) = O(f_1(x))$'' actually means that function $f$ {\em belongs to the class of functions that {\em eventually} grow no faster than function $f_1$ does.}
+
+\smallskip
 
 Consequently:
 \begin{enumerate}
 \item
-The assertion ``$f(x) = O(f_1(x))$'' is {\em articulated} \\
-\hspace*{.25in}``$f(x)$ {\em is} $O(f_1(x))$''. \\
+The assertion ``$f(x) = O(f_1(x))$'' is {\em articulated}
+
+\smallskip
+
+\hspace*{.25in}``$f(x)$ {\em is} $O(f_1(x))$''.
+
+\smallskip
+
 {\em Never} substitute ``equals'' for ``is''
 \item
-Many people acknowledge the ``belonging to a class'' facet of the
-defintion by writing \\
-\hspace*{.25in}``$f(x) \in O(f_1(x))$'' \\
-rather than \\
+Many people acknowledge the ``belonging to a class'' facet of the definition by writing
+
+\smallskip
+
+\hspace*{.25in}``$f(x) \in O(f_1(x))$''
+
+\smallskip
+
+rather than
+
+\smallskip
+
 \hspace*{.25in}``$f(x) =  O(f_1(x))$''
 \end{enumerate}
+
+\medskip
+
+{\it An esoteric aside}:  It is strange that precisely two of the three asymptotic letters, namely, $\Omega$ and $\Theta$, come from the Greek alphabet.  In fact, many scholars insist that the letter $O$ in ``big-$O$" is actually the Greek letter omicron, {\em not} the Latin letter $O$.
 \end{minipage}
 }
-\medskip
+\bigskip
 
 \item
 {\em The big-$\Omega$ notation}.
-%
-The assertion $f(x) = \Omega(f_2(x))$ says, intuitively, that the
-function $f$ grows at least as fast as function $f_2$.  It is, thus, the
-asymptotic analogue of ``greater than''.
+The assertion $f(x) = \Omega(f_2(x))$ says, intuitively, that the function $f$ {\em grows at least as fast as} function $f_2$.  It is, thus, the asymptotic analogue of ``greater than''.
 
-Formally:
+\smallskip
+
+Formally, the assertion
+
+\smallskip
+
+\hspace*{.2in}
 $f(x) = \Omega(f_2(x))$
 
 means
 
+\hspace*{.2in}
 $(\exists c >0)(\exists x_2)(\forall x > x_2)
 [f(x) \geq c \cdot  f_2(x)]$
 
 \item
 {\em The big-$\Theta$ notation}.
-%
-The assertion $f(n) = \Theta(f_3(n))$ says, intuitively, that the
-function $f$ grows at the same rate as does function $f_3$.  It is,
-thus, the asymptotic analogue of ``equal to''.
+The assertion $f(n) = \Theta(f_3(n))$ says, intuitively, that the function $f$ {\em grows at the same rate as} function $f_3$.  It is, thus, the asymptotic analogue of ``equal to''.
 
-Formally:
+\smallskip
+
+Formally, the assertion
+
+\smallskip
+
+\hspace*{.2in}
 $f(x) = \Theta(f_3(x))$
 
 means
 
+\hspace*{.2in}
 $(\exists c >0)(\exists c' >0)(\exists x_{3})(\forall x > x_{3})
 [c \cdot f_3(x) \leq f(x) \leq c' \cdot  f_3(x)]$
 \end{itemize}
-One renders the preceding intuitive explanations precise by pointing
-out that the three specifies relations: ($a$) take hold {\em
-  eventually}, i.e., only for large arguments to the functions $f$,
-$f_1$, $f_2$, and $f_3$; ($b$) hold up to an unspecified constant of
-proportionality.  The plots in Fig.~\ref{fig:Asymptotic} illustrate
-the definitions of big-$O$ and big-$\Omega$ graphically.
+One renders the preceding intuitive explanations precise by pointing out that the three specified relations:
+\begin{enumerate}
+\item
+take hold {\em eventually}, i.e., only for large arguments to the functions $f$, $f_1$, $f_2$, $f_3$;
+\item
+hold only up to an unspecified constant of proportionality.
+\end{enumerate}
+The plots in Fig.~\ref{fig:Asymptotic} illustrate the definitions of big-$O$ and big-$\Omega$ graphically.
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/NotationAsymptotic}
-\caption{Plots of three functions: $f$ (solid curve), $f_1$ (dotted
-  curve that starts out above $f$, and $f_2$ (dotted curve that starts
-  out below $f$).  Assume that the three illustrated trajectories
-  continue in the indicated relationships for large values of $x$;
-  i.e., the plot for $f$ lies strictly below that for $f_1$ and strictly
-  above that for $f_2$ for all $x > x_1$.  With this assumption, the
-  figure illustrates the relations: $f(x) = O(f_1(x))$ and
-  $f(x) = \Omega(f_2(x))$.
-%  {\Denis check thsee last equalities}
-  }
+\caption{Plots of three functions: $f$ (solid curve), $f_1$ (dotted curve that originates on the left, above $f$), and $f_2$ (dotted curve that originates on the left, below $f$).  Assume that the three illustrated trajectories continue in the depicted relationships for large values of $x$---i.e., for all $x > x_1$, the plot for $f$ lies strictly below that for $f_1$ and strictly above that for $f_2$.  With this assumption, the figure illustrates the relations: $f(x) = O(f_1(x))$ and $f(x) = \Omega(f_2(x))$.}
 \label{fig:Asymptotic}
 \end{center}
 \end{figure}
 
-
-\ignore{*********
-\subsubsection{Getting formal}
-
-{\small\sf Big-$O$, Big-$\Omega$, and Big-$\Theta$ notation}.%
-It is convenient to have terminology and a notation that allows us to
-talk about the rate of growth of one function as measured by the rate
-of growth of another.  We are interested in the exact growth rate, as
-well as upper and lower bounds on the growth rate.  We do have
-appropriate such language for certain rates of growth.  We can talk,
-for instance, about a linear growth rate or a quadratic rate or an
-exponential rate, to name just a few---and we get the desired bounds
-using the prefixes ``sub'' or ``super,'' as in ``subexponential'' and
-``superlinear''---but our repertoire of such terms is quite limited.
-Mathematicians working in the theory of numbers in the late nineteenth
-century established a notation that gives us an unlimited repertoire
-of descriptors for growth rates, via what has come to be called the
-big-$O$, big-$\Omega$, and big-$\Theta$ notations, which are
-collectively sometimes called {\em asymptotic notation}.\index{asymptotic notation}
-*******}
-
 \subsection{The ``Uncertainties'' in Asymptotic Relationships}
 \label{sec:uncertainties-asymptotics}
 
-The formal definitions of all three of our asymptotic relationships
-are bracketed by two important quantifiers:
+The formal definitions of all three of our asymptotic relationships are bracketed by two important quantifiers:
 \[ 
 (\exists c >0) \ \ \ \mbox{ and }  \ \ \  (\forall x > x^{\#}).
 \]
-The former, {\em uncertain-size} quantifier, asserts that asymptotic
-notions describe functional behavior ``in the large''.  Thus, in
-common with more common qualitative descriptors of quantitative growth
-such as linear, quadratic, cubic, quartic, exponential, logarithmic,
-etc., asymptotic relationships give no information about constants of
-proportionality.  {\em We are not saying that constant factors do not
-  matter!  We are, rather, saying that we want to discuss growth
-  patterns \underline{in the large}.}
+The former, {\em uncertain-size} quantifier ($\exists c >0$), asserts that asymptotic notions describe functional behavior ``in the large''.  Thus, in common with more common qualitative descriptors of quantitative growth such as ``linear", ``quadratic", ``cubic", ``quartic", ``exponential", ``logarithmic", etc., asymptotic relationships give no information about constants of proportionality.  {\em We are not saying that constant factors do not matter!}  We are, rather, saying, {\em We sometimes want to discuss growth patterns \underline{in the large} rather than in detail.}
 
-The latter, {\em uncertain-time} quantifier asserts that asymptotic
-relationships between functions are promised to hold only
-``eventually'', i.e., ``for sufficiently large values of the argument
-$x$''.  Therefore, in particular, asymptotic notions cannot be
-employed to discuss or analyze quantities that can never grow beyond a
-fixed finite value.  The fact that all instances of a quantity
-throughout history have been below $N$ is immaterial, as long as it is
-conceivable that an instance larger than $N$ could appear at some time
-in the future.
+\smallskip
 
-These quantifiers in particular distinguishes claims of asymptotic
-relationship from the more familiar definite inequalities such as
-``$f(x) \leq g(x)$'' or ``$f(x) \geq 7 \cdot g(x)$''.  In fact, it is
-often easier to think about our three asymptotic bounding assertions
-as establishing {\em envelopes} for $f(x)$:
+The latter, {\em uncertain-time} quantifier ($\forall x > x^{\#}$) asserts that asymptotic relationships between functions are promised to hold only ``eventually'', i.e., ``for sufficiently large values of the argument $x$''.  Therefore:  {\em Asymptotic notions cannot be employed to discuss or analyze quantities that can never grow beyond a fixed finite value}.  The fact that all instances of a quantity throughout history have been below $N$ is immaterial, as long as it is conceivable that an instance larger than $N$ could appear at some time in the future.
+
+\smallskip
+
+These two quantifiers in particular distinguish claims of asymptotic relationship from the more familiar definite inequalities such as
+\[ [f(x) \leq g(x)] \ \ \ \ \mbox{ or } \ \ \ \ [f(x) \geq 7 \cdot g(x)] \]
+In fact, it is often easier to think about our three asymptotic bounding assertions as establishing {\em envelopes} for $f(x)$---cf., Fig.~\ref{fig:Asymptotic}:
 \begin{itemize}
 \item
-Say that $f(x) = O(g(x))$.  If one draws the graphs of the functions
-$f(x)$ and $c \cdot g(x)$, then as one traces the graphs with
-increasing values of $x$, one eventually reaches a point $x^{\#}$
-beyond which the graph of $f(x)$ never enters the territory {\em
-  above} the graph of $c \cdot g(x)$.
+$f(x) = O(g(x))$.
+
+If one draws the graphs of the functions $f(x)$ and $c \cdot g(x)$, then as one traces the graphs with increasing values of $x$, one eventually reaches a point $x^{\#}$ beyond which the graph of $f(x)$ never enters the territory {\em above} the graph of $c \cdot g(x)$.
 \item
-Say that $f(x) = \Omega(g(x))$.  This situation is the up-down mirror
-image of the preceding one: just replace the highlighted ``{\em
-above}'' with ``{\em below}.''
+$f(x) = \Omega(g(x))$.
+
+This situation is the up-down mirror image of the preceding one: just replace the highlighted ``{\em above}'' with ``{\em below}.''
 \item
-Say that $f(x) = \Theta(g(x))$.  We now have a two-sided envelope:
-beyond $x^{\#}$, the graph of $f(x)$ never enters the territory {\em
-  above} the graph of $c \cdot g(x)$ and never enters the territory
+$f(x) = \Theta(g(x))$.
+
+This relation provides a {\em two-sided} envelope:  Beyond $x^{\#}$, the graph of $f(x)$ never enters the territory {\em above} the graph of $c \cdot g(x)$ and never enters the territory
 {\em below} the graph of $c' \cdot g(x)$.
 \end{itemize}
-In addition to allowing one to make familiar growth-rate comparisons
-such as ``$n^{14} = O(n^{15})$'' and ``$1.001^n = \Omega(n^{1000})$,''
-we can now also make assertions such as ``$\sin x = \Theta(1)$,''
-which are much clumsier to explain in words.
+In addition to allowing one to make familiar growth-rate comparisons such as ``$n^{14} = O(n^{15})$'' and ``$1.001^n = \Omega(n^{1000})$,'' we can now also make assertions such as ``$\sin x = \Theta(1)$,'' which are much clumsier to explain in words.
 
 \medskip
 
-\noindent {\bf Beyond the big letters.}\index{asymptotics!with little letters}
-%
-There are ``little''-letter analogues of the preceding ``big''-letter
-asymptotic notations: $o$, $\omega$, and $\theta$.  The definition and
-range of application of these notations build on the notion of {\it
-  limit}, which is basic in continuous mathematics---e.g., in the
-calculus---but rare in discrete mathematics.  We therefore do not
-include this topic in this text, instead referring the reader to any
-good text on the calculus.
+\index{asymptotics!with little letters}
+\noindent {\bf Beyond the big letters.}
+There are ``little''-letter analogues of the preceding ``big''-letter asymptotic relations and notations: $o$, $\omega$, and $\theta$.  The definitions and domains of application of these notations build on the notion of {\it limit}, which is fundamental in continuous mathematics---e.g., in the differential and integral calculus---but rare in discrete mathematics.  We therefore do not include this topic in this text, instead referring the reader to any good text on the calculus.
 
 \subsection{Inescapable Complications}
 \label{sec:asymptotic-complication}
 
-The story we have told thus far is more or less standard fare in
-courses on discrete mathematics and algorithms.  Two complications to
-the story are covered less consistently, although lacking them, one
-cannot perform cogent asymptotic reasoning about modern computing
-environments.  Both complications involve the notion of {\em
-  uniformity}. \index{relations!uniformity}
+The story we have told thus far is more or less standard fare in courses on discrete mathematics and algorithms.  Two complications to the story are covered less consistently, despite the fact that, lacking them, one cannot perform cogent asymptotic reasoning about modern computing
+environments.  Both complications involve the notion of {\em uniformity}. 
+\index{relations!uniformity}
 
+\medskip
+
+\index{asymptotics!multiple functions}
 \noindent
-{\bf 1.}\index{asymptotics!multiple functions}
+{\bf 1.}
 {\em Multiple functions}.
-%
-Say that we have four functions, $f, g, h, k$, and we know that both
-\[ f(n) = O(g(n)) \ \ \mbox{ and } \ \ h(n) = O(k(n)) \]
-It is intuitive that
+Say that we have four functions, $f, g, h, k$, and we know that
+\[ f(n) = O(g(n)) \ \ \ \  \mbox{ and } \ \ \ \ h(n) = O(k(n)) \]
+It is compellingly suggestive that
 \[ f(n) + h(n) = O(g(n) + k(n)) \]
 --- but is it true?
 
-In short, the answer is YES, but verifying that requires a bit of
-subtlety, because, absent hitherto undisclosed information, the
-proportionality constants $c_{f,g}$ and $N_{f,g}$ that witness the
-big-$O$ relationship between functions $f$ and $g$ have no connection
-with the constants, $c_{h,k}, N_{h,k}$ that witness the analogous
-relationship between functions $h$ and $k$.  Therefore, in order to
-verify the posited relationship between functions $f + h$ and $g + k$,
-one much find witnessing constants $c_{f+h, g+k}$ and $N_{f+h,g+k}$.
-Of course, this task requires only elementary reasoning and
-manipulation --- but it must be done!
+\smallskip
 
+In short, the answer is {\em YES}---but verifying the answer requires a bit of subtlety.  The challenge is that, absent hitherto undisclosed information, the proportionality constants $c_{f,g}$ and $N_{f,g}$ that witness the big-$O$ relationship between functions $f$ and $g$ have no connection with the constants, $c_{h,k}$ and $N_{h,k}$ that witness the analogous relationship between functions $h$ and $k$.  Therefore, in order to verify the posited relationship between functions $f + h$ and $g + k$, one much find witnessing constants $c_{f+h, g+k}$ and $N_{f+h,g+k}$.
 
-\noindent {\bf 2.}\index{asymptotics!multivariate functions}
+\smallskip
+
+\noindent
+Of course, this task requires only elementary reasoning---{\em but it must be done}!
+
+\medskip
+
+\index{asymptotics!multivariate functions}
+\noindent {\bf 2.}
 {\em Multivariate functions}.
-%
-Finally, we discuss the scenario that almost automatically accompanies
-the transition from a focus on sequential, single-agent computing to a
-focus on PDC.  Within this broadened context, most functions that
-describe a system have one or more variables that describe the
-computing system --- its number of processors or of agents or the
-sizes of its memory modules or the communication-radii of its
-transponders or \ldots, in addition to the one or more variables that
-describe the data that the system is processing.  Within such
-scenarios, every assertion of an asymptotic relationship, of the form
+Finally, we discuss the scenario that almost automatically accompanies the transition from {\em sequential, single-agent} computing to {\em parallel and/or distributed and/or multi-agent}computing.  One must account for a system's many resources: computing, memory/storage, and communication., etc.  One must assess the relationships among the costs of operating the system: time, energy, memory usage, etc.  One must account for possible tradeoffs among costs and possible cost-altering emulations of one subsystem by another. Within such scenarios, every assertion of an asymptotic relationship, of the form
 \[ f(\vec{m}; \vec{n}) = O(g(\vec{m}; \vec{n})) \]
 must explicitly specify the following information:
 \begin{itemize}
 \item
-which variables can grow without bound;
+which variables represent resources that can grow without bound;
 \item
-among such unbounded variables, which participate in the posited
-asymptotic relation;
+among such unbounded variables, which participate in the posited asymptotic relation;
 \item
-for each participating unbounded variable $x$, what are the constants
-$c_x$ and $N_x$ that witness the posited asymptotic relationship(s).
+for each participating unbounded variable $x$, what are the constants $c_x$ and $N_x$ that witness the posited asymptotic relationship(s).
 \end{itemize}
 
-Clearly the complexity of cogent asymptotic reasoning --- hence also
-the complexity of teaching about such reasoning --- gets much more
-complicated in the multivariate settings engendered by Parallel and Distributed Computing.  
-But, the benefits of being able to reason qualitatively about the quantitative
-aspects of computing increase at least commensurately!
+\medskip
+
+Clearly the complexity of cogent asymptotic reasoning---hence, also, the complexity of teaching about such reasoning---gets much more complicated in the multivariate settings engendered by parallel and distributed computing.  But, the benefits of being able to reason qualitatively about the quantitative aspects of computing increase at least commensurately!
 
 \section{Reasoning about Infinity}
 \label{sec:reasoning-infinity}
@@ -340,93 +255,61 @@ aspects of computing increase at least commensurately!
 \subsection{Coping with infinity}
 \label{sec:coping-infinity}
 
-A recurring challenge when one ``does'' mathematics is dealing with
-{\em infinity}.  Infinite objects, such as sets and summations, behave
-rather differently from the more familiar finite objects that we
-encounter in our daily lives.  Two examples will suffice.  
+A recurring challenge when one ``does'' mathematics is dealing with {\em infinity}.  Infinite objects, such as sets and summations, behave rather differently from the more familiar finite objects that we encounter in our daily lives.  Two examples will suffice.  
 \begin{enumerate}
 \item
-We all know that there are ``equally many'' integers with the set of
-odd integers as there are integers within the set $\N$ of all
-integers.  We verify this easily by matching the two sets element by
-element.  We never run out of elements of either set---even though the
-first of these sets is obtained from the second by discarding half of
-its elements.
+There are ``equally many'' integers within the set $\N$ of {\em all} integers as there are in
+  \begin{itemize}
+  \item
+$\N$'s proper {\em subset} that comprises just the {\em odd} integers.
+  \item
+$\N$'s proper {\em superset} that comprises ordered pairs of integers.
+  \end{itemize}
+Does this mean that ``infinite is infinite", i.e., that one can match up the elements of any two infinite sets.
+  
+\smallskip
+
+\noindent
+{\em Decidedly NOT!}
+
+\smallskip
+
+\noindent
+Alas!  We have to await Section~\ref{sec:FNS-uncountable} before we make the acquaintance of infinite sets that are ``bigger" than $\N$.  We shall appreciate this introduction all the more after Section~\ref{sec:pairing}, where we shall encounter a lot of infinite sets that ``should be bigger" than $\N$---but are not! 
+
+
 \item
-We have seen in Chapter~\ref{ch:Summation} that there exist summations
-of infinitely many positive numbers whose sum is finite, and there
-exist other such summations whose ``sum is infinite'' (in a sense that
-can be made precise).  One instance of the former class of summations is:
-\[ 1 \ + \ {1 \over 2} \ + \ {1 \over 2^2} \ + \cdots + \ {1 \over
-  2^k} \ + \cdots \ \ = \ \ 2
-\]
-The summation in this example, which sums the infinite set of inverse powers
-of $2$ {\em converges} to the finite sum $2$; see
-Proposition~\ref{thm:sum-finite-geometric-series}.  One instance of
-the latter class of summations is:
+We have seen in Chapter~\ref{ch:Summation} that there exist summations of infinitely many positive numbers whose sum is finite (in the sense that the series {\em converges}).  The series
+\[ 1 \ + \ {1 \over 2} \ + \ {1 \over 2^2} \ + \cdots + \ {1 \over 2^k} \ + \cdots \ \ = \ \ 2 \]
+provides an example.
+
+\smallskip
+
+But, there exist other infinte summations whose ``sum is infinite'' (in the sense that the series {\em diverges}).  The {\it harmonic} series
 \[ 1 \ + \ {1 \over 2} \ + \ {1 \over 3} \ + \cdots + \ {1 \over k} \ + \cdots \]
-The summation in this example, which sums the infinite set of reciprocals of
-positive integers {\em diverges:} its sum increases forever as more
-reciprocals are added in; see the treatment of this series in
-Section~\ref{sec:riemann-bounds}.
+provides an example.
 \end{enumerate}
+There are clearly nonobvious concepts within the world of the infinite, which distinguish those infinite objects that behave more or less as we would expect from those infinite objects that don't.
 
-A more subtle challenge when dealing with the world of the infinite
-manifests itself in the myriad {\em paradoxes} that one encounters in
-this world.  Does an arrow ever reach its target---given that it
-begins its journey by traversing half the distance, then traverses
-half of the remaining half, then half of the remaining quarter,
-\ldots?
+\medskip
 
-\ignore{*********
-{\Denis This part should be carefully read}
+The world of the infinite is even more subtle than the preceding examples suggest.  This world hosts myriad {\em paradoxes}---situations that, in the words of the Apple$^{\mbox{\scriptsize{\sc tm}}}$ dictionary, ``combine contradictory features or qualities".
 
-{\Arny An immediate problem is the forward reference to SUMMATION.  Do
-  we need to reorganize?}
+\medskip
 
-We presented in the chapter Summations several ways to compute the sum
-of numbers in a given sequence ($a_n$).  If the sequence contains
-infinitely many, the sum can be finite or not.  Some of the classical
-techniques used while calculating finite sums are no longer valid for
-infinite sums.
-
-
-A natural definition is $\sum_{k \geq 1} a_k = lim_{n \rightarrow \infty} \sum_{k=1}^{n} a_k$.
-But we have to be careful with this definition. 
-For instance, let us consider the following paradoxal situation:
-we aim to determine the value of $S = \sum_{k \geq 0} \frac{1}{2^k}$.
-Defining the infinite sum as the limit leads to the value $2$. 
-This is obtained $2S = S+2$...
-But what happens if we apply the same reasoning to to the sum: $\sum _{k \geq 0} 2^k$?
-To obtain the value $-1$!
-This is obviously not correct since the sum of increasing positive numbers should be positive.
-The reason is that the terms of the series grows to $+\infty$.
-**********}
+The remainder of this section is devoted to discussing and explaining the sometimes-confusing but always-fascinating world of the infinite.
 
 \subsection{The ``Point at Infinity''}
 \label{sec:point-at-infinity}
 
-In large part, the difficulties encountered when dealing with infinite
-objects result from the conceptual fiction that there is, in fact, a
-``point at infinity''---i.e., that one can treat infinity as just
-another number.  In many mathematical environments, this fiction is an
-aid to reasoning which can be handled with totally rigor---but often
-only when accompanied by rather sophisticated mathematical machinery.
-Two familiar examples of such mathematical machinery are the notions
-of \index{limit} {\it limit} and \index{continuity} {\it continuity}
-(of a function).  A more advanced example of such machinery is the
-{\it Riemann sphere}, \index{Riemann sphere} an invention of the
-19th-century German mathematician Bernhard Riemann, \index{Riemann, Bernhard} 
-which allows one to reason about the infinite two-dimensional plane by
-``conformally'' wrapping the plane into a sphere whose ``south pole''
-represents the zero-point (i.e., the origin) of the plane and whose
-``north pole'' represents the ``point at infinity.''  There are many
-other, less-familiar, examples of such mathematical machinery,
-including advanced topics such as {\it types} in the domain of
-mathematical logic.
+\index{limit} \index{continuity} \index{Riemann sphere} \index{Riemann, Bernhard}
+In many situations, the difficulties encountered when dealing with infinite objects result from the conceptual fiction that there is, in fact, a ``point at infinity''---i.e., that one can treat infinity as just
+another number.  In many mathematical environments, this fiction is an aid to reasoning which can be handled with totally rigor---but often only when accompanied by rather sophisticated mathematical machinery.  Two familiar examples of such mathematical machinery are the notions
+of  {\it limit} and {\it continuity} (of a function).  A more advanced example of such machinery is the {\it Riemann sphere}, an invention of the 19th-century German mathematician Bernhard Riemann, which allows one to reason about the infinite two-dimensional plane by ``conformally'' wrapping the plane into a sphere whose ``south pole'' represents the zero-point (i.e., the origin) of the plane and whose ``north pole'' represents the ``point at infinity.''  There are many other, less-familiar, examples of such mathematical machinery, including advanced topics such as {\it types} in the domain of mathematical logic.
 
-Of course, we have already dealt successfully with a number of quite
-sophisticated topics related to infinity.  To cite just two examples:
+\smallskip
+
+Of course, we have already dealt successfully with a number of quite sophisticated topics related to infinity.  To cite just two examples:
 \begin{enumerate}
 \item
 In Chapter~\ref{ch:numbers-numerals} we successfully answered questions
