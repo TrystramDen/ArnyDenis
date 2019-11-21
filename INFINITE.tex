@@ -598,59 +598,76 @@ Of course, the world was spinning and circling the sun before G\"{o}del's earths
 \paragraph{B.  Russell's paradox: The ``anti-universal'' set}
 
 \index{paradox!Russell's paradox} \index{Russell, Bertrand}
-The notion of set is perhaps the most primitive one in mathematics.
-Even before delving into Chapter~\ref{ch:sets-BA-logic}'s survey of
-the intricacies of sets and their mathematical kin, the reader
-probably had at least an informal command of many of the relevant
-notions.  One of the most basic features of sets is that their
-elements are not governed by any {\it a priori} restrictions.  Most
-specifically for our purposes here, a set can have sets as elements.
-Indeed, there is no inherent reason why a set cannot contain itself as
-an element!  At first blush, this possibility for self-membership
-seems to be a rather innocuous freedom.  But, the 20th-century English
-philosopher/logician Bertrand Russell
-% and Alfred North Whitehead  \index{Whitehead, Alfred North}
-pointed out in \cite{Russell02,Russell03} that, when encountered
-within the world of potentially-infinite sets, the capacity for
-self-membership is (intellectually) hazardous.
 
-Russell had the foresight to observe that, absent any restrictions on
-the formations of sets, one could talk about the following set $A$,
-which we shall call the ``anti-universe.''
+As we remarked in Chapter~\ref{ch:sets-BA-logic}, the notion of set is perhaps the most basic one in mathematics.  One of the fundamental features of sets is that their elements are not governed by any {\it a priori} restrictions.  Most specifically for our discussion here, {\em a set can have sets as elements.}  Indeed, there is no inherent reason why a set cannot contain {\em itself} as an element!  At first blush, the possibility for ``self-membership" in sets seems to be a rather innocuous, albeit unexpected, freedom.  But, the 20th-century English philosopher/logician Bertrand Russell pointed out in \cite{Russell02,Russell03} that, when the population of sets that we focus on contains infinite sets, then the capacity for self-membership can be (intellectually) hazardous.
 
-\smallskip
+The hazard that Russell foresaw resided in the fact that, absent any restrictions on the way that one can form sets, one could employ {\em any} proposition {\bf P}($x$) to define the set
+\[ \{ x \ | \ {\bf P}(x) \} \] 
+One could thereby specify myriad ``benign" sets such as
 
-{\em $A$ is the set of precisely those sets that {\em do not} contain themselves
-  (as elements).}
+\medskip
+
+\begin{tabular}{ll}
+\underline{\bf Set} & \underline{\bf P}($x$) \\
+Even integers: & 
+ $[ x \in \N] \mbox{ and } (\exists y \in \N)[x = 2y]$ \\
+Perfect squares: & 
+ $[ x \in \N]$ and $(\exists y \in \N)[x = y \cdot y] $ \\
+Satisfiable POS propositions: & 
+ $[x \mbox{ is an $n$-variable POS formula}]$ \\
+ & \ \ \ and $(\exists \mbox{ $n$-place bit vector } y) [x(y) = \ \mbox{\sc true}] $ \\
+Infinite set: &
+$[x \mbox{ is a set}]$ and $[ x \mbox{ is infinite}]$
+\end{tabular}
 
 \medskip
 
 \noindent
-{\bf Question}.  {\it Is the set $A$ a member of itself?}
+But one could also specify the {\em anti-universe} set $A$:
+
+\medskip
+
+\begin{tabular}{ll}
+{\it In text}: &
+$A$ is the set of sets that {\em do not} contain themselves (as elements) \\
+{\it In symbols}: &
+$A = \{ x \ | \ [x \mbox{ is a set}]$ and $[ x \notin x] \}$
+\end{tabular}
+
+\bigskip
+
+The paradox posed by the existence of the set $A$ within our universe of discourse becomes clear when we ponder the following question.
+
+\smallskip
 
 \noindent
-Let us consider the possibilities.
-\begin{itemize}
+{\bf Question}.  {\it Is the set $A$ a member of itself?}
+
+\bigskip
+
+\noindent
+Let us analyze the two options that the question affords us.
+\begin{enumerate}
 \item
-If set $A$ is a member of itself, then by definition, $A$ {\em does
-  not} contain itself---since sets belonging to $A$ {\em do not}
-contain themselves.
+{\em If set $A$ is a member of $A$}, then by definition, $A$ {\em is not} a member of $A$.
+
+\smallskip
+
+To wit, $A$ is the set of all sets that {\em do not} contain themselves as members.
 
 \item
-If set $A$ is not a member of itself, then by definition, $A$ is an
-element of $A$.
-\end{itemize}
+{\em If set $A$ is {\em not} a member of $A$}, then by definition, $A$ is a member of $A$.
+\end{enumerate}
+
+\medskip
+
+We once again find ourselves in a conundrum: $A$ belongs to $A$ if, and only if, $A$ does not belong to $A$!
+
+\bigskip
 
 \index{typed utterances in languages}
-There have been many attempts to resolve the dilemma inherent in the
-preceding analysis.  Many have striven for logical edifices that
-declare the question ``{\it Is the set $A$ a member of itself?}'' somehow 
-illegitimate.  One option that appeals to many is to assign each sentence 
-within a language $L$ a {\it type} (say, a positive integer).  One then allows 
-a sentence of $L$ to refer only to sentences of {\em lower} type-number.
+There have been many attempts over the years to resolve the dilemma inherent in the preceding analysis.  Many have striven for logical edifices that declare the question ``{\it Is the set $A$ a member of itself?}'' somehow illegitimate.  One option that appeals to many is to assign each sentence within a language $L$ a {\it type} (say, a positive integer)---and to adjudge a sentence of $L$ to be {\em legitimate} only if it refers only to sentences of {\em lower} type-number.
 
-The stratagem of typing utterances within a language $L$ disables
-self-reference within $L$, hence defines away both Russel's paradox
-and G\"{o}del's paradox. But, it does so at the expense of adding an
-obtrusive layer of formalism to our language(s) and our linguistic
-systems.
+\bigskip
+
+The stratagem of typing utterances within a language $L$ {\em disables} self-reference within $L$, hence defines away both Russel's paradox and G\"{o}del's paradox.  The stratagem of typing helps also to cope with problems that arise in programming languages which allow recursion.  Typing is, thus, a powerful mechanism for imposing helpful structure in languages.  But, the advantages of typing come only at the expense of adding an obtrusive layer of formalism to language(s) and their associated systems.
