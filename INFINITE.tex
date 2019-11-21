@@ -1,4 +1,4 @@
-%version of 11-20-19
+%version of 11-21-19
 
 \chapter{The Vertigo of Infinity:
 Handling the Very Large and the Infinite}
@@ -38,7 +38,8 @@ The language of asymptotics has its origins in the subfield of mathematics known
 
 \smallskip
 
-The following notation actually has several variants in both symbology and articulation.  We elaborate on this situation only for our first notation, the ``big-$O$'' (articulated ``big $O$").  The reader should be aware that analogous complications accompany our other two notations, the ``big-$\Omega$'' (articulated ``big Omega") and the ``big-$\Theta$'' (articulated ``big Theta"). \index{big-$O$}\index{big-$\Omega$}\index{big-$\Theta$} \index{asymptotic notation}
+The following notation actually has several variants in both symbology and articulation.  We elaborate on this situation only for our first notation, the ``big-$O$'' (articulated ``big $O$").  The reader should be aware that analogous complications accompany our other two notations, the ``big-$\Omega$'' (articulated ``big Omega") and the ``big-$\Theta$'' (articulated ``big Theta"). 
+\index{big-$O$}\index{big-$\Omega$}\index{big-$\Theta$} \index{asymptotic notation}
 \begin{itemize}
 \item
 {\em The big-$O$ notation}.
@@ -293,7 +294,9 @@ There are clearly nonobvious concepts within the world of the infinite, which di
 
 \medskip
 
-The world of the infinite is even more subtle than the preceding examples suggest.  This world hosts myriad {\em paradoxes}---situations that, in the words of the Apple$^{\mbox{\scriptsize{\sc tm}}}$ dictionary, ``combine contradictory features or qualities".
+\index{paradox}
+The world of the infinite is even more subtle than the preceding examples suggest.  This world hosts myriad {\em paradoxes}---situations that, in the words of the {\it New Oxford Dictionary}, ``combine contradictory features or qualities".\footnote{In detail, the {\it New Oxford Dictionary} defines a ``paradox'' as \\
+``a statement or proposition that, despite sound (or apparently sound) reasoning from acceptable premises, leads to a conclusion that seems senseless, logically unacceptable, or self-contradictory''.}
 
 \medskip
 
@@ -307,272 +310,207 @@ In many situations, the difficulties encountered when dealing with infinite obje
 another number.  In many mathematical environments, this fiction is an aid to reasoning which can be handled with totally rigor---but often only when accompanied by rather sophisticated mathematical machinery.  Two familiar examples of such mathematical machinery are the notions
 of  {\it limit} and {\it continuity} (of a function).  A more advanced example of such machinery is the {\it Riemann sphere}, an invention of the 19th-century German mathematician Bernhard Riemann, which allows one to reason about the infinite two-dimensional plane by ``conformally'' wrapping the plane into a sphere whose ``south pole'' represents the zero-point (i.e., the origin) of the plane and whose ``north pole'' represents the ``point at infinity.''  There are many other, less-familiar, examples of such mathematical machinery, including advanced topics such as {\it types} in the domain of mathematical logic.
 
-\smallskip
+\medskip
 
-Of course, we have already dealt successfully with a number of quite sophisticated topics related to infinity.  To cite just two examples:
+Of course, we have already had some success in dealing with a quite sophisticated genre of infinite object:  In Chapter~\ref{ch:Summation}, we summed and manipulated a broad variety of infinite summations.  We are close to having the tools necessary to deal with a variety of other infinite objects; to cite just two:
 \begin{enumerate}
 \item
-In Chapter~\ref{ch:numbers-numerals} we successfully answered questions
-such as
-  \begin{enumerate}
-  \item
-{\it Are there more rational numbers than integers?}
-  \item
-{\it Are there more real numbers than rational numbers?}
-  \end{enumerate}
+In Section~\ref{sec:pairing}, we shall demonstrate how to establish one-to-one correspondences between certain infinite sets, including, notably, any two of: the set $\N$ of integers, the set $\Q$ of rationals, and the set $\N \times \N$ of ordered pairs of integers.
 
 \item
-In Chapters~\ref{ch:numbers-numerals} and~\ref{ch:Summation}, we
-successfully summed and manipulated infinite summations.
+In Section~\ref{sec:FNS-uncountable}, we shall demonstrate that one {\em cannot} establish a one-to-one correspondence between the set $\N$ of integers and the set $\R$ of real numbers.
 \end{enumerate}
 
-The lesson of the preceding paragraphs is that there is no need to
-avoid dealing with infinity and its related notions---as long as one
-has the mathematical machinery necessary to define all needed notions
-unambiguously, obtain well-defined results from all required
-operations and manipulations, and reason cogently about all concepts
-and processes.  That said, the scenarios described in the following
-two subsections warn us to treat all aspects of infinity with care and
-respect.  The subsections point out two challenges one can encounter
-when reasoning about the infinite.  Both challenges leave us with a
-{\em paradox}, i.e., ``a statement or proposition that, despite sound
-(or apparently sound) reasoning from acceptable premises, leads to a
-conclusion that seems senseless, logically unacceptable, or
-self-contradictory.''  {\small (Apple dictionary)}
+\smallskip
 
+The lesson of the preceding paragraphs is that there is no need to avoid dealing with infinity and its related notions---as long as one has the mathematical machinery necessary to: ($a$) define all needed notions unambiguously; ($b$) obtain well-defined results from all required operations and manipulations; ($c$) reason cogently about all the concepts and processes one employs.  That said, the scenarios described in the coming two subsections warn us to treat all aspects of infinity with care and respect.  The subsections point out two challenges often encountered when one reasons about the infinite.  Both challenges leave us with some form of {\em paradox}.
 
 \subsubsection{Underspecified problems}
 \label{sec:underspecified}
 
-The paradoxes we present now require refined groundrules for their
-resolution.  The underlying problems {\em seem} to be totally
-specified---until one tries to develop their solutions.
+The paradoxes we present in this section require refined groundrules for their resolution.  The underlying problems {\em seem} to be totally specified---until one tries to develop their solutions.
 
 \paragraph{A. An infinite summation}
 
-The first question we tackle was the subject of much concern as the
-topic of infinite summations emerged from its infancy in the 18th
-century.  The overriding question is, What can one learn from infinite
-series that do not have a unique sum?  Much valuable work has been done on
-this question, most of which is beyond the scope of this text.  But the
-conundrum presented by the following, particularly vexing, infinite
-summation is valuable to consider here.
+The first question we tackle was the subject of much concern as the topic of infinite summations emerged from its infancy in the 18th century.  The overriding question is, What can one learn from an infinite series that does not have a unique sum?  Much valuable work has been done on this question, most of which is beyond the scope of this text.  But the conundrum presented by the following, particularly vexing, infinite summation is valuable to consider here.
 \[ S \ = \ 1 \ - \ 1 \ + \ 1 \ - \ 1 \ + 1 \ - \ 1 \ + \cdots \]
-There are many conflicting, but well-reasoned, answers to the following
-questions.
+There are many conflicting, but well-reasoned, answers to the following questions.
+
 \medskip
 
 \noindent
-{\bf Questions}:  {\it Does $S$ have a finite value?  If so is this value
-positive or negative?}
+{\bf Questions}:  (1) {\it Does $S$ have a finite sum?}  (2) {\it If so, is this sum positive or negative?}
+
+\smallskip
 
 \noindent
-Here are three plausible answers to these questions; the third merits
-some strong contemplation.
+Here are three plausible answers to these questions; the third, in particular, merits strong contemplation.
 \begin{enumerate}
 \item
-$S \ = \ 0$
+YES: $S \ = \ 0$
 
-This response is justified by the following association of terms in
-the summation that defines $S$.
+\smallskip
+
+This response is justified by the following association of terms in summation $S$.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.5]{FiguresArithmetic/InfiniteParadox1}
+        \includegraphics[scale=0.45]{FiguresArithmetic/InfiniteParadox1}
  %       \caption{First solution}
 \end{center}
 \end{figure}
-\ignore{
-\begin{eqnarray*}
-S & = & (1 \ - \ 1) \ + \ (1 \ - \ 1) \ + (1 \ - \ 1) \ + \cdots \\
-  & = & 0 \ + \ 0 \ + 0 \ + \cdots \\
-  & = & 0
-\end{eqnarray*}
-}
 
 \item
-$S \ = \ 1$
+YES: $S \ = \ 1$
 
-This response is justified by the following association of terms in the
-summation that defines $S$.
+\smallskip
+
+This response is justified by the following association of terms in summation $S$.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.5]{FiguresArithmetic/InfiniteParadox2}
+        \includegraphics[scale=0.45]{FiguresArithmetic/InfiniteParadox2}
  %       \caption{Second solution}
 \end{center}
 \end{figure}
-\ignore{
-\begin{eqnarray*}
-S & = & 1 \ - \ (1-1) \ - \ (1-1) \ - \ (1-1) \ - \cdots \\
-  & = & 1 \ - 0  \ - 0 \ - 0 \ - \cdots \\
-  & = & 1
-\end{eqnarray*}
-}
 
 \item
-There is no valid answer, because the problem statement does not
-specify how to associate terms.  Indeed, by mischievously playing with
-parentheses, one can arrive at many ``plausible'' values for $S$.
-This is one concrete example of how summations with infinitely many
-terms behave differently from those with finitely many terms.
+THERE IS NO VALID ANSWER.
+
+\smallskip
+
+This response is justified by the fact that the problem statement does not specify how to associate the terms of $S$.  Indeed, by mischievously playing with parentheses, one can arrive at many ``plausible'' sums for $S$.
+
+\smallskip
+
+This argument provides a concrete example of how summations having infinitely many terms behave differently from those having finitely many terms.
 \end{enumerate}
 
 
 \paragraph{B. The Ross-Littlewood paradox}
 
-The following story about balls and bins is known as the {\it
-  Ross-Littlewood paradox}, after its creators: A version of the story
-appeared first in John Littlewood's enlightening and entertaining book
-{\it Littlewood's Miscellany} \cite{Littlewood-misc};
-\index{Littlewood, John E.} the story was amplified to its present
-form by S.M.~Ross \cite{Ross76}. \index{Ross, Sheldon M.}
+\index{Littlewood, John E.} \index{Ross, Sheldon M.}
+The following story is known as the {\it Ross-Littlewood paradox}, after its creators.  A version of the story appeared first in John Littlewood's enlightening and entertaining book {\it Littlewood's Miscellany} \cite{Littlewood-misc}; the story was amplified to its present form by Sheldon M.~Ross \cite{Ross76}. 
+
+\medskip
 
 Let us imagine a system that contains
 \begin{itemize}
 \item
-a {\em really big} bin (in fact, one whose capacity grows as needed,
-as the story progresses)
+a {\em really big} bin (in fact, one whose capacity grows as the story progresses)
 \item
 an unbounded sequence of ordered balls, labelled 1, 2, \ldots
 \item
 a {\em very} (read: infinitely) precise clock.
 \end{itemize}
-The system is watched over by a {\it Keeper}.  We observe
-the {\it Keeper} executing the following process.
+The system is watched over by a {\it Keeper}.  We observe the {\it Keeper} executing the following process.
 
-Step $1$ of the process occurs at time {\em midnight minus $1$
-  minute}.  The {\it Keeper} places the first ten balls in the
-sequence (balls \#$1, \ldots, 10$) into the bin, and {\em immediately}
-removes the first ball (ball \#$1$).
+\smallskip
 
-Step $2$ of the process occurs at time {\em midnight minus $1/2$
-  minute}.  The {\it Keeper} places the next ten balls in the sequence
-(balls \#$11, \ldots, 20$) into the bin, and {\em immediately} removes
-the second ball (ball \#$2$).
+\noindent {\sf Step $1$}.
+At time {\em midnight minus $1$ minute}, the {\it Keeper} places the first ten balls in the sequence (i.e., balls $\#1, \ldots, \#10$) into the bin, and {\em immediately} removes the first ball (ball \#$1$).
 
-The {\it Keeper} repeats this process endlessley, at midnight minus
-$1/4$ minute (putting balls \#$21, \ldots, 30$ into the bin and
-removing ball \#$3$), then at midnight minus $1/8$ minute (putting
-balls \#$31, \ldots, 40$ into the bin and removing ball \#$4$), and
-on, and on.
+\smallskip
+
+\noindent {\sf Step $2$}.
+At time {\em midnight minus $1/2$ minute}, the {\it Keeper} places the next ten balls in the sequence
+(i.e., balls $\#11, \ldots, \#20$) into the bin, and {\em immediately} removes the second ball (ball \#$2$).
+
+\smallskip
 
 \noindent
-{\bf Question}: {\it How many balls are present in the bin at
-  midnight?}  (Note that ``infinity'' now measures the number of steps
-executed in the process.)
+The {\it Keeper} repeats this process endlessly, at midnight minus $1/4$ minute (putting balls $\#21, \ldots, \#30$ into the bin and removing ball \#$3$), then at midnight minus $1/8$ minute (putting
+balls $\#31, \ldots, \#40$ into the bin and removing ball \#$4$), and so on.
+
+\smallskip
 
 \noindent
-As in paragraph {\small\sf A}, there are many plausible answers to
-this question.  We provide just three.
+{\bf Question}: {\it How many balls are present in the bin at midnight?}  \\
+(Note that ``infinity'' now measures the number of steps executed in the process.)
+
+\medskip
+
+\noindent
+As in paragraph {\small\sf A}, there are several plausible answers to this question.  We provide just three.
 \begin{enumerate}
 \item
-There are infinitely many balls.
+THERE ARE INFINITELY MANY BALLS.
 
-This response is justified by the following reasoning.  Each step of
-the process inserts $10$ balls into the bin but removes only $1$ ball.
-Hence, the population of the bin grows by $9$ balls after every step
-of the process---and it never decreases!  Hence, the bin's population
-after infinitely many steps must be infinite.
+\smallskip
+
+This response is justified by the following reasoning.  Each step of the process inserts $10$ balls into the bin but removes only $1$ ball.  Hence, the population of the bin grows by $9$ balls after each step of the process---and it never decreases!  It follows, therefore, that after infinitely many steps, the bin's population must be infinite.
 
 \item
-There are $0$ balls---the bin is empty!
+THE BIN IS EMPTY---THERE ARE $0$ BALLS!
 
-This response is justified by the following reasoning.  Every ball is
-eventually removed from the bin at some (finite) step of the process.
-Specifically, ball \#$n$ is removed at step $n$, i.e., at time
-midnight minus $2^{-n}$ seconds.
+\smallskip
+
+This response is justified by the following reasoning.  Every ball is eventually removed from the bin at some (finite) step of the process. Specifically, ball \#$n$ is removed at step $n$, i.e., at time midnight minus $2^{-n}$ seconds.
 
 \item
-There is no valid answer, because there is no ``moment at infinity''
-that is actually ever encountered during the process.
+THERE IS NO VALID ANSWER.
+
+\smallskip
+
+This response is justified by the following reasoning.  There is no ``moment at infinity'' that is actually ever encountered during the process.  That ``moment" is just a conceptual idealization.
+
+\smallskip
+
 In other words, infinity is not a number!
 \end{enumerate}
 
 
 \paragraph{C.  Zeno's paradox: Achilles and the tortoise}
 
-In his celebrated {\it Paradox of Achilles and the Tortoise}, Zeno of
-Elea \index{Zeno of Elea} \index{Zeno!Zeno's paradox} presented a
-problem whose solution had to await the 17th century.  In the story,
-the slow-footed Tortoise (T) tries to convince the speedy Achilles (A)
-of the futility of trying to win any race in which A gives T even the
-smallest head start.  As long as T is ahead of A, says T, every time A
-traverses half the distance between himself and T, T will respond by
-moving a bit further ahead.  Thereby, T will always be a positive
-distance ahead of A, so that A can {\em never} catch T.  At first
-glance, this story seems to call into question the physical reality of
-all motion.
+\index{Zeno of Elea} \index{Zeno!Zeno's paradox}
+In his celebrated {\it Paradox of Achilles and the Tortoise}, Zeno of Elea  presented a problem whose solution had to await the 17th century.
 
-The resolution of the apparent paradox resides in the notion of
-\index{infinitesimals} {\em infinitesimals}---quantities that
-dynamically grow smaller than any finite number.  While familiar today
-to anyone who has studied subjects such as the differential calculus,
-the notion of infinitesimal actually dates back only a few hundred
-years, to the 17th century.  Underlying the discovery/invention of
-infinitesimals is one of the great real-life mysteries of all time:
-Who invented/discovered infinitesimals? The parties to this dispute
-were the German mathematician Gottfried Leibniz \cite{Leibniz}
-\index{Leibniz (Leibnitz), Gottfried Wilhelm} and the English polymath
-(Sir) Isaac Newton \cite{Newton}.  \index{Newton, Isaac} The cases
-favoring each of these great men contain enough merit to guarantee
-that the dispute will likely never be settled.  We therefore list
-Leibniz and Newton alphabetically and give a coarse dating of the 17th
-century for the discovery.  This real-life mystery is as full of
-intrigues and suspense as any that one encounters in fiction.
+\smallskip
+
+In Zeno's story, the slow-footed Tortoise (T) tries to convince the speedy Achilles (A) of the futility of trying to win any race in which A gives T even the smallest head start.  As long as T is ahead of A, says T, every time A traverses half the distance between himself and T, T will respond by moving a bit further ahead.  Thereby, T will always be a positive distance ahead of A, so that A can {\em never} catch T.
+
+\smallskip
+
+\index{infinitesimals}
+At first glance, this story seems to call into question the physical reality of all motion.  In fact, the
+resolution of the apparent paradox resides in the notion of {\em infinitesimals}---quantities that dynamically grow smaller than any finite number.  While infinitesimals are familiar today to anyone who has studied subjects such as the differential calculus, the notion of infinitesimal actually dates back only a few hundred years, to the 17th century.  
+
+\medskip
+
+\index{Leibniz (Leibnitz), Gottfried Wilhelm}  \index{Newton, Isaac} \index{Kronecker, Leopold} 
+
+Underlying the discovery/invention\footnote{Were infinitesimals {\em discovered} or {\em invented}?  As you ponder this choice, recall the words of Leopold Kronecker that end our {\it MANIFESTO}.}~of infinitesimals is one of the great real-life mysteries of all time.  Who invented/discovered infinitesimals?  The parties to this dispute were the German mathematician Gottfried Leibniz \cite{Leibniz} and the English polymath (Sir) Isaac Newton \cite{Newton}.   The cases favoring each of these great men contain enough merit to guarantee that the dispute will likely never be settled.  We therefore list Leibniz and Newton alphabetically and give a coarse dating of the 17th century for the discovery.  This real-life mystery is as full of intrigue and suspense as any that one encounters in fiction.
 
 
 \paragraph{D. Hilbert's hotel paradox}
 
-While the final story of this section does not actually provide a
-paradox, it does point out a fundamental difference between the real
-world of finite capacities and an idealized world that is not so
-encumbered.
+While the final story of this section does not describe an actual paradox, it is often referred to by that term.  Terminology aside, this story definitely points out a fundamental difference between the real world of finite capacities and an idealized world that is not so encumbered.
 
-Imagine that you are running a hotel that has an infinite number of
-rooms which are labeled by the (entire set of) positive integers:
-there is a room \#$1$, a room \#$2$, a room \#$3$, and so on.  Say
-that on a particular evening, every room of the hotel is occupied by a
-guest---and then a new guest arrives!
+\medskip
 
-In a desire to accommodate the newcomer, you initiate the following
-procedure, which was first proposed by the eminent German
-mathematician David Hilbert. \index{Hilbert, David}
+Imagine that you are running a hotel that has an infinite number of rooms which are labeled by the (entire set of) positive integers: there is a room \#$1$, a room \#$2$, a room \#$3$, and so on.  Say
+that on a particular evening, every room of the hotel is occupied by a guest---and then a new guest arrives!
 
-By means of a broadcast message to all current guests, you move each
-guest who currently occupies room \#$k$ into room \#$k+1$.  Of course,
-this total shift renders room \#$1$ available---so you assign this
-room to the newly arrived guest.  The world is quiet once more!
+In a desire to accommodate the newcomer, you initiate the following procedure, which was first proposed by the eminent German mathematician David Hilbert. \index{Hilbert, David}
 
-Of course, this humorous story has its roots in a fundamental
-distinction between the world of finite-capacity hotels that we live
-in and the idealized infinite-capacity hotel proposed in Hilbert's
-story.  In a word, every finite set of integers---think of the
-integers as the room numbers in a finite-capacity hotel---{\em has a
-largest number}, while an infinite set of positive integers {\em
-does not have a largest number}.
+\smallskip
+
+By means of a broadcast message to all current guests, you move each guest who currently occupies room \#$k$ into room \#$k+1$.  Of course, this total shift empties room \#$1$, hence renders it available for housing the newcomer---so you assign this room to the newly arrived guest.  The world is quiet once more!
+
+\smallskip
+
+Of course, this humorous story has its roots in a fundamental distinction between the world of finite-capacity hotels that we live in and the idealized infinite-capacity hotel proposed in Hilbert's story.  In a word, every finite set of integers---think of the integers as the room numbers in a finite-capacity hotel---{\em has a largest number}, while an infinite set of positive integers {\em does not have a largest number}.
 
 \medskip
   
-This paradox can be extended in a way that makes it even more 
-perplexing:  The story's hotelier can accommodate even 
-{\em an infinite number} of new guests!  Consider again that every room 
-of the hotel is occupied, and say that infinitely many new guests 
-arrive!  (Pity the poor desk clerk!). The hotelier can accommodate all of
-the new arrivals by moving each guest who currently occupies room \#$k$
-into room \#$2k$. 
+This paradox can be extended in a way that makes it even more  perplexing:  The story's hotelier can accommodate even {\em an infinite number} of new guests!  Consider again that every room 
+of the hotel is occupied, and say that infinitely many new guests arrive!  (Pity the poor desk clerk!). The hotelier can accommodate all of the new arrivals by moving each guest who currently occupies room \#$k$ into room \#$2k$.
 
 \medskip
 
-An important lesson from the story of Hilbert's hotel is that $\infty$ is not a 
-number!\footnote{The \textit{lemniscate} curve $\infty$ is the traditional
-symbol for (the point at) ``infinity".} Interestingly, $\infty$ behaves like a 
-number in many ways---but it violates the rules of actual numbers in certain
-situations.  For example, mathematical logicians who are concerned with
-{\em orders of infinity} will often employ expressions such as
+\index{orders of infinity}
+The story of Hilbert's hotel provides yet another demonstration that $\infty$ is not a number!\footnote{The \textit{lemniscate} curve $\infty$ is the traditional symbol for (the point at) ``infinity".} Interestingly, $\infty$ behaves like a number in many ways---but it violates many of the rules of arithmetic that govern actual numbers.  For example, mathematical logicians who are concerned with {\em orders of infinity} will often employ expressions such as
 \[ (2 + \infty)  \ \ \  \mbox{ or } \ \ \ (4 \times \infty) \ \ \
 \mbox{ or even } \ \ \ (\infty + \infty) \]
-as though $\infty$ were a number---but they never forget that $\infty$
-behaves in nonstandard way, such as being an ``absorber" under the operations
-of addition and multiplication; e.g.:
+as though $\infty$ actually were a number---but they never forget that $\infty$ behaves in nonstandard way, such as being an ``absorber" under the operations of addition and multiplication; e.g.:
 \[ (2 + \infty \ = \ \infty)  \ \ \  \mbox{ and } \ \ \  (\infty + \infty \ = \ \infty) \]
 
 %\textit{collection of numbers}.  There is an arithmetic on the infinity, but the rules are different from the classical arithmetic, in particular, the addition operations are absorbed. 
@@ -581,53 +519,55 @@ of addition and multiplication; e.g.:
 \subsubsection{Foundational paradoxes}
 \label{sec:paradoxes}
 
-The ``foundational'' paradoxes that we present now can be resolved
-only via the development of new, sophisticated, mathematical
-machinery.
+The {\em foundational} paradoxes that we present now can be resolved only via the development of new, sophisticated, mathematical machinery.
 
 \paragraph{A.  G\"{o}del's paradox: Self-reference in language}
 
 Let us focus on the following utterance, which we call ``Sentence $S$''.
 
+\smallskip
+
 Sentence $S$: {\em The sentence you are reading at this moment is false.}
 
+\smallskip
+
 \noindent
-{\bf Questions}: {\it Is Sentence $S$ true, or not?}
+{\bf Question}: {\it Is Sentence $S$ true, or not?}
+
+\smallskip
 
 \noindent
 Let us analyze the options.
 \begin{itemize}
 \item
-On the one hand: \\
-If Sentence $S$ is true, then one must accept its assertion that
-Sentence $S$ is false.
+On the one hand:
+
+If Sentence $S$ is true, then one must accept its assertion that Sentence $S$ is false.
 
 \item
-On the other hand: \\
-If Sentence $S$ is false, then one must reject its assertion that
-Sentence $S$ is false.  In other words, one must conclude that
-Sentence $S$ is true.
+On the other hand:
+
+If Sentence $S$ is false, then one must reject its assertion that Sentence $S$ is false.  In other words, one must conclude that Sentence $S$ is true.
 \end{itemize}
 
+\smallskip
+
+\index{G\"{o}del, Kurt} 
+
 \noindent
-In the 1930s, the revolutionary philosopher/ logician Kurt G\"{o}del
-\index{G\"{o}del, Kurt} turned the mathematical world on its head with
-his demonstration that, roughly speaking,
+In the 1930s, the revolutionary philosopher/ logician Kurt G\"{o}del turned the mathematical world on its head with his demonstration that, roughly speaking:
+
+\smallskip
 
 \begin{tabular}{l}
-{\em Any language that is self-referential---i.e., that can refer to
-  its own sentences} \\
-{\em as objects of discourse---must contain a sentence such as
-  Sentence $S$, which} \\
+{\em Any language that is self-referential---i.e., that can refer to its own sentences} \\
+{\em as objects of discourse---must contain a sentence such as Sentence $S$, which} \\
 {\em is neither true nor false.}  \cite{Goedel31}
 \end{tabular}
 
-The shocking implication of G\"{o}del's work is that in any
-sufficiently sophisticated language $L$, the notions {\it true} and
-{\it false} do not totally partition (into two pieces) the set of
-legitimate utterances in language $L$.  The simplicity of Sentence $S$
-and encodings thereof---see, e.g., \cite{Rosenberg09}---can be used to
-show that the following classes of languages, and their kin, are
+\smallskip
+
+The shocking implication of G\"{o}del's work is that in any sufficiently sophisticated language $L$, the notions {\it true} and {\it false} do not totally partition (into two pieces) the set of legitimate utterances in language $L$.  The simplicity of Sentence $S$ and encodings thereof---see, e.g., \cite{Rosenberg09}---can be used to show that the following classes of languages, and their kin, are
 ``sufficiently sophisticated'':
 \begin{itemize}
 \item
