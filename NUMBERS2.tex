@@ -379,11 +379,7 @@ The $n$th prime number, $p_n$ satisfies the asymptotic ``equation''
 \index{Fermat's Little Theorem}
 
 \index{Fermat, Pierre de}
-A measure of the greatness of the 17th-century French mathematician
-Pierre de Fermat is that the following fundamental result is called
-his ``{\em little} theorem.''  Aside from its exposing an important and
-basic property of prime numbers, the theorem provides the basis for a
-valuable algorithm for testing the primality of integers.
+A measure of the greatness of the 17th-century French mathematician Pierre de Fermat is that the following fundamental number-theoretic result is called ``Fermat's {\em little} theorem.''  Aside from its exposing an important basic property of prime numbers, the theorem provides the basis for a valuable algorithm that tests whether a given integer is a prime.
 
 \begin{theorem}[Fermat's Little Theorem]
 \label{thm:Fermat's-Little-Thm}
@@ -404,161 +400,144 @@ $a^{p} \equiv a \bmod p$.
 %Let consider two primes $p$ and $a$.
 %$a^{p-1} \equiv 1 [p]$
 
+\smallskip
+
 \noindent
-We provide two proofs for this fundamental result, each providing
-rather different insights on the result.
+We provide two proofs for this result, each providing a rather different insight on the result.
 
-
-\subsubsection{A proof using ``necklaces''}
+\subsubsection{A proof that uses ``necklaces''}
 \label{sec:FTL-necklaces}
 
 \begin{proof}
-The idea underlying this proof is to design a framework in which the
-result can be reduced to counting a special set of strings.
+Our first proof reduces the theorem to the problem of counting a special set of strings.
 
-Letting $a$ and $p$ be as in the theorem, consider the set $S(\a,p)$ of
-all words/strings of length $p$ over an alphabet/set $\a = \{ \alpha_1,
-\alpha_2, \ldots, \alpha_a \}$ of $a$ symbols.  For instance, when $\a
-= \{0,1\}$ (so that $a=2$) and $p=3$, the set $S(\a,p)$ consists of the
-words:
+Letting $a$ and $p$ be as in the theorem, focus on the set $S(\a,p)$ of all length-$p$ words/strings over an $a$-symbol alphabet/set $\a = \{ \alpha_1, \alpha_2, \ldots, \alpha_a \}$.  For instance, when $p=3$ and $\a = \{0,1\}$ (so that $a=2$), the set $S(\a,p)$ consists of the words:
 \[ 000, \ 001, \ 010, \ 011, \ 100, \ 101, \ 110, \ 111 \]
 We begin with some basic definitions and observations.
 \begin{itemize}
 \item
-The number of words in $S(\a,p)$ is $a^p$; see
-Proposition~\ref{thm:Num-strings-lgth-k}.
+The number of words in $S(\a,p)$ is $a^p$.  (See Proposition~\ref{thm:Num-strings-lgth-k}.)
 
 \item
-A {\it (one-place) circular shift} $c$ of a word in $S(\a,p)$ is
-accomplished by placing the last symbol of this word into the first
-position and shifting all other symbols one position rightward.  For
-illustration:
-\[ c(\alpha_1 \alpha_2 \cdots \alpha_p) \ = \ \alpha_p \alpha_1 \cdots
-\alpha_{p-1} \]
-%Graph of $c$ for words of length $p=3$ on $\mathcal{A} = \{0,1\}$.
+Let us view a circular shift of the words in $S(\a,p)$ as a function that associates a given word $w \in S(\a,p)$ with another word $w' \in S(\a,p)$.
+
+\smallskip
+
+From this vantage point, a {\it (one-place) circular shift} $c$ of a word $w \in S(\a,p)$ is accomplished by placing the last symbol of $w$ into the first position and shifting all other symbols one position rightward.  For illustration, if $w = \alpha_1 \alpha_2 \cdots \alpha_p$, then
+\[ c(\alpha_1 \alpha_2 \cdots \alpha_p) \ = \ \alpha_p \alpha_1 \cdots \alpha_{p-1} \].
 
 \item
 By iterating the shift $c$ on a length-$p$ word $w$ at most $p-1$
 times, we obtain the {\it necklace} $\n(w)$, which is the sequence
-\[ \n(w) \ = \ w, \ c(w), \ c(c(w), \ldots, \ c(\cdots c(w)) \cdots )) \]
-in which one further shift would replicate word $w$.
+\[ \n(w) \ = \ w, \ c(w), \ c(c(w)), \ldots, \ c(c(\cdots c(w)) \cdots )) \]
+in which {\em one further shift would replicate word $w$.}
 
 \item
-The {\it period} of the necklace $\n(w)$ is the number of words in the
-sequence.
+The {\it period} of the necklace $\n(w)$ is the number of words in the sequence.
 
-Note that {\em the period of $\n(w)$ can never exceed $p-1$}---because
-an earlier-seen word must recur by the time the length-$p$ word $w$
-has been shifted $p$ times.
+\smallskip
+
+Note that {\em the period of $\n(w)$ can never exceed $p-1$}---because an earlier-seen word must recur by the time the length-$p$ word $w$ has been shifted $p$ times.
 \end{itemize}
 
-Consider now a word $w$ that is a {\it replicate}
-\index{word!replicate} of another word $u$, in the sense that $w = uu
-\cdots u$.  Say that $u$ is the shortest word of which $w$ is a
-replicate and that $u$ has length $m$.  Then:
+\index{word!replicate}
+Consider now a word $w$ that is a {\it replicate} of a (perforce, shorter) word $u$, in the sense that $w = uu \cdots u$.  Say that $u^\star$ is the shortest word of which $w$ is a replicate and that $u^\star$ has length $m$.  Then:
 \begin{itemize}
 \item
-{\em $u$'s length $m$ divides $p$.}
+{\em The length $m$ of string $u^\star$ divides $p$.}
+
+\smallskip
 
 This is obvious from our ability to write $w$ in the indicated form.
 
 \item
 {\em The period of $\n(w)$ is $m-1$.}
 
-This is because, by the time one has shifted $w$ $m$ times, one has
-transferred a copy of $u$ from the end of $w$ to the beginning.
-Hence, one has recreated $w$.
+\smallskip
+
+This holds because, by the time one has shifted $w$ $m$ times, one has transferred a copy of $u^\star$ from the end of $w$ to the beginning---hence, one has recreated $w$.
 
 \item
-In our special situation---where $w$ has prime length---{\em The only
-  candidates for the shortest replicated word $u$ have length $1$ or
-  $p$.}
+In our special situation---where $w$ has prime length---{\em the only candidates for the shortest replicated word $u^\star$ have length $1$ or $p$.}
 
-This is because $m$ divides the prime $p$.
+\smallskip
+
+This holds because $m$ divides the prime $p$.
 \end{itemize}
 Summing up, one of the following two situations must hold.
 
+\medskip
+
 \noindent
 Possibility \#1:
-{\em The word $w$ has the form $w = \alpha \alpha \cdots \alpha$ for
-  some symbol $\alpha \in \a$.}
+{\em The word $w$ has the form $w = \alpha \alpha \cdots \alpha$ for some symbol $\alpha \in \a$.}
 
 This can occur in $a$ distinct ways because of $\a$'s cardinality..
+
+\medskip
 
 \noindent
 Possibility \#2:
 {\em The word $w$ is not a replicate of any shorter word.}
 
-Because $p$ is a prime, this possibility must hold for every one of
-the $a^p - a$ words over $\a$ that contains at least $2$ distinct
-symbols.  Because the period of any necklace $\n(w)$ for a word that
-contains at least $2$ distinct symbols is exactly $p-1$, the lengths
-of such necklaces must be exactly $p$.
+\smallskip
 
-This means that the $a^p - a$ words that each contain at least $2$
-distinct symbols partition $S(\a, p)$ into disjoint sets of size $p$
-each.  This, in turn, means that $p$ divides $a^p - a$.
-\qed
+Because $p$ is a prime, this possibility must hold for every one of the $a^p - a$ words over $\a$ that contain at least $2$ distinct symbols.  Because the period of any necklace $\n(w)$ for a word that contains at least $2$ distinct symbols is exactly $p-1$, the lengths of such necklaces must be exactly $p$.
+
+This means that the $a^p - a$ words that each contain at least $2$ distinct symbols partition $S(\a, p)$ into disjoint sets of size $p$ each.  This partition is possible only if $p$ divides $a^p - a$.  \qed
 \end{proof}
 
-The reader's comprehension of this multi-step proof might be enhanced
-by Figs.~\ref{fig:necklace3} and~\ref{fig:necklace24}.
-\begin{figure}[ht]
+The ideas underlying his multi-step proof are sketched in Figs.~\ref{fig:necklace3} and~\ref{fig:necklace24},
+\begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresArithmetic/Necklace3.png}
         \caption{The 3 necklaces composed of the same symbol ($a=3$)}
         \label{fig:necklace3}
 \end{center}
 \end{figure}
-\begin{figure}[ht]
+\begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.25]{FiguresArithmetic/Necklace24.png}
         \caption{Eight groups of necklaces of size $p=3$ (for $a=3$).}
         \label{fig:necklace24}
 \end{center}
 \end{figure}
-These figures jointly depict all necklaces $\n(w)$ for $(p=3)$-letter
-words over the alphabet $\a = \{ A,B,C \}$.  Fig.~\ref{fig:necklace3}
-depicts the necklaces for words that use only a single letter;
-Fig.~\ref{fig:necklace24} depicts the necklaces for words that use at
-least two distinct letters.
+which jointly illustrate all necklaces $\n(w)$ for $(p=3)$-letter words over the alphabet $\a = \{ A,B,C \}$.  Fig.~\ref{fig:necklace3} depicts the necklaces for words that use only a single letter; Fig.~\ref{fig:necklace24} depicts the necklaces for words that use at least two distinct letters.
 
-
-\subsubsection{A proof using the Binomial Theorem}
+\subsubsection{A proof that uses the Binomial Theorem}
 \label{sec:FTL-via-BinomialTheorem}
 
 \begin{proof}
-Our next proof employs Formulation 2 of the Proposition.  We focus on
-a fixed prime $p$ and argue by induction on the alphabet size $a$,
-that $a^{p} \equiv a \bmod p$.
+Our next proof is built upon Formulation 2 of the Proposition.  We focus on a fixed prime $p$ and argue by induction on the size $a$ of alphabet $\a$, that $a^{p} \equiv a \bmod p$.
+
+\medskip
 
 \noindent
-{\it Base of the induction.}
+{\sf Base of the induction.}
 The base case $a=1$ is straightforward because $1^{p} = 1$
 
-\noindent
-{\it Inductive hypothesis.}
-We assume for induction that $a^{p} \equiv a \bmod p$ for all alphabet
-sizes not exceeding the integer $b$.
+\medskip
 
 \noindent
-{\it Extending the induction.}
-Invoking the restricted form of the Binomial Theorem,
-we know---see (\ref{eq:restricted-binomial-thm})---that
+{\sf Inductive hypothesis.}
+Assume for induction that $a^{p} \equiv a \bmod p$ for all alphabet sizes not exceeding the integer $b$., i.e., all $a \leq b$.
+
+\medskip
+
+\noindent
+{\sf Extending the induction.}
+By invoking the restricted form of the Binomial Theorem, we observe---see Eq.~\ref{eq:restricted-binomial-thm}---that
 \begin{equation}
 \label{eq:FLT-0}
-(b+1)^p \ = \ \left( b^p + 1 \right) \ + \
- \sum_{i=1}^{p-1} {p \choose i} b^{p-i}
-%\ \ = \ \  \sum_{j=1}^{p-1} {p \choose {p-j}} b^j
+(b+1)^p \ = \ \left( b^p + 1 \right) \ + \ \sum_{i=1}^{p-1} {p \choose i} b^{p-i}
 \end{equation}
 Pondering this equation, we make two important observations.
 
+\medskip
+
 \noindent {\bf 1.}
-We learn from the development in
-Section~\ref{sec:binomial-coeff+Pascal}.C that $p$ divides all
-``internal'' binomial coefficients, i.e., all coefficients
-$\displaystyle {p \choose i}$ with $0 < i < p$.  This means that there
-exists an integer $n_1$ such that
+We learn from the development in Section~\ref{sec:binomial-coeff+Pascal}.C that $p$ divides all
+``internal'' binomial coefficients, i.e., all coefficients $\displaystyle {p \choose i}$ with $0 < i < p$.  This means that there exists an integer $n_1$ such that
 \begin{equation}
 \label{eq:FLT-1}
  \sum_{i=1}^{p-1} {p \choose i} b^{p-i} \ = \ p \cdot n_1
@@ -567,30 +546,24 @@ exists an integer $n_1$ such that
 \bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-As an aside, one can observe the just-exposed divisibility property of
-``internal'' binomial coefficients by looking at Pascal's triangle;
-see the rows corresponding to primes---i.e., rows $n=2$, $n=3$, and
-$n=5$---in the triangle of Fig.~\ref{fig:TrianglePrime}.  (Remember
-that rows are indexed beginning with $n=0$.)
+\begin{minipage}{0.96\textwidth}
+An aside:  One can observe the just-exposed divisibility property of ``internal'' binomial coefficients by looking at Pascal's triangle; see the rows corresponding to primes---i.e., rows $n=2$, $n=3$, and
+$n=5$---in the triangle of Fig.~\ref{fig:TrianglePrime}.  (Recall that rows are indexed beginning with $n=0$.)
 \end{minipage}
 }
+
 \bigskip
 
 \begin{figure}[ht]
 \begin{center}
   \includegraphics[scale=0.3]{FiguresArithmetic/TrianglePascalPrimes.png}
-\caption{The rows of Pascal's triangle that correspond to $n=0$,
-  $n=1$, \ldots, $n=6$.  The ``internal'' entries of the rows that
-  correspond to prime numbers---in this case, $n=2$, $n=3$, and $n=5$---are
-  divisible by that number.}
+\caption{The rows of Pascal's triangle that correspond to $n=0$, $n=1$, \ldots, $n=6$.  The ``internal'' entries of the rows that correspond to prime numbers---in this case, $n=2$, $n=3$, and $n=5$---are divisible by that number.}
 \label{fig:TrianglePrime}
 \end{center}
 \end{figure}
 
 \noindent {\bf 2.}
-By the inductive hypothesis, $p$ divides $b^p -b$, which means that
-there exists an integer $n_2$ such that
+By the inductive hypothesis, $p$ divides $b^p -b$, which means that there exists an integer $n_2$ such that
 \begin{equation}
 \label{eq:FLT-2}
  b^p \ = \ b \ + \ p \cdot n_2
@@ -598,14 +571,11 @@ there exists an integer $n_2$ such that
 
 \smallskip
 
-When we combine relations (\ref{eq:FLT-1}) and (\ref{eq:FLT-2}), and
-we use them to rewrite equation (\ref{eq:FLT-0}), we find that
+When we combine relations (\ref{eq:FLT-1}) and (\ref{eq:FLT-2}), and we use them to rewrite equation (\ref{eq:FLT-0}), we find that
 \[
 (b+1)^p \ = \ (b + 1) \ + \ p \cdot (n_1 + n_2)
 \]
-This means that $p$ divides $(b+1)^p \ - \ (b + 1)$, which extends the
-induction and completes the proof.
-\qed
+This means that $p$ divides $(b+1)^p \ - \ (b + 1)$, which extends the induction and completes the proof.  \qed
 \end{proof}
 
 \ignore{********************
@@ -616,8 +586,6 @@ Before presenting the proof, let us first establish a preliminary property:
 
 \noindent \textbf{Property.} 
 \label{prop:preliminaryFermat}
-
-
 
 Looking from another perspective (with Pascal triangles modulo primes) evidences this property. 
 We detail it on two particular examples in Figures~\ref{fig:TriangleModulo5} and \ref{fig:TriangleModulo7} (namely, for $p=5$ and $p=7$). 
