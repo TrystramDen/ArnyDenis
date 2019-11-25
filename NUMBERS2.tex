@@ -946,7 +946,8 @@ The remainder of this section---and its companion in the Appendix, Chapter~\ref{
 \smallskip
 
 {\em Ordered pairs} of integers play a special role in our study of encodings of structured sets of integers:  They form the fundamental puzzle from whose solution all other aggregations will follow.
-It is appropriate, therefore, that a special name has been associated with bijections between $\N^+ \times \N^+$ and $\N^+$.  These special bijections are called {\it pairing functions}.  \index{pairing functions!encodings}
+It is appropriate, therefore, that a special name has been associated with bijections between $\N^+ \times \N^+$ and $\N^+$.  These special bijections are called {\it pairing functions}. 
+ \index{pairing functions!encodings}
 
 \medskip
 
@@ -967,7 +968,7 @@ We focus on $\N^+$ as the avatar of {\it integer}, rather than on $\Z$ or $\N$, 
 
 \bigskip
 
-We now describe our first explicit pairing function---the {\em diagonal} pairing function $\d(x,y)$.  This is probably one of the oldest known pairing functions, given that it was known as early as 1821.  We provide in Chapter~\ref{Appendix:building-pairing-functions} both a rather general methodology for crafting pairing functions and two explicit siblings of the diagonal pairing function $\d$, which are appealing as exemplars of the general construction methodology.   One of these siblings provides a storage mapping for extendible matrices that can be useful in certain algorithmic domains; the other answers a fundamental question about inherent limitations on the ``compactness" of pairing functions.
+We now describe our first explicit pairing function---the {\em diagonal} pairing function $\d(x,y)$.  This is probably one of the oldest known pairing functions, given that it was known as early as 1821.   In appendix Chapter~\ref{Appendix:building-pairing-functions}, we provide both a ``{\em shell-based}" methodology for crafting pairing functions and three explicit siblings of the diagonal pairing function $\d$.  Two of the siblings of $\d$ are constructed via the shell-based methodology.  Two of the siblings of $\d$ were invented for their usefulness in certain computational domains; the third sibling was invented to uncover an inherent limit on the ``compactness" of pairing functions.
 
 
 %\subsubsection{The Diagonal pairing function $\d$}
@@ -984,10 +985,7 @@ Pairing functions first appeared in the literature early in the 19th century.  P
 \d(x, y) \ = \
 {{x+y-1} \choose 2} + (1-y)
 \end{equation}
-($\d$ of course has a twin that exchanges $x$ and $y$).  $\d$'s
-mapping of $\N^+ \times \N^+$ onto $\N^+$, as depicted in
-Fig.~\ref{fig:diag}, exposes that we can view $\d$'s mapping of $\N^+
-\times \N^+$ as a two-step conceptual process:
+($\d$ of course has a twin that exchanges $x$ and $y$).  $\d$'s mapping of $\N^+ \times \N^+$ onto $\N^+$ is depicted in Fig.~\ref{fig:diag}; it exposes that we can view $\d$'s mapping of $\N^+ \times \N^+$ as a two-step conceptual process:
 \begin{figure}[htb]
 \begin{center}
       \includegraphics[scale=0.4]{FiguresArithmetic/PairingDiagonal}
@@ -1010,13 +1008,13 @@ Fig.~\ref{fig:diag}, exposes that we can view $\d$'s mapping of $\N^+
 \end{figure}
 \begin{enumerate}
 \item
-partitioning $\N^+ \times \N^+$ into ``diagonal shells'' defined as
+partitioning $\N^+ \times \N^+$ into ``diagonal shells''.  For each index $k \in \N^+$, shell \#$k$ is the set
 \[
-\{ \langle x,y \rangle \ | \ x+y = 2 \}, \ \ 
-\{ \langle x,y \rangle \ | \ x+y = 3 \}, \ \ 
-\{ \langle x,y \rangle \ | \ x+y = 4 \}, \ \ \ldots
-\]
-This is accomplished by the following subexpression in (\ref{eq:diag}).
+\mbox{Shell } \k \ = \ \{ \langle x,y \rangle \ | \ x+y = k \} \]
+
+\smallskip
+
+The partitioning is an integral part of the specification of $\d$, as witnessed by the following subexpression in (\ref{eq:diag}).
 \[
 {1 \over 2} (x+y) \cdot (x+y-1) \ = \ {{x+y-1} \choose 2}
 \]
@@ -1024,57 +1022,38 @@ This is accomplished by the following subexpression in (\ref{eq:diag}).
 \item
 ``climbing up'' these shells in order.
 
-This is accomplished by the additional subexpression ``$+1-y$'' in
-(\ref{eq:diag}).
+\smallskip
+
+The climbing is specified by the subexpression ``$+1-y$'' in (\ref{eq:diag}).
 \end{enumerate}
 \bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-Keep in mind that we have just described a {\em conceptual}
-  process.  $\d$ is a function, {\em not} an algorithm.  ``Running''
-  this infinite process would take forever.
+\begin{minipage}{0.96\textwidth}
+Keep in mind that we have just described a {\em conceptual} process specified by the definition of $\d$:  $\d$ is a function, {\em not} an algorithm.  ``Running'' this infinite process would take forever.
 \end{minipage}
 }
 \bigskip
 
-Understanding $\d$'s structure leads to a broadly applicable strategy
-for inductively constructing a broad range of pairing functions.  We
-develop this strategy in Subsection B, along with an accompanying
-rather simple inductive verification of bijectiveness.  One finds a
-computationally more satisfying proof of $\d$'s bijectiveness in
-\cite{Davis58}, along with an explicit recipe for computing $\d$'s
-inverse.  The material in \cite{Davis58} builds specifically on $\d$'s
-structure.
+An understanding of $\d$'s structure leads to a broadly applicable strategy for inductively constructing a broad range of ``shell-based" pairing functions.  We develop this strategy in appendix Chapter ~\ref{Appendix:building-pairing-functions}, accompanied by a rather simple inductive verification of the bijectiveness of functions created using the strategy.  One finds a computationally more satisfying proof of $\d$'s bijectiveness in \cite{Davis58}---made more satisfying by its explicit recipe for computing $\d$'s inverse.  The material in \cite{Davis58} builds in an essential way on $\d$'s structure.
+
 \bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-{\small\sf $\oplus$ Esoterica for enrichment:}
-The fact that $\d$ is a {\em polynomial} in $x$ and $y$ raises
-  the natural (to a mathematician!)~question of whether there exist
-  any other polynomial pairing functions.  This is a quite advanced
-  topic that is beyond the scope of this text.  Indeed, even as a
-  research problem, the question remains largely open.  But, a few
-  nontrivial pieces of an answer are known.
+\begin{minipage}{0.96\textwidth}
+{\bf $\oplus$ Esoterica for enrichment:}
+The fact that $\d$ is a {\em polynomial} in $x$ and $y$ raises the natural (to a mathematician!)~question of whether there exist any {\em other} polynomial pairing functions.  This is a quite advanced topic that is beyond the scope of this text.  Indeed, even as a research problem, the question remains largely open.  But, a few nontrivial pieces of an answer are known.
 \begin{enumerate}
 \item
-There is no {\em quadratic} polynomial pairing function other than
-$\d$ (and its twin) \cite{FueterP23,LewR78a}.
+There is no {\em quadratic} polynomial pairing function other than $\d$ (and its twin) \cite{FueterP23,LewR78a}.
 \item
-No {\em cubic} or {\em quartic} polynomial is a pairing function
-\cite{LewR78b}.
+No {\em cubic} or {\em quartic} polynomial is a pairing function \cite{LewR78b}.
 \item
-The development in \cite{LewR78b} excludes large families of
-higher-degree polynomials from being pairing functions; e.g., a {\em
-  super-quadratic} polynomial whose coefficients are all positive
-cannot be a pairing function.
+The development in \cite{LewR78b} excludes large families of higher-degree polynomials from being pairing functions; e.g., a {\em super-quadratic} polynomial whose coefficients are all positive
+cannot be a pairing function (because it cannot be surjective).
 \end{enumerate}
 \end{minipage}
 }
-
-
-
 
 \subsection{There Are {\em Not} More Ordered Pairs than Integers}
 \label{sec:cardinality-NxN}
