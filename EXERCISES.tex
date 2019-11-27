@@ -12,103 +12,12 @@ $\N_q$ is never closed under the operation of division when the modulus $q$ is c
 
 Every integer $n>1$ is divisible by at least one prime number.
 
-{\Denis straightforward, I don't see what this exercice really adds...}
-
 *****************
 
 Prove that $f = O(g)$ and $h = O(k)$ for function $f,g,h,k$ implies that
 $f+h = O(g+k)$
 
 *****************
-
-\subsection{When is integer $n$ divisible by $9$?}
-\label{sec:divisible-by-9}
-
-\noindent \textit{The aim.}
-
-We exploit here our ability to evaluate geometric summations to
-illustrate a somewhat surprising, nontrivial fact.  One can deduce
-information about the divisibility of an integer $n$ from $n$'s
-positional numerals.  We hope that this ``fun'' result will inspire
-the reader to seek kindred numeral-encoded properties of numbers.
-
-\medskip
-\noindent \textit{The problem.}
-\begin{prop}
-\label{thm:div-by-b-bar}
-An integer $n$ is divisible by an integer $m$ if, and only if, $m$
-divides the sum of the digits in the base-$(m+1)$ numeral for $n$.
-\end{prop}
-
-The most familiar instance of this result is phrased in terms of our
-traditional use of base-$10$ (decimal) numerals. \\
-{\it An integer $n$ is divisible by $9$ if, and only if, the sum of
-  the digits of $n$'s base-$10$ numeral is divisible by $9$.}
-\medskip
-
-\noindent \textit{The solution.}
-\begin{proof}
-({\it Argument for general number-base $b$}).
-%
-Of course, we lose no generality by focusing on numerals without
-leading $0$'s, because leading $0$'s do not alter a numeral's sum of
-digits.
-
-Let us focus on the base-$b$ numeral for a number $n$ (so $b = m+1$ in
-the statement of the proposition).  There therefore exist base-$b$
-digits---i.e., integers from the set $\{0, 1, \ldots, b-1\}$---call
-them $\delta_k \neq 0$, $\delta_{k-1}$, \ldots $\delta_1$, $\delta_0$,
-such that
-\[ n \ = \ \delta_k \cdot b^k + \delta_{k-1} \cdot b_{k-1} + \cdots +
-\delta_1 \cdot b + \delta_0. \]
-The sum of the digits of $n$'s base-$b$ numeral is, then
-\[ s_b(n) \ \eqdef \ \delta_k + \delta_{k-1} + \cdots + \delta_1 +
-\delta_0. \]
-Let us calculate the difference $n - s_b(n)$ in the following manner,
-digit by digit.
-\begin{equation}
-\label{eq:sum-of-digits}
-\begin{array}{ccccccccccc}
-n & = &
-\delta_k \cdot b^k & + & \delta_{k-1} \cdot b^{k-1} & + & \cdots
-  & + & \delta_1 \cdot b & + & \delta_0 \\
-s_b(n) & = &
-\delta_k & + & \delta_{k-1} & + & \cdots & + & \delta_1 & + & \delta_0 \\
-\hline
-n - s_b(n) & = &
-\delta_k \cdot (b^k -1) & + &
-\delta_{k-1} \cdot (b^{k-1} -1) & + &
-\cdots & + &
-\delta_1 \cdot (b-1) & & 
-\end{array}
-\end{equation}
-
-We now revisit summation (\ref{eq:geom-sum:b>1}).  Because $b$ is a
-positive integer, so that $1 + b + \cdots + b^{a-2} + b^{a-1}$ is also
-a positive integer, we infer that {\em the integer $b^a -1$ is
-  divisible by $b-1$.}
-
-We are almost home.  
-
-Look at the equation for $n - s_b(n)$ in the
-system (\ref{eq:sum-of-digits}).  As we have just seen, every term on
-the righthand side of that equation is divisible by $b-1$.  It follows
-therefore, that the lefthand expression, $n - s_b(n)$, is also
-divisible by $b-1$.
-An easy calculation, which we leave to the reader, now shows that this
-final fact means that $n$ is divisible by $b-1$ if, and only if,
-$s_b(n)$ is.
-\end{proof}
-\medskip
-
-\noindent \textit{The lesson learned.}
-
-To be completed.
-
-*****************
-
-
-
 
 Prove Theorem~\ref{thm:equality=finest-equiv}
 
@@ -118,13 +27,12 @@ For all $\langle x,y \rangle \in \N^+ \times \N^+$
 
 $\a(x,y) \ \eqdef \ 2^{x-1} \cdot (2y -1)$
 
-We leave to the reader the exercise of verifying function $\a$'s
+verify function $\a$'s
 bijectiveness.
 
 *************
 
-As an exercise, the reader
-should define the following two operations from union and set
+Define the following two operations from union and set
 difference: {\it intersection} ($S \cap T$), which isolates all
 elements that sets $S$ and $T$ share, and {\it symmetric difference}
 ($S+T$), which isolates all elements that belong to precisely one of
@@ -132,8 +40,7 @@ $S$ and $T$.
 
 *************
 
-We leave the following as an exercise for the reader.  After
-consulting Fig.~\ref{fig:defns-via-tables}:
+After consulting Fig.~\ref{fig:defns-via-tables}:
 
 \begin{tabular}{llcl}
 1. &
@@ -164,14 +71,15 @@ outlined in the text.
 
 Complete the proof of Fig. 7.17 and similar geometric arguments: show
 that all points in the areas are captured
+{\Denis What is this figure?}
 
 ********************
 
 Prove Proposition~\ref{thm:|Q|=|N|}
 
-\begin{prop}
-$|\Q| \ = \ |\N|$.
-\end{prop}
+\noindent \textit{The problem:}
+Prove $|\Q| \ = \ |\N|$.
+\medskip
 
 from Proposition~\ref{thm:|NxN|=|N|}.
 
@@ -186,11 +94,11 @@ a disjunction of clauses.
 
  Prove the following
 
-\begin{theorem}
+\noindent \textit{The problem:}
 The equality relation, $=$, on a set $S$ is the {\em finest}
 equivalence relation on $S$, in the sense that $=$ refines every
 equivalence relation on $S$.
-\end{theorem}
+\medskip
 
 *********************
 
@@ -245,21 +153,6 @@ Thus, the length of the initial square is equal to $60-30=30$.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Summations}
-
-\subsection{A variation of geometric summation}
-
-Another variation refers to the surface of an unit equilateral triangle. 
-We are looking for the sum of the $1/4^i$ is equal to $1/3$ by two ways
-referring to Fig~\ref{fig:sumGeo1sur4}: 
-The area of the infinite sum represented in dark grey is obviously one third of the total area
-(easy to see if we remark that the dark triangles are one third in each layer...). 
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresArithmetic/SumGeometric1sur4}
-\caption{Computing the sum of $1/4^i$.}
-       \label{fig:sumGeo1sur4}
-\end{center}
-\end{figure}
 
 
 
@@ -473,15 +366,12 @@ We conclude that
 \subsection{Harmonic series}
 
 \noindent \textit{The aim.}
-Show another way to prove that the sum is infinite.
+Show another way to prove that the sum of harmonic terms $H_{n} = \sum_{k=1}^{n} \frac{1}{k}$. is infinite.
 \medskip
 
 \noindent \textit{The problem}
-Recall the definition of Harmonic series:
 
-$H_{n} = \sum_{k=1}^{n} \frac{1}{k}$.
-
-Show that the series diverges (it goes to infinity).
+Show that the harmonic series diverges (it goes to infinity).
 \medskip
 
  \noindent \textit{The solution.}
@@ -499,7 +389,9 @@ $H = 1 + S_1 + ... + S_k + ... > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + ... + 3.\fr
 
 since $S_k > 3.\frac{1}{k} $.
 
-The proof is by contradiction, if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
+The proof is by contradiction:
+
+if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
 \medskip
 
 Moreover, the first way of  bounding the sum tells us about its value (actually, we know the value at a factor of $2$):
@@ -510,6 +402,7 @@ $\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Proof techniques}
 
@@ -558,7 +451,7 @@ Training and gain intuition for mastering geometrical proofs.
 
 \noindent \textit{The aim.}
 
-Use a pictural to prove a nonobvious identity of arithmetic sums
+Use a pictural argument to prove a nonobvious identity of arithmetic sums
 that one would be unlikely to come upon by purely textual thinking.
 \medskip
 
@@ -642,12 +535,12 @@ In other words: $8 \Delta_n = K^2 -1$
 
 \noindent \textit{The aim.}
 
-enforcing the ability of using geometrical proofs.
+reenforcing the ability of using geometrical proofs.
 \medskip
 
 \noindent \textit{The problem.}
 
-Prove the irrationality of $\sqrt{2}$ using a geometrical proof.
+Prove the irrationality of $\sqrt{2}$ using a geometrical argument.
 \medskip
 
 \noindent \textit{The solution.}
@@ -680,17 +573,15 @@ Illustration of pigeon's hole principle.
 You are attending a cocktail party that is populated by $n$ couples.
 In order to create a warm atmosphere, the host requests that each
 attendee shake the hand of every attendee that he or she does not
-know.  \\
-{\em Prove that some two attendees shake the same number of hands.}
+know. \\
+Prove that some two attendees shake the same number of hands.
 \medskip
 
 \noindent \textit{The solution.}
 %
-This observation follows from the {\it pigeonhole principle}, which
-states the following.
-
-{\it If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
-  $2$ pigeons.}
+This observation follows from the \textit{pigeonhole principle}:
+If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
+at least $2$ pigeons.
 
 This principle guarantees that some two attendees shake the same
 number of hands.  To wit, the number of people that each attendee {\em
@@ -702,12 +593,13 @@ hands.
 \medskip
 
 \noindent \textit{Lesson learned.}
-Training for mastering different types of proofs, here Pigeonhole...
+Training for mastering different types of proofs, here Pigeonhole.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Arithmetic}
 
-\subsection{A fun result: complex
+\subsection{Complex
   multiplication via $3$ real multiplications}
 \index{complex number!multiplication via 3 real multiplications}
 
@@ -717,7 +609,7 @@ To be completed...
 
 \noindent {\it The problem.}
 %\label{thm:complex-mult-3real}
-Show that it is possible to compute the product of two complex numbers using only {\em three}
+Show how to compute the product of two complex numbers using only {\em three}
 real multiplications rather than four.
 \medskip
 
@@ -788,7 +680,6 @@ Write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$).
 \noindent \textit{The detailed solution:}
 
 %The sketch of the proof is as follows.
-
 \begin{enumerate}
 \item
 Let $\alpha_i$ be the elements of this set of cardinality $n+1$.
@@ -805,7 +696,7 @@ $p$ is the smallest one, which divides $q$ (the largest one).
 \end{enumerate}
 
 
-\subsection{A fun result: A ``trick'' for squaring certain integers}
+\subsection{A ``trick'' for squaring certain integers}
 
 Sometimes only basic knowledge is needed to craft amusing
 ``tricks''---we know that they are not really tricks at all!---that
@@ -841,8 +732,6 @@ Let's make this ``game'' mathematical.
 
 \noindent \textit{The problem:}
 
-\begin{prop}
-\label{thm:75x65=4925}
 Let $n$ be any number that has a $2$-digit decimal numeral of the form
 
 \hspace{.25in}$\delta \ 5$ \ \ \ \ $(\delta \in \{ 0,1,2,3,4,5,6,7,8,9\})$.
@@ -851,9 +740,10 @@ Let $n$ be any number that has a $2$-digit decimal numeral of the form
 Then the square of $n$ is the integer
 
 \hspace{.25in}$25 \ + \ \delta \cdot (\delta +1)$. 
-\end{prop}
+\medskip
 
-\begin{proof}
+\noindent \textit{The solution:}
+
 We can rewrite the premise of the proposition in the form
 \[ n \ = \ 10 \cdot \delta + 5 \]
 It is now easy to invoke Proposition~\ref{prop:(a+b)(c+d)} and the
@@ -874,36 +764,38 @@ n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
 \]
 A parlor trick has become a mathematical demonstration!
 \qed
-\end{proof}
+\medskip
+
+\noindent \textit{Lesson learned}
 
 
-\subsection{A fun result via geometric sums: When is integer $n$
-  divisible by $9$?}
+
+\subsection{When is integer $n$ divisible by $9$?}
 \label{sec:divisible-by-9}
 
-\noindent \textit{The aim:}
-We exploit our ability to evaluate geometric summations to
+\noindent \textit{The aim.}
+
+We exploit here our ability to evaluate geometric summations to
 illustrate a somewhat surprising, nontrivial fact.  One can deduce
 information about the divisibility of an integer $n$ from $n$'s
-positional numerals.  
+positional numerals.  We hope that this ``fun'' result will inspire
+the reader to seek kindred numeral-encoded properties of numbers.
 
-
-\noindent \textit{The problem:}
-\begin{prop}
-\label{thm:div-by-b-bar}
+\medskip
+\noindent \textit{The problem.}
+%\label{thm:div-by-b-bar}
 An integer $n$ is divisible by an integer $m$ if, and only if, $m$
 divides the sum of the digits in the base-$(m+1)$ numeral for $n$.
-\end{prop}
+\medskip
 
 The most familiar instance of this result is phrased in terms of our
 traditional use of base-$10$ (decimal) numerals. \\
 {\it An integer $n$ is divisible by $9$ if, and only if, the sum of
   the digits of $n$'s base-$10$ numeral is divisible by $9$.}
-
 \medskip
-\noindent \textit{The solution:}
 
-\begin{proof}
+\noindent \textit{The solution.}
+
 ({\it Argument for general number-base $b$}).
 %
 Of course, we lose no generality by focusing on numerals without
@@ -939,8 +831,6 @@ n - s_b(n) & = &
 \end{array}
 \end{equation}
 
-\medskip
-
 We now revisit summation (\ref{eq:geom-sum:b>1}).  Because $b$ is a
 positive integer, so that $1 + b + \cdots + b^{a-2} + b^{a-1}$ is also
 a positive integer, we infer that {\em the integer $b^a -1$ is
@@ -954,14 +844,12 @@ the righthand side of that equation is divisible by $b-1$.  It follows
 therefore, that the lefthand expression, $n - s_b(n)$, is also
 divisible by $b-1$.
 An easy calculation, which we leave to the reader, now shows that this
-final fact means that $n$ is divisible by $b-1$ if, and only if,
-$s_b(n)$ is.
-\end{proof}
+final fact means that $n$ is divisible by $b-1$ if, and only if, $s_b(n)$ is.
 \medskip
 
-\noindent \textit{Lesson learned:}
-We hope that this ``fun'' result will inspire
-the reader to seek kindred numeral-encoded properties of numbers.
+\noindent \textit{The lesson learned.}
+
+To be completed.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
