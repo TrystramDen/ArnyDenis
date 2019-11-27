@@ -1,13 +1,24 @@
-%version of 10-22-19
+%version of 11-27-19
 
 \chapter{Recurrences:
 Rendering Complex Structure Manageable}
 \label{ch:Recurrences}
 
-One of the intellectually most powerful strategies for all manner of human endeavor is to ``learn from the past''---i.e., to {\em re}-use knowledge that one has acquired earlier in order to acquire new knowledge.  Within the domain of computing, this strategy is exemplified by computations that derive the value of a function $F$ at an argument $n \in \N^+$ by invoking the (hopefully, earlier-computed) values of $F$ at arguments $1, 2, \ldots, n-1$.  The classical first example of such a {\it recurrent} mode of computing involves the {\it factorial function} {\sc Fact} of Section~\ref{sec:unary-ops}.C.  The ``direct'' mode of computing {\sc Fact} at an argument $n \in
-\N^+$ is:
+\begin{quote}
+{\em Those who do not learn from history are doomed to repeat it.} \\
+\hspace*{1in}George Santayana
+\end{quote}
+
+\bigskip
+
+\noindent
+One of the intellectually most powerful strategies for all manner of human endeavor is to ``learn from the past''---i.e., to {\em re}-use knowledge that one has acquired earlier in order to acquire new knowledge.  Within the domain of computing, this strategy is exemplified by computations that derive the value of a function $f$ at an argument $n \in \N^+$ by invoking the values of $f$ at arguments $1, 2, \ldots, n-1$.
+
+\smallskip
+
 \index{arithmetic!basic operations!factorial (of a nonnegative integer)}
-\[ \mbox{\sc Fact}(n) \ = \ 1 \times 2 \times \cdots \times n. \]
+The classical first example of such a {\it recurrent} mode of computing involves the {\it factorial function}, which is referred to as ``{\sc Fact}" Section~\ref{sec:unary-ops}.C.  The ``direct'' mode of computing {\sc Fact} at an argument $n \in \N^+$ is:
+\[ \mbox{\sc Fact}(n) \ = \ 1 \times 2 \times 3 \times \cdots \times n. \]
 The {\em recurrent} mode of computing {\sc Fact}($n$) is more compact---and it better exposes the inherent structure of the function.
 \[ \mbox{\sc Fact}(n) \ = \ \left\{
 \begin{array}{cl}
@@ -16,23 +27,24 @@ The {\em recurrent} mode of computing {\sc Fact}($n$) is more compact---and it b
 \end{array}
 \right.
 \]
-This chapter is devoted to deriving and solving a variety of types of recurrences.  In common with the rest of this text, our treatment of this subject emphasizes exploiting recurrent structure in reasoningand analysis: increased understanding will enable improved computing.
+
+\smallskip
+
+This chapter is devoted to deriving and solving a variety of types of recurrences.  In common with the rest of this text, our treatment of this subject emphasizes exploiting recurrent structure in reasoning and analysis: Increased understanding will enable improved computing.
 
 
 \section{Linear Recurrences}
 \label{sec:linear-recurrences}
 \index{linear recurrences}
 
-This section is devoted to the solution of {\em linear} recurrences,
-as exemplified by the following function specifications, wherein $a$,
-$b$, $c$, and $d$ are integers
+The first family of recurrences that we study are the {\em linear} recurrences, as exemplified by the following function specifications, wherein $a$, $b$, $c$, and $d$ are integers.
 
 %{\Denis Should we change the notation of F here? since it will be used for Fibo elements in the following section of the chapter. We can keep it as it is, and add a note about the abstract letters usually $x$ for any variable and $F$ for any function...}
 %{\Denis I changed the bounds in the expression to keep more generality.
 %I also changed f(1) for a constant c replacing 1}
 %{\Denis We should say here that $a$, $b$ and $c$ are integers}
 
-\newpage
+%\newpage
 
 \begin{eqnarray}
 \nonumber
@@ -41,7 +53,7 @@ $b$, $c$, and $d$ are integers
 f(n) & = & \left\{
 \begin{array}{cl}
 a f(n/b) + g(n) & \hspace*{.2in} \mbox{for } n \geq b \\
-c & \hspace*{.2in} \mbox{for } n < b
+                    c & \hspace*{.2in} \mbox{for } n < b
 \end{array}
 \right. \\
 \nonumber
@@ -52,72 +64,59 @@ c & \hspace*{.2in} \mbox{for } n < b
 f(n) & = & \left\{
 \begin{array}{cl}
 a f(n/b) + d & \hspace*{.4in} \mbox{for } n \geq b \\
-1 & \hspace*{.4in} \mbox{for } n < b
+               1 & \hspace*{.4in} \mbox{for } n < b
 \end{array}
 \right.
 \end{eqnarray}
 
 %{\Denis constant c ws used twice, this was a bit confuseing... Thus, I changed here f(1) to 1 since it is the simplified form...}
 
-Myriad basic algorithmic problems, including sorting, selection,
-matching, and more, can be solved using linear-recurrent
-algorithms \cite{CLRS}---and such algorithms yield to specification
-and analysis via linear recurrences.
+\smallskip
 
-In the next two subsections, we present analyses of recurrences
-(\ref{eq:Lin-Recur:general}) and (\ref{eq:Lin-Recur:basic}).  The
-reader will be able to extend the techniques we use in our analyses of
-these specific recurrences in order to analyze other members of the
-important family of linear-recurrent algorithms.
+Myriad basic algorithmic problems, including sorting, selection, matching, \ldots, can be solved using linear-recurrent algorithms \cite{CLRS}---and such algorithms yield to specification and analysis via linear recurrences.
+
+\smallskip
+
+In the next two subsections, we analyze recurrences (\ref{eq:Lin-Recur:general}) and (\ref{eq:Lin-Recur:basic}).  The techniques that we use in our analyses can be adapted to analyze other members of the important family of linear-recurrent algorithms.
 
 
 \subsection{The Master Theorem for Simple Linear Recurrences} 
 \label{sec:masterTheorem}
 \label{sec:linear-recurrence-basic}
 
-We focus first on the simpler of our sample recurrences, namely,
-(\ref{eq:Lin-Recur:basic}).  Happily, there is a single perspicuous
-proof that elegantly solves recurrences of this form.
+We focus first on the simpler of our sample recurrences, namely, (\ref{eq:Lin-Recur:basic}).  Happily, there is a single perspicuous proof that elegantly solves recurrences of this form.
 
-By the time the reader has reached this paragraph, she has the
-mathematical tools necessary to prove and apply what is called {\it
-  The Master Theorem for Linear Recurrences} \cite{CLRS}.  The main
-tools in the proof of the Theorem are: summing geometric summations
-(Section~\ref{sec:geometric-sums}) and employing elementary asymptotic
-notions and notations (Section~\ref{sec:asymptotics}).
+\medskip
 
+By the time the reader has reached this paragraph, she has the mathematical tools necessary to prove and apply what is called {\it The Master Theorem for Linear Recurrences} \cite{CLRS}.  The main tools we use to prove the Theorem are: summing geometric summations (Section~\ref{sec:geometric-sums}) and employing elementary asymptotic notions and notations (Section~\ref{sec:asymptotics}).
+
+\index{The Master Theorem!for the simple linear recurrence}
 \begin{theorem}[The Master Theorem for the simple linear recurrence]
 \label{thm:master-thm-simple}
-\index{The Master Theorem!for the simple linear recurrence}
-Let the function $f$ be specified by the simple linear recurrence
-(\ref{eq:Lin-Recur:basic}).  Then the value of $f$ on any argument $n$
-is given by
+Let the function $f$ be specified by the simple linear recurrence (\ref{eq:Lin-Recur:basic}).  The value of $f$ on any argument $n$ is given by
 \begin{equation}
 \label{eq:Lin-Recur:solve}
 \begin{array}{lcllll}
 f(n) & = & (1 + \log_b n) \cdot c &  &  & \mbox{if } a=1 \\
-     &   &                 &  &  & \\
-     & = &
+      &    &                 &  &  & \\
+      & = &
   {\displaystyle
   \frac{1-a^{\log_b n}}{1-a} \cdot c \ \ \approx \ \ \frac{c}{1-a}
   }
-                           &  &  & \mbox{if } a<1 \\
-    &   &                  &  &  & \\
+                               &  &  & \mbox{if } a<1 \\
+    &   &                   &  &  & \\
     & = &
   {\displaystyle
 \frac{a^{\log_b n} -1}{a-1} \cdot c
   }
-                           &  &  & \mbox{if } a>1
+                             &  &  & \mbox{if } a>1
 \end{array}
 \end{equation}
 \end{theorem}
 
 \begin{proof}
-We expose the pattern generated by recurrence
-(\ref{eq:Lin-Recur:basic}), by beginning to ``expand'' the specified
-computation---replacing occurrences of $f(\bullet)$ as mandated in
-(\ref{eq:Lin-Recur:basic}).  Once we discern the pattern, we jump to
-the general form.
+We expose the pattern generated by recurrence (\ref{eq:Lin-Recur:basic}), by beginning to ``expand'' the specified computation---replacing occurrences of $f(\circ)$ as mandated in
+(\ref{eq:Lin-Recur:basic}).  Once we discern the pattern, we jump to the general form.
 \begin{equation}
 \label{eq:Lin-Recur:expand}
 \begin{array}{lcccc}
@@ -133,61 +132,53 @@ f(n) & = & a f(n/b) + c & & \\
 } & &
 \end{array}
 \end{equation}
-The segment of (\ref{eq:Lin-Recur:expand}) ``hidden'' by the vertical
-dots betokens an induction that is left to the reader.  Equations
-(\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) now enable us to
-demonstrate that (\ref{eq:Lin-Recur:solve}) is the asserted
-case-structured solution to (\ref{eq:Lin-Recur:basic}).  \qed
+The segment of (\ref{eq:Lin-Recur:expand}) ``hidden behind" the vertical dots betokens an induction that is left to the reader.  Eqs.~(\ref{eq:geom-sum:b>1}) and (\ref{eq:geom-sum:b<1}) now enable us to demonstrate that Eq.~(\ref{eq:Lin-Recur:solve}) is the asserted case-structured solution to (\ref{eq:Lin-Recur:basic}).  \qed
 \end{proof}
 
 
 \subsection{The Master Theorem for General Linear Recurrences} 
 \label{sec:linear-recurrence-general}
 
-We now progress from the simple recurrence (\ref{eq:Lin-Recur:basic}) to
-the more general recurrence (\ref{eq:Lin-Recur:general}).  We simplify
-our problem in two ways, in order to avoid calculational complications
-(such as floors and ceilings) that can mask the principles that govern
+We now progress from the simple recurrence (\ref{eq:Lin-Recur:basic}) to the more general recurrence (\ref{eq:Lin-Recur:general}).  We simplify our problem in two ways, in order to avoid calculational complications (such as floors and ceilings) that can mask the principles that govern
 our analysis.
 \begin{enumerate}
 \item
-We employ a very simple nonrecurrent function $g$: We focus on the
-case $g(n) = n$.
+We employ a very simple nonrecurrent function $g$: We focus on the case $g(n) = n$.
 
-It requires only clerical effort to generalize to the slightly more
-ambitious $g(n) = \alpha n + \beta$ (so that $g$ is a general {\em
-  linear} function), but such an extension teaches no new lessons.
+\smallskip
+
+It requires only clerical effort to generalize to the slightly more ambitious function $g(n) = \alpha n + \beta$ (so that $g$ is a general {\em linear} function), but such an extension teaches no new lessons.
 \item
-We assume that the argument $n$ to functions $f$ and $g$ is a power of
-$b$.
+We assume that the argument $n$ to functions $f$ and $g$ is a power of $b$.
 
-This allows us to concentrate on the general unfolding of the
-recurrence without worrying about floors and ceilings.
+\smallskip
 
-\item We consider $c=1$.
+This allows us to concentrate on the general unfolding of the recurrence without worrying about floors and ceilings.
+
+\item
+We consider only the value $c=1$.
 \end{enumerate}
-Removing these assumptions would significantly complicate our
-calculations, but it would not change our reasoning.
+Removing these assumptions would significantly complicate our calculations, but it would not change our reasoning.
 
+\index{The Master Theorem!for the general linear recurrence}
 \begin{theorem}[The Master Theorem for the general linear recurrence]
 \label{thm:master-thm-genl}
-\index{The Master Theorem!for the general linear recurrence}
-Let the function $f$ be specified by the general linear recurrence
-(\ref{eq:Lin-Recur:general}).  Then the value of $f$ on any argument
-$n$ is given by
+Let the function $f$ be specified by the general linear recurrence (\ref{eq:Lin-Recur:general}). The value of $f$ on any argument $n$ is given by
 \[
 f(n) \ = \ 
 a^{\log_b n} f(1) \ \ + \ \ \left( \sum_{i=0}^{\log_b (n)-1} (a/b)^i \right) n
 \]
 
-\noindent
-When $a > b$, the behavior of $f(n)$ is dominated by the first
-term of this solution:
-\[ a^{\log_b n} \cdot  f(1) \ \ = \ \ n^{\log_b a} \]
+\smallskip
 
 \noindent
-When $a < b$, the behavior of $f(n)$ is dominated by the second
-term of this solution:
+When $a > b$, the behavior of $f(n)$ is dominated by the first term of this solution:
+\[ a^{\log_b n} \cdot  f(1) \ \ = \ \ n^{\log_b a} \]
+
+\smallskip
+
+\noindent
+When $a < b$, the behavior of $f(n)$ is dominated by the second term of this solution:
 \[
 n \cdot \sum_{i=0}^{\log_b (n)-1} (a/b)^i
   \ \ = \ \
@@ -198,11 +189,8 @@ n \cdot \sum_{i=0}^{\log_b (n)-1} (a/b)^i
 \end{theorem}
 
 \begin{proof}
-As in Section~\ref{sec:linear-recurrence-basic}, we expose the
-algebraic pattern created by the recurrence ``unfolding''
-(\ref{eq:Lin-Recur:general}).  As in (\ref{eq:Lin-Recur:expand}), once
-we discern this pattern, we jump to the general form (which can be
-verified via induction).
+As in Section~\ref{sec:linear-recurrence-basic}, we expose the algebraic pattern created by the recurrence by ``unfolding'' (\ref{eq:Lin-Recur:general}).  As in (\ref{eq:Lin-Recur:expand}), once
+we discern this pattern, we jump to the general form (which can be verified via induction).
 \[
 \begin{array}{ccccc}
 f(n) & = & a f(n/b) + n & & \\
@@ -218,104 +206,45 @@ a^{\log_b n} f(1) + \left( \sum_{i=0}^{\log_b (n)-1} (a/b)^i \right) n
 \end{array}
 \]
 
-We thus see that solving the more general recurrence
-(\ref{eq:Lin-Recur:general}) requires only augmenting the solution to
-the simple recurrence (\ref{eq:Lin-Recur:basic}) by ``appending'' to
-the simple solution a geometric summation whose base is the ratio
-$a/b$.  The reader can now invoke the techniques from
-Section~\ref{sec:summing-geometric-series:techniques} to arrive at the
-announced solution to (\ref{eq:Lin-Recur:general}).
+\smallskip
 
-When one ``does'' mathematics, one is often interested in uncovering
-the {\em dominant behavior} of the function $f(n)$ specified via a
-recurrence such as (\ref{eq:Lin-Recur:general}).  Therefore, the two
-assertions in the statement of the proposition, about the ``dominant''
-behavior of function $f$ for given relative sizes of $a$ and $b$ is an
-integral part of the lessons that we learn from this proof.
+We thus see that solving the more general recurrence (\ref{eq:Lin-Recur:general}) requires only augmenting the solution to the simple recurrence (\ref{eq:Lin-Recur:basic}) by ``appending'' to
+the simple solution a geometric summation whose base is the ratio $a/b$.  The reader can now invoke the techniques from Section~\ref{sec:summing-geometric-series:techniques} to arrive at the announced solution to (\ref{eq:Lin-Recur:general}).
 
-\ignore{*********
-An important lesson
-to garner from the analysis we have been performing throughout this
-section is the following:
-\begin{itemize}
-\item
-When $a > b$, the behavior of $f(n)$ is dominated by the first
-term of the solution:
-\[ a^{\log_b n} \cdot  f(1) \ \ = \ \ n^{\log_b a} \]
+\medskip
 
-%{\Denis as we assumed f(1)=1, I remove f(1) in the last term}
-\item
-When $a < b$, the behavior of $f(n)$ is dominated by the second
-term of the solution:
-\begin{eqnarray*}
-n \cdot \sum_{i=0}^{\log_b (n)-1} (a/b)^i
-  & = &
-\frac{\left( 1 \ - \  (a/b)^{\log_b (n)} \right)}{1-\frac{a}{b}} n \\
-%  & = &
-%n \ - \ a^{\log_b n} \\
-  & \approx &
-n \frac{b}{b - a}
-\end{eqnarray*}
-\end{itemize}
+When one ``does'' mathematics, one is often interested in uncovering the {\em dominant behavior} of the function $f(n)$ specified via a recurrence such as (\ref{eq:Lin-Recur:general}).  Therefore, the two assertions in the statement of the proposition, about the ``dominant behavior" of function $f$ for given relative sizes of $a$ and $b$ is an integral part of the lessons that we learn from this proof.
 
-%{\Denis Is there a reason to avoid to write the theorem here as in the previous section?}
-*********}
+\medskip
 
-
-One can learn yet other lessons about $f(n)$, specifically about how
-to compute $f(n)$ (exactly or approximately) by studying
-Fig.~\ref{fig:masterTheorem}.
+One can learn yet other lessons about $f(n)$, specifically about how to compute $f(n)$ (exactly or approximately), by studying Fig.~\ref{fig:masterTheorem}.
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/MasterTheoremgeneral}
-\caption{Development of the calculation specified by recurrence
-  (\ref{eq:Lin-Recur:general}).  The total cost is obtained by the summation on each row:
-  $a \times f(n/b)$ in the first row, $a^2 \times f(n/b^2)$ in the second row, and so on.
-  This leads to $a^{log_b(n)}$.
+\caption{Illustrating the calculation specified by recurrence (\ref{eq:Lin-Recur:general}).  The total cost is obtained by the summation on each row: $a \times f(n/b)$ in the first row, $a^2 \times f(n/b^2)$ in the second row, and so on.  This leads to the final value $a^{log_b(n)}$.
 \label{fig:masterTheorem}}
 \end{center}
 \end{figure}
-In particular, one observes in the figure that when $a=b$, the
-computations in each row are perfectly balanced.  When $a=b=2$, for
-instance, the tree has $n$ leaves, and the computations inside the
-tree evaluate to exactly $n$ at each of the tree's $ \ln(n)$
-levels---so that $f(n) = n \ln(n)$ in this case.  \qed
+In particular, one observes in the figure that when $a=b$, the computations in each row are perfectly balanced.  When $a=b=2$, for instance, the tree has $n$ leaves, and the computations inside the tree evaluate to exactly $n$ at each of the tree's $ \ln(n)$ levels---so that $f(n) = n \ln(n)$ in this case.  \qed
 \end{proof}
 %{\Arny The notation in Fig.~\ref{fig:masterTheorem} (fonts, cdots) should be made consistent with the text.}
 
 
-\subsection{An Important Application: Basic Information Theory}
+\subsection{An Application: The Elements of Information Theory}
 \label{sec:count-strings}
 
-By the mid-$20$th century, the existence of electrical and electronic
-devices that enhanced our ability to compute and to intercommunicate,
-made it imperative that ``the experts'' understand the mathematical
-laws that govern these activities.  In 1948, the American
-mathematician and engineer Claude E.~Shannon
-\index{Shannon, Claude E.}
-revolutionized our understanding of these laws by inventing the field
-of {\it information theory} \index{information theory}
-\cite{Shannon48}.  Shannon's innovations enabled us to quantify the
-quality of our handling of data: speed of transmission, efficiency of
-encoding, vulnerability to errors.  The evolution of data science
-\index{data science} and the ever-increasing importance of
-information-related topics such as {\it encryption} and {\it data
-  security} \index{data encryption} and \index{data security} make it
-important that everyone who has contact with the world of computing
-and communication---which means pretty much everyone---understand at
-least the rudiments of information theory.  This section is devoted to
-taking one small step in that direction, a step that hints at the
-fundamental role that logarithms play in the theory. 
+\index{Shannon, Claude E.} \index{information theory}
+\index{data science}  \index{data encryption} \index{data security}
+By the middle of the 20th century, the existence of electrical and electronic devices that enhanced our ability to compute and to intercommunicate, made it imperative that ``the experts'' understand the mathematical laws that govern these activities.  In 1948, the American
+mathematician and engineer Claude E.~Shannon revolutionized our understanding of these laws by inventing the field of {\it information theory}  \cite{Shannon48}.  Shannon's intellectual innovations enabled us to quantify the quality of our handling of data: speed of transmission, efficiency of encoding, vulnerability to errors.  The evolution of data science and the ever-increasing importance of information-related topics such as {\it encryption} and {\it data security} and make it important that everyone who has contact with the world of computing and communication---which means pretty much everyone---understand at least the rudiments of information theory.  This section is devoted to taking one small step in that direction, a step that hints at the fundamental role that logarithms play in the theory. 
 
-One of the most basic results within information theory highlights the
-role of logarithms in measuring ``the amount of information'' that a
-string can hold.
+\medskip
+
+One of the most basic results within information theory highlights the role of logarithms in measuring ``the amount of information'' that a string can hold.
 
 \begin{prop}
 \label{thm:bound-stringnames-lgth-k}
-Say that one must assign distinct labels to $n$ items, via strings
-over an alphabet of $a$ symbols.  Then at least one string-label must
-have length no shorter than $\lceil \log_a n \rceil$.
+Say that one must assign distinct labels to $n$ items, using strings over an alphabet of $a$ symbols.  Then at least one string-label must have length no shorter than $\lceil \log_a n \rceil$.
 \end{prop}
 
 \begin{proof}
