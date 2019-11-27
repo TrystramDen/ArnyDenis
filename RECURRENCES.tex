@@ -244,117 +244,103 @@ One of the most basic results within information theory highlights the role of l
 
 \begin{prop}
 \label{thm:bound-stringnames-lgth-k}
-Say that one must assign distinct labels to $n$ items, using strings over an alphabet of $a$ symbols.  Then at least one string-label must have length no shorter than $\lceil \log_a n \rceil$.
+In any assignment of distinct string-labels to $n$ items, using strings over an alphabet of $a$ symbols, at least one string-label must have length $\geq \lceil \log_a n \rceil$.
 \end{prop}
 
 \begin{proof}
-Let $A$ be an alphabet of $a$ symbols.  For each integer $k \geq 0$,
-let $A^{(k)}$ denote the set of all length-$k$ strings over $A$; note
-that $A^{(1)} = A$.  The bound of
-Proposition~\ref{thm:bound-stringnames-lgth-k} follows by counting the
-numbers of strings of various lengths over $A$, because each such
-string can label at most one item.  Let us, therefore, inductively
-evaluate the cardinality $|A^{(k)}|$ of each set $A^{(k)}$.
+Let $A$ be an alphabet of $a$ symbols.  For each integer $k \geq 0$, let $A^{(k)}$ denote the set of all length-$k$ strings over $A$; note that $A^{(1)} = A$.  The bound stated in Proposition~\ref{thm:bound-stringnames-lgth-k} follows by counting the numbers of strings of various lengths over $A$, because each such string can label at most one item.  Let us, therefore, inductively evaluate the cardinality $|A^{(k)}|$ of each set $A^{(k)}$.
 \begin{itemize}
 \item
 $|A^{(0)}| =1$
 
-This is because the null-string, commonly denoted $\varepsilon$, 
+\smallskip
+
 \index{null string $\varepsilon$}
 \index{$\varepsilon$: the null string, of length $0$}
-is the unique string in $A^{(0)}$; symbolically, $A^{(0)} = \{
-\varepsilon \}$.
+This is because the null-string, which is commonly denoted $\varepsilon$,  is the unique string in $A^{(0)}$; symbolically: $A^{(0)} = \{ \varepsilon \}$.
 
 \item
-$|A^{(k+1)}| = |A| \cdot |A^{(k)}|$.
+$|A^{(k+1)}| = |A| \times |A^{(k)}|$.
 
-This reckoning follows from the following recipe for creating all
-strings of length $k+1$ from all strings of length $k$.
+\smallskip
+
+This reckoning follows from the following recipe for building the set $A^{(k+1)}$ from the set $A^{(k)}$.
 \[
-A^{(k+1)} \ = \ \{ \sigma x \ | \ \sigma \in A \ \ \mbox{
-  and } \ \ x \in A^{(k)} \}
+A^{(k+1)} \ = \ \{ \sigma x \ | \ \sigma \in A \ \ \mbox{ and } \ \ x \in A^{(k)} \}
 \]
-In other words, every length-$(k+1)$ string over $A$ is obtained
-by taking a length-$k$ string $x$ over $A$ and {\em prepending}
-\index{prepend a symbol to a string} to it a symbol from $A$.
+In other words, every length-$(k+1)$ string over $A$ is obtained by taking a length-$k$ string $x$ over $A$ and {\em prepending} to it a symbol from $A$.
+\index{prepend a symbol to a string}
 
-This recipe is correct because
+\smallskip
+
+This recipe is correct because:
   \begin{itemize}
   \item
-Each string in $A^{(k+1)}$, as constructed, has length $k+1$.
+Each string in $A^{(k+1)}$, as constructed, has length $k+1$
 
-This is because the recipe adds a single symbol to a length-$k$
-string.
+\smallskip
+
+---because the recipe adds a single symbol to a length-$k$ string.
   \item
-For each string $x \in A^{(k)}$, there are $|A|$ distinct
-strings in $A^{(k+1)}$, as constructed.
+For each string $x \in A^{(k)}$, there are $|A|$ distinct strings in $A^{(k+1)}$, as constructed
 
-This is because each string in $A^{(k+1)}$ begins with a distinct
-symbol from $A$.
+\smallskip
+
+---because each string in $A^{(k+1)}$ begins with a distinct symbol from $A$.
 
   \item
-$A^{(k+1)}$, as constructed, contains all strings of length $k+1$
-over $A$.
+$A^{(k+1)}$, as constructed, contains all strings of length $k+1$ over $A$
 
-This is because for each $\sigma \in A$ and each $x \in
-A^{(k)}$, the string $\sigma x$ is in $A^{(k+1)}$, as
-constructed.
+\smallskip
+
+---because for each $\sigma \in A$ and each $x \in A^{(k)}$, the string $\sigma x$ belongs to the just-constructed set $A^{(k+1)}$.
   \end{itemize}
 \end{itemize}
 We thus have the following recurrence.
 \begin{eqnarray*}
-|A^{(0)}| & = & 1 \\
-|A^{(k+1)}| & = & |A| \times |A^{(k)}| \ \ \ \ 
-\mbox{ for } \ k \geq 0
+|A^{(0)}|     & = & 1 \\
+|A^{(k+1)}| & = & |A| \times |A^{(k)}| \ \ \ \  \mbox{ for } \ k \geq 0
 \end{eqnarray*}
 Theorem~\ref{thm:master-thm-simple} tells us that, for each $\ell \in \N$,
-\[ |A^{(\ell)}| \ \ = \ \ \frac{|A|^{\ell+1} \ - \ |A|}
-{|A| -1} \ \ \leq \ \ c' \cdot |A|^{\ell}
+\[ |A^{(\ell)}| \ \ = \ \ \frac{|A|^{\ell+1} \ - \ |A|}{|A| -1} \ \ \leq \ \ c' \cdot |A|^{\ell}
 \]
-for some constant $c'$.  In order for this quantity to reach the value
-$n$, we must have
+for some constant $c'$.  In order for this quantity to reach the value $n$, we must have
 \[ \ell \ > \ d' \cdot \log_{|A|} n   \]
 for some small constant $d'$.  \qed
 \end{proof}
 
-The following result can be considered anther way of looking at
-Proposition~\ref{thm:bound-stringnames-lgth-k}.
+The following result can be considered anther way of looking at Proposition~\ref{thm:bound-stringnames-lgth-k}.
 
 \begin{prop}
 \label{thm:Num-strings-lgth-k}
-The number of distinct strings of length $k$ over an alphabet of $a$
-symbols is $a^k$.
+The number of distinct strings of length $k$ over an alphabet of $a$ symbols is $a^k$.
 \end{prop}
 
 \begin{proof}
-As in Proposition~\ref{thm:bound-stringnames-lgth-k}, let us focus on
-the generic $a$-letter alphabet $A \ = \ \{\sigma_1, \sigma_2,
-\ldots, \sigma_a\}$.  We argue by induction on string-length $k$.
+As in Proposition~\ref{thm:bound-stringnames-lgth-k}, we focus on an $a$-letter alphabet $A \ = \ \{\sigma_1, \sigma_2, \ldots, \sigma_a\}$ and we argue by induction on string-length $k$.
+
+\medskip
 
 \noindent
-{\it Bases.}
-The induction we develop can start either with the unique string of
-length $k=0$ or with strings of length $k=1$.  In the former case, the
-uniqueness of the null string validates the case $k=0$ of the
-proposition.  In the latter case, there are $a^1 = a$ such strings
-over $A$, one for each symbol $\sigma \in A$; this validates the case
-$k=1$ of the proposition.
+{\sf Bases.}
+The induction we develop can start either with the unique string $\varepsilon$ of length $k=0$ or with strings of length $k=1$.  In the former case, the uniqueness of the null string validates the case $k=0$ of the proposition.  In the latter case, there are $a^1 = a$ such strings over $A$, one for each symbol $\sigma \in A$; this validates the case $k=1$ of the proposition.
+
+\medskip
 
 \noindent
-{\it The inductive hypothesis.}
-Say that for all string-lengths $k$ up through $n$, there are $a^k$
-distinct words of length $k$ over $A$.
+{\sf The inductive hypothesis.}
+Say that for all string-lengths $k$ up through $n$, there are $a^k$ distinct words of length $k$ over $A$.
+
+\medskip
+
+\index{append a symbol to a string}
 
 \noindent
-{\it Extending the induction.}
-Take each length-$n$ string $x$ over $A$, and {\em append}
-\index{append a symbol to a string} to it, in turn, each of $A$'s $a$
-symbols, i.e., add each symbol to $x$ as an additional rightmost
-symbol.  One thereby creates $a$ new strings, each obviously distinct,
-for each string in $A^{(n)}$,: namely, $x \sigma_1$, $x \sigma_2$,
-\ldots, $x \sigma_a$.  We have thus created $a^{n+1}$ distinct
-length-$(n+1)$ strings over $A$ from $A$'s $a^n$ distinct length-$n$
-strings.
+{\sf Extending the induction.}
+We take each length-$n$ string $x$ over $A$, and {\em append} to it, in turn, each of $A$'s $a$
+symbols.  Each appendage adds an additional rightmost symbol to $x$.  We thereby replace each string $x \in A^{(n)}$ by $a$ distinct new strings, $x \sigma_1$, $x \sigma_2$, \ldots, $x \sigma_a$.  We have thus created $a^{n+1}$ distinct length-$(n+1)$ strings over $A$ from $A$'s $a^n$ distinct length-$n$ strings.
+
+\smallskip
 
 The induction is thus extended, which completes the proof.  \qed
 \end{proof}
@@ -367,26 +353,19 @@ The induction is thus extended, which completes the proof.  \qed
 \subsection{Binomial Coefficients and Pascal's Triangle}
 \label{sec:binomial-coeff+Pascal}
 
-In Section~\ref{sec:binomial-coeff}, we introduced and briefly
-discussed the binomial coefficient \index{binomial coefficients}
-$\displaystyle \Delta_{n,k} \ \eqdef \ {n \choose k}$ in its guise as a
-binary operation on integers; see (\ref{eq:binom-coeff}).  And, we
-established in Proposition~\ref{thm:manipulate-binom-coeff} the
-summation rule
-\[ {n \choose k} \ + \ {n \choose {k+1}} \ = \ {{n+1} \choose {k+1}} \]
-for $\Delta_{n,k}$.  In fact, one can {\em define} binomial
-coefficient via the {\em bilinear recurrence} that underlies this
-rule.  This change in viewpoint is the topic of the current
-subsection.
+\index{binomial coefficients} \index{bilinear recurrence}
+In Section~\ref{sec:binomial-coeff}, we introduced and briefly discussed the binomial coefficients, or, triangular numbers, 
+\[ \Delta_{n,k} \ \eqdef \ {n \choose k} \]
+within the context of binary operations on integers; see (\ref{eq:binom-coeff}).  And, we established in Proposition~\ref{thm:manipulate-binom-coeff} the summation rule
+\[
+{n \choose k} \ + \ {n \choose {k+1}} \ = \ {{n+1} \choose {k+1}}
+\]
+for these integers.  We now {\em define} binomial coefficients via the {\em bilinear recurrence} that underlies the summation rule.  This change in viewpoint is the topic of the current subsection.
 
 \subsubsection{The formation rule for Pascal's Triangle}
 \label{sec:Pascal-formation}
 
-Let us define the bivariate integer function\footnote{We alter our
-  notation for binomial coefficients in deference to our change in
-  viewpoint: We promote the integer pair $\langle n,k \rangle$ from a
-  subscript to an argument, and we embellish $\Delta$ with a
-  hat.}~$\hat{\Delta}(n,k)$ via the bilinear recurrence
+Let us define the bivariate integer function\footnote{We alter our notation for binomial coefficients in deference to our change in viewpoint: We promote the integer pair $\langle n,k \rangle$ from a subscript to an argument, and we embellish $\Delta$ with a ``hat".}~$\hat{\Delta}(n,k)$ via the bilinear recurrence
 \begin{equation}
 \label{eq:binom-coeff-recurrence}
 \hat{\Delta}(n,k) \ = \ 
@@ -401,15 +380,9 @@ Let us define the bivariate integer function\footnote{We alter our
 
 \smallskip
 
-We claim that the function $\hat{\Delta}(n,k)$ thus defined is, in
-fact, the for binomial coefficient $\displaystyle {n \choose k}$.  We
-establish this claim with the help of a two-dimensional array of
-integers known as {\it Pascal's Triangle},
-\index{Pascal's triangle}
-so named in honor of the French polymath Blaise Pascal.
-\index{Pascal, Blaise}
-Fig.~\ref{fig:pascal-triangle} provides a ``prefix'' of this famed
-array, for $n,k \leq 5$.
+\index{Pascal's triangle} \index{Pascal, Blaise}
+We claim that the function $\hat{\Delta}(n,k)$ thus defined is, in fact, the binomial coefficient $\displaystyle {n \choose k}$.  We establish this claim with the help of a two-dimensional array of
+integers known as {\it Pascal's Triangle}, so named in honor of the French polymath Blaise Pascal.  Fig.~\ref{fig:pascal-triangle} provides a ``prefix'' of this famed array, for $n,k \leq 5$.
 \begin{figure}[htb]
 \[
 \begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
@@ -442,29 +415,24 @@ n=9 & 1 & 9 & 36 & 84 & 126 & 126 & 84 & 36 & 9 & 1 & \ldots \\
 \caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 9$.}
 \label{fig:pascal-triangle}
 \end{figure}
-The {\em formation rule of the array} is that the array-entry at (row
-$n+1$, column $k+1$) is the sum of the array-entries at (row $n$, column
-$k$) and at (row $n$, column $k+1$).
-\index{Pascal's Triangle!formation rule}
+The {\em formation rule of the array} is that the array-entry at (row $n+1$, column $k+1$) is the sum of the array-entries at (row $n$, column $k$) and at (row $n$, column $k+1$).\index{Pascal's Triangle!formation rule}
 
 \medskip
 
-By comparing the formation rule for Pascal's Triangle with equation
-(\ref{eq:add-binom-coeff}), you can anticipate the following result.
+If you compare the formation rule for Pascal's Triangle with Eq.~(\ref{eq:add-binom-coeff}), then you will anticipate the following result.
 
 \begin{prop}
 \label{thm:pascal-binom}
-The entries of Pascal's Triangle are the binomial coefficients.
-Specifically, for all $n,k$, the entry at (row $n$, column $k$) of the
-Triangle is $\displaystyle {n \choose k}$.
+The entries of Pascal's Triangle are precisely the binomial coefficients.
+
+\smallskip
+
+\noindent
+Specifically, for all $n,k$, the entry at (row $n$, column $k$) of the Triangle is $\displaystyle {n \choose k}$.
 \end{prop}
 
 \begin{proof}
-We note by observation and direct calculation (see
-Fig.~\ref{fig:pascal-triangle}) that the proposition is true for $n =
-1$ and $k \in \{0, 1\}$.  A simple double induction verifies that
-every binomial coefficient appears in the Triangle and every Triangle
-entry is a binomial coefficient.  \qed
+We note by observation and direct calculation (see Fig.~\ref{fig:pascal-triangle}) that the proposition is true for $n = 1$ and $k \in \{0, 1\}$.  A double induction which we leave to the reader verifies that every binomial coefficient appears in the Triangle and every Triangle entry is a binomial coefficient.  \qed
 \end{proof}
 
 \ignore{****************** \\
@@ -473,10 +441,13 @@ induction on $n$, then for each value of $n$ on $k \leq n$ \\
 {\Denis Yes, I think we can detail the classical recurrence proof. I added an alternative proof based on counting the number of paths in the Pascal's triangle -- see figure}
 ******************}
 
+\medskip
+
+Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff1} provide the skeleton of an alternative proof of the summation formula form for binomial coefficients.  This proof, which we leave for the  interested reader, is our first evidence of the intellectual importance of Pascal's Triangle.
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiaux1}
-\caption{Another representation of the Pascal's triangle}.
+\caption{A graph-like representation of Pascal's Triangle.  Note that each entry $\hat{\Delta}(n, k)$ equals the number of paths in the graph from entry $\hat{\Delta}(n, 0)$ to $\hat{\Delta}(n, k)$.}
 \label{fig:binomialCoeff1}
 \end{center}
 \end{figure}
@@ -484,8 +455,7 @@ induction on $n$, then for each value of $n$ on $k \leq n$ \\
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiaux2}
-\caption{Argument for an alternative proof where the coefficient in row $n+1$ is obtained by the two previous coefficients in row $n$.
-Then, the number of paths to reach this coefficient is equal to the sum of the number of paths in these two coefficients of the previous row.}
+\caption{Outlining an alternative proof of the summation formula for binomial coefficients:  The number of paths from entry $\hat{\Delta}(n, 0)$ of the Triangle to entry $\hat{\Delta}(n+1, k)$  equals the sum of the number of paths to entry $\hat{\Delta}(n, k)$ and the number of paths to entry $\hat{\Delta}(n, k-1)$.}
 \label{fig:binomialCoeff2}
 \end{center}
 \end{figure}
@@ -493,14 +463,14 @@ Then, the number of paths to reach this coefficient is equal to the sum of the n
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiauxCounting}
-\caption{There are three different paths for reaching ${3 \choose 2}.$}
+\caption{Three distinct paths lead from entry $\hat{\Delta}(3,0)$ to entry $\hat{\Delta}(3,2) = {\displaystyle {3 \choose 2}}$.}
 \label{fig:binomialCoeff3}
 \end{center}
 \end{figure}
 
-As an immediate consequence of the relation between binomial
-coefficients and Pascal's Triangle, we observe the following {\it a
-  priori} nonobvious fact.
+\bigskip
+
+The relation between binomial coefficients and Pascal's Triangle leads us to following {\it a priori} non-obvious fact.
 
 \begin{prop}
 \label{thm:binomcoeff-integer}
@@ -509,21 +479,14 @@ Every binomial coefficient is an integer.
 \index{binomial coefficients!integer-hood}
 
 \begin{proof}
-By the formation rule for Pascal's Triangle, every entry in that array
-is obtained from integers via repeated additions.  The present result
-therefore follows from Proposition~\ref{thm:pascal-binom}'s proof that
-the elements of the Triangle are precisely the binomial coefficients.  \qed
+By the formation rule for Pascal's Triangle, every entry in that array is obtained from integers via repeated additions---an operation that maps integers to integers. Proposition~\ref{thm:binomcoeff-integer} therefore follows from Proposition~\ref{thm:pascal-binom}'s proof that the elements of the Triangle are precisely the binomial coefficients.  \qed
 \end{proof}
 
 
-\subsubsection{The summation formula for binomial coefficients}
+\subsubsection{Summing complete rows of Pascal's Triangle}
 \label{sec:summaion-BinCoeff}
 
-We conclude this section with a very consequential result about the
-binomial coefficients.  We shall observe applications of this result
-as we explore a variety of topics, ranging from counting discrete
-structures and calculating probabilities to deriving basic properties
-of other recursively defined families.
+We conclude this section with a very consequential result about the binomial coefficients, specifically about the sum of all the coefficients that share the same bottom argument.  Of course, we know now that this summation is equivalent to summing complete rows of Pascal's Triangle.
 
 
 \begin{prop}
@@ -531,24 +494,22 @@ of other recursively defined families.
 For every positive integer $n$,
 \[
 \sum_{i=0}^n \ {n \choose i} \ \ = \ \
-{n \choose 0} \ + \ {n \choose 1} \ + \cdots + \ {n \choose {n-1}} \ +
-\ {n \choose n} \ \ = \ \ 2^n
+{n \choose 0} \ + \ {n \choose 1} \ + \cdots + \ {n \choose {n-1}} \ + \ {n \choose n} \ \ = \ \ 2^n
 \]
 \end{prop}
 \index{binomial coefficients!summation formula}
 
 \begin{proof}
-This result is an immediate consequence of the Binomial Theorem
-(Theorem~\ref{thm:Binomial-theorem}).  That seminal result tells us
-that, for all $n \in \N$,
+This result is an immediate consequence of the Binomial Theorem (Theorem~\ref{thm:Binomial-theorem}).  That seminal result tells us that, for all $n \in \N$,
 \[
 (x+y)^n \ \ = \ \ \sum_{i=0}^n \ \ {n \choose i} x^{n-i} y^i
 \]
-If we instantiate this polynomial equation with the values $x = y =
-1$, then we obtain the present result.
-\qed
+If we instantiate this polynomial equation with the values $x = y = 1$, then we obtain the present result.  \qed
 \end{proof}
 
+\smallskip
+
+We shall observe numerous applications of this result as we explore a broad variety of topics, ranging from counting discrete structures and calculating probabilities to deriving basic properties of other recursively defined families.
 
 \subsection{The Fibonacci Number Sequence}
 \label{sec:Fibonacci}
