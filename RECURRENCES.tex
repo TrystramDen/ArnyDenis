@@ -1,4 +1,4 @@
-%version of 11-27-19
+%version of 11-29-19
 
 \chapter{Recurrences:
 Rendering Complex Structure Manageable}
@@ -1019,16 +1019,21 @@ For all $n$,
 \section{$\oplus$ Recurrences ``in action'': The Token Game}
 \label{sec:TokenGame}
 
-In order to truly appreciate the power of recurrences as an analysis tool, one must witness them ``in action''.  To this end, we now describe the (single-player) combinatorial {\it Token Game}.  By
-employing recurrences to analyze plays of the game, we are able to derive an optimal strategy for playing the game.
+In order to truly appreciate the power of recurrences as an analysis tool, one must witness them ``in action''.  To this end, we now describe the ({\it single-player}) combinatorial {\it Token Game}.  By employing recurrences to analyze plays of the game, we are able to derive an optimal strategy for playing the game.
 
 \subsection{Rules of the Game}
 \label{sec:TokenGame-Rules}
 
 \noindent {\it The equipment}.
-For each $n \in \N^+$, the order-$n$ version of the Token Game is played with a {\it bank} which has $n$ slots, labeled $1$, \ldots, $n$, and with a {\it pile} of $n$ tokens.
+For each $n \in \N^+$, the order-$n$ Token Game is played with:
+\begin{itemize}
+\item
+a {\it bank} that has $n$ {\it slots}, labeled $1$, \ldots, $n$
+\item
+a {\it pile} of $n$ tokens, each capable of completely occupying a bank slot.
+\end{itemize}
 
-\medskip
+\smallskip
 
 \noindent {\it Initial and terminal configurations}.
 Each play of the game begins with the bank empty and the pile full, as depicted in Fig.~\ref{fig:jeujetonsInit}.
@@ -1039,12 +1044,16 @@ Each play of the game begins with the bank empty and the pile full, as depicted 
         \label{fig:jeujetonsInit}
 \end{center}
 \end{figure}
-The goal of each play is to transfer all $n$ tokens from the pile into the bank.
+
+\medskip
+
+\noindent {\it The goal of the game}.
+The player's goal is to transfer all $n$ tokens from the pile into the bank.
 
 \medskip
 
 \noindent {\it The repertoire of Game moves}.
-The player transfers tokens from the pile to the bank by executing a sequence of {\it moves}.  Each successive move has one of the following types.
+The player transfers tokens from the pile to the bank by executing a sequence of {\it moves}, each having one of the following types.
 \begin{enumerate}
 \item
 Change the state of bank-slot \#$1$, which is the first (i.e., leftmost) slot in the bank:
@@ -1096,17 +1105,16 @@ To minimize the number of moves from an initially empty bank to the finally full
 \subsection{An Optimal Strategy for Playing the Game}
 \label{sec:Token-Game-Strategies}
 
-The question is how the player should choose successive moves, with the goal of filling the bank as quickly as possible.  One can garner some strategic observations about how to play the
-Game by looking at small instances. 
+The question is how the player should choose successive moves, with the goal of filling the bank as quickly as possible.  One can garner some strategic observations about how to play the Game by looking at small instances. 
 \begin{itemize}
 \item
-When $n=1$, one should simply fill the slot using a Type-$1$ move.
+When $n=1$, the player should simply fill the slot using a Type-$1$ move.
 \item
-When $n=2$, one must first play a Type-$2$, then a Type-$1$ move. 
+When $n=2$, the player must first play a Type-$2$, then a Type-$1$ move. 
 \item
-As one plays the Game for the next small values of $n$ (say $n=3, 4$, or $5$), observation suggests that one should begin with a Type-$1$ move when $n$ is odd and a Type-$2$ move when $n$ is even. 
+As the Game proceeds for the next small values of $n$ (say $n=3, 4$, or $5$), observation suggests that the player should begin with a Type-$1$ move when $n$ is odd and with a Type-$2$ move when $n$ is even. 
 \item
-Another easy observation is: Do not play two successive moves of the same type, because the second one just undoes the first.
+Another easy observation is: The player should not play two successive moves of the same type, because the second one just undoes the first.
 \end{itemize}
 A strategy is beginning to emerge:
 \begin{enumerate}
@@ -1115,12 +1123,11 @@ Choose the initial move based on the parity of $n$.
 \item
 Subsequently, alternate between the two types of moves.
 \end{enumerate}
-This strategy is simple enough, but: (a) Does it lead us to the required terminal state?  (b) What is the cost of a (successful) play using this strategy?  The answers to both questions reside in amending the strategy to a {\em recursive} form:  We can use recurrences to prove that the resulting strategy is optimal and to evaluate its cost.
+This strategy is pleasingly simple, but: (a) Does it lead us to the required terminal state?  (b) What is the cost of a (successful) play using this strategy?  The answers to both questions can be discovered if we reformulate the strategy to a {\em recursive} form:  We can then use recurrences to prove that the proposed strategy is optimal and to evaluate the cost of an optimal play of the order-$n$ game.
 
 \ignore{*************
 While one can garner some strategic observations about how to play the
 Game by playing small instances---a trivial example: 
-
 
 %WhileEven is not easy to describe and its cost is not easy to
 %establish.  We lay the groundwork for devising an optimal strategy
@@ -1138,21 +1145,30 @@ Game by playing small instances---a trivial example:
 
 \bigskip
 
-We play the small instances of the Game---the cases $n=1$ and $n=2$---as mandated by our earlier observations.  For Game instances with $n > 2$, we devise the following recursive solution, motivated by the following reasoning.
+We play the small instances of the Game---the cases $n=1$ and $n=2$---using the {\it ad hoc} strategies mandated by our earlier observations.  For Game instances with $n > 2$, we devise a recursive solution, which is motivated by the following reasoning.
 
-A token can be placed into the last bank-slot via the Type-$2$ move
+\medskip
+
+A token can be placed into the {\em last} bank-slot (i.e., the $n$th) via the Type-$2$ move
+
+\smallskip
 
 \hspace*{.35in}
-{\sc move token from pile into bank-slot} $n$.
+{\sc move token from pile into bank-slot} $n$
+
+\smallskip
 
 \noindent
-In order for this move to be eligible for execution, the bank must be
-in the following configuration, reading rightward from bank-slot $1$:
+In order for this move to be eligible for execution, the bank must be in the following configuration, reading rightward from bank-slot $1$:
 \[ \big[ \mbox{tokens in slots } \ 1, 2, \ldots, n-2 \big],
  \big[ \mbox{no token in slot } \ n-1 \big],
  \big[ \mbox{no token in slot } \ n \big]
 \]
-This requires that the first $n-2$ slots have been filled.  (Importantly, $n-2$ has the same parity as $n$.)  Once one has achieved this configuration and executed the mandated move,
+This configuration requires that the first $n-2$ slots have been filled.  (Note that, importantly, $n-2$ has the same parity as $n$.)
+
+\smallskip
+
+Once the player has achieved this configuration and executed the mandated move,
 \ignore{*********
 {\sc move token from pile into bank-slot} $n$,
 \end{center}
@@ -1162,8 +1178,13 @@ the player can execute a sequence of $n-2$ type-$2$ moves of the form
 \end{center}
 for $k = n-2, \ n-3, \ldots, \ 1$, in turn.  
 *************}
-the player henceforth ignores the token in bank-slot $n$.   You can see the recursion coming:
-The player is now confronting the initial configuration of the order-$(n-1)$ version of the Game!
+the player henceforth ignores the token in bank-slot $n$.   Here comes the recursion!
+
+\medskip
+
+{\em The player is now confronting the initial configuration of the order-$(n-1)$ Game!}
+
+\medskip
 
 Thus, in this recursive formulation, the Game can be played by recursively executing the {\em super-steps} depicted in Figure~\ref{fig:jeujetonsPrinciple}, on successively smaller banks and piles.
 \begin{figure}[htb]
@@ -1176,21 +1197,21 @@ Thus, in this recursive formulation, the Game can be played by recursively execu
 We summarize the super-steps:
 \begin{enumerate}
 \item
-{\it Topmost bank configuration $\longrightarrow$ Second bank configuration}
+{\it Topmost bank configuration $\rightarrow$ Second bank configuration}
 
 \smallskip
 
 Move tokens into the leftmost $n-2$ slots of the bank, leaving the rightmost two slots empty.
 
 \item
-{\it Second bank configuration $\longrightarrow$ Third bank configuration}
+{\it Second bank configuration $\rightarrow$ Third bank configuration}
 
 \smallskip
 
 Move a token into bank-slot $n$, i.e., the current rightmost slot
 
 \item
-{\it Third bank configuration $\longrightarrow$ Fourth bank configuration}
+{\it Third bank configuration $\rightarrow$ Fourth bank configuration}
 
 \smallskip
 
@@ -1246,22 +1267,23 @@ $n>2$ & 1 & Fill-Bank($n-2$) & via recursive invocation \\
 \subsection{$\oplus \oplus$ Analyzing the Recursive Strategy}
 \label{sec:analysis-of-Token-Game}
 
-Not surprisingly, our analysis of the optimal recursive strategy for playing the Token Game resides in a {\em recurrence} for the cost of playing the Game, as a function of the bank-size $n$.  Also not surprisingly, the structure of the recurrence mirrors the recursion structure of our playing strategy.
+Not surprisingly, our analysis of the optimal recursive strategy for playing the Token Game resides in a {\em recurrence} for the cost of playing the Game, as a function of the bank-size $n$.  Also not surprisingly, the structure of the recurrence mirrors the structure of our recursive playing strategy.
 
-For $i = 1, \ldots, n$, let $F(i)$ denote the cost for filling the bank-slots from slot \#$1$ through slot \#$i$, measured in terms of the number of atomic moves, each of the form {\sc place a token} or {\sc remove a token}.  Because of the dual forms of our atomic moves---each move fills one slot that is empty or empties one slot that is full---the cost of filling an empty length-$i$ prefix of the bank with tokens equals the cost of emptying a full length-$i$ prefix of the bank.  The total cost of a play of the Game is, by definition, the cost of filling the initially empty $n$-slot bank with tokens.
+\medskip
+
+For $i = 1, \ldots, n$, let $f(i)$ denote the cost for filling the bank-slots \#$1$ through \#$i$, measured in terms of the number of atomic moves, each of the form {\sc place a token} or {\sc remove a token}.  Because of the dual forms of our atomic moves---each move fills one slot that is empty or empties one slot that is full---the cost of filling an empty length-$i$ prefix of the bank with tokens equals the cost of emptying a full length-$i$ prefix of the bank.  The total cost of a play of the order-$n$ Game is the cost of filling the initially empty $n$-slot bank with tokens.
 
 \begin{prop}
 \label{thm:f-cost of TokenGame}
-Let $F(n)$ be the cost of a play of the $n$ bank-slot version of the
-Token Game.  For all $n \in \N^+$, the value of $F(n)$ is
+Let $f(n)$ be the cost of a play of the order-$n$ Token Game.  For each $n \in \N^+$, $f(n)$ is given by:
 \begin{equation}
 \label{eq:f-cost:Token-Game}
-F(n) \ = \ \left\{
+f(n) \ = \ \left\{
 \begin{array}{ll}
   \left( 2^{n+1} -1 \right)/3
-  & \mbox{  if $n$ is odd} \\
+         & \mbox{  if $n$ is odd} \\
   \left( 2^{n+1} -2 \right)/3
-  & \mbox{  if $n$ is even}
+        & \mbox{  if $n$ is even}
 \end{array}
 \right.
 \end{equation}
@@ -1271,12 +1293,11 @@ F(n) \ = \ \left\{
 Our discussion has revealed that the analysis of our recursive playing strategy resides in solving the following recurrence.
 \begin{equation}
 \label{eq:Token-cost-recurrence}
-F(n) \ = \ \left\{
+f(n) \ = \ \left\{
 \begin{array}{ll}
 1 & \mbox{ if } \ n=1 \\
 2 & \mbox{ if } \ n=2 \\
-% F(n-2) + 1 + F(n-2) + F(n-1) = 
-F(n-1) \ + \ 2 F(n-2) + 1 & \mbox{ if } \  n > 2
+f(n-1) \ + \ 2 f(n-2) + 1 & \mbox{ if } \  n > 2
 \end{array}
 \right.
 \end{equation}
@@ -1285,8 +1306,7 @@ F(n-1) \ + \ 2 F(n-2) + 1 & \mbox{ if } \  n > 2
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-There is a point to clarify here because the moves of the Game are not \textit{symmetric}
-(we proceed from left to right). 
+There is a point to clarify here because the moves of the Game are not \textit{symmetric}---we always proceed from left to right. 
 
 \smallskip
 
@@ -1297,57 +1317,55 @@ The recursive solution involves a super-step that empties a bank of size $n-2$. 
 The cost of the recursive solution is:
 \begin{equation}
 \label{eq:game-fill}
-F(n) \ = \ \left\{
+f(n) \ = \ \left\{
 \begin{array}{ll}
 1 & \mbox{ if } \ n=1 \\
 2 & \mbox{ if } \ n=2 \\
-% F(n-2) + 1 + F(n-2) + F(n-1) = 
-F(n-2) \ + 1 \ + F^{-1}(n-2) \ + F(n-1) & \mbox{ if } \  n > 2
+f(n-2) \ + \ 1 \ + \ f^{-1}(n-2) \ + \ f(n-1) & \mbox{ if } \  n > 2
 \end{array}
 \right.
 \end{equation}
-Let $F^{-1}$ denote the bank-emptying operation.  If one thinks in terms of mirror-image operations, then it is not difficult to derive a recursive solution for the bank-emptying operation:
+Let $f^{-1}$ denote the bank-emptying operation.  If one thinks in terms of mirror-image operations, then it is not difficult to derive a recursive solution for the bank-emptying operation:
 \begin{equation}
 \label{eq:game-empty}
-F^{-1}(n) \ = \ \left\{
+f^{-1}(n) \ = \ \left\{
 \begin{array}{ll}
 1 & \mbox{ if } \ n=1 \\
 2 & \mbox{ if } \ n=2 \\
-F^{-1}(n-1) \ + F(n-2)  \ + 1 \ + F^{-1}(n-2) & \mbox{ if } \  n > 2
+f^{-1}(n-1) \ + \ f(n-2)  \ + \ 1 \ + \ f^{-1}(n-2) & \mbox{ if } \  n > 2
 \end{array}
 \right.
 \end{equation}
 
 Taking the difference between expressions (\ref{eq:game-fill}) and (\ref{eq:game-empty}), we have:
 \begin{eqnarray*}
-F(n) \ - \ F^{-1}(n)
-   & = & F(n-2) \ + \ 1 \ + \ F^{-1}(n-2) \ + \  F(n-1)   \\
-   &    &  - \ F^{-1}(n-1) \ - \ F(n-2)  \ - \  1 \ - F^{-1}(n-2) \\
-   & = & F(n-1) \ - \ F^{-1}(n-1) \\
-   & = &  \hspace*{.25in} \vdots \\
-   & = &  F(1) \ - \ F^{-1}(1) \\
-   & =  & 0
+f(n) \ - \ f^{-1}(n)
+   & = & f(n-2) \ + \ 1 \ + \ f^{-1}(n-2) \ + \  f(n-1)   \\
+   &    &  - \ f^{-1}(n-1) \ - \ f(n-2)  \ - \  1 \ - f^{-1}(n-2) \\
+   & = & f(n-1) \ - \ f^{-1}(n-1) \\
+   &    &  \hspace*{.25in} \vdots \\
+   & = &  f(1) \ - \ f^{-1}(1) \\
+   & = & 0
 \end{eqnarray*}
-Thus, the costs of $F(n)$ and $F^{-1}(n)$ are equal!
+Thus, the costs of $f(n)$ and $f^{-1}(n)$ are equal!
 \end{minipage}
 }
 \bigskip
 
 We can dramatically simplify recurrence (\ref{eq:Token-cost-recurrence}) by focusing on the function
-\[ G(n) \ \eqdef \ F(n) \ + \ F(n-1) \ \ \mbox{ for } \ n \geq 2 \]
-instead of on $F$.  Elementary calculation based on (\ref{eq:Token-cost-recurrence}) shows that $G(n)$ satisfies the recurrence
+\[ g(n) \ \eqdef \ f(n) \ + \ f(n-1) \ \ \mbox{ for } \ n \geq 2 \]
+instead of on $f$.  Elementary calculation based on (\ref{eq:Token-cost-recurrence}) shows that $g(n)$ satisfies the recurrence
 \begin{equation}
 \label{eq:g-Token-cost-recurrence}
-G(n) \ = \ \left\{
+g(n) \ = \ \left\{
 \begin{array}{ll}
 3 & \mbox{ if } \ n=2 \\
-2 G(n-1) + 1 & \mbox{ if } \  n > 2
+2 g(n-1) + 1 & \mbox{ if } \  n > 2
 \end{array}
 \right.
 \end{equation}
 We have, thereby, replaced the {\em bilinear} recurrence (\ref{eq:Token-cost-recurrence}) by the {\em (singly) linear} recurrence (\ref{eq:g-Token-cost-recurrence}).  We learned in
-Section~\ref{sec:geometric-sums}---specifically, see
-Proposition~\ref{thm:sum-finite-geometric-series}---how to evaluate the geometric summations that solve recurrences such as (\ref{eq:g-Token-cost-recurrence}).  In our case, we find that
+Section~\ref{sec:geometric-sums}---see Proposition~\ref{thm:sum-finite-geometric-series}---how to evaluate geometric summations that solve recurrences such as (\ref{eq:g-Token-cost recurrence}).  In our case, we find that
 %If we add $F(n-1)$ in both sides of the previous expression, we obtain
 %a simpler equation (call $s(n)$ the sum $F(n)+F(n-1)$ $n \geq 2$, in
 %particular, $s(2) = 2+1$):
@@ -1358,64 +1376,62 @@ Proposition~\ref{thm:sum-finite-geometric-series}---how to evaluate the geometri
 %1$ where $s(2) = 2+1$
 \begin{equation}
 \label{eq:VALUE-g-Token-cost}
-G(n) \ \ = \ \ 2^{n-1} \ + \ 2^{n-2} \ + \cdots + \ 2^2 \ + \ 2 \ + \ 1 \ \ = \ \ 2^{n} -1
+g(n) \ \ = \ \ 2^{n-1} \ + \ 2^{n-2} \ + \cdots + \ 2^2 \ + \ 2 \ + \ 1 \ \ = \ \ 2^{n} -1
 \end{equation}
 
 \smallskip
 
-We can now return to evaluating $F(n)$ via recurrence (\ref{eq:Token-cost-recurrence}), in the light of our analysis of $G(n)$ in (\ref{eq:g-Token-cost-recurrence}) and
+We can now return to evaluating $f(n)$ via recurrence (\ref{eq:Token-cost-recurrence}), in the light of our analysis of $g(n)$ in (\ref{eq:g-Token-cost-recurrence}) and
 (\ref{eq:VALUE-g-Token-cost}).  We find that 
 \begin{equation}
 \label{eq:f-Token-cost-recurrence}
-F(n) \ = \ \left\{
+f(n) \ = \ \left\{
 \begin{array}{ll}
 1 & \mbox{ if } \ n=1 \\
-G(n) - F(n-1) \ \ = \ \
-\left(2^{n} -1\right) - F(n-1) & \mbox{ if } \ n>1
+g(n) - f(n-1) \ \ = \ \
+\left(2^{n} -1\right) - f(n-1) & \mbox{ if } \ n>1
 \end{array}
 \right.
 \end{equation}
-We begin to solve the {\em singly} linear recurrence (\ref{eq:f-Token-cost-recurrence}) for $F(n)$ using the strategy we developed in Section~\ref{sec:geometric-sums}; namely, we expand the
-recurrence in order to discern its pattern and then analyze the summation that the pattern leads to.  In this case, observe:
+We begin to solve the {\em singly} linear recurrence (\ref{eq:f-Token-cost-recurrence}) for $f(n)$ using the strategy we developed in Section~\ref{sec:geometric-sums}.  We expand the recurrence in order to discern its pattern and then analyze the summation that the pattern leads to.  In this case, we observe:
 \begin{eqnarray*}
-F(n) & = & 2^{n} - 2^{n-1} + F(n-2) + 1 -1 \\
-     & = & 2^{n} - 2^{n-1} + 2^{n-2} - F(n-3) -1 \\
-     & = & 2^{n} - 2^{n-1} + 2^{n-2} - 2^{n-3} + F(n-4) +1-1 \\
-     & = & \hspace*{.25in}  \vdots
+f(n) & = & 2^{n} - 2^{n-1} + f(n-2) + 1 -1 \\
+     & = & 2^{n} - 2^{n-1} + 2^{n-2} - f(n-3) -1 \\
+     & = & 2^{n} - 2^{n-1} + 2^{n-2} - 2^{n-3} + f(n-4) +1-1 \\
+     &    & \hspace*{.35in}  \vdots
 \end{eqnarray*}
 What we observe emerging---an inviting induction for the reader lurks in those words---is a geometric summation of powers of $2$, with adjacent terms {\em alternating} in sign; the terminal units, $\pm 1$, cancel after each pair of steps.  We must be careful, though, because
 the numbers of terms in the summations differ based on the parity of $n$: when $n$ is even, the last term is $-2$; when $n$ is odd, the last term is $-1$.
 
-We have now reached the {\em penultimate} step in finding the value of $F(n)$; specifically, we have derived the following parity-specified summations.
+\smallskip
+
+We have now reached the {\em penultimate} step in finding the value of $f(n)$; specifically, we have derived the following parity-specified summations.
 \begin{eqnarray}
 \label{eq:EVEN-f-sum}
-\mbox{For even values of } \ n \ \ \
-F(n) & = &
+\mbox{For even values of } \ n: \ \ \
+f(n) & = &
 \sum_{k=1}^n \ (-1)^{k} \ 2^{k} \\
 \label{eq:ODD-f-sum}
-\mbox{For odd values of } \ n \ \ \ \
-F(n) & = &
+\mbox{For odd values of } \ n: \ \ \ \
+f(n) & = &
 \sum_{k=0}^n \ (-1)^{k+1} \ 2^{k}
 \end{eqnarray}
-Solving these summations for $F(n)$ requires a moderate bit of mathematical dexterity.  For pedagogical reasons, we illustrate two quite distinct approaches for determining the value of
-$F(n)$ for the case of odd $n$:   We want to expose the reader to the quite-different intuitions that each approach elicits.  We shall then derive the value of $F(n)$ for the case of even $n$ from the value for the case of odd $n$.
+Solving these summations for $f(n)$ requires a moderate bit of mathematical dexterity.  For pedagogical reasons, we illustrate two quite distinct approaches for determining the value of
+$f(n)$ for the case of odd $n$:   We want to expose the reader to the quite-different intuitions that each approach elicits.  We shall then derive the value of $f(n)$ for the case of even $n$ from the value for the case of odd $n$.
 
-\medskip
+\bigskip
 
 \noindent {\it An algebraic approach for the case of odd $n$}.
-We look in detail at summation (\ref{eq:ODD-f-sum}), which specifies $F(n)$ when $n$ is odd, and we invoke algebraic manipulation to determine the value of $F(n)$ in this case.
+We look in detail at summation (\ref{eq:ODD-f-sum}), which specifies $f(n)$ when $n$ is odd, and we invoke algebraic manipulation to determine the value of $f(n)$ in this case.
 
 In the following chain of equalities, we: gather the positive and negative terms in summation (\ref{eq:ODD-f-sum}) [line 1 in the chain], perform some elementary manipulations on the result [lines 2 and 3 in the chain], and then invoke Proposition~\ref{thm:sum-finite-geometric-series} [line 4 in the chain, which evaluates the resulting geometric summation].   We
 thereby find that, for odd values of $n$:
 \begin{eqnarray*}
 \label{eq:ODD-soln-f-sum}
-F(n)
+f(n)
   & = &
 \left(2^{n} \ + \ 2^{n-2} \ + \cdots + \ 2 \right) \ - \
   \left(2^{n-1} \ + \ 2^{n-3} \ + \cdots + \ 1 \right) \\
-%    & = &
-%2 \cdot \left(2^{n-1} \ + \ 2^{n-3} \ + \cdots + \ 1 \right) \ - \
-%  \left(2^{n-1} \ + \ 2^{n-3} \ + \cdots + \ 1 \right) \\
     & = &
 2^{n-1} \ + \ 2^{n-3} \ + \cdots + \ 1  \\
     & = &
@@ -1428,13 +1444,12 @@ F(n)
 \bigskip
 
 \noindent {\it A geometric approach for the case of odd $n$}.
-We begin again by looking again at summation (\ref{eq:ODD-f-sum}).  Then, noting that $2^{n-1}$ is a perfect square whenever $n$ is odd, we set out to represent $F(n)$ as the aggregated area of a shrinking sequence of squares, of successive dimensions
+We begin again by looking again at summation (\ref{eq:ODD-f-sum}).  Then, noting that $2^{n-1}$ is a perfect square whenever $n$ is odd, we set out to represent $f(n)$ as the aggregated area of a shrinking sequence of squares, of successive dimensions
 \[ 2^{(n-1)/2} \times 2^{(n-1)/2}, \ \ 2^{(n-3)/2} \times 2^{(n-3)/2},
 \ \ 2^{(n-5)/2} \times 2^{(n-5)/2}, \
 \ldots, \ \  1 \times 1
 \]
-Fig.~\ref{fig:alternatePowers2odd} depicts such a representation of
-$F(7) = 64+16+4+1 = 85$.
+Fig.~\ref{fig:alternatePowers2odd} depicts such a representation of $F(7) = 64+16+4+1 = 85$.
 \begin{figure} [htb]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresMaths/alternatePowers2initOdd.png}
@@ -1442,13 +1457,15 @@ $F(7) = 64+16+4+1 = 85$.
         \label{fig:alternatePowers2odd}
 \end{center}
 \end{figure}
-To facilitate our upcoming manipulation of the configuration depicted in the figure, let us refer to the configuration as {\it the cascade of squares determined by $F(n)$}.   Note that, because each cascade is associated with an odd value of $n$, the smallest square in the cascade (at the far right in the figure) is the unit-side square, of dimensions $1 \times 1$; hence, it contributes $+1$ to the aggregate area of the cascade.
+To facilitate our upcoming manipulation of the configuration depicted in the figure, let us refer to the configuration as {\it the cascade of squares determined by $f(n)$}.   Note that, because each cascade is associated with an odd value of $n$, the smallest square in the cascade (at the far right in the figure) is the unit-side square, of dimensions $1 \times 1$; hence, it contributes $+1$ to the aggregate area of the cascade.
 
-We can now use a geometric construction to evaluate $F(n)$ on an arbitrary odd argument $n$.  We take three copies of the cascade in Fig.~\ref{fig:alternatePowers2odd} and we manipulate the copies into the form is depicted in Fig.~\ref{fig:alternatePowers2finalOdd}.  
+\smallskip
+
+We can now use a geometric construction to evaluate $f(n)$ on an arbitrary odd argument $n$.  We take three copies of the cascade in Fig.~\ref{fig:alternatePowers2odd} and we manipulate the copies into the form is depicted in Fig.~\ref{fig:alternatePowers2finalOdd}.  
 \begin{figure} [htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/alternatePowers2odd.png}
-\caption{Evaluating $F(n)$ for odd $n$ by ``almost'' filling a large square.}
+\caption{Evaluating $f(n)$ for odd $n$ by ``almost'' filling a large square.}
         \label{fig:alternatePowers2finalOdd}
 \end{center}
 \end{figure}
@@ -1459,9 +1476,11 @@ We choose one of the three copies as the ``anchor'' of the construction.  We pos
 \item
 We then take a second copy, flip it across the horizontal axis, and abut the top edge of its largest square with the bottom edge of the largest square in the anchor cascade.  It then becomes the lower white cascade in Fig.~\ref{fig:alternatePowers2finalOdd}.
 
+\smallskip
+
 Note that, importantly, the abutted white cascades fit into a $2^{(n+1)/2} \times 2^{(n+1)/2}$ square.
 
-\medskip
+\bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
@@ -1469,10 +1488,9 @@ All of our observations about figures fitting within other figures are verified 
 \end{minipage}
 }
 
-\medskip
+\bigskip
 
-Indeed, the top edge of the top white cascade and the bottom edge of the bottom white cascade lie, respectively, along the top and bottom edges of the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square.  {\em But}, the cascades' edges are $1$ unit shorter that the edges of the big square;
-i.e., they both have length
+Indeed, the top edge of the top white cascade and the bottom edge of the bottom white cascade lie, respectively, along the top and bottom edges of the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square.  {\em But}, the cascades' edges are $1$ unit shorter than the edges of the big square; i.e., they both have length
 \[
 2^{(n-1)/2} \ + \ 2^{(n-3)/2} \ + \ 2^{(n-5)/2} \ + \cdots + \ 1
 \ = \ 2^{(n+1)/2} \ - 1
@@ -1485,22 +1503,24 @@ Finally, we take the third copy, color it grey, and nest it into the abutting wh
 Take the biggest square in the grey cascade and nest it against the abutted biggest squares in the paired white cascades, in the manner depicted in Fig.~\ref{fig:alternatePowers2finalOdd}.  Note that the nest places one half of its biggest grey square abutting the biggest white square of the top white cascade and one half abutting the biggest white square of the bottom white cascade.  Observe (from Fig.~\ref{fig:alternatePowers2finalOdd}) that the resulting configuration fits within the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square, and that the fit is {\em exact} along the left and right edges, which are shared by the abutting white cascades and the big square.
 
   \item
-For all of the other grey square, in decreasing order of size: We bisect---i.e., cut exactly in half---each square along its its equator, and we nest the resulting two halves of that square symmetrically within the abutting white cascades, in the manner depicted in Fig.~\ref{fig:alternatePowers2finalOdd}.  Once again, we observe that the resulting configuration fits within the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square, and that the fit is {\em exact} along the
+For all of the other grey squares, in decreasing order of size: We bisect---i.e., cut exactly in half---each square along its its equator, and we nest the resulting two halves of that square symmetrically within the abutting white cascades, in the manner depicted in Fig.~\ref{fig:alternatePowers2finalOdd}.  Once again, we observe that the resulting configuration fits within the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square, and that the fit is {\em exact} along the
 left and right edges, which are shared by the abutting white cascades and the big square.
+
+\smallskip
 
 The placement of the bisected squares from the grey cascade leaves two small {\em empty} regions within the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square.  The empty regions each has area $1/2$, because they are created by the ``inadequate'' placement of the bisected unit-side
 square from the grey cascade; the empty regions appear at the top right and bottom right corners of the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square.
   \end{enumerate}
 \end{enumerate}
 
-Once we have completed the described construction of the composite object depicted in Fig.~\ref{fig:alternatePowers2finalOdd}, we calculate that the combined areas of the three cascades is one unit less that the area of the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square (which, of course, has area $2^{n+1}$).  We have thus shown geometrically that $3 F(n)+1 \ = \ 2^{n+1}$, which {\em of course!}~agrees with the value derived algebraically in
+Once we have completed the described construction of the composite object depicted in Fig.~\ref{fig:alternatePowers2finalOdd}, we calculate that the combined areas of the three cascades is one unit less than the area of the $2^{(n+1)/2} \times 2^{(n+1)/2}$ square (which, of course, has area $2^{n+1}$).  We have thus shown geometrically that $3 f(n)+1 \ = \ 2^{n+1}$, which {\em (of course!)}~agrees with the value derived algebraically in
 (\ref{eq:ODD-soln-f-sum}).
 
 \bigskip
 
-We derive immediately the expression for even $n$ using the definition of $g(n)$:
+We immediately derive the expression for even $n$ using the definition of $g(n)$:
 \begin{eqnarray*}
-F(n) & = & 2^n \ - \ 1 \ + \ F(n-1) \ \ \ \mbox{ for } \ n \geq 2 \\
+f(n) & = & 2^n \ - \ 1 \ + \ f(n-1) \ \ \ \mbox{ for } \ n \geq 2 \\
        & = & 2^n -1 + \frac{1}{3} \left(2^{n} - 1 \right) \\
        & = &  \frac{1}{3} \left(2^{n+1} - 2 \right)
 \end{eqnarray*}
