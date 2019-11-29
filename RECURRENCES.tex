@@ -927,7 +927,7 @@ This recurrence is just a relabeled version of the Fibonacci recurrence (\ref{eq
 \subsubsection{$\oplus$ A closed form for the $n$th Fibonacci number}
 \label{sec:Fib-Golden-Ratio}
 
-
+\ignore{***************
 The Fibonacci series is given by the recurrence:
 $F(n+1) = F(n) + F(n-1)$.
 The characteristic equation is thus given by:
@@ -950,28 +950,23 @@ The last value is the Golden ratio: $\Phi = \frac{1}{2} + \sqrt{\frac{5}{4}} = \
 \label{fig:SecondDegreeFibo}
 \end{center}
 \end{figure}
+******************}
 
-We close our survey of the Fibonacci numbers by exposing a {\it
-  closed-form expression}\footnote{The term ``closed-form expression''
-  is defined and illustrated in Section~\ref{sec:special-arithmetic
-    sums}.A.}~for the numbers in this fascinating family.  The
-detailed derivation of this form is beyond the scope of this text, so
-we settle for a heuristic explanation of the closed-form expression.
-By ``heuristic'', we mean here the kind of intuitive explanation that
-mathematicians often use to garner intuition during the exploratory
-phase of studying a complex topic. 
+\index{heuristic}
+We close our survey of the Fibonacci numbers by exposing a {\it closed-form expression}\footnote{The term ``closed-form expression'' is defined and illustrated in Section~\ref{sec:special-arithmetic-sums}.}~for the numbers in this fascinating family.  The
+detailed derivation of this expression requires advanced material that is beyond the scope of this text, so we settle for a {\em heuristic} explanation.
 
-If you write out a sufficiently long initial sequence of Fibonacci
-numbers, then you observe that they grow quite fast.  Indeed, by this
-point in the text, you have hopefully ``played'' with enough sequences
-that you might guess that the Fibonacci numbers grow exponentially
-with the index $n$.  That is, you might guess that there exists a base
-$\beta > 1$ and a constant of proportionality $c > 0$ such that $F(n)
-= c \beta^n$, at least approximately.  In order to (hopefully!)~garner
-intuition for the actual growth behavior of the Fibonacci numbers, let
-us observe an important corollary of this guess.  If the guess were
-true, then it would combine with the classical recurrence
-(\ref{eq:Fibonacci-defn}) in the following way.
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+By ``heuristic explanation'', we mean the kind of intuitive explanation that mathematicians and scientists often use to garner intuition during the exploratory phase of studying a complex topic.  As one's intuition grows, one hopes to eventually replace the heuristic explanation with a rigorous one.  In the case of the sought closed-form expression for the $n$th Fibonacci number, the sought rigor must await rather advanced concepts and tools.
+\end{minipage}
+}
+
+\bigskip 
+
+If you were to write out a sufficiently long initial sequence of Fibonacci numbers, you would observe that they grow quite fast.  Indeed, by this point in the text, you have hopefully ``played'' with enough sequences that you might guess that the Fibonacci numbers $\{ F(n) \}$ grow {\em exponentially} in the index $n$.  In detail, you would be guessing that there exists a real base $\beta > 1$ and a constant of proportionality $c > 0$ such that $F(n) = c \beta^n$, at least approximately.  In order to (hopefully!)~garner intuition for the actual growth behavior of the Fibonacci numbers, let us observe an important corollary of the ``exponential" guess.  If the guessed form were accurate, then it would combine with recurrence (\ref{eq:Fibonacci-defn}) in the following way.
 \[ \begin{array}{cccll}
 (1) & F(n) & = & c \beta^n
       & \mbox{ by our guess} \\
@@ -985,42 +980,35 @@ so that $\beta^n$ is a root of the quadratic equation
 \[
 x^2 - x - 1 \ = \ 0
 \]
-By the quadratic formula (see
-Proposition~\ref{thm:quadratic-formula}), this polynomial has two roots 
-$\Phi \ = \ {\displaystyle \frac{1+\sqrt{5}}{2}}$ \ \ and \ \
-$\Phi' \ = \ {\displaystyle \frac{1-\sqrt{5}}{2}}$
+By the quadratic formula---see Proposition~\ref{thm:quadratic-formula}---this polynomial has two roots: 
+\[ \Phi \ = \ {\displaystyle \frac{1+\sqrt{5}}{2}} \ \ \ \mbox{ and } \ \ \
+\Phi' \ = \ {\displaystyle \frac{1-\sqrt{5}}{2}} \]
 
 %{\Denis well done, I like the way this is presented, but where is the  section on quadratic formula?}
 %{\Arny Proposition~\ref{thm:quadratic-formula}) is in Chap 5; this is in Chap 8}
 
+\smallskip
 
+\index{golden ratio}
 \noindent
-Note that $\Phi$, which is known as the \textit{golden ratio},
-\index{golden ratio} exceeds $1$ while $\Phi'$ does not.  Since we
-know that the Fibonacci numbers {\em grow} with $n$ rather than shrink
-with $n$, our initial guess would assign $F(n)$ the value
-\[
-F(n) \ = \ \Phi^n \ = \ {\displaystyle \left( \frac{1+\sqrt{5}}{2} \right)^n }
-\]
-In fact, this guessed value of $F(n)$ is off by only a small constant factor, at least for very large values of $n$, in the sense of part (a) of the following result.  Part (b) of the result actually provides a closed-form expression for $F(n)$.
+Note that $\Phi$, which is known as the \textit{golden ratio}, exceeds $1$ while $\Phi'$ does not.  Since we know that the Fibonacci numbers {\em grow} with $n$ rather than shrink with $n$, our initial guess would assign $F(n)$ the value
+\[ F(n) \ = \ \Phi^n \ = \ {\displaystyle \left( \frac{1+\sqrt{5}}{2} \right)^n } \]
+In fact, this guessed value of $F(n)$ is off by only a small constant factor, at least for very large values of $n$---as exposed by part (a) of the following result.  Part (b) of the result actually provides the sought closed-form expression for $F(n)$.
 \index{Fibonacci numbers!closed-form expression}
 
 \begin{prop}
 \label{thm:FibNo-GoldenRatio}
 {\bf (a)} {\rm (An approximating expression)}
 For all sufficiently large $n$,
-\[ F(n) \ \approx \
-\frac{1}{\sqrt{5}} \left(\frac{1+\sqrt{5}}{2} \right)^n
-\]
-The meaning of the symbol ``$\approx$'' here means that the error incurred by approximating $F(n)$ via this expression shrinks exponentially as $n$ grows.
+\[ F(n) \ \approx \ \frac{1}{\sqrt{5}} \left(\frac{1+\sqrt{5}}{2} \right)^n \]
+The symbol ``$\approx$'' here means that the relative error incurred by approximating $F(n)$ via this expression shrinks exponentially fast as $n$ grows.
 
 \medskip
 
 \noindent{\bf (b)} {\rm (An exact expression)}
 For all $n$,
 \[ F(n) \ = \ 
-\frac{1}{\sqrt{5}} \left( \left(\frac{1+\sqrt{5}}{2} \right)^n -
-\left(\frac{1-\sqrt{5}}{2} \right)^n \right)
+\frac{1}{\sqrt{5}} \left( \left(\frac{1+\sqrt{5}}{2} \right)^n - \left(\frac{1-\sqrt{5}}{2} \right)^n \right)
 \]
 \end{prop}
 
