@@ -242,10 +242,7 @@ $16$  & hexadecimal & $16$-ary \\
 
 \index{positional number system!forming base-$b$ numeral}
 \noindent {\bf The formation rules for $b$-ary numerals}.
-As we turn to the {\it formation rules} for $b$-ary numerals, we want
-to emphasize that these rules build in an essential way on the ideas
-relating to summing {\em geometric summations}.  This is, therefore, a
-good time to review Section~\ref{sec:geometric-sums}.
+As we turn to the {\it formation rules} for $b$-ary numerals, we want to emphasize that these rules build in an essential way on the ideas relating to summing {\em geometric summations}.  This is, therefore, a good time to review Section~\ref{sec:geometric-sums}.
 
 \medskip
 
@@ -254,41 +251,35 @@ good time to review Section~\ref{sec:geometric-sums}.
 \index{base-$b$ numeral}
 \index{positional number system!base-$b$ numeral}
 \index{$b$-ary numeral}
+\index{$B_b$: $b$-ary digits}
 \index{positional number system!$b$-ary numeral}
+\index{positional number system!base-$b$ numeral!integer part}
+\index{base-$b$ numeral!integer part}
+\index{$\overline{b-1}$: $b-1$ as a single digit}
+\index{positional number system!radix point}
+\index{positional number system!base-$b$ numeral!radix point}
+\index{base-$b$ numeral!radix point}
+\index{positional number system!fractional part of a numeral}
+\index{positional number system!base-$b$ numeral!fractional part}
+\index{base-$b$ numeral!fractional part}
+
 \noindent
 A $b$-ary numeral is a string having three segments.
 \begin{enumerate}
 \item
-The numeral begins with its {\em integer part},
-\index{positional number system!base-$b$ numeral!integer part}
-\index{base-$b$ numeral!integer part}
-which is a {\em finite} string of base-$b$ digits, i.e., digits from
-the set \index{$B_b$: $b$-ary digits}
+The numeral begins with its {\em integer part}, which is a {\em finite} string of base-$b$ digits, i.e., digits from the set\footnote{Recall that ``$\overline{b-1}$'' represents the integer $b-1$ as a
+single digit.}
 \begin{equation}
 \label{eq:b-ary-digits}
 B_b \ \eqdef \ \{0, 1, 2, \ldots, \overline{b-1}\}
 \end{equation}
-(Recall that ``$\overline{b-1}$'' represents the integer $b-1$ as a
-single digit.)  \index{$\overline{b-1}$: $b-1$ as a single digit}
-We denote the integer-part string as: $\alpha_n \alpha_{n-1} \cdots
-\alpha_1 \alpha_0$.
+We denote the integer-part string as: $\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0$.
 
 \item
-The numeral continues with a single occurrence of the {\it
-  radix point},
-\index{positional number system!radix point}
-\index{positional number system!base-$b$ numeral!radix point}
-\index{base-$b$ numeral!radix point}
-which is denoted ``$.$'' in the U.S.~and ``,'' in many other countries. 
+The numeral continues with a single occurrence of the {\it radix point}, which is denoted ``$.$'' in the U.S.~and ``,'' in many other countries. 
 
 \item
-The numeral ends with its {\em fractional part},
-\index{positional number system!fractional part of a numeral}
-\index{positional number system!base-$b$ numeral!fractional part}
-\index{base-$b$ numeral!fractional part}
-which is a string---{\em finite or infinite}---of base-$b$ digits We
-denote the fractional-part string as: $\beta_0 \beta_1 \beta_2
-\cdots$.
+The numeral ends with its {\em fractional part}, which is a string---{\em finite or infinite}---of base-$b$ digits.  We denote the fractional-part string as: $\beta_0 \beta_1 \beta_2 \cdots$.
 \end{enumerate}
 Our completed numeral now has the form
 \begin{equation}
@@ -298,59 +289,46 @@ Our completed numeral now has the form
 \end{equation}
 
 \noindent
-This numeral has the {\it numerical value}\footnote{The notation
-  ``$\mbox{\sc val}_{b}(x)$'' in (\ref{eq:real-numeral-number})
-  denotes an operator that produces the {\em numerical value} of the
-  base-$b$ numeral $x$.}
+This numeral has the {\it numerical value}\footnote{The notation ``$\mbox{\sc val}_{b}(x)$'' in (\ref{eq:real-numeral-number}) denotes an operator that produces the {\em numerical value} of the base-$b$ numeral $x$.}
 \begin{equation}
 \label{eq:real-numeral-number}
-\mbox{\sc val}_{b}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0                  
-\ . \ \beta_0 \beta_1 \beta_2 \cdots)
+\mbox{\sc val}_{b}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0 \ . \ \beta_0 \beta_1 \beta_2 \cdots)
 \ \ \eqdef \ \
-\sum_{i=0}^n \alpha_i \cdot b^i
-\ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
+\sum_{i=0}^n \alpha_i \cdot b^i \ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
 \end{equation}
 \index{positional number system!numerical value of base-$b$ numeral}
 \index{base-$b$ numeral!numerical value}
 \index{positional number system!base-$b$ numeral!numerical value}
 For emphasis, we review:
-\index{positional number system!numerical value of integer part}
 \begin{itemize}
 \item
-The numerical value of the integer part of the numeral in
-(\ref{eq:real-numeral}) is:
+The numerical value of the integer part of the numeral in (\ref{eq:real-numeral}) is:
 \[
-\mbox{\sc val}_{b}(\alpha_n \alpha_{n-1}\cdots \alpha_1 \alpha_0)
+\mbox{\sc val}_{b}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0)
 \ \ = \ \
 \sum_{i=0}^n \alpha_i \cdot b^i
 \]
 \item
-The numerical value of the fractional part of the numeral in
-(\ref{eq:real-numeral}) is:
-\index{positional number system!numerical value of fractional part}
+The numerical value of the fractional part of the numeral in (\ref{eq:real-numeral}) is:
 \[
 \mbox{\sc val}_{b}(. \beta_0 \beta_1 \beta_2 \cdots)
 \ \ = \ \
 \sum_{j\geq 0} \beta_j \cdot b^{-j}
 \]
 \item
-By prepending a ``minus sign'', or, ``negative sign'' ($-$) to a
-numeral or a number, one renders the thus-embellished entity as
-negative.
+By prepending a ``minus sign'', or, ``negative sign'' ($-$) to a numeral or a number, one renders the thus-embellished entity as negative.
 \end{itemize}
+\index{positional number system!numerical value of integer part}
+\index{positional number system!numerical value of fractional part}
 
-Note that {\em two types of sequences of $0$s do not affect the value
-  of the number represented by a $b$ary numeral:}
+Note that {\em two types of sequences of $0$s do not affect the value of the number represented by a $b$-ary numeral:}
 \begin{itemize}
 \item
-an {\em initial} sequence of $0$s that reside to the {\em left} of the
-radix point and of all non-$0$ digits;
+an {\em initial} sequence of $0$s that reside to the {\em left} of the radix point and of all non-$0$ digits;
 \item
-a {\em terminal} sequence of $0$s that reside to the {\em right} of
-the radix point and of all non-$0$ digits.
+a {\em terminal} sequence of $0$s that reside to the {\em right} of the radix point and of all non-$0$ digits.
 \end{itemize}
-One consequence of this fact is that we lose no generality by
-insisting that every numeral have the following {\em normal form:}
+One consequence of this fact is that we lose no generality by insisting that every numeral have the following {\em normal form:}
 \index{positional number system!numeral!normal form}
 \index{normal form for for numeral in a positional number system}
 
@@ -365,52 +343,32 @@ insisting that every numeral have the following {\em normal form:}
 
 \bigskip
 
-We finish this section with an important consequence of the definition
-of real numbers in Section~\ref{sec:define-Reals}, in terms of the
-summations in (\ref{eq:real-defn}).
+We finish this section with an important consequence of the definition of real numbers in Section~\ref{sec:define-Reals}, in terms of the summations in (\ref{eq:real-defn}).
 
 \begin{prop}
 \label{thm:define-Reals-via-numerals}
-A number $n$ is real, i.e., belongs to the set $\R$, if, and only if
-it is the numerical value of a numeral of the form
-(\ref{eq:real-numeral}).
+A number $n$ is real, i.e., belongs to the set $\R$, if, and only if it is the numerical value of a numeral of the form (\ref{eq:real-numeral}).
 \end{prop}
 
 \subsection{A {\em Bijective} Number System}
 \label{sec:bijective-adic}
 \index{positional number system!bijective}
 
-This section introduces a positional number system in which distinct
-numerals name distinct numbers.  Of course, $b$-ary systems do not
-enjoy this property because of the value neutrality of leading $0$s
-for integer numerals and trailing $0$s for fractional numerals.  The
-systems are often termed {\it bijective} because their unique numerals
-for integers arise from a bijection between the integer numerals and
-the set $\N^+$ of positive integers.  {\em The price that these
-  systems pay for their bijectiveness is that they cannot represent
-  the number $0$; they can represent all other integers.}  Each
-bijective base-$b$ system is sometimes called the {\it $b$-adic number
-  system}. \index{positional number system!$b$-adic} One also finds
-some -adic number systems being named using Greek-inspired names for
-the base $b$, in imitation of the Latin-inspired names of -ary
-systems.  Most commonly one encounters the base-$2$ {\it dyadic}
+This section introduces a positional number system in which distinct numerals name distinct numbers.  Of course, $b$-ary systems do not enjoy this property because of the value neutrality of leading $0$s for integer numerals and trailing $0$s for fractional numerals.  The systems we discuss now are often termed {\it bijective} because their unique numerals for integers arise from a bijection between the integer numerals and the set $\N^+$ of positive integers.  {\em The price that these systems pay for their bijectiveness is that they cannot represent the number $0$; they can, however, represent all other integers.}  Each bijective base-$b$ system is sometimes called the {\it $b$-adic number system}.  One also finds some -adic number systems being named using Greek-inspired names for the base $b$, in imitation of the Latin-inspired names of -ary
+systems.  The most commonly encountered -adic number system is the base-$2$, {\it dyadic},
+system, which is the -adic analogue of the binary system.
 \index{positional number system!dyadic: base-$2$}
-\index{dyadic (base-$2$) number system} system as the -adic analogue
-of the binary system.
+\index{dyadic (base-$2$) number system} 
+\index{positional number system!$b$-adic}
 
-For any number base $b > 1$, the base-$b$ bijective systems' numerals
-are formed in exactly the same way as are the numerals of the $b$-ary
-number system---see (\ref{eq:real-numeral-number})---but the bijective
-systems' numerals are formed using the digit-set $B'_b \ = \ \{1, 2,
-\ldots, b\}$, rather than the $b$-ary set $B_b$ of
-(\ref{eq:b-ary-digits}).  In order to lend the reader some intuition,
-we display the dyadic numerals that have one or two digits together
-with their numerical values.
+\medskip
 
-\smallskip
+For any number base $b > 1$, the base-$b$ bijective systems' numerals are formed in exactly the same way as are the numerals of the $b$-ary number system---see (\ref{eq:real-numeral-number}).  But the bijective systems' numerals are formed using the digit-set $B'_b \ = \ \{1, 2,
+\ldots, b\}$, rather than the $b$-ary set $B_b$ of (\ref{eq:b-ary-digits}).  In order to lend the reader some intuition, we display the dyadic numerals that have one or two digits together with their numerical values.
+
+\medskip
 
 \begin{tabular}{|lc|ll|}
-\hline
 \multicolumn{2}{c}{\bf Dyadic Numeral} & \multicolumn{2}{c}{\bf Numerical Value} \\
 \hline
 $x=$ & $1$  & {\sc dyadic-val}$(x) =$ & $1$ \\
@@ -423,36 +381,21 @@ $x=$ & $1$  & {\sc dyadic-val}$(x) =$ & $1$ \\
 \end{tabular}
 
 \medskip
+
 \noindent
-The preceding table indicates how the numerical values of dyadic
-numerals track the lexicographic order of the numerals.
+The preceding table indicates how the numerical values of dyadic numerals track the lexicographic order of the numerals.
 
 \bigskip
 
-Formally verifying the bijectiveness of $b$-adic number systems is a
-valuable exercise in manipulating numerals.  The first appearance of
-bijective number systems was in \cite{Foster47}, where the base-$10$
-system is introduced and shown to be bijective.  A proof of
-bijectiveness for arbitrary $b$-adic systems appears in
-\cite{Smullyan61}, where the term {\em $b$-adic} is introduced.  The
-motivating application in \cite{Smullyan61} was to the allied fields
-of Mathematical Logic and Computation Theory: Encoded versions of a
-program's computations play a central role in these theories.  While
-crafting the required encodings using strings of symbols accomplished
-many of the goals of the theories, the overarching reach of the
-theories was fully appreciated only when mathematical logician Kurt
-G\"{o}del \index{G\"{o}del, Kurt} showed, in 1931, that the encodings
-could be achieved using integers and simple arithmetic
-operations---see the discussions of {\it G\"{o}del numbers}
-\index{G\"{o}del numbers} in the primary sources
-\cite{Goedel31,Turing36} or texts such as \cite{Rosenberg12}.  The
-introduction in \cite{Smullyan61} of -adic number systems to replace
-the traditional -ary systems significantly simplified certain of the
-theories' central proofs, because of the -adic systems' bijectiveness.
+\index{G\"{o}del, Kurt} \index{G\"{o}del numbers} 
+Formally verifying the bijectiveness of $b$-adic number systems is a valuable exercise in manipulating numerals.  The first appearance of bijective number systems was in \cite{Foster47}, where the base-$10$ system is introduced and shown to be bijective.  A proof of
+bijectiveness for arbitrary $b$-adic systems appears in \cite{Smullyan61}, where the term {\em $b$-adic} is introduced.  The motivating application in \cite{Smullyan61} was to the allied fields
+of Mathematical Logic and Computation Theory: Encoded versions of a program's computations play a central role in these theories.  While crafting the required encodings using strings of symbols accomplished many of the goals of the theories, the overarching reach of the theories was fully appreciated only when mathematical logician Kurt G\"{o}del, whom we have met earlier, showed, in 1931, that the encodings could be achieved using integers and simple arithmetic operations---see the discussions of {\it G\"{o}del numbers} in the primary sources
+\cite{Goedel31,Turing36} or in texts such as \cite{Rosenberg12}.  Because of -adic systems' bijectiveness, they significantly simplify certain of the central proofs of logic-based theories such as Computation Theory.
 
-We turn now to a result that asserts the bijectiveness of -adic number
-systems.  We provide a proof only for the case $b = 2$: this case
-provides all of the ideas necessary for the general result.
+\medskip
+
+We turn now to the issue of the bijectiveness of -adic number systems.  We provide a proof only for the dyadic case, $b = 2$: this case provides all of the ideas necessary for the general result.
 
 \begin{prop}
 \label{thm:adic-bijective}
@@ -460,15 +403,11 @@ Distinct $b$-adic numerals name distinct positive numbers.
 \end{prop}
 
 \begin{proof}[For dyadic integers]
-We provide a proof only for dyadic, i.e., base $b=2$, integers.  This
-will expose the basic ideas of a complete proof, with minimal
-notation.  We begin by exposing the largest and smallest integers that
-admit a $d$-digit dyadic numeral.
+Our proof that distinct dyadic numerals denote distinct integers begins by exposing the largest and smallest integers that admit $d$-digit dyadic numerals.
 
 \begin{lemma}
 \label{lem:big-small-dyadic}
-The {\em smallest} integer representable by a $d$-digit dyadic
-numeral is 
+The {\em smallest} integer representable by a $d$-digit dyadic numeral is 
 \[ \mbox{\sc min-integer}_d \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1
 \]
 The {\em largest} integer representable by a $d$-digit dyadic
