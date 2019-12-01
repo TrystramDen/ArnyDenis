@@ -153,13 +153,372 @@ Thus, the length of the initial square is equal to $60-30=30$.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Summations}
 
+
+\section{Doing maths -- Proof techniques}
+
+\subsection{A graphical proof}
+
+\noindent \textit{The aim.}
+
+Use a pictural argument to prove a nonobvious identity of arithmetic sums
+that one would be unlikely to come upon by purely textual thinking.
+\medskip
+
+\noindent \textit{The problem.}
+%\label{thm:an-arithmetic-identity}
+Prove the following property:
+
+or any positive integer $n$,
+\[ \Delta_{2n-1} \ = \ n + 4 \Delta_{n-1}. \]
+\medskip
+
+\noindent \textit{The solution.}
+
+Consider the arithmetic series in (\ref{eq:arith-seq}) for the case
+$a=1$ and $b=4$.  
+By Proposition~\ref{thm:sum-of-arithmetic-series},
+this series, call it $S^{(1,4)}(n)$, has the sum
+\begin{equation}
+\label{eq:triangles}
+S^{(1,4)}(n) \ = \ n + 4 \Delta_{n-1}.
+\end{equation}
+
+Let us represent the sum $\Delta_{n-1}$ in the natural way as a
+triangle of tokens.  This triangle has a base of $n-1$ tokens, upon
+which sits a row of $n-2$ tokens, upon which sits a row of $n-3$
+tokens, \ldots, all the way to the apex, which has a single token.
+
+Now, let us view equation (\ref{eq:triangles}) as giving us access to four
+copies of the preceding triangle of tokens.  Let us arrange these
+triangles in the manner depicted in Fig.~\ref{fig:Delta(n)4}.
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresMaths/Delta4}
+ \caption{Arranging the four triangles plus a row to obtain a new (bigger) triangle.}
+       \label{fig:Delta(n)4}
+\end{center}
+\end{figure}
+Now, ``complete the picture'' by adding an ``extra'' row of $n$
+tokens at row $n$ of the figure (these are depicted in dark gray in
+the figure).  The four small triangles, augmented by the ``extra'' row
+of $n$ tokens has clearly become a representation  of $\Delta_{2n-1}$
+by tokens.
+
+We now have a purely pictorial proof of the proposition. 
+\medskip
+
+\noindent \textit{Lesson learned.}
+
+Training.
+
+
+\subsection{A variant for computing the sum of first integers $\Delta_n$}
+
+\noindent \textit{The aim.}
+
+Application of geometric sum.
+\medskip
+
+\noindent \textit{The problem.}
+
+%Compute the sum of the first integers $\Delta_n$. 
+Show graphically that $\Delta_n$ (sum of the first $n$ integers) is congruent to $1$ modulo $8$.
+\medskip
+
+\noindent \textit{Hint.}
+Write the previous relation as $8 \Delta_n = K^2 -1$
+for an integer $K$ to determine and represent the square $K$ by $K$. 
+
+\noindent \textit{The solution.}
+
+The expression $8 \Delta_n = (2n-1)^2 -1$ can be represented as in~\ref{fig:Sum8deltas}.
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresMaths/Delta8}
+\caption{8 copies of $\Delta_n$ are filling a big square but one token.}
+       \label{fig:Sum8deltas}
+\end{center}
+\end{figure}
+
+
+
+\subsection{On meeting new people}
+
+\noindent \textit{The aim.}
+Illustration of pigeon's hole principle.
+\medskip
+
+\noindent \textit{The problem.}
+You are attending a cocktail party that is populated by $n$ couples.
+In order to create a warm atmosphere, the host requests that each
+attendee shake the hand of every attendee that he or she does not
+know. \\
+Prove that some two attendees shake the same number of hands.
+\medskip
+
+\noindent \textit{The solution.}
+%
+This observation follows from the \textit{pigeonhole principle}:
+If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
+at least $2$ pigeons.
+{\Denis is it useful to recall the principle here? I don't think so...}
+
+This principle guarantees that some two attendees shake the same
+number of hands.  To wit, the number of people that each attendee {\em
+  does not know} belongs to the set $\{ 0, 1, \ldots, 2n-2 \}$,
+because each person knows him/herself and his/her partner.  Because
+there are $2n$ handshakers (the pigeons) and $2n-1$ numbers of hands
+to shake (the boxes), some two shakers must shake the same numbers of
+hands. 
+\medskip
+
+\noindent \textit{Lesson learned.}
+Training for mastering different types of proofs, here the focus is put on Pigeonhole.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Graphical proofs}
+
+\subsection{A graphical proof for a specific geometric series}
+
+\noindent \textit{The aim.}
+To develop more intuition in solving using geometrical arguments.
+
+Particular case of geometric series.
+\medskip
+
+\noindent \textit{The problem.}
+Compute the sum of $(\frac{1}{4})^k$ using a graphical argument ($k \geq 0$).
+\medskip
+
+\noindent \textit{The solution.}
+A rapid analysis of the small values of $k$ leads to the guess $(\frac{1}{4})^k = \frac{1}{3}$.
+ 
+The solution is depicted in Fig.~\ref{Fig:Sumgeo1sur4}. 
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/SumGeometric1sur4}
+        \caption{Graphical construction. Assuming the total area is 1, the area of the grey internal triangle (left) is $\frac{1}{4}$.
+        As the grey area is one third at each layer (right), the whole area is $\frac{1}{3}$.
+        By the double counting Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
+        \label{Fig:Sumgeo1sur4}
+\end{center}
+\end{figure}
+
+Finding such a triangular pattern may not be considered as an easy task.
+However, as stated in the problem, the main point is to divide an elementary surface
+into four equal pieces. 
+Squares (or even worse disks) are not simple to use in this context while equilateral triangles 
+are a \textit{natural} structure. 
+\medskip
+
+\noindent \textit{Lesson learned.}
+Training and gain intuition for mastering geometrical proofs. 
+
+
+\section{Numbers 1}
+
+\subsection{Another proof for irrationality of $\sqrt{2}$}
+
+\noindent \textit{The aim.}
+
+reenforcing the ability of using geometrical proofs.
+\medskip
+
+\noindent \textit{The problem.}
+Prove the irrationality of $\sqrt{2}$ using a geometrical argument.
+\medskip
+
+\noindent \textit{Hint.}
+The proof is by contradiction. 
+
+Consider $\sqrt{2}$ is rational, which means there exists a pair of integers $(a,b)$
+such that $\sqrt{2} = \frac{a}{b}$ (where $a$ is larger than $b$).
+Among all possible pairs, take the unique irreductible ratio.
+
+Represent this expression geometrically by the corresponding isocele right triangle
+which is the one of minimal surface. 
+
+The contradiction comes by constructing another isocele triangle with a smaller surface.
+%Squaring this expression leads to $2.b^2 = a^2$.
+\medskip
+
+\noindent \textit{The solution.}
+
+The solution is depicted in Fig.~\ref{Fig:sqrtbisInit} and~\ref{Fig:sqrtbisFin} . 
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/sqrtbisInit}
+        \caption{First step: folding the triangle along the side.}
+        \label{Fig:sqrtbisInit}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/sqrtbisFin}
+        \caption{Second step. The sides of the small isocele triangle are integers.}
+        \label{Fig:sqrtbisFin}
+\end{center}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Arithmetic}
+
+\subsection{Complex
+  multiplication via $3$ real multiplications}
+\index{complex number!multiplication via 3 real multiplications}
+
+\noindent {\it The aim.}
+To be completed...
+\medskip
+
+\noindent {\it The problem.}
+%\label{thm:complex-mult-3real}
+Show how to compute the product of two complex numbers using only {\em three}
+real multiplications rather than four.
+\medskip
+
+\noindent {\it The solution.}
+Although implementing (\ref{eq:complex-mult}) ``directly'' correctly
+produces the product $\kappa = (a+bi) \cdot (c+di)$, there is another
+implementation that is {\em more efficient}.  Specifically, the
+following recipe computes $\kappa$ using only {\em three} real
+multiplications instead of the four real multiplications of the
+``direct'' implementation.  We begin to search for this recipe by
+noting that our immediate goal is to compute both Re$(\kappa) = ac-bd$
+and Im$(\kappa) = ad+bc$.  We can accomplish this by computing the
+{\em three} real products
+\begin{equation}
+\label{eq:complex-mult-3a}
+(a+b) \cdot (c+d); \ \ \ \ \
+ac;  \ \ \ \ \ bd
+\end{equation}
+and then noting that
+\begin{equation}
+\label{eq:complex-mult-3b}
+\begin{array}{lcl}
+\mbox{Im}(\kappa) & = & (a+b) \cdot (c+d) - ac -bd, \\
+\mbox{Re}(\kappa) & = & ac -bd
+\end{array}
+\end{equation}
+We thereby achieve the result of the complex multiplication described
+in (\ref{eq:complex-mult}) while using only {\em three} real
+multiplications.
+\medskip
+
+\noindent \textit{Lesson learned.}
+
+Of course, a full reckoning of the costs of the two implementations we
+have discussed exposes the fact that the implementation that invokes
+(\ref{eq:complex-mult-3a}) and (\ref{eq:complex-mult-3b}) uses {\em
+  three} real additions rather than the {\em two} real additions of
+the ``direct'' implementation.  But this entire exercise was
+predicated on the observation that each real addition is much less
+costly than a real multiplication, so trading one multiplication for
+one addition is an unqualified ``win''. 
+
+{\Denis do the link with Karatzuba?}
+
+
+\subsection{A ``trick'' for squaring certain integers}
+
+\noindent \textit{The aim:}
+
+Solve a fun problem, learn how to write mathematically a problem.
+
+Sometimes only basic knowledge is needed to craft amusing
+``tricks''---we know that they are not really tricks at all!---that
+are really rigorous applications of principles that we have learned.
+Here is an ``old chestnut'' example that may inspire you to design
+your own. 
+
+If someone presents you with a number that has a numeral that ends in
+$5$, then there is a simple way to square the number mentally.  For
+instance, if someone says
+
+\hspace{.25in}``$n = 25$''
+
+\noindent
+then you can instantly respond
+
+\hspace{.25in}``$n^2 = 625$''
+
+\noindent
+If the challenge is
+
+\hspace{.25in}``$n = 75$''
+
+\noindent
+then your response is
+
+\hspace{.25in}``$n^2 = 5625$''
+
+\noindent
+Let's make this ``game'' mathematical.
+\medskip
+
+
+\noindent \textit{The problem:}
+
+Let $n$ be any number that has a $2$-digit decimal numeral of the form
+
+\hspace{.25in}$5.\delta$ \ \ \ \ $(\delta \in \{ 0,1,2,3,4,5,6,7,8,9\})$.
+
+\noindent
+Then the square of $n$ is the integer
+
+\hspace{.25in}$25 \ + \ \delta \cdot (\delta +1)$
+\medskip
+
+\noindent \textit{The solution:}
+
+We can rewrite the premise of the proposition in the form
+\[ n \ = \ 10 \cdot \delta + 5 \]
+It is now easy to invoke Proposition~\ref{prop:(a+b)(c+d)} and the
+distributive law to compute that
+
+\[ n^2 \ = \ 100 \cdot \delta \cdot (\delta+1) + 25 \]
+To wit: 
+\[
+\begin{array}{lclll}
+n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
+    & = & 100 \cdot \delta^2 \ + \ 100 \cdot \delta \ + \ 25
+              & & \mbox{the proposition} \\
+    & = & 100 \cdot (\delta^2 \ + \ \delta) \ + \ 25
+              & & \mbox{factoring: distributive law} \\
+    & = & 100 \cdot \delta \cdot (\delta + 1) \ + \ 25
+              & & \mbox{factoring: distributive law} \\
+\end{array}
+\]
+A parlor trick has become a mathematical demonstration!
+\qed
+\medskip
+
+\noindent \textit{Lesson learned}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Summations}
 
 
 \subsection{Compute $\Delta_n$ by means of sum of squares}
 
+\noindent \textit{The aim.}
+
+Sometimes, it is necessay to state a more general problem for solving a simpler one (at least which appears more simple).
+\medskip
+
+\noindent \textit{The problem.}
 $\Delta_n = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+\medskip
+
+\noindent \textit{The solution.}
 
 The idea here is to write the sum by extracting the first and the last element
 of the sum of squares.
@@ -182,10 +541,19 @@ $\sum_{i=1}^{n} i^2- 2 ( \sum_{i=1}^{n} i) + (n+1) = (\sum_{i=1}^{n} i^2) + (n+1
 $-2 \Delta_n + (n+1) =  (n+1)^2$
 
 $\Delta_n =  (n+1)^2-(n+1) = n(n+1)$
+\medskip
 
+\noindent \textit{Lesson learned.}
+Have a training on basic arithmetic and gaining experience on solving problems 
+by taking a more general way...
 
 
 \subsection{Training on undetermined coefficient method}
+
+\noindent \textit{The aim.}
+
+Master a generic technique.
+\medskip
 
 \noindent \textit{The problem.}
 Say that you are told that the sum of the first $n$ perfect squares is
@@ -409,275 +777,7 @@ $\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Proof techniques}
-
-
-\subsection{On meeting new people}
-
-\noindent \textit{The aim.}
-Illustration of pigeon's hole principle.
-\medskip
-
-\noindent \textit{The problem.}
-You are attending a cocktail party that is populated by $n$ couples.
-In order to create a warm atmosphere, the host requests that each
-attendee shake the hand of every attendee that he or she does not
-know. \\
-Prove that some two attendees shake the same number of hands.
-\medskip
-
-\noindent \textit{The solution.}
-%
-This observation follows from the \textit{pigeonhole principle}:
-If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
-at least $2$ pigeons.
-{\Denis is it useful to recall the principle here? I don't think so...}
-
-This principle guarantees that some two attendees shake the same
-number of hands.  To wit, the number of people that each attendee {\em
-  does not know} belongs to the set $\{ 0, 1, \ldots, 2n-2 \}$,
-because each person knows him/herself and his/her partner.  Because
-there are $2n$ handshakers (the pigeons) and $2n-1$ numbers of hands
-to shake (the boxes), some two shakers must shake the same numbers of
-hands. 
-\medskip
-
-\noindent \textit{Lesson learned.}
-Training for mastering different types of proofs, here the focus is put on Pigeonhole.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Graphical proofs}
-
-\subsection{A graphical proof for a specific geometric series}
-
-\noindent \textit{The aim.}
-To develop more intuition in solving using geometrical arguments.
-
-Particular case of geometric series.
-\medskip
-
-\noindent \textit{The problem.}
-Compute the sum of $(\frac{1}{4})^k$ using a graphical argument ($k \geq 0$).
-\medskip
-
-\noindent \textit{The solution.}
-A rapid analysis of the small values of $k$ leads to the guess $(\frac{1}{4})^k = \frac{1}{3}$.
- 
-The solution is depicted in Fig.~\ref{Fig:SUmgeo1sur4}. 
-\begin{figure}
-\begin{center}
-        \includegraphics[scale=0.3]{FiguresArithmetic/SumGeometric1sur4}
-        \caption{Graphical construction. Assuming the total area is 1, the area of the grey internal triangle (left) is $\frac{1}{4}$.
-        As the grey area is one third at each layer (right), the whole area is $\frac{1}{3}$.
-        By the double counting Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
-        \label{Fig:SUmgeo1sur4}
-\end{center}
-\end{figure}
-
-Finding such a triangular pattern may not be considered as an easy task.
-However, as stated in the problem, the main point is to divide an elementary surface
-into four equal pieces. 
-Squares (or even worse disks) are not simple to use in this context while equilateral triangles 
-are a \textit{natural} structure. 
-\medskip
-
-\noindent \textit{Lesson learned.}
-Training and gain intuition for mastering geometrical proofs. 
-
-
-\subsection{A graphical proof}
-
-\noindent \textit{The aim.}
-
-Use a pictural argument to prove a nonobvious identity of arithmetic sums
-that one would be unlikely to come upon by purely textual thinking.
-\medskip
-
-\noindent \textit{The problem.}
-\begin{prop} 
-\label{thm:an-arithmetic-identity}
-For any positive integer $n$,
-\[ \Delta_{2n-1} \ = \ n + 4 \Delta_{n-1}. \]
-\end{prop} 
-\medskip
-
-\noindent \textit{The solution.}
-\begin{proof} 
-Consider the arithmetic series in (\ref{eq:arith-seq}) for the case
-$a=1$ and $b=4$.  
-By Proposition~\ref{thm:sum-of-arithmetic-series},
-this series, call it $S^{(1,4)}(n)$, has the sum
-\begin{equation}
-\label{eq:triangles}
-S^{(1,4)}(n) \ = \ n + 4 \Delta_{n-1}.
-\end{equation}
-
-Let us represent the sum $\Delta_{n-1}$ in the natural way as a
-triangle of tokens.  This triangle has a base of $n-1$ tokens, upon
-which sits a row of $n-2$ tokens, upon which sits a row of $n-3$
-tokens, \ldots, all the way to the apex, which has a single token.
-
-Now, let us view equation (\ref{eq:triangles}) as giving us access to four
-copies of the preceding triangle of tokens.  Let us arrange these
-triangles in the manner depicted in Fig.~\ref{fig:Delta(n)4}.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.5]{FiguresMaths/Delta4}
- \caption{Arranging the four triangles plus a row to obtain a new (bigger) triangle.}
-       \label{fig:Delta(n)4}
-\end{center}
-\end{figure}
-Now, ``complete the picture'' by adding an ``extra'' row of $n$
-tokens at row $n$ of the figure (these are depicted in dark gray in
-the figure).  The four small triangles, augmented by the ``extra'' row
-of $n$ tokens has clearly become a representation  of $\Delta_{2n-1}$
-by tokens.
-
-We now have a purely pictorial proof of the proposition. 
-\end{proof} 
-\medskip
-
-\noindent \textit{Lesson learned.}
-
-Training.
-
-
-\subsection{A variant for computing $\Delta_n$}
-
-\noindent \textit{The aim.}
-
-Application of geometric sum.
-\medskip
-
-\noindent \textit{The problem.}
-
-%Compute the sum of the first integers $\Delta_n$. 
-Show graphically that $\Delta_n$ (sum of the first $n$ integers) is congruent to $1$ modulo $8$.
-\medskip
-
-\noindent \textit{Hint.}
-Write the previous relation as $8 \Delta_n = K^2 -1$
-for an integer $K$ to determine and represent the square $K$ by $K$. 
-
-\noindent \textit{The solution.}
-
-The expression $8 \Delta_n = (2n-1)^2 -1$ can be represented as in~\ref{fig:Sum8deltas}.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/Delta8}
-\caption{8 copies of $\Delta_n$ are filling a big square but one token.}
-       \label{fig:Sum8deltas}
-\end{center}
-\end{figure}
-
-
-
-\subsection{Another proof for irrationality of $\sqrt{2}$}
-
-\noindent \textit{The aim.}
-
-reenforcing the ability of using geometrical proofs.
-\medskip
-
-\noindent \textit{The problem.}
-Prove the irrationality of $\sqrt{2}$ using a geometrical argument.
-\medskip
-
-\noindent \textit{Hint.}
-The proof is by contradiction. 
-
-Consider $\sqrt{2}$ is rational, which means there exists a pair of integers $(a,b)$
-such that $\sqrt{2} = \frac{a}{b}$ (where $a$ is larger than $b$).
-Among all possible pairs, take the unique irreductible ratio.
-
-Represent this expression geometrically by the corresponding isocele right triangle
-which is the one of minimal surface. 
-
-The contradiction comes by constructing another isocele triangle with a smaller surface.
-%Squaring this expression leads to $2.b^2 = a^2$.
-\medskip
-
-\noindent \textit{The solution.}
-
-The solution is depicted in Fig.~\ref{Fig:sqrtbisInit} and~\ref{Fig:sqrtbisFin} . 
-\begin{figure}
-\begin{center}
-        \includegraphics[scale=0.3]{FiguresArithmetic/sqrtbisInit}
-        \caption{First step: folding the triangle along the side.}
-        \label{Fig:sqrtbisInit}
-\end{center}
-\end{figure}
-\begin{figure}
-\begin{center}
-        \includegraphics[scale=0.3]{FiguresArithmetic/sqrtbisFin}
-        \caption{Second step. The sides of the small isocele triangle are integers.}
-        \label{Fig:sqrtbisFin}
-\end{center}
-\end{figure}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Arithmetic}
-
-\subsection{Complex
-  multiplication via $3$ real multiplications}
-\index{complex number!multiplication via 3 real multiplications}
-
-\noindent {\it The aim.}
-To be completed...
-\medskip
-
-\noindent {\it The problem.}
-%\label{thm:complex-mult-3real}
-Show how to compute the product of two complex numbers using only {\em three}
-real multiplications rather than four.
-\medskip
-
-\noindent {\it The solution.}
-Although implementing (\ref{eq:complex-mult}) ``directly'' correctly
-produces the product $\kappa = (a+bi) \cdot (c+di)$, there is another
-implementation that is {\em more efficient}.  Specifically, the
-following recipe computes $\kappa$ using only {\em three} real
-multiplications instead of the four real multiplications of the
-``direct'' implementation.  We begin to search for this recipe by
-noting that our immediate goal is to compute both Re$(\kappa) = ac-bd$
-and Im$(\kappa) = ad+bc$.  We can accomplish this by computing the
-{\em three} real products
-\begin{equation}
-\label{eq:complex-mult-3a}
-(a+b) \cdot (c+d); \ \ \ \ \
-ac;  \ \ \ \ \ bd
-\end{equation}
-and then noting that
-\begin{equation}
-\label{eq:complex-mult-3b}
-\begin{array}{lcl}
-\mbox{Im}(\kappa) & = & (a+b) \cdot (c+d) - ac -bd, \\
-\mbox{Re}(\kappa) & = & ac -bd
-\end{array}
-\end{equation}
-We thereby achieve the result of the complex multiplication described
-in (\ref{eq:complex-mult}) while using only {\em three} real
-multiplications.
-\medskip
-
-\noindent {\it Lesson learned.}
-
-Of course, a full reckoning of the costs of the two implementations we
-have discussed exposes the fact that the implementation that invokes
-(\ref{eq:complex-mult-3a}) and (\ref{eq:complex-mult-3b}) uses {\em
-  three} real additions rather than the {\em two} real additions of
-the ``direct'' implementation.  But this entire exercise was
-predicated on the observation that each real addition is much less
-costly than a real multiplication, so trading one multiplication for
-one addition is an unqualified ``win''. 
-
-{\Denis do the link with Karatzuba?}
-
+\section{Numbers 2 divisibility}
 
 \subsection{A fun result dealing with divisibility}
 
@@ -718,80 +818,6 @@ Thus, $2^{k1} \times m$ and $2^{k2} \times m$
 
 $p$ is the smallest one, which divides $q$ (the largest one).
 \end{enumerate}
-
-
-\subsection{A ``trick'' for squaring certain integers}
-
-Sometimes only basic knowledge is needed to craft amusing
-``tricks''---we know that they are not really tricks at all!---that
-are really rigorous applications of principles that we have learned.
-Here is an ``old chestnut'' example that may inspire you to design
-your own. 
-
-If someone presents you with a number that has a numeral that ends in
-$5$, then there is a simple way to square the number mentally.  For
-instance, if someone says
-
-\hspace{.25in}``$n = 25$''
-
-\noindent
-then you can instantly respond
-
-\hspace{.25in}``$n^2 = 625$''
-
-\noindent
-If the challenge is
-
-\hspace{.25in}``$n = 75$''
-
-\noindent
-then your response is
-
-\hspace{.25in}``$n^2 = 5625$''
-
-\noindent
-Let's make this ``game'' mathematical.
-\medskip
-
-
-\noindent \textit{The problem:}
-
-Let $n$ be any number that has a $2$-digit decimal numeral of the form
-
-\hspace{.25in}$\delta \ 5$ \ \ \ \ $(\delta \in \{ 0,1,2,3,4,5,6,7,8,9\})$.
-
-\noindent
-Then the square of $n$ is the integer
-
-\hspace{.25in}$25 \ + \ \delta \cdot (\delta +1)$. 
-\medskip
-
-\noindent \textit{The solution:}
-
-We can rewrite the premise of the proposition in the form
-\[ n \ = \ 10 \cdot \delta + 5 \]
-It is now easy to invoke Proposition~\ref{prop:(a+b)(c+d)} and the
-distributive law to compute that
-
-\[ n^2 \ = \ 100 \cdot \delta \cdot (\delta+1) + 25. \]
-To wit: 
-\[
-\begin{array}{lclll}
-n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
-    & = & 100 \cdot \delta^2 \ + \ 100 \cdot \delta \ + \ 25
-              & & \mbox{the proposition} \\
-    & = & 100 \cdot (\delta^2 \ + \ \delta) \ + \ 25
-              & & \mbox{factoring: distributive law} \\
-    & = & 100 \cdot \delta \cdot (\delta + 1) \ + \ 25
-              & & \mbox{factoring: distributive law} \\
-\end{array}
-\]
-A parlor trick has become a mathematical demonstration!
-\qed
-\medskip
-
-\noindent \textit{Lesson learned}
-
 
 
 \subsection{When is integer $n$ divisible by $9$?}
