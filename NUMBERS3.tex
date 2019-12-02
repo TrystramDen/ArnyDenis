@@ -408,65 +408,51 @@ Our proof that distinct dyadic numerals denote distinct integers begins by expos
 \begin{lemma}
 \label{lem:big-small-dyadic}
 The {\em smallest} integer representable by a $d$-digit dyadic numeral is 
-\[ \mbox{\sc min-integer}_d \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1
-\]
-The {\em largest} integer representable by a $d$-digit dyadic
-numeral is
-\[ \mbox{\sc max-integer}_d \ = \
-2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2
-\]
+\[ \mbox{\sc min-integer}_d \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1 \]
+The {\em largest} integer representable by a $d$-digit dyadic numeral is
+\[ \mbox{\sc max-integer}_d \ = \ 2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2 \]
 \end{lemma}
 
 \begin{proof}[Lemma]
-By definition,
+We derive the values of both extremal integers by invoking the summation techniques in Section~\ref{sec:geometric-sums}.  By definition,
 \begin{itemize}
 \item
-The smallest $d$-digit dyadic numeral is $11 \cdots 1$ ($d$ digits).
-Its value is:
+The {\em smallest} $d$-digit dyadic numeral is $11 \cdots 1$ ($d$ digits).  Its value is:
 \[ \mbox{\sc dyadic-val}_2(11 \cdots 1)
  \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1 \]
 \item
-The {\em largest} $d$-digit dyadic numeral is 
-$22 \cdots 2$ ($d$ digits).  Its value is:
+The {\em largest} $d$-digit dyadic numeral is  $22 \cdots 2$ ($d$ digits).  Its value is:
 \[ \mbox{\sc dyadic-val}_2(22 \cdots 2)
 \ = \ 2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2 \]
 \end{itemize}
-We derive the values of both extremal integers by invoking the
-summation techniques in Section~\ref{sec:geometric-sums}.
 \qed-Lemma
 \end{proof}
 
 \bigskip
 
-We are now ready to prove the proposition.  To this end, let us be
-given distinct dyadic numerals,
+We are now ready to prove the proposition.  To this end, let us be given distinct dyadic numerals,
 \[
 x \ = \ \gamma_r \gamma_{r-1} \cdots \gamma_1
  \ \ \ \ \ \mbox{ and } \ \ \ \ \
 y \ = \ \delta_s \delta_{s-1} \cdots \delta_1
 \]
+(By definition, each dyadic digit ($\gamma_i$ or $\delta_j$) belongs to the set $\{1, 2, \ldots, b\}$.)
 
-{\bf (a)} Say first that $r \neq s$.  With no loss of generality, say
-that $r = s +c$ for some $c \geq 1$.  In this case, we have, by
-Lemma~\ref{lem:big-small-dyadic}:
+\smallskip
+
+{\bf (a)} Assume first that $r \neq s$.  With no loss of generality, say that $r = s +c$ for some $c \geq 1$.  In this case, we have, by Lemma~\ref{lem:big-small-dyadic}:
 \[ \mbox{\sc dyadic-val}(x) \ \geq \ 2^{r+1} - 1 \ = \ 2^{s+c+1} -1 \]
 while
 \[ \mbox{\sc dyadic-val}(y) \ \leq \ 2^{s+2} - 2 \]
 It follows, therefore, that
 \[ \mbox{\sc dyadic-val}(x) \ \geq \ \mbox{\sc dyadic-val}(y) \ + \ 1 \]
-In particular, numerals $x$ and $y$ behave in consistency with the
-proposition.
+In particular, numerals $x$ and $y$ thus behave in consistency with the proposition.
 
-{\bf (b)} The alternative to assumption (a) is that $r = s$.  Because
-$x$ and $y$ are distinct numerals, there must be a largest index $m
-\leq r$ such that $\gamma_m \neq \delta_m$; say, with no loss of
-generality, that $\gamma_m = \delta_m + c$ for some base-$b$ dyadic
-digit $c$.  We can, therefore, rewrite numeral $y$ as
-\[ y \ = \ \gamma_r \cdots \gamma_{m+1} \delta_m \delta_{m-1} \cdots \delta_1
-\]
-Invoking Lemma~\ref{lem:big-small-dyadic}, we can infer the following
-bounds on the difference between $\mbox{\sc dyadic-val}(x)$ and
-$\mbox{\sc dyadic-val}(y)$.
+\smallskip
+
+{\bf (b)} Assume next that $r = s$.  Because $x$ and $y$ are distinct numerals, there must be a largest index $m \leq r$ such that $\gamma_m \neq \delta_m$; say, with no loss of generality, that $\gamma_m = \delta_m + c$ for some base-$b$ dyadic digit $c$.  We can then rewrite numeral $y$ as
+\[ y \ = \ \gamma_r \cdots \gamma_{m+1} \delta_m \delta_{m-1} \cdots \delta_1 \]
+Invoking Lemma~\ref{lem:big-small-dyadic}, we can infer the following bounds on the difference between $\mbox{\sc dyadic-val}(x)$ and $\mbox{\sc dyadic-val}(y)$.
 
 \bigskip
 
@@ -484,94 +470,62 @@ $\mbox{\sc dyadic-val}(x) \ - \ \mbox{\sc dyadic-val}(y)$
 2^m \cdot (c-1) +1 \\
   & \geq & 1
 \end{eqnarray*}
-Once again, numerals $x$ and $y$ behave in consistency with the
-proposition.  The result follows.
-\qed
+Once again, numerals $x$ and $y$ behave in consistency with the proposition.  \qed
 \end{proof}
 
-\ignore{********
-\section{$\oplus$ A System Based on the Fibonacci Numbers}
-
-{\Denis I moved the section in the appendix, let write a breaf introduction here and refer to the appendix
-}
-
-In a variety of application areas, the special properties of certain
-families of numbers can be exploited if one uses the numbers in the
-family to devise representations of all integers.  We illustrate this
-fact while using the Fibonacci numbers---see
-Section~\ref{sec:Fibonacci}---as our basis family.
-***********}
-
+We have thus verified the property that makes the $b$-adic system valuable in certain computational environments.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Recognizing Integers and  Rationals from Their Numerals}
 \label{sec:special-numerals-N-Q}
 
-We have provided an adequate, albeit inelegant, characterization of
-the real numbers: a number $r$ is real if, and only if, it can be
-represented by an infinite-length numeral in a positional number
-system.  Because every rational number---hence, also, every
-integer---is also a real number, every rational number and every
-integer can also be written as a $b$-ary numeral, in the form
-(\ref{eq:real-numeral}).  For rational numbers and integers, we can
-make much stronger statements about the forms of their positional
-numerals.
-
+We have provided an adequate, albeit inelegant, characterization of the real numbers: a number $r$ is real if, and only if, it can be represented by an infinite-length numeral in a positional number system.  Because every rational number---hence, also, every integer---is also a real number, every rational number and every integer can also be written as a $b$-ary numeral, in the form (\ref{eq:real-numeral}).  For rational numbers and integers, we can make much stronger statements about the possible forms of their positional numerals.
 
 \subsection{Positional Numerals for Integers}
 \label{sec:special-numerals-N}
 
-The following result slightly alters the usual way that we write
-numerals for integers, in order to render explicit the familial
-relationship between reals and integers.
+\index{numerals!for integers}
+
+The following result slightly alters the usual way that we write numerals for integers, in order to render explicit the familial relationship between reals and integers.
+
+\index{number!integer!as a real with a finite numeral}
 
 \begin{prop}
 \label{thm:integer-real}
-A real number is an integer if, and only if, it can be represented by
-a {\em finite-length} numeral all of whose nonzero digits are to the
-left of the radix point.
-\index{number!integer!as a real with a finite numeral}
+A real number is an integer if, and only if, it can be represented by a {\em finite-length} numeral all of whose nonzero digits are to the left of the radix point.
 \end{prop}
 
 \begin{proof}
-The result follows from definition (\ref{eq:real-numeral-number}).  In
-the indicated form, if any $\beta_i$ is nonzero, then the numerical
-value of the numeral is non-integral.  To wit, digit $\beta_i$
-witnesses that the numeral has a nonzero fractional part, hence is not
-an integer.  \qed
+The result follows from definition (\ref{eq:real-numeral-number}).  In the indicated form, if any $\beta_i$ is nonzero, then the numerical value of the numeral is non-integral.  To wit, digit $\beta_i$ witnesses that the numeral has a nonzero fractional part, hence is not an integer.  \qed
 \end{proof}
 
-We can go beyond the simple statement of
-Proposition~\ref{thm:integer-real} and develop an efficient algorithm
-that computes the base-$b$ numeral for an integer $n$ via a series of
-integer divisions.
+\medskip
+
+We can go beyond the simple statement of Proposition~\ref{thm:integer-real} and develop an efficient algorithm that computes the base-$b$ numeral for an integer $n$ via a sequence of integer divisions.
 
 \bigskip
 
-\noindent {\it To compute a (finite) base-$b$ numeral for integer $n$.}
 \index{number!integer!computing an integer's finite numeral}
-%
-If we ignore the radix point and all of the $0$s to the right of it in
-the base-$b$ numerals given by (\ref{eq:real-numeral}), then we see
-that the base-$b$ numeral $a_d a_{d-1} \cdots a_1 a_0$ for an integer
-$n$ is a polynomial
+\noindent {\it To compute a (finite) base-$b$ numeral for integer $n$.}
+If we ignore the radix point and all of the $0$s to the right of it in the base-$b$ numerals given by (\ref{eq:real-numeral}), then we see that the base-$b$ numeral $a_d a_{d-1} \cdots a_1 a_0$ for an integer $n$ is a polynomial
 
-$P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \cdots + \ a_{d-1}
-x^{d-1} \ + \ a_d x^d$
+\smallskip
+
+$P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \cdots + \ a_{d-1} x^{d-1} \ + \ a_d x^d$
+
+\smallskip
 
 \noindent
 evaluated at the point $x=b$:
 
-$\mbox{\sc val}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ +
-\cdots + \ a_1 b \ + \ a_0$.
+\smallskip
+
+$\mbox{\sc val}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ + \cdots + \ a_1 b \ + \ a_0$.
 
 \subsubsection{Horner's Rule and fast numeral evaluation}
 
-It appears at first glance that $\Theta(d^2)$ multiplications are
-needed to evaluate the degree-$d$ univariate polynomial $\mbox{\sc
-  val}_{b}(x)$---which would not give us a very efficient procedure
-for producing a numeral for $n$.  However, we can develop an
+One can clearly evaluate the degree-$d$ univariate polynomial $\mbox{\sc val}_{b}(x)$ using $\Theta(d^2)$ multiplications.  It appears at first glance that $\Theta(d^2)$ multiplications are also necessary for this evaluation---which would suggest that one cannot produce a numeral for an integer $n$ very efficiently.  However, we can develop an
 efficient, $O(d)$-multiplication, procedure by adapting a method of
 rewriting univariate polynomials, which is known as {\it Horner's
   rule} (the name we shall use) or {\it Horner's scheme}
