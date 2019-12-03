@@ -1,4 +1,4 @@
-%version of 11-29-19
+%version of 12-03-19
 
 \chapter{Numbers III:
 Operational Representations and Their Consequences}
@@ -1082,24 +1082,25 @@ Where could we have gone wrong?  Every step of our argument, save one, is backed
 \label{sec:R-uncountable}
 \label{sec:Reals-uncountable}
 
-This section is a companion to Section~\ref{sec:FNS-uncountable}, in
-which we establish the uncountability of the set $\R$ of real numbers.  We thereby
-have an argument that the infinitude of the set of real numbers is
-{\em of a higher order} than the infinitude of the set of integers.
-We accomplish by providing a proof of the following result.
+\index{$\R$ is uncountable}
+
+This section is a companion to Section~\ref{sec:FNS-uncountable}, in which we establish the uncountability of the set $\R$ of real numbers.  We thereby have an argument that the infinitude of the set of real numbers is {\em of a higher order} than the infinitude of the set of integers.  We accomplish by providing a proof of the following result.
 
 \begin{prop}
 \label{thm:R-uncountable}
-The set $\R$ of real numbers is not countable.  In particular, there
-is no injection $g: \R \rightarrow \N$.
+The set $\R$ of real numbers is not countable.  In particular, there is no injection $g: \R \rightarrow \N$.
 \end{prop}
 
-\begin{proof}
-We simplify our exposition by making extensive use of the proof in
-Section~\ref{sec:FNS-uncountable} that the set $\F$ of functions from
-$\N$ into $\{0,1\}$ is not countable (Proposition~\ref{thm:F-uncountable}).
+\smallskip
 
-Our proof begins with the following lemmas.
+The flow of the proof of Proposition~\ref{thm:R-uncountable} follows the flow of the proof of Proposition~\ref{thm:F-uncountable} but differs in one crucial technical step.  When we specified the ``diagonal" bit-string $\Psi$ in the proof of Proposition~\ref{thm:F-uncountable}, it was totally clear that the function $f \in \F$ specified by $\Psi$ did not appear in matrix $\Delta$'s  allegedly complete enumeration of $\F$.  As we now craft an analogue of $\Psi$ that works for real numbers rather than binary-valued functions, we must exercise much more care---because we have to deal with redundancy in real numerals.  The delicate part of the present argument occurs in Lemma~\ref{lem:PSI-notin-DELTA-num}.
+
+\smallskip
+
+\begin{proof}
+We simplify exposition by making extensive use of the proof of Proposition~\ref{thm:F-uncountable}.  Our proof begins with the following lemmas.
+
+\smallskip
 
 \begin{lemma}
 \label{lem:N-leq-R}
@@ -1107,84 +1108,94 @@ There exists an injection $f: \N \rightarrow \R$; i.e., $|\N| \leq |\R|$.
 \end{lemma}
 
 \noindent {\it Verification}.
-For each nonnegative integer $n \in \N$, let $\mbox{\sc name}_b(n)$
-denote the shortest base-$b$ numeral for $n$, i.e., a numeral with no
-leading $0$s.  The mapping that associates each $n \in \N$ with the
-infinite string
+For each nonnegative integer $n \in \N$, let $\mbox{\sc name}_b(n)$ denote the shortest base-$b$ numeral for $n$, i.e., a numeral with no leading $0$s.  The mapping that associates each $n \in \N$ with the infinite string
 \[ \mbox{\sc name}_b(n) \ . \ 00 \cdots \]
-is an injection from $\N$ into $\R$.  To wit, when given a real
-numeral that has only $0$s to the right of its radix point, one
-produces the integer $n$ by stripping the numeral of its radix point
-and all $0$s to the right of the point, and then evaluating the
-remaining string of digits, which is $\mbox{\sc name}_b(n)$, according
-to Section~\ref{sec:define-Reals}'s rules for evaluating integer numerals.  \qed
-
-\begin{lemma}
-\label{lem:N-=-R}
-If there exists an injection $g: \R \rightarrow \N$, then there exists a bijection 
-$h: \N \leftrightarrow \R$.  In other words, if $|\R| \leq |\N|$, then $|\N| = |\R|$.
-\end{lemma}
-
-\noindent {\it Verification}.
-This is an immediate consequence of the Schr\"{o}der-Bernstein Theorem
-(Theorem~\ref{thm.S-B}).  \qed
-
-\medskip
-
-We make a few technical assumptions that simplify our proof without weakening the result.
-
-\noindent
-{\em We henceforth focus on the proper subset of $\R$ that consists of
-  the set $\R_{(0,1)}$ of real numbers between $0$ and $1$.}
-
-This simplifies our argument because every real number in the set
-$\R_{(0,1)}$ has an infinite decimal numeral of the form
-\[ 0 \ . \ \delta_0 \delta_1 \delta_2 \delta_3 \cdots \]
-where each $\delta_i$ is a decimal digit: $\delta_i \in \{0, 1, 2, 3,
-4, 5, 6, 7, 8, 9\}$.\footnote{We choose {\em decimal} numerals for
-  convenience: converting the argument to other number
-  bases---especially to the base $b=2$---slightly complicates clerical
-  details.}
+is an injection from $\N$ into $\R$.  To wit, let us be given a real numeral that has only $0$s to the right of its radix point.  We produce the integer $n$ by: (1) stripping the numeral of its radix point and all $0$s to the right of the point; (2) evaluating the remaining string of digits, which is $\mbox{\sc name}_b(n)$, according to Section~\ref{sec:define-Reals}'s rules for evaluating integer numerals.  \qed
 
 \smallskip
 
-Of course, if we prove that the proper subset $\R_{(0,1)} \subset \R$
-is uncountable, then it will follow that $\R$ is uncountable.  (In
-informal terms which can be made formal, any putative injection $f: \R
-\rightarrow \N$ ``contains'' an injection $f_{(0,1)}: \R_{(0,1)} \rightarrow \N$.)
+\begin{lemma}
+\label{lem:N-=-R}
+If there exists an injection $g: \R \rightarrow \N$, then there exists a bijection  $h: \N \leftrightarrow \R$.  In other words, if $|\R| \leq |\N|$, then $|\N| = |\R|$.
+\end{lemma}
+
+\noindent {\it Verification}.
+This is an immediate consequence of the Schr\"{o}der-Bernstein Theorem (Theorem~\ref{thm.S-B}).  \qed
+
+\medskip
+
+We now make some technical assumptions that simplify our proof without weakening the result.
+
+\smallskip
+
+\noindent
+{\em We henceforth focus on the proper subset of $\R$ that consists of the set $\R_{(0,1)}$ of real numbers between $0$ and $1$.}
+
+\smallskip
+
+This simplifies our argument because every real number in the set $\R_{(0,1)}$ has an infinite decimal numeral of the form
+\[ 0 \ . \ \delta_0 \delta_1 \delta_2 \delta_3 \cdots \]
+where each $\delta_i$ is a decimal digit: $\delta_i \in \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$.  We employ {\em decimal} numerals for our eventual convenience in Lemma~\ref{lem:PSI-notin-DELTA-num}.  We could equally conveniently use any other number $b >2$.  What we really want to avoid is the lengthy clerical detail that we would need if we were to employ the base $b=2$.  The reader should attempt the argument for base $b=2$ as we proceed with base base $b=10$.
+
+\smallskip
+
+Of course, if we prove that the proper subset $\R_{(0,1)} \subset \R$ is uncountable, then it will follow that $\R$ is uncountable.  (In informal terms which can be made formal, any putative injection $f: \R \rightarrow \N$ ``contains'' an injection $f_{(0,1)}: \R_{(0,1)} \rightarrow \N$.)
 
 \bigskip
 
 Now we begin to seek a bijection $h: \N \leftrightarrow \R_{(0,1)}$.
 
-We assume, for contradiction, that the targeted bijection $g$ exists.
-As part of this two-way mapping, there exists an {\em injection}
-\[ 
-h: \N \ \rightarrow \ \R_{(0,1)},
-\]
-which we view as an {\em enumeration} of the elements of $\R_{(0,1)}$.
-Specifically, for each integer $k \in \N$, we can think of $h(k)$ as
-the ``$k$th number in the set $\R_{(0,1)}$.''  We thereby view $h$ as
-producing an ``infinite-by-infinite'' matrix $\Delta$ of decimal
-digits, whose $k$th row is the infinite string of decimal digits
-$\mbox{\sc name}_{10}(h(k))$.  Let us visualize $\Delta$:
-\[ \Delta \ = \
+\smallskip
+
+We assume, for contradiction, that the targeted bijection $g$ exists.  As part of this two-way mapping, there exists an {\em injection}
+\[  h: \N \ \rightarrow \ \R_{(0,1)}, \]
+which we view as an {\em enumeration} of the elements of $\R_{(0,1)}$.  Specifically, for each integer $k \in \N$, we can think of $h(k)$ as a base-$10$ numeral for the ``$k$th number in the set $\R_{(0,1)}$.''  We thereby view $h$ as producing an ``infinite-by-infinite'' matrix $\Delta^\star$ of decimal digits, whose $k$th row is the infinite string of decimal digits $\mbox{\sc name}_{10}(h(k))$.
+
+\bigskip
+
+\noindent \fbox{ \begin{minipage}{0.94\textwidth}
+{\em Because the present proof, which focuses on the set $\R$, so closely tracks the proof of Proposition~\ref{thm:F-uncountable}, which focuses on the set $\F$, we make a notational change which we hope will keep the reader oriented.}
+
+\begin{center}
+\begin{tabular}{|l||c|c|}
+\hline
+ & The proof of Proposition~\ref{thm:F-uncountable} & The current proof  \\
+\hline
+The $\infty \times \infty$ matrix & $\Delta$       & $\Delta^\star$ \\
+\hline
+Rows of the matrix                    & $\delta_i$     & $\delta^\star_i$ \\
+\hline
+Entries of the matrix                  & $\delta_{i,j}$ & $\delta^\star_{i,j}$ \\
+\hline
+The diagonal string                   & $\Psi$ & $\Psi^\star$ \\
+\hline
+Entries of the string                  & $\psi_i$ & $\psi^\star_i$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{minipage}
+}
+
+\bigskip
+
+\noindent Let us visualize $\Delta^\star$:
+\[ \Delta^\star \ = \
 \begin{array}{ccccccc}
-\delta_0 = &
-\delta_{0,0} & \delta_{0,1} & \delta_{0,2} & \delta_{0,3} &
-	\delta_{0,4} & \cdots \\
-\delta_1 = &
-\delta_{1,0} & \delta_{1,1} & \delta_{1,2} & \delta_{1,3} &
-	\delta_{1,4} & \cdots \\
-\delta_2 = &
-\delta_{2,0} & \delta_{2,1} & \delta_{2,2} & \delta_{2,3} &
-	\delta_{2,4} & \cdots \\
-\delta_3 = &
-\delta_{3,0} & \delta_{3,1} & \delta_{3,2} & \delta_{3,3} &
-	\delta_{3,4} & \cdots \\ 
-\delta_4 = &
-\delta_{4,0} & \delta_{4,1} & \delta_{4,2} & \delta_{4,3} &
-	\delta_{4,4} & \cdots \\ 
+\delta^\star_0 = &
+\delta^\star_{0,0} & \delta^\star_{0,1} & \delta^\star_{0,2} & \delta^\star_{0,3} &
+	\delta^\star_{0,4} & \cdots \\
+\delta^\star_1 = &
+\delta^\star_{1,0} & \delta^\star_{1,1} & \delta^\star_{1,2} & \delta^\star_{1,3} &
+	\delta^\star_{1,4} & \cdots \\
+\delta^\star_2 = &
+\delta^\star_{2,0} & \delta^\star_{2,1} & \delta^\star_{2,2} & \delta^\star_{2,3} &
+	\delta^\star_{2,4} & \cdots \\
+\delta^\star_3 = &
+\delta^\star_{3,0} & \delta^\star_{3,1} & \delta^\star_{3,2} & \delta^\star_{3,3} &
+	\delta^\star_{3,4} & \cdots \\ 
+\delta^\star_4 = &
+\delta^\star_{4,0} & \delta^\star_{4,1} & \delta^\star_{4,2} & \delta^\star_{4,3} &
+	\delta^\star_{4,4} & \cdots \\ 
 \vdots &
 \vdots  & \vdots  & \vdots  & \vdots  & \vdots  & \ddots
 \end{array}
@@ -1193,43 +1204,36 @@ $\mbox{\sc name}_{10}(h(k))$.  Let us visualize $\Delta$:
 \noindent We summarize, for emphasis:
 \begin{itemize}
 \item
-Each row of $\Delta$ consists of the decimal numeral for a number in
-the set $\R_{(0,1)}$.
+Each row of $\Delta^\star$ consists of a decimal numeral for a number in the set $\R_{(0,1)}$.
 
 \item
-Each number in the set $\R_{(0,1)}$ contributes at least one numeral
-to the rows of $\Delta$.
+Each number in the set $\R_{(0,1)}$ contributes at least one numeral to the rows of $\Delta^\star$.
 
-A number may contribute more than one numeral because of an artifact
-of positional number systems, which is exemplified by equations such
-as
-\[ 0.25 \ = \ 0.24999\cdots \]
+\item
+A number may contribute more than one numeral because of an artifact of positional number systems, which is exemplified by equalities such as
+\[
+0.25 \ = \ 0.24999\cdots \ = \  \cdots 0.25 \ = \ 0.2500 \cdots
+\]
+and their kin, which exploit salient characteristics of base-$10$ numerals.
 \end{itemize}
-We can, thus, view the successive rows of $\Delta$: $h(0)$, $h(1)$,
-\ldots, as an ordered listing (with possible repetitions) of all of
-the real numbers in the set $\R_{(0,1)}$.
+We can, thus, view the successive rows of $\Delta^\star$: 
+\[ h(0) = \Delta^\star_0, \ \ \ h(1) = \Delta^\star_1,  \ \ \ h(2) = \Delta^\star_2, \ldots, \]
+as an ordered listing (with repetitions) of all of the real {\em numbers} in the set $\R_{(0,1)}$.
 
 \medskip
 
-We show now that every bijection $h: \N \leftrightarrow \R$ ``misses''
-some real $x \in \R_{(0,1)}$.
+We show now that every bijection $h: \N \leftrightarrow \R$ ``misses'' some real $x \in \R_{(0,1)}$.
 
-We are finally poised to find the contradiction to our assumption that
-$|\R_{(0,1)}| \leq |\N|$.  Specifically, we define from $\Delta$ an
-infinite decimal numeral
-\[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
-that {\em does not} appear in $\Delta$, even though $\mbox{\sc
-  val}_{10}(\Psi) \in \R_{(0,1)}$.  For each index $i \in \N$, we
-define the $i$th digit $\psi_i$ of $\Psi$ from the $i$th {\em diagonal
-  digit}\footnote{Our use of $\Delta$'s ``diagonal digits'' in this
-  definition is the origin of the term ``{\em diagonal argument}'' to
-  describe this proof and its intellectual kin.}~$\delta_{i,i}$ of
-$\Delta$ in the following manner.
-\[ \psi_i \ \eqdef \
+\smallskip
+
+We are finally poised to find the contradiction to our assumption that $|\R_{(0,1)}| \leq |\N|$.  Specifically, we define from $\Delta^\star$ an infinite decimal numeral
+\[ \Psi^\star \ = \ \psi^\star_0 \ \psi^\star_1 \ \psi^\star_2 \ \psi^\star_3 \ \psi^\star_4 \cdots, \]
+that {\em does not} appear as a row of $\Delta^\star$, even though $\mbox{\sc val}_{10}(\Psi^\star)$ belongs to $\R_{(0,1)}$.  For each index $i \in \N$, we define the $i$th digit $\psi^\star_i$ of $\Psi^\star$ from the $i$th {\em diagonal digit} $\Delta^\star_{i,i}$ of $\Delta^\star$, in the following manner.
+\[ \psi^\star_i \ \eqdef \
 \left\{
 \begin{array}{cc}
-0 & \mbox{ if } \ \delta_{i,i} \ > \ 5 \\
-9 & \mbox{ if } \ \delta_{i,i} \ \leq \ 5 \\
+0 & \mbox{ if } \ \delta^\star_{i,i} \ > \ 5 \\
+9 & \mbox{ if } \ \delta^\star_{i,i} \ \leq \ 5 \\
 \end{array}
 \right.
 \]
@@ -1237,45 +1241,43 @@ The important feature of the definition is the following.
 
 \begin{lemma}
 \label{lem:PSI-notin-DELTA-num}
-The numeral $\Psi$ does not occur as a row of $\Delta$.
+The numeral $\Psi^\star$ does not occur as a row of $\Delta^\star$.
 \end{lemma}
 
 \noindent {\it Verification}.
-Focus on an arbitrary row of $\Delta$, say row $k$, and on the numeral,
-$\delta_k$, in that row.
-
-\begin{tabular}{lclc}
-If & $\delta_{k,k} \ > \ 5$ & then & \ \
-$\mbox{\sc name}_{10}(\delta_k) \ - \ \mbox{\sc name}_{10}(\Psi) \ > \ 4
-\cdot 10^{-k}$ \\
-If & $\delta_{k,k} \ \leq \ 5$ & then & \ \
-$\mbox{\sc name}_{10}(\Psi) \ - \ \mbox{\sc name}_{10}(\delta_k) \ > \ 4
-\cdot 10^{-k}$
-\end{tabular}
-
-\noindent
-In either case, we have $\mbox{\sc name}_{10}(\Psi) \ \neq \ \mbox{\sc
-  name}_{10}(\delta_k)$ so that $\Psi$ does not appear as row $k$ of
-$\Delta$.  Since $k \in \N$ is an arbitrary row-index of $\Delta$, we
-conclude that $\Psi$ does not occur as any row of $\Delta$.  \qed
+Focus on an arbitrary row of $\Delta^\star$, say row $k$, and on the numeral, $\delta^\star_k$, in that row.
 
 \medskip
 
-We are now ready for the denouement of our argument: There is no
-bijection $h: \N \leftrightarrow \R$
+\begin{tabular}{lclc}
+If & $\Delta^\star_{k,k} \ > \ 5$ & then & \ \
+$\mbox{\sc name}_{10}(\delta^\star_k) \ - \ \mbox{\sc name}_{10}(\psi^\star) \ > \ 4 \cdot 10^{-k}$ \\
+If & $\Delta^\star_{k,k} \ \leq \ 5$ & then & \ \
+$\mbox{\sc name}_{10}(\psi^\star) \ - \ \mbox{\sc name}_{10}(\delta^\star_k) \ > \ 4
+\cdot 10^{-k}$
+\end{tabular}
 
-Because the infinite decimal string $\Psi$ differs from every row of
-$\Delta$, even though $\mbox{\sc name}_{10}(\Psi) \in \R_{(0,1)}$, we
-have shown that $\Delta$ {\em does not} contain as a row {\em every}
-infinite decimal numeral of a number in $\R_{(0,1)}$.  But this
-contradicts $\Delta$'s assumed defining characteristic!
+\medskip
 
-Where could we have gone wrong?  Every step of our argument, save one,
-is backed up by a proof---so the one step that is not so bolstered
-must be the link that has broken.  This one unsubstantiated step is
-our assumption that the set $\R_{(0,1)}$ is countable.  Since this
-assumption has led us to a contradiction, we must conclude that the
-set $\R_{(0,1)}$, and hence, the set $\R$, is {\em not} countable!  \qed
+\noindent
+In either case, we have $\mbox{\sc name}_{10}(\Psi^\star) \ \neq \ \mbox{\sc name}_{10}(\delta^\star_k)$ so that $\Psi^\star$ does not appear as row $k$ of $\Delta^\star$.  Since $k \in \N$ is an arbitrary row-index of $\Delta^\star$, we conclude that $\Psi^\star$ does not occur as any row of $\Delta^\star$.  \qed
+
+\medskip
+
+We are now ready for the denouement of our argument: There is no bijection $h: \N \leftrightarrow \R$.
+
+\smallskip
+
+Because the infinite decimal string $\Psi^\star$ differs from every row of $\Delta^\star$, even though $\mbox{\sc name}_{10}(\Psi^\star)$ is a numeral for some number in $\R_{(0,1)}$, we
+have shown that $\Delta^\star$ {\em does not} contain as a row a numeral for {\em every} number in $\R_{(0,1)}$.  But this fact contradicts $\Delta^\star$'s assumed defining characteristic!
+
+\medskip
+
+Where could we have gone wrong?  Once again, we find that every step of our argument, save one, is backed up by a proof---so the one step that is not so bolstered must be the link that has broken.  This one unsubstantiated step is our assumption that the set $\R_{(0,1)}$ is countable.  
+
+\medskip
+
+Since this assumption has led us to a contradiction, we must conclude that the set $\R_{(0,1)}$, and hence, the set $\R$, is {\em not} countable!  \qed
 \end{proof}
 
 
@@ -1284,38 +1286,26 @@ set $\R_{(0,1)}$, and hence, the set $\R$, is {\em not} countable!  \qed
 \label{sec:scientific-notation}
 \index{scientific notation}
 
-There is a familiar game in which one is challenged to guess how many
-beans there are in a jar. The wild ranges of guesses that players make
-indicate eloquently what is one of the main starting points in the
-popular-science book {\it Innumeracy} \cite{Paulos}: While we ``know''
-a lot about even {\em very} large numbers and {\em very} small
-numbers, we often lack {\em operational} command of the numbers.  This
-fact can be illustrated in at least two ways.
+There is a familiar game in which one is challenged to guess how many beans there are in a jar.  The wild ranges of guesses that players make indicate eloquently what is one of the main starting points in the popular-mathematics book {\it Innumeracy} \cite{Paulos}: While we ``know''
+a lot about even {\em very} large numbers and {\em very} small numbers, we often lack {\em operational} command of the numbers.  This fact can be illustrated in at least two ways.
+
+\bigskip
 
 \noindent {\bf 1.}
-The ability to compare the magnitudes of big numbers:
+Our (lack of) ability to compare the magnitudes of numbers, especially ones that are either very large or very small.
 \begin{itemize}
 \item
-Can you compare the probabilities of a person's being hit by lightning
-(say, in Mexico City) or by a car (say, crossing Fifth Avenue in Times
-Square)?
+Can you compare the probabilities of a person's being hit by lightning (say, in Mexico City) or by a car (say, crossing Fifth Avenue in Times Square)?
 \item
-Do you know whether you have more hairs on your body than there are
-grains of sand on the beach at Ipanema, Brazil?
+Do you know whether you have more hairs on your body than there are grains of sand on the beach at Ipanema, Brazil?
 \item
-
-Do you know whether there were more Homo Sapiens alive on December 31,
-1999, than had lived from the Big Bang to December 31, 1945?
+Do you know whether there were more Homo Sapiens alive on December 31, 1999, than had lived from the moment of the Big Bang until December 18, 1945?
 \item
-Can you compare the number of rhinoviruses that can populate a square
-of side-length $1$mm with the number of stars visible on a clear night
-at the summit of Mount Everest?
+Can you compare the number of rhinoviruses that can populate a square of side-length $1$mm with the number of stars visible on a clear night at the summit of Mount Everest?
 \end{itemize}
 
 \noindent {\bf 2.}
-The ability to delineate ``how much information'' a number tells us:
-Many of us know---or can calculate---that (in some sense) the distance
-between Earth and its closest star, the Sun, is, very roughly,
+The ability to delineate ``how much information'' a number tells us:  Many of us know---or can calculate---that (in some sense) the distance between Earth and its closest star, the Sun, is, very roughly,
 \[ \begin{array}{rl}
 93,000,000 & \mbox{ miles} \\
 148,800,000 & \mbox{ km} \\
@@ -1324,66 +1314,42 @@ between Earth and its closest star, the Sun, is, very roughly,
 \end{array}
 \]
 
-\medskip
+\bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.97\textwidth}
-One might read an argument in favor of the metric system into the
-preceding listing of ``miles'' and ``feet'' and ``inches'', whose
-interrelationships require a lexicon, in contrast to the singular
-``km'' whose relationships to ``cm'' and ``meter'' are transparent.
+\begin{minipage}{0.96\textwidth}
+{\bf An aside}.
+One might read an argument in favor of the metric system into the preceding listing of ``miles'' and ``feet'' and ``inches'', whose interrelationships require a lexicon, in contrast to the singular ``km'' whose relationships to ``cm'' and ``meter'' are transparent.
 \end{minipage}
 }
 
-\medskip
+\bigskip
 
-All of these numbers are coarse approximations.  In some sense, they
-all convey exactly the same information, since all are obtained from
-the first number (the number of miles to the Sun) by simple scaling.
-Yet, while the first number projects a modest two (decimal) digits of
-accuracy, the others project, respectively, four digits, five digits,
-and six digits.  Do all of these numbers convey the same (level of)
-truth?
+All of these numbers are coarse approximations.  In some sense, they all convey exactly the same information, since all are obtained from the first number (the number of miles to the Sun) by simple scaling.  Yet, while the first number projects a modest two (decimal) digits of accuracy, the others project, respectively, four digits, five digits, and six digits.  Do all of these numbers convey the same (level of) truth?
 
 \medskip
 
-Scientists and pedagogues and philosophers have grappled with the
-problems engendered by innumeracy throughout time; see, e.g.,
-Footnote~\ref{foot:Pascal}.  One ingenious approach within the domain
-of astronomy has been to establish a new standard unit of distance to
-express the {\em very} large distances from Earth to stars beyond our
-solar system: A {\em light year} is the distance that light travels in
-an Earth-year, roughly $9.4607 \times 10^{12}$ km.  By using this
-measure, one can describe enormous (well, astronomical) numbers
-without unwarranted appearances of inflated accuracy.  The notion of
-light year plays an important role for astronomy, but it does not port
-gracefully to other domains, for two reasons: (1) The use of the speed
-of light as a frame of reference has no meaning when one is, for
-instance counting grains of sand or numbers of viruses.  (2) The
-scaling factor inherent in a light year is not appropriate for other
-domains.  The widely accepted general alternative to a new scaling
-unit is {\em scientific notation}.  \index{scientific notation}
+Scientists and pedagogues and philosophers have grappled with the problems engendered by innumeracy throughout time; see, e.g., Footnote~\ref{foot:Pascal}.  One ingenious approach within the domain of astronomy has been to establish a new standard unit of distance to express the {\em very} large distances from Earth to stars beyond our solar system: A {\em light year} is the distance that light travels in an Earth-year, roughly $9.4607 \times 10^{12}$ km.  By using this measure, one can describe enormous (well, astronomical) numbers without unwarranted appearances of inflated accuracy.  The notion of light year plays an important role for astronomy, but it does not port gracefully to other domains, for two reasons: (1) The use of the speed of light as a frame of reference has no meaning when one is, for instance counting grains of sand or numbers of viruses.  (2) The scaling factor inherent in a light year is not appropriate for other
+domains.  The widely accepted general alternative to a new scaling unit is {\em scientific notation}.  \index{scientific notation}
 
-Within scientific notation, one specifies an arbitrary number, of
-arbitrary magnitude via a {\em rational approximation} of the form
+\medskip
+
+Within scientific notation, one specifies an arbitrary number, of arbitrary magnitude via a {\em rational approximation} of the form
 \[ . \beta_0 \beta_1 \beta_2 \cdots \beta_{a-1} \times b^s \]
 The interpretation is that
 \begin{itemize}
 \item
-$\beta_0 \beta_1 \beta_2 \cdots \beta_{a-1}$ represents the $a$
-  base-$b$ {\em digits of accuracy} that are warranted by the accuracy
-  of one's level of knowledge about the number being specified.
+$\beta_0 \beta_1 \beta_2 \cdots \beta_{a-1}$ represents the $a$ base-$b$ {\em digits of accuracy} that are warranted by the accuracy of one's level of knowledge about the number being specified.
 
 \item
-$b^s$ is the base-$b$ {\em scaling factor} that adjust the digits of
-  accuracy relative to the radix point.
+$b^s$ is the base-$b$ {\em scaling factor} that adjust the digits of accuracy relative to the radix point.
 \end{itemize}
 Within this system of specification, we thus have
 \[ \begin{array}{lcll}
-.93    & \times & 10^8     & \mbox{ miles from Earth to the Sun} \\
+.93       & \times & 10^8      & \mbox{ miles from Earth to the Sun} \\
 .94607 & \times & 10^{13}  & \mbox{ kilometers traveled by light in an Earth-year} \\
-.31415 & \times & 10       & \mbox{ value of $\pi$ to $5$ digits of accuracy} \\
-.166   & \times & 10^{-23} & \mbox{ grams of weight of a proton, to $3$ digits of accuracy}
+.31415 & \times & 10          & \mbox{ value of $\pi$ to $5$ digits of accuracy} \\
+.166     & \times & 10^{-23} & \mbox{ grams of weight of a proton, to $3$ digits of accuracy}
 \end{array}
 \]
 
