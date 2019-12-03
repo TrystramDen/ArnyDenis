@@ -525,25 +525,31 @@ $\mbox{\sc val}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ + \cdots + \ a_
 
 \subsubsection{Horner's Rule and fast numeral evaluation}
 
-One can clearly evaluate the degree-$d$ univariate polynomial $\mbox{\sc val}_{b}(x)$ using $\Theta(d^2)$ multiplications.  It appears at first glance that $\Theta(d^2)$ multiplications are also necessary for this evaluation---which would suggest that one cannot produce a numeral for an integer $n$ very efficiently.  However, we can develop an
-efficient, $O(d)$-multiplication, procedure by adapting a method of
-rewriting univariate polynomials, which is known as {\it Horner's
-  rule} (the name we shall use) or {\it Horner's scheme}
-\cite{Horner}. \index{Horner's rule} \index{polynomial!Horner's rule}
-\index{Horner's scheme} \index{polynomial!Horner's scheme} By
-describing Horner's rule on a degree-$3$ polynomial, we should give
-the reader adequate preparation for our $O(d)$-division recipe for
-producing a $d$-digit base-$b$ numeral for integer $n$.
+Since the problem of computing an integer $n$ from a $d$-digit positional numeral for $n$ reduces to the problem of evaluating a degree-$d$ univariate polynomial, we now digress to show how to perform such evaluations efficiently.  We shall adapt the efficient polynomial-evaluation scheme which we describe now to an efficient procedure for producing a $d$-digit base-$b$ numeral for $n$.
 
 \medskip
+
+\index{Horner's rule} \index{polynomial!Horner's rule}
+\index{Horner's scheme} \index{polynomial!Horner's scheme}
+
+One can clearly evaluate the degree-$d$ univariate polynomial $\mbox{\sc val}_{b}(x)$ using $\Theta(d^2)$ integer multiplications.  It appears at first glance that $\Theta(d^2)$ multiplications are also {\em necessary} for this evaluation---which would suggest that one cannot evaluate general polynomials very efficiently.  However, one can develop an $O(d)$-multiplication procedure for evaluating degree-$d$ univariate polynomials, by adapting a method of rewriting univariate polynomials, which is known as {\it Horner's rule} (the name we shall use) or {\it Horner's scheme} \cite{Horner}.  We now describe Horner's rule on a generic degree-$d$ polynomial, with particular detail on the case $d=3$.
+
+\bigskip
+
+\noindent \fbox{ \begin{minipage}{0.96\textwidth}
+{\bf Note}.
+The challenge of minimizing the number of multiplications in common computations has been a subject of study since the earliest days of digital computers.  Even with modern hardware, multiplication of large integers is a rather costly operation.
+\end{minipage}
+}
+
+\bigskip
 
 \begin{itemize}
 \item {\small\sf The ``standard'' way of writing the polynomial $P(x)$.}
 
 \noindent General degree $d$:
 
-$P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \cdots + \ a_{d-1}
-x^{d-1} \ + \ a_d x^d$
+$P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \cdots + \ a_{d-1} x^{d-1} \ + \ a_d x^d$
 
 \noindent Degree $3$:
 
@@ -561,14 +567,10 @@ $P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ +  \cdots
 $P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ + \ a_3 x))$ 
 \end{itemize}
 
+\bigskip
+
 \noindent
-We now describe, by example, our efficient procedure for computing a
-base-$b$ numeral for a given integer $n$.  The procedure iteratively
-divides $n$ by $b$, {\em using Euclidean division} (see
-Section~\ref{sec:euclidian}).  We claim that the {\em remainder} upon
-each consecutive division is the next lowest-order digit in the
-base-$b$ numeral for $n$.  (We leave this verification as an
-exercise.)
+We now describe, by example, an efficient procedure for computing a base-$b$ numeral for a given integer $n$, which is based on Horner's rule.  The procedure iteratively divides $n$ by $b$, {\em using Euclidean division} (see Section~\ref{sec:euclidian}).  We claim that the {\em remainder} upon each consecutive division is the next lowest-order digit in the base-$b$ numeral for $n$.  (We leave this verification as an exercise.)
 
 \bigskip
 
@@ -576,13 +578,13 @@ exercise.)
 We produce the base-$2$ (binary) numeral for $n = 143$, (binary) digit
 by (binary) digit.
 
-\medskip
+\bigskip
 
+\hspace*{.35in}
 \begin{tabular}{|c|r|r|}
 \hline
-Step &
-Current Quotient &
-Current Remainder \\
+         & Current  & Current \\
+Step & Quotient & Remainder \\
 \hline
 1. & $143$ & $1$ \\
 2. & $71$  & $1$ \\
@@ -595,34 +597,33 @@ Current Remainder \\
 \hline
 \end{tabular}
 
-\medskip
+\bigskip
 
 \noindent
-We thereby have the following equation which specifies the base-$2$
-numeral for $143$.
+We have thus derived the following base-$2$ numeral for $n = 143$.
 \[ 143_{10} \ = \ 10001111_2 \]
 
 
 \subsubsection{Horner's Rule and fast exponentiation} 
 \index{fast exponentiation}
 
-We now develop a procedure for exponentiating which is ``fast'' (the
-popular term): It computes the power
+If the cost of {\em multiplication} of long integers can be a computational concern, the cost of {\em exponentiation}---which is {\em iterated} multiplication---can be even more troubling.  Thus motivated, we now develop a procedure for exponentiating which is ``fast'' (the popular term), in the sense that it uses unexpectedly few multiplications.  Specifically, the procedure computes the power
 \[ b^n \]
-where both $b$ and $n$ are positive integers ($b, n \in \N^+$) using a
-number of multiplications that is {\em logarithmic in} $n$, rather
-than the linear number that a direct approach would use.
+where both $b$ and $n$ are positive integers ($b, n \in \N^+$) using a number of multiplications that is {\em logarithmic} in $n$, rather than using the {\em linear} number of multiplications that a direct approach would use.
 
-\medskip
+\bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.97\textwidth}
-Although the problem we attack here falls strictly within the domain
-of {\em algorithmics}, we discuss it in our mathematics text because:
-($a$) it provides a vivid example of the importance of data {\em
-  representation}; ($b$) it illustrates a direct, consequential
-application of Horner's rule, which could be misinterpreted as an
-esoteric puzzle rather than an important technique.
+\begin{minipage}{0.96\textwidth}
+Although the fast-exponentiation procedure falls strictly within the domain of {\em algorithmics}, we discuss it in our mathematics text because:
+
+\smallskip
+
+($a$) it provides a vivid example of the importance of data {\em representation};
+
+\smallskip
+
+($b$) it illustrates a direct, consequential application of Horner's rule, which is thereby seen to be a practically important technique.
 \end{minipage}
 }
 
@@ -632,36 +633,36 @@ esoteric puzzle rather than an important technique.
 Our ``fast'' exponentiator proceeds as follows:
 \begin{enumerate}
 \item
-Compute the (shortest) base-$2$ numeral for the power $n$ that we
-are raising the base $b$ to.
+Compute the (shortest) base-$2$ numeral for the power $n$ that we are raising the base $b$ to.
+
+\smallskip
 
 As a running example, if $n \leq 31$, then this numeral has the form
 \[ a_4 a_3 a_2 a_1 a_0 \]
 where each $a_i \in \{0,1\}$ and
 \[ n \ = \
-a_4 \cdot 2^4 \ + \  a_3 \cdot 2^3 \ + \  a_2 \cdot 2^2 \ + \  a_1
-\cdot 2^1 \ + \ a_0
+a_4 \cdot 2^4 \ + \  a_3 \cdot 2^3 \ + \  a_2 \cdot 2^2 \ + \  a_1 \cdot 2^1 \ + \ a_0
 \] 
 
 \item
-Use Horner's Rule to rewrite the polynomial for $n$ as follows
+Use Horner's Rule to rewrite the polynomial for $n$ in the form
 \[ n \ = \
-a_0 \ + \ 2 \cdot (a_1 \ + \ 2 \cdot (a_2 \ + \ 2 \cdot (a_3 \ + \
-2 \cdot a_4 ))) \]
+a_0 \ + \ 2 \cdot (a_1 \ + \ 2 \cdot (a_2 \ + \ 2 \cdot (a_3 \ + \ 2 \cdot a_4 ))) \]
 
 \item
-Interpret the ``ground level'' computation of the numeral-polynomial
-within the ``exponent level'' of base $b$.
+Interpret the ``ground level'' computation of the numeral-polynomial within the ``exponent level'' of base $b$.
 
-Keep in mind that this ``promotes'' the operations of the polynomial
+\smallskip
+
+Keep in mind that this ``promotes'' the operations of the polynomial, in the following sense:
 \begin{itemize}
 \item
-Each addition of the polynomial spawns a multiplication at the new
-ground level, because $b^{c + d} \ = \ b^c \cdot b^d$.
+Each addition of the polynomial spawns a multiplication at the new ground level, because $b^{c + d} \ = \ b^c \cdot b^d$.
 \item
-Each multiplication of the polynomialspawns an exponentiation at the
-new ground level, because $b^{(c \cdot d)} \ = \ (b^c)^d$.
+Each multiplication of the polynomial spawns an exponentiation at the new ground level, because $b^{(c \cdot d)} \ = \ (b^c)^d$.
 \end{itemize}
+
+\smallskip
 
 Using our running example, we have
 \begin{eqnarray*}
@@ -708,8 +709,9 @@ b^{a_4}
 \right)^2
 \end{eqnarray*}
 \end{enumerate}
-Note that the importance of our using base-$2$ numerals is that the
-operation of squaring requires only a single multiplication.
+Note that the importance of our using base-$2$ numerals is that {\em the operation of squaring thereby requires only a single multiplication}.
+
+\smallskip
 
 Two simple examples should round out this section:
 \begin{eqnarray*}
@@ -717,55 +719,38 @@ b^{19_{10}} & = & b^{10011_{2}} \\
         & = & b^{16 + 2 + 1} \\
         & = & b^{16} \times b^2 \times b \\
         & = & ((((b^2)^2)^2)^2) \times b^2 \times b \\
+        &    & \\
 b^{31_{10}} & = & b^{11111_{2}} \\
     & = & b^{16 + 8 + 4 + 2 + 1} \\
     & = & b^{16} \times b^8 \times b^4 \times b^2 \times b^1 \\
     & = & ((((b^2)^2)^2)^2) \times (((b^2)^2)^2) \times ((b^2)^2) \times b^2 \times b
 \end{eqnarray*} 
 
+\medskip
 
-With only a few additional details, we could flesh out the preceding
-discussion to a formal proof of the following result.
+With only a few additional details, we could flesh out the preceding discussion to a formal proof of the following result.
 
 \index{fast exponentiation}
 
 \begin{prop}[Fast Exponentiation]
 \label{thm:fast-exponentiation}
-Given positive integers $b$ and $n$, one can compute the number $b^n$
-within $O(\log n)$ multiplications.
+Given positive integers $b$ and $n$, one can compute the number $b^n$ with $O(\log n)$ multiplications.
 \end{prop}
 
-
-
-\ignore{*****
-\bigskip
-
-\noindent
-$\oplus$ {\bf Enrichment}.  {\it The dyadic system of numerals.}
-\index{numerals!the dyadic system} 
-\index{positional number systems!the dyadic system}
- **HERE
-
-{\Denis We have to add a brief discussion about k-ary and k-adic systems...}
-**********}
 
 \subsection{Positional Numerals for Rationals}
 \label{sec:special-numerals-Q}
 
-We can completely characterize the positional numerals that represent
-rational numbers, in terms of the following auxiliary notion.
 \index{ultimately periodic sequence}
-An infinite sequence $S$ of digits is {\em ultimately periodic} if
-there exist two {\em finite} sequences of digits, $A$ and $B$, such
-that $S$ can be written in the following form (we have added spaces to
-enhance legibility):
+
+We can completely characterize the positional numerals that represent rational numbers, in terms of the following auxiliary notion.  An infinite sequence $S$ of digits is {\em ultimately periodic} if there exist two {\em finite} sequences of digits, $A$ and $B$, such that $S$ can be written in the following form (we have added spaces to enhance legibility):
 \begin{equation}
 \label{eq:ult-per-seq}
  S \ = \ A \ B \ B \ B \cdots B \ B \cdots
 \end{equation}
-The intention here is that the sequence $B$ is repeated {\it ad
-  infinitum}.
+The intention here is that the sequence $B$ is repeated {\it ad infinitum}.
 
+\smallskip
 
 \begin{prop}
 \label{thm:rational-real}
@@ -777,15 +762,13 @@ ultimately periodic.
 
 \begin{enumerate}
 \item 
-{\small\sf Part 1: the ``if'' clause.}
+{\small\sf Part 1: the ``if'' clause (sufficiency).}
 
-Say first that the real number $r$ has an ultimately periodic infinite
-base-$b$ numeral.
+Say first that the real number $r$ has an ultimately periodic infinite base-$b$ numeral, as in (\ref{eq:ult-per-seq}).
 
-Since the exact lengths of the finite sequences $A$ and $B$ that
-constitute the numeral, as in (\ref{eq:ult-per-seq}), are not germane
-to the argument, we arbitrarily denote $r$ by the following
-normal-form numeral (spaces added to enhance legibility):
+\smallskip
+
+Since the exact lengths of the finite sequences $A$ and $B$ are not germane to the argument, we can simplify notation by  arbitrarily denoting $r$ via the following normal-form numeral (spaces added to enhance legibility):
 \[  a_2 a_1 a_0 \ . \ b_0 b_1 \
 c_0 c_1 c_2 \
 c_0 c_1 c_2
@@ -798,21 +781,26 @@ so that
 A & = & a_2 a_1 a_0 \ . \ b_0 b_1 \\
 B & = & c_0 c_1 c_2
 \end{eqnarray*}
-(Choosing specific lengths for $A$ and $B$ cuts down on the number of
-``ellipsis dots'' we need to denote the numeral, as in ``$123 123
-\cdots 123 \cdots$'', hence enhances legibility.)
 
-If we now invoke the evaluation rules of (\ref{eq:real-numeral-number}),
-we find that
+\bigskip
+
+\noindent \fbox{ \begin{minipage}{0.93\textwidth}
+To elaborate on our comment about ``simplifying notation":  
+
+\smallskip
+
+By choosing specific lengths for sequences $A$ and $B$, we cut down on the number of ``ellipsis dots'' we need to denote the numeral, as in ``$123 123 \cdots 123 \cdots$''.  We thereby enhance legibility.
+\end{minipage}
+}
+
+\bigskip
+
+If we now invoke the evaluation rules of (\ref{eq:real-numeral-number}), we find that
 \begin{eqnarray}
 \nonumber
 r & = &
 \mbox{\sc val}_b(a_2 a_1 a_0 \ . \ b_0 b_1 \
-c_0 c_1 c_2 \
-c_0 c_1 c_2
-\cdots
-c_0 c_1 c_2
-\cdots) \\
+c_0 c_1 c_2 \ c_0 c_1 c_2 \cdots c_0 c_1 c_2 \cdots) \\
 \nonumber
   & = &
 \mbox{\sc val}_b(a_2 a_1 a_0)
@@ -834,38 +822,32 @@ c_0 c_1 c_2
 \mbox{\sc val}_b(c_0 c_1 c_2) \cdot \sum_{i=1}^\infty b^{-2-3i}
 \end{eqnarray}
 
-We learned in Section~\ref{sec:geometric-sums} that infinite
-summations such as the one in (\ref{eq:sum-in-numeral}), namely,
-$\sum_{i=1}^\infty b^{-2-3i}$, {\em converge}---meaning that {\em they
-  have finite rational sums}---and we learn how to compute these sums.
-For the purposes of the current proof, we just take this fact on
-faith, and we denote the summation's finite rational sum by $p/q$.
+We learned in Section~\ref{sec:geometric-sums} that infinite summations such as
+$\sum_{i=1}^\infty b^{-2-3i}$ in (\ref{eq:sum-in-numeral}) {\em converge}---meaning that {\em they have finite rational sums}---and we learned how to compute these sums.  For the purposes of the current proof, we just accept this fact, and we denote the summation's finite rational sum by $p/q$.
 
-Collecting all of this information, we find that there exist {\em
-  integers} $m$, $n$, $p$, and $q$ such that
+\medskip
+
+Collecting all of this information, we find that there exist {\em integers} $m$, $n$, $p$, and $q$ such that
 \[ r \ = \ m \ + \ n/ b^{2} \ + \ p/q \ = \
 \frac{mqb^2 + nq + pb^2}{qb^2}. \]
-The number $r$ is, thus, the ratio of two integers; hence, by
-definition, it is rational.
+The number $r$ is, thus, the ratio of two integers; hence, by definition, it is rational.
 
 \item 
-{\small\sf Part 2: the `` only if'' clause.}
+{\small\sf Part 2: the `` only if'' clause (necessity).}
 
-Say next that the real number $r$ is rational---specifically,
+\smallskip
+
+Say next that the real number $r$ is rational---specifically, say that
 \[ r \ = \ s + \frac{t}{q} \]
-for nonnegative integers $t < q$ and $s$.  It is only the fraction
-$t/q < 1$ that can produce an infinite numeral, so it suffices for us
-to verify the special case
+for nonnegative integers $t < q$ and $s$.  It is only the fraction $t/q < 1$ that can produce an infinite numeral, so it suffices for us to verify only the special case
 \[ r \ = \ \frac{t}{q} \ < \ 1 \]
 of the proposition.
 
-We prove that $r = t/q$ has an ultimately periodic infinite numeral by
-using \index{synthetic division} {\it synthetic division}---the
-algorithm taught in elementary school---to compute the ratio $t/q$.
-As we proceed, keep in mind that we are working in base $b$.  Each of
-the following successive divisions produces one digit to the right of
-the radix point, in addition to a possible {\it remainder} $r_i$ from
-the set $\{0, 1, \ldots, q-1\}$.
+\smallskip
+
+\index{synthetic division}
+
+We prove that $r = t/q$ has an ultimately periodic infinite numeral by using {\it synthetic division}---the procedure taught in elementary school---to compute the ratio $t/q$.  As we proceed, keep in mind that we are working in base $b$.  Each of the following successive divisions produces one digit to the right of the radix point, in addition to a possible {\it remainder} $r_i$ from the set $\{0, 1, \ldots, q-1\}$.
 \begin{equation}
 \label{eq:build-rational-numeral}
 \begin{array}{lclc|l|cc}
@@ -888,14 +870,7 @@ b \cdot r_{i+1} & = & a_{i+2} \cdot q \ + \ r_{i+2} &
             & \vdots &  & &  \hspace*{.3in}\vdots & & \vdots   \\
 \end{array}
 \end{equation}
-Because of the possible values the remainders $r_j$ can assume, no
-more than $q$ of the divisions in the (infinite) system
-(\ref{eq:build-rational-numeral}) are distinct.  ({\em This is an
-  application of the pigeonhole principle
-  (Section~\ref{sec:pigeonhole}).})  Because of the way the system
-proceeds, once we have encountered two remainders, say, $r_i$ and
-$r_{i+k}$, that are equal---i.e., $r_i = r_{i+k}$---we must
-thenceforth observe periodic behavior:
+Because of the possible values the remainders $r_j$ can assume, no more than $q$ of the divisions in the (infinite) system (\ref{eq:build-rational-numeral}) are distinct.  ({\em This is an application of the pigeonhole principle (Section~\ref{sec:pigeonhole}).})  Because of the way the system proceeds, once we have encountered two remainders, say, $r_i$ and $r_{i+k}$, that are equal---i.e., $r_i = r_{i+k}$---we must thenceforth observe periodic behavior:
 \[
 \begin{array}{cccccccc}
 r_i       & = & r_{i+k}    & = & r_{i+2k}   & = & r_{i+3k}   & = \ \cdots \\
@@ -904,26 +879,22 @@ r_{i+1}   & = & r_{i+k+1}  & = & r_{i+2k+1} & = & r_{i+3k+1} & = \ \cdots \\
 r_{i+k-1} & = & r_{i+2k-1} & = & r_{i+3k-1} & = & r_{i+4k-1} & = \ \cdots \\
 \end{array}
 \]
-This will engender periodicity in the digits of $r$'s base-$b$ numeral:
+{\em This periodicity will engender periodicity in the digits of $r$'s base-$b$ numeral}:
 \[ [\mbox{\sc initial segment}]
- [a_i a_{i+1} \cdots a_{i+k-1}]
-          [a_i a_{i+1} \cdots a_{i+k-1}]
+ [a_i a_{i+1} \cdots a_{i+k-1}]  [a_i a_{i+1} \cdots a_{i+k-1}]
     \cdots  [a_i a_{i+1} \cdots a_{i+k-1}] \cdots 
 \]
-We are, thus, observing the claimed ultimately periodic behavior in
-$r$'s base-$b$ numeral.
+We are, thus, observing the claimed ultimately periodic behavior in $r$'s base-$b$ numeral.
 \end{enumerate}
-This completes the proof. \qed
+\noindent This completes the proof. \qed
 \end{proof}
 
-\bigskip
+\medskip
 
-We end this section by illustrating the process of generating numerals
-for rationals via synthetic division.  We employ the fraction $t/q = 4/7$
-and base $b = 10$.
+We end this section by illustrating the process of generating numerals for rationals via synthetic division.  We employ the fraction $t/q = 4/7$ and base $b = 10$.
 \[
 \begin{array}{lclc|l|cc}
-\multicolumn{3}{c}{\mbox{Division step}} & &  \hspace*{.15in} \mbox{Current numeral} & &
+\multicolumn{3}{c}{\mbox{Division step}} & &  \hspace*{.05in} \mbox{Current numeral} & &
 \mbox{Current remainder} \\
 \hline
 10 \cdot 4   & = & 5 \cdot 7 \ + \ 5 &
@@ -947,122 +918,106 @@ and base $b = 10$.
  & \vdots & & & \vdots & & \vdots
 \end{array}
 \]
-The remainder $4$ in the last illustrated division step cycles us back
-to the initial division step, where the ``$4$'' came from the
-numerator of the target fraction.  This repetition signals that the
-entire process cycles from this point on.  In other words, we have
-determined that
+The remainder $4$ in the last illustrated division step cycles us back to the initial division step, where the ``$4$'' came from the numerator of the target fraction.  This repetition signals that the
+entire process cycles from this point on.  In other words, we have determined that
 \[ \frac{4}{7} \ = \ .[571428] \ [571428] \ [571428] \ \cdots \]
 
 \bigskip
 
-Propositions~\ref{thm:integer-real} and~\ref{thm:rational-real} show
-us that the three sets of numbers we have defined are a nested
-progression of successively more inclusive sets, in the sense that
-{\em every integer is a rational number} and {\em every rational
-  number is a real number}.  Those interested in the (philosophical)
-foundations of mathematics might quibble about the verb ``is'' in the
-highlighted sentences, but for all practical purposes, we can accept
-the sentences as written.
+Propositions~\ref{thm:integer-real} and~\ref{thm:rational-real} show us that the three sets of numbers we have defined, the sets $\Z$, $\Q$, and $\R$, are a strictly nested progression:
+\[ \Z \ \subset \ \Q \ \subset \ \R \]
+Verbally:
+\begin{itemize}
+\item
+{\em Every integer is a rational number; there exist rationals that are not integers.}
+\item
+{\em Every rational number is a real number; there exist reals that are not rational.} 
+\end{itemize}
 
-\section{Sets that Are Uncountable, Hence, ``Bigger Than'' $\Z$ and $\Q$}
+Those interested in the (philosophical) foundations of mathematics might quibble about the verbs ``is'' and ``are" in the highlighted sentences, but for the purpose of ``doing mathematics", we can accept the sentences as written.
+
+\section{Sets that Are Uncountable, hence, ``Bigger Than'' $\Z$ and $\Q$}
 \label{sec:Q-Z-F-cardinality}
 \label{sec:FNS-uncountable}
 
 \subsection{The Set of Binary Functions $\F$ Is Uncountable}
 \label{sec:F-uncountable}
 
-Let $\F$ denote the set of all functions from $\N$ to $\{0,1\}$.  The
-main result of this section establishes the uncountability of the set
-$\F$.  We thereby have an argument that the infinitude of this set is
-{\em of a higher order} than the infinitude of the set of integers.
-In fact, Georg Cantor used variants of this result as the base of his
-study of orders of infinity.
+\index{Cantor, Georg}
 
-This section is dedicated to provin the following result.
+Let $\F$ denote the set of all functions from $\N$ to $\{0,1\}$.  The main result of this section establishes the uncountability of the set $\F$.  We thereby have an argument that the infinitude of this set is {\em of a higher order} than the infinitude of the set of integers.  In fact, Georg Cantor used variants of this result as the base of his study of orders of infinity.
+
+\medskip
+
+This section is dedicated to proving the following result.
 
 \begin{prop}
 \label{thm:F-uncountable}
-The set $\F$ of binary-valued functions from $\N$ into $\{0,1\}$ is
-not countable.  In particular, there is no injection $f: \F
-\rightarrow \N$.
+The set $\F$ of binary-valued functions from $\N$ into $\{0,1\}$ is not countable.  In particular, there is no injection $f: \F \rightarrow \N$.
 \end{prop}
 
-In the next subsection, we prove the qualitatively similar but
-technically more complicated companion of
-Proposition~\ref{thm:F-uncountable}, which establishes that the set
+In the next subsection, we prove the qualitatively similar but technically more complicated companion of Proposition~\ref{thm:F-uncountable}, which establishes that the set
 $\R$ of real numbers is also uncountable.
 
+\index{diagonalization} \index{diagonalization argument}
+
 \begin{proof}
-Our multi-step proof of Proposition~\ref{thm:F-uncountable} shows that
-assuming the countability of $\F$ leads to a contradiction.  Being
-built around Georg Cantor's renowned {\it diagonalization
-  construction},\index{diagonalization} upcoming development
-\index{diagonalization argument} this upcoming development provides
-the most sophisticated proofs by contradiction in our text.  The
-reader might want to review the reasoning underlying such
-argumentation, in Section~\ref{sec:Contradiction}, as a ``warm-up.''
+Our multi-step proof of Proposition~\ref{thm:F-uncountable} shows that assuming the countability of $\F$ leads to a contradiction.  Being built around Georg Cantor's revolutionary {\it diagonalization construction}, the upcoming argument---and its companion argument about the set $\R$---provides the most sophisticated proof by contradiction in our text.  The reader might want to review the reasoning underlying such argumentation, in Section~\ref{sec:Contradiction}, as a ``warm-up.''
 
 \subsubsection{Plotting a strategy to prove uncountability}
 \label{sec:the-diag-strategy}
 
-Invoking the definition of countability, our proof begins with the
-assumption that $|\F| \leq |\N|$ and demonstrates that this assumption
-leads to a contradiction.  In fact, we can simplify our goal by
-recasting the problem in terms of {\em bijections}.  We begin with two
-simplifying lemmas.
+Invoking the definition of countability, our proof begins with the assumption that $|\F| \leq |\N|$ and demonstrates that this assumption leads to a contradiction.  In fact, we can simplify our goal by recasting the problem in terms of {\em bijections}.  We begin with two simplifying lemmas.
 
 \begin{lemma}
 \label{lem:N-leq-F}
-There exists an injection $f: \N \rightarrow \F$; i.e., $|\N| \leq
-|\F|$.
+There exists an injection $f: \N \rightarrow \F$; i.e., $|\N| \leq |\F|$.
 \end{lemma}
 
 \noindent {\it Verification}.
-For each nonnegative integer $n \in \N$, define the function $f_n: \N
-\rightarrow \{0,1\}$ as follows: for each integer $k \in \N$,
+For each nonnegative integer $n \in \N$, define the function $f_n: \N \rightarrow \{0,1\}$ as follows: for each integer $k \in \N$,
 \[ f_n(k) \ = \ \mbox{\bf if } \ [k=n] \ \mbox{\bf then } \ 1
 \ \mbox{\bf else } \ 0
 \]
-Clearly, specifying the integer $n$ uniquely identifies the function
-$f_n$.  This means that the defined correspondence specifiess an
-injection from $\N$ into $\F$.  \qed
+Clearly, specifying the integer $n$ uniquely identifies the function $f_n$.  This means that the defined correspondence specifies an injection from $\N$ into $\F$.  \qed
 
 \begin{lemma}
 \label{lem:N-=-F}
-If there exists an injection $g: \F \rightarrow \N$, then there exists
-a bijection $h: \N \leftrightarrow \F$.  In other words, if $|\F| \leq
-|\N|$, then $|\N| = |\F|$.
+If there exists an injection $g: \F \rightarrow \N$, then there exists a bijection $h: \N \leftrightarrow \F$.  In other words, if $|\F| \leq |\N|$, then $|\N| = |\F|$.
 \end{lemma}
 
 \noindent {\it Verification}.
-This is an immediate consequence of the Schr\"{o}der-Bernstein Theorem
-(Theorem~\ref{thm.S-B}).  \qed
+This is an immediate consequence of the Schr\"{o}der-Bernstein Theorem (Theorem~\ref{thm.S-B}).  \qed
 
 \medskip
 
-It is perhaps a bit surprising that our proof is simplified by
-converting our initial assumption \\
-\hspace*{.35in}$|\F| \leq |\N|$ \\
-to the stronger assumption \\
-\hspace*{.35in}$|\F| \ = \ |\N|$,  \\
-but Cantor's diagonal argument deals quite gracefully with the latter
-assumption.
+It may surprise you that our proof is simplified if we replace our initial assumption
+
+\smallskip
+
+\hspace*{.35in}$|\F| \leq |\N|$
+
+\smallskip
+
+\noindent
+by the stronger assumption
+
+\smallskip
+
+\hspace*{.35in}$|\F| \ = \ |\N|$,
+
+\smallskip
+
+\noindent
+but Cantor's diagonal argument deals quite gracefully with the latter assumption.  (There is a methodological lesson here which is as true for mathematicians as for carpenters:  {\em Know your tools!})
 
 \paragraph{A. Seeking a bijection $g: \N \leftrightarrow \F$}
 
-We assume, for contradiction, that a bijection $g: \N \leftrightarrow
-\F$ exists.  As part of this two-way mapping, there exists an {\em
-  injection}
+We assume, for contradiction, that there exists a bijection $g: \N \leftrightarrow \F$.  As part of this two-way mapping, there exists an {\em injection}
 \[ 
 h: \N \ \rightarrow \ \F
 \]
-We view $h$ as an {\em enumeration}---i.e., an ordered listing---of
-the elements of $\F$.  Specifically, for each integer $k \in \N$, we
-can think of $h(k)$ as the ``$k$th binary-valued function in the set
-$\F$.''  We thereby view $h$ as producing an ``infinite-by-infinite''
-matrix $\Delta$ of bits (i.e., binary digits), whose $k$th row is the
-infinite string of bits that is the characteristic vector of the
+We view $h$ as an {\em enumeration}---i.e., an ordered listing---of the elements of $\F$.  Specifically, for each integer $k \in \N$, we can think of $h(k)$ as the ``$k$th binary-valued function in the set $\F$.''  We thereby view $h$ as producing an ``infinite-by-infinite'' matrix $\Delta$ of bits, whose $k$th row is the infinite string of bits that is the characteristic vector of the
 function $h(k)$.  Let us visualize $\Delta$:
 \[ \Delta \ \ = \ \
 \begin{array}{ccccccc}
@@ -1086,39 +1041,23 @@ function $h(k)$.  Let us visualize $\Delta$:
 \end{array}
 \]
 
-\noindent We summarize, for emphasis:
+\noindent We summarize, to reinforce our strategy:
 \begin{itemize}
 \item
-Each row of $\Delta$ consists of the characteristic vector of a
-function in the set $\F$ (which can be thought of as a ``name'' for
-the function).
+Each row of $\Delta$ consists of the characteristic vector of a function in the set $\F$---which can be thought of as a {\em name} for the function.
 
 \item
-Each function in the set $\F$ contributes its characteristic vector as
-a row of $\Delta$.
+Each function in the set $\F$ contributes its characteristic vector as a row of $\Delta$.
 \end{itemize}
-We can, thus, view the successive rows of $\Delta$, $h(0)$, $h(1)$,
-\ldots, as an enumeration of all of the functions in the set $\F$.  In
-other words, we can view $\Delta$ as ``containing'' each function in
-$\F$ precisely once.
+We can, thus, view the successive rows of $\Delta$, $h(0)$, $h(1)$, \ldots, as an enumeration of all of the functions in the set $\F$.  In other words, we can view $\Delta$ as ``containing'' each function in $\F$ precisely once.
 
-\paragraph{B. Every bijection ``misses'' some function}
-%$h: \N \leftrightarrow \F$
+\paragraph{B. Every bijection ``misses'' some function from $\F$}
 
-We are finally poised to find the contradiction to our assumption that
-$|\F| \leq |\N|$.  Specifically, we define from $\Delta$ an infinite
-bit-string
+We are finally poised to find the contradiction to our assumption that $|\F| \leq |\N|$.  Specifically, we define from $\Delta$ an infinite bit-string
 \[ \Psi \ = \ \psi_0 \ \psi_1 \ \psi_2 \ \psi_3 \ \psi_4 \cdots, \]
-that {\em does not} appear in $\Delta$.  For each index $i \in \N$, we
-define the $i$th (binary) digit $\psi_i$ of $\Psi$ from the $i$th {\em
-  diagonal (binary) digit}\footnote{Our use of $\Delta$'s ``diagonal
-  digits'' in this definition is the origin of the term ``{\em
-    diagonal argument}'' \index{diagonal argument} to describe this
-  proof and its intellectual kin.}~$\delta_{i,i}$ of $\Delta$ in the
-following manner.
+that {\em does not} appear in $\Delta$.  For each index $i \in \N$, we define the $i$th (binary) digit $\psi_i$ of $\Psi$ from the $i$th {\em diagonal (binary) digit}\footnote{Our use of $\Delta$'s diagonal digits in this definition is the origin of the term ``{\em diagonal argument}'' to describe this proof and its intellectual kin.}~$\delta_{i,i}$ of $\Delta$ in the following manner.
 \[ \psi_i \ \ \eqdef \ \ \overline{\delta}_{i,i} \ \ = \ \
-\Big[\mbox{\bf if } \ [\delta_{i,i} \ = \ 0] \ \mbox{\bf then } 1 \
-\mbox{\bf else } \ 0 \Big]
+\Big[\mbox{\bf if } \ [\delta_{i,i} \ = \ 0] \ \mbox{\bf then } 1 \ \mbox{\bf else } \ 0 \Big]
 \]
 The important feature of the definition is the following.
 
@@ -1128,25 +1067,15 @@ The bit-string $\Psi$ does not occur as a row of $\Delta$.
 \end{lemma}
 
 \noindent {\it Verification}.
-This is obvious because the bit-string
-$\Psi$ differs from each row $k$ of $\Delta$ in the $k$th position; i.e.,
-$\psi_k \neq \delta_{k,k}$.  \qed
+This is obvious because the bit-string $\Psi$ differs from each row $k$ of $\Delta$ in the $k$th position; i.e., $\psi_k \neq \delta_{k,k}$.  \qed
 
 \subsubsection{The denouement: There is no bijection  $h: \N \leftrightarrow \F$}
 
-The infinite binary string $\Psi$ differs from every row of $\Delta$,
-even though $\Psi$ is the characteristic vector of a binary valued
-function.  Therefore, $\Delta$ {\em does not} contain as a row {\em
-  every} element of $\F$, i.e., the characteristic vector of every
-binary-valued function.  But this contradicts $\Delta$'s assumed
-defining characteristic!
+The infinite binary string $\Psi$ differs from every row of $\Delta$, even though $\Psi$ is the characteristic vector of a binary valued function, i.e., a member of $\F$.  Therefore, $\Delta$ {\em does not} contain as a row {\em every} element of $\F$, i.e., the characteristic vector of every binary-valued function.  But this contradicts $\Delta$'s assumed defining characteristic!
 
-Where could we have gone wrong?  Every step of our argument, save one,
-is backed up by a proof---so the one step that is not so bolstered
-must be the link that has broken the argument.  This one
-unsubstantiated step is our assumption that the set $\F$ is countable.
-Since this assumption has led us to a contradiction, we must conclude
-that the set $\F$, is {\em not} countable!  \qed
+\smallskip
+
+Where could we have gone wrong?  Every step of our argument, save one, is backed up by a proof---so the one step that is not so bolstered must be the link that has broken the argument.  This one unsubstantiated step is our assumption that the set $\F$ is countable. Since this assumption has led us to a contradiction, we must conclude that the set $\F$, is {\em not} countable!  \qed
 \end{proof}
 
 \subsection{$\oplus$ $\R$ Is Uncountable}
