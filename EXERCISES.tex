@@ -212,7 +212,7 @@ Training and gain intuition for mastering geometrical proofs.
 
 Define the following two operations from union and set
 difference: {\it intersection} ($S \cap T$), which isolates all
-elements that sets $S$ and $T$ share, and {\it symmetric difference}
+elements shared by sets $S$ and $T$, and {\it symmetric difference}
 ($S+T$), which isolates all elements that belong to precisely one of
 $S$ and $T$.
 \medskip
@@ -263,6 +263,45 @@ equivalence relation on $S$.
 
 \section{Chapter 4. Numbers I}
 
+\subsection{Complex
+  multiplication via $3$ real multiplications}
+\index{complex number!multiplication via 3 real multiplications}
+
+\noindent {\it The problem.}
+%\label{thm:complex-mult-3real}
+Show how to compute the product of two complex numbers using only {\em three}
+real multiplications rather than four.
+\medskip
+
+\noindent {\it The solution.}
+Although implementing (\ref{eq:complex-mult}) ``directly'' correctly
+produces the product $\kappa = (a+bi) \cdot (c+di)$, there is another
+implementation that is {\em more efficient}.  Specifically, the
+following recipe computes $\kappa$ using only {\em three} real
+multiplications instead of the four real multiplications of the
+``direct'' implementation.  We begin to search for this recipe by
+noting that our immediate goal is to compute both Re$(\kappa) = ac-bd$
+and Im$(\kappa) = ad+bc$.  We can accomplish this by computing the
+{\em three} real products
+\begin{equation}
+\label{eq:complex-mult-3a}
+(a+b) \cdot (c+d); \ \ \ \ \
+ac;  \ \ \ \ \ bd
+\end{equation}
+and then noting that
+\begin{equation}
+\label{eq:complex-mult-3b}
+\begin{array}{lcl}
+\mbox{Im}(\kappa) & = & (a+b) \cdot (c+d) - ac -bd, \\
+\mbox{Re}(\kappa) & = & ac -bd
+\end{array}
+\end{equation}
+We thereby achieve the result of the complex multiplication described
+in (\ref{eq:complex-mult}) while using only {\em three} real
+multiplications.
+
+
+
 \subsection{Another proof for irrationality of $\sqrt{2}$}
 
 \noindent \textit{The aim.}
@@ -311,43 +350,6 @@ The solution is depicted in Fig.~\ref{Fig:sqrtbisInit} and~\ref{Fig:sqrtbisFin} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Chapter 5. Arithmetic}
-
-\subsection{Complex
-  multiplication via $3$ real multiplications}
-\index{complex number!multiplication via 3 real multiplications}
-
-\noindent {\it The problem.}
-%\label{thm:complex-mult-3real}
-Show how to compute the product of two complex numbers using only {\em three}
-real multiplications rather than four.
-\medskip
-
-\noindent {\it The solution.}
-Although implementing (\ref{eq:complex-mult}) ``directly'' correctly
-produces the product $\kappa = (a+bi) \cdot (c+di)$, there is another
-implementation that is {\em more efficient}.  Specifically, the
-following recipe computes $\kappa$ using only {\em three} real
-multiplications instead of the four real multiplications of the
-``direct'' implementation.  We begin to search for this recipe by
-noting that our immediate goal is to compute both Re$(\kappa) = ac-bd$
-and Im$(\kappa) = ad+bc$.  We can accomplish this by computing the
-{\em three} real products
-\begin{equation}
-\label{eq:complex-mult-3a}
-(a+b) \cdot (c+d); \ \ \ \ \
-ac;  \ \ \ \ \ bd
-\end{equation}
-and then noting that
-\begin{equation}
-\label{eq:complex-mult-3b}
-\begin{array}{lcl}
-\mbox{Im}(\kappa) & = & (a+b) \cdot (c+d) - ac -bd, \\
-\mbox{Re}(\kappa) & = & ac -bd
-\end{array}
-\end{equation}
-We thereby achieve the result of the complex multiplication described
-in (\ref{eq:complex-mult}) while using only {\em three} real
-multiplications.
 
 
 \subsection{A ``trick'' for squaring certain integers}
