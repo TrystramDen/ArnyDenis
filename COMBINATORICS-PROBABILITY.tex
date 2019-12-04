@@ -508,21 +508,13 @@ $p=lim_{n \rightarrow \infty}\frac{d(n)}{n!}=\frac{1}{e}$.
 \section{Introducing Combinatorial Probability via Examples}
 \label{sec:combinatorial-prob}
 
-Perhaps the easiest and most engaging way to introduce ``combinatorial
-probability''---i.e., probability via counting"---is by calculating
-game-related likelihoods---deals of cards, rolls of dice, and guessing
-games of various sorts.  ``Why is one specific genre of deal in poker
-(say, a straight) worth more than another (say, three of a kind)?"
-The arithmetic required for such a discussion is elementary, and the
-references to ``{\it gedanken} gambling'' are easily understood and
-are of some interest even to non-gamblers.  One can also introduce in
-such a setting concepts such as randomness, bias, etc., that are so
-important in the design of experiments and the analysis of their
-outcomes.
+\index{probability via counting} \index{game of poker}
 
-This, then, will be our approach to the subject of combinatorial probability.  The reader has already
-seen more than enough ``dry" facts about sets and how to count their elements.  It is time to
-reap the rewards of acquiring access to that material. 
+Perhaps the easiest and most engaging way to introduce ``combinatorial probability''---i.e., probability via counting"---is by calculating game-related likelihoods---deals of cards, rolls of dice, and guessing games of various sorts.  Why is one specific genre of deal in the game of poker (say, a ``straight") worth more than another (say, ``three of a kind")?  The arithmetic required for such a discussion is elementary, and the references to {\it gedanken gambling} (gambling via thought experiment) are easily understood---and, they are usually of some interest even to non-gamblers.  One can also introduce in such a setting concepts such as randomness and bias, which are so important in the design of experiments and the analysis of their outcomes.
+
+\smallskip
+
+This, then, will be our approach to the subject of combinatorial probability.  The reader has already seen more than enough ``dry" facts about sets and how to count their elements.  It is time to reap some rewards from the work of acquiring that knowledge. 
 
 \ignore{***************
 \subsection{A Practical Introduction to Probability}
@@ -549,18 +541,20 @@ following subsections.
 {\Denis Here we may be more precise about the content: the probabilities are built upon combinatoric rules, another interesting point is to distinguish between probability and statistics...}
 *****************}
 
-Before we begin to play, though, we establish some expectations,
-beginning with the combinatorics-based definition of ``probability''
-that sets the tone for this section.
-
 \bigskip
 
+Before we begin to play, though, we need some groundwork, beginning with the combinatorics-based definition of ``probability'' that sets the tone for this section.
+
+\medskip
+
 \noindent
-{\em  The (discrete) {\em probability}, or, {\em likelihood}, of an event is the ratio:}
+The {\em (discrete) probability}, or, {\em likelihood}, of an event is the ratio:
 \begin{equation}
 \label{eq:prob-def-ratio}
 \frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
 \end{equation}
+
+\smallskip
 
 \noindent
 This approach to probabilities has important technical consequences.
@@ -569,7 +563,7 @@ This approach to probabilities has important technical consequences.
 The probability of any targeted event $E$ is $\leq 1$.  This means:
     \begin{itemize}
     \item
-If the probability of $E$ is $1$, then event $E$ is a certainty.
+If the probability of $E$ is $1$, then event $E$ is a {\em certainty}.
     \item
 If the probability of $E$ is $< 1$, then event $E$ is possible but not certain.
    \end{itemize}
@@ -578,16 +572,15 @@ If the probability of $E$ is $< 1$, then event $E$ is possible but not certain.
 The probability of any targeted event is $\geq 0$.   This means:
     \begin{itemize}
     \item
-If the probability of $E$ is $0$, then event $E$ is an impossibility.
+If the probability of $E$ is $0$, then event $E$ is an {\em impossibility}.
     \item
 If the probability of $E$ is $> 0$, then event $E$ is a possibility.
    \end{itemize}
 
   \item
-The more likely an event is, the closer its probability is to $1$.
+The more likely event $E$ is, the closer its probability is to $1$.
   \item
-By the addition rule for counting sets, the joint probability of two {\em disjoint} events
-equals the sum of the events' probabilities.
+By the addition rule for counting sets, the joint probability of two {\em disjoint} events equals the sum of the events' probabilities.
   \item
 As a special case of the preceding rule: the joint probability of two {\em complementary} events
 equals $1$.  This is because the complement of an event whose probability is $p$ has
@@ -597,18 +590,20 @@ probability  $(1-p)$.
 \bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-As just asserted, we view a probability as a number $p$ in the range $0 \leq p \leq 1$.  
+\begin{minipage}{0.96\textwidth}
+In our formulation, a probability as a number $p$ in the range $0 \leq p \leq 1$.  
+
+\smallskip
+
 It is also very common, though, to view a probability as a {\em percent}, as in
 
 \smallskip
 
 \hspace*{.2in}``The likelihood of rain this morning is $50$\%."
 
-\smallskip
+\medskip
 
-In order to understand these competing locutions, the reader should recall that the word
-``percent" derives from the Latin ``{\it per centum}", which means ``per hundred".
+In order to understand these alternative locutions, the reader should recall that the word ``percent" derives from the Latin ``{\it per centum}", which means ``per hundred".
 Therefore, one can always interchange the following  locutions
 
 \smallskip
@@ -622,30 +617,20 @@ Therefore, one can always interchange the following  locutions
 \bigskip
 
 \noindent
-We are going to focus on {\em games of pure chance}---with no
-complicating notion of strategy---because our underlying interest is in
-probability, not game theory.
+We are going to focus on {\em games of pure chance}---with no complicating notion of strategy---because our underlying interest is in probability, not game theory.
 
 \bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-There exists an exciting mathematical field of study that is dedicated to all games:
-games of pure chance (which is our focus), games that combine skill and chance (e.g.,
-backgammon, bridge, or poker), and games of pure skill (e.g., chess or GO).   But, alas,
-the issues one must deal with when studying the broad spectrum of games go beyond the 
-scope of our introductory text.
+\begin{minipage}{0.96\textwidth}
+There exists an exciting mathematical field of study that is dedicated to all games: games of pure chance (which is our focus), games that combine skill and chance (e.g., {\it backgammon} or {\it bridge} or {\it poker}), and games of pure skill (e.g., {\it chess} or {\it GO}).   But, alas, the issues that one must deal with when studying the broad spectrum of games go beyond the  scope of our introductory text.
+
+\medskip
 
 \index{von Neumann, John} \index{Morgenstern, Oskar} \index{Nash, John}
-We recommend to the reader just two classics works that may be of interest for historical 
-and cultural reasons, as well to supply a foundation for further study.  The first reference is to the
-classic \cite{vonNeumann-Morg} by American polymath John von Neumann 
-and German economist Oskar Morgenstern, which established the
-connection between the mathematical subject of game theory and the field of economics.  
-(Now-familiar concepts such as ``rational game" and ``zero-sum game" originated in
-\cite{vonNeumann-Morg}.)  The second classic is \cite{Nash50}, by the American mathematician
-John Nash, which introduced the now-familiar notion of ``Nash equilibrium."
-(The story behind \cite{Nash50} was movingly related in the movie ``{\it A Beautiful Mind}".)
+
+We recommend to the reader just two classical works that may be of interest for historical and cultural reasons, as well to supply a foundation for further study.  The first reference is to the
+classic \cite{vonNeumann-Morg} by American polymath John von Neumann  and German economist Oskar Morgenstern, which established the connection between the mathematical subject of game theory and the field of economics.  (Now-familiar concepts such as ``rational game" and ``zero-sum game" originated in \cite{vonNeumann-Morg}.)  The second classic is \cite{Nash50}, by the American mathematician John Nash, which introduced the now-familiar notion of ``Nash equilibrium." (The story behind \cite{Nash50} is movingly related in the movie ``{\it A Beautiful Mind}".)
 \end{minipage}
 }
 
@@ -675,12 +660,10 @@ $\displaystyle \left\{
 
 \medskip
 
-\noindent
-In a popular version of the game of poker, each player is dealt a {\it hand} consisting of five cards.
-The total number of possible $5$-card hands, i.e., of (unordered sets) of $5$ cards, is just the number
-of ways of choosing a $5$-element set from a $52$-element set.  Using the counting techniques from
-Section~\ref{sec:set-arrangement}, we discover that this ``astronomical" number is
 \index{the number of random $5$-card deals in poker} 
+
+\noindent
+In a popular version of the game of poker, each player is dealt a {\it hand} consisting of five cards.  The total number of possible $5$-card hands, i.e., of (unordered sets) of $5$ cards, is just the number of ways of choosing a $5$-element set from a $52$-element set.  Invoking the counting techniques from Section~\ref{sec:set-arrangement}, we note that this ``astronomical" number is
 \[
 {32 \choose 5} \ \ = \ \ \frac{52!}{5! 47!} \ \ = \ \ 2,598,960 
 \]
@@ -688,15 +671,21 @@ The size of this number explains much of what of makes the game of poker so inte
 
 \medskip
 
-Of course, it is the {\em patterns} of the cards in various hands that determines which hands
-beat other ones in the competition that is at the heart of poker.  It is a reasonable
-conjecture that the {\em value} of a given pattern is proportional to the {\em likelihood}
-of that pattern's arising in a random deal of five cards.  (Of course, {\em random} deals are 
-the personification of a {\em fair} game.)
+Of course, it is the {\em patterns} of the cards in various hands that determines which hands beat other ones in the competition that is at the heart of poker.  It is a reasonable conjecture that
 
-We now calculate the likelihoods of a variety of patterns arising in a fair game, in order to study
-the validity of the preceding conjecture.  As we derive the likelihoods of the various patterns,
-observe the many invocations of the multiplication rule for the probabilities of independent events.
+\smallskip
+
+\noindent
+{\em the {\em value} of a pattern tracks the {\em likelihood} of the pattern's arising in a random deal.}
+
+\smallskip
+
+\noindent
+(Of course, {\em random} deals are  the personification of a {\em fair} game.)
+
+\bigskip
+
+We now calculate the likelihoods of a variety of patterns arising in a fair game of poker, in order to study the validity of the preceding conjecture.  As we derive the likelihoods of the various patterns, observe the many invocations of the multiplication rule for the probabilities of independent events.
 
 \medskip
 
@@ -705,7 +694,11 @@ observe the many invocations of the multiplication rule for the probabilities of
 \item
 A {\it royal flush} is a poker hand of the form
 
+\smallskip
+
 \hspace*{.25in}$10$, \ {\sc Jack}, \ {\sc Queen}, \ {\sc King}, \ {\sc Ace} \ \ of the same suit
+
+\smallskip
 
 \noindent
 There are only four ways to form a royal flush---one for each suit.  Therefore, the probability that
@@ -718,10 +711,13 @@ Pr(\mbox{royal flush}) \ \ = \ \
 A {\it straight flush} is a poker hand in which the cards share the same suit and follow one 
 another in value.  Thus, a royal flush is a straight flush whose highest-rank card is an {\sc Ace}.
 
+\medskip
+
 Let us calculate the number of straight flushes that are {\em not} royal flushes.
 
-The counting is similar as for a royal flush:  For each suit, there are nine sequences of $5$ cards
-that are consecutive in rank.  From lowest rank to highest:
+\smallskip
+
+The counting is similar to that for a royal flush:  For each suit, there are nine sequences of $5$ cards that are consecutive in rank.  From lowest rank to highest:
 \[ \begin{array}{llccccc}
 \mbox{Hand \#1}: & &
 2 & 3 & 4 & 5 & 6 \\
@@ -745,25 +741,26 @@ that are consecutive in rank.  From lowest rank to highest:
      & \mbox{K}
      & \mbox{A}
 \end{array} \]
-The probability of being dealt a royal flush is, thus, precisely $1/9$ the probability of being dealt a
-straight flush.  The probability of getting a straight flush is, therefore,
+The probability of being dealt a royal flush is, thus, precisely $1/9$ the probability of being dealt a straight flush.  The probability of getting a straight flush is, therefore,
 \[  Pr(\mbox{straight flush}) \ \ = \ \
 {9 \over {649,740}} \ \ \approx \ \ 0.0000139  \ \ = \ \ 1.39 \times 10^{-5} \]
 
 \item
-{\it Four-of-a-kind} is a poker hand of the form \\
-\hspace*{.25in}$X, \ X, \ X, \ X, \ Y$ \\
+{\it Four-of-a-kind} is a poker hand of the form
+
+\smallskip
+
+\hspace*{.25in}$X, \ X, \ X, \ X, \ Y$
+
+\smallskip
+
 where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
 and $X \neq Y$.
 \index{four of a kind (in poker)}
 
 \medskip
 
-There are $13$ possible face values; each is a candidate for being card $X$.  Having chosen card
-$X$, there are $48$ possible choices for card $Y$.  Each selection  of
-cards $X$ and $Y$ specifies a unique {\it four-of-a-kind} poker hand.
-The multiplication principle thus tells us that there are precisely $13 \times 48 = 624$
-{\it four-of-a-kind} poker hands, so the probability of being dealt such a hand is
+There are $13$ possible face values; each is a candidate for being card $X$.  Having chosen card $X$, there are $48$ possible choices for card $Y$.  Each selection  of cards $X$ and $Y$ specifies a unique {\it four-of-a-kind} poker hand.  The multiplication principle thus tells us that there are precisely $13 \times 48 = 624$ {\it four-of-a-kind} poker hands, so the probability of being dealt such a hand is
 \[ 
 Pr(\mbox{four of a kind}) \ \ = \ \
 \frac{624}{2,598,960 }  \ \ \approx \ \ 2.4 \times 10^{-4} . \]
@@ -779,87 +776,78 @@ We finally look at two more poker hands together because the analyses of their
 respective patterns are so similar.
 \begin{itemize}
 \item
-A {\it Full house} is a poker hand of the form \\
-\hspace*{.25in}$X, \ X, \ X, \ Y ,\ Y$ \\
-where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
-and $X \neq Y$.
+A {\it Full house} is a poker hand of the form
+
+\smallskip
+
+\hspace*{.25in}$X, \ X, \ X, \ Y ,\ Y$
+
+\smallskip
+
+where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$,  and $X \neq Y$.
  \index{full house (in poker)} 
 
 \medskip
 
 \index{three of a kind (in poker)}
 \item
-{\it Three of a kind} is a poker hand of the form \\
-\hspace*{.25in}$X, \ X, \ X, \ Y, \ Z$ \\
-where $X, Y,  Z \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$, 
-and $|\{X, Y, Z\}| =3$.  The final equation here  is a ``cute", succinct, way of saying that $Y$ and $Z$
-differ both from $X$ and from each other.
+{\it Three of a kind} is a poker hand of the form
+
+\smallskip
+
+\hspace*{.25in}$X, \ X, \ X, \ Y, \ Z$
+
+\smallskip
+
+where $X, Y,  Z \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$,  and $|\{X, Y, Z\}| =3$.  The final equation, about set-cardinality, is a ``cute", succinct, way of saying that $Y$ and $Z$ differ both from $X$ and from each other.
 \end{itemize}
 For both of these patterns, the analysis begins by noting that the face-value $X$ can be chosen
-in $13$ ways.  Having chosen face-value $X$, we select three of the four cards with that face-value:
-this choice can be made in $\displaystyle {4 \choose 3}$ ways.  The $X$ component of the hand
-has now been selected.
+in $13$ ways.  Having chosen face-value $X$, we select three of the four cards with that face-value: this choice can be made in $\displaystyle {4 \choose 3} = 4$ ways.  The $X$ component of the hand has now been selected.
 
-With the {\it full-house} pattern, we must now choose the face-value $Y$.  This can be done in $12$ ways.
-The selection of the hand is completed once we select the $\displaystyle {4 \choose 2} = 6$
-needed cards that have face-value $Y$.
+\smallskip
+
+With the {\it full-house} pattern, we must now choose the face-value $Y$.  This can be done in $12$ ways.  The selection of the hand is completed once we select the $\displaystyle {4 \choose 2} = 6$ needed cards that have face-value $Y$.
+
+\smallskip
 
 Summing up, the {\it full-house} pattern can be assembled in
 \[ 13 \cdot {4 \choose 3} \cdot 12 \cdot {4 \choose 2} \ \ = \ \  3,744 \]
 ways, so the probability of being dealt such a hand is
 \[ 
 Pr(\mbox{full house}) \ \ = \ \
-\frac{3744}{2,598960}  \ \ \approx \ \ 1.44 \times 10^{-3} . \]
+\frac{3744}{2,598960}  \ \ \approx \ \ 1.44 \times 10^{-3}
+\]
 
 \medskip
 
-To finish up the {\it three of a kind} poker hand, we remark that once we have selected the $X$
-component of the hand,  we must select the remaining cards by choosing the (distinct) face-values of
-$Y$ and $Z$; this can be done in $\displaystyle {12 \choose 2} = 66$ ways.  Then, for each of these
-choices we must select a specific card, which can be done in $4$ ways.  We thereby find that the
-{\it three of a kind} pattern can be assembled in
+To finish up the {\it three-of-a-kind} poker hand, we remark that once we have selected the $X$
+component of the hand, we must select the remaining cards by choosing the (distinct) face-values of $Y$ and $Z$; this can be done in $\displaystyle {12 \choose 2} = 66$ ways.  Then, for each of these choices we must select a specific card, which can be done in $4$ ways.  We thereby find that the {\it three-of-a-kind} pattern can be assembled in
 \[ 13 \cdot {4 \choose 3} \cdot {12 \choose 2} \cdot 4^2 \ \ = \ \  54,912 \]
 ways, so the probability of being dealt such a hand is
 \[ Pr(\mbox{three of a kind}) \ \ = \ \
  \frac{}{2,598,960}  \ \ \approx \ \ 2.11 \times 10^{-2} . \]
-
-\ignore{****************
-The analysis of the first of these two patterns follows the same logic as for the Four-of-a-kind.
-Again, there are as many possibilities of the $3$ base cards of the pattern than the number of cards in a color ($13$)
-with only $3$ colors among the 4: ${4 \choose 3}$.
-The two remaining cards should be different from the kind (and different from each other), 
-thus, their number is to select $2$ among the $12$ remaining ones,
-each one can take any colors (their number is $4^2$).
-The final expression is:
-
-$13.{4 \choose 3}.{12 \choose 2}.4^2 = 858$
-
-For getting a Full House, the enumeration is close to the previous one, but there is a slight difference 
-on the two remaining cards,
-which here should by a pair (two of the same kind, that is only $1$ card among the $12$, 
-this card can take any of the four colors),
-thus:
-\[ 13 \times {4 \choose 3} \times {12 \choose 1} \times 4 = 156 \]
-**********************}
 \end{itemize}
 
-One can find in many sources (such as the Internet) tables that: enumerate all possible poker hands,
-describe all ways of assembling each hand, and compute the probabilities of being dealt each hand.
+\medskip
+
+One can find in many sources (including the Internet) tables that: enumerate all possible poker hands, describe all ways of assembling each hand, and compute the probabilities of being dealt each hand.
+
+\smallskip
+
 Of course, our interest has been in exposing how to perform these calculations, not with their
 results---but it s fun to see why the various poker hands have their relative values in the game.
-
 
 
 \subsection{The Monty Hall Puzzle: {\em Conditional} Probabilities}
 \label{sec:monty-hall}
 
-The following real-life situation illustrates that reasoning
-probabilistically is not easy and can be quite unintuitive.
+The following real-life situation illustrates that reasoning probabilistically is not easy and that it can be quite unintuitive.
 
-We recall a popular TV show from the 1970s and 1980s, \textit{Let's
-  Make a Deal}.\index{Let's Make a Deal} In one segment of each airing of the show, a
-contestant was confronted by three doors, door (1), door (2), and door
-(3); see Fig.~\ref{fig:MonthyHal-1}.
+\bigskip
+
+\index{Let's Make a Deal}
+
+We recall a popular TV show from the 1970s and 1980s, \textit{Let's Make a Deal}.  In one segment of each airing of the show, a contestant was confronted by three doors, door (1), door (2), and door (3); see Fig.~\ref{fig:MonthyHal-1}.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths/MonthyHallInitial}
@@ -868,55 +856,42 @@ contestant was confronted by three doors, door (1), door (2), and door
         \label{fig:MonthyHal-1}
 \end{center}
 \end{figure}
-The contestant was told that a jackpot was behind one of the doors;
-the other two hid less-desirable prizes.  The show's host, Monty Hall,
-invited the contestant to choose one of the doors:
-she would receive whatever prize was behind the door she selected.
+The contestant was told that a jackpot was hidden behind one of the doors and that the other two doors hid less-desirable prizes.  The show's host, Monty Hall, invited the contestant to choose one of the doors: she would receive whatever prize was behind the door she selected.
 \index{Hall, Monty} 
 
-Since the door names are irrelevant to the story, let us assume that
-the contestant chose door (1).  Before that selection was considered
-final, Monty Hall would open {\em one of} doors (2) or (3), i.e., one
-of the two {\em unchosen} doors.  Again for illustration, let us
-assume that Monty opened door (3).  Assuming that the jackpot did {\em not} appear 
-behind door (3), Monty now gave the contestant the
-option of changing her initial choice, from door (1) to door (2).
+\smallskip
+
+Since the door names are irrelevant to the story, let us assume that the contestant chose door (1).  Before that selection was considered final, Monty Hall would open {\em one of} doors (2) or (3), i.e., one of the two {\em unchosen} doors.  Again for illustration, let us assume that Monty opened door (3).  Assuming that the jackpot did {\em not} appear  behind door (3), Monty now gave the contestant the option of changing her initial choice, from door (1) to door (2).
+
+\medskip
 
 What should the contestant do?  
 
-Let us begin with intuition.  As the story began, the contestant had a
-one-in-three chance of choosing the door that hid the jackpot.  As the
-story progresses, is it conceivable that these odds could have changed after door
-(3) is shown {\em not} to hide the jackpot?  How could this be?
+\medskip
+
+Let us begin with intuition.  As the story began, the contestant had a one-in-three chance of choosing the door that hid the jackpot.  As the story progresses, is it conceivable that these odds could have changed after door (3) is shown {\em not} to hide the jackpot?  How could this be?
+
+\smallskip
 
 \index{von Savant, Marilyn}
-Well, the popular (well-named) columnist Marilyn von Savant
-published an analysis that shows that {\em it is better to change one's choice!}  
-Here is her reasoning, enhanced by the illustration in Fig.~\ref{fig:MonthyHall-2}.
+Well, the popular (well-named) newspaper columnist Marilyn von Savant published an analysis that shows that {\em it is better to change one's choice!}  Here is her reasoning, enhanced by the illustration in Fig.~\ref{fig:MonthyHall-2}.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths/MonthyHall}
 %                \includegraphics[scale=0.4]{FiguresProba/Monthy}
-        \caption{Suppose the jackpot is behind door (3). 
-        If we select it, we lose if we change the initial choice.
-        However, it is better to change if we select one of both other doors (1) or (2).}
+        \caption{Suppose the jackpot is behind door (3).  If we selected door (3) initially, then {\em not switching is a win}, while {\em switching is a loss}.  If we selected either door (1) or door (2), then {\em switching is a win}  while {\em not switching is a loss}.}
         \label{fig:MonthyHall-2}
 \end{center}
 \end{figure}
-We distinguish the two possible cases.
+There are two possible cases.
 \begin{itemize}
 \item
-If the contestant had selected the jackpot-door at the beginning, then
-holding on to this choice leads to the same probability of success as
-she had from the beginning, namely, {\em one-third}.
+If the contestant had selected the jackpot-door initially, then holding on to this choice leads to the same probability of success as she had from the beginning, namely, $1/3$.
 \item
-If the contestant had selected a wrong door at the beginning---which
-occurs with probability {\em two-thirds}---then she will win the
-jackpot if she now changes her initial (erroneous) choice.
+If the contestant had selected a wrong door initially---which occurs with probability $2/3$---then she will win the jackpot if she now changes her initial (erroneous) choice.
 %because now the choice in among two cases. 
 \end{itemize}
-Thus, quite unintuitively, the contestant should change her original
-choice based on the information she has now.
+Thus, quite unintuitively, the contestant should change her original choice based on the information she has now.
 
 \smallskip
 
@@ -926,35 +901,45 @@ You can have fun by confronting your friends with this unintuitive analysis.
 
 \index{conditional probability} \index{Bayes's Theorem}
 
-Of course, this is not just a trick!  It is a demonstration that you can improve your chances of winning by taking advantage of all available information!  The ``science'' behind this analysis builds upon the topic of {\em conditional probability}.  Rather than looking only at the probability of an event $E$ in isolation, one focuses on the probability of event $E$, {\em given that some event $F$ has occurred}.  The {\em notation}that traditionally indicates this shift in focus is the following: If one uses the notation $Pr[E]$ to denote the probability of event $E$ in isolation, then one uses the embellishment $Pr[E \ | \ F]$ to denote, the probability of the compound event: ``$E$, given $F$''.
+Of course, the Monty Hall game and its analysis are not just a trick!  Our story is a demonstration that you can improve your chances of winning by taking advantage of all available information!  The ``science'' behind this analysis builds upon the topic of {\em conditional probability}.  Rather than looking only at the probability of an event $E$ in isolation, one focuses on the probability of event $E$, {\em given that some event $F$ has occurred}.  The {\em notation} that traditionally indicates this shift in focus is the following: If one uses the notation $Pr[E]$ to denote the probability of event $E$ in isolation, then one uses the embellishment $Pr[E \ | \ F]$ to denote, the probability of the compound event: ``$E$, given $F$''.
 
-A complete development of the theory that explains the Monty Hall puzzle would augment the use of conditional probabilities with an invocation of Bayes's Theorem, a seminal result within the theory of
-conditional probabilities.
+\medskip
 
-The topic of conditional probability and the development of Bayes's Theorem are beyond the scope of this text.  We refer the interested reader to \cite{Lee12} for a general presentation of this area, and to
-\cite{Bayes} for the original work on the Theorem.
+In order to supply a complete development of the theory that explains the Monty Hall puzzle, we would have to employ conditional probabilities, which would require invoking Bayes's Theorem, a seminal result within the theory of conditional probabilities---which would take us beyond the limits of an introductory text.
 
-And---see the interactive sites on the Internet that actually perform the computation of likelihoods!
+\smallskip
+
+We refer the interested reader to \cite{Lee12} for a general presentation of this area, and to \cite{Bayes} for the original work on the Theorem.
+
+\smallskip
+
+And---see the interactive sites on the Internet that interactively perform the computation of (conditional) likelihoods!
 
 
 \subsection{The Birthday Puzzle: {\em Complementary} Counting}
 \label{sec:birthday-puzzle}
 \index{birthday puzzle}
 
-This section presents another application of the rules of enumeration
-to the calculation of probabilities.%~\cite{DumasTrystram}.
-The main message with this application is:
-{\em it is sometimes easier to calculate the probability that an event {\em does not} occur than
-the probability that it {\em does} occur.}  (Of course, this is a ``rule of thumb", not a formal 
-proposition. But, we do invite you to replicate the conclusions of this section via a direct argument.)
-
-\medskip
-
-A common technique that teachers employ to establish rapport with a new class is to determine whether any students in the class share a birthday.  We demonstrate in this section that when the class has (at least) around 30 students, the answer is usually \textit{yes}.  The fact that we can make such a specific claim  suggests that the presence of birthday-sharers is not a mere accident---there are probabilities at work here!
+This section presents another application of the rules of enumeration to the calculation of probabilities.  The main lesson associated with this application is the following.
 
 \smallskip
 
-Let us study the following question.
+\noindent
+{\em it is sometimes easier to calculate the probability that event $E$ {\em does not} occur than the probability that it {\em does} occur.}  
+
+\smallskip
+
+\noindent
+(Of course, this is not a formal  proposition. But, we do invite you to replicate the conclusions of this section via a direct argument.)
+
+\bigskip
+
+A common technique that teachers employ to establish rapport with a new class is to determine whether any students in the class share a birthday.  We now demonstrate that when the class has (at least) around 30 students, the answer is usually \textit{yes}.  The fact that we can make such a specific claim suggests that the presence of birthday-sharers is not a mere accident---there are probabilities at work here!
+
+\medskip
+
+\noindent
+We study the following question.
 
 \smallskip
 
@@ -964,77 +949,58 @@ Let us study the following question.
 
 \medskip
 
-\ignore{****************
-\noindent \fbox{
-\begin{minipage}{0.96\textwidth}
-If the teacher's new class focuses on a mathematical subject, then there is a teaching
-opportunity here!  The teacher and the students can collaboratively derive an answer
-to the preceding question.
-\end{minipage}
-}
-
-\bigskip
-***************}
-
 \noindent
-We now develop an answer to the birthday-sharing question, based on the assumption
-that all dates are equally probable as potential birthdays.
+We develop an answer to this question, based on the assumption that all dates are equally probable potential birthdays.
 
 \bigskip
 
 Let us focus on a common year, with 365 days; a simple modification of the coming calculation 
 accommodates leap years.  A first, obvious, remark is that when there are 366 people in the 
-class---and only then---the pigeonhole principle {\em guarantees} (with probability 100\%) 
-that some two people share a birthday.  When we lower our birthday-sharing target to a 
-{\em 50\% probability} of a shared birthday, how much does this lower the required population 
-of 366?  Somewhat unintuitively, the required number is lowered dramatically!
+class---and only then---the pigeonhole principle {\em guarantees} (with probability 100\%)  that some two people share a birthday.  When we lower our birthday-sharing target to a  {\em 50\% probability} of a shared birthday, how much does this lower the required population  of 366?  Somewhat unintuitively, the required number is lowered dramatically!
 
 \bigskip
 
 \index{dual problem} 
-We simplify the calculational component of our solution considerably by focusing on the 
-{\em dual} form of our problem.  That is:
+We simplify the calculational component of our solution considerably by focusing on the  {\em dual} form of our problem.  That is:
+
+\begin{description}
+\item[]
+{\em Instead of} determining a {\em lower bound} on the population that would guarantee a 50\% probability of a shared birthday,
+
+\item[]
+{\em we determine} an {\em upper bound} on the population that would guarantee a 50\% probability of {\em no} shared birthday.
+\end{description}
 
 \smallskip
 
-\noindent {\em Instead of} determining a {\em lower bound} on the population
-that would guarantee a 50\% probability of a shared birthday,
+Since we assume that all birthdays are equally likely, the probability that any particular person has any particular birthday is $1/365$.  In other words, the space of all possible assignments of birthdays to all $n$ people has $365^n$ assignments---all of which are equally likely.
 
-\noindent {\em we determine} an {\em upper bound} on the population that would
-guarantee a 50\% probability of {\em no} shared birthday.
+\bigskip
 
-\medskip
-
-Since we assume that all birthdays are equally likely, the probability
-that any particular person has any particular birthday is $1/365$.  In
-other words, the space of all possible assignments of birthdays to all
-$n$ people has $365^n$ assignments---all of which are equally likely.
-
-Let us perform the following {\em gedanken} experiment (i.e., ``thought-experiment").
+Let us perform the following {\em gedanken} assignment of birthdays.
 
 \smallskip
 
-Say that we have an assemblage of $n$ ``proto-people"---i.e., people who do not yet have  birthdays.
-Our task is to assign birthdays to these folks in such a way that no two of them share a birthday.
+Say that we have an assemblage of $n$ ``proto-people"---i.e., people who do not yet have  birthdays.  Our task is to assign birthdays to these folks in such a way that no two of them share a birthday.
+\begin{itemize}
+\item
+We can select a birthday for person \#1 from any of the $365$ (indistinguishable) days of the year.
+\item
+We can select a birthday for person \#2 only from the $364$ (indistinguishable) days of the year that person \#1 has not ``occupied''.
 
-Focus first on person \#1: her birthday can be selected from any of
-the $365$ (indistinguishable) days of the year.  Moving on to person
-\#2: his birthday can be selected only from the $364$
-(indistinguishable) days of the year that person \#1 has not
-``chosen'': otherwise persons \#1 and \#2 would share a birthday!  By
-similar reasoning, person \#3's birthday can be selected from only the
-$363$ days that the first two people have not claimed, person \#4
-chooses from among $362$ days, and so on, until person \#$n$ chooses
-from among $365-(n-1)$ days.
+\smallskip
 
-The preceding tally indicates that among the $365^n$ possible
-assignments of birthdays to $n$ people, only
-\[ 365 \times 364 \times 363 \times \cdots \times
-(366-n+1) \ = \ \frac{365!}{(365-n)!} 
-\]
-assignments have no two people sharing a birthday.  Worded as a
-probability, then, if we denote by $p(n)$ the probability that there are no shared
-birthdays in a population of $n$ people, we find that
+Otherwise persons \#1 and \#2 would share a birthday!
+\item
+Proceeding by similar reasoning:  We can select person \#3's birthday from only the $363$ days that the first two people have not ``occupied"; we have $362$ days available for person \#4, and so on, until person \#$n$'s birthday must be selected from among $365-(n-1)$ days.
+\end{itemize}
+Our procedure indicates that among the $365^n$ possible assignments of birthdays to $n$ people, only
+\[ 365 \times 364 \times 363 \times \cdots \times (366-n+1) \ = \ \frac{365!}{(365-n)!}  \]
+assignments have no two people sharing a birthday.
+
+\smallskip
+
+Worded as a probability: Letting $p(n)$ denote the probability that there are no shared birthdays in a population of $n$ people:
 \begin{eqnarray*}
 p(n) & = &
 \frac{\mbox{number of birthday assignments with no shared birthday}}
@@ -1045,22 +1011,31 @@ p(n) & = &
 
 \medskip
 
-Let us return to our original problem, which focuses on assignments in
-which there exists at least one shared birthday.  Since the event \\
-\hspace*{.25in}some two people share a birthday \\
-is the complement of the event \\
-\hspace*{.25in}no two people share a birthday \\
-the probability of a shared birthday is precisely $1-p(n)$.  We find
-that for $n=23$, the desired probability is $0.5073$:  In other words,
+Let us return to our original problem, which focuses on assignments in which there exists at least one shared birthday.  Since the event
+
+\smallskip
+
+\hspace*{.25in}some two people share a birthday
+
+\smallskip
+
+\noindent
+is the complement of the event
+
+\smallskip
+
+\hspace*{.25in}no two people share a birthday
+
+\smallskip
+
+\noindent
+the probability of a shared birthday is precisely $1-p(n)$.  For $n=23$, the desired probability is $0.5073$:  In other words,
 
 \begin{prop}
-In any group of $23$ people, the likelihood that two people share the same
-birthday is slightly greater than $50\%$, assuming a year with $365$
-equally likely days.
+In any group of $23$ people, the likelihood that two people share the same birthday is slightly greater than $50\%$, assuming a year with $365$ equally likely days.
 \end{prop}
 
-When our teacher's class grows to 30 students, the probability of a shared birthday grows
-to $70.632\%$.
+When our teacher's class grows to 30 students, the probability of a shared birthday grows to $70.632\%$.
 
 
 \subsection{Sum-of-Spots Dice Games: Counting with Complex Events}
@@ -1068,39 +1043,22 @@ to $70.632\%$.
 \index{Dice games}
 
 Archaeology suggests that games have fascinated our species since our origins.  The 
-games that have endured span a broad spectrum, from those that depend almost entirely 
-on thinking and strategy to those that depend on pure chance.  (One would place chess 
-at one end of this spectrum and (fair) flipping of a fair coin at the other end.)  A number of 
-ancient games that have endured involve the rolling of 6-sided dice, each die\footnote{The 
-word ``dice'' is plural.  The singular form is ``die''.}~having distinct numbers (usually denoted
-by {\it spots}) on its six faces.  For convenience, we refer to each die's face-numbers via the 
-numerals $1, 2, 3, 4, 5, 6$.  (Ancient Egyptians played such games, as did Roman legionaries; 
-and such games persist in present-day casinos.)
+games that have endured span a spectrum from those that depend almost entirely on thinking and strategy to those that depend on pure chance.  A number of games that have endured involve the rolling of 6-sided dice, each die\footnote{The word ``dice'' is plural; the singular form is ``die''.}~having distinct numbers (usually denoted by {\it spots}) on its six faces.  For convenience, we refer to each die's face-numbers via the numerals $1, 2, 3, 4, 5, 6$. (Ancient Egyptians played such games, as did Roman legionaries;  and such games persist in present-day casinos.)
+
+\smallskip
 
 \index{Dice games!craps} \index{Dice games!sum-of-three} 
 We discuss two ancient dice games: The first game, known as ``{\it craps}'' in North America, 
-involves rolling two dice at a time; the second game, which we call ``{\it sum-of-three}'',
-involves rolling three dice at a time.  With both games, the outcome of interest is the {\em sum} 
-of the spots on the upward-oriented faces of the rolled dice.  (For example, the sums
-``$7$'' and ``$11$'' are winning outcomes in craps; ``$2$'', ``$3$'', and ``$12$'' are losing 
-outcomes; all other sums are ``roll-again'' outcomes.)  We highlight the word ``sum'' to 
-stress that the order in which the dice reveal their spots is not relevant.  This means that the
-outcomes we distinguish consist of pairs of the form $ab$ for the game
-craps and triples of the form $abc$ for the game sum-of-three, where:
+involves rolling two dice at a time; the second game, which we call ``{\it sum-of-three}'', involves rolling three dice at a time.  With both games, the outcome of interest is the {\em sum} of the spots on the upward-oriented faces of the rolled dice.  (For example, the sums ``$7$'' and ``$11$'' are winning outcomes in craps; ``$2$'', ``$3$'', and ``$12$'' are losing outcomes; all other sums are ``roll-again'' outcomes.)  We highlight the word ``sum'' to stress that the order in which the dice reveal their spots is not relevant.  This means that the outcomes we distinguish consist of pairs of the form $ab$ for the game craps and triples of the form $abc$ for the game sum-of-three, where:
 \begin{itemize}
 \item
 each of $a, b, c$ is an integer from the set $\{1, 2, 3, 4, 5, 6\}$
 \item
-$ a \leq b \leq c$.  This is just a convenient way of saying that the
-  order in which the numbers appear is irrelevant.
+$ a \leq b \leq c$.  This is just a convenient way of saying that the order in which the numbers appear is irrelevant.
 \end{itemize}
 We call each such pair (in craps) or triple (in sum-of-three) a {\it configuration}.
 
-Under the assumption of a {\em fair} game---i.e., one in which all
-faces of all dice are equally likely to appear---we can analyze both
-craps and sum-of-three by enumerating the $21$ possible outcomes of a
-roll in the game of craps and the $56$ possible outcomes of a roll in
-the game of sum-of-three; see Fig.~\ref{fig:dice-outcomes}.
+Under the assumption of a {\em fair} game---i.e., one in which all faces of all dice are equally likely to appear---we can analyze both craps and sum-of-three by enumerating the $21$ possible outcomes of a roll in the game of craps and the $56$ possible outcomes of a roll in the game of sum-of-three; see Fig.~\ref{fig:dice-outcomes}.
 \begin{figure}[htb]
 \begin{center}
 \begin{tabular}{ccc}
@@ -1152,80 +1110,52 @@ the game of sum-of-three; see Fig.~\ref{fig:dice-outcomes}.
 \label{fig:dice-outcomes}
 \end{figure}
 
-\bigskip
+\medskip
 
-As one might expect, the analysis of craps is very similar to, and
-much simpler than, the analysis of sum-of-three.  Therefore, we provide
-only the latter analysis here, leaving the analysis of craps as an exercise.
+As one might expect, the analysis of craps is very similar to, and much simpler than, the analysis of sum-of-three.  Therefore, we provide only the latter analysis here, leaving the analysis of craps as an exercise.
 
-We develop the enumeration of sum-of-three in two distinct ways, in the hope of 
-encouraging the reader to seek multiple ways to think about such enumerations.
+\medskip
+
+We develop the enumeration of sum-of-three in two distinct ways, in the hope of encouraging the reader to seek multiple ways to think about such enumerations.
 \begin{enumerate}
 \item 
-Our first technique of enumeration lists the $16$ possible sums of a roll of the three 
-dice and, for each, lists all possible configurations that yield that sum.
+Our first technique of enumeration lists the $16$ possible sums of a roll of the three  dice and, for each, lists all possible configurations that yield that sum.
 
-The $16$ possible sums arise from the fact that dice are
-labeled with the integers $1, 2, 3, 4, 5, 6$, so the smallest possible
-sum is $3$ (which occurs when all three dice show the number $1$), and
-the largest possible sum is $18$ (which occurs when all three dice
-show the number $6$).  All possible sums are listed in
-Fig.~\ref{fig:dice-outcomes}(right).  The depicted table allows
-us to easily compute that the probability of obtain the sum $6$ in a
-roll of three dice is $p(6) \ = \ 4/56 \ = \ 0.071\cdots$; in other
-words, we expect to observe this sum with just a bit more than $7\%$ of rolls.
+\smallskip
+
+The $16$ possible sums arise from the fact that dice are labeled with the integers $1, 2, 3, 4, 5, 6$, so the smallest possible sum is $3$ (which occurs when all three dice show the number $1$), and the largest possible sum is $18$ (which occurs when all three dice show the number $6$).  All possible sums are listed in Fig.~\ref{fig:dice-outcomes}(right).  The depicted table allows us to easily compute, e.g., that the probability of obtain the sum $6$ in a roll of three dice is $p(6) \ = \ 4/56 \ = \ 0.071\cdots$; in other words, we expect to observe this sum with just a bit more than $7\%$ of rolls.
 
 \item 
-A rather different way of enumerating sums is to partition
-configurations $abc$ based on the number of distinct numbers in the
-set $\{ a, b, c\}$.
+A rather different way of enumerating sums is to partition configurations $abc$ based on the number of distinct numbers in the set $\{ a, b, c\}$.
 \begin{itemize}
 \item
-At one extreme, there are six configurations in which $a = b = c$,
-based on the six possible values on the face of a die.
+At one extreme, there are six configurations in which $a = b = c$, based on the six possible values on the face of a die.
 \item
-In the intermediate case, either $a=b$ or $b=c$ but the third value is
-distinct.
+In the intermediate case, either $a=b$ or $b=c$ but the third value is distinct.
   \begin{itemize}
   \item
-The situation $a=b$ can occur in $5$ ways (we must leave room for
-$c$).  For each way, $c$ can assume $6-a$ values (because $c$ is the
-biggest value).  There are, therefore, $15$ such configurations.
+The situation $a=b$ can occur in $5$ ways (we must leave room for $c$).  For each way, $c$ can assume $6-a$ values (because $c$ is the biggest value).  There are, therefore, $15$ such configurations.
   \item
-The situation $b=c$ is the mirror image of the preceding situation,
-hence engenders the same number of configurations.
+The situation $b=c$ is the mirror image of the preceding situation, hence engenders the same number of configurations.
   \end{itemize}
 
 \item
-Finally, when $a$, $b$, and $c$ are all distinct (but appear in
-increasing order): $a$ can assume the values $1, 2, 3, 4$.  For each
-choice of $a$, $b$ can assume the values $a+1, a+2, \ldots, 5$.  And,
-for each choice of $b$, $c$ can assume the values $b+1, b+2, \ldots,
-6$.  A simple calculation identifies $20$ configurations in which $a$,
-$b$, and $c$ are all distinct.
+Finally, when $a$, $b$, and $c$ are all distinct (but appear in increasing order): $a$ can assume the values $1, 2, 3, 4$.  For each choice of $a$, $b$ can assume the values $a+1, a+2, \ldots, 5$.  And, for each choice of $b$, $c$ can assume the values $b+1, b+2, \ldots, 6$.  A simple calculation identifies $20$ configurations in which $a$, $b$, and $c$ are all distinct.
 \end{itemize}
 Of course, we again identify $56$ possible configurations.
 \end{enumerate}
+This completes our (exhaustive) analysis of the sum-of-three game.
 
 \bigskip
 
-To close this section, let us consider the variant of the game
-sum-of-three in which the order of observing outcomes $a$, $b$, and
-$c$ does matter.  To expose the difference this attention to order makes,
-let us look again at the table in Fig.~\ref{fig:dice-outcomes}(right).
-We note, focusing for illustration just on sum $6$, that three
-different configurations produce this sum:
+To close this section, we briefly consider the variant of the sum-of-three game in which the order of observing outcomes $a$, $b$, and $c$ {\em does matter}.  To expose the difference that attention to order makes, let us look again at the table in Fig.~\ref{fig:dice-outcomes}(right).  We note, as we focus for illustration just on the sum $6$, that three different configurations produce this (unordered) sum:
 \begin{enumerate}
 \item one die of each value $1$, $2$, $3$
 \item two dice of value $1$ and one of value $4$
 \item three dice of value $2$
 \end{enumerate}
-In contrast, if the order in which values occur matters, then the
-sum $6$ arises in {\em ten} different ways.  Specifically, we now
-roll the dice one at a time instead of as a group of three, and we
-observe the sum $6$ arising in the ten ways enumerated in
-Fig.~\ref{fig:dice-ordered-outcomes}; in this figure, each column
-represents a roll of die \#1, then of die \#2, then of die \#3.
+However, if the order in which values occur matters, then the sum $6$ arises in {\em ten} different ways.  Specifically, we now roll the dice one at a time instead of as a group of three, and we observe the sum $6$ arising in the ten ways enumerated in
+Fig.~\ref{fig:dice-ordered-outcomes}; in this figure, each column represents a roll of die \#1, then of die \#2, then of die \#3.
 \begin{figure}[htb]
 \begin{center}
 \begin{tabular}{|l||c|c|c|c|c|c|c|c|c|c|}
@@ -1257,56 +1187,18 @@ number of configurations & 1 & 3 & 6 & 10 & 15 & 21 & 25 & 27  \\
 \caption{Achieving all possible sums via {\em ordered} rolls of three dice}
 \label{fig:dice-ordered-configs}
 \end{figure}
-We leave it to the reader to verify the table in Fig.~\ref{fig:dice-ordered-configs}, 
-which gives the number of configurations that engender each possible sum (from $3$ to $18$) 
-in the ordered-roll version of sum-of-three.  Note that each possible sum $k$ is engendered 
-by the same number of configurations as is sum $21- k$.  ({\em Can you figure out why?})  
-The total number of configurations is $6^3 = 216$; easily, this number is equal to
+We leave it to the reader to verify the table in Fig.~\ref{fig:dice-ordered-configs}, which gives the number of configurations that engender each possible sum (from $3$ to $18$) in the ordered-roll version of sum-of-three.  Note that each possible sum $k$ is engendered by the same number of configurations as is sum $21- k$.  ({\em Can you figure out why?})  The total number of configurations is $6^3 = 216$; easily, this number is equal to
 \[ 2 \times (1 + 3 + 6 + 10 + 15 + 21 + 25 + 27). \]
 
-\bigskip
+\medskip
 
 %{\Denis This result is amazing since the series grows like the sum of the first $n_{th}$ integers, except for the last ones which are truncated. This is probably possible to prove it!}
 
 \noindent {\it Summing up.}
-We have developed several examples which illustrate how to compute the probability of an event
-(e.g., observing a ``heads" when tossing a coin) by taking the ratio of the number of favorable 
-instances of the event divided by the number of all possible instances of the event.  (In this trivial
-example, the probability is clearly $1/2$ when the coin is fair.)  This approach can be adapted to
-situations defined by repeated occurrences of an event, such as repeated rolls of a  die or 
-repeated tosses of a coin.  (Continuing the trivial example of coin tosses: the probability of 
-``heads-then-tails" in two flips of a fair coin is $1/4$ .)
+We have provided several examples which illustrate how to compute the probability of an event
+(e.g., observing a ``heads" when tossing a coin), by taking the ratio of the number of favorable 
+instances of the event divided by the number of all possible instances. This approach can be adapted to situations defined by repeated occurrences of an event, such as repeated rolls of a  die or repeated tosses of a coin.  More ambitious application of these concepts add conditioning to the scenario---as we did with the Monty Hall Puzzle.  Combining such concepts can lead to back-of-the-envelope strategies for playing games of chance successfully.
 
-\bigskip
-
-\ignore{***************
-{\Arny I have to think about this.  I am not sure that I really understand the points you are making.}
-Probabilities are typically used in two complementary ways.
-
-One uses probabilities to help understand phenomena that one observes.  Two simple examples involves
-rolls of a die and flips of a coin.  
-\ignore{*******
-kind of questions may be studied.
-First, "how the probability of the occurrence of an event (like obtaining a $6$) is related to practical results?"
-The second question is somehow the reverse: "If we run several times an experience of rolling dices, is it possible 
-to infer the corresponding probability?".
-*********}
-It is easy to see that if a die is fair then in a long run of rolls of the die, one should see (roughly) equally
-many $1$'s as $2$'s, \ldots, as $6$'s.  (Terminologically, these six events are \textit{equiprobable}:
-$p(1)=p(2)=p(3)=p(4)=p(5)=p(6)$.) Indeed, this gives one access to a test for determining whether a die
-is fair: Roll the die lots of times, and test whether one sees each result roughly $\frac{1}{6}$ of the time.
-By similar reasoning, one can determine whether a coin is fair by tossing it many times and seeing 
-whether one observes (roughly) equally many {\sc head}s as {\sc tail}s.
-
-This use of probability is common: study the probability and then, deduce the future behaviors.
-The second question is the main purpose of statistics that is developed in the next section.
-****************}
-% discuss Probability versus Statistics...
-\ignore{*******
-{\Denis We have to mention the links with the two other places where we discussed Binomial coefficients, recurrences and arithmetic, in this last case, we presented a question of computing the probability of getting 25 tails over 40 trials while flipping coins...}
-{\Arny I believe that we have already stressed in a few places how many conceptual uses one can make of 
-binomial coefficients.}
-*********}
 
 \section{Probability Functions: Frequencies and Moments}
 \label{sec:prob-distributions}
