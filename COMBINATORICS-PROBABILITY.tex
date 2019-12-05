@@ -1207,53 +1207,47 @@ instances of the event divided by the number of all possible instances. This app
 \index{probability!frequency function} 
 \index{probability!sample space}
 \index{probability!random variable} \index{sample space}
-\index{random variable} 
+\index{random variable} \index{random variable!sample space}
 
-Applications of probability theory usually operate with sets whose
-elements represent the outcomes of individual moves in an
-experiment---think, for instance of the deal of a single card or the
-roll of a single die.  The range of possible outcomes is termes a {\it
-  sample space}; and, a variable that ranges over the frequencies of
-outcomes from the sample space is called a {\it random variable}.  The
-goal of a probabilistic analysis is to capture important elements of
-``{\em the truth}'', as exposed via experiments that produce sequences
-of {\em outcomes}, each being an instantiation of a random variable
-with a value from its sample space.
+Applications of probability theory often operate with sets whose elements represent the outcomes of individual trials in an experiment---think, for instance, of the deal of a single card or the roll of a single die.  The range of possible outcomes is termed a {\it sample space}; and, a variable that ranges over the frequencies of outcomes from the sample space is called a {\it random variable}.  The goal of a probabilistic analysis is to capture important elements of ``{\em the truth}'', as exposed via experiments that produce sequences of {\em outcomes}, each being an instantiation of a random variable with a value from its sample space.
 
 \subsection{Probability Frequency Functions}
 \label{sec:prob-freq-fns}
 
-Let us abstract the preceding environment, by focussing on:
-\begin{itemize}
-\item
-a sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$ of $n$ values
-from an underlying sample space $\Sigma$.  Each value $s_i$ represents
-one outcome of the $n$ produced by an $n$-trial experiment.
+Let us abstract the preceding environment, by focussing on the following concepts.
+
+\medskip
+
+\noindent {\sf Sample spaces and outcomes}.
+We focus on sequences $S = \langle s_1, s_2, \ldots, s_n \rangle$ of $n$ {\it outcomes} from an underlying {\it sample space} $\Sigma$.  Each $s_i$ represents one outcome of the $n$ produced by an $n$-trial experiment.
 
 \smallskip
 
 Exemplary sample spaces $\Sigma$:
   \begin{enumerate}
   \item
-Rolls of a $6$-sided die: $\Sigma = \{1, 2, 3, 4, 5, 6\}$ .
+Rolls of a $6$-sided die:
+
+$\Sigma = \{1, 2, 3, 4, 5, 6\}$ .
   \item
 The noontime temperatures observed in Grenoble, France:
+
 $\Sigma = \{ t \ | \ -10 \leq t \leq 45\}$
   \item
 The observed diameters of $n$ roller bearings after a given run at Factory $X$:
+
 $\Sigma =$ the range of diameters of roller bearings.
-\end{enumerate}
+  \end{enumerate}
 
-{\em Another way to look at this setup is that the sample space
-  $\Sigma$ comprises the range of values of a random variable $X$ and
-  that the outcome-sequence $S$ announces the values that $X$ achieves
-  during the course of the subject experiment.}
+Another way to look at this setup is that the sample space $\Sigma$ comprises the range of values of a random variable $X$ and that the outcome-sequence $S$ announces the values that $X$ achieves during the course of the subject experiment.
 
-\item
-a {\it frequency function} $f_S$ which reports on the multiplicity of each outcome
-$s_i \in \Sigma$ within the sequence $S$.
-  \begin{itemize}
-  \item
+\medskip
+
+\noindent {\sf Frequency functions and probability frequency functions.}
+A {\it frequency function} $f_S$ exposes the multiplicity of each outcome $s_i \in \Sigma$ within the sequence $S$.
+
+\smallskip
+
 For illustration, if 
 \begin{equation}
 \label{eq:sample-seq-10}
@@ -1261,23 +1255,27 @@ For illustration, if
 S \ = \ \langle 1, 2, 2, 3, 3, 3, 4, 4, 4, 4 \rangle
 \end{equation}
 then for each $i \in \Sigma$, $f_S(i) = i$.
-  \item
-Note that $f_S(s_1) + f_S(s_2) + \cdots + f_S(s_n) \ = \ n$.
-  \end{itemize}
-\end{itemize}
 
 \smallskip
 
+Note that $f_S(s_1) + f_S(s_2) + \cdots + f_S(s_n) \ = \ n$.
+
+\medskip
+
 \index{probability frequency function}
 
-Now, we focus on a random variable $X$ that ranges over a sample space $\Sigma$.  Each value $k \in \Sigma$ has an associated probability, which we denote $Pr[X=k]$.  (Note that the identity of the relevant sample space is traditionally assumed to be known from context, hence is not mentioned explicitly.)
-The function $f$ on $\Sigma$ defined as follows
+Now, let us focus on a random variable $X$ that ranges over a sample space $\Sigma$.  Each value $k \in \Sigma$ has an associated probability, which we denote $Pr[X=k]$.  (Note that the identity of the relevant sample space is traditionally assumed to be known from context, hence is not mentioned explicitly.)
+
+\smallskip
+
+The function $f$ on $\Sigma$ which is defined as follows
 \[ f(x) \ = \ Pr[X=x] \]
 is called a {\it probability frequency function (for sequence $S$)}.  (We have already seen probability frequency functions, but we have not yet used the term.)
 
-\bigskip
+\medskip
 
-Probability frequency functions give very local information about sequences and their associated frequency functions.  If a sequence of interest results from a very long experiment or from a massive collection of observations, then one needs some sort of mechanism for summarizing and partially analyzing the resulting data---i.e., for making the data suitable for human consumption.  We provide a short survey of the kinds of summarizations that have been useful over time.
+\noindent {\sf Summarization tools}.
+Probability frequency functions give very local information about sequences and their associated frequency functions.  If a sequence of interest results from a very long experiment or from a massive collection of observations, then one needs some sort of mechanism for {\em summarizing and partially analyzing} the resulting data---i.e., for making the data suitable for human consumption.  We provide a short survey of summarizations that have proven useful over time.
 
 \medskip
 
@@ -1287,7 +1285,7 @@ The simplest possible framework for summarizing a sequence $S$ is via a single s
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-This might be an opportune time for the reader to review the discussions of {\it encodings} (Section~\ref{sec:apply-FTA}) and of {\it pairing functions} (Section~\ref{sec:pairing}).  Both of these topics involve creating small sets of numbers to encode large sets of numbers.  The fact that the small sets must retain all of the information resident in the large sets guarantees that the encoding numbers must become large.  You cannot shrink bits!
+This might be an opportune time for the reader to review the discussions of {\it encodings} (Section~\ref{sec:apply-FTA}) and {\it pairing functions} (Section~\ref{sec:pairing}).  Both of these topics involve creating small sets of numbers to encode large sets of numbers.  The fact that the small sets must retain all of the information resident in the large sets guarantees that the encoding numbers must become large.  You cannot shrink bits!
 \end{minipage}
 }
 
@@ -1306,6 +1304,8 @@ For any outcome-sequence $S$ over a sample space $\Sigma$, with associate freque
 \[ {1 \over n} \sum_{k \in \Sigma} \ k \cdot f_S(k) \]
 This quantity is often denoted $\mbox{\sc mean}(S)$.  
 
+\smallskip
+
 For illustration: Given the $10$-element sequence $S$ of (\ref{eq:sample-seq-10}), we have:
 \begin{eqnarray*}
 \mbox{\sc mean}(S) & = &
@@ -1318,26 +1318,29 @@ For illustration: Given the $10$-element sequence $S$ of (\ref{eq:sample-seq-10}
 \end{eqnarray*}
 In this example, $\mbox{\sc mean}(S)$ is an element of $S$.  In general, it need not be.
 
-We close our introduction to means by presenting two important
-attributes of the measure $\mbox{\sc mean}(X)$, where $X$ is a random
-variable.  We leave to the reader the task of proving the following
-formal assertions of these attributes.
+\smallskip
+
+We close our introduction to means by exposing two important attributes of the measure $\mbox{\sc mean}(X)$, where $X$ is a random variable.  We leave to the reader the task of proving the following formal assertions of these attributes.
 
 \begin{prop} 
 \label{thm:mean-linear}
 Let $X$ be a random variable over a given sample space.
 
-{\bf (a)} For any constants $a$ and $b$,
-\[ \mbox{\sc mean}(aX+b) \ = \ a \cdot \mbox{\sc mean}(X) + b  \]
-Thus, the mean is a {\em linear} masure.
+\smallskip
 
-{\bf (b)} For any function $f$ of variable $X$,
+\noindent {\bf (a)} For any constants $a$ and $b$,
+\[ \mbox{\sc mean}(aX+b) \ = \ a \cdot \mbox{\sc mean}(X) + b  \]
+Thus, the mean is a {\em linear} measure.
+
+\medskip
+
+\noindent {\bf (b)} For any function $f$ of variable $X$,
 \[ \mbox{\sc mean}(f(X)) \ = \ \sum_{k=0}^n \ f(k) \cdot Pr[X = k] \]
 \end{prop}
 
 \bigskip
 
-In addition to its {\em a posteriori} analytical value, arithmetic means can be used as aids to prediction.  (We often do this, for example, when we consult mean temperatures before we pack for a trip to an unfamiliar location.)  When used predictively, the mean of a sequence $S$ is often called its {\it expected value} or, more succinctly, its {\it expectation}.
+In addition to their {\em a posteriori} analytical value, arithmetic means can be used as aids to prediction.  (We often do this, for example, when we consult mean temperatures before we pack for a trip to an unfamiliar location.)  When used predictively, the mean of a sequence $S$ is often called $S$'s {\it expected value} or, more succinctly, its {\it expectation}.
 \index{expected value} \index{expectation}
 
 \subsection{Additional Measures of ``Average"}
@@ -1371,10 +1374,12 @@ we illustrate for the case $n=31$.
 \rangle \]
 } 
 \hspace*{-.1in} $S_2$ is constructed via the following formula.  For $i \in \{1,3,5,7,9,11\}$
-\begin{eqnarray*}
-\hspace*{-.35in} f_{S_2}(1)  & = & 1 \\
-\hspace*{-.35in} \mbox{ for } 1 > 1 \ \ \ \ f_{S_2}(i)   & = & i-1
-\end{eqnarray*}  
+\[ f_{S_2}(i) \ = \ \left\{ \begin{array}{cl}
+1  & \mbox{ if } i=1 \\
+ i-1& \mbox{ if } i>1
+\end{array}  
+\right.
+\]
 The following calculation verifies that $\mbox{\sc mean}(S_2) = 8.1$. 
 \begin{eqnarray*}
 \mbox{\sc mean}(S_2)
@@ -1398,48 +1403,61 @@ The following calculation verifies that $\mbox{\sc mean}(S_2) = 8.1$.
   & = & 
 \frac{251}{31}
 \end{eqnarray*}
-With this sample sequence also, one would expect the analysis of an experiment that yielded the sequence $S_2$ of outcomes to focus {\em prominently} on the ``skew" of the outcomes toward the
-larger values.  While $\mbox{\sc mean}(S_2)$ correctly identifies the sequence's ``center of gravity", it provides no information about how the outcome values are spread out within the sequence.
+One would expect the analysis of an experiment that yielded the sequence $S_2$ of outcomes to focus {\em prominently} on the ``skew" of the outcomes toward the larger outcomes.  While $\mbox{\sc mean}(S_2)$ correctly identifies the sequence's ``center of gravity", it provides no information about how the outcome values are spread out within the sequence.
 \end{itemize}
 
 \bigskip
 
-\noindent {\em The median of a sequence.} 
+\noindent {\sf The median of a sequence.} 
 To cope with the second of the preceding complaints, namely, the issue of ``skewness", many empiricists advocate reporting on a sequence's {\it median}, in addition to its mean.
 \index{median}
 
+\smallskip
+
 \noindent
 The {\em median} of an $n$-element sequence $S$, denoted {\sc median}($S$), determines 
-the ``weighted midpoint" of  sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$:
+the ``weighted midpoint" of sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$:
 
-\medskip
+\smallskip
 
-\noindent When $n$ is odd, sequence $S$ has a single midpoint:
+\begin{itemize}
+\item
+When $n$ is odd, sequence $S$ has a single midpoint:
+
+\smallskip
 
 \hspace*{.35in}
 $\mbox{\sc median}(S)  \ = \ s_{\lfloor n/2 \rfloor}$
 
-\bigskip
-
-\noindent When $n$ is even, sequence $S$ has two ``midpoints", namely, $s_{\lfloor n/2 \rfloor}$
-and $s_{\lfloor n/2 \rfloor +1}$.  In this case,
-\begin{itemize}
 \item
+When $n$ is even, sequence $S$ has two ``midpoints", namely, $s_{\lfloor n/2 \rfloor}$
+and $s_{\lfloor n/2 \rfloor +1}$.  In this case,
+  \begin{itemize}
+  \item
 some empiricists say that $S$ has two medians:
+
+\smallskip
 
 \hspace*{.35in}
 $\mbox{\sc median}(S)  \ = \ \langle s_{\lfloor n/2 \rfloor}, \ s_{\lfloor n/2 \rfloor +1} \rangle$
 
-\item
-other empiricists use interpolation to maintain the existence of a single median:
+  \item
+others use interpolation to maintain the existence of a single median:
+
+\smallskip
 
 \hspace*{.35in}
 $\mbox{\sc median}(S)  \ = \ {1 \over 2} \left(s_{\lfloor n/2 \rfloor} + \ s_{\lfloor n/2 \rfloor +1} \right)$
+  \end{itemize}
 \end{itemize}
 Our $31$-element sequence $S_2$ has two medians, but, happily, they are equal:
 
+\smallskip
+
 \hspace*{.35in}
 $s_{\lfloor n/2 \rfloor} \ = \ s_{\lfloor n/2 \rfloor +1} \ = \ 9$.  
+
+\smallskip
 
 \noindent
 For this reason, we are comfortable declaring that $\mbox{\sc median}(S_2) = 9$.
@@ -1447,13 +1465,13 @@ For this reason, we are comfortable declaring that $\mbox{\sc median}(S_2) = 9$.
 \bigskip
 
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
+\begin{minipage}{0.96\textwidth}
 The median appears rather often in the news media, especially in regard to skewed economic distributions such as individual wealth or annual income.  In many countries, the mass of wealth is so concentrated in the possession of a small fraction of the population that arithmetic means such as {\em per capita} income or wealth give no meaningful information about the economic state of the vast majority of the population.  Economists find the median income or wealth to be a much more meaningful measure than the arithmetic mean in such environments.
 \end{minipage}
 }
 \bigskip
 
-\noindent {\em Modes and geometric means.}
+\noindent {\sf Modes and geometric means.}
 Two other measures of ``average" have garnered support in specialized communities.  We mention them just for completeness, so that the reader can consider more options when seeking useful summarizations of sequences of empirical outcomes.
 
 \medskip
@@ -1461,7 +1479,7 @@ Two other measures of ``average" have garnered support in specialized communitie
 \index{mode} \index{{\sc mode}($S$)}
 
 \noindent
-If there is a single maximum element $s \in S$, then that element is called the {\em mode} of sequence $S$ and is denoted {\sc mode}($S$).  The mode is typically said not to exist for sequences with multiple maxima.
+If there is a single maximum element $s \in S$, then that element is called the {\em mode} of sequence $S$ and is denoted {\sc mode}($S$).  The mode is typically said not to exist for sequences that have multiple maxima.
 
 \medskip
 
@@ -1484,7 +1502,7 @@ logarithms of the elements of sequence $S$.
 \smallskip
 
 \noindent
-Of course, we do not have to specify the bases of the logarithms---as long as all have the same base.
+(Of course, we do not have to specify the bases of the logarithms---as long as all have the same base.)
  
 \subsection{Higher Statistical Moments}
 \label{sec:mean-plus-moments}
@@ -1494,14 +1512,16 @@ Of course, we do not have to specify the bases of the logarithms---as long as al
 \index{mean!actual value $\mu$}
 \index{mean!experimental value $\bar{x}$ of random variable $x$}
 
-We have thus far discussed measures of ``midpoint" in terms of the sequence of outcomes of a fixed experiment.  The more common use of means---and of other statistical measures---in daily life involves the means of theoretically infinite sequences: the average July rainfall in Buenos Aires, the mean time to failure of transistors produced in a given foundry, the average wealth of the residents of Monaco.  Within this expanded framework, we distinguish between the {\em actual mean} of a random variable $X$, which is often denoted $\mu$, and the {\em experimental mean} of the random variable, which is usually denoted $\bar{x}$.  (Once again the identity of $X$ is usually assumed to be known from context.)
+We have thus far discussed measures of ``midpoint" in terms of the sequence of outcomes of a fixed experiment.  The more common use of means---and of other statistical measures---in daily life involves the means of sequences which are theoretically infinite: the average July rainfall in Buenos Aires, the mean time to failure of transistors produced in a given silicon foundry, the average wealth of the residents of Monaco.  Within this expanded framework, we distinguish between the {\em actual mean} of a random variable $X$, which is often denoted $\mu$, and the {\em experimental mean} of the random variable, which is usually denoted $\bar{x}$.  (Here again the identity of $X$ is usually assumed to be known from context.)
 
 \index{moments in statistics}
 \index{moments in statistics!the first moment: the mean}
 \index{moments in statistics!the second moment: the variance}
 \index{variance} \index{standard deviation}
 
-Once we distinguish between actual and experimental means, we must address the question of the quality of predictions based on the approximation $\bar{x}$ to the mean $\mu$, which arises from a given experiment.  The standard approach to this question takes the form of the {\em higher moments} of random variable $X$ and of the distribution that it ranges over.  Within this framework:
+\smallskip
+
+Once we distinguish between actual and experimental means, we must address the question of the quality of predictions which arise from a given experiment:  How well does the approximate, experimental mean, $\bar{x}$, match the actual mean, $\mu$?  The standard approach to this question takes the form of the {\em higher moments} of random variable $X$ and of the distribution that it ranges over.  Within this framework:
 \begin{itemize}
 \item
 The {\em first moment} of a distribution is its mean $\mu$.  The  {\em first moment} of a sequence $S$ of experimental outcomes is $\bar{x}  =  \mbox{\sc mean}(S)$.
@@ -1510,8 +1530,7 @@ The {\em second moment} of a sequence $S$ of experimental outcomes is termed the
 \[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{k \in \Sigma}
 \ (k - \bar{x})^2 \cdot f_S(x) 
 \]
-The preceding expression for variance can be replaced with the
-following streamlined expression.
+The preceding expression for variance can be replaced with the following streamlined expression.
 
 \begin{prop}
 \label{thm:variance-formula}
@@ -1525,23 +1544,23 @@ The argument centers on the following chain of equations.
 \mbox{\sc variance}(X) & = &
   \mbox{\sc mean}(X \ - \ \bar{x})^2 \\
  & = &
-\mbox{\sc mean}(X^2) \ - \ 2 \mbox{\sc mean}(X) \cdot \bar{x} \ + \ \bar{x})^2 \\
+\mbox{\sc mean}(X^2) \ - \ 2 \mbox{\sc mean}(X) \cdot \bar{x} \ + \ \bar{x}^2 \\
  & = &
 \mbox{\sc mean}(X^2) \ - \ \big(\mbox{\sc mean}(X)\big)^2
 \end{eqnarray*}
 \end{proof}
 
 
-The fact that the variance is defined in terms of the {\em squares} of the components of the distance measure can make it awkward to reason with.  To compensate for this, it is common to use the {\it standard deviation}
+The fact that the variance is defined in terms of the {\em squares} of the components of the distance measure can make it awkward to reason with:  The mean is {\em linear} in the experimental outcomes, but the ``corrector" of the mean is {\em quadratic} in the outcomes.  To compensate for this, it is common to use the {\it standard deviation}
 \[ \mbox{\sc standard-deviation}(S) \ \eqdef \ \sqrt{\mbox{\sc variance}(S)} \]
 rather than the variance when reasoning about how well $\bar{x}$ approximates $\mu$.
 
 \item
-Any finite approximation to a measure that is based on infinitely many data points is bound to have imperfections.  The variance exposes some of the imperfections of the mean as a summarization tool, but it is just one step in exposing such imperfections.  In response, an increasingly fine infinite sequence of moments has been developed, the $c$th being defined as follows.
+Any finite approximation to a measure that is based on infinitely many data points is bound to have imperfections.  The variance exposes some of the imperfections of the mean as a summarization tool, but it is just one step in exposing such imperfections.  In response, an increasingly fine infinite sequence of moments has been developed, the $k$th being defined as follows.
 \[
-\mbox{\sc moment}^{(c)}(S) \ \eqdef \ {1 \over n} \sum_{k \in \Sigma} \ (k - \bar{x})^c \cdot f_S(k)
+\mbox{\sc moment}^{(k)}(S) \ \eqdef \ {1 \over n} \sum_{j \in \Sigma} \ (j - \bar{x})^k \cdot f_S(j)
 \]
-The third and fourth moments (the cases $c = 3,4$) report on further aspects of the ``spread" of the distribution, including ``skew".  In general, each higher moment exposes some of the weaknesses of lower moments.
+The third and fourth moments (the cases $k = 3,4$) report on further aspects of the ``spread" of the distribution, including ``skew".  In general, each higher moment exposes some of the weaknesses of lower moments.
 \end{itemize}
 
 
