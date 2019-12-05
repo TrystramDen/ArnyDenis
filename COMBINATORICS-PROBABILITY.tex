@@ -2110,18 +2110,18 @@ Interestingly the gender imbalance in births exposed by Arbuthnot can still be o
 
 \index{statistical tests}
 
-We close our introduction to mathematical statistics by informally introducing the important topics of {\em statistical tests}.  Such tests are the layperson's most intimate connection with the field of statistics.  Such tests enable us to determine whether distinct streams of observations are positively correlated.  As but two illustrations, tests enable us to recognize:
+We close our introductory survey of mathematical statistics by informally introducing the important topic of {\em statistical tests}.  Such tests are most laypersons' most intimate connection with the field of statistics.  The tests enable us to determine whether distinct streams of observed experimental outcomes are positively correlated.  As but two illustrations, tests enable us to recognize:
 \begin{itemize}
 \item
 a positive correlation between negative reactions to a pharmaceutical and the strength of prescribed doses.  
 \item
-the fact that the observed diameters of roller bearings in a manufacturing run do not belong to the expected  statistical distribution.
+the fact that the observed diameters of roller bearings in a manufacturing run do not belong to the planned statistical distribution.
 \end{itemize}
-In its simplest form, such a test may simply ask whether observed values come from similarly distributed random variables.
+In its simplest form, such a test often just asks whether observed values come from similarly distributed random variables.
 
 \medskip
 
-The topic of statistical testing is enormous and mostly beyond the scope of any introductory text.  The reader who wants a comprehensive introduction to the topic, especially from a mathematical perspective, is referred to a source such as \cite{Hoel58}.   We introduce here just a single approach to testing---via {\em distance metrics}.  This approach to testing employs three intertwined conceptual steps.
+The topic of statistical testing is enormous and mostly beyond the scope of any introductory text (certainly an introductory mathematics text).  The reader who wants a comprehensive introduction to statistical testing, especially from a mathematical perspective, is referred to a text such as \cite{Hoel58}.   We introduce here just a single approach to testing---via {\em distance metrics}.  This approach employs three intertwined conceptual steps.
 \begin{enumerate}
 \item
 One computes an appropriate measure of {\em distance} between the two target sequences of observations.
@@ -2130,42 +2130,49 @@ The ``appropriateness" of a particular distance metric presupposes our ability t
 
 \smallskip
 
-Therefore, one must analyze the distribution(s) that the sequences come from, to determine the probability that two targeted sequences will achieve each possible observed distance between the targeted sequences.
+Therefore, one must analyze the distribution(s) that the sequences come from, to determine the probability that two targeted sequences will achieve a particular observed inter-sequence distance.
 \item
 One selects a {\em confidence level} to determine whether the observed probability that the targeted sequences are related is large enough for us to accept them as related in the sense of interest.
 
-\smallskip
+\medskip
 
 Confidence levels are another way to look at probabilities.  To wit, the statement
 
-\hspace*{.2in}the probability that the assertion $A$ is true is $p\%$
+\hspace*{.2in}{\em the probability that the assertion $A$ is true is $p\%$}
 
 is equivalent to the statement
 
-\hspace*{.2in}assertion $A$ is true with a confidence level of $(100-p)\%$.
+\hspace*{.2in}{\em assertion $A$ is true with a confidence level of $(100-p)\%$}.
 \end{enumerate}
 
-\medskip
+\bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-Traditionally, the statement which asserts that the observed sequence and the expected sequence come from the same distribution is called the ``{\em null hypothesis}".
+Traditionally:
+\begin{itemize}
+\item
+The statement which asserts that the observed sequence and the expected sequence come from the same distribution is called the ``{\em null hypothesis}".
 
-\smallskip
-
-Accepting the targeted sequences as related is {\em accepting the null hypothesis}.
+\item
+Accepting the proposition that the targeted sequences are related is termed ``{\em accepting the null hypothesis}".
+\end{itemize}
 \end{minipage}
 }
 
 \subsubsection{Testing means in binomial distributions}
 
-We can illustrate the described steps by returning briefly to the Arbuthnot-Laplace question of Section~\ref{sec:Arbuthnot}.   We dealt with this question in a rather informal manner earlier.  If we were interested in a more formal analysis of the question, we could end up with a statement such as the following
+We can illustrate the described test-implementation steps by returning briefly to the Arbuthnot-Laplace question of Section~\ref{sec:Arbuthnot}.   In that section, we dealt with this question in a rather informal manner.  With a more formal testing regimen, we could end up with a statement such as the following
+
+\smallskip
 
 \begin{tabular}{l}
 {\em To within the confidence level $c$} (choose a number here) {\em the London records} \\
 {\em demonstrate that there were more male births than female births in the} \\
 {\em $82$-year period period 1629--1710.}
 \end{tabular}
+
+\smallskip
 
 \noindent
 We would develop this more formal statement by studying the Arbuthnot-Laplace question within the framework of statistical testing, in the following manner.
@@ -2184,14 +2191,14 @@ The $i$th entry in the {\em observed} sequence $\langle o_1, o_2, \ldots, o_{82}
 Every entry in the {\em expected} sequence $\langle e_1, e_2, \ldots, e_{82} \rangle$ is ``$e_i \equiv 1/2$", for this is what the observed fraction {\em would be} if there were no disparity in the relative numbers of male and female births.
 
 \item
-If we assume---as Arbuthnot did---that the birth patterns of males and females obeys a binomial distribution, then our analysis in Section~\ref{sec:binomial-distribution} provides the probabilities of the various possible proportions of male and female births.  Table~\ref{tab:select-replace} provides concrete values for these probabilities for the cases $n=10$ and $n=15$.
+If we assume---as Arbuthnot did---that the birth patterns of males and females obeys a binomial distribution, then our analysis in Section~\ref{sec:binomial-distribution} would provide the probabilities of the various possible ratios of male and female births.  Table~\ref{tab:select-replace} provides concrete values for these probabilities for the cases $n=10$ and $n=15$.
 
 \item
-Since we are interested only in means rather than more highly structured distributions, we can choose a simple distance metric to measure the distance between the observed and expected sequences.  We choose the metric based on the $L^2$-norm of Section~\ref{sec:Ln-norms}, i.e., the distance
+Since we are interested only in means rather than more highly structured distributions, we can choose a simple metric to measure the distance between the observed and expected sequences.  We choose the metric adapted from the $L^2$-norm of Section~\ref{sec:Ln-norms}, i.e., the distance
 \[ {1 \over 82} \sum_{i=1}^{82} \ (o_i -e_i)^2 \ = \ {1 \over 82} \sum_{i=1}^{82} \ (o_i - 1/2)^2 \]
 
 \item
-One can now choose a confidence interval $c$, which would give one access to a formal statement.
+We can now choose a confidence level $c$, which would give one access to the desired formal statement.
 \end{itemize}
 
 \subsubsection{The $\chi^2$ test for multinomial distributions}
@@ -2200,25 +2207,31 @@ One can now choose a confidence interval $c$, which would give one access to a f
 Probability theory and statistics do not restrict themselves to simple metrics or simple distributions.  Once one allows even moderately more sophisticated distributions, a whole range of important practical situations can be discussed and analyzed.
  \index{statistical tests!the $\chi^2$ test} 
 
-The $\chi^2$ test is a statistical test that allows one to test that two given sequences of values come from the same {\em multinomial distributions}---a generalization to many variables of the binomial distribution that we studied in Section~\ref{sec:binomial-distribution}.  In contrast to the $L^2$-distance measure that we used as we analyzed the Arbuthnot-Laplace question, we now discuss a more ambitious question, and, accordingly, we invoke a stronger statistical test.
+\medskip
 
-As before, we begin with two sequences that can be viewed as representing $m$ trials of an experiment or $m$ sample values taken from a given sample space:  There is the sequence 
+The {\it $\chi^2$ test} is a statistical test which allows one to test whether two sequences of values come from the same {\em multinomial distribution}---a generalization to many variables of the binomial distribution that we studied in Section~\ref{sec:binomial-distribution}.  In contrast to the $L^2$-distance measure that we used to analyze the Arbuthnot-Laplace question, we now discuss a more ambitious question, and, accordingly, invoke a stronger statistical test.
+
+\smallskip
+
+As before, we begin with two sequences that can be viewed as representing either $m$ trials of an experiment or $m$ sample values drawn from a given sample space:  There is the sequence 
 \[ \langle e_i \rangle_{i=1}^m \ \ \eqdef \ \ \langle e_1, e_2, \ldots, e_m \rangle \]
 of {\em expected} values and the  sequence
 \[ \langle o_i \rangle_{i=1}^m \ \ \eqdef \ \ \langle o_1, o_2, \ldots, o_m \rangle \]
-of {\em observed} values.  We seek to determine the probability that both sequences arise from sampling values from the same random variable.
+of {\em observed} values.  We seek to determine the probability that both sequences arise from sampled values from the same random variable.
+
+\smallskip
 
 The $\chi^2$ test measures the distance between sequences $\langle e_i \rangle_{i=1}^m$ and $\langle o_i \rangle_{i=1}^m$ via a calculation that can be viewed as the {\em relative error} incurred by trying to pass either of these sequences off as the other.  Specifically, the $\chi^2$ distance/error corresponding to these sequences is
 \[ \chi^2 \ = \ \sum_{i=1}^m \ \frac{(o_i- e_i)^2}{e_i} \]
-The $\chi^2$ test invokes an analysis of the multinomial distribution---analogous to our analysis of the {\em bi}-nomial distribution---to calculate the probability that the observed and expected sequences come from the same multinomial distribution.
+The $\chi^2$ test invokes an analysis of the relevant {\em multi}-nomial distribution---analogous to our analysis of the {\em bi}-nomial distribution---to calculate the probability that the observed and expected sequences come from the same multinomial distribution.
 
 \medskip
 
-We illustrate the domain of the test via a simple but illustrative example that we excerpt from \cite{Hoel58}.
+We illustrate the domain of the test via a simple illustrative example that we excerpt from \cite{Hoel58}.
 
 \bigskip
 
-We role a ($6$-sided, allegedly fair) die $60$ times.  We expect to see $10$ each of the $6$ possible outcomes.  The $\chi^2$ test computes the distance between:
+We roll a ($6$-sided, allegedly fair) die $60$ times.  We expect to see $10$ each of the $6$ possible outcomes.  The $\chi^2$ test computes the distance between the following sequences:
 \[ \begin{array}{|l||c|c|c|c|c|c|}
 \hline
 \mbox{60 Rolls of a die}  &
@@ -2237,9 +2250,13 @@ We role a ($6$-sided, allegedly fair) die $60$ times.  We expect to see $10$ eac
 \hline
 \end{array}
 \]
-The test then calculates the probability $p$ that the observed sequence $\langle f_1, f_2, f_3, f_4, f_5, f_6 \rangle$ comes from the same multinomial distribution as does the expected sequence $\langle 10, 10, 10, 10, 10, 10 \rangle$. 
+The test then calculates the probability $p$ that the observed sequence, $\langle f_1$, $f_2$, $f_3$, $f_4$, $f_5$, $f_6 \rangle$ comes from the same multinomial distribution as does the expected sequence $\langle 10, 10, 10, 10, 10, 10 \rangle$. 
+
+\smallskip
 
 As usual, one selects a confidence level $c$, which is equal to $1-p$, and one announces that, to within the confidence level $c$, the observed sequence $\langle o_i \rangle_{i=1}^{60}$ does come from the same distribution as the expected sequence $\langle e_i \rangle_{i=1}^{60}$.
+
+\smallskip
 
 If the confidence level $c$ must be chosen too high before it mandates accepting the null hypothesis, then one could decide that the rolled die is not fair!  This is the way that our setting can be used in applications such as fault analysis and quality analysis.
 
