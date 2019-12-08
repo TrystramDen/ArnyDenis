@@ -1807,84 +1807,22 @@ Notice that it is generic and related to the scheme of fast exponentiation.
 \medskip
 
 
-\noindent \textit{The problem.} Verify the following expression and develop an argument for its interest.
+\noindent \textit{The problem.} 
+Verify the following expression and develop an argument for its interest.
 
 $F(2n) = F(n)^2 + F(n-1)^2$
 
 $F(2n+1) = (2.F(n-1) + F(n)).F(n)$
 \medskip
 
-\noindent \textit{The solution.}
-
-The proof is by induction.
-
-The basis case is obtained for $n=1$.
-It is true since:
-
-$F(2) = F(1)^2+F(0)^2 = 2$
-
-$F(3) = (2.F(0)+F(1)).(F(1)) = 3$
+\noindent \textit{Hint.}
+The proof of the first part is by induction
+while a direct application to the definition of Fibonacci numbers allows to solve the second part..
 \medskip
 
-Let assume for proving the induction step that the property holds at rank $n$ for both $F(2n)$ and $F(2n+1)$ and compute $F(2(n+1))$:
-
-Apply first the definition of Fibonacci numbers: 
-
-$F(2n+2) = F(2n+1)+F(2n)$ 
-
-Replace both terms by the recurrence hypothesis:
-
-$= F(n)^2 + F(n-1)^2 + (2.F(n-1) + F(n)).F(n)$
-
-$= F(n)^2 + F(n-1)^2 + 2.(F(n).F(n-1)) + F(n)^2$
-
-$= (F(n) + F(n-1))^2 + F(n)^2$
-
-We obtain the result by applying again the definition of Fibonacci numbers at order $n+1$:
-
-$F(2(n+1)) = F(n+1)^2 + F(n)^2$
-\medskip
-
-The second part of the proposition is obtained by applying the definition of Fibonacci numbers:
-
-$F(2(n+1)+1) = F(2(n+1)) + F(2n+1)$
-
-and replace both terms by their expressions respectively :
-
-$= F(n+1)^2 + F(n)^2 + (2.F(n-1) + F(n)).F(n)$
-
-$= F(n+1)^2 + 2.(F(n-1) + F(n)).F(n)$
-
-$= F(n+1)^2 + 2.F(n+1).F(n)$
-\medskip
-
-We provide in Fig.~\ref{fig:fastFibo} a pictorial argument to show why this decomposition 
-is particularly fast while computing Fibonacci numbers:
-each $F(n)$ is computed in $log_2 (n)$ steps.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/FiboFast.png}
-        \caption{Dependency relations for computing the pairs $(F(2n),F(2n+1))$.}
-                \label{fig:fastFibo}
-\end{center}
-\end{figure}
-In particular, we show how to compute an element ($F(13)$) using the fast Fibonacci scheme in Fig.~\ref{fig:fastFibo13}.
-The pattern is embedded into a complete binary tree of predecessors (with some redundancies)
-whose depth is logarithmic.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/FiboFast13.png}
-        \caption{Ancestors involved in the computation of $F(13)$. }
-        \label{fig:fastFibo13}
-\end{center}
-\end{figure}
-
-The conclusion is that
-any Fibonacci number $F(n)$ can be computed very fast in $log_2 (n)$ steps.
-\medskip
 
 \noindent \textit{Lesson learned.}
-To be completed
+Any Fibonacci number $F(n)$ can be computed very fast in $log_2 (n)$ steps.
 
 
 \subsection{Cassini's Identity}
@@ -1912,28 +1850,8 @@ $F(n-1).F(n+1) = F(n)^2 + (-1)^{n+1}$ for $n \geq 1$
 %...
 %\medskip
 
-\noindent \textit{The solution.}
+\noindent \textit{Hint.}
 The proof is by induction.
-
-The basis case $n=1$ holds since $F(0).F(2) = F(1)^2 +1 = 2$.
-
-The induction step is proved assuming the Cassini's identity holds at rank $n$.
-Replace $F(n+2)$ by its definition in the expression:
- 
-$F(n).F(n+2) = F(n) (F(n+1)+F(n)) = F(n)^2 + F(n).F(n+1)$
-
-Then, replace the last term using the recurrence hypothesis:
-
-$F(n)^2 = F(n-1).F(n+1) - (-1)^{n+1} =F(n-1).F(n+1) + (-1)^{n+2} $
-
-Thus,
-$F(n).F(n+2) = F(n).F(n+1) + F(n-1).F(n+1) + (-1)^{n+2} = F(n+1) (F(n) + F(n-1)) + (-1)^{n+2}$ 
-
-Apply again the definition of Fibonacci sequence $F(n) + F(n-1) = F(n+1)$, we obtain:
-
-$F(n).F(n+2) = F(n+1)^2 + (-1)^{n+2}$
-
-This concludes the proof. 
 \medskip
 
 \noindent \textit{esson learned.}
@@ -1946,7 +1864,8 @@ A nice variant is to ask to establish this identity (looking at the small values
 \subsection{Lucas Numbers} 
 
 \noindent \textit{The aim.}
-Fibonacci progression is the most popular and the most simple Definition of Lucas' numbers
+Fibonacci progression is the most popular and the most simple Definition of Lucas' numbers.
+\medskip
 
 \textbf{Definition.}
 Given the two starting numbers $L(0) = 1$ and $L(1) = 3$, 
@@ -2118,27 +2037,6 @@ xx
 
 Prove Proposition~\ref{thm:pascal-binom} via the double induction
 outlined in the text.
-
-
-
-\subsection{A property about binomial coefficients}
-
-\noindent \textit{The aim:}
-
-xx
-\medskip
-
-\noindent \textit{The problem:}
-
-Prove the following property by two ways (recurrence and by using a combinatorial argument
-
-$\forall n,k$ $1 \leq k \leq n$
-
-$k.{n \choose k} = n.{{n-1} \choose {k-1}}$
-\medskip
-
-\noindent \textit{The solution:}
-
 
 
 \subsection{La ruine}
