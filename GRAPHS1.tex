@@ -28,8 +28,8 @@ This chapter and the next provide the basic concepts and tools necessary to inco
 \label{sec:graphs-generic}
 \label{sec:basic-graphs}
 
-\subsection{Connectivity-Related Concepts}
-\label{sec:connectivity-notions}
+%\subsection{Connectivity-Related Concepts}
+%\label{sec:connectivity-notions}
 
 \index{graph!vertices} \index{graph!vertices} 
 \index{vertex (of a graph)}  \index{vertex (of a graph)} 
@@ -37,8 +37,10 @@ This chapter and the next provide the basic concepts and tools necessary to inco
 \index{edge (of a graph)} \index{edge (of a graph)!viewed as a doubleton set of vertices}
 \index{graph!vertex} \index{vertex (of a graph)}
 
-\noindent {\it The basics}.
-The basic components of a graph $\g$ are {\it vertices}---object which represent things one wants to interrelate---and {\it edges}---each edge connecting two of $\g$'s vertices.  Formally, we view and edge as a $2$-element set of $\g$'s vertices.  For each graph $\g$, we denote the set of $\g$'s vertices by $\n_{\fg}$ and the set of $\g$'s edges by $\e_{\fg}$.
+\subsection{The Basics of the World of Graphs}
+
+The basic components of a graph $\g$ are {\it vertices}---object which represent things one wants to interrelate---and {\it edges}---each edge connecting two of $\g$'s vertices.  Formally, we view and edge as a $2$-element set of $\g$'s vertices.  For each graph $\g$, we denote the set of $\g$'s vertices by $\n_{\fg}$ and the set of $\g$'s edges by $\e_{\fg}$.\footnote{We often omit the subscript ``$\g$" in notation such as ${\cal N}_{\cal G}$ or ${\cal E}_{\cal G}$ unless 
+there is danger of ambiguity.}
 
 \bigskip
 
@@ -68,17 +70,19 @@ A graph $\g$ is {\em bipartite} if its vertices can be partitioned into (by defi
 
 Among the many scenarios that benefit from modeling via bipartite graphs are those in which set $X$ represents a base set---say, the members of an organization---while set $Y$ represents a collection of aggregates of elements of $X$---say, the various committees that organization members can serve on.  In the depicted scenario, and edge that connects $x \in X$ with $y \in Y$ could expose $x$'s membership on committee $Y$.  An illustrative such situation can be found in the proof of Lemma~\ref{thm:PlanarGraph-degree5}.
 
-\medskip
+\bigskip
 
-% undirected case
 \index{graph!undirected} \index{graph!directed}
 \index{digraph} \index{graph!digraphs}
+\index{$\a_{\fg}$: set of arcs of digraph $\g$}
+\index{$\rightarrow$: arc in a directed graph}
 
 \noindent {\it Directed graphs}.
-When graph $\g$ is {\em undirected},  each of its edges connotes some sort of sibling-like relationship among vertices of ``symmetric'' status.  When graph $\g$ is {\em directed} (often referred to as a {\em digraph}), each of its edges connotes an ``asymmetric'' relationship such as parenthood or priority or dependence; edges in directed graphs are often termed {\em arcs}. 
-We denote the set of digraph $\g$'s arcs by $\a_{\fg}$.
+Each of a graph's edges connotes some sort of sibling-like relationship among vertices of ``symmetric'' status.  Of course, there are relationships that do not enjoy such symmetry: parenthood between people and dependence between computational procedures exemplify such asymmetries.  We model such asymmetry by invoking a {\em directed}, asymmetric analogue of the graphs we have discussed to this point.
 
-\index{graph!arc} \index{arc (of a directed graph)}
+\smallskip
+
+A {\it directed graph} ({\it digraph}, for short) $\g$ is given by a set of {\it vertices} $\n_{\fg}$ and a set of {\it arcs} (or {\it directed edges}) $\a_{\fg}$.  Each arc of $\g$ has the form $(u \rightarrow v)$, where $u, v \in \n_{\fg}$; we say that this arc goes {\em from} $u$ {\em to} $v$.  
 
 \smallskip
 
@@ -90,7 +94,7 @@ notation for the reverse of digraph $\g$, but one often encounters notational em
 
 \medskip
 
-Undirected graphs are usually the default concept, in the following sense: When $\g$ is described as a ``graph,'' with no qualification---i.e., no accompanying adjective ``directed'' or ``undirected''---it is understood that $\g$ is an {\em undirected} graph.
+Undirected graphs are usually the default concept, in the following sense: When $\g$ is described as a ``graph,'' with no accompanying adjective ``directed'' or ``undirected''---it is understood that $\g$ is an {\em undirected} graph.
 
 \medskip
 
@@ -100,15 +104,125 @@ Undirected graphs are usually the default concept, in the following sense: When 
 \noindent {\it Paths and cycles}.
 A {\em path} in an undirected graph is a {\em nonrepeating} sequence of vertices within which
 every adjacent pair is connected by an edge.  A path is a {\em cycle} if all vertices in the
-sequence are distinct except for the first and last, which are identical.  Paths and cycles
-in directed graphs are defined similarly, except that now every adjacent pair of vertices must be
-connected by an {\em arc}, and all arcs must ``point in the same direction.''
+sequence are distinct except for the first and last, which are identical.
 
 \medskip
 
+\index{graph!path in a digraph} \index{path in a digraph}
+
+Paths and cycles in directed graphs are defined similarly, except that now every adjacent pair of vertices must be connected by an {\em arc}, and all arcs must ``point in the same direction.''
+
+In detail: A {\it path} in a digraph $\g$ is a sequence of arcs that share adjacent endpoints, as in the following $(n-1)$-arc path in $\g$ from vertex $u_1$ to vertex $u_n$:
+\begin{equation}
+\label{eq:di-path}
+(u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2} \rightarrow u_{n-1}), \ (u_{n-1} \rightarrow u_n)
+\end{equation}
+The path (\ref{eq:di-path}) is often written in the more succinct form
+\[
+u_1 \ \rightarrow \ u_2 \ \rightarrow \ u_3 \ \rightarrow \cdots \rightarrow \ u_{n-2} \ \rightarrow \ u_{n-1} \ \rightarrow \ u_n
+\]
+The just-described path makes sense only when every vertex $u_i$ belongs to $\n_{\fg}$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$, belongs to $\a_{\fg}$.
+
+\index{cycle (in a digraph)}
+
+When $u_1 = u_n$, then the path (\ref{eq:di-path}) is a {\em cycle} that contains vertices $u_1, \ldots, u_{n-1}$.  Of course, a cycle has no endpoints.
+
+\medskip
+
+\index{distance!in a graph} \index{graph!distance} \index{graph!distance!in a graph}
+\index{distance!in a digraph} \index{digraph!distance} \index{graph!distance!in a digraph}
+
+\subsubsection{Distance-related concepts}
+
+\noindent {\it Path-length and distance}.
+The {\it length} of a path or cycle in an undirected graph is the number of edges in the path or cycle; the analogous length in a digraph is the number of arcs.
+
+\smallskip
+
+The  {\it distance} in graph $\g$ between vertex $u_1$ and vertex $u_n$ is the length of a shortest path that connects $u_1$ with node $u_n$.  When $\g$ is a digraph, then the {\it distance} from vertex $u_1$ to vertex $u_n$ is the length of a shortest directed path that leads from $u_1$ to $u_n$.  Note that the existence of the path (\ref{eq:di-path}) in digraph $\g$ means that the distance from $u_1$ to $u_n$ is {\em no greater than} $n-1$: there could exist shorter paths in $\g$ from $u_1$ to $u_n$.
+
+
+\noindent {\it Distance and diameter in a digraph.}
+\index{digraph!distance between two vertices}
+
+Extrapolating from our discussion of path (\ref{eq:di-path}): The {\it distance} from vertex $u_1$ to vertex $u_n$ in the digraph $\g$ is the smallest number of arcs in any path from $u_1$ to $u_n$.  In detail:
+\begin{equation}
+\label{eq:di-distance-defn}
+ \mbox{\sc distance}(u_1, u_n) \ \ \left\{
+\begin{array}{cll}
+= & 0 & \mbox{  if  } \ u_1 = u_n \\
+\leq & n-1 & \mbox{  if there is a path } \ (\ref{eq:di-path})
+\ \mbox{ from $u_1$ to $u_n$} \\
+= & \infty & \mbox{  if there is no path } \ (\ref{eq:di-path})
+\ \mbox{ from $u_1$ to $u_n$}
+\end{array}
+\right.
+\end{equation}
+The {\it diameter} of a directed graph $\g$ is the largest distance between two vertices of $\g$, i.e., the largest number $d$ for which there exist vertices $u_1, u_n \in \n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that when discussing digraphs, we always use {\em directed} paths when defining distance.
+
+ \index{diameter in a digraph} \index{digraph!diameter}
+
+\medskip
+
+\index{graph!!distance between two vertices}
+\index{diameter in a graph}
+
+\noindent {\it Distance and diameter in an undirected graph.}
+Extrapolating from our discussion of path (\ref{eq:undi-path}): The {\it distance between} vertex $u_1$ and vertex $u_n$ in the graph $\g$ is the smallest number of edges in any path from $u_1$ to $u_n$.  In detail:
+\begin{equation}
+\label{eq:distance-defn}
+ \mbox{\sc distance}(u, v) \ \ \left\{
+\begin{array}{cll}
+= & 0 & \mbox{  if  } \ u = v \\
+\leq & n-1 & \mbox{  if there is a path } \ (\ref{eq:di-path})
+\ \mbox{ between $u$ and $v$} \\
+= & \infty & \mbox{  if there is no path } \ (\ref{eq:di-path})
+\ \mbox{ between $u$ and $v$}
+\end{array}
+\right.
+\end{equation}
+
+\index{diameter in a graph} \index{graph!diameter}
+The {\it diameter} of an undirected graph is the largest distance between two vertices,  i.e., the largest number $d$ for which there exists a pair of vertices $u_1, u_n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that when discussing undirected graphs, we always use {\em undirected} paths when defining distance.
+
+\ignore{********
+Alternatively, this result can be proved by applying the Fubini's
+principle using the adjacency matrix.  The two ways of counting the
+non-zero elements are by rows (giving the sum of degrees) and globally.
+\bigskip
+
+Now, decompose this sum into even and odd degrees.
+
+$\Sigma_{x \in V} \delta(x) = \Sigma_{x \in V_{even}} \delta(x) +
+\Sigma_{x \in V_{odd}} \delta(x)$.
+
+As $\Sigma_{x \in V_{even}} \delta(x)$ is obviously even as the sum of
+even numbers, $\Sigma_{x \in V_{odd}} \delta(x)$ should also be even.
+
+Thus, the number of odd vertices is even.% as depicted in Figure~\ref{propertyOdd}.
+*************}
+
+\bigskip
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+Our discussion of inter-vertex distances within graphs has focused on shortest (or longest) path problems in {\em unweighted} graphs.  A variety of important applications can be modeled via path-distance problems in graphs $\g$ each of whose edges, $\{u,v\}$, is {\em weighted} with a number that measures the cost of going between vertices $u$ and $v$ in $\g$.  Of course, when graph $\g$ is directed, then the arcs $(u \rightarrow v)$ and $(v \rightarrow u)$ can have different weights, to model situations wherein going from $u$ to $v$ is easier/cheaper than going from $v$ to $u$.  Happily, determining shortest (or longest) paths in a directed or undirected graph $\g$ can be accomplished ``efficiently''---which in the algorithmic world means
+``in a number of steps that is polynomial in the size of $\g$''.
+\end{minipage}
+}
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.95\textwidth}
+In the presentation above, we have considered only ``valid", i.e., non-redundant, paths, i.e., sequences of vertices with no repetitions.  At times, say, when devising algorithms, one often wishes to employ path-related concepts without checking sequences of vertices for repetition-freeness.  One can always avoid problems via the following ploy.  When dealing with a sequence of vertices of unknown validity, simply enforce validity by proceeding along a given sequence of vertices and skipping every subsequence that appears between consecutive
+occurrences of the same vertex.  Of course, each such subsequence is a cycle.
+\end{minipage}
+}
+
+\bigskip
+
 Even at this early stage of our discussion of graphs, we can state and prove an important
-nontrivial fact.  All graphs that have edges contain paths; all graphs having sufficiently many
-edges also contain cycles.
+nontrivial fact.  Every graph $\g$ that has at least one edge contains at least one path; if $\g$ has sufficiently many edges, then it also contains at least one cycle.  We word this result in the language of undirected graphs only for simplicity; the analogous result for digraphs is much more complicated.
 
 \begin{prop}
 \label{thm:cycle-in-graph}
@@ -120,86 +234,28 @@ Let us assume that we have a cycle-free graph $\g$ all of whose vertices have de
 
 \smallskip
 
-Let us view graph $\g$ as a park:  Every vertex of $\g$ is a statue, and every edge is a lane between two statues.  (We use the word ``lane" rather than the more common ``path"  because of the technical meaning of ``path" within the world of graphs.)   The fact that every vertex of $\g$ has degree $\geq 2$ means that if we take a stroll through Park $\g$, then every time we leave a vertex $v \in \n{\fg}$, we can use a  different edge/lane than we  used when we came to $v$.
+Let us view graph $\g$ as a park:  Every vertex of $\g$ is a statue, and every edge is a lane between two statues.  (We use the word ``lane" rather than the more common ``path"  because of the technical meaning of ``path" within the world of graphs.)   The fact that every vertex of $\g$ has degree $\geq 2$ means that if we take a stroll through Park $\g$, then every time we leave a vertex $v \in \n{\fg}$, we can use a {\em different} edge/lane than we used when we came to $v$.
+
+\smallskip
 
 \index{{\em gedanken} experiment}
-Consider now the following {\em gedanken} experiment (i.e., ``thought" experiment).  Say
-that we initially paint every statue in Park $\g$ {\em green}.  Say further that as we stroll 
-through Park $\g$, we repaint every statue we encounter {\em red}.  So, we begin our
-stroll at some statue $v_0$, and we paint that statue {\em red}.  Then we  leave $v_0$ via 
-some lane, and we encounter some other statue $v_1$.  Because we have not encountered
-$v_1$ before on our stroll, it is {\em green}.  Now that we encounter $v_1$ on our stroll, we
-paint it {\em red}.  Next, we leave $v_1$ via a different lane from the one we used to get to it. 
-(The degree property of $\g$ guarantees that this new lane exists.)  This new lane leads us
-to a statue $v$.  Now, if statue $v$ is {\em red}, then we have discovered a cycle in $\g$!  If
-statue $v$ is {\em green}, then we rename $v$ as $v_2$, and we paint $v_2$ {\em red}.  We
-continue out stroll in the described manner.  At stage $m$ of this process, we leave the 
+
+Consider now the following {\em gedanken} experiment (``thought" experiment).  Say that we initially paint every statue in Park $\g$ {\em green} and that as we stroll through the park, we repaint every statue we encounter {\em red}.  So, we begin our stroll at some statue $v_0$, and we paint that statue {\em red}.  Then we  leave $v_0$ via some lane, and we encounter some other statue $v_1$.  Because we have not encountered $v_1$ before on our stroll, it is {\em green}.  Now that we encounter $v_1$ on our stroll, we paint it {\em red}.  Next, we leave $v_1$ via a different lane from the one we used to get to it.  (The degree property of $\g$ guarantees that we can do this.)  This new lane leads us to a statue $v$.  Now, if statue $v$ is {\em red}, then we have discovered a cycle in $\g$---we are encountering $v$ for the second time!  If statue $v$ is {\em green}, then we rename $v$ as $v_2$, and we paint $v_2$ {\em red}.  We continue out stroll in the described manner.  In detail: At stage $m$ of this process, we leave the 
 newly-painted statue $v_m$ via a lane that is distinct from the lane we used to get to $v_m$, 
 and we reach a statue $v$.  If statue $v$ is {\em red}, then we have discovered a cycle in $\g$!
-If statue $v$ is {\em green}, then we rename $v$ as $v_{m+1}$, and we paint $v_{m+1}$ {\em red},
-and we continue our stroll.
+If statue $v$ is {\em green}, then we rename $v$ as $v_{m+1}$, and we paint $v_{m+1}$ {\em red}, and we continue our stroll.
 
-Because Park $\g$ is {\em finite}, having precisely $n$ statues/vertices, we can hope to encounter
-{\em green} statues along our stroll no more than $n$ times.  After this point, every lane will lead
-us to a {\em red} statue---i.e., to a cycle in $\g$.  \qed
+\smallskip
+
+Because Park $\g$ is {\em finite}, having precisely $n$ statues/vertices, we can hope to encounter {\em green} statues along our stroll no more than $n$ times.  After this point, every lane will lead us to a {\em red} statue---i.e., to a cycle in $\g$.  \qed
 \end{proof}
 
 \bigskip
 
- \index{graph!directed}\index{digraph}
- \index{graph!vertex}
-\index{$\n_{\fg}$: set of vertices of graph $\g$}\index{graph!digraph!arcs}
-A {\it directed graph} ({\it digraph}, for short) $\g$ is given by a set of {\it vertices}
-$\n_{\fg}$ and a set of {\it arcs} (or {\it directed edges}) $\a_{\fg}$.
-In the following, we will omit the subscript if there is no ambiguity.
-\index{$\a_{\fg}$: set of arcs of digraph $\g$}
-\index{$\rightarrow$: arc in a directed graph}
-Each arc of $\g$ has the form $(u \rightarrow v)$,
-where $u, v \in \n$; we say that this arc goes {\em from} $u$ {\em to} $v$.  
-\index{graph!path in a digraph}
-\index{path in a digraph}
-A {\it path} in a digraph $\g$ is a sequence of arcs that share adjacent
-endpoints, as in the following $(n-1)$-arc path in $\g$ from vertex $u_1$ to
-vertex $u_n$:
-\begin{equation}
-\label{eq:di-path}
-(u_1 \rightarrow u_2), \ (u_2 \rightarrow u_3), \ \ldots, \ (u_{n-2}
-        \rightarrow u_{n-1}), \ (u_{n-1} \rightarrow u_n)
-\end{equation}
-The path (\ref{eq:di-path}) is often written in the more succinct form
-\[
-u_1 \ \rightarrow \ u_2 \ \rightarrow \ u_3 \ \rightarrow \cdots
-\rightarrow \ u_{n-2} \ \rightarrow \ u_{n-1} \ \rightarrow \ u_n
-\]
-The just-described path makes sense only when every vertex $u_i$ belongs
-to $\n$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$,
-belongs to $\a$.  The {\it length} of path (\ref{eq:di-path}) is
-the number of arcs, i.e., $n-1$.  
- \index{distance!in a digraph}
-\index{digraph!distance} \index{graph!distance!in a digraph} 
-The existence of the path means that the {\it distance}from
-$u_1$ to $u_n$ in $\g$ is no greater than $n-1$ (where the distance here is taken
-in term of number of arcs.  
-Notice also there may exist shorter paths in $\g$ from $u_1$ to $u_n$.)
+\index{labeled graphs and digraphs}
 
-\bigskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-In the presentation above, we have considered only ``valid", nonredundant, paths,
-i.e., sequences of vertices with no repetitions.  At times, say, when devising algorithms,
-one often wishes to employ path-related concepts without checking sequences of vertices
-for repetition-freeness.  One can always avoid problems via the following ploy.  When dealing
-with a sequence of vertices of unknown validity, simply enforce validity by proceeding along a
-given sequence of vertices and skipping every subsequence that appears between consecutive
-occurrences of the same vertex.
-\end{minipage}
-}
-\bigskip
-
-It is sometimes useful to endow the arcs of a digraph with labels from
-an alphabet $\Sigma$.  When so endowed, the path (\ref{eq:di-path})
-would be written in a form such as
+\noindent {\it Labeled graphs and digraphs}.
+It is sometimes useful to endow the arcs of a digraph with labels from an alphabet $\Sigma$.  When so endowed, the path (\ref{eq:di-path}) would be written in a form such as
 
 \smallskip
 
@@ -212,8 +268,7 @@ would be written in a form such as
 \smallskip
 
 \noindent
-where the $\lambda_i$ denote symbols from $\Sigma$.  Labeled paths
-also are often written in a succinct manner, as:
+where the $\lambda_i$ denote symbols from $\Sigma$.  Labeled paths also are often written in a succinct manner, as:
 
 \smallskip
 
@@ -225,26 +280,12 @@ u_1 \ \stackrel{\lambda_1}{\rightarrow} \ u_2
     \ \stackrel{\lambda_{n-2}}{\rightarrow} \ u_{n-1}
     \  \stackrel{\lambda_{n-1}}{\rightarrow} \ u_n$
 
-\medskip
+\bigskip
 
-\ignore{********
-{\Denis in the following, there are many redundancies with the presentation above, 
-I put them in bold, please, check and remove them...}
-***********}
+\ignore{*************
+We have viewed the notion of undirected graph as primary and have introduced directed graph by adding directionality to edges.  Of course, we could have proceeded in the reverse direction, thereby obtaining from an undirected graph from a digraph by removing the directionality of the latter's arcs. 
 
-If $u_1 = u_n$, then we call path (\ref{eq:di-path}) a {\em (directed)
-  cycle},\index{cycle (in a digraph)} and we call its labeled version
-a {\em labeled (directed) cycle}.  
-%\textbf{(The qualifier ``directed'' is usually included only for emphasis.)}
-
-\medskip
-
-\index{$\e_{\fg}$: the set of edges of the undirected  graph $\g$}
-An {\em undirected graph} $\g$ is given by a set of vertices $\n$
-and a set $\e$ of {\em edges}, each edge being a
-$2$-element subset of $\n$.\index{graph!edge} \index{edge (of a graph)}
-One can, thus, view the undirected graph $\g$ as being obtained from a
-directed graph by removing the directionality of its arcs.  Whereas we say: \\
+Whereas we say: \\
 \hspace*{.35in}the {\em arc} $(u,v)$ goes {\em from} vertex $u$ {\em to}
 vertex $v$ \\
 we say: \\
@@ -253,6 +294,7 @@ $u$ and $v$ \\
 or, more simply: \\
 \hspace*{.35in}the undirected edge $\{u,v\}$ {\em connects} vertices $u$
 and $v$. 
+
 
 \medskip
 
@@ -279,54 +321,73 @@ the path means that the {\it distance} \index{graph!distance}
 \index{distance!in an undirected graph}
 {\it between} $u_1$ and $u_n$ in $\g$ is no greater than $n-1$.  
 %\textbf{(There may exist shorter paths that connect $u$ and $v$.)}
-
-\medskip
+***************}
 
 \index{graph!vertices!neighbor vertices}
-\index{neighbor vertex!in a graph}
+\index{neighbor vertex!in a graph} \index{graph!vertices!adjacent vertices}
+\index{adjacent vertex}
 \index{graph!vertices!degree of a vertex in an undirected graph}
 \index{graph!degree of a vertex in an undirected graph}
 \index{degree of a vertex in an undirected graph}
-For each edge $\{u,v\} \in \e$, we call vertices $u$ and $v$ {\it neighbors} (in $\g$).
-The {\it degree} of a vertex $u \in \n$ is the number of neighbors that $u$ has.
 
-Even at this early moment in our study of graphs, we can observe a few
-important facts that can be useful when analyzing a broad range of
-computation-related issues involving graphs (either as auxiliary
-notions or as subjects of discourse).
+\subsubsection{Locality-related concepts}
+
+\begin{itemize}
+\item
+Let $\g$ be an undirected graph having vertex-set $\n$ and edge-set $\e$:   For each edge $\{u,v\} \in \e$, we say that vertices $u$ and $v$ are {\it neighbors} (in $\g$) or, equivalently, that they are {\it adjacent} (in $\g$).
+
+\smallskip
+
+The {\it degree} of vertex $u \in \n$ is the number of neighbors that $u$ has.
+
+\smallskip
+
+$\g$ is {\it regular} (or, is a {\it regular graph}) if all vertices have the same degree.
+
+\item
+Let $\h$ be a directed graph having vertex-set $\n_{\fh}$ and arc-set $\a_{\fh}$:   For each arc $(u \rightarrow v) \in \a$, we say that vertex $u$ is a {\it predecessor} of $v$ (in $\h$) or, equivalently, that vertex $v$ is a {\it successor} of $u$ (in $\h$).
+
+\smallskip
+ 
+The words ``{\it source}" and ``{\it target}" sometimes replace the words ``{\it predecessor}"  and ``{\it successor}".
+
+\smallskip
+
+The {\it outdegree} of vertex $u \in \n$ is the number of successors that $u$ has.  The {\it indegree} of vertex $v \in \n$ is the number of predecessors that $v$ has.
+
+\smallskip
+
+$\g$ is {\it in-regular} if all vertices have the same in-degree; it is {\it out-regular} if all vertices have the same out-degree.
+\end{itemize}
+
+\bigskip
+
+We can observe a few important facts that can be useful when analyzing a broad range of
+computation-related issues involving graphs (either as auxiliary notions or as subjects of discourse).
 
 \begin{prop}
 \label{thm:number-edges/arcs}
 {\bf (a)}
 An $n$-vertex digraph $\g$ has no more than $n^2$ arcs.
 
-{\bf (b)}
-An $n$-vertex graph $\g$ has no more than $\displaystyle {n \choose 2}$ edges.
+\noindent {\bf (b)}
+An $n$-vertex undirected graph $\g$ has no more than $\displaystyle {n \choose 2}$ edges.
 \end{prop}
 
 \begin{proof}
 {\bf (a)}
-The set $\a$ of arcs of $\g$ is a subset of the set of ordered
-pairs of vertices of $\g$.  This latter number is clearly $n^2$, because
-one can choose the first vertex of a pair in $n$ ways and then
+The set $\a$ of arcs of $\g$ is a subset of the set of ordered pairs of vertices of $\g$.  This latter number is clearly $n^2$, because one can choose the first vertex of a pair in $n$ ways and then
 {\em independently} choose the second vertex in $n$ ways.
 
 \medskip
 
 \noindent {\bf (b)}
-The stated quantity is the number of $2$-vertex subsets of $\n$.  To
-wit, start by listing the $n^2$ ordered pairs of vertices of $\g$.
-First, eliminate from the list all $n$ pairs whose first and second
-elements are equal: a set of the form $\{ u,u\}$ has only one element,
-hence is not an edge of $\g$.  Then, for each distinct pair of vertices
-$u, v \in \n$, eliminate one of the two ordered pairs, $\langle
-u,v \rangle$ and $\langle v,u \rangle$: both of these ordered pairs
-lead to the same unordered set $\{ u,v\}$, hence to the same edge of
-$\g$.  After these eliminations, we are left with
+The stated quantity is the number of $2$-vertex subsets of $\n$.  To wit, start by listing the $n^2$ ordered pairs of vertices of $\g$.  First, eliminate from the list all $n$ pairs whose first and second elements are equal: a set of the form $\{ u,u\}$ has only one element, hence is not an edge of $\g$.  Then, for each distinct pair of vertices $u, v \in \n$, eliminate one of the two ordered pairs, $\langle u,v \rangle$ and $\langle v,u \rangle$: both of these ordered pairs lead to the same unordered doubleton set $\{ u,v\}$, hence to the same edge of $\g$.  After these eliminations, we are left with
 \[ \frac{n^2 - n}{2} \ = \ {n \choose 2} \]
 $2$-element subsets of $\n$, from which we choose the edges of $\g$. \qed
 \end{proof}
 
+\smallskip
 
 \begin{prop}
 \label{thm:even-num-odd-degrees}
@@ -334,15 +395,10 @@ In any undirected graph, the number of vertices of odd degree is even.
 \end{prop}
 
 \begin{proof}
-The result follows directly from the following equation that holds for
-any undirected graph $\g$:
+The result follows from the following equation, which holds for any undirected graph $\g$:
+\[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot |\e_{\cal G}| \]
 
-\[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot |\e_{\cal G}|
-\]
-The equation holds because each edge $e$ of $\g$ ``touches'' two vertices
-of $\g$, namely, $e$'s two endpoints.  Since the sum of $\g$'s
-vertex-degrees is even, each odd vertex-degree must be paired (in the sum)
-with another odd vertex-degree.  \qed
+The equation holds because each edge $e$ of $\g$ ``touches'' two vertices of $\g$, namely, $e$'s two endpoints.  Since the sum of $\g$'s vertex-degrees is even, each odd vertex-degree must be paired (in the sum) with another odd vertex-degree.  \qed
 \end{proof}
 
 \ignore{*******
@@ -358,31 +414,11 @@ subscripts and it looked "naked" -- especially if a reader just refers back to i
 \index{successor vertex in a directed graph}
 \index{digraph!predecessor vertex}
 \index{predecessor vertex in a directed graph}
-We sometimes use the term {\it neighbor} also when speaking of a {\em directed} graph,
-$\g$, by using an obvious analogy to the undirected version of $\g$ (in which arcs lose
-their directionality).  In detail, when we say that vertices $u$ and $v$ are ``neighbors'' in the
-digraph $\g$, we mean that $\a_{\fg}$ contains at least one of the arcs $(u \rightarrow v)$ 
-or $(v \rightarrow u)$.  More typically, we use terminology that is more faithful to digraph $\g$'s 
-directedness.  If $\a_{\fg}$ contains the arc $(u \rightarrow v)$, then we call $v$ a
-{\it (direct) successor} of $u$, and we call $u$ a {\it (direct) predecessor} of $v$.
-The term {\it parent} often replaces ``predecessor vertex'', and the
-term {\it child} often replaces ``successor vertex'', especially when
-$\g$ is a directed {\em tree}.  Acknowledging the distinction between
-predecessors and successors in digraphs, we usually split the notion
-of the degree of a vertex within a digraph into the {\it indegree} and
-the {\it outdegree} of vertex $u$:
-\index{digraph!indegree}
-\index{digraph!outdegree}
-\begin{itemize}
-\item
-The {\it indegree} of vertex $u \in \n_{\fg}$ is the number of vertices $v \in \n_{\fg}$ such
-that $(u \rightarrow v)$ is an arc of $\g$.
-\item
-The {\it outdegree} of vertex $u \in \n_{\fg}$ is the number of vertices $v \in \n_{\fg}$ such
-that $(v \rightarrow u)$ is an arc of $\g$.
-\end{itemize}
 
-\smallskip
+We sometimes use the term {\it neighbor} also when speaking of a {\em directed} graph, $\g$, by using an obvious analogy to the undirected version of $\g$ (in which arcs lose their directionality).  In detail, when we say that vertices $u$ and $v$ are ``neighbors'' in the digraph $\g$, we mean that $\a_{\fg}$ contains at least one of the arcs $(u \rightarrow v)$ or $(v \rightarrow u)$.  More typically, we use terminology that is more faithful to digraph $\g$'s 
+directionality.  If $\a_{\fg}$ contains the arc $(u \rightarrow v)$, then we call $v$ a {\it (direct) successor} of $u$, and we call $u$ a {\it (direct) predecessor} of $v$.  The term {\it parent} often replaces ``predecessor vertex'', and the term {\it child} often replaces ``successor vertex'', especially when $\g$ is a directed {\em tree}.
+
+\medskip
 
 \index{graph!vertex accessibility}
 \index{graph!connected}
@@ -392,35 +428,24 @@ that $(v \rightarrow u)$ is an arc of $\g$.
 \index{digraph!connected components}
 \index{digraph!strongly connected}
 \index{digraph!strongly connected components}
-The reader will note that we have nowhere guaranteed that there is always a
-path that connects each vertex $u$ with each other vertex $v$.  Indeed, we have
-important adjectives that describe when such {\em inter-vertex access} is possible.
-We say that a graph $\g$ is {\it connected} if every pair of vertices $u, v \in \n_{\fg}$
-is connected by a path in $\g$.  If graph $\g$ is {\em not} connected, then it is the
-disjoint union of some number $c$ of connected subgraphs, usually called $\g$'s
-{\it (connected) components}.  Of course, $\g$ is connected just when $c=1$; i.e., 
-there is a single connected component.  There are, of course, analogous connectivity-related
-adjectives for directed graphs.  Most notions involving connectivity and inter-vertex
-accessibility are discussed using the same adjectives for undirected graphs and directed
-graphs---but with the word ``directed" prominently asserted in the latter case.
-{\em One must be meticulous in distinguishing the directed and undirected versions of
-accessibility and connectedness when discussing digraphs.}  There is one exception to
-the terminological looseness we have just mentioned: We say that a digraph $\g$ is
-{\it strongly connected} if there is a directed path from every vertex of $\g$ to every
-other vertex.
-\ignore{
-{\Denis same here, subscript is not needed...}
-{\Arny We should discuss this}
-}
 
-There is an important connection between graph-connectivity and equivalence relations.
+\subsubsection{Connectivity-related concepts}
+
+The reader will note that we have nowhere guaranteed that there is always a path that connects each vertex $u$ with each other vertex $v$.  Indeed, we have important adjectives that describe when such {\em inter-vertex access} is possible.  We say that a graph $\g$ is {\it connected} if every pair of vertices $u, v \in \n_{\fg}$ is connected by a path in $\g$.  If graph $\g$ is {\em not} connected, then it is the disjoint union of some number $c$ of connected subgraphs, usually called $\g$'s {\it (connected) components}.  Of course, $\g$ is connected just when $c=1$; i.e., 
+there is a single connected component.
+
+There are, of course, analogous connectivity-related adjectives for directed graphs.  Most notions involving connectivity and inter-vertex accessibility are discussed using the same adjectives for undirected graphs and directed graphs---but with the word ``directed" prominently asserted in the latter case.  {\em One must be meticulous in distinguishing the directed and undirected versions of accessibility and connectedness when discussing digraphs.}  There is one exception to the terminological looseness we have just mentioned:  We say that a digraph $\g$ is {\it strongly connected} if there is a directed path from every vertex of $\g$ to every
+other vertex.
+
+\medskip
+
+There is an important connection between graph-connectivity and equivalence relations.  The proof of the following important result is left as an exercise.
 
 \begin{prop}
 \label{thm:Accessibility-Equivalence}
 The property of inter-vertex accessibility in graphs is an equivalence relation.
 \end{prop}
 
-The proof is left as an exercise.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -436,10 +461,7 @@ The {\sf 2SAT} problem can be solved in polynomial time.
 \smallskip
 
 \noindent
-That is, given any instance $\Phi$ of {\sf 2SAT}, one can determine in
-time polynomial in the number of literals in $\Phi$ whether there
-exists a satisfying assignment of truth-values to the variables of
-$\Phi$.
+That is, given any instance $\Phi$ of {\sf 2SAT}, one can determine in time polynomial in the number of literals in $\Phi$ whether there exists a satisfying assignment of truth-values to the variables of $\Phi$.
 \end{prop}
 
 We develop the proof of Proposition~\ref{thm:2SAT-reprise} by focusing on an instance of the {\sf 2SAT} problem: the following POS expression for a propositional formula $\Phi$:
@@ -468,6 +490,8 @@ There is an arc $(\bar{x}_1 \rightarrow x_2)$.
 This arc indicates that, if variable $x_1$ is assigned truth-value {\sc false}, then variable $x_2$ should be assigned truth-value {\sc true}.
   \item
 Symmetrically, there is an arc $(\bar{x}_2 \rightarrow x_1)$.
+
+\smallskip
 
 This arc indicates that, if variable $x_2$ is assigned truth-value {\sc false}, then variable $x_1$ should be assigned truth-value {\sc true}.
   \end{itemize}
@@ -499,7 +523,7 @@ truth-value {\sc true}, then $t$ also assigns variable $y$ the truth-value {\sc 
 \end{lemma}
 
 \begin{proof}
-Assume that $\Phi$ is satisfied by a truth assignment $t$ which assigns variable $x$ the truth-value {\sc true}.  Say, for contradiction, that along the path from $x$ to $\bar{x}$ in $\g(\Phi)$, there exists an arc (say $(u \rightarrow v)$) such that assignment $t$ assigns the value {\sc true} to $u$ and the value {\sc false} to $v$.  Because of the way we constructed $\g(\Phi)$, the existence of this arc means that $\Phi$ contains the clause $\bar{u} \vee v$.  Moreover, under truth assignment $t$, this clause of $\Phi$ evaluates to {\sc false} because both of its literals are assigned the value {\sc false}.  This contradicts the assumption that $t$ is a satisfying assignment for $\Phi$.  \qed
+Assume that $\Phi$ is satisfied by a truth assignment $t$ which assigns variable $x$ the truth-value {\sc true}.  Say, for contradiction, that along the path from $x$ to $\bar{x}$ in $\g(\Phi)$, there exists an arc---call it $(u \rightarrow v)$---such that assignment $t$ assigns the value {\sc true} to $u$ and the value {\sc false} to $v$.  Because of the way we constructed $\g(\Phi)$, the existence of this arc means that $\Phi$ contains the clause $\bar{u} \vee v$.  Moreover, under truth assignment $t$, this clause of $\Phi$ evaluates to {\sc false} because both of its literals are assigned the value {\sc false}.  This contradicts the assumption that $t$ is a satisfying assignment for $\Phi$.  \qed
 \end{proof}
 
 We finally prove the main result of this section, Proposition~\ref{prop:2SAT}.
@@ -512,8 +536,7 @@ This is, of course, a shorthand for the conjunction
 \mbox{\bf and} \ \  
 \big[ \mbox{\sf Q} \ \Rightarrow \ \mbox{\sf P} \big]
 \]
-We are able to derive a simplified proof here by the stratagem of replacing one of the
-two implications by its {\em contraposition}; i.e., instead of proving the implication
+We are able to derive a simplified proof here by the stratagem of replacing one of the two implications by its {\em contrapositive}; i.e., instead of proving the implication
 \[ \mbox{\sf P} \ \Rightarrow \ \mbox{\sf Q} \]
 for the {\em necessity} component of the biconditional, we prove the {\em logically equivalent} implication
 \[  \neg \mbox{\sf Q} \ \Rightarrow \ \neg \mbox{\sf P} \]
@@ -523,21 +546,23 @@ The reader should read the {\em necessity} component of the proof with an eye to
 
 Focus on a POS formula $\Phi$ and its associated digraph $\g(\Phi)$.
 
-\smallskip
+\medskip
 
 {\bf Necessity}.
 Say first that $\g(\Phi)$ has a strongly connected component which contains vertices arising from a variable $x$ in both positive ($x$) and negated ($\bar{x}$) forms.  We claim that $\Phi$ is not satisfiable.
 
-By definition of ``strongly connected'', $\g(\Phi)$ must contain paths between the vertices corresponding to $x$ and to $\bar{x}$.  By Lemma~\ref{lem:2SATlemma2}, therefore, any truth-assignment that could satisfy formula $\Phi$ would have to assign literals $x$ and $\bar{x}$ the same truth-value.  Any such truth-assignment to formula $\Phi$'s {\em literals} would not be a valid truth-assignment to $\Phi$'s {\em variables} (specifically to variable $x$).  We conclude that no valid truth-assignment could satisfy formula $\Phi$.
+\smallskip
+
+By definition of ``strongly connected'', $\g(\Phi)$ must contain paths between the vertices corresponding to $x$ and to $\bar{x}$.  By Lemma~\ref{lem:2SATlemma2}, therefore, any truth assignment that could satisfy formula $\Phi$ would have to assign literals $x$ and $\bar{x}$ the same truth-value.  Any such truth assignment to formula $\Phi$'s {\em literals} would not be a valid truth assignment to $\Phi$'s {\em variables} (specifically to variable $x$).  We conclude that no valid truth assignment could satisfy formula $\Phi$.
 
 \medskip
 
 {\bf Sufficiency}.
-Say next that $\g(\Phi)$ has no strongly connected component which contains vertices arising from a variable $x$ in both positive ($x$) and negated ($\bar{x}$) forms.  We construct a truth-assignment $t$ to $\Phi$'s variables under which $\Phi$ evaluates to {\sc true}.  Assignment $t$ witnesses $\Phi$'s satisfiability.
+Say next that $\g(\Phi)$ has no strongly connected component which contains vertices arising from a variable $x$ in both positive ($x$) and negated ($\bar{x}$) forms.  We construct a truth assignment $t$ to $\Phi$'s variables under which $\Phi$ evaluates to {\sc true}.  Assignment $t$ witnesses $\Phi$'s satisfiability.
 
 \smallskip
 
-We construct a satisfying truth-assignment $t$ for $\Phi$ as follows.
+We construct a satisfying truth assignment $t$ for $\Phi$ as follows.
 
 \index{topological order} 
 \noindent {\sf 1.}
@@ -547,8 +572,7 @@ Say that graph $\g(\Phi)$ has $k$ mutually disjoint strongly connected component
 \item
 $\g(\Phi)$ contains no arc of the form $(u \rightarrow v)$ where vertex $u$ belongs to some component $S_i$, and vertex $v$ belongs to some component $S_j$ with $j < i$.
 \end{itemize}
-We know that this labeling is possible because any such arc would make all vertices of $S_j$ accessible from all vertices of $S_i$, and conversely.  This would mean that $S_i$ and $S_j$ would be contained within the same strongly connected component---which would contradict
-their assumed disjointness.
+We know that this labeling is possible because any such arc would make all vertices of $S_j$ accessible from all vertices of $S_i$, and conversely.  This would mean that $S_i$ and $S_j$ would belong to the same strongly connected component---which would contradict the components' assumed disjointness.
 
 \medskip
 
@@ -562,7 +586,7 @@ If we encounter an instance of a vertex/literal $\ell$ whose associated variable
 variable's assignment: i.e., a positive literal gets the same assignment, while a negative instance gets the negated version of the assignment.
 \end{itemize}
 
-Proceeding in this fashion, we develop a truth-assignment that satisfies all of $\Phi$'s clauses.  To wit, assume for contradiction that some clause of $\Phi$, say $(\xi \vee \eta)$, is not satisfied
+Proceeding in this fashion, we develop a truth assignment that satisfies all of $\Phi$'s clauses.  To wit, assume for contradiction that some clause of $\Phi$, say $(\xi \vee \eta)$, is not satisfied
 under our procedure.  This means, in particular, that our assignment $t$ assigns the truth-value {\sc false} to vertex/literal $\xi$.   But, this can happen only if $t$ has assigned the truth-value {\sc true} to vertex/literal $\bar{\xi}$, within a strongly connected component of $\g(\Phi)$ whose index is higher than that of the strongly connected component that $\xi$ occurs in.  The same observation applies to vertex/literal $\eta$.   But this is impossible, because within our construction of $\g(\Phi)$, the clause $(\xi \vee \eta)$ in formula $\Phi$ would add the arc $(\bar{\xi} \rightarrow \eta)$ to graph $\g(\Phi)$.  It follows that we have found a truth assignment that satisfies formula $\Phi$, as was claimed.  \qed
 \end{proof}
 
@@ -572,8 +596,7 @@ under our procedure.  This means, in particular, that our assignment $t$ assigns
 \begin{enumerate}
 \item
 Fig.~\ref{2SATyes} illustrates $\g(\Phi_1)$ for the formula
-\[ \Phi_1 \ = \ (a \vee \bar{b}) \ \wedge \ (b \vee \bar{c}) \ \wedge \ (c \vee \bar{a})
-\]
+\[ \Phi_1 \ = \ (a \vee \bar{b}) \ \wedge \ (b \vee \bar{c}) \ \wedge \ (c \vee \bar{a}) \]
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=0.25\textwidth]{FiguresGraph/2SATyes.png}
@@ -584,9 +607,15 @@ Fig.~\ref{2SATyes} illustrates $\g(\Phi_1)$ for the formula
 \end{figure}
 The graph has the two strongly connected components illustrated in the figure.  One thereby observes two satisfying truth-value assignments $t$ for formula $\Phi_1$:
 
+\smallskip
+
 \hspace*{.2in} $t(a) = t(b) = t(c) = \mbox{\sc true}$
 
+\smallskip
+
 or symmetrically
+
+\smallskip
 
 \hspace*{.2in} $t(a) = t(b) = t(c) = \mbox{\sc false}$.
 
@@ -603,7 +632,8 @@ Fig.~\ref{2SATno} illustrates $\g(\Phi_2)$ for the formula
 \label{2SATno}
 \end{center}
 \end{figure}
-Because the graph is strongly connected and contains directed paths in both directions between vertex $a$ and vertex $\bar{a}$, Proposition~\ref{prop:2SAT} assures us that formula $\Phi_2$ does not admit any satisfying truth-assignment.
+
+Because the graph is strongly connected and contains directed paths in both directions between vertex $a$ and vertex $\bar{a}$, Proposition~\ref{prop:2SAT} assures us that formula $\Phi_2$ does not admit any satisfying truth assignment.
 \end{enumerate}
 
 \medskip
@@ -624,191 +654,77 @@ $\bullet$ isolating and investigating the strongly connected components of $\g(\
 can be accomplished in a number of computational steps that is polynomial in the size of $\Phi$.  
 
 
-\subsection{Distance-Related Concepts}
-
-\noindent {\it Distance and diameter in a digraph.}
-\index{digraph!distance between two vertices}
-Extrapolating from our discussion of path (\ref{eq:di-path}): The {\it
-  distance} from vertex $u_1$ to vertex $u_n$ in the digraph $\g$ is the
-smallest number of arcs in any path from $u_1$ to $u_n$.  In detail:
-\begin{equation}
-\label{eq:di-distance-defn}
- \mbox{\sc distance}(u_1, u_n) \ \ \left\{
-\begin{array}{cll}
-= & 0 & \mbox{  if  } \ u_1 = u_n \\
-\leq & n-1 & \mbox{  if there is a path } \ (\ref{eq:di-path})
-\ \mbox{ from $u_1$ to $u_n$} \\
-= & \infty & \mbox{  if there is no path } \ (\ref{eq:di-path})
-\ \mbox{ from $u_1$ to $u_n$}
-\end{array}
-\right.
-\end{equation}
-The {\it diameter} \index{diameter in a digraph}
-\index{digraph!diameter} of a directed graph $\g$ is the largest
-distance between two vertices of $\g$, i.e., the largest number $d$ for
-which there exist vertices $u_1, u_n \in \n$ such that {\sc
-  distance}$(u_1, u_n) = d$.  Note that when discussing digraphs, we
-always use {\em directed} paths when defining distance.
-\medskip
-
-\noindent {\it Distance and diameter in an undirected graph.}
-\index{graph!!distance between two vertices}
-\index{diameter in a graph}
-Extrapolating from our discussion of path (\ref{eq:undi-path}): The
-{\it distance between} vertex $u_1$ and vertex $u_n$ in the graph $\g$ is
-the smallest number of edges in any path from $u_1$ to $u_n$.  In
-detail:
-\begin{equation}
-\label{eq:distance-defn}
- \mbox{\sc distance}(u, v) \ \ \left\{
-\begin{array}{cll}
-= & 0 & \mbox{  if  } \ u = v \\
-\leq & n-1 & \mbox{  if there is a path } \ (\ref{eq:di-path})
-\ \mbox{ between $u$ and $v$} \\
-= & \infty & \mbox{  if there is no path } \ (\ref{eq:di-path})
-\ \mbox{ between $u$ and $v$}
-\end{array}
-\right.
-\end{equation}
-
-\index{diameter in a graph} \index{graph!diameter}
-The {\it diameter} of an undirected graph is the largest distance between two vertices, 
-i.e., the largest number $d$ for which there exists a pair of vertices $u_1,
-u_n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that when discussing undirected graphs,
-we always use {\em undirected} paths when defining distance.
-
-\ignore{********
-Alternatively, this result can be proved by applying the Fubini's
-principle using the adjacency matrix.  The two ways of counting the
-non-zero elements are by rows (giving the sum of degrees) and globally.
-\bigskip
-
-Now, decompose this sum into even and odd degrees.
-
-$\Sigma_{x \in V} \delta(x) = \Sigma_{x \in V_{even}} \delta(x) +
-\Sigma_{x \in V_{odd}} \delta(x)$.
-
-As $\Sigma_{x \in V_{even}} \delta(x)$ is obviously even as the sum of
-even numbers, $\Sigma_{x \in V_{odd}} \delta(x)$ should also be even.
-
-Thus, the number of odd vertices is even.% as depicted in Figure~\ref{propertyOdd}.
-*************}
-
-\bigskip
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-Our discussion of inter-vertex distances within graphs has focused on
-shortest (or longest) path problems in {\em unweighted} graphs.  A
-variety of important applications can be modeled via path-distance
-problems in graphs $\g$ each of whose edges, $\{u,v\}$, is
-{\em weighted} with a number that measures the cost of going between vertices
-$u$ and $v$ in $\g$.  Of course, when graph $\g$ is directed, then the
-arcs $(u \rightarrow v)$ and $(v \rightarrow u)$ can have different
-weights, to model situations wherein going from $u$ to $v$ is
-easier/cheaper than going from $v$ to $u$.  Happily, determining
-shortest (or longest) paths in a directed or undirected graph $\g$ can
-be accomplished ``efficiently''---which in the algorithmic world means
-``in a number of steps that is polynomial in the size of $\g$''.
-\end{minipage}
-}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Matchings in Graphs}
 \index{graph!matching}
 
-The notion of a {\it matching} in a graph is fundamental to many
-situations that can be modeled using graphs.  A {\it matching} in an
-undirected graph $\g$ is a set of edges of $\g$ that have no vertices in
-common.  It is, thus, a formal mechanism for pairing vertices of a graph.
-The broad array of activities that can be modeled using graph matching
-include: pairing competitors for a tennis tournament; helping a person
-select a potential spouse (which even in the vernacular is often
-termed ``matchmaking''); determining (near-)optimal layouts for a
-keyboard in language X (based on the relative ``affinities'' of
-various pars of letters for one another in language X); selecting
-persons to command the police stations in city Y (based on the
-perceived ``match'' between a candidate's qualifications and the needs
-of specific stations).  Even this small sampler of situations that
-involve matchings makes it clear that there are many variations on
-this formal theme.  This section is devoted to describing, and briefly
-discussing, a few of the most commonly encountered versions of
-matching in graphs.
+{\it Matching} are fundamental to many situations that can be modeled using graphs.  A {\it matching} in an undirected graph $\g$ is a set of edges of $\g$ that have no vertices in common.  In many computational settings, matchings are, thus, a convenient formal mechanism for pairing a graph's vertices.  The broad range of activities which can be modeled using graph matching
+include: pairing competitors for a tennis tournament; helping a person select a potential spouse (which even in the vernacular is often termed ``matchmaking''); determining (near-)optimal layouts for a keyboard in language X (based on the relative ``affinities'' of various pairs of letters for one another in X); selecting persons to command the police stations in city Y (based on the
+perceived ``match'' between a candidate's qualifications and the needs of specific stations).  Even this small sampler makes it clear that there are many significant variations on this formal theme.  This section is devoted to describing, and briefly discussing, a few of the most commonly encountered versions of matching in graphs.
+
 \bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-Although the definitions of the various versions of matching are
-readily accessible to even the beginning student of mathematics, much
-of the more sophisticated mathematical knowledge about matchings is
-beyond any beginning text.  The interested reader might consult a more
-advanced source, such as \cite{Berge73}, to get a feeling for what is
-known about this simple, yet rich, topic.
+Although the definitions of the various versions of matching are readily accessible to even the mathematical novice, much of the more sophisticated mathematical knowledge about matchings is beyond any beginning text.  The interested reader might consult a more advanced source, such as \cite{Berge73}, to get a feeling for what is known about this conceptually simple, yet rich, topic.
 \end{minipage}
 }
 \bigskip
 
 \noindent {\it Matchings in unweighted graphs}.
-The most straightforward notion of matching involves an undirected
-graph $\g$ with unlabeled edges.  The optimization criterion most
-often invoked with this genre of matching is to maximize the number of
-edges of $\g$ that belong to the matching.
+The most straightforward notion of matching involves an undirected graph $\g$ with unlabeled edges.  The optimization criterion most often invoked with this genre of matching is to find a matching that involves as many edges of $\g$ as possible.
 
-The target in this ``vanilla-flavored'' matching problem is often a
-matching that is {\em maximal}, \index{graph!maximal matching}
-\index{graph!maximal matching!unweighted graph} in the sense that
-adding any further edge of $\g$ to the matching leaves one with a set
-of edges that is no longer a matching.
+\smallskip
 
-Among maximal matchings in a graph $\g$, the ``ultimate treasure'' is
-a matching that is {\it perfect}, \index{graph!perfect matching} in
-the sense that every vertex of $\g$ belongs to some edge of the matching.
+\index{graph!maximal matching}
+\index{graph!maximal matching!unweighted graph}
+
+The target in this ``vanilla-flavored'' matching problem is often a matching that is {\em maximal},  in the sense that adding any further edge of $\g$ to the matching leaves one with a set of edges that is no longer a matching.
+
+\smallskip
+
+\index{graph!perfect matching}
+
+Among maximal matchings in a graph $\g$, the ``ultimate treasure'' is a matching that is {\it perfect}, in the sense that every vertex of $\g$ belongs to some edge of the matching.
 
 \begin{prop}
 \label{thm:max-matching}
-Maximal matchings exist for any graph $\g$.  One can find such a
-matching in a number of steps proportional to $|\n|$.
+Maximal matchings exist for any graph $\g$.  One can find such a matching in a number of steps proportional to $|\n|$.
 \end{prop}
 
 \index{greedy algorithm} 
+
 \begin{proof}
-We leave to the reader the challenge of verifying that the following
-{\em greedy}\footnote{\label{foot:greedy}In the world of algorithmics, the term ``greedy''
-describes any process that seeks to satisfy a criterion as quickly as possible, with no consideration
-of how this immediate actions might affect future actions.}~process satisfies the
-conditions of the Proposition.
+We leave to the reader the challenge of verifying that the following {\em greedy}\footnote{\label{foot:greedy}In the world of algorithmics, the term ``greedy'' describes any process that seeks local optimizations, with no consideration of how such a myopic strategy might limit future options.}~process satisfies the conditions of the Proposition.
+
 \medskip
 
 \noindent
 {\it The Process:} \\
 Begin by laying the vertices of $\g$ out, left to right, in any way.
 
+\smallskip
+
 \noindent
 Repeat the following process until no vertices remain in the layout.
+
+\smallskip
 
 \noindent
 Select the leftmost vertex, $u$, in the remaining layout of $\n$.
   \begin{itemize}
   \item
-If we succeed in finding such a vertex $v$ neighbor of $u$ (taken from left to right)), 
-then add edge $\{u,v\}$ to the matching we are building.  
-Then, remove both $u$ and $v$ from the layout.
+If we succeed in finding such a neighbor of $u$ (taken from left to right)). call it vertex $v$, then add edge $\{u,v\}$ to the matching we are building.  Then, remove both $u$ and $v$ from the layout.
   \item
-If there is no neighbor $v$ of $u$, remove vertex $u$ from the layout.
+If there is no neighbor $v$ of $u$, then remove vertex $u$ from the layout.
   \end{itemize}
-The real challenge here is to find a data structure that allows an
-efficient search for a ``remaining'' neighbor-vertex $v$ at each step of
-the selection process.
-\qed
+Of course, the real challenge here is to find a data structure that allows an efficient search for a ``remaining'' neighbor-vertex $v$ at each step of the selection process.  \qed
 \end{proof}
 
 \medskip
 
-In contrast to maximal matchings, there exist myriad simple graphs
-that do not admit any perfect matching.  Contemplating, for instance,
-matchings within any cycle with an odd number of vertices may prepare the
-reader for the challenge of verifying the following necessary
-condition for a graph to admit a perfect matching.
+In contrast to maximal matchings, there exist myriad simple graphs that do not admit any perfect matching.  Contemplating, for instance, matchings within any cycle with an odd number of vertices may prepare the reader for the challenge of verifying the following necessary condition for a graph to admit a perfect matching.
 
 \begin{prop}
 \label{thm:necessary-for-perfect-matching}
@@ -817,33 +733,23 @@ Let $\g$ be a graph that admits a perfect matching.  Then:
 \item
 $\g$ has an even number of vertices.
 \item
-The cardinality of the (perfect) matching---i.e., the number of edges
-in the matching---is exactly
+The cardinality of the (perfect) matching---i.e., the number of edges in the matching---is exactly
 $\frac{1}{2}|\n|$.
 \end{itemize}
 \end{prop}
 
-
 \bigskip
 
-\noindent {\it Matchings in weighted graphs}.
-The other very popular genre of matching problem focuses on graphs
-each of whose edges, say, $\{u,v\}$, is weighted with a number that
-measure the ``affinity'' of  vertices $u$ and $v$ for each other.  The
-challenge is to find a matching that is {\em maximal}
-\index{graph!maximal matching} in the sense of having a cumulative
-sum of edge-weights that is not exceeded by any other matching's.
+\index{graph!maximal matching}
 
-We note in closing that, while edge-weightings often complicate
-computational processing of graphs, they need not render such
-computations practically infeasible.  For instance, the problem of
-discovering a perfect matching of minimal weight in an edge-weighted
-graph can be solved moderately efficiently---i.e., in a number of
-steps that is polynomial in the size of the graph.  (An algorithm that
-achieves this efficiency can be based on the colorfully named {\it
-  Hungarian assignment method}; \index{Kuhn, Harold W.}  see the
-original source \cite{Kuhn55} or the encyclopedic algorithms text
-\cite{CLRS}.)
+\noindent {\it Matchings in weighted graphs}.
+The other very popular genre of matching problem focuses on graphs each of whose edges, say, $\{u,v\}$, is weighted with a number that measure the ``affinity'' of  vertices $u$ and $v$ for each other.  The challenge is to find a matching that is {\em maximal} in the sense of having a cumulative sum of edge-weights that is not exceeded by any other matching's.
+
+\smallskip
+
+%\index{Kuhn, Harold W.}
+
+We note in closing that, while edge-weightings often complicate computational processing of graphs, they need not render such computations practically infeasible.  For instance, the problem of discovering a perfect matching of minimal weight in an edge-weighted graph can be solved moderately efficiently---i.e., in a number of steps that is polynomial in the size of the graph.  (One algorithm that achieves this efficiency can be based on the colorfully named {\it Hungarian assignment method}; see the original source \cite{Kuhn55} or the encyclopedic algorithms text \cite{CLRS}.)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
