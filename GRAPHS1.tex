@@ -13,10 +13,16 @@ Representing Relationships Mathematically}
 \bigskip
 
 \noindent
-Graphs provide one of the richest technical and conceptual frameworks in the world of computing.  They provide concrete representations of manifold data structures that should be studied in depth in preparation for a ``Data Structures and Algorithms'' course.  They embody tangible abstractions of relationships of all sorts, hence must be well understood in order to discuss entities as varied as web-search engines and social networks with precision and rigor.  As with most of the topics we discuss in this text, graph-oriented concepts must be taught ``in layers''.   Every reader should be conversant with the use of graphs to represent and reason about a vast array of complicated relationships---ranging from taxonomies (including intra-family structures) to link-based data structures to interconnectivity within social media, and on and on---but the depth of understanding that an individual reader should strive for depends both on the abilities of the student and the range of graph-modeled concepts that will appear in the student's program.  The most-basic concepts in this chapter should be understood by all students in any academic program that includes a computation-oriented component---although each concept can be developed with more texture and nuance within the context of specific application domains; the more advanced concepts should be selected with care, based on the instructor's perception of students' needs, in the light of the ever-growing importance of concepts involving interconnectivity.
+Graphs provide one of the richest technical and conceptual frameworks in the world of computing.  They provide tangible structural representations of the manifold data interrelationships that are needed to craft sophisticated algorithms.  Indeed, they embody valuable abstractions of relationships of all sorts, hence must be well understood in order to discuss entities as varied as web-search engines and social networks with precision and rigor.  As with most of the areas we cover in this text, graph-oriented concepts must be studied ``in layers'', with each reader delving to a depth that is appropriate for their goals.   The fact that so much of modern society depends on understanding interconnections of all sorts suggests that every reader should master at least the basic concepts of graph theory, as exposed by the first two sections of this chapter.  The remainder of this chapter, and the entirety of the next, provide a buffet of more specialized and/or advanced topics, with delicacies for the aspiring mathematician, computer scientist,  computer engineer, computational scientist, data scientist, \ldots.  Please peruse, sample, and enjoy.
 
-Many developments in computing technology over recent decades have made it imperative that graphs no longer be viewed by students as the static objects introduced early in the history of computational studies.  For instance, while it was innovative in the 1960s to employ graphs and trees computationally as abstractions of data structures, such a view is standard today.  Similar remarks, perhaps with differing dates, can be made about graphs as vehicles for representing the flow of control and information and as vehicles for representing interconnectivity among both concepts and populations.  Applications ranging from databases to web-search engines to social networks demand an appreciation of graphs as dynamic objects.  This change in perspective
-affects many aspects of the mathematical prerequisites for any academic program that includes a computation-oriented component.
+\smallskip
+
+Getting more technical:  Many developments in computing technology over recent decades have made it imperative that graphs no longer be viewed as the static objects introduced in the early decades of computational studies.  For instance, while it was innovative in the 1960s to employ graphs and trees computationally as abstractions of data structures, such a view is standard today.  Similar remarks, perhaps with differing dates, can be made about graphs as vehicles for representing the flow of control and information and as vehicles for representing interconnectivity among both concepts and populations.  Applications ranging from databases to web-search engines to social networks demand an appreciation of graphs as dynamic objects.  The ways in which we manipulate graphs have broadened dramatically, as the technologies underlying computation and communication have evolved.  We must now study graphs that grow, in order to understand communication within social media.  We must understand how to decompose graphs, in order to impose structure on the way (both hardware and software) networks grow to hitherto unencountered sizes.  We must understand how to color the component vertices and edges of graphs in order to orchestrate complex parallel and distributed processes.  We must understand how to proceed beyond the (binary) point-to-point connections that the simplest genres of graph prescribe, in order to understand complex nonbinary group dynamics.
+
+\smallskip
+
+This chapter and the next provide the basic concepts and tools necessary to incorporate all manner of graph-theoretic reasoning into our intellectual toolkits.
+
 
 \section{Generic Graphs: Directed and Undirected}
 \label{sec:graphs-generic}
@@ -25,85 +31,80 @@ affects many aspects of the mathematical prerequisites for any academic program 
 \subsection{Connectivity-Related Concepts}
 \label{sec:connectivity-notions}
 
-% general introduction
- \index{graph!vertices}
-\index{graph!vertices} 
-\index{vertex (of a graph)} 
-\index{vertex (of a graph)} 
+\index{graph!vertices} \index{graph!vertices} 
+\index{vertex (of a graph)}  \index{vertex (of a graph)} 
 \index{graph!edges}
-\index{edge (of a graph)}
-\index{graph!vertex} 
-\index{vertex (of a graph)}
-The basic components of a graph $\g$ are its {\it vertices} and its {\it edges}, which interconnect
-(some of) $\g$'s vertices.  Note that:
-\begin{itemize}
-\item
+\index{edge (of a graph)} \index{edge (of a graph)!viewed as a doubleton set of vertices}
+\index{graph!vertex} \index{vertex (of a graph)}
+
+\noindent {\it The basics}.
+The basic components of a graph $\g$ are {\it vertices}---object which represent things one wants to interrelate---and {\it edges}---each edge connecting two of $\g$'s vertices.  Formally, we view and edge as a $2$-element set of $\g$'s vertices.  For each graph $\g$, we denote the set of $\g$'s vertices by $\n_{\fg}$ and the set of $\g$'s edges by $\e_{\fg}$.
+
+\bigskip
+
+\noindent \fbox{ \begin{minipage}{0.96\textwidth}
+{\bf Notes}.
+
 The singular form of ``vertices'' is ``{\it vertex}''.
-\item
+
 The word ``{\it node}" is often used as a synonym of ``vertex".  We usually employ the
-somewhat more common ``vertex", except in special circumstances where ``node" is used
-more commonly.
-\end{itemize}
+somewhat more common ``vertex".
+\end{minipage}
+}
+
+\bigskip
+
+\noindent
 A {\it subgraph} $\g'$ of a graph $\g$ is a graph whose vertices are a subset of $\g$'s and
-whose edges are a subset of $\g$'s that interconnect only vertices of $\g'$. 
+whose edges are a subset of $\g$'s that interconnect only vertices of $\g'$.
 
 \medskip
 
 \index{graph!bipartite}
 \noindent {\it Bipartite graphs.}
-A graph $\g$ is {\em bipartite} if its vertices can be partitioned into (by definition of
-``partition", disjoint) sets $X$ and $Y$ in such a way that every edge of $\g$ has one
-endpoint in $X$ and the other in $Y$.
+A graph $\g$ is {\em bipartite} if its vertices can be partitioned into (by definition of ``partition", disjoint) sets $X$ and $Y$ in such a way that every edge of $\g$ has one endpoint in $X$ and the other in $Y$.
 
-Bipartite graphs are of immense importance in a broad range of scenarios wherein one is 
-analyzing a (computational or communicational or social) situation that is being modeled using
-graphs or one is developing algorithms that manipulate graphs.  One sample such situation
-can be found in the proof of Lemma~\ref{thm:PlanarGraph-degree5}.
+\smallskip
+
+Among the many scenarios that benefit from modeling via bipartite graphs are those in which set $X$ represents a base set---say, the members of an organization---while set $Y$ represents a collection of aggregates of elements of $X$---say, the various committees that organization members can serve on.  In the depicted scenario, and edge that connects $x \in X$ with $y \in Y$ could expose $x$'s membership on committee $Y$.  An illustrative such situation can be found in the proof of Lemma~\ref{thm:PlanarGraph-degree5}.
 
 \medskip
 
 % undirected case
-When graph $\g$ is {\em undirected}, \index{graph!undirected} each of
-its edges connotes some sort of sibling-like relationship among vertices
-of ``symmetric'' status.  When graph $\g$ is {\em directed}
-\index{graph!directed} (often referred to as a {\em digraph}),
-\index{digraph} \index{graph!digraphs} each of its edges connotes an
-``asymmetric'' relationship such as parenthood or priority or dependence;
-edges in directed graphs are often termed {\em
-  arcs}. \index{graph!arc} \index{arc (of a directed graph)}
+\index{graph!undirected} \index{graph!directed}
+\index{digraph} \index{graph!digraphs}
+
+\noindent {\it Directed graphs}.
+When graph $\g$ is {\em undirected},  each of its edges connotes some sort of sibling-like relationship among vertices of ``symmetric'' status.  When graph $\g$ is {\em directed} (often referred to as a {\em digraph}), each of its edges connotes an ``asymmetric'' relationship such as parenthood or priority or dependence; edges in directed graphs are often termed {\em arcs}. 
+We denote the set of digraph $\g$'s arcs by $\a_{\fg}$.
+
+\index{graph!arc} \index{arc (of a directed graph)}
+
+\smallskip
 
 \index{graph!digraph!reverse}
 In many situations involving directed graphs, it is important to deal not only with a digraph $\g$
-but also  with the {\em reverse digraph} of $\g$, which is the digraph obtained by {\em reversing}
+but also with the {\em reverse digraph} of $\g$, which is the digraph obtained by {\em reversing}
 all of $\g$'s arcs (so that they point in the opposite direction).  There is no universally accepted 
-notation for the reverse of digraph $\g$, but one often encounters notational
-embellishments of ``$\g$'', such as $\widehat{\g}$ or $\widetilde{\g}$, used for
-this purpose.  One sometimes encounters situations wherein only clerical details need be changed 
-in order to convert an argument about, or an operation on, digraph $\g$  to the analogous argument 
-about, or operation on, $\g$'s reverse digraph. 
-
-\ignore{*********
-{\Denis Attention here, the notation $\widehat{x}$ is different to the one used later 
-in the structured graphs. Do we really need this notation? I guess not, thus, better to remove it here!}
-{\Arny You are correct!  I have here suggested alternative wording.  I also reworded
-the preceding paragraphs to make them flow better.}
-**************}
+notation for the reverse of digraph $\g$, but one often encounters notational embellishments of ``$\g$'', such as $\widehat{\g}$ or $\widetilde{\g}$, used for this purpose.  One sometimes encounters situations wherein only clerical details need be changed in order to convert an argument about, or an operation on, digraph $\g$  to the analogous argument  about, or operation on, $\g$'s reverse digraph. 
 
 \medskip
 
-{\em Undirected} graphs are usually the default concept, in the following sense: When 
-$\g$ is described as a ``graph,'' with no qualification---i.e., no accompanying adjective 
-``directed'' or ``undirected''---it is understood that $\g$ is an {\em undirected} graph.
+Undirected graphs are usually the default concept, in the following sense: When $\g$ is described as a ``graph,'' with no qualification---i.e., no accompanying adjective ``directed'' or ``undirected''---it is understood that $\g$ is an {\em undirected} graph.
 
 \medskip
 
 \index{graph!path} \index{path (in a graph)}
 \index{graph!cycle} \index{cycle (in a graph)}
+
+\noindent {\it Paths and cycles}.
 A {\em path} in an undirected graph is a {\em nonrepeating} sequence of vertices within which
 every adjacent pair is connected by an edge.  A path is a {\em cycle} if all vertices in the
 sequence are distinct except for the first and last, which are identical.  Paths and cycles
 in directed graphs are defined similarly, except that now every adjacent pair of vertices must be
 connected by an {\em arc}, and all arcs must ``point in the same direction.''
+
+\medskip
 
 Even at this early stage of our discussion of graphs, we can state and prove an important
 nontrivial fact.  All graphs that have edges contain paths; all graphs having sufficiently many
@@ -115,15 +116,11 @@ If every vertex of a graph $\g$ has degree $\geq 2$, then $\g$ contains a cycle.
 \end{prop}
 
 \begin{proof}
-Let us assume that we have a cycle-free graph $\g$ all of whose vertices
-have degree $\geq 2$.  We invoke the Pigeonhole Principle to find a cycle in $\g$.
+Let us assume that we have a cycle-free graph $\g$ all of whose vertices have degree $\geq 2$.  We invoke the Pigeonhole Principle to find a cycle in $\g$.
 
-Let us view graph $\g$ as a park:  Every vertex of $\g$ is a statue, and every edge is a
-lane between two statues.  (We use the word ``lane" rather than the more common ``path" 
-because of the technical meaning of ``path" within the world of graphs.)   The fact that 
-every vertex of $\g$ has degree $\geq 2$ means that if we take a stroll through Park $\g$,
-then every time we leave a vertex $v \in \n{\fg}$, we can use a  different edge/lane than we 
-used when we came to $v$.
+\smallskip
+
+Let us view graph $\g$ as a park:  Every vertex of $\g$ is a statue, and every edge is a lane between two statues.  (We use the word ``lane" rather than the more common ``path"  because of the technical meaning of ``path" within the world of graphs.)   The fact that every vertex of $\g$ has degree $\geq 2$ means that if we take a stroll through Park $\g$, then every time we leave a vertex $v \in \n{\fg}$, we can use a  different edge/lane than we  used when we came to $v$.
 
 \index{{\em gedanken} experiment}
 Consider now the following {\em gedanken} experiment (i.e., ``thought" experiment).  Say
