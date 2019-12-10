@@ -757,38 +757,30 @@ We note in closing that, while edge-weightings often complicate computational pr
 \section{Trees and Spanning Trees}
 \label{sec:Trees}
 
-\index{graph!trees}
-\index{trees}
-The special class of graphs called {\it trees} occupy a place of honor within both the mathematical
-field called {\it graph theory} and within the vernacular.  They are identified mathematically as graphs 
-that contain no cycles or, equivalently, as graphs in which each pair of vertices is
-connected by a unique path: a tree is thus the embodiment of ``pure''
-connectivity (see Fig.~\ref{fig:tree} left for an example of tree).  As one
-would expect from the vernacular, a set of trees is called a {\it forest}. \index{forest (of trees)}
+\index{graph!trees} \index{trees} \index{forest (of trees)} \index{graph!cycle-free}
+
+The special class of graphs called {\it trees} occupy a place of honor within both the mathematical field called {\it graph theory} and within the vernacular.  Trees are identified mathematically as graphs that contain no cycles (as subgraphs) or, equivalently, as graphs in which each pair of vertices is connected by a unique path: a tree is thus the embodiment of ``pure'' connectivity:  it provides the minimal interconnection structure (in number of edges) that provides paths that connect every pair of vertices; see Fig.~\ref{fig:tree}.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/tree}
-       \caption{An undirected tree with 10 vertices (left) and a directed outtree (right).
-       Its root is on the right upper side of the figure.}
+       \caption{(Left) An undirected tree with 10 vertices.  (Right) A rooted directed out-tree.  (The root is not where you might expect it to be.)}
   \label{fig:tree}
 \end{center}
 \end{figure}
+As one would expect from the vernacular, a set of trees is called a {\it forest}. 
 
-\index{graph!cycle-free}
-Mathematically speaking, a tree is a graph that contains no cycles, i.e., is {\it cycle-free}.  
-Equivalently, a tree is a graph in which each pair of distinct vertices is connected by
-precisely one path.  A tree is thus the embodiment of ``pure'' connectivity: it provides the 
-minimal interconnection structure that provides paths that connect every pair of vertices.  
-As one might expect from the vernacular, a set of trees is called a {\it forest}. \index{forest (of trees)}
+\medskip
 
-We have just given two distinct definitions of ``tree''.  The following result proves
-that both definitions define the same class of graphs.
+We have asserted implicitly that our two definitions of ``tree'' define the same class of graphs.  Of course, we do not accept this on faith---we must prove it.
 
 \begin{prop}
 \label{thm:2defns-trees}
-The two definitions of ``tree'' are equivalent, in the sense that they define the same
-class of graphs.  In detail, the following assertions about a connected graph $\t$ are 
-logically equivalent. 
+The two definitions of ``tree'' are equivalent: they define the same class of graphs.  Stated more directly:
+
+\smallskip
+
+\noindent
+The following assertions about a connected graph $\t$ are  logically equivalent. 
 \begin{enumerate}
 \item
 The graph $\t$ is cycle-free.
@@ -797,12 +789,11 @@ Each pair of distinct vertices of $\t$ is connected by precisely one path.
 \end{enumerate}
 \end{prop}
 
-We leave the proof of Proposition~\ref{thm:2defns-trees} as an exercise.
+We leave the proof of Proposition~\ref{thm:2defns-trees} to the reader.
 
-\medskip
+\bigskip
 
-The following property of connected trees provides a valuable insight in myriad
-tree-related phenomena.  The property is a subtle  corollary of Proposition~\ref{thm:2defns-trees}.
+The following property of connected trees provides a valuable insight into myriad tree-related phenomena.  The property is a subtle  corollary of Proposition~\ref{thm:2defns-trees}.
 
 \begin{prop}
 \label{thm:edges-vs-nodes-tree}
@@ -816,40 +807,48 @@ We precede the proof by an essential lemma.
 {\bf (a)}
 Let $\g$ be a connected graph having $n \geq 2$ vertices.  Every vertex of $\g$ has degree $\geq 1$.
 
+\smallskip
+
 \noindent {\bf (b)}
 Let $\t$ be a connected tree having $n \geq 1$ vertices.  At least one vertex of $\t$ has degree $1$.
 \end{lemma}
 
 \begin{proof}[Lemma~\ref{lem:vtx-deg-connected}]
-{\bf (a)} Any vertex of $\g$ that had degree $0$ would have no neighbors, 
-so $\g$ would not be connected if it had such a vertex.
+{\bf (a)} A vertex of $\g$ that had degree $0$ would have no neighbors; hence, $\g$, having $n \geq 2$ vertices, would not be connected if it had such a vertex.
+
+\smallskip
 
 \noindent {\bf (b)}
 By Proposition~\ref{thm:cycle-in-graph} every graph whose vertices all have degree $\geq 2$
-contains a cycle.  Since $\t$, being a tree, is cycle-free (by Proposition~\ref{thm:2defns-trees}), 
-we conclude that not every vertex of $\t$ can have degree $\geq 2$.  Invoking part {\bf (a)}, then, 
-we conclude that at least one vertex of tree $\t$ has degree $1$.  \qed
+contains a cycle.  Since $\t$, being a tree, is cycle-free, not every vertex of $\t$ can have degree $\geq 2$.  By part {\bf (a)}, then, at least one vertex of tree $\t$ has degree $1$.  \qed
 \end{proof}
 
 \begin{proof}[Proposition~\ref{thm:edges-vs-nodes-tree}]
 We proceed by induction on $n$.
 
-The base case, $n=2$, is obvious, because one edge is both necessary and
-sufficient to connect two vertices.
+\smallskip
 
-Assume for induction that the indicated tally is correct for all trees
-having no more than $k$ vertices.  Consider, for the purpose of extending the induction,
-any tree $\t$ on $k+1$ vertices.  
+\noindent {\sf Base case}.
+The case $n=2$ is obvious, because a single edge is both necessary and sufficient to connect two vertices.
 
-By Lemma~\ref{lem:vtx-deg-connected}, $\t$ must contain at least one leaf-vertex---i.e.,
-a vertex $v$ of degree $1$.  
-%{\Denis is it really obvious for the readers?} 
-If we remove $v$ and its incident edge, we now have a tree on $k$ vertices
-which, by induction, has $k-1$ edges.  When we reattach vertex $v$, to
-restore $\t$ to its original state, we see that $\t$ has $k+1$ vertices
-and $k$ edges.
+\smallskip
 
-Because $\t$ was an arbitrary $(k+1)$-vertex tree, the induction is extended.  \qed
+\noindent {\sf Inductive hypothesis}.
+Assume that the indicated tally is correct for all trees having no more than $k$ vertices.
+
+\smallskip
+
+\noindent {\sf Inductive extension}.
+Consider, to extend the induction, any tree $\t$ on $k+1$ vertices.  
+
+\smallskip
+
+By Lemma~\ref{lem:vtx-deg-connected}, $\t$ must contain at least one vertex $v$ of degree $1$.  If we remove $v$ and its (single) incident edge, we now have a tree $\t'$ on $k$ vertices.
+By induction, $\t'$ has $k-1$ edges.  When we reattach vertex $v$ to $\t'$, we restore $\t$ to its original state.  Because this restorations adds one vertex and one edge to $\t'$, we see that $\t$ has $k+1$ vertices and $k$ edges.
+
+\smallskip
+
+This extends the induction, hence completes the proof.  \qed
 \end{proof}
 
 \bigskip
@@ -860,54 +859,47 @@ Because $\t$ was an arbitrary $(k+1)$-vertex tree, the induction is extended.  \
 \index{trees!descendant vertex}
 \index{trees!root (vertex)} \index{root (of a directed tree)} 
 \index{trees!leaf (vertex)}\index{leaf (of a directed tree)}
-Just as with graphs, there is a {\em directed} version of trees which is formed by replacing
-the (nonoriented) edges of an undirected tree by (oriented) arcs; see the right side of 
-Fig.~\ref{fig:tree}.  Within a directed tree $\t$, one often says that an arc goes from
-a {\it parent vertex} to a {\it child vertex}.  Extending this anthropomorphic metaphor,
-one often talks about the {\it ancestor(s)}  and {\it descendant(s)} of a tree-vertex.  We
-single out two special classes of vertices: A {\it root (vertex)} of $\t$ is
-defined by having no entering arcs, i.e., indegree $0$; a {\it leaf (vertex)} of $\t$ is defined by
-having no exiting arcs, i.e., outdegree $0$.  The reader is certainly familiar
-with the use of rooted directed trees to represent family trees and corporate hierarchies, as
-described in the following examples.
+
+Just as with graphs, there is a {\em directed} version of trees, which is formed by replacing
+the (nonoriented) edges of an undirected tree by (oriented) arcs; see Fig.~\ref{fig:tree}(right).  Within a directed tree $\t$, one often says that an arc goes {\em from} a {\it parent vertex} {\em to} a {\it child vertex}.  Extending this anthropomorphic metaphor, one often talks about the {\it ancestor(s)}  and {\it descendant(s)} of a tree-vertex.  We single out two special classes of vertices: A {\it root (vertex)} of $\t$ is defined by having no entering arcs, i.e., by having indegree $0$; a {\it leaf (vertex)} of $\t$ is defined by having no exiting arcs, i.e., by having outdegree $0$.
 
 \bigskip
 
-
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-Sociologically, the historical {\it atomic family tree}
-\index{family tree} has two roots, representing the matriarch and patriarch of the
-family.  The entirety of the tree represents a single family
-generationally, before any children form their own families.  All
-child-vertices in this genre of tree are the roots of singly-rooted
-subtrees of the entire family tree.  The leaves of the tree are the
-childless descendants of the roots.  Note that, while we are using
-anthropomorphic language here, we could be discussing other genres of
-``family'', as, e.g., many types of biological taxonomies.
+\begin{minipage}{0.96\textwidth}
+Note that the directed tree in Fig.~\ref{fig:tree}(right) is rooted, but we have not drawn the tree in the usual way, with the root either above or below all other vertices.  This was a purposeful decision, so that the reader would note that root-hood is a property of graph structure, not of drawing.
 \end{minipage}
 }
+
 \bigskip
 
-Among rooted directed trees, an important subclass comprises those
-that have a {\em single root} which has a directed path to every other
-vertex.  The length of each such directed path is often used to label
-the {\it generation}
-\index{generation of a vertex in a singly-rooted directed tree}
-of the vertex at the end of the path: root, child, grandchild,
-great-grandchild, etc.
-Every vertex of the tree is the root of a singly-rooted directed
-subtree of the entire tree.  All subtrees that are rooted at vertices of
-the same generation are mutually disjoint.
+The reader is certainly familiar with the use of rooted directed trees to represent family trees and corporate hierarchies, as described in the following examples.
+
 \bigskip
+
+\index{family tree}
 
 \noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-A singly-rooted tree represents a {\it hierarchy}.
-\index{trees!singly-rooted!hierarchy} \index{hierarchy} Given two
-directed subtrees within a hierarchy, either the root of one of the
-subtrees is a descendant of the root of the other, or the two subtrees
-are are mutually disjoint.
+\begin{minipage}{0.96\textwidth}
+Sociologically, the historical {\it atomic family tree} has two roots, representing the matriarch and patriarch of the family.  The entirety of the tree represents a single family generationally, before any children form their own families.  All child-vertices in this genre of tree are the roots of singly-rooted subtrees of the entire family tree.  The leaves of the tree are the childless descendants of the roots.  Note that, while we are using anthropomorphic language here, we could be discussing other genres of ``family'', as, e.g., many types of biological taxonomies.
+\end{minipage}
+}
+
+\bigskip
+
+\index{generation of a vertex in a singly-rooted directed tree}
+
+Among rooted directed trees, an important subclass comprises those that have a {\em single root} which has a directed path to every other vertex.  The length of each such directed path is often used to label the {\it generation} of the vertex at the end of the path: root, child, grandchild,
+great-grandchild, etc.  Every vertex of the tree is the root of a singly-rooted directed subtree of the entire tree.  All subtrees that are rooted at vertices of the same generation are mutually disjoint.
+
+\bigskip
+
+\index{trees!singly-rooted!hierarchy} \index{hierarchy}
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+A singly-rooted tree represents a {\it hierarchy}.  Given two directed subtrees within a hierarchy, either the root of one of the subtrees is a descendant of the root of the other, or the two subtrees
+are mutually disjoint.
 \end{minipage}
 }
 
@@ -1049,63 +1041,30 @@ none
 \end{table}
 *********************}
 
+\index{graph!spanning tree} \index{spanning tree} \index{tree!spanning tree}
 
 \noindent {\it Spanning trees}.
-One of the major uses of trees and forests is as a way of succinctly
-``summarizing'' the connectivity structure inherent in an undirected
-graph.  This role is inherent in the notion of a {\it spanning tree}
-\index{graph!spanning tree} \index{spanning tree} \index{tree!spanning tree}
-of a connected graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$
-whose vertex-set is identical to $\g$'s:
+One of the major uses of trees and forests is as a way of succinctly ``summarizing'' the connectivity structure inherent in an undirected graph.  This role is inherent in the notion of a {\it spanning tree} of a connected graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$ whose vertex-set is identical to $\g$'s:
 \[ \n_{\ft(\fg)} \ = \ \n_{\fg} \]
 and all of whose edges are edges of $\g$:
 \[ \e_{\ft(\fg)} \ \subseteq \ \e_{\fg}. \]
-Not surprisingly, a connected graph $\g$  typically has {\em many}
-spanning trees.  All such trees share $\g$'s vertex-set, but they may
-choose quite different sets of edges.
+Not surprisingly, a connected graph $\g$  typically has {\em many} spanning trees.  All such trees share $\g$'s vertex-set, but they may choose quite different sets of edges.
 
-\ignore{***
+\ignore{*************
 For a graph $\g$ that is not connected, we replace the notion of
 spanning tree of $\g$ with the analogous notion of a {\it spanning
   forest} \index{graph!spanning forest} \index{spanning forest} of
 $\g$.  We shall typically discuss only spanning trees in this section,
 leaving the reader to extrapolate the discussion to include spanning
 forests of unconnected graphs.
-***}
+****************}
 
-The major use of spanning trees in applications is to ``summarize''
-the full connectivity structure of a graph---and of the entities that
-the graph models, such as a map, the layout of a museum, etc.  When
-used in this way, the edges of spanning trees are typically {\em
-  weighted}, \index{graph!spanning tree!edge-weighted} in order to
-model a ``cost'' of incorporating that edge in the tree.  The types of
-computational problem modeled via edge-weighted spanning trees
-include: the optimal placement of firehouses, or hospitals, in a town
-and the optimal deployment of security mechanisms in an art museum.
-Reflecting problems wherein edge-weights measure transit costs, it is
-a classical computational problem to seek a {\em minimum-weight
-  spanning tree} \index{graph!minimum-weight spanning tree}
-\index{minimum-weight spanning tree} (or, in the vernacular, a {\em
-  minimum spanning tree}).  Happily, this classical optimization
-problem can be solved within a number of steps that is linear in the
-number of edges of $\g$ \cite{CLRS}.
+\smallskip
 
-\ignore{*****
-I put in the exercice session
-{\Arny Giving just a {\em hint} at a solution for MST to real
-  beginners is probably useless}
+\index{graph!spanning tree!edge-weighted} \index{graph!minimum-weight spanning tree}
+\index{minimum-weight spanning tree} 
 
-There are mainly two ways for constructing such a MST, each one
-emphasizes a different propriety of the MST, namely, avoid cycles and
-minimize the span.  In both cases, the edges are sorted in increasing
-order of weights.  More precisely, the first one constructs a subtree
-which partially spans the graph by adding at each step the minimum
-neighboring edge while the other add successively the edges of minimal
-weights that do not create a cycle.
-****}
-
-%{\Denis I suggest to move the next paragraph backward since it does not concern spanning trees...
-%Actually, I found it rather redundant, may be just remove it?}
+Within applications, as a spanning tree ``summarizes'' the connectivity structure of a graph, it does the same for any entities that the graph models, such as a map, the layout of a museum, etc.  This modeling role makes spanning trees invaluable as the basis for algorithms that involve connectivity-related notions.  To encompass an even greater range of such notions, we often {\it weight} the edges of spanning trees, in order to model a ``cost'' of incorporating that edge into the tree.  The types of computational problem modeled via edge-weighted spanning trees include: the optimal placement of firehouses, or hospitals, in a town and the optimal deployment of security mechanisms in an art museum.  Reflecting problems wherein edge-weights measure transit costs, it is a classical computational problem to seek a {\em minimum-weight spanning tree} (usually abbreviated in the vernacular to {\em minimum spanning tree}).  Happily, this classical optimization problem can be solved within a number of steps that is linear in the number of edges of $\g$ \cite{CLRS}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
