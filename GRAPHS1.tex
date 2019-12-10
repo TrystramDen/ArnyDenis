@@ -1072,88 +1072,78 @@ Within applications, as a spanning tree ``summarizes'' the connectivity structur
 \section{Computationally Significant ``Named'' Graphs}
 \label{sec:graphs-important-families}
 
-The mathematical discipline called graph theory is an important source
-of formal aids for the activities of designing, analyzing, utilizing,
-and verifying computer systems.  Of course, computer systems are
-designed by humans.  Among other consequences of this fact is the
-observations that the graphs that are among the most commonly used to
-structure systems tend to be rather uniform in structure, in a variety
-of possible ways.  Such graphs, when drawn, often exhibit a lot of
-structural symmetry.  One popular form of symmetry is {\it degree
-  regularity}: an undirected graph $\g$ is {\it regular}
-\index{graph!regular} if all vertices of $\g$ have the same degree.  Not
-surprisingly, there is a directed version of ``regular'' embodied in the
-symmetric notions of {\it in-regularity}
-\index{graph!directed!in-regular} and {\it out-regularity}.
-\index{graph!directed!out-regular}
+The area of mathematics called graph theory is an important source of formal aids for designing, analyzing, utilizing, modeling, and verifying systems that are used for computation and/or communication.  Of course, such systems are designed by humans.  Among the manifold consequences of this fact is the observation that the (families of) graphs that are among the most commonly used to model systems tend to be rather uniform in structure, in a variety of ways: Such graphs, when drawn, often exhibit a lot of structural regularity.  We single out one particularly popular form of structural regularity to watch for as we prepare to describe five families of graphs that have proven so significant as models of variety of computational and communicational processes that they are usually referred to just by their given names.  (We noted a similar phenomenon early in Chapter~\ref{ch:numerals}, as we discussed numbers such as $e$ and $\pi$ and Avogadro's number.)  The notion of regularity that we single out is so popular that it is familiarly known as just {\it ``regularity",} even though its complete name is
+{\it ``degree regularity"}.
+\begin{itemize}
+\item
+{\em Undirected version}.
+An undirected graph $\g$ is {\it (degree-)regular} if all of its vertices have the same degree.
+\item
+{\em Directed version}.
+A directed graph $\g$ is {\it (degree-)in-regular} if all of its vertices have the same in-degree.  $\g$ is {\it (degree-)out-regular} if all of its vertices have the same out-degree.
+\end{itemize}
+
+\index{graph!directed!in-regular} \index{graph!directed!out-regular} \index{graph!regular}
 
 \medskip
 
-We now describe five families of regular graphs that have proven
-useful over the history of digital computing, and we expose some basic
-properties of each, including its diameter.  Each of these graphs is
-available in both a directed and an undirected version, although, as
-we note, one of these versions is more commonly encountered.  We have
-selected these specific graphs for rather different reasons.
+We now describe five families of regular graphs that have proven useful for understanding and implementing both computation and communication over the entire digital era, and we expose some basic properties of each.  Each of these graphs is available in both a directed and an undirected version, although, as we note, for each, one of these versions is more commonly encountered.  We have selected these specific graphs for rather different reasons.
 \begin{itemize}
 \item
-The first two graphs, the {\it cycle-graph} of Section~\ref{sec:cycle}
-and the {\it complete graph} of Section~\ref{sec:clique} were selected
-for representing, respectively, the lowest-degree and highest-degree
-graphs that share two properties: (1) every vertex of each graph is
-accessible from every other vertex; (2) all vertices ``look alike'' to
-someone traversing the graph.  Elaborating on (2): If we put you down
-on a vertex of either graph, there is no way that you can determine the
-identity of that vertex.  This is an important feature to ponder,
-because it is a simple instance of the anonymity problem inherent to
-many modern distributed computing environments.
-{\it How does one orchestrate cooperative activities when all agents are ``indistinguishable''?}
+The first two graphs, the {\it cycle-graph} of Section~\ref{sec:cycle} and the {\it complete graph} (or, {\it clique}) of Section~\ref{sec:clique} were selected for representing, respectively, the lowest-degree and highest-degree graphs that share two properties:
+\begin{enumerate}
 \item
-The remaining graphs, the {\it mesh and torus networks}\footnote{These
-  two structures, though distinct, are usually discussed together
-  because they share so many important properties.}~of~\ref{sec:mesh},
-the {\it hypercube network} of Section~\ref{sec:hypercube}, and the
-{\it de Bruijn network} of Section~\ref{sec:deBruijn}, were selected
-for their importance within the world of parallel and distributed
-computing---as abstract platforms for developing efficient
-computational and communicational processes, and as abstract versions
-of the networks that underlie parallel architectures by interconnecting its processors.
+Every vertex of each graph is accessible from every other vertex.
+\item
+All vertices of each graph ``look alike'' to someone traversing the graph.
+
+\smallskip
+
+To elaborate: If someone places you on a vertex of either graph, there is no way that you can determine the identity of that vertex.
+
+\smallskip
+
+\index{anonymity}
+
+This is an important feature to ponder, because it is a simple instance of the {\it anonymity} problem that plagues many modern distributed computing environments:  {\it How does one orchestrate cooperative activities when all agents are ``indistinguishable''?}
+\end{enumerate}
+\item
+The remaining graphs, the {\it mesh and torus networks}\footnote{These two structures, though distinct, are usually discussed together because they share so many important properties.}~of~\ref{sec:mesh}, the {\it hypercube network} of Section~\ref{sec:hypercube}, and the {\it de Bruijn network} of Section~\ref{sec:deBruijn}, were selected for their importance within the world of parallel and distributed computing---as abstract platforms for developing efficient computational and communicational processes, and as abstract versions of the networks that underlie parallel architectures by interconnecting its processors.
+
+\smallskip
+
+The hypercube network and the de Bruijn network are known also as indispensable aids in constructing codes that are used in activities as varied as cryptology and the testing of electronic circuits.
 \end{itemize}
-Throughout, the parameters that describe our graph families range over
-the positive integers; i.e., each occurrence of $n$ below ranges over $\N^+$.
+Throughout this section, each parameter $n$ that identifies an instance from our graph families ranges over either $\N$ or $\N^+$; we shall always indicate which.
 
 \subsection{The {\it Cycle-graph} $\cc_n$}
 \label{sec:cycle}
 
+\index{cycle graph} \index{cycle network}  \index{cycle graph!vertex-degree}
+\index{cycle graph!predecessor vertex}
+\index{cycle graph!successor vertex} \index{cycle graph!diameter}
 
-For each positive integer $n \in \N^+$, both the {\it undirected
-  order-$n$ cycle-graph} $\cc_n$ and the {\it directed order-$n$
-  cycle-graph} $\widehat{\cc}_n$ \index{cycle graph}
-\index{cycle network} have {\it vertex-set}
-\[ \n_{{\cal C}_n} \ = \ \n_{\widehat{{\cal C}}_n}
-\ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
+For each positive integer $n \in \N^+$, both the {\it undirected order-$n$ cycle-graph} $\cc_n$ and the {\it directed order-$n$ cycle-graph} $\widehat{\cc}_n$  have {\it vertex-set}
+\[ \n_{{\cal C}_n} \ = \ \n_{\widehat{{\cal C}}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
 \begin{itemize}
 \item
 $\cc_n$ has $n$ edges; its {\it edge-set} is
-\[ \e_{{\cal C}_n} \ = \
-\big\{ \{i, \ i+1 \bmod n\} \ \ | \ \ i \in \{0, \ 1, \ \ldots,
-\ n-1\} \big\}.
-\]
-Fig.~\ref{fig:cycle} illustrates a cycle with $8$ vertices.
+\[ \e_{{\cal C}_n} \ = \ \big\{ \{i, \ i+1 \bmod n\} \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}.  \]
+Fig.~\ref{fig:cycle} depicts the $8$-vertex cycle $\cc_8$.
   \begin{itemize}
-  \item \index{cycle graph!vertex-degree}
-$\cc_n$ is a regular network: each vertex has degree $2$.
+  \item
+$\cc_n$ is degree-regular: each vertex has degree $2$.
 
-Specifically, each vertex $i$ of $\cc_n$ has its {\it predecessor} $i-1
-\bmod n$ \index{cycle graph!predecessor vertex}
-\index{cycle graph!successor vertex} and its {\it successor} $i+1 \bmod n$ .
-  \item \index{cycle graph!diameter}
+\smallskip
+
+Specifically, each vertex $i$ of $\cc_n$ has its {\it predecessor} $i-1 \bmod n$ and its {\it successor} $i+1 \bmod n$.
+
+  \item 
 $\cc_n$ has diameter $\lfloor n/2 \rfloor$.
 
-Direct calculation shows that $\cc_n$'s diameter is no larger than
-this.  The fact that this is, in fact, the graphs's diameter is
-witnessed by the distance between each vertex $k \in \n_{{\cal C}_n}$
-and its antipodal vertex $k + \lfloor n/2 \rfloor \bmod n$.
+\smallskip
+
+Direct calculation shows that $\cc_n$'s diameter is no larger than $\lfloor n/2 \rfloor$.  The fact that this is, in fact, the graph's diameter is witnessed by the distance between each vertex $k \in \n_{{\cal C}_n}$ and its antipodal vertex $k + \lfloor n/2 \rfloor \bmod n$.
   \end{itemize}
 
 \item
@@ -1162,53 +1152,46 @@ $\widehat{\cc}_n$ has {\it arc-set}
 \big\{ (i \rightarrow i+1 \bmod n) \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}
 \]
   \begin{itemize}
-  \item \index{cycle graph!directed vertex-degree}
-$\widehat{\cc}_n$ is a regular network: each vertex has the same
-    indegree and the same outdegree.  Coincidentally, both the common
-    indegree and the common outdegree are $2$.
+  \item 
+$\widehat{\cc}_n$ is a regular directed network: each vertex has in-degree and out-degree $2$.
   \item
 $\widehat{\cc}_n$ has (directed) diameter $n-1$.
 
-Of course, $n-1$ is an upper bound on the diameter of any $n$-vertex
-digraph.  The fact that this is exactly the graph's diameter is
-witnessed by the directed distance from each vertex $k$ of $\widehat
-{\cc}_n$ to its predecessor vertex $k-1 \bmod n$.
+\smallskip
+
+Of course, $n-1$ is an upper bound on the diameter of any $n$-vertex digraph.  The fact that this is exactly $\widehat{\cc}_n$'s diameter is witnessed by the directed distance from each vertex $k$ of $\widehat{\cc}_n$ to its predecessor vertex $k-1 \bmod n$.
   \end{itemize}
 \end{itemize}
+\index{cycle graph!directed vertex-degree}
 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/cycle}
-       \caption{A cycle of $8$ vertices.}
+       \caption{The $8$-vertex cycle $\cc_8$.}
   \label{fig:cycle}
 \end{center}
 \end{figure}
 
 \subsection{The {\it Complete graph}, or, {\it Clique} $\k_n$}
 \label{sec:clique}
-\index{complete graph} \index{clique}
+\index{complete graph} \index{clique} 
+\index{complete graph!vertex-degrees} \index{clique!vertex-degrees}
+\index{complete graph!diameter}
 
-For each positive integer $n \in \N^+$, we denote by $\k_n$ the {\em
-  undirected} order-$n$ {\it complete-graph} (or, {\it clique}),
-\index{complete graph} \index{clique} and by $\widehat{\k}_n$ the {\em
-  directed} order-$n$ {\it complete-graph} (or, {\it clique}).  Both
-$\k_n$ and $\widehat{\k}_n$ have {\it vertex-set}
-\[ \n_{{\cal K}_n} \ = \ \n_{\widehat{{\cal K}}_n}
-\ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
+For each positive integer $n \in \N^+$, we denote by $\k_n$ the {\em undirected} order-$n$ {\it complete-graph} (or, {\it clique}), and by $\widehat{\k}_n$ the {\em directed} order-$n$ {\it complete-graph} (or, {\it clique}).  Both $\k_n$ and $\widehat{\k}_n$ have {\it vertex-set}
+\[ \n_{{\cal K}_n} \ = \ \n_{\widehat{{\cal K}}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
 \begin{itemize}
 \item
 $\k_n$ has $\displaystyle {n \choose 2}$ edges; its {\it edge-set} is
-\[ \e_{{\cal K}_n} \ = \
-\big\{ \{i, \ j\} \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\}, \ i
-\neq j \big\}.
-\]
+\[ \e_{{\cal K}_n} \ = \ \big\{ \{i, \ j\} \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\}, \ i \neq j \big\}. \]
   \begin{itemize}
-  \item \index{complete graph!vertex-degrees} \index{clique!vertex-degrees}
-$\k_n$ is a regular network: each vertex has degree $n-1$; every vertex $i
-\in \n_{\fk_n}$ is connected with all other vertices.
+  \item 
+$\k_n$ is a regular network: each vertex has degree $n-1$; every vertex $i \in \n_{\fk_n}$ is a neighbor of every other vertex.
 
    \item \index{complete graph!diameter}
 $\k_n$ has diameter $1$.
+
+\smallskip
 
 $\k_n$'s diameter is a direct consequence of its vertex-degrees, and vice versa.
   \end{itemize}
@@ -1216,134 +1199,104 @@ $\k_n$'s diameter is a direct consequence of its vertex-degrees, and vice versa.
 \item
 $\widehat{\k}_n$ has $(n-1)n$ arcs; its {\it arc-set} is
 \[ \a_{\widehat{{\cal K}}_n} \ = \ 
-\big\{ (i \rightarrow j) \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\}
-\big\}, \ i \neq j
-\]
+\big\{ (i \rightarrow j) \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\} \big\}, \ i \neq j \]
   \begin{itemize}
   \item
-$\widehat{\k}_n$ is a regular network: each vertex has the same indegree
-    and the same outdegree.  Both the common indegree and the common
-    outdegree are $n-1$.
+$\widehat{\k}_n$ is a regular directed network: each vertex has in-degree and out-degree $n-1$.
   \item
 $\widehat{\k}_n$ has (directed) diameter $1$.
 
-As in the undirected case, there is a causal relationship between
-$\widehat{\k}_n$'s diameter and its (in- and out-) vertex-degrees.
+\smallskip
+
+$\widehat{\k}_n$'s diameter and its (in- and out-) vertex-degrees determine one another.
   \end{itemize}
 \end{itemize}
 
-\ignore{
+\ignore{********
 {\Denis good opportunity for an exercice here: a tournoiment 
 is a directed version of a complete graph (any orientation of the edges).
 The proof that it is hamiltonian is nice, If you agree I can add it in the exercices...}
-}
+***********}
 
-Hearkening back to our discussion of matchings in (unweighted) graphs:
-The structure of the set of perfect matchings in general graphs is
-decidely nontrivial.  For clique-graphs, though, the structure is much
-easier to discuss.
+\medskip
+
+Hearkening back to our discussion of matchings in (unweighted) graphs: The structure of the set of perfect matchings in general graphs is decidely nontrivial.  For clique-graphs, though, the structure is much easier to discuss.
 
 \begin{prop}
 \label{thm:perfect-matchings-clique}
-The number of perfect matchings admitted by the clique-graph $\k_n$ is
-either $0$---if $n$ is odd---or exponential in $n$ if $n$ is even.
+The number of perfect matchings admitted by the clique-graph $\k_n$ is either $0$---if $n$ is odd---or exponential in $n$---if $n$ is even.
 \end{prop}
 
 \begin{proof}
 The assertion about cliques with odd numbers of vertices is immediate
-from Proposition~\ref{thm:necessary-for-perfect-matching}
- since one vertex can never been paired.
+(see Proposition~\ref{thm:necessary-for-perfect-matching}): one vertex can never been paired.
 
-We verify the assertion about cliques of the form $\k_{2k}$ by
-induction on $k$.  To this end, let $M_n$ denote the number of perfect
-matchings that the clique $\k_n$ admits.
+\smallskip
 
-The base of our induction is the case $k=1$.  Because $\k_{2}$
-consists of a single edge, it admits only one perfect matching; i.e.,
-$M_1 = 1$.
+We verify the assertion about cliques of the form $\k_{2k}$ by induction on $k$.  To this end, let $M_n$ denote the number of perfect matchings that $\k_n$ admits.
+
+\smallskip
+
+We are going to fashion this proof to reflect the way that a mathematician would reason, rather than presenting the highly structured form of induction that we have been using until now.  After all, we are already in Chapter 12!
+
+\medskip
+
+\noindent 
+The base case $k=1$ is immediate:  Because $\k_{2}$ consists of a single edge, it admits precisely one perfect matching; i.e., $M_1 = 1$.
 %(see Figure~\ref{perfectMatching1}): 
 
-To garner intuition, we also explicitly solve the case $k=2$, which is
-illustrated in Fig.~\ref{fig:AllPerfectMatchings}.
+\smallskip
+
+To garner intuition, we also explicitly solve the case $k=2$, which is illustrated in Fig.~\ref{fig:AllPerfectMatchings}.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.55]{FiguresGraph/perfectmatchingAll}
-       \caption{The $4$-vertices Clique graph  $\k_4$ (left) and its three different perfect matchings (right): 
-       the matchings' edges are drawn, respectively, with bold lines, dashed lines, and dotted lines.}
+       \caption{$\k_4$ (left) and its three different perfect matchings (right):  The matchings' edges are drawn, respectively, with bold lines, dashed lines, and dotted lines.}
   \label{fig:AllPerfectMatchings}
 \end{center}
 \end{figure}
-As the figure illustrates, $\k_4 = \k_{2 \cdot 2}$ can be viewed as a
-$4$-cycle (drawn with bold and dashed lines), augmented by two
-``cross-edges'' (drawn with dotted lines).  Easily, then, $\k_4$
-admits $3$ different perfect matchings, which can be identified (and
-specified) by the edge that contains the northwesterly vertex---call it
-$v$---in the figure.  Vertex $v$ has the choice of three vertices to
-``boldly'' match with. (In the figure, $v$ has chosen the
-southwesterly vertex as its ``bold'' match.)  Once $v$ has chosen its
-match, there is only one viable choice for the second edge in the
-matching.  Thus, $M_2=3$.
+As the figure illustrates, $\k_4 = \k_{2 \cdot 2}$ can be viewed as a $4$-cycle (drawn with bold and dashed lines), augmented by two ``cross-edges'' (drawn with dotted lines).  Easily, then, $\k_4$ admits $3$ different perfect matchings, which can be identified (and specified) by the edge that contains the northwesterly vertex---call it $v$---in the figure.  Vertex $v$ has the choice of three vertices to ``boldly'' match with. (In the figure, $v$ has chosen the southwesterly vertex as its ``bold'' match.)  Once $v$ has chosen its match, there is only one viable choice for the second edge in the matching.  Thus, $M_2=3$.
 
-We jump now to the case of any arbitrary $k > 2$.  We remark that
-there are precisely $2k-1$ vertices of $\k_{2k}$ that vertex $1$ can
-``choose'' as its mate in a perfect matching.  Once we set vertex $1$
-and its chosen mate aside, we confront an independent instance of the
-problem with parameter $k-1$, i.e., the problem of counting the number
-of perfect matchings in $\k_{n-2} = \k_{2k-2}$.  We thereby note that
-as $k$ grows, the quantity $M_k$ obeys the following recurrence:
-\[ M_k \ = \ (2k-1) \cdot M_{k-1} \]
+\medskip
+
+We jump now to the case of any arbitrary $k > 2$.  We remark that there are precisely $2k-1$ vertices of $\k_{2k}$ that vertex $1$ can ``choose'' as its mate in a perfect matching.  Once we match vertex $1$ to its mate, we confront an independent instance of the perfect-matching-counting problem with parameter $k-1$---i.e., the problem of counting the number of perfect matchings in $\k_{n-2} = \k_{2k-2}$.  We thereby note that as $k$ grows, the quantity $M_k$ obeys the following recurrence:
+\[ M_k \ = \ (2k-1) \times M_{k-1} \]
 In other words:
+
+\smallskip
 
 \hspace*{.25in}{\em $M_k$ is the product of the first $k$ odd numbers.}
 %$N_1=1$, $N_2=3$, $N_3=3 \times 5=15$, $N_4=3 \times 5 \times 7=115$, etc..
 
+\smallskip
+
 \noindent
-To gauge the growth rate of $M_k$, we concentrate on cases $k > 2$ and
-ignore the $\lfloor k/2 \rfloor$ smallest odd numbers.  We then
-replace each of the remaining odd numbers by its smallest possible
-value.  We thereby find that
+To gauge the growth rate of $M_k$, we concentrate on cases $k > 2$ and ignore the $\lfloor k/2 \rfloor$ smallest odd numbers.  We then replace each of the remaining odd numbers by its smallest possible value.  We thereby find that
 \[
 M_k \ \ =    \ \ \prod_{i=1}^k \ (2i-1)
     \ \ \geq \ \ \prod_{\lceil k/2 \rceil}^k \ (2i-1)
     \ \ \geq \ \ \left( 2 \lceil k/2 \rceil -1 \right)^{k/2}
     \ \ >    \ \ k^{k/2}
 \]
-In summary, $M_k$ grows exponentially with the parameter $k$, as claimed.
-\qed
+In summary, $M_k$ grows exponentially with the parameter $k$, as claimed.  \qed
 \end{proof}
-
 
 \bigskip
 
-The two families of graphs we have just discussed, cycles and cliques,
-are recommended to our attention by their structural simplicity---they
-epitomize, respectively, the most sparse way (the cycle) and the most
-dense way (the clique) to completely interconnect $n$ vertices.  The
-remainder of this section is devoted to three graph-structures that
-are structurally more complex than cycles and cliques, which have been
-designed to meet specific needs within the real technological world of
-computing and communicating.  Indeed, the three upcoming graph
-families are among the most important ones when discussing parallel
-and distributed computing (PDC, for short).  All three families have
-been used both to design computer architectures that support PDC and
-to craft algorithms that exploit the potential efficiencies---in
-computation and communication---that one can achieve using PDC.
+The two families of graphs we have discussed thus far---cycles and cliques---are recommended by their structural simplicity:  They epitomize, respectively, the most sparse way (the cycle) and the most dense way (the clique) to completely interconnect $n$ vertices.  The remainder of this section is devoted to three families of graphs which have been found to be very useful in computational and communicational scenarios.  These graphs' structures are simple enough to be amenable to rigorous reasoning, while being rich enough to support a broad range of procedures that have been shown to afford one access to craft algorithms that exploit the potential efficiencies---in computation and communication---that one can achieve using modern technologies.
 
 \subsection{Sibling Networks: the {\it M}esh ($\m_{m,n}$); the {\it Torus} ($\widetilde{\m}_{m,n}$)}
 \label{sec:mesh}
 \index{mesh and torus networks}
 
-For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh
-  (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network}
-(or, {\it torus}) $\widetilde{\m}_{m,n}$ have {\it vertex-set}
+For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network} (or, {\it torus}) $\widetilde{\m}_{m,n}$ have {\it vertex-set}
 \begin{eqnarray*}
 \n_{\fm_{m,n}} \ = \ \n_{\widetilde{\fm}_{m,n}}
   & = & 
 \{1, \ 2, \ldots, \ m\} \ \times \ \{1, \ 2, \ldots, \ n\} \\
   & = & 
 \big\{ \langle i, \ j \rangle \ \ | \ \ 
-\big[ i \in \{1, \ 2, \ldots, \ m\} \big], \ \
-\big[ j \in \{1, \ 2, \ldots, \ n\} \big]
+\big[ i \in \{1, \ 2, \ldots, \ m\} \big], \ \ \big[ j \in \{1, \ 2, \ldots, \ n\} \big]
 \big\}
 \end{eqnarray*}
 
@@ -1355,29 +1308,23 @@ $\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
 \big\{
 \{ \{ i, j \}, \ \{ i+1, j \} \ \ | \ \
 1 \leq i < m, \ \ 1 \leq j \leq n \} \\
-  &  & \hspace*{.1in} \cup
-\{ \{ i, j \}, \ \{ i, j+1 \} \ \ | \ \
-1 \leq i \leq m, \ \ 1 \leq j < n \}
+  &  & \hspace*{.1in} \cup \ \
+\{ \{ i, j \}, \ \{ i, j+1 \} \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j < n \}
 \big\}
 \end{eqnarray*}
+
+\index{row of a mesh graph}\index{mesh graph!row}
+\index{column of a mesh graph}\index{mesh graph!column}
 
 \begin{itemize}
 \item
 The subgraph of $\m_{m,n}$ defined by the vertex-set
-\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
-  m\}\right], \ \ \left[1 \leq j < n\right]\}
-\]
-and all edges both of whose endpoints belong to that set is called the
-$i$th {\it row} of $\m_{m,n}$
-\index{row of a mesh graph}\index{mesh graph!row}
-Dually, the subgraph of $\m_{m,n}$ defined by the vertex-set
-\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
-  n\}\right], \ \ \left[1 \leq i < m\right] \}
-\]
-and all edges both of whose endpoints belong to that set is called the
-$j$th {\it column} of $\m_{m,n}$.
-\index{column of a mesh graph}\index{mesh graph!column}
-\ignore{*********
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots, m\}\right], \ \ \left[1 \leq j < n\right]\} \]
+and all edges both of whose endpoints belong to that set is the $i$th {\it row} of $\m_{m,n}$.  Dually, the subgraph of $\m_{m,n}$ defined by the vertex-set
+\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots, n\}\right], \ \ \left[1 \leq i < m\right] \} \]
+and all edges both of whose endpoints belong to that set is the $j$th {\it column} of $\m_{m,n}$.
+
+\ignore{*********************
   \begin{itemize}
      \item
 Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
@@ -1423,30 +1370,27 @@ vertex-set
 \index{left edge of a mesh graph}
 \index{mesh graph!right edge}
      \end{itemize}
-********}
+**********************}
 
   \item 
-$\m_{m,n}$ is {\em not} a regular graph.  Its four corner vertices each has
-    degree $2$; its non-corner extreme edge vertices each has degree $3$; its
-\index{mesh graph!vertex-degree}\index{internal vertex of a mesh graph}
+$\m_{m,n}$ is {\em not} a regular graph.  Its four corner vertices each has degree $2$; its non-corner extreme edge vertices each has degree $3$; its {\em internal vertices} each has degree $4$.
+
+\index{mesh graph!vertex-degree} \index{internal vertex of a mesh graph}
 \index{mesh graph!internal vertex}
-{\em internal vertices} each has degree $4$
 
   \item \index{mesh graph!undirected diameter}
-The diameter of $\m_{m,n}$ is $m+n-2$, as witnessed by the distance
-between vertices $\langle 1, \ 1 \rangle$ and $\langle m, \ n \rangle$.
+The diameter of $\m_{m,n}$ is $m+n-2$, as witnessed by the distance between vertices $\langle 1, \ 1 \rangle$ and $\langle m, \ n \rangle$.
   \end{itemize}
+ \index{mesh graph!undirected diameter}
 
 \item
 $\widetilde{\m}_{m,n}$ has $2mn$ arcs; its {\it arc-set} is
 \begin{eqnarray*}
 \a_{\widetilde{\m}_{m,n}} & = &
 \big\{
-\{ (\langle i, \ j \rangle \rightarrow \langle i+1 \bmod m, \ j
-\rangle) \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j \leq n \} \\
-  &  & \hspace*{.1in} \cup
-\{ (\langle i, \ j \rangle \rightarrow \langle i, \ j+1 \bmod n
-\rangle) \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j \leq n \}
+\{ (\langle i, \ j \rangle \rightarrow \langle i+1 \bmod m, \ j \rangle) \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j \leq n \} \\
+  &  & \hspace*{.1in} \cup \ \
+\{ (\langle i, \ j \rangle \rightarrow \langle i, \ j+1 \bmod n \rangle) \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j \leq n \}
 \big \}
 \end{eqnarray*}
 
@@ -1470,15 +1414,9 @@ $j$th {\it column} of $\widetilde{\m}_{m,n}$.
 **********}
 \begin{itemize}
   \item
-$\widetilde{\m}_{m,n}$ is a regular network; each vertex has degree $4$.
-    Despite the fact that $\widetilde{\m}_{m,n}$ is an {\em
-      undirected} graph, its arcs are commonly referred to via an
-    anthropomorphic labeling, either as ``up, down, left, and right''
-    or as ``north, south, west, and east''.
-  \item \index{mesh graph!directed diameter}
-$\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \
-\lfloor n/2 \rfloor$.  This can be verified in analogy to the diameter
-of the cycle-graph $\cc_n$.
+$\widetilde{\m}_{m,n}$ is a regular network; each vertex has degree $4$.  Despite the fact that $\widetilde{\m}_{m,n}$ is an {\em undirected} graph, its edges are commonly referred to via an  anthropomorphic directional labeling, as ``up, down, left, and right''  or as ``north, south, west, and east''.
+  \item
+$\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \ \lfloor n/2 \rfloor$.  This can be verified by analogy to the diameter of the cycle-graph $\cc_n$.  \index{mesh graph!directed diameter}
 \end{itemize}
 \end{itemize}
 
@@ -1495,42 +1433,38 @@ of the cycle-graph $\cc_n$.
 \index{boolean hypercube}
 \index{hypercube}
 
-The graphs we focus on in this section have had a major impact on the
-world of coding, especially in regard to codes that are {\em error
-  correcting} \cite{PetersonW81}, and the world of computing,
-especially in regard to parallel and distributed computing
-\cite{JohnssonH1989, SaadS89, Schwartz80}.  The cited sources give a
-range of perspectives on the importance of {\it hypercube networks.}
+The graphs we focus on in this section have had a major impact on the world of coding, especially in regard to codes that are {\em error correcting} \cite{PetersonW81}, and on the world of computing, especially in regard to parallel and distributed computing
+\cite{JohnssonH1989, SaadS89, Schwartz80}.  The cited sources give a range of perspectives on the importance of {\it hypercube networks.}
 
 \index{order-$n$ boolean hypercube}
-The {\it order-$n$ boolean hypercube}, traditionally denoted $\q_n$,
-is the $2^n$-vertex graph defined as follows.
+The {\it order-$n$ boolean hypercube}, traditionally denoted $\q_n$, is the $2^n$-vertex graph defined via one of the following (equivalent) definitions.
 \begin{itemize}
 \item
 {\it The recursive definition}. 
 \index{order-$n$ boolean hypercube!recursive definition}
   \begin{itemize}
   \item
-The order-$0$ boolean hypercube, $\q_0$, has a single vertex, and no
-edges.
+The order-$0$ boolean hypercube, $\q_0$, has a single vertex, and no edges.
   \item
-The order-$(k+1)$ boolean hypercube, $\q_{k+1}$, is obtained by taking
-two copies of $\q_k$, call them $\q_k^{(1)}$ and $\q_k^{(2)}$, and
-creating an edge that connects each vertex of $\q_k^{(1)}$ with the
-corresponding vertex of $\q_k^{(2)}$.
+The order-$(k+1)$ boolean hypercube, $\q_{k+1}$, is obtained by taking two copies of $\q_k$, call them $\q_k^{(1)}$ and $\q_k^{(2)}$, and creating an edge that connects each vertex of $\q_k^{(1)}$ with the corresponding vertex of $\q_k^{(2)}$.
   \end{itemize}
 For illustration:
   \begin{itemize}
   \item
 $\q_1$ consists of two vertices connected by a single edge.
   \item
-$\q_2$ can be viewed as a ``square'', or equivalently, a copy of $\cc_4$.
+$\q_2$ can be viewed as a ``square'', or equivalently, a copy of the $4$-cycle $\cc_4$.
   \item
-$\q_3$ can be viewed as a ``cube'', i.e., as two copies of $\cc_4$
-    with edges connecting corresponding vertices: Each of the following
-    pairs of vertices are connected by an edge: the upper right
-    corner-vertices, the upper left corner-vertices, the lower right
-    corner-vertices, and the lower left corner-vertices.
+$\q_3$ can be viewed as a ``cube'', i.e., as two copies of $\cc_4$ with edges connecting corresponding vertices: Each of the following pairs of vertices are connected by an edge:
+
+\smallskip
+
+\hspace*{.25in}\begin{tabular}{l}
+the upper right corner-vertices \\
+the upper left corner-vertices \\
+the lower right corner-vertices \\
+the lower left corner-vertices
+\end{tabular}
   \end{itemize}
 
 \item
@@ -1538,41 +1472,39 @@ $\q_3$ can be viewed as a ``cube'', i.e., as two copies of $\cc_4$
 For each $n \in \N$, the vertices of the order-$n$ boolean hypercube,
 $\q_n$, are all length-$n$ binary strings.  For illustration:
 \index{order-$n$ boolean hypercube!direct definition}
-\begin{eqnarray*}
-\n_{{\fq}_0}
-  & = & 
-\{ \varepsilon \}, \ \ \mbox{ the length-$0$ {\em null string}} \\ 
-\n_{{\fq}_1}
-  & = &
-\{ 0, \ 1 \} \\
-\n_{{\fq}_2}
-  & = & \{ 00, \ 01, \ 10, \ 11 \} \\
-\n_{{\fq}_3}
-  & = & \{ 000, \ 001, \ 010, \ 011, \ 100, \ 101, \ 110, \ 111 \} 
-\end{eqnarray*}
-The iteration-based construction of big hypercubes from the next
-smaller ones is illusrated in Fig.~\ref{fig:hypercube}.
+
+\smallskip
+
+\hspace*{.25in}\begin{tabular}{l}
+$\n_{{\fq}_0}
+  \ = \ 
+\{ \varepsilon \}$, \ \ \ the length-$0$ {\em null string} \\ 
+$\n_{{\fq}_1}
+  \ = \ \{ 0, \ 1 \}$ \\
+$\n_{{\fq}_2}
+  \ = \ \{ 00, \ 01, \ 10, \ 11 \}$ \\
+$\n_{{\fq}_3}
+  \ = \ \{ 000, \ 001, \ 010, \ 011, \ 100, \ 101, \ 110, \ 111 \}$
+\end{tabular}
+
+\smallskip
+
+The iteration-based construction of big hypercubes from the next smaller ones is illustrated in Fig.~\ref{fig:hypercube}.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/hypercube}
-\caption{The iteration-based construction of order-$n$ hypercubes:
-  Take two copies of the order-$(n-1)$ hypercube.  Prepend a $0$ to
-  the vertex-labels of the first copy and a $1$ to the vertex-labels of
-  the second copy.}
+\caption{The iteration-based construction of order-$n$ hypercubes:  (1) Take two copies of the order-$(n-1)$ hypercube.  (2) Prepend a $0$ to the vertex-labels of the first copy and a $1$ to the vertex-labels of the second copy.}
   \label{fig:hypercube}
 \end{center}
 \end{figure}
 
-Easily, for each value of $n$, $\q_n$ has $2^n$ vertices, for this is the
-number of length-$n$ binary strings.
+\smallskip
+
+Easily, each $\q_n$ has $2^n$ vertices, for this is the number of length-$n$ binary strings.
 
 \medskip
 
-For each value of $n$, each edge of $\q_n$ connects two vertex-strings
-that differ in precisely one position.  This means that $\q_n$ has $n
-2^{n-1}$ edges: To wit, each of its $2^n$ vertices has $n$ neighbors, so
-the quantity $n 2^n$ counts each of $\q_n$'s edges twice---one for
-each endpoint.  For illustration:
+For each value of $n$, each edge of $\q_n$ connects two vertex-strings that differ in precisely one bit-position.  This means that $\q_n$ has $n 2^{n-1}$ edges: To wit, each of its $2^n$ vertices has $n$ neighbors, so the quantity $n 2^n$ counts each of $\q_n$'s edges twice---one for each endpoint.  For illustration:
 \begin{eqnarray*}
 \e_{{\fq}_1}
   & = &
@@ -1607,18 +1539,23 @@ each endpoint.  For illustration:
 \noindent
 It is easy to observe $\q_n$'s basic structural properties.
 \begin{itemize}
-\item \index{hypercube!vertex-degree}
+\item 
 $\q_n$ is a regular network: each of its $2^n$ vertices has degree $n$.
 
-This follows from the fact that each edge of $\q_n$ rewrites a single
-bit-position in the length-$n$ binary string that is the edge's source
-vertex.
+\index{hypercube!vertex-degree}
 
-\item \index{hypercube!diameter}
-$\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.\footnote{Recall that
-  $\ln n = \log_2 n$; see Section~\ref{sec:exponential+logarithm}.}
+\smallskip
 
-We address this issue formally.
+This follows from the fact that each edge of $\q_n$ rewrites a single bit-position in the length-$n$ binary string that is the edge's source vertex.
+
+\item 
+$\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.\footnote{Recall that $\ln n = \log_2 n$; see Section~\ref{sec:exponential+logarithm}.}
+
+\index{hypercube!diameter}
+
+\smallskip
+
+We verify this fact formally.
 \end{itemize}
 
 \begin{prop}
@@ -1627,67 +1564,52 @@ For all $n \in \N^+$, $\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.
 \end{prop}
 
 \begin{proof}
-We prove this diameter bound by construction.  Focus on two arbitrary
-vertices of $\q_n$:
+We prove this diameter bound by construction.  Focus on two arbitrary vertices of $\q_n$:
 \[ x \ = \ \alpha_1 \alpha_2 \cdots \alpha_n \ \ \ \mbox{ and } \ \ \
 y \ = \ \beta_1 \beta_2 \cdots \beta_n
 \]
-One of the several paths in $\q_n$ from $x$ to $y$ is described
-schematically as the following left-to-right, bit-by-bit rewriting of
-$x$ as $y$ using edges of $\q_n$
-\[
-x \ = \ \alpha_1 \alpha_2 \cdots \alpha_n \ \rightarrow \
-\beta_1 \alpha_2 \cdots \alpha_n \ \rightarrow \
-\beta_1 \beta_2\cdots \alpha_n \ \rightarrow \cdots \rightarrow\ 
-\beta_1 \beta_2 \cdots \beta_n \ = \ y
+One of the several paths in $\q_n$ from $x$ to $y$ is described schematically as the following left-to-right bit-by-bit ``rewriting" of $x$ as $y$ using edges of $\q_n$.
+\[ \begin{array}{lcl}
+x \ = \ \alpha_1 \alpha_2 \cdots \alpha_{n-1} \alpha_n
+   & \rightarrow & \beta_1 \alpha_2   \cdots \alpha_{n-1} \alpha_n \\
+   & \rightarrow & \beta_1 \beta_2     \cdots \alpha_{n-1} \alpha_n \\
+   & \vdots & \hspace*{.4in}\vdots \\
+   & \rightarrow & \beta_1 \beta_2 \cdots \beta_{n-1} \alpha_n \\
+   & \rightarrow & \beta_1 \beta_2 \cdots \beta_{n-1} \beta_n \ = \ y
+    \end{array}
 \]
-Since each bit of each string is rewritten at most once (only if $\alpha_i \neq \beta_i$), the bound follows.
-\qed
+Since each bit of each string is rewritten at most once---bit-position $i$ is rewritten precisely when  $\alpha_i \neq \beta_i$---the bound follows.  \qed
 \end{proof}
 
 \medskip
 
-The fact that $\q_n$'s diameter is {\em logarithmic} in its size makes
-$\q_n$ an efficient network for many tasks related to parallel
-computing and communication.
+The fact that $\q_n$'s diameter is {\em logarithmic} in its number of vertices makes $\q_n$ an efficient network for many tasks related to parallel computing and communication.
+
 \bigskip
 
-A powerful avenue for understanding the structure of a given family of
-networks is to understand how the perceived ``shape'' of graphs in the
-family can apparently change just by relabeling/renaming the vertices, or
-the edges, of the graphs.  The formal mechanism for studying such
-relabelings/renamings is the concept of {\it graph isomorphism}.
-\index{graph isomorphism} Let $\g$ and $\h$ be undirected graphs that
-have the same numbers of vertices and edges.  (The following definition
-can easily be adapted to deal with {\em directed} graphs.)  An {\it
-  isomorphism} between $\g$ and $\h$ is a {\em
-  bijection}\footnote{Recall, from Chapter~\ref{ch:sets-BA-logic} that
-  a bijection is a function that is one-to-one (i.e., injective) and
-  onto (i.e., surjective).}
+\index{graph isomorphism}
+
+A powerful approach to understanding the structure of a given family of graphs is to understand how the perceived ``shapes'' of graphs in the family can apparently change just by relabeling/renaming the vertices, or the edges, of the graphs.  The formal mechanism for studying such
+relabelings/renamings is the concept of {\it graph isomorphism}.  Let $\g$ and $\h$ be undirected graphs that have the same numbers of vertices and edges.  (The following definition can easily be adapted to deal with {\em directed} graphs.)  An {\it isomorphism} between $\g$ and $\h$ is a {\em bijection}\footnote{Recall, from Chapter~\ref{ch:sets-BA-logic} that a bijection is a function that is both one-to-one (i.e., injective) and onto (i.e., surjective).}
 \[ f: \n_{\fg} \ \leftrightarrow \ \n_{\fh} \]
 such that
 \begin{itemize}
 \item
-For each edge $\{ u,v \}$ of $\g$ (i.e., $\{ u,v \} \in \e_{\fg}$),
-the doubleton set $\{ f(u), f(v) \}$ is an edge of $\h$ (i.e.,
-$\{ f(u), f(v) \} \in \e_{\fh}$).
+For each edge $\{ u,v \}$ of $\g$ (i.e., $\{ u,v \} \in \e_{\fg}$), the doubleton set $\{ f(u), f(v) \}$ is an edge of $\h$ (i.e., $\{ f(u), f(v) \} \in \e_{\fh}$).
 \item
-For each edge $\{ x,y \}$ of $\h$ (i.e., $\{ x,y \} \in \e_{\fh}$),
-the doubleton set $\{ f^{-1}(x), f^{-1}(y) \}$ is an edge of $\g$ (i.e.,
-$\{ f^{-1}(x), f^{-1}(y) \} \in \e_{\fg}$).
+For each edge $\{ x,y \}$ of $\h$ (i.e., $\{ x,y \} \in \e_{\fh}$), the doubleton set $\{ f^{-1}(x), f^{-1}(y) \}$ is an edge of $\g$ (i.e., $\{ f^{-1}(x), f^{-1}(y) \} \in \e_{\fg}$).
 \end{itemize}
 We can immediately exemplify this notion via the following example.
 
 \begin{prop}
-The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
-4$ torus $\widetilde{\m}_{4,4}$.
 \label{prop.graphIsomorphism}
+The hypercube $\q_4$ is \textit{isomorphic} to the torus $\widetilde{\m}_{4,4}$.
 \end{prop}
 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/Isomorphism1}
-       \caption{A representation of $\q_4$ with partial coding of the vertices.}
+       \caption{The hypercube $\q_4$ with a partial vertex-labeling by bit-strings.}
   \label{fig:isomorphism1}
 \end{center}
 \end{figure}
@@ -1695,21 +1617,16 @@ The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresGraph/Isomorphism2}
-       \caption{Transformation of $\q_4$ to a $4 \times 4$ torus.
-       The bold edges correspond to the horizontal cycles and the dashed edges correspond to vertical cycles.}
+       \caption{Transforming $\q_4$ to $\widetilde{\m}_{4,4}$.  The bold edges correspond to horizontal cycles, while the dashed edges correspond to vertical cycles.}
   \label{fig:isomorphism2}
 \end{center}
 \end{figure}
 
-The claimed isomorphism is depicted in Figs.~\ref{fig:isomorphism1} and ~\ref{fig:isomorphism2}. 
-We challenge the reader in Exercise~\ref{Exercice:isomorphism} to craft a formal proof of this result,
-using as a hint the coding scheme (or, bijection) depicted in Fig.~\ref{fig:toruslabel}.
+The isomorphism of Proposition~\ref{prop.graphIsomorphism} is depicted in Figs.~\ref{fig:isomorphism1} and~\ref{fig:isomorphism2}.  We challenge the reader in Exercise~\ref{Exercice:isomorphism} to craft a formal proof of this result, using as a hint the coding scheme (or, bijection) depicted in Fig.~\ref{fig:toruslabel}.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/toruslabel}
-\caption{Sketching the coding scheme that yields an isomorphism
-  between the order-$4$ hypercube $\q_4$ and the $4 \times                          
-4$ torus $\widetilde{\m}_{4,4}$.}
+\caption{Hinting at the coding scheme that yields an isomorphism between $\q_4$ and $\widetilde{\m}_{4,4}$.}
   \label{fig:toruslabel}
 \end{center}
 \end{figure}
@@ -1720,43 +1637,21 @@ using as a hint the coding scheme (or, bijection) depicted in Fig.~\ref{fig:toru
 \index{de Bruijn network}
 \index{de Bruijn graph}
 
-While the family of hypercube networks has few competitors in the
-world of parallel and distributed computing, in terms of performance
-and ease of designing algorithms, it does have one major shortcoming
-that relates to its realizability in hardware.  The basic problem is that each vertex of the
-order-$n$ hypercube has vertex-degree $n$; i.e., the vertex-degrees are logarithmic
-in the size of the network.  This feature makes the hypercube's actual
-performance much slower than its theoretical performance: each step of a vertex $v$ of $\q_n$ is slowed down by $v$'s having
-to get inputs from and supply outputs to its $n$ (directed) neighbors.  The phenomenon we are discussing can actually
-be described {\em geographically}!  The physical area that an order-$n$ hypercube $\q_n$ occupies grows
-{\em exponentially} with the
-common degrees of the network's vertices---because $\q_n$ has $2^n$ vertices which are no more than $n$ 
-edge-traversals from one another.  (This is the ``inverse'' way
-of talking about logarithmic vertex-degrees.)  In contrast, the space in which we (and our computers) live grows only 
-{\em cubically} with linear distance.  The resulting disparity means that the wires in large hypercube-connected
-computing platforms must inevitably be very long---in contrast to the unit-size
-of idealized network-edges.  Consequently, electrical signals within a
-large hypercube must travel long distances in physical space---which means that the
-physical computer is much slower than its idealized version.  (One
-finds a more technical discussion of this phenomenon in, e.g., \cite{Ullman84}.)
+While the family of hypercube networks has few competitors in the world of parallel and distributed computing, in terms of performance and ease of designing algorithms, it does have one major shortcoming that relates to its realizability in hardware.  The basic problem is that each vertex of $\q_n$ has vertex-degree $n$; i.e., hypercubes' vertex-degrees are logarithmic in their numbers of vertices.  This feature makes the hypercube's actual performance much slower than its theoretical performance: each step of a vertex $v$ of $\q_n$ is slowed down by $v$'s having to get inputs from and supply outputs to its $n$ (directed) neighbors.  The phenomenon we are discussing can actually be described {\em geographically}!  The physical area that $\q_n$ occupies grows {\em exponentially} with the common degrees of the network's vertices---because $\q_n$ has $2^n$ vertices which are no more than $n$ edge-traversals from one another.  (This is the ``inverse'' way of talking about logarithmic vertex-degrees.)  In contrast, the space in which we (and our computers) live grows only {\em cubically} with linear distance.  (I.e., we live in $3$-dimensional space!)  The resulting disparity in growth rates means that the wires in large hypercube-connected
+computing platforms must inevitably be {\em very} long---in contrast to the unit size of idealized network-edges.  Consequently, electrical signals within a large hypercube must travel long distances in physical space---which means that the physical computer is much slower than its idealized version.  (One finds a more technical discussion of this phenomenon in, e.g., \cite{Ullman84}.)
 
-The preceding shortcoming of hypercubes has led researchers since the 1970s to seek a
-family of networks whose vertex-degrees stay constant even as one
-deploys successively larger instances of the network.  The candidate
-such network which we are currently focusing on was discovered within the domain of {\it coding theory} (as,
-coincidentally, was the hypercube).  
+\smallskip
 
-In the mid-20-century, Dutch mathematician Nicolaas Govert de Bruijn
-\index{de Bruijn, Nicolaas Govert} discovered a way to generate
-compact sequences that contain all possible strings of a prespecified
-length.  Focusing on {\em binary} strings---although de Bruijn's
-strategy works for any finite alphabet---de Bruijn could generate a
-string of length $2^n +n-1$ that contains every length-$n$ binary
-string as a substring.  Quite appropriately, such a string is called a
-{\it de Bruijn sequence}. \index{de Bruijn sequence} It is not obvious
-that de Bruijn sequences exist for every $n$, but we now plant the
-seeds of a proof that they do.  We begin by illustrating two sample
-sequences in (\ref{eqn:deBruijn-seq}).
+The just-described shortcoming of hypercubes led researchers for decades (beginning in the 1970s to seek a family of networks whose vertex-degrees stay constant even as one deploys successively larger instances of the network.  We now describe such a family of networks---which combines constant vertex-degrees with logarithmic diameters.  The network family we focus on in this subsection was discovered within the domain of {\it coding theory}---as, coincidentally, was the hypercube.  
+
+\medskip
+
+\index{de Bruijn, Nicolaas Govert} \index{de Bruijn sequence}
+
+In the mid-20-century, Dutch mathematician Nicolaas Govert de Bruijn discovered a way to generate compact sequences that contain all possible strings of a prespecified length.  Focusing on {\em binary} strings---although de Bruijn's strategy works for any finite alphabet---de Bruijn could generate a string of length $2^n +n-1$ which contains every length-$n$ binary string as a substring.  Quite appropriately, such a string is called an order-$n$ {\it de Bruijn sequence}.
+
+It is not obvious that order-$n$ de Bruijn sequences exist for every $n$, but we now plant the
+seeds of a proof that they do.  We begin by illustrating two sample sequences in (\ref{eqn:deBruijn-seq}).
 \begin{equation}
 \label{eqn:deBruijn-seq}
 \begin{array}{|l||c|c|}
@@ -1777,8 +1672,7 @@ n & \mbox{\sc Length-$n$ binary strings}
 \hline
 \end{array}
 \end{equation}
-The table in (\ref{eqn:deBruijn-seq}) spawns several interesting
-questions:
+The table in (\ref{eqn:deBruijn-seq}) spawns several interesting questions:
 \begin{itemize}
 \item
 Do de Bruijn sequences exist for every $n$?
@@ -1792,18 +1686,14 @@ Can one always find a de Bruijn sequence of length $2^n +n-1$?
   \item
 Can one find de Bruijn sequences of length $< 2^n +n-1$?
   \end{itemize}
- \ignore{\Arny (SOME GOOD EXERCISES HERE)} 
+%{\Arny (SOME GOOD EXERCISES HERE)} 
 \end{itemize}
-The answers to all of these questions---and the connection of de
-Bruijn sequences to the current chapter---reside in the family of
-directed graphs called {\it de Bruijn graphs} (or, {\it networks}).
-\index{de Bruijn graph} \index{de Bruijn network} (The term used
-varies by intended application---mainly, coding theory and [the
-  interconnection networks of] parallel computer architectures.  We
-use the names interchangeably.)
+The answers to all of these questions---and the connection of de Bruijn sequences to the current chapter---reside in the family of directed graphs called {\it de Bruijn graphs} (or, {\it networks}).
+(The term used varies by intended application---mainly, coding theory and [the interconnection networks of] parallel computer architectures.  We use the names interchangeably.)
+\index{de Bruijn graph} \index{de Bruijn network}
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.5]{FiguresGraph/dB2by2}
+       \includegraphics[scale=0.45]{FiguresGraph/dB2by2}
        \caption{The $4$-vertex, order-$2$ de Bruijn network.}
   \label{fig:dB2by2}
 \end{center}
@@ -1811,34 +1701,23 @@ use the names interchangeably.)
 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/dB2by3}
+       \includegraphics[scale=0.46]{FiguresGraph/dB2by3}
        \caption{The $8$-vertex, order-$3$ de Bruijn network.}
   \label{fig:dB2by3}
 \end{center}
 \end{figure}
 
-For every integer $n \in \N^+$, the {\it order-$n$ de Bruijn network}
-is the {\em directed} graph $\d_n$ whose vertices comprise the set of
-length-$n$ binary strings.\footnote{While {\em binary} de Bruijn
-  networks are the most frequently encountered ones, one can also find
-  de Bruijn networks whose vertices comprise all length-$n$ strings over
-  larger finite alphabets.  Such extended families also find
-  applications in coding theory.}  The sets $\n_{\fd_2}$ and
-$\n_{\fd_3}$ appear in (\ref{eqn:deBruijn-seq}).
+For every integer $n \in \N^+$, the {\it order-$n$ de Bruijn network} is the {\em directed} graph $\d_n$ whose vertices comprise the set of length-$n$ binary strings.\footnote{While {\em binary} de Bruijn networks are the most frequently encountered ones, one can also find de Bruijn networks whose vertices comprise all length-$n$ strings over larger finite alphabets.  Such extended families also find applications in coding theory.}  The sets $\n_{\fd_2}$ and $\n_{\fd_3}$ appear in Table (\ref{eqn:deBruijn-seq}).
 
+\smallskip
 
-$\d_n$ is a regular directed graph; its vertices all have in-degree $2$
-and outdegree-$2$.  Each vertex of $\d_n$ is a binary string of
-length $n \geq 1$; hence it can be written in the form $\beta x$,
-where $\beta \in \{0, \ 1\}$ is a {\it bit} and $x$ is a length-$(n-1)$ binary string.
+$\d_n$ is a regular directed graph; its vertices all have in-degree $2$ and out-degree-$2$.  Each vertex of $\d_n$ is a binary string of length $n \geq 1$; hence it can be written in the form $\beta x$, where $\beta \in \{0, \ 1\}$ is a {\it bit} and $x$ is a length-$(n-1)$ binary string.
 
-The $2^{n+1}$ arcs of $\d_n$ come in pairs specified as follows.  For
-each $\beta \in \{0,1\}$ and for each length-$(n-1)$ binary string
-$x$, $\d_n$ has the two arcs
-\[ (\beta x \rightarrow x0) \ \ \ \mbox{ and } \ \ \ 
-(\beta x \rightarrow x1)
-\]
-We enumerate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
+\smallskip
+
+The $2^{n+1}$ arcs of $\d_n$ come in pairs specified as follows.  For each $\beta \in \{0,1\}$ and for each length-$(n-1)$ binary string $x$, $\d_n$ has the two arcs
+\[ (\beta x \rightarrow x0) \ \ \ \mbox{ and } \ \ \  (\beta x \rightarrow x1) \]
+We enumerate $\a_{\fd_3}$ in Table (\ref{eqn:deBruijn-arcs}).
 \begin{equation}
 \label{eqn:deBruijn-arcs}
 {\small
@@ -1899,26 +1778,21 @@ We enumerate $\a_{\fd_3}$ in (\ref{eqn:deBruijn-arcs}).
 }
 \end{equation}
 
-For each $n \in \N^+$, $\d_n$ has diameter $n$.  To see why this is
-true, note that following any one of $\d_n$'s arcs, say from vertex $x$
-to vertex $y$, consists of ``rewriting'' the length-$n$ string $x$ as
-the length-$n$ string $y$.  The diameter bound therefore follows by
-showing that, for any two string-vertices of $\d_n$, say vertex $u$ and
-vertex $v$, one can rewrite string $u$ as string $v$ by traversing a
-sequence of arcs---i.e., a directed path---of length at most $n$.
-Observe, for instance, that the path in $\d_3$ described schematically as follows
-\[ 000 \ \rightarrow \ 001 \ \rightarrow \ 011 \ \rightarrow \ 111 \]
-leads vertex $000$ to vertex $111$, by rewriting string $000$ as string
-$111$.  The diameter bound is now an immediate consequence of the
-following result.  The result builds upon a notion that we have not
-yet encountered but will study in some detail in Section~\ref{sec:Hamiltonian-cycle}
-\index{graph!Hamiltonian cycle} \index{Hamiltonian cycle}.
+\smallskip
 
-A {\it Hamiltonian cycle} in an $n$-vertex graph $\g$ is a length-$n$ cycle that contains 
-every vertex of $\g$ precisely once.  A {\it directed Hamiltonian cycle} in an $n$-vertex 
-digraph $\h$ is a length-$n$ directed cycle that contains every vertex of $\h$ precisely once.
-We prove in Section~\ref{sec:hamiltonian-named-graphs} that every de Bruijn network is
-directed-Hamiltonian; see Proposition~\ref{thm:named-graph-Hamiltonian}(e).
+For each $n \in \N^+$, $\d_n$ has diameter $n$.  To see why this is true, note that following any one of $\d_n$'s arcs, say from vertex $x$ to vertex $y$, consists of ``rewriting'' the length-$n$ string $x$ as the length-$n$ string $y$.  The diameter bound therefore follows by showing that, for any two string-vertices of $\d_n$, say vertex $u$ and vertex $v$, one can rewrite $u$ as $v$ by traversing a sequence of arcs---i.e., a directed path---of length at most $n$.  Observe, for instance, that the path in $\d_3$ described schematically as follows
+\[ 000 \ \rightarrow \ 001 \ \rightarrow \ 011 \ \rightarrow \ 111 \]
+leads vertex $000$ to vertex $111$, by rewriting string $000$ as string $111$.  The diameter bound is now an immediate consequence of the existence in de Bruijn graphs of cycles that contain every vertex precisely once!  We are not yet ready to study these cycles, although we soon will be.
+
+\smallskip
+
+\index{graph!Hamiltonian cycle} \index{Hamiltonian cycle}
+
+A {\it Hamiltonian cycle} in an $n$-vertex graph $\g$ is a length-$n$ cycle that contains every vertex of $\g$ precisely once.  A {\it directed Hamiltonian cycle} in an $n$-vertex digraph $\h$ is a length-$n$ directed cycle that contains every vertex of $\h$ precisely once.  We study Hamiltonian cycles in some detail in Section~\ref{sec:Hamiltonian-cycle}.  And, we prove in Section~\ref{sec:hamiltonian-named-graphs} (see Proposition~\ref{thm:named-graph-Hamiltonian}(e)) that every de Bruijn network is directed-Hamiltonian!
+
+\bigskip
+
+Stepping back from the structural specifics of $\d_n$, we now see that de Bruijn networks provide us with a {\em bounded-degree}---specifically, a degree-$2$---family of networks each of whose constituent digraphs has diameter that is {\em logarithmic} in its size!  In this regard, at least, de Bruijn networks have exactly the same cost-performance as hypercubes---both graphs have $2^n$-vertices and diameter $n$---{\em but the de Bruijn networks achieve this with bounded degrees}.  Even more dramatic:  It has been shown that sophisticated algorithmic techniques can achieve roughly equivalent computational efficiency, on a broad range of significant computational problems, using de Bruijn networks as using like-sized hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
 
 
 \ignore{**********
@@ -2044,15 +1918,3 @@ proof of Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
 %\end{proof}
 ********}
 
-\bigskip
-
-Stepping back from the structural specifics of $\d_n$, we now see that de Bruijn networks
-provide us with a {\em bounded-degree}---specifically, a degree-$2$---family of networks
-each of whose constituent digraphs has {\em logarithmic diameter}!  In
-this regard, at least, de Bruijn networks have exactly the same
-cost-performance as hypercubes---i.e., $2^n$-vertex graphs with
-diameter $n$---with bounded degrees.  Even more dramatic, it has been
-shown that sophisticated algorithmic techniques can achieve roughly
-equivalent computational efficiency, on a broad range of significant
-computational problems, using de Bruijn networks as using like-sized
-hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
