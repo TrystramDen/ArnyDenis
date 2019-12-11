@@ -1,11 +1,18 @@
-%version of 12-08-19
+%version of 12-11-19
 
 \chapter{Graphs II:
-Graphs within Computation and Communication}
+Graphs for Computing and Communicating}
 \label{ch:Graphs2}
 \index{graph}
 
-Chapter~\ref{ch:Graphs1} has laid the groundwork for an intensive study of the many  ways in which graphs and graph-related concepts find application within the fields of computing and communicating.  That chapter largely focused on properties of graphs---and families of graphs---that are local and descriptive: What is the essence of a graph's being a tree? a hypercube?  The current chapter takes the next step and studies how the described local structure influences some of the dynamically applicable characteristics of graphs.  Two major foci in this chapter are {\em vertex-coloring} (Section~\ref{sec:graph-color}) and {\em path discovery} (Section~\ref{sec:path-cycle-problems}).  Both of these topics are used algorithmically in myriad applications of graphs, from circuit layout to computation scheduling to interprocessor communication scheduling.  We provide a layered presentation to both topics: We completely cover the basic aspects of both topics; we offer extended material in appendices, providing further study opportunities for the interested reader; and we provide pointers to the literature for a number of fascinating more-advanced topics.  We close the chapter with capsule discussions of several specialized topics which go beyond the scope of any introductory text.  We hope that the reader will be excited by these preliminary excursions into some occurrences of graph theory in ``real life".
+\begin{quote}
+{\em Many hands make light work} \\ 
+\hspace*{1in}John Heywood, 15th century English writer
+\end{quote}
+
+\bigskip
+
+Chapter~\ref{ch:Graphs1} has laid the groundwork for an intensive study of the many  ways in which graphs and graph-related concepts find application within the fields of computing and communicating.  That chapter focused mainly on properties of graphs---and families of graphs---that are local and descriptive: What is the essence of a graph's being a tree? a hypercube?  The current chapter takes a further step and studies how the described local structure influences some of the dynamically applicable characteristics of graphs.  Two major foci in this chapter are {\em vertex-coloring} (Section~\ref{sec:graph-color}) and {\em path discovery} (Section~\ref{sec:path-cycle-problems}).  Both of these topics are used algorithmically in myriad applications of graphs, from circuit layout to computation scheduling to inter-agent communication scheduling.  We provide a layered presentation to both topics: We completely cover the basic aspects of both topics; we offer extended material in appendices, providing further study opportunities for the interested reader; and we provide pointers to the literature for a number of fascinating more-advanced topics.  We close the chapter with capsule discussions of several specialized topics which go beyond the scope of any introductory text.  We hope that the reader will be excited by these preliminary excursions into some of the wats that graph theory plays a role in ``real life".
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,19 +22,24 @@ Chapter~\ref{ch:Graphs1} has laid the groundwork for an intensive study of the m
 \index{graph!vertex-coloring}
 
 \index{graph!chromatic number}
-This section introduces the notion of {\it graph coloring}, and its
-associated notion of the {\it chromatic number} of a graph.
+
+%This section introduces the notion of {\it graph coloring}, and its associated notion of the {\it chromatic number} of a graph.
 
 \index{graph!vertex-coloring}
-\index{graph!chromatic number} 
-A {\it vertex-coloring} of a graph $\g$ is an assignment of labels to $\g$'s vertices,  in such a way that all of a vertex $v$'s neighbors get a different label than $v$.  Traditionally, the labels are called {\it colors}, for that term's evocative power.  The {\it chromatic number} of a graph $\g$ is the smallest number of colors that can be used in a legal vertex-coloring of $\g$.  In traditional parlance, the assertions
+\index{graph!chromatic number}
+ 
+A {\it vertex-coloring} of a graph $\g$ is an assignment of labels (the ``{\em colors}") to $\g$'s vertices,  in such a way that all of a vertex $v$'s neighbors get different labels than $v$'s.  The {\it chromatic number} of a graph $\g$ is the smallest number of colors that one can use in crafting a legal vertex-coloring of $\g$.  In traditional parlance, the assertions
 
-``$\g$ has chromatic number $c$'' \ \ \ \ \ and \ \ \ \ \
-``$\g$ is {\it $c$-colorable}''
+\smallskip
+
+``$\g$ has chromatic number $c$'' \ \ \ and \ \ \  ``$\g$ is {\it $c$-colorable}''
+
 \index{graph!$c$-colorable}
 
+\smallskip
+
 \noindent
-are considered to be synonymous.
+are viewed as synonymous.
 
 \ignore{********
 {\Denis I added the following remark, do you agree?}
@@ -35,15 +47,22 @@ This notion is an important characteristic of a graph.
 It is like an intermediate concept between the degree (local)
 and diameter (global), which are both easy to compute. 
 Determining the chromatic number is not easy to compute for any graphs.
-\bigskip
 *********}
 
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-The notion of graph coloring can be used to computational advantage to model a broad variety of situations.  An extremely important, and illustrative, use of graph coloring is to model {\it distributed} computing.  In this setting, the vertices of a computation-graph $\g$ represent {\it agents}, such as, e.g., processing elements in a computer; and $g$'s edges represent {\it communication links} that enable each vertex $u$ to check its neighbors' states before any action and to inform its neighbors of state-changes occasioned by an action of $u$.  
-%{\Denis actually, coloring is useful in any situation to express incompatibility between items}
-The prohibition against ``monochrome'' edges---i.e., edges both of whose incident vertices have the same color---guarantees that vertex $u$ and all of its like-colored vertices can act at the same instant with no fear of missing an important input to those actions.  Indeed,
-one often encounters programs for distributed computing that look something like
+\bigskip
+
+\noindent \fbox{ \begin{minipage}{0.96\textwidth}
+The notion of graph coloring can be used to computational advantage in a broad variety of situations.
+
+\medskip
+
+One extremely important, and illustrative, use of graph coloring is to model independence among agents in {\it distributed} computing: The vertices of a computation-graph $\g$ represent {\it agents}, such as, e.g., processing elements in a multicomputer; and $g$'s edges represent {\it communication links} that enable each vertex $u$ to check its neighbors' states before taking any action and to inform its neighbors of state-changes occasioned by an action by $u$.  
+
+\smallskip
+
+The prohibition against ``monochrome'' edges---i.e., edges both of whose incident vertices have the same color---guarantees that vertex $u$ and all of its like-colored vertices can act at the same instant with no fear of missing an important input to those actions.  Indeed, one often encounters programs for distributed computing that look something like
+
+\smallskip
 
 1. All {\em red} vertices perform simultaneously an action
 
@@ -51,21 +70,34 @@ one often encounters programs for distributed computing that look something like
 
 3. All {\em blue} vertices perform simultaneously an action
 
-\hspace*{1in} $\vdots$
+$\cdots$
+
+%\hspace*{1in} $\vdots$
+
+\medskip
+
+In a quite different setting, graph coloring can be used to represent either compatibility or incompatibility between pairs of graph vertices.  As but example: The graph-theoretic formulation in Section ~\ref{sec:graph-model-2SAT} of the 2SAT problem employs adjacencies in a graph to signal incompatible literals in a POS expression.
 \end{minipage}
 }
 
 \bigskip
 
-Most of the ``named'' graphs in Section~\ref{sec:graphs-important-families} have quite small chromatic numbers.  This is no accident: These graphs were invented (or, at least, placed in the spotlight) because of their importance to the arena of parallel and distributed computing---and we suggested in the previous paragraphs how to use graph vertex-colors to efficiently orchestrate many such computations.  Motivated by this application of graph models, we devote the current section to studying graphs that have small chromatic numbers.
+Most of the ``named'' graphs in Section~\ref{sec:graphs-important-families} have quite small chromatic numbers.  This is no accident: These graphs were invented (or, at least, placed in the spotlight) because of their importance to the arena of parallel and distributed computing.  As such, vertex-colorings of these graphs are an important tool for identifying the dependencies, or the lack thereof, as one schedules the concurrent execution of the graphs' task-vertices.
+
+\smallskip
+
+Motivated by such applications of graph models, we devote the current section to studying graphs that have small chromatic numbers.
 
 \subsection{Graphs with Chromatic Number $2$}
 \label{sec:2-color-graphs}
 
-We begin our study of graphs having small chromatic numbers by focusing on $2$-colorable graphs, which enjoy the smallest nontrivial chromatic number.  It is not difficult to characterize these graphs structurally.
+We begin our study of graphs having small chromatic numbers by focusing on {\em $2$-colorable} graphs, which enjoy the smallest nontrivial chromatic number.  It is not difficult to characterize these graphs structurally.
+
+\medskip
 
  \index{graph!leveled}
-A graph $\g$ is {\it leveled} if there exists an assignment of {\it level numbers} $\{ 1, 2, \ldots, \lambda\}$ to the vertices of $\g$ in such a way that every neighbor of a level-$\ell$ vertex $u$ resides either on level $\ell +1$ or on level $\ell -1$.
+ 
+A graph $\g$ is {\it leveled} if there exists an assignment of {\it level-numbers} $\{ 1, 2, \ldots, \lambda\}$ to the vertices of $\g$ in such a way that every neighbor of a vertex having level-number $\ell$ has either level-number $\ell +1$ or level-number $\ell -1$.  A vertex that has level-number $\ell$ is said to {\it reside on level $\ell$} of $\g$.
 
 \begin{prop}
 \label{thm:leveled=2-color}
@@ -75,7 +107,9 @@ A graph $\g$ has chromatic number $2$ if, and only if, it is leveled.
 \begin{proof}
 Say first that $\g$ is a leveled graph.  Then labeling each vertex of $\g$ with the (odd-even) parity of its level provides a valid $2$-coloring of $\g$.
 
-Say next that $\g$ is $2$-colorable.  Pick any vertex $v$ of $\g$ and assign it to be the unique vertex on level $1$.  Let all neighbors of $v$ be assigned to level $2$.  Continuing iteratively, say that the largest level-number that we have employed---i.e., assigned vertices to---is $\ell$.  Then we now assign to level $\ell +1$ all neighbors of level-$\ell$ vertices which have not yet been assigned to a level of $\g$.  Because $\g$ is $2$-colorable, each of the levels we have specified is monochromatic, so that each edge of $\g$ connects a vertex of one color with a vertex of the other color.  \qed
+\smallskip
+
+Say next that $\g$ is $2$-colorable.  Pick any vertex $v$ of $\g$ and assign it to be the unique vertex on level $1$.  Let all neighbors of $v$ be assigned to level $2$.  Continuing iteratively, say that the largest level-number that we have employed---i.e., assigned vertices to---is $\ell$.  Then we now assign level-number $\ell +1$ all neighbors of level-$\ell$ vertices that have not yet been assigned to a level of $\g$.  Because $\g$ is $2$-colorable, each of the levels we have specified is monochromatic, so that each edge of $\g$ connects a vertex of one color with a vertex of the other color.  \qed
 \end{proof}
 
 We can now show that the following named graphs are $2$-colorable.
@@ -84,18 +118,27 @@ We can now show that the following named graphs are $2$-colorable.
 \label{thm:list-2-colorables}
 The following graphs are leveled, hence have chromatic number $2$:
 
+\smallskip
+
 {\bf (a)}
 any tree (which includes any path-graph $\p_n$)
+
+\smallskip
 
 {\bf (b)}
 any cycle-graph $\cc_n$ that has an even number $n$ of vertices
 
+\smallskip
+
 {\bf (c)}
 any mesh-graph $\m_{m,n}$
 
+\smallskip
+
 {\bf (d)}
-any torus-graph $\widetilde{\m}_{m,n}$ that has an even number of
-diagonals, i.e., even $m+n$
+any torus-graph $\widetilde{\m}_{m,n}$ that has an even number of diagonals, i.e., even $m+n$
+
+\smallskip
 
 {\bf (e)}
 any hypercube $\q_n$
@@ -104,91 +147,69 @@ any hypercube $\q_n$
 \begin{proof}
 We provide a detailed sketch for each of the five graph families in turn.
 
+\smallskip
+
 \noindent {\bf (a)}
-We follow the procedure from the second half of the proof of
-Proposition~\ref{thm:leveled=2-color} to expose a level structure in
-any tree $\t$, as follows.  Pick any vertex $v$ of $\t$ and make it the
-unique vertex on level $1$.  Let all neighbors of $v$ be assigned to
-level $2$.  Continuing iteratively, say that the largest level-number
-that we have employed is $\ell$.  Then we now assign to level $\ell
-+1$ all neighbors of level-$\ell$ vertices which have not yet been
+The procedure from the second half of the proof of Proposition~\ref{thm:leveled=2-color} exposes a level structure in any tree $\t$, as follows.  Pick any vertex $v$ of $\t$ and make it the
+unique vertex on level $1$.  Let all neighbors of $v$ be assigned to level $2$.  Continuing iteratively, say that the largest level-number that we have employed is $\ell$.  Then we now assign level-number $\ell +1$ to all neighbors of level-$\ell$ vertices that have not yet been
 assigned to a level of $\t$.
 
-Of course this process can be simplified when $\t$ is a path-graph
-$\p$, by choosing one of $\p$'s end-vertices as vertex $v$.  We thereby
-have precisely one vertex on each level, whereas the general procedure
-can have levels with $2$ vertices.  A lesson here is that {\em a graph
-  may admit many distinct level structures}.
+\smallskip
+
+Of course this process can be simplified when $\t$ is a path-graph $\p$, by choosing one of $\p$'s end-vertices as vertex $v$.  We thereby have precisely one vertex on each level.  (Starting with an internal vertex would create some levels with $2$ vertices.)  A lesson here is that {\em a graph may admit distinct level structures}.
 
 \medskip
 
 \noindent {\bf (b)}
-When we apply the procedure of part (a) to an even-length cycle
-$\cc_{2q}$, we produce a level structure in which levels $1$ and $q+1$
-have one vertex apiece, while all other levels have two vertices apiece.
+When we apply the procedure of part (a) to an even-length cycle, $\cc_{2q}$, we produce a level structure in which levels $1$ and $q+1$ have one vertex apiece, while all other levels have two vertices apiece.
 
 \medskip
 
 \noindent {\bf (c)}
-The edge-structure of mesh-graphs ensures that the labeling of each
-vertex $\langle i,j \rangle$ of $\m_{m,n}$ with the odd-even parity of
-the number $i+j$ is a $2$-coloring of $\m_{m,n}$.
+The edge-structure of mesh-graphs ensures that the labeling of each vertex $\langle i,j \rangle$ of $\m_{m,n}$ with the odd-even parity of the number $i+j$ is a $2$-coloring of $\m_{m,n}$.
 
 \medskip
 
 \noindent {\bf (d)}
-The labeling in part (d) provides a $2$-coloring of any torus-graph
-$\widetilde{\m}_{m,n}$ with even $m+n$.
+The labeling in part (d) provides a $2$-coloring of any torus-graph $\widetilde{\m}_{m,n}$ with even $m+n$.
 
 \medskip
 
 \noindent {\bf (e)}
-Each edge of a hypercube $\q_n$ connects a vertex $v = \beta_1 \beta_2
-\cdots \beta_n$, where each $\beta_i \in \{0,1\}$, to a vertex $v' =
-\beta'_1 \beta'_2 \cdots \beta'_n$ where precisely one $\beta_j$
-differs from $\beta'_j$.  Therefore, the following aggregation of
-vertices of $\q_n$ into sets $S_0, S_1, \ldots, S_n$ provides a valid
-leveling of $\q_n$.
+Each edge of a hypercube $\q_n$ connects a vertex $v = \beta_1 \beta_2 \cdots \beta_n$, where each $\beta_i \in \{0,1\}$, to a vertex $v' = \beta'_1 \beta'_2 \cdots \beta'_n$ where  $\beta_j \neq \beta'_j$ for precisely one $j$.  Therefore, the following aggregation of vertices of $\q_n$ into sets $S_0, S_1, \ldots, S_n$ provides a valid leveling of $\q_n$.
 
 \smallskip
 
-Assign vertex $v = \beta_1 \beta_2 \cdots \beta_n$ to set $S_k$
-precisely if $k$ of the bits $\beta_i$ equal $1$.
+Assign vertex $v = \beta_1 \beta_2 \cdots \beta_n$ to set $S_k$ precisely if $k$ of the bits $\beta_i$ equal $1$.
 
 \medskip
 
 \noindent
-The preceding explanations complete the proof.
-\qed
+The preceding explanations complete the proof. \qed
 \end{proof}
 
-A simple argument verifies that no odd-length cycle $\cc_{2q+1}$ with
-$q \geq 1$ is $2$-colorable.  One can craft such an argument by trying to $2$-color
-such a cycle.  One can then extend this argument to prove that no graph $\g$
-that {\em contains} an odd-length cycle can be $2$-colored.
-Containing odd-length cycles is the feature that prevents $2$-colorings of many graphs, 
-including the torus $\widetilde{\m}_{m,n}$ when $m+n$ is odd and all de Bruijn networks.
+A simple argument verifies that no odd-length cycle $\cc_{2q+1}$ with $q \geq 1$ is $2$-colorable.  One can craft such an argument by trying to $2$-color such a cycle.  One can then extend this argument to prove that no graph $\g$ that {\em contains} an odd-length cycle (as a subgraph) can be $2$-colored.
 
-Let us focus momentarily on de Bruijn networks, because they have quite interesting
-cyclic sub-digraphs.  One observes the directed $3$-cycle
+{\em This is an example of an {\em excluded subgraph} condition:}  Containing odd-length cycles is the feature that prevents $2$-colorings of many graphs, including the torus $\widetilde{\m}_{m,n}$ when $m+n$ is odd and all de Bruijn networks.
+
+\index{excluded subgraph}
+
+\smallskip
+
+Let us focus momentarily on de Bruijn networks because they have quite interesting cyclic sub-digraphs.  One observes the directed $3$-cycle
 \[ 00 \ \rightarrow \ 01 \ \rightarrow \ 10  \rightarrow \ 00 \]
 in $\d_2$ in Fig.~\ref{fig:dB2by2} and the $3$-cycle
 \[ 001 \ \rightarrow \ 010 \ \rightarrow \ 100 \ \rightarrow \ 001 \]
-in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length cycles are only the
-proverbial tip of the proverbial iceberg for de Bruijn networks.  The following result
-asserts that de Bruijn networks are {\it directed-pancyclic}, meaning that 
-{\em they contain (even directed!)~cycles of {\em all} possible lengths, both odd and even}.
-The proof of this result is outside the scope of an introductory text, but the treatment
-in \cite{Yoeli62} should be accessible to the motivated reader.
-\index{graph!pancyclic} 
-\index{de Bruijn network!pancyclicity}
+in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length cycles are only the proverbial tip of the proverbial iceberg for de Bruijn networks.  In fact, de Bruijn networks are {\it directed-pancyclic}, in the sense of the following result from \cite{Yoeli62}.
+
+\index{graph!pancyclic} \index{de Bruijn network!pancyclicity} 
 \index{de Bruijn graph!pancyclicity}
 
-
-\begin{prop}{\cite{Yoeli62}}
-For all $n$, the order-$n$ de Bruijn network $\d_n$ is directed-pancylic, i.e., it
-contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
+\begin{prop}
+For all $n$, the order-$n$ de Bruijn network $\d_n$ is directed-pancylic, i.e., it contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
 \end{prop}
+
+The proof of this result is beyond the scope of an introductory text, but its treatment in \cite{Yoeli62} should be accessible to the motivated reader.
 
 \subsection{Planar and Outerplanar Graphs}
 \label{sec:planar+outerplanar-color}
