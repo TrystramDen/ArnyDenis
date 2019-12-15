@@ -1083,27 +1083,30 @@ Despite the conceptual duality between the edge-exhausting goal that underlies E
 \subsection{Eulerian Cycles and Paths}
 \label{sec:EulerianCycle}
 
-The main results in this section characterize the families of directed and undirected graphs
-that admit {\it Eulerian cycles} or {\it Eulerian paths}.  The proofs of these characterizations are
-constructive: they consist of algorithms that efficiently find such a cycle or such a path when 
-one exists.  We focus on graphs that are connected---but the algorithms we present can actually be 
-adapted to find an Eulerian cycle or an Eulerian path in each connected component of a general
-graph.
+The main results in this section characterize the families of directed and undirected graphs that admit {\it Eulerian cycles} or {\it paths}.  The proofs of these characterizations are constructive: they are built upon algorithms that efficiently find such a cycle or such a path if one exists.  We focus on graphs that are {\em connected}---but our algorithms can actually be adapted to find an Eulerian cycle or path in each connected component of a general graph.
 
-As we embark on our adventure, we note the following amusing fact: \\
-{\em The problem of finding an Eulerian cycle in a graph $\g$ is
-equivalent to the problem of drawing $\g$ ``cyclically"---i.e., while
-starting and ending with the same vertex---without ever lifting one's
-pencil.} \index{graph!drawing without lifting pencil}
+\smallskip
 
-\medskip
+We open our adventure with the following amusing fact:
+
+\bigskip
+
+\index{graph!drawing without lifting pencil}
+
+\noindent \fbox{ \begin{minipage}{0.96\textwidth}
+The problem of discovering an Eulerian cycle in a graph $\g$ is (algorithmically) equivalent to the problem of drawing $\g$ ``cyclically"
+
+\hspace*{.15in}i.e., starting and ending with the same vertex
+
+without ever lifting one's pencil. 
+\end{minipage}
+}
+
+\bigskip
 
 In the next two propositions, we develop---for both cycles and paths, in both undirected and
 directed graphs---simple, elegant characterizations of graphs that admit Eulerian cycles and paths.
-These characterization are validated via simple and efficient algorithms that determine
-whether a given graph admits such a path or such a cycle.  To avoid ``special cases" that
-disrupt the flow of a proof, let us restrict attention to graphs and digraphs that are {\em nontrivial}
-in the sense that
+These characterization are validated via simple and efficient algorithms that determine whether a given graph admits such a cycle or such a path.  To avoid ``special cases" that disrupt the flow of a proof, we restrict attention to graphs and digraphs that are {\em nontrivial} in the sense that
 \begin{itemize}
 \item
 each (di)graph has at least three vertices;
@@ -1115,12 +1118,12 @@ Within this domain, we have the following characterizations.
 \begin{prop}[Eulerian Cycles]
 \label{thm:eulerian-cycle}
 {\bf (a)}
-A connected undirected graph $\g$ admits an Eulerian cycle if, and only if,
-every vertex of $\g$ has even degree.
+A connected undirected graph $\g$ admits an Eulerian cycle if, and only if, every vertex of $\g$ has even degree.
 
-{\bf (b)}
-A connected directed graph $\g$ admits a directed Eulerian cycle if, and only if,
-$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$ for every vertex $v$ of $\g$.
+\smallskip
+
+\noindent {\bf (b)}
+A connected directed graph $\g$ admits a directed Eulerian cycle if, and only if, $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$ for every vertex $v$ of $\g$.
 \end{prop}
 
 \ignore{*********
