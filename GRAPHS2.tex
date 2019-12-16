@@ -1069,7 +1069,7 @@ A cycle in a graph $\g$ that traverses each of $\g$'s {\em edges} precisely once
 \index{graph!Hamiltonian circuit} \index{Hamiltonian circuit}
 \index{Hamilton, William Rowan} \index{Kirkman, Thomas Pennington}
 
-{\it Hamiltonian cycles (or circuits, or tours)}.
+{\it Hamiltonian cycles (or, circuits, or, tours)}.
 A cycle in a graph $\g$ that encounters each of $\g$'s {\em vertices} precisely once is called a {\it Hamiltonian cycle}, (or, often, a {\it Hamiltonian circuit}).  This cycle-discovery problem is named in honor of the British mathematician Sir William Rowan Hamilton, who is credited with inventing the
 concept in the mid-19th century.  (In fact, Hamilton's work on his eponymous cycles was anticipated by many decades in the work of fellow British mathematician, Thomas Pennington Kirkman.)  When one views a Hamiltonian cycle as a ``map'' for traversing a graph, one often calls the cycle a {\it Hamiltonian tour}.  Traditionally, a graph that admits a Hamiltonian cycle is said to be {\it Hamiltonian}.  (A vertex-exhausting {\em path} in a graph is referred to in the obvious analogous way.)  
  \index{graph!Hamiltonian tour}\index{Hamiltonian tour} \index{graph!Hamiltonian} \index{Hamiltonian graph}
@@ -1078,7 +1078,7 @@ concept in the mid-19th century.  (In fact, Hamilton's work on his eponymous cyc
 
 Despite the conceptual duality between the edge-exhausting goal that underlies Eulerian paths/cycles and the vertex-exhausting goal that underlies Hamiltonian paths/cycles, these two graph-traversing goals differ from one another in virtually every significant mathematical and algorithmic respect.  It is rather easy to characterize the family of graphs that admit Eulerian tours and to find such a tour if it exists (Section~\ref{sec:EulerianCycle}); in sharp contrast, there is no known characterization of the family of graphs that admit Hamiltonian tours, and the computational problem of efficiently determining whether a graph admits such a tour is one of the major classical problems in the field of computational complexity  (Section~\ref{sec:Hamiltonian-cycle}).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Eulerian Cycles and Paths}
 \label{sec:EulerianCycle}
@@ -1094,19 +1094,14 @@ We open our adventure with the following amusing fact:
 \index{graph!drawing without lifting pencil}
 
 \noindent \fbox{ \begin{minipage}{0.96\textwidth}
-The problem of discovering an Eulerian cycle in a graph $\g$ is (algorithmically) equivalent to the problem of drawing $\g$ ``cyclically"
-
-\hspace*{.15in}i.e., starting and ending with the same vertex
-
-without ever lifting one's pencil. 
+The problem of discovering an Eulerian cycle in a graph $\g$ is (algorithmically) equivalent to the problem of drawing $\g$ ``cyclically"---i.e., starting and ending with the same vertex---without ever lifting one's pencil. 
 \end{minipage}
 }
 
 \bigskip
 
-In the next two propositions, we develop---for both cycles and paths, in both undirected and
-directed graphs---simple, elegant characterizations of graphs that admit Eulerian cycles and paths.
-These characterization are validated via simple and efficient algorithms that determine whether a given graph admits such a cycle or such a path.  To avoid ``special cases" that disrupt the flow of a proof, we restrict attention to graphs and digraphs that are {\em nontrivial} in the sense that
+The next two propositions develop---for both cycles and paths, in both undirected and directed graphs---simple, elegant characterizations of graphs that admit Eulerian cycles and paths.
+These characterization are validated via simple and efficient algorithms that determine whether a given graph admits such a cycle or such a path and that discover such a cycle or path when one exists.  To avoid ``special cases" that disrupt the flow of a proof, we restrict attention to graphs and digraphs that are {\em nontrivial} in the sense that
 \begin{itemize}
 \item
 each (di)graph has at least three vertices;
@@ -1126,39 +1121,14 @@ A connected undirected graph $\g$ admits an Eulerian cycle if, and only if, ever
 A connected directed graph $\g$ admits a directed Eulerian cycle if, and only if, $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$ for every vertex $v$ of $\g$.
 \end{prop}
 
-\ignore{*********
-{\Denis The question of edge multiplicity should be addressed somewhere since in particular
-the chinese postman is based on edge duplicates...}
-{\Arny I do not understand what you are proposing.  If multiple edges occur just in one special
-environment, then M. Occam tells us to introduce that complication JUST in that environment,
-using the simpler more general situation in the body of the text.  We should discuss}
-{\Denis right, my concern was on the basis of the induction proof...}
-**********}
-
 \begin{proof}
-{\em Necessity.}
-The conditions asserted in parts {\bf (a)} and {\bf (b)} are {\em necessary} because of
-the following fact.  Every time any cycle traverses a vertex $v$ of a (di)graph $\g$, that 
-encounter accounts for {\em two} edges that are incident to $v$: the cycle must ``enter'' $v$
-using one edge and ``exit'' $v$ using a different edge.  (By assumption, the degenerate case 
-of a (di)graph having just one vertex is not relevant here.)
-
-\ignore{**********
-{\Arny The original conditions were wrong.  An unconnected
-graph CAN have an Eulerian cycle of the type we define, since we do not demand that 
-the cycle contains all vertices.  Thus, by our definition, an Eulerian graph remains Eulerian 
-if we add isolated vertices to it.  We must discuss this -- should we demand that the cycle
-touches all vertices??}
-{\Denis yes, for me, an eulerian cycle should touch all the vertices, I don't see any problem 
-as we assumed that the graph is connected...}
-************}
+{\bf Necessity}.
+The conditions asserted in parts (a) and (b) are {\em necessary} because of the following fact.  Every time any cycle traverses a vertex $v$ of a graph $\g$, that encounter accounts for {\em two} edges that are incident to $v$: the cycle must ``enter'' $v$ using one edge and ``exit'' $v$ using a different edge.   For part (b), $\g$ is a digraph, and the encounter with vertex $v$ traverses arcs rather than edges.
 
 \medskip
 
-\noindent {\em Sufficiency.} 
-We now verify that Proposition's conditions are also {\em sufficient}.  We provide 
-a complete proof of sufficiency only for part {\bf (a)} of the Proposition; we 
-provide only hints regarding the sufficiency of the conditions in part {\bf (b)}.
+\noindent {\bf Sufficiency}.
+We now verify that Proposition's conditions are also {\em sufficient}.  We provide  a complete proof of sufficiency only for part (a), for undirected graphs; we provide only hints regarding the sufficiency of the conditions for part (b).
 
 \smallskip
 
@@ -1166,314 +1136,62 @@ We have a choice of proving sufficiency either by induction on the number of ver
 graph or by induction on the number of edges in the graph.  While we invite the reader to 
 develop the vertex-based proof, we focus only on the technically more streamlined edge-based proof. 
 
-\smallskip
+\medskip
 
-\ignore{**************
-\begin{itemize}
-\item
-{\it For {\em undirected} graphs:} We note that $2$-vertex graphs
-cannot have even vertex-degrees---and, indeed, as promised by the
-Proposition, they cannot be Eulerian.  One can exhaustively enumerate
-all $3$-vertex and $4$-vertex graphs and verify that the Proposition correctly
-separates the ones that are Eulerian from those that are not.
-\item
-Focusing on {\em directed} graphs: We note that $2$-vertex digraphs can be
-Eulerian---as witnessed by the $2$-vertex digraph each of whose vertices
-hosts a single arc that points to the other vertex.  Once again, one can
-perform an exhaustive enumeration of $3$-vertex and $4$-vertex digraphs
-and verify that the Proposition correctly separates the Eulerian ones
-from the non-Eulerian ones.
-\end{itemize}
-******************} 
+Focus on a connected undirected graph $\g$ that has $m$ edges and $n$ vertices, each vertex having nonzero even degree.  We prove by induction on $m$ that $\g$ is Eulerian.
 
 \smallskip
 
-Focus on a connected undirected graph $\g$ that has $m$ edges and $n$ vertices, each
-vertex having nonzero even degree.  We prove by induction on $m$ that $\g$ is Eulerian.
-
-%{\Arny Please draft your proposed proof, and we can compare the two approaches.  It is really hard to discuss this piece by piece.} {\Denis, OK then, here is my proof...}
-
-{\bf Base case.}
-The base case for our induction is the case $m=3$.  (Graphs with $m=1$ or $m=2$ edges
-cannot be Eulerian.)  For $m=3$, there is only one Eulerian graph, namely, $\cc_3 \ = \ \k_3$.
+\noindent {\sf Base case.}
+We begin with the base case $m=3$.  (You should consider why graphs with $m=1$ or $m=2$ edges cannot be Eulerian.)  For $m=3$, there is only one Eulerian graph, namely, $\cc_3 \ = \\k_3$.
 
 \smallskip
 
-{\bf Inductive hypothesis.}
-Assume now that the Proposition holds for any number of edges $k \leq m$.
+\noindent {\sf Inductive hypothesis.}
+Assume that the Proposition holds for any number of edges $k \leq m$.
 
 \smallskip
 
-{\bf Inductive extension.}
-Consider any connected graph $(m+1)$-edge graph $\g$ all of whose vertices have even degree.
-By Proposition~\ref{thm:cycle-in-graph}, $\g$ contains a nonempty cycle $\cc$
-(see Fig.~\ref{fig:eulerianProof1}). 
+\noindent {\sf Inductive extension.}
+Consider a connected $(m+1)$-edge graph $\g$ all of whose vertices have nonzero even degree.
+By Proposition~\ref{thm:cycle-in-graph}, $\g$ contains a nonempty cycle $\cc$ (see Fig.~\ref{fig:eulerianProof1}). 
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.5]{FiguresGraph/EulerianProof1}
+       \includegraphics[scale=0.45]{FiguresGraph/EulerianProof1}
        \caption{A cycle in graph $\g$ (ignoring its other vertices and their incident edges).}
   \label{fig:eulerianProof1}
 \end{center}
 \end{figure}
-Focus on the subgraph $\g'$ of $\g$ that is obtained by removing cycle $\cc$.  Clearly $\g'$
-contains fewer than $m-2$ edges, because $\g$ has $m+1$ edges and $\cc$ contains at
-least $3$ edges.
+Focus on the subgraph $\g'$ of $\g$ that is obtained by removing cycle $\cc$.  Clearly $\g'$ contains fewer than $m-2$ edges, because $\g$ has $m+1$ edges and $\cc$ contains at least $3$ edges.
 
-Now,  graph $\g'$ may have multiple connected components because the process of 
-removing cycle $\cc$ from $\g$ could have disconnected the residual graph $\g'$; see
-Fig.~\ref{fig:eulerianProof2}.
+\smallskip
+
+Now,  graph $\g'$ may have multiple connected components because the process of removing cycle $\cc$ could have disconnected the residual graph $\g'$; see Fig.~\ref{fig:eulerianProof2}.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.5]{FiguresGraph/EulerianProof2}
-       \caption{Subgraph $\g'$ and its connected components after we removed the 
-       edges of cycle $\cc$ (whose edges are dotted lines).  In this example, there are
-       four connected components, $C_1$, $C_2$, $C_3$, $C_4$; two of these, namely,
-       $C_2$ and $C_4$ are isolated vertices.}
+       \includegraphics[scale=0.45]{FiguresGraph/EulerianProof2}
+ \caption{Subgraph $\g'$ and its connected components after we removed the edges of cycle $\cc$ (whose edges are dotted lines).  In this example, there are four connected components, $C_1$, $C_2$, $C_3$, $C_4$; two of these, namely, $C_2$ and $C_4$ are isolated vertices.}
   \label{fig:eulerianProof2}
 \end{center}
 \end{figure}
-But, no matter how many components $\g'$ has, we know that each such component has no
-more than $m-2$ edges.  This means that each connected component of $\g'$ is either an
-isolated vertex---meaning a graph with $1$ vertex and $0$ edges---or a {\em nontrivial component},
-meaning a graph that our inductive hypothesis guarantees has an Eulerian cycle.
+But, no matter how many components $\g'$ has, each such component has no more than $m-2$ edges.  This means that each connected component of $\g'$ is either an isolated vertex---i.e., a graph with $1$ vertex and $0$ edges---or a {\em nontrivial component}.  In the latter case, our inductive hypothesis guarantees that $\g'$ has an Eulerian cycle.
 
 \smallskip
 
-The final step in extending the induction is to ``knit" the structure we have derived---namely,
-cycle $\cc$ plus graph $\g'$ into  single Eulerian cycle for graph $\g$.  We accomplish this 
-via the following {\em gendanken} process.  We begin to traverse cycle $\cc$, continuing
-to walk until we encounter a nontrivial component, call it $\g"$, that we have never before
-encountered.  We now pause in our walk along $\cc$ to traverse the Eulerian cycle in $\g"$
-that the induction hypothesis guarantees.  When we conclude the traversal of $\g"$---perforce
-at the same vertex where the traversal began---we resume out walk along $\cc$.  Once the
-walk along $\cc$---punctuated by traversals of Eulerian cycles in connected 
-components---terminates, we are guaranteed to have crossed every edges of the original graph
-$\g$ exactly once.
+The final step in extending the induction is to ``knit" the structure we have derived---namely, cycle $\cc$ plus graph $\g'$---into a single Eulerian cycle for $\g$.  We accomplish this via the following {\em gendanken} process.  We begin to traverse cycle $\cc$, continuing to walk until we encounter a nontrivial component, call it $\g"$, which we have never before encountered.  We now pause in our walk along $\cc$ to traverse the Eulerian cycle in $\g"$ that the induction hypothesis guarantees.  When we conclude the traversal of $\g"$---perforce (since it is a cycle) at the same vertex where the traversal began---we resume our walk along $\cc$.  Eventually, the walk along $\cc$---punctuated by traversals of Eulerian cycles in connected components---terminates.  At this point, we are guaranteed to have crossed every edges of $\g$ exactly once.
 
-This walk exposes the presence of an Eulerian cycle in $\g$, as claimed.   \qed
+\medskip
+
+The described walk exposes an Eulerian cycle in $\g$, as claimed.   \qed
 \end{proof}
 
-\ignore{**************
-
-The final touch is to actually \textit{construct} the eulerian cycle. 
-Let start by any vertex on a cycle (thus, any vertex since they are all on a cycle...)
-and to start following the cycle, as soon as we encounter a vertex in a non-empty connected component, 
-we call the recursive construction on the eulerian cycle in this new component
-(that is find another cycle and take the sub-connected component, and so on...).
-{\Denis This is somehow what you did in your proof with the help of parameter $k$ but do we really need it?}
-
-{\Arny Also, yesterday I inserted details for a proof similar to this in order to show that a tree has
-a vertex of degree $1$ --- See Lemma~\ref{lem:vtx-deg-connected}.  Please look at that proof and 
-at this proof to see whether we should craft  a single more general (abstract?) argument 
-that works for both.}
-{\Denis I think it is done in \ref{thm:eulerian-cycle}.
-It is enough to say that the even degree vertices have at least one in-coming edge and one out-coming edge.
-As the graph is connected, we simply follow a path according to the in and out edges, step by step.
-This process ends up within at most $n$ steps, and may be less if it goes again through a vertex that was already considered...}
-
-\begin{description}
-\item[{\bf Step 1}]
-Initialize the {\it progress parameter} $k$ to $0$.  This parameter
-will help orchestrate our discovery of the Eulerian cycle within $\g$.
-{\Denis no need to step 1}
-
-\item[{\bf Step 2}]
-Choose an arbitrary vertex of $\g$ some of whose incident edges have not
-yet been traversed.  Call this vertex $v_k$, and let us henceforth refer
-to $v_k$ as a {\em special} vertex.  Follow a walk along edges of $\g$
-beginning at special vertex $v_k$.  
-{\Denis we should change $v_k$ to $v$ if we change the way to write the proof...}
-The rules of this walk are:
-\begin{itemize}
-\item
-Every step of the walk will traverse an edge of $\g$ that {\em has not yet been traversed} during any walk.
-\item
-The walk terminates when it encounters a vertex of $\g$ {\em all of
-  whose edges have already been traversed}.
-\end{itemize}
-The facts that 
-
-\hspace*{.25in}\begin{tabular}{ll}
-(1) & each vertex of $\g$ has even degree; \\
-(2) & the walk begins at vertex $v_k$ (which crosses one of $v_k$'s edges); \\
-(3) & no edge of $\g$ is traversed more than once
-\end{tabular}
-
-\noindent
-mean that the last vertex encountered in this walk is $v_k$.  In other
-words: {\em This walk begins and ends with vertex $v_k$.}
-
-
-
-Note that vertex $v_k$ will occur in this walk multiple
-times---specifically with multiplicity $\frac{1}{2} \mbox{\sc
-  degree}(v_k)$.
-  
-{\Denis I would suggest here to simply a bit, in fact both  steps 1 and 2 aims simply at determining a non-empty cycle in the graph...}
-
-We have completed the walk in $\g$ that begins and ends at vertex $v_k$.
-
-{\Denis I suggest to skip step 3... I think it is enough -- and more easy-- to build
-the whole eulerian cycle from any cycle. Do I miss something?}
-
-\ignore{\smallskip
-\item[{\bf Step 3}]
-Say that we have completed the walk in $\g$ that begins at vertex $v_k$.
-
-{\bf If} every edge of $\g$ has been traversed by the end of the
-current walk, then we {\it go to {\bf Step 4}} and invoke procedure
-{\bf Build Eulerian Cycle}, which stitches our series of walks into an
-Eulerian cycle in $\g$.
-
-\smallskip
-
-{\bf Else}, there is a vertex of $\g$, call it $v_{k+1}$, one of whose
-incident edges has not yet been traversed.  Note that we are here
-increasing the value of our progress parameter from $k$ to $k+1$.  We
-now {\it repeat {\bf Step 2}} with the updated progress parameter,
-$k+1$.
-}
-
-\item[{\bf Step 4}]
-\ignore{We have reached this step because our sequence of walks that begin and
-end at special vertices has terminated with all of $\g$'s edges having
-been traversed.}
-
-The previous step determined a cycle in graph $\g$,.
-Once it is removed, it remains several connected components,
-denoted by $\mathcal{C}_1$, $\mathcal{C}_2$, $\ldots$ $\mathcal{C}_c$.
-This cycle intersects the strong components at vertices $v_1$, $v_2$ until $v_c$. 
-We are now ready to exhibit an Eulerian cycle in $\g$ by going piece after piece along the cycle 
-starting from $v_k$.
-{\Denis change it to $v$}
-
-\end{description}
-
-\ignore{The resulting procedure
-{\bf Build Eulerian Cycle} proceeds as follows.
-
-For each special vertex $v_k$, during the walk that begins and ends at
-$v_k$, we encounter other special vertices, call them $v_{k,1}$,
-$v_{k,2}$, \ldots, $v_{k,{m_k}}$, in the order of their being
-encountered along the walk.  We then define the following recursive
-procedure.
-{\Denis it is not really recursive since each procedure is only called once...}
-
 \medskip
 
-\begin{tabular}{|ll|}
-\multicolumn{2}{l}{{\bf Procedure Build Eulerian Cycle}($v_k$)} \\
-\hline
-{\bf Phase $1$} &
-Follow the walk that begins at $v_k$ until it encounters $v_{k,1}$ \\
-  &
-Execute {\bf Build Eulerian Cycle}($v_{k,1}$) \\
-\hline
-{\bf Phase $2$} &
-Continue the walk that begins at $v_k$ until it encounters $v_{k,2}$ \\
-  &
-Execute {\bf Build Eulerian Cycle}($v_{k,2}$) \\
-\hline
-  &
-$\begin{array}{c}
-\bullet \\
-\bullet \\
-\bullet
-\end{array}
-$ \\
-\hline
-{\bf Phase $m_k$} &
-Continue the walk that begins at $v_k$ until it encounters $v_{k,m_k}$ \\
-   &
-Execute {\bf Build Eulerian Cycle}($v_{k,m_k}$) \\
-\hline
-{\bf Phase $m_k +1$} &
-Complete the walk that begins at $v_k$. \\
-\hline
-\end{tabular}
-\end{description}
+\noindent {\em What we have {\em not} done}.
+(1) Adapting our proof of Proposition~\ref{thm:eulerian-cycle} to directed graphs requires only  ensuring that we always enter a vertex $v$ along an in-arc and leave via an out-arc.  Because the in-degree of each vertex $v$ of $\g$ equals $v$'s out-degree, the required changes to the proof are clerical in nature.
 
-\medskip
-
-\noindent
-The process invocation
-
-Execute {\bf Build Eulerian Cycle}($v_0$)
-
-\noindent
-produces the Eulerian cycle in $\g$.
-}
-******************}
-
-\medskip
-
-We have not dealt here with the challenge of algorithmically producing the Eulerian
-cycle in graph $\g$.  Our proof gives major hints about how to produce a {\em recursive}
-algorithm that constructs the cycle.  Developing an iterative construction requires 
-nontrivial data structuring that is outside the scope of this text.
-
-\ignore{***********
-\bigskip
-
-When dealing with a {\em directed} graph, we proceed exactly as
-with undirected graphs, with one critical difference: for each vertex
-$v$ we always enter $v$ along one of its {\em in-arcs}, and
-we always exit $v$ along one of its {\em out-arcs}.  As in the
-undirected case, each arc is traversed precisely once during
-the described process.
-
-{\Denis my proof of the proposition is by induction on the number of edges, not vertices...}  \qed
-\end{proof}
-*****************}
-
-\ignore{**************
-We offer two proofs of this result: the first merely establishes the
-existence of the cycle; the second actually computes the cycle.  Both
-proofs invoke the following elementary facts.
-\bigskip
-\noindent {\bf Claim 1.}
-if all the degrees are even (and not null) then there exists a cycle.\bigskip
-\noindent {\bf Claim 2.}
-A tour is an union of disjoint cycles.\bigskip
-\noindent {\bf Claim 3.}
-If we remove a cycle in a tour then the degrees remain even.\bigskip
-\begin{proof}
-{\bf A proof of existence.}
-
-
-The necessary condition of the proposition is straightforward. 
-Let us focus on the sufficient condition.
-\bigskip
-
-\noindent {\bf Proof 1 (existence).}
-
-By contradiction, let us assume that all the vertices of a connected graph are even and there is no tour that contains all the edges.
-Let consider a tour with a maximum number of edges. 
-If we remove its edges, it remains some edges and from Claim~3 they are even.
-Then, from Claim~1, there exists a cycle within these remaining edges (say $\Gamma$). 
-The contradiction comes from Claim~2 since the union of the maximal tour plus the cycle $\Gamma$ 
-is another tour which contains more edges than the initial one.
-\bigskip
-
-\noindent This proof can be adapted in a constructive way and thus, leads to an algorithm. It is as follows:
-
-\noindent {\bf Proof 2 (constructive).}
-By induction on the number of edges. 
-
-\begin{itemize}
-\item The basis case is simple to verify for $m=2$ (where two vertices linked by two edges correspond to the cycle of minimal length). 
-\item
-Let consider a connected graph with $m+1$ edges where all its vertices have an even degree.
-Let assume that the property holds for connected graphs of even vertices with $k$ edges ($k \leq m$), which means there exist Eulerian tours in these sub-graphs. 
-
-From Claim~1, there exists a cycle (let denote it by $\Gamma$ described by its successive vertices) and consider the sub-graph of $G$ 
-without the edges of $\Gamma$: $G'=(V-{\Gamma},E')$. 
-By induction hypothesis, there exists an Eulerian cycle $\mathcal{C}_i$ in each connected component of $G'$ 
-(from Claim 3).
-The Eulerian tour of $G$ is obtained by the concatenation of pieces of $\Gamma$ and the Eulerian cycles in the successive $\mathcal{C}_i$.
-
-\end{itemize}
-*****************}
+\noindent (2)
+The challenge of algorithmically producing an Eulerian cycle in graph $\g$ requires nontrivial data structuring that is outside the scope of a mathematics text.  However, our proof of Proposition~\ref{thm:eulerian-cycle} does give major hints about how to produce a {\em recursive} algorithm that constructs such a cycle.
 
 \bigskip
 
@@ -1483,38 +1201,27 @@ one seeks Eulerian {\em paths} rather than {\em cycles}.
 \begin{prop}[Eulerian Paths]
 \label{thm:eulerian-path}
 {\bf (a)}
-A connected undirected graph $\g$ admits an Eulerian path if, and only if,
-at most two vertices of $\g$ have odd degree.
+A connected undirected graph $\g$ admits an Eulerian path if, and only if, at most two vertices of $\g$ have odd degree.
 
-{\bf (b)}
+\smallskip
+
+\noindent {\bf (b)}
 A connected directed graph $\g$ admits an Eulerian path if, and only if: either $\g$ admits an 
 Eulerian cycle, or $\g$ contains one vertex $u$ such that
 
-\hspace*{.5in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
+\hspace*{.35in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
 
 \noindent
 and one vertex $v$ such that
 
-\hspace*{.5in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
+\hspace*{.35in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
 \end{prop}
 
-The proof of the path-oriented Proposition~\ref{thm:eulerian-path} shares its overall structure
-with the proof of the cycle-oriented Proposition~\ref{thm:eulerian-cycle}, with one major difference.
-Whereas a cycle has neither beginning nor end, a path has both. 
-Proposition~\ref{thm:eulerian-path}(a) asserts that an undirected graph which admits an
-Eulerian path but not an Eulerian cycle has precisely two vertices of odd degree, and these 
-odd-degree vertices play the roles of the endpoints of the Eulerian path.  In similar fashion,
-Proposition~\ref{thm:eulerian-path}(b) asserts that a directed graph which admits an Eulerian
-path but not an Eulerian cycle contains one vertex, $u$, whose out-degree exceeds its
-in-degree and one vertex, $v$, whose in-degree exceeds its out-degree: vertex $u$ plays the role of
-the beginning vertex of the Eulerian path, and vertex $v$ plays the role of the end vertex of the path.
-With these hints, we invite the reader to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to
-obtain a proof of Proposition~\ref{thm:eulerian-path}.
+The proof of Proposition~\ref{thm:eulerian-path} shares its overall structure with the proof of  Proposition~\ref{thm:eulerian-cycle}, with one major difference.  Whereas a cycle has neither beginning nor end, a path has both.  Proposition~\ref{thm:eulerian-path}(a) asserts that an undirected graph which admits an Eulerian path but not an Eulerian cycle has precisely two vertices of odd degree, and these odd-degree vertices play the roles of the endpoints of the Eulerian path.  In similar fashion, Proposition~\ref{thm:eulerian-path}(b) asserts that a directed graph which admits an Eulerian path but not an Eulerian cycle contains one vertex, $u$, whose out-degree exceeds its in-degree and one vertex, $v$, whose in-degree exceeds its out-degree: vertex $u$ plays the role of the beginning vertex of the Eulerian path, and vertex $v$ plays the role of the end vertex of the path.  With these hints, we invite the reader to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a proof of Proposition~\ref{thm:eulerian-path}.
 
 \bigskip
 
-We close this section by applying Proposition~\ref{thm:eulerian-cycle}
-to the ``named graphs" of Section~\ref{sec:graphs-important-families}.
+We close this subsection by applying Proposition~\ref{thm:eulerian-cycle} to the ``named graphs" of Section~\ref{sec:graphs-important-families}.
 
 \medskip
 
@@ -1548,102 +1255,56 @@ de Bruijn                     & Yes  & Directed: Vertices have equal {\sc indegr
 }
 \end{corol}
 
-\ignore{******************
-{\Denis May be we should briefly summarize what happens for these graphs 
-(hypercubes with even orders, etc.)}
-\medskip
-
-The significance of the de Bruijn network in both coding and
-computation (as discussed in Section~\ref{sec:deBruijn}) lends
-considerable weight to the following important application of
-Proposition~\ref{thm:eulerian-cycle}:  When combined with
-Proposition~\ref{thm:deBruin-linegraph-EX}, we obtain a proof of 
-Proposition~\ref{thm:deBruijn-Hamiltonian}.
-
-\begin{corol}
-\label{thm:deBruijn-Eulerian}
-Every de Bruijn network $\d_n$ is (directed)-Eulerian.
-\end{corol}
-********************}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Hamiltonian Paths and Cycles/Tours}
 \label{sec:Hamiltonian-cycle}
 
-We turn now to the problem of determining when a connected graph $\g$ has a
-{\it Hamiltonian cycle}---and the allied problem of finding such a cycle when one exists.
-Supplementary material related to cycles in general graphs, as well as in our ``named'' 
-graphs can be found in the survey \cite{Rosenberg91}.
+We turn now to the problem of determining when a connected graph $\g$ has a {\it Hamiltonian cycle}---and the allied problem of finding such a cycle when one exists.  Supplementary material related to cycles in general graphs, as well as in our ``named'' graphs can be found in the survey \cite{Rosenberg91}.
 
-One can envision a number of benefits rendered accessible by the
-presence of a Hamiltonian cycle in a graph $\g$.  Most obviously, the
-cycle specifies a tour of $\g$ (or of a map whose structure $\g$
-abstracts) which visits each of $\g$'s vertices precisely once.  This
-is the sense in which the cycle ``summarizes" $\g$'s traversal structure.
+\medskip
+
+One can envision a number of benefits rendered accessible by the presence of a Hamiltonian cycle in a graph $\g$.  Most obviously, the cycle specifies a tour of $\g$ (or of a map whose structure $\g$ abstracts) which visits each of $\g$'s vertices precisely once.  This is the sense in which the cycle ``summarizes" $\g$'s traversal structure.
 
 \subsubsection{More inclusive notions of Hamiltonianicity}
 
-Many graphs---even ones with ``nice'' structures---do not admit
-Hamiltonian cycles.  The reader can generate {\it mesh-graphs}
-(Section~\ref{sec:mesh}) that admit no Hamiltonian cycle.  The
-existence of such non-Hamiltonian graphs has spawned several
-independent paths of inquiry.  One path seeks ``modest'' ways to
-weaken the property of {\it Hamiltonianicity}
-\index{graph!Hamiltonianicity} in a way that retains many of
-Hamiltonianicity's benefits while encompassing a broader range of
-graph structures.  We describe two avenues toward weakened, more
-inclusive, notions of Hamiltonianicity.
+\index{graph!Hamiltonianicity}
+
+Many graphs---even ones with ``nice'' structures---do not admit Hamiltonian cycles.  As an exercise, the reader can generate {\it mesh-graphs} (Section~\ref{sec:mesh}) that admit no Hamiltonian cycle.  The existence of such non-Hamiltonian graphs has spawned several
+independent paths of inquiry.  One path seeks ``modest'' ways to weaken the property of {\it Hamiltonianicity} in a way that retains many of the benefits of Hamiltonianicity's while encompassing a broader range of graph structures.  We describe two avenues toward weakened, more inclusive, notions of Hamiltonianicity.
+
+\medskip
+
+\index{graph!Hamiltonian path} \index{Hamiltonian path}
 
 \noindent {\it Be satisfied with paths, rather than cycles}.
-A {\it Hamiltonian path} \index{graph!Hamiltonian path}
-\index{Hamiltonian path} in a graph $\g$ is a path that passes through
-each of $\g$'s vertices precisely once.  Hamiltonian paths can easily be
-shown to be a strictly weaker notion than Hamiltonian cycles, in the
-obvious sense where every graph that admits a Hamiltonian
-cycle also admits a Hamiltonian path: one just drops any single edge
-of such a cycle to obtain such a path.  However, there are many graphs
-that admit a Hamiltonian path that do not admit any Hamiltonian cycle.
-As suggested earlier, there exist mesh-graphs that admit no
-Hamiltonian cycle, even though every mesh-graph admits a Hamiltonian
-path.  This latter claim is verified by a path that traverses the rows
-of a mesh-graph {\it seriatim}, in alternating directions.
+A {\it Hamiltonian path} in a graph $\g$ is a path that passes through each of $\g$'s vertices precisely once.  Hamiltonian paths can easily be shown to be a strictly weaker notion than Hamiltonian cycles:  Clearly, every graph which admits a Hamiltonian cycle also admits a Hamiltonian path: one just drops any single edge of such a cycle to obtain such a path.  However, there are many graphs which admit a Hamiltonian path but {\em not} any Hamiltonian cycle. Mesh-graphs can supply easy examples.  You have produced (in the preceding paragraph) mesh-graphs
+which admit no Hamiltonian cycle, even though every mesh-graph easily admits a Hamiltonian path---just traverse rows {\it seriatim}, in alternating directions.
 
-\noindent {\it Be satisfied with short paths, rather than edges}.
-A Hamiltonian cycle in graph $\g$ is a circular enumeration of $\g$'s
-vertices in which adjacent vertices are at unit distance from one
-another---i.e., are connected by an edge.  We can weaken (or,
-generalize) this notion to create a {\it Hamiltonian $k$-cycle}
-\index{graph!Hamiltonian $k$-cycle} in $\g$, for any positive integer
-$k$: This is a circular enumeration of $\g$'s vertices in which adjacent
-vertices are at distance $\leq k$ from one another---so a Hamiltonian
-$1$-cycle is what we have been calling a Hamiltonian cycle.  In fact,
-the following result shows that one need not let $k$ be very big
-before one encompasses all connected graphs.  Regrettably, the proof
-of this result is beyond the current text.
+\medskip
+
+\index{graph!Hamiltonian $k$-cycle}
+
+\noindent {\it Be satisfied with paths constructed from short paths, rather than edges}.
+A Hamiltonian cycle in graph $\g$ is a circular enumeration of $\g$'s vertices in which adjacent vertices are at unit distance from one another---i.e., are connected by an edge.  We can weaken (or, generalize) this notion by introducing the notion of a {\it Hamiltonian $k$-cycle} in $\g$, for any positive integer $k$:  This is a circular enumeration of $\g$'s vertices in which adjacent vertices are at distance $\leq k$ from one another---so a Hamiltonian $1$-cycle is what we have been calling a Hamiltonian cycle.  The following result shows that one need not let $k$ be very big before one finds that all connected graphs admit Hamiltonian $k$-cycles.  The proof of this result is based on traversals of a graph's spanning trees, an algorithmic stratagem which is beyond the current text.
 
 \begin{prop}
 \label{thm:weak-Hamiltonianicity}
 {\bf (a)} {\rm \cite{ChartrandK69}}
-Let $\g$ be any connected graph.  One can cyclically enumerate the
-vertices of $\g$ in such a way that vertices that are adjacent in the cycle
-are at distance $\leq 3$ in $\g$.
+Every connected graph admits a Hamiltonian $3$-cycle.
+
+\smallskip
 
 \index{graph!$2$-connected} \index{graph!biconnected}
 
 \noindent {\bf (b)} {\rm  \cite{Fleischner74}}
-Let $\g$ be any graph that is {\em $2$-connected} (or, {\it biconnected}) in the sense 
-that, for every two vertices, $u$ and $v$, of $\g$, there exist at least two vertex-disjoint 
-paths in $\g$ that connect $u$ and $v$.  One can cyclically enumerate the vertices of
-$\g$ in such a way that vertices that are adjacent in the cycle are at distance $\leq 2$ in $\g$.
+Let $\g$ be any graph that is {\em $2$-connected} (or, {\it biconnected}) in the sense  that, for every two vertices, $u, v \in \n_{\fg}$, there exist at least two vertex-disjoint paths in $\g$ that connect $u$ and $v$.  Every biconnected graph $\g$ admits a Hamiltonian $2$-cycle.
 \end{prop}
 
 \subsubsection{Hamiltonianicity in ``named'' graphs}
 \label{sec:hamiltonian-named-graphs}
 
-Yet another direction of inquiry is to determine whether specific
-graphs of interest are Hamiltonian.  We illustrate this avenue by
-reviewing the five important families of graphs we studied in
+Yet another direction of inquiry is to determine whether specific graphs of interest are Hamiltonian.  We illustrate this avenue by reviewing the five ``named" families of graphs
 Section~\ref{sec:graphs-important-families}.
 
 \begin{prop}
@@ -1652,36 +1313,42 @@ Section~\ref{sec:graphs-important-families}.
 {\bf (a)}
 Every cycle-graph $\cc_n$ is Hamiltonian.
 
+\smallskip
+
 \noindent {\bf (b)}
 Every clique-graph $\k_n$ is Hamiltonian.
+
+\smallskip
 
 \noindent {\bf (c)}.1.
 For all $m,n$: the mesh-graph $\m_{m,n}$:
 
 (i)  is path-Hamiltonian.
 
-(ii) contains no odd-length cycle; hence, is not Hamiltonian if $mn$
-is odd.
+(ii) contains no odd-length cycle; hence, is not Hamiltonian if $mn$ is odd.
 
 (iii) is Hamiltonian whenever $mn$ is even 
+
+\smallskip
 
 \noindent {\bf (c)}.2.
 For all $m,n$: the torus-graph $\widetilde{\m}_{m,n}$ is Hamiltonian.
 
+\smallskip
+
 \noindent {\bf (d)}
 Every hypercube $\q_n$  is Hamiltonian.
 
+\smallskip
+
 \noindent {\bf (e)}
-Every de Bruijn network $\d_n$ is (directed)-Hamiltonian.
+Every de Bruijn network $\d_n$ is both Hamiltonian and directed-Hamiltonian.
 \end{prop}
  
-\index{graph!pancyclic} \index{digraph!directed-pancyclic} \index{pancyclic}\index{directed-pancyclic}
-Before we embark on our proof Proposition~\ref{thm:named-graph-Hamiltonian}, we
-remark that some of the assertions in the Proposition can be strengthened to assert
-the presence in the target graph of cycles of many lengths; cf.~\cite{Rosenberg91}.
-In particular, we devote Section~\ref{Appendix:deBruijn-Pancyclic} to proving that the
-$2^n$-vertex de Bruijn network $\d_n$ is {\it directed-pancyclic}---meaning that it contains
-directed cycles of every length, from length $1$ to length $2^n$.
+\index{graph!pancyclic} \index{digraph!directed-pancyclic} \index{pancyclic}
+\index{directed-pancyclic}
+
+Before we embark on our proof Proposition~\ref{thm:named-graph-Hamiltonian}, we remark that some of the assertions in the Proposition can be strengthened to assert the presence in the target graph of cycles of many lengths; cf.~\cite{Rosenberg91}.  In particular, we devote Section~\ref{Appendix:deBruijn-Pancyclic} to proving that the $2^n$-vertex de Bruijn network $\d_n$ is {\it directed-pancyclic}---meaning that it contains directed cycles of {\em every} length, from length $1$ to length $2^n$.
 
 \begin{proof}[Proposition~\ref{thm:named-graph-Hamiltonian}]
 \noindent {\bf (a)}
@@ -1690,85 +1357,72 @@ This is a tautology, by definition of $\cc_n$.
 \medskip
 
 \noindent {\bf (b)}
-This is immediate because, by definition, $\k_n$ contains every
-$n$-vertex graph---including $\cc_n$---as a subgraph.
+This is immediate because, by definition, $\k_n$ contains every $n$-vertex graph---including $\cc_n$---as a subgraph.
 
 \medskip
 
 \noindent {\bf (c)}.1.i.
-As we noted earlier in the text, one can ``snake'' a path through
-$\m_{m,n}$, row by row, from the top-most to the bottom-most.  By
-``snake'', we mean that one should traverse adjacent rows in
-alternating directions.
+As we noted earlier (when discussing Hamiltonian paths vs.~cycles), one can ``snake'' a path through $\m_{m,n}$, row by row, traversing adjacent rows in alternating directions.
+
+\smallskip
+
+\index{graph!bipartite}
 
 \noindent {\bf (c)}.1.ii.
-This is a consequence of the fact that $\m_{m,n}$ is {\it bipartite}:
-\index{graph!bipartite} One can color $\m_{m,n}$'s vertices red and blue
-in such a way that every edge connect vertices of different colors.
-Details are left to the reader.
+This is a consequence of the fact that $\m_{m,n}$ is {\it bipartite}, so that every cycle has even length.
+
+\smallskip
 
 \noindent {\bf (c)}.1.iii.
-We sketch the construction of a Hamiltonian cycle in $\m_{m,n}$ when
-$mn$ is even.  Say, with no loss of generality that $m$ is even, so
-that $\m_{m,n}$ has an even number of rows.  Temporarily remove column
-$1$ of $\m_{m,n}$, and consruct the ``snaking'' Hamiltonian path
-described in part {\bf (c)}.1.i of this proof.  Because $m$ is even,
-this path begins and ends in column $2$ of $\m_{m,n}$.  One can,
-therefore, replace column $1$ and use it to connect the ends of the
-``snaking'' Hamiltonian path.  This describes a Hamiltonian cycle in
-$\m_{m,n}$.
+We sketch the construction of a Hamiltonian cycle in $\m_{m,n}$ when $mn$ is even.  Say, with no loss of generality that $m$ is even, so that $\m_{m,n}$ has an even number of rows.  Temporarily remove column $1$ of $\m_{m,n}$, and construct the ``snaking'' Hamiltonian path described in part {\bf (c)}.1.i of this proof.  Because $m$ is even, this path begins and ends in column $2$ of $\m_{m,n}$.  One can, therefore, reinstate column $1$ and use it to connect the ends of the ``snaking'' Hamiltonian path.  This describes a Hamiltonian cycle in $\m_{m,n}$.
+
+\smallskip
 
 \noindent {\bf (c)}.2.
-When $mn$ is even, the Hamiltonianicity of $\widetilde{\m}_{m,n}$
-follows from the fact that $\m_{m,n}$ is a spanning subgraph of
-$\widetilde{\m}_{m,n}$.  (Think about it!)  When $mn$ is odd, one
-needs just traverse $\widetilde{\m}_{m,n}$'s vertices row by row, going
-to the cyclically next vertex after completing each row (see Fig.~\ref{fig:HamiltonTorus}).  
-Details of the formal proof are left to the reader.
+When $mn$ is even, the Hamiltonianicity of $\widetilde{\m}_{m,n}$ follows from the fact that $\m_{m,n}$ is a spanning subgraph of $\widetilde{\m}_{m,n}$.  (Think about it!)  When $mn$ is odd, one needs just traverse $\widetilde{\m}_{m,n}$'s vertices row by row, going to the cyclically next vertex after completing each row (see Fig.~\ref{fig:HamiltonTorus}).  Details are left to the reader.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.5]{FiguresGraph/HamiltonTorus}
-       \caption{The principles for building Hamiltonian cycles in tori (even-even and odd-odd).}
+       \includegraphics[scale=0.45]{FiguresGraph/HamiltonTorus}
+\caption{Illustrating the principles for building Hamiltonian cycles in $m \times n$ tori when both $m$ and $n$ are even (left) and when both are odd (right).}
   \label{fig:HamiltonTorus}
 \end{center}
 \end{figure}
 
-\medskip
+\smallskip
 
 \index{Gray code} \index{binary reflected Gray code} \index{Gray, Frank}
+
 \noindent {\bf (d)}
-One can craft a Hamiltonian cycle in $\q_n$ by generating an
-{\it order-$n$ binary reflected Gray code}---so named
-for its inventor, Bell Laboratories researcher Frank Gray; see \cite{PetersonW81}.   
-Such a ``code'' is a cyclic enumeration of all $2^n$ binary strings of length $n$, having 
-the property that cyclically adjacent strings differ in only one bit-position.  Length-$n$ 
-strings $x_i$ and $x_j$ are {\it cyclically adjacent} in the Gray code
-$\langle x_0, \ x_1, \ldots, x_{2^n-1} \rangle$ if $j = i+1 \bmod 2^n$.
+One can craft a Hamiltonian cycle in $\q_n$ by generating an {\it order-$n$ binary reflected Gray code}---so named for its inventor, Bell Laboratories researcher Frank Gray; see \cite{PetersonW81}.   Such a ``code'' is a cyclic enumeration of all $2^n$ binary strings of length $n$, having the property that cyclically adjacent strings differ in only one bit-position.  Length-$n$ 
+strings $x_i$ and $x_j$ are {\it cyclically adjacent} in the Gray code $\langle x_0, \ x_1, \ldots, x_{2^n-1} \rangle$ if $j = i+1 \bmod 2^n$.
 \index{strings!cyclically adjacent} 
 
-\noindent
-It is computationally easy to generate an order-$n$ Gray code from an
-order-$(n-1)$ Gray code, as follows.
+\smallskip
 
-We note first that the order-$1$ code is the sequence $\langle 0, 1 \rangle$.
+\noindent
+It is computationally easy to generate an order-$n$ Gray code from an order-$(n-1)$ Gray code, as follows.
+
+\smallskip
+
+We note first that the order-$1$ code is just the sequence $\langle 0, 1 \rangle$.
+
+\smallskip
 
 Inductively, to generate the order-$(k+1)$ Gray code from the order-$k$ code:
 \begin{itemize}
 \item
-Concatenate the order-$k$ code with a {\em reversed} copy of itself.
-(It is the code-sequence that is reversed, not the individual strings.
-For instance, as we go from the order-$2$ code $\langle x_0, \ x_1,
-\ x_2, \ x_3 \rangle$ to the order-$3$ code, we concatenate that
-sequence with $\langle x_3, \ x_2, \ x_1, \ x_0 \rangle$.)
+Concatenate the order-$k$ code with a {\em reversed} copy of itself.  (It is the code-sequence that is reversed, not the individual strings.  For instance, as we go from the order-$2$ code $\langle x_0, \ x_1, \ x_2, \ x_3 \rangle$ to the order-$3$ code, we concatenate that sequence with $\langle x_3, \ x_2, \ x_1, \ x_0 \rangle$.)
+
 \item
-Augment each length-$k$ string in one copy of the order-$k$ Gray code
-to length $(k+1)$ by prepending a $0$ to each string; and, augment
-each length-$k$ string in the other (reversed) copy of the order-$k$
-Gray code to length $(k+1)$ by prepending a $1$ to each string.
+Augment each length-$k$ string in one copy of the order-$k$ Gray code to length $(k+1)$ by prepending a $0$ to each string; and, augment each length-$k$ string in the other (reversed) copy of the order-$k$ Gray code to length $(k+1)$ by prepending a $1$ to each string.
 \end{itemize}
-The following table illustrates the first few steps of this process.
+Table~\ref{tab:gray-code} illustrates Gray codes of the first few orders.
+
+\begin{table}
+\caption{Gray codes of orders $1$--$4$.}
+\label{tab:gray-code}
 \begin{equation}
-\label{eq:gray-code}
+%\label{eq:gray-code}
  {\small
 \begin{array}{|c|c|c|c|}
 \hline
@@ -1796,10 +1450,9 @@ The following table illustrates the first few steps of this process.
 \hline
 \end{array} }
 \end{equation}
+\end{table}
 
-We now sketch a proof that for each index $n \in \N^+$, the order-$n$ Gray code sequence
-specifies a Hamiltonian cycle in $\q_n$; exercises will give the reader the opportunity to fill 
-in details.  We verify the following two assertions in turn:
+We now sketch a proof that for each index $n \in \N^+$, the order-$n$ Gray code sequence specifies a Hamiltonian cycle in $\q_n$; exercises will give the reader the opportunity to fill in details.  We verify the following two assertions in turn:
 \begin{enumerate}
 \item
 {\it The order-$n$ Gray code contains all $2^n$ length-$n$ binary strings.}
@@ -1809,53 +1462,41 @@ in details.  We verify the following two assertions in turn:
 {\it Verification}.
 
 \noindent {\it Assertion} 1.
-We sketch the induction.  When $n=1$, the Gray code consists of
-the two distinct strings $0$ and $1$.  Assume that the assertion holds
-for $n=k$.  The order-$(k+1)$ code is obtained by taking two copies of
-the order-$k$ code and prepending $0$ to the strings in one copy and
-$1$ to the strings in the other copy.  The $2^k$ distinct binary
-strings from the order-$k$ code thereby produce $2^{k+1}$ distinct
-binary strings in the order-$(k+1)$ code.
+We sketch an inductive verification.
+
+The order-($n=1$) Gray code consists of the two distinct strings $0$ and $1$.
+
+Assume that the assertion holds for all orders $n \leq k$.
+
+The order-$(k+1)$ code is obtained by taking two copies of the order-$k$ code and prepending $0$ to the strings in one copy and $1$ to the strings in the other copy.  The $2^k$ distinct binary strings from the order-$k$ code thereby produce $2^{k+1}$ distinct binary strings in the order-$(k+1)$ code.
 
 \medskip
 
 \noindent {\it Assertion} 2.
-We distinguish three situations.  Let the adjacent strings be string $x$, which appears in 
-position $i$ of the code, and string $y$, which appears in position $i+1 \bmod 2^n$ of the code.
+We distinguish three situations.  Let the adjacent strings be string $x$, which appears in position $i$ of the code, and string $y$, which appears in position $i+1 \bmod 2^n$ of the code.
   \begin{itemize}
   \item
-Say that $i = 2^n-1$.  In this case $x$ is the last string in the
-code, and $y$ is the first string.  By the ``reflective'' nature of the
-construction of the code, we know that $x = 1z$ and $y = 0z$ for some
-length-$(n-1)$ binary string $z$.  Strings $x$ and $y$ therefore
-differ in precisely one bit-position, namely, bit-position $0$.
+Say that $i = 2^n-1$.  In this case $x$ is the last string in the code, and $y$ is the first string.  By the ``reflective'' nature of the construction of the code, we know that $x = 1z$ and $y = 0z$ for some length-$(n-1)$ binary string $z$.  Strings $x$ and $y$ therefore differ in precisely one bit-position, namely, bit-position $0$.
 
   \item
-Precisely the same argument shows that when $i = 2^{n-1} -1$, strings
-$x$ and $y$ again differ precisely in bit-position $0$.
+Precisely the same argument shows that when $i = 2^{n-1} -1$, strings $x$ and $y$ again differ precisely in bit-position $0$.
 
   \item
-In all other cases---i.e., when $i \in \{0,1, \ldots, 2^n-1\} \setminus \{2^{n-1} -1, 2^n-1\}$---strings 
-$x$ and $y$ share the same first bit-position.  In fact, for some bit $\beta \in \{0,1\}$, 
-$x = \beta u$ and $y = \beta v$ for length-$(n-1)$ binary strings $u$ and $v$ which are 
-cyclically adjacent in the order-$(n-1)$ Gray code.  By an inductive argument, $u$ and $v$ 
-differ in precisely one bit-position---which means that $x$ and $y$ also differ in precisely one bit-position.
+In all other cases---i.e., when $i \in \{0,1, \ldots, 2^n-1\} \setminus \{2^{n-1} -1, 2^n-1\}$---strings  $x$ and $y$ share the same first bit-position.  In fact, for some bit $\beta \in \{0,1\}$, $x = \beta u$ and $y = \beta v$ for length-$(n-1)$ binary strings $u$ and $v$ which are cyclically adjacent in the order-$(n-1)$ Gray code.  By an inductive argument which we leave to the reader, $u$ and $v$ differ in precisely one bit-position---which means that $x$ and $y$ also differ in precisely one bit-position.
   \end{itemize}
 The previous analysis is summarized in Fig.~\ref{fig:HamiltonHypercude} for $n=4$.
   \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/HamiltonHypercube}
-       \caption{A Hamiltonian cycle (bold) in $\q_4$ built using a
-       binary reflected Gray code.}
+       \includegraphics[scale=0.5]{FiguresGraph/HamiltonHypercube}
+       \caption{A Hamiltonian cycle (bold) in $\q_4$ built using a binary reflected Gray code.}
   \label{fig:HamiltonHypercude}
 \end{center}
 \end{figure}
 
 \noindent {\bf (e)}
-de Bruijn networks require the most complex analysis of Hamiltonianicity among our  ``named" graphs .  
-We begin to deal with them by restating the result in more detail in order to establish some notation.
+de Bruijn networks require the most complex analysis of Hamiltonianicity among our  ``named" graphs .  We begin to deal with them by restating the result in more detail in order to establish some notation.
 
-\smallskip
+\medskip
 
 \noindent
 {\em
@@ -1863,7 +1504,7 @@ For all $n \in \N^+$, $\d_n$ contains a {\em directed Hamiltonian cycle}, i.e., 
 directed cycle of the form
 \begin{equation}
 \label{eq:deBruijn-cycle}
- x \ \rightarrow \ y_1 \ \rightarrow \ y_2 \ \rightarrow \cdots \ \rightarrow \ y_{2^n-1} \ \rightarrow \ x
+ x \ \rightarrow \ y_1 \ \rightarrow \ y_2 \ \rightarrow \cdots  \rightarrow \ y_{2^n-1} \ \rightarrow \ x
 \end{equation}
 which contains every vertex of $\d_n$ precisely once; i.e.:
 \begin{itemize}
@@ -1875,15 +1516,14 @@ All of the vertices $y_j$ that appear in cycle (\ref{eq:deBruijn-cycle}) differ 
 }
 
 The simplest proof of this result has two steps.  The first step introduces a significant, rather
-sophisticated, concept, the {\it line (di)graph}.
+sophisticated, concept, the {\it line (di)graph} of a (di)graph.
 
 \bigskip
 
 \index{line graph} \index{line digraph}
 
 \noindent {\bf (1)}
-For any directed graph $\g$, the {\it line digraph} of $\g$, denoted $\Lambda(\g)$, is the
-following directed graph.
+For any directed graph $\g$, the {\it line digraph} of $\g$, denoted $\Lambda(\g)$, is the following directed graph.
 \begin{itemize}
 \item
 The vertices of $\Lambda(\g)$ are the arcs of $\g$:
@@ -1894,11 +1534,9 @@ For each pair of arcs of $\g$ of the form
 \[ \big[a_{x,y} = (x \ \rightarrow \ y) \big] \ \ \ \mbox{ and } \ \ \ 
 \big[a_{y,z} = (y \ \rightarrow \ z) \big]
 \]
-i.e, arcs such that the target of the first arc is the source of the
-second arc, $\Lambda(\g)$ contains an arc $(a_{x,y} \ \rightarrow \ a_{y,z})$.
+i.e, arcs such that the target of the first arc is the source of the second arc, $\Lambda(\g)$ contains an arc $(a_{x,y} \ \rightarrow \ a_{y,z})$.
 \end{itemize}
-The relevance of this concept to this section is that the line graph of every de Bruijn network
-$\d_n$ is the ``next bigger'' de Bruijn network, $\d_{n+1}$.  Let us verify this claim.
+The relevance of this concept to this section is that the line graph of every de Bruijn network $\d_n$ is the ``next bigger'' de Bruijn network, $\d_{n+1}$.  Let us verify this claim.
 
 \begin{lemma}
 \label{thm:deBruin-linegraph}
@@ -1909,15 +1547,11 @@ For all $n \in \N^+$, $\d_{n+1}$ is the line digraph of $\d_n$; symbolically,
 \begin{proof}[Lemma~\ref{thm:deBruin-linegraph}]
 Each vertex of $\Lambda(\d_n)$ is an arc of $\d_n$, hence has the form
 \[ (\beta x \ \rightarrow \ x \gamma) \]
-where $x$ is a length-$(n-1)$ binary string and $\beta, \gamma \in \{0,1\}$.  Let us 
-associate vertex $\beta x \gamma$ of $\d_{n+1}$ with this vertex of $\Lambda(\d_n)$.
-See Fig.~\ref{fig:dBlabelEdge-App}.
+where $x$ is a length-$(n-1)$ binary string and $\beta, \gamma \in \{0,1\}$.  Let us associate vertex $\beta x \gamma$ of $\d_{n+1}$ with this vertex of $\Lambda(\d_n)$.  See Fig.~\ref{fig:dBlabelEdge-App}.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.5]{FiguresGraph/dBlabelEdge}
-\caption{Illustrating how to label each arc of a de Bruijn network by concatenating the labels
-of the vertices incident to the arc and compacting the common intermediate bits.  In the 
-depicted example, the vertex-labels $01$ and $11$ combine to yield the arc-label $011$.}
+       \includegraphics[scale=0.45]{FiguresGraph/dBlabelEdge}
+\caption{Illustrating how to label each arc of a de Bruijn network by concatenating the labels of the vertices incident to the arc and compacting the common intermediate bits.  In the depicted example, the vertex-labels $01$ and $11$ combine to yield the arc-label $011$.}
   \label{fig:dBlabelEdge-App}
 \end{center}
 \end{figure}
@@ -1926,28 +1560,22 @@ depicted example, the vertex-labels $01$ and $11$ combine to yield the arc-label
 
 Note first that each arc of $\d_{n+1}$ has the form
 \[ (\delta y \varepsilon \ \rightarrow \ y \varepsilon \varphi), \]
-where $y$ is a length-$(n-2)$ binary string and $\delta, \varepsilon, \varphi \in \{0,1\}$.  
-By our association of vertices of $\d_{n+1}$ with arcs of $\d_n$, this arc of $\d_{n+1}$ does, 
-indeed, correspond to two successive arcs of $\d_n$.   The first of these successive arcs
-{\em enters} vertex $y \varepsilon$ of $\d_n$; the second {\em leaves} that vertex.
+where $y$ is a length-$(n-2)$ binary string and $\delta, \varepsilon, \varphi \in \{0,1\}$.  By our association of vertices of $\d_{n+1}$ with arcs of $\d_n$, this arc of $\d_{n+1}$ does, indeed, correspond to two successive arcs of $\d_n$.   The first of these successive arcs {\em enters} vertex $y \varepsilon$ of $\d_n$; the second {\em leaves} that vertex.
+
+\smallskip
 
 Note next that, given any two successive arcs of $\d_n$, say
 \[
 (\rho \sigma z \ \rightarrow \ \sigma z \tau) \ \ \ \mbox { and } \ \ \
 (\sigma z \tau \ \rightarrow \  z \tau \xi)
 \]
-where $z$ is a length-$(n-2)$ binary string and $\rho, \sigma, \tau,
-\xi \in \{0,1\}$, there is, indeed, an arc of $\d_{n+1}$ of the form
+where $z$ is a length-$(n-2)$ binary string and $\rho, \sigma, \tau, \xi \in \{0,1\}$, there is, indeed, an arc of $\d_{n+1}$ of the form
 \[ (\rho \sigma z \tau \ \rightarrow \ \sigma z \tau \xi) \]
-This means that the digraph $\d_{n+1}$ is identical to the digraph
-$\Lambda(\d_n)$, except for a renaming of vertices and arcs.\footnote{Technically,
-  we are asserting that the digraphs ${\cal D}_{n+1}$ and ${\Lambda}({\cal D}_n)$ 
-  are {\it isomorphic} to one another.  The topic of graph isomorphism is beyond the 
-  scope of this text, but our informal description provides all the details one would 
-  need to formalize the described isomorphism.}
+This means that the digraph $\d_{n+1}$ is identical to the digraph $\Lambda(\d_n)$, except for a renaming of vertices and arcs.\footnote{Technically, we are asserting that the digraphs ${\cal D}_{n+1}$ and ${\Lambda}({\cal D}_n)$ are {\it isomorphic} to one another.  The topic of graph isomorphism is beyond the scope of this text, but our informal description provides all the details one would need to formalize the described isomorphism.}
 
-The just-described correspondence between the vertices and arcs of digraphs $\d_{n+1}$
-and $\Lambda(\d_n)$ completes the proof.  \qed-Lemma~\ref{thm:deBruin-linegraph}
+\smallskip
+
+The just-described correspondence between the vertices and arcs of digraphs $\d_{n+1}$ and $\Lambda(\d_n)$ completes the proof.  \qed-Lemma~\ref{thm:deBruin-linegraph}
 \end{proof}
 
 \medskip
@@ -1955,8 +1583,7 @@ and $\Lambda(\d_n)$ completes the proof.  \qed-Lemma~\ref{thm:deBruin-linegraph}
 \index{Eulerian cycle} \index{Eulerian tour} 
 
 \noindent {\bf (2)}
-The table following Proposition~\ref{thm:eulerian-cycle} contains the seeds of a proof of
-the following corollary to the proposition.
+The table following Proposition~\ref{thm:eulerian-cycle} contains the seeds of a proof of the following corollary to the proposition.
 
 \begin{corol}
 \label{thm:deBruijn-Eulerian}
@@ -1964,8 +1591,7 @@ Every de Bruijn network $\d_n$ admits a (directed) Eulerian cycle.
 \end{corol}
 
 This corollary combines with Lemma~\ref{thm:deBruin-linegraph} to complete the proof of 
-Proposition~\ref{thm:named-graph-Hamiltonian}(e).  To wit:  Each $\d_n$ is the line-digraph of  $\d_{n+1}$. 
-Therefore, by definition of  ``line (di)graph'', the fact that $\d_n$ is (directed)-Eulerian
+Proposition~\ref{thm:named-graph-Hamiltonian}(e).  To wit:  Each $\d_n$ is the line-digraph of  $\d_{n+1}$.  Therefore, by definition of  ``line (di)graph'', the fact that $\d_n$ is (directed)-Eulerian
 (Corollary~\ref{thm:deBruijn-Eulerian}) means that $\d_{n+1}$ is (directed)-Hamiltonian.  \qed
 \end{proof}
 
@@ -1973,21 +1599,10 @@ Therefore, by definition of  ``line (di)graph'', the fact that $\d_n$ is (direct
 \subsubsection{Testing general graphs for Hamiltonianicity}
 \label{sec:Hamiltonian-unweighted}
 
-The techniques we use in Section~\ref{sec:hamiltonian-named-graphs} to investigate 
-the Hamiltonianicity of our ``named'' graphs exploit the detailed structures of the individual 
-graphs.  Thus, we cannot expect the proof of Proposition~\ref{thm:named-graph-Hamiltonian} 
-to suggest avenues for determining whether an arbitrary given graph is Hamiltonian.  In
-fact, quite sophisticated results proved in the early 1970s make a strong mathematical
-argument that no set of case studies is likely to have a major impact on the problem of 
-testing general graphs for Hamiltonianicity.  This is because, in common with the Satisfibility
-problem {\sf 3SAT} of Section~\ref{sec:Satisfiability}, the Hamiltonianicity-detection problem is 
-{\sf NP}-complete.  We repeat from our discussion in Section~\ref{sec:Satisfiability} that the
-details of the theory of {\sf NP}-completeness are beyond the scope of
-this text, but we do want the reader to recognize the following.
+The techniques we use in Section~\ref{sec:hamiltonian-named-graphs} to investigate the Hamiltonianicity of our ``named'' graphs exploit the detailed structures of the individual graphs.  Thus, we cannot expect the proof of Proposition~\ref{thm:named-graph-Hamiltonian} to suggest avenues for determining whether an arbitrary given graph is Hamiltonian.  In fact, quite sophisticated results proved in the early 1970s make a strong mathematical argument that no set of case studies is likely to have a major impact on the problem of testing general graphs for Hamiltonianicity.  This is because, in common with the Satisfibility problem {\sf 3SAT} of Section~\ref{sec:Satisfiability}, the Hamiltonianicity-detection problem is {\sf NP}-complete.  We repeat from our discussion in Section~\ref{sec:Satisfiability} that the details of the theory of {\sf NP}-completeness are beyond the scope of this text, but we do want the reader to recognize the following.
 \begin{description}
 \item
-{\it The problem of deciding, given a graph $\g$ that is presented via a list of vertices and a 
-list of edges, whether $\g$ admits a Hamiltonian path or a Hamiltonian cycle is {\sf NP}-complete.}
+{\it The problem of deciding, given a graph $\g$ that is presented via a list of vertices and a list of edges, whether $\g$ admits a Hamiltonian path or a Hamiltonian cycle is {\sf NP}-complete.}
 \end{description}
 
 
