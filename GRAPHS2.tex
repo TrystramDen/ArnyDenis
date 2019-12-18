@@ -1,4 +1,4 @@
-%version of 12-11-19
+%version of 12-18-19
 
 \chapter{Graphs II:
 Graphs for Computing and Communicating}
@@ -6,7 +6,7 @@ Graphs for Computing and Communicating}
 \index{graph}
 
 \begin{quote}
-{\em Many hands make light work} \\ 
+``Many hands make light work" \\ 
 \hspace*{1in}John Heywood, 15th century English writer
 \end{quote}
 
@@ -857,9 +857,11 @@ $\g$ {\em cannot} contain both of the paths just described, i.e., a $c_1$-$c_3$ 
 
 {\em These two paths, if they existed, would cross one another---which is forbidden because $\g$ is a {\em planar} graph.}  See Figure 2.
 
+{\Arny
 *************************
 Denis, references
 *************************
+}
 
 \end{itemize}
 It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$ path between $v_2$ and $v_4$.  Say, with no loss of generality, that the former path does not exist.  Then we can switch colors $c_1$ and $c_3$ beginning with vertex $v_1$ and obtain a coloring of $\g$ in which $v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as in Case 2 to get a $5$-coloring of $\g$.
@@ -1649,15 +1651,42 @@ voltage-driven technologies such as {\it VLSI}.
 Section~\ref{sec:multigraphs} introduces {\it multigraphs}, a generalization of graphs that allows a graph to have multiple edges connecting each pair of vertices.  In contrast to our other graph-generalizations, multigraphs are used more {\em internally}, as an algorithmic device, than {\em externally}, as an abstraction that models features of ``real'' structures.  In particular, multigraphs can replace an edge with weight $c \in \N^+$ by $c$ unweighted edges with the same endpoints.  Such distinct-yet-equivalent options can trigger algorithmic ideas.
 
 
-%\subsection{Relating Computational and Mathematical Problems}
-%\label{sec:Relate-CS-Math-Probs}
-
 \subsection{Graph Decomposition}
 \label{sec:graph-decompose}
 \index{graph!decomposition}
 \index{graph!bisector}
 \index{graph!separator}
 
+\noindent \fbox{\begin{minipage}{0.96\textwidth}
+{\bf Topic-specific references}
+
+\smallskip
+
+F.~Annexstein, M.~Baumslag, A.L.~Rosenberg (1990): Group action graphs and parallel architectures.  {\it SIAM J.~Comput.~19}, 544--569.
+
+\smallskip
+
+C.E.~Leiserson (1985): Fat-trees: Universal networks for hardware-efficient supercomputing.
+{\it IEEE Trans.~on Computers, C-34}(10), 892--201.
+
+\smallskip
+
+R.J.~Lipton, R.E.~Tarjan (1979): A separator theorem for planar graphs.  {\it SIAM J.~Applied Mathematics 36}(2), 177--189.
+
+\smallskip
+
+A.L.~Rosenberg and L.S.~Heath (2001): {\it Graph Separators, with Applications}.  Kluwer Academic/Plenum Publishers, New York.
+
+\smallskip
+
+J.D.~Ullman (1984): {\it Computational Aspects of VLSI.}. Computer Science Press, Rockville, Md.
+
+\end{minipage}
+}
+
+\bigskip
+
+\noindent
 The reader will certainly have noted that some ``named'' graphs are, intuitively, more tightly interconnected than others---with the cycle and clique being the antipodal examples.  Even from a purely intellectual vantage point---and all the more so from an algorithmic vantage point---it would be of interest to be able to quantify the tightness of a graph's interconnectedness.  Among  the various measures that have been proposed for this task, one stands out for its myriad algorithmic implications: the notion of {\it graph separator}.  In fact, this notion appears in the literature in several flavors.  An $n$-vertex, $e$-edge graph $\g$ has:
 \begin{itemize}
 \item
@@ -1696,16 +1725,61 @@ It is far less clear that de Bruijn networks and hypercubes are roughly equal in
 
 \smallskip
 
-Similarity in separation behavior often has very important algorithmic consequences.  For instance, the closeness in separation characteristics between de Bruijn networks and hypercubes manifests itself in a large range of algorithmic applications.  The range of such applications is hinted at by sources that study the algorithmics of laying out VLSI circuits (e.g., \cite{Leiserson85}) and sources that study the ability of a network's interconnections to host a range of communication patterns that enable efficient parallel computation and communication (e.g., \cite{AnnexsteinBR90,Leiserson85,Ullman84}).
+Similarity in separation behavior often has very important algorithmic consequences.  For instance, the closeness in separation characteristics between de Bruijn networks and hypercubes manifests itself in a large range of algorithmic applications.  The range of such applications is hinted at by sources that study the algorithmics of laying out VLSI circuits (e.g., [Leiserson, 1985]) and sources that study the ability of a network's interconnections to host a range of communication patterns that enable efficient parallel computation and communication (e.g., [ Annexstein, Baumslag, and Rosenberg, 1990], [Leiserson, 1985], and [ Ullman, 1984].
 
 \medskip
 
-There is a large literature that develops the algorithmics of finding small separators for computationally significant families of graphs.  An early star in the firmament of such studies is the discovery in \cite{LiptonT79} of a $1/3$-vertex separator of size $\sqrt{8n}$ for $n$-vertex planar graphs.  The dual problem of finding lower bounds on the sizes of graph separators is a bit sparser but, of course, no less significant.  The reader can find a comprehensive exposition on the theory of graph separators in \cite{RosenbergH01}, including both the mathematics that yields lower bounds on separator sizes and the algorithmics that yields upper bounds.
+There is a large literature that develops the algorithmics of finding small separators for computationally significant families of graphs.  An early star in the firmament of such studies is the discovery in [Lipton, Tarjan, 1979] of a $1/3$-vertex separator of size $\sqrt{8n}$ for $n$-vertex planar graphs.  The dual problem of finding lower bounds on the sizes of graph separators is a bit sparser but, of course, no less significant.  The reader can find a comprehensive exposition on the theory of graph separators in [Rosenberg, Heath, 2001], including both the mathematics that yields lower bounds on separator sizes and the algorithmics that yields upper bounds.
 
 
 \subsection{Graphs having Evolving Structure}
 \label{sec:graph-evolve}
 \index{graph!with evolving structure}
+
+\noindent \fbox{\begin{minipage}{0.96\textwidth}
+{\bf Topic-specific references}
+
+\smallskip
+
+W.~Aiello, F.R.K.~Chung, L.~Lu (2000): A random graph model for massive graphs.  {\it 32nd Ann.~Symp.~on the Theory of Computing}.
+
+\smallskip
+
+A.L.~Barab\'{a}si, R.~Albert (1999): Emergence of scaling in random networks.  {\it Science (286)}, 509--512.
+
+\smallskip
+
+B.~Bollobas (1985): {\it Random Graphs}.  Academic Press, N.Y.
+
+\smallskip
+
+T.~Bu, D.~Towsley (2002): On distinguishing between internet power-law generators.  {\it IEEE INFOCOM'02}.
+
+\smallskip
+
+Q.~Chen, H.~Chang, R.~Govindan, S.~Jamin, S.~Shenker, W.~Willinger (2002):
+The origin of power laws in internet topologies revisited.  {\it IEEE INFOCOM'02}.
+
+\smallskip
+
+M.~Faloutsos, P.~Faloutsos, C.~Faloutsos (1999): On power-law relationships of the internet topology.  {\it ACM SIGCOMM'99}.
+
+\smallskip
+
+S.~Jaiswal, A.L.~Rosenberg, D.~Towsley (2004): Comparing the structure of power-law graphs and the Internet AS graph.  {\it 12th IEEE Int'l Conf.~on Network Protocols (ICNP'04)}.
+
+\smallskip
+
+H.~Tangmunarunkit, R.~Govindan, S.~Jamin, S.~Shenker, W.~Willinger (2002):
+Network topology generators: Degree-based vs. structural.  {\it ACM SIGCOMM'02}.
+
+\smallskip
+
+E.~Zegura, K.L.~Calvert, M.J.~Donohoo (1997): A quantitative comparison of graph-based models for internetworks.  {\it IEEE/ACM Trans.~on Networking, 5}(6), 770--783.
+\end{minipage}
+}
+
+\bigskip
 
 A large variety of problems in the area of graph algorithms involve graphs---especially 
 trees---whose structures evolve over time.  Such evolution is observed, e.g., in the study of ``classical" algorithmic problems such as {\it Minimum Spanning Tree} and {\it Branch and Bound}; see, e.g., \cite{CLRS}.  What is certain to be more exciting to the reader, though, are the ``modern'' topics where one encounters graphs with evolving structure, such as {\it social networks} and {\it inter-networks} (e.g., the {\it Internet of Things}).
@@ -1720,7 +1794,7 @@ For ``classical'' topics, as exemplified by the two we have mentioned, the mathe
 \index{graph!with evolving structure!inter-networks}
 
 In contrast, the ``modern'' topics we have mentioned do require the assimilation of new 
-mathematics.  Dealing successfully with the algorithmic issues that arise with social networks and inter-networks requires the reader to understand the structures of thenevolving graph-oriented systems and how evolution changes these structures.  Among the interesting (and valuable) mathematical questions that one can pose is: If you are a new vertex ``applying" to join an evolving network, which vertex in the network is the best one to connect to, in order to best facilitate your interactions or influence within the community.  The latter topic leads, e.g., to the study of {\em power-law} networks.
+mathematics.  Dealing successfully with the algorithmic issues that arise with social networks and inter-networks requires the reader to understand the structures of the evolving graph-oriented systems and how evolution changes these structures.  Among the interesting (and valuable) mathematical questions that one can pose is: If you are a new vertex ``applying" to join an evolving network, which vertex in the network is the best one to connect to, in order to best facilitate your interactions or influence within the community.  The latter topic leads, e.g., to the study of {\em power-law} networks.
 
 \index{graph!with evolving structure!social networks!power-law networks}
 \index{graph!with power-law degree growth patterns}
@@ -1734,17 +1808,17 @@ An evolving network {\it obeys a power law} if there exists a real number $\gamm
 }
 \bigskip
 
-Little of the abstract work on power-law networks would likely be studied in depth in any early course; indeed, the structure of these networks is not yet well understood even in advanced settings.  Indeed, attempts to understand power laws with rigor have given rise to a number of competing, rather sophisticated, abstract models---see, e.g., \cite{AielloCL00,BarabasiA99,Bollobas85,ChenCGJSW}---and numerous studies have attempted to understand the specific situations wherein the abstract models reflect reality more or less faithfully---see, e.g.,
-\cite{BuT02,FaloutsosFF99,JaiswalRT04,TangmunarunkitGJSW02,ZeguraCD97}.
+Little of the abstract work on power-law networks would likely be studied in depth in any early course; indeed, the structure of these networks is not yet well understood even in advanced settings.  Indeed, attempts to understand power laws with rigor have given rise to a number of competing, rather sophisticated, abstract models---see, e.g.,  [Aiello, Chung, Lu, 2000], [Barab\'{a}si, Albert, 1999], [Bollobas, 1985], and [Chen, Chang, Govindan, Jamin, Shenker, Willinger, 2002]---and numerous studies have attempted to understand the specific situations wherein the abstract models reflect reality more or less faithfully---see, e.g.,
+[Bu, Towsley, 2002], [Faloutsos, Faloutsos, Faloutsos, 1999], [Jaiswal, Rosenberg, Towsley, 2004] [Tangmunarunkit, Govindan, Jamin, Shenker, Willinger, 2002], and [Zegura, Calvert, Donohoo, 1997].
 
 \bigskip
 
 \noindent \fbox{\begin{minipage}{0.96\textwidth}
-We have just cited {\em five} sources that illustrate a point about the evolving formal notion of power-law graph.  This apparent overkill---wouldn't one citation suffice?---is intentional.
+We have just cited several sources that deal with the evolving formal notion of power-law graph.  This apparent overkill---wouldn't one citation suffice?---is intentional.
 
 \smallskip
 
-As new ``real" concepts emerge which need mathematical modeling---in this case, as the social media become an object of increasing study---there is inevitably a period in which competing mathematical models are proposed.  All of the models that have emerged thus far capture the central feature of power laws, as presented in the message box that precedes this one.  But every mathematical model embodies ``side" features that go beyond the targeted central feature.  We must allow multiple models to coexist until we have the opportunity to compare all of the models' side features.  Only after this vetting period will the scientific community converge on a single mathematical model of a ``real-life" concept such as ``power-law graph".
+As new ``real-life" concepts emerge which need mathematical modeling---in this case, as the social media become an object of increasing study---there is inevitably a period in which competing mathematical models are proposed.  All of the models that have emerged thus far capture the central feature of power laws, as presented in the message box that precedes this one.  But every mathematical model embodies ``side" features that go beyond the targeted central feature.  We must allow multiple models to coexist until we have the opportunity to compare all of the models' side features.  Only after this vetting period will the scientific community converge on a single mathematical model of a ``real-life" concept such as ``power-law graph".
 \end{minipage}
 }
 
@@ -1753,28 +1827,60 @@ As new ``real" concepts emerge which need mathematical modeling---in this case, 
 \label{sec:hypergraphs}
 \index{graph!generalization to hypergraphs} \index{hypergraph}
 
-A large variety of modern computing-related topics benefit from the structure inherent in graph-theoretic models but do not comfortably conform to the {\em binary} relationships imposed by graphs' having {\em two} vertices per edge.  A model that retains the general structure of graph-theoretic models while it abandons the {\em binary} constraint in edge-membership is the generalization of graphs called {\em hypergraphs}.  A hypergraph has vertices that play exactly the same role as with graphs, but in place of a graph's $2$-element edges, a hypergraph has {\em hyperedges}, each being a set of vertices whose size is not restricted to $2$.  A rather general treatment of hypergraphs can be found in the comprehensive graph-theory text such as \cite{Berge73}; a specialized article that focuses on hypergraph-related versions of several topics from this chapter, such as vertex-coloring, is \cite{Lovasz73}.
+\noindent \fbox{\begin{minipage}{0.96\textwidth}
+{\bf Topic-specific references}
+
+\smallskip
+
+F.~Amato, F.~di Lillo, V.~Moscato, A.~Picariello, G.~Sperl (2017): Influence analysis in online social networks using hypergraphs.  {\it IEEE Int'l Conf.~on Information Reuse and Integration}.
+
+\smallskip
+
+D.~Liu, N.~Blenn, P.~Van Mieghem (2010): Modeling social networks with overlapping communities using hypergraphs and their line graphs.  Report arXiv:1012.2774, Dec.~2010, {\tt http://cds.cern.ch/record/1314107}.
+
+\smallskip
+
+L.~Lovasz (1973): Coverings and colorings of hypergraphs.  {\it 4th Southeast Conf.~on Combinatorics, Graph Theory, and Computing}, 3--12.
+
+\smallskip
+
+C.~Mead and L.~Conway (1979): {\it Introduction to VLSI Systems}.  Addison-Wesley, Reading, MA., (ISBN 0201043580).
+
+\smallskip
+
+A.L.~Rosenberg (1985): A hypergraph model for fault-tolerant VLSI processor arrays.  {\it IEEE Trans.~Comput.~C-34}, 578--584.
+
+\smallskip
+
+A.L.~Rosenberg (1989): Interval hypergraphs.  In {\it Graphs and Algorithms} (R.B.~Richter, ed.) {\it Contemporary Mathematics 89}, Amer.~Math.~Soc., 27--44.
+\end{minipage}
+}
+
+\bigskip
+
+\noindent
+A large variety of modern computing-related topics benefit from the structure inherent in graph-theoretic models but do not comfortably conform to the {\em binary} relationships imposed by graphs' having {\em two} vertices per edge.  A model that retains the general structure of graph-theoretic models while it abandons the {\em binary} constraint in edge-membership is the generalization of graphs called {\em hypergraphs}.  A hypergraph has vertices that play exactly the same role as with graphs, but in place of a graph's $2$-element edges, a hypergraph has {\em hyperedges}, each being a set of vertices whose size is not restricted to $2$.  A rather general treatment of hypergraphs can be found in the comprehensive graph-theory text such as \cite{Berge73}; a specialized article that focuses on hypergraph-related versions of several topics from this chapter, such as vertex-coloring, is [Lovasz, 1973].
 
 \smallskip
 
 Because of their inherent conceptual complexity, hypergraphs as graph-theoretic objects are usually relegated to advanced courses.  However, the literature contains many studies of hypergraphs that are ``fine-tuned'' for specific computing-related applications.  Many of these studies should be accessible without extensive mathematical background.  Sample  computing-related applications that benefit from hypergraph-oriented models include the following.
 \begin{itemize}
 \item
-Bus-connected parallel communication has been part of digital-computer design since its earliest days.  The informal picture of such a system is that there are communication channels which multiple agents can retrieve messages from and post messages to.  In hypergraph-oriented terms: the vertices/communicating agents aggregate into groups/hyperedges.  Each group's agents share ``read/write'' access to a specific channel.  A specialized genre of hypergraph that was invented to study the described scenario is the {\it interval hypergraph} model developed in \cite{Rosenberg89a}.
+Bus-connected parallel communication has been part of digital-computer design since its earliest days.  The informal picture of such a system is that there are communication channels which multiple agents can retrieve messages from and post messages to.  In hypergraph-oriented terms: the vertices/communicating agents aggregate into groups/hyperedges.  Each group's agents share ``read/write'' access to a specific channel.  A specialized genre of hypergraph that was invented to study the described scenario is the {\it interval hypergraph} model developed in [Rosenberg, 1989].
 \index{hypergraph!modeling bus-connected communication}
 \index{hypergraph!interval hyergraph}
 
 \item
-Modern electronic circuits are implemented using integrated circuit technology, specifically, {\em VLSI: Very Large Scale Integrated circuitry}; the often-informal \cite{Mead-Conway} provides an introduction to VLSI for the non-specialist.  VLSI technologies are often {\em voltage}-driven, rather than {\em current}-driven.  Accordingly, much of the attention when designing VLSI circuits centers on the coordination of equi-potential points in an electrical  network, rather than on point-to-point transmission of signals.  Hypergraphs are tailor-made for such technologies.
+Modern electronic circuits are implemented using integrated circuit technology, specifically, {\em VLSI: Very Large Scale Integrated circuitry}; the often-informal book [Mead, Conway, 1979] provides an introduction to VLSI for the non-specialist.  VLSI technologies are often {\em voltage}-driven, rather than {\em current}-driven.  Accordingly, much of the attention when designing VLSI circuits centers on the coordination of equi-potential points in an electrical  network, rather than on point-to-point transmission of signals.  Hypergraphs are tailor-made for such technologies.
 
 A crucially important issue that arises because of the design strengths and weaknesses of VLSI 
-technology is {\it fault tolerance}---how to cope with the inevitable faulty transistors in massive VLSI systems.  A variety of quite-accessible mathematical ideas can provide provocative ideas about this important topic; see, e.g., \cite{Rosenberg85a}.
+technology is {\it fault tolerance}---how to cope with the inevitable faulty transistors in massive VLSI systems.  A variety of quite-accessible mathematical ideas can provide provocative ideas about this important topic; see, e.g., [Rosenberg, 1985].
 
 \index{hypergraph!modeling integrated circuits} \index{VLSI}
 
 \item
 Social networks have become so prevalent in society that no one will be surprised to learn that many approaches to modeling the networks' interconnectivity have been studied.  In
-Section~\ref{sec:graph-evolve}, we discussed an interconnectivity model based on evolving graphs and clustering within such graphs.  More recently, hypergraph-based models have also been proposed; see, e.g., \cite{Amatoetal17,LiuBV10}.
+Section~\ref{sec:graph-evolve}, we discussed an interconnectivity model based on evolving graphs and clustering within such graphs.  More recently, hypergraph-based models have also been proposed; see, e.g., [Amato, di Lillo, Moscato, Picariello, Sperl, 2017] and [Liu, Blenn, Van Mieghem, 2010].
 \index{hypergraph!modeling interconnectivity in social networks}
 \end{itemize}
 
@@ -1835,7 +1941,7 @@ In other words, if $\g'$ is a multigraph produced by adding edges to $\g$, and i
 
 \index{Route Inspection Problem} \index{Chinese Postman Problem} \index{Kwan Mei-Ko}
 
-Our ``distorted" version of the Euler-tour problem is actually a well-known combinatorial optimization problem which is known either as the {\it Route Inspection Problem} or as the {\it Chinese Postman Problem}---the latter name in honor of the Chinese mathematician Kwan Mei-Ko who invented the problem \cite{Kwan60}.  These colorful names arise from stories about a person---either a route inspector or a postal employee---who must traverse all of the roads in a village and who wants to avoid extraneous road traversals.
+Our ``distorted" version of the Euler-tour problem is actually a well-known combinatorial optimization problem which is known either as the {\it Route Inspection Problem} or as the {\it Chinese Postman Problem}---the latter name in honor of the Chinese mathematician Kwan Mei-Ko who invented the problem.\footnote{M.-K.~Kwan (1960): Graphic programming using odd or even points.  {\it Acta Mathematica Sinica, 10} (in Chinese), 263--266.  Translated into English in {\it Chinese Mathematics 1} (1962) 273--277.}  These colorful names arise from stories about a person---either a route inspector or a postal employee---who must traverse all of the roads in a village and who wants to avoid extraneous road traversals.
 
 \medskip
 
