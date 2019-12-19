@@ -1,7 +1,17 @@
-%version of 10-25-19
+%version of 12-19-19
 
 \chapter{A Deeper Look at the Fibonacci Numbers}
 \label{ch:FIBO-enrich}
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Topic-specific reference}
+
+E.~Zeckendorf (1972): 
+{\it Repr\'{e}sentation des nombres naturels par une somme de nombres de Fibonacci ou de nombres de Lucas.}.  {\it Bull.~Soc.~R.~Sci.~Li\`{e}ge 41}, 179--182.
+\end{minipage}
+}
+
 
 \section{$\oplus$ Computations on the Fibonacci Numbers}
 \label{sec:FIBO-enrich-ops}
@@ -25,22 +35,18 @@ F(n) \cdot F(n-1) \ \ = \ \ \sum_{k=0}^{n-1} (F(k))^2.
 \end{prop}
 
 \begin{proof}
-One can observe identity (\ref{eq:FiboSumConsecutive}) ``in action''
-in Fig.~\ref{fig:fibosquare}.  We augment this visual validation of
-the identity with the following induction.
+One can observe identity (\ref{eq:FiboSumConsecutive}) ``in action'' in Fig.~\ref{fig:fibosquare}.  We augment this visual validation of the identity with the following induction.
 
 \medskip
 
 \noindent {\sf Base case.}
-Instance $n=1$ of identity (\ref{eq:FiboSumConsecutive}) is valid
-because
+Instance $n=1$ of identity (\ref{eq:FiboSumConsecutive}) is valid because
 \[ F(0) \cdot F(1) \ = \ 1 \cdot 1 \ = \ 1^2 \ = \ (F(0))^2. \]
 
 \medskip
 
 \noindent {\sf Inductive hypothesis.}
-Assume that identity (\ref{eq:FiboSumConsecutive}) is valid for all $n
-\leq m$.
+Assume that identity (\ref{eq:FiboSumConsecutive}) is valid for all $n \leq m$.
 
 \medskip
 
@@ -58,8 +64,7 @@ F(m+1) \cdot F(m)
  & = &
    \sum_{k=0}^{m} (F(k))^2.
 \end{eqnarray*}
-The induction is thus extended, which completes the proof.
-\qed
+The induction is thus extended, which completes the proof.  \qed
 \end{proof}
 
 
@@ -109,7 +114,7 @@ $\mbox{\sc gcd}(F(n), F(m))$ divides $\mbox{\sc gcd}(n,m)$
 \noindent
 We leave it to the reader to verify the following technical lemmas.
 
-{\Arny Verifying these lemmas is exactly what I would define as an EXERCISE}
+%{\Arny Verifying these lemmas is exactly what I would define as an EXERCISE}
 
 \begin{lemma}
 \label{lem:FIBO-GCD-1}
@@ -174,18 +179,20 @@ This completes the proof.   \qed
 \subsection{Preliminaries}
 \label{sec:FIBO-num-intro}
 
-This section continues our mathematical-cultural tour of the Fibonacci numbers, the recursively defined sequence of numbers which has been of considerable significance for centuries.  Our study of the sequence until now, in Sections~\ref{sec:Fibonacci} and~\ref{sec:FIBO-enrich-ops}, has focused ``inward", deriving results that are important for understanding the sequence.  In contrast, we focus on an ``outward"-looking application of the sequence.
+This section continues our mathematical-cultural tour of the Fibonacci numbers.  Our study of the sequence until now, in Sections~\ref{sec:Fibonacci} and~\ref{sec:FIBO-enrich-ops}, has focused ``inward", deriving results that are important for understanding the sequence.  Now, in contrast, we focus on an ``outward"-looking application of the sequence.
 
-History has exposed many examples of nonstandard representations of integers proving significant for reasons that go far beyond the representation of numbers.  We have repeatedly benefited from unexpected uses of number representations, which arise from the ability of mathematical objects to ``encode" a broad range of situations.  (Two simple examples: ($a$) the use of base-$2$ numerals to count in various combinatorial applications; ($b$) the use of prime-power representations within the realm of coding.)  This section is devoted to developing a system for representing integers, which is based on the family of Fibonacci numbers.
+\medskip
+
+History supplies many examples of nonstandard representations of integers proving significant for reasons that go far beyond the representation of numbers.  Even within our exploration of number representations in this text, we have repeatedly benefited from unexpected uses of number representations---particularly from the ability of mathematical objects to {\em encode} a broad range of situations.  (Two simple examples: ($a$) the use of base-$2$ numerals to count in various combinatorial applications; ($b$) the use of prime-power representations within the realm of coding.)  This section is devoted to developing a system for representing integers, which is based on the family of Fibonacci numbers.
 
 \subsection{Zeckendorf's Theorem}
 \label{sec:Zeckendorf's-Theorem}
 
 \index{Zeckendorf, Edouard}
 
-The endeavor of using Fibonacci numbers to represent arbitrary integers is based on the following theorem by the Belgian mathematician Edouard Zeckendorf \cite{Zeckendorf72}.
+The endeavor of using Fibonacci numbers to represent arbitrary integers is based on the following theorem by the Belgian mathematician Edouard Zeckendorf  [Zeckendorf, 1972].
 
-\smallskip
+\medskip
 
 To simplify exposition, we employ two nonstandard conventions in what follows.
 \begin{enumerate}
@@ -211,12 +218,17 @@ where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
 
 \medskip
 
-We remark that the injunction against employing $F(1)$ in a representation is no real restriction because under our nonstandard convention for the indices of Fibonacci numbers, $F(1)=F(2)$.
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+The injunction against employing $F(1)$ in a representation is no real restriction because under this section's convention for the indices of Fibonacci numbers, $F(1)=F(2)$.
+\end{minipage}
+}
 
-\medskip
+\bigskip
 
 \index{Zeckendorf representation}
 
+\noindent
 Call a representation of an integer $n$ a {\it Zeckendorf representation} if it satisfies the conditions of Proposition~\ref{thm:Zeckendorf}.
 
 \medskip
@@ -249,38 +261,47 @@ Fig.~\ref{fig:zeckendorf} illustrates the Zeckendorf representations of the firs
 Our proof accomplishes three goals simultaneously:
 \begin{itemize}
 \item
-It specifies an algorithm for constructing a Zeckendorf representation of every argument integer $n$.
+It specifies an algorithm for constructing a Zeckendorf representation of every integer $n$.
 \item
 It verifies that the resulting representation is
   \begin{itemize}
   \item
-{\em valid}---the Fibonacci numbers that it uses in the representation do, indeed, sum to $n$
+{\em valid}---the Fibonacci numbers in the representation do, indeed, sum to $n$
   \item
 {\em unique}---no other selection of Fibonacci numbers that satisfy Proposition~\ref{thm:Zeckendorf} yields numbers that sum to $n$.
   \end{itemize}
 \end{itemize}
 A single induction on $n$ accomplishes all three goals.  Keep in mind our nonstandard indexing of the Fibonacci sequence as you read the proof.
 
-\smallskip
+\medskip
 
 \noindent {\sf Base cases}.
-The base of the induction is the case $n=2$.  To wit, $F(3) = 2$, and no other sum of Fibonacci numbers that satisfy Proposition~\ref{thm:Zeckendorf} yield the value $n=2$.
+The Proposition holds for the cases $n=2$, $n=3$, and $n=4$.  To wit:
+\[ \begin{array}{l}
+F(3) \ = \ 2 \\
+F(4) \ = \ 3 \\
+F(4) + F(2) \ = \ 3 + 1 \ = \ 4
+\end{array}
+\]
+Uniqueness, which asserts that no other sum of Fibonacci numbers that satisfy the Proposition yield the indicated values, is left as an exercise.
 
-Similarly, Proposition~\ref{thm:Zeckendorf} holds for the cases $n=3$ and $n=4$.  To wit, $F(4) = 3$, and $F(4) + F(2) = 3 + 1 = 4$; uniqueness is left as an exercise.
-
-\smallskip
+\medskip
 
 \noindent {\sf Inductive hypothesis}.
 Assume for induction that any integer $m < F(r)$ admits a unique representation of the form specified in Proposition~\ref{thm:Zeckendorf}.
 
-\smallskip
+\medskip
 
 \noindent {\sf Inductive extension}.
 Focus on an arbitrary integer $n$ in the interval
 \[ [F(r) \leq n < F(r+1)] \]
 We claim that every $n$ in this interval admits a unique Zeckendorf representation.
 
+\smallskip
+
 Of course, this claim is true for the smallest $n$ in the interval, namely, $n=F(r)$, because the equation ``$n=F(r)$" obviously specifies a valid Zeckendorf representation of $n$.  (We leave it to the reader to verify that this representation is unique.)
+
+\smallskip
 
 Focus, therefore, on an arbitrary $n \neq F(r)$ within the interval.  Write this $n$ in the form $n = F(r) + m$.  Note that we must have $m < F(r)$, by specification of the interval and by the defining recurrence of the Fibonacci sequence.  Consequently, our inductive hypothesis tells us that the integer $m$ admits a unique Zeckendorf representation:
 
@@ -290,6 +311,8 @@ Focus, therefore, on an arbitrary $n \neq F(r)$ within the interval.  Write this
 
 \noindent
 where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
+
+\smallskip
 
 \noindent
 This means that the integer $n$ admits a representation of the form
@@ -305,18 +328,21 @@ where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
 
 Our final task is to verify that $F(r)$ and $F(k_1)$ are not consecutive Fibonacci numbers, or equivalently, to verify that $F(k) \gg F(k_1)$.  To this end, assume, for contradiction, that $k_1=r-1$.  Were this the case, we would have (from the Fibonacci recurrence)
 \[ n \ = \ F(r+1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell) \]
-which would contradict the fact that $n < F(r+1)$.  This argument verifies the uniqueness as well as the validity of $n$'s Zeckendorf representation.
+This equality would contradict the fact that $n < F(r+1)$.
+
+\smallskip
+
+This argument verifies the uniqueness as well as the validity of $n$'s Zeckendorf representation.
 
 \medskip
 
-Our inductive proof yields an effective way to compute the Zeckendorf representation of any number $n$.  There are likely more efficient conversion procedures.
+Our inductive proof yields an effective way to compute the Zeckendorf representation of any number $n$---but here are likely more efficient conversion procedures.
 
 \subsection{Zeckendorf Representations as a Number System}
 \label{sec:Zeck-rep-number-system}
 
 \index{Fibonacci number system}
-One can employ Zeckendorf representations as a numbering system for positive integers:  As we just showed, each $n \in \N^+$ admits a unique such representation; we can expand the system to the set $\N$ by explicitly appending the number $0$ to the system.  This section discusses some of the pros and cons of this system.
-
+One can employ Zeckendorf representations as a numbering system for positive integers:  As we just showed, each $n \in \N^+$ admits a unique such representation; we can expand the system to the set $\N$ by explicitly appending the number $0$ to the system.  This section discusses some of the pros and cons of the resulting system.
 
 \index{Fibonacci number system!numerals}
 
@@ -327,7 +353,9 @@ The natural way to represent numerals within the Fibonacci number system is as b
 \item
 $0$ is the unique numeral for the number $0$.
 \item
-For all {\em positive} integers $n$: Each length-$\ell$ bit-string $b_{\ell+1} b_{\ell} \cdots b_2$, where each $b_i \in \{0,1\}$, is the unique numeral for the positive integer
+For all {\em positive} integers $n$: Each length-$\ell$ bit-string
+\[ b_{\ell+1} b_{\ell} \cdots b_2 \]
+where each $b_i \in \{0,1\}$, is the unique numeral for the positive integer
 \[ n \ = \ (b_{\ell+1} b_\ell \cdots b_2)_F \ \eqdef \  \sum_{k=2}^{\ell+1} \ b_k \cdot F(k) \]
 \end{itemize}
 %Note: we wrote here the representation of $n$ in the Fibonacci numbering system using parenthesis in order to avoid confusions on the indices.
@@ -336,17 +364,22 @@ For all {\em positive} integers $n$: Each length-$\ell$ bit-string $b_{\ell+1} b
 
 We offer a few comparisons between the numerals of the Fibonacci number system and those of the binary (base-$2$) number system.
 
+\smallskip
+
 The first thing we notice is that base-$2$ numerals are often shorter than Fibonacci numerals. The integer $12345$ provides an illustrative example.  The {\em shortest} Fibonacci numeral for $12345$---i.e., the numeral with no leading $0$s---is the $21$-bit string
 \[ 12345 \ = \ 1 00001 01000 01000 00010_F \]
 The corresponding base-$2$ numeral has only $13$ bits:
 \[ 12345 \ = \ 110 00001 11001_2 \]
 
 \medskip
-A second observation is that Fibonacci numerals never have consecutive $1$s.  This feature endows the Fibonacci system with a modicum of {\em error detectability}---which can be a significant practical issue.
+
+A second observation is that Fibonacci numerals never have consecutive $1$s.  This feature endows the Fibonacci system with a modicum of {\em error detectability}---cf., \cite{PetersonW81}---which can be a significant, {\em positive} practical attribute.
+
+\index{error detecting codes}
 
 \medskip
 
-One gets a better perspective on numeral lengths and on the impact of not allowing consecutive $1$s from Table~\ref{tab:FIBO1-15}.
+One can get a better perspective on numeral lengths and on the impact of not allowing consecutive $1$s by perusing Table~\ref{tab:FIBO1-15}.
 
 \begin{table}[htb]
 \caption{Comparing the base-$2$ and Fibonacci numerals for integers $1$--$15$}
@@ -392,7 +425,7 @@ $15$ & & $1111_2$ & & $10010_F$ & &  $F(7) + F(3) = 13 +2$ \\
  
 \subsubsection{On incrementing Fibonacci numerals}
 
-Our final look at the Fibonacci system illustrates how differently the system's numerals behave  when being manipulated, as compared with the numerals from positional number systems.  We describe a procedure for {\em incrementing} numbers---i.e., adding $1$---within the Fibonacci system.  Of course, one must employ ever-longer Fibonacci numerals as one deals with ever-larger numbers---a simple consequence of the Pigeonhole Principle.\footnote{To wit, only finitely many number can be represented by numerals of any fixed length.}  It is interesting to observe how the {\em carries} that embody the lengthening of numerals reflect the underlying Fibonacci recurrences---and to compare this process with the way carries operate within standard positional number systems (which the reader learned in elementary school).
+Our final look at the Fibonacci system illustrates how differently the system's numerals behave  when being manipulated, as compared with the numerals from positional number systems.  We describe a procedure for {\em incrementing} numbers---i.e., adding $1$---within the Fibonacci system.  Of course, one must employ ever-longer Fibonacci numerals as one deals with ever-larger numbers---a simple consequence of the Pigeonhole Principle.\footnote{The Principle asserts that only finitely many numbers can be represented by numerals of any fixed length.}  It is interesting to observe how the {\em carries} that embody the lengthening of numerals reflect the underlying Fibonacci recurrences---and to compare this process with the way carries operate within standard positional number systems (which the reader learned in elementary school).
 
 \index{Fibonacci number system!carries}
 \index{Fibonacci number system!incrementing numerals}
@@ -427,7 +460,8 @@ By combining this system with the fact that the Fibonacci system prominently avo
 
 \bigskip
 
-\noindent {\bf begin} {\em increment} procedure
+\noindent {\bf Procedure} {\em INCREMENT}($\alpha$) \\
+{\bf begin}
 \begin{description}
 \item[{\sf Step} 1]
 Prepend two consecutive $0$s to $\alpha$, to produce the bit-string
@@ -457,8 +491,6 @@ n_2 & = & 9 & = & 10001_F & \hspace*{.25in} &
 
 \bigskip
 
-We leave it to the reader to build on our incrementation procedure to devise an algorithm for performing general additions within the Fibonacci system.
+We leave to the reader the exercise of extending our incrementation procedure to devise an algorithm for performing general additions within the Fibonacci system.
 
-%{\Denis I can write briefly how to perform an addition within this system, what do you think?}
-%{\Arny Definitely yes}
 
