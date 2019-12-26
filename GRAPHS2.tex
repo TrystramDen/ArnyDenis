@@ -341,7 +341,7 @@ We leave the challenge of providing the formal proof of this property to the rea
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.45]{FiguresGraph/TreeOutplanar2}
-       \caption{Continuing an outerplanar drawing of $\t$.: Placing $\t$'s root's children around the circle}
+       \caption{Continuing an outerplanar drawing of $\t$: Placing $\t$'s root's children around the circle}
   \label{fig:treeoutplanar2}
 \end{center}
 \end{figure}
@@ -769,12 +769,12 @@ Vertex $v$ has degree $\leq 4$.
 
 \smallskip
 
-By definition, $\leq 4$ colors are used to color $v$'s neighbors in this case.
+By definition, no more than $4$ colors are used to color $v$'s neighbors in this case.
 \end{description}
 Note that, in all remaining cases, vertex $v$ has precisely $5$ neighbors---or else, we would have invoked Case 1 to color $\g$ with $5$ colors.
 \begin{description}
 \item[{\sf Case 2}.]
-For some $5$-coloring of $\g$, $\geq 2$ neighbors of $v$ get the same color.
+For some $5$-coloring of $\g$, at least $2$ neighbors of $v$ get the same color.
 
 \smallskip
 
@@ -820,31 +820,43 @@ In every $5$-coloring of $\g$, the neighbors of every minimum-degree vertex rece
 
 For vertex $v$, let us say that neighbor $v_i$ receives color $c_i$.
 \end{itemize}
-The leftmost graph in 
+The leftmost graph in Fig.~\ref{fig:5colorsInit} depicts the portion of $\g$ comprising vertex $v$ and its neighbors.  .
+\begin{figure}[hbt]
+\begin{center}
+   \includegraphics[scale=0.45]{FiguresGraph/5colorsInit}
+\caption{A vertex with degree $5$.}
+  \label{fig:5colorsInit}
+\end{center}
+\end{figure}
+In the Fig.~\ref{fig:5colorsCase2}, we use integer $i$ to denote, ambiguously, vertex $v_i$ and its assigned color $c_i$.  
+The question mark ``?'' that ``colors'' vertex $v$ indicates that we do not yet know what color to assign to $v$.  
 
-****************************
-FIGURE 1 
-{Denis Put right ref here}
-***************************
-
-depicts the portion of $\g$ comprising vertex $v$ and its neighbors.  In the figure, we use integer $i$ to denote, ambiguously, vertex $v_i$ and its assigned color $c_i$.  The question mark ``?'' that ``colors'' vertex $v$ indicates that we do not yet know what color to assign to $v$.  The other two graphs in the figure depict schematically how we have dealt with Case 3 above.
+The other two graphs in the figure depict schematically how we have dealt with Case 3 above.
+\begin{figure}[hbt]
+\begin{center}
+   \includegraphics[scale=0.4]{FiguresGraph/5colorsCase1}
+\caption{*****.}
+  \label{fig:5colorsCase1}
+\end{center}
+\end{figure}
 \begin{itemize}
 \item
 All neighbors of vertex $v$ remain in the same component of $\g$ when $v$ and its incident edges are removed.
 \end{itemize}
 \end{description}
-To analyze Case 4, we focus on vertices $v_1$ and $v_3$ in
-
-*******************************
- FIGURE 1.
-{Denis Put right ref here}
-*********************************
-
+To analyze Case 4, we focus on vertices $v_1$ and $v_3$ in Fig.~\ref{fig:5colorsCase2}.
+\begin{figure}[hbt]
+\begin{center}
+   \includegraphics[scale=0.4]{FiguresGraph/5colorsCase2}
+\caption{*****.}
+  \label{fig:5colorsCase2}
+\end{center}
+\end{figure}
 Importantly, these vertices have received distinct colors ($c_1$ and $c_3 \neq c_1$, respectively), and these vertices are not adjacent to one another as one makes a clockwise sweep around vertex $v$.
 
 \smallskip
 
-Now take $\g$ and focus only on the vertices that are colored $c_1$ or $c_3$ (as are $v_1$ and $v_3$, respectively) and on the vertices that are colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One sees from Figure 2 that:
+Now take $\g$ and focus only on the vertices that are colored $c_1$ or $c_3$ (as are $v_1$ and $v_3$, respectively) and on the vertices that are colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One sees from Figure~\ref{fig:5colorsCase2} that:
 \begin{itemize}
 \item
 $\g$ can---{\em but need not}---contain a path whose vertices alternate  colors $c_1$ and $c_3$. Call this a ``$c_1$-$c_3$ path'' between vertices $v_1$ and $v_3$.
@@ -855,13 +867,8 @@ $\g$ {\em cannot} contain both of the paths just described, i.e., a $c_1$-$c_3$ 
 
 \smallskip
 
-{\em These two paths, if they existed, would cross one another---which is forbidden because $\g$ is a {\em planar} graph.}  See Figure 2.
+These two paths, if they existed, would cross one another---which is forbidden because $\g$ is a {\em planar} graph,  See Figure~\ref{fig:5colorsCase2}.
 
-{\Arny
-*************************
-Denis, references
-*************************
-}
 
 \end{itemize}
 It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$ path between $v_2$ and $v_4$.  Say, with no loss of generality, that the former path does not exist.  Then we can switch colors $c_1$ and $c_3$ beginning with vertex $v_1$ and obtain a coloring of $\g$ in which $v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as in Case 2 to get a $5$-coloring of $\g$.
