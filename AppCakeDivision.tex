@@ -46,22 +46,28 @@ The division is fair because everyone gets exactly the same amount of cake and i
 \end{itemize}
 
 In the general cake division problem, the cake is not homogeneous, 
-one recipient may like marzipan while another one would rather prefer chocolate or cheries
+one recipient may like marzipan while another one would rather prefer chocolate or cherries
 that are put on the top.
 Let us concentrate now on this case.
 We detail first the mathematical model of the problem and discuss fairness issues. 
 
 \section{Definitions}
 
-Let us consider a cake to be shared between $n$ \textit{agents} (sometimes called players). 
+Let us consider a cake to be shared between $n$ \textit{agents}. 
 Formally, the cake is represented by the interval $[0,1]$ of real numbers.
+
 A \textit{piece} of the cake is a finite union of disjoint subintervals of $[0,1]$.
-
-We assume that each agent $i$ has his/her own valuation function (denoted by $v_i$).
+We assume that each agent $i$ has her own valuation function (denoted by $v_i$).
 This function is a \textit{measure}, $v_i(A)$ represents how much agent $i$ likes piece $A$. 
-
 As the size of the cake has been normalized, the value of the whole cake is equal to $1$
 and the value of an empty piece is $0$.
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresMaths/cakeMeasure}
+        \caption{Mathematical model of a cake and the measure of an agent. Its piece of cake here is the union of the two subintervals (bold arrows).}
+        \label{Fig:cakeMeasure}
+\end{center}
+\end{figure}
 
 \subsection{Properties}
 
@@ -71,31 +77,30 @@ The assumptions about the valuation of the pieces of cake are:
 (pieces are sub-intervals). 
 \item 
 Continuity: a small increase of a piece leads to a small increase of its value. 
-\item The measure of a player is not known by the others.
+\item The measure of an agent is not known by the others.
 \item The resources can be divided into parts of arbitrarily small values.
 \end{itemize}
 
 \subsection{Fairness}
 
 The meaning of fair may simply mean a proportional sharing of the resources. 
-However, there are some variants:
+However, there are more subtil variants:
 
 \begin{itemize}
 %\item A cake-cutting protocol is said to be proportionally fair, if each of the $n$ agents can ensure he/she gets an amount of at least $\frac{1}{n}$.
 \item The proportional fair division guarantees each recipient (agent) obtains a fair share. 
-For instance, if three people divide up a cake each gets at least a third by their own valuation. 
-Formally, this corresponds to $v_i(x_i) \geq \frac{1}{n}$ $\forall i$ for $n$ agents.
-\item An envy-free division guarantees no one will prefer somebody else's piece of cake more than their own. More formally, 
-a cake-cutting protocol is called envy-free, if every agent can ensure that he/she will receive a subjectively largest piece.
- $v_i(x_i) \geq v_i(x_j) \forall i$ and $j$.
+For instance, if three people divide a cake, each one gets at least a third by her own valuation. 
+Formally  for $n$ agents, this corresponds to $v_i(x_i) \geq \frac{1}{n}$ $\forall i$.
+\item An envy-free division guarantees that no one will prefer somebody else's piece of cake more than her own piece. 
+More formally,  a cake-cutting protocol is called envy-free, if every agent can ensure that she will receive a subjectively largest piece.
+ $v_i(x_i) \geq v_i(x_j)$ $\forall i$ and $j$.
 \item Equitable division means that every person feels exactly the same happiness, 
-i.e. the proportion of the cake a player receives by their own valuation is the same for every agent. 
-This is a difficult aim since the players need not be truthful if asked their valuation:
- $v_i(x_i) = v_j(x_j) \forall i$ and $j$.
+i.e. the proportion of the cake an agent receives by their own valuation is the same for every agent. 
+This is a difficult aim since the agent need not be truthful if asked their valuation.
+Mathematically speaking:  $v_i(x_i) = v_j(x_j)$ $\forall i$ and $j$.
  \end{itemize}
 
 %Another requirement for all proportionally fair protocols we will discuss, is that agents can guarantee their fair share by answering all questions truthfully.
-
 \bigskip
 
 Observe that for n = 2 agents, we have the following property:
@@ -104,6 +109,7 @@ Observe that for n = 2 agents, we have the following property:
 envy-freeness is equivalent to proportional fairness.
 \end{prop}
 
+\begin{proof}
 Let us prove that proportional fairness implies envy-freeness (the other side of the equivalence is proved below in the case $n=3$).
 
 For both agents, proportional fairness means: $v_1(A_1) \geq 1/2$ and $v_2(A_2) \geq 1/2$.
@@ -113,7 +119,16 @@ Since $v_2(A_1) + v_2(A_2) = 1$, we get
 $v_1(A_1) \geq v_2(A_2)$ and similarly for agent 2. 
 \bigskip
 
-But for more agents, this is no longer true, we only have envy-freeness $\Rightarrow$ proportional fairness.
+But for more agents, this is no longer true, we only have:
+
+envy-freeness $\Rightarrow$ proportional fairness.
+
+Formally, Consider the case of $3$ agents who obtained each a part $A_i$.
+The measure of any agent $i$ verifies: $v_i(A_1)+v_i(A_2)+v_i(A_3) = 1$.
+Now, as the protocol is envy-free, we also have: $v_1(A_1) \geq v_1(A_2)$ and $\geq v_1(A_2)$.
+Thus, $3.v_1(A_1) \geq 1$, thus $v_1(A_1) \geq 1/3$ which means that the protocol is proportionally fair. 
+
+Proving that the reciprocity sufficient condition does not hold is easy by looking at the following counter-example.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.6]{FiguresMaths/CakeEnvyFree1}
@@ -136,10 +151,7 @@ But for more agents, this is no longer true, we only have envy-freeness $\Righta
 \end{center}
 \end{figure}
 
-Formally, Consider the case of $3$ agents who obtained each a part $A_i$.
-The measure of any agent $i$ verifies: $v_i(A_1)+v_i(A_2)+v_i(A_3) = 1$.
-Now, as the protocol is envy-free, we also have: $v_1(A_1) \geq v_1(A_2)$ and $\geq v_1(A_2)$.
-Thus, $3.v_1(A_1) \geq 1$, thus $v_1(A_1) \geq 1/3$ which means that the protocol is proportionally fair. 
+\end{proof}
 
 \section{Description of classical protocols}
 
