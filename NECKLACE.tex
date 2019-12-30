@@ -1,51 +1,100 @@
 \documentclass{article}
+\input preamble
+\newtheorem{prop}{Proposition}
+
 
 \begin{document}
 
-\[ 0 \ \ \ \ \
+\section{The Bi-Colored Necklace Problem}
+
+
+A {\it necklace} with $m$ jewels is a copy of the cycle $\cc_m$; each jewel is a vertex of $\cc_m$.
+
+There are $2n$ jewels in the necklace: $2a$ black jewels and $2b$ white jewels.  In our running example, $n = 6$, $a = 5$, and $b =1$.
+\[
+\begin{array}{cccc}
+\bullet & \bullet  & \bullet & \bullet  \\
+\circ    &             &            & \bullet  \\
+\bullet &             &            & \bullet  \\
+\circ    &  \bullet  & \bullet & \bullet
+\end{array}
+\]
+
+\smallskip
+
+There is a ``tube" of length $n$ that isolates one string of $n$ jewels from the complementary string.  In the picture, the jewels within the tube are drawn in boxes; the other jewels are not.
+\[
 \begin{array}{cccc}
 \bullet & \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$}  \\
-\circ   &                      &                      & \fbox{$\bullet$}  \\
-\bullet &                      &                      & \fbox{$\bullet$}  \\
-\circ    &  \bullet          &   \bullet         & \fbox{$\bullet$}
+\circ    &                          &                          & \fbox{$\bullet$}  \\
+\bullet &                          &                          & \fbox{$\bullet$}  \\
+\circ    &  \bullet              &   \bullet              & \fbox{$\bullet$}
 \end{array}
 \]
 
-\[ 1 \ \ \ \ \
-\begin{array}{cccc}
+\smallskip
+
+\begin{prop}
+For any bi-colored necklace of the form described---i.e., with even numbers of jewels, black jewels, and white jewels---there is a way to position the tube so that inside the tube and outside the tube, there are equally many jewels, equally many black jewels, and equally many white jewels.
+\end{prop} 
+
+\noindent {\it Proof.}
+The proof is a discrete form of continuity argument.  Let us begin with the configuration we illustrated earlier.  Preparing for the process that is at the core of our proof, let us call this ``configuration $0$".
+
+\begin{figure}[htb]
+\[
+\begin{array}{rcccc}
+\mbox{Configuration } \ 0 &
+\bullet & \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$}  \\
+& \circ   &                      &                      & \fbox{$\bullet$}  \\
+& \bullet &                      &                      & \fbox{$\bullet$}  \\
+& \circ    &  \bullet          &   \bullet         & \fbox{$\bullet$} \\
+ \\
+\mbox{Configuration } \ 1 &
 \bullet & \bullet          & \fbox{$\bullet$} & \fbox{$\bullet$}  \\
-\circ   &                      &                      & \fbox{$\bullet$}  \\
-\bullet &                      &                      & \fbox{$\bullet$}  \\
-\circ    &  \bullet           & \fbox{$\bullet$} & \fbox{$\bullet$} 
-\end{array}
-\]
-
-\[ 2 \ \ \ \ \
-\begin{array}{cccc}
+& \circ   &                      &                      & \fbox{$\bullet$}  \\
+& \bullet &                      &                      & \fbox{$\bullet$}  \\
+& \circ    &  \bullet           & \fbox{$\bullet$} & \fbox{$\bullet$} \\
+ \\
+\mbox{Configuration } \ 2 &
 \bullet & \bullet          &      \bullet     & \fbox{$\bullet$} \\
-\circ   &                      &                      & \fbox{$\bullet$}  \\
-\bullet &                      &                      & \fbox{$\bullet$}  \\
-\circ   & \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$} 
-\end{array}
-\]
-
-\[ 3 \ \ \ \ \
-\begin{array}{cccc}
+& \circ   &                      &                      & \fbox{$\bullet$}  \\
+& \bullet &                      &                      & \fbox{$\bullet$}  \\
+& \circ   & \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$} \\
+ \\
+\mbox{Configuration } \  3 &
 \bullet & \bullet                 &            \bullet & \bullet  \\
-\circ    &                            &                      & \fbox{$\bullet$}  \\
-\bullet &                            &                      & \fbox{$\bullet$}  \\
-\fbox{$\circ$} &  \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$}
-\end{array}
-\]
+& \circ    &                            &                      & \fbox{$\bullet$}  \\
+& \bullet &                            &                      & \fbox{$\bullet$}  \\
+& \fbox{$\circ$} &  \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$} \\
 
-\[ 11 \ \ \ \ \
-\begin{array}{cccc}
+ & \vdots & \vdots & \vdots & \vdots \\
+
+\mbox{Configuration } \ 6 &
  \fbox{$\bullet$} & \bullet & \bullet & \bullet  \\
-\fbox{$\circ$}   &                      &                      & \bullet  \\
- \fbox{$\bullet$} &                      &                      & \bullet  \\
-\fbox{$\circ$}    &   \fbox{$\bullet$}          &    \fbox{$\bullet$}   & \bullet
+& \fbox{$\circ$}   &                      &                      & \bullet  \\
+&  \fbox{$\bullet$} &                      &                      & \bullet  \\
+& \fbox{$\circ$}    &   \fbox{$\bullet$}          &    \fbox{$\bullet$}   & \bullet \\
 \end{array}
 \]
+\caption{A sequence of configurations for the case $n=12$, $a = 10$, $b=2$, specifically, configurations $0$--$3$ and $11$.  Configuration $3$ is {\em success}.}
+\label{fig:necklace}
+\end{figure}
 
+Fig.~\ref{fig:necklace} depicts several steps in the process of sliding the tube, one jewel at a time, in a clockwise sense around the necklace.  At each step, one new jewel enters the tube and one new jewel exits the tube.  If the jewels in the tube at step $t$ of the process constitute the string
+\[ c, \ c+1 \bmod 2n, \ldots,  c+n-2 \bmod 2n, \ c+n-1 \bmod 2n \]
+then the jewels in the tube at step $t+1$ constitute the string
+\[ c+1 \bmod 2n,  \ c+2 \bmod 2n, \ldots,  c+n-1 \bmod 2n , \ c+n \bmod 2n \]
+Continuing, the jewels at step $t + n$ constitute the string
+\[ c+n \bmod 2n, \ c+n+1 \bmod 2n,   \ldots,  c+ 2n-2 \bmod 2n , \ c+2n-1 \bmod 2n \]
+which is {\em complementary} to the string at step $t$.
+
+\smallskip
+
+In other words, if there were too many black jewels in the tube at step $t$, by the amount $k$, then there would be too many white jewels in the tube at step $t+n$, by this same amount $k$.
+
+\smallskip
+
+Since the move of the tube at each step can move at most one black jewel from ``inside the tube" status to ``outside the tube" status, this means that there must be a step $\hat{t}$ in the sequence $t$, $t+1$, \ldots, $t+n$ such that, after step $\hat{t}$, the original excess of black jewels have been removed from the tube!  At this step, exactly half of the black jewels are inside the tube.  Because the tube always contains exactly half of the entire set of jewels, it follows that step $\hat{t}$ is the desired point at which the tube contains precisely half of the back jewels and exactly half of the white jewels.  QED
 
 \end{document}
