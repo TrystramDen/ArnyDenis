@@ -1,3 +1,5 @@
+%version of 01-02-20
+
 \documentclass{article}
 \input preamble
 \newtheorem{prop}{Proposition}
@@ -10,27 +12,32 @@
 
 A {\it necklace} with $m$ jewels is a copy of the cycle $\cc_m$; each jewel is a vertex of $\cc_m$.
 
-There are $2n$ jewels in the necklace: $2a$ black jewels and $2b$ white jewels.  In our running example, $n = 6$, $a = 5$, and $b =1$.
+There are $2n$ jewels in the necklace: $2a$ black jewels and $2b$ white jewels.  We provide a  running example with $n = 6$, $a = 5$, and $b =1$.
+\begin{figure}[hbt]
 \[
+\begin{array}{cccccc}
+\mbox{(a)} & 
 \begin{array}{cccc}
 \bullet & \bullet  & \bullet & \bullet  \\
 \circ    &             &            & \bullet  \\
 \bullet &             &            & \bullet  \\
 \circ    &  \bullet  & \bullet & \bullet
 \end{array}
-\]
-
-\smallskip
-
-There is a ``tube" of length $n$ that isolates one string of $n$ jewels from the complementary string.  In the picture, the jewels within the tube are drawn in boxes; the other jewels are not.
-\[
+  & \hspace*{.5in} &
+\mbox{(b)} & 
 \begin{array}{cccc}
 \bullet & \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$}  \\
 \circ    &                          &                          & \fbox{$\bullet$}  \\
 \bullet &                          &                          & \fbox{$\bullet$}  \\
 \circ    &  \bullet              &   \bullet              & \fbox{$\bullet$}
 \end{array}
+\end{array}
 \]
+\caption{(a) The necklace in our running example: $12$ jewels of which $10$ are black and $2$ are white.  (b) The necklace in a tube.}
+\label{fig:sample-necklace}
+\end{figure}
+The necklace appears unadorned in Fig.~\ref{fig:sample-necklace}(a).  In Fig.~\ref{fig:sample-necklace}(b), the necklace appears within a length-$n$ {\it tube} which isolates one string---i.e., half-necklace---of $n$ jewels from the complementary string.  In the figure, the jewels within the tube are drawn in boxes; the other jewels are not.
+
 
 \smallskip
 
@@ -43,38 +50,47 @@ The proof is a discrete form of continuity argument.  Let us begin with the conf
 
 \begin{figure}[htb]
 \[
+\begin{array}{ccc}
 \begin{array}{rcccc}
 \mbox{Configuration } \ 0 &
 \bullet & \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$}  \\
 & \circ   &                      &                      & \fbox{$\bullet$}  \\
 & \bullet &                      &                      & \fbox{$\bullet$}  \\
-& \circ    &  \bullet          &   \bullet         & \fbox{$\bullet$} \\
- \\
+& \circ    &  \bullet          &   \bullet         & \fbox{$\bullet$}
+\end{array}
+ & \longrightarrow &
+\begin{array}{rcccc}
 \mbox{Configuration } \ 1 &
 \bullet & \bullet          & \fbox{$\bullet$} & \fbox{$\bullet$}  \\
 & \circ   &                      &                      & \fbox{$\bullet$}  \\
 & \bullet &                      &                      & \fbox{$\bullet$}  \\
-& \circ    &  \bullet           & \fbox{$\bullet$} & \fbox{$\bullet$} \\
- \\
+& \circ    &  \bullet           & \fbox{$\bullet$} & \fbox{$\bullet$}
+\end{array}
+ \\  \\ \\
+\begin{array}{rcccc}
 \mbox{Configuration } \ 2 &
 \bullet & \bullet          &      \bullet     & \fbox{$\bullet$} \\
 & \circ   &                      &                      & \fbox{$\bullet$}  \\
 & \bullet &                      &                      & \fbox{$\bullet$}  \\
-& \circ   & \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$} \\
- \\
+& \circ   & \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$}
+\end{array}
+ & \longrightarrow &
+\begin{array}{rcccc}
 \mbox{Configuration } \  3 &
 \bullet & \bullet                 &            \bullet & \bullet  \\
 & \circ    &                            &                      & \fbox{$\bullet$}  \\
 & \bullet &                            &                      & \fbox{$\bullet$}  \\
-& \fbox{$\circ$} &  \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$} \\
-
- & \vdots & \vdots & \vdots & \vdots \\
-
+& \fbox{$\circ$} &  \fbox{$\bullet$} & \fbox{$\bullet$} & \fbox{$\bullet$}
+\end{array}
+ \\  \\  \\
+\cdots & \longrightarrow &
+\begin{array}{rcccc}
 \mbox{Configuration } \ 6 &
  \fbox{$\bullet$} & \bullet & \bullet & \bullet  \\
 & \fbox{$\circ$}   &                      &                      & \bullet  \\
 &  \fbox{$\bullet$} &                      &                      & \bullet  \\
 & \fbox{$\circ$}    &   \fbox{$\bullet$}          &    \fbox{$\bullet$}   & \bullet \\
+\end{array}
 \end{array}
 \]
 \caption{A sequence of configurations for the case $n=12$, $a = 10$, $b=2$, specifically, configurations $0$--$3$ and $11$.  Configuration $3$ is {\em success}.}
