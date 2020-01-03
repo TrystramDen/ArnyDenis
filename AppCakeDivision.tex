@@ -221,15 +221,17 @@ For two agents, a way to do this is as follows:
 
 \begin{enumerate}
 \item 
-Agent 1 places two knives over the cake such that one knife is at the left side of the cake and one is further right; 
+Agent (1) places two knives over the cake such that one knife is at the left side of the cake and one is further right; 
 half of the cake lies between the knives. 
 She then moves the knives right, always ensuring there is half the cake – by his valuation – between the knives. 
 If she reaches the right side of the cake, the leftmost knife must be where the rightmost knife started off. 
-\item Agent 2 stops when he/she thinks there is half the cake between the knives. 
-{\Denis Give the argument why there is always a point at which this happens?}
+\item Agent (2) stops when he/she thinks there is half the cake between the knives. 
+%{\Denis Give the argument why there is always a point at which this happens?}
 \end{enumerate}
+\bigskip
 
-Proving that the condition does not hold is easy by looking at the following counter-example
+This protocol is proportionally fair, but it is not envy-free. 
+Proving that this last condition does not hold is easy by looking at the following counter-example
 of three agents denoted in the figures by (1), (2) and (3).
 (3) is jealous about the piece obtained by (2). 
 \begin{figure}[htb]
@@ -259,26 +261,26 @@ of three agents denoted in the figures by (1), (2) and (3).
 
 \subsection{Extension to 3 agents}
 
-The moving knife strategy can be extended to guarantee envy-freeness for 3 agents\footnote{W. Stromquist.
+The moving knife strategy can be adapted to guarantee envy-freeness for 3 agents\footnote{W. Stromquist.
 \textit{How to Cut a Cake Fairly.} American Mathematical Monthly, 87(8), 1980.}
-with a protocol using $4$ knives.
+with a protocol using $4$ knives, one for an external referee and one for each agent.
 
-(1) A referee slowly moves a knife across the cake, from left to right
-(supposed to eventually cut somewhere around 1/3).
-
-(2) At the same time, each agent is moving his/her own knife so that it would cut the righthand piece in half 
+\begin{enumerate}
+\item
+A referee slowly moves a knife across the cake, from left to right.
+\item
+At the same time, each agent is moving her own knife so that she would cut the righthand piece in half 
 (with regard to their own valuations).
-
-(3) The first agent to shout “stop” receives the piece to the left of the referee’s knife. 
-The righthand part is cut by the middle one of the three agent knifes. 
+\item
+The first agent to shout stop receives the piece to the left of the referee’s knife. 
+The righthand part is cut by the middle of the three agent knives. 
 If neither of the other two agents hold the middle knife, they each obtain the piece at which their knife is pointing. 
-If one of them does hold the middle knife, then the other one gets the piece at which his/her knife is pointing.
+If one of them holds the middle knife, then the other one gets the piece at which her knife is pointing.
+\end{enumerate}
 \bigskip
 
 It is rather simple to prove the proportional fairness.
-\bigskip
-
-A nice exercise is to prove that this protocol is envy-free. 
+A nice exercise is to show that this sophisticated protocol is envy-free. The proofs are left to the readers. 
 
 
 \subsection{Evaluation of the complexity}
@@ -286,26 +288,32 @@ A nice exercise is to prove that this protocol is envy-free.
 Coming back to the basic moving knife strategy, each agent has to evaluate the measure as the knife moves over (for all the real numbers in the interval). 
 For each continuous position, the agent has to evaluate the piece at the left of the knife.
 
-Model:
- A reasonable protocol should be implementable in terms of two types of queries for agent $i$:
- 
+Again, the mathematics helps us to evaluate the protocols by providing a \textit{model}.
+Each protocol should be implementable in terms of two types of queries for agent $i$:
  \begin{itemize}
  \item $cut_i(\alpha,x) \rightarrow y$ -- agent $i$ cuts the part of value $\alpha$ in the interval from $x$ to $y$. 
- \item $eval_i(x,y) \rightarrow \alpha$ -- is the evaluation of the measure of agent $i$  between $x$ and $y$.
+ \item $v_i(x,y) \rightarrow \alpha$ -- is the evaluation of the measure of agent $i$  between $x$ and $y$.
  \end{itemize}
  
- According to the number of queries, we are able to compare the complexity of protocols.
+According to the number of queries, we are able to compare the complexity of protocols.
+For instance, we can simulate the continuous moving knife protocol as follows:
 
-We can simulate the continuous moving knife protocol as follows:
-
-(1) Ask each agent to mark the cake where she would shout “stop”.
+\begin{enumerate}
+\item
+Ask each agent to mark the cake where she would shout stop.
 Then cut the cake at the leftmost mark and give the resulting piece to the agent who made that mark.
+\item
+When a piece has been cut off, we continue with the remaining agents, until just one agent is left (who takes the rest).
+\end{enumerate}
 
-(2) When a piece has been cut off, we continue with the remaining agents, until just one agent is left (who takes the rest).
+At each round, each participating agent makes one mark. 
+The number of participating agents goes down from $n$ to $2$ for a total cost of $\Delta_n -1$, 
+where $\Delta_n$ denotes the $n$th triangular number. 
 
-At each round, each participating agent makes one mark. The number of participating agents goes down from n to 2 
-for a total cost of $\Delta_n -1$.
 
+%%%%%%%%%%%%%%%%
+
+\ignore{
 \bigskip
 
 Even and Paz introduced in 1984 the following divide-and-conquer protocol,
@@ -325,31 +333,30 @@ The complexity is $log_2(n)$ steps involving each $n$ operations.
 \bigskip
 
 Note that there are more sophisticated protocols...
+}
 
 
-\ignore{
 \section{A more sophisticated method}
 
-let us now present an envy-free solution for $3$ agents.
+Let us now present an envy-free solution for $3$ agents.
 
 (1) Agent 1 cuts the cake in three pieces (she considers equal).
 
 (2) Agent 2 either “passes” (if she thinks at least two pieces are tied for largest) or cuts one piece (to get two tied for largest pieces).
 If she passed, then let agents 3, 2 pick in this order, and then, 1.
 
-(3) If agent 2 did cut, then let 3, 2 pick (in this order), but require 2 to take the cuted piece (unless 3 did) and then, 1. 
+(3) If agent 2 did cut, then let 3, 2 pick (in this order), but require 2 to take the cutted piece (unless 3 did) and then, 1. 
 Keep the cuts unallocated for now (notice that the partial allocation is envy-free).
 
 (4) Now divide the cuts. 
 Whoever of 2 and 3 received the uncutted piece does the cutting. 
 Let agents choose in this order: non-cutter, 1, cutter.
 
-\bigskip
-
-Evaluate the protocol in term of number of cuts.
-}
+{\Denis Add a figure here}
 
 
+
+\ignore{
 \begin{thebibliography}{1}
 
 \bibitem{Barbanel}
@@ -379,3 +386,4 @@ J. Robertson and W. Webb.
 
  
 \end{thebibliography}{}
+}
