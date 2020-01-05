@@ -4,6 +4,42 @@
 
 \section{Presentation of the problem}
 
+\noindent \fbox{\begin{minipage}{0.96\textwidth}
+{\bf Topic-specific references}.
+\smallskip
+
+J. Barbanel and S. Brams (2004).
+{\it Cake division with minimal cuts: envy-free procedures for 3 persons, 4 persons and beyond.}
+Mathematical social sciences, Vol. 48,3.
+\smallskip
+
+L. Dubins and E.H. Spanier (1961). 
+{\it How to Cut a Cake Fairly. }
+American Mathematical Monthly, 68(1):1–17, 1961.
+\smallskip
+
+U. Endriss (2009). 
+{\it Lecture Notes on Fair Division. }
+University of Amsterdam.
+\smallskip
+
+L. Eyraud and D. Trystram (2005). 
+{\it Partage d'un gateau. }
+TangenteSup, N.28.
+\smallskip
+
+J. Robertson and W. Webb (1998).
+{\it Cake-Cutting Algorithms: Be Fair If You Can.}
+CRC Press.
+\smallskip
+
+W. Stromquist (1980).
+{\it How to Cut a Cake Fairly. }
+American Mathematical Monthly, 87(8):640–644.
+\end{minipage}
+}
+\bigskip
+
 We investigate here some strategies to divide a cake
 (or any kind of resources). We are interested in dividing these resources \textit{fairly}, 
 which means informally that all recipients believe that they have received a fair amount of resources among the whole cake. 
@@ -257,12 +293,20 @@ of three agents denoted in the figures by (1), (2) and (3).
         \label{Fig:cakeEnvyFree3}
 \end{center}
 \end{figure}
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.6]{FiguresMaths/CakeEnvyFree4}
+        \caption{Last step: (1) takes the rest of the cake.}
+        \label{Fig:cakeEnvyFree4}
+\end{center}
+\end{figure}
+
 
 
 \subsection{Extension to 3 agents}
 
-The moving knife strategy can be adapted to guarantee envy-freeness for 3 agents\footnote{W. Stromquist.
-\textit{How to Cut a Cake Fairly.} American Mathematical Monthly, 87(8), 1980.}
+The moving knife strategy can be adapted to guarantee envy-freeness for 3 agents.
+%\footnote{W. Stromquist. \textit{How to Cut a Cake Fairly.} American Mathematical Monthly, 87(8), 1980.}
 with a protocol using $4$ knives, one for an external referee and one for each agent.
 
 \begin{enumerate}
@@ -295,9 +339,8 @@ Each protocol should be implementable in terms of two types of queries for agent
  \item $v_i(x,y) \rightarrow \alpha$ -- is the evaluation of the measure of agent $i$  between $x$ and $y$.
  \end{itemize}
  
-According to the number of queries, we are able to compare the complexity of protocols.
+According to the number of such queries, we are able to compare the complexity of the protocols.
 For instance, we can simulate the continuous moving knife protocol as follows:
-
 \begin{enumerate}
 \item
 Ask each agent to mark the cake where she would shout stop.
@@ -330,76 +373,87 @@ lefthand part, and the remaining agents with the righthand part.
 It is easy to show that this division is also proportionally fair.
 
 The complexity is $log_2(n)$ steps involving each $n$ operations. 
-\bigskip
-
-Note that there are more sophisticated protocols...
 }
 
 
-\section{More sophisticated methods}
+\section{A more sophisticated method}
 
-Let us now present two variants for an envy-free solution for $3$ agents.
-{\Denis I think both protocols are somehow the same... What do you think?}
+Let us now present an improved protocol for an envy-free solution for $3$ agents.
 
-\begin{enumerate}
-\item 
-Agent (1) cuts the cake in three pieces she considers equal according to her own measure.
-\item
-(2) either passes if she thinks at least two pieces are tied for largest or she cuts one piece.
-If she passed, then let (3), (2) pick in this order, and then, (1).
-\item
-If (2) did cut, then let (3), (2) pick in this order, but require (2) to take the cutted piece (unless (3) did) and then, (1). 
-Keep the cuts unallocated for now (notice that the partial allocation is envy-free).
-\item
-Now divide the cuts. 
-Whoever of (2) and (3) received the uncutted piece does the cutting. 
-Let agents choose in the order: non-cutter--(1)--cutter.
-\end{enumerate}
+%\begin{enumerate}
+%\item 
+%Agent (1) cuts the cake in three pieces she considers equal according to her own measure.
+%\item
+%(2) either passes if she thinks at least two pieces are tied for largest or she cuts one piece.
+%If she passed, then let (3), (2) pick in this order, and then, (1).
+%\item
+%If (2) did cut, then let (3), (2) pick in this order, but require (2) to take the cutted piece (unless (3) did) and then, (1). 
+%Keep the cuts unallocated for now (notice that the partial allocation is envy-free).
+%\item
+%Now divide the cuts. 
+%Whoever of (2) and (3) received the uncutted piece does the cutting. 
+%Let agents choose in the order: non-cutter--(1)--cutter.
+%\end{enumerate}
 
-Notice that the final solution does not always guarantee each agent to get contiguous parts...
 
-{\Denis Add a figure here}
-
-The second one is described below, it starts by the same step. 
+This protocol is described below, it starts by asking one of the agents to divide the cake 
+(we start by (1) without loss of generality).
 \begin{enumerate}
 \item 
 (1) cuts the cake in three pieces she considers equal according to her own measure.
 \item
-(2) cuts her preferred part, say $b$ and $r$.
+Ask the two other agents about their respective preferred pieces.
+\begin{itemize}
+\item 
+If both pieces are different for both, we are done:
+let them take their preferred piece and (1) takes the remaining one.
+Everybody is happy. 
 \item
-(3) cuts the reminder $r$ into three pieces.
+If they prefer the same piece (say, piece $a_2$ (see Fig.~\ref{fig:cakeprotocolenvyfree1}), 
+(2) announces what is her second preferred piece ($a_1$ in the figure)
+and she is asked to cut her preferred part in $b$ and $r$, 
+such that $b$ has the same measure as $a_1$ ($v_2(b) = v_2(a_1)$).
+\item 
+(3) chooses the best part for her between $a_1$, $b$ and $a_3$.
+In Fig.~\ref{fig:cakeprotocolenvyfree2}, this corresponds to $a_1$. 
+
+The two others choose in the order (2) and (1).
+
+Notice here that (2) will choose $b$ if (3) did not...
 \item
-Do the final allocation.
+It remains to distribute the piece $r$ among the agents in order to guaranty proportional fairness and envy-free.
+
+The one who did not choose piece $b$ divides $r$ into three equal pieces
+according to her own measure (named $r_1$, $r_2$ and $r_3$).
+In the example of Fig.~\ref{fig:cakeprotocolenvyfree3}, this is agent (3) who cuts $r$.
+
+The one who chosed $b$ (here (2)) chooses first, then, (1) and (3) -- in this order.
+\end{itemize}
 \end{enumerate}
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.6]{FiguresMaths/cakeprotocolenvyfree1}
+        \caption{Illustration of the sophisticated protocol.
+        The first step is to ask (1) to divide the cake. Here, $a_1=a_2=a_3=1/3$.}
+        \label{fig:cakeprotocolenvyfree1}
+\end{center}
+\end{figure}
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.6]{FiguresMaths/cakeprotocolenvyfree2}
+        \caption{The second step is to ask (2) and (3) about their preferred choices.
+        There are both the same (which is $a_2$).}
+        \label{fig:cakeprotocolenvyfree2}
+\end{center}
+\end{figure}
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.6]{FiguresMaths/cakeprotocolenvyfree3}
+        \caption{(2) stops when she gets 1/3 of her measure (shaded area) and finally, (1) gets the last of the three original cuts.
+        The three agents divide the rest $r$.}
+        \label{fig:cakeprotocolenvyfree3}
+\end{center}
+\end{figure}
 
-\ignore{
-\begin{thebibliography}{1}
+The final solution does not always guarantee each agent to get contiguous parts.
 
-\bibitem{Barbanel}
-J. Barbanel and S. Brams.
-\newblock {C}ake division with minimal cuts: envy-free procedures for 3 persons, 4 persons and beyond.
-\newblock NY university, 2004.
-
-%\bibitem{Dublins}
-%L. Dubins and E.H. Spanier. 
-%\newblock How to Cut a Cake Fairly. 
-%\newblock American Mathematical Monthly, 68(1):1–17, 1961.
-
-\bibitem{Endriss}
-U. Endriss. 
-\newblock Lecture Notes on Fair Division. 
-\newblock ILLC, University of Amsterdam, 2009.
-
-\bibitem{Robertson}
-J. Robertson and W. Webb.
-\newblock {C}ake-{C}utting Algorithms: Be Fair If You Can.
-\newblock Natick, Massachusetts: A. Peters, 1998.
-
-%\bibitem{Stromquist}
-%W. Stromquist.
-%\newblock How to Cut a Cake Fairly. 
-%\newblock American Mathematical Monthly, 87(8):640–644, 1980.
-
- 
-\end{thebibliography}{}
-}
