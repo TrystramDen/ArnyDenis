@@ -1684,32 +1684,28 @@ The greater $n$, the better the paradox because the deformation of the surface o
 ***********************}
 
 %\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Exercises}
 
 \subsection{Karatsuba Multiplication} 
 
 \noindent \textit{The aim.}
-The purpose here is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical problem.
-
+The purpose is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical problem.
 \medskip
 
 The classical elementary-school method for computing the base-$2$ product of two $n$-bit integers (using their standard numerals)
 \[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
 is to compute the $n$ partial products:
 \[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
-and to sumthese partial products.
+and to sum these partial products.
 
 This approach leads to $O(n^2)$ basic operations. 
-
-\medskip
-
-We can do better.
-
+However, we can do better.
 \medskip
 
 Let us first recall the generic divide-and-conquer for designing algorithms.
-\bigskip
+\medskip
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
@@ -1736,16 +1732,16 @@ where $c_1(n)$ and $c_3(n)$ are the costs of phases (1) and (3).
 }
 \bigskip
 
-\noindent \textit{The problem.}
+\noindent \textit{A first problem.}
 Say that we have the earlier-mentioned $n$-bit numbers $A$ and $B$.  Let us assume that $n$ is a very large power of $2$: $n=2^k$ for some positive integer $k$.
 
 The goal is to compute the product $A \times B$ in fewer operations than the classic $O(n^2)$.
 
 \medskip
 
-\noindent \textit{A first solution.}
-The divide-and-conquer version of this problem is to break each integer into two parts
-of $n/2$ bits each:
+\noindent \textit{Hint.}
+Use the divide-and-conquer paradigm to break each integer into two parts
+of $n/2$ bits each as follows:
 
 $A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$
 
@@ -1754,17 +1750,17 @@ Denoting by $A_1$ and $A_2$ the two separate terms, we get:
 $A.B = (A_1.B_1) 2^n + (A_1.B_2 + A_2.B_1) 2^{n/2} + A_2.B_2$
 \medskip
 
-The previous computation requires 4 multiplications of integers of $n/2$ bits 
-and 3 additions of integers with at most $2n$ bits. The multiplication of integers in base 2 by powers of 2 
+Evaluate the cost in term of multiplications and additions.
+Notice that multiplying integers in base 2 by powers of 2 
 correspond to simple shifts to the left. 
-
-The cost is given by the following expression: $T(n) = 4.T(\frac{n}{2}) + f(n)$ where $f$ is a linear function
-and $T(1) = 1$.
-
-We obtain $T(n) = \Theta(n^2)$, same as for the naive algorithm.
+%
+%The cost is given by the following expression: $T(n) = 4.T(\frac{n}{2}) + f(n)$ where $f$ is a linear function
+%and $T(1) = 1$.
+%
+%We obtain $T(n) = \Theta(n^2)$, same as for the naive algorithm.
 \bigskip
  
-\noindent \textit{The second problem:}
+\noindent \textit{A second (improved) problem.}
 The idea of Karatsuba is to decrease the number of multiplications 
 (at the price of slightly increasing the additions/subtractions) by using the following identity:
 
@@ -1773,35 +1769,33 @@ $A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)$
 Show how to use this relation and develop the cost analysis of this algorithm.
 \medskip
 
-\noindent \textit{The solution.}
-
-The relation is easy to check and it is left to the reader. 
-Let us use it and replace in the original expression:
-
-$A.B = (A_1.B_1) 2^n + (A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)) 2^{n/2} + A_2.B_2$
-
-The cost analysis is 3 multiplications of $n/2$ bits,
-4 additions and 2 subtractions of integers at most $2n$ bits. 
-
-Again, using the Master Theorem leads to:
-
-$T(n) = 3.T(n/2) + \Theta (n) = n^{\log_2 3}$
-\medskip
+%\noindent \textit{The solution.}
+%The relation is easy to check and it is left to the reader. 
+%Let us use it and replace in the original expression:
+%
+%$A.B = (A_1.B_1) 2^n + (A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)) 2^{n/2} + A_2.B_2$
+%
+%The cost analysis is 3 multiplications of $n/2$ bits,
+%4 additions and 2 subtractions of integers at most $2n$ bits. 
+%
+%Again, using the Master Theorem leads to:
+%
+%$T(n) = 3.T(n/2) + \Theta (n) = n^{\log_2 3}$
+%\medskip
 
 \noindent \textit{Lesson learned.}
 The analysis done in this exercise showed a clear use of the Master Theorem.
-
 It introduced also the classical technique of divide-and-conquer for designing algorithms.
-
-The cost is obtained by the sum of two terms, and Karatsuba evidences how to obtain a better trade-off between both terms.
-It leads finally to a better cost. 
+%
+%The cost is obtained by the sum of two terms, and Karatsuba evidences how to obtain a better trade-off between both terms.
+%It leads finally to a better cost. 
 
 
 \subsection{Computing Fibonacci Numbers Fast}
 \label{sec:FastFibo}
 
 \noindent \textit{The aim.} 
-Show a new computational scheme for the Fibonacci numbers.
+Showing a new computational scheme for the Fibonacci numbers.
 
 Notice that it is generic and related to the scheme of fast exponentiation.
 \medskip
@@ -1854,10 +1848,9 @@ $F(n-1).F(n+1) = F(n)^2 + (-1)^{n+1}$ for $n \geq 1$
 The proof is by induction.
 \medskip
 
-\noindent \textit{esson learned.}
+\noindent \textit{Lesson learned.}
 This is a classical relation that is interesting from a cultural perspective.
-
-It shows a clear example of solving recurrence equation. 
+It also shows a clear example of solving recurrence equation. 
 A nice variant is to ask to establish this identity (looking at the small values of $n$).
 
 
@@ -1874,42 +1867,42 @@ the other Lucas numbers are obtained by the same progression as Fibonacci:
 $L(n+1) = L(n)+L(n-1)$.
 \medskip
 
-In order to gain intuition on this problem, let us compute the first ranks in regard to the classical Fibonacci numbers:
-\begin{figure}[htb]
-\[
-\begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
-{\displaystyle n } & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 &
-k=6 & k=7 & k=8 & k=9 & \ldots \\
-\hline
-F(n) & 1 & 1 &  2  &  3  &   5  &   8  &  13  &  21  & 34  & 55  & \ldots \\
-\hline
-L(n) & 1 & 3 &  4 &  7  &  11  &  18  &  29 & 47  & 76  & 123 & \ldots \\
-\hline
-\end{array}
-\] 
-\caption{Correspondence between Fibonacci and Lucas numbers.}
-\label{fig:fiboLucas}
-\end{figure}
+%In order to gain intuition on this problem, let us compute the first ranks in regard to the classical Fibonacci numbers:
+%\begin{figure}[htb]
+%\[
+%\begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
+%{\displaystyle n } & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 &
+%k=6 & k=7 & k=8 & k=9 & \ldots \\
+%\hline
+%F(n) & 1 & 1 &  2  &  3  &   5  &   8  &  13  &  21  & 34  & 55  & \ldots \\
+%\hline
+%L(n) & 1 & 3 &  4 &  7  &  11  &  18  &  29 & 47  & 76  & 123 & \ldots \\
+%\hline
+%\end{array}
+%\] 
+%\caption{Correspondence between Fibonacci and Lucas numbers.}
+%\label{fig:fiboLucas}
+%\end{figure}
+%%
+%%n: $~~~~0, 1, 2, 3, ~4, ~5, ~6, ~7, ~8, ~~9, ...$
+%%
+%%F(n): $1, 1, 2, 3, ~5, ~8, 13, 21, 34, ~55, ...$
+%%
+%%L(n): $1, 3, 4, 7, 11, 18, 29, 47, 76, 123, ...$
+%\medskip
 %
-%n: $~~~~0, 1, 2, 3, ~4, ~5, ~6, ~7, ~8, ~~9, ...$
-%
-%F(n): $1, 1, 2, 3, ~5, ~8, 13, 21, 34, ~55, ...$
-%
-%L(n): $1, 3, 4, 7, 11, 18, 29, 47, 76, 123, ...$
-\medskip
-
-%
-%There are strong links with Fibonacci numbers.
-%In particular, we established before that
-%\bigskip
-%
-%$F(n+2) = 1+ \sum_{k=0}^{n} F(k)$. 
-%\bigskip
-%
-%We have similarly: $L(n+2) = 1+ \sum_{k=-1}^{n} L(k)$ since the basic step of the induction is still valid: 
-%
-%$L(2) = L(-1 )+L(0) +1 = 2+1+1 = 4$.
-%%Actually, it will be true for all the progressions where $u_1=1$.
+%%
+%%There are strong links with Fibonacci numbers.
+%%In particular, we established before that
+%%\bigskip
+%%
+%%$F(n+2) = 1+ \sum_{k=0}^{n} F(k)$. 
+%%\bigskip
+%%
+%%We have similarly: $L(n+2) = 1+ \sum_{k=-1}^{n} L(k)$ since the basic step of the induction is still valid: 
+%%
+%%$L(2) = L(-1 )+L(0) +1 = 2+1+1 = 4$.
+%%%Actually, it will be true for all the progressions where $u_1=1$.
 %
 
 \noindent \textit{The problem.}
@@ -1918,52 +1911,48 @@ Prove the following expression:
 $F(k-1).L(n) = F(n+k)+ (-1)^{k-1}F(n-k)$ for $k \leq n$
 \bigskip
 
-\noindent \textit{The solution.} 
-
+\noindent \textit{Hint.} 
 There are two integers involved here ($k$ and $n$).
 Let us study the expression step by step for successive values of $k$.
 \medskip
 
-\begin{itemize}
-\item Starting smoothly with $k=1$
-
-We can easily show by induction on $n$ that the Lucas number of order $n$ is the sum of two Fibonacci numbers:
-
-$L(n) = F(n-1)+F(n+1)$ for $n \geq 1$
-\medskip
-
-%Let check this property on the first ranks:
+% Starting smoothly with $k=1$
 %
-%$n=2$, $L(2) = F(1)+F(3) = 1 + 3 = 4$
+%We can easily show by induction on $n$ that the Lucas number of order $n$ is the sum of two Fibonacci numbers:
 %
-%$n=3$, $L(3) = F(2)+F(4) = 2 + 5 = 7$
+%$L(n) = F(n-1)+F(n+1)$ for $n \geq 1$
+%\medskip
 %
-%$n=4$, $L(4) = F(3)+F(5) = 3 + 8 = 11$
+%%Let check this property on the first ranks:
+%%
+%%$n=2$, $L(2) = F(1)+F(3) = 1 + 3 = 4$
+%%
+%%$n=3$, $L(3) = F(2)+F(4) = 2 + 5 = 7$
+%%
+%%$n=4$, $L(4) = F(3)+F(5) = 3 + 8 = 11$
+%%
+%%$n=5$, $L(5) = F(4)+F(6) = 5 + 13 = 18$
+%%
 %
-%$n=5$, $L(5) = F(4)+F(6) = 5 + 13 = 18$
+%The basis case, corresponding to for $n=1$) is true since $L(1) = 3 = F(2) + F(0) = 2+1$.
 %
+%Let assume for proving the induction step that the property holds at all ranks $k \leq n$ and compute $L(n+1)$:
+%
+%Apply the definition of Lucas' numbers: $L(n+1) = L(n)+L(n-1)$
+%
+%Apply the induction hypothesis on both terms of the right hand side:
+%
+% $L(n+1) = F(n+1)+F(n-1)+F(n)+F(n-2)$
+%
+%Apply now the definition of Fibonacci numbers for $F(n+1) + F(n) = F(n+2)$  and $F(n-1) + F(n-2) = F(n)$
+%
+%Replace them in the previous expression:
+%
+%$L(n+1) = F(n+2)+F(n)$
+%
+%which concludes the proof.
 
-The basis case, corresponding to for $n=1$) is true since $L(1) = 3 = F(2) + F(0) = 2+1$.
-
-Let assume for proving the induction step that the property holds at all ranks $k \leq n$ and compute $L(n+1)$:
-
-Apply the definition of Lucas' numbers: $L(n+1) = L(n)+L(n-1)$
-
-Apply the induction hypothesis on both terms of the right hand side:
-
- $L(n+1) = F(n+1)+F(n-1)+F(n)+F(n-2)$
-
-Apply now the definition of Fibonacci numbers for $F(n+1) + F(n) = F(n+2)$  and $F(n-1) + F(n-2) = F(n)$
-
-Replace them in the previous expression:
-
-$L(n+1) = F(n+2)+F(n)$
-
-which concludes the proof.
-
-\item
-Extension.
-
+Extension:
 Using a similar approach, we obtain $L(n) = F(n+2)-F(n-2)$. 
 What happens if we generalize? Easy calculations lead to the following results:
 \medskip
@@ -1994,67 +1983,63 @@ $2.L(n) = F(n+3) + F(n-3) $
 %
 %$= F(n+4) - F(n+2) + F(n-2) - F(n-4)$
 %\medskip
-
-$3.L(n) = F(n+4) - F(n-4)$
-
-$5.L(n) = F(n+5) + F(n-5)$
-\medskip
- 
-As $2, 3, 5$ are successive Fibonacci numbers, this gives us the intuition of the general case:
-
-$F(k-1).L(n) = F(n+k) + (-1)^{k-1}F(n-k)$ for $k \leq n$
-\medskip
-
-which is proved (again) as follows by induction assuming the expression holds at rank up to $k$.
-
-The basis case is straightforward (see case $k=1$).
-
-Compute $F((k+1)-1).L(n)$ and apply the definition of Fibonacci number $F((k+1)-1) = F(k-1) + F(k-2)$
-
-$F(k).L(n) = F(k-1).L(n + F(k-2).L(n)$ and replace both last terms by using the induction hypothesis:
-
-$= F(n+k) + (-1)^{k-1}F(n-k) + F(n+k-1) + (-1)^{k-2}F(n-(k-1))$
-
-$= F(n+k) +  F(n+k-1) + (-1)^{k-1}(F(n-k) - F(n-k+1))$
-
-The final result is obtained by applying twice the definition of the Fibonacci numbers.
-\medskip
+%
+%$3.L(n) = F(n+4) - F(n-4)$
+%
+%$5.L(n) = F(n+5) + F(n-5)$
+%\medskip
+% 
+%As $2, 3, 5$ are successive Fibonacci numbers, this gives us the intuition of the general case:
+%
+%$F(k-1).L(n) = F(n+k) + (-1)^{k-1}F(n-k)$ for $k \leq n$
+%\medskip
+%
+%which is proved (again) as follows by induction assuming the expression holds at rank up to $k$.
+%
+%The basis case is straightforward (see case $k=1$).
+%
+%Compute $F((k+1)-1).L(n)$ and apply the definition of Fibonacci number $F((k+1)-1) = F(k-1) + F(k-2)$
+%
+%$F(k).L(n) = F(k-1).L(n + F(k-2).L(n)$ and replace both last terms by using the induction hypothesis:
+%
+%$= F(n+k) + (-1)^{k-1}F(n-k) + F(n+k-1) + (-1)^{k-2}F(n-(k-1))$
+%
+%$= F(n+k) +  F(n+k-1) + (-1)^{k-1}(F(n-k) - F(n-k+1))$
+%
+%The final result is obtained by applying twice the definition of the Fibonacci numbers.
+%\medskip
 
 \noindent \textit{Lesson learned.}
 This exercice is a good example of the proof of a non straightforward recurrence which involves two integers.
 
-\end{itemize}
-
 
 \subsection{Binomial coefficients}
 
-\noindent \textit{The aim:}
-
-xx
+\noindent \textit{The aim.}
+gaining intuition about binomial coefficients.
 \medskip
 
-\noindent \textit{The problem:}
-
+\noindent \textit{The problem.}
 Prove Proposition~\ref{thm:pascal-binom} via the double induction
 outlined in the text.
 
 
-\subsection{La ruine}
+\subsection{Solving a. bilinear recurrence by a linear system}
 
-\noindent \textit{The aim:}
-
+\noindent \textit{The aim.}
 Show a non natural bilinear recurrence.
 \medskip
 
-\noindent \textit{The problem:}
+\noindent \textit{The problem.}
+Determine the values of the successive terms $U_n$ defined by the following recurrence equation:
 
-The goal here is to determine the values of  $U_n$
+$U_{n} = \frac{1}{2}.U_{n-1} + \frac{1}{2}.U_{n+1}$
 
-Solve $U_{n} = \frac{1}{2}.U_{n-1} + \frac{1}{2}.U_{n+1}$
-
-knowing $U_0 = 0$ and $U_N = 1$
+given $U_0 = 0$ and $U_N = 1$
 \medskip
 
-\noindent \textit{The solution:}
+\noindent \textit{Hint}
+Write the solution for small values of $n$
 
+Write the linear system and solve it.
 
