@@ -707,33 +707,33 @@ Then, how to analyze the previous result/proof?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Chapter 8. Numbers II divisibility}
+\section{Chapter 8}
 
 \subsection{A simple exercice on divisibility}
 
-\noindent \textit{The problem:}
+\noindent \textit{The problem.}
+Show that every integer $n>1$ is divisible by at least one prime number.
+\medskip
 
-Every integer $n>1$ is divisible by at least one prime number.
-
-{\Denis no solution needed here, I am still skeptical about its relevance...}
+\noindent \textit{The solution.}
+Do we have to detail the solution?
 
 
 \subsection{Numerals and divisibility}
 
-\noindent \textit{The problem:}
+\noindent \textit{The problem.}
 Prove that when you do Euclidian division, then the {\em remainder}
 upon each consecutive division is the next lowest-order digit in the
 base-$b$ numeral for $n$.
 \medskip
 
-\noindent \textit{The solution:}
-
+\noindent \textit{The solution.}
 Do we have to give the solution?
 
 
 \subsection{A fun result dealing with divisibility}
 
-\noindent \textit{The problem:}
+\noindent \textit{The problem.}
 Let consider the $2n$ first integers.
 
 Take any $n+1$ integers in this set and prove that there exists a pair $(p,q)$
@@ -741,7 +741,7 @@ such that $p$ divides $q$.
 \medskip
 
 
-\noindent \textit{The solution:}
+\noindent \textit{The solution.}
 
 %This exercice was a favorite question by the famous mathematician Paul Erdos,
 %he often used it to test the ability of young students in mathematics...
@@ -785,15 +785,7 @@ $p$ is the smallest one, which divides $q$ (the largest one).
 \subsection{When is integer $n$ divisible by $9$?}
 \label{sec:divisible-by-9}
 
-%\noindent \textit{The aim.}
-%
-%We exploit here our ability to evaluate geometric summations to
-%illustrate a somewhat surprising, nontrivial fact.  One can deduce
-%information about the divisibility of an integer $n$ from $n$'s
-%positional numerals.  We hope that this ``fun'' result will inspire
-%the reader to seek kindred numeral-encoded properties of numbers.
-%
-%\medskip
+
 \noindent \textit{The problem.}
 %\label{thm:div-by-b-bar}
 An integer $n$ is divisible by an integer $m$ if, and only if, $m$
@@ -861,11 +853,29 @@ final fact means that $n$ is divisible by $b-1$ if, and only if, $s_b(n)$ is.
 
 \subsection{Modulus arithmetic}
 
-\noindent \textit{The problem:}
-$\N_q$ is never closed under the operation of division when the modulus $q$ is composite.
+\noindent \textit{The problem.}
+Show that $\N_q$ is never closed under the operation of division when the modulus $q$ is composite.
+
+\noindent \textit{The solution.}
+
+
+
+\subsection{Countability of $\Q$}
+
+noindent \textit{The problem.}
+Prove $|\Q| \ = \ |\N|$ (Proposition~\ref{thm:|Q|=|N|}).
 \medskip
 
-\noindent \textit{The solution:}
+\noindent \textit{The solution.}
+Use Proposition~\ref{thm:|NxN|=|N|}.
+
+%
+%{\Arny 
+%This is the first---easier---result.  We proved the clerically easier result---that $\N \times \N$ is countable.  We ask the reader to ``dirty their hands" and prove that $\Q$ is countable.
+%The second---harder---result is with uncountability; it is so hard that we do it.
+%So this should appear in NUMBERS2 near pairing functions.}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1361,8 +1371,6 @@ $= \frac{1}{2} \left(F(m).L(n) + F(n).(L(m)\right)$
 
 \section{Chapter 10. Numbers 3}
 
-\subsection{Empty for the moment}
-
 \subsection{Application of the Fundamental Theorem of Arithmetic}
 
 \noindent \textit{The aim.}
@@ -1382,6 +1390,53 @@ xx
 \medskip
 
 \noindent \textit{Lesson learned.}
+
+
+
+\subsection{The average length of a carry in a binary counter}
+
+{\Arny The analysis here involves geometric sums, so this could be an exercise for SUMMATION.  Counters are discusses in NUMBERS3.  I would vote to put this in NUMBERS3.}
+
+\noindent {\it The aim.}
+\medskip
+
+\noindent {\it The problem.}
+%
+You add from $1$ to $n$, in increments of $1$ using a counter of
+binary (or, base-$2$) numerals.  Each time you increment the counter,
+there is a {\it carry}.  These carries have varying lengths; for
+instance, when $n = 32 = 100000_2$, the carry-lengths range
+from $0$---whenever you increment an even integer---to $5$---when you
+increment $31 = 11111_2$ to achieve $32 = 100000_2$. \\
+{\em Prove that the average carry as you go from $1$ to $n$ has length $2$.}
+\medskip
+
+\noindent {\it The solution.}
+
+\noindent
+Half of the increments add $1$ to an even number, i.e., a number whose
+binary numeral ends in ``$ \ldots 0$''.  These increments generate no
+carry---or, equivalently, a carry of length $0$.
+
+\noindent
+One-quarter of the increments, which form half of the remaining
+increments, execute a carry of length $1$, because they add $1$ to a
+numeral that ends in ``$ \ldots 01$''.
+
+\noindent
+One-eighth of the increments, which form half of the remaining
+increments, execute a carry of length $2$, because they add $1$ to a
+numeral that ends in ``$ \ldots 011$''.
+
+Continuing in this way, one can show that the average length of a
+carry can be expressed in the form
+\[ 
+\frac{1}{2} \cdot 0 \ + \ \frac{1}{4} \cdot 1 \ + \ \frac{1}{8} \cdot
+3 \ + \ \frac{1}{16} \cdot 4 \ + \ \cdots
+\]
+Using techniques that we cover in Chapter~\ref{ch:Summation}, one
+verifies that this infinite series converges with the sum $2$.  \qed
+
 
 
 
@@ -1698,69 +1753,5 @@ that all points in the areas are captured
 I need your help.  The problem that motivated me was that, even though it LOOKS as though an ``asymptotic" drawing is capturing all of the claimed points, that is not a proof.  We have to PROVE that all points are captured.}
 
 
-
-\subsection{To include at the proper place}
-
-Prove Proposition~\ref{thm:|Q|=|N|}
-
-\noindent \textit{The problem:}
-Prove $|\Q| \ = \ |\N|$.
-\medskip
-
-from Proposition~\ref{thm:|NxN|=|N|}.
-
-{\Arny This is one of two places where proving stuff about $\N \times \N$ is much easier than proving stuff about $\Q$.
-
-This is the first---easier---result.  We proved the clerically easier result---that $\N \times \N$ is countable.  We ask the reader to ``dirty their hands" and prove that $\Q$ is countable.
-
-The second---harder---result is with uncountability; it is so hard that we do it.
-
-So this should appear in NUMBERS2 near pairing functions.}
-
-
-
-\subsection{The average length of a carry in a binary counter}
-
-{\Arny The analysis here involves geometric sums, so this could be an exercise for SUMMATION.  Counters are discusses in NUMBERS3.  I would vote to put this in NUMBERS3.}
-
-\noindent {\it The aim.}
-\medskip
-
-\noindent {\it The problem.}
-%
-You add from $1$ to $n$, in increments of $1$ using a counter of
-binary (or, base-$2$) numerals.  Each time you increment the counter,
-there is a {\it carry}.  These carries have varying lengths; for
-instance, when $n = 32 = 100000_2$, the carry-lengths range
-from $0$---whenever you increment an even integer---to $5$---when you
-increment $31 = 11111_2$ to achieve $32 = 100000_2$. \\
-{\em Prove that the average carry as you go from $1$ to $n$ has length $2$.}
-\medskip
-
-\noindent {\it The solution.}
-
-\noindent
-Half of the increments add $1$ to an even number, i.e., a number whose
-binary numeral ends in ``$ \ldots 0$''.  These increments generate no
-carry---or, equivalently, a carry of length $0$.
-
-\noindent
-One-quarter of the increments, which form half of the remaining
-increments, execute a carry of length $1$, because they add $1$ to a
-numeral that ends in ``$ \ldots 01$''.
-
-\noindent
-One-eighth of the increments, which form half of the remaining
-increments, execute a carry of length $2$, because they add $1$ to a
-numeral that ends in ``$ \ldots 011$''.
-
-Continuing in this way, one can show that the average length of a
-carry can be expressed in the form
-\[ 
-\frac{1}{2} \cdot 0 \ + \ \frac{1}{4} \cdot 1 \ + \ \frac{1}{8} \cdot
-3 \ + \ \frac{1}{16} \cdot 4 \ + \ \cdots
-\]
-Using techniques that we cover in Chapter~\ref{ch:Summation}, one
-verifies that this infinite series converges with the sum $2$.  \qed
 
 
