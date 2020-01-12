@@ -1796,6 +1796,160 @@ A {\it Hamiltonian cycle} in an $n$-vertex graph $\g$ is a length-$n$ cycle that
 Stepping back from the structural specifics of $\d_n$, we now see that de Bruijn networks provide us with a {\em bounded-degree}---specifically, a degree-$2$---family of networks each of whose constituent digraphs has diameter that is {\em logarithmic} in its size!  In this regard, at least, de Bruijn networks have exactly the same cost-performance as hypercubes---both graphs have $2^n$-vertices and diameter $n$---{\em but the de Bruijn networks achieve this with bounded degrees}.  Even more dramatic:  It has been shown that sophisticated algorithmic techniques can achieve roughly equivalent computational efficiency, on a broad range of significant computational problems, using de Bruijn networks as using like-sized hypercubes \cite{AnnexsteinBR90, BermondP89, Ullman84}.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Exercises}
+
+
+\subsection{Formal definition of mesh graphs}
+%\label{Exercice:FormalDefinitionMesh}
+
+\noindent \textit{The aim.}
+The definition of mesh presented in chapter~\ref{ch:Graphs1}
+is very easy to capture with a drawing.
+We formalize here the precise definition using a mathematical language. 
+\medskip
+
+\noindent \textit{The problem.}
+Formalize precisely the definition of mesh  $\m_{m,n}$ and torus $\widetilde{\m}_{m,n}$ graphs
+for positive integers $m, n \in \N^+$.
+
+Same for torus graphs.
+\medskip
+
+%\noindent \textit{The solution.}
+%The  {\it vertex-set} is the same for both graphs:
+%
+%\begin{eqnarray*}
+%\n_{\fm_{m,n}} \ = \ \n_{\widetilde{\fm}_{m,n}}
+%  & = & 
+%\{1, \ 2, \ldots, \ m\} \ \times \ \{1, \ 2, \ldots, \ n\} \\
+%  & = & 
+%\big\{ \langle i, \ j \rangle \ \ | \ \ 
+%\big[ i \in \{1, \ 2, \ldots, \ m\} \big], \ \
+%\big[ j \in \{1, \ 2, \ldots, \ n\} \big]
+%\big\}
+%\end{eqnarray*}
+%
+%
+%$\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
+%\begin{eqnarray*}
+%\e_{\fm_{m,n}} & = & 
+%\big\{
+%\{ \{ i, j \}, \ \{ i+1, j \} \ \ | \ \
+%1 \leq i < m, \ \ 1 \leq j \leq n \} \\
+%  &  & \hspace*{.1in} \cup
+%\{ \{ i, j \}, \ \{ i, j+1 \} \ \ | \ \
+%1 \leq i \leq m, \ \ 1 \leq j < n \}
+%\big\}
+%\end{eqnarray*}
+%
+%\medskip
+%
+%The subgraph of $\m_{m,n}$ defined by the vertex-set
+%\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
+%  m\}\right], \ \ \left[1 \leq j < n\right]\}
+%\]
+%and all edges both of whose endpoints belong to that set is called the
+%$i$th {\it row} of $\m_{m,n}$
+%Dually, the subgraph of $\m_{m,n}$ defined by the vertex-set
+%\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
+%  n\}\right], \ \ \left[1 \leq i < m\right] \}
+%\]
+%and all edges both of whose endpoints belong to that set is called the
+%$j$th {\it column} of $\m_{m,n}$.
+%
+%
+%\begin{itemize}
+%     \item
+%Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
+%\ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner vertices}
+%(or, just {\it corners}) of $\m_{m,n}$.
+%     \item
+%The path-graph consisting of the vertex-set
+%\[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
+%\langle 1, \ n \rangle \}
+%\]
+%together with all edges of $\m_{m,n}$ both of whose endpoints belong
+%to this set, is the {\it top edge} of $\m_{m,n}$.
+%
+%The other edges of $\m_n$ are defined analogously:
+%
+%\medskip
+%
+%The {\it bottom edge} of $\m_{m,n}$ is the path-graph built upon the
+%vertex-set
+%\[ \{ \langle m, \ 1 \rangle, \ \langle m, \ 2 \rangle, \ldots, \
+%\langle m, \ n \rangle \}
+%\]
+%
+%The {\it left edge} of $\m_{m,n}$ is the path-graph built upon the
+%vertex-set
+%\[ \{ \langle 1, \ 1 \rangle, \ \langle 2, \ 1 \rangle, \ldots, \
+%\langle m, \ 1 \rangle \}
+%\]
+%
+%The {\it right edge} of $\m_{m,n}$ is the path-graph built upon the
+%vertex-set
+%\[ \{ \langle 1, \ n \rangle, \ \langle 2, \ n \rangle, \ldots, \
+%\langle m, \ n \rangle \}
+%\]
+%\end{itemize}
+%\medskip
+%
+%Same for the torus graphs:
+%
+%The subgraph of $\widetilde{\m}_{m,n}$ defined by the vertex-set
+%\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
+%  m\}\right], \ \ \left[1 \leq j \leq n\right]\}
+%\]
+%and all edges both of whose endpoints belong to that set is called the
+%$i$th {\it row} of $\widetilde{\m}_{m,n}$
+%Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the vertex-set
+%\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
+%  n\}\right], \ \ \left[1 \leq i \leq m\right] \}
+%\]
+%and all edges both of whose endpoints belong to that set is called the
+%$j$th {\it column} of $\widetilde{\m}_{m,n}$.
+%\medskip
+
+\noindent \textit{Lesson learned.}
+manipulate mathematical symbols. 
+
+
+%%%
+\subsection{Graph Isomorphism}
+%\label{Exercice:isomorphism}
+
+\noindent \textit{The aim.}
+Recall here the problem:
+Formal proof of Proposition~\ref{prop.graphIsomorphism}. 
+\medskip
+
+\noindent \textit{The problem.}
+The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
+4$ torus $\widetilde{\m}_{4,4}$.
+\medskip
+
+\noindent \textit{Hint.}
+Describe both coding schemes (vertices and edges) successively. 
+
+$\q_4$ is represented by its natural Gray codes,
+where a vertex is coded 4 bits and connected to its four neighbors by complementing 
+the digit in each of the four dimensions.
+\medskip
+
+$\widetilde{\m}_{4,4}$ is the cartesian product between two mono-dimensional rings.
+Each one is composed of the four vertices connected using a Gray code:
+
+$00, 01, 11, 10$
+
+The whole coding is obtained by concatenation of both dimensions.
+\medskip
+
+\noindent \textit{Lesson learned.}
+
+
 \ignore{**********
 
 \begin{prop}
