@@ -846,63 +846,63 @@ Use Proposition~\ref{thm:|NxN|=|N|}.
 
 \subsection{Karatsuba Multiplication} 
 
-\noindent \textit{The aim.}
-The purpose here is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical problem.
-
-\medskip
-
-The classical elementary-school method for computing the base-$2$ product of two $n$-bit integers (using their standard numerals)
-\[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
-is to compute the $n$ partial products:
-\[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
-and to sumthese partial products.
-
-This approach leads to $O(n^2)$ basic operations. 
-
-\medskip
-
-We can do better.
-
-\medskip
-
-Let us first recall the generic divide-and-conquer for designing algorithms.
-\bigskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be decomposed into sub-problems.
-
-Let consider a problem of size $n$ that can be decomposed into $p$ sub-problems.
-(notice, all sub-problems have the same size $n/q$).
-
-\bigskip
-
-\noindent {\bf Principle:}
-\begin{enumerate}
-\item Decompose the problem into $a$ sub-problems of size $\frac{n}{q}$.
-\item Solve those sub-problems.
-\item Reconstruct the solution of the initial problem.
-\end{enumerate}
-
-In general, the sub-problems are solved recursively (at least until a certain threshold value of the parameter, where the base case(s) govern the computation).
-
-The time-cost of the computation is governed by the following expression:
-\[  T(n) \ = \ p \cdot T(\frac{n}{q}) + c_1(n) + c_3(n) \] 
-where $c_1(n)$ and $c_3(n)$ are the costs of phases (1) and (3).
-\end{minipage}
-}
-\bigskip
+%\noindent \textit{The aim.}
+%The purpose here is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical problem.
+%
+%\medskip
+%
+%The classical elementary-school method for computing the base-$2$ product of two $n$-bit integers (using their standard numerals)
+%\[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
+%is to compute the $n$ partial products:
+%\[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
+%and to sumthese partial products.
+%
+%This approach leads to $O(n^2)$ basic operations. 
+%
+%\medskip
+%
+%We can do better.
+%
+%\medskip
+%
+%Let us first recall the generic divide-and-conquer for designing algorithms.
+%\bigskip
+%
+%\noindent \fbox{
+%\begin{minipage}{0.95\textwidth}
+%{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be decomposed into sub-problems.
+%
+%Let consider a problem of size $n$ that can be decomposed into $p$ sub-problems.
+%(notice, all sub-problems have the same size $n/q$).
+%
+%\bigskip
+%
+%\noindent {\bf Principle:}
+%\begin{enumerate}
+%\item Decompose the problem into $a$ sub-problems of size $\frac{n}{q}$.
+%\item Solve those sub-problems.
+%\item Reconstruct the solution of the initial problem.
+%\end{enumerate}
+%
+%In general, the sub-problems are solved recursively (at least until a certain threshold value of the parameter, where the base case(s) govern the computation).
+%
+%The time-cost of the computation is governed by the following expression:
+%\[  T(n) \ = \ p \cdot T(\frac{n}{q}) + c_1(n) + c_3(n) \] 
+%where $c_1(n)$ and $c_3(n)$ are the costs of phases (1) and (3).
+%\end{minipage}
+%}
+%\bigskip
 
 \noindent \textit{The problem.}
-Say that we have the earlier-mentioned $n$-bit numbers $A$ and $B$.  Let us assume that $n$ is a very large power of $2$: $n=2^k$ for some positive integer $k$.
+Say that we have two $n$-bit numbers $A$ and $B$.  
+Let us assume that $n$ is a very large power of $2$: $n=2^k$ for some positive integer $k$.
 
 The goal is to compute the product $A \times B$ in fewer operations than the classic $O(n^2)$.
-
 \medskip
 
 \noindent \textit{A first solution.}
 The divide-and-conquer version of this problem is to break each integer into two parts
-of $n/2$ bits each:
+of $n/2$ bits each as follows:
 
 $A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$
 
@@ -949,11 +949,11 @@ $T(n) = 3.T(n/2) + \Theta (n) = n^{\log_2 3}$
 \subsection{Computing Fibonacci Numbers Fast}
 \label{sec:FastFibo}
 
-\noindent \textit{The aim.} 
-Show a new computational scheme for the Fibonacci numbers.
-
-Notice that it is generic and related to the scheme of fast exponentiation.
-\medskip
+%\noindent \textit{The aim.} 
+%Show a new computational scheme for the Fibonacci numbers.
+%
+%Notice that it is generic and related to the scheme of fast exponentiation.
+%\medskip
 
 
 \noindent \textit{The problem.} Verify the following expression and develop an argument for its interest.
@@ -975,7 +975,8 @@ $F(2) = F(1)^2+F(0)^2 = 2$
 $F(3) = (2.F(0)+F(1)).(F(1)) = 3$
 \medskip
 
-Let assume for proving the induction step that the property holds at rank $n$ for both $F(2n)$ and $F(2n+1)$ and compute $F(2(n+1))$:
+Let assume for proving the induction step that the property holds at rank $n$ 
+for both $F(2n)$ and $F(2n+1)$ and compute $F(2(n+1))$:
 
 Apply first the definition of Fibonacci numbers: 
 
@@ -1027,7 +1028,6 @@ whose depth is logarithmic.
         \label{fig:fastFibo13}
 \end{center}
 \end{figure}
-
 The conclusion is that
 any Fibonacci number $F(n)$ can be computed very fast in $log_2 (n)$ steps.
 
@@ -1035,14 +1035,16 @@ any Fibonacci number $F(n)$ can be computed very fast in $log_2 (n)$ steps.
 
 \subsection{Cassini's Identity}
 
-\noindent \textit{The aim.}
-Prove a classical identity involving Fibonacci numbers, which is a nice example of proof by recurrence.
-\medskip
+%\noindent \textit{The aim.}
+%Prove a classical identity involving Fibonacci numbers, which is a nice example of proof by recurrence.
+%\medskip
 
 \noindent \textit{The problem.}
 Prove the following expression:
 
 $F(n-1).F(n+1) = F(n)^2 + (-1)^{n+1}$ for $n \geq 1$
+
+where $F(n)$ is the n\textit{th} Fibonacci number.
 \medskip
 
 %Let check the expression on the first ranks:
@@ -1084,12 +1086,12 @@ This concludes the proof.
 
 \subsection{Lucas Numbers} 
 
-\noindent \textit{The aim.}
-Fibonacci progression is the most popular and the most simple Definition of Lucas' numbers
-
+%\noindent \textit{The aim.}
+%Fibonacci progression is the most popular and the most simple Definition of Lucas' numbers
+%
 \textbf{Definition.}
 Given the two starting numbers $L(0) = 1$ and $L(1) = 3$, 
-the other Lucas numbers are obtained by the same progression as Fibonacci: 
+the Lucas numbers are obtained by the same progression as Fibonacci: 
 
 $L(n+1) = L(n)+L(n-1)$.
 \medskip
@@ -1185,7 +1187,10 @@ which concludes the proof.
 Extension.
 
 Using a similar approach, we obtain $L(n) = F(n+2)-F(n-2)$. 
-What happens if we generalize? Easy calculations lead to the following results:
+What happens if we generalize? 
+\medskip
+
+Easy calculations lead to the following results:
 \medskip
 
 $2.L(n) = F(n+3) + F(n-3) $
@@ -1238,32 +1243,33 @@ $= F(n+k) + (-1)^{k-1}F(n-k) + F(n+k-1) + (-1)^{k-2}F(n-(k-1))$
 $= F(n+k) +  F(n+k-1) + (-1)^{k-1}(F(n-k) - F(n-k+1))$
 
 The final result is obtained by applying twice the definition of the Fibonacci numbers.
-\medskip
-
-\noindent \textit{Lesson learned.}
-This exercice is a good example of the proof of a non straightforward recurrence which involves two integers.
+%\medskip
+%
+%\noindent \textit{Lesson learned.}
+%This exercice is a good example of the proof of a non straightforward recurrence which involves two integers.
 
 \end{itemize}
 
 
 \subsection{Binomial coefficients}
 
-\noindent \textit{The aim.}
-
-xx
-\medskip
-
+%\noindent \textit{The aim.}
+%
+%xx
+%\medskip
+%
 \noindent \textit{The problem.}
-
 Prove Proposition~\ref{thm:pascal-binom} via the double induction
 outlined in the text.
+\medskip
+
+\noindent \textit{The solution.}
 
 
 
 \subsection{Solving a bilinear recurrence by a linear system}
 
 \noindent \textit{The problem.}
-
 The goal here is to determine the values of  $U_n$
 
 Solve $U_{n} = \frac{1}{2}.U_{n-1} + \frac{1}{2}.U_{n+1}$
@@ -1333,10 +1339,10 @@ $= \frac{1}{2} \left(F(m).L(n) + F(n).(L(m)\right)$
 \section{Chapter 10}
 
 \subsection{Application of the Fundamental Theorem of Arithmetic}
-
-\noindent \textit{The aim.}
-Significant application of the Fundamental Theorem of Arithmetic~\ref{thm:Fund-Thm-Arith}.
-\medskip
+%
+%\noindent \textit{The aim.}
+%Significant application of the Fundamental Theorem of Arithmetic~\ref{thm:Fund-Thm-Arith}.
+%\medskip
 
 \noindent \textit{The problem.}
 For all $\langle x,y \rangle \in \N^+ \times \N^+$
@@ -1347,19 +1353,14 @@ verify function $\a$'s bijectiveness.
 \medskip
 
 \noindent \textit{The solution.}
-xx
-\medskip
 
-\noindent \textit{Lesson learned.}
+\medskip
+%
+%\noindent \textit{Lesson learned.}
 
 
 
 \subsection{The average length of a carry in a binary counter}
-
-{\Arny The analysis here involves geometric sums, so this could be an exercise for SUMMATION.  Counters are discusses in NUMBERS3.  I would vote to put this in NUMBERS3.}
-
-\noindent {\it The aim.}
-\medskip
 
 \noindent {\it The problem.}
 %
@@ -1421,11 +1422,11 @@ Why is this the case?
 
 \subsection{more about the Birthday paradox}
 
-\noindent \textit{The aim.}
-An interesting variant of the birthday puzzle
-\medskip
-
-\noindent \textit{The problem.}
+%\noindent \textit{The aim.}
+%An interesting variant of the birthday puzzle
+%\medskip
+%
+%\noindent \textit{The problem.}
 Determine the
 probability of a student to be born the same day as me.
 \medskip
@@ -1435,10 +1436,10 @@ probability of a student to be born the same day as me.
 
 
 \subsection{A property about binomial coefficients}
-
-\noindent \textit{The aim.}
-xx
-\medskip
+%
+%\noindent \textit{The aim.}
+%xx
+%\medskip
 
 \noindent \textit{The problem.}
 Prove the following property by two ways (recurrence and by using a combinatorial argument
@@ -1460,12 +1461,12 @@ $k.{n \choose k} = n.{{n-1} \choose {k-1}}$
 
 \subsection{Formal definition of mesh graphs}
 \label{Exercice:FormalDefinitionMesh}
-
-\noindent \textit{The aim.}
-The definition of mesh presented in chapter~\ref{ch:Graphs1}
-is very easy to capture with a drawing.
-We formalize here the precise definition using a mathematical language. 
-\medskip
+%
+%\noindent \textit{The aim.}
+%The definition of mesh presented in chapter~\ref{ch:Graphs1}
+%is very easy to capture with a drawing.
+%We formalize here the precise definition using a mathematical language. 
+%\medskip
 
 \noindent \textit{The problem.}
 Formalize precisely the definition of mesh  $\m_{m,n}$ and torus $\widetilde{\m}_{m,n}$ graphs
@@ -1566,21 +1567,21 @@ Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the vertex-set
 \]
 and all edges both of whose endpoints belong to that set is called the
 $j$th {\it column} of $\widetilde{\m}_{m,n}$.
-\medskip
-
-\noindent \textit{Lesson learned.}
-manipulate mathematical symbols. 
+%\medskip
+%
+%\noindent \textit{Lesson learned.}
+%manipulate mathematical symbols. 
 
 
 %%%
 \subsection{Graph Isomorphism}
 \label{Exercice:isomorphism}
 
-\noindent \textit{The aim.}
-Recall here the problem:
-Formal proof of Proposition~\ref{prop.graphIsomorphism}. 
-\medskip
-
+%\noindent \textit{The aim.}
+%Recall here the problem:
+%Formal proof of Proposition~\ref{prop.graphIsomorphism}. 
+%\medskip
+%
 \noindent \textit{The problem.}
 The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
 4$ torus $\widetilde{\m}_{4,4}$.
