@@ -262,7 +262,11 @@ For every positive integer $m$, let {\bf P}$(m)$ be the proposition
 \[  1 + 2 + \cdots + m \ = \ {1 \over 2} m(m+1) \]
 We proceed according to the Principle's prescribed format of an inductive argument.
 
+\smallskip
+
 Because ${1 \over 2}(1+1) = 1$, proposition {\bf P}$(1)$ is true.
+
+\smallskip
 
 Let us assume, for the sake of induction, that proposition {\bf P}$(m)$ is true, and consider the summation
 \[ 1 + 2 + \cdots + m + (m+1) \]
@@ -281,7 +285,7 @@ We have thus shown that
 {\em and}
 {\bf P}$(m+1)$ is true whenever {\bf P}$(m)$ is true
 \end{itemize}
-The Principle of Finite Induction assures us, then, that {\bf P}$(n)$ is true for all positive integers $n$.  \qed
+The Principle of Finite Induction now assures us that {\bf P}$(n)$ is true for all positive integers $n$.  \qed
 \end{proof}
 
 
@@ -402,6 +406,8 @@ No two of $P_1$, $P_2$, $P_3$ know each other.  In this case, $P_1$, $P_2$, and 
 \end{itemize}
 This disjunction completes the proof.
 
+\smallskip
+
 We close the proof by noting that nothing we have stated precludes the possibility that {\em both} option A {\em and} option B are true!  \qed
 \end{proof}
 
@@ -464,8 +470,7 @@ Here again, we provide just illustrative examples of pervasive phenomena.
 
 Experimentation (or, empiricism) is an invaluable guide both in the sciences and in mathematics, but these two domains of inquiry acquire quite different kinds of guidance from the outcomes of experiments.
 
-The goal of {\em science}---physical science, biological science, social science---is always to better understand the world---usually in order to explain and predict the evolution of observable phenomena.  The scientific method seeks to objectively explain natural phenomena by the use of reproducible demonstrations.  The process is always the same: observe and experiment with the goal of generating hypotheses and, thereby, predictions---and then study the consequences of these hypotheses in order to test and evaluate them.  A theory is accepted as valid only in proportion to how well it fits with observed facts and predicts not-yet-observed facts related to the target phenomena.  Disproofs usually lead to a new theory which enriches understanding.
-This new theory can be either {\em revolutionary}, as, e.g., when the phlogiston theory was replaced by an understanding of oxidation, or {\em evolutionary}, as when Newton's theory of gravitation was improved via relativity theory and quantum theory so that it could better explain and predict both large-scale and microscopic phenomena.
+The goal of {\em science}---physical science, biological science, social science---is always to better understand some aspect of the universe---usually in order to explain and predict the evolution of observable phenomena.  The scientific method seeks to objectively explain natural phenomena by the use of reproducible demonstrations.  The process is always the same: observe and experiment with the goal of generating hypotheses and, thereby, predictions---and then study the consequences of these hypotheses in order to test and evaluate them.  A theory is accepted as valid only in proportion to how well it fits with observed facts and predicts not-yet-observed facts related to the target phenomena.  Disproofs usually lead to a new theory which enriches understanding.  This new theory can be either {\em revolutionary}, as, e.g., when the phlogiston theory of combustion was replaced by an understanding of oxidation, or {\em evolutionary}, as when Newton's theory of gravitation was improved via relativity theory and ten quantum theory so that it could better explain and predict both large-scale and microscopic phenomena.
 
 \smallskip
 
@@ -567,12 +572,12 @@ The Principle of (Finite) Induction tells us that {\bf P}$(n)$ is true for all $
 \subsubsection{A {\em false ``proof''} by induction: The critical base case}
 \label{sec:false-induction}
 
-Let us (mis)use the Principle of Finite Induction to craft a fallacious ``proof" of the following absurd ``fact''.
+Let us intentionally {\em mis}-use the Principle of Finite Induction to craft a fallacious ``proof" of the following absurd ``fact'' about horses that are monochromatic---i.e., each horse has a single color.
 
 \medskip
 
-\noindent {\bf Non-Proposition.}
-All monochromatic horses are the same color.
+\noindent {\bf {\em Non}-Proposition.}
+All monochromatic horses have the same color.
 
 \smallskip
 
@@ -614,7 +619,11 @@ This analysis brings us to the critical issue of how to select the ``small'' cas
 
 By definition, an inductive proof is required to cover all cases (``for all positive integers, \ldots").  It accomplishes this by explicitly treating some ``small" cases individually and then showing that the inductive rule at the heart of the argument---which resides implicitly within the inductive assumption---enables one to generate all non-``small" cases from the ``small" cases.
 
-In some domains, it is rather simple to determine what cases provide an adequate set of ``small" cases.  This is usually the case, e.g., when one solves numerical recurrences, as in Chapter~\ref{ch:Recurrences}, because the required ``small" cases often coincide with a target recurrence's boundary conditions.  In contrast, the challenge of verifying assertions about, say, graphs, as in Chapters~\ref{ch:Graphs1} and~~\ref{ch:Graphs2}, is quite often not at all easy.  For newly proposed propositions, we may not know {\em a priori} how the extension step of an inductive argument reduces the graph size $n$ until we understand relevant characteristics of general $n$-vertex graphs.  Because of this, when arguing about complex objects such as graphs , it is a good practice to ``play'' with several small graph sizes initially.  Hopefully, in addition to giving your inductive argument a robust base case, such ``playing'' will give you valuable intuition for the general case of the induction.
+In some domains, it is rather simple to determine what cases provide an adequate set of ``small" cases.  This is usually the case, e.g., when one solves numerical recurrences, as in Chapter~\ref{ch:Recurrences}, because the required ``small" cases often coincide with a target recurrence's boundary conditions.  (Situations whose structures are founded upon sequences such as the Fibonacci numbers and the binomial coefficients often require multiple ``small" instances for the base case of an induction.)
+
+\index{Fibonacci numbers} \index{binomial coefficients}
+
+In contrast, the challenge of verifying assertions about, say, graphs, as in Chapters~\ref{ch:Graphs1} and~\ref{ch:Graphs2}, is quite often not at all easy.  For newly discovered propositions, we may not know {\em a priori} how the extension step of an inductive argument reduces the graph size $n$ until we understand relevant characteristics of general $n$-vertex graphs.  Because of this, when arguing about complex objects such as graphs , it is a good practice to ``play'' with several small graph sizes initially.  Hopefully, in addition to giving your inductive argument a robust base case, such ``playing'' will give you valuable intuition for the general case of the induction.
 
 
 \subsubsection{The method of undetermined coefficients}
@@ -634,12 +643,13 @@ There are many techniques of analysis that yield {\em approximations} to the val
 1 \ + \ 4 \ + \cdots + \ (n-1)^2 \ + \ n^2 
  \ \ = \ \
 {1 \over 3} n^3 \ + \ {1 \over 2} n^2 \ + \ {1 \over 6} n
-\end{equation}}
-Moving beyond the purely mathematical realm, there are myriad ``exhaustive-search'' computational heuristics\footnote{{\it Particle swarm optimization} \cite{KennedyE95} and {\it simulated annealing} \cite{KirkpatrickGV83} are two popular such heuristics.}~that provide {\em approximately optimal} values for various optimization problems---but not {\em exactly optimal} values.
+\end{equation}
+You will be asked to verify this as an exercise.}
+Moving beyond the purely mathematical realm, there are myriad ``exhaustive-search'' computational heuristics\footnote{{\it Particle swarm optimization} \cite{KennedyE95} and {\it simulated annealing} \cite{KirkpatrickGV83} are two popular such heuristics.}~that provide values for various optimization problems which have sometimes been found to be rather good in practice.  The problem with such techniques is that one often must let these heuristics run for a very long time before their profferred values are even close to optimal.
 
 \medskip
 
-The {\em Method of Undetermined Coefficients}, which we now describe, can sometimes refine the approximate results from various sources to exact results that one can then verify via induction.  We illustrate the method by deriving a formula for the sum of the first $n$ integers---assuming that we know that this sum has the form of a quadratic (degree-$2$) polynomial in $n$ but that we do not know the coefficients of the polynomial.
+The {\em Method of Undetermined Coefficients}, which we now describe, can sometimes refine the approximate results from various sources to provide exact results that one can then verify via induction.  We illustrate the method by deriving a formula for the sum of the first $n$ integers---assuming that we know that this sum has the form of a quadratic (degree-$2$) polynomial in $n$ but that we do not know the coefficients of the polynomial.
 
 \smallskip
 
@@ -744,7 +754,6 @@ S^{(2)}_n \ \eqdef \ \sum_{i=1}^n \ i^2
  & = & {1 \over 3} n^3 \ + \ {1 \over 2} n^2 \ + \ {1 \over 6} n
 \end{eqnarray}
 \end{prop}
-
 
 The target quantity $S^{(2)}_n$ in the proposition is often expressed
 in a more aesthetic form:
@@ -1073,23 +1082,28 @@ You are attending a conference and wander into a lecture that has 367 attendees 
 We present in this section a special type of nontraditional proof that complements well the more traditional proofs (which build on arguments from algebra, analysis, number theory, \ldots).  The underlying idea is to employ representations of (natural) numbers via geometrical, or, pictorial
 patterns---construing the term ``pattern'' very broadly---e.g., view numbers as sets of tokens or as dimensions of some geometric object.  We remark that this manner of reasoning has its origins in antiquity:
 
-\begin{quote}
+\medskip
+
+\index{Plato (quote regarding geometry)}
+
 {\it Que nul n'entre ici s'il n'est g\'eom\`etre.}
 
 Nothing enters here, save geometry.
 
-\hspace*{2in}Plato, Greek philosopher (4th century BC)\\
-\hspace*{2in}written in front of the \textit{Academy}, the \\
-\hspace*{2in}school founded by Plato in Athens. 
-\end{quote}
+\hfill {\small \begin{tabular}{l}
+Plato, Greek philosopher (4th century BC) \\
+written in front of his \textit{Academy}, in Athens. 
+\end{tabular} }
+
 \medskip
 
+\noindent
 We develop two examples of such proofs.
 
 \medskip
 
 \noindent {\it Expanding the expression $(n+1)^2$}.
-In this example, we employ basic geometrical objects---in this case the surfaces of squares and rectangles---to solve the underlying problem.  Let us focus on the following equation:
+In this example, we employ basic geometrical objects---in this case the surfaces of squares and rectangles---to solve the underlying problem.  Let us focus on the following well-known equation:
 \begin{equation}
 (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1.
 \end{equation}
@@ -1123,14 +1137,14 @@ plus & \\
 \medskip
 
 \noindent
-The preceding geometric validation does not ``look like'' the proofs whose stilted forms we struggled with in our earlier student years.  But our geometrical proof is as valid as any algebraic one---and it can be a lot more fun to come up with.
+The preceding geometric validation does not ``look like'' the proofs whose highly structured forms we struggled with in high school.  But: (1) Our geometrical proof is as valid as any algebraic one; (2) It can be a lot more fun to come up with; (3) It may trigger reasoning that might lead to new discoveries.
 
 \bigskip
 
 \index{Al-Khwarizmi!Muhammad ibn Musa al-Khwarizmi}
 
 \noindent {\it Solving a quadratic equation}.
-We now develop a more complex example of pictorial reasoning.  The spirit of the following proof was provided by the 12th-century mathematician Al Khwarizmi, whose seminal work \cite{Al-Khwarizmi} was indispensable in transmitting mathematical and computational ideas into Europe.  The following proof builds on Al Khwarizmi's work on solving the second-degree equation
+We now develop a more complex example of pictorial reasoning.  The spirit of the following proof was provided by the 12th-century mathematician Al Khwarizmi, whose seminal work \cite{Al-Khwarizmi} was indispensable in transmitting mathematical and computational ideas into Europe.  The following proof builds on his work on the second-degree equation
 \begin{equation}
 \label{eq:al-Khwarizimi}
 x^2 + 10 x \ = \ 39
@@ -1200,16 +1214,16 @@ Indeed, we can---but do not need to!---verify this value algebraically.
 
 \medskip
 
-A final remark: The pictorial/geometric method we that have just employed is not ``complete''---it yields only the {\em positive} solution for $x$.  As we discuss at length in Sections~\ref{sec:fund-thm-algebra} and~\ref{sec:poly-by-radical}---see, in particular, Theorem~\ref{thm:fund-thm-algebra}---there exists another solution for $x$, because its defining polynomial is {\em quadratic} (i.e., of base $2$).  At the time of Al Khwarizmi {\em and} for the defining equation's intended goal of determining the area of a plot of land, a single (positive) solution for $x$ was sufficient.  That said, there are situations wherein one has need of both roots of a quadratic
-polynomial equation, and the algebraic solution methods will produce both solutions (although not always in a perspicuous or intuitive way).
+A final remark: The pictorial/geometric method which we have just employed is not ``complete''---it yields only the {\em positive} solution for $x$.  As we discuss at length in Sections~\ref{sec:fund-thm-algebra} and~\ref{sec:poly-by-radical}---see, in particular, Theorem~\ref{thm:fund-thm-algebra}---there exists another solution for $x$, because its defining polynomial is {\em quadratic} (i.e., of degree $2$).  In the light of the defining equation's intended goal---namely, to determine the area of a plot of land---the
+single (positive) solution for $x$ that Al Khwarizmi's tools yielded was sufficient.  That said, there are situations wherein one has need of both roots of a quadratic polynomial equation, and the algebraic solution methods will produce both solutions (although not always in a perspicuous or intuitive way).
+
+\smallskip
 
 Returning to equation (\ref{eq:al-Khwarizimi}):  the second solution for $x$  is $x' = -13$, as is witnessed by the equation
 \[ x^2 + 10x - 39 \ = \ (x-3)(x+13) \]
-The surprising factin this example is that \\
-\hspace*{.2in}{\em $64$ is also the square of $-8$} \\
-so, {\em for this example}, the negative solution-value for $x$ can also be obtained via our geometric argument:
+The serendipitous fact in this example is that, because $64$ is the square of $-8$, as well as of $+8$, {\em for this example}, the negative solution-value for $x$ can also be obtained via our geometric argument:
 \[ x - 5 \ = \ -8 -5 \ = \ -13 \]
-This aside, geometric arguments can be fun to develop!
+This aside, pictorial/geometric arguments can be fun to develop and can trigger unexpected discoveries!
 
 
 \subsection{Combinatorial Intuition and Argumentation}
@@ -1221,10 +1235,10 @@ Chapter~\ref{ch:combinatorics} introduces the foundations of this subfield, foll
 \subsubsection{Summation as a selection problem}
 \label{sec:comb-sum-of-first-n}
 
-Sometimes combinatorial argumentation can be used in unexpected ways.  We use it here to sum the first $n$ integers, i.e., to derive an explicit expression for summation $S_n$:
-\[ S_n \ \ = \ \ 1 \ + \ 2 \ + \cdots + \ n \]
+Sometimes combinatorial argumentation can be used in unexpected ways.  We illustrate that fact here by   combinatorially deriving an explicit expression for the summation
+$S_n \ \ = \ \ 1 \ + \ 2 \ + \cdots + \ n$.
 
-Our summation technique begins, unexpectedly, with the problem of counting the number of ways---call it $C(n,2)$---of selecting two items from a set of $n$ items.  We describe this selection in a somewhat unconventional way.
+Our summation begins, unexpectedly, by counting the number of ways---call it $C(n,2)$---of selecting two items from a set of $n$ items.  We describe this selection in a somewhat unconventional way.
 \begin{itemize}
 \item
 The bigger integer of the two we are selecting can be chosen in $n$ ways, corresponding to the $n$ elements of the set
@@ -1232,7 +1246,7 @@ The bigger integer of the two we are selecting can be chosen in $n$ ways, corres
 \item
 If the bigger item was integer $k$, then we can select the second, smaller, one in $k-1$ ways, from the integers smaller than $k$.
 \end{itemize}
-We thereby observe the following summation.
+We thereby observe the following summation, which yields the desired value of $S_n$.
 \begin{eqnarray*}
 C(n,2) & = & n \ + \ \sum_{k=2}^n \ C(k-1,1) \\
        & = & n \ + \ \sum_{k=2}^n \ (k-1) \\
@@ -1243,8 +1257,10 @@ C(n,2) & = & n \ + \ \sum_{k=2}^n \ C(k-1,1) \\
 \subsubsection{Summation as a rearrangement problem}
 \label{sec:summation-via-Fubini}
 
-The proof technique we describe here is a combination of geometry and combinatorial rearrangement of a configuration of objects.  The second component of this pair incurs an intellectual debt to Guido Fubini, whose eponymous {\em Principle} mandates {\em looking at configurations from multiple points of view and garnering new intuitions from each}.
+Our next proof technique is a combination of geometry and combinatorial rearrangement of a configuration of objects.  The second component of this pair incurs an intellectual debt to Guido Fubini, whose eponymous {\em Principle} mandates {\em looking at configurations from multiple points of view and garnering new intuitions from each}.
 \index{Fubini, Guido} \index{Fubini's Principle}
+
+\smallskip
 
 We apply this two-stage reasoning paradigm to the problem of evaluating the summation $S_n \ = \ 1 + 2 + \cdots + n$.
 
@@ -1360,13 +1376,14 @@ Throughout the text, exercises are marked with 0 or 1 or 2 occurrences of the sy
 For all positive integers $n$: 
 \[ S_2(n) \ \ \eqdef \ \
 1 + 2^2 + \cdots  + n^2 \ \ = \ \
-\frac{1}{3} n^3 \ + \ \frac{1}{2} n^2 \ + \ \frac{1}{6} n \]
+%\frac{1}{3} n^3 \ + \ \frac{1}{2} n^2 \ + \ \frac{1}{6} n \]
+{1 \over 6} n (n+1)(2n+1) \]
 
   \item
 For all positive integers $n$:
 \[ S_3(n) \ \ \eqdef \ \
 1 + 2^3 + \cdots  + n^3 \ \ = \ \
-\frac{1}{4} n^2 \cdot (n+1)^2  \]
+\frac{1}{4} n^2 (n+1)^2  \]
   \end{enumerate}
 
 
@@ -1408,7 +1425,7 @@ If $2^a 3^b \ = \ 2^c 3^d$, then $a=c$ and $b=d$.
 $\oplus$
 {\bf Bi-colored necklaces in tubes}
 
-{\sc Lesson:} Some proofs are closely tailored to the specifics of the target result. 
+{\sc Lesson:} Some of the best proofs exploit the specifics of the problem. 
 
 \smallskip
 
@@ -1446,6 +1463,23 @@ In part (a) of the figure, the necklace is unadorned; in part (b) of the figure,
 \begin{prop}
 For any bi-colored necklace of the form described---i.e., with even numbers of jewels, black jewels, and white jewels---there is a way to position the tube so that inside the tube and outside the tube, there are equally many jewels, equally many black jewels, and equally many white jewels.
 \end{prop} 
+
+\item
+{\bf There is only one $1$}
+
+{\sc Lesson:} There is precisely one multiplicative identity for the integers.
+
+\smallskip
+
+{\em Prove the following assertion by contradiction.}
+
+\begin{prop}
+The integer $1$ is the unique multiplicative identity for the integers.  In other words, if the positive integer $a$ satisfies {\em either} the equation
+\[ a \times x \ = \ x \]
+{\em or} the equation
+\[ x \times a \ = \ x \]
+for all positive integers $x$, then $a = 1$.
+\end{prop}
 
 
 
