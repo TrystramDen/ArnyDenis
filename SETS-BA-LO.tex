@@ -217,14 +217,28 @@ You should satisfy yourself that the biggest (i.e., {\em most populous}) and sma
 \label{sec:operations-on-sets}
 
 \index{$S \cap T$: set intersection} \index{set!operations!intersection}
-Given two sets $S$ and $T$, as depicted schematically in Fig.~\ref{fig:setInitial}, we denote by:
-\begin{figure}[htb]
+Focus on two sets, $S$ and $T$, as depicted schematically in Fig.~\ref{fig:setInitial}.\begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths/setInitial}
-        \caption{Two sets $S$ and $T$.}
+        \caption{Two (overlapping) sets $S$ and $T$.}
         \label{fig:setInitial}
 \end{center}
 \end{figure}
+
+\bigskip
+
+\index{Venn diagram} \index{Venn, John}
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+Pictorial representations of sets such as those in Fig.~\ref{fig:setInitial} and its kindred illustrations are called {\it Venn diagrams}, in honor of John Venn, who employed them in his 1880 paper, ``On the diagrammatic and mechanical representation of propositions and reasonings", which appeared in the {\it Philosophical Magazine and Journal of Science}.
+\end{minipage}
+}
+
+\bigskip
+
+\noindent
+We denote by:
 \begin{itemize}
 \item
 $S \cap T$ the {\it intersection} of $S$ and $T$; see Fig.~\ref{fig:setIntersection}.
@@ -279,7 +293,7 @@ The elements of $S \setminus T$ belong to $S$ but {\em not} to $T$:
 \[ [s \in S \setminus T] \ \ \mbox{ means } \ \
 \Big[ [s \in S] \ \mbox{\bf and } \ [s \not\in T] \Big]
 \]
-(Particularly in the United States, one often encounters the notation ``$S-T$'' instead of ``$S \setminus T$.'')
+(Particularly in the United States, one often encounters the notation ``$S-T$'' instead of ``$S \setminus T$''.)
  \index{$S \setminus T$: set difference} \index{$S - T$: set difference}
  \index{set!operations!set difference}
 \end{itemize}
@@ -2169,6 +2183,45 @@ Throughout the text, exercises are marked with 0 or 1 or 2 occurrences of the sy
 
 \begin{enumerate}
 \item
+{\bf What do power sets look like?}
+
+{\sc Lesson:} Enhance understanding of power sets, subsets, supersets, etc.
+
+\smallskip
+
+Focus on a set $S$ and on its power set $\p(S)$.
+  \begin{enumerate}
+  \item
+{\em Prove the following assertions.}
+
+\begin{prop}
+{\bf (a)}
+The biggest (i.e., {\em most populous}) element of the power set $\p(S)$ is the set $S$.
+
+{\bf (b)}
+The smallest (i.e., {\em least populous}) element of $\p(S)$ is the empty set $\emptyset$.
+\end{prop}
+
+  \item
+Say that contains the subsets $A$ and $B$ of set $S$.
+
+{\em Explain which of the following sets belong to $\p(S)$.}
+\begin{enumerate}
+\item
+$A \cup B$
+\item
+$A \setminus B$
+\item
+$\p(A)$
+\item
+$A \times B$
+\item
+$S \setminus A$
+\end{enumerate}
+  \end{enumerate}
+
+
+\item
 {\bf Justifying De Morgan's laws}
 
 {\sc Lesson:} Analyzing operations on sets
@@ -2185,12 +2238,12 @@ We justified one of De Morgan's laws in the text.  {\em Justify the other one:}
 
 \smallskip 
 
-{\em Define the following two set-operations from union and set difference:}
+{\em Define the following two set-operations by means of expressions that use only the operations {\sc union} and {\sc set difference}.  Do this in two ways: (i) Algebraically, ending up with an equation of the form (\ref{e.de-morgan}); (ii) Pictorially, using Venn diagrams }
   \begin{enumerate}
   \item
-The operation {\it intersection} (denoted $S \cap T$) isolates all elements that shared by sets $S$ and $T$.
+The operation {\sc intersection} (denoted $S \cap T$) isolates all elements that shared by sets $S$ and $T$.
   \item
-The operation {\it symmetric difference} (denoted $S+T$) isolates all elements that belong to precisely one of $S$ and $T$.
+The operation {\sc symmetric difference} (denoted $S+T$) isolates all elements that belong to precisely one of $S$ and $T$.
   \end{enumerate}
   
 \item
@@ -2211,7 +2264,37 @@ If the collection $\cal S$ of finite sets is closed under the operations of inte
 \end{prop}
 
 \item
-weak vs.~ strong
+{\bf Weak vs.~ strong order relations}
+
+{\sc Lesson:} The negation of a weak order relation is a strong order relation, and vice versa.
+
+\smallskip
+
+{\em Prove the following assertion.}
+
+\begin{prop}
+Let $\rho$ be a strong order relation on a set $S$, and let $\underline{\rho}$ be the weak version of $\rho$.
+
+\smallskip
+
+{\bf (a)}
+$\overline{\underline{\rho}} \ = \ \rho$
+
+\smallskip
+
+In other words, for all $s, t \in S$, \ \ \ 
+$\big[ [s \rho t] \ \mbox{ iff } \ [s \overline{\underline{\rho}} t] \big]$.
+
+\smallskip
+
+{\bf (b)}
+$\overline{\rho} \ = \ \underline{\rho}$
+
+\smallskip
+
+In other words, for all $s, t \in S$, \ \ \
+$\big[ [s \underline{\rho} t]  \  \mbox{ iff } \ [s \overline{\rho} t] \big]$.
+\end{prop}
 
 \end{enumerate}
 
@@ -2230,30 +2313,7 @@ equivalence relation on $S$, in the sense that $=$ refines every
 equivalence relation on $S$.
 
 
-\subsection{Investigations on weak and strong relations}
 
-\noindent \textit{The aim.}
-Verifying that the negation of a weak order-like relation is a strong order-like relation, and vice versa.
-\medskip
-
-\noindent \textit{The problem.}
-\textbf{ Play} with negating strong (weak) relations to get weak (strong) ones.
-
-%{\Arny This refers to Eq.~(\ref{eq:NOT-rho-notation}), so it belongs near Section~\ref{sec:relation}.  
-
- 
-\subsection{Basis on sets}
-
-\noindent \textit{The aim.}
-Handling power of sets.
-\medskip
-
-Let consider a set $S$.
-
-\noindent \textit{The problem.}
-The biggest and smallest elements of
-${\cal P}(S)$ are, respectively, the set $S$ itself and the empty set
-$\emptyset$.
 
 
 \subsection{Propositional logic}
