@@ -509,15 +509,19 @@ To sum up: empirical exploration can be extremely useful in the endeavor of ``do
 \subsection{Proof by (Finite) Induction}
 \label{sec:Induction}
 
-\subsubsection{A second sample proof by induction}
+\subsubsection{Two more sample proofs by induction}
 
 \index{finite induction, principle of}
 In Section~\ref{sec:formal-proof}, we specified the Principle of Finite Induction and exemplified its use by verifying the formula (\ref{eq:sum-first-n1}) for the sum of the first $n$ integers
-(Proposition~\ref{thm:sum-1-to-n-induction1}).  We now provide a second sample application of the Principle.  The proof by induction of the following result complements the constructive proofs of the same result in Proposition~\ref{thm:squares-odd-integers-Gauss}.
+(Proposition~\ref{thm:sum-1-to-n-induction1}).  We now provide two more sample applications of the Principle.
+
+\smallskip
+
+The inductive proof of the following result complements the constructive proofs of the same result in Proposition~\ref{thm:squares-odd-integers-Gauss}.
 
 \begin{prop}
 \label{thm:squares-odd-integers-induction1}
-For all $n \in \N^+$, the $n$th perfect square is the sum of the first $n$ odd integers.  Symbolically:
+For all $n \in \N^+$, the $n$th perfect square is the sum of the first $n$ odd integers. Symbolically:
 \[
 n^2 \ \ = \ \
 %\sum_{k=1}^n \ (2k-1)
@@ -568,6 +572,47 @@ Because $n$ is an arbitrary positive integer, we conclude that {\bf P}$(n)$ is t
 \noindent
 The Principle of (Finite) Induction tells us that {\bf P}$(n)$ is true for all $n \in \N^+$.  \qed
 \end{proof}
+
+Our final sample inductive proof complements the constructive proofs of the same result in 
+Proposition~\ref{thm:sum-finite-geometric-series}(b).
+
+\begin{prop}
+\label{thm:sumof-1/4-induction}
+\[
+S(n) \ \ = \ \
+1 \ + \ {1 \over 4} \ + \ {1 \over 16} \ + \ {1 \over 64} \ + \cdots + \ {1 \over 4^k } \ + \cdots + \ {1 \over 4^n }
+\ \ = \ \  {4 \over 3} \left(1 - {1 \over 4^{n+1}} \right).
+\]
+\end{prop}
+
+\begin{proof}
+Since this is our third proof by induction, we can be a bit sketchier than earlier.  Let {\bf P}$(m)$ 
+denote the assertion
+\[ 1 \ + \ {1 \over 4} \ + \ {1 \over 4^2} \ + \cdots + \ {1 \over 4^m}
+\ \ = \ \  {4 \over 3} \left(1 - {1 \over 4^{m+1}} \right).
+\]
+
+\noindent {\sf Base case.}
+Assertion {\bf P}$(0)$ is true because $S(0) = 4/3$.
+
+\smallskip
+
+\noindent {\sf Inductive hypothesis.}
+Assume that {\bf P}$(m)$ is true for all $m < n$.
+
+\smallskip
+
+\noindent {\sf Inductive extension.}
+\begin{eqnarray*}
+S(n) & = & S(n-1) \ + \ {1 \over 4^n} \\
+        & = & {4 \over 3} \left(1 - {1 \over 4^{n}} \right) \ + \ {1 \over 4^{n}} \\
+        & = & {4 \over 3} \ + \ {1 \over 4^n} \cdot \left( 1  \ - \  {4 \over 3} \right) \\
+        & = & {4 \over 3} \ - \ {4 \over 3} \cdot {1 \over 4^{n+1}}
+\end{eqnarray*}
+This extends the induction, hence completes the proof.
+\qed
+\end{proof}
+
 
 \subsubsection{A {\em false ``proof''} by induction: The critical base case}
 \label{sec:false-induction}
@@ -1098,11 +1143,11 @@ written in front of his \textit{Academy}, in Athens.
 \medskip
 
 \noindent
-We develop two examples of such proofs.
+We develop three examples of such proofs.
 
 \medskip
 
-\noindent {\it Expanding the expression $(n+1)^2$}.
+\noindent {\it (i) Expanding the expression $(n+1)^2$}.
 In this example, we employ basic geometrical objects---in this case the surfaces of squares and rectangles---to solve the underlying problem.  Let us focus on the following well-known equation:
 \begin{equation}
 (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1.
@@ -1143,7 +1188,7 @@ The preceding geometric validation does not ``look like'' the proofs whose highl
 
 \index{Al-Khwarizmi!Muhammad ibn Musa al-Khwarizmi}
 
-\noindent {\it Solving a quadratic equation}.
+\noindent {\it (ii) Solving a quadratic equation}.
 We now develop a more complex example of pictorial reasoning.  The spirit of the following proof was provided by the 12th-century mathematician Al Khwarizmi, whose seminal work \cite{Al-Khwarizmi} was indispensable in transmitting mathematical and computational ideas into Europe.  The following proof builds on his work on the second-degree equation
 \begin{equation}
 \label{eq:al-Khwarizimi}
@@ -1356,7 +1401,7 @@ The mathematical world erupted in controversy over this first-ever use of a comp
 There may be many conjectures currently in mathematical limbo that could be elevated to the status of theorem if some team of mathematicians would feel free to employ computers to offload needed but onerous computational drudgery.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Exercises: Chapter 2}
 
@@ -1368,13 +1413,25 @@ Here are some points:
 1. we are in chapter 2, DoingMaths, thus, the exercises for me should be to illustrate the various prove methodologies
 and not practice (this will be done in the ad hoc chapters...
 
+{\Arny I do not see why we cannot reinforce the kind of samples that we have in the text}
+
 2. I suggest to remove 1.b ii
+
+{\Arny I see that this is consistent with your position in item 1.  We could move this into the SUMMATION chapter -- but the emphasis there is on finding solutions, not verifying them.}
 
 3. The necklace should illustrate mainly "how to model a problem" -- that is crucial in Maths
 
+{\Arny Are you suggesting further text in that problem?  That's great -- bit I am not certain what to say.}
+
 4. You removed several exercises that illustrate Fubini or double counting arguments, I don't understand why...
 
+{\Arny My concern is/was that each exercise must address something concrete that the student has seen, and I did not see those concrete things in some of your exercises.  I just replaced your summing-inverse-powers of $4$ geometric proof ...  but I felt that I had to add the explicit summation earlier to be able to explain the ``exercise" part of the exercise}
+
+{\Arny BTW: I do not recall details, but I did relocate a couple of your exercises to different locations -- where there was the kind of concrete referent that I am talking about.}
+
 5. I added an item with an induction with a heavy initial case, I did not find a more easy one...
+
+{\Arny Of course, as I remark in the text, recurrent summations do give many examples, but they all have the same flavor.  I did not see your example}
 }
 
 \begin{enumerate}
@@ -1509,7 +1566,7 @@ For any bi-colored necklace of the form described---i.e., with even numbers of j
 \end{prop} 
 
 \item
-{\bf There is only one $1$}
+{\bf There is only one $1$ (as a multiplicative identity)}
 
 {\sc Lesson:} There is precisely one multiplicative identity for the integers.
 
@@ -1525,8 +1582,43 @@ The integer $1$ is the unique multiplicative identity for the integers.  In othe
 for all positive integers $x$, then $a = 1$.
 \end{prop}
 
+\item
+{\bf Using {\em geometric} intuition to sum inverse powers of $4$}
 
+{\sc Lesson:} Exploiting geometric intuition toward a sophisticated end.
 
+\smallskip
+
+We turn to a variant of Proposition~\ref{thm:sumof-1/4-induction}.  This time, we focus on the entire infinite summation
+\[ S \ \ = \ \  {1 \over 4} \ + \  {1 \over 4^2} \ + \cdots + \ {1 \over 4^k} \ + \cdots  \]
+and we do so from a geometric point of view.
+
+\smallskip
+
+We prove in Proposition~\ref{thm:sum-finite-geometric-series}(b) that this infinite summation converges to the value ${1 \over 3}$.  A simple way to see this is to multiply the summation $S$ term by term by the fraction $1/4$.  We observe---just by inspection---that the resulting product, which clearly has the value $S/4$, equals $S - 1/4$, so that $S = 1/3$.
+
+\smallskip
+
+There is a charming geometric argument which mimics the preceding conversion of the original summation into a quarter-valued version of itself, followed by a summarizing calculation.  This argument exposes in a compelling way the {\em self-similarity} which underlies the argument.  We get you started on this argument in Fig.~\ref{fig:Sum1over4}.
+ \begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.35]{FiguresMaths/Sum1over4}
+\caption{Partitioning a unit-area isosceles triangle into $4$ sub-triangles, each of area $1/4$.}
+       \label{fig:Sum1over4}
+\end{center}
+\end{figure}
+Observe that we can iterate the partitioning process in the figure on any one of the four sub-triangles of the original triangle---because all four sub-triangles are identical to each other (except for placement and orientation) and are similar to the original triangle.
+
+We have now described the process at a very high level.  Your assignment is to flesh out the details.  Prove that the four sub-triangles
+\begin{itemize}
+\item
+are similar to one another
+\item
+are similar to the original triangle
+\item
+have area which is $1/4$ that of the original triangle
+\end{itemize}
+Assemble these facts into an evaluation of the sum $S$.
 \end{enumerate}
 
 
