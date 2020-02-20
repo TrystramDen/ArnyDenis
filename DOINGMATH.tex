@@ -163,28 +163,28 @@ One finds the formalistic point of view we have just introduced expounded in det
 \smallskip
 
 \index{finite induction, principle of} 
-We now illustrate the formalistic world we have sketched---in a form we have rendered more palatable to humans---by peeking ahead into Section~\ref{sec:major-proof-techniques}, specifically Subsection~\ref{sec:Induction}.  We describe and apply the well-known rule of inference called the {\it principle of finite induction}.  Stated in human-consumable terms, the principle asserts the following.
+We now illustrate the formalistic world we have sketched---in a form we have rendered more palatable to humans---by peeking ahead into Section~\ref{sec:major-proof-techniques}, specifically Subsection~\ref{sec:Induction}.  We describe and apply the well-known rule of inference called the {\it Principle of Finite Induction}.  Stated in human-consumable terms, the Principle asserts the following.
 
 \bigskip
 
-\index{Principle of Finite Induction}
+\index{Principle of Finite Induction} \index{Principle of Finite Induction!weak version}
 
 \noindent %\fbox{
 \hspace*{.1in}\begin{minipage}{0.95\textwidth}
 {\bf The Principle of Finite Induction}
 
 {\em
-Let {\bf P}($k$) be an assertion involving the positive integer $k$.
+Let {\bf P}($n$) be an assertion involving the positive integer $n$.
 
 \hspace*{.15in}{\bf if} one can prove the assertion \\
-\hspace*{.35in}{\bf P}($1$)
+\hspace*{.35in}{\bf P}$(1)$
 
 \hspace*{.15in}{\bf and} one can prove the assertion \\
-\hspace*{.35in}{\bf P}($k$) {\bf implies} {\bf P}($k+1$)
+\hspace*{.35in}{\bf P}$(m)$ {\bf implies} {\bf P}$(m+1)$
 
 \hspace*{.15in}{\bf then} one can {\em infer} the assertion \\
-\hspace*{.35in}{\bf for all} $n$ {\bf P}($n$)
-   \hspace*{.15in}---which is often written symbolically:  $(\forall \ n)$ {\bf P}($n$)
+\hspace*{.35in}{\bf for all} $n$ {\bf P}$(n)$
+   \hspace*{.15in}--- which is often written symbolically:  $(\forall \ n) \mbox{\bf P}(n)$
 }
 \end{minipage} %}
 
@@ -498,6 +498,12 @@ Here again, we provide just illustrative examples of pervasive phenomena.
 \paragraph{C. The elements of {\em empirical} reasoning}
 \index{empirical reasoning}
 
+\begin{quote}
+Scientific knowledge consists in the search for truth, but it is not the search for certainty-- All human knowledge is fallible and therefore uncertain. \\
+\hspace*{.2in}Karl Poper, {\it Search for a Better World and Essays from Thirty Years}, Routledge, 1996
+\end{quote}
+
+\noindent
 Experimentation (or, empiricism) is an invaluable guide both in the sciences and in mathematics, but these two domains of inquiry acquire quite different kinds of guidance from the outcomes of experiments.
 
 The goal of {\em science}---physical science, biological science, social science---is always to better understand some aspect of the universe---usually in order to explain and predict the evolution of observable phenomena.  The scientific method seeks to objectively explain natural phenomena by the use of reproducible demonstrations.  The process is always the same: observe and experiment with the goal of generating hypotheses and, thereby, predictions---and then study the consequences of these hypotheses in order to test and evaluate them.  A theory is accepted as valid only in proportion to how well it fits with observed facts and predicts not-yet-observed facts related to the target phenomena.  Disproofs usually lead to a new theory which enriches understanding.  This new theory can be either {\em revolutionary}, as, e.g., when the phlogiston theory of combustion was replaced by an understanding of oxidation, or {\em evolutionary}, as when Newton's theory of gravitation was improved via relativity theory and ten quantum theory so that it could better explain and predict both large-scale and microscopic phenomena.
@@ -531,13 +537,39 @@ The proofs of long-maturing results such as the preceding examples are beyond th
 
 To sum up: empirical exploration can be extremely useful in the endeavor of ``doing'' mathematics.  Indeed, as we explore phenomena of immense complexity or even phenomena that inherently involve immensely large numbers, empirical studies are the only known avenue toward deep understanding.
 
-%Scientific knowledge consists in the search for truth, but it is not the search for certainty ... All human knowledge is fallible and therefore uncertain. Karl Poper, Search for a better world and essays from thirty years, NY, Routledge 1996
 
 \section{Overview of Some Major Proof Techniques}
 \label{sec:major-proof-techniques}
 
 \subsection{Proof by (Finite) Induction}
 \label{sec:Induction}
+
+The version of the Principle of Finite Induction that we enunciated in Section~\ref{sec:formal-proof} is often termed {\em weak} induction, to distinguish it from the {\em strong} form of the Principle that we enunciate now.  The qualifiers ``weak" and ``strong" are somewhat unfortunate, because a proof constructed using either version of the Principle is as valid as a proof constructed using the other version.  In fact, the two versions differ mainly in their ease of use in various situations.
+
+\bigskip
+
+\index{Principle of Finite Induction} \index{Principle of Finite Induction!weak version}
+
+\noindent %\fbox{
+\hspace*{.1in}\begin{minipage}{0.95\textwidth}
+{\bf The {\em Strong} Principle of Finite Induction}
+
+{\em
+Let {\bf P}$(n)$ be an assertion involving the positive integer $n$.
+
+\hspace*{.15in}{\bf if} one can prove the assertion \\
+\hspace*{.35in}{\bf P}$(1)$
+
+\hspace*{.15in}{\bf and} one can prove the assertion \\
+\hspace*{.35in}$\big[ (\forall \ k \leq m)\mbox{\bf P}(k) \big]$ {\bf implies} {\bf P}$(m+1)$
+
+\hspace*{.15in}{\bf then} one can {\em infer} the assertion \\
+\hspace*{.35in}$(\forall \ n) \mbox{\bf P}(n)$
+}
+\end{minipage} %}
+
+\bigskip
+
 
 \subsubsection{Two more sample proofs by induction}
 
@@ -623,7 +655,7 @@ denote the assertion
 \]
 
 \noindent {\sf Base case.}
-Assertion {\bf P}$(0)$ is true because $S(0) = 4/3$.
+Assertion {\bf P}$(0)$ is true because $S(0) = {4 \over 3} \cdot {3 \over 4} = 1$.
 
 \smallskip
 
