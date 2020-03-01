@@ -1702,44 +1702,47 @@ Throughout the text, exercises are marked with 0 or 1 or 2 occurrences of the sy
 \item
 {\bf An unusual comparison of automobile brands.}
 
-{\sc Lesson:} Enhance understanding of recurrences: setting them up; solving them
+{\sc Lessons:} Enhance facility with recurrences and asymptotics
 
 \smallskip
 
-The logos of two German automakers, {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ and BMW$^{\mbox{\tiny\sc tm}}$ suggest a (frivolous) game whose analysis can enhance one's understanding of recurrences.  The game is designed around the fact that the {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ logo is a {\em trisection} of a circle, while the BMW$^{\mbox{\tiny\sc tm}}$ logo is a {\em quadrisection} of a circle.  Thus, the {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ logo cuts the circle into three wedges, while the BMW$^{\mbox{\tiny\sc tm}}$ logo cuts the circle into four wedges.  {\em It is the {\em number} of wedges that interests us, not the sizes of the wedges}.
-
-\medskip
-
-\fbox{schematic of the two logos: {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ on the left and BMW$^{\mbox{\tiny\sc tm}}$ on the right}
-
-\medskip
-
-The single-player logo-game which we describe now comes in two versions, the {\em lap-by-lap} version and the {\em persistent} version.  In both versions, the player begins at the northernmost point of the circle that contains the logo and circumnavigates the circle in a clockwise sense, {\em bisecting every second wedge} encountered during the circumnavigation.  When the player regains the northernmost point of the circle, the number of wedges at that moment is recorded as the score at that moment. 
-
-\medskip
-
-{\bf The lap-by-lap logo game}
+The logos of two German automakers, {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ and BMW$^{\mbox{\tiny\sc tm}}$ suggest a (frivolous) game whose analysis can enhance one's understanding of both recurrences and asymptotics.  The game is designed around the fact that the {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ logo is a {\em trisection} of a circle, while the BMW$^{\mbox{\tiny\sc tm}}$ logo is a {\em quadrisection} of a circle.  
+\begin{figure}[htb]
+\begin{center}
+\fbox{schematic of the two logos: {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ (left) and BMW$^{\mbox{\tiny\sc tm}}$ (right)}
+\end{center}
+\caption{Idealized renditions of the logos on {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ (left) and BMW$^{\mbox{\tiny\sc tm}}$ (right) automobiles.}
+\label{fig:auto-logos}
+\end{figure}
+The single-player {\it Logo game} proceeds as follows.  
 
 \smallskip
 
-In this version of the game, the player makes a single circumnavigation of the circle and records the score.  The game now continues with the new version of the circle.
+Reflecting the fact that the {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ logo partitions the circle into {\em three} wedges, while the BMW$^{\mbox{\tiny\sc tm}}$ logo partitions the circle into {\em four} wedges, we assign the player---who, note, has not yet acted---with the initial scores
+\[ M(0) \ = \ 3 \ \ \ \ \ \mbox{ and } \ \ \ \ \ B(0) = 4 \] 
+and we designate the logo-circles in Fig.~\ref{fig:auto-logos} as the {\em stage-$0$} logo-circles.{\em Note that it is the {\em number} of wedges in each logo-circle that interests us, not the sizes of the wedges}.
 
-For the {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ version of the game, we denote the score after $k$ circumnavigations as $M(k)$:
-\[ M(0) = 3; \ \ M(1) = 4 \]
+The player now becomes active---
 
-\smallskip
-
-For the BMW$^{\mbox{\tiny\sc tm}}$ version of the game, we denote the score after $k$ circumnavigations as $M(k)$:
-\[ B(0) = 4; \ \ B(1) = 6 \]
-
-
-
+For each positive integer $k$, the player begins at the northernmost point of each stage-$(k-1)$ logo-circle and circumnavigates the circle in a clockwise sense.  In the course of this circumnavigation, the player {\em bisects every second wedge} that she encounters.  When the player regains the northernmost point of the two logo-circles, the numbers of wedges at that moment is recorded as the score at that moment, namely, the pair $\langle M(k), \ B(k) \rangle$. 
 
 \medskip
 
-{\bf The persistent logo game}
+{\em Prove the following assertions about the described game.
+\begin{enumerate}
+\item
+For each $k \in \N^+$,
+\[ M(k) \ = \ B(k-1) \]
 
-\smallskip
+\item
+For each $k \in \N^+$,
+\[ B(k) \ = \ B(k-1) \ + \ \lfloor {1 \over 2} B(k-1) \rfloor \]
+
+\item
+$\oplus$ The asymptotic behavior of $B(n)$ is given by
+\[ B(n) \ = \ \left({3 \over 2}\right)^{O(n)} \]
+\end{enumerate}
+}
 
 \end{enumerate}
 
