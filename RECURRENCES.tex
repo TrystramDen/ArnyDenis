@@ -1748,69 +1748,80 @@ $\oplus$ The asymptotic behavior of $B(n)$ is given by
 }
 
 \item
-{\bf Karatsuba Multiplication} 
+{\bf Karatsuba multiplication} 
 
-\noindent \textit{The aim.}
-The purpose is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical problem.
-\medskip
+\index{Karatsuba multiplication algorithm} \index{Karatsuba, Anatoly} 
+\index{Karatsuba multiplication}
 
-The classical elementary-school method for computing the base-$2$ product of two $n$-bit integers (using their standard numerals)
-\[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
-is to compute the $n$ partial products:
-\[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
-and to sum these partial products.
-
-This approach leads to $O(n^2)$ basic operations. 
-However, we can do better.
-\medskip
-
-Let us first recall the generic divide-and-conquer for designing algorithms.
-\medskip
-
-\noindent \fbox{
-\begin{minipage}{0.95\textwidth}
-{\bf Explanatory note}.
-
-{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be decomposed into sub-problems.
+{\sc Lesson:}
+Use the Master Theorem for Linear Recurrences (Theorem~\ref{thm:master-thm-genl}) to analyze a recursive algorithm
 
 \smallskip
 
-Consider a problem of size $n$ that can be decomposed into $p$ sub-problems of equal sizes: each has size $n/p$.
+Say that you are given two $n$-bit integers, in terms of their base-$2$ numerals: 
+\[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
+The classical elementary-school method for computing the product of $A$ and $B$ computes the $n$ partial products:
+\[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
+and then sums these partial products.  This algorithm requires $\Theta(n^2)$ multiplications, and a like number of additions.
+
+\smallskip
+
+Now, multiplications are more expensive than additions on standard computing platforms.  Therefore, when the common length $n$ of the numerals for $A$ and $B$, is {\em very} large, then one would be willing to perform somewhat more additions (while staying within the asymptotic class $\Theta(n^2)$) if, in compensation, one could save a significant number of multiplications.
+Happily, such a tradeoff is, indeed, available, using an algorithm that is known as {\it Karatsuba multiplication}, after its author, Anatoly Karatsuba; see \cite{KaratsubaO62}.
+
+\medskip
+
+Karatsuba's algorithm builds upon the generic {\it divide-and-conquer} paradigm.
+
+\index{divide-and-conquer algorithmic paradigm}
+
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Explanatory note}.
+
+{\it Divide-and-conquer} is an algorithmic paradigm for solving problems that can be decomposed into disjoint equal-``size"\footnote{We do not specify what ``size" means here, because the paradigm works for a large range of size measures: time, space, \ldots}subproblems whose results can later be accumulated.
+
+\smallskip
+
+Consider a problem {\bf P} of ``size" $n$ which can be decomposed into $p$ subproblems, each of size $n/p$.  The divide-and-conquer paradigm works as follows.
 
 \bigskip
 
-\noindent {\bf Principle:}
+\noindent {\sf The Paradigm:}
 \begin{enumerate}
-\item Decompose the problem into $a$ sub-problems of size $n/q$.
-\item Solve those sub-problems.
-\item Reconstruct the solution of the initial problem.
+\item Decompose {\bf P} into $\q$ sub-problems, {\bf P}$_!$, \ldots {\bf P}$_!$, of size $n/q$ each.
+\item Solve the sub-problems.
+\item Use the solutions of the subproblems to craft a solution of problem {\bf P}.
 \end{enumerate}
+Typically, the subproblems are solved recursively---at least until a certain threshold size, where the base case(s) govern the computation.
 
-In general, the sub-problems are solved recursively (at least until a certain threshold value of the parameter, where the base case(s) govern the computation).
+\smallskip
 
-The time-cost of the computation is governed by the following expression:
-\[  T(n) \ = \ p \cdot T(n/q) + c_1(n) + c_3(n) \] 
-where $c_1(n)$ and $c_3(n)$ are the costs of phases (1) and (3).
+The time-cost of the computation for solving problem {\bf P} is governed by the following recurrent expression:
+\[  T(n) \ = \ q \cdot T(n/q) + \kappa(n) + \kappa'(n) \] 
+where $\kappa(n)$ and $\kappa'(n)$ are, respectively, the costs of phases (a.) and (c.) of the paradigm.
 \end{minipage}
 }
 \bigskip
 
-\noindent \textit{A first problem.}
-Say that we have the earlier-mentioned $n$-bit numbers $A$ and $B$.  Let us assume that $n$ is a very large power of $2$: $n=2^k$ for some positive integer $k$.
+\textit{Karatsuba's algorithm.}
+Let us return to the problem of multiplying the $n$-bit numbers $A$ and $B$.  To simplify both notation and analysis, say that $n$ is a very large power of $2$, i.e., $n=2^k$ for some positive integer $k$.
 
-The goal is to compute the product $A \times B$ in fewer operations than the classic $O(n^2)$.
+\smallskip
 
-\medskip
+The algorithm breaks the numerals for $A$ and $B$ into pairs of half-size numerals:
+\begin{eqnarray*}
+A & = & A_1 \cdot 2^{n/2} \ + \ A_2 \ \ 
+ \eqdef  \ \ (a_n \ldots a_{n/2+1})_2 \cdot 2^{n/2} \ + \ (a_{n/2} \ldots a_1)_2 \\
+B & = & B_1 \cdot 2^{n/2} \ + \  B_2 \ \
+  \eqdef  \ \ (b_n \ldots b_{n/2+1})_2 \cdot 2^{n/2} \ + \ (b_{n/2} \ldots b_1)_2
+\end{eqnarray*}
 
-\noindent \textit{Hint.}
-Use the divide-and-conquer paradigm to break each integer into two parts
-of $n/2$ bits each as follows:
+After this decomposition, we find that
+\[ A \times B \ = \ (A_1 \times B_1) \cdot 2^n \ + \  (A_1 \times B_2 \ + \ A_2 \times B_1) \cdot 2^{n/2} \ + \ (A_2 \times B_2) \]
 
-$A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$
-
-Denoting by $A_1$ and $A_2$ the two separate terms, we get:
-
-$A.B = (A_1.B_1) 2^n + (A_1.B_2 + A_2.B_1) 2^{n/2} + A_2.B_2$
 \medskip
 
 Evaluate the cost in term of multiplications and additions.
