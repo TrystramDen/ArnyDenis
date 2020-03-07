@@ -1,4 +1,4 @@
-%version of 01-31-20
+%version of 03-07-20
 
 \chapter{Recurrences:
 Rendering Complex Structure Manageable}
@@ -443,7 +443,7 @@ induction on $n$, then for each value of $n$ on $k \leq n$ \\
 
 \medskip
 
-Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff1} provide the skeleton of an alternative proof of the summation formula form for binomial coefficients.  This proof, which we leave for the  interested reader, is our first evidence of the intellectual importance of Pascal's Triangle.
+Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff1} provide the skeleton of an alternative proof of the summation formula for binomial coefficients.  This proof, which we leave for the interested reader, is our first evidence of the intellectual importance of Pascal's Triangle.
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiaux1}
@@ -1316,7 +1316,7 @@ There is a point to clarify here because the moves of the Game are not \textit{s
 
 \smallskip
 
-The recursive solution involves a super-step that empties a bank of size $n-2$.  It appears that filling and emptying a bank are mirror-image operations.  (The reader should verify for small values of $n$ that the sequence of operations that empties the bank is the reverse of the sequence of operations that fills the bank---the first step becomes the last step, the second second step becomes the second-to-last, and so on.)  We verify this observation formally as follows.
+The recursive solution involves a super-step that empties a bank of size $n-2$.  It appears that filling and emptying a bank are mirror-image operations.  (The reader should verify for small values of $n$ that the sequence of operations that empties the bank is the reverse of the sequence of operations that fills the bank---the first step becomes the last step, the second step becomes the second-to-last, and so on.)  We verify this observation formally as follows.
 
 \medskip
 
@@ -1700,6 +1700,26 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 
 \begin{enumerate}
 \item
+{\bf Verifying an empirically observed pattern}
+
+{\sc Lesson:} We have advocated expanding a recurrence to gain intuition regarding its growth pattern.  Of course, then one must verify one's observation.
+
+\smallskip
+
+{\em Verify the segment of (\ref{eq:Lin-Recur:expand}) that is ``hidden behind" the vertical dots.} 
+
+\item
+{\bf Completing the proof of the {\em general} version of the Master Theorem}
+
+{\sc Lesson:} Practice in combining snippets of proofs.
+
+\smallskip
+
+We noted in the text that ``solving the more general recurrence (\ref{eq:Lin-Recur:general}) requires only augmenting the solution to the simple recurrence (\ref{eq:Lin-Recur:basic}) by ``appending'' to the simple solution a geometric summation whose base is the ratio $a/b$.
+
+{\em Fill in the details of this observation.}
+
+\item
 {\bf An unusual comparison of automobile brands.}
 
 {\sc Lessons:} Enhance facility with recurrences and asymptotics
@@ -1762,110 +1782,134 @@ Say that you are given two $n$-bit integers, in terms of their base-$2$ numerals
 \[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
 The classical elementary-school method for computing the product of $A$ and $B$ computes the $n$ partial products:
 \[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
-and then sums these partial products.  This algorithm requires $\Theta(n^2)$ multiplications, and a like number of additions.
+and then sums these partial products.  This algorithm requires $\Theta(n^2)$ multiplications and a like number of additions.
 
 \smallskip
 
-Now, multiplications are more expensive than additions on standard computing platforms.  Therefore, when the common length $n$ of the numerals for $A$ and $B$, is {\em very} large, then one would be willing to perform somewhat more additions (while staying within the asymptotic class $\Theta(n^2)$) if, in compensation, one could save a significant number of multiplications.
-Happily, such a tradeoff is, indeed, available, using an algorithm that is known as {\it Karatsuba multiplication}, after its author, Anatoly Karatsuba; see \cite{KaratsubaO62}.
+Now, multiplications are more expensive than additions on standard computing platforms.  Therefore, when the common length $n$ of the numerals for $A$ and $B$, is {\em very} large, then one would be willing to perform somewhat more additions (while staying within the asymptotic class $\Theta(n^2)$) if, in compensation, one could save a significant number of multiplications.  Happily, such a tradeoff is, indeed, available, using an algorithm that is known as {\it Karatsuba multiplication}, after its author, Anatoly Karatsuba; see \cite{KaratsubaO62}.
 
 \medskip
 
-Karatsuba's algorithm builds upon the generic {\it divide-and-conquer} paradigm.
+Karatsuba's algorithm builds upon the {\it divide-and-conquer} algorithmic paradigm, whereby a
+problem {\bf P} is decomposed into disjoint, equal-``size"\footnote{The paradigm works for a large range of ``size" measures: time, space, \ldots.}~subproblems whose results are accumulated to solve {\bf P}.
 
 \index{divide-and-conquer algorithmic paradigm}
 
-\medskip
+\bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
 
-{\it Divide-and-conquer} is an algorithmic paradigm for solving problems that can be decomposed into disjoint equal-``size"\footnote{We do not specify what ``size" means here, because the paradigm works for a large range of size measures: time, space, \ldots}subproblems whose results can later be accumulated.
-
 \smallskip
 
-Consider a problem {\bf P} of ``size" $n$ which can be decomposed into $p$ subproblems, each of size $n/p$.  The divide-and-conquer paradigm works as follows.
-
-\bigskip
-
-\noindent {\sf The Paradigm:}
+\noindent {\it The Divide-and-Conquer Paradigm:}
 \begin{enumerate}
-\item Decompose {\bf P} into $\q$ sub-problems, {\bf P}$_!$, \ldots {\bf P}$_!$, of size $n/q$ each.
-\item Solve the sub-problems.
-\item Use the solutions of the subproblems to craft a solution of problem {\bf P}.
-\end{enumerate}
-Typically, the subproblems are solved recursively---at least until a certain threshold size, where the base case(s) govern the computation.
+\item
+Decompose the size-$n$ problem {\bf P} into $p$ subproblems of size $n/p$ each.
+\item
+Solve the subproblems.
 
 \smallskip
 
-The time-cost of the computation for solving problem {\bf P} is governed by the following recurrent expression:
-\[  T(n) \ = \ q \cdot T(n/q) + \kappa(n) + \kappa'(n) \] 
-where $\kappa(n)$ and $\kappa'(n)$ are, respectively, the costs of phases (a.) and (c.) of the paradigm.
+Typically, this recursively invokes the {\bf P}-solver---down to some threshold size, at which point base case(s) of the recursion govern the computation.
+
+\item
+Combine the solutions of the subproblems to craft a solution of {\bf P}.
+\end{enumerate}
+
+
+\smallskip
+
+The time-cost of the recursive computation that solves {\bf P} is given by the recurrent expression
+\[  T(n) \ = \ p \cdot T(n/p) + \kappa(n) + \kappa'(n) \] 
+$\kappa(n)$ and $\kappa'(n)$ are, respectively, the costs of phases (a.) and (c.) of the paradigm.
 \end{minipage}
 }
 \bigskip
 
 \textit{Karatsuba's algorithm.}
-Let us return to the problem of multiplying the $n$-bit numbers $A$ and $B$.  To simplify both notation and analysis, say that $n$ is a very large power of $2$, i.e., $n=2^k$ for some positive integer $k$.
+Let us return to the problem of multiplying the $n$-bit numerals $A$ and $B$.  To simplify both notation and analysis, say that $n$ is a very large power of $2$, i.e., $n=2^k$ for some large $k \in \N^+$.
 
 \smallskip
 
 The algorithm breaks the numerals for $A$ and $B$ into pairs of half-size numerals:
 \begin{eqnarray*}
 A & = & A_1 \cdot 2^{n/2} \ + \ A_2 \ \ 
- \eqdef  \ \ (a_n \ldots a_{n/2+1})_2 \cdot 2^{n/2} \ + \ (a_{n/2} \ldots a_1)_2 \\
+ \eqdef  \ \ (a_n \cdots a_{n/2+1})_2 \cdot 2^{n/2} \ + \ (a_{n/2} \cdots a_1)_2 \\
 B & = & B_1 \cdot 2^{n/2} \ + \  B_2 \ \
-  \eqdef  \ \ (b_n \ldots b_{n/2+1})_2 \cdot 2^{n/2} \ + \ (b_{n/2} \ldots b_1)_2
+  \eqdef  \ \ (b_n \cdots b_{n/2+1})_2 \cdot 2^{n/2} \ + \ (b_{n/2} \cdots b_1)_2
 \end{eqnarray*}
 
-After this decomposition, we find that
-\[ A \times B \ = \ (A_1 \times B_1) \cdot 2^n \ + \  (A_1 \times B_2 \ + \ A_2 \times B_1) \cdot 2^{n/2} \ + \ (A_2 \times B_2) \]
+After this decomposition, we have\footnote{To enhance legibility, we use both the centered dot ($\cdot$) and the multiplication sign ($\times$).}
+\begin{equation}
+\label{eq:karatsuba-normal}
+A \times B \ = \ (A_1 \times B_1) \cdot 2^n \ + \  (A_1 \times B_2 \ + \ A_2 \times B_1) \cdot 2^{n/2} \ + \ (A_2 \times B_2)
+\end{equation}
+A recursion (on $n$) that is based on instantiating equation (\ref{eq:karatsuba-normal}) employs {\em four} multiplications at this level.
+
+\smallskip
+
+The way that Karatsuba brought the cost of multiplying $A \times B$ below the obvious measure of $\Theta(n^2)$ multiplications was to observe the following.  If one defines
+\[ C \ \eqdef \ (A_1 - A_2) \times (B_2 - B_1) \]
+then
+\begin{eqnarray*}
+A \times B & = & (A_1 \times B_1) \cdot 2^n \ + \ (A_2 \times B_2) \\
+                 &    & + \ \big(C \ + \ (A_1 \times B_1) \ + \ (A_2 \times B_2) \big) \cdot 2^{n/2}
+\end{eqnarray*}
+
+{\em One thereby executes this level of the recursion that computes $A \times B$ using only {\em three} multiplications, rather than the four multiplications in equation (\ref{eq:karatsuba-normal}).}. (Of course, one does perform a few more additions, but this is often a beneficial tradeoff.)
 
 \medskip
 
-Evaluate the cost in term of multiplications and additions.
-Notice that multiplying integers in base 2 by powers of 2 
-correspond to simple shifts to the left. 
-%
-%The cost is given by the following expression: $T(n) = 4.T(\frac{n}{2}) + f(n)$ where $f$ is a linear function
-%and $T(1) = 1$.
-%
-%We obtain $T(n) = \Theta(n^2)$, same as for the naive algorithm.
-\bigskip
- 
-\noindent \textit{A second (improved) problem.}
-The idea of Karatsuba is to decrease the number of multiplications 
-(at the price of slightly increasing the additions/subtractions) by using the following identity:
+{\em Prove the following assertions.
+\begin{enumerate}
+\item
+A recursion (on $n$) that is based on instantiating equation (\ref{eq:karatsuba-normal}) computes the product $A \times B$ using $\Theta(n^2)$ multiplications.
 
-$A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)$
+\item
+A recursion (on $n$) that is based on Karatsuba's algorithm computes the product $A \times B$ using a {\em symptotically fewer than} $\Theta(n^2)$ multiplications.
 
-Show how to use this relation and develop the cost analysis of this algorithm.
-\medskip
+\smallskip
 
-%\noindent \textit{The solution.}
-%The relation is easy to check and it is left to the reader. 
-%Let us use it and replace in the original expression:
-%
-%$A.B = (A_1.B_1) 2^n + (A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)) 2^{n/2} + A_2.B_2$
-%
-%The cost analysis is 3 multiplications of $n/2$ bits,
-%4 additions and 2 subtractions of integers at most $2n$ bits. 
-%
-%Again, using the Master Theorem leads to:
-%
+Your argument should find a (real) number $\alpha < 2$ such that Karatsuba's algorithm computes the product $A \times B$ using $\Theta(n^\alpha)$ multiplications.
 %$T(n) = 3.T(n/2) + \Theta (n) = n^{\log_2 3}$
-%\medskip
+\end{enumerate}
+}
 
-\noindent \textit{Lesson learned.}
-The analysis done in this exercise showed a clear use of the Master Theorem.
-It introduced also the classical technique of divide-and-conquer for designing algorithms.
-%
-%The cost is obtained by the sum of two terms, and Karatsuba evidences how to obtain a better trade-off between both terms.
-%It leads finally to a better cost. 
+\item
+{\bf Binomial coefficients and Pascal's Triangle}
+
+{\sc Lessons:}
+Practice with induction and intuition about binomial coefficients
+
+\smallskip
+
+  \begin{enumerate}
+  \item
+{\em  Prove Proposition~\ref{thm:pascal-binom}:
+
+\smallskip
+
+For all $n,k$, the entry at (row $n$, column $k$) of the Triangle is $\displaystyle {n \choose k}$.
+}
+  
+  \item
+{\em Build on Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff1} to generate an alternative proof of the summation formula for binomial coefficients.}
+  \end{enumerate}
+
+\item
+{\bf Some details of the Token Game of Section ~\ref{sec:TokenGame}}
+
+{\sc Lesson:}  The mental calisthenics of analyzing frivolous games often develop the muscles needed to tackle ``real" problems.
+
+\smallskip
+
+{\em Verify for small values of $n$ that the sequence of operations that empties the bank is the reverse of the sequence of operations that fills the bank---the first step becomes the last step, the second step becomes the second-to-last, and so on.}
 
 \end{enumerate}
 
+\ignore{**************
 \subsection{Computing Fibonacci Numbers Fast}
 \label{sec:FastFibo}
 
@@ -2088,15 +2132,7 @@ $2.L(n) = F(n+3) + F(n-3) $
 This exercice is a good example of the proof of a non straightforward recurrence which involves two integers.
 
 
-\subsection{Binomial coefficients}
 
-\noindent \textit{The aim.}
-Gaining intuition about binomial coefficients.
-\medskip
-
-\noindent \textit{The problem.}
-Prove Proposition~\ref{thm:pascal-binom} via the double induction
-outlined in the text.
 
 
 \subsection{Solving a bilinear recurrence by a linear system}
@@ -2117,4 +2153,4 @@ given $U_0 = 0$ and $U_N = 1$
 Write the solution for small values of $n$
 
 Write the successive steps of the recurrence as a linear system and solve it.
-
+****************}
