@@ -1905,85 +1905,129 @@ hence cannot be ``corrected'' automatically---being able to correct a mistyped s
 
 \section{Exercises: Chapter 5}
 
-Throughout the text, we mark each exercise with 0 or 1 or 2
-occurrences of the symbol $\oplus$, as a rough gauge of its level of
-challenge.  The 0-$\oplus$ exercises should be accessible by just
-reviewing the text.  We provide {\em hints} for the 1-$\oplus$
-exercises; Chapter~\ref{ch:Exercises} provides {\em solutions} for the
-2-$\oplus$ exercises.  Additionally, we begin each exercise with a
-brief explanation of its anticipated value to the reader.
+Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the symbol $\oplus$, as a rough gauge of its level of challenge.  The 0-$\oplus$ exercises should be accessible by just reviewing the text.  We provide {\em hints} for the 1-$\oplus$ exercises; Chapter~\ref{ch:Exercises} provides {\em solutions} for the 2-$\oplus$ exercises.  Additionally, we begin each exercise with a brief explanation of its anticipated value to the reader.
  
-
 \begin{enumerate}
 \item
-{\bf Polynomials' degrees and growth rates}
+{\bf The uniqueness of arithmetic's ``special" numbers}
 
-Let us be given polynomials with positive coefficients: $p(x)$ of degree $a$ and $q(x)$ of degree $b > a$; $a$ and $b$ need not be integers. 
+{\sc Lesson:} Enhance familiarity with basic arithmetic notions
+
+\smallskip  
+
+{\em Prove the following assertions about $0$ and $1$.}
+
+\begin{prop}
+The numbers $0$ and $1$ play unique roles:
+\begin{enumerate}
+\item
+$0$ is the unique additive identity: $(\forall \ n) \ [n+0 = 0 + n = n]$.
+\item 
+$1$ is the unique multiplicative identity: $(\forall \ n) \ [n \cdot 1 = 1 \cdot n = n]$.
+\item
+$0$ is the unique multiplicative annihilator: $(\forall \ n) \ [n \cdot 0 = 0 \cdot n = n]$
+\end{enumerate}
+\end{prop}
+
+\item
+{\bf Verifying the critical properties of rational arithmetic}
+
+{\sc Lessons:} Rational arithmetic works the way that it should.
 
 \smallskip
 
-{\em Prove that there exists a constant $X_{p,q}$ (i.e., a constant that depends on the forms of polynomials $p$ and $q$) such that for all $x > X_{p,q}$, $p(x) < q(x)$.}
-
+{\em Prove the following properties of rational arithmetic (``RA" for short):}
+\begin{itemize}
 \item
-{\bf Exponentials grow faster than polynomials (eventually)}
-
-Let us be given a degree-$b$ polynomial $q$ with positive coefficients, together with an arbitrary real number $c > 1$.
+{\em RA works correctly when the argument rational numbers are, in fact integers;}
+\item
+{\em RA treats the number $0$ appropriately, as both an additive identity and a multiplicative annihilator;}
+\item
+{\em RA treats the number $1$ appropriately, i.e., as a multiplicative identity;}
+\item
+{\em RA obeys the laws outlined in Section~\ref{sec:Arithmetic-Laws}.}
 
 \smallskip
 
-{\em Prove that there exists a constant $Y_{c;q}$ (i.e., a constant that depends on the polynomial $q$ and constant $c$) such that for all $x > Y_{c;q}$, $c^x > q(x)$.}
+Verifying the distributivity of rational multiplication over rational addition is an especially valuable exercise because of the amount of manipulation that the verification demands.
+\end{itemize}
+
+\item
+{\bf Roots of polynomials}
+
+{\sc Lesson:} Practice with roots and polynomial manipulation
+
+{\em Prove the following assertion, which employs the notation of the chapter.}
+\begin{prop}
+The polynomial
+\[ P_1(x) \ \ = \ \ a_d x^d \ + \ a_{d-1} x^{d-1} \ + \ a_{d-2} x^{d-2}
+\ + \cdots + \ a_1 x \ + \ a_0
+\]
+and the monic polynomial
+\[ P_2(x) \ = \
+x^d \cdot \left( 1 \ + \ \frac{a_{d-1}}{x} \ + \ \frac{a_{d-2}}{x^2}
+\ + \cdots + \ \frac{a_1}{x^{d-1}} \ + \ \frac{a_0}{x^d} \right)
+\]
+have the same roots.
+\end{prop}
 
 
 \item
-{\bf A ``trick'' for squaring certain integers}
+{\bf Polynomials' degrees and asymptotic growth rates}
 
-\noindent \textit{The aim.}
-Solving a fun problem and learn how to write mathematically a problem.
+{\sc Lesson:} Practice with asymptotic arguments
 
-Sometimes only basic knowledge is needed to craft amusing
-``tricks''---we know that they are not really tricks at all!---that
-are really rigorous applications of principles that we have learned.
-Here is an ``old chestnut'' example that may inspire you to design
-your own. 
+\smallskip
 
-If someone presents you with a number that has a numeral that ends in
-$5$, then there is a simple way to square the number mentally.  For
-instance, if someone says
+Let us be given polynomials with positive coefficients: $P(x)$ of degree $a$ and $Q(x)$ of degree $b > a$.  The numbers $a$ and $b$ need not be integers. 
 
-\hspace{.25in}``$n = 75$''
+\smallskip
 
-\noindent
-then you can instantly respond
+{\em Prove that there exists a constant $X_{P,Q}$---i.e., a constant that depends on the degrees and coefficients of polynomials $P$ and $Q$---such that}
+\[ (\forall \ x > X_{P,Q}) \ \left[ P(x) < Q(x) \right] \]
 
-\hspace{.25in}``$n^2 = 5625$''
+\smallskip
 
-\noindent
-Let's make this ``game'' mathematical.
-\medskip
+The preceding formulation can be rephrased in the following two ways:
 
+(1) Polynomial $Q$ {\em eventually majorizes} polynomial $P$.
 
-\noindent \textit{The problem.}
+(2) Polynomial $Q$ {\em grows asymptotically faster than} polynomial $P$.
 
-Let $n$ be any number that has a $2$-digit decimal numeral of the form
+\item
+{\bf Exponentials grow asymptotically faster than polynomials}
 
-\hspace{.25in}$5.\delta$ \ \ \ \ $(\delta \in \{ 0,1,2,3,4,5,6,7,8,9\})$.
+{\sc Lesson:} Practice with asymptotic arguments
 
-\noindent
-Show that the square of $n$ is the integer
+\smallskip
 
-\hspace{.25in}$25 \ + \ \delta \cdot (\delta +1)$
-\medskip
+Let us be given a degree-$b$ polynomial $Q$ with positive coefficients, together with an arbitrary real number $c > 1$.
 
-\noindent \textit{Hint.}
+\smallskip
 
-Rewrite the premise of the proposition in the form
-\[ n \ = \ 10 \cdot \delta + 5 \]
-and invoke Proposition~\ref{prop:(a+b)(c+d)} and the
-distributive law.
+{\em Prove that there exists a constant $Y_{c;Q}$---i.e., a constant that depends on the constant $c$ and on the degree and coefficients of polynomial $Q$---such that}
+\[ (\forall \ x > Y_{c,Q}) \ \left[ c^x > Q(x) \right] \]
+
+\item
+{\bf Logarithmic functions and exponential functions}
+
+{\sc Lesson:} Taking logarithms and exponentiating are mutually inverse operations
+
+\smallskip
+
+{\em Prove the following assertion.}
+
+\begin{prop}
+The base-$b$ logarithmic function
+\[ f(x) \ = \ \log_b x \]
+and the base-$b$ exponential function
+\[ g(x) \ = \ b^x \]
+are functional inverses of each other.
+\end{prop}
 
 \end{enumerate}
 
-\ignore{
+\ignore{************
 \subsection{Revisiting a very old problem}
 
 \noindent \textit{The problem.}
@@ -2000,5 +2044,5 @@ Then, the problem is to determine the length of the side of this large rectangle
 
 \noindent \textit{Lesson learned:}
 Handling calculations in a non standard basis and provide a geometric solution. 
-}
+***************}
 
