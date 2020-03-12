@@ -2020,7 +2020,7 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 {\em Build on the proof of Proposition~\ref{thm:sum-i2i} to solve summation $S_b^{(2)}(n)$.}
 
 \item
-{\bf Computing $S_1(n) = \sum_{i=1}^n \ i$ from $S_2(n) = \sum_{i=1}^n \ i^2$}
+{\bf Evaluating $S_1(n) = \sum_{i=1}^n \ i$, using the fact that $S_2(n) = \sum_{i=1}^n \ i^2$}
 
 {\sc Lesson:} Practice in manipulating mathematical expressions
 
@@ -2039,70 +2039,58 @@ Try to think creatively.  Think of how one can (mathematically) relate the first
 \item
 {\bf Evaluating $S_2(n) = \sum_{i=1}^n \ i^2$, given knowledge that $S_2(n) = \Theta(n^3)$}
 
-{\sc Lesson:} Practice with solving systems of $n$ linear equations in $n$ unknowns, applied to the method of undetermined coefficients
+{\sc Lesson:} Practice with solving systems of $n$ linear equations in $n$ unknowns, applied to the {\it method of undetermined coefficients}
+
+\index{method of undetermined coefficients}
 
 \smallskip
 
-Say that you know---perhaps from reading Section~\ref{Approximate Sums via Integration}---that the sum of the first $n$ perfect squares is a {\em cubic} polynomial in $n$.
+Say that you know---perhaps from reading Section~\ref{sec:riemann-bounds}---that the sum of the first $n$ perfect squares is a {\em cubic} polynomial in $n$.
 
 \smallskip
 
 {\em Use the method of undetermined coefficients to derive the exact formula (\ref{eq:sum-1-to-nsq1}) for the sum.}
 
+\item
+{\bf A direct proof that the harmonic series diverges}
+\index{harmonic series}
 
+{\sc Lesson:}
+Practice with manipulating summations and series
+
+\smallskip
+
+There are myriad ways to prove that the harmonic series
+\[ S^{(H)} \ = \ \sum_{k=1}^\infty \ {1 \over k} \]
+diverges.  In Proposition~\ref{thm:harmonic}, we developed a method that provided additional information: not only did it prove that $S^{(H)}$ diverges---i.e., tends to infinity as one looks at more and. more terms grows---it also exposed the rate of this divergence as logarithmic in the number of terms one looks at.  If one wants only to prove divergence, then the following more direct argument will suffice.
+
+\medskip
+
+{\em Develop a proof that the harmonic series diverges by
+\begin{itemize}
+\item
+partitioning $S^{(H)}$'s terms into groups whose sizes are successive powers of $2$
+\item
+developing an argument based on the sums within the groups.
+\end{itemize}
+}
+
+\smallskip
+
+{\em Hint.}
+The partitioning step operates as follows:
+{\footnotesize
+\[ 
+\begin{array}{ll}
+S^{(H)} 
+             & = \ 1 \ + \ {1 \over 2} + {1 \over 3} + {1 \over 4} + {1 \over 5} + {1 \over 6}+ {1 \over 7} + {1 \over 8} + {1 \over 9} + {1 \over 10}+ {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14}+ {1 \over 15} + \cdots \\
+             & \\
+  & = \ (1)  +  \left( {1 \over 2} + {1 \over 3} \right)  +  \left( {1 \over 4} + {1 \over 5} + {1 \over 6}+ {1 \over 7} \right)  +  \left( {1 \over 8} + {1 \over 9} + {1 \over 10}+ {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14}+ {1 \over 15} \right) \ +\cdots
+\end{array} \]
+}
 \end{enumerate}
 
-\ignore{***************
-\subsection{Tetrahedral numbers}
-
-\noindent \textit{The aim.}
-$\Theta_n$ is defined as the sum of the triangular numbers $\Delta_n$:
-
-$\Theta_n =  \sum_{k=1}^{n} \Delta_k$
-
-Our goal here is to give an expression of these numbers.
-\medskip
-
-\noindent \textit{The problem.}
-Prove the following expression by a double counting argument.
-
-$\Theta_n = \frac{n.(n+1).(n+2)}{6}$
-\medskip
-
-\noindent \textit{Hint.}
-This result can easily been proved by recurrence, we let the reader develop it. 
-Use the double counting Fubini's principle.
-
-Following this way, you should write the previous expression of the tetrahedral number in a developed form 
-using a triangle shape as shown in Fig.~\ref{fig:TetrahedralBasic}.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.5]{FiguresArithmetic/TetrahedralBasic}
-        \caption{Computing $\Theta_n$: basic triangle pattern.}
-        \label{fig:TetrahedralBasic}
-\end{center}
-\end{figure}
-and draw two copies by rotating the dimensions.
-Fubini's principle is used by summing up the elements in a smart way.
-
-Prove as an intermediate result that the sum of the elements over the rows of the three triangles is proportional to $n+2$.
-\medskip
-
-\noindent \textit{Learning lessons.}
-A natural question is \textit{Is it possible we go further?}
-
-Summary: we proved the following results:
-\begin{itemize}
-\item $Id_n = 1+1+ ... +1 = n$
-\item $\Delta_n = 1+2+3+ ... +n = \frac{1}{2}.Id_n.(n+1)$
-\item $\Theta_n = \Delta_1 + \Delta_2 + ... + \Delta_n = \frac{1}{3} .\Delta_n.(n+2)$
-\end{itemize}
-A natural question is if we can go further following the similar patterns for computing 
-$ \sum_{k=1}^{n} \Theta_k$, and so on.
-
-Are you able to consider the challenge?
-******************}
-
+\ignore{****************
 \subsection{Sum of perfect cubes}
 
 \noindent \textit{The aim.}
@@ -2120,25 +2108,7 @@ Use the the simple pattern of multiplication tables that we learned in elementar
 
 \noindent \textit{Learning lessons.}
 Show an alternative proof. 
-
-
-\subsection{Harmonic series}
-
-\noindent \textit{The aim.}
-Show another way to prove that the sum of harmonic terms $H_{n} = \sum_{k=1}^{n} \frac{1}{k}$ is infinite.
-\medskip
-
-\noindent \textit{The problem.}
-Show that the harmonic series diverges (it goes to infinity).
-\medskip
-
-\noindent \textit{Hint:}
-Group the terms of the series according to powers of $2$
-and use a argument by contradiction.
-\medskip
-
-\noindent \textit{Learning lessons.}
-Use several techniques together. 
+***********************}
 
 
 \ignore{**************
@@ -2388,4 +2358,54 @@ By the Principle of (Finite) Induction, then, we conclude that {\bf
   P}$(n)$ is true for all $n \in \N^+$.
 \qed
 *****************}
+\ignore{***************
+\subsection{Tetrahedral numbers}
+
+\noindent \textit{The aim.}
+$\Theta_n$ is defined as the sum of the triangular numbers $\Delta_n$:
+
+$\Theta_n =  \sum_{k=1}^{n} \Delta_k$
+
+Our goal here is to give an expression of these numbers.
+\medskip
+
+\noindent \textit{The problem.}
+Prove the following expression by a double counting argument.
+
+$\Theta_n = \frac{n.(n+1).(n+2)}{6}$
+\medskip
+
+\noindent \textit{Hint.}
+This result can easily been proved by recurrence, we let the reader develop it. 
+Use the double counting Fubini's principle.
+
+Following this way, you should write the previous expression of the tetrahedral number in a developed form 
+using a triangle shape as shown in Fig.~\ref{fig:TetrahedralBasic}.
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.5]{FiguresArithmetic/TetrahedralBasic}
+        \caption{Computing $\Theta_n$: basic triangle pattern.}
+        \label{fig:TetrahedralBasic}
+\end{center}
+\end{figure}
+and draw two copies by rotating the dimensions.
+Fubini's principle is used by summing up the elements in a smart way.
+
+Prove as an intermediate result that the sum of the elements over the rows of the three triangles is proportional to $n+2$.
+\medskip
+
+\noindent \textit{Learning lessons.}
+A natural question is \textit{Is it possible we go further?}
+
+Summary: we proved the following results:
+\begin{itemize}
+\item $Id_n = 1+1+ ... +1 = n$
+\item $\Delta_n = 1+2+3+ ... +n = \frac{1}{2}.Id_n.(n+1)$
+\item $\Theta_n = \Delta_1 + \Delta_2 + ... + \Delta_n = \frac{1}{3} .\Delta_n.(n+2)$
+\end{itemize}
+A natural question is if we can go further following the similar patterns for computing 
+$ \sum_{k=1}^{n} \Theta_k$, and so on.
+
+Are you able to consider the challenge?
+******************}
 
