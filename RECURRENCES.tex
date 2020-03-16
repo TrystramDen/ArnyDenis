@@ -1310,13 +1310,13 @@ f(n-1) \ + \ 2 f(n-2) + 1 & \mbox{ if } \  n > 2
 
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
-{\bf Explanatory note}.
+{\bf Explanatory note}.  (part 1)
 
 There is a point to clarify here because the moves of the Game are not \textit{symmetric}---we always proceed from left to right. 
 
 \smallskip
 
-The recursive solution involves a super-step that empties a bank of size $n-2$.  It appears that filling and emptying a bank are mirror-image operations.  (The reader should verify for small values of $n$ that the sequence of operations that empties the bank is the reverse of the sequence of operations that fills the bank---the first step becomes the last step, the second step becomes the second-to-last, and so on.)  We verify this observation formally as follows.
+The recursive solution involves a super-step that empties a bank of size $n-2$.  It appears that filling and emptying a bank are mirror-image operations.  Indeed, for small $n$, the sequence of operations that empties the bank is the reverse of the sequence that fills the bank.  We now verify that the symmetry always holds.
 
 \medskip
 
@@ -1331,7 +1331,7 @@ f(n-2) \ + \ 1 \ + \ f^{-1}(n-2) \ + \ f(n-1) & \mbox{ if } \  n > 2
 \end{array}
 \right.
 \end{equation}
-Let $f^{-1}$ denote the bank-emptying operation.  If one thinks in terms of mirror-image operations, then it is not difficult to derive a recursive solution for the bank-emptying operation:
+Let $f^{-1}$ denote the bank-emptying operation.  If one thinks in terms of mirror-image operations, then one discovers a recursive solution for emptying the bank:
 \begin{equation}
 \label{eq:game-empty}
 f^{-1}(n) \ = \ \left\{
@@ -1343,17 +1343,18 @@ f^{-1}(n-1) \ + \ f(n-2)  \ + \ 1 \ + \ f^{-1}(n-2) & \mbox{ if } \  n > 2
 \right.
 \end{equation}
 
-Taking the difference between expressions (\ref{eq:game-fill}) and (\ref{eq:game-empty}), we have:
+\smallskip
+
+Taking the difference between expressions (\ref{eq:game-fill}) and (\ref{eq:game-empty}), we find that the costs of $f(n)$ and $f^{-1}(n)$ are equal!
 \begin{eqnarray*}
 f(n) \ - \ f^{-1}(n)
    & = & f(n-2) \ + \ 1 \ + \ f^{-1}(n-2) \ + \  f(n-1)   \\
    &    &  - \ f^{-1}(n-1) \ - \ f(n-2)  \ - \  1 \ - f^{-1}(n-2) \\
    & = & f(n-1) \ - \ f^{-1}(n-1) \\
-   &    &  \hspace*{.25in} \vdots \\
+   &    &  \hspace*{.25in} \cdots \\
    & = &  f(1) \ - \ f^{-1}(1) \\
    & = & 0
 \end{eqnarray*}
-Thus, the costs of $f(n)$ and $f^{-1}(n)$ are equal!
 \end{minipage}
 }
 \bigskip
@@ -1858,7 +1859,7 @@ A \times B & = & (A_1 \times B_1) \cdot 2^n \ + \ (A_2 \times B_2) \\
                  &    & + \ \big(C \ + \ (A_1 \times B_1) \ + \ (A_2 \times B_2) \big) \cdot 2^{n/2}
 \end{eqnarray*}
 
-{\em One thereby executes this level of the recursion that computes $A \times B$ using only {\em three} multiplications, rather than the four multiplications in equation (\ref{eq:karatsuba-normal}).}. (Of course, one does perform a few more additions, but this is often a beneficial tradeoff.)
+{\em One thereby executes this level of the recursion that computes $A \times B$ using only {\em three} multiplications, rather than the four multiplications in equation (\ref{eq:karatsuba-normal}).}  (The few more additions are often a beneficial cost-tradeoff.)
 
 \medskip
 
@@ -1885,17 +1886,28 @@ Practice with induction and intuition about binomial coefficients
 
 \smallskip
 
+{\em  Prove the following assertions, which refer to Fig.~\ref{fig:pascal-triangle}.} (The first assertion is Proposition~\ref{thm:pascal-binom}.)
   \begin{enumerate}
   \item
-{\em  Prove Proposition~\ref{thm:pascal-binom}:
-
-\smallskip
-
-For all $n,k$, the entry at (row $n$, column $k$) of the Triangle is $\displaystyle {n \choose k}$.
-}
+{\em For all $n,k$, the entry at (row $n$, column $k$) of the Triangle is $\displaystyle {n \choose k}$.}
   
   \item
-{\em Build on Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff1} to generate an alternative proof of the summation formula for binomial coefficients.}
+{\em The successive rows of the Triangle sum to the successive powers of $2$.}
+
+  \item
+{\em The first element of every row is $1$.}
+
+  \item
+{\em The successive elements of column $2$ of the Triangle are the successive integers.}
+
+  \item
+{\em The successive elements of column $3$ of the Triangle are the successive triangular numbers, $\Delta_k$.}
+
+  \item
+{\em The successive elements of column $4$ of the Triangle are the successive tetrahedral numbers, $\widehat{T}_k$.}
+  
+  \item
+{\em Build on Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff3} to generate an alternative proof of the summation formula for binomial coefficients.}
   \end{enumerate}
 
 \item
