@@ -1555,11 +1555,16 @@ Prove that there does not exist a pairing function $f: \N \times \N \ \leftright
 \end{prop}
   \end{enumerate}
 
-
 \item
+{\bf Divisibility within the integers: The role of the Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith})}
+
+{\sc Lesson:} Understand the vestiges of divisibility that do exist within the integers
+
+  \begin{enumerate}
+  \item
 {\bf Cancellation in integer multiplication}
 
-{\sc Lesson:} Exercise in applying the Fundamental Theorem of Arithmetic
+{\sc Lesson:} An exercise in applying the Fundamental Theorem of Arithmetic
 
 \smallskip
 
@@ -1573,40 +1578,130 @@ We noted after Proposition~\ref{thm:AR-EX-mult-inv}.b that integers lack multipl
 
 \begin{prop}
 \label{thm:NUM2-EX-CXL}
-Let $m$, $n$, and $p$ be three integers that exceed $1$ (i.e., $m>1$, $n>1$, and $p >1$).  If $m \cdot n = m \cdot p$, then $n = p$.
+Let $m$, $n$, and $p$ be three integers that exceed $1$ (i.e., $m>1$, $n>1$, and $p >1$).  If $m \cdot n = m \times p$, then $n = p$.
 \end{prop}
 
-A particularly charming proof of Proposition~\ref{thm:NUM2-EX-CXL} builds upon the
-Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}).
+The Fundamental Theorem of Arithmetic yields a particularly charming proof of Proposition~\ref{thm:NUM2-EX-CXL}.
 
-\item
-{\bf Prime numbers and divisibility}
+  \item
+{\bf The sieve of Eratosthenes and its implications}
 
-{\sc Lesson:} Reinforce understanding of basic concepts
+{\sc Lessons:} Understand many properties of the integers via the ``sieve"
 
-\smallskip
-
-{\em Prove that every integer $n>1$ is divisible by at least one prime number.}
-
-\item
-{\bf Divisibility and numerals}
-
-{\sc Lesson:} Reinforce understanding of basic concepts
+\index{Eratosthenes of Cyrene}
+\index{sieve of Eratosthenes}
 
 \smallskip
 
-{\em Prove the following assertion.}
+The 3rd century BCE Greek polymath Eratosthenes of Cyrene is widely credited with a conceptual algorithm---{\it the sieve}---which identifies the prime factors of integers.  This exercise studies the algorithm and some applications.
 
+\medskip
+
+We formulate the sieve as a regimen for labeling integers with their prime factors.  For simplicity, we use the label $\lambda_p$ to identify integers which are multiples of prime $p$.
+
+\medskip
+
+We begin with the linear array of positive integers:
+
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13
+\end{array}$ \ldots
+
+\medskip
+
+We label the multiples of $2$ (i.e., the even numbers):
+
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 &
+\end{array}$ \ldots
+
+\medskip
+
+We label the multiples of $3$:
+
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
+ & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 &
+\end{array}$ \ldots
+
+\medskip
+
+We label the multiples of $5$:
+
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
+ & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 & \\
+ & & & & \lambda_5 & & & & & \lambda_5 & & & 
+\end{array}$ \ldots
+
+\bigskip
+
+The sieve affords one a wonderful perspective for perceiving the patterns that drive mathematical insights.  Here are a few results for you to prove, which are suggested by a perusal of the sieve.
+
+\smallskip
+
+{\em Prove the following results.}
+     \begin{enumerate}
+     \item
 \begin{prop}
-When you do successive Euclidian divisions of the integer $n$ by the number-base $b$, the sequence of {\em remainders} that you generate are the successive digits of the base-$b$ numeral for $n$, from the lowest-order digit to the highest.
+Every integer $n>1$ is divisible by at least one prime number.
 \end{prop}
 
-In other words, if the base-$b$ numeral for $n$ is the string
-\[ \delta_m \delta_{m-1}  \cdots \delta_1 \delta_0 \]
-then the successive remainders are, in order, $\delta_0$, $\delta_1$, \ldots, $\delta_{m-1}$,
-$\delta_m$.
+     \item
+\begin{prop}
+Every sequence $k+1, \ldots, k+p$ of $p$ integers contains a multiple of $p$.
+\end{prop}
+
+      \item $\oplus$
+\begin{prop}
+Every product of four consecutive integers, $(k+1) \cdot (k+2) \cdot (k+3) \cdot (k+4)$ is divisible by $4$.
+\end{prop}
+
+\smallskip
+
+{\em Hint}:  Look at the {\em multiplicity} with which a given prime divides a given number, particularly within the context of the spacings of the divisibilities---e.g., every even number that is $2 \times$ an odd number is followed by an even number that is $2 \times$ an even number.  These are the ``second-order" insights from the sieve.
+
+\smallskip
+
+{\em Can you come up with extensions of this exercise to other divisors?}
 
 \item
+$\oplus$
+The sieve affords us an alternative proof that there are infinitely many primes, particularly via the alternative version that is due to Leonhard Euler.  In this version of the sieve, each prime and all of its multiples are removed from the sieve as soon as their existence is acknowledged.  Our earlier construction of Eratosthenes's version of the sieve now becomes:
+
+\index{Euler, Leonhard}
+\index{sieve of Euler}
+
+\medskip
+
+$\begin{array}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\mbox{Initial array:} &
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & \cdots \\
+\mbox{after prime $2$ is processed:} &
+1 &  & 3 &  & 5 &  & 7 &  & 9 &  & 11 &  & 13 & \cdots \\
+\mbox{after primes $2, 3$ are processed:} &
+1 &  &  &  & 5 &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
+\mbox{after primes $2, 3, 5$ are processed:} &
+1 &  &  &  &  &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
+\hline
+\end{array}$
+
+
+\bigskip
+
+{\em Use Euler's sieve to prove that there are infinitely many primes.}
+
+\medskip
+
+{\em Hint:} If there were only finitely many primes, then at some (finite) stage in processing the sieve, the list of integers would be reduced to the single integer $1$.
+     \end{enumerate}
+  \end{enumerate}
+
+  \item
 $\oplus$
 {\bf The ``density"  of divisible pairs of numbers}
 
@@ -1628,6 +1723,29 @@ This problem was a favorite of the renowned 20th-century Hungarian mathematician
 
 \textit{Hint:}
 Use the pigeonhole principle to classify pairs $(p, q > p)$ for divisibility.
+
+
+
+
+\item
+{\bf Divisibility and numerals}
+
+{\sc Lesson:} Reinforce understanding of basic concepts
+
+\smallskip
+
+{\em Prove the following assertion.}
+
+\begin{prop}
+When you do successive Euclidian divisions of the integer $n$ by the number-base $b$, the sequence of {\em remainders} that you generate are the successive digits of the base-$b$ numeral for $n$, from the lowest-order digit to the highest.
+\end{prop}
+
+In other words, if the base-$b$ numeral for $n$ is the string
+\[ \delta_m \delta_{m-1}  \cdots \delta_1 \delta_0 \]
+then the successive remainders are, in order, $\delta_0$, $\delta_1$, \ldots, $\delta_{m-1}$,
+$\delta_m$.
+
+
 
 \item
 {\bf When is integer $n$ divisible by $9$?}
