@@ -215,7 +215,7 @@ We conclude that one of the products (\ref{eq:product1.1}) and (\ref{eq:product2
 \end{proof}
 
 
-\subsubsection{A ``prime'' corollary: Infinitely many primes}
+\subsubsection{A ``prime'' corollary: There are infinitely many primes}
 \label{sec:infinite-primes}
 
 \index{Euclid}
@@ -760,7 +760,7 @@ It was no accident that the three perfect numbers we found have intimate formal 
 For every Mersenne prime $2^p-1$, the following integer is perfect:
 \begin{equation}
 \label{eq:Mersenne-perfect-p}
-2^{p-1} \cdot (2^p-1) \ = \ {{2^p} \choose 2}
+2^{p-1} \times (2^p-1) \ = \ {{2^p} \choose 2}
 \end{equation} 
 \end{prop}
 
@@ -804,35 +804,6 @@ We thus see that the factors of $n = 2^p \cdot (2^p -1)$ sum to $n$, so that $n$
 \ignore{\Arny I am not sure what to do with the binary representation.  It is
   an interesting curiosity ... but is it more than that?}
 
-%\noindent
-%\textbf{Property (coding by the binary representation).}
-%\label{prop:codingPN}
-
-%$PN_\alpha = (11...10...0)_2$ ($\alpha$ times $1$ followed by $\alpha-1$ times $0$).
-
-%The first $\alpha -1$ 1 comes from $2^{\alpha-1}$ and the right part
-%comes from the shifts corresponding to the multiplication by
-%$2^{\alpha}$ 
-
-\ignore{\Arny I incorporated the triangular numbers into the statement of the
-  proposition.  It is just an interesting aside --- no new lessons}
-
-\ignore{******************
-\noindent
-\textbf{Property (link with triangular numbers $\Delta_n$).}
-
-\noindent 
-It is easy to remark that $6=\Delta_3$ and $28=\Delta_7$ are triangular numbers.
-We show more generally that $PN_\alpha = \Delta_{2^\alpha-1}$.
-\medskip
-
-\noindent 
-\textbf{Proof.}
-
-The proof is straightforward by using the basic expression $\Delta_{n} = \frac{n(n+1)}{2}$ for $n=2^{\alpha-1}$. 
-
-$\Delta_{2^\alpha-1} = \frac{(2^\alpha-1)(2^\alpha-1+1)}{2} = \frac{(2^\alpha-1)(2^\alpha)}{2} = (2^\alpha-1)2^{\alpha-1}$
-*****************}
 
 \section{Pairing Functions: Bringing Linear Order to Tuple Spaces}
 \label{sec:pairing}
@@ -1556,7 +1527,33 @@ Prove that there does not exist a pairing function $f: \N \times \N \ \leftright
   \end{enumerate}
 
 \item
-{\bf Divisibility within the integers: The role of the Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith})}
+{\bf A link between perfect numbers and triangular numbers}
+
+{\sc Lesson:} Practice with nonelementary mathematical concepts
+
+\smallskip
+
+Proposition~\ref{thm:MP-PN} (Section~\ref{sec:MP+PN}) tells us that, for every Mersenne prime $2^p-1$, the integer is $2^{p-1} \times (2^p-1)$ is a perfect number.  Let us denote that number by $PN_p$.  A small calculation verifies that both
+\[ PN_2 \ = \ 6 \ \ \ \ \ \mbox{ and } \ \ \ \ \ PN_3 \ = \ 28 \]
+are triangular numbers, in addition to being perfect; to wit, $6 =\Delta_3$ and $28=\Delta_7$.  This is not a coincidence!
+
+\smallskip
+
+{\em Prove the following result.}
+
+\begin{prop}
+For every Mersenne prime $2^p-1$, we have
+\[ PN_p \ = \  \Delta_{2^p-1}. \]
+\end{prop}
+
+\medskip
+
+{\em Hint:} Explore the defining expression $\Delta_{n} = {1 \over 2} n(n+1)$ for the case $n = 2^{p-1}$. 
+
+%$\Delta_{2^\alpha-1} = \frac{(2^\alpha-1)(2^\alpha-1+1)}{2} = \frac{(2^\alpha-1)(2^\alpha)}{2} = (2^\alpha-1)2^{\alpha-1}$
+
+\item
+{\bf Divisibility among integers: via the Fundamental Theorem of Arithmetic}
 
 {\sc Lesson:} Understand the vestiges of divisibility that do exist within the integers
 
@@ -1687,6 +1684,8 @@ $\begin{array}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 1 &  &  &  & 5 &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
 \mbox{after primes $2, 3, 5$ are processed:} &
 1 &  &  &  &  &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
+\hspace*{.8in} \vdots  &
+ &  &  &  &  &  & \vdots &  &  &  &  &  &  & \\
 \hline
 \end{array}$
 
@@ -1722,35 +1721,39 @@ This problem was a favorite of the renowned 20th-century Hungarian mathematician
 \smallskip
 
 \textit{Hint:}
-Use the pigeonhole principle to classify pairs $(p, q > p)$ for divisibility.
-
-
+Use the Pigeonhole Principle to classify pairs $(p, q > p)$ with respect to divisibility.
 
 
 \item
 {\bf Divisibility and numerals}
 
-{\sc Lesson:} Reinforce understanding of basic concepts
+{\sc Lessons:} Reinforce understanding of interplay among numbers, numerals, and geometric summations
+
+   \begin{enumerate}
+   \item
+{\bf On generating numerals from numbers}
+
+{\sc Lesson:} Understanding the importance of Euclidian division
 
 \smallskip
 
 {\em Prove the following assertion.}
 
 \begin{prop}
-When you do successive Euclidian divisions of the integer $n$ by the number-base $b$, the sequence of {\em remainders} that you generate are the successive digits of the base-$b$ numeral for $n$, from the lowest-order digit to the highest.
+The successive {\em remainders} from repeated Euclidian divisions of an integer $n$ by a number-base $b$ are the successive digits of the base-$b$ numeral for $n$, from the lowest-order digit to the highest.
 \end{prop}
+
+\smallskip
 
 In other words, if the base-$b$ numeral for $n$ is the string
 \[ \delta_m \delta_{m-1}  \cdots \delta_1 \delta_0 \]
 then the successive remainders are, in order, $\delta_0$, $\delta_1$, \ldots, $\delta_{m-1}$,
 $\delta_m$.
 
-
-
-\item
+   \item
 {\bf When is integer $n$ divisible by $9$?}
 
-{\sc Lesson:} Enhance awareness of positional numerals's grounding in geometric summations
+{\sc Lesson:} Enhance appreciation of positional numerals' grounding in geometric summations
 
 \smallskip
 
@@ -1760,9 +1763,17 @@ $\delta_m$.
 An integer $n$ is divisible by an integer $m$ if, and only if, $m$ divides the sum of the digits in the base-$(m+1)$ numeral for $n$.
 \end{prop}
 
+\smallskip
+
 The most familiar instance of this result states:
 
 {\it An integer $n$ is divisible by $9$ if, and only if, the sum of the digits of $n$'s base-$10$ numeral is divisible by $9$.}
+
+\smallskip
+
+It is important to appreciate that this is not just a party game: It is a basic consequence of the definition of positional number representation.
+
+   \end{enumerate}
 
 \item
 {\bf Divisibility under modular arithmetic}
@@ -1787,5 +1798,4 @@ The most familiar instance of this result states:
 {\em Hint}.  You may find it easier to begin with Proposition~\ref{thm:|NxN|=|N|}, which asserts the technically simpler proposition: $|\N \times \N| \ = \ |\N|$.
 
 \end{enumerate}
-
 
