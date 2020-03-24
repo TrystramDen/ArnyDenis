@@ -394,6 +394,7 @@ Just as addition has its inverse operation, subtraction, and multiplication has 
 \medskip
 
 \index{arithmetic!basic operations!taking logarithms}
+
 For positive real numbers $a$ and $b$, the operation of taking logarithms is defined by the following dual equation.
 \[ \log_b (b^a) \ = \ b^{\log_b a} \ = \ a \]
 We shall note in Section~\ref{sec:exponential+logarithm} that most of the main properties of this operation can be inferred from properties of the operation of exponentiation.
@@ -469,11 +470,12 @@ We close our catalogue of arithmetic operations with a binary operation on the s
 \index{$n$ choose $k$: the binomial coefficient $\displaystyle {n \choose k}$}
 \index{binomial coefficients}
 
-Let $n$ and $k \leq n$ be nonnegative integers (i.e., elements of $\N$).  The {\it binomial coefficient} usually articulated as ``{\it $n$ choose $k$}'' is usually denoted by one of the following notations 
+Let $n$ and $k \leq n$ be nonnegative integers (i.e., elements of $\N$).  The {\it binomial coefficient} usually articulated as ``{\it $n$ choose $k$}'' is a number $m$ which is usually denoted by one of the following notations 
 \[ {n \choose k}, \ \ \ \ C(n,k), \ \ \ \ \Delta_{n,k} \]
-The number denoted by these notations is defined by the following equation, which invokes the notation that we use most frequently in this text.
+The number $m$ denoted by these notations is defined by the following equation, which invokes the notation that we use most frequently in this text.
 \begin{equation}
 \label{eq:binom-coeff}
+m \ = \ 
 {n \choose k} \ \eqdef \ \frac{n!}{k!(n-k)!} \ = \
 \frac{n \times (n-1) \times (n-2) \times \cdots \times (n-k+1)}{k \times (k-1) \times (k-2) \times \cdots \times 1}
 \end{equation}
@@ -550,6 +552,40 @@ What is the likelihood of observing $15$ {\sc head}s and $25$ {\sc tail}s in $40
 What are the comparative operation-count costs of Merge-Sort and Quick-Sort when sorting $n$ keys; cf.~\cite{CLRS}?
   \end{itemize}
 \end{itemize}
+One of the most celebrated ways of looking at binomial coefficients is by means of {\it Pascal's triangle}, an array of integers whose contents are determined by the laws enunciated in Proposition~\ref{thm:manipulate-binom-coeff}.  Since we shall have ample opportunity in subsequent chapters to study this array and its applications, we merely present the array here, in Fig.~\ref{fig:pascal-triangle-sample}.
+\begin{figure}[ht]
+\[
+\begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
+{\displaystyle {n \choose k}} & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 &
+k=6 & k=7 & k=8 & k=9 & \ldots \\
+\hline
+\hline
+n=1 & 1 & 1 &    &    &     &     &    &    &   &   & \ldots \\
+\hline
+n=2 & 1 & 2 &  1 &    &     &     &    &    &   &   & \ldots \\
+\hline
+n=3 & 1 & 3 &  3 &  1 &     &     &    &    &   &   & \ldots \\
+\hline
+n=4 & 1 & 4 &  6 &  4 &   1 &     &    &    &   &   & \ldots \\
+\hline
+n=5 & 1 & 5 & 10 & 10 &   5 &   1 &    &    &   &   & \ldots \\
+\hline
+n=6 & 1 & 6 & 15 & 20 &  15 &   6 &  1 &    &   &   & \ldots \\
+\hline
+n=7 & 1 & 7 & 21 & 35 &  35 &  21 &  7 &  1 &   &   & \ldots \\
+\hline
+n=8 & 1 & 8 & 28 & 56 &  70 &  56 & 28 &  8 & 1 &   & \ldots \\
+\hline
+n=9 & 1 & 9 & 36 & 84 & 126 & 126 & 84 & 36 & 9 & 1 & \ldots \\
+\hline
+\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots
+&\vdots &\vdots &\ddots
+\end{array}
+\]
+\caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 9$.}
+\label{fig:pascal-triangle-sample}
+\end{figure}
+
 
 
 \subsection{Rational Arithmetic: A Computational Exercise}
