@@ -215,7 +215,7 @@ The proof of this result is beyond the scope of an introductory text, but its tr
 
 \subsection{Planar and Outerplanar Graphs}
 \label{sec:planar+outerplanar-color}
-\index{planar graphs} \index{outerplanar graphs}
+\index{planar graph} \index{outerplanar graph}
 \index{graph!planar} \index{graph!outerplanar}
 
 In this section, we focus on two graph families that are defined in terms of the way they can be drawn (on a two-dimensional medium, such as a piece of paper).
@@ -239,10 +239,10 @@ We refer the reader to the revolutionary 1979 text by Mead and Conway \cite{Mead
 
 \bigskip
 
-\index{planar graphs}
+\index{planar graph}
 \index{graph!planar}
 \index{graph!outerplanar}
-\index{outerplanar graphs}
+\index{outerplanar graph}
 
 \noindent
 A graph is {\it planar} precisely if it can be drawn {\em without any crossing edges}.  A graph $\g$ is {\it outerplanar} precisely if it can be drawn by {\em placing its vertices along a circle in such a way that its edges can be drawn as non-crossing chords of the circle}.  The latter condition is
@@ -287,8 +287,8 @@ $\k_{3,3}$ is not planar.
 
 \smallskip
 
-\index{forbidden subgraphs} \index{forbidden subgraphs!characterization of planar graphs}
-\index{forbidden subgraphs!characterization of outerplanar graphs}
+\index{forbidden subgraph} \index{forbidden subgraph!characterization of planar graphs}
+\index{forbidden subgraph!characterization of outerplanar graphs}
 \index{graph!homeomorphism} \index{graph!homeomorph}
 
 We selected the preceding cliques and bipartite cliques to ``play with'' very carefully.  Using arguments that go beyond the scope of an introductory text, one can prove the following result, which characterizes each of our graph families by identifying {\it forbidden subgraphs}.   The notion of {\it graph homeomorphism} plays a fundamental role in the characterization.
@@ -367,10 +367,6 @@ Let $\g$ be an outerplanar graph.  Then:
 \noindent {\bf (a)}
 $\g$ is planar.
 
-\ignore{********
-{\bf (b)} & $\g$ is a subgraph of a Hamiltonian graph. 
-{\Denis I removed the second item since Hamiltonian has been shifted after this section.}\\
-*********}
 
 \smallskip
 
@@ -569,7 +565,11 @@ $\g$, whose points are vertices of $\g$, and whose interiors are ``empty"---no e
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-{\bf Enrichment}.
+{\bf Historical note.}
+
+\index{outerplanar graph!origin of name}
+
+\smallskip
 
 Now that we know about faces, we can finally describe the origin of the term {\it outerplanar}.  A graph $\g$ is outerplanar if it can be drawn (on a $2$-dimensional medium) in the following manner.  All of $\g$'s vertices are placed around a circle, and all of $\g$'s edges are drawn as noncrossing chords of the circle.  The region outside the vertex-bearing circle is, thus, the {\em outer} face of this special planar drawing of $\g$.
 \end{minipage}
@@ -582,7 +582,7 @@ The following auxiliary result derives a celebrated ``formula'' attributed to Eu
 
 \begin{prop} [Euler's Formula for Planar Graphs]
 \label{thm:Euler-Formula}
-Given the indicated drawing of $\g$, we have
+Let $\g$ be a planar graph having $n$ vertices and $e$ edges.  For every $f$-face planar drawing of $\g$, we have
 \begin{equation}
 \label{eqn:Eulers-formula}
 n \ - \ e \ + \ f \ \ = \ \ 2
@@ -597,24 +597,15 @@ We defer proving Proposition~\ref{thm:Euler-Formula} so that we can proceed with
 
 \index{graph!planar!maximal}
 
-As we approach the next step in the proof of Lemma~\ref{thm:PlanarGraph-degree5}, we  simplify the setting by assuming henceforth that $\g$ is {\em connected} and that it is a {\em maximal} planar graph---meaning that one cannot add any new edge to the drawing without crossing an existing edge (and, thereby, destroying planarity).  Fig.~\ref{fig:K5andK3by3} illustrates the notion 
-of maximality by providing planar drawings of two connected {\em maximal} planar graphs.
+As we approach the next step in the proof of Lemma~\ref{thm:PlanarGraph-degree5}, we  simplify the setting by assuming henceforth that $\g$ is {\em connected} and that it is a {\em maximal} planar graph---meaning that one cannot add any new edge to the drawing without crossing an existing edge (and, thereby, destroying planarity).  Fig.~\ref{fig:K5andK3by3} illustrates the notion of maximality by providing planar drawings of two connected {\em maximal} planar graphs.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.55]{FiguresGraph/K5andK3by3}
-\caption{Maximal planar drawings of $\k_5$ (left) and $\k_{3,3}$ (right).  The reader cannot add an edge to either drawing without destroying planarity---i.e., without introducing any crossing edges.  For reference, we use dotted lines in the figure to exhibit the extra edges that would augment the depicted planar graphs to the (inherently nonplanar) graphs $\k_5$ (on the left) and $\k_{3,3}$ (on the right).}
+\caption{Planar drawings of the maximal planar graphs $\k_5$ (left) and $\k_{3,3}$ (right).  One cannot add an edge to either drawing without destroying planarity---by introducing crossing edges.  For reference, we add dotted edges in the figure, which would augment the depicted planar graphs to the (inherently nonplanar) graphs $\k_5$ (on the left) and $\k_{3,3}$ (on the right).}
   \label{fig:K5andK3by3}
 \end{center}
 \end{figure}
 The assumption of maximality only strengthen's the Lemma's conclusion by (apparently) making it more difficult to find a small-degree vertex.
-
-\ignore{**********
-{\Denis I don't think the notion of maximality is simple, may be we should add a figure here?}
-{\Arny The notion certainly helps ME to think about the proof ... but I am probably not
-a typical reader, right?  I think that a figure would be very good here.  Maybe it would suffice to
-"challenge" the reader to add one more edge to a planar drawing of $\k_5$ or of $\k_{3,3}$ -- or
-of both!!}
-***********}
 
 \smallskip
 
@@ -767,7 +758,7 @@ Produce a $5$-coloring of $\g'$ that uses only $4$ colors for the vertices that 
 
 \smallskip
 
-($b$) Color $v$ with whichever of the $5$ available colors is not used to color $v$'s neighbors.
+($b$) Color $v$ with any of the $5$ available colors that is not used for $v$'s neighbors.
 \end{enumerate}
 
 \smallskip
@@ -845,7 +836,7 @@ The other two graphs in the figure depict schematically how we have dealt with C
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.4]{FiguresGraph/5colorsCase1}
-\caption{*****.}
+\caption{A vertex-coloring for Case 1.}
   \label{fig:5colorsCase1}
 \end{center}
 \end{figure}
@@ -858,11 +849,11 @@ To analyze Case 4, we focus on vertices $v_1$ and $v_3$ in Fig.~\ref{fig:5colors
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.4]{FiguresGraph/5colorsCase2}
-\caption{*****.}
+\caption{A vertex-coloring for Case 2.}
   \label{fig:5colorsCase2}
 \end{center}
 \end{figure}
-Importantly, these vertices have received distinct colors ($c_1$ and $c_3 \neq c_1$, respectively), and these vertices are not adjacent to one another as one makes a clockwise sweep around vertex $v$.
+Importantly, these vertices have received distinct colors ($c_1$ and $c_3 \neq c_1$, respectively), and these vertices are not adjacent to one another along a clockwise sweep around vertex $v$.
 
 \smallskip
 
@@ -959,6 +950,8 @@ Let us be given a planar graph $\g$ that has $n$ vertices, $e$ edges, and $f$ fa
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
+
+\smallskip
 
 \textit{Invariants} are extremely important conceptual tools when crafting proofs.  The idea underlying their use is to find an expression $\phi(\circ)$ whose value is preserved---i.e., it ``holds
 invariant"---as some relevant process proceeds.
@@ -1665,7 +1658,6 @@ Let us be given a copy of $\k_6$ each of whose edges has been colored either red
 
 {\sc Lesson:} Reasoning about graph-theoretic properties.
 
-
 \smallskip
 
 {\em Prove the following assertion.}
@@ -1699,10 +1691,14 @@ Perform a case-by-case analysis of all possible ways to distribute $K_{3,2}$'s v
 Every outerplanar graph is a subgraph of a Hamiltonian graph.
 \end{prop}
 
+
+
+
+
 \end{enumerate}
 
 
-\subsection{Euler Formula}
+\subsection{Euler's Formula}
 
 \noindent \textit{The aim.}
 Complete a result of the termination with a connected tree.
