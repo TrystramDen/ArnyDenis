@@ -9,7 +9,7 @@ Complex Operations from Simple Components}
 \label{sec:intro}
 
 The operation of {\it summation}---adding up aggregations of numbers---is of fundamental importance in the world of digital computing.  While we humans are able to deal handily with abstractions such as ``smoothness'' and ``continuity'', we must employ sophisticated {\em discretizations} of these concepts in order to enlist the aid of digital computers in dealing with such abstractions.  Summations provide a very useful discretization of {\em continuous} (or,
-``smooth'') phenomena that are typically dealt with with the aid of the (differential and integral) calculus. %, which was invented by Newton and Leibniz for such dealings.
+``smooth'') phenomena that are typically dealt with with the aid of the (differential and integral) calculus.
 
 \medskip
 
@@ -53,6 +53,12 @@ But sometimes an infinite series does {\em not} have a finite sum.  This is true
 \end{equation}
 As more and more terms are added to this summation, the accumulated sum eventually exceeds every number.  Such an infinite series is said to {\em diverge}.
 \index{infinite series!divergent}
+
+\smallskip
+
+Summations such as (\ref{eq:sample-sum-harmonic}) diverge because their initial partial sums---i.e., the sequence $1$, $1 + \frac{1}{2}$, $1 + \frac{1}{2} + \frac{1}{3}$, \ldots, for (\ref{eq:sample-sum-harmonic})--grow without bound.  There are other infinite series whose behavior is harder to describe.  One such example is the series
+\[ 1 \ - \ 1 \ + \ 1 \ - \cdots + \ 1 \ - \ 1 \ + - \cdots \] 
+which we discuss briefly in the exercises for this chapter.
 \end{minipage}
 }
 
@@ -282,30 +288,35 @@ Not everyone thinks the same way---even within the context of mathematics.  It i
 {\bf A ``pictorial'', graphical proof.}
 Now we shall look at the problem of summing $S_1(n)$ by estimating the area of a simple (in the \textit{good sense} of the word) surface.  In this worldview, integers are represented by concatenating {\it unit-side} (i.e., $1 \times 1$ {\it squares}), as in Fig.~\ref{fig:sumIntegersGeo1}.
 
+\smallskip
+
 Our summation process proceeds in the three steps illustrated in Figs.~\ref{fig:sumIntegersGeo1}-\ref{fig:sumIntegersGeo3}.
 \begin{enumerate}
 \item
 We begin, in Fig.~\ref{fig:sumIntegersGeo1}, by depicting the problem of calculating $S_1(n)$ as the problem of determining the area of a surface built from unit-side squares.
 \begin{figure}[htb]
 \begin{center}
-       \includegraphics[scale=0.35]{FiguresMaths/SumIntegersGeometricBasis}
+       \includegraphics[scale=0.33]{FiguresMaths/SumIntegersGeometricBasis}
 \caption{Representing the first $n$ integers using unit squares; $n=6$ in this example.}
        \label{fig:sumIntegersGeo1}
 \end{center}
 \end{figure}
+
 \item
-Next, we illustrate in Fig.~\ref{fig:sumIntegersGeo2} that the area of the lower-right triangle of the $n \times n$ square---colored light grey in the figure---is one-half the area of the entire $n \times n$ square.
+Next, we illustrate in Fig.~\ref{fig:sumIntegersGeo2}(Left) that the area of the (light grey) lower-right triangle of the $n \times n$ square is one-half the area of the entire $n \times n$ square.
 \begin{figure}[htb]
 \begin{center}
-       \includegraphics[scale=0.35]{FiguresMaths/SumIntegersGeometricIntermediate}
-\caption{The area of the lower-right triangle (light grey) is one-half that of the entire $n \times n$ square.}
-       \label{fig:sumIntegersGeo2}
+       \includegraphics[scale=0.33]{FiguresMaths/SumIntegersGeometricIntermediate}
+       \hspace*{.25in}
+        \includegraphics[scale=0.33]{FiguresMaths/SumIntegersGeometricFinal}
 \end{center}
+\caption{(Left) The area of the lower-right triangle (light grey) is one-half that of the entire $n \times n$ square.  (Right) The area of the (dark) triangles upon the upper diagonal of the $n \times n$ square is ${1 \over2} n$.}
+       \label{fig:sumIntegersGeo2}
 \end{figure}
 
 \item
-Finally, we indicate in Fig.~\ref{fig:sumIntegersGeo3} that the area of the small (dark grey in the figure) triangles that cover the upper diagonal of the $n \times n$ square is $\frac{1}{2} n$.  This
-reckoning notes that there are $n$ triangles, each of area equal to one-half the area of a unit-side square.
+Finally, we indicate in Fig.~\ref{fig:sumIntegersGeo2}(Right) that the cumulative area of the small (dark grey) triangles which sit on the upper diagonal of the $n \times n$ square is ${1 \over 2} n$.  This reckoning notes that there are $n$ triangles, each of area equal to one-half the area of a unit-side square.
+\ignore{**************
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersGeometricFinal}
@@ -313,6 +324,7 @@ reckoning notes that there are $n$ triangles, each of area equal to one-half the
        \label{fig:sumIntegersGeo3}
 \end{center}
 \end{figure}
+***************}
 \end{enumerate}
 We thereby reckon the area of the surface depicting $S_1(n)$ as
 
@@ -327,7 +339,7 @@ i.e., $\frac{1}{2} n$}
 \smallskip
 
 \noindent
-This reasoning has, thus, derived the value of $S_1(n)$.
+This reasoning thus derives the value of $S_1(n)$.
 \end{proof}
 
 \medskip
@@ -368,7 +380,7 @@ On the one hand, we see that the total number, $j$, of right-lying integers equa
 \smallskip
 
 On the other hand, every instance of a right-lying integer can be identified uniquely by the pair of nonnegative integers, $i$ (the instance's block) and $j>i$ (the instance's position-within-block).
-The total number of right-lying integer-instances corresponds to the number of ways one can select two objects (here, integers) from among $n+1$ objects.\footnote{We study such counting techniques in depth in Section~\ref{sec:counting}.}  This number is the {\it binomial coefficient }, whose definition we specialize from equation (\ref{eq:binom-coeff}) in Section~\ref{sec:binary-operators}.C:\footnote{The sums $\Delta_n$ are, thus, special binomial coefficients, namely, those whose ``bottom" parameter is $2$.  The many ways of viewing the underlying summation in terms of triangles---as in Figs.~\ref{fig:sumIntegersGeo1}--\ref{fig:rightward-instances}---have led to the naming of these special binomial coefficients as {\it triangular numbers}.  \index{triangular numbers}  \index{binomial coefficients!triangular numbers} }
+The total number of right-lying integer-instances corresponds to the number of ways one can select two objects (here, integers) from among $n+1$ objects.\footnote{We study such counting techniques in depth in Section~\ref{sec:counting}.}  This number is the {\it binomial coefficient }, whose definition we specialize from equation (\ref{eq:binom-coeff}) in Section~\ref{sec:binary-operators}.C:
 \[
 \Delta_n  \ = \  {{n+1} \choose 2}  \  \eqdef  \  \frac{1}{2} n(n+1)
 \]
@@ -379,7 +391,18 @@ We have thus derived two distinct---but, of course, equal---expressions for $S_1
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-{\bf Explanatory note}.
+{\bf Explanatory note.}
+
+We have now exposed the sums $\Delta_n$ as special binomial coefficients, namely, those whose ``bottom" parameter is $2$.  The many ways of viewing the underlying summation in terms of {\em triangles}---as in Figs.~\ref{fig:sumIntegersGeo1}--\ref{fig:rightward-instances}---have led to the naming of these special binomial coefficients as {\it triangular numbers}.
+\index{triangular numbers}  \index{binomial coefficients!triangular numbers} 
+\end{minipage}
+}
+
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Cultural note}.
 
 Our combinatorial derivation of summation (\ref{eq:sum-1-to-n}) illustrates one of the most important roles of mathematical abstraction.  There is no obvious intuition to explain the relationship between the activity of summing $n$ consecutive integers and the activity of extracting two objects out of a set of $n$ objects.  Yet, our combinatorial derivation exposes an intimate connection between the two.
 \end{minipage}
@@ -418,7 +441,7 @@ For all $n \in \N^+$,
 That, is, the $n$th perfect square is the sum of the first $n$ odd integers.
 \end{prop}
 
-Before we present our proofs of this result, we want to stress that the notation for odd integers in the summation within (\ref{eq:sum-of-odds}) is completely general: {\em Every positive odd integer $n$ can be written in the form $2i-1$ for some positive integer $i$.}
+Before we present our proofs of this result, we want to stress that the notation for odd integers in the summation within (\ref{eq:sum-of-odds}) is completely general: {\em Every positive odd integer can be written in the form $2i-1$ for some positive integer $i$.}
 
 \bigskip
 
@@ -647,8 +670,7 @@ The corresponding geometric summation:
 \begin{eqnarray}
 \label{eq:genl-geom-summation}
 S_{a,b}(n)
- & \eqdef &  \sum_{i=0}^{n-1} a b^i \\
-\nonumber
+ \ \eqdef \  \sum_{i=0}^{n-1} a b^i 
  & = &  a + ab + ab^2 + \cdots + ab^{n-1} \\
 \nonumber
  & = & 
@@ -664,12 +686,16 @@ S_{a,b}^{(\infty)} \ \ \eqdef \ \  \sum_{i=0}^\infty a b^i
 
 \medskip
 
-It is clear from these definitions that:  We can evaluate the summation (\ref{eq:genl-geom-summation}) by evaluating just the sub-summation
+\noindent
+Two related facts are clear from these definitions:
+
+\noindent
+We can evaluate the summation (\ref{eq:genl-geom-summation}) by evaluating just the sub-summation
 \begin{equation}
 \label{eq:geom-summation}
 S_{b}(n) \ \eqdef \ \sum_{i=0}^{n-1} b^i \ = \ 1+ b + b^2 + \cdots + b^{n-1}
 \end{equation}
-we can evaluate the series (\ref{eq:genl-geom-series}) by evaluating just the sub-series
+We can evaluate the series (\ref{eq:genl-geom-series}) by evaluating just the sub-series
 \begin{equation}
 \label{eq:geom-series}
 S_{b}^{(\infty)} \ \ \eqdef \ \ \sum_{i=0}^\infty b_i \ \ = \ \ 1+ b + b^2 + \cdots 
@@ -678,7 +704,7 @@ S_{b}^{(\infty)} \ \ \eqdef \ \ \sum_{i=0}^\infty b_i \ \ = \ \ 1+ b + b^2 + \cd
 \bigskip
 
 \index{evaluating geometric sums and series}
-The major results that we develop in this section are embodied in the following proposition.
+This section's major results are embodied in the following proposition.
 
 \begin{prop}
 \label{thm:sum-finite-geometric-series}
@@ -702,21 +728,37 @@ When $b < 1$, $S_{b}(n)$ evaluates to the following sum.
 \label{eq:geom-sum:b<1}
 S^{(b<1)}_{b}(n) \ = \ \frac{1 - b^n}{1-b}
 \end{equation}
-\end{prop}
 
 \smallskip
 
-\noindent
-Of course, in the uninteresting {\em degenerate} case $b=1$
+\noindent {\bf (c)}
+In the uninteresting, {\em degenerate}, case $b=1$
 \[ S^{(b=1)}_{b}(n) \ = \ 1 + 1 + \cdots + 1 \ \ \mbox{($n$ times)} \ \ = \ n \]
+\end{prop}
 
+\medskip
+
+\index{degenerate cases in mathematics}
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Explanatory note \#1}.
+
+Of course, the expressions (\ref{eq:geom-sum:b>1}) for $S^{(b>1)}_{b}(n)$ and (\ref{eq:geom-sum:b<1}) for $S^{(b<1)}_{b}(n)$ are algebraically equivalent as functions of $b$ and $n$.  But they will be read differently:
+\[ \Big[ S^{(2)}_{2}(n) \ = \ 2^n -1 \Big] \ \ \ \
+\mbox{ while } \ \ \ \
+\left[ S^{(1/2)}_{2}(n) \ = \ \frac{ 1 - \left({1 \over 2} \right)^n}{ 1 - \left({1 \over 2} \right)} \ = \
+2 - \left({1 \over 2} \right)^{n-1} \right] \]
+\end{minipage} }
+
+\index{degenerate cases in mathematics}
 \bigskip
 
 \index{degenerate cases in mathematics}
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-{\bf Explanatory note}.
+{\bf Explanatory note \#2}.
 
 The {\it New Oxford Dictionary} defines the word ``degenerate" as follows:
 
@@ -985,7 +1027,7 @@ in two different ways.  First, we isolate the summation's last term:
 \label{eq:ext-geom-c=1.1}
 S_b^{(1)}(n+1) \ = \ S_b^{(1)}(n) \ + \ (n+1) b^{n+1}
 \end{equation}
-Then we isolate the summation's first term:
+Then we isolate the lefthand side of (\ref{eq:ext-geom-c=1.1}):
 \begin{eqnarray}
 \nonumber
 S_b^{(1)}(n+1)
@@ -1030,7 +1072,7 @@ We now use standard algebraic manipulations to derive expression (\ref{eq:sum-i2
 \index{extended geometric sums: $\sum_{i=1}^n \ i^c b^i$!the case $c=1$!solving the case $b=2$ using subsum rearrangement}
 \begin{proof}
 {\bf Solving the case $b=2$ using subsum rearrangement.}
-We can evaluate the sum
+We evaluate the sum
 \[
 S_2^{(1)}(n) \ = \ \sum_{i=1}^n \ i 2^i
 \]
@@ -1762,7 +1804,7 @@ Moving to the pictorial domain, we write $k^3$ as $k \times k^2$, and we distrib
        \label{fig:sumCubes3}
 \end{center}
 \end{figure}
-Because $k$ is odd, the small squares pack perfectly---sine $(k-1)$ is even, hence divisible by $2$.   The depicted case depicts pictorially the definition of triangular numbers: $k \cdot \frac{1}{2}(k-1) \ = \ \Delta_{k-1}$.
+Because $k$ is odd, the small squares pack perfectly---since $(k-1)$ is even, hence divisible by $2$.   The depicted case depicts pictorially the definition of triangular numbers: $k \cdot \frac{1}{2}(k-1) \ = \ \Delta_{k-1}$.
 
 \medskip
 
@@ -1822,7 +1864,7 @@ When $c \neq -1$,\footnote{We need to avoid the case $c = -1$ so that we do not 
 
 \paragraph{A. Negative powers $-1 < c < 0$}
 
-In this case, we obtain essentially the same bounds as in the case of nonnegative $c$.  To wit,
+In this case, we obtain essentially the same bounds as in the case of nonnegative $c$.  To wit:
 
 \begin{prop}
 \label{thm:bounds-(-1)<c<0}
@@ -1923,9 +1965,9 @@ We now reorganize the sequence of $S^{(H)}(n)$'s summands in a way that helps us
 We group $S^{(H)}(n)$'s summands into sub-summations whose sizes are the consecutive powers of $2$:
 \[ \begin{array}{llcl}
 \mbox{The first $(2^0 =1)$ reciprocal:} &
-A_0 & = &  {\displaystyle 1 } \\
+A_0 & = &  {\displaystyle 1 } \\[1.01em]
 \mbox{the next $(2^1 =2)$ consecutive reciprocals:} &
-A_1 & = &  {\displaystyle \frac{1}{2} + \frac{1}{3} }  \\
+A_1 & = &  {\displaystyle \frac{1}{2} + \frac{1}{3} }  \\[1.01em]
 \mbox{the next $(2^2 =4)$ consecutive reciprocals:} &
 A_2 & = &  {\displaystyle \frac{1}{4} + \frac{1}{5} + \frac{1}{6} + \frac{1}{7} } \\
 \vdots &  & & \vdots \\
@@ -2065,7 +2107,7 @@ Practice with manipulating summations and series
 
 There are myriad ways to prove that the harmonic series
 \[ S^{(H)} \ = \ \sum_{k=1}^\infty \ {1 \over k} \]
-diverges.  In Proposition~\ref{thm:harmonic}, we developed a method that provided additional information: not only did it prove that $S^{(H)}$ diverges---i.e., tends to infinity as one looks at more and. more terms grows---it also exposed the rate of this divergence as logarithmic in the number of terms one looks at.  If one wants only to prove divergence, then the following more direct argument will suffice.
+diverges.  In Proposition~\ref{thm:harmonic}, we developed a method that provided additional information: not only did it prove that $S^{(H)}$ diverges---i.e., tends to infinity as one looks at more and more terms grows---it also exposed the rate of this divergence as logarithmic in the number of terms one looks at.  If one wants only to prove divergence, then the following more direct argument will suffice.
 
 \medskip
 
@@ -2107,7 +2149,7 @@ We have proved in multiple ways:
 
 \smallskip
 
-This exercise picks up where these two examples leave off
+This exercise picks up where these two examples leave off.
 
   \begin{enumerate}
   \item 
