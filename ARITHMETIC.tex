@@ -1,4 +1,4 @@
-%version of 03-10-20
+%version of 03-25-20
 
 \chapter{Arithmetic: Putting Numbers to Work}
 \label{ch:arithmetic}
@@ -594,15 +594,17 @@ The {\em formation rule} of Pascal's Triangle is that the array-entry at (row $n
 \begin{minipage}{0.96\textwidth}
 {\bf Historical note.}
 
-The array in Fig.~\ref{fig:pascal-triangle} is attributed to Blaise Pascal in the West, with a date in the 17th century.  In fact, the array appears in a Chinese text from the early 14th century: the book {\it Siyuan Yujian}, by Zhu Shijie.  \index{Zhu Shijie}
+The array in Fig.~\ref{fig:pascal-triangle} is attributed to Blaise
+Pascal in the West, with a date in the 17th century.  In fact, the
+array appears in {\it Siyuan Yujian} \cite{Zhu-1303},
+a Chinese book from the early 14th century; the array is there attributed to Jia Xian in the 11th century.  \index{Zhu Shijie} \index{Jia Xian}
 \end{minipage} }
 
 \subsection{Rational Arithmetic: A Computational Exercise}
 \label{sec:Rational-arithmetic}
 \index{number!rational!arithmetic}
 
-In Section~\ref{sec:rationals} we defined the rational numbers $\Q$ and reviewed why they were needed to compensate for the general absence of multiplicative inverses within the set $\Z$.  But, our discussion did not reveal how to perform arithmetic on the elements of the set $\Q$.
-We make up for this shortcoming now.  Of course, the reader will have encountered arithmetic on rationals long ago---but we are now reviewing the topic for two reasons:  (1) We want to reinforce the systematic nature of the progression from the algebra of integers coupled with their arithmetic to the extended algebra of rationals coupled with their arithmetic.  (2) We want to provide the reader with a set of valuable exercises to reinforce the mathematical thinking skills whose presentation is our main goal.
+In Section~\ref{sec:rationals} we defined the rational numbers $\Q$ and reviewed why they were needed to compensate for the general absence of multiplicative inverses within the set $\Z$.  But, our discussion did not reveal how to perform arithmetic within $\Q$.  We make up for this shortcoming now.  Of course, the reader will have encountered arithmetic on rationals long ago---but we are now reviewing the topic for two reasons:  (1) We want to reinforce the systematic nature of the progression from the algebra of integers coupled with their arithmetic to the extended algebra of rationals coupled with their arithmetic.  (2) We want to provide the reader with a set of valuable exercises to reinforce the mathematical thinking skills whose presentation is our main goal.
 
 \medskip
 
@@ -739,7 +741,7 @@ By invoking the preceding laws multiple times, we can derive a recipe for multip
 
 \begin{prop}
 \label{prop:(a+b)(c+d)}
-For all numbers $a, b, c, d$:\footnote{Because multiplication has priority over addition, the absence of parentheses in the righthand side of equation (\ref{eq:(a+b)(c+d)}) does not jeopardize unambiguity.}
+For all numbers $a, b, c, d$:\footnote{Because multiplication has priority over addition, the absence of parentheses in the righthand side of equation (\ref{eq:(a+b)(c+d)}) cannot introduce ambiguity.}
 \begin{equation}
 \label{eq:(a+b)(c+d)}
 (a+b) \cdot (c+d) \ = \ a \cdot c \ + \ a \cdot d \ + \ b \cdot c \ + \ b \cdot d
@@ -783,76 +785,6 @@ Every {\em nonzero} number $x \neq 0$ has a {\em multiplicative inverse}, i.e., 
   \end{itemize}
 \end{itemize}
 
-\ignore{******************
-\subsection{A Fun Result: A ``Trick'' for Squaring Certain Integers}
-
-Sometimes only basic knowledge is needed to craft amusing
-``tricks''---we know that they are not really tricks at all!---that
-are really rigorous applications of principles that we have learned.
-Here is an ``old chestnut'' example that may inspire you to design
-your own. 
-
-If someone presents you with a number that has a numeral that ends in
-$5$, then there is a simple way to square the number mentally.  For
-instance, if someone says
-
-\hspace{.25in}``$n = 25$''
-
-\noindent
-then you can instantly respond
-
-\hspace{.25in}``$n^2 = 625$''
-
-\noindent
-If the challenge is
-
-\hspace{.25in}``$n = 75$''
-
-\noindent
-then your response is
-
-\hspace{.25in}``$n^2 = 5625$''
-
-\noindent
-Let's make this ``game'' mathematical.
-
-\begin{prop}
-\label{thm:75x65=4925}
-Let $n$ be any number that has a $2$-digit decimal numeral of the form
-
-\hspace{.25in}$\delta \ 5$ \ \ \ \ $(\delta \in \{ 0,1,2,3,4,5,6,7,8,9\})$.
-
-\noindent
-Then the square of $n$ is the integer
-
-\hspace{.25in}$25 \ + \ \delta \cdot (\delta +1)$. 
-\end{prop}
-
-\begin{proof}
-We can rewrite the premise of the proposition in the form
-\[ n \ = \ 10 \cdot \delta + 5 \]
-It is now easy to invoke Proposition~\ref{prop:(a+b)(c+d)} and the
-distributive law to compute that
-
-\[ n^2 \ = \ 100 \cdot \delta \cdot (\delta+1) + 25. \]
-To wit: 
-\[
-\begin{array}{lclll}
-n^2 & = & (10 \cdot \delta + 5)^2 & & \mbox{Given} \\
-    & = & 100 \cdot \delta^2 \ + \ 100 \cdot delta \ + \ 25
-              & & \mbox{the proposition} \\
-    & = & 100 \cdot (\delta^2 \ + \ \delta) \ + \ 25
-              & & \mbox{factoring: distributive law} \\
-    & = & 100 \cdot \delta \cdot (\delta + 1) \ + \ 25
-              & & \mbox{factoring: distributive law} \\
-\end{array}
-\]
-A parlor trick has become a mathematical demonstration!
-\qed
-\end{proof}
-**********************}
-
-
 \section{Polynomials and Their Roots}
 \label{sec:polynomials}
 
@@ -885,7 +817,7 @@ When $S = \Q$, we have ``a polynomial/monomial with {\em rational coefficients}"
 \item
 The exponents $c_i$ of the variables are {\em nonnegative integers} that are called the {\it powers} to which the variables are raised.
 \end{itemize}
-For illustration, here is a specific {\em bivariate}---i.e., $2$-variable---polynomial with integer coefficients; we denote its two variables $x_1$ and $x_2$.  (By convention a variable does not appear when its power is $0$.)
+For illustration, here is a specific {\em bivariate}---i.e., $2$-variable---polynomial with integer coefficients; we denote its two variables $x_1$ and $x_2$.  (By convention a variable does not appear when its power or its coefficient is $0$.)
 \[ 
 3 x_1^7 \cdot x_2^{19} \ + \ x_1^3 \cdot x_2 \ + \ 45 x_2^{9} \ + \ 7 x_1^{11} \cdot x_2^{5}
 \]
@@ -922,7 +854,9 @@ Most of the studies of this problem are found in algorithmic settings---courses,
 
 \smallskip
 
-This problem is often found under the rubric of {\it Diophantine analysis}, so named in honor of the Greek mathematician Diophantus of Alexandria, who has been called the {\em father of algebra} for his seminal studies of the process of equation-solving.  By its very nature---namely, seeking a ``{\sc yes}''-``{\sc no}'' answer, rather than an actual root-finding procedure---this problem has been studied largely within theoretical or mathematical settings.  While most work on this subject uses advanced techniques, hence is beyond the scope of the current text, there is one result in this domain whose underlying message is so profound that we at least tell its ``story'', in Section~\ref{sec:Hilberts-Tenth}.
+\index{Diophantine analysis} \index{Diophantus of Alexandria}
+ 
+This problem is often found under the name {\it Diophantine analysis}, so named in honor of the Greek mathematician Diophantus of Alexandria, who has been called the {\em father of algebra} for his seminal studies of the process of equation-solving.  By its very nature---namely, seeking a ``{\sc yes}''-``{\sc no}'' answer, rather than an actual root-finding procedure---this problem has been studied largely within theoretical or mathematical settings.  While most work on this subject uses advanced techniques, hence is beyond the scope of the current text, there is one result in this domain whose underlying message is so profound that we at least tell its ``story'', in Section~\ref{sec:Hilberts-Tenth}.
 \end{itemize}
 \index{Diophantine analysis} \index{Diophantus of Alexandria}
 
@@ -930,7 +864,7 @@ This problem is often found under the rubric of {\it Diophantine analysis}, so n
 
 \index{algebraic function!polynomial} \index{algebraic function} \index{function!algebraic}
 \index{number!algebraic}
-Our concern with the roots of polynomials, as well as with the functions themselves, forces us to expand our horizon to consider a new classification of numbers and functions.  This new classification goes by the name {\it algebraic}; it encompasses number and functions that arise in the solutions of equations of the form $P(x) = 0$, where $P$ is a polynomial.  This expanded view mandates that we be prepared to discuss and analyze ``polynomials'' within which variables are raised to fractional powers.
+Our concern with the roots of polynomials, as well as with the functions themselves, forces us to expand our horizon to consider a new classification of numbers and functions.  This new classification goes by the name {\it algebraic}; it encompasses number and functions that arise in the solutions of equations of the form $P(x) = 0$, where $P$ is a polynomial.  This expanded view mandates that we be prepared to discuss and analyze ``polynomials'' whose variables have fractional exponents, i.e., whose variables are raised to fractional powers.
 
 
 \subsection{Univariate Polynomials and Their Roots}
@@ -1025,10 +959,20 @@ The complete march toward Theorem~\ref{thm:fund-thm-algebra} took literally mill
 The earliest proofs of Theorem~\ref{thm:fund-thm-algebra} were not {\em constructive}---they did not provide a roadmap for actually finding the roots of a given polynomial.  There currently do exist proofs of the Theorem that are constructive, in the following sense.  Given a degree-$d$ polynomial $P(x)$, these proofs determine a disk in two-dimensional space which contains all $d$ roots of $P(x)$.  How might such a disk emerge from a mathematical argument?  Here is a {\em very simple} illustration which focuses on a {\em very special} type of polynomial.
 
 Let us be given a degree-$d$ polynomial with real coefficients:
-\[ P(x) \ \ = \ \ a_d x^d \ + \ a_{d-1} x^{d-1} \ + \ a_{d-2} x^{d-2}
-\ + \cdots + \ a_1 x \ + \ a_0
+\[ Q(x) \ \ = \ \ a_d x^d \ + \ a_{d-1} x^{d-1} \ + \ a_{d-2} x^{d-2} \ + \cdots + \ a_1 x \ + \ a_0
 \]
-Since we are interested only studying {\em the roots of} $P(x)$, we lose no generality by insisting that $P(x)$ be {\em monic}, i.e., have leading coefficient $a_d = 1$.  ({\em The reader should verify this assertion!})  When $P(x)$ is a monic polynomial, we can rewrite it in the following form:
+Since we are interested only in {\em the roots} of $Q(x)$, we lose no generality by focusing only on polynomials that are {\em monic}, i.e., that have leading coefficient $a_d = 1$.  When the polynomial $Q(x)$ whose roots we are seeking is not monic---i.e., when $a_d \neq 1$---then we replace $Q(x)$ by the monic polynomial
+\[ P_Q(x) \ \ = \ \ x^d \ + \ \frac{a_{d-1}}{a_d} x^{d-1} \ + \ \frac{a_{d-2}}{a_d} x^{d-2}
+\ + \cdots + \ \frac{a_1}{a_d} x \ + \ \frac{a_0}{a_d}
+\]
+which has the same roots as $Q(x)$.  ({\em The reader should verify this assertion!})  
+
+\smallskip
+
+When the polynomial
+\[ P(x) \ \ = \ \ x^d \ + \ a_{d-1} x^{d-1} \ + \ a_{d-2} x^{d-2} \ + \cdots + \ a_1 x \ + \ a_0
+\]
+whose roots we are seeking {\em is} monic, we can rewrite $P(x)$ in the following form:
 \[ P(x) \ = \ 
 x^d \cdot \left( 1 \ + \ \frac{a_{d-1}}{x} \ + \ \frac{a_{d-2}}{x^2}
 \ + \cdots + \ \frac{a_1}{x^{d-1}} \ + \ \frac{a_0}{x^d} \right)
