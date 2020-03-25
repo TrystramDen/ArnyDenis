@@ -930,7 +930,8 @@ amateur(!)~French mathematician Jean-Robert Argand.  Argand publicized his proof
 \index{Diophantus of Alexandria} \index{Diophantus of Alexandria!{\it Arithmetica}}
 \index{Diophantus of Alexandria!father of algebra} \index{algebra!etymology of the word}}
 \index{Al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$!Muhammad ibn M$\bar{\mbox{u}}$s$\bar{\mbox{a}}$ al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$}
-\index{Al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$!eponym of ``algorithm''} \index{Al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$!Hindu-Arabic numerals}
+\index{Al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$!eponym of ``algorithm''} 
+\index{Al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$!Hindu-Arabic numerals}
 \index{Descartes, Ren\'{e}}
 
 A few cultural/historical comments are in order.
@@ -966,6 +967,7 @@ Since we are interested only in {\em the roots} of $Q(x)$, we lose no generality
 \ + \cdots + \ \frac{a_1}{a_d} x \ + \ \frac{a_0}{a_d}
 \]
 which has the same roots as $Q(x)$.  ({\em The reader should verify this assertion!})  
+\index{polynomial!monic}
 
 \smallskip
 
@@ -977,13 +979,15 @@ whose roots we are seeking {\em is} monic, we can rewrite $P(x)$ in the followin
 x^d \cdot \left( 1 \ + \ \frac{a_{d-1}}{x} \ + \ \frac{a_{d-2}}{x^2}
 \ + \cdots + \ \frac{a_1}{x^{d-1}} \ + \ \frac{a_0}{x^d} \right)
 \]
-The benefit of this rewriting is that it makes the following inequality totally clear.
-\[ P(x) \ >  \ 0 \ \ \ \ \mbox{ for all } \ \ \ x >
-d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots + \ |a_1| \ + \ |a_0| \right)
-\]
+The benefit of this rewriting is that it exposes the following inequality.
+\begin{equation}
+\label{eq;bound-monic-roots}
+P(x) \ > \ 0 \ \ \ \ \mbox{ whenever } \ \ \ x >
+ \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots + \ |a_1| \ + \ |a_0| \right)
+\end{equation}
 And, this inequality implies that all real roots of $P(x)$, if there are any, lie within the region
-\[ x \ \leq \ d \cdot \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots + \ |a_1| \ + \ |a_0| \right) \]
-\index{polynomial!monic}
+\[ x \ \leq \ \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots + \ |a_1| \ + \ |a_0| \right) \]
+This observation can be used to develop an efficient algorithm for finding all of $P$'s roots---but this is outside the scope of this text.
 
 \medskip
 
@@ -1053,8 +1057,7 @@ x^2 \ + \ \frac{b}{a} x \ + \ E \ \ = \ \
 x^2 \ + \ \frac{b}{a} x \ + \ \frac{b^2}{4a^2}
    \ \ = \ \ \left( x \ + \ \frac{b}{2a} \right)^2
 \]
-We have thereby converted equation (\ref{eq:generic-quadratic-2}) to
-the equation
+We have thereby converted equation (\ref{eq:generic-quadratic-2}) to the equation
 \begin{equation}
 \label{eq:generic-quadratic-3}
 \left( x \ + \ \frac{b}{2a} \right)^2
@@ -1067,7 +1070,7 @@ Elementary calculation on equation (\ref{eq:generic-quadratic-3}) identifies $P(
 \bigskip
 
 \noindent
-We close our treatment of quadratic polynomials with a few comments that may inspire some readers to read further about roots of quadratic polynomials.
+We close our discussion of quadratic polynomials with a few comments that may inspire some readers to read further about roots of quadratic polynomials.
 
 \index{$\pm$: plus-or-minus}
 
@@ -1094,7 +1097,7 @@ $P(x)$, as illustrated in Fig.~\ref{fig:SecondDegreeInit}.  (Note that the {\em 
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.325]{FiguresArithmetic/SecondDegreeInit}
-\caption{$P(x)$ has: (left) two real roots; (center) one real root; (right) no real root.}
+\caption{$P(x)$ has: [left] two distinct real roots; [center] two equal real roots; [right] no real root (both roots are complex).}
 \label{fig:SecondDegreeInit}
 \end{center}
 \end{figure}
@@ -1131,12 +1134,10 @@ P(x) \ = \  ax^2 \ + \ bx \ + \ c \ \ \mbox{  where  } \ b,c \in \R;
 Let consider that $a>0$, the case where $a<0$ is symmetric.
 Fig.~\ref{fig:SecondDegreeInit} gives an illustration of the possible solutions.
 
-
 In the case where there are two solutions, we first determine the coordinates of the minimum of $P(x)$.
 This is obtained by a simple derivative whose solution is equal to~$x^*=\frac{-b}{2a}$,
 the corresponding ordinate is:
 \[
-%\label{eq:generic-quadratic-1}
 y^* \ = \ a.(\frac{-b}{2a})^2 \ + \ b.(\frac{-b}{2a}) \ + \ c \ = \ \frac{-b^2+ 4ac}{4a}
 \]
 
@@ -1165,8 +1166,7 @@ We derive a formula for the roots of the general cubic polynomial  with real coe
 P(x) \ = \  ax^3 \ + \ bx^2 \ + \ cx \ + \ d \ \ \mbox{  where  }
 \ b,c, d  \in \R;\ a \in \R \setminus \{0\}
 \end{equation}
-Although the so-called {\em cubic formula}, which we derive now, is daunting in form, its proof and derivation should be quite accessible because they follow the same flow as the clerically much simpler proof and derivation of the quadratic formula.  For this reason, we derive the 
-Because the cubic formula is so complex in form, we present the cubic formula step by step {\em before} we present the formula.
+Although the so-called {\em cubic formula}, which we derive now, is daunting in form, its proof and derivation should be quite accessible because they follow the same flow as the clerically much simpler proof and derivation of the quadratic formula.  Because the cubic formula is so complex in form, we present the cubic formula step by step {\em before} we present the formula.
 
 \begin{proof} {\it (Derivation of the cubic formula)}
 
@@ -1235,7 +1235,7 @@ F & = & \frac{2 B^3}{27}  \ - \ \frac{BC}{3}  \ + \ D
 \index{Vi\`{e}te, Fran\c{c}ois} \index{Vieta, Franciscus}
 
 \noindent
-We accomplish this step by applying a transformation that is attributed to the $16$th-century French mathematician Fran\c{c}ois Vi\`{e}te (often referred to by his Latinized name, Franciscus Vieta) ; see \cite{Hazewinkel}.  Vieta's transformation converts $P^{(2)}(y)$ to a quadratic polynomial by means of the following variable-substitution in (\ref{eq:generic-cubic-4}):
+We accomplish this step by applying a transformation that is attributed to the $16$th-century French mathematician Fran\c{c}ois Vi\`{e}te (often referred to by his Latinized name, Franciscus Vieta); see \cite{Hazewinkel}.  Vieta's transformation converts $P^{(2)}(y)$ to a quadratic polynomial by means of the following variable-substitution in (\ref{eq:generic-cubic-4}):
 \begin{equation}
 \label{eq:cubic-substitute-z-for-y}
 y \ = \ z \ - \ \frac{E}{3z}
@@ -1249,13 +1249,12 @@ P^{(3)}(z) & = & \left( z \ - \ \frac{E}{3z} \right)^3
   & = &
 z^3 \ - \ \frac{E^3}{27z^3}  \ + \ F
 \end{eqnarray}
-Clearly, $P^{(3)}(z)$ is not a polynomial in $z$---because of the term in which variable $z$ appears in the denominator.  But it is a valuable stepping stone because the function $P^{(3)}(z)$ vanishes---i.e., $P^{(3)}(z) = 0$---precisely when the following polynomial (in the ``variable'' $z^3$) vanishes.
+Clearly, $P^{(3)}(z)$ is not a polynomial in $z$, because of the term in which variable $z$ appears in the denominator.  But it is a valuable stepping stone because the function $P^{(3)}(z)$ vanishes---i.e., $P^{(3)}(z) = 0$---precisely when the following polynomial (in the ``variable'' $z^3$) vanishes.
 \[ P^{(4)}(z^3) \ = \ (z^3)^2 \ + \ (z^3) F \ - \ \frac{E^3}{27} \]
 We wrote both instances of $z^3$ in the expression for $P^{(4)}(z^3)$ within parentheses to facilitate the view of $P^{(4)}(z^3)$ as a (quadratic) polynomial in the ``variable'' $z^3$.  The quadratic formula (\ref{eq:generic-quadratic-4}) provides us with two roots for $P^{(4)}$, which we express as the following two values for $z^3$ (abbreviated via the shorthand operator $\pm$).   \index{$\pm$: plus-or-minus}
 \begin{equation}
 \label{eq:solve-cubic-for-z3}
 (z^3) \ = \
-%\frac{1}{2} \left(-F \ \pm \ \sqrt{F^2 + 4 \frac{E^3}{27}} \right) \ = \ 
 - \frac{F}{2} \ \pm \ \sqrt{\frac{F^2}{4} + \frac{E^3}{27}}
 \end{equation}
 We can now derive all solutions for the variable $z$ in equation (\ref{eq:solve-cubic-for-z3}) via back-substitution in transformation (\ref{eq:cubic-substitute-z-for-y}).  But completing this derivation requires a bit of background.
@@ -1347,7 +1346,7 @@ z_6 & = &
 \smallskip
 
 The algorithmically interesting portion of the process of solving cubics by radicals is now complete.  The remainder of the process consists of ``reversing'' the two transformations,
-(\ref{eq:cubic-substitute-z-for-y}) and (\ref{eq:cubic-substitute-y-for-x}), which have taken us from the problem of solving a polynomial in $x$ to the problem of solving a polynomial in $z$.  The calculations that embody this reverse transformation are onerous when solved symbolically, so we make do with some exercises in which the reader will solve numerical instances.  The most interesting and noteworthy feature of these exercises will be the observation of ``collapsing'' of intermediate expressions, whose impact is to leave us with with only {\em three} solutions for $x$---i.e., the number promised by Theorem~\ref{thm:fund-thm-algebra}---rather than the six solutions that the array (\ref{eq:cubic-solution-1}) of $z$-values would lead us to expect.
+(\ref{eq:cubic-substitute-z-for-y}) and (\ref{eq:cubic-substitute-y-for-x}), which have taken us from the problem of solving a polynomial in $x$ to the problem of solving a polynomial in $z$.  The calculations that embody this reverse transformation are onerous when solved symbolically, so we make do with some exercises in which the reader will solve numerical instances.  The most interesting and noteworthy feature of these exercises will be the observation of ``collapsing'' of intermediate expressions, whose impact is to leave us with only {\em three} solutions for $x$---i.e., the number promised by Theorem~\ref{thm:fund-thm-algebra}---rather than the six solutions that the array (\ref{eq:cubic-solution-1}) of $z$-values would lead us to expect.
 
 \smallskip
 
@@ -1398,7 +1397,7 @@ There is a familiar pattern emerging here.  Can you spot it?  Where have we seen
 \[ {n \choose 0}, \ \ {n \choose 1}, \ \ \ldots, \ \ {n \choose
   {n-1}}, \ \ {n \choose n}
 \]
-Let us use induction to explore this possibility by expanding a generic $P_n$ with symbolic ``dummy'' coefficients and see what this says about $P_{n+1}$.  To this end, let $a_{n,n-r}$ denote the coefficient of $x^{n-r} y^r$ in the expansion of $P_n(x,y)$.  Using our symbolic coefficients $a_{n,k}$, we have (omitting multiplication symbols to conserve horizontal space):
+Let us use induction to explore this possibility by expanding a generic $P_n$ with symbolic ``dummy'' coefficients and see what this says about $P_{n+1}$.  To this end, let $a_{n,n-r}$ denote the coefficient of $x^{n-r} y^r$ in the expansion of $P_n(x,y)$.  Using our symbolic coefficients $a_{n,k}$, we have:
 \begin{eqnarray*}
 P_n(x,y) & = &
  x^n \ + \ a_{n,n-1} x^{n-1} y \ + \cdots + \\
@@ -1437,41 +1436,23 @@ a_{n,n-r} x^{n-r} y^{r+1} \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+2}
 Because
 \[ P_{n+1}(x+y) \ = \ (x+y) \cdot P_n(x,y) \ = \ x \cdot P_n(x,y) \ + \ y \cdot P_n(x,y) \]
 the symbolic coefficient $a_{n-r+1,r}$ of $x^{n-r+1} y^r$ in $P_{n+1}(x+y)$ is the sum of the following symbolic coefficients in $P_n(x,y)$:
-\begin{center}
-$\bullet$
-the coefficient $a_{n,n-r}$ of $x^{n-r}y^r$ \ \ \ \ \
-and \ \ \ \ \
-$\bullet$
+\begin{itemize}
+\item
+the coefficient $a_{n,n-r}$ of $x^{n-r}y^r$
+\item
 the coefficient $a_{n,n-r+1}$ of $x^{n-r+1}y^{r-1}$
-\end{center}
-By induction, then, for all $n,r \in \N$ with $r \leq n$,
+\end{itemize}
+By induction, then, for all $n,r \in \N$ with $r \leq n$, we have
 \[ a_{n,r} + a_{n,r+1} \ = \ a_{n+1,r+1} \]
-Combining this equation with the observed initial conditions
+Combining this equation with the observed initial conditions yields
 \[ a_{1,0} \ = \ a_{1,1} \ = \ 1 \]
-we see that each coefficient $a_{n,r}$ is actually the binomial coefficient $\displaystyle {n \choose r}$.
+We thereby see that each coefficient $a_{n,r}$ is actually the binomial coefficient $\displaystyle {n \choose r}$.
 
 \smallskip
 
 \index{Newton, Isaac}
  
 The preceding observation is attributed to the renowned English mathematician/physicist Isaac Newton and is enshrined in Newton's famous {\it Binomial Theorem}.  In fact, the calculations preceding the observation constitute a proof of this seminal result.
-
-\ignore{**********
-so that, finally,
-\begin{eqnarray*}
-             & = &
- x^{k+1} \ + \ (k+1) x^k y \ + \ \cdots \ + \
-   (a_{k,k-r-1} + a_{k,k-r}) x^{k-r} y^{r+1} \\
-             &   & \ \ \ + \
-   (a_{k,k-r-2} + a_{k,k-r-1}) x^{k-r-1} y^{r+2}
- \ + \ \cdots \ + \ (k+1) xy^k \ + \ y^{k+1} \\
-      & = &
- x^{k+1} \ + \ (k+1) x^k y \ + \ \cdots \ + \
- a_{k+1,k-r} x^{k-r} y^{r+1} \\
-            &    & \ \ \ + \  a_{k+1,k-r-1} x^{k-r-1} y^{r+2}
- \ + \ \cdots \ + \ (k+1) xy^k \ + \ y^{k+1}
-\end{eqnarray*}
-*******}
 
 \begin{theorem}[The Binomial Theorem]
 \label{thm:Binomial-theorem}
@@ -1490,18 +1471,18 @@ For all $n \in \N$,
 \label{sec:Hilberts-Tenth}
 \index{Hilbert's Tenth Problem}
 
-This section is devoted to describing a true milestone in the history of mathematics, of logic, and of computing.  Even though the mathematical details necessary to fully describe the analyses that lead to this blockbuster theorem go way beyond the scope of an introductory text, this result has cultural lessons that make even its story valuable.  An important source of this value is that the reader who understands even the outlines the theorem will be receptive to the broad implications of the material in Section~\ref{sec:Reals-uncountable}, Section~\ref{sec:pairing}, and Chapter~\ref{Appendix:building-pairing-functions}, which we will come to before too long.  This material supplies essential mathematical underpinnings for the theorem whose tale we are about to embark on.
+This section is devoted to a true milestone in the history of mathematics, of logic, and of computing.  The mathematical details necessary to fully describe the analyses that lead to this blockbuster theorem go way beyond the scope of an introductory text.  But, this result has cultural lessons that make even its story valuable.  An important source of this value is that the reader who understands even the outlines of the theorem will be receptive to the broad implications of the material in Section~\ref{sec:Reals-uncountable}, Section~\ref{sec:pairing}, and Appendix~\ref{Appendix:building-pairing-functions}.  This material supplies essential mathematical underpinnings for the theorem whose tale we are about to embark on.
 
 \medskip
 
 \index{Hilbert, David}  \index{Newson, Mary Frances Winston} \index{Hilbert's Tenth Problem}
 
-In 1900, the eminent, influential German mathematician David Hilbert set forth a list of $23$ problems to serve as a ``bucket list''\footnote{The ``bucket'' is not yet empty.  A number of Hilbert's original $23$ are yet to be solved.}~for the world mathematics community at the dawn of the 20th century.\footnote{Hilbert's list was published in 1902 \cite{Hilbert02}; it was translated into English by Mary Frances Winston Newson, the first American woman to receive a doctorate from the University of G\"{o}ttingen (which was probably the world's premier university for mathematical research in the late 19th and early 20th centuries).}  Of Hilbert's $23$ problems, the $10$th stands out within the world of computing.  Stated in modern terminology, with a modern perspective, the Problem can be stated as follows.
+In 1900, the eminent, influential German mathematician David Hilbert set forth a list of $23$ problems to serve as a ``bucket list''\footnote{The ``bucket'' is not yet empty.  A number of Hilbert's original 23 problems are yet to be solved.}~for the world mathematics community at the dawn of the 20th century.\footnote{Hilbert's list was published in 1902 \cite{Hilbert02}; it was translated into English by Mary Frances Winston Newson, the first American woman to receive a doctorate from the University of G\"{o}ttingen (which was probably the world's premier university for mathematical research in the late 19th and early 20th centuries).}  Of Hilbert's 23 problems, the 10th stands out within the world of computing.  Stated in modern terminology, with a modern perspective, the Problem can be stated as follows.
 \begin{description}
 \item[{\bf Hilbert's Tenth Problem}]
 {\it Develop an algorithm that will decide---via a {\sc yes} or {\sc no} answer---whether a given multivariate polynomial with integer coefficients has any integer roots.}
 \end{description}
-The Problem attracted the attention of many of the best mathematical minds of the 20th century.  Building on the work of American mathematicians Martin Davis and Julia Robinson.  The Problem was finally resolved by the Russian then-graduate student Yuri Matiyasevich.
+The Problem attracted the attention of many of the best mathematical minds of the 20th century.  Building on the work of American mathematicians Martin Davis and Julia Robinson.  The Problem was finally resolved by the Russian then-graduate student Yuri Matiyasevich in the mid-1970s.
 \index{Davis, Martin} \index{Robinson, Julia} \index{Matiyasevich, Yuri}
 
 \bigskip
@@ -1569,13 +1550,14 @@ This section introduces the fundamentals of the mathematically and computational
 \label{sec:exponential-function}
 
 \index{exponential function} \index{function!exponential}
+\index{base of exponential}
 
 A function $f$ is {\it exponential} if there is a positive number $b$ such that, for all $x$,
 \begin{equation}
 \label{eq:exponential-defn}
 f(x) \ = \ b^x
 \end{equation}
-The number $b$ is the {\it base}\index{base of exponential} of function $f(x)$.  The basic arithmetic properties of exponential functions are easily derived from the recurrent system of equations (\ref{eq:power-def}).  The important message is that multiplication ``at the ground level'' is addition at the ``exponent level'':
+The number $b$ is the {\it base} of function $f(x)$.  The basic arithmetic properties of exponential functions are easily derived from the recurrent system of equations (\ref{eq:power-def}).  The important message is that multiplication ``at the ground level'' is addition at the ``exponent level'':
 \[ b^x \times b^y \ = \ b^{x+y} \]
 
 \index{logarithmic function} \index{base-$b$ logarithm} \index{function!logarithmic}
@@ -1591,19 +1573,14 @@ Logarithms are partial functions: $\log_b a$ is not defined for non-positive val
 \smallskip
 
 \index{$\log(a)$: base-$2$ logarithm of number $a$}
-\index{$\ln(a)$: base-$2$ logarithm of number $a$}. 
+\index{$\ln(a)$: base-$2$ logarithm of number $a$}
 
 The base $b = 2$ is so prominent in the contexts of computation theory and information theory that we commonly invoke one of two special notations for $\log_2 a$: (1) we often elide the base-$2$ subscript and write $\log a$; (2) we employ the specialized notation $\ln a$.  Notationally:
 \[ \log_2 a \ \eqdef \ \log a \ \eqdef \ \ln a \]
 
 \smallskip
 
-We leave to the reader the easy verification, from (\ref{eq:logarithm-defn}), that the {\it base-$b$ logarithmic function}, defined by
-\begin{equation}
-\label{eq:log-function-defn}
-f(x) \ = \ \log_b x
-\end{equation}
-is the functional inverse of the base-$b$ exponential function.
+We leave to the reader the easy verification, from (\ref{eq:logarithm-defn}), that the {\it base-$b$ logarithmic function} $f(x) \ = \ \log_b x$ is the functional inverse of the base-$b$ exponential function.
 
 \subsection{Learning from Logarithms (and Exponentials)}
 
@@ -1690,7 +1667,7 @@ We note the following chain of equalities.
   \ = \ b^{(\log_b x) + (\log_b 1)} 
   \ = \ b^{\log_b x} \cdot b^{\log_b 1}
 \]
-Hence, $b^{\log_b 1} \ = \ 1$.  If $\log_b 1$ did not equal $0$, then $b^{\log_b 1}$ would exceed $1$.  \qed
+Hence, $b^{\log_b 1} \ = \ 1$.  If $\log_b 1$ did not equal $0$, then $b^{\log_b 1}$ would differ from $1$.  \qed
 \end{proof}
 
 Similar exploitation of the basic definitions yields the following fundamental properties of logarithms (to any base).
@@ -2019,6 +1996,9 @@ Certain properties of polynomial $P_1(x)$, such as its dominant growth rate, are
 x^d \cdot \left( a_d \ + \ \frac{a_{d-1}}{x} \ + \ \frac{a_{d-2}}{x^2} \ + \cdots + \ \frac{a_1}{x^{d-1}} \ + \ \frac{a_0}{x^d} \right)
 \]
 {\em Prove that $P_3(x) \ = \ P_1(x)$.}
+
+  \item
+Prove that the inequality (\ref{eq;bound-monic-roots}) holds for any monic polynomial $P(x)$ with real coefficients.
   \end{enumerate}
 
 \item
