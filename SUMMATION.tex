@@ -1398,28 +1398,46 @@ We derive bounds on the summations $S_c(n)$ which are rather good for large $n$.
 
 We begin to illustrate the technique of bounding summations via integrals by focusing on summations of the form
 \[ S_c(n) \ \eqdef \ \sum_{i=1}^n \ i^c \]
-for arbitrary positive numbers $c$.  The reader can garner intuition for the upcoming bounds from the general shape of the rectangles and continuous curves in Fig.~\ref{fig:riemann-n2}.  We obtain our upper bound on the summations $S_c(n)$ by evaluating the integrals that yield the area $\overline{C}_c(n)$ under the continuous curve (a) in Fig.~\ref{fig:riemann-n2}, namely,
-\begin{eqnarray}
+for arbitrary positive numbers $c$.  The reader can garner intuition for the upcoming bounds from the general shapes of the continuous curves that rest upon the rectangles in Fig.~\ref{fig:riemann-n2}.  The bounds that we describe now can be specified more elegantly using the formalism which awaits us in Section~\ref{sec:asymptotics}.
+
+\medskip
+
+We obtain our bounds on each summation $S_c(n)$ by evaluating the integrals that yield the area $\overline{C}_c(n)$ under the continuous curve (a) in Fig.~\ref{fig:riemann-n2} and the area $\underline{C}_c(n)$ under the continuous curve (b) in the figure.  We thereby find that, for all sufficiently large $n$:
+\begin{itemize}
+\item
+the former bound is given by
+\begin{equation}
 \label{eq:upper-integral-xc}
 \overline{C}_c(n) \ = \
-\int_0^n \ (x+1)^c dx & = &
- \frac{1}{c+1} (n+1)^{c+1} \ + \ O(1) \\
-\nonumber
- & = & \frac{1}{c+1} n^{c+1} \ + \ O(n^c)
-\end{eqnarray}
-We obtain our lower bound on $S_c(n)$ by evaluating the integral that yields the area $\underline{C}_c(n)$ under the continuous curve (b) in Fig.~\ref{fig:riemann-n2}, namely,
+\int_0^n \ (x+1)^c dx \ = \
+ \frac{1}{c+1} (n+1)^{c+1} \ + \ \overline{\kappa}
+\end{equation}
+
+\item
+the latter bound is given by
 \begin{equation}
 \label{eq:lower-integral-xc}
 \underline{C}_c(n) \ = \
-\int_1^n \ x^c dx \ = \ \frac{1}{c+1} n^{c+1} \ + \ O(1)
+\int_1^n \ x^c dx \ = \ \frac{1}{c+1} n^{c+1} \ + \ \underline{\kappa}
 \end{equation}
-Combining these bounds, we finally have the following two-sided bound on $S_c(n)$.
+\end{itemize}
+The terms $\overline{\kappa}$ and $\underline{\kappa}$ are real constants which do not depend on $n$---although they could depend on $c$.
+
+\smallskip
+
+In order to combine the bounds (\ref{eq:upper-integral-xc}) and (\ref{eq:lower-integral-xc}) into a perspicuous two-sided bound for $S_c(n)$, we remark that there exists a constant $\kappa$ which does not depend on $n$---although it could depend on $c$---such that
+\[ \frac{1}{c+1} n^{c+1} \ + \ \underline{\kappa} \ \leq \ \kappa n^c \]
+{\em (We leave this verification to the reader.)}  With this final bound in hand, we finally have the sought two-sided bound on $S_c(n)$:
+
+\begin{prop}
+There exist constants $\overline{\kappa}$ and $\kappa$ which do not depend on $n$---although they could depend on $c$---such that, for all sufficiently large $n$:
 \begin{equation}
 \label{eq:bounds-sum-xc}
-\frac{1}{c+1} n^{c+1} \ + \ O(1)
+\frac{1}{c+1} n^{c+1} \ + \ \overline{\kappa}
   \ \ \leq \ \ S_c(n)
-  \ \ \leq \ \ \frac{1}{c+1} n^{c+1} \ + \ O(n^c)
+  \ \ \leq \ \ \frac{1}{c+1} n^{c+1} \ + \ \kappa n^c
 \end{equation}
+\end{prop}
 
 \medskip
 
@@ -1429,10 +1447,8 @@ The main message here is that when one views each $S_c(n)$ as a function of $n$:
 \smallskip
 
 \begin{center}
-\fbox{
 {\em The behavior of $S_c(n)$ is dominated by \ \
   $\displaystyle \frac{1}{c+1} n^{c+1}$ \ \ as $n$ grows without bound.  }
-  }
 \end{center}
 
 \subsubsection{Nonnegative integer $c$th powers}
@@ -1441,12 +1457,11 @@ The main message here is that when one views each $S_c(n)$ as a function of $n$:
 \paragraph{A. A better bound via the Binomial Theorem}
 
 \index{The Binomial Theorem!restricted form}
-When $c$ is a positive integer, the following special case of Newton's {\it Binomial Theorem}\footnote{The general form of the Binomial Theorem expands the polynomial $(x+y)^k$ rather than $(x+1)^k$.  See Section~\ref{sec:Binomial-thm}.}~affords us a much more detailed upper bound %(\ref{eq:upper-integral-xc}) 
-on the sum of $S_c(n)$.
+When $c$ is a positive integer, the following special case of Newton's {\it Binomial Theorem}\footnote{The general form of the Binomial Theorem expands the polynomial $(x+y)^k$ rather than $(x+1)^k$; see Section~\ref{sec:Binomial-thm}.}~affords us a much more detailed upper bound on the sum of $S_c(n)$.
 
 \begin{theorem}[The Restricted Binomial Theorem]
 \label{thm:restricted-binomial-thm}
-For all positive integers $k$,\footnote{See (\ref{eq:binom-coeff}) for the definition of, and notation for, the binomial coefficient $\displaystyle {k \choose i}$.}
+For all positive integers $k$,
 \begin{equation}
 \label{eq:restricted-binomial-thm}
 (x+1)^k \ = \ \sum_{i=0}^k \ \ {k \choose i} x^{k-i}
@@ -1454,7 +1469,7 @@ For all positive integers $k$,\footnote{See (\ref{eq:binom-coeff}) for the defin
 \end{theorem}
 
 We improve our upper bound on $S_c(n)$ by paralleling the reasoning that led us to the relation (\ref{eq:upper-integral-xc}).  Our improved bound emerges also by evaluating the integral that
-yields the area $\overline{C}_c(n)$ under the continuous curve that passes through the upper lefthand corners of the unit-width rectangles specified by summation $S_c(n)$.
+yields the area $\overline{C}_c(n)$ under the continuous curve that passes through the upper lefthand corners of the unit-width rectangles specified by summation $S_c(n)$.  For sufficiently large $n$:
 \begin{eqnarray}
 \label{eq:upper-integral-xk}
 \overline{C}_c(n) \ = \
@@ -1465,22 +1480,25 @@ yields the area $\overline{C}_c(n)$ under the continuous curve that passes throu
 \sum_{i=0}^c \left( \int_0^n \  {c \choose i} x^{c-i} \right) dx \\
 \nonumber
   & = &
-\sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \ O(1)
+\sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \overline{\kappa}
 \end{eqnarray}
-This is a proper upper bound because the region defined by this curve totally contains the region subtended by the rectangles.
+where $\overline{\kappa}$ is our now-familiar unspecified fixed constant.  This is a proper upper bound because the region defined by this curve totally contains the region subtended by the rectangles.
 
 \smallskip
 
-Using this strategy, we find that for any positive integer $c$, summation $S_c(n)$ enjoys the following two-sided bound:
+Using this strategy, we find that for any positive integer $c$, summation $S_c(n)$ enjoys the following two-sided bound. For sufficiently large $n$:
 \begin{equation}
 \label{eq:bounds-sum-xk}
-\frac{1}{c+1} n^{c+1} \ + \ O(1)
+\frac{1}{c+1} n^{c+1} \ + \ \overline{\kappa}
   \ \ \leq \ \ \sum_{i=1}^n \ i^c
   \ \ \leq \ \ 
-\sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \ O(1)
+\sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \ \underline{\kappa}
 \end{equation}
+where $\overline{\kappa}$ and $\underline{\kappa}$ are fixed constants.
 
-We have, of course, not changed the dominant behavior of $S_c(n)$ as $n$ grows without bound, but we have taken a significant step toward developing explicit expressions for the sums of the summatons $S_c(n)$ when $c$ is a positive integer.
+\smallskip
+
+We have, of course, not changed the dominant behavior of $S_c(n)$ as $n$ grows without bound, but we have taken a significant step toward developing explicit expressions for the sums of the summations $S_c(n)$ when $c$ is a positive integer.
 
 \paragraph{B. Using {\em undetermined coefficients} to refine sums}
 
