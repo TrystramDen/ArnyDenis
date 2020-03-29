@@ -1821,14 +1821,79 @@ Stepping back from the structural specifics of $\d_n$, we now see that de Bruijn
 
 \section{Exercises: Chapter 12}
 
-Throughout the text, we mark each exercise with 0 or 1 or 2
-occurrences of the symbol $\oplus$, as a rough gauge of its level of
-challenge.  The 0-$\oplus$ exercises should be accessible by just
-reviewing the text.  We provide {\em hints} for the 1-$\oplus$
-exercises; Chapter~\ref{ch:Exercises} provides {\em solutions} for the
-2-$\oplus$ exercises.  Additionally, we begin each exercise with a
-brief explanation of its anticipated value to the reader.
+Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the symbol $\oplus$, as a rough gauge of its level of challenge.  The 0-$\oplus$ exercises should be accessible by just reviewing the text.  We provide {\em hints} for the 1-$\oplus$ exercises; Chapter~\ref{ch:Exercises} provides {\em solutions} for the 2-$\oplus$ exercises.  Additionally, we begin each exercise with a brief explanation of its anticipated value to the reader.
 
+\begin{enumerate}
+\item
+{\bf The Traffic Mesh}
+
+{\sc Lessons:} Achieving and analyzing a ``plausible" mathematical model
+
+\smallskip
+
+The special graphs that appear in this chapter were invented---and reinvented---to model a large variety of real-life situations: inter-communication among functional units in multi-computers; the generation of information-rich codes; richly structured digital circuits, \ldots.  We embark here on the design and analysis of a traffic network within a city.
+
+\smallskip
+
+Before we analyze any costs, the complete graph $\k_N$ seems to provide an attractive traffic model for interconnecting $N$ sites: its diameter is tiny (in fact, unity!); routing is no problem; neither is link-directionality.  But, of course, the density of roads and vertex-degrees makes this an untenable option.  If you have driven an automobile in a city such as Catania, Sicily, then you appreciate the full range of problems engendered by any graph-oriented model that is too similar to $\k_N$.
+
+One step away from the chaos of $\k_N$ would be to orient all of the edges of our abstract city map---i.e., to make each street unidirectional.  If this process is not executed with great care, then one could end up with a city which has {\em sinks}---sites, or neighborhoods, that lack exit roads.   If you have driven an automobile in a city such as Boston, Massachusetts, then you will empathize with this potential problem.
+
+\medskip
+
+Here is a {\em highly structured, recursive} proposal for a traffic network.  We will try to assess its costs.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
+  \begin{itemize}
+  \item
+We arrange the city's $N$ sites as an $n \times n$ grid.  Thereby:
+    \begin{itemize}
+    \item
+each site has coordinates $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
+    \item
+the city partitions naturally into four identical quadrants (North, East, South, and West), each of which recursively partitions naturally into four sub-quadrants, and so on. 
+
+\smallskip
+
+The city's four quadrants are termed {\em level-$0$ quadrants}.  The four sub-quadrants of each level-$0$ quadrant are termed {\em level-$1$ quadrants}.  Recursively, the four sub-\ldots-sub-quadrants of each level-$i$ quadrant are termed {\em level-$(i+1)$ quadrants}.
+    \end{itemize}
+    
+  \item
+We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we restrict attention to edges whose endpoints share a coordinate, i.e., go from a site $\langle i,j \rangle$ to another site of the form $\langle i,k \rangle$ or the form $\langle h,j \rangle$.
+
+\smallskip
+
+This means that every {\em oriented} edge now goes either northward or southward or eastward or westward.
+
+\smallskip
+
+We call an edge a {\em level-$0$ edge} if its endpoints are in different level-$0$ quadrants.  If both endpoints are in the same level-$0$ quadrant but in different sub-quadrants of that level-$0$ quadrant, then we call the edge a {\em level-$1$ edge}.  Proceeding the in natural way, we call an edge a {\em level-$i$ edge} if its endpoints are in different level-$\ell$ quadrants of a single level-$(i-1)$ quadrant.
+
+  \item
+We impose the following traffic regimen upon the travelers in our city.  In order to go from site $\langle i,j \rangle$ to site $\langle h,k \rangle$, we traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
+
+\smallskip
+
+From that point on, we recursively find the acceptable path from site $\langle i_i,j_1 \rangle$ to site $\langle h,k \rangle$.
+  \end{itemize}
+
+Now we are ready to analyze our model.
+  \begin{enumerate}
+  \item
+In the {\em metro} version of the model, we pay a fee every time we encounter a new site on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
+
+\smallskip
+
+{\em What is the maximum cost of the trip from $\langle i,j \rangle$ to $\langle h,k \rangle$ within the metro model?}
+
+  \item
+In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{{1/2}^\ell}$ every time we traverse a level-$\ell$ edge on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
+ 
+ \smallskip
+
+{\em What is the maximum cost of the trip from $\langle i,j \rangle$ to $\langle h,k \rangle$ within the driving model?}
+
+ \end{enumerate}
+
+\end{enumerate}
 
 \subsection{Formal definition of mesh graphs}
 %\label{Exercice:FormalDefinitionMesh}
@@ -1978,127 +2043,4 @@ The whole coding is obtained by concatenation of both dimensions.
 
 \noindent \textit{Lesson learned.}
 
-
-\ignore{**********
-
-\begin{prop}
-\label{thm:deBruijn-Hamiltonian}
-For all $n \in \N^+$, $\d_n$ contains a {\em directed Hamiltonian cycle}, 
-\index{directed Hamiltonian cycle in a digraph}
-i.e., a length-$2^n$ directed cycle of the form
-\begin{equation}
-\label{eq:deBruijn-cycle}
- x \ \rightarrow \ y_1 \ \rightarrow \ y_2 \ \rightarrow \cdots
-\ \rightarrow \ y_{2^n-1} \ \rightarrow \ x
-\end{equation}
-that contains every vertex of $\d_n$ precisely once; i.e.:
-\begin{itemize}
-\item
-$\{x, \ y_1, \ y_2, \ldots, \ y_{2^n-1}\} \ = \ \n_{\fd_n}$.
-\item
-All of the ``$y$-vertices'' that appear in cycle
-(\ref{eq:deBruijn-cycle}) differ from $x$ and from each other.
-\end{itemize}
-\end{prop}
-
-The simplest proof of this result has two steps, each of which introduces a topic that we have not 
-yet developed.  We develop these concepts plus the proof in 
-Appendix~\ref{Appendix:deBruijn-Hamiltonian}.
-
-***********}
-
-%{\Denis Add a word here about hamiltonian and Eulerian and refer to the appendix...}
-
-\ignore{************
-
-\noindent {\bf (1)}
-%
-For any directed graph $\g$, the {\it line digraph} \index{line graph}
-\index{line digraph} of $\g$, denoted $\Lambda(\g)$, is the following
-directed graph.
-\begin{itemize}
-\item
-The vertices of $\Lambda(\g)$ are the arcs of $\g$:
-\[ \n_{{\Lambda}({\cal G})} \ = \ \a_{\fg} \]
-\item
-For each pair of arcs of $\g$ of the form
-\[ \big[a_{x,y} = (x \ \rightarrow \ y) \big] \ \ \ \mbox{ and } \ \ \ 
-\big[a_{y,z} = (y \ \rightarrow \ z) \big]
-\]
-i.e, arcs such that the endpoint of the first arc is the source of the
-second arc, $\Lambda(\g)$ contains an arc $(a_{x,y} \ \rightarrow
-\ a_{y,z})$.
-\end{itemize}
-The relevance of this topic to this section is that the line graph of
-every de Bruijn network $\d_n$ is the ``next bigger'' de Bruijn
-network, $\d_{n+1}$.  Let us verify this claim.
-
-\begin{prop}
-\label{thm:deBruin-linegraph}
-For all $n \in \N^+$,
-$\d_{n+1}$ is the line digraph of $\d_n$: $\d_{n+1} \ = \ \Lambda(\d_n)$.
-\end{prop}
-
-\begin{proof}
-Each vertex of $\Lambda(\d_n)$ is an arc of $\d_n$, hence has the form
-\[ (\beta x \ \rightarrow \ x \gamma) \]
-for $x$ a length-$(n-1)$ binary string and $\beta, \gamma \in
-\{0,1\}$.  Let us associate vertex $\beta x \gamma$ of $\d_{n+1}$ with
-this vertex of $\Lambda(\d_n)$.
-
-\smallskip
-
-Note first that each arc of $\d_{n+1}$ has the form
-\[ (\delta y \varepsilon \ \rightarrow \ y \varepsilon \varphi), \]
-where $y$ is a length-$(n-2)$ binary string and $\delta, \varepsilon,
-\varphi \in \{0,1\}$.  By our association of vertices of $\d_{n+1}$ with
-arcs of $\d_n$, this arc of $\d_{n+1}$ does, indeed, correspond to two
-successive arcs of $\d_n$.   The first of these successive arcs
-{\em enters} vertex $y \varepsilon$ of $\d_n$; the second {\em leaves}
-that vertex.
-
-Note next that, given any two successive arcs of $\d_n$, say
-\[
-(\rho \sigma z \ \rightarrow \ \sigma z \tau) \ \ \ \mbox { and } \ \ \
-(\sigma z \tau \ \rightarrow \  z \tau \xi)
-\]
-where $z$ is a length-$(n-2)$ binary string and $\rho, \sigma, \tau,
-\xi \in \{0,1\}$, there is, indeed, an arc of $\d_{n+1}$ of the form
-\[ (\rho \sigma z \tau \ \rightarrow \ \sigma z \tau \xi) \]
-This means that the digraph $\d_{n+1}$ is identical to the digraph
-$\Lambda(\d_n)$, modulo a renaming of vertices and arcs.\footnote{Technically,
-  we are asserting that the digraphs ${\cal D}_{n+1}$ and ${\Lambda}({\cal D}_n)$ 
-  are {\it isomorphic} to one another.  The topic of
-  graph isomorphism is beyond the scope of this text, but our informal
-  description provides all the details one would need to formalize the
-  described isomorphism.}
-
-The described correspondence between the vertices and arcs of $\d_{n+1}$
-and $\Lambda(\d_n)$ completes the proof.  \qed
-\end{proof}
-
-\begin{figure}[hbt]
-\begin{center}
-       \includegraphics[scale=0.6]{FiguresGraph/dBlabelEdge}
-\caption{Illustrating how to label each arc of a de Bruijn network by
-  concatenating the labels of the vertices incident to the arc and
-  compacting the common intermediate bits.  In the depicted example,
-  the vertex-labels $01$ and $11$ combine to yield the arc-label $011$.}
-  \label{fig:dBlabelEdge}
-\end{center}
-\end{figure}
-
-\medskip
-
-\noindent {\bf (2)}
-{\it Eulerian cycles (or tours)}. \index{Eulerian cycle}
-\index{Eulerian tour} A {\it directed Eulerian cycle} in a digraph
-$\g$ is a directed cycle that contains each arc of $\g$ precisely
-once.  We will see, later in this chapter, a truly elementary
-argument, based on vertex-degrees, which proves that every de Bruijn
-digraph has a directed Eulerian cycle.  This demonstration will
-combine with Proposition~\ref{thm:deBruin-linegraph} to complete the
-proof of Proposition~\ref{thm:deBruijn-Hamiltonian}.  \qed
-%\end{proof}
-********}
 
