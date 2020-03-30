@@ -924,16 +924,16 @@ The unit-side square in Fig.~\ref{fig:sumGeoGeneral1} begins the construction of
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-{\bf Explanatory note.}
+{\bf Explanatory/historical note.}
 
-Thales of Miletus is credited with the following theorem about similar triangles.  The subject triangles are depicted in the following figure.
+Thales of Miletus is credited with a classical theorem about similar right triangles.  The following figure depicts right triangle $T$ and its (shaded) sub-triangle $T'$ whose right angle is distance $1$ from $T$'s.
 
 \begin{center}
        \includegraphics[scale=0.265]{FiguresArithmetic/ThalesGeometricSum}
 \end{center}
 
 \begin{prop}[The Theorem of Thales]
-Let us be given a right triangle whose height has length $1$ and whose base has length $S$.   The ratio $S/(S-1)$ is equal to the ratio $1/b$ where $b$ is the heigh of the similar triangle at distance $1$ from its right angle.
+Let us be given a unit-height right triangle $T$ whose base has length $S$.   The ratio $(S-1)/S$  equals the height $b$ of the sub-triangle $T'$ whose right angle is at distance $1$ from $T$'s.
 \end{prop}
 
 We use this proportionality of the side-ratios of the big and small triangles to evaluate the summation $\sum_{i=0}^\infty \ b^{-i}$.
@@ -1276,7 +1276,7 @@ Construct a continuous curve $\overline{C}(x)$ that passes through the corners o
 \medskip
 
 \noindent
-Because the aggregate areas of the abutting rectangles lie completely under curve $\overline{C}(x)$, the area under the curve---which we obtain by integrating $\overline{C}$ between appropriate limits---yields an {\em upper bound} on the value of the summation of interest.
+Because the aggregate areas of the abutting rectangles lie completely under curve $\overline{C}(x)$, the area under the curve---obtained by integrating $\overline{C}(x)$ between appropriate limits---yields an {\em upper bound} on the value of the summation of interest.
 
 \medskip
 
@@ -1286,7 +1286,7 @@ Construct a continuous curve $\underline{C}(x)$ that passes through the corners 
 \medskip
 
 \noindent
-Because the area under the curve $\underline{C}(x)$ lies completely within the abutting rectangles, the area under the curve---which we obtain by integrating $\underline{C}$---affords {\em a lower bound} on the summation of interest.
+Because the area under the curve $\underline{C}(x)$ lies completely within the abutting rectangles, the area under the curve---obtained by integrating $\underline{C}(x)$ within appropriate limits---yields a {\em lower bound} on the summation of interest.
 
 \bigskip
 
@@ -1297,23 +1297,22 @@ We now describe two specific summations, to illustrate the stratagem in action.
 \item
 Fig.~\ref{fig:riemann-n2} illustrates our stratagem applied to the seven-term version of the summation $S_2(n) = \sum_{i=1}^n i^2$, namely,
 \[ S_2(7) \ = \ 1 \ + \ 4 \ + \ 9 \ + \ 16 \ + \ 25 \ + \ 36 \ +  49 \]
-The figure represents the terms of $S_2(7)$ by means of seven abutting unit-width rectangles whose respective heights are given by the terms.  The sum of $S_2(7)$ is, then, given by the aggregate area of the abutting rectangles.  If we were to extend the figure rightward (which increases $n$ and thereby extends the summation by encompassing more addends), then the next two rectangles would have respective heights $64$ and $81$.
+The figure represents the terms of $S_2(7)$ by means of seven abutting unit-width rectangles whose respective heights are given by the terms.  The sum of $S_2(7)$ is, then, given by the aggregate area of the abutting rectangles.  If we were to extend the figure rightward---which increases $n$ and thereby extends the summation by encompassing more addends---then the next two rectangles would have respective heights $64$ and $81$.
 
 \smallskip
 
-Our stratagem mandates embellishing the rectangles in Fig.~\ref{fig:riemann-n2} by two continuous curves---labeled (a) and (b) in the figure---that connect the upper corners of the rectangles.
+Our stratagem mandates embellishing the rectangles in Fig.~\ref{fig:riemann-n2} by two continuous curves---labeled $\overline{C}$ and $\underline{C}$ in the figure---that connect the upper corners of the rectangles.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.3]{FiguresMaths/SumSquaresContinuous}
 }
-\caption{The summation $S_2(n) = \sum_{i=1}^n i^2$ represented as the aggregate area of a sequence of unit-width shaded rectangles.  The summation is {\em bounded from above} by the area under the continuous curve (a) that connects the upper lefthand corners of the rectangles.  In detail, curve (a) begins at the upper lefthand corner of the leftmost rectangle; it continues to what would be the upper lefthand corner of the rightmost rectangle.  The area under curve (a) is $A(\mbox{a}) = \int_0^n \ (x+1)^2 dx$.  The summation is {\em bounded from below} by the area under the continuous curve (b) that connects the upper righthand corners of the rectangles.  In detail, curve (b) begins at the upper righthand corner of the leftmost rectangle; it continues to the upper righthand corner of the rightmost rectangle.  The area under curve (b) is $A(\mbox{b}) =
-\int_1^n \ x^2 dx$.}
+\caption{The summation $S_2(n) = \sum_{i=1}^n i^2$ represented as the aggregate area of a sequence of unit-width shaded rectangles.  The summation is {\em bounded from above} by the area under the continuous curve $\overline{C}(x)$ that connects the upper lefthand corners of the rectangles; this curve is labeled $\overline{C}$ in the figure.  In detail, curve $\overline{C}$ begins at the upper lefthand corner of the leftmost rectangle; it continues to what would be the upper lefthand corner of the rightmost rectangle.  The area under curve $\overline{C}$ is $A(\overline{C}(x)) = \int_0^n \ (x+1)^2 dx$.  The summation is {\em bounded from below} by the area under the continuous curve $\underline{C}(x)$ that connects the upper righthand corners of the rectangles; this curve is labeled $\underline{C}$ in the figure.  In detail, curve $\underline{C}$ begins at the upper righthand corner of the leftmost rectangle; it continues to the upper righthand corner of the rightmost rectangle.  The area under curve $\underline{C}$ is $A(\underline{C}(x)) = \int_1^n \ x^2 dx$.}
 \label{fig:riemann-n2}
 \end{figure}
-Curve (a) completely ``covers'' the rectangles; therefore, the area $A$(a) under the curve is an {\em upper bound} on the aggregate area of the rectangles:
-\[ A(\mbox{a}) \ = \ \int_1^n \ x^2 dx \]
-Curve (b) lies completely within the rectangles; therefore, the area $A$(b) under the curve is a {\em lower bound} on the aggregate area of the rectangles:
-\[ A(\mbox{b}) \ = \  \int_0^{n-1}  \ x^2 dx \]
+Curve $\overline{C}$ completely ``covers'' the rectangles; therefore, the area $A(\underline{C})$ under the curve is an {\em upper bound} on the aggregate area of the rectangles:
+\[ A(\overline{C}(x)) \ = \ \int_1^n \ x^2 dx \]
+Curve $\underline{C}$ lies completely within the rectangles; therefore, the area $A(\underline{C})$ under the curve is a {\em lower bound} on the aggregate area of the rectangles:
+\[ A(\underline{C}(x)) \ = \  \int_0^{n-1}  \ x^2 dx \]
 
 \item
 Fig.~\ref{fig:riemann-harmonic} illustrates our stratagem as it applies to the ten-term version of the {\em harmonic} summation \index{harmonic sum}
@@ -1325,23 +1324,16 @@ The figure represents these terms via ten abutting unit-width rectangles whose r
 
 \smallskip
 
-Our stratagem mandates embellishing the rectangles in Fig.~\ref{fig:riemann-harmonic} by two continuous curves---labeled (a) and (b) in the figure---that connect the rectangles' upper corners.
+Our stratagem mandates embellishing the rectangles in Fig.~\ref{fig:riemann-harmonic} by two continuous curves---labeled $\overline{C}$ and $\underline{C}$ in the figure---that connect the rectangles' upper corners.
 \begin{figure}[htb]
 \centerline{
 \includegraphics[scale=0.3]{FiguresMaths/RiemannSum}
 }
-\caption{The summation $S^{(H)}(n) \ = \ \sum_{i=1}^n \ 1/i$ represented as the aggregate area of a sequence of unit-width rectangles.  The summation is {\em bounded from above} by the area of the leftmost rectangle {\em plus} the area $A$(a) under the continuous curve (a) that connects the upper righthand corners of the rectangles.  In detail, curve (a) begins at the upper righthand corner of the leftmost rectangle; it continues to the upper righthand corner of the rightmost rectangle.  (The figure's resolution makes the righthand end of curve (a) invisible.)  The upper-bounding area is $A(\mbox{a}) = 1 \ + \ \int_1^n \ 1/x dx$.  The summation is {\em bounded from below} by the area $A$(b) under the continuous curve (b) that connects the upper lefthand corners of the rectangles.  In detail, curve (b) begins at the upper lefthand corner of the leftmost rectangle and continues to the upper lefthand corner of the rightmost rectangle.  The lower-bounding area is $A(\mbox{b}) =  \int_0^n \ 1/(x+1) dx$.}
+\caption{The summation $S^{(H)}(n) \ = \ \sum_{i=1}^n \ 1/i$ represented as the aggregate area of a sequence of unit-width rectangles.  The summation is {\em bounded from above} by the area of the leftmost rectangle {\em plus} the area $A(\overline{C}(x))$ under the continuous curve $\overline{C}$ that connects the upper righthand corners of the rectangles.  In detail, this curve begins at the upper righthand corner of the leftmost rectangle; it continues to the upper righthand corner of the rightmost rectangle.  (The figure's resolution makes the righthand end of the curve invisible.)  The upper-bounding area is $A(\overline{C}(x)) = 1 \ + \ \int_1^n \ 1/x dx$.  The summation is {\em bounded from below} by the area $A(\underline{C}(x))$ under the continuous curve $\underline{C}$ that connects the upper lefthand corners of the rectangles.  In detail, curve $\underline{C}$ begins at the upper lefthand corner of the leftmost rectangle and continues to the upper lefthand corner of the rightmost rectangle.  The lower-bounding area is $A(\underline{C}(x)) =  \int_0^n \ 1/(x+1) dx$.}
 \label{fig:riemann-harmonic}
 \end{figure}
-The lefthand rectangle {\em plus} curve (a) completely ``cover'' the rectangles; therefore, their combined areas provide an {\em upper bound} on the aggregate area of the rectangles.
-Curve (b) lies completely within the rectangles; therefore, the area $A$(b) under the curve is a {\em lower bound} on the aggregate area of the rectangles.
+The lefthand rectangle {\em plus} curve $\overline{C}$ completely ``cover'' the rectangles; therefore, their combined areas provide an {\em upper bound} on the aggregate area of the rectangles.  Curve $\underline{C}$ lies completely within the rectangles; therefore, the area $A(\underline{C}(x))$ under the curve is a {\em lower bound} on the aggregate area of the rectangles.
 \end{enumerate}
-%
-%{\Denis We should add in the caption the explanation of curves (a) and (b)}
-%The rectangles that represent the respective addends have respective
-%heights $12$, $6$, $4$, $3$, $16/3$, and $2$.  If we were to extend
-%the figure rightward (to extend the summation and encompass more
-%addends), then the next rectangle would have height $16/7$.
 
 \bigskip
 
@@ -1349,11 +1341,11 @@ Curve (b) lies completely within the rectangles; therefore, the area $A$(b) unde
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
 
-The curves labeled (a) in Figs.~\ref{fig:riemann-n2} and~\ref{fig:riemann-harmonic} are instances of the stratagem's mandated continuous curve $\overline{C}(x)$.  {\em Note that curve (a) in Fig.~\ref{fig:riemann-harmonic} must be considered to contain the top of the leftmost rectangle in the figure.}
+The curves labeled $\overline{C}$ in Figs.~\ref{fig:riemann-n2} and~\ref{fig:riemann-harmonic} are instances of the stratagem's mandated continuous curve $\overline{C}(x)$.  {\em Note that curve $\overline{C}$ in Fig.~\ref{fig:riemann-harmonic} must be considered to contain the top of the leftmost rectangle in the figure.}
 
 \smallskip
 
-The curves labeled (b) in Figs.~\ref{fig:riemann-n2} and~\ref{fig:riemann-harmonic} are instances of the stratagem's mandated continuous curve $\underline{C}(x)$. 
+The curves labeled $\underline{C}$ in Figs.~\ref{fig:riemann-n2} and~\ref{fig:riemann-harmonic} are instances of the stratagem's mandated continuous curve $\underline{C}(x)$. 
 \end{minipage}
 }
 
@@ -1378,7 +1370,7 @@ for arbitrary positive numbers $c$.  The reader can garner intuition for the upc
 
 \medskip
 
-We obtain our bounds on each summation $S_c(n)$ by evaluating the integrals that yield the area $\overline{C}_c(n)$ under the continuous curve (a) in Fig.~\ref{fig:riemann-n2} and the area $\underline{C}_c(n)$ under the continuous curve (b) in the figure.  We thereby find that, for all sufficiently large $n$:
+We obtain our bounds on each summation $S_c(n)$ by evaluating the integrals that yield the area $\overline{C}_c(n)$ under the continuous curve $\overline{C}$ in Fig.~\ref{fig:riemann-n2} and the area $\underline{C}_c(n)$ under the continuous curve $\underline{C}$ in the figure.  We thereby find that, for all sufficiently large $n$:
 \begin{itemize}
 \item
 the former bound is given by
