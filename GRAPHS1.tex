@@ -1831,48 +1831,90 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 
 \smallskip
 
-The special graphs that appear in this chapter were invented---and reinvented---to model a large variety of real-life situations: inter-communication among functional units in multi-computers; the generation of information-rich codes; richly structured digital circuits, \ldots.  We embark here on the design and analysis of a traffic network within a city.
+The special graphs of this chapter were invented---and reinvented---to model a large variety of real-life situations.  We embark here on the design and analysis of a traffic network within a city.
 
 \smallskip
 
-Before we analyze any costs, the complete graph $\k_N$ seems to provide an attractive traffic model for interconnecting $N$ sites: its diameter is tiny (in fact, unity!); routing is no problem; neither is link-directionality.  But, of course, the density of roads and vertex-degrees makes this an untenable option.  If you have driven an automobile in a city such as Catania, Sicily, then you appreciate the full range of problems engendered by any graph-oriented model that is too similar to $\k_N$.
+Before we analyze any costs, the complete graph $\k_N$ seems to provide an attractive traffic model for interconnecting $N$ sites: its diameter is tiny (in fact, unity); routing is no problem; nor is link-directionality.  But, of course, the density of roads and vertex-degrees makes this an untenable option.  If you have driven in a city such as Catania, Sicily, then you appreciate the problems that accompany a graph-model that is too close to $\k_N$.
 
-One step away from the chaos of $\k_N$ would be to orient all of the edges of our abstract city map---i.e., to make each street unidirectional.  If this process is not executed with great care, then one could end up with a city which has {\em sinks}---sites, or neighborhoods, that lack exit roads.   If you have driven an automobile in a city such as Boston, Massachusetts, then you will empathize with this potential problem.
+\smallskip
+
+To step away from the chaos of $\k_N$ we could orient the edges of our abstract city map---i.e., make each street unidirectional.  If this process is not executed with great care, we could end up with a city which has {\em sinks}---sites that lack exit roads.   If you have driven in a city such as Boston, Massachusetts, then you will appreciate this potential problem.
 
 \medskip
 
-Here is a {\em highly structured, recursive} proposal for a traffic network.  We will try to assess its costs.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
+Here is a {\em highly structured, recursive} proposal for a traffic network.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
   \begin{itemize}
   \item
-We arrange the city's $N$ sites as an $n \times n$ grid.  Thereby:
-    \begin{itemize}
-    \item
-each site has coordinates $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
-    \item
-the city partitions naturally into four identical quadrants (North, East, South, and West), each of which recursively partitions naturally into four sub-quadrants, and so on. 
+We logically arrange the city's $N$ sites in an $n \times n$ grid by assigning each site a distinct name of the form $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
 
 \smallskip
 
-The city's four quadrants are termed {\em level-$0$ quadrants}.  The four sub-quadrants of each level-$0$ quadrant are termed {\em level-$1$ quadrants}.  Recursively, the four sub-\ldots-sub-quadrants of each level-$i$ quadrant are termed {\em level-$(i+1)$ quadrants}.
+This stratagem automatically assigns each site $\langle i_0, j_0 \rangle$ to a unique
+    \begin{itemize}
+    \item
+{\em row}: the set of sites that share $i_0$:
+\[ \{ \langle i_0, j \rangle \ \ | \ \ j \in \{1, 2, \ldots, n\} \} \]
+    \item
+{\em column}: the set of sites that share $j_0$:
+\[ \{ \langle i, j_0 \rangle \ \ | \ \ i \in \{1, 2, \ldots, n\} \} \]
+    \item    
+{\em quadrant}:
+            \begin{itemize}
+            \item
+the {\em northwestern quadrant}, $NW$, comprises the sites
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{1, 2, \ldots, n/4 \} \right\} \]
+
+            \item
+the {\em southwestern quadrant}, $SW$, comprises the sites
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{ n/4 +1, n/4+2, \ldots, n \}, \ j \in \{1, 2, \ldots, n/4 \} \right\} \]
+
+            \item
+the {\em northeastern quadrant}, $NE$, comprises the sites
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{1, 2, \ldots, n/4 \}, \ j \in \{ n/4 +1, n/4+2, \ldots, n \}  \right\} \]
+
+            \item
+the {\em southeastern quadrant}, $SE$, comprises the sites
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{ n/4 +1, n/4+2, \ldots, n \} \right\} \]
+          \end{itemize}
+
+We call these the {\em level}-$0$, or, {\em top-level} quadrants.
+
+\item
+Recursively, each level-$\ell$ quadrant partitions into four level-$(\ell +1)$ sub-quadrants, and so on, down to sub-sub-\ldots-sub-quadrants that each contain only a single site.  
     \end{itemize}
     
   \item
-We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we restrict attention to edges whose endpoints share a coordinate, i.e., go from a site $\langle i,j \rangle$ to another site of the form $\langle i,k \rangle$ or the form $\langle h,j \rangle$.
+We turn now to the (oriented) edges that we use to navigate our grid-like city.
+
+\smallskip
+
+We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we employ only edges whose endpoint-sites share a coordinate.  Each of these edges goes from a site $\langle i,j \rangle$ to a site $\langle i,k \rangle$ or a site $\langle h,j \rangle$.
 
 \smallskip
 
 This means that every {\em oriented} edge now goes either northward or southward or eastward or westward.
 
+\item
+We now assign (oriented) edges to levels, as a prelude to our routing regimen.
+
 \smallskip
 
-We call an edge a {\em level-$0$ edge} if its endpoints are in different level-$0$ quadrants.  If both endpoints are in the same level-$0$ quadrant but in different sub-quadrants of that level-$0$ quadrant, then we call the edge a {\em level-$1$ edge}.  Proceeding the in natural way, we call an edge a {\em level-$i$ edge} if its endpoints are in different level-$\ell$ quadrants of a single level-$(i-1)$ quadrant.
+Focus on an edge $e$.  We say that $e$ is a level-$\ell$ edge if $\ell$ is the smallest integer such that the endpoints of $e$ are in distinct level-$\ell$ quadrants.
 
   \item
-We impose the following traffic regimen upon the travelers in our city.  In order to go from site $\langle i,j \rangle$ to site $\langle h,k \rangle$, we traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
+As the final step in creating our abstract traffic model, we impose the following routing regimen upon the travelers in our city.
 
 \smallskip
 
-From that point on, we recursively find the acceptable path from site $\langle i_i,j_1 \rangle$ to site $\langle h,k \rangle$.
+In order to travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$, a traveler:
+    \begin{itemize}
+    \item
+must traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
+
+   \item
+From that point on, the traveler recursively find an acceptable path from site $\langle i_i,j_1 \rangle$ to site $\langle h,k \rangle$.
+    \end{itemize}
   \end{itemize}
 
 Now we are ready to analyze our model.
