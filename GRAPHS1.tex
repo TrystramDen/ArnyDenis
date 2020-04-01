@@ -1825,120 +1825,187 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 
 \begin{enumerate}
 \item
-{\bf The Traffic Mesh}
+{\bf Defining major components of mesh- and torus-graphs in detail}
+
+{\sc Lesson:} Practice with formal description of graph structures
+
+\smallskip
+
+One notes in Section~\ref{sec:mesh} that the basics of mesh- and torus-graphs are easy to capture via drawings, once the most basic notions---vertices and edges---have been defined.  But sometimes---e.g., to craft proofs or design algorithms---one needs some higher-level constructs defined in formal detail.
+
+\smallskip
+
+{\em Formally define the following notions for the $\m_{m,n}$ and the torus $\widetilde{\m}_{m,n}$:
+  \begin{enumerate}
+  \item
+a {\em row} of $\m_{m,n}$; of $\widetilde{\m}_{m,n}$
+  \item
+a {\em column} of $\m_{m,n}$; of $\widetilde{\m}_{m,n}$
+  \item
+a {\em rectangular submesh} of $\m_{m,n}$
+  \item
+a {\em rectangular sub-torus} of $\widetilde{\m}_{m,n}$
+  \item
+$\oplus$
+the {\em four quadrants} of $\m_{m,n}$
+
+\smallskip
+
+Be careful---we have not specified the parity of $m$ and $n$!
+  \end{enumerate}
+}
+
+
+\item
+$\oplus$
+{\bf A small graph isomorphism}
+
+{\sc Lesson:} Reasoning about graph structure
+
+\smallskip
+
+{\em Prove Proposition~\ref{prop.graphIsomorphism}:
+
+\smallskip
+
+The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times 4$ torus $\widetilde{\m}_{4,4}$.
+}
+
+\medskip
+
+{\it Hints.}
+Start informally.  Garner intuition by asking how to view each of $\q_4$ and $\widetilde{\m}_{4,4}$ as a redrawing of the other.
+
+\smallskip
+
+Try to find a relation (an ``encoding") between the bit-strings that name the vertices of $\q_4$ and the ordered pairs of integers that name the vertices of $\widetilde{\m}_{4,4}$.
+
+\smallskip 
+
+Once you get an idea for how such an ``encoding" might work, try to incorporate the inter-vertex names of edges for both graphs.
+
+\item
+$\oplus$
+{\bf A traffic map for a mesh-structured city}
 
 {\sc Lessons:} Achieving and analyzing a ``plausible" mathematical model
 
 \smallskip
 
-The special graphs that appear in this chapter were invented---and reinvented---to model a large variety of real-life situations: inter-communication among functional units in multi-computers; the generation of information-rich codes; richly structured digital circuits, \ldots.  We embark here on the design and analysis of a traffic network within a city.
+The special graphs of this chapter were invented---and reinvented---to model a large variety of real-life situations.  We embark here on the design and analysis of a traffic network within a city.
 
 \smallskip
 
-Before we analyze any costs, the complete graph $\k_N$ seems to provide an attractive traffic model for interconnecting $N$ sites: its diameter is tiny (in fact, unity!); routing is no problem; neither is link-directionality.  But, of course, the density of roads and vertex-degrees makes this an untenable option.  If you have driven an automobile in a city such as Catania, Sicily, then you appreciate the full range of problems engendered by any graph-oriented model that is too similar to $\k_N$.
+Before we analyze any costs, the complete graph $\k_N$ seems to provide an attractive traffic model for interconnecting $N$ sites: its diameter is tiny (in fact, unity); routing is no problem; nor is link-directionality.  But, of course, the density of roads and vertex-degrees makes this an untenable option.
+% If you have driven in a city such as Catania, Sicily, then you appreciate the problems that accompany a graph-model that is too close to $\k_N$.
 
-One step away from the chaos of $\k_N$ would be to orient all of the edges of our abstract city map---i.e., to make each street unidirectional.  If this process is not executed with great care, then one could end up with a city which has {\em sinks}---sites, or neighborhoods, that lack exit roads.   If you have driven an automobile in a city such as Boston, Massachusetts, then you will empathize with this potential problem.
+\smallskip
+
+To step away from the chaos of $\k_N$ we could orient the edges of our abstract city map---i.e., make each street unidirectional.  If done poorly, this process could peoduce a city which has {\em sinks}---sites that lack exit roads.  It is easy to avoid single-site sinks, but some subtlety is needed to avoid multi-site sinks.
+{\em We accomplish this goal by means of a map that is {\em transitive}, in that it allows travel between every pair of sites.}
+
+\index{transitive digraph} \index{digraph!transitive}
+
+% If you have driven in a city such as Boston, Massachusetts, then you will appreciate this potential problem.
 
 \medskip
 
-Here is a {\em highly structured, recursive} proposal for a traffic network.  We will try to assess its costs.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
+Here is a {\em highly structured, recursive} proposal for a traffic network.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
   \begin{itemize}
   \item
-We arrange the city's $N$ sites as an $n \times n$ grid.  Thereby:
-    \begin{itemize}
-    \item
-each site has coordinates $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
-    \item
-the city partitions naturally into four identical quadrants (North, East, South, and West), each of which recursively partitions naturally into four sub-quadrants, and so on. 
+We logically arrange the city's $N$ sites in an $n \times n$ grid by assigning each site a distinct name of the form $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
 
 \smallskip
 
-The city's four quadrants are termed {\em level-$0$ quadrants}.  The four sub-quadrants of each level-$0$ quadrant are termed {\em level-$1$ quadrants}.  Recursively, the four sub-\ldots-sub-quadrants of each level-$i$ quadrant are termed {\em level-$(i+1)$ quadrants}.
+This stratagem automatically assigns each site $\langle i_0, j_0 \rangle$ to a unique
+    \begin{itemize}
+    \item
+{\em row}: the set of sites that share $i_0$:
+\[ \{ \langle i_0, j \rangle \ \ | \ \ j \in \{1, 2, \ldots, n\} \} \]
+    \item
+{\em column}: the set of sites that share $j_0$:
+\[ \{ \langle i, j_0 \rangle \ \ | \ \ i \in \{1, 2, \ldots, n\} \} \]
+    \item    
+{\em quadrant}:
+            \begin{itemize}
+            \item
+the {\em northwestern quadrant}, $NW$, comprises the sites
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{1, 2, \ldots, n/4 \} \right\} \]
+
+            \item
+the {\em southwestern quadrant}, $SW$, comprises the sites
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{ n/4 +1, n/4+2, \ldots, n \}, \ j \in \{1, 2, \ldots, n/4 \} \right\} \]
+
+            \item
+the {\em northeastern quadrant}, $NE$, comprises the sites
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{1, 2, \ldots, n/4 \}, \ j \in \{ n/4 +1, n/4+2, \ldots, n \}  \right\} \]
+
+            \item
+the {\em southeastern quadrant}, $SE$, comprises the sites
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{ n/4 +1, n/4+2, \ldots, n \} \right\} \]
+          \end{itemize}
+
+We call these the {\em level}-$0$, or, {\em top-level} quadrants.
+
+\item
+Recursively, each level-$\ell$ quadrant partitions into four level-$(\ell +1)$ sub-quadrants, and so on, down to sub-sub-\ldots-sub-quadrants that each contain only a single site.  
     \end{itemize}
     
   \item
-We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we restrict attention to edges whose endpoints share a coordinate, i.e., go from a site $\langle i,j \rangle$ to another site of the form $\langle i,k \rangle$ or the form $\langle h,j \rangle$.
+We turn now to the (oriented) edges that we use to navigate our grid-like city.
+
+\smallskip
+
+We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we employ only edges whose endpoint-sites share a coordinate.  Each of these edges goes from a site $\langle i,j \rangle$ to a site $\langle i,k \rangle$ or a site $\langle h,j \rangle$.
 
 \smallskip
 
 This means that every {\em oriented} edge now goes either northward or southward or eastward or westward.
 
+\item
+We now assign (oriented) edges to levels, as a prelude to our routing regimen.
+
 \smallskip
 
-We call an edge a {\em level-$0$ edge} if its endpoints are in different level-$0$ quadrants.  If both endpoints are in the same level-$0$ quadrant but in different sub-quadrants of that level-$0$ quadrant, then we call the edge a {\em level-$1$ edge}.  Proceeding the in natural way, we call an edge a {\em level-$i$ edge} if its endpoints are in different level-$\ell$ quadrants of a single level-$(i-1)$ quadrant.
+Focus on an edge $e$.  We say that $e$ is a level-$\ell$ edge if $\ell$ is the smallest integer such that the endpoints of $e$ are in distinct level-$\ell$ quadrants.
 
   \item
-We impose the following traffic regimen upon the travelers in our city.  In order to go from site $\langle i,j \rangle$ to site $\langle h,k \rangle$, we traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
+As the final step in creating our abstract traffic model, we impose the following routing regimen upon the travelers in our city.
 
 \smallskip
 
-From that point on, we recursively find the acceptable path from site $\langle i_i,j_1 \rangle$ to site $\langle h,k \rangle$.
+In order to travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$, a traveler:
+    \begin{itemize}
+    \item
+must traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
+
+   \item
+From that point on, the traveler recursively find an acceptable path from site $\langle i_i,j_1 \rangle$ to site $\langle h,k \rangle$.
+    \end{itemize}
   \end{itemize}
 
-Now we are ready to analyze our model.
+Now we are ready to analyze our model.  In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
   \begin{enumerate}
   \item
 In the {\em metro} version of the model, we pay a fee every time we encounter a new site on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
 
 \smallskip
 
-{\em What is the maximum cost of the trip from $\langle i,j \rangle$ to $\langle h,k \rangle$ within the metro model?}
+{\em What is the worst-case cost of a trip from a site $\langle i,j \rangle$ to the most-distant site,$\langle h,k \rangle$, under the \underline{metro} model?}
 
   \item
-In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{{1/2}^\ell}$ every time we traverse a level-$\ell$ edge on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
+In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units every time we traverse a level-$\ell$ edge on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
  
  \smallskip
 
-{\em What is the maximum cost of the trip from $\langle i,j \rangle$ to $\langle h,k \rangle$ within the driving model?}
+{\em What is the worst-case cost of a trip from a site $\langle i,j \rangle$ to the most-distant site, $\langle h,k \rangle$, under the \underline{driving} model?}
 
  \end{enumerate}
 
 \end{enumerate}
 
-\subsection{Formal definition of mesh graphs}
-%\label{Exercice:FormalDefinitionMesh}
 
-\noindent \textit{The aim.}
-The definition of mesh presented in chapter~\ref{ch:Graphs1}
-is very easy to capture with a drawing.
-We formalize here the precise definition using a mathematical language. 
-\medskip
 
-\noindent \textit{The problem.}
-Formalize precisely the definition of mesh  $\m_{m,n}$ and torus $\widetilde{\m}_{m,n}$ graphs
-for positive integers $m, n \in \N^+$.
-
-Same for torus graphs.
-\medskip
-
-%\noindent \textit{The solution.}
-%The  {\it vertex-set} is the same for both graphs:
-%
-%\begin{eqnarray*}
-%\n_{\fm_{m,n}} \ = \ \n_{\widetilde{\fm}_{m,n}}
-%  & = & 
-%\{1, \ 2, \ldots, \ m\} \ \times \ \{1, \ 2, \ldots, \ n\} \\
-%  & = & 
-%\big\{ \langle i, \ j \rangle \ \ | \ \ 
-%\big[ i \in \{1, \ 2, \ldots, \ m\} \big], \ \
-%\big[ j \in \{1, \ 2, \ldots, \ n\} \big]
-%\big\}
-%\end{eqnarray*}
-%
-%
-%$\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
-%\begin{eqnarray*}
-%\e_{\fm_{m,n}} & = & 
-%\big\{
-%\{ \{ i, j \}, \ \{ i+1, j \} \ \ | \ \
-%1 \leq i < m, \ \ 1 \leq j \leq n \} \\
-%  &  & \hspace*{.1in} \cup
-%\{ \{ i, j \}, \ \{ i, j+1 \} \ \ | \ \
-%1 \leq i \leq m, \ \ 1 \leq j < n \}
-%\big\}
-%\end{eqnarray*}
-%
-%\medskip
 %
 %The subgraph of $\m_{m,n}$ defined by the vertex-set
 %\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
@@ -2006,41 +2073,4 @@ Same for torus graphs.
 %and all edges both of whose endpoints belong to that set is called the
 %$j$th {\it column} of $\widetilde{\m}_{m,n}$.
 %\medskip
-
-\noindent \textit{Lesson learned.}
-manipulate mathematical symbols. 
-
-
-%%%
-\subsection{Graph Isomorphism}
-%\label{Exercice:isomorphism}
-
-\noindent \textit{The aim.}
-Recall here the problem:
-Formal proof of Proposition~\ref{prop.graphIsomorphism}. 
-\medskip
-
-\noindent \textit{The problem.}
-The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
-4$ torus $\widetilde{\m}_{4,4}$.
-\medskip
-
-\noindent \textit{Hint.}
-Describe both coding schemes (vertices and edges) successively. 
-
-$\q_4$ is represented by its natural Gray codes,
-where a vertex is coded 4 bits and connected to its four neighbors by complementing 
-the digit in each of the four dimensions.
-\medskip
-
-$\widetilde{\m}_{4,4}$ is the cartesian product between two mono-dimensional rings.
-Each one is composed of the four vertices connected using a Gray code:
-
-$00, 01, 11, 10$
-
-The whole coding is obtained by concatenation of both dimensions.
-\medskip
-
-\noindent \textit{Lesson learned.}
-
 
