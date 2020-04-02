@@ -25,14 +25,16 @@ Hint : Write the $2n$ numbers by decomposing the sequence into multiples of powe
 When there are multiple ways, we take the one with the largest power of 2 in order to make the decomposition unique. 
 
 Example for n = 7:
-$(1, 3, 5, 7, 9, 11, 13)$, 
-$(2, 6, 10, 14)$,
-$(4, 12)$ and $(8)$.
+$(1, 3, 5, 7, 9, 11, 13)$ (multiples of $2^0$), 
+$(2, 6, 10, 14)$ (multiples of $2^1$),
+$(4, 12)$ (multiples of $2^2$) and $(8)$ (multiples of $2^3$).
 
 Thus, according to such a decomposition, all the integers of the sequence are written as: 
 
 $2k \times m$ where $m$ is odd.
 Use the pigeon hole principle to exhibit $p$ and $q$.
+
+\subsection{Solution: To be completed}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,7 +75,7 @@ Write $P(d)$ using the $C_i$ (consider $d$ is a power of $2$ to simplify).
 How many additions and multiplications are required?
 \bigskip
 
-Solution:
+\subsection{Solution}
 \[
 P(x) \ \ = \ \ C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + 
 \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_6^{(0} \ )
@@ -110,23 +112,35 @@ This has to be compared to the Horner's scheme: $d$ multiplications and $d$ addi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Product of $4$ consecutive integers}
 
-Chapter 2 or chapter 6
+Chapter 5
 
 Show that the product of $4$ consecutive integers $P(k) = k.(k+1).(k+2).(k+3)$
 is a multiple of $4!$
-\bigskip
 
-Solution.
 
-Two methods are possible here, one is purely arithmetic and the other one is geometric.
+\subsection{Solution}
 
-\begin{enumerate}
-\item The result directly follows from the following facts:
+The result directly follows from the following facts:
 
 In $4$ consecutive integers, at least two are even, one of both even is a multiple of $4$.
+
 In $3$ consecutive integers, at least one in a multiple of $3$.
-\item
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A geometric proof for the product of $4$ consecutive integers}
+
+Chapter 2 or chapter 6
+
+Develop a geometric proof for the product of $4$ consecutive integers $P(k) = k.(k+1).(k+2).(k+3)$
+is a multiple of $4!$
+
+Hint:
 The geometric construction is tricky and comes from a representation of the product $P(k)$ as a rectangle whose sides are the product of the two extreme factors 
+$k.(k+3)$ of the product by the two internal factors $(k+1)(k+2)$.
+
+\subsection{Solution}
+Let representant the product $P(k)$ as a rectangle whose sides are the product of the two extreme factors 
 $k.(k+3)$ by the two internal factors $(k+1)(k+2)$.
 
 $k.(k+3) = k^2 + 3k$ and $(k+1)(k+2) = k^2 + 3k +2$, thus, $P(k)$ is almost a square (a square minus 1)
@@ -134,13 +148,9 @@ if the last column is put as the last rows as shown in the figure.
 
 We can even go further since the elementary pattern is a triangular number which is divisible by $3$:
 
-The side of this square
-$k^2+3k+1$ is odd. 
+The side of this square $k^2+3k+1$ is odd. 
 
 $\Delta_{3k-1} = \frac{3k.(3k-1)}{2}$
-\end{enumerate}
-
-
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.5]{FiguresArithmetic/Product4consecutivePhase1} 
@@ -155,14 +165,35 @@ $\Delta_{3k-1} = \frac{3k.(3k-1)}{2}$
 \end{center}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Sum of finite geometric progression}
+
+Chapter 6
+
+Extend the geometrical proof for computing the sum of a finite geometric progression 
+
+$u_{n+1} = b.u_{n−1}$ and $u_0 = 1$.
+
+\subsection{Solution} 
+
+Use Thales from the reserve side...
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresArithmetic/ThalesGeometricSumFinite} 
+        \caption{Thales.}
+\end{center}
+\end{figure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Exercise}
+\section{Counting triangles}
 
-Let consider a suite of triangles that contain smaller size equilateral $(1,1,1)$ triangles. 
-The objective here is to enumerate all equilateral triangles for each index of the progression
-(see Fig.~\ref{fig:countingTriangles}).
+Chapter 9.
+
+Let consider a suite of triangles constructed by assembling smaller size equilateral $(1,1,1)$ triangles. 
+The objective is to enumerate all the triangles contained at each rank of the progression
+(see Fig.~\ref{fig:countingTriangles}). Let denote 
 The goal is to compute the elements of the progression.
 \begin{figure}[h]
 \begin{center}
@@ -172,32 +203,20 @@ The goal is to compute the elements of the progression.
 \end{center}
 \end{figure}
 
-The first terms of the progression are $1$ and $5$ ($4$ small triangles and a large one).
+Check the first terms of the progression are $1$, $5$ and $13$.
 
-Compute this number for the third term.
+Draw the fourth term and compute its number $N_4$.
 
-Draw the fourth term and compute its number.
+Give a recurrence expression for determining $N_k$.
 
-Solution.
+Solve this progression. 
 
-Let denote the k-th term by $N_k$.
+Hint: Distinguish the case of even and odd $k$.
 
-$N_1=1$, $N_2=4$ (one large and 4 small triangles) and $N_3=13$ (1 large, 3 medium and 9 small ones).
-\\
+\subsection{Solution}
 
-Hint: Let do an enumeration is as follows:
-\begin{enumerate}
-\item
-$N_3 = 10$
-\item 
 $N_4 = 27$.
 
-Fig.~\ref{fig:countingTriangles2} and Fig.~\ref{fig:countingTriangles3}
-provides a clear enumeration (from small to large triangles).
-\end{enumerate}
-
-Notice that the number of the smallest triangles at rank $k$ corresponds to the sum of odds
-which is equal to $k^2$ (according to the result proved in chapter Summation).
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresArithmetic/CountingTriangles2} 
@@ -231,49 +250,6 @@ Make the difference between two consecutive numbers and again and again, then, t
         \label{fig:countingTrianglesProof}
 \end{center}
 \end{figure}
-\bigskip
-
-Still, the solution is not obvious.
-
-Consider the last two lines.
-The problem is determining a closed expression for the sequence is rather easy:
-
-$2 \rightarrow 6$
-
-$4 \rightarrow 9$
-
-$6 \rightarrow 12$
-
-$8 \rightarrow 15$
-
-$f_1(k) = 3.(\frac{k}{2}+1)$
-
-$f_2(k) = f_1(k) - 2$, thus $f_2(k) = \frac{3}{2}(k+1)+1$
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Exercise}
-
-
-Euler version of the proof of infinite number of primes.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Sum of finite geometric progression}
-
-Chapter 6
-
-Extend the geometrical proof for computing the sum of a finite geometric progression ($u_{n+1} = b.u_{n-1}$
-and $u_0=1$). 
-
-Solution: use Thales from the reserve side...
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Link of perfect number and triangular numbers}
-
-Show that the perfect number $PN_\alpha$ is equal to the $2^\alpha-1$ triangular number.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -305,7 +281,9 @@ Show that the number of steps of Monge shuffle to come back to the initial deck 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Exercise}
+\section{An expression of $\Delta_n^2$}
+
+Chapter 2.
 
 Let consider the sum of the $n$ first integers $\Delta_n$.
 
@@ -313,75 +291,13 @@ Show the following expression:
 for any positive integer $n$,
 \[ \Delta_{n}^2 \ = \ n^3 + \Delta_{n-1}^2 \]
 
-The solution is easy by decomposing $\Delta_{n} = n + \Delta_{n-1}$
-and then, developing the square $\Delta_{n}^2 = n^2 + 2.\Delta_{n-1} + \Delta_{n-1}^2$
+\subsection{solution}
 
+easy by decomposing $\Delta_{n} = n + \Delta_{n-1}$
+and then, developing the square:
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Exercise}
+ $\Delta_{n}^2 = n^2 + 2.\Delta_{n-1} + \Delta_{n-1}^2$
 
-Prove that 
-\[ \Delta_{n} + \Delta_{n-1} \ = \ n^2  \]
-
-The solution is straightforward by any method
-(arithmetic manipulations, Fubini double counting principle, geometrical, recurrences, etc.).
-
-we can ask for several proofs, the goal is then to master the big variety of proofs...
-\bigskip
-
-Another related expression is to ask for a "similar" expression for:
-\[ \Theta_{n} + \Theta_{n-1} \ = \ ?  \]
-
-where $\Theta_n$ is the sum of the $n$ first $\Delta_n$.
-
-The goal here is to guess a mathematical property, and then, to prove it.
-
-$\Theta_{n} + \Theta_{n-1} $ is equal to the sum of the first $n$ squares, which is equal to $\Delta_n^2$.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Pascal triangle}
-
-A deep look at the Pascal triangle.
-\bigskip
-
-Draw the first rows of the Pascal triangle.
-
-Observation: determine regularities on rows, columns, diagonals, etc.. 
-
-Prove the following properties
-
-\begin{enumerate}
-\item The sum of the element in a row is a power of $2$.
-\item 
-The elements of the first column are all equal to $1$.
-\item  The elements of the second column are the successive integers
-\item The elements of the third column are the triangular numbers (sum of first integers)
-\item The elements of the fourth column are the tetrahedral numbers, and so on.
-\end{enumerate}
-
-%Solution.
-%\begin{figure}[h]
-%\begin{center}
-%        \includegraphics[scale=0.3]{coeffBinomiauxHorizontal} \hspace{1cm}
-%         \includegraphics[scale=0.3]{coeffBinomiauxVertical}
-%        \caption{Looking at the Pascal's triangle by rows and by columns.}
-%\end{center}
-%\end{figure}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Binomial coefficients.}
-
-
-Draw the Pascal's triangle modulo a prime (take for instance $5$).
-and explain the geometrical patterns (occurence of the sub-triangle of size $5$ and sub-triangle with $0$.
-%\begin{figure}[h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{PascalTrianglePrimes}
-%        \caption{Regular patterns modulo $5$.}
-%\end{center}
-%\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -402,7 +318,7 @@ Show how to reduce the number of multiplications using the Karatsuba's trick
 introduced in Exercise~\ref{} that is, 
 to use the following arithmetic identity $ad+bc = ac + bd + (b-a)(c-d)$.
 
-\subsection{1 star - Extension}
+\subsection{$\oplus$Extension}
 
 The goal now is to extend the previous analysis to polynomial of higher degrees.
 Let consider that the degree is a power of $2$.
@@ -427,9 +343,23 @@ and apply the same method as before using again the Karatsuba's trick on the $A_
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A global property on degrees}
+
+Chapter 12.
+
+Let consider a graph $G=(V,E)$
+
+Show that the number of vertices of odd degree is even.
+
+Hint:
+First, let remark that the sum of all the degrees is even
+(more precisely, $\Sigma_{x \in V} \delta(x) = 2 |E|$ since each edge counts exactly for two vertices -- its extremities). 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tournament}
 
-Chater 13.
+Chapter 13.
 
 let consider a Directed Acyclic Graph $G$.
 Show that every Tournament is hamiltonian.
