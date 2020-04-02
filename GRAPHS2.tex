@@ -1,4 +1,4 @@
-%version of 03-10-20
+%version of 04-02-20
 
 \chapter{Graphs II:
 Graphs for Computing and Communicating}
@@ -27,6 +27,7 @@ Chapter~\ref{ch:Graphs1} has laid the groundwork for an intensive study of the m
 
 \index{graph!vertex-coloring}
 \index{graph!chromatic number}
+\index{graph!$c$-colorable} 
  
 A {\it vertex-coloring} of a graph $\g$ is an assignment of labels (the ``{\em colors}") to $\g$'s vertices,  in such a way that all of a vertex $v$'s neighbors get different labels than $v$'s.  The {\it chromatic number} of a graph $\g$ is the smallest number of colors that one can use in crafting a legal vertex-coloring of $\g$.  In traditional parlance, the assertions
 
@@ -34,20 +35,10 @@ A {\it vertex-coloring} of a graph $\g$ is an assignment of labels (the ``{\em c
 
 ``$\g$ has chromatic number $c$'' \ \ \ and \ \ \  ``$\g$ is {\it $c$-colorable}''
 
-\index{graph!$c$-colorable}
-
 \smallskip
 
 \noindent
 are viewed as synonymous.
-
-\ignore{********
-{\Denis I added the following remark, do you agree?}
-This notion is an important characteristic of a graph.
-It is like an intermediate concept between the degree (local)
-and diameter (global), which are both easy to compute. 
-Determining the chromatic number is not easy to compute for any graphs.
-*********}
 
 \bigskip
 
@@ -73,8 +64,6 @@ The prohibition against ``monochrome'' edges---i.e., edges both of whose inciden
 3. All {\em blue} vertices perform simultaneously an action
 
 $\cdots$
-
-%\hspace*{1in} $\vdots$
 
 \medskip
 
@@ -123,27 +112,27 @@ The following graphs are leveled, hence have chromatic number $2$:
 \smallskip
 
 {\bf (a)}
-any tree (which includes any path-graph $\p_n$)
+every tree (which includes any path-graph $\p_n$)
 
 \smallskip
 
 {\bf (b)}
-any cycle-graph $\cc_n$ that has an even number $n$ of vertices
+every cycle-graph $\cc_n$ that has an even number $n$ of vertices
 
 \smallskip
 
 {\bf (c)}
-any mesh-graph $\m_{m,n}$
+every mesh-graph $\m_{m,n}$
 
 \smallskip
 
 {\bf (d)}
-any torus-graph $\widetilde{\m}_{m,n}$ that has an even number of diagonals, i.e., even $m+n$
+every torus-graph $\widetilde{\m}_{m,n}$ with even $m+n$, i.e., evenly many diagonals
 
 \smallskip
 
 {\bf (e)}
-any hypercube $\q_n$
+every hypercube $\q_n$
 \end{corol}
 
 \begin{proof}
@@ -208,6 +197,7 @@ in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length cycles are 
 \index{de Bruijn graph!pancyclicity}
 
 \begin{prop}
+\label{thm:DB-pancyclic}
 For all $n$, the order-$n$ de Bruijn network $\d_n$ is directed-pancylic, i.e., it contains directed cycles of all possible lengths $1, 2, \ldots, 2^n$.
 \end{prop}
 
@@ -1620,37 +1610,65 @@ The techniques we use in Section~\ref{sec:hamiltonian-named-graphs} to investiga
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Exercises: Chapter 13}
 
-Throughout the text, we mark each exercise with 0 or 1 or 2
-occurrences of the symbol $\oplus$, as a rough gauge of its level of
-challenge.  The 0-$\oplus$ exercises should be accessible by just
-reviewing the text.  We provide {\em hints} for the 1-$\oplus$
-exercises; Chapter~\ref{ch:Exercises} provides {\em solutions} for the
-2-$\oplus$ exercises.  Additionally, we begin each exercise with a
-brief explanation of its anticipated value to the reader.
+Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the symbol $\oplus$, as a rough gauge of its level of challenge.  The 0-$\oplus$ exercises should be accessible by just reviewing the text.  We provide {\em hints} for the 1-$\oplus$ exercises; Chapter~\ref{ch:Exercises} provides {\em solutions} for the 2-$\oplus$ exercises.  Additionally, we begin each exercise with a brief explanation of its anticipated value to the reader.
  
 
 \begin{enumerate}
 \item
-{\bf Colored triangles}
+{\bf Leveling---hence, $2$-coloring, of torus-graphs}
 
-{\sc Lesson:} Reasoning about subgraphs.
+{\sc Lesson:} Practice reasoning about graphs
+
+\smallskip
+
+{\em Provide a detailed proof of Corollary~\ref{thm:list-2-colorables}(d):  The torus-graph $\widetilde{\m}_{m,n}$ is leveled---hence, $2$-colorable---if and only if $m+n$ is even.}
+
+\medskip
+\item
+{\bf Appreciating de Bruijn networks}
+
+{\sc Lesson:} Practice reasoning about graphs
+
+\smallskip
+
+Reasoning about de Bruijn networks quickly goes beyond the elementary, but many notions are quite accessible in small, specific examples.  Here are two such, which refer to the order-$3$ de Bruijn network $\d_3$ and the order-$4$ de Bruijn network $\d_4$.
+
+  \begin{enumerate}
+  \item
+$\oplus$
+{\em Identify, by coloring the edges of $\d_3$ and $\d_4$, how each network can be viewed as two trees which are ``embracing" one another.}
+
+\smallskip
+
+\index{Escher, M.~C.}
+These drawings are very reminiscent of the lithograph {\it Drawing Hands} by the Dutch artist M.~C.~Escher.  Studying the drawing may be useful in solving this problem.
+
+  \item 
+{\em Prove Proposition~\ref{thm:DB-pancyclic} for $\d_3$ and $\d_4$: Describe the eight directed paths in $\d_3$ and the sixteen directed paths in $\d_4$.}
+  \end{enumerate}
+
+\medskip
+\item
+{\bf Colored-triangle subgraphs}
+
+{\sc Lesson:} Practice reasoning about graphs
 
 \smallskip
 
 {\em Prove the following assertion.}
 
 \begin{prop}
-Let us be given a copy of $\k_6$ each of whose edges has been colored either red or blue.  The resulting graph contains either a red ``triangle" (i.e., copy of $\cc_3$) or a blue ``triangle" as a subgraph.
+Let us be given a copy $\g$ of $\k_6$ each of whose edges has been colored either {\em red} or {\em blue}.  Graph $\g$ contains either a {\em red} ``triangle" or a blue ``triangle" as a subgraph.  (A ``triangle" is a copy of $\cc_3$.)
 \end{prop}
 
 \item
 {\bf A fundamental result about outerplanar graphs}
 
-{\sc Lesson:} Reasoning about graph-theoretic properties.
+{\sc Lesson:} Practice reasoning about graph-theoretic properties.
 
 \smallskip
 
@@ -1660,22 +1678,22 @@ Let us be given a copy of $\k_6$ each of whose edges has been colored either red
 The complete bipartite graph $K_{3,2}$ is not outerplanar.
 \end{prop}
 
+\smallskip
+
+{\em Hint:} Use the following figure to garner intuition.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresGraph/outerplanarK3,2init} 
 \caption{$K_{3,2}$: Its two types of vertices are identified by color---white and shaded.}
 \end{center}
 \end{figure}
-
-\medskip
-
-\noindent \textit{Hint.}
 Perform a case-by-case analysis of all possible ways to distribute $K_{3,2}$'s vertices around a circle.
 
+\medskip
 \item
 {\bf Outerplanarity and Hamiltonianicity}
 
-{\sc Lesson:} Reasoning about graph-theoretic properties.
+{\sc Lesson:} Practice reasoning about graph-theoretic properties.
 
 \smallskip
 
