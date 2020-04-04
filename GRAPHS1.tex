@@ -1998,19 +1998,19 @@ This stratagem automatically assigns each site $\langle i_0, j_0 \rangle$ to a u
             \begin{itemize}
             \item
 the {\em northwestern quadrant}, $NW$, comprises the sites
-\[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{1, 2, \ldots, n/4 \} \right\} \]
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{1, 2, \ldots, n/2 \} \right\} \]
 
             \item
 the {\em southwestern quadrant}, $SW$, comprises the sites
-\[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{ n/4 +1, n/4+2, \ldots, n \}, \ j \in \{1, 2, \ldots, n/4 \} \right\} \]
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{ n/2+1, n/2+2, \ldots, n \}, \ j \in \{1, 2, \ldots, n/4 \} \right\} \]
 
             \item
 the {\em northeastern quadrant}, $NE$, comprises the sites
-\[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{1, 2, \ldots, n/4 \}, \ j \in \{ n/4 +1, n/4+2, \ldots, n \}  \right\} \]
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{1, 2, \ldots, n/2 \}, \ j \in \{ n/2 +1, n/2+2, \ldots, n \}  \right\} \]
 
             \item
 the {\em southeastern quadrant}, $SE$, comprises the sites
-\[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{ n/4 +1, n/4+2, \ldots, n \} \right\} \]
+\[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{ n/2 +1, n/2+2, \ldots, n \} \right\} \]
           \end{itemize}
 
 We call these the {\em level}-$0$, or, {\em top-level} quadrants.
@@ -2018,7 +2018,14 @@ We call these the {\em level}-$0$, or, {\em top-level} quadrants.
 \item
 Recursively, each level-$\ell$ quadrant partitions into four level-$(\ell +1)$ sub-quadrants, and so on, down to sub-sub-\ldots-sub-quadrants that each contain only a single site.  
     \end{itemize}
-    
+    Fig.~ \ref{fig:routingCity} gives an illustration of the previous textual descrption.
+\begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/routingCity}
+       \caption{Level partitions of the grid.}
+  \label{fig:routingCity}
+\end{center}
+\end{figure}
   \item
 We turn now to the (oriented) edges that we use to navigate our grid-like city.
 
@@ -2048,11 +2055,12 @@ In order to travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$
 must traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
 
    \item
-From that point on, the traveler recursively find an acceptable path from site $\langle i_i,j_1 \rangle$ to site $\langle h,k \rangle$.
+From that point on, the traveler recursively finds an acceptable path from site $\langle i_1,j_1 \rangle$ to site $\langle h,k \rangle$.
     \end{itemize}
   \end{itemize}
 
-Now we are ready to analyze our model.  In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
+Now we are ready to analyze our model.  
+In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
   \begin{enumerate}
   \item
 In the {\em metro} version of the model, we pay a fee every time we encounter a new site on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
