@@ -1,4 +1,4 @@
-%version of 03-10-20
+%version of 04-10-20
 
 \chapter{Numbers III:
 Operational Representations and Their Consequences}
@@ -526,6 +526,7 @@ evaluated at the point $x=b$:
 $\mbox{\sc val}_{b}(x) \ \ = \ \ a_d b^d \ + \ a_{d-1} b^{d-1} \ + \cdots + \ a_1 b \ + \ a_0$.
 
 \subsubsection{Horner's Rule and fast numeral evaluation}
+\label{sec:Horner-fast-evaluation}
 
 Since the problem of computing an integer $n$ from a $d$-digit positional numeral for $n$ reduces to the problem of evaluating a degree-$d$ univariate polynomial, we now digress to show how to perform such evaluations efficiently.  We shall adapt the efficient polynomial-evaluation scheme which we describe now to an efficient procedure for producing a $d$-digit base-$b$ numeral for $n$.
 
@@ -1447,6 +1448,68 @@ If the integer $n$ has the decimal numeral $\delta 5$, where $\delta \in \{1, 2,
 \textit{Hint.}
 Review how numerals represent numbers.
 \medskip
+
+
+\item
+$\oplus \oplus$
+{\bf An alternative to Horner's Rule}
+
+{\sc Lesson:} Experience with operation-counting and asymptotics
+
+\smallskip
+
+In Section~\ref{sec:Horner-fast-evaluation}, we described Horner's Rule, a method for calculating polynomials faster than the common way of writing polynomials would suggest.  This exercise is devoted to an alternative streamlined polynomial evaluation procedure, called {\it Estrin's method}, after its inventor, Gerald Estrin \cite{Estrin60}.
+
+\index{Estrin, Gerald} \index{Estrin's method (for evaluating univariate polynomials)}
+
+\smallskip
+
+Estrin's method begins with a polynomial of degree $d$ with real coefficients:
+\[
+P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \cdots + \ a_{d-1} x^{d-1} \ + \ a_d x^d
+\]
+To avoid complicated expressions, we apply the method to the degree-$(d=7)$ polynomial:
+\[
+P_7(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \ a_3 x^3 \ + \ a_4 x^4 \ + \ a_5 x^5 \ + \ a_6 x^6 \ + \ a_7 x^7
+\]
+
+\smallskip
+
+We begin by rewriting $P$ as follows, via repeated factorizations.
+\[
+P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ +  \cdots                                          
++ x \cdot (a_{d-2} \ + \ x \cdot (a_{d-1} \ + \ a_d x)) \cdots ))
+\]
+Applied to $P_7(x)$, this rewriting yields:
+\[
+P_7(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ x^2 \ ( a_2  \ + a_3 x \ ) \ + \ x^4 \ ( \ a_4 \ + \ a_5 x \ + \ x^2 \ ( a_6  \ + a_7 x \ ) \ )
+\]
+We then introduce the recursively auxiliary expressions.  
+\begin{eqnarray*}
+C_i^{(0)} & = & a_i + x a_{i+1} \\
+                &\vdots &  \\
+C_i^{(n)}  & = & C_i^{(n-1)} + x^{2n} C_{i+2^n}^{(n-1)}
+\end{eqnarray*}
+The method completes by expressing $P(x)$ in terms of the auxiliary $C_i^{(k)}$
+
+\smallskip
+
+Example:
+\begin{eqnarray*}
+P_7(x) & = & C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_6^{(0} \ ) \\
+            & = & C_0^{(1)} \ + \ x^4 \ C_4^{(1)}
+\end{eqnarray*}
+
+\medskip
+
+{\em To do:
+\begin{enumerate}
+\item
+Write $P(x)$ using the auxiliary expressions $C_i$.  {\em To simplify this task, say that the degree $d$ is a power of $2$.}
+\item
+Determine how many additions and multiplications are required to evaluate $P(x)$.
+\end{enumerate}
+}
 
 \item
 {\bf A simple, good rational approximation to $e$}
