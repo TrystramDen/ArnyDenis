@@ -1,4 +1,4 @@
-%version of 04-01-20
+%version of 04-10-20
 
 \chapter{Summations:
 Complex Operations from Simple Components}
@@ -929,11 +929,12 @@ The unit-side square in Fig.~\ref{fig:sumGeoGeneral1} begins the construction of
 Thales of Miletus is credited with a classical theorem about similar right triangles.  The following figure depicts right triangle $T$ and its (shaded) sub-triangle $T'$ whose right angle is distance $1$ from $T$'s.
 
 \begin{center}
-       \includegraphics[scale=0.265]{FiguresArithmetic/ThalesGeometricSum}
+       \includegraphics[scale=0.3]{FiguresArithmetic/ThalesGeometricSum}
 \end{center}
 
 \begin{prop}[The Theorem of Thales]
-Let us be given a unit-height right triangle $T$ whose base has length $S$.   The ratio $(S-1)/S$  equals the height $b$ of the sub-triangle $T'$ whose right angle is at distance $1$ from $T$'s.
+\label{thm:Thm-of-Thales-similarity}
+Let us be given a unit-height right triangle $T$ whose base has length $S$.  The ratio $(S-1)/S$  equals the height $b$ of the sub-triangle $T'$ whose right angle is at distance $1$ from $T$'s.
 \end{prop}
 
 We use this proportionality of the side-ratios of the big and small triangles to evaluate the summation $\sum_{i=0}^\infty \ b^{-i}$.
@@ -2033,7 +2034,7 @@ Of course, these observations are consistent with the verified actual natural-lo
 
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.25]{FiguresMaths/HarmonicSumUpperbound}
+\includegraphics[scale=0.24]{FiguresMaths/HarmonicSumUpperbound}
 }
 \caption{Upper-bounding $A_i$ by larger unit-size rectangles in the harmonic sum.}
 \label{fig:HarmonicSumUpperbound}
@@ -2041,7 +2042,7 @@ Of course, these observations are consistent with the verified actual natural-lo
 
 \begin{figure}[htb]
 \centerline{
-\includegraphics[scale=0.25]{FiguresMaths/HarmonicSumLowerbound}
+\includegraphics[scale=0.24]{FiguresMaths/HarmonicSumLowerbound}
 }
 \caption{A pictorial lower bound for the harmonic summation.}
 \label{fig:HarmonicSumLowerbound}
@@ -2074,6 +2075,7 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 \smallskip
 
 {\em Derive the sum of $S^{(\infty)}_{1/2}$ by developing the pie-slicing argument of Fig.~\ref{fig:sumGeo1sur2circle} and its accompanying text.}
+
 \smallskip
 
 \item
@@ -2096,7 +2098,7 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 Say that someone gives you a machine that can compute the summation of the first $n$ perfect squares, given $n$ as an input:
 \[ S_2(n)  \ = \ 1 \  + \ 4 \ + \ 9 \ +  \cdots + \ n^2 \]
 
-{\em Show how to use this machine in order to compute the first $n$ integers.}
+{\em Show how to use this machine in order to compute the sum of the first $n$ integers.}
 
 \smallskip
 
@@ -2105,7 +2107,7 @@ Try to think creatively.  Think of how one can (mathematically) relate the first
 \medskip
 
 \item
-{\bf Evaluating $S_2(n) = \sum_{i=1}^n \ i^2$, given knowledge that $S_2(n) = \Theta(n^3)$}
+{\bf Evaluating $S_2(n) = \sum_{k=1}^n \ k^2$, given knowledge that $S_2(n) = \Theta(n^3)$}
 
 {\sc Lesson:} Practice with solving systems of $n$ linear equations in $n$ unknowns, applied to the {\it method of undetermined coefficients}
 
@@ -2118,8 +2120,25 @@ Say that you know---perhaps from reading Section~\ref{sec:riemann-bounds}---that
 \smallskip
 
 {\em Use the method of undetermined coefficients to derive the exact formula (\ref{eq:sum-1-to-nsq1}) for the sum.}
-\medskip
 
+\medskip
+\item
+$\oplus$
+{\bf Evaluating a geometric summation pictorially}
+
+{\sc Lesson:} Experience using pictorial representations
+
+\smallskip
+
+In Section~\ref{sec:summing-geometric-series:techniques}, we used Thales's theorem about similarity in triangles (Theorem~\ref{thm:Thm-of-Thales-similarity}) to sum the simple infinite geometric series $\sum_{i=0}^\infty \ b^i$.  It turns out that a modest modification of that evaluation strategy allows us also to evaluate the truncated versions of that series, namely, the summations
+\[ S^{(b)}(n) \ = \ \sum_{i=0}^n \ b^i \]
+
+{\em Use the following figure to evaluate $S^{(b)}(n)$.}
+
+\centerline{\includegraphics[scale=0.4]{FiguresArithmetic/ThalesGeometricSumFinite}}
+
+
+\bigskip
 \item
 {\bf A direct proof that the harmonic series diverges}
 \index{harmonic series}
@@ -2177,7 +2196,7 @@ This exercise picks up where these two examples leave off.
 
   \begin{enumerate}
   \item 
-{\em Prove that}\footnote{The sum of the the first $n$ triangular numbers, $\sum_{k=1}^n \ \Delta_k$, is often denoted $\Theta_n$.  We employ instead the nonstandard name $\widehat{T}_n$ to ensure that we do not confuse the newcomer who has recently learned about the role of $\Theta$ in asymptotic notation.} 
+{\em Prove that}\footnote{The sum of the the first $n$ triangular numbers, $\sum_{k=1}^n \ \Delta_k$, is often denoted $\Theta_n$.  We employ instead the nonstandard name $\widehat{T}_n$ to ensure that we do not confuse the newcomer who has recently learned about the role of the letter $\Theta$ in asymptotic notation.} 
 \[ \widehat{T}_n \ \eqdef \  \sum_{k=1}^n \ \Delta_k \ = \   
 \Delta_1 + \Delta_2 + \cdots + \Delta_n \ = \ \frac{1}{3} \Delta_n \cdot (n+2) \]
 
