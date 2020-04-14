@@ -16,7 +16,7 @@ An immensely powerful attribute of the way mathematics allows us to deal with qu
 
 \smallskip
 
-This chapter is devoted to developing the needed tools and to heightening readers' awareness of the care that they must take when reasoning in the domain of this chapter's title: the {\em large}, the {\em very large}, and the {\em Infinite}.
+This chapter is devoted to developing the needed tools and to heightening readers' awareness of the care that they must take when reasoning in the domain of this chapter's title: the {\em very large} and the {\em infinite}.
 
 \section{Asymptotics}
 \label{sec:asymptotics}
@@ -124,9 +124,9 @@ $f(x) = \Omega(f_2(x))$
 means
 
 \hspace*{.2in}
-$(\exists c >0)(\exists x_2)(\forall x > x_2)
-[f(x) \geq c \cdot  f_2(x)]$
+$(\exists c >0)(\exists x_2)(\forall x > x_2) [f(x) \geq c \cdot  f_2(x)]$
 
+\medskip
 \item
 {\em The big-$\Theta$ notation}.
 The assertion $f(n) = \Theta(f_3(n))$ says, intuitively, that the function $f$ {\em grows at the same rate as} function $f_3$.  It is, thus, the asymptotic analogue of ``equal to''.
@@ -173,7 +173,7 @@ The former, {\em uncertain-size} quantifier ($\exists c >0$), asserts that asymp
 
 \smallskip
 
-The latter, {\em uncertain-time} quantifier ($\forall x > x^{\#}$) asserts that asymptotic relationships between functions are promised to hold only ``eventually'', i.e., ``for sufficiently large values of the argument $x$''.  Therefore:  {\em Asymptotic notions cannot be employed to discuss or analyze quantities that can never grow beyond a fixed finite value}.  The fact that all instances of a quantity throughout history have been below $N$ is immaterial, as long as it is conceivable that an instance larger than $N$ could appear at some time in the future.
+The latter, {\em uncertain-time} quantifier ($\forall x > x^{\#}$) asserts that asymptotic relationships between functions are promised to hold only ``eventually'', i.e., ``for sufficiently large values of the argument $x$''.  Therefore:  {\em Asymptotic notions cannot be employed to discuss or analyze quantities that can never grow beyond a fixed finite value}.  The fact that all instances of a quantity throughout history have been below some value $N$ is immaterial, as long as it is conceivable that an instance larger than $N$ could appear at some time in the future.
 
 \smallskip
 
@@ -215,6 +215,9 @@ environments.  Both complications involve the notion of {\em uniformity}.
 \index{asymptotics!multiple functions}
 \noindent
 {\bf 1.}
+
+****CHANGE n to x ********
+
 {\em Multiple functions}.
 Say that we have four functions, $f, g, h, k$, and we know that
 \[ f(n) = O(g(n)) \ \ \ \  \mbox{ and } \ \ \ \ h(n) = O(k(n)) \]
@@ -236,7 +239,10 @@ Of course, this task requires only elementary reasoning---{\em but it must be do
 \index{asymptotics!multivariate functions}
 \noindent {\bf 2.}
 {\em Multivariate functions}.
-Finally, we discuss the scenario that almost automatically accompanies the transition from {\em sequential, single-agent} computing to {\em parallel and/or distributed and/or multi-agent}computing.  One must account for a system's many resources: computing, memory/storage, and communication., etc.  One must assess the relationships among the costs of operating the system: time, energy, memory usage, etc.  One must account for possible tradeoffs among costs and possible cost-altering emulations of one subsystem by another. Within such scenarios, every assertion of an asymptotic relationship, of the form
+Finally, we discuss the scenario that almost automatically accompanies the transition from {\em sequential, single-agent} computing to {\em parallel and/or distributed and/or multi-agent}~computing.  One must account for a system's many resources: computing, memory/storage, and communication, etc.  One must assess the relationships among the costs of operating the system: time, energy, memory usage, etc.  One must account for possible tradeoffs among costs and possible cost-altering emulations of one subsystem by another. Within such scenarios, every assertion of an asymptotic relationship, of the form
+
+************m,n 
+
 \[ f(\vec{m}; \vec{n}) = O(g(\vec{m}; \vec{n})) \]
 must explicitly specify the following information:
 \begin{itemize}
@@ -424,8 +430,12 @@ Let us imagine a system that contains
 \begin{itemize}
 \item
 a {\em really big} bin (in fact, one whose capacity grows as the story progresses)
+
+\smallskip
 \item
 an unbounded sequence of ordered balls, labelled 1, 2, \ldots
+
+\smallskip
 \item
 a {\em very} (read: infinitely) precise clock.
 \end{itemize}
@@ -466,6 +476,7 @@ THERE ARE INFINITELY MANY BALLS.
 
 This response is justified by the following reasoning.  Each step of the process inserts $10$ balls into the bin but removes only $1$ ball.  Hence, the population of the bin grows by $9$ balls after each step of the process---and it never decreases!  It follows, therefore, that after infinitely many steps, the bin's population must be infinite.
 
+\medskip
 \item
 THE BIN IS EMPTY---THERE ARE $0$ BALLS!
 
@@ -473,6 +484,7 @@ THE BIN IS EMPTY---THERE ARE $0$ BALLS!
 
 This response is justified by the following reasoning.  Every ball is eventually removed from the bin at some (finite) step of the process. Specifically, ball \#$n$ is removed at step $n$, i.e., at time midnight minus $2^{-n}$ seconds.
 
+\medskip
 \item
 THERE IS NO VALID ANSWER.
 
@@ -495,18 +507,36 @@ In his celebrated {\it Paradox of Achilles and the Tortoise}, Zeno of Elea  pres
 
 In Zeno's story, the slow-footed Tortoise (T) tries to convince the speedy Achilles (A) of the futility of trying to win any race in which A gives T even the smallest head start.  As long as T is ahead of A, says T, every time A traverses half the distance between himself and T, T will respond by moving a bit further ahead.  Thereby, T will always be a positive distance ahead of A, so that A can {\em never} catch T.
 
-\smallskip
+\bigskip
 
-\index{infinitesimals}
-At first glance, this story seems to call into question the physical reality of all motion.  In fact, the
-resolution of the apparent paradox resides in the notion of {\em infinitesimals}---quantities that dynamically grow smaller than any finite number.  While infinitesimals are familiar today to anyone who has studied subjects such as the differential calculus, the notion of infinitesimal actually dates back only a few hundred years, to the 17th century.  
+\index{infinitesimals} 
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Explanatory note.}
+
+At first glance, Zeno's story seems to call into question the physical reality of all motion.  In fact, the resolution of the apparent paradox resides in the notion of {\em infinitesimals}---quantities that dynamically grow smaller than any finite number.  While infinitesimals are familiar today to anyone who has studied subjects such as the differential calculus, the notion of infinitesimal actually dates back only a few hundred years, to the 17th century.
+\end{minipage} }
 
 \medskip
 
+\index{Pascal, Blaise}
 \index{Leibniz (Leibnitz), Gottfried Wilhelm}  \index{Newton, Isaac} \index{Kronecker, Leopold} 
 
-Underlying the discovery/invention\footnote{Were infinitesimals {\em discovered} or {\em invented}?  As you ponder this choice, recall the words of Leopold Kronecker that end our {\it MANIFESTO}.}~of infinitesimals is one of the great real-life mysteries of all time.  Who invented/discovered infinitesimals?  The parties to this dispute were the German mathematician Gottfried Leibniz \cite{Leibniz} and the English polymath (Sir) Isaac Newton \cite{Newton}.   The cases favoring each of these great men contain enough merit to guarantee that the dispute will likely never be settled.  We therefore list Leibniz and Newton alphabetically and give a coarse dating of the 17th century for the discovery.  This real-life mystery is as full of intrigue and suspense as any that one encounters in fiction.
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Historical notes.}
 
+The notion of infinitesimal has aspects that are of interest beyond the ``mere" technical.
+
+\smallskip
+
+The philosophically inclined reader might be interested in the essay ``The Two Infinities''\footnote{\label{foot:Pascal} The essay appears in Pascal's {\it Pens\'{e}es}.}~by the French mathematician-philosopher (or philosopher-mathematician?) Blaise Pascal, whose work we revisit several times in this text, including, notably, in Section~\ref{sec:binomial-coeff+Pascal}.
+
+\smallskip
+
+The historically inclined reader will certainly be interested in the drama that underlies the discovery/invention\footnote{Were infinitesimals {\em discovered} or {\em invented}?  As you ponder this choice, recall the words of Leopold Kronecker that end our {\it MANIFESTO}.}~of infinitesimals.  The question of earliest discovery is one of the great real-life mysteries of all time.  Who invented/discovered infinitesimals?  The parties to this dispute were the German mathematician Gottfried Leibniz \cite{Leibniz} and the English polymath (Sir) Isaac Newton \cite{Newton}.   The cases favoring each of these great men contain enough merit to guarantee that the dispute will likely never be settled.  We therefore list Leibniz and Newton alphabetically and give a coarse dating of the 17th century for the discovery.  This real-life mystery is as full of intrigue and suspense as any that one encounters in fiction.
+\end{minipage} }
 
 \paragraph{D. Hilbert's hotel paradox}
 
@@ -530,7 +560,7 @@ Of course, this humorous story has its roots in a fundamental distinction betwee
 \medskip
   
 This paradox can be extended in a way that makes it even more  perplexing:  The story's hotelier can accommodate even {\em an infinite number} of new guests!  Consider again that every room 
-of the hotel is occupied, and say that infinitely many new guests arrive!  (Pity the poor desk clerk!). The hotelier can accommodate all of the new arrivals by moving each guest who currently occupies room \#$k$ into room \#$2k$.
+of the hotel is occupied, and say that infinitely many new guests arrive!  (Pity the poor desk clerk!)  The hotelier can accommodate all of the new arrivals by moving each guest who currently occupies room \#$k$ into room \#$2k$.
 
 \medskip
 
