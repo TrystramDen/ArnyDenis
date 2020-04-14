@@ -2425,7 +2425,70 @@ One notes in Fig.~\ref{fig:dice-ordered-configs} that In the ordered version of 
 \smallskip
   
 {\em Prove Proposition~\ref{thm:mean-linear}, which asserts the linearity of the mean.}
-  
+
+\medskip
+\item
+{\bf The Monge shuffle: a mathematical party trick}
+
+{\sc Lesson:} Experience analyzing combinatorial patterns
+
+\smallskip
+
+\index{Monge, Gaspard} \index{Monge shuffle}
+
+The following card manipulation is associated with the 18-19th century French mathematician Gaspard Monge.  We employ it as a vehicle for honing your skills in detecting combinatorial patterns.  Others have used it as a party trick.
+
+\smallskip
+
+We are given a deck of $2n$ distinct cards.  We employ the running example of the following deck, where $n=4$:
+\[ (1, \ 2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8) \]
+The {\it Monge shuffle} of the cards operates as follows.  We cut the deck in the middle, to create two $n$-card decks:
+\[ (1, \ 2, \ 3, \ 4), \ (5, \ 6, \ 7, \ 8) \]
+We then merge the two decks by alternating the ``top" cards from the righthand deck and the lefthand deck; see Fig~\ref{fig:suffleMonge}.
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresArithmetic/suffleMonge}
+        \caption{The Monge shufflehuffle for $8$ cards ($n=4$).}
+        \label{fig:suffleMonge}
+\end{center}
+\end{figure}
+The merged deck has the form
+\[ (5, \ 1, \ 6, \ 2, \ 7, \ 3, \ 8, \ 4) \]
+
+The party-game incarnation of the Monge shuffle involves your suggesting to your audience that the cut-then-merge is a good first step in really mixing up the cards.  If this were so, then repeating the step several times should be a good way to obtain a random mixture of the cards.
+
+\smallskip
+
+Let's see what happens after several steps of cut-then-merge:
+\[ \begin{array}{ccccccccccccccccc}
+(1 & 2 & 3 & 4 & 5 & 6 & 7 & 8) & \rightarrow & (1 & 2 & 3 & 4) & (5 & 6 & 7 & 8) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(5 & 1 & 6 & 2 & 7 & 3 & 8 & 4) & \rightarrow & (5 & 1 & 6 & 2) & (7 & 3 & 8 & 4) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(7 & 5 & 3 & 1 & 8 & 6 & 4 & 2) &  \rightarrow& (7 & 5 & 3 & 1) & (8 & 6 & 4 & 2) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(8 & 7 & 6 & 5 & 4 & 3 & 2 & 1) &  \rightarrow& (8 & 7 & 6 & 5) & (4 & 3 & 2 & 1) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(4 & 8 & 3 & 7 & 2 & 6 & 1 & 5) &  \rightarrow& (4 & 8 & 3 & 7) & (2 & 6 & 1 & 5) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(2 & 4 & 6 & 8 & 1 & 3 & 5 & 7) &  \rightarrow& (2 & 4 & 6 & 8) & (1 & 3 & 5 & 7) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(1 & 2 & 3 & 4 & 5 & 6 & 7 & 8)
+\end{array}
+\]
+So, this does not look too random!  After {\em three} (which, ``coincidentally" equals $n-1$) cut-then-merge steps, the deck is reversed---and after {\em six} (which, ``coincidentally" equals $2(n-1)$) steps, the deck has been replicated in its original order!
+
+\smallskip
+
+As mathematicians, we do not like ``coincidences"!
+
+\medskip
+
+{\em Prove the following assertion.}
+
+\begin{prop}
+Let $p$ be an odd prime, and let $n = {1 \over 2} (p-1)$.  Let us begin with a deck of $2n$ distinct cards and perform the Monge shuffle on the deck.  After a number of cut-then-merge steps that divides $p-1$, the Monge shuffle replicates the initial deck.
+\end{prop}
 \end{enumerate}
 
 
