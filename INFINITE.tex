@@ -63,13 +63,37 @@ $(\exists c >0)(\exists x_1)(\forall x > x_1)
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
 
-{\it The complication}.
+\smallskip
+
+Our formal definitions of big-$O$, big-$\Omega$, and big-$\Theta$, employ the letters $x$, $x_1$, $x_2$, and $x_3$.  It is important to note the following crucial distinction.
+\begin{itemize}
+\item
+$x$ is a {\em variable} which ranges over the real numbers.
+
+\smallskip
+\item
+$x_1$, $x_2$, and $x_3$ are {\em unknowns} which are selected from the same set of numbers.
+
+\smallskip
+
+As explained in Chapter~\ref{ch:doingmath}, this means that $x_1$, $x_2$, and $x_3$ are three specific real numbers---we just do not know which ones!
+\end{itemize}
+\end{minipage}
+}
+
+\medskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Explanatory note}.
+
+\smallskip
 
 The ``equal sign'' in the notation $f(x) = O(f_1(x))$ does {\em not} mean ``equals''.
 
 \smallskip
 
-In fact, the assertion ``$fx) = O(f_1(x))$'' actually means that function $f$ {\em belongs to the class of functions that {\em eventually} grow no faster than function $f_1$ does.}
+In fact, the assertion ``$f(x) = O(f_1(x))$'' actually means that function $f$ {\em belongs to the class of functions that {\em eventually} grow no faster than function $f_1$ does.}
 
 \smallskip
 
@@ -85,6 +109,8 @@ The assertion ``$f(x) = O(f_1(x))$'' is {\em articulated}
 \smallskip
 
 {\em Never} substitute ``equals'' for ``is''
+
+\smallskip
 \item
 Many people acknowledge the ``belonging to a class'' facet of the definition by writing
 
@@ -100,12 +126,19 @@ rather than
 
 \hspace*{.25in}``$f(x) =  O(f_1(x))$''
 \end{enumerate}
+\end{minipage}
+}
 
 \medskip
 
-{\it An esoteric aside}:  It is strange that precisely two of the three asymptotic letters, namely, $\Omega$ and $\Theta$, come from the Greek alphabet.  In fact, many scholars insist that the letter $O$ in ``big-$O$" is actually the Greek letter omicron, {\em not} the Latin letter $O$.
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf An esoteric aside.}
+
+It appears strange that precisely two of the three asymptotic letters, namely, $\Omega$ and $\Theta$, come from the Greek alphabet, while the third, letter is the Latin $O$.  To correct this apparent imbalance, many scholars insist that the letter $O$ in ``big-$O$" is actually the Greek letter Omicron, {\em not} the Latin letter $O$.
 \end{minipage}
 }
+
 \bigskip
 
 \item
@@ -129,7 +162,7 @@ $(\exists c >0)(\exists x_2)(\forall x > x_2) [f(x) \geq c \cdot  f_2(x)]$
 \medskip
 \item
 {\em The big-$\Theta$ notation}.
-The assertion $f(n) = \Theta(f_3(n))$ says, intuitively, that the function $f$ {\em grows at the same rate as} function $f_3$.  It is, thus, the asymptotic analogue of ``equal to''.
+The assertion $f(x) = \Theta(f_3(x))$ says, intuitively, that the function $f$ {\em grows at the same rate as} function $f_3$.  It is, thus, the asymptotic analogue of ``equal to''.
 
 \smallskip
 
@@ -141,12 +174,26 @@ Formally, the assertion
 $f(x) = \Theta(f_3(x))$
 
 means
+\begin{equation}
+\label{eq:straight-defn-of-Theta}
+(\exists c >0)(\exists c' >0)(\exists x_{3})(\forall x > x_{3})
+[c \cdot f_3(x) \leq f(x) \leq c' \cdot  f_3(x)]
+\end{equation}
 
-\hspace*{.2in}
-$(\exists c >0)(\exists c' >0)(\exists x_{3})(\forall x > x_{3})
-[c \cdot f_3(x) \leq f(x) \leq c' \cdot  f_3(x)]$
+\smallskip
+
+It is not hard to verify---in fact, we pose this as an exercise---that the defining expression (\ref{eq:straight-defn-of-Theta}) is logically equivalent to either of the following expressions.
+\begin{eqnarray}
+\label{eq:Theta-via-O}
+\left[ f(x) \ = \ O(f_3(x)) \right] & \mbox{ and } & \left[ f_3(x) \ = \ O(f(x)) \right] \\
+\label{eq:Theta-via-Omega}
+\left[ f(x) \ = \ \Omega(f_3(x)) \right] & \mbox{ and } & \left[ f_3(x) \ = \ \Omega(f(x)) \right] 
+\end{eqnarray}
 \end{itemize}
-One renders the preceding intuitive explanations precise by pointing out that the three specified relations:
+
+\smallskip
+
+One renders the preceding intuitive explanations precise by pointing out that the three specified relations, i.e., the big-$O$, the big-$\Omega$, and the big-$\Theta$:
 \begin{enumerate}
 \item
 take hold {\em eventually}, i.e., only for large arguments to the functions $f$, $f_1$, $f_2$, $f_3$;
@@ -165,15 +212,15 @@ The plots in Fig.~\ref{fig:Asymptotic} illustrate the definitions of big-$O$ and
 \subsection{The ``Uncertainties'' in Asymptotic Relationships}
 \label{sec:uncertainties-asymptotics}
 
-The formal definitions of all three of our asymptotic relationships are bracketed by two important quantifiers:
+The formal definitions of all three of our asymptotic relationships are bracketed by two important quantifiers, of the forms:
 \[ 
-(\exists c >0) \ \ \ \mbox{ and }  \ \ \  (\forall x > x^{\#}).
+(\exists c >0) \ \ \ \mbox{ and }  \ \ \  (\forall x > x_k).
 \]
 The former, {\em uncertain-size} quantifier ($\exists c >0$), asserts that asymptotic notions describe functional behavior ``in the large''.  Thus, in common with more common qualitative descriptors of quantitative growth such as ``linear", ``quadratic", ``cubic", ``quartic", ``exponential", ``logarithmic", etc., asymptotic relationships give no information about constants of proportionality.  {\em We are not saying that constant factors do not matter!}  We are, rather, saying, {\em We sometimes want to discuss growth patterns \underline{in the large} rather than in detail.}
 
 \smallskip
 
-The latter, {\em uncertain-time} quantifier ($\forall x > x^{\#}$) asserts that asymptotic relationships between functions are promised to hold only ``eventually'', i.e., ``for sufficiently large values of the argument $x$''.  Therefore:  {\em Asymptotic notions cannot be employed to discuss or analyze quantities that can never grow beyond a fixed finite value}.  The fact that all instances of a quantity throughout history have been below some value $N$ is immaterial, as long as it is conceivable that an instance larger than $N$ could appear at some time in the future.
+The latter, {\em uncertain-time} quantifier ($\forall x > x_k$) asserts that asymptotic relationships between functions are promised to hold only ``eventually'', i.e., ``for sufficiently large values of the argument $x$''.  Therefore:  {\em Asymptotic notions cannot be employed to discuss or analyze quantities that can never grow beyond a fixed finite value}.  The fact that all instances of a quantity throughout history have been below some value $N$---which is fixed, unknown, and possibly unimaginably large---is immaterial, as long as it is conceivable that an instance larger than $N$ could appear at some time in the future.
 
 \smallskip
 
@@ -184,7 +231,7 @@ In fact, it is often easier to think about our three asymptotic bounding asserti
 \item
 $f(x) = O(g(x))$.
 
-If one draws the graphs of the functions $f(x)$ and $c \cdot g(x)$, then as one traces the graphs with increasing values of $x$, one eventually reaches a point $x^{\#}$ beyond which the graph of $f(x)$ never enters the territory {\em above} the graph of $c \cdot g(x)$.
+If one draws the graphs of the functions $f(x)$ and $c \cdot g(x)$, then as one traces the graphs with increasing values of $x$, one eventually reaches a point $x_k$ beyond which the graph of $f(x)$ never enters the territory {\em above} the graph of $c \cdot g(x)$.
 \item
 $f(x) = \Omega(g(x))$.
 
@@ -192,7 +239,7 @@ This situation is the up-down mirror image of the preceding one: just replace th
 \item
 $f(x) = \Theta(g(x))$.
 
-This relation provides a {\em two-sided} envelope:  Beyond $x^{\#}$, the graph of $f(x)$ never enters the territory {\em above} the graph of $c \cdot g(x)$ and never enters the territory
+This relation provides a {\em two-sided} envelope:  Beyond $x_k$, the graph of $f(x)$ never enters the territory {\em above} the graph of $c \cdot g(x)$ and never enters the territory
 {\em below} the graph of $c' \cdot g(x)$.
 \end{itemize}
 In addition to allowing one to make familiar growth-rate comparisons such as ``$n^{14} = O(n^{15})$'' and ``$1.001^n = \Omega(n^{1000})$,'' we can now also make assertions such as ``$\sin x = \Theta(1)$,'' which are much clumsier to explain in words.
@@ -201,7 +248,7 @@ In addition to allowing one to make familiar growth-rate comparisons such as ``$
 
 \index{asymptotics!with little letters}
 \noindent {\bf Beyond the big letters.}
-There are ``little''---letter analogues of the preceding ``big''---letter asymptotic relations and notations: $o$, $\omega$, and $\theta$.  The definitions and domains of application of these notations build on the notion of {\it limit}, which is fundamental in continuous mathematics---e.g., in the differential and integral calculus---but rare in discrete mathematics.  We therefore do not include this topic in this text, instead referring the reader to any good text on the calculus.
+There are ``little''-letter analogues of the preceding ``big''-letter asymptotic relations and notations: $o$, $\omega$, and $\theta$.  The definitions and domains of application of these notations build on the notion of {\it limit}, which is fundamental in continuous mathematics---e.g., in the differential and integral calculus---but rare in discrete mathematics.  We therefore do not include this topic in this text, instead referring the reader to any good text on the calculus.
 
 \subsection{Inescapable Complications}
 \label{sec:asymptotic-complication}
@@ -214,15 +261,11 @@ environments.  Both complications involve the notion of {\em uniformity}.
 
 \index{asymptotics!multiple functions}
 \noindent
-{\bf 1.}
-
-****CHANGE n to x ********
-
-{\em Multiple functions}.
+{\bf 1.} {\em Multiple functions}.
 Say that we have four functions, $f, g, h, k$, and we know that
-\[ f(n) = O(g(n)) \ \ \ \  \mbox{ and } \ \ \ \ h(n) = O(k(n)) \]
+\[ f(x) = O(g(x)) \ \ \ \  \mbox{ and } \ \ \ \ h(x) = O(k(x)) \]
 It is compellingly suggestive that
-\[ f(n) + h(n) = O(g(n) + k(n)) \]
+\[ f(x) + h(x) = O(g(x) + k(x)) \]
 --- but is it true?
 
 \smallskip
@@ -240,10 +283,7 @@ Of course, this task requires only elementary reasoning---{\em but it must be do
 \noindent {\bf 2.}
 {\em Multivariate functions}.
 Finally, we discuss the scenario that almost automatically accompanies the transition from {\em sequential, single-agent} computing to {\em parallel and/or distributed and/or multi-agent}~computing.  One must account for a system's many resources: computing, memory/storage, and communication, etc.  One must assess the relationships among the costs of operating the system: time, energy, memory usage, etc.  One must account for possible tradeoffs among costs and possible cost-altering emulations of one subsystem by another. Within such scenarios, every assertion of an asymptotic relationship, of the form
-
-************m,n 
-
-\[ f(\vec{m}; \vec{n}) = O(g(\vec{m}; \vec{n})) \]
+\[ f(\vec{x}; \vec{y}) = O(g(\vec{x}; \vec{y})) \]
 must explicitly specify the following information:
 \begin{itemize}
 \item
@@ -738,6 +778,19 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 reviewing the text.  We provide {\em hints} for the 1-$\oplus$ exercises; Chapter~\ref{ch:Exercises} provides {\em solutions} for the 2-$\oplus$ exercises.  Additionally, we begin each exercise with a brief explanation of its anticipated value to the reader.
 
 \begin{enumerate}
+\item
+{\bf Three equivalent definitions of big-$\Theta$}
+
+{\sc Lesson:} Experience arguing about asymptotic relations
+
+\smallskip
+
+{\em Prove that definitions}
+(\ref{eq:straight-defn-of-Theta}), (\ref{eq:Theta-via-O}), and (\ref{eq:Theta-via-Omega}) 
+{\em provide three logically equivalent definitions of the assertion}
+\[  f(x) = \Theta(f_3(x)) \]
+
+\medskip
 \item
 {\bf An inequality that we used repeatedly in Section~\ref{sec:sum-of-i2c>0}}
 
