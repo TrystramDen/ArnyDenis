@@ -1,4 +1,4 @@
-%version of 03-16-20
+%version of 04-15-20
 
 \chapter{Recurrences:
 Rendering Complex Structure Manageable}
@@ -39,13 +39,6 @@ This chapter is devoted to deriving and solving a variety of types of recurrence
 
 The first family of recurrences that we study are the {\em linear} recurrences, as exemplified by the following function specifications, wherein we have four integers: $a$, $b$, $c$, and $d$, with $a>1$ and $b>1$.
 
-%{\Denis Should we change the notation of F here? since it will be used for Fibo elements in the following section of the chapter. We can keep it as it is, and add a note about the abstract letters usually $x$ for any variable and $F$ for any function...}
-%{\Denis I changed the bounds in the expression to keep more generality.
-%I also changed f(1) for a constant c replacing 1}
-%{\Denis We should say here that $a$, $b$ and $c$ are integers}
-
-%\newpage
-
 \begin{eqnarray}
 \nonumber
 \mbox{\bf The general form} & & \\
@@ -69,7 +62,6 @@ a f(n/b) + c & \hspace*{.4in} \mbox{for } n \geq b \\
 \right.
 \end{eqnarray}
 
-%{\Denis constant c ws used twice, this was a bit confuseing... Thus, I changed here f(1) to 1 since it is the simplified form...}
 
 \smallskip
 
@@ -227,7 +219,6 @@ One can learn yet other lessons about $f(n)$, specifically about how to compute 
 \end{figure}
 In particular, one observes in the figure that when $a=b$, the computations in each row are perfectly balanced.  When $a=b=2$, for instance, the tree has $n$ leaves, and the computations inside the tree evaluate to exactly $n$ at each of the tree's $ \ln(n)$ levels---so that $f(n) = n \ln(n)$ in this case.  \qed
 \end{proof}
-%{\Arny The notation in Fig.~\ref{fig:masterTheorem} (fonts, cdots) should be made consistent with the text.}
 
 
 \subsection{An Application: The Elements of Information Theory}
@@ -381,42 +372,7 @@ Let us define the bivariate integer function\footnote{We alter our notation for 
 \smallskip
 
 \index{Pascal's triangle} 
-We claim that the function $\hat{\Delta}(n,k)$ thus defined is, in fact, the binomial coefficient $\displaystyle {n \choose k}$.  We establish this claim with the help of Pascal's triangle, the two-dimensional array of binomial coefficients which we defined in Section~\ref{sec:binomial-coeff} and illustrated in Fig.~\ref{fig:pascal-triangle}.
-\ignore{**************
-\begin{figure}[htb]
-\[
-\begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
-{\displaystyle {n \choose k}} & k=0 & k=1 & k=2 & k=3 & k=4 & k=5 &
-k=6 & k=7 & k=8 & k=9 & \ldots \\
-\hline
-\hline
-n=1 & 1 & 1 &    &    &     &     &    &    &   &   & \ldots \\
-\hline
-n=2 & 1 & 2 &  1 &    &     &     &    &    &   &   & \ldots \\
-\hline
-n=3 & 1 & 3 &  3 &  1 &     &     &    &    &   &   & \ldots \\
-\hline
-n=4 & 1 & 4 &  6 &  4 &   1 &     &    &    &   &   & \ldots \\
-\hline
-n=5 & 1 & 5 & 10 & 10 &   5 &   1 &    &    &   &   & \ldots \\
-\hline
-n=6 & 1 & 6 & 15 & 20 &  15 &   6 &  1 &    &   &   & \ldots \\
-\hline
-n=7 & 1 & 7 & 21 & 35 &  35 &  21 &  7 &  1 &   &   & \ldots \\
-\hline
-n=8 & 1 & 8 & 28 & 56 &  70 &  56 & 28 &  8 & 1 &   & \ldots \\
-\hline
-n=9 & 1 & 9 & 36 & 84 & 126 & 126 & 84 & 36 & 9 & 1 & \ldots \\
-\hline
-\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots &\vdots
-&\vdots &\vdots &\ddots
-\end{array}
-\] 
-\caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 9$.}
-\label{fig:pascal-triangle}
-\end{figure}
-******************}
-Recall that the {\em formation rule of the array} is that the array-entry at (row $n+1$, column $k+1$) is the sum of the array-entries at (row $n$, column $k$) and at (row $n$, column $k+1$).
+We claim that the function $\hat{\Delta}(n,k)$ thus defined is, in fact, the binomial coefficient $\displaystyle {n \choose k}$.  We establish this claim with the help of Pascal's triangle, the two-dimensional array of binomial coefficients which we defined in Section~\ref{sec:binomial-coeff} and illustrated in Fig.~\ref{fig:pascal-triangle}.  Recall that the {\em formation rule of the array} is that the array-entry at (row $n+1$, column $k+1$) is the sum of the array-entries at (row $n$, column $k$) and at (row $n$, column $k+1$).
 
 \index{Pascal's Triangle!formation rule}
 
@@ -503,7 +459,8 @@ For every positive integer $n$,
 \index{binomial coefficients!summation formula}
 
 \begin{proof}
-This result is an immediate consequence of the Binomial Theorem (Theorem~\ref{thm:Binomial-theorem}).  That seminal result tells us that, for all $n \in \N$,
+This result is an immediate consequence of the Binomial Theorem 
+(Theorem~\ref{thm:Binomial-theorem}).  That seminal result tells us that, for all $n \in \N$,
 \[
 (x+y)^n \ \ = \ \ \sum_{i=0}^n \ \ {n \choose i} x^{n-i} y^i
 \]
@@ -616,6 +573,7 @@ The mathematical properties of this truly remarkable sequence will be our focus 
 %Notice that it is a special case of $u_{n+1} =\alpha.u_{n} + \beta.u_{n-1}$ for $\alpha=\beta=1$.
 %\bigskip
 
+\noindent
 There is a strong, non-obvious, connection between the binomial coefficients (cf., Section~\ref{sec:binomial-coeff+Pascal}) and the Fibonacci numbers.  We observe this connection by contemplating the diagonals of Pascal's Triangle.  Fig.~\ref{fig:FiboPascal} and Proposition~\ref{thm:FibNo+BinomCoeff} establish this connection.
 \begin{figure}[htb]
 \begin{center}
@@ -683,9 +641,6 @@ illustrated instance of the rule asserts that
 The preceding reasoning provides the infrastructure for an induction which proves that the proposition holds for {\em every} Fibonacci number.  As suggested by the statement of the proposition, the required calculations on indices can obscure the rather elegant basis for the result.  \qed
 \end{proof}
 
-%Another way to write this relation is by the following expression: $F_n = binomial (n,0,1 ...)$
-
-
 \subsubsection{Alternative origins for the Fibonacci sequence}
 \label{sec:Fibonacci-other-recurrences}
 
@@ -694,7 +649,6 @@ Although the classical recurrence (\ref{eq:Fibonacci-defn}) is the structurally 
 \paragraph{A. Two multi-linear generating recurrences}
 \index{Fibonacci sequence!additional multi-linear generating recurrences}
 \index{Fibonacci numbers!additional multi-linear generating recurrences}
-
 
 \begin{prop}
 \label{thm:FiboSum-1}
@@ -729,8 +683,7 @@ Assume, for induction, that Eq.~(\ref{eq:multilinear-Fib-1}) holds for all argum
 {\sf Inductive extension}.
 We extend the induction as follows.  Our inductive hypothesis assures us that for all $n \geq 3$,
 \[ F(m-1) \ = \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(n-3). \]
-Combining this with the classical recurrence
-(\ref{eq:Fibonacci-defn}), we therefore have
+Combining this with the classical recurrence (\ref{eq:Fibonacci-defn}), we therefore have
 \begin{eqnarray*}
 F(n) & = & F(n-2) \ + \ F(n-1) \\
      & = &
@@ -958,6 +911,8 @@ The last value is the Golden ratio: $\Phi = \frac{1}{2} + \sqrt{\frac{5}{4}} = \
 ******************}
 
 \index{heuristic}
+
+\noindent
 We close our survey of the Fibonacci numbers by exposing a {\it closed-form expression}\footnote{The term ``closed-form expression'' is defined and illustrated in Section~\ref{sec:special-arithmetic-sums}.}~for the numbers in this fascinating family.  The
 detailed derivation of this expression requires advanced material that is beyond the scope of this text, so we settle for a {\em heuristic} explanation.
 
@@ -966,6 +921,8 @@ detailed derivation of this expression requires advanced material that is beyond
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
+
+\smallskip
 
 By ``heuristic explanation'', we mean the kind of intuitive explanation that mathematicians and scientists often use to garner intuition during the exploratory phase of studying a complex topic.  As one's intuition grows, one hopes to eventually replace the heuristic explanation with a rigorous one.  In the case of the sought closed-form expression for the $n$th Fibonacci number, the sought rigor must await rather advanced concepts and tools.
 \end{minipage}
@@ -1104,11 +1061,6 @@ If slot \#$s$ is full (i.e., contains a token), then remove this token and retur
 \noindent {\it Objective of a play of the Game:}
 To minimize the number of moves from an initially empty bank to the finally full bank.
 
-
-%Note that Rule 1 refers only to the slot whose full/empty status can
-%change in this step, whereas Rule 2 depends on the status of slots
-%whose full/empty status cannot change in this step.
-
 \subsection{An Optimal Strategy for Playing the Game}
 \label{sec:Token-Game-Strategies}
 
@@ -1131,24 +1083,6 @@ Choose the initial move based on the parity of $n$.
 Subsequently, alternate between the two types of moves.
 \end{enumerate}
 This strategy is pleasingly simple, but: (a) Does it lead us to the required terminal state?  (b) What is the cost of a (successful) play using this strategy?  The answers to both questions can be discovered if we reformulate the strategy to a {\em recursive} form:  We can then use recurrences to prove that the proposed strategy is optimal and to evaluate the cost of an optimal play of the order-$n$ game.
-
-\ignore{*************
-While one can garner some strategic observations about how to play the
-Game by playing small instances---a trivial example: 
-
-%WhileEven is not easy to describe and its cost is not easy to
-%establish.  We lay the groundwork for devising an optimal strategy
-%for playing the game by making some observations.  The analysis of
-%the game for some particular values of $n$ leads to some evidences
-%(looking at the first ranks): First, in the even case, the process
-%should start by putting the second token while in the odd case, we
-%should start to fill the first position.  Then, the first token is
-%flipped every double steps, the second one every four steps and so
-%on.  Second observation: both rules are applied alternatively (this
-%is obvious for Rule 1 since applying it twice consecutively leads to
-%the initial position, and easy to check for Rule 2 on the first
-%ranks).
-*****}
 
 \bigskip
 
@@ -1175,17 +1109,7 @@ This configuration requires that the first $n-2$ slots have been filled.  (Note 
 
 \smallskip
 
-Once the player has achieved this configuration and executed the mandated move,
-\ignore{*********
-{\sc move token from pile into bank-slot} $n$,
-\end{center}
-the player can execute a sequence of $n-2$ type-$2$ moves of the form
-\begin{center}
-{\sc move token from bank-slot} \ $k$ \ {\sc to the pile},
-\end{center}
-for $k = n-2, \ n-3, \ldots, \ 1$, in turn.  
-*************}
-the player henceforth ignores the token in bank-slot $n$.   Here comes the recursion!
+Once the player has achieved this configuration and executed the mandated move, the player henceforth ignores the token in bank-slot $n$.   Here comes the recursion!
 
 \medskip
 
@@ -1232,8 +1156,6 @@ Empty  bank-slots $1, 2, \ldots n-1$; i.e., leave the current rightmost slot fil
 The Game is complete!
 \end{enumerate}
 
-%Thus, flipping the first tokens of the same color is different if they are all blue or red.
-%Notice that flipping the first reds can be obtained using the reverse process as for the blue ones (see coding at the end of this document).
 
 \ignore{**************
 \medskip
@@ -1376,14 +1298,6 @@ g(n) \ = \ \left\{
 \end{equation}
 We have, thereby, replaced the {\em bilinear} recurrence (\ref{eq:Token-cost-recurrence}) by the {\em (singly) linear} recurrence (\ref{eq:g-Token-cost-recurrence}).  We learned in
 Section~\ref{sec:geometric-sums}---see Proposition~\ref{thm:sum-finite-geometric-series}---how to evaluate geometric summations that solve recurrences such as (\ref{eq:g-Token-cost-recurrence}).  In our case, we find that
-%If we add $F(n-1)$ in both sides of the previous expression, we obtain
-%a simpler equation (call $s(n)$ the sum $F(n)+F(n-1)$ $n \geq 2$, in
-%particular, $s(2) = 2+1$):
-%
-%$F(n) + F(n-1) = 2.F(n-1) + 2.F(n-2) +1$
-%$s(n) = 2.s(n-1)+1 = 2.(2.s(n-2)+1) + 1 = 2^2 s(n-2) + 2+ 1 = 2^3
-%s(n-3) + 2^2 + 2 + 1 = ... = 2^{n-2} s(2) + 2^{n-3} + ... + 2^2 + 2 +
-%1$ where $s(2) = 2+1$
 \begin{equation}
 \label{eq:VALUE-g-Token-cost}
 g(n) \ \ = \ \ 2^{n-1} \ + \ 2^{n-2} \ + \cdots + \ 2^2 \ + \ 2 \ + \ 1 \ \ = \ \ 2^{n} -1
@@ -1539,35 +1453,6 @@ f(n) & = & 2^n \ - \ 1 \ + \ f(n-1) \ \ \ \mbox{ for } \ n \geq 2 \\
 This completes the proof.  \qed
 \end{proof}
 
-
-%
-%Figures~\ref{fig:alternatePowers2even} and~\ref{fig:alternatePowers2finalEven} illustrate the construction in the even case.
-%The details are left to the readers. 
-%We obtain $3.F(n)+2= 2^{n+1}$ by a similar analysis.
-%However, we can deduce directly the even case from the odd case by remarking that $F(2k)=2.F(2k-1) +1$.
-%
-%This is obtained by the basic relations $F(n) = 2^{n} - F(n-1) -1$ and $F(2k-1) = \frac{1}{3} (2^{2k} -1)$.
-%
-%$n=2k$, $F(n) = 2^{2k} - \frac{1}{3} (2^{2k} -1) -1 = \frac{1}{3} (2^{n+1} -2)$.
-%
-%\begin{figure} [h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{FIGmaths/alternatePowers2initEven.png}
-%        \caption{Representation of the alternate series of powers of $2$ for $n=6$.
-%        F(6)=32+8+2.}
-%        \label{fig:alternatePowers2even}
-%\end{center}
-%\end{figure}
-%
-%
-%\begin{figure} [h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{FIGmaths/alternatePowers2even.png}
-%        \caption{Case odd: Geometric proof in the odd case. Notice here that there are 2 small rectangles left at the extreme corners on the right,
-%        whose surface is $1$ each.}
-%        \label{fig:alternatePowers2finalEven}
-%\end{center}
-%\end{figure}
 
 \ignore{************
 {\Arny My instinct is that the following example is not ``pretty'' or
@@ -1736,7 +1621,6 @@ The logos of two German automakers, {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ and BM
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/AutomotiveBrands.png}
-%\fbox{schematic of the two logos: {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ (left) and BMW$^{\mbox{\tiny\sc tm}}$ (right)}
 \end{center}
 \caption{Idealized renditions of the logos on {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ (left) and BMW$^{\mbox{\tiny\sc tm}}$ (right) automobiles.}
 \label{fig:auto-logos}
@@ -1879,7 +1763,6 @@ A recursion (on $n$) that is based on Karatsuba's algorithm computes the product
 \smallskip
 
 Your argument should find a (real) number $\alpha < 2$ such that Karatsuba's algorithm computes the product $A \times B$ using $\Theta(n^\alpha)$ multiplications.
-%$T(n) = 3.T(n/2) + \Theta (n) = n^{\log_2 3}$
 \end{enumerate}
 }
 
@@ -1924,7 +1807,163 @@ Practice with induction and intuition about binomial coefficients
 
 {\em Verify for small values of $n$ that the sequence of operations that empties the bank is the reverse of the sequence of operations that fills the bank---the first step becomes the last step, the second step becomes the second-to-last, and so on.}
 
+\medskip
+\item
+$\oplus \oplus$
+{\bf The Josephus Problem}
+
+\index{Josephus Problem} \index{Flavius Josephus}
+
+{\sc Lesson:} Experience with formulating a problem mathematically, and then solving the problem
+
+\smallskip
+
+ \index{Lucas, Edouard (Fran\c{c}ois Edouard Anatole Lucas)} \index{Flavius Josephus}
+
+The {\it Josephus Problem} appears in the 1894 book \textit{R\'ecr\'eations math\'ematiques} by 
+the 19th-century French mathematician Fran\c{c}ois Edouard Anatole Lucas (commonly known as Edouard Lucas).  Lucas attributed the problem to a story reported by the 1st-century Jewish historian Flavius Josephus during the Jewish-Roman war of his era.
+
+In the story, Flavius was among a band of 41 rebels trapped in a cave by the Roman army.  Preferring suicide to capture, the rebels decided to form a circle and to proceed around the circle, killing every second living person.  The last remaining person would kill himself.
+
+According to the legend, Flavius did not want to die and decided to use his skill in mathematics to save himself.  Specifically, he quickly calculated where he should stand in the circle in order to become the last survivor.
+
+\smallskip
+
+We can formulate the Josephus Problem as the following purely mathematical problem.
+
+\medskip
+
+We are given a circle with the numbers $1$, \ldots, $n$, inscribed along its perimeter.  We proceed clockwise around the circle, beginning at $1$, and we erase every second not-yet-erased number.  The process ends when there is only one {\it survivor}, i.e., one not-erased number.  We denote this survivor by $J(n)$, in honor of Josephus.
+
+\index{Josephus Problem!mathematical version}
+\index{Josephus Problem!survival position}
+
+\noindent
+{\em The {\em order-$n$ MJP} (for ``mathematical Josephus Problem") is to determine survivor $J(n)$ as a function of $n$.}\footnote{Not surprisingly, there are generalizations to the MJP that erase every third number or every fourth number \ldots .}
+
+\medskip
+
+{\em Hint}.
+The process of determining $J(n)$ is not straightforward.  Here is a sequence of hints to et you started.  We begin with the depiction of the erasure process in Fig~\ref{fig:josephus12step1}.
+\begin{figure}[ht]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresMaths/josephus12step1}
+        \caption{First round of the Josephus' cancellation process (for $n=12$).
+        The $n$ first integers are spread over a circle, the integers in boxes are those that are removed.}
+        \label{fig:josephus12step1}
+\end{center}
+\end{figure}
+
+We garner understanding of the process by analyzing several cases, i.e., particular classes of) values of $n$.  {\em You should prove each of the following propositions.}
+
+\medskip
+
+\begin{prop}
+For all $n$, $J(n)$ is odd.
+\end{prop}
+
+%\begin{proof}
+%This is straightforward since the first tour removes all even numbers!
+%See figure~\ref{fig:josephus12step1}. 
+%\end{proof}
+
+\medskip
+
+Next, we analyze \textit{rounds} of the process, i.e., sequences of elementary steps that lead us back to the initial position, $1$.  Of course, if position $1$ is erased during the process, then its role will be assumed by the then-smallest survivor.
+
+\smallskip
+
+We note that the first round takes $\lceil n/2 \rceil$ steps.  Each subsequent round takes a number of steps that is ``half" of the steps of its preceding round.  We place the word ``half" in quotes to acknowledge the required up-rounding of the tally.  
+
+
+
+How many rounds do we have for determining $J(n)$?
+If $N$ denotes this number, it verifies
+$\Sigma_{i=1}^{i=N} \frac{1}{2^i} = 1$.
+
+\medskip
+
+\begin{prop}. (even numbers)
+$J(2n) = 2J(n)-1$ 
+\end{prop}
+
+\begin{figure}[ht]
+\begin{center}
+        \includegraphics[scale=0.35]{FiguresMaths/josephus12LastSteps}
+        \caption{Last rounds of the Josephus' cancellation process ($n=12$).}
+        \label{fig:josephus12step2}
+\end{center}
+\end{figure}
+
+\begin{proof}
+This is a simple generalization of the previous proposition.
+If $n$ is even, the first round corresponds simply to come back to the original circle where one half of the points have been removed. 
+\end{proof}
+
+From this, we deduce $J(2^m)=1$ for all $m$.
+\medskip
+
+Let us turn to odd numbers.
+\begin{figure}[ht]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresMaths/josephus13}
+        \caption{The two first rounds of the Josephus' cancellation process (for $n=13$).
+        The first one is is depicted by solid lines, the second one is with dotted lines.}
+        \label{fig:josephus13}
+\end{center}
+\end{figure}
+%Figure~\ref{fig:josephus13} depicted an example for $n=13$. 
+\medskip
+
+\begin{prop} (odd numbers)
+$J(2n+1) = 2J(n)+1$ 
+\end{prop}
+
+We can compute easily the first ranks.
+It turns out that the progression is composed of grouped terms starting at each power of $2$. 
+
+
+Let $n=2^m+k$, the rule within each group $m$ is to start at $1$ and increase by $2$ the successive numbers
+($0 \leq k < 2^m$).
+Let prove it by recurrence on $n$.
+\medskip
+
+\begin{prop}
+$J(2^m+k) = 2k+1$ 
+\end{prop}
+
+\begin{proof}
+\begin{itemize}
+\item {\bf Basis.} 
+$n=1$, thus $m=0$, $k=0$ and $J(1) = 2^0+0 = 1$
+\item {\bf Induction step.} 
+Suppose the formula holds for any integer lower than $n=2^m+k$. 
+Since there are two expressions for $J(.)$, we distinguish the cases whether $k$ is even or it is odd:
+\begin{itemize}
+\item If $k$ is even, then, $2^m+k$ is even, and we can write:
+
+$J(2^m+k) = 2J(2^{m-1}+\frac{k}{2})-1$
+
+by induction hypothesis, $J(2^{m-1} +\frac{k}{2}) = 2\frac{k}{2} +1 = k+1$
+
+Thus, $J(2^m+k) = 2(k+1) -1 = 2k+1$.
+
+\item If $k$ is odd, the proof is similar:
+
+$J(2^m+k) = 2J(2^{m-1}+\lfloor \frac{k}{2} \rfloor)+1 = 2\lfloor \frac{k}{2} \rfloor +1 = 2k+1$.
+
+\end{itemize}
+\end{itemize}
+\end{proof}
+
+
+
 \end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%
 
 \ignore{**************
 \subsection{Computing Fibonacci Numbers Fast}
@@ -2147,10 +2186,6 @@ $2.L(n) = F(n+3) + F(n-3) $
 
 \noindent \textit{Lesson learned.}
 This exercice is a good example of the proof of a non straightforward recurrence which involves two integers.
-
-
-
-
 
 \subsection{Solving a bilinear recurrence by a linear system}
 
