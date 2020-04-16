@@ -254,7 +254,7 @@ There are ``little''-letter analogues of the preceding ``big''-letter asymptotic
 \label{sec:asymptotic-complication}
 
 The story we have told thus far is more or less standard fare in courses on discrete mathematics and algorithms.  Two complications to the story are covered less consistently, despite the fact that, lacking them, one cannot perform cogent asymptotic reasoning about modern computing
-environments.  Both complications involve the notion of {\em uniformity}. 
+environments---including environments that support parallel and distributed computing.  Both complications involve the notion of {\em uniformity}. 
 \index{relations!uniformity}
 
 \medskip
@@ -270,14 +270,38 @@ It is compellingly suggestive that
 
 \smallskip
 
-In short, the answer is {\em YES}---but verifying the answer requires a bit of subtlety.  The challenge is that, absent hitherto undisclosed information, the proportionality constants $c_{f,g}$ and $N_{f,g}$ that witness the big-$O$ relationship between functions $f$ and $g$ have no connection with the constants, $c_{h,k}$ and $N_{h,k}$ that witness the analogous relationship between functions $h$ and $k$.  Therefore, in order to verify the posited relationship between functions $f + h$ and $g + k$, one much find witnessing constants $c_{f+h, g+k}$ and $N_{f+h,g+k}$.
+In short, the answer is {\em YES}---but verifying the answer requires a bit of subtlety.  The challenge is that, absent hitherto-undisclosed information, the proportionality constants $c = c_{f,g}$ and $N = N_{f,g}$ that witness the big-$O$ relationship between functions $f$ and $g$ have no connection with the constants, $c = c_{h,k}$ and $N = N_{h,k}$ that witness the analogous relationship between functions $h$ and $k$.  Therefore, in order to verify the posited relationship between functions $f + h$ and $g + k$, one must find witnessing constants $c = c_{f+h, g+k}$ and $N = N_{f+h,g+k}$.  Of course, this task requires only elementary reasoning---{\em but it must be done}!
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Explanatory note}, part 1.
 
 \smallskip
 
-\noindent
-Of course, this task requires only elementary reasoning---{\em but it must be done}!
+Notations such as ``$c = c_{f,g}$" and ``$N = N_{f,g}$" seem to be oxymoronic.  Either $c$ (or $N$) is a constant or it isn't!  The explanation is at once simple and subtle.
 
-\medskip
+\smallskip
+
+When we discuss the relationships between fixed functions, $f$ and $g$, then even though these functions are fixed throughout the discussion, the discussion may include implicit or explicit references to any number of characteristics of $f$ and $g$.  This means that, in some sense, a discussion about the relationships between $f$ and $g$ occurs in a logically different world than does a discussion about the relationships between two other fixed functions, $h$ and $k$.  And, we, as authors, must make it totally clear to you, our readers, which world we are in as we make any specific assertion.  The notational mechanism that we use to stay ``synchronized" with you resides in assertions such as ``$c = c_{f,g}$" and ``$N = N_{f,g}$".  These assertions announce that, while both $c$ and $N$ are constants, the specific---fixed(!)---values of these constants are chosen with knowledge that the constants are being used to discuss the fixed functions $f$ and $g$.
+\end{minipage}
+}
+
+\smallskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Explanatory note}, part 2.
+
+\smallskip
+
+The paragraph preceding this box stresses that, in order to compare functions $f+h$ and $g+k$, we must operate within the world defined by functions $f+h$ and $g+k$.  Of course, this new world---and its associated constants---will be related to the world defined by $f$ and $g$ and the world defined by $h$ and $k$, but it will almost certainly be distinct from those worlds.
+\end{minipage}
+}
+
+\bigskip
+
 
 \index{asymptotics!multivariate functions}
 \noindent {\bf 2.}
