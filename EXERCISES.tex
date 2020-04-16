@@ -1,12 +1,112 @@
 %version of 01-21-20
 
-\chapter{SOLUTIONS/HINTS FOR SELECTED EXERCISES}
+\chapter{Solutions/Hints for selected exercises}
 \label{ch:Exercises}
 
 
 
-\section{Chapter 2}
+\section*{Exercises: Chapter 2}
 
+\begin{itemize}
+\item
+{\bf 2.2. Meeting people at a party}
+
+{\em Some two attendees shake the same number of hands.}
+\medskip
+
+%
+This observation follows from the \textit{pigeonhole principle}:
+If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
+at least $2$ pigeons.
+\smallskip
+
+This principle guarantees that some two attendees shake the same
+number of hands.  To wit, the number of people that each attendee {\em
+  does not know} belongs to the set $\{ 0, 1, \ldots, 2n-2 \}$,
+because each person knows him/herself and his/her partner.  Since
+there are $2n$ handshakers (the pigeons) and $2n-1$ numbers of hands
+to shake (the boxes), some two shakers must shake the same numbers of
+hands. 
+\medskip
+\item
+{\bf 2.4. Bi-colored necklaces in tubes}
+
+You have a {\it necklace} composed of $2n$ jewels: $2a$ black jewels and $2b$ white jewels.  For illustration, the necklace in Fig.~\ref{fig:sample-necklace} has $n = 6$, $a = 5$, and $b =1$.
+\begin{figure}[ht]
+\begin{center}
+       \includegraphics[scale=0.35]{FiguresMaths/SampleNecklace}
+\caption{(a) A necklace having $12$ jewels: $10$ black and $2$ white.  (b) The necklace in a tube.}
+\label{fig:sample-necklace}
+\end{center}
+\end{figure}
+
+In part (a) of the figure, the necklace is unadorned; in part (b), the necklace appears within a length-$n$ {\it tube} which isolates one string---i.e., half-necklace---of $n$ jewels from the complementary string.
+
+\smallskip
+
+\begin{prop}
+For any bi-colored necklace of the form described---i.e., with even numbers of jewels, black jewels, and white jewels---there is a way to position the tube so that inside the tube and outside the tube, there are equally many jewels, equally many black jewels, and equally many white jewels.
+\end{prop} 
+
+\smallskip
+
+{\em Solution}: Slide the tube around the necklace, and count both black and white jewels at each step.  
+How can these numbers change in a single step?
+\medskip
+
+\item
+{\bf 2.6. Using {\em geometric} intuition to sum inverse powers of $4$}
+
+{\sc Lesson:} Exploiting geometric intuition toward a sophisticated end.
+
+\smallskip
+
+We turn to a variant of Proposition~\ref{thm:sumof-1/4-induction}.  This time, we focus on the entire infinite summation
+\[ S \ \ = \ \  {1 \over 4} \ + \  {1 \over 4^2} \ + \cdots + \ {1 \over 4^k} \ + \cdots  \]
+and we do so from a geometric point of view.
+
+\smallskip
+
+We prove in Proposition~\ref{thm:sum-finite-geometric-series}(b) that this infinite summation converges to the value ${1 \over 3}$.  A simple way to see this is to multiply the summation $S$ term by term by the fraction $1/4$.  We observe---just by inspection---that the resulting product, which clearly has the value $S/4$, equals $S - 1/4$, so that $S = 1/3$.
+
+\smallskip
+
+We have now described the process at a very high level.  
+Your assignment is to flesh out the details.  {\em Prove that the four sub-triangles
+\begin{itemize}
+\item
+are similar to one another
+\item
+are similar to the original triangle
+\item
+have area which is $1/4$ that of the original triangle
+\end{itemize}
+Assemble these facts into an evaluation of the sum $S$.
+}
+
+\noindent \textit{Solution.}
+A rapid analysis of the small values of $k$ leads to the guess $(\frac{1}{4})^k = \frac{1}{3}$.
+ 
+The solution is depicted in Fig.~\ref{Fig:Sumgeo1sur4}. 
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/SumGeometric1sur4}
+        \caption{Graphical construction. Assuming the total area is 1, the area of the grey internal triangle (left) is $\frac{1}{4}$.
+        As the grey area is one third at each layer (right), the whole area is $\frac{1}{3}$.
+        By the double counting Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
+        \label{Fig:Sumgeo1sur4}
+\end{center}
+\end{figure}
+
+Finding such a triangular pattern may not be considered as an easy task.
+However, as stated in the problem, the main point is to divide an elementary surface
+into four equal pieces. 
+Squares (or even worse disks) are not simple to use in this context while isosceles triangles 
+are a \textit{natural} structure. 
+
+\end{itemize}
+
+\ignore{*************************
 \subsection{A graphical proof}
 
 \noindent \textit{The problem.}
@@ -51,172 +151,61 @@ by tokens.
 
 We now have a purely pictorial proof of the proposition. 
 
+*************************}
 
-\subsection{A variant for computing the sum of the first integers $\Delta_n$}
-
-\noindent \textit{The problem.}
-
-%Compute the sum of the first integers $\Delta_n$. 
-Show graphically that $\Delta_n$ (sum of the first $n$ integers) is congruent to $1$ modulo $8$.
-\medskip
-
-\noindent \textit{Hint.}
-Write the previous relation as $8 \Delta_n = K^2 -1$
-for an integer $K$ to determine and represent the square $K$ by $K$. 
-
-\noindent \textit{The solution.}
-
-The expression $8 \Delta_n = (2n-1)^2 -1$ can be represented as in~\ref{fig:Sum8deltas}.
-\begin{figure}[ht]
-\begin{center}
-       \includegraphics[scale=0.4]{FiguresMaths/Delta8}
-\caption{8 copies of $\Delta_n$ are filling a big square but one token.}
-       \label{fig:Sum8deltas}
-\end{center}
-\end{figure}
-
-
-\subsection{On meeting new people}
-
-
-\noindent \textit{The problem.}
-You are attending a cocktail party that is populated by $n$ couples.
-In order to create a warm atmosphere, the host requests that each
-attendee shake the hand of every attendee that he or she does not
-know. \\
-Prove that some two attendees shake the same number of hands.
-\medskip
-
-\noindent \textit{The solution.}
-%
-This observation follows from the \textit{pigeonhole principle}:
-If $n+1$ pigeons occupy $n$ pigeonholes, then some hole contains
-at least $2$ pigeons.
-{\Denis is it useful to recall the principle here? I don't think so...}
-
-This principle guarantees that some two attendees shake the same
-number of hands.  To wit, the number of people that each attendee {\em
-  does not know} belongs to the set $\{ 0, 1, \ldots, 2n-2 \}$,
-because each person knows him/herself and his/her partner.  Because
-there are $2n$ handshakers (the pigeons) and $2n-1$ numbers of hands
-to shake (the boxes), some two shakers must shake the same numbers of
-hands. 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{A graphical proof for a specific geometric series}
-
-\noindent \textit{The problem.}
-Compute the sum of $(\frac{1}{4})^k$ using a graphical argument ($k \geq 0$).
-\medskip
-
-\noindent \textit{The solution.}
-A rapid analysis of the small values of $k$ leads to the guess $(\frac{1}{4})^k = \frac{1}{3}$.
- 
-The solution is depicted in Fig.~\ref{Fig:Sumgeo1sur4}. 
-\begin{figure}
-\begin{center}
-        \includegraphics[scale=0.3]{FiguresArithmetic/SumGeometric1sur4}
-        \caption{Graphical construction. Assuming the total area is 1, the area of the grey internal triangle (left) is $\frac{1}{4}$.
-        As the grey area is one third at each layer (right), the whole area is $\frac{1}{3}$.
-        By the double counting Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
-        \label{Fig:Sumgeo1sur4}
-\end{center}
-\end{figure}
-
-Finding such a triangular pattern may not be considered as an easy task.
-However, as stated in the problem, the main point is to divide an elementary surface
-into four equal pieces. 
-Squares (or even worse disks) are not simple to use in this context while isosceles triangles 
-are a \textit{natural} structure. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Chapter 3}
+\section*{Exercises of Chapter 3}
 
-%%%
-\subsection{Operation on sets}
-
-\noindent \textit{The problem.}
-
-Define the following two operations from union and set
-difference: {\it intersection} ($S \cap T$), which isolates all
-elements shared by sets $S$ and $T$, and {\it symmetric difference}
-($S+T$), which isolates all elements that belong to precisely one of
-$S$ and $T$.
+\begin{itemize}
+\item
+{\bf 3.8. More connections between strings and functions}
 \medskip
 
-\noindent \textit{The solution.}
-{\Denis Do we have to answer this exercice?}
+{\em Craft an argument that predicts the number of permutations, based on the size of set $S$.}
+\smallskip
 
+{\em Hint:}
+\begin{itemize}
+\item
+As you create a new string of numbers, in how many ways can you choose {\em the first number}? 
+{\em the second number}? \ldots
+\item
+Based on your answers for the first and second and third numbers of the new string, 
+in how many ways can you choose {\em the first two numbers---i.e., the first {\em pair} of numbers}? 
+{\em the next two numbers}? \ldots
+\end{itemize}
+  \item
+{\em Strengthen your argument by listing all permutations of  $S' =  \{1,2,3,4,5\}$.}
 
-%%%
-\subsection{Link of equality and equivalence relation}
+\smallskip
 
-\noindent \textit{The problem:}
-Provide a proof of Theorem~\ref{thm:equality=finest-equiv}:
+Write small---there are a lot of permutations.
+  \item
+{\em Extrapolate from your argument to determine the number of permutations of the set 
+$S" =  \{1,2,3, \ldots, n\}$, as a function of $n$.}
 
-The equality relation, $=$, on a set $S$ is the {\em finest}
-equivalence relation on $S$, in the sense that $=$ refines every
-equivalence relation on $S$.
-\medskip
-
-\noindent \textit{The solution.}
-Apply the definitions. 
-
-
-\subsection{Investigations on weak and strong relations}
-
-\noindent \textit{The problem.}
-\textbf{ Play} with negating strong (weak) relations to get weak (strong) ones.
-
-%{\Arny This refers to Eq.~(\ref{eq:NOT-rho-notation}), so it belongs near Section~\ref{sec:relation}.  
-
- 
-\subsection{Basis on sets}
-
-Let consider a set $S$.
-
-\noindent \textit{The problem.}
-The biggest and smallest elements of
-${\cal P}(S)$ are, respectively, the set $S$ itself and the empty set
-$\emptyset$.
-%
-%{\Arny Power sets are first defined in Section~\ref{sec:set-concepts}.}
-
-
-%%%
-\subsection{Propositional logic}
-
-\noindent \textit{The problem.}
-After consulting Fig.~\ref{fig:defns-via-tables}:
-
-\begin{tabular}{llcl}
-1. &
-{\it Prove that the Propositional expression} &
-$\sim P \ \Rightarrow \ P$ &
-{\it is a tautology.} \\
-2. &
-{\it Prove that the Propositional expression} &
-$P \ \Rightarrow \ \sim P$ &
-{\it is satisfiable.}
-\end{tabular}
-
-%%%
-\subsection{More on SAT}
-
-\noindent \textit{The problem.}
-
-Prove that the views of SAT are equivalent: (1) a set of clauses; (2)
-a disjunction of clauses.
-
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapter 4}
+\section*{Exercises: Chapter 4}
 
+\begin{itemize}
+\item
+{\bf 4.5. The rationals ($\Q$) and the integers ($\N$) are equinumerous}
+\smallskip
+
+{\em Provide a {\em detailed} proof of Proposition~\ref{thm:|Q|=|N|}.}  
+Informally, there are equally many integers as there are rationals.
+
+\end{itemize}
+
+
+
+\ignore{***************************************
 \subsection{Complex
   multiplication via $3$ real multiplications}
 \index{complex number!multiplication via 3 real multiplications}
@@ -294,11 +283,12 @@ The solution is depicted in Fig.~\ref{Fig:sqrtbisInit} and~\ref{Fig:sqrtbisFin} 
         \label{Fig:sqrtbisFin}
 \end{center}
 \end{figure}
-
+****************************}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\ignore{*******************************
 \section{Chapter 5}
 
 
@@ -368,11 +358,12 @@ Thus, the length of the initial square is equal to $60-30=30$.
 \label{fig:equationBabillon}
 \end{center}
 \end{figure}
+*****************************}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Chapter 6}
+\section{Exercises: Chapter 6}
 
 
 \subsection{Compute $\Delta_n$ by means of sum of squares}
@@ -526,8 +517,10 @@ $\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Chapter 7}
+\section{Exercises: Chapter 7}
 
+
+\ignore{****************************
 \subsection{Handling asymptotic}
 
 
@@ -535,9 +528,6 @@ $\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
 
 Prove that $f = O(g)$ and $h = O(k)$ for functions $f,g,h,k$ implies that
 $f+h = O(g+k)$
-\medskip
-
-{\Denis no need to write a solution}
 
 
 \subsection{What's wrong?}
@@ -574,8 +564,7 @@ First, summing up positive number should be positive,
 and second, the sum of the integers should be infinite...
 
 Then, how to analyze the previous result/proof?
-{\Denis classical result, detail its analysis}
-
+******************************************************}
 
 
 
