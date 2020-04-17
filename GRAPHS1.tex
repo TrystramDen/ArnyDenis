@@ -1,4 +1,4 @@
-%version of 04-06-20
+%version of 04-17-20
 
 \chapter{Graphs I:
 Representing Relationships Mathematically}
@@ -46,6 +46,8 @@ there is danger of ambiguity.}
 
 \noindent \fbox{ \begin{minipage}{0.96\textwidth}
 {\bf Explanatory notes}.
+
+\smallskip
 
 The singular form of ``vertices'' is ``{\it vertex}''.
 
@@ -207,6 +209,8 @@ Thus, the number of odd vertices is even.% as depicted in Figure~\ref{propertyOd
 \begin{minipage}{0.95\textwidth}
 {\bf Explanatory note}.
 
+\smallskip
+
 Our discussion of inter-vertex distances within graphs has focused on shortest (or longest) path problems in {\em unweighted} graphs.  A variety of important applications can be modeled via path-distance problems in graphs $\g$ each of whose edges, $\{u,v\}$, is {\em weighted} with a number that measures the cost of going between vertices $u$ and $v$ in $\g$.  Of course, when graph $\g$ is directed, then the arcs $(u \rightarrow v)$ and $(v \rightarrow u)$ can have different weights, to model situations wherein going from $u$ to $v$ is easier/cheaper than going from $v$ to $u$.  Happily, determining shortest (or longest) paths in a directed or undirected graph $\g$ can be accomplished ``efficiently''---which in the world of algorithmics means ``in a number of steps that is polynomial in the size of $\g$''.
 \end{minipage}
 }
@@ -216,6 +220,8 @@ Our discussion of inter-vertex distances within graphs has focused on shortest (
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf Explanatory note}.
+
+\smallskip
 
 In the presentation above, we have considered only ``valid", i.e., non-redundant, paths, i.e., sequences of vertices with no repetitions.  At times, say, when devising algorithms, one often wishes to employ path-related concepts without checking sequences of vertices for repetition-freeness.  One can always avoid problems via the following ploy.  When dealing with a sequence of vertices of unknown validity, simply enforce validity by proceeding along a given sequence of vertices and skipping every subsequence that appears between consecutive
 occurrences of the same vertex.  Of course, each such subsequence is a cycle.
@@ -346,7 +352,7 @@ The {\it degree} of vertex $u \in \n$ is the number of neighbors that $u$ has.
 
 $\g$ is {\it regular} (or, is a {\it regular graph}) if all vertices have the same degree.
 
-\item
+\medskip\item
 Let $\h$ be a directed graph having vertex-set $\n_{\fh}$ and arc-set $\a_{\fh}$:   For each arc $(u \rightarrow v) \in \a$, we say that vertex $u$ is a {\it predecessor} of $v$ (in $\h$) or, equivalently, that vertex $v$ is a {\it successor} of $u$ (in $\h$).
 
 \smallskip
@@ -476,7 +482,7 @@ We transform $\Phi$ into a directed graph $\g(\Phi)$ that has $2n$ vertices and 
 \item
 For each logical variable, $x$: there is one vertex that represents the {\sc true} literal form, $x$, of variable $x$, and a second vertex that represents the {\sc false} literal form, $\bar{x}$, of the
 variable.
-\item
+\medskip\item
 Each clause $C_i = (\ell_{i,1} \vee \ell_{i,2})$ is represented by a pair of arcs.  Say that literal $\ell_{i,1}$ comes from variable $x_1$, and literal $\ell_{i,2}$ comes from variable $x_2$.  These arcs represent ``instructions'' for assigning truth-values in a way that maximizes the number of clauses that receive the value {\sc true}.
   \begin{itemize}
   \item
@@ -485,7 +491,7 @@ There is an arc $(\bar{x}_1 \rightarrow x_2)$.
 \smallskip
 
 This arc indicates that, if variable $x_1$ is assigned truth-value {\sc false}, then variable $x_2$ should be assigned truth-value {\sc true}.
-  \item
+  \medskip\item
 Symmetrically, there is an arc $(\bar{x}_2 \rightarrow x_1)$.
 
 \smallskip
@@ -578,7 +584,7 @@ We assign truth-values to variables of $\Phi$ by scanning the vertices/literals 
 \begin{itemize}
 \item
 The {\em first time} that we encounter a vertex/literal $\ell$, in true or negated form, we assign the truth-value to $\ell$'s associated variable that makes literal $\ell$ {\sc true}.  This strategy also makes the clause that this instance of literal $\ell$ occurs in evaluate to {\sc true}.
-\item
+\medskip\item
 If we encounter an instance of a vertex/literal $\ell$ whose associated variable has already been assigned a truth-value, then we assign to this instance a truth-value that is consistent with the
 variable's assignment: i.e., a positive literal gets the same assignment, while a negative instance gets the negated version of the assignment.
 \end{itemize}
@@ -598,7 +604,6 @@ Fig.~\ref{2SATyes} illustrates $\g(\Phi_1)$ for the formula
 \begin{center}
 \includegraphics[width=0.25\textwidth]{FiguresGraph/2SATyes.png}
 \caption{The digraph $\g(\Phi_1)$ and its two strongly connected components.}
-  % provide a truth assignment for $\Phi_1$: $t(x_1) =  \mbox{\sc false}$; $t(x_2) = \mbox{\sc false}$; $t(x_3) = \mbox{\sc   true}$.}
 \label{2SATyes}
 \end{center}
 \end{figure}
@@ -616,7 +621,7 @@ or symmetrically
 
 \hspace*{.2in} $t(a) = t(b) = t(c) = \mbox{\sc false}$.
 
-\item
+\medskip\item
 Fig.~\ref{2SATno} illustrates $\g(\Phi_2)$ for the formula
 \[ \Phi_2 \ = \ (a \vee \bar{b}) \ \wedge \ (b \vee \bar{c}) \ \wedge \ (c \vee \bar{a})
  \ \wedge \ (a \vee c) \ \wedge \ (\bar{a} \vee \bar{c})
@@ -665,6 +670,8 @@ perceived ``match'' between a candidate's qualifications and the needs of specif
 \noindent \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf Explanatory note}.
+
+\smallskip
 
 Although the definitions of the various versions of matching are readily accessible to even the mathematical novice, much of the more sophisticated mathematical knowledge about matchings is beyond any beginning text.  The interested reader might consult a more advanced source, such as \cite{Berge73}, to get a feeling for what is known about this conceptually simple, yet rich, topic.
 \end{minipage}
@@ -715,7 +722,7 @@ Select the leftmost vertex, $u$, in the remaining layout of $\n$.
   \begin{itemize}
   \item
 If we succeed in finding such a neighbor of $u$ (taken from left to right)). call it vertex $v$, then add edge $\{u,v\}$ to the matching we are building.  Then, remove both $u$ and $v$ from the layout.
-  \item
+  \medskip\item
 If there is no neighbor $v$ of $u$, then remove vertex $u$ from the layout.
   \end{itemize}
 Of course, the real challenge here is to find a data structure that allows an efficient search for a ``remaining'' neighbor-vertex $v$ at each step of the selection process.  \qed
@@ -731,7 +738,7 @@ Let $\g$ be a graph that admits a perfect matching.  Then:
 \begin{itemize}
 \item
 $\g$ has an even number of vertices.
-\item
+\medskip\item
 The cardinality of the (perfect) matching---i.e., the number of edges in the matching---is exactly
 $\frac{1}{2}|\n|$.
 \end{itemize}
@@ -783,7 +790,7 @@ The following assertions about a connected graph $\t$ are  logically equivalent.
 \begin{enumerate}
 \item
 The graph $\t$ is cycle-free.
-\item
+\medskip\item
 Each pair of distinct vertices of $\t$ is connected by precisely one path.
 \end{enumerate}
 \end{prop}
@@ -868,6 +875,8 @@ the (nonoriented) edges of an undirected tree by (oriented) arcs; see Fig.~\ref{
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
 
+\smallskip
+
 Note that the directed tree in Fig.~\ref{fig:tree}(right) is rooted, but we have not drawn the tree in the usual way, with the root either above or below all other vertices.  This was a purposeful decision, so that the reader would note that root-hood is a property of graph structure, not of drawing.
 \end{minipage}
 }
@@ -883,6 +892,8 @@ The reader is certainly familiar with the use of rooted directed trees to repres
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
+
+\smallskip
 
 Sociologically, the historical {\it atomic family tree} has two roots, representing the matriarch and patriarch of the family.  The entirety of the tree represents a single family generationally, before any children form their own families.  All child-vertices in this genre of tree are the roots of singly-rooted subtrees of the entire family tree.  The leaves of the tree are the childless descendants of the roots.  Note that, while we are using anthropomorphic language here, we could be discussing other genres of ``family'', as, e.g., many types of biological taxonomies.
 \end{minipage}
@@ -902,6 +913,8 @@ great-grandchild, etc.  Every vertex of the tree is the root of a singly-rooted 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
+
+\smallskip
 
 A singly-rooted tree represents a {\it hierarchy}.  Given two directed subtrees within a hierarchy, either the root of one of the subtrees is a descendant of the root of the other, or the two subtrees
 are mutually disjoint.
@@ -1080,7 +1093,7 @@ The area of mathematics called graph theory is an important source of formal aid
 \item
 {\em Undirected version}.
 An undirected graph $\g$ is {\it (degree-)regular} if all of its vertices have the same degree.
-\item
+\medskip\item
 {\em Directed version}.
 A directed graph $\g$ is {\it (degree-)in-regular} if all of its vertices have the same in-degree.  $\g$ is {\it (degree-)out-regular} if all of its vertices have the same out-degree.
 \end{itemize}
@@ -1096,7 +1109,7 @@ The first two graphs, the {\it cycle-graph} of Section~\ref{sec:cycle} and the {
 \begin{enumerate}
 \item
 Every vertex of each graph is accessible from every other vertex.
-\item
+\medskip\item
 All vertices of each graph ``look alike'' to someone traversing the graph.
 
 \smallskip
@@ -1109,7 +1122,7 @@ To elaborate: If someone places you on a vertex of either graph, there is no way
 
 This is an important feature to ponder, because it is a simple instance of the {\it anonymity} problem that plagues many modern distributed computing environments:  {\it How does one orchestrate cooperative activities when all agents are ``indistinguishable''?}
 \end{enumerate}
-\item
+\medskip\item
 The remaining graphs, the {\it mesh and torus networks}\footnote{These two structures, though distinct, are usually discussed together because they share so many important properties.}~of~\ref{sec:mesh}, the {\it hypercube network} of Section~\ref{sec:hypercube}, and the {\it de Bruijn network} of Section~\ref{sec:deBruijn}, were selected for their importance within the world of parallel and distributed computing---as abstract platforms for developing efficient computational and communicational processes, and as abstract versions of the networks that underlie parallel architectures by interconnecting its processors.
 
 \smallskip
@@ -1140,7 +1153,7 @@ $\cc_n$ is degree-regular: each vertex has degree $2$.
 
 Specifically, each vertex $i$ of $\cc_n$ has its {\it predecessor} $i-1 \bmod n$ and its {\it successor} $i+1 \bmod n$.
 
-  \item 
+  \medskip\item 
 $\cc_n$ has diameter $\lfloor n/2 \rfloor$.
 
 \smallskip
@@ -1148,7 +1161,7 @@ $\cc_n$ has diameter $\lfloor n/2 \rfloor$.
 Direct calculation shows that $\cc_n$'s diameter is no larger than $\lfloor n/2 \rfloor$.  The fact that this is, in fact, the graph's diameter is witnessed by the distance between each vertex $k \in \n_{{\cal C}_n}$ and its antipodal vertex $k + \lfloor n/2 \rfloor \bmod n$.
   \end{itemize}
 
-\item
+\medskip\item
 $\widehat{\cc}_n$ has {\it arc-set}
 \[ \a_{\widehat{{\cal C}}_n} \ = \ 
 \big\{ (i \rightarrow i+1 \bmod n) \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}
@@ -1156,7 +1169,7 @@ $\widehat{\cc}_n$ has {\it arc-set}
   \begin{itemize}
   \item 
 $\widehat{\cc}_n$ is a regular directed network: each vertex has in-degree and out-degree $2$.
-  \item
+  \medskip\item
 $\widehat{\cc}_n$ has (directed) diameter $n-1$.
 
 \smallskip
@@ -1190,7 +1203,7 @@ $\k_n$ has $\displaystyle {n \choose 2}$ edges; its {\it edge-set} is
   \item 
 $\k_n$ is a regular network: each vertex has degree $n-1$; every vertex $i \in \n_{\fk_n}$ is a neighbor of every other vertex.
 
-   \item \index{complete graph!diameter}
+   \medskip\item \index{complete graph!diameter}
 $\k_n$ has diameter $1$.
 
 \smallskip
@@ -1198,14 +1211,14 @@ $\k_n$ has diameter $1$.
 $\k_n$'s diameter is a direct consequence of its vertex-degrees, and vice versa.
   \end{itemize}
 
-\item
+\medskip\item
 $\widehat{\k}_n$ has $(n-1)n$ arcs; its {\it arc-set} is
 \[ \a_{\widehat{{\cal K}}_n} \ = \ 
 \big\{ (i \rightarrow j) \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\} \big\}, \ i \neq j \]
   \begin{itemize}
   \item
 $\widehat{\k}_n$ is a regular directed network: each vertex has in-degree and out-degree $n-1$.
-  \item
+  \medskip\item
 $\widehat{\k}_n$ has (directed) diameter $1$.
 
 \smallskip
@@ -1328,13 +1341,13 @@ and all edges both of whose endpoints belong to that set is the $j$th {\it colum
 
 \ignore{*********************
   \begin{itemize}
-     \item
+  \item
 Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
 \ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner vertices}
 (or, just {\it corners}) of $\m_{m,n}$.
 \index{corner (vertex) of a mesh graph}
 \index{mesh graph!corner (vertex)}
-     \item
+     \medskip\item
 The path-graph consisting of the vertex-set
 \[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
 \langle 1, \ n \rangle \}
@@ -1374,18 +1387,18 @@ vertex-set
      \end{itemize}
 **********************}
 
-  \item 
+  \medskip\item 
 $\m_{m,n}$ is {\em not} a regular graph.  Its four corner vertices each has degree $2$; its non-corner extreme edge vertices each has degree $3$; its {\em internal vertices} each has degree $4$.
 
 \index{mesh graph!vertex-degree} \index{internal vertex of a mesh graph}
 \index{mesh graph!internal vertex}
 
-  \item \index{mesh graph!undirected diameter}
+  \medskip\item \index{mesh graph!undirected diameter}
 The diameter of $\m_{m,n}$ is $m+n-2$, as witnessed by the distance between vertices $\langle 1, \ 1 \rangle$ and $\langle m, \ n \rangle$.
   \end{itemize}
  \index{mesh graph!undirected diameter}
 
-\item
+\medskip\item
 $\widetilde{\m}_{m,n}$ has $2mn$ arcs; its {\it arc-set} is
 \begin{eqnarray*}
 \a_{\widetilde{\m}_{m,n}} & = &
@@ -1415,9 +1428,9 @@ $j$th {\it column} of $\widetilde{\m}_{m,n}$.
 \index{torus graph!column}
 **********}
 \begin{itemize}
-  \item
+\item
 $\widetilde{\m}_{m,n}$ is a regular network; each vertex has degree $4$.  Despite the fact that $\widetilde{\m}_{m,n}$ is an {\em undirected} graph, its edges are commonly referred to via an  anthropomorphic directional labeling, as ``up, down, left, and right''  or as ``north, south, west, and east''.
-  \item
+  \medskip\item
 $\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \ \lfloor n/2 \rfloor$.  This can be verified by analogy to the diameter of the cycle-graph $\cc_n$.  \index{mesh graph!directed diameter}
 \end{itemize}
 \end{itemize}
@@ -1447,16 +1460,16 @@ The {\it order-$n$ boolean hypercube}, traditionally denoted $\q_n$, is the $2^n
   \begin{itemize}
   \item
 The order-$0$ boolean hypercube, $\q_0$, has a single vertex, and no edges.
-  \item
+  \medskip\item
 The order-$(k+1)$ boolean hypercube, $\q_{k+1}$, is obtained by taking two copies of $\q_k$, call them $\q_k^{(1)}$ and $\q_k^{(2)}$, and creating an edge that connects each vertex of $\q_k^{(1)}$ with the corresponding vertex of $\q_k^{(2)}$.
   \end{itemize}
 For illustration:
   \begin{itemize}
   \item
 $\q_1$ consists of two vertices connected by a single edge.
-  \item
+  \medskip\item
 $\q_2$ can be viewed as a ``square'', or equivalently, a copy of the $4$-cycle $\cc_4$.
-  \item
+  \medskip\item
 $\q_3$ can be viewed as a ``cube'', i.e., as two copies of $\cc_4$ with edges connecting corresponding vertices: Each of the following pairs of vertices are connected by an edge:
 
 \smallskip
@@ -1469,7 +1482,7 @@ the lower left corner-vertices
 \end{tabular}
   \end{itemize}
 
-\item
+\medskip\item
 {\it The direct definition}.
 For each $n \in \N$, the vertices of the order-$n$ boolean hypercube,
 $\q_n$, are all length-$n$ binary strings.  For illustration:
@@ -1550,7 +1563,7 @@ $\q_n$ is a regular network: each of its $2^n$ vertices has degree $n$.
 
 This follows from the fact that each edge of $\q_n$ rewrites a single bit-position in the length-$n$ binary string that is the edge's source vertex.
 
-\item 
+\medskip\item 
 $\q_n$ has diameter $n \ = \ \ln(|\n_{\fq_n}|)$.\footnote{Recall that $\ln n = \log_2 n$; see Section~\ref{sec:exponential+logarithm}.}
 
 \index{hypercube!diameter}
@@ -1598,7 +1611,7 @@ such that
 \begin{itemize}
 \item
 For each edge $\{ u,v \}$ of $\g$ (i.e., $\{ u,v \} \in \e_{\fg}$), the doubleton set $\{ f(u), f(v) \}$ is an edge of $\h$ (i.e., $\{ f(u), f(v) \} \in \e_{\fh}$).
-\item
+\medskip\item
 For each edge $\{ x,y \}$ of $\h$ (i.e., $\{ x,y \} \in \e_{\fh}$), the doubleton set $\{ f^{-1}(x), f^{-1}(y) \}$ is an edge of $\g$ (i.e., $\{ f^{-1}(x), f^{-1}(y) \} \in \e_{\fg}$).
 \end{itemize}
 We can immediately exemplify this notion via the following example.
@@ -1678,17 +1691,16 @@ The table in (\ref{eqn:deBruijn-seq}) spawns several interesting questions:
 \begin{itemize}
 \item
 Do de Bruijn sequences exist for every $n$?
-\item
+\medskip\item
 If so, 
   \begin{itemize}
   \item
 How does one compute them?
-  \item
+  \medskip\item
 Can one always find a de Bruijn sequence of length $2^n +n-1$?
-  \item
+  \medskip\item
 Can one find de Bruijn sequences of length $< 2^n +n-1$?
   \end{itemize}
-%{\Arny (SOME GOOD EXERCISES HERE)} 
 \end{itemize}
 The answers to all of these questions---and the connection of de Bruijn sequences to the current chapter---reside in the family of directed graphs called {\it de Bruijn graphs} (or, {\it networks}).
 (The term used varies by intended application---mainly, coding theory and [the interconnection networks of] parallel computer architectures.  We use the names interchangeably.)
@@ -1821,7 +1833,7 @@ If every vertex of graph $\g$ has degree $\geq d$, then $\g$ contains a {\em sim
 
 \smallskip
 
-\item
+\medskip\item
 {\bf Vertex-degrees and their distributions in graphs}
 
 {\sc Lesson:} Experience with graph-theoretic reasoning
@@ -1843,7 +1855,7 @@ Let $\g$ be an arbitrary graph.
 The number of $\g$'s vertices having odd vertex-degree is even.
 \end{prop}
 
-\item
+\medskip\item
 {\bf The graph-theoretic formulation of the {\sf 2SAT} problem}
 
 {\sc Lesson:} Experience with graph-theoretic reasoning
@@ -1857,8 +1869,7 @@ We recall the graph $\g(\Phi)$ that we constructed in Section~\ref{sec:graph-mod
 {\em Prove Lemma~\ref{lem:2SATlemma1}:
 If $\g(\Phi)$ contains a path from vertex $x$ to vertex $y$, then it contains a path from vertex $\bar{y}$ to vertex $\bar{x}$.}
 
-\medskip
-\item
+\medskip\item
 {\bf Finding maximal matchings greedily}
 
 {\sc Lesson:} Experience with graph-theoretic argumentation
@@ -1867,17 +1878,15 @@ If $\g(\Phi)$ contains a path from vertex $x$ to vertex $y$, then it contains a 
 
 \index{greedy algorithm}
 
-{\em Verify the following properties of the greedy process in the proof of Proposition~\ref{thm:max-matching}.  When applied to any graph $\g$:
+{\em Verify the following properties of the greedy process in the proof of Proposition~\ref{thm:max-matching}.  When applied to any graph $\g$:}
   \begin{enumerate}
   \item
-The process will find a maximal matching for $\g$.
-  \item
-The process will do its job in a number of steps proportional to $|\n_{\fg}|$.
+{\em The process will find a maximal matching for $\g$.}
+  \medskip\item
+{\em The process will do its job in a number of steps proportional to $|\n_{\fg}|$.}
   \end{enumerate}
-}
 
-\medskip
-\item
+\medskip\item
 {\bf A necessary condition for perfect matchings}
 
 {\sc Lesson:} Experience with graph-theoretic reasoning
@@ -1885,17 +1894,15 @@ The process will do its job in a number of steps proportional to $|\n_{\fg}|$.
 \smallskip
 
 {\em Prove Proposition~\ref{thm:necessary-for-perfect-matching}:
-Let $\g$ be a graph that admits a perfect matching.  Then:
+Let $\g$ be a graph that admits a perfect matching.  Then:}
   \begin{enumerate}
   \item
-$\g$ has an even number of vertices.
-  \item
-The cardinality of $\g$'s (perfect) matching---i.e., the number of edges in the matching---is exactly $\frac{1}{2}|\n_{\fg}|$.
+{\em $\g$ has an even number of vertices.}
+  \medskip\item
+{\em The cardinality of $\g$'s (perfect) matching---i.e., the number of edges in the matching---is exactly $\frac{1}{2}|\n_{\fg}|$.}
   \end{enumerate}
-}
 
-\medskip
-\item
+\medskip\item
 {\bf Equivalent definitions of "tree"}
 
 {\sc Lesson:} Experience with graph-theoretic reasoning
@@ -1903,17 +1910,15 @@ The cardinality of $\g$'s (perfect) matching---i.e., the number of edges in the 
 \smallskip
 
 {\em Prove Proposition~\ref{thm:2defns-trees}:
-The following assertions about a connected graph $\t$ are  logically equivalent.
+The following assertions about a connected graph $\t$ are  logically equivalent.}
   \begin{itemize}
   \item
-The graph $\t$ is cycle-free.
-  \item
-Each pair of distinct vertices of $\t$ is connected by precisely one path.
+{\em The graph $\t$ is cycle-free.}
+  \medskip\item
+{\em Each pair of distinct vertices of $\t$ is connected by precisely one path.}
   \end{itemize}
-  }
 
-\medskip
-\item
+\medskip\item
 {\bf Defining major components of mesh- and torus-graphs in detail}
 
 {\sc Lesson:} Practice with formal description of graph structures
@@ -1924,28 +1929,26 @@ One notes in Section~\ref{sec:mesh} that the basics of mesh- and torus-graphs ar
 
 \smallskip
 
-{\em Formally define the following notions for the $\m_{m,n}$ and the torus $\widetilde{\m}_{m,n}$:
+{\em Formally define the following notions for the $\m_{m,n}$ and the torus $\widetilde{\m}_{m,n}$:}
   \begin{enumerate}
   \item
-a {\em row} of $\m_{m,n}$; of $\widetilde{\m}_{m,n}$
-  \item
-a {\em column} of $\m_{m,n}$; of $\widetilde{\m}_{m,n}$
-  \item
-a {\em rectangular submesh} of $\m_{m,n}$
-  \item
-a {\em rectangular sub-torus} of $\widetilde{\m}_{m,n}$
-  \item
+{\em a {\em row} of $\m_{m,n}$; of $\widetilde{\m}_{m,n}$}
+  \medskip\item
+{\em a {\em column} of $\m_{m,n}$; of $\widetilde{\m}_{m,n}$}
+  \medskip\item
+{\em a {\em rectangular submesh} of $\m_{m,n}$}
+  \medskip\item
+{\em a {\em rectangular sub-torus} of $\widetilde{\m}_{m,n}$}
+  \medskip\item
 $\oplus$
-the {\em four quadrants} of $\m_{m,n}$
+{\em the {\em four quadrants} of $\m_{m,n}$}
 
 \smallskip
 
 Be careful---we have not specified the parity of $m$ and $n$!
   \end{enumerate}
-}
 
-\medskip
-\item
+\medskip\item
 $\oplus$
 {\bf A small graph isomorphism}
 
@@ -1953,12 +1956,11 @@ $\oplus$
 
 \smallskip
 
-{\em Prove Proposition~\ref{prop.graphIsomorphism}:
+{\em Prove Proposition~\ref{prop.graphIsomorphism}:}
 
 \smallskip
 
-The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times 4$ torus $\widetilde{\m}_{4,4}$.
-}
+{\em The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times 4$ torus $\widetilde{\m}_{4,4}$.}
 
 \medskip
 
@@ -1973,8 +1975,7 @@ Try to find a relation (an ``encoding") between the bit-strings that name the ve
 
 Once you get an idea for how such an ``encoding" might work, try to incorporate the inter-vertex names of edges for both graphs.
 
-\medskip
-\item
+\medskip\item
 $\oplus \oplus$
 {\bf A traffic map for a mesh-structured city}
 
@@ -2012,32 +2013,32 @@ This stratagem automatically assigns each site $\langle i_0, j_0 \rangle$ to a u
     \item
 {\em row}: the set of sites that share $i_0$:
 \[ \{ \langle i_0, j \rangle \ \ | \ \ j \in \{1, 2, \ldots, n\} \} \]
-    \item
+    \medskip\item
 {\em column}: the set of sites that share $j_0$:
 \[ \{ \langle i, j_0 \rangle \ \ | \ \ i \in \{1, 2, \ldots, n\} \} \]
-    \item    
+    \medskip\item    
 {\em quadrant}:
             \begin{itemize}
             \item
 the {\em northwestern quadrant}, $NW$, comprises the sites
 \[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{1, 2, \ldots, n/2 \} \right\} \]
 
-            \item
+            \medskip\item
 the {\em southwestern quadrant}, $SW$, comprises the sites
 \[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{ n/2 +1, n/2+2, \ldots, n \}, \ j \in \{1, 2, \ldots, n/2 \} \right\} \]
 
-            \item
+            \medskip\item
 the {\em northeastern quadrant}, $NE$, comprises the sites
 \[ \left\{ \langle i,j \rangle \ \ | \ \ i \in \{1, 2, \ldots, n/2 \}, \ j \in \{ n/2 +1, n/2+2, \ldots, n \}  \right\} \]
 
-            \item
+            \medskip\item
 the {\em southeastern quadrant}, $SE$, comprises the sites
 \[ \left\{ \langle i,j \rangle \ \ | \ \ i, j \in \{ n/2 +1, n/2+2, \ldots, n \} \right\} \]
           \end{itemize}
 
 We call these the {\em level}-$0$, or, {\em top-level} quadrants.
 
-\item
+\medskip\item
 Recursively, each level-$\ell$ quadrant partitions into four level-$(\ell +1)$ sub-quadrants, and so on, down to sub-sub-\ldots-sub-quadrants that each contain only a single site.  
     \end{itemize}
 Fig.~ \ref{fig:routingCity} gives an illustration of the previous textual description.
@@ -2055,7 +2056,7 @@ Fig.~ \ref{fig:routingCity} gives an illustration of the previous textual descri
   \label{fig:routingCitySynthesis}
 \end{center}
 \end{figure}
-  \item
+  \medskip\item
 We turn now to the (oriented) edges that we use to navigate our grid-like city.
 
 \smallskip
@@ -2066,14 +2067,14 @@ We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we
 
 This means that every {\em oriented} edge now goes either northward or southward or eastward or westward.
 
-\item
+\medskip\item
 We now assign (oriented) edges to levels, as a prelude to our routing regimen.
 
 \smallskip
 
 Focus on an edge $e$.  We say that $e$ is a level-$\ell$ edge if $\ell$ is the smallest integer such that the endpoints of $e$ are in distinct level-$\ell$ quadrants.
 
-  \item
+  \medskip\item
 As the final step in creating our abstract traffic model, we impose the following routing regimen upon the travelers in our city.
 
 \smallskip
@@ -2083,7 +2084,7 @@ In order to travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$
     \item
 must traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
 
-   \item
+   \medskip\item
 From that point on, the traveler recursively finds an acceptable path from site $\langle i_1,j_1 \rangle$ to site $\langle h,k \rangle$.
     \end{itemize}
   \end{itemize}
@@ -2098,7 +2099,7 @@ In the {\em metro} version of the model, we pay a fee every time we encounter a 
 
 {\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site,$\langle h,k \rangle$, under the \underline{metro} model?}
 
-  \item
+  \medskip\item
 In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units every time we traverse a level-$\ell$ edge on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
  
  \smallskip
@@ -2147,11 +2148,11 @@ In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/
 %
 %
 %\begin{itemize}
-%     \item
+%     \medskip\item
 %Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
 %\ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner vertices}
 %(or, just {\it corners}) of $\m_{m,n}$.
-%     \item
+%     \medskip\item
 %The path-graph consisting of the vertex-set
 %\[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
 %\langle 1, \ n \rangle \}
