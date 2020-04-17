@@ -50,7 +50,7 @@ For any bi-colored necklace of the form described---i.e., with even numbers of j
 
 \smallskip
 
-{\em Solution}: Slide the tube around the necklace, and count both black and white jewels at each step.  
+Slide the tube around the necklace, and count both black and white jewels at each step.  
 How can these numbers change in a single step?
 \medskip
 
@@ -365,18 +365,18 @@ Thus, the length of the initial square is equal to $60-30=30$.
 
 \section{Exercises: Chapter 6}
 
+\begin{itemize}
+\item
+{\bf 6.4. Evaluating $S_1(n) = \sum_{i=1}^n \ i$, using the fact that $S_2(n) = \sum_{i=1}^n \ i^2$}
 
-\subsection{Compute $\Delta_n$ by means of sum of squares}
+Say that someone gives you a machine that can compute the summation of the first $n$ perfect squares, given $n$ as an input:
+\[ S_2(n)  \ = \ 1 \  + \ 4 \ + \ 9 \ +  \cdots + \ n^2 \]
 
-\noindent \textit{The problem.}
-$\Delta_n = \sum_{i=1}^{n} i = \frac{n(n+1)}{2}$
+{\em Show how to use this machine in order to compute the sum of the first $n$ integers.}
+
 \medskip
-
-\noindent \textit{The solution.}
-
 The idea here is to write the sum by extracting the first and the last element
 of the sum of squares.
-%We loose since the coefficient of the $\Delta_n$ is the same after these manipulations, but we can manage if we compute the \textit{next} sum, that is sum of the squares.
 \medskip
 
 $S_{n+1} = 1 + \sum_{i=1}^{n+1} i^2$
@@ -395,22 +395,132 @@ $\sum_{i=1}^{n} i^2- 2 ( \sum_{i=1}^{n} i) + (n+1) = (\sum_{i=1}^{n} i^2) + (n+1
 $-2 \Delta_n + (n+1) =  (n+1)^2$
 
 $\Delta_n =  (n+1)^2-(n+1) = n(n+1)$
-
-%%%
-\subsection{Training on undetermined coefficient method}
-
-\noindent \textit{The problem.}
-Say that you are told that the sum of the first $n$ perfect squares is
-a {\em cubic} polynomial in $n$.  Use the method of undetermined
-coefficients to derive the exact formula (\ref{eq:sum-1-to-nsq1}) for
-the sum.
 \medskip
 
-\noindent \textit{The solution.}
+\item
+{\bf 6.6. Evaluating a geometric summation pictorially}
 
-to be done
+In Section~\ref{sec:summing-geometric-series:techniques}, we used Thales's theorem about similarity in triangles (Theorem~\ref{thm:Thm-of-Thales-similarity}) to sum the simple infinite geometric series $\sum_{i=0}^\infty \ b^i$.  It turns out that a modest modification of that evaluation strategy allows us also to evaluate the truncated versions of that series, namely, the summations
+\[ S^{(b)}(n) \ = \ \sum_{i=0}^n \ b^i \]
+
+{\em Use the following figure to evaluate $S^{(b)}(n)$.}
+
+\centerline{\includegraphics[scale=0.4]{FiguresArithmetic/ThalesGeometricSumFiniteSol}}
+\medskip
+
+\item
+{\bf 6.7. A direct proof that the harmonic series diverges}
+
+{\em Develop a proof of the divergence of the harmonic series 
+\[ S^{(H)} \ = \ \sum_{k=1}^\infty \ {1 \over k} \]
+\begin{itemize}
+\item
+partitioning $S^{(H)}$'s terms into groups whose sizes are successive powers of $2$
+\item
+developing an argument based on the sums within the groups.
+\end{itemize}
+}
+
+\smallskip
+
+{\em For clarification:}
+The partitioning step operates as follows:
+{\footnotesize
+\[ 
+\begin{array}{ll}
+S^{(H)} 
+             & = \ 1 \ + \ {1 \over 2} + {1 \over 3} + {1 \over 4} + {1 \over 5} + {1 \over 6}+ {1 \over 7} + {1 \over 8} + {1 \over 9} + {1 \over 10}+ {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14}+ {1 \over 15} + \cdots \\
+             & \\
+  & = \ (1)  +  \left( {1 \over 2} + {1 \over 3} \right)  +  \left( {1 \over 4} + {1 \over 5} + {1 \over 6}+ {1 \over 7} \right)  +  \left( {1 \over 8} + {1 \over 9} + {1 \over 10}+ {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14}+ {1 \over 15} \right) \ +\cdots
+\end{array} \]
+}
 
 
+A first solution is to group the terms according to powers of $2$. 
+Then, the sum within each group is between $\frac{1}{2}$ and $1$, thus,
+$H_n > \frac{1}{2}.n$
+\medskip
+
+{\em Propose another more precise analysis by gathering the terms 3 by 3}
+
+$S_k = (\frac{1}{3k-1} + \frac{1}{3k} + \frac{1}{3k+1} )$ for $k\geq1$, 
+
+$H = 1 + S_1 + ... + S_k + ... > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + ... + 3.\frac{1}{3k} + ... $
+
+since $S_k > 3.\frac{1}{k} $.
+
+The proof is by contradiction:
+
+if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
+\medskip
+
+Moreover, the first way of  bounding the sum tells us about its value (actually, we know the value at a factor of $2$):
+
+$\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
+\medskip
+
+\item
+$\oplus$ {\bf Summations, and summations of summations}
+
+{\sc Lesson:} Practice manipulating summations; gain familiarity with basic sums
+
+\smallskip
+
+By definition:
+\[ Id_n \ \eqdef \ \sum_{k=1}^n \ 1 \ = \ 1 + 1 + \cdots +1 \  = \ n \]
+
+We have proved in multiple ways:
+\[ \Delta_n \ \eqdef \  \sum_{k=1}^n \ k \ = \ 1+2+3+ \cdots +n \ = \ \frac{1}{2} Id_n \cdot (n+1) \]
+
+\smallskip
+
+This exercise picks up where these two examples leave off.
+
+  \begin{enumerate}
+  \item 
+{\em Prove that}\footnote{The sum of the the first $n$ triangular numbers, $\sum_{k=1}^n \ \Delta_k$, is often denoted $\Theta_n$.  We employ instead the nonstandard name $\widehat{T}_n$ to ensure that we do not confuse the newcomer who has recently learned about the role of the letter $\Theta$ in asymptotic notation.} 
+\[ \widehat{T}_n \ \eqdef \  \sum_{k=1}^n \ \Delta_k \ = \   
+\Delta_1 + \Delta_2 + \cdots + \Delta_n \ = \ \frac{1}{3} \Delta_n \cdot (n+2) \]
+
+  \item
+$\oplus \oplus$
+{\em Develop and verify a formula for the summation:}
+\[ \Upsilon_n  \ \eqdef \  \sum_{k=1}^n \ \widehat{T}_k \ = \  
+\widehat{T}_1 + \widehat{T}_2 + \cdots + \widehat{T}_n \]
+
+  \item
+{\em Prove the following identities involving $\Delta_n$.  For all $n \in \N^+$:}
+    \begin{enumerate}
+    \item
+$\Delta_n \ + \ \Delta_{n-1} \ = \ n^2$
+
+\smallskip
+
+This is a straightforward exercise in algebraic manipulation.  Can you {\em also} find an ``interesting" proof of this identity, say one that employs a ``pictorial" representation of $\Delta_n$?
+
+ \item
+$\Delta_n^2 \ - \ \Delta_{n-1}^2 \ = \ n^3$
+
+\smallskip
+
+{\em Hint}: Try ``playing" with simple manipulations of the equation 
+\[ \Delta_n \ = \ n \ + \ \Delta_{n-1} \]
+which defines $\Delta_n$.
+   \end{enumerate}
+
+  \item
+$\oplus$
+{\em Derive a closed-form expression for the sum}
+\[ \widehat{T}_n \ + \ \widehat{T} _{n-1} \]
+
+\smallskip
+
+{\em Hint}: Recall that the sums $\widehat{T}_i$ are defined as sums of $\Delta_j$, which, in turn, are defined by closed-form expressions.  Lots to ``play" with!
+\end{enumerate}
+\end{itemize} 
+
+
+\ignore{*****************************
 %%%
 \subsection{Sum of perfect cubes}
 
@@ -478,41 +588,7 @@ We conclude that
 \[
 \sum_{i=1}^n i^3 \ = \  \left(\Delta_n \right)^2
 \]
-
-
-
-\subsection{Harmonic series}
-
-\noindent \textit{The problem}
-
-Show that the harmonic series $H_n =  \sum_{k=1}^{n} \frac{1}{k}$ diverges (it goes to infinity).
-\medskip
-
-\noindent \textit{The solution.}
-The analysis is as follows.
-
-A first solution is to group the terms according to powers of $2$. 
-Then, the sum within each group is between $\frac{1}{2}$ and $1$, thus,
-$H_n > \frac{1}{2}.n$
-\medskip
-
-Another (more precise) way is to gather the terms 3 by 3 as follows:
-
-$S_k = (\frac{1}{3k-1} + \frac{1}{3k} + \frac{1}{3k+1} )$ for $k\geq1$, 
-
-$H = 1 + S_1 + ... + S_k + ... > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + ... + 3.\frac{1}{3k} + ... $
-
-since $S_k > 3.\frac{1}{k} $.
-
-The proof is by contradiction:
-
-if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
-\medskip
-
-Moreover, the first way of  bounding the sum tells us about its value (actually, we know the value at a factor of $2$):
-
-$\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
-
+************************************************}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
