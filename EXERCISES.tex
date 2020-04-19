@@ -363,7 +363,7 @@ Thus, the length of the initial square is equal to $60-30=30$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Exercises: Chapter 6}
+\section*{Exercises: Chapter 6}
 
 \begin{itemize}
 \item
@@ -460,7 +460,7 @@ $\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = O(log(n))$
 \medskip
 
 \item
-$\oplus$ {\bf Summations, and summations of summations}
+$\oplus$ {\bf 6.8. Summations, and summations of summations}
 
 {\sc Lesson:} Practice manipulating summations; gain familiarity with basic sums
 
@@ -593,7 +593,7 @@ We conclude that
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Exercises: Chapter 7}
+\section*{Exercises: Chapter 7}
 
 
 \ignore{****************************
@@ -648,48 +648,158 @@ Then, how to analyze the previous result/proof?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Chapter 8}
+\section*{Exercises: Chapter 8}
 
-\subsection{A simple exercice on divisibility}
+\begin{itemize}
 
-\noindent \textit{The problem.}
-Show that every integer $n>1$ is divisible by at least one prime number.
+\item
+{\bf 8.2. Discovering fractal-like structure in Pascal's triangle}
+
+Modular arithmetic can do wondrous, unexpected things with regular structures.  If one takes a system whose structure is governed by arithmetic and substitutes {\em modular} arithmetic for ordinary arithmetic, then the system's structure is somehow going to be ``folded into itself".  We illustrate this fact within a rather complex framework in Appendix~\ref{Appendix:tree-DB}; the ``folded" structures there are trees.  We illustrate the fact within a rather elementary framework in this exercise; the ``folded" structures here arise from Pascal's triangle.
+
 \medskip
 
-\noindent \textit{The solution.}
-Do we have to detail the solution?
+Take Pascal's triangle, choose a positive integer $m$, and replace each of the triangle's entries---which are, of course, the binomial coefficients---by that entry modulo $m$.  As illustrated in Fig.~\ref{fig:TriangleModulo5},
+%Figs.~\ref{fig:TriangleModulo5raw} and~\ref{fig:TriangleModulo5shade}.
+\begin{figure}[ht]
+\begin{center}
+	\includegraphics[scale=0.18]{FiguresArithmetic/TrianglePascalModulo5init.png}
+	\hspace*{.1in}
+	\includegraphics[scale=0.18]{FiguresArithmetic/TrianglePascalModulo5.png}
+	        \caption{Pascal's triangle modulo $5$: (left) the ``raw" version; (right)
+	        with the reproducible pattern highlighted.}
+        \label{fig:TriangleModulo5}
+\end{center}
+\end{figure}
+a wondrous transformation happens.  The first $m$ levels of the triangle get replicated endlessly, with an inverted $(m-1)$-level triangle whose entries are all $0$.  (In the figure, the inverted triangle of $0$s is depicted in gray.) 
+The original triangle has been transformed into a fractal-like repetitive structure whose pattern of repetitions is dictated by the parameter $m$.
 
-
-\subsection{Numerals and divisibility}
-
-\noindent \textit{The problem.}
-Prove that when you do Euclidian division, then the {\em remainder}
-upon each consecutive division is the next lowest-order digit in the
-base-$b$ numeral for $n$.
 \medskip
 
-\noindent \textit{The solution.}
-Do we have to give the solution?
+{\em Prove that the described transformation occurs.}
 
+%
+\medskip\item
+{\bf 8.4. Divisibility among integers: via the Fundamental Theorem of Arithmetic}
 
-\subsection{A fun result dealing with divisibility}
+  \begin{itemize}
+\item
+b. {\bf The sieve of Eratosthenes and its implications}
 
-\noindent \textit{The problem.}
-Let consider the $2n$ first integers.
+We formulate the sieve as a regimen for labeling integers with their prime factors.  For simplicity, we use the label $\lambda_p$ to identify integers which are multiples of prime $p$.
 
-Take any $n+1$ integers in this set and prove that there exists a pair $(p,q)$
-such that $p$ divides $q$. 
 \medskip
 
+We begin with the linear array of positive integers:
 
-\noindent \textit{The solution.}
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13
+\end{array}$ \ldots
 
-%This exercice was a favorite question by the famous mathematician Paul Erdos,
-%he often used it to test the ability of young students in mathematics...
-%\medskip
+\medskip
 
-%Use the pigeon hole principle to exhibit $p$ and $q$.
+We label the multiples of $2$ (i.e., the even numbers):
 
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 &
+\end{array}$ \ldots
+
+\medskip
+
+We label the multiples of $3$:
+
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
+ & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 &
+\end{array}$ \ldots
+
+\medskip
+
+We label the multiples of $5$:
+
+$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
+ & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 & \\
+ & & & & \lambda_5 & & & & & \lambda_5 & & & 
+\end{array}$ \ldots
+
+\bigskip
+
+The sieve affords one a wonderful perspective for perceiving the patterns that drive mathematical insights.  Here are a few results for you to prove, which are suggested by a perusal of the sieve.
+
+\smallskip
+
+{\em Prove the following results.}
+     \begin{enumerate}
+     \item
+\begin{prop}
+Every integer $n>1$ is divisible by at least one prime number.
+\end{prop}
+
+     \medskip\item
+\begin{prop}
+Every sequence $k+1, \ldots, k+p$ of $p$ integers contains a multiple of $p$.
+\end{prop}
+
+      \medskip\item This result calls for ``second-order" insights from the sieve.
+\begin{prop}
+Every product of four consecutive integers, $(k+1) \cdot (k+2) \cdot (k+3) \cdot (k+4)$ is divisible by $4!$
+\end{prop}
+
+\smallskip
+
+{\em Hint}:  Look at the {\em multiplicity} with which a given prime divides a given number, particularly within the context of the spacings of the divisibilities---e.g., every even number that is $2 \times$ an odd number is followed by an even number that is $2 \times$ an even number.  
+
+\smallskip
+
+{\em Extend this exercise to divisors other than $4$.}
+
+\medskip\item
+The sieve affords us an alternative proof that there are infinitely many primes, particularly via the alternative version that is due to Leonhard Euler.  In this version of the sieve, each prime and all of its multiples are removed from the sieve as soon as their existence is acknowledged.  Our earlier construction of Eratosthenes's version of the sieve now becomes:
+
+\medskip
+
+$\begin{array}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\mbox{Initial array:} &
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & \cdots \\
+\mbox{after prime $2$ is processed:} &
+1 &  & 3 &  & 5 &  & 7 &  & 9 &  & 11 &  & 13 & \cdots \\
+\mbox{after primes $2, 3$ are processed:} &
+1 &  &  &  & 5 &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
+\mbox{after primes $2, 3, 5$ are processed:} &
+1 &  &  &  &  &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
+\hspace*{.8in} \vdots  &
+ &  &  &  &  &  & \vdots &  &  &  &  &  &  & \\
+\hline
+\end{array}$
+
+\bigskip
+
+{\em Use Euler's sieve to prove that there are infinitely many primes.}
+
+\medskip
+
+{\em Hint:} If there were only finitely many primes, then at some (finite) stage in processing the sieve, the list of integers would be reduced to the single integer $1$.
+\end{enumerate}
+\end{itemize}
+
+
+ \medskip\item
+
+{\bf 8.5. The ``density"  of divisible pairs of numbers}
+
+{\em Prove that the following assertion is true for every positive integer $n$.}
+
+\begin{prop}
+For every positive integer $n$:  If you remove {\em any} $n+1$ integers from the set $S = \{ 1, 2, \ldots, 2n\}$, then the set of removed integers contains at least one pair $p$ and $q > p$ such that $p$ divides $q$.
+\end{prop}
+
+
+\smallskip
 
 Let $\alpha_i$ be the elements of this set of $n+1$ elements.
 Write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$).
@@ -723,100 +833,17 @@ $p$ is the smallest one, which divides $q$ (the largest one).
 \end{enumerate}
 
 
-\subsection{When is integer $n$ divisible by $9$?}
-\label{sec:divisible-by-9}
+\medskip\item
 
+{\bf 8.8. The set $\Q$ of rational numbers is countable}
 
-\noindent \textit{The problem.}
-%\label{thm:div-by-b-bar}
-An integer $n$ is divisible by an integer $m$ if, and only if, $m$
-divides the sum of the digits in the base-$(m+1)$ numeral for $n$.
-%\medskip
-%
-%The most familiar instance of this result is phrased in terms of our
-%traditional use of base-$10$ (decimal) numerals. \\
-%{\it An integer $n$ is divisible by $9$ if, and only if, the sum of
-%  the digits of $n$'s base-$10$ numeral is divisible by $9$.}
-\medskip
+{\em Prove Proposition~\ref{thm:|Q|=|N|}: $|\Q| \ = \ |\N|$}
 
-\noindent \textit{The solution.}
+\smallskip
 
-({\it Argument for general number-base $b$}).
-%
-Of course, we lose no generality by focusing on numerals without
-leading $0$'s, because leading $0$'s do not alter a numeral's sum of
-digits.
+{\em Hint}.  Begin by reviewing Proposition~\ref{thm:|NxN|=|N|}, which asserts the technically simpler proposition: $|\N \times \N| \ = \ |\N|$.  What is the relevance of that result to this problem?
 
-Let us focus on the base-$b$ numeral for a number $n$ (so $b = m+1$ in
-the statement of the proposition).  There therefore exist base-$b$
-digits---i.e., integers from the set $\{0, 1, \ldots, b-1\}$---call
-them $\delta_k \neq 0$, $\delta_{k-1}$, \ldots $\delta_1$, $\delta_0$,
-such that
-\[ n \ = \ \delta_k \cdot b^k + \delta_{k-1} \cdot b_{k-1} + \cdots +
-\delta_1 \cdot b + \delta_0. \]
-The sum of the digits of $n$'s base-$b$ numeral is, then
-\[ s_b(n) \ \eqdef \ \delta_k + \delta_{k-1} + \cdots + \delta_1 +
-\delta_0. \]
-Let us calculate the difference $n - s_b(n)$ in the following manner,
-digit by digit.
-\begin{equation}
-\label{eq:sum-of-digits}
-\begin{array}{ccccccccccc}
-n & = &
-\delta_k \cdot b^k & + & \delta_{k-1} \cdot b^{k-1} & + & \cdots
-  & + & \delta_1 \cdot b & + & \delta_0 \\
-s_b(n) & = &
-\delta_k & + & \delta_{k-1} & + & \cdots & + & \delta_1 & + & \delta_0 \\
-\hline
-n - s_b(n) & = &
-\delta_k \cdot (b^k -1) & + &
-\delta_{k-1} \cdot (b^{k-1} -1) & + &
-\cdots & + &
-\delta_1 \cdot (b-1) & & 
-\end{array}
-\end{equation}
-
-We now revisit summation (\ref{eq:geom-sum:b>1}).  Because $b$ is a
-positive integer, so that $1 + b + \cdots + b^{a-2} + b^{a-1}$ is also
-a positive integer, we infer that {\em the integer $b^a -1$ is
-  divisible by $b-1$.}
-
-We are almost home.  
-
-Look at the equation for $n - s_b(n)$ in the
-system (\ref{eq:sum-of-digits}).  As we have just seen, every term on
-the righthand side of that equation is divisible by $b-1$.  It follows
-therefore, that the lefthand expression, $n - s_b(n)$, is also
-divisible by $b-1$.
-An easy calculation, which we leave to the reader, now shows that this
-final fact means that $n$ is divisible by $b-1$ if, and only if, $s_b(n)$ is.
-
-
-\subsection{Modulus arithmetic}
-
-\noindent \textit{The problem.}
-Show that $\N_q$ is never closed under the operation of division when the modulus $q$ is composite.
-
-\noindent \textit{The solution.}
-
-
-
-\subsection{Countability of $\Q$}
-
-noindent \textit{The problem.}
-Prove $|\Q| \ = \ |\N|$ (Proposition~\ref{thm:|Q|=|N|}).
-\medskip
-
-\noindent \textit{The solution.}
-Use Proposition~\ref{thm:|NxN|=|N|}.
-
-%
-%{\Arny 
-%This is the first---easier---result.  We proved the clerically easier result---that $\N \times \N$ is countable.  We ask the reader to ``dirty their hands" and prove that $\Q$ is countable.
-%The second---harder---result is with uncountability; it is so hard that we do it.
-%So this should appear in NUMBERS2 near pairing functions.}
-
-
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1675,24 +1702,6 @@ which partially spans the graph by adding at each step the minimum
 neighboring edge while the other add successively the edges of minimal
 weights that do not create a cycle.
 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\section{misc: To include at the proper place}
-
-Complete the proof of Fig. 6.xx and similar geometric arguments: show
-that all points in the areas are captured
-
-{\Arny   This relates to one of the pictorial/geometric proofs of the value of a summation ---
-6.10 or 6.13 or 6.14.
-
-I need your help.  The problem that motivated me was that, even though it LOOKS as though an ``asymptotic" drawing is capturing all of the claimed points, that is not a proof.  We have to PROVE that all points are captured.}
-
-{\Denis This is important indeed! I suggest to include a special section into the text. }
 
 
 
