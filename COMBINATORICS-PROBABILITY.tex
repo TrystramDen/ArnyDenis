@@ -2506,7 +2506,46 @@ Studying our sample sequence of cut-then-merge steps should provide a valuable h
 
 \smallskip
 
-We now provide a more sophisticated merge procedure, which yields a sophisticated variant of the Monge shuffle.  In this variant, we rearrange the $2n$-card deck directly, from the middle outward, as suggested by the following illustration for the case $n=4$:
+We now provide a more sophisticated merge procedure, which yields a sophisticated variant of the Monge shuffle.  In each stage of this variant---each corresponding to a cut-then-merge step of the simple shuffle---we rearrange the $2n$-card deck directly, from the middle outward, via the following regimen:
+
+\smallskip
+
+\noindent
+- Card \#1 of the original deck is placed in position $n+1$ of the shuffled deck \\
+- Card \#2 of the original deck is placed in position $n$ of the shuffled deck \\
+- Card \#3 of the original deck is placed in position $n+2$ of the shuffled deck \\
+- Card \#4 of the original deck is placed in position $n-1$ of the shuffled deck \\
+\hspace*{.1in} \ldots and so on, until the original deck is empty.
+
+\smallskip
+
+The first few steps of a stage of the sophisticated Monge shuffle are illustrated for the case $n=4$ in Fig.~\ref{fig:suffleMonge1};
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/suffleMongeStep1}
+        \includegraphics[scale=0.3]{FiguresArithmetic/suffleMongeStep2}
+         \includegraphics[scale=0.3]{FiguresArithmetic/suffleMongeStep3}
+        \caption{The Monge shuffle for $8$ cards ($n=4$): Step 1 (left), Step 2 (center), Step 3 (right).}
+        \label{fig:suffleMonge1}
+\end{center}
+\end{figure}
+\ignore{**********
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresArithmetic/suffleMongeStep2}
+        \caption{Step 2. The Monge shuffle for $8$ cards ($n=4$).}
+        \label{fig:suffleMonge2}
+\end{center}
+\end{figure}
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresArithmetic/suffleMongeStep3}
+        \caption{Step 3. The Monge shuffle for $8$ cards ($n=4$).}
+        \label{fig:suffleMonge3}
+\end{center}
+\end{figure}
+***********}
+one complete stage is illustrated in the table following the figure.
 \[ \begin{array}{cccccccccccccccccc}
 \mbox{Step } & \multicolumn{8}{c}{\mbox{Original deck}} & &
      \multicolumn{8}{c}{\mbox{Shuffled deck}} \\
@@ -2522,15 +2561,6 @@ We now provide a more sophisticated merge procedure, which yields a sophisticate
 \end{array}
 \]
 
-The first card of the Original, $2n$-card, deck is placed in position $n+1$ of the Shuffled deck.
-
-The second card of the Original deck is placed in position $n$ of the Shuffled deck.
-
-The third card of the Original deck is placed in position $n+2$ of the Shuffled deck.
-
-The fourth card of the Original deck is placed in position $n-1$ of the Shuffled deck.
-
-\ldots and so on, until the Original deck is empty.
 
 \ignore{**********
 Take the first card on top of the deck,
@@ -2539,7 +2569,7 @@ the third card below the two first ones, and so on alternatively
 until the initial deck becomes empty.
 Below is the decomposition of the first step:
 Fig.~\ref{fig:suffleMonge1},~\ref{fig:suffleMonge2},~\ref{fig:suffleMonge3} show pictorially the three first steps of the process for $n=4$.
-**********}
+
 
 \medskip
 
@@ -2554,38 +2584,15 @@ In particular, how many steps are required for $n=12$?
 for $n=3k+2$ prove that the card in position $k+1$ always remains unchanged.
 \item For some values of $n$, show that there exist two cards that are always exchanged. Apply this to $n=11$.
 \end{enumerate}
-
-
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresArithmetic/suffleMongeStep1}
-        \caption{Step 1. The Monge shuffle for $8$ cards ($n=4$).}
-        \label{fig:suffleMonge1}
-\end{center}
-\end{figure}
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresArithmetic/suffleMongeStep2}
-        \caption{Step 2. The Monge shuffle for $8$ cards ($n=4$).}
-        \label{fig:suffleMonge2}
-\end{center}
-\end{figure}
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresArithmetic/suffleMongeStep3}
-        \caption{Step 3. The Monge shuffle for $8$ cards ($n=4$).}
-        \label{fig:suffleMonge3}
-\end{center}
-\end{figure}
+************}
 
 \medskip
 
 {\em Prove the following assertion.}
 
 \begin{prop}
-Let $n$ be an integer.
-If $4n+1$ is a prime, then performing $2n$ cut-and-merge steps of the $2n$ Monge's shuffles on a deck of $2n$ distinct cards 
-restores the initial deck.
+For any integer $n \in \N^+$: 
+If $4n+1$ is prime, then performing $2n$ steps of the sophisticated Monge shuffle on a deck of $2n$ distinct cards restores the deck to its original order.
 \end{prop}
   \end{enumerate}
 
