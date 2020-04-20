@@ -1,17 +1,19 @@
-%version of 04-17-20
+%version of 04-20-20
 
 \chapter{Numbers II:
 Building the Integers and Building with the Integers}
 \label{ch:numbers-advanced}
 
 \begin{quote}
-``Great oaks from little acorns grow." \\
-``Les petits glands font des grands ch$\hat{\mbox{e}}$nes." \\
+``Great oaks from little acorns grow."
+
+[Les petits glands font des grands ch$\hat{\mbox{e}}$nes.]
+
 \hspace*{1.5in}Proverb
 \end{quote}
 
 Chapter~\ref{ch:numbers-numerals} developed the basic concepts that underlie objects of mathematical discourse that we traffic in daily: numbers and the numerals that we use to manipulate them.  The current chapter builds on those basics with the help of the material in the intervening chapters, which have given us advanced tools for discussing and manipulating numbers and aggregations of numbers.  We focus here on three advanced subjects.  In Section~\ref{sec:primes}, we develop a number of important topics concerning the {\em prime numbers}, a set of integers that can aptly be termed the {\it building blocks of the integers}.  In
-Section~\ref{sec:pairing}, we focus on the important topic of {\it pairing functions}.  These functions allow us, in both theory and practice, to mathematically and computationally treat tuples of numbers---as well as many other aggregates---with the same ease as we treat ordinary numbers.  One particularly important contribution of pairing functions is their endowing tuples and other aggregates of numbers with a natural {\em total order}.  Finally, in Section~\ref{sec:congruences+modular}, we establish the elements of {\em finite number systems}.  We use such systems every day---often without even being aware of doing so---as we tell time and measure angles: It is important to understand the ways in which such systems mirror our more familiar infinite number systems and the ways in which ways they do not.
+Section~\ref{sec:pairing}, we focus on the important topic of {\it pairing functions}.  These functions allow us, in both theory and practice, to mathematically and computationally treat tuples of numbers---as well as many other aggregates---with the same ease as we treat ordinary numbers.  One particularly important contribution of pairing functions is their endowing tuples and other aggregates of numbers with a natural {\em total order}.  Finally, in Section~\ref{sec:congruences+modular}, we establish the elements of {\em finite number systems}.  We use such systems every day---often without even being aware of doing so---as we tell time and measure angles: It is important to understand the ways in which such systems mirror our more familiar infinite number systems and the ways in which they do not.
 \index{tuple-spaces} \index{numbers!tuple-spaces}
 
 \section{Prime Numbers: Building Blocks of the Integers}
@@ -23,7 +25,7 @@ We now single out a subclass of the positive integers whose mathematical importa
 
 \medskip
 
-We all know that every positive integer $n$ is divisible by $1$ and by $n$.  The class of integers that we focus on now consists of those $n \in \N^+$ that have no other divisors.  These are the {\it prime numbers}.
+We all know that every positive integer $n$ is divisible by $1$ and by $n$.  The class of integers that we focus on now consists of those $n > 1$ in $\N^+$ that have no other positive divisors.  These are the {\it prime numbers}.
 
 \smallskip
 
@@ -31,7 +33,7 @@ We all know that every positive integer $n$ is divisible by $1$ and by $n$.  The
 \index{number!integer!prime}\index{prime number}
 \index{integer!prime number}\index{integer!prime}
 An integer $p >1$ is {\it prime} if its {\em only} positive integer divisors are $1$ (which divides
-every integer) and $p$ itself (which is always a divisor).
+every integer) and $p$ itself (which always divides itself).
 
 \bigskip
 
@@ -54,7 +56,7 @@ We often use the shorthand assertion, ``$p$ is a prime'' (or even the simpler ``
  \index{prime factorization} \index{integer!prime factorization} 
  \index{number!integer!prime factorization}
 
-A very consequential way to classify a positive integer $n$ is to list the primes that divide it, coupling each such prime $p$ with its {\it multiplicity}, i.e., the number of times that $p$ divides $n$.  To elaborate: Let $p_1, p_2, \ldots, p_r$ be all of the distinct primes that divide a given $n \in \N^+$, and let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime factorization} of $n$ is the product $p_1^{m_1} \times p_2^{m_2} \times \cdots \times p_r^{m_r}$.  Note that this product satisfies the equation
+A very consequential way to classify a positive integer $n >1$ is to list the primes that divide it, coupling each such prime $p$ with its {\it multiplicity}, i.e., the number of times that $p$ divides $n$.  To elaborate: Let $p_1, p_2, \ldots, p_r$ be all of the distinct primes that divide a given interger $n >1$, and let each $p_i$ divide $n$ with multiplicity $m_i$.  The {\it prime factorization} of $n$ is the product $p_1^{m_1} \times p_2^{m_2} \times \cdots \times p_r^{m_r}$.  Note that this product satisfies the equation
 \begin{equation}
 \label{eq:prime-factorization}
 n \ = \ p_1^{m_1} \times p_2^{m_2} \times \cdots \times p_r^{m_r}
@@ -83,7 +85,7 @@ The canonical prime factorization of every positive integer is unique.
 \noindent
 {\rm (Alternative formulation.)}
 %
-Let $n \in \N^+$ be a positive integer, and let $\widehat{P}_n$ denote the ordered sequence of prime numbers that are no larger than $n$:
+Let $n \in \N^+$ be a positive integer, and let $\widehat{P}_n$ denote the ordered sequence of all prime numbers that are no larger than $n$:
 
 \smallskip
 
@@ -269,7 +271,7 @@ Because $p_k \geq 2$, we see that $n^\star / p_k$ obeys the inequalities
 The discreteness of the set $\Z$---see Section~\ref{sec:integer-number-line}---implies that $n^\star / p_k$ is not an integer, because it lies strictly between two adjacent integers.
 
 \medskip\item
-Because of observation 1, if the sequence {\bf Prime-Numbers} actually did contain {\em all} of the prime numbers, then we would have to conclude that {\em the number $n^\star$ is not divisible by any prime number.}
+Because of Observation 1, if the sequence {\bf Prime-Numbers} actually did contain {\em all} of the prime numbers, then we would have to conclude that {\em the number $n^\star$ is not divisible by any prime number.}
 
 \medskip\item
 Finally, we remark that the Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}) implies that {\em every integer $m >1$ is divisible by (at least one) prime number}.  (See Proposition~\ref{thm:prime-divisor}.)
@@ -344,8 +346,11 @@ We return to the idea of encoding-via-integers in Section~\ref{sec:pairing}, usi
 \label{sec:prime-density}
 \index{The Prime Number Theorem}
 
-Whether or not one ascribes any spiritual significance to the prime numbers, as the early Greeks did, it can be fun to look for patterns in the sequence {\bf P} of primes; we know by Proposition~\ref{thm:infinite-primes} that the sequence {\bf P} is infinite.  As we begin to list integers looking for primes, we are impressed by how ``densely'' they start out:  There are seven primes in the first $13$ integers---the ``unboxed" integers in the following interval
-\[ 1, \ 2, \ 3, \ \fbox{4}, \ 5, \ \fbox{6}, \ 7, \ \fbox{8}, \ \fbox{9}, \ \fbox{10}, \ 11, \ \fbox{12}, \ 13 \] However, even as soon as the interval
+Whether or not one ascribes any spiritual significance to the prime numbers, as the early Greeks did, it can be fun to look for patterns in the sequence {\bf P} of primes; we know by Proposition~\ref{thm:infinite-primes} that the sequence {\bf P} is infinite.  As we begin to list integers looking for primes, we are impressed by how ``densely'' they start out:  There are six primes in the first $13$ integers---the ``unboxed" integers in the following interval
+\[ 
+\fbox{1}, \ 2, \ 3, \ \fbox{4}, \ 5, \ \fbox{6}, \ 7, \ \fbox{8}, \ \fbox{9}, \ \fbox{10}, \ 11, \ \fbox{12}, \ 13 
+\] 
+However, even as soon as the interval
 \[ 23, \ \fbox{24}, \ \fbox{25}, \ \fbox{26}, \ \fbox{27}, \ \fbox{28}, \ 29, \ \fbox{30}, \ 31, 
 \ \fbox{32}, \ \fbox{33}, \ \fbox{34}, \ \fbox{35}, \ \fbox{36}, \ 37
 \]
@@ -399,10 +404,6 @@ The number $a^p \ - \ a$ is divisible by $p$.
 $a^{p} \equiv a \bmod p$.
 \end{theorem}
 
-%Notice that there exist other formulations, the following is the most popular one:
-%
-%Let consider two primes $p$ and $a$.
-%$a^{p-1} \equiv 1 [p]$
 
 \smallskip
 
@@ -490,7 +491,7 @@ Because $p$ is a prime, this possibility must hold for every one of the $a^p - a
 This means that the $a^p - a$ words that each contain at least $2$ distinct symbols partition $S(\a, p)$ into disjoint sets of size $p$ each.  This partition is possible only if $p$ divides $a^p - a$.  \qed
 \end{proof}
 
-The ideas underlying his multi-step proof are sketched in Figs.~\ref{fig:necklace3} and~\ref{fig:necklace24},
+The ideas underlying this multi-step proof are sketched in Figs.~\ref{fig:necklace3} and~\ref{fig:necklace24},
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresArithmetic/Necklace3.png}
@@ -830,7 +831,7 @@ to {\em select}, given any pair $\langle a_1, a_2 \rangle \in \Z \times \Z$,  th
 \subsection{Encoding Complex Structures via Ordered Pairs}
 \label{sec:encodings-via-ordered-pairs}
 
-One can use ordered pairs of integers to represent---or, {\it encode}---myriad structures which ``contain'' integers.  Herewith, a brief sampler, which the reader can readily add to:
+One can use ordered pairs to represent---or, {\it encode}---myriad complex structures.  Herewith, a brief sampler, which the reader can readily add to:
 
 \index{tuples of integers}
 \index{integer!tuples}
@@ -922,7 +923,7 @@ What does it mean to {\em encode} one class of entities, $A$, as another class, 
 
 \index{tuple-spaces}
 
-The remainder of this section---and its companion in the Appendix, Chapter~\ref{Appendix:building-pairing-functions}---are devoted to developing a few {\em easily computed} bijections between the set $\N^+ \times \N^+$ and the set $\N^+$.  These easily computed {\em encodings} of ordered pairs of integers illustrate that---at least within the world of integers and entities encodable as integers, such as tuples, strings, and binary trees of integers---there is no intrinsic new power inherent in tuple-spaces: 
+The remainder of this section---and its companion in the Appendix, Chapter~\ref{Appendix:building-pairing-functions}---are devoted to developing a few {\em easily computed} bijections between the set $\N^+ \times \N^+$ and the set $\N^+$.  These easily computed {\em encodings} of ordered pairs of integers illustrate that---at least within the world of integers and entities encodable as integers, such as tuples, strings, and binary trees of integers---there is no intrinsic new representational power inherent in tuple-spaces: 
 
 \smallskip
 
@@ -948,15 +949,11 @@ Of course some structured sets do have natural, native linear orders: consider, 
 }
 \bigskip
 
-We focus on $\N^+$ as the avatar of {\it integer}, rather than on $\Z$ or $\N$, primarily for definiteness.  We could easily rewrite this section with a focus on bijections between $\Z \times \Z$ and $\Z$ or on bijections between $\N \times \N$ and $\N$.
+We focus on $\N^+$ as the avatar of {\it integer}, rather than on $\Z$ or $\N$, primarily for definiteness.  We could easily rewrite this section with a focus on bijections between $\Z \times \Z$ and $\Z$ or on bijections between $\N \times \N$ and $\N$ or, for that matter, between $\Z \times \N$ and $\N^+$.
 
 \bigskip
 
 We now describe our first explicit pairing function---the {\em diagonal} pairing function $\d(x,y)$.  This is probably one of the oldest known pairing functions, given that it was known as early as 1821.   In appendix Chapter~\ref{Appendix:building-pairing-functions}, we provide both a ``{\em shell-based}" methodology for crafting pairing functions and three explicit siblings of the diagonal pairing function $\d$.  Two of the siblings of $\d$ are constructed via the shell-based methodology.  Two of the siblings of $\d$ were invented for their usefulness in certain computational domains; the third sibling was invented to uncover an inherent limit on the ``compactness" of pairing functions.
-
-
-%\subsubsection{The Diagonal pairing function $\d$}
-%\label{sec:diag-pair-fn}
 
 \index{The Diagonal pairing function $\d$}
 
@@ -969,7 +966,7 @@ Pairing functions first appeared in the literature early in the 19th century.  P
 \d(x, y) \ = \
 {{x+y-1} \choose 2} + (1-y)
 \end{equation}
-($\d$ of course has a twin that exchanges $x$ and $y$).  $\d$'s mapping of $\N^+ \times \N^+$ onto $\N^+$ is depicted in Fig.~\ref{fig:diag}; it exposes that we can view $\d$'s mapping of $\N^+ \times \N^+$ as a two-step conceptual process:
+($\d$ of course has a twin that exchanges the roles of $x$ and $y$.)  $\d$'s mapping of $\N^+ \times \N^+$ onto $\N^+$ is depicted in Fig.~\ref{fig:diag}; it exposes that we can view $\d$'s mapping of $\N^+ \times \N^+$ as a two-step conceptual process:
 \begin{figure}[htb]
 \begin{center}
       \includegraphics[scale=0.4]{FiguresArithmetic/PairingDiagonal}
@@ -1013,7 +1010,7 @@ Keep in mind that we have just described a {\em conceptual} process specified by
 
 \bigskip
 
-An understanding of $\d$'s structure leads to a broadly applicable strategy for inductively constructing a broad range of ``shell-based" pairing functions.  We develop this strategy in appendix Chapter ~\ref{Appendix:building-pairing-functions}, accompanied by a rather simple inductive verification of the bijectiveness of functions created using the strategy.  One finds a computationally more satisfying proof of $\d$'s bijectiveness in \cite{Davis58}---made more satisfying by its explicit recipe for computing $\d$'s inverse.  The material in \cite{Davis58} builds in an essential way on $\d$'s structure.
+An understanding of $\d$'s structure leads to a broadly applicable strategy for inductively constructing a broad range of ``shell-based" pairing functions.  We develop this strategy in appendix Chapter~\ref{Appendix:building-pairing-functions}, accompanied by a rather simple inductive verification of the bijectiveness of functions created using the strategy.  One finds a computationally more satisfying proof of $\d$'s bijectiveness in \cite{Davis58}---made more satisfying by its explicit recipe for computing $\d$'s inverse.  The material in \cite{Davis58} builds in an essential way on $\d$'s structure.
 
 \bigskip
 
@@ -1043,7 +1040,7 @@ lattices, II.  {\it J.~Number Th.~10}, 215--243.
 
 \bigskip
 
-The fact that the diagonal pairing function $\d$ is a {\em polynomial} in $x$ and $y$ raises the natural (to a mathematician!)~question of whether there exist any {\em other} polynomial pairing functions.  This is a quite advanced; indeed, even as a research problem, the question remains largely open.  But, a few nontrivial pieces of an answer are known.
+The fact that the diagonal pairing function $\d$ is a {\em polynomial} in $x$ and $y$ raises the natural (to a mathematician!)~question of whether there exist any {\em other} polynomial pairing functions.  This is a quite advanced topic; indeed, even as a research problem, the question remains largely open.  But, a few nontrivial pieces of an answer are known.
 \begin{enumerate}
 \item
 There is no {\em quadratic} polynomial pairing function other than $\d$ (and its twin) [Fueter, P\'{o}lya, 1923], [Lew, Rosenberg, 1978a].
@@ -1055,7 +1052,7 @@ The development in [Lew, Rosenberg, 1978b] excludes large families of higher-deg
 \end{minipage}
 }
 
-\subsection{$\N \times \N$ Is {\em Not} ``Larger Than" $\N$} 
+\subsection{$\N \times \N$ Is \underline{Not} ``Larger Than" $\N$} 
 %There Are {\em Not} More Ordered Pairs than Integers}
 \label{sec:cardinality-NxN}
 
@@ -1223,7 +1220,7 @@ Theorem~\ref{thm.S-B}---the remarkable theorem of Schr\"{o}der and Bernstein---g
 
  \index{Pascal, Blaise}
  
-The sets that underlie the number systems that we use in most daily tasks---namely $\N, \Z, \Q$, and $\C$---are infinite: we can always find a number in each set that is bigger than all the numbers we have seen thus far.  Indeed, the last two of these sets are ``two-way'' infinite: we can also always find a number in each set that is smaller than all the numbers we have seen thus far.  We mention only two.
+The sets that underlie the number systems that we use in most daily tasks---namely $\N, \Z, \Q$, and $\R$---are infinite: we can always find a number in each set that is bigger than all the numbers we have seen thus far.  Indeed, the last two of these sets are ``two-way'' infinite: we can also always find a number in each set that is smaller than all the numbers we have seen thus far.  We mention only two.
 \begin{itemize}
 \item
 The {\em clocks} that we use to indicate daily time are calibrated into a fixed finite number of major subdivisions, {\em hours}.  We endow our days with $24$ hours and depending on circumstances, have our clocks measure each day's time via repeating cycles of either $12$ or $24$ hours.  Once a clock's limit of ($12$ or $24$ hours) has been reached, it begins its numeration once again---with no memory of the past.
@@ -1241,7 +1238,7 @@ This section is dedicated to integer-based {\em finite} number systems that were
 \index{integer congruence} \index{congruent to}
 For each positive integer $q \in \N^+$, we denote by $\N_q$ the $q$-element ``prefix'' of the set $\N$ of nonnegative integers:
 \[ \N_q \ \eqdef \ \{0, 1, \ldots, q-1\} . \]
-For nonnegative integers $m, n \in \N$ and positive integer $a \in \N^+$, we say that {\em $m$ is congruent to $n$ modulo $q$}, denoted
+For nonnegative integers $m, n \in \N$ and positive integer $q \in \N^+$, we say that {\em $m$ is congruent to $n$ modulo $q$}, denoted
 \[ m \equiv n \bmod q, \]
 precisely when $q \mbox{ divides } |m-n|$.  We call $q$ the {\it modulus} of the congruence (relation).
 \index{modulus (of a congruence)}
