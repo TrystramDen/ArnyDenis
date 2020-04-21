@@ -593,7 +593,7 @@ We conclude that
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Exercises: Chapter 7}
+%\section*{Exercises: Chapter 7}
 
 
 \ignore{****************************
@@ -1280,17 +1280,11 @@ $k.{n \choose k} = n.{{n-1} \choose {k-1}}$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Chapters 12}
+\section{Exercises: Chapter 12}
 
-
+\ignore{******************************************
 \subsection{Formal definition of mesh graphs}
 \label{Exercice:FormalDefinitionMesh}
-%
-%\noindent \textit{The aim.}
-%The definition of mesh presented in chapter~\ref{ch:Graphs1}
-%is very easy to capture with a drawing.
-%We formalize here the precise definition using a mathematical language. 
-%\medskip
 
 \noindent \textit{The problem.}
 Formalize precisely the definition of mesh  $\m_{m,n}$ and torus $\widetilde{\m}_{m,n}$ graphs
@@ -1310,7 +1304,6 @@ The  {\it vertex-set} is the same for both graphs:
 \big[ j \in \{1, \ 2, \ldots, \ n\} \big]
 \big\}
 \end{eqnarray*}
-
 
 $\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
 \begin{eqnarray*}
@@ -1395,18 +1388,25 @@ $j$th {\it column} of $\widetilde{\m}_{m,n}$.
 %
 %\noindent \textit{Lesson learned.}
 %manipulate mathematical symbols. 
+****************************************}
 
+\begin{itemize}
+\item
+{\bf 12.8. A small graph isomorphism}
 
-%%%
-\subsection{Graph Isomorphism}
+{\em Prove Proposition~\ref{prop.graphIsomorphism}:}
 
-\noindent \textit{The problem.}
-The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times
-4$ torus $\widetilde{\m}_{4,4}$.
+\smallskip
+
+{\em The order-$4$ hypercube $\q_4$ is \textit{isomorphic} to the $4 \times 4$ torus $\widetilde{\m}_{4,4}$.}
+\smallskip
+
+Try to find a relation (an ``encoding") between the bit-strings that name the vertices of $\q_4$ and the ordered pairs of integers that name the vertices of $\widetilde{\m}_{4,4}$.
+
+\smallskip 
+
+Once you get an idea for how such an ``encoding" might work, try to incorporate the inter-vertex names of edges for both graphs.
 \medskip
-
-\noindent \textit{The solution.}
-We describe both coding schemes successively. 
 
 $\q_4$ is represented by its natural Gray codes,
 where a vertex is coded 4 bits and connected to its four neighbors by complementing 
@@ -1421,8 +1421,108 @@ $00, 01, 11, 10$
 The whole coding is obtained by concatenation of both dimensions.
 
 
+\medskip\item
+{\bf 12.9. A traffic map for a mesh-structured city}
+\medskip
+
+%Here is a {\em highly structured, recursive} proposal for a traffic network.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
+%  \begin{itemize}
+%  \item
+%We logically arrange the city's $N$ sites in an $n \times n$ grid by assigning each site a distinct name of the form $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
+%
+%\smallskip
+%Fig.~ \ref{fig:routingCity} gives an illustration of the previous textual description.
+%\begin{figure}[hbt]
+%\begin{center}
+%       \includegraphics[scale=0.4]{FiguresGraph/routingCity}
+%\caption{A $64$-site city arranged as an $8 \times 8$ grid.  The figure illustrates: the level-$0$ $8 \times 8$ grid and its northwestern $4 \times 4$ quadrant; the grid's four level-$2$ northwestern $2 \times 2$ quadrants (shaded).}
+%  \label{fig:routingCity}
+%\end{center}
+%\end{figure}
+%\begin{figure}[hbt]
+%\begin{center}
+%       \includegraphics[scale=0.3]{FiguresGraph/routingCitySynthesis}
+%\caption{Summary of the routing rules.}
+%  \label{fig:routingCitySynthesis}
+%\end{center}
+%\end{figure}
+%  \medskip\item
+%We turn now to the (oriented) edges that we use to navigate our grid-like city.
+%
+%\smallskip
+%
+%We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we employ only edges whose endpoint-sites share a coordinate.  Each of these edges goes from a site $\langle i,j \rangle$ to a site $\langle i,k \rangle$ or a site $\langle h,j \rangle$.
+%
+%\smallskip
+%
+%This means that every {\em oriented} edge now goes either northward or southward or eastward or westward.
+%
+%\medskip\item
+%We now assign (oriented) edges to levels, as a prelude to our routing regimen.
+%
+%\smallskip
+%
+%Focus on an edge $e$.  We say that $e$ is a level-$\ell$ edge if $\ell$ is the smallest integer such that the endpoints of $e$ are in distinct level-$\ell$ quadrants.
+%
+%  \medskip\item
+%As the final step in creating our abstract traffic model, we impose the following routing regimen upon the travelers in our city.
+%
+%\smallskip
+%
+%In order to travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$, a traveler:
+%    \begin{itemize}
+%    \item
+%must traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
+%
+%   \medskip\item
+%From that point on, the traveler recursively finds an acceptable path from site $\langle i_1,j_1 \rangle$ to site $\langle h,k \rangle$.
+%    \end{itemize}
+%  \end{itemize}
+
+In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
+  \begin{enumerate}
+  \item
+In the {\em metro} version of the model, we pay a fee every time we encounter a new site on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
+
+\smallskip
+
+{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site,$\langle h,k \rangle$, under the \underline{metro} model?}
+
+  \medskip\item
+In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units every time we traverse a level-$\ell$ edge on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
+ 
+ \smallskip
+
+{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site, $\langle h,k \rangle$, under the \underline{driving} model?}
+
+ \end{enumerate}
+ \begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/routingCitySolution1}
+       \caption{To discuss.}
+  \label{fig:routingCity}
+\end{center}
+\end{figure}
+ \begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/routingCity2}
+       \caption{To discuss.}
+%  \label{fig:routingCity}
+\end{center}
+\end{figure}
+ \begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.5]{FiguresGraph/routingCity3}
+       \caption{Shortest path.}
+%  \label{fig:routingCity}
+\end{center}
+\end{figure}
+
+\end{itemize}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Chapters 13}
+\section{Exercises Chapter 13}
 
 
 \subsection{Euler Formula}
