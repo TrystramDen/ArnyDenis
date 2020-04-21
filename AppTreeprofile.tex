@@ -3,14 +3,14 @@
 
 \index{search trees} \index{search trees!2,3-trees} \index{search trees!B-trees}
 
-In the course of analyzing a genre of search tree called {\it 2,3-trees},\footnote{These search trees are the lowest-index instances of the {\it B-trees} that have proved so useful in database implementations \cite{CLRS}.}~in [Miller, Pippenger, Rosenberg, Snyder, 1979] and [Rosenberg, Snyder, 1978], a new number sequence was discovered.  Named {\it Tree-Profile numbers} [Rosenberg, 1979], this family of positive integers was found to be a close relative of the family of
-binomial coefficients, both in its defining recurrence and in the quite similar properties that the two families share.
+In the course of analyzing a genre of search tree called {\it 2,3-trees},\footnote{These search trees are the lowest-index instances of the {\it B-trees} that have proved so useful in database implementations \cite{CLRS}.}~in [Rosenberg, Snyder, 1978] and
+[Miller, Pippenger, Rosenberg, Snyder, 1979], a new number sequence was discovered.  Named {\it Tree-profile numbers} [Rosenberg, 1979], this family of positive integers was found to be a close relative of the family of binomial coefficients, both in its defining recurrence and in the quite similar properties that the two families share.
 
 \subsection{Definition}
-\index{tree-profile numbers}
-\index{tree-profile numbers!definition}
+\index{Tree-profile numbers}
+\index{Tree-profile numbers!definition}
 
-The {\it tree-profile numbers} are a doubly-indexed family
+The {\it Tree-profile numbers} are a doubly-indexed family
 \[ \big\{ P(n,k) \big\}_{n \geq 1; \ k \geq 0}  \]
 of positive integers specified by the following recursive definition.
 \begin{equation}
@@ -30,18 +30,18 @@ P(n,1) & = &
 P(n+1, k+1) & = & P(n,k) + 2 P(n, k-1) \ \ \  \mbox{ for all } n > 1, k > 0
 \end{array}
 \end{equation}
-\index{tree-profile numbers!triangle of numbers}
+\index{Tree-profile numbers!the triangle of numbers}
 
-This somewhat complicated definition can be better understood with the help of an analogue of Pascal's Triangle that we call the {\it Tree-profile Triangle}.  The reader may want to compare
+This somewhat complicated definition can be better understood with the help of an analogue of Pascal's Triangle that we call the {\it Tree-profile triangle}.  The reader may want to compare
 Fig.~\ref{fig:pascal-triangle} with Fig.~\ref{fig:TP-triangle}.
 
 \smallskip
 
-Fig.~\ref{Fig:treeprofile}'s illustration of how Tree-Profile numbers evolve is a valuable companion to the textual development in the section, including definition (\ref{eq:TP-defn}).
+Fig.~\ref{Fig:treeprofile}'s illustration of how Tree-profile numbers evolve is a valuable companion to the textual development in the section, including definition (\ref{eq:TP-defn}).
 \begin{figure}[htb]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/TreeProfile}
-        \caption{Graphical construction of the triangle profile numbers (light shaded boxes correspond to initial known values).}
+        \includegraphics[scale=0.35]{FiguresMaths/TreeProfile}
+        \caption{A graphical depiction of the Tree-profile triangle; shaded boxes identify the initial values.}
         \label{Fig:treeprofile}
 \end{center}
 \end{figure}
@@ -74,13 +74,13 @@ n=9 &  1 &  2 &  4 &  8 &  16 &  32 &  64 & 128 & 256 & 511 \\
 &\vdots &\vdots &\ddots
 \end{array}
 \] 
-\caption{A ``prefix'' of the Tree-Profile Triangle, for $n,k \leq 9$.}
+\caption{A ``prefix'' of the Tree-profile triangle, for $n,k \leq 9$.}
 \label{fig:TP-triangle}
 \end{figure}
 
 
-\subsection{Triangle-Profile numbers and binomial coefficients}
-\index{tree-profile numbers!relations with binomial coefficients}
+\subsection{Tree-profile numbers and binomial coefficients}
+\index{Tree-profile numbers!relations with binomial coefficients}
 
 \begin{prop}
 \label{thm:TP=sum-of-bincoeff}
@@ -102,11 +102,9 @@ The case $n=1$ of (\ref{eq:TP=sum-of-bincoeff}) follows from the ``boundary case
 
 \medskip
 
-\ignore{\Denis same remark as before about the indices...}
-
 \noindent
 {\sf Inductive hypothesis.}
-Let us assume that (\ref{eq:TP=sum-of-bincoeff}) holds for all $n$ up to (but not including) some integer $m$.  
+Let us assume that Eq.~(\ref{eq:TP=sum-of-bincoeff}) holds for all $n$ up to (but not including) some integer $m$.  
 
 \noindent
 {\sf Inductive extension}.
@@ -143,7 +141,7 @@ The induction is thus extended, thereby establishing the proposition.
 \end{proof}
 
 \noindent
-Proposition~\ref{thm:TP=sum-of-bincoeff} explains the abundance of powers of $2$ in the Tree-Profile Triangle:
+Proposition~\ref{thm:TP=sum-of-bincoeff} explains the abundance of powers of $2$ in the Tree-profile triangle:
 
 \begin{corol}
 For all $n > k$, $P(n,k) = 2^k$.
@@ -151,7 +149,7 @@ For all $n > k$, $P(n,k) = 2^k$.
 
 \medskip
 
-Finally, we derive the successor Tree-Profile values that allow us to generate the Tree-Profile Triangle.
+Finally, we derive the successor Tree-profile values that allow us to generate the Tree-profile triangle.
 
 \begin{prop}
 \label{thm:successor-TP-values}
@@ -159,13 +157,13 @@ Finally, we derive the successor Tree-Profile values that allow us to generate t
 \nonumber
 \mathbf{(a)} \ \
 P(n, k+1) & = & 
-  2 P(n,k) - 2^{k-n+1} {n \choose {k-n+1}} \\
+  2 P(n,k) - 2^{k-n+1} \cdot {n \choose {k-n+1}} \\
 \label{eq:successor-TP-values}
           &   & \\
 \nonumber
 \mathbf{(b)} \ \
 P(n+1, k) & = &
-  P(n,k) + 2^{k-n-1} \left[ {n \choose {k-n}} + {{n+1} \choose {k-n}} \right]
+  P(n,k) + 2^{k-n-1} \cdot \left[ {n \choose {k-n}} + {{n+1} \choose {k-n}} \right]
 \end{eqnarray*}
 \end{prop}
 
@@ -228,10 +226,10 @@ P(n, k-1) \ + \ 2 P(n, k-2) \ - \ P(n,k) \\
 This chain thus yields part {\bf (b)} of the proposition, completing the proof.  \qed
 \end{proof}
 
-\subsection{The summation formula for Triangle-Profile numbers}
+\subsection{The summation formula for Triangle-profile numbers}
 \index{tree-profile numbers!summation formula}
 
-We observed in Proposition~\ref{thm:sumsof-binomcoeff} that the binomial coefficients in successive rows of Pascal's Triangle sum to successive powers of $2$.  While not quite matching that level of elegance, we show now that the Tree-Profile numbers in successive rows of the Tree-Profile Triangle sum to $1$ less than successive powers of $3$.
+We observed in Proposition~\ref{thm:sumsof-binomcoeff} that the binomial coefficients in successive rows of Pascal's Triangle sum to successive powers of $2$.  While not quite matching that level of elegance, we show now that the Tree-profile numbers in successive rows of the Tree-profile triangle sum to $1$ less than successive powers of $3$.
 
 \begin{prop}
 \label{thm:TP-summation}
@@ -245,14 +243,11 @@ S_n \ \ \eqdef \ \ \sum_{k=0}^{2n-1} P(n,k) \ \ = \ \ 3^n -1.
 \begin{proof}
 We begin with the following consequence of Proposition~\ref{thm:TP=sum-of-bincoeff}:
 \[
-S(n) \ \ = \ \
-  \sum_{k=0}^{2n-1} P(n,k)
-     \ \ = \ \
-  1 \ + \ \sum_{k=0}^{2n-1} P(n,k+1).
+S(n) \ \ = \ \  \sum_{k=0}^{2n-1} P(n,k)  \ \ = \ \  1 \ + \ \sum_{k=0}^{2n-1} P(n,k+1).
 \]
 If we now invoke Proposition~\ref{thm:successor-TP-values}(a), then we find that
 \[
-S(n) \ \ = \ \ 1 \ + \ 2 \cdot \sum_{k=0}^{2n-1}   \big( P(n,k) \ - \ 2^{k-n} {n \choose {k-n+1}} \big).
+S(n) \ \ = \ \ 1 \ + \ 2 \cdot \sum_{k=0}^{2n-1}   \big( P(n,k) \ - \ 2^{k-n} \cdot {n \choose {k-n+1}} \big).
 \]
 
 We can combine the preceding expressions with the ``restricted'' Binomial Theorem (Theorem~\ref{thm:restricted-binomial-thm}) to generate the following chain of equalities.
@@ -260,9 +255,9 @@ We can combine the preceding expressions with the ``restricted'' Binomial Theore
 %{\Denis The first equality is not straightforward, I think an intermediate step is needed here...}
 \begin{eqnarray*}
 S(n) & = & 
-\sum_{j=0}^{2n-1} 2^{n-j} {n \choose j} \ - \ 1  \\
+\sum_{j=0}^{2n-1} 2^{n-j} \cdot {n \choose j} \ - \ 1  \\
      & = &
-2^n \cdot \sum_{j=0}^{2n-1} 2^{-j} {n \choose j} \ - \ 1 \\
+2^n \cdot \sum_{j=0}^{2n-1} 2^{-j}  \cdot {n \choose j} \ - \ 1 \\
      & = & 
 2^n \cdot (3/2)^n \ - \ 1 \\
      & = &

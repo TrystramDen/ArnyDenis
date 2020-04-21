@@ -1,4 +1,4 @@
-%version of 12-19-19
+%version of 04-21-20
 
 \chapter{A Deeper Look at the Fibonacci Numbers}
 \label{ch:FIBO-enrich}
@@ -6,6 +6,8 @@
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 {\bf Topic-specific reference}
+
+\smallskip
 
 E.~Zeckendorf (1972): 
 {\it Repr\'{e}sentation des nombres naturels par une somme de nombres de Fibonacci ou de nombres de Lucas.}.  {\it Bull.~Soc.~R.~Sci.~Li\`{e}ge 41}, 179--182.
@@ -17,7 +19,7 @@ E.~Zeckendorf (1972):
 \label{sec:FIBO-enrich-ops}
 
 \index{The Fibonacci Quartlerly}
-One reason that the Fibonacci sequence has captivated an entire mathematically oriented community are the myriad identities involving Fibonacci numbers, which are simply presented and gracefully verified.\footnote{An entire research journal, {\it The Fibonacci Quarterly}, is dedicated to the mathematics of recursively defined sequences of numbers---the genre epitomized by the Fibonacci numbers.}  This section is dedicated to two particularly beautiful,  unintuitive, identities.
+One reason that the Fibonacci sequence has captivated a large community of mathematically oriented fans is the extensive repertoires of identities involving Fibonacci numbers, which are simply presented and gracefully verified.\footnote{An entire research journal, {\it The Fibonacci Quarterly}, is dedicated to the mathematics of recursively defined sequences of numbers---the genre epitomized by the Fibonacci numbers.}  This section is dedicated to two particularly beautiful,  unintuitive, identities.
 
 \subsection{Products of Consecutive Fibonacci Numbers}
 \label{sec:product-Fn-Fn+1}
@@ -72,7 +74,7 @@ The induction is thus extended, which completes the proof.  \qed
 \subsection{Greatest Common Divisors of Fibonacci Numbers}
 \label{Appendix:FiboGCD}
 
-Our second identity exposes the marvelous fact that the {\em greatest common divisor} ({\sc gcd}) of an arbitrary pair of Fibonacci numbers is again a Fibonacci number!
+Our second identity exposes the marvelous fact that the {\em greatest common divisor} ({\sc gcd}) of every pair of Fibonacci numbers is again a Fibonacci number.  Even more, if the two given Fibonacci numbers are those of indices $m$ and $n$, then this {\sc gcd} is the Fibonacci number whose index is the {\sc gcd} of $m$ and $n$.
 
 \begin{prop}
 For all integers $m, n, \in \N$,
@@ -179,7 +181,7 @@ This completes the proof.   \qed
 \subsection{Preliminaries}
 \label{sec:FIBO-num-intro}
 
-This section continues our mathematical-cultural tour of the Fibonacci numbers.  Our study of the sequence until now, in Sections~\ref{sec:Fibonacci} and~\ref{sec:FIBO-enrich-ops}, has focused ``inward", deriving results that are important for understanding the sequence.  Now, in contrast, we focus on an ``outward"-looking application of the sequence.
+This section continues our mathematical-cultural tour of the Fibonacci numbers.  Our study of the sequence until now, in Sections~\ref{sec:Fibonacci} and~\ref{sec:FIBO-enrich-ops}, has focused ``inward", deriving results that are important for understanding the sequence.  Now, we focus on an ``outward"-looking application of the sequence.
 
 \medskip
 
@@ -188,7 +190,7 @@ History supplies many examples of nonstandard representations of integers provin
 \subsection{Zeckendorf's Theorem}
 \label{sec:Zeckendorf's-Theorem}
 
-\index{Zeckendorf, Edouard}
+\index{Zeckendorf, Edouard} \index{Zeckendorf's Theorem}
 
 The endeavor of using Fibonacci numbers to represent arbitrary integers is based on the following theorem by the Belgian mathematician Edouard Zeckendorf  [Zeckendorf, 1972].
 
@@ -201,6 +203,8 @@ To simplify exposition, we employ two nonstandard conventions in what follows.
 \item
 {\em For integers $m$ and $n$, we write ``$m \gg n$" to mean that $m \geq n+2$.}
 \end{enumerate}
+
+\index{Zeckendorf numerals} 
 
 \begin{prop}[Zeckendorf's Theorem]
 \label{thm:Zeckendorf}
@@ -216,11 +220,14 @@ Every positive integer $n$ has a unique representation as the sum of nonconsecut
 where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
 \end{prop}
 
-\medskip
+
+\bigskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 {\bf Explanatory note}.
+
+\smallskip
 
 The injunction against employing $F(1)$ in a representation is no real restriction because under this section's convention for the indices of Fibonacci numbers, $F(1)=F(2)$.
 \end{minipage}
@@ -230,11 +237,11 @@ The injunction against employing $F(1)$ in a representation is no real restricti
 \index{Zeckendorf representation}
 
 \noindent
-Call a representation of an integer $n$ a {\it Zeckendorf representation} if it satisfies the conditions of Proposition~\ref{thm:Zeckendorf}.
+Call a representation of an integer $n$ a {\it Zeckendorf representation} or, alternatively, a {\it Zeckendorf numeral} if it satisfies the conditions of Proposition~\ref{thm:Zeckendorf}.\footnote{The use of the term {\it Zeckendorf numeral} conforms with the terminology of Chapter~\ref{ch:numerals}.}
 
 \medskip
 
-\noindent {\it Illustrating the Zeckendorf representation.}
+\noindent {\it Illustrating Zeckendorf numerals.}
 
 \noindent $\bullet$
 The Zeckendorf representation of the integer $12345$ is:
@@ -262,7 +269,7 @@ Fig.~\ref{fig:zeckendorf} illustrates the Zeckendorf representations of the firs
 Our proof accomplishes three goals simultaneously:
 \begin{itemize}
 \item
-It specifies an algorithm for constructing a Zeckendorf representation of every integer $n$.
+It specifies an algorithm for constructing a Zeckendorf representation of an arbitrary integer $n$.
 \item
 It verifies that the resulting representation is
   \begin{itemize}
@@ -289,7 +296,7 @@ Uniqueness, which asserts that no other sum of Fibonacci numbers that satisfy th
 \medskip
 
 \noindent {\sf Inductive hypothesis}.
-Assume for induction that any integer $m < F(r)$ admits a unique representation of the form specified in Proposition~\ref{thm:Zeckendorf}.
+Assume for induction that any integer $m < F(r)$ admits a unique Zeckendorf numeral.
 
 \medskip
 
@@ -304,7 +311,9 @@ Of course, this claim is true for the smallest $n$ in the interval, namely, $n=F
 
 \smallskip
 
-Focus, therefore, on an arbitrary $n \neq F(r)$ within the interval.  Write this $n$ in the form $n = F(r) + m$.  Note that we must have $m < F(r)$, by specification of the interval and by the defining recurrence of the Fibonacci sequence.  Consequently, our inductive hypothesis tells us that the integer $m$ admits a unique Zeckendorf representation:
+Focus, therefore, on an arbitrary $n \neq F(r)$ within the interval.  Write this $n$ in the form $n = F(r) + m$.  Note that we must have $m < F(r)$, by specification of the interval and by the defining recurrence of the Fibonacci sequence.  Consequently, our inductive hypothesis tells us that the integer $m$ admits a unique Zeckendorf numeral:
+
+\smallskip
 
 \hspace*{.25in} $m \ = \ F(k_1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell)$
 
@@ -317,6 +326,8 @@ where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
 
 \noindent
 This means that the integer $n$ admits a representation of the form
+
+\smallskip
 
 \hspace*{.25in} $n \ = \ F(r) \ + \ F(k_1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell)$
 
@@ -333,7 +344,7 @@ This equality would contradict the fact that $n < F(r+1)$.
 
 \smallskip
 
-This argument verifies the uniqueness as well as the validity of $n$'s Zeckendorf representation.
+This argument verifies the uniqueness as well as the validity of $n$'s Zeckendorf numeral.
 
 \medskip
 
@@ -359,7 +370,7 @@ For all {\em positive} integers $n$: Each length-$\ell$ bit-string
 where each $b_i \in \{0,1\}$, is the unique numeral for the positive integer
 \[ n \ = \ (b_{\ell+1} b_\ell \cdots b_2)_F \ \eqdef \  \sum_{k=2}^{\ell+1} \ b_k \cdot F(k) \]
 \end{itemize}
-%Note: we wrote here the representation of $n$ in the Fibonacci numbering system using parenthesis in order to avoid confusions on the indices.
+
 
 \subsubsection{Observations about the system's numerals}
 
@@ -449,10 +460,7 @@ Perhaps the simplest procedure for achieving this transformation---and achieving
 \medskip
 
 \noindent For all integers $n \geq 2$,
-\[
-F(n) \ \ = \ \
-F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \cdots + \ 1
-\]
+\[ F(n) \ \ = \ \ F(n-1) \ + \ F(n-3) \ + \ F(n-5) \ + \cdots + \ 1 \]
 
 \medskip
 

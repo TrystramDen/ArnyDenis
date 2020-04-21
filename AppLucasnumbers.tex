@@ -226,13 +226,12 @@ This validates our final identity, which completes the proof.  \qed
 %Fibonacci progression is the most popular and the most simple Definition of Lucas' numbers
 %
 \textbf{Definition.}
-Given the two starting numbers $L(0) = 1$ and $L(1) = 3$, 
-the Lucas numbers are obtained by the same progression as Fibonacci: 
+Given the two starting numbers $L(0) = 1$ and $L(1) = 3$, the Lucas numbers are obtained by the same progression as the Fibonacci numbers: 
+\[ L(n+1) = L(n)+L(n-1) \]
 
-$L(n+1) = L(n)+L(n-1)$.
 \medskip
 
-In order to gain intuition on this problem, let us compute the first ranks in regard to the classical Fibonacci numbers:
+In order to gain intuition on the relationship between the Fibonacci and Lucas sequences, let us compare the first elements of the two sequences.
 \begin{figure}[htb]
 \[
 \begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
@@ -245,81 +244,61 @@ L(n) & 1 & 3 &  4 &  7  &  11  &  18  &  29 & 47  & 76  & 123 & \ldots \\
 \hline
 \end{array}
 \] 
-\caption{Correspondence between Fibonacci and Lucas numbers.}
+\caption{Comparing Fibonacci and Lucas numbers.}
 \label{fig:fiboLucas}
 \end{figure}
-%
-%n: $~~~~0, 1, 2, 3, ~4, ~5, ~6, ~7, ~8, ~~9, ...$
-%
-%F(n): $1, 1, 2, 3, ~5, ~8, 13, 21, 34, ~55, ...$
-%
-%L(n): $1, 3, 4, 7, 11, 18, 29, 47, 76, 123, ...$
+
+
 \medskip
 
-%
-%There are strong links with Fibonacci numbers.
-%In particular, we established before that
-%\bigskip
-%
-%$F(n+2) = 1+ \sum_{k=0}^{n} F(k)$. 
-%\bigskip
-%
-%We have similarly: $L(n+2) = 1+ \sum_{k=-1}^{n} L(k)$ since the basic step of the induction is still valid: 
-%
-%$L(2) = L(-1 )+L(0) +1 = 2+1+1 = 4$.
-%%Actually, it will be true for all the progressions where $u_1=1$.
-%
+Based on the patterns we observe the following.
 
-\noindent \textit{The problem.}
-Prove the following expression:
+\begin{prop}
+For all positive integers $n$, and all $k \leq n$:
+\[ F(k-1) \cdot L(n) \ = \ F(n+k) \ + \ (-1)^{k-1} F(n-k) \]
+\end{prop}
 
-$F(k-1).L(n) = F(n+k)+ (-1)^{k-1}F(n-k)$ for $k \leq n$
-\bigskip
-
-\noindent \textit{The solution.} 
-
-There are two integers involved here ($k$ and $n$).
-Let us study the expression step by step for successive values of $k$.
-\medskip
-
+\begin{proof}[Sketch]
+Let us use induction on $k$ to study the asserted products for fixed $n$.
 \begin{itemize}
-\item The case $k=1$ has been proved before.
+\item
+{\sf Base.} 
+The case, $k=1$, follows by the defining recurrence of the Lucas numbers.
 
 \item
-Extension.
+{\sf Extension.}
+Using an approach similar to the base case, we can observe that
+\[ L(n) = F(n+2)-F(n-2) \] 
+Let us see why.
 
-Using a similar approach, we obtain $L(n) = F(n+2)-F(n-2)$. 
-What happens if we generalize? 
-\medskip
+\smallskip
 
-Easy calculations lead to the following results:
-\medskip
-
-$2.L(n) = F(n+3) + F(n-3) $
-
-$3.L(n) = F(n+4) - F(n-4)$
-
-$5.L(n) = F(n+5) + F(n-5)$
-\medskip
+Easy calculations yield the following equations:
+\begin{eqnarray*}
+2 L(n) & = & F(n+3) + F(n-3) \\
+3 L(n) & = & F(n+4) - F(n-4) \\
+5 L(n) & = & F(n+5) + F(n-5)
+\end{eqnarray*}
  
-As $2, 3, 5$ are successive Fibonacci numbers, this gives us the intuition of the general case:
+Observing that $2$, $3$, and $5$ are consecutive Fibonacci numbers, we obtain the intuition for the general case,
+\[  F(k-1) \cdot L(n) \ = \ F(n+k) \ + \ (-1)^{k-1}F(n-k) \ \ \ \mbox{ for  } k \leq n \]
+which is proved (again) by induction on $k$.
 
-$F(k-1).L(n) = F(n+k) + (-1)^{k-1}F(n-k)$ for $k \leq n$
-\medskip
+\smallskip
 
-which is proved (again) as follows by induction assuming the expression holds at rank up to $k$.
+The base case is straightforward (see case $k=1$).
 
-The basis case is straightforward (see case $k=1$).
+\smallskip
 
-Compute $F((k+1)-1).L(n)$ and apply the definition of Fibonacci number $F((k+1)-1) = F(k-1) + F(k-2)$
-
-$F(k).L(n) = F(k-1).L(n + F(k-2).L(n)$ and replace both last terms by using the induction hypothesis:
-
-$= F(n+k) + (-1)^{k-1}F(n-k) + F(n+k-1) + (-1)^{k-2}F(n-(k-1))$
-
-$= F(n+k) +  F(n+k-1) + (-1)^{k-1}(F(n-k) - F(n-k+1))$
-
-The final result is obtained by applying twice the definition of the Fibonacci numbers.
-
+Compute $F((k+1)-1) \cdot L(n)$ and apply the definition of Fibonacci number:
+\[ F((k+1)-1) \ = \ F(k-1) \ + \ F(k-2) \]
+If we replace the two last terms by using the induction hypothesis, we observe the following.
+\begin{eqnarray*}
+F(k) \cdot L(n) & = & F(k-1) \cdot L(n \ + \ F(k-2) \cdot L(n) \\
+                        & = & F(n+k) \ + \ (-1)^{k-1} F(n-k) \ + \ F(n+k-1) \\
+                        &    & \ \ \ \ \ \ + \ (-1)^{k-2} F(n-(k-1)) \\
+                        & = & F(n+k) \ + \ F(n+k-1) \ + \ (-1)^{k-1} (F(n-k) \ -  F(n-k+1))
+\end{eqnarray*}
+The sought result is finally obtained by invoking the definition of the Fibonacci numbers twice. \qed
 \end{itemize}
-
+\end{proof}
