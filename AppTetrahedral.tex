@@ -25,93 +25,81 @@ We hope that our focus in this section on highly structured problems will help t
 %%%%%%%%%%%%%%%%%%%
 \section{Revisiting the Triangular Numbers $\Delta_n$}
 
-The $n$ triangular number is defined as the sum of the $n$th first integers.
-It is denoted by $\Delta_n$.
+\index{order-$n$ triangular number} \index{triangular number}
 
-$\Delta_n =  \sum_{k=1}^{n} k$
-
-In chapter~\ref{ch:Summation}, we proved the expression of $\Delta_n$ by two methods.
+Recall that for each positive integer $n$, the {\it order-$n$ triangular number} is the sum of the  first positive integers: $\Delta_n \ = \ 1 \ + \ 2 \ + \cdots + \ n$.  In Chapter~\ref{ch:Summation}, we derived the value $\Delta_n$, namely ${1 \over 2}n(n+1)$, in several ways, including, natably,
 \begin{itemize}
-\item the \textit{trick} of Gauss that evidences an invariant: the sum of the $k$th term plus the $n-k+1$th one
-is equal to $n+1$. 
-\item using the Fubini's double counting principle, where the $k$th integer is represented by $k$ tokens.
-Putting two collections of tokens organized as triangles leads to a rectangle whose surface is equal to $n.(n+1)$
+\item
+Gauss's ``trick" that builds upon the following invariant: 
+
+For all $k$, the $k$th and $n-k+1$th terms of $\Delta_n$'s defining summation sum to $n+1$ 
+\item 
+Fubini's double-counting principle, which represents the $k$th integer by $k$ tokens:
+
+Merging two triangle-shaped collections of tokens yields a rectangle of area $n(n+1)$.  Indeed, the representation of $\Delta_n$ by a triangle of tokens is the origin of its ``triangular" name.
 \end{itemize}
-We present below a figure that is an intermediate between both methods and that will serve as the basic principle for further investigations.
-Like for Gauss' trick, the sum of each of the n rows is an invariant (see the last column of Fig.~\ref{fig:Tetrahedral2}). 
+Fig.~\ref{fig:Tetrahedral2} depicts a stratagem that melds Gauss's and Fubini's.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresArithmetic/appTetrahedral2}
-        \caption{Computing $\Delta_n$ for $n=4$: two copies of a basic triangle pattern aligned in rows sum up to an invariant.}
+        \caption{Computing $\Delta_n$ for $n=4$: Two copies of a triangle are arranged so that all rows have the same sum; i.e., the row-sum is an {\em invariant}.}
         \label{fig:Tetrahedral2}
 \end{center}
 \end{figure}
-$\Delta_n =  \sum_{k=1}^{n} k = \frac{1}{2}n.(n+1)$
+The figure's use of invariants will serve as the basic reasoning principle in our expedition beyond $\Delta_n$.
 
 
 %%%%%%%%%%%%%%%
-\section{Tetrahedral numbers}
+\section{Tetrahedral Numbers}
 \label{sec:tetraedralNumbers}
 
-We generalize in this section the previous result. The problem is to compute
-the sum of the first triangular numbers, called tetrahedral numbers (the name comes from the 3 dimension representation, 
-which has $4$ faces):(See Footnote~\ref{foot:Theta}.)
+\index{tetrahedral number} \index{$\widehat{\Theta}_n$: the $n$th tetrahedral number}
 
-$\widehat{\Theta}_n =  \sum_{k=1}^{n} \Delta_k$
+This section extends our work on $\Delta_n$.  The extension emerges from the problem of summing the first $n$ triangular numbers, i.e., to evaluate the summation
+\[ \widehat{\Theta}_n \ \eqdef \ \Delta_1 \ + \ \Delta_2 \ + \cdots +\ \Delta_n \]
+Each such sum is called a {\it tetrahedral number}: the  $n$th such is denoted $\widehat{\Theta}_n$; see Footnote~\ref{foot:Theta}.)  In common with $\Delta_n$, the ``tetrahedral" name of $\widehat{\Theta}_n$ comes from the number's representation via a 3-dimensional representation as a tetrahedron of tokens. 
 
-\subsection{A first look}
+\subsection{An Algebraic Evaluation of $\widehat{\Theta}_n$}
 
-The natural way is to replace $\Delta_k$ by its value $\frac{n.(n+1)}{2}$ and to determine the expression
-by arithmetic manipulations.
+The most obvious way to evaluate the summation underlying $\widehat{\Theta}_n$ is to replace each $\Delta_k$ by its value ${1 \over 2}k (k+1)$ and to proceed by algebraic manipulations to evaluate the sum of the $n$ triangular numbers.  We leave it to the reader to follow this strategy and verify that
+\begin{eqnarray*}
+\widehat{\Theta}_n & = & \sum_{k=1}^{n} \ \Delta_k \\
+      & = & \sum_{k=1}^{n} \ \frac{1}{2} (k^2 + k) \\
+      & =  & \frac{1}{2} \left( \sum_{k=1}^{n} \ k^2 + \sum_{k=1}^{n}  \ k \right) \\
+      & = & {1 \over 6} n (n+1)(n+2)
+\end{eqnarray*}
+The final value comes from invoking Eq.~(\ref{eq:sum-1-to-nsq}) and the value of $\Delta_n$ in the penultimate expression. 
 
-We left the verification to the readers, the expression is:
+\smallskip
 
-$\widehat{\Theta}_n =  \sum_{k=1}^{n} \Delta_k $
+All of this is fine, but not very intuitive.  But, there is also a perspicuous pictorial evaluation of $\widehat{\Theta}_n$.  We develop this evaluation technique now.
 
-$=  \sum_{k=1}^{n} \frac{1}{2} (k^2 + k) $
+\subsection{A Pictorial Evaluation of $\widehat{\Theta}_n$}
 
-$=  \frac{1}{2} (\sum_{k=1}^{n} k^2 + \sum_{k=1}^{n} k) $
-
-Using expression~\ref{eq:sum-1-to-nsq} for the sum of squares:
-
-$= \frac{1}{2} ( \frac{1}{3} n^3 + \frac{1}{2} n^2 + \frac{1}{6} n + \frac{1}{2} n^2 + \frac{1}{2} n )$
-
-$= \frac{n.(n+1).(n+2)}{6}$
+We employ the double-counting stratagem of Fubini's principle.  We begin by representing $\widehat{\Theta}_n$ by means of triangular piles of tokens, in the manner of Fig.~\ref{fig:Tetrahedral2}.  But, we now replace the $1$s in the figure by successive integers.
 
 \medskip
 
-Remark that this result can also easily been proved by recurrence as soon as the expression is known
-(by guessing the expression).
-We let the reader develop this type of proof. 
-
-
-\subsection{Pictorial proof}
-
-We detail now the proof using the double counting Fubini's principle.
-Following this way, you should write the previous expression of the tetrahedral number in a developed form 
-using a triangle shape like the one used in Fig.~\ref{fig:Tetrahedral2}
-replacing the $1$'s by the successive integers.
-
-A tetrahedral number is the sum of triangular numbers, and thus, it can be arranged as a triangle (see Fig.~\ref{fig:Tetrahedral3}).
-As triangles have three sides, we have three ways to represent them (by rotating the sides) as shown in Fig.~\ref{fig:Tetrahedral1}..
-Then, as before, the Fubini's principle will be used to sum up the successive rows.
-The way to organize them is guided by the search of an invariant:
-the sum of the elements over the rows of the three triangles is proportional to $n+2$.
+We employ geometric intuition.  A tetrahedral number is the sum of triangular numbers; therefore, it can be arranged as a triangle, as in Fig.~\ref{fig:Tetrahedral3}.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresArithmetic/appTetrahedral3}
-        \caption{Basic pattern for computing $\widehat{\Theta}_n$ (for $n=4$).}
+        \includegraphics[scale=0.35]{FiguresArithmetic/appTetrahedral3}
+        \caption{The basic pattern for computing $\widehat{\Theta}_n$ (for $n=4$).}
         \label{fig:Tetrahedral3}
 \end{center}
 \end{figure}
+Because triangles have three sides, we have three ways to represent them---by rotating the sides in the manner of Fig.~\ref{fig:Tetrahedral1}.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresArithmetic/appTetrahedral1}
-        \caption{Schematic view of the three ways of organizing the triangles.
-        The numbers are the same on each solid line, the bold one contains the $1$.}
+        \caption{A schematic view of the three ways of organizing the triangles.
+        The numbers are the same on each solid line: the bold one contains the $1$.}
         \label{fig:Tetrahedral1}
 \end{center}
 \end{figure}
+Once we exploit these multiple views, we invoke Fubini's principle to sum up the successive rows of the figure.  Our strategy is guided by a search for an {\em invariant}.  In this case, we find that the sum of the elements along the rows of the three triangles is proportional to $n+2$.
+
+Finally, we sum the numbers in each row in Fig.~\ref{fig:Tetrahedral4}.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.32]{FiguresArithmetic/appTetrahedral4}
@@ -119,261 +107,133 @@ the sum of the elements over the rows of the three triangles is proportional to 
         \label{fig:Tetrahedral4}
 \end{center}
 \end{figure}
-Sum up the numbers in each row in Fig.~\ref{fig:Tetrahedral4}.
 \begin{itemize}
 \item 
-The sum over the first row is equal to $1+1+n = n+2$.
+The sum along the first row is  $1+1+n \ = \ n+2$.
 \item
-The second one is equal to $3 + 3 + 2.(n-1) = 2(n+2)$. 
+The sum along the second row is $3 + 3 + 2 (n-1) \ = \ 2(n+2)$. 
 \item
-Let us sum up the elements in row $k$: 
+Let use sum up the elements in row $k$: 
 
-$\Delta_k + \Delta_k + k(n-k+1)  = k(k+1) + kn-k^2+k = k(n+2)$.
+$\Delta_k + \Delta_k + k(n-k+1) \ = \ k(k+1) \ + \ kn \ - \ k^2 \ + \ k \ = \  k(n+2)$.
 \end{itemize}
-$= \frac{1}{4}.\widehat{\Theta}_n.(n+3)$
+Thus, the sum of all rows equals $\Delta_n \cdot (n+2)$.
 
-The global sum is equal to $n+2$ times $(1+2+...+n)$.
+\smallskip
 
-Finally, $3 \widehat{\Theta}_n = (n+2) \Delta_n$
+But this summation has computed $\widehat{\Theta}_n$ three times!  We conclude that
+%$= \frac{1}{4}.\widehat{\Theta}_n.(n+3)$
+%The global sum is equal to $n+2$ times $(1+2+...+n)$.
+\[ \widehat{\Theta}_n \ = \ {1 \over 3} \Delta_n \dot (n+2) \]
+We thereby get a more intuitive path to the value of $\widehat{\Theta}_n$.
+
 \medskip
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-{\bf Explanatory note}.
+{\bf A summarizing note}.
 
-\noindent \textit{Summary.} 
-We proved the following results:
+\smallskip
+
+It is important to recognize the natural progression in this section, because this will guide further extensions of these ideas.
+
+We have thus far proved the following:
+\[ \begin{array}{ccccccc}
+Id_n & = & 1+1+ \cdots +1 & = & n \\
+\Delta_n & = & 1+2+ \cdots +n & = & {1 \over 2} Id_n \cdot (n+1) & = & {1 \over 2} n (n+1) \\
+\widehat{\Theta}_n & = & \Delta_1 + \Delta_2 + \cdots + \Delta_n & = & 
+{1 \over 3} \Delta_n \cdot (n+2) & = & {1 \over 3!} n(n+1)(n+2)
+\end{array} \]
+
+With each increase in rank, we take one additional copy of the structure that characterizes the preceding rank:
 \begin{itemize}
-\item $Id_n = 1+1+ ... +1 = n$
-\item $\Delta_n = 1+2+3+ ... +n = \frac{1}{2}.Id_n.(n+1) = = \frac{n.(n+1)}{2}$
-\item $\widehat{\Theta}_n = \Delta_1 + \Delta_2 + ... + \Delta_n = \frac{1}{3} .\Delta_n.(n+2) = \frac{1}{3}.\Delta_n.(n+2) = \frac{n.(n+1).(n+2)}{3!}$
-\end{itemize}
+\item
+With rank 1 ($Id_n$), we take {\em one} copy of $n$ tokens.
 
-Computing $\widehat{\Theta}_n$ corresponds to the third \textit{dimension}.
-The idea of taking three copies of the triangles with rotating directions is natural
-as the extension of the idea of taking two copies of the n integers (second dimension).
-The dimension $1$ is simply to take one copy.  
+\medskip
+\item
+With rank 2 ($\Delta_n$), we take {\em two} copies of the $n$ tokens of rank 1, organized as triangles.
+
+\medskip
+\item
+With rank 3 ($\widehat{\Theta}_n$), we take {\em three} copies of the triangles of rank 2, organized as tetrahedra.
+\end{itemize} 
 \end{minipage}
 }
 
+We will end with a sketch of the next rank, the {\em Pentahedral numbers}.  You will be able to guess how to proceed at each step.
+
 
 %%%%%%%%%%%%%%%%%%%%
-\section{$\oplus$ Pentahedral numbers}
+\section{$\oplus$ Pentahedral Numbers}
 
-As the previous results show some regularities, a natural question is: \textit{can we go further following the same pattern for computing 
-$ \sum_{k=1}^{n} \widehat{\Theta}_k$?}
+\index{pentahedral number} \index{$\Pi_n$: the $n$th pentahedral number}
+
+It is natural to ponder whether the regular patterns observed thus far will allow us to go to the next rank---to the {\em pentahedral numbers} 
+\[ \Pi_n \ \eqdef \ \widehat{\Theta}_1 \ + \ \widehat{\Theta}_2 \ + \cdots + \ \widehat{\Theta}_n \]
+Let's see \ldots
+
 \medskip
 
-Looking at the previous dimensions, the expected expression is:
+Extrapolating from ranks $1$, $2$, and $3$, we would expect to encounter the following evaluation for the pentahedral number $\Pi_n$.
+\[
+\Pi_n \ = \ \widehat{\Theta}_1 + \widehat{\Theta}_2 + \cdots + \widehat{\Theta}_n \ = \
+{1 \over 4} \widehat{\Theta}_n \cdot (n+3) \ = \ {1 \over 4!} n(n+1)(n+2)(n+3) 
+\]
+{\em In fact, this chain of equations is valid!}  The required direct algebraic manipulations---replacing the $\widehat{\Theta}_k$ by their expressions and simplifying---are a bit cumbersome but definitely doable.
 
-$\Pi_n = \widehat{\Theta}_1 + \widehat{\Theta}_2 + ... + \widehat{\Theta}_n = \frac{1}{4}.\widehat{\Theta}_n.(n+3) = \frac{n.(n+1).(n+2).(n+3)}{4!} $
+\smallskip
 
-Again, it is possible to prove this expression by direct arithmetic manipulations
-(replacing $\widehat{\Theta}_k$ by their expressions). 
-It is not so easy to extend the previous construction, however, we know that there are $4$ copies of $\theta_n$ to consider.
-Let organize three of them within the same triangular pattern in Fig.~\ref{fig:Tetrahedral6}.
+It is not so easy to extend the pictorial construction.  However, we know that there should be four copies of $\widehat{\Theta}_n$ to consider.  So let us see where intuition leads us.
+
+\smallskip
+
+We organize three copies of $\widehat{\Theta}_n$ of them within the same triangular pattern in Fig.~\ref{fig:Tetrahedral6}.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.35]{FiguresArithmetic/appTetrahedral6}
+        \includegraphics[scale=0.3]{FiguresArithmetic/appTetrahedral6}
         \caption{Computing $\Pi_n$: The three basic triangle patterns (solid lines represent integers with the same value).}
         \label{fig:Tetrahedral6}
 \end{center}
 \end{figure}
-As each element is a $\widehat{\Theta}_k$, let decompose them again as in Fig.~\ref{fig:Tetrahedral7} for $n=4$.
+
+Because each element is a  copy of $\widehat{\Theta}_k$, let us decompose them again as we did in Fig.~\ref{fig:Tetrahedral7} (for $n=4$).  We arrive at Fig.~\ref{fig:Tetrahedral7}.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.36]{FiguresArithmetic/appTetrahedral7}
+        \includegraphics[scale=0.35]{FiguresArithmetic/appTetrahedral7}
         \caption{Computing $\Pi_n$: Organizing the three basic triangle patterns (for $n=4$).}
         \label{fig:Tetrahedral7}
 \end{center}
 \end{figure}
-Let us add the remaining $\widehat{\Theta}_n$.
-As for the previous lower dimension, summing up within each row leads to an invariant as shown in Fig.~\ref{fig:Tetrahedral5}.
+Now, let us add the remaining copy of $\widehat{\Theta}_n$ in a manner that exposes an invariant.  As we found with lower ranks, we are able to find such an organization:
+Summing within each row of the structure in Fig.~\ref{fig:Tetrahedral5} leads to an invariant: Each row sums to $n+3$
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.36]{FiguresArithmetic/appTetrahedral5}
-        \caption{Add the last fourth copy of $\widehat{\Theta}_n$ and sum up the rows. The sum of elements of the last columns gives the result $\widehat{\Theta}.(n+3)$.}
+        \includegraphics[scale=0.35]{FiguresArithmetic/appTetrahedral5}
+        \caption{Add the last fourth copy of $\widehat{\Theta}_n$ and sum up the rows. The elements of the last column sum to $\widehat{\Theta}_n \cdot (n+3)$.}
         \label{fig:Tetrahedral5}
 \end{center}
 \end{figure}
-The final result is easy to obtain:
+The final result is now easy to obtain:
 \begin{itemize}
 \item 
-The sum over the first row is equal to $n+3$.
+The elements of the first row sum to $n+3$.
 \item
-The sum in the second series of rows is equal to $3.(n+3)$. 
+The elements of the second series of rows sum to $3 (n+3)$. 
 \item
-The sum of all the elements in the $k$th series of rows is equal to
-$\Delta_k.(n+3)$.
+The elements of the $k$th series of rows sum to $\Delta_k \cdot (n+3)$.
 \end{itemize}
-$4.\Pi_n = (n+3) \sum_{k=1}^{n} \Delta_k = \widehat{\Theta}_n.(n+3)$
+We thereby find that
+\[
+4 \Pi_n \ = \ (n+3) \cdot \sum_{k=1}^{n} \Delta_k \ = \ \widehat{\Theta}_n \cdot (n+3)
+\]
 
+\subsection{Can We Go Further?}
 
-\subsection{Going further?}
+At this point, even the perspicuous pictorial summations become arduous.  We expect---but have not verified---that the hexahedral numbers, obtained by summing the first $n$ pentahedral numbers will sum to
+\[ H_n \ \eqdef \ \sum_{k=1}^n \Pi_k \ = \ {1 \over 5} \Pi_n \cdot (n+4) \ = \ 
+{1 \over 5!} n (n+1) (n+2) (n+3) (n+4)
+\]
 
-Are you able to consider the challenge of going one step further?
-
-We expect the sum of pentatonal numbers to be equal to:
-
-$\frac{1}{5}.\Pi_n.(n+4) = \frac{n.(n+1).(n+2).(n+3).(n+4)}{5!}$
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ignore{******************
-\section{Josephus' problem}
-
-
-\subsection{description}
-
-The problem studied in this section comes from the book \textit{R\'ecr\'eations math\'ematiques} of Edouard Lucas {\Denis put complete ref here and check the source...}.
-He described this problem as an old story reported by Flavius Josephus during the Jewish-Roman war 
-in the first century. 
-The legend reports that Flavius was among a band of 41 rebels trapped in a cave by the roman army. Preferring suicide to capture, the
-rebels decided to form a circle and proceeding around to kill every second remaining person until no one was left.
-As Josephus did not want to die and had some skills in Mathematics, he quickly calculated
-where he should stand in the circle in order to stay alive at the end of the process.
-\medskip
-
-The problem is formally described as follows.
- 
-Given $n$ successive numbers distributed along a circle.
-The problem is to determine the \textit{survival number} (denoted by $J(n)$)
-in the process of removing every second remaining number starting from $1$ (see figure~\ref{fig:josephus12step1}).
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/josephus12step1}
-        \caption{First round of the Josephus' cancellation process (for $n=12$).
-        The $n$ first integers are spread over a circle, the integers in boxes are those that are removed.}
-        \label{fig:josephus12step1}
-\end{center}
-\end{figure}
-
-
-In particular, we are interested in knowing if there exists a \textit{closed formula}.
-Guessing the answer is not straightforward. 
-We need to better understand the progression by analyzing several cases (particular values of $n$).
-\medskip
-
-\begin{prop}
-$J(n)$ is odd
-\end{prop}
-
-\begin{proof}
-This is straightforward since the first tour removes all even numbers!
-See figure~\ref{fig:josephus12step1}. 
-\end{proof}
-\medskip
-
-\noindent
-We called \textit{round}, the set of elementary steps to come back at the initial position in the circle. 
-Starting at $1$, the first round is completed after $\lceil \frac{n}{2} \rceil$ steps. 
-Then, again half of the of the remaining numbers are removed in the second round and so on.
-Notice that the $1$ may be cancelled. In this case, the next step will start at the smallest remaining one.
-
-How many rounds do we have for determining $J(n)$?
-If $N$ denotes this number, it verifies
-$\Sigma_{i=1}^{i=N} \frac{1}{2^i} = 1$.
-\medskip
-
-\begin{prop}. (even numbers)
-$J(2n) = 2J(n)-1$ 
-\end{prop}
-
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.35]{FiguresMaths/josephus12LastSteps}
-        \caption{Last rounds of the Josephus' cancellation process ($n=12$).}
-        \label{fig:josephus12step2}
-\end{center}
-\end{figure}
-
-{\begin{proof}
-This is a simple generalization of the previous proposition.
-If $n$ is even, the first round corresponds simply to come back to the original circle where one half of the points have been removed. 
-\end{proof}
-
-From this, we deduce $J(2^m)=1$ for all $m$.
-\medskip
-
-Let us turn to odd numbers.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/josephus13}
-        \caption{The two first rounds of the Josephus' cancellation process (for $n=13$).
-        The first one is is depicted by solid lines, the second one is with dotted lines.}
-        \label{fig:josephus13}
-\end{center}
-\end{figure}
-%Figure~\ref{fig:josephus13} depicted an example for $n=13$. 
-\medskip
-
-\begin{prop} (odd numbers)
-$J(2n+1) = 2J(n)+1$ 
-\end{prop}
-
-We can compute easily the first ranks.
-It turns out that the progression is composed of grouped terms starting at each power of $2$. 
-
-
-Let $n=2^m+k$, the rule within each group $m$ is to start at $1$ and increase by $2$ the successive numbers
-($0 \leq k < 2^m$).
-Let prove it by recurrence on $n$.
-\medskip
-
-\begin{prop}
-$J(2^m+k) = 2k+1$ 
-\end{prop}
-
-\begin{proof}
-\begin{itemize}
-\item {\bf Basis.} 
-$n=1$, thus $m=0$, $k=0$ and $J(1) = 2^0+0 = 1$
-\item {\bf Induction step.} 
-Suppose the formula holds for any integer lower than $n=2^m+k$. 
-Since there are two expressions for $J(.)$, we distinguish the cases whether $k$ is even or it is odd:
-\begin{itemize}
-\item If $k$ is even, then, $2^m+k$ is even, and we can write:
-
-$J(2^m+k) = 2J(2^{m-1}+\frac{k}{2})-1$
-
-by induction hypothesis, $J(2^{m-1} +\frac{k}{2}) = 2\frac{k}{2} +1 = k+1$
-
-Thus, $J(2^m+k) = 2(k+1) -1 = 2k+1$.
-
-\item If $k$ is odd, the proof is similar:
-
-$J(2^m+k) = 2J(2^{m-1}+\lfloor \frac{k}{2} \rfloor)+1 = 2\lfloor \frac{k}{2} \rfloor +1 = 2k+1$.
-
-\end{itemize}
-\end{itemize}
-\end{proof}
-}
-\subsection{Coding}
-
-We can even go one step further with this problem by remarking that powers of $2$ play an important role.
-Let us use the radix $2$ representation of $n$ and $J(n)$:
-
-$n = \sum_{j=0}^{j=m} b_j.2^j = b_m.2^m + b_{m-1}.2^{m-1} + ... + b_1.2 + b_0$
-
-$n = (1 b_{m-1} ... b_1 b_0)_2$ since by definition of $m$, we have $b_m=1$ 
-
-$k = (0 b_{m-1} ... b_1 b_0)_2$ since $k < 2^m$
-
-Thus, using the closed formula for $J(n)$:
-
-$J(n) = (b_{m-1} ... b_0 b_m)_2$.
-
-The pictorial interpretation of this coding is given in Fig.~\ref{fig:josephusCoding} for $n=43$, which leads to $J(43) = 23$.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/josephusCoding}
-        \caption{Process for obtaing the josephus' number of $n=43$.}
-        \label{fig:josephusCoding}
-\end{center}
-\end{figure}
-
-In other words, the solution is obtained by a simple shift of the binary representation of $n$.
-We showed here how mathematics are powerful: the analysis leads to an expression that can be obtained in 2 simple operations!
-****************}
-
+Are you up to the challenge?
 
