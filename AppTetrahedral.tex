@@ -1,16 +1,29 @@
-%version of 02-28-20
+%version of 04-22-20
 
-\chapter{The hidden beauty of numbers}
+\chapter{Finding Beauty in Numerical Relationships}
 \label{Appendix:Tetra}
 
-Our first objective here is to show amazing hidden structures in integer expressions.
-The second objective (the most important one) is to develop the reasoning path which leads to these results.
-One of the hardest part while proving a mathematical result is how to develop the insights to use an appropriate \textit{tool} (method, picture, etc.).
-Our purpose in this section is to help to deeply understand what to do facing a mathematical problem.
+In the course of introducing the many mathematical topics that have occupied us throughout the core of our text, we have encountered many instances of ``order" in the world, which some might call ``beauty".  This chapter builds upon instances of beauty that we have uncovered in studying relationships among classes of numbers.
+
+\medskip
+
+In Chapter~\ref{ch:doingmath}, we observed that there is a very compact formula for the sum of the first $n$ positive integers, in the form of a degree-$2$ polynomial which we named $\Delta_n$.  In Chapter~\ref{ch:Summation}, we discovered that the elegance of the expression for $\Delta_n$ extends to the problem of summing the first $n$ perfect squares, and the first $n$ perfect cubes, and so on to higher powers:  For each fixed power $d$, the sum of the first $n$ perfect $d$th powers of positive integers is a polynomial of degree $d+1$.  So, our first search for beauty in numbers uncovered an extension that is based on the degrees of simple polynomials.
+
+\smallskip
+
+We now focus on summing the first $n$ numbers $\Delta_i$ and looking at the sums of those sums---another way to extend beyond the sum of the first $n$ integers.  And we find yet more order and beauty!
+
+\medskip
+
+The reader has probably guessed by this time that our quest for order and beauty is just the ``spoonful of sugar" which accompanies our primary goal---to develop the methodology which enables our quest.  You have surely noted by this point in our joint journey that the activity of solving mathematical problems encompasses several sub-activities which are challenging in their own rights.  One must develop the insights that help one settle on an {\em approach} to the problem---should one strive to represent the problem textually or pictorially \ldots?  And, once having chosen an approach, one must select appropriate {\em tools}---should one seek to argue from small instances to larger ones (induction), should one strive to derive a contradiction based on assuming the negation of one's targeted assertion, and so on?
+
+\smallskip
+
+We hope that our focus in this section on highly structured problems will help the reader gain valuable experience in proceeding through the entire spectrum of activities needed to tackle sophisticated mathematical problems.
 
 
 %%%%%%%%%%%%%%%%%%%
-\section{Revisiting triangular numbers}
+\section{Revisiting the Triangular Numbers $\Delta_n$}
 
 The $n$ triangular number is defined as the sum of the $n$th first integers.
 It is denoted by $\Delta_n$.
@@ -42,9 +55,9 @@ $\Delta_n =  \sum_{k=1}^{n} k = \frac{1}{2}n.(n+1)$
 
 We generalize in this section the previous result. The problem is to compute
 the sum of the first triangular numbers, called tetrahedral numbers (the name comes from the 3 dimension representation, 
-which has $4$ faces):
+which has $4$ faces):(See Footnote~\ref{foot:Theta}.)
 
-$\Theta_n =  \sum_{k=1}^{n} \Delta_k$
+$\widehat{\Theta}_n =  \sum_{k=1}^{n} \Delta_k$
 
 \subsection{A first look}
 
@@ -53,7 +66,7 @@ by arithmetic manipulations.
 
 We left the verification to the readers, the expression is:
 
-$\Theta_n =  \sum_{k=1}^{n} \Delta_k $
+$\widehat{\Theta}_n =  \sum_{k=1}^{n} \Delta_k $
 
 $=  \sum_{k=1}^{n} \frac{1}{2} (k^2 + k) $
 
@@ -87,7 +100,7 @@ the sum of the elements over the rows of the three triangles is proportional to 
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresArithmetic/appTetrahedral3}
-        \caption{Basic pattern for computing $\Theta_n$ (for $n=4$).}
+        \caption{Basic pattern for computing $\widehat{\Theta}_n$ (for $n=4$).}
         \label{fig:Tetrahedral3}
 \end{center}
 \end{figure}
@@ -117,11 +130,11 @@ Let us sum up the elements in row $k$:
 
 $\Delta_k + \Delta_k + k(n-k+1)  = k(k+1) + kn-k^2+k = k(n+2)$.
 \end{itemize}
-$= \frac{1}{4}.\Theta_n.(n+3)$
+$= \frac{1}{4}.\widehat{\Theta}_n.(n+3)$
 
 The global sum is equal to $n+2$ times $(1+2+...+n)$.
 
-Finally, $3 \Theta_n = (n+2) \Delta_n$
+Finally, $3 \widehat{\Theta}_n = (n+2) \Delta_n$
 \medskip
 
 \noindent \fbox{
@@ -133,10 +146,10 @@ We proved the following results:
 \begin{itemize}
 \item $Id_n = 1+1+ ... +1 = n$
 \item $\Delta_n = 1+2+3+ ... +n = \frac{1}{2}.Id_n.(n+1) = = \frac{n.(n+1)}{2}$
-\item $\Theta_n = \Delta_1 + \Delta_2 + ... + \Delta_n = \frac{1}{3} .\Delta_n.(n+2) = \frac{1}{3}.\Delta_n.(n+2) = \frac{n.(n+1).(n+2)}{3!}$
+\item $\widehat{\Theta}_n = \Delta_1 + \Delta_2 + ... + \Delta_n = \frac{1}{3} .\Delta_n.(n+2) = \frac{1}{3}.\Delta_n.(n+2) = \frac{n.(n+1).(n+2)}{3!}$
 \end{itemize}
 
-Computing $\Theta_n$ corresponds to the third \textit{dimension}.
+Computing $\widehat{\Theta}_n$ corresponds to the third \textit{dimension}.
 The idea of taking three copies of the triangles with rotating directions is natural
 as the extension of the idea of taking two copies of the n integers (second dimension).
 The dimension $1$ is simply to take one copy.  
@@ -148,15 +161,15 @@ The dimension $1$ is simply to take one copy.
 \section{$\oplus$ Pentahedral numbers}
 
 As the previous results show some regularities, a natural question is: \textit{can we go further following the same pattern for computing 
-$ \sum_{k=1}^{n} \Theta_k$?}
+$ \sum_{k=1}^{n} \widehat{\Theta}_k$?}
 \medskip
 
 Looking at the previous dimensions, the expected expression is:
 
-$\Pi_n = \Theta_1 + \Theta_2 + ... + \Theta_n = \frac{1}{4}.\Theta_n.(n+3) = \frac{n.(n+1).(n+2).(n+3)}{4!} $
+$\Pi_n = \widehat{\Theta}_1 + \widehat{\Theta}_2 + ... + \widehat{\Theta}_n = \frac{1}{4}.\widehat{\Theta}_n.(n+3) = \frac{n.(n+1).(n+2).(n+3)}{4!} $
 
 Again, it is possible to prove this expression by direct arithmetic manipulations
-(replacing $\Theta_k$ by their expressions). 
+(replacing $\widehat{\Theta}_k$ by their expressions). 
 It is not so easy to extend the previous construction, however, we know that there are $4$ copies of $\theta_n$ to consider.
 Let organize three of them within the same triangular pattern in Fig.~\ref{fig:Tetrahedral6}.
 \begin{figure}[h]
@@ -166,7 +179,7 @@ Let organize three of them within the same triangular pattern in Fig.~\ref{fig:T
         \label{fig:Tetrahedral6}
 \end{center}
 \end{figure}
-As each element is a $\Theta_k$, let decompose them again as in Fig.~\ref{fig:Tetrahedral7} for $n=4$.
+As each element is a $\widehat{\Theta}_k$, let decompose them again as in Fig.~\ref{fig:Tetrahedral7} for $n=4$.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.36]{FiguresArithmetic/appTetrahedral7}
@@ -174,12 +187,12 @@ As each element is a $\Theta_k$, let decompose them again as in Fig.~\ref{fig:Te
         \label{fig:Tetrahedral7}
 \end{center}
 \end{figure}
-Let us add the remaining $\Theta_n$.
+Let us add the remaining $\widehat{\Theta}_n$.
 As for the previous lower dimension, summing up within each row leads to an invariant as shown in Fig.~\ref{fig:Tetrahedral5}.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.36]{FiguresArithmetic/appTetrahedral5}
-        \caption{Add the last fourth copy of $\Theta_n$ and sum up the rows. The sum of elements of the last columns gives the result $\Theta.(n+3)$.}
+        \caption{Add the last fourth copy of $\widehat{\Theta}_n$ and sum up the rows. The sum of elements of the last columns gives the result $\widehat{\Theta}.(n+3)$.}
         \label{fig:Tetrahedral5}
 \end{center}
 \end{figure}
@@ -193,7 +206,7 @@ The sum in the second series of rows is equal to $3.(n+3)$.
 The sum of all the elements in the $k$th series of rows is equal to
 $\Delta_k.(n+3)$.
 \end{itemize}
-$4.\Pi_n = (n+3) \sum_{k=1}^{n} \Delta_k = \Theta_n.(n+3)$
+$4.\Pi_n = (n+3) \sum_{k=1}^{n} \Delta_k = \widehat{\Theta}_n.(n+3)$
 
 
 \subsection{Going further?}
