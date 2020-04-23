@@ -189,9 +189,7 @@ $S" =  \{1,2,3, \ldots, n\}$, as a function of $n$.}
 
 {\em Provide a {\em detailed} proof of Proposition~\ref{thm:|Q|=|N|}.}  
 Informally, there are equally many integers as there are rationals.
-
 \end{itemize}
-
 
 
 \ignore{***************************************
@@ -452,20 +450,10 @@ $\frac{log(n)+1}{2} < H_n < log(n)+1$. Thus, $H_n = \Theta(log(n))$
 {\bf 6.8. Summations, and summations of summations}
 \smallskip
 
-By definition:
-\[ Id_n \ \eqdef \ \sum_{k=1}^n \ 1 \ = \ 1 + 1 + \cdots +1 \  = \ n \]
-
-We have proved in multiple ways:
-\[ \Delta_n \ \eqdef \  \sum_{k=1}^n \ k \ = \ 1+2+3+ \cdots +n \ = \ \frac{1}{2} Id_n \cdot (n+1) \]
-
-\smallskip
-
-This exercise picks up where these two examples leave off.
-
-  \begin{enumerate}
-  \item 
+  \begin{itemize}
+  \item 1.
 {\em Prove that}
-\[ \widehat{T}_n \ \eqdef \  \sum_{k=1}^n \ \Delta_k \ = \   
+\[ \widehat{\Theta}_n \ \eqdef \  \sum_{k=1}^n \ \Delta_k \ = \   
 \Delta_1 + \Delta_2 + \cdots + \Delta_n \ = \ \frac{1}{3} \Delta_n \cdot (n+2) \]
 
 %  \item
@@ -473,34 +461,36 @@ This exercise picks up where these two examples leave off.
 %\[ \Upsilon_n  \ \eqdef \  \sum_{k=1}^n \ \widehat{T}_k \ = \  
 %\widehat{T}_1 + \widehat{T}_2 + \cdots + \widehat{T}_n \]
 
-  \item
+  \item 3.
 {\em Prove the following identities involving $\Delta_n$.  For all $n \in \N^+$:}
-    \begin{enumerate}
-    \item
+    \begin{itemize}
+    \item a.
 $\Delta_n \ + \ \Delta_{n-1} \ = \ n^2$
 
 \smallskip
 
 This is a straightforward exercise in algebraic manipulation.  Can you {\em also} find an ``interesting" proof of this identity, say one that employs a ``pictorial" representation of $\Delta_n$?
 
- \item
+ \item b.
 $\Delta_n^2 \ - \ \Delta_{n-1}^2 \ = \ n^3$
 
 \smallskip
 
-{\em Hint}: Try ``playing" with simple manipulations of the equation 
+A simple manipulations of the equation 
 \[ \Delta_n \ = \ n \ + \ \Delta_{n-1} \]
-which defines $\Delta_n$.
-   \end{enumerate}
+provides the solution:
 
-  \item
+to complete
+   \end{itemize}
+
+  \item 4.
 {\em Derive a closed-form expression for the sum}
-\[ \widehat{T}_n \ + \ \widehat{T} _{n-1} \]
+\[ \widehat{\Theta}_n \ + \ \widehat{\Theta} _{n-1} \]
 
 \smallskip
 
-{\em Hint}: Recall that the sums $\widehat{T}_i$ are defined as sums of $\Delta_j$, which, in turn, are defined by closed-form expressions.  Lots to ``play" with!
-\end{enumerate}
+Recall that the sums $\widehat{\Theta}_i$ are defined as sums of $\Delta_j$.  
+\end{itemize}
 \end{itemize} 
 
 
@@ -647,9 +637,8 @@ Take Pascal's triangle, choose a positive integer $m$, and replace each of the t
 %Figs.~\ref{fig:TriangleModulo5raw} and~\ref{fig:TriangleModulo5shade}.
 \begin{figure}[ht]
 \begin{center}
-	\includegraphics[scale=0.18]{FiguresArithmetic/PascalTriangleFractal.png}
-	        \caption{Pascal's triangle modulo $5$: (left) the ``raw" version; (right)
-	        with the reproducible patterns.}
+	\includegraphics[scale=0.3]{FiguresArithmetic/PascalTriangleFractal.png}
+	        \caption{The reproducible patterns in Pascal's triangle modulo $5$.}
         \label{fig:TriangleFractal}
 \end{center}
 \end{figure}
@@ -778,9 +767,7 @@ $\begin{array}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
 {\em 
 For every positive integer $n$:  If you remove {\em any} $n+1$ integers from the set $S = \{ 1, 2, \ldots, 2n\}$, then the set of removed integers contains at least one pair $p$ and $q > p$ such that $p$ divides $q$.
 }
-
-
-\smallskip
+\medskip
 
 Let $\alpha_i$ be the elements of this set of $n+1$ elements.
 Write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$).
@@ -828,95 +815,120 @@ Begin by reviewing Proposition~\ref{thm:|NxN|=|N|}, which asserts the technicall
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Chapter 9}
 
-\section{Chapter 9}
+\begin{itemize}
+\item
+{\bf 9.3. An unusual comparison of automobile brands.}
+\smallskip
 
-\subsection{Karatsuba Multiplication} 
+\ignore{****************************
+The logos of two German automakers, {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ and BMW$^{\mbox{\tiny\sc tm}}$ suggest a (frivolous) game whose analysis can enhance one's understanding of both recurrences and asymptotics.  The game is designed around the fact that the {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ logo is a {\em trisection} of a circle, while the BMW$^{\mbox{\tiny\sc tm}}$ logo is a {\em quadrisection} of a circle.  
+\begin{figure}[htb]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths/AutomotiveBrands.png}
+\end{center}
+\caption{Idealized renditions of the logos on {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ (left) and BMW$^{\mbox{\tiny\sc tm}}$ (right) automobiles.}
+\label{fig:auto-logos}
+\end{figure}
+The single-player {\it Logo game} proceeds as follows.  
 
-%\noindent \textit{The aim.}
-%The purpose here is to put the Master theorem (section~\ref{sec:linear-recurrence-general}) in action on a classical problem.
-%
-%\medskip
-%
-%The classical elementary-school method for computing the base-$2$ product of two $n$-bit integers (using their standard numerals)
-%\[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
-%is to compute the $n$ partial products:
-%\[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
-%and to sumthese partial products.
-%
-%This approach leads to $O(n^2)$ basic operations. 
-%
-%\medskip
-%
-%We can do better.
-%
-%\medskip
-%
-%Let us first recall the generic divide-and-conquer for designing algorithms.
-%\bigskip
-%
-%\noindent \fbox{
-%\begin{minipage}{0.95\textwidth}
-%{\it Divide and conquer} is a paradigm for designing efficient algorithms for solving problems that can be decomposed into sub-problems.
-%
-%Let consider a problem of size $n$ that can be decomposed into $p$ sub-problems.
-%(notice, all sub-problems have the same size $n/q$).
-%
-%\bigskip
-%
-%\noindent {\bf Principle:}
-%\begin{enumerate}
-%\item Decompose the problem into $a$ sub-problems of size $\frac{n}{q}$.
-%\item Solve those sub-problems.
-%\item Reconstruct the solution of the initial problem.
-%\end{enumerate}
-%
-%In general, the sub-problems are solved recursively (at least until a certain threshold value of the parameter, where the base case(s) govern the computation).
-%
-%The time-cost of the computation is governed by the following expression:
-%\[  T(n) \ = \ p \cdot T(\frac{n}{q}) + c_1(n) + c_3(n) \] 
-%where $c_1(n)$ and $c_3(n)$ are the costs of phases (1) and (3).
-%\end{minipage}
-%}
-%\bigskip
+\smallskip
 
-\noindent \textit{The problem.}
-Say that we have two $n$-bit numbers $A$ and $B$.  
-Let us assume that $n$ is a very large power of $2$: $n=2^k$ for some positive integer $k$.
+Reflecting the fact that the {\sc Mercedes}$^{\mbox{\tiny\sc tm}}$ logo partitions the circle into {\em three} wedges, while the BMW$^{\mbox{\tiny\sc tm}}$ logo partitions the circle into {\em four} wedges, we assign the player---who, note, has not yet acted---with the initial scores
+\[ M(0) \ = \ 3 \ \ \ \ \ \mbox{ and } \ \ \ \ \ B(0) = 4 \] 
+and we designate the logo-circles in Fig.~\ref{fig:auto-logos} as the {\em stage-$0$} logo-circles.{\em Note that it is the {\em number} of wedges in each logo-circle that interests us, not the sizes of the wedges}.
 
-The goal is to compute the product $A \times B$ in fewer operations than the classic $O(n^2)$.
+The player now becomes active---
+\medskip
+************************************}
+
+For each positive integer $k$, the player begins at the northernmost point of each stage-$(k-1)$ logo-circle and circumnavigates the circle in a clockwise sense.  In the course of this circumnavigation, the player {\em bisects every second wedge} that she encounters.  When the player regains the northernmost point of the two logo-circles, the numbers of wedges at that moment is recorded as the score at that moment, namely, the pair: at stage $k$ this has the form $\langle M(k), \ B(k) \rangle$. 
 \medskip
 
-\noindent \textit{A first solution.}
-The divide-and-conquer version of this problem is to break each integer into two parts
-of $n/2$ bits each as follows:
+{\em Prove the following assertions about the described game.}
+\begin{itemize}
+\item 3.
+The asymptotic behavior of $B(n)$ is given by
+\[ B(n) \ = \ \left({3 \over 2}\right)^{O(n)} \]
+\end{itemize}
 
-$A=(a_n\ldots a_{n/2+1})_2 2^{n/2}\ + (a_{n/2}\ldots a_1)_2$
 
-Denoting by $A_1$ and $A_2$ the two separate terms, we get:
 
-$A.B = (A_1.B_1) 2^n + (A_1.B_2 + A_2.B_1) 2^{n/2} + A_2.B_2$
+\medskip \item
+{\bf 9.4. Karatsuba multiplication} 
+\smallskip
+
+\ignore{**************************
+\index{Karatsuba multiplication algorithm} \index{Karatsuba, Anatoly} 
+\index{Karatsuba multiplication}
+
+{\sc Lesson:}
+Use the Master Theorem for Linear Recurrences (Theorem~\ref{thm:master-thm-genl}) to analyze a recursive algorithm
+
+\smallskip
+
+Say that you are given two $n$-bit integers, in terms of their base-$2$ numerals: 
+\[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
+The classical elementary-school method for computing the product of $A$ and $B$ computes the $n$ partial products:
+\[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
+and then sums these partial products.  This algorithm requires $\Theta(n^2)$ multiplications and a like number of additions.
+
+\smallskip
+
+Now, multiplications are more expensive than additions on standard computing platforms.  Therefore, when the common length $n$ of the numerals for $A$ and $B$, is {\em very} large, then one would be willing to perform somewhat more additions (while staying within the asymptotic class $\Theta(n^2)$) if, in compensation, one could save a significant number of multiplications.  Happily, such a tradeoff is, indeed, available, using an algorithm that is known as {\it Karatsuba multiplication}, after its author, Anatoly Karatsuba; see \cite{KaratsubaO62}.
+
 \medskip
 
-The previous computation requires 4 multiplications of integers of $n/2$ bits 
-and 3 additions of integers with at most $2n$ bits. The multiplication of integers in base 2 by powers of 2 
-correspond to simple shifts to the left. 
+Karatsuba's algorithm builds upon the {\it divide-and-conquer} algorithmic paradigm, whereby a
+problem {\bf P} is decomposed into disjoint, equal-``size" subproblems whose results are accumulated to solve {\bf P}.
+**************************}
 
-The cost is given by the following expression: $T(n) = 4.T(\frac{n}{2}) + f(n)$ where $f$ is a linear function
-and $T(1) = 1$.
 
-We obtain $T(n) = \Theta(n^2)$, same as for the naive algorithm.
-\bigskip
- 
-\noindent \textit{The second problem:}
-The idea of Karatsuba is to decrease the number of multiplications 
-(at the price of slightly increasing the additions/subtractions) by using the following identity:
+\textit{Karatsuba's algorithm.}
+Let us return to the problem of multiplying the $n$-bit numerals $A$ and $B$.  To simplify both notation and analysis, say that $n$ is a very large power of $2$, i.e., $n=2^k$ for some large $k \in \N^+$.
 
-$A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)$
+\smallskip
 
-Show how to use this relation and develop the cost analysis of this algorithm.
+The algorithm breaks the numerals for $A$ and $B$ into pairs of half-size numerals:
+\begin{eqnarray*}
+A & = & A_1 \cdot 2^{n/2} \ + \ A_2 \ \ 
+ \eqdef  \ \ (a_n \cdots a_{n/2+1})_2 \cdot 2^{n/2} \ + \ (a_{n/2} \cdots a_1)_2 \\
+B & = & B_1 \cdot 2^{n/2} \ + \  B_2 \ \
+  \eqdef  \ \ (b_n \cdots b_{n/2+1})_2 \cdot 2^{n/2} \ + \ (b_{n/2} \cdots b_1)_2
+\end{eqnarray*}
+
+After this decomposition, we have\footnote{To enhance legibility, we use both the centered dot ($\cdot$) and the multiplication sign ($\times$).}
+\begin{equation}
+\label{eq:karatsuba-normal}
+A \times B \ = \ (A_1 \times B_1) \cdot 2^n \ + \  (A_1 \times B_2 \ + \ A_2 \times B_1) \cdot 2^{n/2} \ + \ (A_2 \times B_2)
+\end{equation}
+A recursion (on $n$) that is based on instantiating Eq.~(\ref{eq:karatsuba-normal}) employs {\em four} multiplications at this level.
+
+\smallskip
+
+The way that Karatsuba brought the cost of multiplying $A \times B$ below the obvious measure of $\Theta(n^2)$ multiplications was to observe the following.  If one defines
+\[ C \ \eqdef \ (A_1 - A_2) \times (B_2 - B_1) \]
+then
+\begin{eqnarray*}
+A \times B & = & (A_1 \times B_1) \cdot 2^n \ + \ (A_2 \times B_2) \\
+                 &    & + \ \big(C \ + \ (A_1 \times B_1) \ + \ (A_2 \times B_2) \big) \cdot 2^{n/2}
+\end{eqnarray*}
+
+{\em One thereby executes this level of the recursion that computes $A \times B$ using only {\em three} multiplications, rather than the four multiplications in Eq.~(\ref{eq:karatsuba-normal}).}  (The few more additions are often a beneficial cost-tradeoff.)
+
 \medskip
 
+{\em Prove the following assertions.}
+\begin{itemize}
+\item 2.
+{\em A recursion (on $n$) that is based on Karatsuba's algorithm computes the product $A \times B$ using a {\em symptotically fewer than} $\Theta(n^2)$ multiplications.}
+\smallskip
+
+Your argument should find a (real) number $\alpha < 2$ such that Karatsuba's algorithm computes the product $A \times B$ using $\Theta(n^\alpha)$ multiplications.
+\end{itemize}
+
+\ignore{*************************
 \noindent \textit{The solution.}
 
 The relation is easy to check and it is left to the reader. 
@@ -930,145 +942,9 @@ The cost analysis is 3 multiplications of $n/2$ bits,
 Again, using the Master Theorem leads to:
 
 $T(n) = 3.T(n/2) + \Theta (n) = 3^{\log_2 n} = n^{\log_2 3}$
+********************************}
 
-
-
-\subsection{Computing Fibonacci Numbers Fast}
-\label{sec:FastFibo}
-
-%\noindent \textit{The aim.} 
-%Show a new computational scheme for the Fibonacci numbers.
-%
-%Notice that it is generic and related to the scheme of fast exponentiation.
-%\medskip
-
-
-\noindent \textit{The problem.} Verify the following expression and develop an argument for its interest.
-
-$F(2n) = F(n)^2 + F(n-1)^2$
-
-$F(2n+1) = (2.F(n-1) + F(n)).F(n)$
-\medskip
-
-\noindent \textit{The solution.}
-
-The proof is by induction.
-
-The basis case is obtained for $n=1$.
-It is true since:
-
-$F(2) = F(1)^2+F(0)^2 = 2$
-
-$F(3) = (2.F(0)+F(1)).(F(1)) = 3$
-\medskip
-
-Let assume for proving the induction step that the property holds at rank $n$ 
-for both $F(2n)$ and $F(2n+1)$ and compute $F(2(n+1))$:
-
-Apply first the definition of Fibonacci numbers: 
-
-$F(2n+2) = F(2n+1)+F(2n)$ 
-
-Replace both terms by the recurrence hypothesis:
-
-$= F(n)^2 + F(n-1)^2 + (2.F(n-1) + F(n)).F(n)$
-
-$= F(n)^2 + F(n-1)^2 + 2.(F(n).F(n-1)) + F(n)^2$
-
-$= (F(n) + F(n-1))^2 + F(n)^2$
-
-We obtain the result by applying again the definition of Fibonacci numbers at order $n+1$:
-
-$F(2(n+1)) = F(n+1)^2 + F(n)^2$
-\medskip
-
-The second part of the proposition is obtained by applying the definition of Fibonacci numbers:
-
-$F(2(n+1)+1) = F(2(n+1)) + F(2n+1)$
-
-and replace both terms by their expressions respectively :
-
-$= F(n+1)^2 + F(n)^2 + (2.F(n-1) + F(n)).F(n)$
-
-$= F(n+1)^2 + 2.(F(n-1) + F(n)).F(n)$
-
-$= F(n+1)^2 + 2.F(n+1).F(n)$
-\medskip
-
-We provide in Fig.~\ref{fig:fastFibo} a pictorial argument to show why this decomposition 
-is particularly fast while computing Fibonacci numbers:
-each $F(n)$ is computed in $log_2 (n)$ steps.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/FiboFast.png}
-        \caption{Dependency relations for computing the pairs $(F(2n),F(2n+1))$.}
-                \label{fig:fastFibo}
-\end{center}
-\end{figure}
-In particular, we show how to compute an element ($F(13)$) using the fast Fibonacci scheme in Fig.~\ref{fig:fastFibo13}.
-The pattern is embedded into a complete binary tree of predecessors (with some redundancies)
-whose depth is logarithmic.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/FiboFast13.png}
-        \caption{Ancestors involved in the computation of $F(13)$. }
-        \label{fig:fastFibo13}
-\end{center}
-\end{figure}
-The conclusion is that
-any Fibonacci number $F(n)$ can be computed very fast in $log_2 (n)$ steps.
-
-
-
-\subsection{Cassini's Identity}
-
-%\noindent \textit{The aim.}
-%Prove a classical identity involving Fibonacci numbers, which is a nice example of proof by recurrence.
-%\medskip
-
-\noindent \textit{The problem.}
-Prove the following expression:
-
-$F(n-1).F(n+1) = F(n)^2 + (-1)^{n+1}$ for $n \geq 1$
-
-where $F(n)$ is the n\textit{th} Fibonacci number.
-\medskip
-
-%Let check the expression on the first ranks:
-%
-%$n=1$, $F(0).F(2) = F(1)^2 +1 = 2$
-%
-%$n=2$, $F(1).F(3) = F(2)^2 -1 = 3$
-%
-%$n=3$, $F(2).F(4) = F(3)^2 +1 = 10$
-%
-%$n=4$, $F(3).F(5) = F(4)^2 -1 = 24$
-%
-%...
-%\medskip
-
-\noindent \textit{The solution.}
-The proof is by induction.
-
-The basis case $n=1$ holds since $F(0).F(2) = F(1)^2 +1 = 2$.
-
-The induction step is proved assuming the Cassini's identity holds at rank $n$.
-Replace $F(n+2)$ by its definition in the expression:
- 
-$F(n).F(n+2) = F(n) (F(n+1)+F(n)) = F(n)^2 + F(n).F(n+1)$
-
-Then, replace the last term using the recurrence hypothesis:
-
-$F(n)^2 = F(n-1).F(n+1) - (-1)^{n+1} =F(n-1).F(n+1) + (-1)^{n+2} $
-
-Thus,
-$F(n).F(n+2) = F(n).F(n+1) + F(n-1).F(n+1) + (-1)^{n+2} = F(n+1) (F(n) + F(n-1)) + (-1)^{n+2}$ 
-
-Apply again the definition of Fibonacci sequence $F(n) + F(n-1) = F(n+1)$, we obtain:
-
-$F(n).F(n+2) = F(n+1)^2 + (-1)^{n+2}$
-
-This concludes the proof. 
+\end{itemize}
 
 
 %
@@ -1323,6 +1199,7 @@ which indicates that $J(43) = 23$.  The pictorial interpretation of this coding 
 
 The figure indicates that the solution for $J(n)$ is obtained by a simple shift of the binary representation of $n$.
 
+%%%
 
 \medskip\item
 {\bf 10.5. An alternative to Horner's Rule}
@@ -1386,55 +1263,158 @@ P_7(x) & = & C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + \ x^4 \ ( \ C_4^{(0)} \ + \ x
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Chapter 11}
+\begin{itemize}
+\item
+{\bf 11.2. Counting replicated triangles}
+\smallskip
 
-\section{Chapter 11}
+How does the progression of numbers of triangles contained into $T_k$ grow? 
+To this end, let $N_i$ denote the number of triangles within triangle $T_k$.  
+We have just seen that $N_0 =1$, $N_1 = 5$, and $N_2 = 13$.
+  \begin{itemize}
+  \item
+{\em Compute} $N_4$.
+\smallskip
 
-\subsection{Going further in a game analysis}
+Reasoning on the case $k=4$ will give us hint of the general case.
 
-\noindent \textit{The problem.}
-Analyze the game of craps in the same way as we did for sum-of-three
+See Fig.~\ref{fig:countingTriangles}(left).
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.35]{FiguresArithmetic/CountingTriangles}
+        \caption{The first three stages of triangle-replication.}
+        \label{fig:countingTriangles}
+\end{center}
+\end{figure}
 
-Verify the table in Fig.~\ref{fig:dice-ordered-configs}
+\medskip\item
+{\em Develop a recurrence for} $N_k$ (i.e., the general case).
+\end{itemize}
 
-In the ordered version of sum-of-three, sum$k$ is engendered by the
-same number of configurations as is sum $21 - k$.  
-Why is this the case?
-
-\noindent \textit{The solution.}
+%%%
 
 
-\subsection{more about the Birthday paradox}
+\medskip\item
+{\bf Monge shuffles: mathematical party tricks}
 
-%\noindent \textit{The aim.}
-%An interesting variant of the birthday puzzle
-%\medskip
-%
-%\noindent \textit{The problem.}
-Determine the
-probability of a student to be born the same day as me.
+{\sc Lesson:} Experience with analyzing combinatorial patterns
+
+\smallskip
+
+\index{Monge, Gaspard} \index{Monge shuffle}
+
+We consider two ways of shuffling cards which are associated with the 18-19th century French mathematician Gaspard Monge.  We employ the shuffle-techniques as vehicles for honing your skills in detecting combinatorial patterns.  Others have used them as party tricks.
+
+\smallskip
+
+For both shuffle-techniques. we begin with a deck of $2n$ distinct cards.  We employ the running example of the following small deck, where $n=4$:
+\[ (1, \ 2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8) \]
+For both {\it Monge shuffles} of the cards, we cut the deck in the middle, to create two $n$-card decks:
+\[ (1, \ 2, \ 3, \ 4), \ (5, \ 6, \ 7, \ 8) \]
+We then merge the two $n$-card decks to again obtain a single $2n$-card deck.  The two Monge shuffles differ in their merging techniques.
+
+  \begin{enumerate}
+  \item $\oplus$ {\bf The simple Monge shuffle}
+
+\smallskip
+
+The first, simple, Monge shuffle alternates the ``top" cards from the righthand and lefthand $n$-card decks; see Fig~\ref{fig:suffleMonge}.  The merged deck has the form
+\[ (5, \ 1, \ 6, \ 2, \ 7, \ 3, \ 8, \ 4) \]
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.4]{FiguresArithmetic/suffleMongeBasic}
+        \caption{The Monge shuffle for $8$ cards ($n=4$).}
+        \label{fig:suffleMonge}
+\end{center}
+\end{figure}
+
+In the party-game incarnation of the Monge shuffle, you demonstrate the cut-then-merge process of Fig~\ref{fig:suffleMonge}, and you suggest to your audience that this process is a good first step in really mixing up the cards.  If this were so, then repeating the step several times should be a good way to obtain a ``random" mixture of the cards.
+
+\smallskip
+
+Let's see what happens after several steps of this cut-then-merge process:
+\[ \begin{array}{ccccccccccccccccc}
+(1 & 2 & 3 & 4 & 5 & 6 & 7 & 8) & \rightarrow & (1 & 2 & 3 & 4) & (5 & 6 & 7 & 8) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(5 & 1 & 6 & 2 & 7 & 3 & 8 & 4) & \rightarrow & (5 & 1 & 6 & 2) & (7 & 3 & 8 & 4) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(7 & 5 & 3 & 1 & 8 & 6 & 4 & 2) &  \rightarrow& (7 & 5 & 3 & 1) & (8 & 6 & 4 & 2) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(8 & 7 & 6 & 5 & 4 & 3 & 2 & 1) &  \rightarrow& (8 & 7 & 6 & 5) & (4 & 3 & 2 & 1) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(4 & 8 & 3 & 7 & 2 & 6 & 1 & 5) &  \rightarrow& (4 & 8 & 3 & 7) & (2 & 6 & 1 & 5) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(2 & 4 & 6 & 8 & 1 & 3 & 5 & 7) &  \rightarrow& (2 & 4 & 6 & 8) & (1 & 3 & 5 & 7) \\
+ & & & & & & & & \swarrow & & & & & & & & \\
+(1 & 2 & 3 & 4 & 5 & 6 & 7 & 8)
+\end{array}
+\]
+So, this does not look too random!  After {\em three} (which, ``coincidentally", equals $n-1$) cut-then-merge steps, the deck has been reversed, and after $2n-1$ cut-and-merge steps, it has been replicated in its original order!
 \medskip
 
-\noindent \textit{The solution.}
+{\em Prove the following Proposition.}
 
+Let $p$ be a prime ($p>2$), and let $n = {1 \over 2} (p-1)$.  
+Let us begin with a deck of $2n$ distinct cards and perform the simple Monge shuffle on the deck.  
+After some number $m$ of cut-then-merge steps, where $m$ divides $p-1$, the simple Monge shuffle replicates the initial deck.
+\smallskip
 
+Studying our sample sequence of cut-then-merge steps should provide a valuable hint.
 
-\subsection{A property about binomial coefficients}
-%
-%\noindent \textit{The aim.}
-%xx
-%\medskip
+\medskip
+\item {\bf The sophisticated Monge shuffle}
+\smallskip
 
-\noindent \textit{The problem.}
-Prove the following property by two ways (recurrence and by using a combinatorial argument
+We now provide a more sophisticated merge procedure, which yields a sophisticated variant of the Monge shuffle.  In each stage of this variant---each corresponding to a cut-then-merge step of the simple shuffle---we rearrange the $2n$-card deck directly, from the middle outward, via the following regimen:
 
-$\forall n,k$ $1 \leq k \leq n$
+\smallskip
 
-$k.{n \choose k} = n.{{n-1} \choose {k-1}}$
+\noindent
+- Card \#1 of the original deck is placed in position $n+1$ of the shuffled deck \\
+- Card \#2 of the original deck is placed in position $n$ of the shuffled deck \\
+- Card \#3 of the original deck is placed in position $n+2$ of the shuffled deck \\
+- Card \#4 of the original deck is placed in position $n-1$ of the shuffled deck \\
+\hspace*{.1in} \ldots and so on, until the original deck is empty.
+
+\smallskip
+\ignore{********************************
+The first few steps of a stage of the sophisticated Monge shuffle are illustrated for the case $n=4$ in Fig.~\ref{fig:suffleMonge1};
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.33]{FiguresArithmetic/suffleMongeStep1}
+        \includegraphics[scale=0.33]{FiguresArithmetic/suffleMongeStep2}
+         \includegraphics[scale=0.33]{FiguresArithmetic/suffleMongeStep3}
+        \caption{The Monge shuffle for $8$ cards ($n=4$): Step 1 (left), Step 2 (center), Step 3 (right).}
+        \label{fig:suffleMonge1}
+\end{center}
+\end{figure}
+one complete stage is illustrated in the table following the figure.
+\[ \begin{array}{cccccccccccccccccc}
+\mbox{Step } & \multicolumn{8}{c}{\mbox{Original deck}} & &
+     \multicolumn{8}{c}{\mbox{Shuffled deck}} \\
+\hline
+1 & (1 & 2 & 3 & 4 & 5 & 6 & 7 & 8) & \rightarrow & ( - & - & - & - & 1 & - &  - & - ) \\
+2 & ( - & 2 & 3 & 4 & 5 & 6 & 7 & 8) & \rightarrow & ( - & - & - & 2 & 1 & - & - & - ) \\
+3 & ( - & - & 3 & 4 & 5 & 6 & 7 & 8) &  \rightarrow& ( - & - & - & 2 & 1 & 3 & - & - ) \\
+4 & ( - & - & - & 4 & 5 & 6 & 7 & 8) &  \rightarrow& ( - & - & 4 & 2 & 1 & 3 & - & - ) \\
+5 & ( - & - & - & - & 5 & 6 & 7 & 8) &  \rightarrow& ( - & - & 4 & 2 & 1 & 3 & 5 & - ) \\
+6 & ( - & - & - & - & - & 6 & 7 & 8) &  \rightarrow& ( - & 6 & 4 & 2 & 1 & 3 & 5 & - ) \\
+7 & ( - & - & - & - & - & - & 7 & 8) &  \rightarrow& ( - & 6 & 4 & 2 & 1 & 3 & 5 & 7 ) \\
+8 & ( - & - & - & - & - & - & - & 8) &  \rightarrow& ( 8 & 6 & 4 & 2 & 1 & 3 & 5 & 7 ) \\
+\end{array}
+\]
+*********************************}
+
 \medskip
 
-\noindent \textit{The solution.}
+{\em Prove the following Proposition.}
 
-
+For any integer $n \in \N^+$: 
+If $4n+1$ is prime, then performing $2n$ steps of the sophisticated Monge shuffle on a deck of $2n$ distinct cards restores the deck to its original order.
+\end{enumerate}
+  
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
