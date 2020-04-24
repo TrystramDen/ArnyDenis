@@ -1,4 +1,4 @@
-%version of 04-21-20
+%version of 04-24-20
 
 \chapter{A Deeper Look at the Fibonacci Numbers}
 \label{ch:FIBO-enrich}
@@ -15,235 +15,52 @@ E.~Zeckendorf (1972):
 }
 
 
-\section{Classical computations on the Fibonacci Numbers}
+\section{Elementary Computations on Fibonacci Numbers}
 \label{sec:FIBO-enrich-ops}
 
 \index{The Fibonacci Quartlerly}
-One reason that the Fibonacci sequence has captivated a large community of mathematically oriented fans is the extensive repertoires of identities involving Fibonacci numbers, which are simply presented and gracefully verified.\footnote{An entire research journal, {\it The Fibonacci Quarterly}, is dedicated to the mathematics of recursively defined sequences of numbers---the genre epitomized by the Fibonacci numbers.}  This section is dedicated to two particularly beautiful,  unintuitive, identities.
 
-\subsection{Products of Consecutive Fibonacci Numbers}
-\label{sec:product-Fn-Fn+1}
-\index{Fibonacci numbers!product of consecutive}
-
-Our first identity asserts the equality of each product $F(n) \cdot F(n-1)$ of two consecutive Fibonacci numbers, with the sum of the squares of the first $n$ Fibonacci numbers.
-
-\begin{prop} 
-\label{thm:FiboSumConsecutive}
-For all $n \geq 1$,
-\begin{equation}
-\label{eq:FiboSumConsecutive}
-F(n) \cdot F(n-1) \ \ = \ \ \sum_{k=0}^{n-1} (F(k))^2.
-\end{equation}
-\end{prop}
-
-\begin{proof}
-One can observe identity (\ref{eq:FiboSumConsecutive}) ``in action'' in Fig.~\ref{fig:fibosquare}.  We augment this visual validation of the identity with the following induction.
-
-\medskip
-
-\noindent {\sf Base case.}
-Instance $n=1$ of identity (\ref{eq:FiboSumConsecutive}) is valid because
-\[ F(0) \cdot F(1) \ = \ 1 \cdot 1 \ = \ 1^2 \ = \ (F(0))^2. \]
-
-\medskip
-
-\noindent {\sf Inductive hypothesis.}
-Assume that identity (\ref{eq:FiboSumConsecutive}) is valid for all $n \leq m$.
-
-\medskip
-
-\noindent {\sf Inductive extension.}
-Let us focus on the product $F(m+1) \cdot F(m)$.  Invoking the defining Fibonacci recurrence
-(\ref{eq:Fibonacci-defn}) and the inductive hypothesis, we generate the following chain of identities.
-\begin{eqnarray*}
-F(m+1) \cdot F(m)
- & = &
-   (F(m) \ + \ F(m-1)) \cdot F(m) \\
- & = &
-   (F(m))^2 \ \ + \ \ F(m) \cdot F(m-1)  \\
- & = & 
-   (F(m))^2  \ \ + \ \ \sum_{k=0}^{m-1} (F(k))^2  \\
- & = &
-   \sum_{k=0}^{m} (F(k))^2.
-\end{eqnarray*}
-The induction is thus extended, which completes the proof.  \qed
-\end{proof}
-
-
-\subsection{Cassini's Identity}
-\label{sec:cassini}
-
-\begin{prop} 
-For all $n \geq 1$,
-\begin{equation}
-F(n-1).F(n+1) \ = \ F(n)^2 \ + \ (-1)^{n+1} \ for \ n \geq 1
-\end{equation}
-\end{prop}
-\medskip
-
-
-\begin{proof}
-The proof is by induction.
-
-\noindent {\sf Base case.}
-The expression holds for  $n=1$ since $F(0).F(2) = F(1)^2 +1 = 2$.
-\medskip
-
-\noindent {\sf Inductive hypothesis.}
-
-The induction step is proved assuming the Cassini's identity holds at rank $n$.
-Replace $F(n+2)$ by its definition in the expression:
- 
-$F(n).F(n+2) = F(n) (F(n+1)+F(n)) = F(n)^2 + F(n).F(n+1)$
-
-Then, replace the last term using the recurrence hypothesis:
-
-$F(n)^2 = F(n-1).F(n+1) - (-1)^{n+1} =F(n-1).F(n+1) + (-1)^{n+2} $
-
-Thus,
-$F(n).F(n+2) = F(n).F(n+1) + F(n-1).F(n+1) + (-1)^{n+2} = F(n+1) (F(n) + F(n-1)) + (-1)^{n+2}$ 
-
-Apply again the definition of Fibonacci sequence $F(n) + F(n-1) = F(n+1)$, we obtain:
-
-$F(n).F(n+2) = F(n+1)^2 + (-1)^{n+2}$
-\end{proof}
-
-%%%
-
-\section{$\oplus$ Two advanced topics}
-
-\subsection{Computing Fibonacci Numbers Fast}
-\label{sec:FastFibo}
-
-Using the bilinear recurrence equation needs $n$ steps to compute the n{\em th} Fibonacci number.
-We are interested here in computing it faster.
-This wis obtained by computing Fibonacci numbers by successive pairs. 
-\medskip
-
-\begin{enumerate} 
-\item 
-\textit{Verify the following expression.}
-
-$F(2n) = F(n)^2 + F(n-1)^2$
-
-$F(2n+1) = (2.F(n-1) + F(n)).F(n)$
-\medskip
-
-The proof is easy by induction:
-
-The basis case is obtained for $n=1$.
-It is true since:
-
-$F(2) = F(1)^2+F(0)^2 = 2$
-
-$F(3) = (2.F(0)+F(1)).(F(1)) = 3$
-\medskip
-
-Let assume for proving the induction step that the property holds at rank $n$ 
-for both $F(2n)$ and $F(2n+1)$ and compute $F(2(n+1))$:
-
-Apply first the definition of Fibonacci numbers: 
-
-$F(2n+2) = F(2n+1)+F(2n)$ 
-
-Replace both terms by the recurrence hypothesis:
-
-$= F(n)^2 + F(n-1)^2 + (2.F(n-1) + F(n)).F(n)$
-
-$= F(n)^2 + F(n-1)^2 + 2.(F(n).F(n-1)) + F(n)^2$
-
-$= (F(n) + F(n-1))^2 + F(n)^2$
-
-We obtain the result by applying again the definition of Fibonacci numbers at order $n+1$:
-
-$F(2(n+1)) = F(n+1)^2 + F(n)^2$
-\medskip 
-\item
-
-The second part of the proposition is obtained by applying the definition of Fibonacci numbers:
-
-$F(2(n+1)+1) = F(2(n+1)) + F(2n+1)$
-
-and replace both terms by their expressions respectively :
-
-$= F(n+1)^2 + F(n)^2 + (2.F(n-1) + F(n)).F(n)$
-
-$= F(n+1)^2 + 2.(F(n-1) + F(n)).F(n)$
-
-$= F(n+1)^2 + 2.F(n+1).F(n)$
-\medskip
-
-We provide in Fig.~\ref{fig:fastFibo} a pictorial argument to show why this decomposition 
-is particularly fast while computing Fibonacci numbers:
-each $F(n)$ is computed in $log_2 (n)$ steps.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.35]{FiguresMaths/FiboFast.png}
-        \caption{Dependency relations for computing the pairs $(F(2n),F(2n+1))$.}
-                \label{fig:fastFibo}
-\end{center}
-\end{figure}
-In particular, we show how to compute an element ($F(13)$) using the fast Fibonacci scheme in Fig.~\ref{fig:fastFibo13}.
-The pattern is embedded into a complete binary tree of predecessors (with some redundancies)
-whose depth is logarithmic.
-\begin{figure}[h]
-\begin{center}
-        \includegraphics[scale=0.35]{FiguresMaths/FiboFast13.png}
-        \caption{Ancestors involved in the computation of $F(13)$. }
-        \label{fig:fastFibo13}
-\end{center}
-\end{figure}
-\end{enumerate}
-
-The conclusion is that
-any Fibonacci number $F(n)$ can be computed very fast in $log_2 (n)$ steps.
-
-
+One reason that the Fibonacci sequence has captivated a large community of mathematically oriented fans is the extensive repertoires of identities involving Fibonacci numbers, which are simply presented and gracefully verified.\footnote{An entire research journal, {\it The Fibonacci Quarterly}, is dedicated to the mathematics of recursively defined sequences of numbers---the genre epitomized by the Fibonacci numbers.}  This section is dedicated to three particularly beautiful,  unintuitive, identities.
 
 \subsection{Greatest Common Divisors of Fibonacci Numbers}
 \label{Appendix:FiboGCD}
 
-Our second identity exposes the marvelous fact that the {\em greatest common divisor} ({\sc gcd}) of every pair of Fibonacci numbers is again a Fibonacci number.  Even more, if the two given Fibonacci numbers are those of indices $m$ and $n$, then this {\sc gcd} is the Fibonacci number whose index is the {\sc gcd} of $m$ and $n$.
+Our first identity exposes the marvelous fact that the {\em greatest common divisor} ({\sc gcd}) of every pair of Fibonacci numbers, $F(m)$ and $F(n)$, is again a Fibonacci number.
+% Even better: this {\sc gcd} is the Fibonacci number whose index is the {\sc gcd} of $m$ and $n$.
 
 \begin{prop}
-For all integers $m, n, \in \N$,
+For all integers $m, n, \in \N^+$,
 \begin{equation}
 \label{eq:fibo-gcd}
 \mbox{\sc gcd} \left(F(m), F(n) \right) \ = \ F \left(\mbox{\sc gcd}(m, n) \right).
 \end{equation}
 \end{prop}
 
-\medskip
+\smallskip
 
 \noindent
 To make identity (\ref{eq:fibo-gcd}) at least plausible, we cite a single example:
-
-\hspace*{.35in}
-$\mbox{\sc gcd}(F(12), F(18)) 
-   \ = \ \mbox{\sc gcd}(144,2584)
-   \ = \ 8 \ = \ F(6)$,
-
-\noindent while
-
-\hspace*{.35in}
-$\mbox{\sc gcd}(12,18) \ = \ 6$.
+\begin{eqnarray*}
+\mbox{\sc gcd}(F(12), F(18)) & = & \mbox{\sc gcd}(144,2584) \ = \ 8 \ = \ F(6) \\
+\mbox{while } \ \ \mbox{\sc gcd}(12,18) & = & 6
+\end{eqnarray*}
 
 \medskip
 
 \begin{proof}
-Let us assume, with no loss of generality,  that $n \geq m$.  Our proof proceeds by verifying, in turn, the following divisibilities:
+Say, with no loss of generality,  that $n \geq m$.  Our proof builds on the following divisibilities:
 \begin{enumerate}
 \item
 $\mbox{\sc gcd}(n,m)$ divides $\mbox{\sc gcd}(F(n), F(m))$
 
-\item
+\medskip\item
 $\mbox{\sc gcd}(F(n), F(m))$ divides $\mbox{\sc gcd}(n,m)$
 \end{enumerate}
 
 \smallskip
 
 \noindent
-We leave it to the reader to verify the following technical lemmas.
+We invite the reader to verify the following technical lemmas.
 
 %{\Arny Verifying these lemmas is exactly what I would define as an EXERCISE}
 
@@ -254,27 +71,28 @@ The following relation holds for any integers $n$ and $k \geq 1$:
 \end{lemma}
 
 \noindent
-The proof is a straightforward induction on $k$ for fixed $n$.
-
-%\footnote{this relation assumes that we are able to define negative Fibonacci numbers.  Well, there is a "natural" way of extending the definition to negative numbers...}
+{\em Hint}: The proof is a straightforward induction on $k$ for fixed $n$.
 
 \begin{lemma}
 \label{lem:FIBO-GCD-2}
-For any integer $k$, $F(n)$ divides $F(k \cdot n)$.
+For any integer $k \geq 1$, $F(n)$ divides $F(k \cdot n)$.
 \end{lemma}
 
 \noindent
-This lemma can be obtained from Lemma~\ref{lem:FIBO-GCD-1}.
+{\em Hint}: This lemma can be obtained from Lemma~\ref{lem:FIBO-GCD-1}.
 
 \begin{lemma}
 \label{lem:FIBO-GCD-3}
 If integer $a$ divides integer $b$, then $F(a)$ divides $F(b)$.
 \end{lemma}
 
+\noindent
+{\em Hint}: Another induction.
+
 \medskip
 
 \noindent
-We are able now to verify identity (\ref{eq:fibo-gcd}) via the following assertions.
+We are now able to verify identity (\ref{eq:fibo-gcd}) via the following assertions.
 
 \medskip
 
@@ -301,6 +119,198 @@ $F(\mbox{\sc gcd}(n,m))$ is a multiple of $n$ and, symmetrically, of $m$; theref
 \end{enumerate}
 This completes the proof.   \qed
 \end{proof}
+
+\subsection{Products of Consecutive Fibonacci Numbers}
+\label{sec:product-Fn-Fn+1}
+\index{Fibonacci numbers!product of consecutive}
+
+Our next identity asserts the equality of each product $F(n) \cdot F(n-1)$ with the sum of the squares of the first $n$ Fibonacci numbers.
+
+\begin{prop} 
+\label{thm:FiboSumConsecutive}
+For all integers $n \geq 1$,
+\begin{equation}
+\label{eq:FiboSumConsecutive}
+F(n) \times F(n-1) \ \ = \ \ \sum_{k=0}^{n-1} (F(k))^2.
+\end{equation}
+\end{prop}
+
+\begin{proof}
+One can observe identity (\ref{eq:FiboSumConsecutive}) ``in action'' in Fig.~\ref{fig:fibosquare}.  We augment this visual validation of the identity with the following induction.
+
+\medskip
+
+\noindent {\sf Base case.}
+Instance $n=1$ of identity (\ref{eq:FiboSumConsecutive}) is valid because
+\[ F(0) \times F(1) \ = \ 1 \times 1 \ = \ 1^2 \ = \ (F(0))^2 \]
+
+\medskip
+
+\noindent {\sf Inductive hypothesis.}
+Assume that identity (\ref{eq:FiboSumConsecutive}) is valid for all $n \leq m$.
+
+\medskip
+
+\noindent {\sf Inductive extension.}
+Focus on the product $F(m+1) \times F(m)$.  Invoking the defining Fibonacci recurrence
+(\ref{eq:Fibonacci-defn}) and the inductive hypothesis, we generate the following chain of equalities.
+\begin{eqnarray*}
+F(m+1) \times F(m)
+ & = &
+   (F(m) \ + \ F(m-1)) \times F(m) \\
+ & = &
+   (F(m))^2 \ \ + \ \ F(m) \times F(m-1)  \\
+ & = & 
+   (F(m))^2  \ \ + \ \ \sum_{k=0}^{m-1} \ (F(k))^2  \\
+ & = &
+   \sum_{k=0}^{m} \ (F(k))^2.
+\end{eqnarray*}
+The induction is thus extended, which completes the proof.  \qed
+\end{proof}
+
+
+\subsection{Cassini's Identity}
+\label{sec:cassini}
+
+\index{Cassini, Giovanni Domenico}
+
+Our final identity o Fibonacci numbers was discovered in 1680 by Giovanni Domenico Cassini, the then-director of the Paris Observatory.
+
+\begin{prop} 
+For all integers $n \geq 1$,
+\begin{equation}
+\label{eq:Cassini}
+F(n-1) \times F(n+1) \ = \ (F(n))^2 \ + \ (-1)^{n+1}
+\end{equation}
+\end{prop}
+
+\begin{proof}
+We proceed by induction.
+
+\smallskip
+
+\noindent {\sf Base case.}
+Expression~\ref{eq:Cassini} holds for $n=1$ because $F(0) \times F(2) = (F(1))^2 +1 = 2$.
+
+\medskip
+
+\noindent {\sf Inductive hypothesis.}
+Assuming that expression~\ref{eq:Cassini} holds for a given $n \geq 1$
+
+\medskip
+
+\noindent {\sf Inductive extension.}
+Replace $F(n+2)$ by its recurrent definition in the product $F(n) \times F(n+2)$
+\begin{eqnarray*}
+F(n) \times F(n+2) & = & F(n) \times (F(n+1)+F(n)) \\
+                              & = & (F(n))^2 + F(n) \times F(n+1)
+\end{eqnarray*}                   
+Now, replace the last term using the inductive hypothesis:
+\begin{eqnarray*}
+(F(n))^2 & = & F(n-1) \times F(n+1) - (-1)^{n+1} \\
+              & = & F(n-1) \times F(n+1) + (-1)^{n+2}
+\end{eqnarray*}
+We thus have
+\begin{eqnarray*}
+F(n) \times F(n+2) & = & F(n) \times F(n+1) \ + \ F(n-1) \times F(n+1) \ + \ (-1)^{n+2} \\
+                              & = & F(n+1) (F(n) + F(n-1)) \ + \ (-1)^{n+2}
+\end{eqnarray*}
+Now apply the defining recurrence of the Fibonacci sequence to obtain
+\[ F(n) \times F(n+2) \ = \ (F(n+1))^2 + (-1)^{n+2} \]
+
+\smallskip
+
+\noindent
+The induction is extended, which completes the proof.  \qed
+\end{proof}
+
+%%%
+
+\section{$\oplus$ Computing Fibonacci Numbers Fast}
+\label{sec:FastFibo}
+
+How many integer multiplications does it take to compute $F(n)$, the $n$th Fibonacci number?  If we follow the numbers' defining bilinear recurrence, then this computation requires $n$ multiplications.  If we are clever, then we can accomplish the computation using many fewer multiplications.  The cleverness resides in computing Fibonacci numbers in successive pairs.  We sketch how to achieve this, leaving details to the reader.
+
+\begin{prop}
+For all positive integers $n$, one can compute the Fibonacci number $F(n)$ in $log_2 n$ multiplications.
+\end{prop}
+
+The proof resides in the following Lemma.
+
+\begin{lemma}
+For all integers $n$:
+
+\noindent {\bf (a)}
+$F(2n) \ = \ (F(n))^2 \ + \ (F(n-1))^2$
+
+\smallskip
+
+\noindent {\bf (b)}
+$F(2n+1) \ = \  F(n) \times (2 F(n-1) + F(n))$.
+\end{lemma}
+
+\smallskip
+
+\begin{proof}[Sketch for the Lemma]
+{\bf (a)} The proof is by induction,
+
+\noindent.
+The base case $n=1$ is true because
+\begin{eqnarray*}
+F(2) & = & (F(1))^2 \ + \ (F(0))^2 \ = \ 2 \\
+F(3) & = & F(1) \times (2F(0)+F(1)) \ = \ 3
+\end{eqnarray*}
+
+\medskip
+
+If we assume, for induction, that the property holds for index $n$, for both $F(2n)$ and $F(2n+1)$, then we can compute $F(2(n+1))$ as follows.
+
+\smallskip
+
+Applying the defining recurrence for the Fibonacci numbers, followed by the inductive hypothesis, we have
+\begin{eqnarray*}
+F(2n+2) & = & F(2n+1) \ + \ F(2n) \\ 
+              & = & (F(n))^2 \ + \ (F(n-1))^2 \ + \  F(n) \times (2 F(n-1) + F(n)) \\
+              & = & (F(n))^2 \ + \ (F(n-1))^2 \ + \ 2 (F(n) \times F(n-1)) \ + \ (F(n))^2 \\
+              & = & (F(n) + F(n-1))^2 + (F(n))^2 \\
+              & = & (F(n+1))^2 + (F(n))^2
+\end{eqnarray*}
+the last step following by again applying the defining recurrence for index $n+1$.
+
+\medskip 
+
+\noindent {\bf (b)}
+We again begin by applying the defining recurrence of the Fibonacci numbers.
+\begin{eqnarray*}
+F(2(n+1)+1)  & = & F(2(n+1)) \ + \ F(2n+1) \\
+                     & = & (F(n+1))^2 \ + \ F(n)^2 \ + \ F(n) \times (2 F(n-1) + F(n)) \\
+                     & = & (F(n+1))^2 \ + \ 2 (F(n-1) + F(n)) \times F(n) \\
+                     & = & (F(n+1))^2 \ + \ 2 F(n+1) \times F(n)
+\end{eqnarray*}
+This completes the proof sketch for the lemma.  \qed
+\end{proof}
+\smallskip
+
+By exposing the dependencies involved in computing the $n$th Fibonacci number $F(n)$,
+Fig.~\ref{fig:fastFibo} provides a pictorial argument to show why this decomposition 
+enables us to compute $F(n)$ in $log_2 n$ steps.
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths/FiboFast.png}
+        \caption{The dependency relations for computing the pairs $(F(2n), F(2n+1))$.}
+                \label{fig:fastFibo}
+\end{center}
+\end{figure}
+
+We exemplify the scheme in Fig.~\ref{fig:fastFibo13} by using the fast Fibonacci scheme to compute $F(13)$.  We observe the computation embedded into a logarithmic-depth 
+complete binary tree of dependencies (with some redundancies).
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths/FiboFast13.png}
+        \caption{Ancestors involved in computing $F(13)$. }
+        \label{fig:fastFibo13}
+\end{center}
+\end{figure}
 
 
 \section{$\oplus \oplus$ A Number System Based on the Fibonacci Sequence}
