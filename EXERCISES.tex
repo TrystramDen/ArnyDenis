@@ -355,33 +355,29 @@ Thus, the length of the initial square is equal to $60-30=30$.
 \begin{itemize}
 \item
 {\bf 6.4. Evaluating $S_1(n) = \sum_{i=1}^n \ i$, using the fact that $S_2(n) = \sum_{i=1}^n \ i^2$}
-
-Say that someone gives you a machine that can compute the summation of the first $n$ perfect squares, given $n$ as an input:
-\[ S_2(n)  \ = \ 1 \  + \ 4 \ + \ 9 \ +  \cdots + \ n^2 \]
+\smallskip
 
 {\em Show how to use this machine in order to compute the sum of the first $n$ integers.}
 
 \medskip
-The idea here is to write the sum by extracting the first and the last element
-of the sum of squares.
+The idea here is to write the sum by extracting the two extreme terms of the sum of squares at rank $n+1$ (namely, first and the last element).
 \medskip
 
-$S_{n+1} = 1 + \sum_{i=1}^{n+1} i^2$
-
-$S_{n+1} = (\sum_{i=1}^{n} i^2) + (n+1)^2$
-
-where $\sum_{i=1}^{n+1} i^2 
-= \sum_{i=0}^{n} (i-1)^2 
-= \sum_{i=0}^{n} (i^2-2i+1) 
-= \sum_{i=0}^{n} i^2- 2 ( \sum_{i=0}^{n} i) + (n+1)
-= \sum_{i=1}^{n} i^2- 2 ( \sum_{i=1}^{n} i) + (n+1)$
-
-Thus, 
-$\sum_{i=1}^{n} i^2- 2 ( \sum_{i=1}^{n} i) + (n+1) = (\sum_{i=1}^{n} i^2) + (n+1)^2$
-
-$-2 \Delta_n + (n+1) =  (n+1)^2$
-
-$\Delta_n =  (n+1)^2-(n+1) = n(n+1)$
+\begin{eqnarray*}
+S_2(n+1) & = &  \sum_{i=1}^{n} i^2 \ + \ (n+1)^2  \\
+ & = & S_2(n) \ + \ (n+1)^2 \\
+S_2(n+1) & = &  1 \ + \sum_{i=2}^{n+1} i^2 \\
+ & = &  1 \ + \sum_{i=1}^{n} \ (i+1)^2 \\
+ & = &  1 \ + \sum_{i=1}^{n} \ (i^2 \ + \ 2.i \ + \ 1) \\
+ & = & 1 \ + \ S_2(n) \ + \ 2.S_1(n) \ + n
+\end{eqnarray*} 
+The term $S_2(n)$ disappears while coming back to the two expressions of $S_2(n+1)$:
+\begin{eqnarray*}
+ S_2(n) \ + \ (n+1)^2 & = & 1 \ + \ S_2(n) \ + \ 2.S_1(n) \ + n \\
+ (n+1)^2 & = & 1 \ + \ 2.S_1(n) \ + n \\
+ 2.S_1(n) & = & (n+1)^2 \ - \ (n + 1) \\
+ S_1(n) & =  & \frac{1}{2} \ n(n+1) 
+\end{eqnarray*} 
 \medskip
 
 \item
