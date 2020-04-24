@@ -1,4 +1,4 @@
-%version of 04-20-20
+%version of 04-24-20
 
 \chapter{Numbers II:
 Building the Integers and Building with the Integers}
@@ -113,7 +113,7 @@ A simple, yet important, corollary of Theorem~\ref{thm:Fund-Thm-Arith} is the fo
 Every integer $n>1$ is divisible by at least one prime number.
 \end{prop}
 
-\bigskip
+\medskip
 
 \noindent {\it Proving the Fundamental Theorem of Arithmetic.}
 The proof of Theorem~\ref{thm:Fund-Thm-Arith} is actually rather elementary, providing that one approaches it gradually.  It employs a lot of important techniques and concepts involved in ``doing mathematics'' which we have discussed in the eponymous Chapter~\ref{ch:doingmath}.
@@ -147,9 +147,7 @@ Now, $p$ divides the expression to the left of the equal sign: $p$ divides $p$ b
 
 We are finally ready to develop the proof of the Fundamental Theorem.
 
-\begin{proof}
-{\small\sf The Fundamental Theorem of Arithmetic.}
-%
+\begin{proof}[The Fundamental Theorem of Arithmetic]
 Our dominant tool for proving Theorem~\ref{thm:Fund-Thm-Arith} will be {\em proof by contradiction} (see Chapter~\ref{sec:Contradiction}).  We assume, for the sake of contradiction, that there is a positive integer $n$ that has two distinct canonical prime factorizations.
 
 Our argument will be a trifle simpler if we employ the {\em alternative} form of the Theorem.  To this end, let
@@ -178,26 +176,34 @@ Let us now ``cancel'' from the products in Eqs.~(\ref{eq:product1.1}) and (\ref{
 \begin{eqnarray}
  & &
 \label{eq:product1.2}
-p_i^{a_i} \cdot X \\
+p_i^{a_i -c_i} \cdot X \\
  & &
 \label{eq:product2.2}
-p_i^{b_i} \cdot Y
+p_i^{b_i -c_i} \cdot Y
 \end{eqnarray}
 where:
 \begin{itemize}
 \item
-Precisely one of $a_i$ and $b_i$ equals $0$.
+Precisely one of $a_i -c_i$ and $b_i -c_i$ equals $0$.
 
 \smallskip
 
-Say, with no loss of generality (because we have no intrinsic way to distinguish the products), that $b_i =0$ while $a_i \neq 0$.
+To see this, begin canceling instances of prime $p_1$, one by one, from the two products.  If one string of $p_1$s runs out before the other, say after $c_1$ cancellations, then the pair $(a_1 -c_1, b_1 -c_1)$ witnesses our claim.  Else, if both strings of $p_1$s run out simultaneously---because $a_1 = b_1$---then we start canceling instances of prime $p_2$, one by one, from the two residual products.  If these strings do not run out simultaneously, then we have a witness for our claim; if they do run out simultaneously, then we turn our attention to $p_3$.  And so on \ldots
 
-\medskip\item
+Because the two products in Eqs.~(\ref{eq:product1.2}) and~(\ref{eq:product2.2}) are distinct, we must eventually reach a prime $p_i$ for which $a_i \neq b_i$.  At that point,
+\[ c_i = \max(a_i, b_i) \ - \  \min(a_i, b_i) \]
+cancellations of instances of $p_i$ will lead us to the situation we have described. 
+\end{itemize}
+
+Say, with no loss of generality (because we have no {\it a priori} way to distinguish the products), that $b_i -c_i = 0$ while $a_i -c_i \neq 0$.
+
+\begin{itemize}
+\item
 Products $X$ and $Y$ are composed only of primes that are strictly bigger than $P_i$.
 \end{itemize}
 Note that 
-\[ p_i^{a_i} \cdot X \ = \ p_i^{b_i} \cdot Y \ = \ Y \]
-because these products result from cancelling the same prefix from the equal products (\ref{eq:product1.1}) and (\ref{eq:product2.1}), and because $b_i =0$ so that $p_i^{b_i} = 1$.
+\[ p_i^{a_i - c_i} \cdot X \ = \ p_i^{b_i -c_i} \cdot Y \ = \ Y \]
+because these products result from cancelling the same prefix from the equal products (\ref{eq:product1.1}) and (\ref{eq:product2.1}), and because $b_i -c_i =0$ so that $p_i^{b_i -c_i}  = 1$.
 
 \medskip
 
@@ -206,7 +212,7 @@ We have finally reached the point of contradiction.
 
 \smallskip
 
-On the one hand, $p_i$ {\em must} divide the product $Y$, because it divides the product $p_i^{a_i} \cdot X$ which equals $Y$.
+On the one hand, $p_i$ {\em must} divide the product $Y$, because it divides the product $p_i^{a_i -c_i} \cdot X$ which equals $Y$.
 
 On the other hand, $p_i$ {\em cannot} divide the product $Y$, because every prime factor of $Y$ is bigger than $p_i$ (and a prime cannot divide a bigger prime).
 
@@ -236,17 +242,17 @@ How far does this sequence extend?  Does it ever end?
 
 Let us assume, for the sake of contradiction, that there are only finitely many primes (so that our sequence ends).  Say, in particular, that the following $r$-element sequence of integers enumerates all (and only) primes, in order of magnitude:
 
-\medskip
+\smallskip
 
-$ \begin{array}{ccl}
+\[ \begin{array}{ccl}
 \mbox{\bf Prime-Numbers} & = & 
 \langle p_1, \ p_2, \ \ldots, \ p_r \rangle \\
 \mbox{ where} &  &
 p_1 \ < \ p_2 \ < \cdots < \ p_{r-1} \ < \ p_r
 \end{array}
-$
+\]
 
-\medskip
+\smallskip
 
 We verify the {\em falseness} of the alleged completeness of the sequence {\bf Prime-Numbers} by analyzing the positive integer
 \[
@@ -274,7 +280,7 @@ The discreteness of the set $\Z$---see Section~\ref{sec:integer-number-line}---i
 Because of Observation 1, if the sequence {\bf Prime-Numbers} actually did contain {\em all} of the prime numbers, then we would have to conclude that {\em the number $n^\star$ is not divisible by any prime number.}
 
 \medskip\item
-Finally, we remark that the Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}) implies that {\em every integer $m >1$ is divisible by (at least one) prime number}.  (See Proposition~\ref{thm:prime-divisor}.)
+Finally, we invoke Proposition~\ref{thm:prime-divisor}, which asserts that {\em every integer $m >1$ is divisible by (at least one) prime number}.
 \end{enumerate}
 The preceding chain of assertions leads to a mutual inconsistency.  On the one hand, the integer $n^\star >1$ has no prime-integer divisor. On the other hand, no such integer can fail to have a prime-integer divisor!
 
@@ -285,7 +291,8 @@ Let us analyze how we arrived at this uncomfortable place.
 \item
 At the front end of this string of assertions we have the assumption that there are only finitely many prime numbers.  We have (as yet) no substantiation for this assertion.
 \medskip\item
-At the back end of this string of assertions, we have the ({\em rock solid}) Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}).
+At the back end of this string of assertions, we have Proposition~\ref{thm:prime-divisor}, which we have {\em proved}.
+
 \medskip\item
 In between these two assertions we have a sequence of assertions, each of which follows from its predecessors via irrefutable rules of inference.
 \end{itemize}
@@ -346,15 +353,15 @@ We return to the idea of encoding-via-integers in Section~\ref{sec:pairing}, usi
 \label{sec:prime-density}
 \index{The Prime Number Theorem}
 
-Whether or not one ascribes any spiritual significance to the prime numbers, as the early Greeks did, it can be fun to look for patterns in the sequence {\bf P} of primes; we know by Proposition~\ref{thm:infinite-primes} that the sequence {\bf P} is infinite.  As we begin to list integers looking for primes, we are impressed by how ``densely'' they start out:  There are six primes in the first $13$ integers---the ``unboxed" integers in the following interval
+Whether or not one ascribes any spiritual significance to the prime numbers, as the early Greeks did, it can be fun to look for patterns in the sequence {\bf P} of primes; we know by Proposition~\ref{thm:infinite-primes} that the sequence {\bf P} is infinite.  As we begin to list integers looking for primes, we are impressed by how ``densely'' they start out:  There are six primes in the first $13$ integers---the ``unboxed" integers in the following sequence
 \[ 
-\fbox{1}, \ 2, \ 3, \ \fbox{4}, \ 5, \ \fbox{6}, \ 7, \ \fbox{8}, \ \fbox{9}, \ \fbox{10}, \ 11, \ \fbox{12}, \ 13 
+1, \ 2, \ 3, \ \fbox{4}, \ 5, \ \fbox{6}, \ 7, \ \fbox{8}, \ \fbox{9}, \ \fbox{10}, \ 11, \ \fbox{12}, \ 13 
 \] 
-However, even as soon as the interval
+However, even as soon as the sequence
 \[ 23, \ \fbox{24}, \ \fbox{25}, \ \fbox{26}, \ \fbox{27}, \ \fbox{28}, \ 29, \ \fbox{30}, \ 31, 
 \ \fbox{32}, \ \fbox{33}, \ \fbox{34}, \ \fbox{35}, \ \fbox{36}, \ 37
 \]
-we encounter only $4$ primes in a run of $15$ integers.  Which of the preceding intervals is more representative of the true density of the primes among the integers?  This question goes back to antiquity.  Even after it became clear that ``over the long enough haul'', the primes were actually rather sparse among the integers, it took the labors of a string of mathematical luminaries until the  end of the 19th century to determine exactly how sparse.  It was finally ascertained only in 1896 that, asymptotically, roughly the fraction $1/ \log n$ of the integers in the interval
+we encounter only $4$ primes in a run of $15$ integers.  Which of the preceding sequences is more representative of the true density of the primes among the integers?  This question goes back to antiquity.  Even after it became clear that ``over the long enough haul'', the primes were actually rather sparse among the integers, it took the labors of a string of mathematical luminaries until the  end of the 19th century to determine exactly how sparse.  It was finally ascertained only in 1896 that, asymptotically, roughly the fraction $1/ \ln n$ of the integers in the interval
 \[ \{ 1, \ 2, \ 3, \ldots, \ n \} \]
 are prime.  The landmark {\it Prime Number Theorem}, which establishes this density result, was first proved independently and almost simultaneously (in 1896) by the French mathematician Jacques Hadamard  \cite{Hadamard} and the Belgian mathematician Charles Jean de la Vall\'{e}e Poussin \cite{Poussin}.
 \index{The Prime Number Theorem} \index{Hadamard, Jacques}
@@ -379,7 +386,7 @@ approaches $0$ as $n$ increases without bound.  We can finally state the theorem
 \begin{theorem}[The Prime Number Theorem]
 \label{thm:prime-number-theorem}
 The $n$th prime number, $p_n$ satisfies the asymptotic ``equation'' 
-\[ p_{n} \  \sim  \ n \cdot \log(n) \]
+\[ p_{n} \  \sim  \ n \cdot \ln n \]
 \end{theorem}
   
 
