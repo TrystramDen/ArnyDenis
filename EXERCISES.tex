@@ -1242,28 +1242,71 @@ P_7(x) & = & C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + \ x^4 \ ( \ C_4^{(0)} \ + \ x
 {\bf 11.2. Counting replicated triangles}
 \smallskip
 
-How does the progression of numbers of triangles contained into $T_k$ grow? 
-To this end, let $N_i$ denote the number of triangles within triangle $T_k$.  
-We have just seen that $N_0 =1$, $N_1 = 5$, and $N_2 = 13$.
-  \begin{itemize}
+{\em How does the progression of numbers of triangles contained into the rank $k$ triangle $T_k$ grow?}
+Let $N_k$ denote this number of triangles within $T_k$.  
+We know that $N_0 =1$, $N_1 = 5$, and $N_2 = 13$.
+  \begin{enumerate}
   \item
 {\em Compute} $N_4$.
 \smallskip
 
-Reasoning on the case $k=4$ will give us hint of the general case.
+First, let remark that there is only one large triangle $T_4$.
 
-See Fig.~\ref{fig:countingTriangles}(left).
+$T_4$ is represented in Fig.~\ref{fig:countingTriangles3} where there are clearly $3$ triangles $T_3$
+that partially overlap.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.35]{FiguresArithmetic/CountingTriangles}
-        \caption{The first three stages of triangle-replication.}
-        \label{fig:countingTriangles}
+        \includegraphics[scale=0.3]{FiguresArithmetic/CountingTriangles3} 
+        \caption{the $3$ triangles $T_3$ contained into $T_4$.}
+        \label{fig:countingTriangles3}
 \end{center}
 \end{figure}
+Let us now enumerate the $T_2$ triangles
+(see Fig.~\ref{fig:countingTriangles2}).
+\begin{figure}[h]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresArithmetic/CountingTriangles2} 
+        \caption{$4$ triangles $T_2$(left) and $3$ triangles $T_2$(right).}
+        \label{fig:countingTriangles2}
+\end{center}
+\end{figure}
+Let us now jump to the smallest $T_1$.
+Counting them row by row indicates that their number is equal to the sum of the first $k$ integers (here $k=4$).
+This sum is well-known and it is equal to the square of the rank: $4^2 = 16$.
+\smallskip
+
+Summing up all levels, we obtain:
+
+$N_4 = 1 + 3 + 7 + 16 = 27$.
 
 \medskip\item
 {\em Develop a recurrence for} $N_k$ (i.e., the general case).
-\end{itemize}
+\smallskip
+
+The recurrence is based on the generalization of the analysis of the previous case $k=4$.
+
+Pour chaque triangle de rang $k$, on dénombre $3$ triangles de rang $k-1$ imbriqués (soit, $3 N_{k-1}$).
+Deux de ces triangles de rang $k-1$ ont une partie commune, c'est un triangle de rang $k-2$, donc 
+il faut l'enlever (ce qui correspond à $ -3 N_{k-2}$).
+Par contre, il y a une partie commune aux trois, c'est un triangle de rang $k-3$  (soit, $+ N_{k-3}$). 
+Il faut de plus rajouter le grand triangle ($+1$), et quand $k$ est pair,
+il y a un triangle supplémentaire de rang $k-2$ qui apparaît inversé au milieu (donc, dans ce cas $+1$).
+\smallskip
+
+For even $k$:  $N_k = 3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1 + 1$
+
+For odd $k$: $N_k = 3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1$
+
+with $k \geq 3$ et $N_0 = 0$, $N_1 = 1$ et $N_2 = 5$.
+\smallskip
+
+Solving the recurrence leads to the following expression:
+
+$N_k = \frac{k.(k+2).(2k+1)}{8}$ if $k$ is even
+and
+$N_k = \frac{k.(k+2).(2k+1)-1}{8}$ if $k$ is odd.
+
+\end{enumerate}
 
 %%%
 
