@@ -1257,7 +1257,7 @@ that partially overlap.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresArithmetic/CountingTriangles3} 
-        \caption{the $3$ triangles $T_3$ contained into $T_4$.}
+        \caption{The $3$ triangles $T_3$ contained into $T_4$.}
         \label{fig:countingTriangles3}
 \end{center}
 \end{figure}
@@ -1285,27 +1285,28 @@ $N_4 = 1 + 3 + 7 + 16 = 27$.
 
 The recurrence is based on the generalization of the analysis of the previous case $k=4$.
 
-Pour chaque triangle de rang $k$, on dénombre $3$ triangles de rang $k-1$ imbriqués (soit, $3 N_{k-1}$).
-Deux de ces triangles de rang $k-1$ ont une partie commune, c'est un triangle de rang $k-2$, donc 
-il faut l'enlever (ce qui correspond à $ -3 N_{k-2}$).
-Par contre, il y a une partie commune aux trois, c'est un triangle de rang $k-3$  (soit, $+ N_{k-3}$). 
-Il faut de plus rajouter le grand triangle ($+1$), et quand $k$ est pair,
-il y a un triangle supplémentaire de rang $k-2$ qui apparaît inversé au milieu (donc, dans ce cas $+1$).
+For each triangle $T_k$, we have $3$ intertwined triangles $T_{k-1}$ (thus, $3 N_{k-1}$).
+Two of these triangles share a common part, this part is a triangle $T_{k-2}$ that should be removed from the counting
+(which corresponds to $ -3 N_{k-2}$).
+But there is another part which is common to these three triangles. This part is a lower dimension $T_{k-3}$ (thus, $+ N_{k-3}$). 
+Finally, we should add the largest triangle $T_{k}$ (this corresponds to $+1$), and when $k$ is even,  there is an extra triangle $T_{k-2}$ that
+appears reversed in the middle (therefore, we should add $+1$ in this case).
 \smallskip
+
+The summary is as follows:
 
 For even $k$:  $N_k = 3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1 + 1$
 
 For odd $k$: $N_k = 3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1$
 
-with $k \geq 3$ et $N_0 = 0$, $N_1 = 1$ et $N_2 = 5$.
-\smallskip
+with $k \geq 3$ et $N_0 = 0$, $N_1 = 1$ et $N_2 = 5$\footnote{We added the artificial case $k=0$ in order to simplify the expression}.
+\medskip
 
-Solving the recurrence leads to the following expression:
+The most discerning readers may check that solving this recurrence leads to the following expression:
 
 $N_k = \frac{k.(k+2).(2k+1)}{8}$ if $k$ is even
-and
-$N_k = \frac{k.(k+2).(2k+1)-1}{8}$ if $k$ is odd.
 
+$N_k = \frac{k.(k+2).(2k+1)-1}{8}$ if $k$ is odd.
 \end{enumerate}
 
 %%%
