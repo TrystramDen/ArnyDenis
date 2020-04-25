@@ -361,7 +361,6 @@ Thus, the length of the initial square is equal to $60-30=30$.
 
 \medskip
 The idea here is to write the sum by extracting the two extreme terms of the sum of squares at rank $n+1$ (namely, first and the last element).
-\medskip
 
 \begin{eqnarray*}
 S_2(n+1) & = &  \sum_{i=1}^{n} i^2 \ + \ (n+1)^2  \\
@@ -371,7 +370,7 @@ S_2(n+1) & = &  1 \ + \sum_{i=2}^{n+1} i^2 \\
  & = &  1 \ + \sum_{i=1}^{n} \ (i^2 \ + \ 2.i \ + \ 1) \\
  & = & 1 \ + \ S_2(n) \ + \ 2.S_1(n) \ + n
 \end{eqnarray*} 
-The term $S_2(n)$ disappears while coming back to the two expressions of $S_2(n+1)$:
+The term $S_2(n)$ disappears while considering both expressions of $S_2(n+1)$:
 \begin{eqnarray*}
  S_2(n) \ + \ (n+1)^2 & = & 1 \ + \ S_2(n) \ + \ 2.S_1(n) \ + n \\
  (n+1)^2 & = & 1 \ + \ 2.S_1(n) \ + n \\
@@ -410,37 +409,42 @@ The partitioning step operates as follows:
 {\footnotesize
 \[ 
 \begin{array}{ll}
-S^{(H)}   & = \ (1)  +  \left( {1 \over 2} + {1 \over 3} \right)  +  \left( {1 \over 4} + {1 \over 5} + {1 \over 6}+ {1 \over 7} \right)  +  \left( {1 \over 8} + {1 \over 9} + {1 \over 10}+ {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14}+ {1 \over 15} \right) \ +\cdots
+S^{(H)}   & = \ 1  + {1 \over 2} + \left(  {1 \over 3}   +  {1 \over 4}  \right) + \left( {1 \over 5} + {1 \over 6}+ {1 \over 7}  +  {1 \over 8} \right) + \left( {1 \over 9} + {1 \over 10}+ {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14} + {1 \over 15} + {1 \over 16} \right) \ +\cdots
 \end{array} \]
 }
 
-Grouping the terms as before, the sum within each group is between $\frac{1}{2}$ and $1$:
+More precisely, each group, say $G_i$, is composed by the $i$ integers from $\frac{1}{2^{(i-1)}+1}$ to $\frac{1}{2^{i}}$ 
+(for $i \geq 1$).
+Grouping the terms like before, the sum within each group $G_i$ is greater than $\frac{1}{2}$:
 \[ 
-\begin{array}{ll}
-{1 \over 2} + {1 \over 3}  & < 1 \\
-{1 \over 4} + {1 \over 5} + {1 \over 6}+ {1 \over 7}  & < 1 \\
-{1 \over 8} + {1 \over 9} + {1 \over 10}+ {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14}+ {1 \over 15} & < 1 \\
+\begin{array}{l}
+{1 \over 3} + {1 \over 4}  > 2.{1 \over 4} = {1 \over 2} \\ \smallskip
+{1 \over 5} + {1 \over 6} + {1 \over 7}+ {1 \over 8}  > 4.{1 \over 8} = {1 \over 2}  \\  \smallskip
+{1 \over 9} + {1 \over 10} + {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14} + {1 \over 15} + {1 \over 16}  > 8.{1 \over 16} = {1 \over 2}  \\  \smallskip
 \cdots
-\end{array} 
-\]
+\end{array} \]
 Thus, 
 \[ 
 \begin{array}{ll}
-S^{(H)} \ > \ 1 \ + \ 1 \ + \ 1 \ + \cdots
-\end{array} 
-\]
+S^{(H)} \ > \ 1 \ + \ \left( {1 \over 2} \ + \ {1 \over 2} \right) \ + \left( {1 \over 2} + {1 \over 2} \right) + \cdots
+\end{array} \]
 \medskip
 
-{\em Propose an alternative analysis by gathering the terms 3 by 3}
+{\em Propose an alternative analysis by changing the groupings where the terms are gathered 3 by 3}
+\[ 
+\begin{array}{ll}
+S_i & = \left( \frac{1}{3i-1} + \frac{1}{3i} + \frac{1}{3i+1} \right) 
+\end{array} \]
+\[ 
+\begin{array}{ll}
+S^{(H)}  & = 1 + S_1 +  \cdots + S_i +  > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + \cdots + 3.\frac{1}{3i} + \cdots
+\end{array} \]
 
-$S_k = (\frac{1}{3k-1} + \frac{1}{3k} + \frac{1}{3k+1} )$ for $k\geq1$, 
+$H = 1 + S_1 +  \cdots + S_i +  \cdots > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} +  \cdots + 3.\frac{1}{3k} + \cdots$
 
-$H = 1 + S_1 + ... + S_k + ... > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + ... + 3.\frac{1}{3k} + ... $
-
-since $S_k > 3.\frac{1}{k} $.
+since $S_i > 3.\frac{1}{i} $.
 
 The proof is by contradiction:
-
 if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
 \medskip
 
@@ -638,7 +642,8 @@ The Pascal's triangle modulo a prime $m$ (where each of the triangle's entries a
 \begin{figure}[ht]
 \begin{center}
 	\includegraphics[scale=0.3]{FiguresArithmetic/PascalTriangleFractal.png}
-	        \caption{The reproducible patterns in Pascal's triangle modulo $5$.}
+	        \caption{The reproducible patterns in Pascal's triangle modulo $5$.
+	        the shaded reversed triangles correspond to the input $0$.}
         \label{fig:TriangleFractal}
 \end{center}
 \end{figure}
@@ -658,37 +663,9 @@ The original triangle has been transformed into a fractal-like repetitive struct
 b. {\bf The sieve of Eratosthenes and its implications}
 
 We formulate the sieve as a regimen for labeling integers with their prime factors.  For simplicity, we use the label $\lambda_p$ to identify integers which are multiples of prime $p$.
-
 \medskip
 
-We begin with the linear array of positive integers:
-
-$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13
-\end{array}$ \ldots
-
-\medskip
-
-We label the multiples of $2$ (i.e., the even numbers):
-
-$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
- & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 &
-\end{array}$ \ldots
-
-\medskip
-
-We label the multiples of $3$:
-
-$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
- & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
- & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 &
-\end{array}$ \ldots
-
-\medskip
-
-We label the multiples of $5$:
+The multiples of $2$, $3$ and $5$ are labeled in the following table:
 
 $\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
@@ -698,10 +675,6 @@ $\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
 \end{array}$ \ldots
 
 \bigskip
-
-The sieve affords one a wonderful perspective for perceiving the patterns that drive mathematical insights.  Here are a few results for you to prove, which are suggested by a perusal of the sieve.
-
-\smallskip
 
 {\em Prove the following results.}
      \begin{enumerate}
@@ -1574,7 +1547,15 @@ Once you get an idea for how such an ``encoding" might work, try to incorporate 
 $\q_4$ is represented by its natural Gray codes,
 where a vertex is coded 4 bits and connected to its four neighbors by complementing 
 the digit in each of the four dimensions.
+See Fig.~\ref{fig:IsomorphismCodingPrinciple} for the correspondence between hypercube and torus for coding a node and its related links.
 \medskip
+ \begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresGraph/IsomorphismEx2}
+       \caption{Coding schemes for the hypercube and torus.}
+  \label{fig:IsomorphismCodingPrinciple}
+\end{center}
+\end{figure}
 
 $\widetilde{\m}_{4,4}$ is the cartesian product between two mono-dimensional rings.
 Each one is composed of the four vertices connected using a Gray code:
@@ -1582,7 +1563,14 @@ Each one is composed of the four vertices connected using a Gray code:
 $00, 01, 11, 10$
 
 The whole coding is obtained by concatenation of both dimensions.
-
+See Fig.~\ref{fig:IsomorphismCodingComplete}
+ \begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresGraph/IsomorphismEx1}
+       \caption{Complete coding schemes.}
+  \label{fig:IsomorphismCodingComplete}
+\end{center}
+\end{figure}
 
 \medskip\item
 {\bf 12.9. A traffic map for a mesh-structured city}
