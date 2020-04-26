@@ -26,7 +26,9 @@ hands.
 \item
 {\bf 2.4. Bi-colored necklaces in tubes}
 
-You have a {\it necklace} composed of $2n$ jewels: $2a$ black jewels and $2b$ white jewels.  For illustration, the necklace in Fig.~\ref{fig:sample-necklace} has $n = 6$, $a = 5$, and $b =1$.
+A {\it necklace} is composed of $2n$ jewels: $2a$ black jewels and $2b$ white jewels. 
+\ignore{************************
+ For illustration, the necklace in Fig.~\ref{fig:sample-necklace} has $n = 6$, $a = 5$, and $b =1$.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SampleNecklace}
@@ -35,7 +37,7 @@ You have a {\it necklace} composed of $2n$ jewels: $2a$ black jewels and $2b$ wh
 \end{figure}
 
 In part (a) of the figure, the necklace is unadorned; in part (b), the necklace appears within a length-$n$ {\it tube} which isolates one string---i.e., half-necklace---of $n$ jewels from the complementary string.
-
+*******************************}
 \smallskip
 
 \noindent {\em For any bi-colored necklace, there is a way to position the tube so that inside the tube and outside the tube, 
@@ -44,55 +46,96 @@ there are equally many jewels, equally many black jewels, and equally many white
 
 Slide the tube around the necklace, and count both black and white jewels at each step.  
 How can these numbers change in a single step?
+\smallskip
+
+Let consider a position of the tube. 
+The effect of a shift is to replace one jewel at the extremity of the tube by another jewel. 
+If both jewels have the same color, the counting in unchanged while if they have different colors
+(for instance, a black replaces a white), the number of whites decreases and the number of blacks increases. 
+At the same time, the number of whites increases and the number of blacks decreases in the complementary 
+remaining part of the necklace. 
+
 \medskip \item
 {\bf 2.6. Using {\em geometric} intuition to sum inverse powers of $4$}
-
-{\sc Lesson:} Exploiting geometric intuition toward a sophisticated end.
-
 \smallskip
 
-We turn to a variant of Proposition~\ref{thm:sumof-1/4-induction}.  This time, we focus on the entire infinite summation
+We consider a variant of Proposition~\ref{thm:sumof-1/4-induction} where the focus is put on the entire infinite summation
 \[ S \ \ = \ \  {1 \over 4} \ + \  {1 \over 4^2} \ + \cdots + \ {1 \over 4^k} \ + \cdots  \]
-and we do so from a geometric point of view.
 
 \smallskip
 
-We prove in Proposition~\ref{thm:sum-finite-geometric-series}(b) that this infinite summation converges to the value ${1 \over 3}$.  A simple way to see this is to multiply the summation $S$ term by term by the fraction $1/4$.  We observe---just by inspection---that the resulting product, which clearly has the value $S/4$, equals $S - 1/4$, so that $S = 1/3$.
-
+\ignore{***************
+We prove in Proposition~\ref{thm:sum-finite-geometric-series}(b) that this infinite summation converges to the value ${1 \over 3}$.  
+A simple way to see this is to multiply the summation $S$ term by term by the fraction $1/4$.  We observe---just by inspection---that the resulting product, which clearly has the value $S/4$, equals $S - 1/4$, so that $S = 1/3$.
 \smallskip
+*************************}
 
-We have now described the process at a very high level.  
-Your assignment is to flesh out the details.  {\em Prove that the four sub-triangles
 \begin{itemize}
 \item
-are similar to one another
-\item
-are similar to the original triangle
-\item
-have area which is $1/4$ that of the original triangle
-\end{itemize}
-Assemble these facts into an evaluation of the sum $S$.
-}
+{\em prove that the four triangles are similar to one another.}
+\smallskip
 
-\noindent \textit{Solution.}
-A rapid analysis of the small values of $k$ leads to the guess $(\frac{1}{4})^k = \frac{1}{3}$.
- 
-The solution is depicted in Fig.~\ref{Fig:Sumgeo1sur4}. 
+Let consider the small upper triangle and duplicate it twice.
+Put both of them at the bottom of the original triangle
+(as shown in Fig.~\ref{Sum1over4FirstLayer}(right)). 
+There is another reversed triangle left at the middle of the figure (the white one). 
+It has the same sides as the previous ones and its base is also half of the base of the original triangle,
+thus it is also similar to the small upper triangle.
+
 \begin{figure}
 \begin{center}
-        \includegraphics[scale=0.3]{FiguresArithmetic/SumGeometric1sur4}
-        \caption{Graphical construction. Assuming the total area is 1, the area of the grey internal triangle (left) is $\frac{1}{4}$.
-        As the grey area is one third at each layer (right), the whole area is $\frac{1}{3}$.
-        By the double counting Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
-        \label{Fig:Sumgeo1sur4}
+        \includegraphics[scale=0.3]{FiguresMaths/Sum1over4topTriangle}
+        \hspace{1cm}
+        \includegraphics[scale=0.3]{FiguresMaths/Sum1over4similarTriangles}
+        \caption{A sub-triangle at the top(left) and its two duplicates(right).
+        These three traingles plus the white reserved one at the middle perfectly partition the area of the original big triangle.}
+        \label{Fig:Sumgeosimilar}
 \end{center}
 \end{figure}
 
-Finding such a triangular pattern may not be considered as an easy task.
-However, as stated in the problem, the main point is to divide an elementary surface
-into four equal pieces. 
-Squares (or even worse disks) are not simple to use in this context while isosceles triangles 
-are a \textit{natural} structure. 
+\item
+{\em prove that the four triangles are similar to the original triangle.}
+\smallskip
+
+The small upper triangle has been obtained by divided by a factor of $2$ both the basis and the sides
+of the original triangle (see Fig.~\ref{Sum1over4FirstLayer}(left)). 
+Thus, it is similar to the original one. 
+\smallskip
+
+\item
+{\em prove that the four triangles have area which is $1/4$ that of the original triangle.}
+
+This comes directly from the two previous observations: The four triangles have the same area
+and they exactly cover the original triangle. 
+\end{itemize}
+
+{\em Assemble these facts into an evaluation of the sum $S$.}
+\smallskip
+
+The sum $S$ is obtained by recursively applying the same process of partitioning again and again
+on the small upper triangles. 
+The whole process splits the original triangle into layers containing each $3$ sub-triangles
+(see Fig.~\ref{Fig:Sum1over4FirstLayer}). 
+As the three sub-triangles are the same, the area of the central reversed triangle is $\frac{1}{3}$ of the area of the layer. 
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths/Sum1over4FirstLayer}
+        \caption{First bottom layer of the partitioning..}
+        \label{Fig:Sum1over4FirstLayer}
+\end{center}
+\end{figure}
+
+The final solution is depicted in Fig.~\ref{Fig:Sum1over4cascade} where the recursive process is applied \textit{ad libitum}. 
+
+\begin{figure}
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths/Sum1over4cascade}
+        \caption{Summary of the graphical construction. Assuming the total area is 1, the area of the grey internal triangle (left) is $\frac{1}{4}$.
+        As the grey area is one third at each layer (right), the whole area is $\frac{1}{3}$.
+        By the double counting Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
+        \label{Fig:Sum1over4cascade}
+\end{center}
+\end{figure}
 
 \end{itemize}
 
@@ -381,13 +424,23 @@ The term $S_2(n)$ disappears while considering both expressions of $S_2(n+1)$:
 
 \item
 {\bf 6.6. Evaluating a geometric summation pictorially}
+\smallskip
 
+\ignore{***************
 In Section~\ref{sec:summing-geometric-series:techniques}, we used Thales's theorem about similarity in triangles (Theorem~\ref{thm:Thm-of-Thales-similarity}) to sum the simple infinite geometric series $\sum_{i=0}^\infty \ b^i$.  It turns out that a modest modification of that evaluation strategy allows us also to evaluate the truncated versions of that series, namely, the summations
 \[ S^{(b)}(n) \ = \ \sum_{i=0}^n \ b^i \]
+************************}
 
-{\em Use the following figure to evaluate $S^{(b)}(n)$.}
+{\em Use the following figure to evaluate the following expression.}
+\[ S^{(b)}(n) \ = \ \sum_{i=0}^n \ b^i \]
 
 \centerline{\includegraphics[scale=0.4]{FiguresArithmetic/ThalesGeometricSumFiniteSol}}
+\smallskip
+
+We use Thales's theorem (\ref{thm:Thm-of-Thales-similarity}) in the two upper similar triangles .
+\[ \frac{S^{(b)}(n)}{1-b^{n+1}} \ = \ \frac{1}{1-b} \]
+\[ S^{(b)}(n) \ = \ \frac{1-b^{n+1}}{1-b} \]
+
 \medskip
 
 \item
@@ -440,12 +493,12 @@ S_i & = \left( \frac{1}{3i-1} + \frac{1}{3i} + \frac{1}{3i+1} \right)
 S^{(H)}  & = 1 + S_1 +  \cdots + S_i +  > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + \cdots + 3.\frac{1}{3i} + \cdots
 \end{array} \]
 
-$H = 1 + S_1 +  \cdots + S_i +  \cdots > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} +  \cdots + 3.\frac{1}{3k} + \cdots$
+$S^{(H)}  = 1 + S_1 +  \cdots + S_i +  \cdots > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} +  \cdots + 3.\frac{1}{3k} + \cdots$
 
-since $S_i > 3.\frac{1}{i} $.
+since $S_i > 3.\frac{1}{i} $
 
 The proof is by contradiction:
-if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obviously impossible.
+if $S^{(H)} $ is finite, from the previous relation we have: $S^{(H)}  > 1 + S^{(H)} $, which is obviously impossible.
 \medskip
 
 \item
@@ -453,7 +506,7 @@ if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obvi
 \smallskip
 
   \begin{itemize}
-  \item 1.
+  \item a.
 {\em Prove that}
 \[ \widehat{\Theta}_n \ \eqdef \  \sum_{k=1}^n \ \Delta_k \ = \   
 \Delta_1 + \Delta_2 + \cdots + \Delta_n \ = \ \frac{1}{3} \Delta_n \cdot (n+2) \]
@@ -463,17 +516,17 @@ if $H$ is finite, from the previous relation we have: $H > 1 + H$, which is obvi
 %\[ \Upsilon_n  \ \eqdef \  \sum_{k=1}^n \ \widehat{T}_k \ = \  
 %\widehat{T}_1 + \widehat{T}_2 + \cdots + \widehat{T}_n \]
 
-  \item 3.
+  \item b.
 {\em Prove the following identities involving $\Delta_n$.  For all $n \in \N^+$:}
     \begin{itemize}
-    \item a.
+    \item i.
 $\Delta_n \ + \ \Delta_{n-1} \ = \ n^2$
 
 \smallskip
 
 This is a straightforward exercise in algebraic manipulation.  Can you {\em also} find an ``interesting" proof of this identity, say one that employs a ``pictorial" representation of $\Delta_n$?
 
- \item b.
+ \item ii.
 $\Delta_n^2 \ - \ \Delta_{n-1}^2 \ = \ n^3$
 
 \smallskip
@@ -485,7 +538,7 @@ provides the solution:
 to complete
    \end{itemize}
 
-  \item 4.
+  \item c.
 {\em Derive a closed-form expression for the sum}
 \[ \widehat{\Theta}_n \ + \ \widehat{\Theta} _{n-1} \]
 
