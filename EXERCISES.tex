@@ -77,7 +77,7 @@ A simple way to see this is to multiply the summation $S$ term by term by the fr
 
 Let consider the small upper triangle and duplicate it twice.
 Put both of them at the bottom of the original triangle
-(as shown in Fig.~\ref{Sum1over4FirstLayer}(right)). 
+(as shown in Fig.~\ref{Fig:Sum1over4FirstLayer}(right)). 
 There is another reversed triangle left at the middle of the figure (the white one). 
 It has the same sides as the previous ones and its base is also half of the base of the original triangle,
 thus it is also similar to the small upper triangle.
@@ -98,7 +98,7 @@ thus it is also similar to the small upper triangle.
 \smallskip
 
 The small upper triangle has been obtained by divided by a factor of $2$ both the basis and the sides
-of the original triangle (see Fig.~\ref{Sum1over4FirstLayer}(left)). 
+of the original triangle (see Fig.~\ref{Fig:Sum1over4FirstLayer}(left)). 
 Thus, it is similar to the original one. 
 \smallskip
 
@@ -481,6 +481,8 @@ Thus,
 \begin{array}{ll}
 S^{(H)} \ > \ 1 \ + \ \left( {1 \over 2} \ + \ {1 \over 2} \right) \ + \left( {1 \over 2} + {1 \over 2} \right) + \cdots
 \end{array} \]
+$S^{(H)}$ is greater than the infinite sum of 1 and thus, it is unbounded .
+
 \medskip
 
 {\em Propose an alternative analysis by changing the groupings where the terms are gathered 3 by 3}
@@ -561,7 +563,23 @@ Write $\Delta_n \ = \ n \ + \ \Delta_{n-1}$ and replace it in the expression.
 {\em Derive a closed-form expression for the sum}
 \[ \widehat{\Theta}_n \ + \ \widehat{\Theta} _{n-1} \]
 
-This question is more open since we don't know \textit{what} to look for.
+This question is more open here than the previous ones since we don't know \textit{what} to look for.
+\smallskip
+
+A way to study this problem is to come back to the original definition of the $\Theta_n$
+as the sum of $\Delta_k$.
+\begin{eqnarray*}
+\widehat{\Theta}_n \ + \ \widehat{\Theta} _{n-1}  & = & \sum_{k=1}^n \Delta_k + \sum_{k=1}^{n-1} \Delta_k \\
+ & = & \Delta_1 + \sum_{k=2}^{n} \left( \Delta_k + \Delta_{k-1} \right)
+\end{eqnarray*} 
+We use the previous expression of the sum of two consecutive $\Delta_k$
+\[
+\widehat{\Theta}_n \ + \ \widehat{\Theta} _{n-1} = 1 + \sum_{k=2}^{n} k^2  = \sum_{k=1}^{n} k^2 
+\]
+We can finally replace this sum by its closed-form expression.
+\[
+\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}
+\]
 
 \end{itemize}
 \end{itemize} 
@@ -718,7 +736,8 @@ The Pascal's triangle modulo a prime $m$ (where each of the triangle's entries a
         \label{fig:TriangleFractal}
 \end{center}
 \end{figure}
-a wondrous transformation happens.  The first $m$ levels of the triangle get replicated endlessly, with an inverted $(m-1)$-level triangle whose entries are all $0$.  (In the figure, the inverted triangle of $0$s is depicted in gray.) 
+
+The first $m$ levels of the triangle are replicated endlessly, with periodic inverted $(m-1)$-level triangles whose entries are all $0$.  (In the figure, the inverted triangle of $0$s is depicted in grey.) 
 The original triangle has been transformed into a fractal-like repetitive structure whose pattern of repetitions is dictated by the parameter $m$.
 
 \medskip
@@ -763,14 +782,18 @@ Every sequence $k+1, \ldots, k+p$ of $p$ integers contains a multiple of $p$.
 {\em 
 Every product of four consecutive integers, $(k+1) \cdot (k+2) \cdot (k+3) \cdot (k+4)$ is divisible by $4!$
 }
-
 \smallskip
 
-{\em Hint}:  Look at the {\em multiplicity} with which a given prime divides a given number, particularly within the context of the spacings of the divisibilities---e.g., every even number that is $2 \times$ an odd number is followed by an even number that is $2 \times$ an even number.  
-
+We prove this result by a simple case by case analysis:
+Any four consecutive integers contain exactly two consecutive even numbers.
+Two such numbers are multiples of $2 \times 4 = 8$.
+Moreover, three consecutive contains also a multiple of $3$. 
 \smallskip
 
 {\em Extend this exercise to divisors other than $4$.}
+\smallskip
+
+We prove by a similar analysis that the product of any $p$ consecutive integers is a multiple of $p!$.
 
 \medskip\item
 The sieve affords us an alternative proof that there are infinitely many primes, particularly via the alternative version that is due to Leonhard Euler.  In this version of the sieve, each prime and all of its multiples are removed from the sieve as soon as their existence is acknowledged.  Our earlier construction of Eratosthenes's version of the sieve now becomes:
@@ -814,35 +837,27 @@ For every positive integer $n$:  If you remove {\em any} $n+1$ integers from the
 \medskip
 
 Let $\alpha_i$ be the elements of this set of $n+1$ elements.
-Write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$).
 
-The $2n$ numbers of the sequence are decomposed into multiples of powers of $2$.
-When there are multiple ways, we take the one with the largest power of $2$ in order to make the decomposition unique.
-Example for $n=7$:
+The $2n$ numbers of the sequence are decomposed into groups according to multiples of powers of $2$.
+When there are multiple ways to write a number (for instance $12$ is equal to $2 \times 6$ and $4 \times 3$), we take the one with the largest power of $2$ in order to make the decomposition unique.
 
-1, 3, 5, 7, 9, 11, 13
-
-2, 6, 10, 14
-
-4, 12
-
-8
+Consider for instance $n=7$, the sequence of the $14$ first integers is partitioned into the $4$ groups
+(1, 3, 5, 7, 9, 11, 13),
+(2, 6, 10, 14),
+(4, 12) and (8)
 \medskip
 
-
 %The sketch of the proof is as follows.
-\begin{enumerate}
-\item
- $\alpha_i = 2^k \times m$ 
- 
-$m$ belongs to the $n$ numbers $\{1,3,5, \ldots, 2n-1 \}$
+Within each group,  
+we write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$),
+it belongs to the $n$ numbers $\{1,3,5, \ldots, 2n-1 \}$
 
-As we are considering $n+1$ integers, from the pigeon hole principle, there are two numbers with the same value of $m$. 
-\item 
-Thus, $2^{k1} \times m$ and $2^{k2} \times m$
+As the set of removed integers contains $n+1$ elements, from the pigeon hole principle, 
+there are two numbers with the same value of $m$. 
 
-$p$ is the smallest one, which divides $q$ (the largest one).
-\end{enumerate}
+$2^{k1} \times m$ and $2^{k2} \times m$
+
+The smallest one divides the largest one.
 
 
 \medskip\item
@@ -928,10 +943,8 @@ Karatsuba's algorithm builds upon the {\it divide-and-conquer} algorithmic parad
 problem {\bf P} is decomposed into disjoint, equal-``size" subproblems whose results are accumulated to solve {\bf P}.
 **************************}
 
-
-\textit{Karatsuba's algorithm.}
-Let us return to the problem of multiplying the $n$-bit numerals $A$ and $B$.  To simplify both notation and analysis, say that $n$ is a very large power of $2$, i.e., $n=2^k$ for some large $k \in \N^+$.
-
+The problem is to multiply two $n$-bit numerals $A$ and $B$.  
+To simplify both notation and analysis, say that $n$ is a very large power of $2$, i.e., $n=2^k$ for some large $k \in \N^+$.
 \smallskip
 
 The algorithm breaks the numerals for $A$ and $B$ into pairs of half-size numerals:
@@ -942,51 +955,59 @@ B & = & B_1 \cdot 2^{n/2} \ + \  B_2 \ \
   \eqdef  \ \ (b_n \cdots b_{n/2+1})_2 \cdot 2^{n/2} \ + \ (b_{n/2} \cdots b_1)_2
 \end{eqnarray*}
 
-After this decomposition, we have\footnote{To enhance legibility, we use both the centered dot ($\cdot$) and the multiplication sign ($\times$).}
+{\em Prove the following assertions.}
+\begin{enumerate}
+\item 
+{\em A recursion (on $n$) that is based on Karatsuba's algorithm computes the product $A \times B$ using {\em asymptotically fewer than} $\Theta(n^2)$ multiplications.}
+
 \begin{equation}
 \label{eq:karatsuba-normal}
 A \times B \ = \ (A_1 \times B_1) \cdot 2^n \ + \  (A_1 \times B_2 \ + \ A_2 \times B_1) \cdot 2^{n/2} \ + \ (A_2 \times B_2)
 \end{equation}
-A recursion (on $n$) that is based on instantiating Eq.~(\ref{eq:karatsuba-normal}) employs {\em four} multiplications at this level.
 
-\smallskip
+Let denote by $f(n)$ the cost for multiplying two $n$-bits numerals.
+It is in $\Theta(n^2)$ in term of elementary bit- multiplications. 
+The expression of $f$ is as follows:
+\[
+f(n) = \left\{
+\begin{array}{cl}
+4 f(n/2) + g(n) & \hspace*{.2in} \mbox{for } n > 1 \\
+                    1 & \hspace*{.2in} \mbox{for } n = 1
+\end{array}
+\right. 
+\]
+where $g$ is the cost of the extra arithmetic operations done while merging the sub-problems. 
+It corresponds to the two multiplications by powers of $2$ and three additions.
+These additions are linear in $n$. Thus, $g(n) = \Theta(n)$
 
-The way that Karatsuba brought the cost of multiplying $A \times B$ below the obvious measure of $\Theta(n^2)$ multiplications was to observe the following.  If one defines
-\[ C \ \eqdef \ (A_1 - A_2) \times (B_2 - B_1) \]
-then
-\begin{eqnarray*}
-A \times B & = & (A_1 \times B_1) \cdot 2^n \ + \ (A_2 \times B_2) \\
-                 &    & + \ \big(C \ + \ (A_1 \times B_1) \ + \ (A_2 \times B_2) \big) \cdot 2^{n/2}
-\end{eqnarray*}
-
-{\em One thereby executes this level of the recursion that computes $A \times B$ using only {\em three} multiplications, rather than the four multiplications in Eq.~(\ref{eq:karatsuba-normal}).}  (The few more additions are often a beneficial cost-tradeoff.)
+Applying the Master theorem gives the solution. 
 
 \medskip
-
-{\em Prove the following assertions.}
-\begin{itemize}
-\item 2.
-{\em A recursion (on $n$) that is based on Karatsuba's algorithm computes the product $A \times B$ using a {\em symptotically fewer than} $\Theta(n^2)$ multiplications.}
+\item
+Your argument should find a (real) number $\alpha < 2$ such that Karatsuba's algorithm computes the product $A \times B$ using $\Theta(n^\alpha)$ multiplications.
 \smallskip
 
-Your argument should find a (real) number $\alpha < 2$ such that Karatsuba's algorithm computes the product $A \times B$ using $\Theta(n^\alpha)$ multiplications.
-\end{itemize}
+\[ C \ \eqdef \ (A_1 - A_2) \times (B_2 - B_1) \]
+\begin{eqnarray*}
+A \times B & = & (A_1 \times B_1) \cdot 2^n \ + \ (A_2 \times B_2) + \ \big(C \ + \ (A_1 \times B_1) \ + \ (A_2 \times B_2) \big) \cdot 2^{n/2}
+\end{eqnarray*}
 
-\ignore{*************************
-\noindent \textit{The solution.}
-
-The relation is easy to check and it is left to the reader. 
-Let us use it and replace in the original expression:
-
-$A.B = (A_1.B_1) 2^n + (A_1.B_1 + A_2.B_2 + (A_1-A_2).(B_2-B_1)) 2^{n/2} + A_2.B_2$
-
-The cost analysis is 3 multiplications of $n/2$ bits,
-4 additions and 2 subtractions of integers at most $2n$ bits. 
-
+The cost analysis is 3 multiplications of $n/2$-bits numerals.
+We performed 2 additions/subtractions of n-bits numerals for computing $C$ and
+4 more additions. 
+\[
+f(n) = \left\{
+\begin{array}{cl}
+3 f(n/2) + \Theta(n) & \hspace*{.2in} \mbox{for } n > 1 \\
+                    1 & \hspace*{.2in} \mbox{for } n = 1
+\end{array}
+\right. 
+\]
 Again, using the Master Theorem leads to:
+$f(n) = 3^{\log_2 n} = n^{\log_2 3}$
 
-$T(n) = 3.T(n/2) + \Theta (n) = 3^{\log_2 n} = n^{\log_2 3}$
-********************************}
+$\alpha = \log_2 3 < 2$
+\end{enumerate}
 
 \end{itemize}
 
