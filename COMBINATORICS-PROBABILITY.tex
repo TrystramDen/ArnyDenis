@@ -1,4 +1,4 @@
-%version of 04-17-20
+%version of 04-29-20
 
 \chapter{The Art of Counting:
 Combinatorics, with Applications to Probability and Statistics}
@@ -82,7 +82,7 @@ Just as engineering can be viewed as the ``applied'' sibling of science, {\it st
 \end{itemize}
 A second mechanism used in statistics is the {\em (probability) distribution}.  Probability distributions can be viewed as {\em families} of functions that measure probabilities of kindred events.  Most often, a distribution is viewed as a curve that describes the probabilities of the items that are produced by an event of interest, where ($a$) each item is associated with a numerical value; ($b$) all items are laid out in order of value.  The items could be, for illustration, the observed diameters of roller bearings produced by a particular manufacturing process.
 
-Perhaps the most familiar probability distribution is the {\it normal distribution}, which is readily recognized from its {\it Bell-shaped curve}.  The shape of the Bell curve tells us: the probabilities of the items having extreme values---very small or very large---are very small; and, the probabilities of the items are distributed (roughy) symmetrically around the ``average" item.  Returning to our roller bearings: (1) Very few bearings have diameters that are very far from the target; (2) deviations from the target are as likely to produce bearings that are too large as bearings that are too small.
+Perhaps the most familiar probability distribution is the {\it normal distribution}, which is readily recognized from its {\it Bell-shaped curve}.  The shape of the Bell curve tells us: the probabilities of the items having extreme values---very small or very large---are very small; and, the probabilities of the items are distributed (roughly) symmetrically around the ``average" item.  Returning to our roller bearings: (1) Very few bearings have diameters that are very far from the target; (2) deviations from the target are as likely to produce bearings that are too large as bearings that are too small.
 
 \medskip
 
@@ -366,7 +366,7 @@ Other variants on the preceding proof themes will undoubtedly occur to you.   \q
 \medskip
 
 \noindent {\it Combinations}.\index{combination}
-Within the context of selection problems, combinations are the ``next step down" in strictness from permutations.  When one selects $m$ items from a set of $n \geq m$ items, combinations are concerned with the {\em identities} of the elements selected, but not with the order in which they elements are chosen.
+Within the context of selection problems, combinations are the ``next step down" in strictness from permutations.  When one selects $m$ items from a set of $n \geq m$ items, combinations are concerned with the {\em identities} of the elements selected, but not with the order in which their elements are chosen.
 
 \smallskip
 
@@ -401,7 +401,9 @@ This method of numeration accounts for both the identity of the $i$th chosen ele
 \[ x_1, \ x_2, \ \mbox{(a fixed order for the remaining $m-2$ selections)} \]
 and 
 \[ x_2, \ x_1, \ \mbox{(a fixed order for the remaining $m-2$ selections)} \]
-are counted as separate events.  Easily, this overcounting uniformly expands each of the events that we {\em do} want to account for by the factor $m!$ ---for this is the number of orders  in which we could have selected the finally chosen $m$ elements.
+are counted as separate events.  Easily, this overcounting uniformly
+expands each of the events that we {\em do} want to account for by the
+factor $m!$, for this is the number of orders in which we could have selected the finally chosen $m$ elements.
 
 \smallskip
 
@@ -852,12 +854,12 @@ component of the hand, we must select the remaining cards by choosing the (disti
 \[ 13 \cdot {4 \choose 3} \cdot {12 \choose 2} \cdot 4^2 \ \ = \ \  54,912 \]
 ways, so the probability of being dealt such a hand is
 \[ Pr(\mbox{three of a kind}) \ \ = \ \
- \frac{}{2,598,960}  \ \ \approx \ \ 2.11 \times 10^{-2} . \]
+ \frac{54,912}{2,598,960}  \ \ \approx \ \ 2.11 \times 10^{-2} . \]
 \end{itemize}
 
 \medskip
 
-One can find in many sources (including the Internet) tables that: enumerate all possible poker hands, describe all ways of assembling each hand, and compute the probabilities of being dealt each hand.
+One can find in many sources (including the Internet) tables that: enumerate all possible poker hands; describe all ways of assembling each hand; compute the probabilities of being dealt each hand.
 
 \smallskip
 
@@ -1371,7 +1373,7 @@ Thus, the mean is a {\em linear} measure.
 In addition to their {\em a posteriori} analytical value, arithmetic means can be used as aids to prediction.  (We often do this, for example, when we consult mean temperatures before we pack for a trip to an unfamiliar location.)  When used predictively, the mean of a sequence $S$ is often called $S$'s {\it expected value} or, more succinctly, its {\it expectation}.
 \index{expected value} \index{expectation}
 
-\subsection{Additional Measures of ``Average"}
+\subsection{Additional Single-Number ``Summarizatione"}
 \label{sec:median-mode}
 
 The major source of discontent with the arithmetic mean as a summarization tool is that, while the mean correctly identifies the ``center of gravity", or, ``balancing point" of a sequence $S$, it gives no information about the ``denseness" or ``skewness" of the sequence.  We illustrate these deficiencies using two simple sequences.
@@ -1379,11 +1381,11 @@ The major source of discontent with the arithmetic mean as a summarization tool 
 \begin{itemize}
 \item
 Regarding ``denseness":
-Consider the following $n$-element sequence $S_1$ chosen from the sample space $\Sigma_1 = \{1, 2, \ldots k\}$.
+Consider the following $2n$-element sequence $S_1$ chosen from the sample space $\Sigma_1 = \{1, 2, \ldots k\}$.
 \[ S_1 = \langle 1, 1, \ldots, 1, k, \ldots, k, k \rangle \]
-where there are equally many $1$s and $k$s.  One would imagine that any analysis of an 
+where there are $n$ occurrences of $1$ and $n$ occurrences of $k$.  One would imagine that any analysis of an 
 experimental setting that yielded the sequence $S_1$ of outcomes would {\em prominently} mention the sequence's sparseness---the fact that all outcomes are at the extremes of their range.  The arithmetic mean
-\[  \mbox{\sc mean}(S_1) \ = \ \frac{(k+1)n}{2n} \ = \ {k+1 \over 2} \]
+\[  \mbox{\sc mean}(S_1) \ = \ \frac{2(k+1)n}{4n} \ = \ {k+1 \over 2} \]
 gives no information other than the ``center of gravity" of $S_1$.
 
 \medskip\item
@@ -1443,7 +1445,7 @@ To cope with the second of the preceding complaints, namely, the issue of ``skew
 
 \noindent
 The {\em median} of an $n$-element sequence $S$, denoted {\sc median}($S$), determines 
-the ``weighted midpoint" of sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$:
+the ``midpoint" of sequence $S = \langle s_1, s_2, \ldots, s_n \rangle$:
 
 \smallskip
 
@@ -1476,17 +1478,8 @@ others use interpolation to maintain the existence of a single median:
 $\mbox{\sc median}(S)  \ = \ {1 \over 2} \left(s_{\lfloor n/2 \rfloor} + \ s_{\lfloor n/2 \rfloor +1} \right)$
   \end{itemize}
 \end{itemize}
-Our $31$-element sequence $S_2$ has two medians, but, happily, they are equal:
-
-\smallskip
-
-\hspace*{.35in}
-$s_{\lfloor n/2 \rfloor} \ = \ s_{\lfloor n/2 \rfloor +1} \ = \ 9$.  
-
-\smallskip
-
-\noindent
-For this reason, we are comfortable declaring that $\mbox{\sc median}(S_2) = 9$.
+Our $31$-element sequence $S_2$, having an odd population, has a single median, namely,
+\[ \mbox{\sc median}(S_2) \ = \ s_{\lceil n/2 \rceil} \ = \ s_{16} \ = \ 9 \]
 
 \bigskip
 
@@ -1502,7 +1495,7 @@ The median appears rather often in the news media, especially in regard to skewe
 \bigskip
 
 \noindent {\sf Modes and geometric means.}
-Two other measures of ``average" have garnered support in specialized communities.  We mention them just for completeness, so that the reader can consider more options when seeking useful summarizations of sequences of empirical outcomes.
+Two other single-number ``summarizations" have garnered support in specialized communities.  We mention them just for completeness, so that the reader can consider more options when seeking useful summarizations of sequences of empirical outcomes.
 
 \medskip
 
@@ -1542,7 +1535,11 @@ logarithms of the elements of sequence $S$.
 \index{mean!actual value $\mu$}
 \index{mean!experimental value $\bar{x}$ of random variable $x$}
 
-We have thus far discussed measures of ``midpoint" in terms of the sequence of outcomes of a fixed experiment.  The more common use of means---and of other statistical measures---in daily life involves the means of sequences which are theoretically infinite: the average July rainfall in Buenos Aires, the mean time to failure of transistors produced in a given silicon foundry, the average wealth of the residents of Monaco.  Within this expanded framework, we distinguish between the {\em actual mean} of a random variable $X$, which is often denoted $\mu$, and the {\em experimental mean} of the random variable, which is usually denoted $\bar{x}$.  (Here again the identity of $X$ is usually assumed to be known from context.)
+We have thus far discussed measures of ``midpoint" in terms of the
+sequence of outcomes of a fixed experiment.  The more common use of
+means---and of other statistical measures---in daily life involves the
+means of sequences which are unbounded (hence, often informally
+thought of as infinite): the average July rainfall in Buenos Aires, the mean time to failure of transistors produced in a given silicon foundry, the average wealth of the residents of Monaco.  Within this expanded framework, we distinguish between the {\em actual mean} of a random variable $X$, which is often denoted $\mu$, and the {\em experimental mean} of the random variable, which is usually denoted $\bar{x}$.  (Here again the identity of $X$ is usually assumed to be known from context.)
 
 \index{moments in statistics}
 \index{moments in statistics!the first moment: the mean}
@@ -1551,15 +1548,13 @@ We have thus far discussed measures of ``midpoint" in terms of the sequence of o
 
 \smallskip
 
-Once we distinguish between actual and experimental means, we must address the question of the quality of predictions which arise from a given experiment:  How well does the approximate, experimental mean, $\bar{x}$, match the actual mean, $\mu$?  The standard approach to this question takes the form of the {\em higher moments} of random variable $X$ and of the distribution that it ranges over.  Within this framework:
+Once we distinguish between actual and experimental means, we must address the question of the quality of predictions which arise from a given experiment:  How well does the experimental mean, $\bar{x}$, match the actual mean, $\mu$?  The standard approach to this question takes the form of the {\em higher moments} of random variable $X$ and of the distribution that it ranges over.  Within this framework:
 \begin{itemize}
 \item
 The {\em first moment} of a distribution is its mean $\mu$.  The  {\em first moment} of a sequence $S$ of experimental outcomes is $\bar{x}  =  \mbox{\sc mean}(S)$.
 \medskip\item
 The {\em second moment} of a sequence $S$ of experimental outcomes is termed the {\it variance} of the sequence.   It measures the {\em distance} between the actual and experimental means of the distribution that $S$ represents:\footnote{Note that the variance and standard deviation are adaptations of the $L^2$-{\it norm} of Section~\ref{sec:Ln-norms} to the setting of probability and statistics.}
-\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{k \in \Sigma}
-\ (k - \bar{x})^2 \cdot f_S(x) 
-\]
+\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{k \in S} \ (k - \bar{x})^2 \cdot f_S(x) \]
 The preceding expression for variance can be replaced with the following streamlined expression.
 
 \begin{prop}
@@ -1611,10 +1606,18 @@ learn how to analyze experimental outcomes in order to draw inferences and estab
 
 \smallskip
 
-The problem of how to {\em design} experiments is completely outside the scope of this text, but there are aspects of the {\em analysis} of experiments which do build on mathematical foundations, hence can legitimately be discussed here.  While there do exist computational statistical packages that relieve one from the burden of mastering the mathematics that underlies much of statistics, one must acquire a basic understanding of how such packages work in order to derive justifiable conclusions from their use.  Absent such understanding, one can all too easily fall prey to the pitfalls of statistical reasoning.  Here are just two such pitfalls.
+The problem of how to {\em design} experiments is completely outside
+the scope of this text, but there are aspects of the {\em analysis} of
+experiments which do build on mathematical foundations, hence can
+legitimately be discussed here.  While there exist computational
+statistical packages that relieve one from the burden of mastering the
+mathematics that underlies much of statistics, one must acquire a {\em
+  basic} understanding of how such packages work in order to derive
+justifiable conclusions from their use.  Absent such understanding,
+one can all too easily fall prey to the pitfalls of fallacious statistical reasoning.  Here are just two such pitfalls.
 \begin{enumerate}
 \item
-{\em Does your experiment involve the same population as your analysis tools presume?} 
+{\em Does your experiment deal with the same population as your analysis tools presume?} 
 
 \smallskip
 
@@ -1635,7 +1638,7 @@ This section is devoted to introducing a small number of major mathematical conc
 Empirical reasoning strives to draw reliable conclusions from the analysis of large corpora of (often numerical) data which has been generated by some type of experiment.  The experiments in question usually involve measuring either the outcomes of some process or instances of some natural or artificial phenomenon.
 \begin{enumerate}
 \item
-An example of the former situation:  A Physics 101 laboratory experiment empirically derives an estimate of the value of Earth's gravitational force by having students repeatedly drop a ball of known mass and time the duration of the ball's fall before it hits the floor.
+An example of the former situation:  A Physics 101 laboratory experiment derives an estimate of the value of Earth's gravitational force by having students repeatedly drop a ball of known mass and time the duration of the ball's fall before it hits the floor.
 
 \medskip\item
 An example of the latter situation:  An observational experiment records, over fixed periods of time, the percentage of human births in which the newborn has a specific gender.
@@ -1828,9 +1831,17 @@ Although our focus is squarely on {\em discrete} mathematical phenomena, it is i
 
 The most familiar Bell curve probability distributions is the continuous {\em normal}, or, {\it Gaussian} distribution.  The term ``normal" here does not refer to a specific probability distribution but rather to a large family of distributions all of whose ``higher moments"---meaning all moments other than the mean and variance (or, equivalently, the standard deviation) are identically $0$.  Despite this rigorous specification, most non-statisticians identify a normal probability distribution as any one whose probability frequency function has the form
 \[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
-In this formula: $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ (resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  In this setting, parameters $\mu$ and $\sigma$ {\em specify} each individual normal distribution.  Many people demand a stricter definition under which $\mu = 0$ and $\sigma^2 = 1$, so that the probability distribution has the form
+In this formula: $\mu$ is the {\it mean} of the distribution, and
+$\sigma^2$ (resp., $\sigma$) is its {\it variance} (resp., its {\it
+  standard deviation}).  In this setting, the parameters $\mu$ and
+$\sigma$ {\em specify} each individual normal distribution, which one
+can unambiguously denote $ND(\mu, \sigma)$.  Many people focus on a
+{\em standardized} normal distribution as the default, namely,
+$ND(0,1)$; this distribution has the simpler form
 \[ f(x) \ = \ \frac{1}{\sqrt{2 \pi}} \ e^{x^2/2} \]
-In this view, the version of the probability frequency function that specifies values of $\mu$ and $\sigma^2$ is a generalized normal distribution: of course, these values shift the specified Bell curve and change the slope of its ascent and descent.
+To those who focus on the standardized normal distribution, $ND(0,1)$, as the
+default, the more general familiy of distributions $ND(\mu, \sigma)$,
+in the values of $\mu$ and $\sigma^2$ can be specified, is called a {\em generalized normal distribution}.  Of course, the values $\mu$ and $\sigma^2$ shift the specified Bell curve and change the slope of its ascent and descent.
 
 \bigskip
 
@@ -1866,7 +1877,7 @@ For those readers who would like to see how one can formally state a sweeping re
 \item{}
 
 \item[{\sf Premise:}]
-{\em Let $X_1$, $X_2$, \ldots, $X_n$ be random variables which are all drawn from a distribution that has mean $\mu$ and finite variance $\sigma^2$.}
+{\em Let $X_1$, $X_2$, \ldots, $X_n$ be random variables (over $\R$) which are all drawn from a distribution that has mean $\mu$ and finite variance $\sigma^2$.}
 
 \smallskip
 
@@ -1878,7 +1889,7 @@ Note that we do not demand any uniformity among the $X_i$ other than that they a
 \medskip\item[{\sf Conclusion:}]
 {\em As the number of $X_i$, call it $n$, grows without bound---i.e., for sufficiently large values of $n$---the random variable}
 \[ S_n \ = \ \frac{X_1 + X_2 + \cdots + X_n}{n} \]
-{\em (which is the sample mean) converges to the normal distribution with mean $\mu$ and variance $\sigma^2$.}
+{\em (which is the sample mean) converges to the actual mean $\mu$ of $ND(\mu, \sigma^2)$.}
 \end{description}
 \end{minipage}
 }
@@ -2009,7 +2020,7 @@ Would we draw the same conclusion today as Arbuthnot did roughly three centuries
 
 \index{Law of Large Numbers} \index{{\it Loi des grands nombres}}
 
-An operationally sound answer to the Arbuthnot-Laplace question can be derived from a second major probability-related theorem.  This result, which is known as the {\it Law of Large Numbers}, or, {\it le Loi des grands nombres}, focuses on the sequence of random variables $\langle S_1, S_2, \ldots \rangle$, where each $S_n$ is the average of the first $n$ observed outcomes from an experiment of interest.  The Law asserts that the variables $S_n$ trend progressively closer to (i.e., {\em converge to}) the actual idealized mean of all possible outcomes of the experiment---no matter how the outcomes are distributed probabilistically.  Said differently: {\em The more times one repeats a random experiment, the more closely the observed outcomes trend toward the actual mean outcome:  Repetition improves accuracy!}
+An operationally sound answer to the Arbuthnot-Laplace question can be derived from a second major probability-related theorem.  This result, which is known as the {\it Law of Large Numbers}, or, {\it la Loi des grands nombres}, focuses on the sequence of random variables $\langle S_1, S_2, \ldots \rangle$, where each $S_n$ is the average of the first $n$ observed outcomes from an experiment of interest.  The Law asserts that the variables $S_n$ tend progressively closer to (i.e., {\em converge to}) the actual idealized mean of all possible outcomes of the experiment---no matter how the outcomes are distributed probabilistically.  Said differently: {\em The more times one repeats a random experiment, the more closely the observed outcomes trend toward the actual mean outcome:  Repetition improves accuracy!}
 
 \medskip
 
@@ -2268,7 +2279,7 @@ of {\em observed} values.  We seek to determine the probability that both sequen
 
 The $\chi^2$ test measures the distance between sequences $\langle e_i \rangle_{i=1}^m$ and $\langle o_i \rangle_{i=1}^m$ via a calculation that can be viewed as the {\em relative error} incurred by trying to pass either of these sequences off as the other.  Specifically, the $\chi^2$ distance/error corresponding to these sequences is
 \[ \chi^2 \ = \ \sum_{i=1}^m \ \frac{(o_i- e_i)^2}{e_i} \]
-The $\chi^2$ test invokes an analysis of the relevant {\em multi}-nomial distribution---analogous to our analysis of the {\em bi}-nomial distribution---to calculate the probability that the observed and expected sequences come from the same multinomial distribution.
+The $\chi^2$ test invokes an analysis of the relevant {\em multi}nomial distribution---analogous to our analysis of the {\em bi}nomial distribution---to calculate the probability that the observed and expected sequences come from the same multinomial distribution.
 
 \medskip
 
@@ -2276,7 +2287,8 @@ We illustrate the domain of the test via a simple illustrative example that we e
 
 \bigskip
 
-We roll a ($6$-sided, allegedly fair) die $60$ times.  We expect to see $10$ each of the $6$ possible outcomes.  The $\chi^2$ test computes the distance between the following sequences:
+We roll a ($6$-sided, allegedly fair) die $60$ times.  We expect to
+see $10$ occurrences each of the $6$ possible outcomes.  The $\chi^2$ test computes the distance between the following sequences:
 \[ \begin{array}{|l||c|c|c|c|c|c|}
 \hline
 \mbox{60 Rolls of a die}  &
