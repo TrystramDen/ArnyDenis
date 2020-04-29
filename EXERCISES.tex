@@ -1081,8 +1081,6 @@ $= \frac{1}{2} \left(F(m).L(n) + F(n).(L(m)\right)$
 
 %\section*{Exercises: Chapter 10}
 
-\begin{itemize}
-
 \ignore{***************************************
 \subsection{The average length of a carry in a binary counter}
 
@@ -1124,62 +1122,49 @@ Using techniques that we cover in Chapter~\ref{ch:Summation}, one
 verifies that this infinite series converges with the sum $2$.  \qed
 ********************************}
 
+\begin{itemize}
+
 \item
 {\bf 10.3. The Josephus Problem}
 \medskip
 
-{\em The aim of this exercise is to determine the survivor $J(n)$ as a function of $n$.}
-\medskip
-
-
-\smallskip   
-
-The process's early erasures, depicted in Fig~\ref{fig:josephus12step1}, should help you start your solution for $J(n)$.
+ Fig~\ref{fig:josephus12step1} and Fig.~\ref{fig:josephus12step2} describe pictorially the rounds of the Josephus process
+ for determining the survivor number $J(n)$.
 \begin{figure}[ht]
 \begin{center}
-        \includegraphics[scale=0.35]{FiguresMaths/josephus12step1}
-        \hspace*{.2in}
-        \includegraphics[scale=0.35]{FiguresMaths/josephus13}
-\caption{(Left) First round of the Josephus erasure procedure for $n=12$.
-(Right) First two rounds of the procedure when $n=13$; the first round is depicted by solid lines, the second by dotted lines. In both figures, the encircled integers are the ones that have been removed.}
-        \label{fig:josephus12step1}  \label{fig:josephus13}
+        \includegraphics[scale=0.3]{FiguresMaths/josephus12step1}
+\caption{First round of the Josephus erasure process for $n=12$. The circled numbers are those that are removed.}
+        \label{fig:josephus12step1} 
+%\end{center}
+%\end{figure}
+%\begin{figure}[ht]
+%\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths/josephus12LastSteps}
+        \caption{The final rounds of the Josephus process when $n=12$ leading to $J(12) = 9$}
+        \label{fig:josephus12step2}
 \end{center}
 \end{figure}
 
 The following sequence of results provide a roadmap to the solution.
 
 \medskip
+%
+%We analyze \textit{rounds} of the process---sequences of elementary steps that return to the initial position, $1$.  If position $1$ has been erased, then its role is assumed by the then-smallest survivor.
+%\smallskip
 
-We analyze \textit{rounds} of the process---sequences of elementary steps that return to the initial position, $1$.  If position $1$ has been erased, then its role is assumed by the then-smallest survivor.
-
-\smallskip
-
-Easily, the first round of the process takes $\lceil n/2 \rceil$ steps.  Each subsequent round then takes a number of steps that is ``half" the number of its preceding round.  We place ``half" in quotes to emphasize the required up-rounding of each halving.  
-
+The first round of the process takes $\lceil n/2 \rceil$ steps.  
+Each subsequent round then takes a number of steps that is ``half" the number of its preceding round.  We place ``half" in quotes to emphasize the required up-rounding of each halving.  
 \medskip
 
-Fig.~\ref{fig:josephus12step2}, which describes the final rounds of the process, lends intuition for the number of rounds before $J(n)$ stands alone.
-\begin{figure}[ht]
-\begin{center}
-        \includegraphics[scale=0.25]{FiguresMaths/josephus12LastSteps}
-        \caption{The final rounds of the Josephus erasure process when $n=12$.}
-        \label{fig:josephus12step2}
-\end{center}
-\end{figure}
-
-\medskip
-
-The following quadripartite proposition now leads to the solution.
-
-{\em 
-The value of $J(n)$, as determined by $n$:
+{\em Prove the following quadripartite proposition 
+that provides a characterization of $J(n)$ for some particular values of $n$.
 
 \begin{tabular}{clll}
  & \underline{Condition on $n$} & \hspace*{.1in} & \underline{Value of $J(n)$} \\ 
 {\bf (a)} &
 For all $n$ &  & $J(n)$ is odd. \\
 {\bf (b)} &
-$n$ is even; i.e., $n = 2m$ & & $J(2m) \ = \ 2J(m)-1$ \\
+$n$ is even; i.e., $n = 2m$ & & $J(2m) = 2J(m)-1$ \\
 {\bf (c)} &
 $n$ is odd; i.e., $n = 2m+1$ & & $J(2m+1) = 2J(m)+1$ \\
 {\bf (d)} &
@@ -1187,59 +1172,65 @@ $n = 2^m+k$, with $k < 2^m$ & & $J(2^m+k) = 2k+1$
 \end{tabular}
 }
 
-\fbox{\em Your quadripartite proof is needed here.}
-
-\begin{proof}
-This is a simple generalization of the previous proposition.  If $n$ is even, then the first round corresponds simply to come back to the original circle where one half of the points have been removed. 
-\end{proof}
-
-Next, grouping values of $n$ between successive powers of $2$, we find that
-
-Let $n=2^m+k$, the rule within each group $m$ is to start at $1$ and increase by $2$ the successive numbers
-($0 \leq k < 2^m$).
-Let prove it by recurrence on $n$.
-\medskip
-
-\begin{prop}
-For all $n = 2^m+k$, where $k < 2^m$, we have
-$J(2^m+k) = 2k+1$.
-\end{prop}
-
 \begin{proof}
 \begin{itemize}
-\item {\bf Basis.} 
+\item {\bf (a)} 
+All the even numbers are removed from the circle at the first round, thus, it remains only odd numbers.
+\medskip
+
+\item {\bf (b)} 
+is a simple generalization of {\bf a}.  
+If $n$ is even, then the first round corresponds to come back to the original circle 
+where one half of the points have been removed. 
+In other words, rank $i$ becomes rank $(2.i-1)$.
+\medskip
+
+\item {\bf (c)} 
+is the counter part of {\bf b} for the odd numbers.
+
+\item {\bf (d)} 
+Observing the successive values for small $n$ evidences that the $J(n)$ are grouped by successive powers of $2^m$
+and the rule within each group is to start at $1$ and then, increase by $2$ the successive numbers until reaching the next group
+($0 \leq k < 2^m$).
+
+Formally, the proof of $J(2^m+k) = 2k+1$ is by recurrence on $n$.
+
+\noindent
+{\sf Base}.
 $n=1$, thus $m=0$, $k=0$ and $J(1) = 2^0+0 = 1$
-\medskip\item {\bf Induction step.} 
-Suppose the formula holds for any integer lower than $n=2^m+k$. 
-Since there are two expressions for $J(.)$, we distinguish the cases whether $k$ is even or it is odd:
+\smallskip
+
+\noindent 
+{\sf Inductive hypothesis}.
+Suppose the formula holds for any integer lower than $n=2^m+k$.
+\smallskip
+
+\noindent 
+{\sf Inductive extension}.
+Since there are two expressions for $J(.)$, we distinguish the cases whether $k$ is even or if it is odd:
 \begin{itemize}
 \item If $k$ is even, then, $2^m+k$ is even, and we can write:
 
-$J(2^m+k) = 2J(2^{m-1}+\frac{k}{2})-1$
+$J(2^m+k) = 2.J(2^{m-1}+\frac{k}{2})-1$
 
 by induction hypothesis, $J(2^{m-1} +\frac{k}{2}) = 2\frac{k}{2} +1 = k+1$
 
 Thus, $J(2^m+k) = 2(k+1) -1 = 2k+1$.
 
-\medskip\item If $k$ is odd, the proof is similar:
+\item 
+If $k$ is odd, the proof is similar:
 
 $J(2^m+k) = 2J(2^{m-1}+\lfloor \frac{k}{2} \rfloor)+1 = 2\lfloor \frac{k}{2} \rfloor +1 = 2k+1$.
-
 \end{itemize}
+
 \end{itemize}
 \end{proof}
 
-\medskip
-
 Your ultimate solution for $J(n)$ will emerge from analyzing what the preceding propositions yield as the value of $J(n)$.  
 
-\smallskip
-
-\fbox{\em Provide a closed-form expression for $J(n)$ in terms of $n$'s base-$2$ numeral.}
-
+{\em Provide a closed-form expression for $J(n)$ in terms of $n$'s base-$2$ numeral.}
 \medskip
 
-{\em Hint.}
 Consider the binary {\em numerals} for $n = 2^m +k$ and $k$.  We first note that, {\em numerically},
 \begin{eqnarray*}
 n & = &  2^m b_m \ + \ 2^{m-1} b_{m-1} \ + \cdots + \ 2 b_1 \ + \ b_0 \\
@@ -1253,31 +1244,28 @@ where each bit $b_i \in \{0,1\}$.  Therefore, in terms of {\em base-$2$ numerals
 \]
 
 \[ (J(n))_2 \ = \ b_{m-1} \cdots b_0 b_m. \]
-which indicates that $J(43) = 23$.  The pictorial interpretation of this coding is given in Fig.~\ref{fig:josephusCoding} for $n=43$.
+The solution for $J(n)$ is obtained by a simple shift to the left of the binary representation of $n$
+with a $1$ at the rightmost position.
+The pictorial interpretation of this coding is given in Fig.~\ref{fig:josephusCoding} for $n=43$.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths/josephusCoding}
-        \caption{Obtaining the survivor number $J(43)$.}
+        \caption{Obtaining the survivor number $J(43)=23$.}
         \label{fig:josephusCoding}
 \end{center}
 \end{figure}
 
-The figure indicates that the solution for $J(n)$ is obtained by a simple shift of the binary representation of $n$.
+\end{itemize}
 
 %%%
 
-\medskip\item
-{\bf 10.5. An alternative to Horner's Rule}
-
-{\sc Lesson:} Experience with operation-counting and asymptotics
+\begin{itemize}
+\item {\bf 10.5. An alternative to Horner's Rule}
 
 \smallskip
 
-In Section~\ref{sec:Horner-fast-evaluation}, we described Horner's Rule, a method for calculating polynomials faster than the common way of writing polynomials would suggest.  This exercise is devoted to an alternative streamlined polynomial evaluation procedure, called {\it Estrin's method}, after its inventor, Gerald Estrin \cite{Estrin60}.
-
-\index{Estrin, Gerald} \index{Estrin's method (for evaluating univariate polynomials)}
-
-\smallskip
+%In Section~\ref{sec:Horner-fast-evaluation}, we described Horner's Rule, a method for calculating polynomials faster than the common way of writing polynomials would suggest.  This exercise is devoted to an alternative streamlined polynomial evaluation procedure, called {\it Estrin's method}, after its inventor, Gerald Estrin \cite{Estrin60}.
+%\smallskip
 
 Estrin's method begins with a polynomial of degree $d$ with real coefficients:
 \[
