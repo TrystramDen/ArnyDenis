@@ -1041,15 +1041,15 @@ For us---and for the general mathematical community---the preceding intuition pr
 \smallskip
 
 \noindent
-Mirroring Proposition~\ref{thm:|NxN|=|N|}, we have
+Hoping to whet the reader's appetite for further study, we note that the following result exposes some of the main intuitions from the proof of Proposition~\ref{thm:|NxN|=|N|}.
 
 \begin{prop}
 \label{thm:|Q|=|N|}
 $|\Q| \ = \ |\N|$.
 \end{prop}
 
-\begin{proof}
-Since the proof of this result is adapted from that of Proposition~\ref{thm:|NxN|=|N|}, we provide only a sketch, leaving details to an exercise.
+\begin{proof}[Sketch]
+We leave the details of this proof to an exercise.
 
 \smallskip
 
@@ -1201,7 +1201,7 @@ We have presented the Constructibility Principle for real numbers precisely beca
 \bigskip
 
 \index{Euclid}
-As we do for many results that we encounter in our mathematical journey, we provide multiple proofs, which build upon quite different mathematical insights.  In this spirit, we now present two proofs for Proposition~\ref{thm:sqrt(2)}(b).  In Section~\ref{sec:classical-proof-sqrt(2)} we provide the classical proof of the result.\footnote{This proof is quite literally {\em classical}: it is based on the proof provided by Euclid in his {\it Elements}.}  This proof invokes a simple provision of the Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}) to exploit the divisibility properties of integers.  In Section~\ref{sec:geom-proof-sqrt(2)}, we provide a proof that builds on the Pythagorean Theorem (Theorem~\ref{thm:Pythagorean-thm}) to develop geometric insights.
+As we do for many results that we encounter in our mathematical journey, we provide multiple proofs, which build upon quite different mathematical insights.  In this spirit, we now present two proofs for Proposition~\ref{thm:sqrt(2)}(b).  In Section~\ref{sec:classical-proof-sqrt(2)} we provide the classical proof of the result.\footnote{This proof is quite literally {\em classical}: it is based on the proof provided by Euclid in his {\it Elements}.}  This proof invokes a simple provision of the Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}) to exploit the divisibility properties of integers.  In Section~\ref{sec:geom-proof-sqrt(2)}, we provide a proof that builds on the Pythagorean Theorem (Theorem~\ref{thm:Pythagorean-thm}) to develop geometric insights.  The reader may enjoy the more extensive exposition on $\sqrt{2}$ in \cite{ConwayS13}.
 
 \subsubsection{A number-based proof that $\sqrt{2}$ is not rational: $\sqrt{2} \not\in \Q$}
 \label{sec:classical-proof-sqrt(2)}
@@ -1225,14 +1225,29 @@ Let us square both expressions in Eq.~(\ref{eq:sqrt2-1}) and multiply both sides
 \label{eq:sqrt2-2}
 2 \ell^2 \ = \ k^2.
 \end{equation}
-This rewriting exposes the fact that $k^2$ is {\em even}, i.e., {\em divisible by $2$}.  But, Theorem~\ref{thm:Fund-Thm-Arith} tells us that {\em if $k^2$ is divisible by $2$, then so also is $k$}.  This means that $k = 2m$ for some positive integer $m$, which allows us to rewrite Eq.~(\ref{eq:sqrt2-2}) in the form
+This rewriting exposes the fact that $k^2$ is {\em even}, i.e., {\em divisible by $2$}.  We claim that the divisibility of $k^2$ by $2$ betokens the same divisibility for $k$.
+\begin{description}
+\item[]
+We could ``bring in the howitzers" to verify this claim, via a forward reference to the {\em Fundamental Theorem of Arithmetic} (Theorem~\ref{thm:Fund-Thm-Arith}), but a simple calculation will suffice.
+
+\smallskip
+
+Say, for contradiction, that $k^2$ is even, but $k$ is odd.  Since every odd integer $k$ can be written in the form $k = 2h+1$, we observe that $k^2$ can be written in the form
+\[ k^2 \ = \ (2h+1)^2 \ = \ 4h^2 \ + \ 4h \ + \ 1 \ = \ 4(h+1) \ + \ 1 \]
+This way of writing $k^2$ makes it clear that $k^2$ is {\em odd}, i.e., is {\em not} divisible by $2$.
+
+\smallskip
+
+This contradiction establishes the claim.
+\end{description}
+So we now know that $k = 2m$ for some positive integer $m$, which allows us to rewrite Eq.~(\ref{eq:sqrt2-2}) in the form
 \begin{equation}
 \label{eq:sqrt2-3}
 2 \ell^2 \ = \ k^2 \ = \ (2m)^2 \ = \ 4m^2.
 \end{equation}
 Hence, we can divide the first and last quantities in Eq.~(\ref{eq:sqrt2-3}) by $2$, to discover that
 \[ \ell^2 \ = \ 2m^2. \]
-If we now repeat the invocation of Theorem~\ref{thm:Fund-Thm-Arith}, we discover that the integer $\ell$ must be even.  We now see, therefore, that {\em both $k$ and $\ell$ are even, i.e., divisible by $2$}.  This contradicts our assumption that $k$ and $\ell$ share no common prime divisor!
+If we now repeat the preceding indented argument, we discover that the integer $\ell$ must be even.  This means that {\em both $k$ and $\ell$ are even}.  This fact contradicts our assumption that $k$ and $\ell$ share no common prime divisor!
 \index{integer!even}
 
 Since every step of our argument is ironclad---except for our assumption that $\sqrt{2}$ is rational, we conclude that that assumption is false!  Part (b) of the Proposition is verified. \qed
