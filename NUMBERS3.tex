@@ -1,4 +1,4 @@
-%version of 04-21-20
+%version of 04-30-20
 
 \chapter{Numbers III:
 Operational Representations and Their Consequences}
@@ -136,9 +136,7 @@ base-$16$: & the & $16$-ary & or & {\em hexadecimal} & system
 \smallskip
 
 \noindent
-Most of this chapter---specifically,
-Section~\ref{sec:positional-numbers}---is devoted to studying {\em
-  -ary} positional number systems in detail.
+Most of this chapter---specifically, Section~\ref{sec:positional-numbers}---is devoted to studying {\em -ary} positional number systems in detail.
 
 \medskip
 
@@ -150,7 +148,30 @@ Section~\ref{sec:positional-numbers}---is devoted to studying {\em
 
 \noindent
 {\it Systems developed to ensure special properties.}
-We briefly discuss two families of positional systems that were invented to ensure number representations with specific properties.  Section~\ref{sec:bijective-adic} introduces a class of numerals that were invented because of a mathematical property that is useful in certain computational situations.  These are the {\em bijective number systems},  which are positional number systems in which distinct numerals name distinct numbers.  This property can be significant in certain genres of numeral-based encodings.  (Of course, -ary number systems do not enjoy this property because of excess leading and trailing $0$s.)  Finally, Appendix Chapter~\ref{ch:carry-free} introduces a system of numerals that is motivated by the time-cost of performing elementary arithmetic on conventional -ary numerals.  Conventional ``ripple-carry" adders incur growing slowdown when adding successively longer numerals---as when doing very high-precision arithmetic.  In the Appendix, we show how to design a system of numerals that admits an addition algorithm that does not generate any carries.  The ability to perform ``unit-time" addition on arbitrary-length numerals can be useful in highly parallel computing systems.
+This chapter has a dual purpose.  Primarily, we want to study the mathematical properties of the number systems that are widely used.  However, we want also to point the interested reader to a few other systems which satisfy the following criteria:
+\begin{itemize}
+\item
+They provide interesting and valuable mathematical lessons.
+\item
+They provide access to interesting and valuable applications.
+\end{itemize}
+We briefly discuss two families of positional systems that fit these criteria. 
+\begin{enumerate}
+\item
+The family of numerals introduced in Section~\ref{sec:bijective-adic} enjoy a mathematical property that helps one study foundational aspects of computation.  These are the {\em bijective number systems},  which are positional number systems in which distinct numerals name distinct numbers.  This property can be significant in certain genres of numeral-based encodings.  (Of course, -ary number systems do not enjoy this property because of leading and trailing $0$s.)
+
+\medskip\item
+Finally, Appendix Chapter~\ref{ch:carry-free} introduces positional systems of 
+numerals whose digits are {\em signed}, plus or minus.  Such systems enable a {\em carry-free} addition algorithm, which significantly reduces the asymptotic time-cost of performing elementary arithmetic on a computer.  
+
+\smallskip
+
+In contrast to {\em carry-ripple} addition algorithms, wherein adding really long numerals takes time {\em linear} in the lengths of numerals, and to {\em carry-save} addition algorithms, wherein adding really long numerals takes time {\em logarithmic} in the lengths of numerals, the {\em carry-free} addition algorithm adds all numerals in {\em fixed-constant} time.  The time-savings of such algorithms is of significance mainly in situations such as when doing very high-precision arithmetic.
+
+\smallskip
+
+Because their benefits are important only in specialized circumstances, signed-digit systems are usually studied only in courses on computer architecture.  And, their underlying mathematics is usually found only in specialized studies of computer arithmetic.  We mention such systems here for completeness, and we relegate them to an appendix because of their high degree of specialization.
+\end{enumerate}
 
 \medskip
 
@@ -158,7 +179,7 @@ We briefly discuss two families of positional systems that were invented to ensu
 
 \noindent
 {\it Systems formed using special families of numbers.}
-The final genre of number system that we discuss in this chapter are those based on special families of numbers, such as the binomial coefficients and the Fibonacci numbers.  Such systems are most useful when some property of the underlying family of numbers can be exploited to calculational benefit.  We briefly discuss one such system in Section~\ref{sec:Fibo-numbers}.
+The final genre of number system that we discuss in this chapter are those based on special families of numbers, such as the binomial coefficients and the Fibonacci numbers.  Such systems are most useful when some property of the underlying family of numbers can be exploited to calculational benefit.  Because of such systems' specialized interest, we discuss only one such system, in Appendix Section~\ref{sec:Fibo-numbers}.   
 
 
 \section{Positional Number Systems}
@@ -180,7 +201,7 @@ $\{0, 1, 2, \ldots, \overline{b-1}\}$, often embellished with other symbols, suc
 
 \smallskip
 
-We employ the overline notation, ``$\overline{b-1}$'', to remind ourselves that ``$b-1$'' is a digit  here, not a string; e.g., when $b = 10$ (the {\em decimal}, or, $10$-{\it ary} base), $\overline{b-1}$ is the digit $9$.
+We employ the overline notation, as in ``$\overline{b-1}$'', to remind ourselves that ``$b-1$'' is a digit  here, not a string; e.g., when $b = 10$ (the {\em decimal}, or, $10$-{\it ary} base), $\overline{b-1}$ is the digit $9$.
 \end{minipage}
 }
 
@@ -250,8 +271,6 @@ $16$  & hexadecimal & $16$-ary \\
 As we turn to the {\it formation rules} for $b$-ary numerals, we want to emphasize that these rules build in an essential way on the ideas relating to summing {\em geometric summations}.  This is, therefore, a good time to review Section~\ref{sec:geometric-sums}.
 
 \medskip
-
-%{\Denis the following should be put before in 4.5.2}
 
 \index{base-$b$ numeral}
 \index{positional number system!base-$b$ numeral}
@@ -650,14 +669,11 @@ Compute the (shortest) base-$2$ numeral for the power $n$ that we are raising th
 As a running example, if $n \leq 31$, then this numeral has the form
 \[ a_4 a_3 a_2 a_1 a_0 \]
 where each $a_i \in \{0,1\}$ and
-\[ n \ = \
-a_4 \cdot 2^4 \ + \  a_3 \cdot 2^3 \ + \  a_2 \cdot 2^2 \ + \  a_1 \cdot 2^1 \ + \ a_0
-\] 
+\[ n \ = \ a_4 \cdot 2^4 \ + \  a_3 \cdot 2^3 \ + \  a_2 \cdot 2^2 \ + \  a_1 \cdot 2^1 \ + \ a_0 \] 
 
 \medskip\item
 Use Horner's Rule to rewrite the polynomial for $n$ in the form
-\[ n \ = \
-a_0 \ + \ 2 \cdot (a_1 \ + \ 2 \cdot (a_2 \ + \ 2 \cdot (a_3 \ + \ 2 \cdot a_4 ))) \]
+\[ n \ = \ a_0 \ + \ 2 \cdot (a_1 \ + \ 2 \cdot (a_2 \ + \ 2 \cdot (a_3 \ + \ 2 \cdot a_4 ))) \]
 
 \medskip\item
 Interpret the ``ground level'' computation of the numeral-polynomial within the ``exponent level'' of base $b$.
@@ -764,8 +780,7 @@ The intention here is that the sequence $B$ is repeated {\it ad infinitum}.
 
 \begin{prop}
 \label{thm:rational-real}
-A positional numeral denotes a rational number if, and only if, it is
-ultimately periodic.
+A positional numeral denotes a rational number if, and only if, it is ultimately periodic.
 \end{prop}
 
 \begin{proof}
@@ -954,10 +969,7 @@ Those interested in the (philosophical) foundations of mathematics might quibble
 \label{sec:Q-Z-F-cardinality}
 \label{sec:FNS-uncountable}
 
-This section completes the topic of the cardinalities of infinite sets
-which we began in Section~\ref{sec:compare-sets-via-card}.  We
-discussed {\em countable} sets in that section; we turn here to the
-complementary topic of {\em uncountable} sets.
+This section completes the topic of the cardinalities of infinite sets which we began in Section~\ref{sec:compare-sets-via-card}.  We discussed {\em countable} sets in that section; we turn here to the complementary topic of {\em uncountable} sets.
 
 \subsection{The Set of Binary Functions $\F$ Is Uncountable}
 \label{sec:F-uncountable}
@@ -993,8 +1005,8 @@ There exists an injection $f: \N \rightarrow \F$; i.e., $|\N| \leq |\F|$.
 \end{lemma}
 
 \noindent {\it Verification}.
-For each nonnegative integer $n \in \N$, define the function $f_n: \N \rightarrow \{0,1\}$ as follows: for each integer $k \in \N$,
-\[ f_n(k) \ = \ \mbox{\bf if } \ [k=n] \ \mbox{\bf then } \ 1
+For each nonnegative integer $n \in \N$, define the function $g_n: \N \rightarrow \{0,1\}$ as follows: for each integer $k \in \N$,
+\[ g_n(k) \ = \ \mbox{\bf if } \ [k=n] \ \mbox{\bf then } \ 1
 \ \mbox{\bf else } \ 0
 \]
 Clearly, specifying the integer $n$ uniquely identifies the function $f_n$.  This means that the defined correspondence specifies an injection from $\N$ into $\F$.  \qed
@@ -1168,13 +1180,21 @@ Of course, if we prove that the proper subset $\R_{(0,1)} \subset \R$ is uncount
 
 \bigskip
 
-Now we begin to seek a bijection $h: \N \leftrightarrow \R_{(0,1)}$.
+Now we begin to seek a bijection $g: \N \leftrightarrow \R_{(0,1)}$.
 
 \smallskip
 
-We assume, for contradiction, that the targeted bijection $g$ exists.  As part of this two-way mapping, there exists an {\em injection}
-\[  h: \N \ \rightarrow \ \R_{(0,1)}, \]
-which we view as an {\em enumeration} of the elements of $\R_{(0,1)}$.  Specifically, for each integer $k \in \N$, we can think of $h(k)$ as a base-$10$ numeral for the ``$k$th number in the set $\R_{(0,1)}$.''  We thereby view $h$ as producing an ``infinite-by-infinite'' matrix $\Delta^\star$ of decimal digits, whose $k$th row is the infinite string of decimal digits $\mbox{\sc name}_{10}(h(k))$.
+\noindent
+Assume, for contradiction, that the targeted bijection $g$ exists.  By
+definition, $g$ consists of two {\em injections}:
+\begin{itemize}
+\item
+one---call it $h$---which maps $\N$ into $\R_{(0,1)}$ in a one-to-one fashion;
+\item
+the inverse, $h^{-1}$, of $h$, which maps $\R_{(0,1)}$ into $\N$ in a
+one-to-one fashion.
+\end{itemize}
+We view $h$ as an {\em enumeration} of the elements of $\R_{(0,1)}$.  Specifically, for each integer $k \in \N$, we can think of $h(k)$ as a base-$10$ numeral for the ``$k$th number in the set $\R_{(0,1)}$.''  We thereby view $h$ as producing an ``infinite-by-infinite'' matrix $\Delta^\star$ of decimal digits, whose $k$th row is the infinite string of decimal digits $\mbox{\sc name}_{10}(h(k))$.
 
 \bigskip
 
@@ -1251,7 +1271,7 @@ as an ordered listing (with repetitions) of all of the real {\em numbers} in the
 
 \medskip
 
-We show now that every bijection $h: \N \leftrightarrow \R$ ``misses'' some real $x \in \R_{(0,1)}$.
+We show now that every bijection $h: \N \leftrightarrow \R_{(0,1)}$ ``misses'' some real $x \in \R_{(0,1)}$.
 
 \smallskip
 
