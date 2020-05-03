@@ -1179,14 +1179,14 @@ All the even numbers are removed from the circle at the first round, thus, it re
 \medskip
 
 \item {\bf (b)} 
-is a simple generalization of {\bf a}.  
+is a simple generalization of {\bf (a)}.  
 If $n$ is even, then the first round corresponds to come back to the original circle 
 where one half of the points have been removed. 
 In other words, rank $i$ becomes rank $(2.i-1)$.
 \medskip
 
 \item {\bf (c)} 
-is the counter part of {\bf b} for the odd numbers.
+is the counter part of {\bf (b)} for the odd numbers.
 
 \item {\bf (d)} 
 Observing the successive values for small $n$ evidences that the $J(n)$ are grouped by successive powers of $2^m$
@@ -1425,7 +1425,8 @@ For both {\it Monge shuffles} of the cards, we cut the deck in the middle, to cr
 We then merge the two $n$-card decks to again obtain a single $2n$-card deck.  The two Monge shuffles differ in their merging techniques.
 
   \begin{enumerate}
-  \item $\oplus$ {\bf The simple Monge shuffle}
+  \item 
+  {\bf The simple Monge shuffle}
 
 \smallskip
 
@@ -1465,9 +1466,9 @@ So, this does not look too random!  After {\em three} (which, ``coincidentally",
 
 {\em Prove the following Proposition.}
 
-Let $p$ be a prime ($p>2$), and let $n = {1 \over 2} (p-1)$.  
+{\em Let $p$ be a prime ($p>2$), and let $n = {1 \over 2} (p-1)$.  
 Let us begin with a deck of $2n$ distinct cards and perform the simple Monge shuffle on the deck.  
-After some number $m$ of cut-then-merge steps, where $m$ divides $p-1$, the simple Monge shuffle replicates the initial deck.
+After some number $m$ of cut-then-merge steps, where $m$ divides $p-1$, the simple Monge shuffle replicates the initial deck.}
 \smallskip
 
 Studying our sample sequence of cut-then-merge steps should provide a valuable hint.
@@ -1520,8 +1521,12 @@ one complete stage is illustrated in the table following the figure.
 
 {\em Prove the following Proposition.}
 
-For any integer $n \in \N^+$: 
-If $4n+1$ is prime, then performing $2n$ steps of the sophisticated Monge shuffle on a deck of $2n$ distinct cards restores the deck to its original order.
+{\em For any integer $n \in \N^+$: 
+If $4n+1$ is prime, then performing $2n$ steps of the sophisticated Monge shuffle on a deck of $2n$ distinct cards 
+restores the deck to its original order.}
+\smallskip
+
+to complete
 \end{enumerate}
   
 \end{itemize}
@@ -1712,14 +1717,14 @@ For instance the bottom left vertex is labelled by $00 | 00$.
 \medskip
  \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresGraph/IsomorphismEx2}
+       \includegraphics[scale=0.45]{FiguresGraph/IsomorphismEx2}
        \caption{Coding schemes for the hypercube and torus.}
   \label{fig:IsomorphismCodingPrinciple}
 \end{center}
 \end{figure}
  \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresGraph/IsomorphismEx1}
+       \includegraphics[scale=0.45]{FiguresGraph/IsomorphismEx1}
        \caption{Complete coding schemes.}
   \label{fig:IsomorphismCodingComplete}
 \end{center}
@@ -1787,23 +1792,56 @@ The next step is to show the one-to-one correspondence of the relative edges.
 %    \end{itemize}
 %  \end{itemize}
 
-In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
+%In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
   \begin{enumerate}
   \item
 In the {\em metro} version of the model, we pay a fee every time we encounter a new site on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
 
 \smallskip
 
-{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site,$\langle h,k \rangle$, under the \underline{metro} model?}
+{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site, $\langle h,k \rangle$, under the metro model?}
+\smallskip
+
+We should first characterize which vertex is the most distant from $\langle i,j \rangle$. 
+Of course, the answer will depend on where this vertex is located in its quadrant.
+
+Let us restrict (without loss of generality) to any quadrant, say the right-bottom one. 
+There are two situations to consider that are illustrated in Fig.~\ref{fig:routingWorstCase}
+where the shaded area distinguish the location of the destination $\langle h,k \rangle$.
+The first situation (left in the figure) is easy since the directions of the edges allow $\langle i,j \rangle$ to reach directly $\langle h,k \rangle$
+without going out of the considered quadrant while in the second situation (right on the figure) we should reach an external
+vertex in the bottom-left quadrant, then, reach a vertex in the top-left one, then, reach a vertex in the top-right before being able to
+reach $\langle h,k \rangle$.
+The worst case comes from this last situation where the internal paths are maximized (see Fig.~\ref{fig:routingCity}).
 
   \medskip\item
 In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units every time we traverse a level-$\ell$ edge on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
- 
  \smallskip
 
-{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site, $\langle h,k \rangle$, under the \underline{driving} model?}
 
+{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site, $\langle h,k \rangle$, under the driving model?}
+\smallskip
+
+ The previous analysis still holds. 
  \end{enumerate}
+  \begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresGraph/routingWorstCase}
+       \caption{The two possible situation for reaching a vertex in the same bottom-right quadrant.
+       The origin vertex $\langle i,j \rangle$ is represented in dark grey and the destination vertex is on the shaded quadrant.}
+  \label{fig:routingCity}
+\end{center}
+\end{figure}
+
+ \begin{figure}[hbt]
+\begin{center}
+       \includegraphics[scale=0.4]{FiguresGraph/routingCitySolution}
+       \caption{Worst case in the metro model.}
+  \label{fig:routingCitySolution}
+\end{center}
+\end{figure}
+
+\ignore{************ 
  \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresGraph/routingCitySolution1}
@@ -1825,6 +1863,7 @@ In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/
 %  \label{fig:routingCity}
 \end{center}
 \end{figure}
+************}
 
 \end{itemize}
 
