@@ -283,9 +283,10 @@ Let us begin our journey.
 This section introduces the primary operations that are used for arranging finite sets as we
 establish a base for studying combinatorial probability.  The importance of set-arrangement
 in this context results from the common practice of defining discrete probability/likelihood as a counting problem---most specifically, of defining the ratio
-\[ 
+\begin{equation}
+\label{eq:prob-def-ratio}
 \frac{\mbox{number of ways of achieving a targeted event $E$}}{\mbox{number of possible events}}
-\]
+\end{equation}
 as the {\it probability of event} $E$.
 
 \index{probability of event $E$}
@@ -409,10 +410,13 @@ To wit: One can select the first element in any of $n$ ways.  Having selected th
 
 \smallskip
 
-This method of numeration accounts for both the identity of the $i$th chosen element  {\em and} the fact that it was the $i$th element chosen.  In other words, if element $x_1$ is the first element chosen, and element $x_2$ is the second one chosen, then the two orders of selection
-\[ x_1, \ x_2, \ \mbox{(a fixed order for the remaining $m-2$ selections)} \]
+There is a bit of complexity here, so let us say the same thing in a few ways:
+
+\noindent
+This method of numeration accounts for both the identities of the $m$ elements and the order in which they are selected.  For each position $i$, the method accounts for both the identity of the $i$th chosen element {\em and} the fact that it was the $i$th element chosen.  In more detail, if element $x_1$ is the first element chosen, and element $x_2$ is the second one chosen, then the two orders of selection
+\[ x_1, \ x_2, \ \mbox{(some fixed order for the remaining $m-2$ selections)} \]
 and 
-\[ x_2, \ x_1, \ \mbox{(a fixed order for the remaining $m-2$ selections)} \]
+\[ x_2, \ x_1, \ \mbox{(some fixed order for the remaining $m-2$ selections)} \]
 are counted as separate events.  Easily, this overcounting uniformly
 expands each of the events that we {\em do} want to account for by the
 factor $m!$, for this is the number of orders in which we could have selected the finally chosen $m$ elements.
@@ -444,11 +448,11 @@ well-known version of such a problem, in preparation for the general definition.
 
 \smallskip
 
-Professor $X$ views it as a win-win strategy for the students in her class to grade each others' essays on {\it The Essential Truth in the Universe}.  The essays thereby get graded faster, as the grading process becomes a parallel rather than sequential process.  Moreover, each student gets a chance to see how another student has interpreted some basic component of the human experience.  The only complication is: How should Professor $X$  allocate essays among the students.  {\em The process must ensure that no student is assigned her own essay to critique.}
+Professor $X$ views it as a win-win strategy for the students in her class to grade each others' essays on {\it The Essential Truth in the Universe}.  The essays thereby get graded faster, because the grading process becomes a parallel rather than sequential process.  Moreover, each student gets a chance to see how another student has interpreted some basic component of the human experience.  The only complication is: How should Professor $X$  allocate essays among the students.  {\em The process must ensure that no student is assigned her own essay to critique.}
 
 \smallskip
 
-The challenge that Professor $X$ is facing is known as a {\em derangement problems}.
+The challenge that Professor $X$ is facing is known as a {\em derangement problem}.
 
 \bigskip
 
@@ -458,8 +462,7 @@ A {\em derangement} of a (finite) set $A$ is a {\em bijection} $f: A \leftrighta
 
 \medskip
 
-Clearly, derangements always exist (for $n>1$.  One can just label the elements of set $A$ by the numbers
-$0, 1, \ldots, |A|-1$ and specify $f(a) = a+1 \bmod |A|$.
+Clearly, derangements always exist (for $n>1$).  One can just label the elements of set $A$ by the numbers $0, 1, \ldots, |A|-1$ and specify $f(a) = a+1 \bmod |A|$.
 
 \medskip
 
@@ -582,16 +585,12 @@ Before we begin to play, though, we need some groundwork, beginning with the com
 \medskip
 
 \noindent
-The {\em (discrete) probability}, or, {\em likelihood}, of an event is the ratio:
-\begin{equation}
-\label{eq:prob-def-ratio}
-\frac{\mbox{number of targeted events}}{\mbox{number of possible events}}
-\end{equation}
+As noted earlier, the {\em (discrete) probability}, or, {\em likelihood}, of an event is given by the ratio (\ref{eq:prob-def-ratio}), which measures the number of targeted events as a fraction of the number of possible events.
 
 \smallskip
 
 \noindent
-This approach to probabilities has important technical consequences.
+This approach to ({\em discrete}) probabilities has important technical consequences.\footnote{We emphasize the word ``discrete" because the asserted dichotomy does not generally hold in the world of events that assume continuous values.}
   \begin{itemize}
   \item
 The probability of any targeted event $E$ is $\leq 1$.  This means:
@@ -716,17 +715,22 @@ Of course, it is the {\em patterns} of the cards in various hands that determine
 
 \smallskip
 
-\noindent
-{\em the {\em value} of a pattern tracks the {\em likelihood} of the pattern's arising in a random deal.}
+{\em
+\begin{tabular}{l}
+{\bf Conjecture}.
+The value of a pattern in poker tracks the likelihood of a player's \\
+receiving the pattern in a random deal.
+\end{tabular}
+}
 
 \smallskip
 
 \noindent
-(Of course, {\em random} deals are  the personification of a {\em fair} game.)
+(Of course, {\em random} deals are the embodiment of a {\em fair} game.)
 
 \bigskip
 
-We now calculate the likelihoods of a variety of patterns arising in a fair game of poker, in order to study the validity of the preceding conjecture.  As we derive the likelihoods of the various patterns, observe the many invocations of the multiplication rule for the probabilities of independent events.
+We now calculate the likelihoods of a variety of patterns' arising in a fair game of poker, in order to study the validity of the preceding conjecture.  As we derive the likelihoods of the various patterns, observe the many invocations of the multiplication rule for the probabilities of independent events.
 
 \medskip
 
@@ -813,8 +817,7 @@ Thus, $13 \times 48 = 624$, which corresponds to the probability $0.00256$.
 *************}
 
 \medskip\item
-We finally look at two more poker hands together because the analyses of their
-respective patterns are so similar.
+We look at the next two poker hands together because the analyses of their respective patterns are so similar.
 \begin{itemize}
 \item
 A {\it Full house} is a poker hand of the form
@@ -828,11 +831,9 @@ A {\it Full house} is a poker hand of the form
 where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$,  and $X \neq Y$.
  \index{full house (in poker)} 
 
-\medskip
-
-\index{three of a kind (in poker)}
 \medskip\item
 {\it Three of a kind} is a poker hand of the form
+\index{three of a kind (in poker)}
 
 \smallskip
 
@@ -866,7 +867,23 @@ component of the hand, we must select the remaining cards by choosing the (disti
 \[ 13 \cdot {4 \choose 3} \cdot {12 \choose 2} \cdot 4^2 \ \ = \ \  54,912 \]
 ways, so the probability of being dealt such a hand is
 \[ Pr(\mbox{three of a kind}) \ \ = \ \
- \frac{54,912}{2,598,960}  \ \ \approx \ \ 2.11 \times 10^{-2} . \]
+ \frac{54,912}{2,598,960}  \ \ \approx \ \ 2.11 \times 10^{-2}  \]
+
+\medskip\item
+The final poker hand that we consider is {\it two-pair}.  We remarked earlier in this section that three-of-a-kind beats two-pair.  Comparing the likelihood of two-pair versus the just-computed likelihood of three-of-a-kind will be a good test of our poker-valuation conjecture.
+\index{two-pair (in poker)}
+
+\smallskip
+
+The {\it two-pair} hand in poker is a deal that is {\em a permutation of} the hand
+\[ X, \ X, \ Y, \ Y, \ Z \]
+where $X$, $Y$, $Z$, are distinct face values.
+
+\smallskip
+
+You can show ({\em in a exercise}) that the probability of receiving a two-pair hand in a fair poker deal is
+\[ Pr(\mbox{two-pair}) \ = \ \frac{123,552}{2, 598, 960} \ \approx \ 4.75  \times 10^{-2} \]
+This is a bit more than twice the probability of receiving a three-of-a-kind---which explains why the latter hands beats the current one in a poker game.
 \end{itemize}
 
 \medskip
@@ -2455,6 +2472,25 @@ $\oplus \oplus$
 {\em Find a number $n$ that satisfies the following.  With probability at least $1/2$, any collection of $n$ people contains $\geq 3$ people who share the same birthday}.
   \end{enumerate}  
   
+%%%
+
+\medskip\item
+$\oplus$
+{\bf Further analysis of poker hands}
+
+{\sc Lessons:} Experience analyzing simple combinatorial situations
+
+\smallskip
+
+{\em Determine the probability of being dealt a two-pair hand in a fair game of poker.}
+
+\smallskip
+
+{\em Hint}.  As noted in the text, a two-pair hand is any permutation of
+\[ X, \ X, \ Y, \ Y, \ Z \]
+where $X$, $Y$, and $Z$ are distinct face-values.  If you try to pick these three values separately, you will be subjecting yourself to a complex case analysis.  You are much better off to select the three distinct values from the $13$ possible face-values in a single conceptual step.  Then you must select which of the three face-values will play the role of $Z$ (the unpaired card). 
+At that point, you should be well on your way to the answer!
+
 %%%
 
 \medskip\item
