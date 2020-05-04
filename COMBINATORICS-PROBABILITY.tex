@@ -1,4 +1,4 @@
-%version of 04-29-20
+%version of 05-04-20
 
 \chapter{The Art of Counting:
 Combinatorics, with Applications to Probability and Statistics}
@@ -94,7 +94,8 @@ In earlier chapters, we have discussed at length the {\em deductive paradigm} fo
 \section{The Elements of Combinatorics}
 \label{sec:counting}
 
-This section contains two quite distinct, but closely related, lessons about counting.  The first lesson is in the form of a single important example.  In Section~\ref{sec:b-ary strings}, we exploit the special structure of {\em strings} to count the number of length-$n$ strings over fixed-size alphabets; and we extend this ability to other objects whose structures can be {\em encoded} as strings---notable the power-sets of finite sets.  Then, in Section~\ref{sec:count-by-structure}, we illustrate how to count within sets that are ``complex" in the sense of being formed from other sets by using the algebraic operations on sets that we discussed in Section~\ref{sec:operations-on-sets}.
+This section contains three quite distinct, but closely related, lessons about counting.  The first lesson is in the form of a single important example.  In Section~\ref{sec:b-ary strings}, we exploit the special structure of {\em strings} to count the number of length-$n$ strings over fixed-size alphabets; and we extend this ability to other objects whose structures can be {\em encoded} as strings---notable the power-sets of finite sets.  In Section~\ref{sec:count-by-structure}, we illustrate how to count within sets that are ``complex" in the sense of being formed from other sets by using the algebraic operations on sets that we discussed in Section~\ref{sec:operations-on-sets}.  Section~\ref{sec:set-arrangement} lays the foundations for {\em combinatorial probability}: the sub-area of probability theory that is based on {\em counting}.  The section 
+introduces two operations on sets---the {\em selection} and {\em arrangement} of the objects in sets---that are at the center of probability-via-counting.
 
 \subsection{Counting Binary Strings and Power Sets}
 \label{sec:b-ary strings}
@@ -103,7 +104,7 @@ This section contains two quite distinct, but closely related, lessons about cou
 
 \begin{prop}
 \label{thm:b-ary strings}
-For every integer $b > 1$, there are $b^n$ $b$-ary strings of length $n$.
+For every integer $b > 1$, the number of $b$-ary strings of length $n$ is $b^n$.
 \end{prop}
 
 \begin{proof}
@@ -113,16 +114,26 @@ $A^{(1)}_{n-1}$, \ldots, append $\bar{b} = b-1$ to every string in $A^{(b-1)}_{n
 
 \medskip
 
-\index{characteristic vector!of a set} \index{power set of a set}
+Proposition~\ref{thm:b-ary strings} has two corollaries which are much more important than the proposition's statement.
 
-Proposition~\ref{thm:b-ary strings} has a corollary whose proof is much more important than its
-statement.  By employing the {\em characteristic vectors} of sets, we invoke the case $b=2$ of the
-proposition to determine how many subsets a finite set $S$ has---i.e., to
-count the elements of $S$'s {\em power set}.  (All technical terms come from Chapter~\ref{ch:sets-BA-logic}.)
+\smallskip
+
+The first corollary follows the proposition so closely that we leave its proof to the reader.
+
+\begin{prop}
+\label{thm:identical-events}
+If a particular reproducible event (think of tosses of a fair coin) has $b$ possible outcomes, then a sequence of $n$ independent repetitions of the event has $b^n$ possible outcomes.
+\end{prop}
+
+\smallskip
+
+\index{characteristic sequence!of a set} \index{power set of a set}
+
+The second corollary of Proposition~\ref{thm:b-ary strings} requires the auxiliary device of the {\em characteristic sequence} of a set, which we introduced in Section~\ref{sec:sets-strings-functions}.  Using this device, we invoke the case $b=2$ of the proposition to determine how many subsets a finite set $S$ has---i.e., to count the elements of $S$'s {\em power set}.  (All technical terms come from Chapter~\ref{ch:sets-BA-logic}.)
 
 \begin{prop}
 \label{thm:power-sets}
-The power set $\p(S)$ of a finite set $S$ contain $2^{|S|}$ elements.
+The power set, $\p(S)$, of a finite set $S$ contain $2^{|S|}$ elements.
 \end{prop}
 
 \begin{proof}
@@ -231,7 +242,7 @@ Figs.~\ref{fig:unionSetsInit} and~\ref{fig:unionSets} illustrate how to generali
 In order to draw explicit expressions that express the content of  Fig.~\ref{fig:unionSets}, one must apply the law of {\em inclusion and exclusion} in multiple ways, as we compensate for the 
 pairwise and triple intersections among  sets $A$, $B$, and $C$.  A careful reckoning using the figure indicates that
 \[ |A \cup B \cup C| \ \ = \ \ 
-\big(|A| + |B| + |C| \big) - \big( |A \cap B| + |A \cap C| + |B \cap C| \big) + |A \cap B \cap C|. \]
+\big(|A| + |B| + |C| \big) - \big( |A \cap B| + |A \cap C| + |B \cap C| \big) + 2 |A \cap B \cap C|. \]
 In particular, we begin by {\em including} the union; then we {\em exclude} the pairwise intersections, which were double-counted; and we finally {\em include} the triple intersection, which was first counted three times and then excluded three times while
 removing the pairwise intersections.
 
@@ -1027,9 +1038,9 @@ assignments have no two people sharing a birthday.
 
 \smallskip
 
-Worded as a probability: Letting $p(n)$ denote the probability that there are no shared birthdays in a population of $n$ people:
+Worded as a probability: Letting $Pr(n)$ denote the probability that there are no shared birthdays in a population of $n$ people:
 \begin{eqnarray*}
-p(n) & = &
+Pr(n) & = &
 \frac{\mbox{number of birthday assignments with no shared birthday}}
 {\mbox{total number of birthday assignments}} \\
  &  = & \frac{365!}{ (365-n)!  \times 365^n} \\
@@ -1056,7 +1067,7 @@ is the complement of the event
 \smallskip
 
 \noindent
-the probability of a shared birthday is precisely $1-p(n)$.  For $n=23$, the desired probability is $0.5073$:  In other words,
+the probability of a shared birthday is precisely $1-Pr(n)$.  For $n=23$, the desired probability is $0.5073$:  In other words,
 
 \begin{prop}
 In any group of $23$ people, the likelihood that two people share the same birthday is slightly greater than $50\%$, assuming a year with $365$ equally likely days.
@@ -1150,7 +1161,7 @@ Our first technique of enumeration lists the $16$ possible sums of a roll of the
 
 \smallskip
 
-The $16$ possible sums arise from the fact that dice are labeled with the integers $1, 2, 3, 4, 5, 6$, so the smallest possible sum is $3$ (which occurs when all three dice show the number $1$), and the largest possible sum is $18$ (which occurs when all three dice show the number $6$).  All possible sums are listed in Fig.~\ref{fig:dice-outcomes}(right).  The depicted table allows us to easily compute, e.g., that the probability of obtain the sum $6$ in a roll of three dice is $p(6) \ = \ 4/56 \ = \ 0.071\cdots$; in other words, we expect to observe this sum with just a bit more than $7\%$ of rolls.
+The $16$ possible sums arise from the fact that dice are labeled with the integers $1, 2, 3, 4, 5, 6$, so the smallest possible sum is $3$ (which occurs when all three dice show the number $1$), and the largest possible sum is $18$ (which occurs when all three dice show the number $6$).  All possible sums are listed in Fig.~\ref{fig:dice-outcomes}(right).  The depicted table allows us to easily compute, e.g., that the probability of obtain the sum $6$ in a roll of three dice is $Pr(6) \ = \ 4/56 \ = \ 0.071\cdots$; in other words, we expect to observe this sum with just a bit more than $7\%$ of rolls.
 
 \medskip\item 
 A rather different way of enumerating sums is to partition configurations $abc$ based on the number of distinct numbers in the set $\{ a, b, c\}$.
@@ -2125,7 +2136,7 @@ a given token $\tau \in \Sigma$ multiple times, token $\tau$ counts only once to
 Let us denote by $X$ the random variable which assumes the value 
 $k \in \{1, 2, \ldots, n\}$ on a particular play of the {\sc select-and-replace} game 
 just when player $P$ achieves score $k$ during that play.  We can calculate the
-probability $p(k)$ of achieving score $k$ by directly invoking the
+probability $Pr(k)$ of achieving score $k$ by directly invoking the
 definitional ratio (\ref{eq:prob-def-ratio}).  We argue using basic facts involving 
 binomial coefficients.
 \begin{itemize}
@@ -2144,9 +2155,9 @@ and $2^n -1$ is the number of {\em nonempty} such sets.
 Thus, $P$'s score can result from selecting any of $\Sigma$'s $(k > 0)$-element 
 subsets---which are $\displaystyle {n \choose k}$ in number---from among 
 $\Sigma$'s $2^n -1$ nonempty subsets.  It follows, therefore, that
-\[ p(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \div (2^n -1)  \]
+\[ Pr(k) \ \eqdef \ Pr[X = k] \ = \ {n \choose k} \div (2^n -1)  \]
 
-By definition, $p(x)$ is a probability frequency function for random variable $X$.
+By definition, $Pr(x)$ is a probability frequency function for random variable $X$.
 *****************}
 
 \medskip
@@ -2352,16 +2363,33 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 
 \begin{enumerate}
 \item
-{\bf Counting permutations}
+{\bf Counting arrangements}
 
 {\sc Lesson:} Experience with combinatorial calculations
 
   \begin{enumerate}
   \item
+{\bf Counting repetitions}
+
+\smallskip
+
+{\em Prove Proposition~\ref{thm:identical-events}:
+
+The number of possible outcomes when a fair $6$-sided die is rolled $n$ times is $6^n$.}
+
+  \medskip\item
+{\bf Counting permutations}
+
+\smallskip
+
 {\em Prove Proposition~\ref{thm:no-permutation}:
 The number of permutations, $P(n)$, of a $n$-element set equals $n!$}
 
   \medskip\item
+{\bf Counting arrangements}
+
+\smallskip
+
 {\em Prove that the number of ways of selecting $k$ unordered items out of a set of $n$ items is $\displaystyle {n \choose k}$.  Your proof must be based on Proposition~\ref{thm:no-permutation}.}
   \end{enumerate}
 
