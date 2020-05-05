@@ -20,7 +20,7 @@ The pigeonhole principle is our main tool here.  To wit, the number of people th
 
 \smallskip
 
-Because there are $2n$ handshakers (the pigeons) and $2n-1$ hands to shake (the boxes), some two shakers must shake the same numbers of hands.
+Because there are $2n$ handshakers (the pigeons) and $2n-1$ hands to shake (the boxes), some two shakers must shake the same numbers of hands.  \qed
  
 \medskip
 \item
@@ -28,7 +28,7 @@ Because there are $2n$ handshakers (the pigeons) and $2n-1$ hands to shake (the 
 
 \smallskip
 
-A {\it bicolored necklace} is composed of $2n = 2(a+b)$ jewels: $2a$ black jewels and $2b$ white jewels.  Let us be given such a necklace adorned with a solid tube of the sort depicted in Fig.~\ref{fig:sample-necklace}, which contains precisely half of the jewels, i.e., $n$ jewels.
+A {\it bicolored necklace} is composed of $2n = 2(a+b)$ jewels: $2a$ black jewels and $2b$ white jewels.  Let us be given such a necklace within a solid tube of the sort depicted in Fig.~\ref{fig:sample-necklace}, which contains precisely half of the jewels, i.e., $n$ jewels.
 
 \ignore{************************
  For illustration, the necklace in Fig.~\ref{fig:sample-necklace} has $n = 6$, $a = 5$, and $b =1$.
@@ -48,82 +48,84 @@ In part (a) of the figure, the necklace is unadorned; in part (b), the necklace 
 
 \medskip
 
-Slide the tube around the necklace, one jewel per step, and count both the black jewels and the white jewels at each step.  How can these numbers change in a single step?
+We are going to slide the tube clockwise around the necklace, one jewel per step, and count the black jewels and the white jewels within the tube at each step.  At the start of this process, the tube contains some number of black jewels, say $a+c$, and a complementary number of white jewels, namely, $b-c$.  At the end of the process, the tube must contain $a$ black jewels and $b$ white jewels---so the discrepancy $c$ has been reduced to $0$.  How can the discrepancy $c$ change in a single step of the process?
 
 \smallskip
 
-Fix a position of the tube in which there are some number, call it $c$, of black jewels inside the tube.  By definition, then, there are $n-c$ white jewels inside the tube.
+The effect of a single shift is to insert a jewel into the tube, at its advancing extremity, and to eliminate a jewel from the tube, at its trailing extremity.  The discrepancy can be changed by this shift in precisely three ways.
+  \begin{itemize}
+  \item
+If the inserted jewel and the eliminated jewel are of the same color, then the discrepancy $c$ 
+is unchanged by this shift.
+  \medskip\item
+If the inserted jewel is black and the eliminated jewel is white, then the discrepancy $c$ is {\em increased to} $c+1$ by this shift. 
+  \medskip\item
+If the inserted jewel is white and the eliminated jewel is black, then the discrepancy $c$ is {\em decreased to} $c-1$ by this shift. 
+  \end{itemize}
+By the time $n$ shifts have been performed, the discrepancy $c$ will have changed to $-c$, because the tube will be in an antipodal position upon the necklace.
 
 \smallskip
 
-The effect of a single shift is to insert a new jewel into the tube, at its advancing extremity, and to eliminate an old jewel from the tube, at its training extremity.  Now, if the new and old jewels are of the same color, then the internal and external tallies of black and white jewels is unchanged by this move; if they are of different colors---one is black and the other is white---then the tallies change.  If, for instance, the new jewel is black while the old one is white, then the number of whites in the tube decreases by $1$, and the number of blacks in the tube increases by $1$.  The phrase ``by $1$" is the key to the argument.
-
+Summing up: Over the course of $n$ shifts, the discrepancy $c$ will have changed to $-c$.  The  discrepancy changes by $\pm 1$ at each shift.  Therefore, there must be some shift among the $n$ when the discrepancy is $0$.  \qed
  
-At the same time, the number of whites increases and the number of blacks decreases in the complementary 
-remaining part of the necklace. 
 
 \medskip \item
 {\bf 2.6. Using {\em geometric} intuition to sum inverse powers of $4$}
+
 \smallskip
 
-We consider a variant of Proposition~\ref{thm:sumof-1/4-induction} where the focus is put on the entire infinite summation
+We seek a proof of Proposition~\ref{thm:sumof-1/4-induction} in which the infinite summation
 \[ S \ \ = \ \  {1 \over 4} \ + \  {1 \over 4^2} \ + \cdots + \ {1 \over 4^k} \ + \cdots  \]
+is analyzed---and ultimately solved---geometrically.  The key is to discover how to represent the process of generating successive inverse powers of $4$.  The nested similar triangles in Fig.~\ref {Fig:Sumgeosimilar} unlock the secret to this representation.
+\begin{figure}[ht]
+\begin{center}
+        \includegraphics[scale=0.3]{FiguresMaths/Sum1over4topTriangle}
+        \hspace{1cm}
+        \includegraphics[scale=0.3]{FiguresMaths/Sum1over4similarTriangles}
+\caption{Two copies of an isosceles triangle $T$.  The lefthand copy has been partitioned into a top sub-triangle , call it $T'$, whose height is half of $T$'s.  The righthand copy is obtained by adding two copies of $T'$ in the lower half of the lefthand copy.  We now have four similar copies of $T'$ within $T$, which perfectly partition the area of triangle $T$.}
+        \label{Fig:Sumgeosimilar}
+\end{center}
+\end{figure}
 
-\smallskip
 
 \ignore{***************
 We prove in Proposition~\ref{thm:sum-finite-geometric-series}(b) that this infinite summation converges to the value ${1 \over 3}$.  
 A simple way to see this is to multiply the summation $S$ term by term by the fraction $1/4$.  We observe---just by inspection---that the resulting product, which clearly has the value $S/4$, equals $S - 1/4$, so that $S = 1/3$.
 \smallskip
 *************************}
-
 \begin{itemize}
 \item
-{\em prove that the four triangles are similar to one another.}
+{\bf To prove}. {\em The four sub-triangles are similar to one another.}
+
 \smallskip
 
-Let consider the small upper triangle and duplicate it twice.
-Put both of them at the bottom of the original triangle
-(as shown in Fig.~\ref{Fig:Sum1over4FirstLayer}(right)). 
-There is another reversed triangle left at the middle of the figure (the white one). 
-It has the same sides as the previous ones and its base is also half of the base of the original triangle,
-thus it is also similar to the small upper triangle.
+Duplicate triangle $T'$ twice, and put both copies at the bottom of triangle $T$, in the manner depicted in Fig.~\ref{Fig:Sumgeosimilar}(right).  The reversed, white, sub-triangle in the middle of the figure has the same sides as the two duplicates of $T'$, and its base is also half of $T$'s.  Therefore, it also is similar to triangle $T'$.
 
-\begin{figure}
-\begin{center}
-        \includegraphics[scale=0.3]{FiguresMaths/Sum1over4topTriangle}
-        \hspace{1cm}
-        \includegraphics[scale=0.3]{FiguresMaths/Sum1over4similarTriangles}
-        \caption{A sub-triangle at the top(left) and its two duplicates(right).
-        These three traingles plus the white reserved one at the middle perfectly partition the area of the original big triangle.}
-        \label{Fig:Sumgeosimilar}
-\end{center}
-\end{figure}
+\medskip\item
+{\bf To prove}. {\em The four sub-triangles are similar to triangle $T$.}
 
-\item
-{\em prove that the four triangles are similar to the original triangle.}
 \smallskip
 
-The small upper triangle has been obtained by divided by a factor of $2$ both the basis and the sides
-of the original triangle (see Fig.~\ref{Fig:Sum1over4FirstLayer}(left)). 
-Thus, it is similar to the original one. 
+Sub-triangle $T'$ is similar to triangle $T$ because it is obtained by bisecting both the base and the sides of $T$.
+
+\medskip\item
+{\bf To prove}.  {\em The common area of each of the four sub-triangles is $1/4$ the area of $T$.}
+
 \smallskip
 
-\item
-{\em prove that the four triangles have area which is $1/4$ that of the original triangle.}
-
-This comes directly from the two previous observations: The four triangles have the same area
-and they exactly cover the original triangle. 
+This follows from the two previous observations: The four sub-triangles have the same area,
+and they exactly cover triangle $T$. 
 \end{itemize}
 
-{\em Assemble these facts into an evaluation of the sum $S$.}
+\medskip\item
+{\bf To do}. {\em Assemble the preceding facts into an evaluation of the sum $S$.}
+
 \smallskip
 
-The sum $S$ is obtained by recursively applying the same process of partitioning again and again
-on the small upper triangles. 
-The whole process splits the original triangle into layers containing each $3$ sub-triangles
-(see Fig.~\ref{Fig:Sum1over4FirstLayer}). 
-As the three sub-triangles are the same, the area of the central reversed triangle is $\frac{1}{3}$ of the area of the layer. 
+The sum $S$ is obtained by recursively partitioning the small upper sub-triangles. 
+
+The process splits the original triangle into layers that each contain three sub-triangles; see
+Fig.~\ref{Fig:Sum1over4FirstLayer}). 
 \begin{figure}
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/Sum1over4FirstLayer}
@@ -131,19 +133,21 @@ As the three sub-triangles are the same, the area of the central reversed triang
         \label{Fig:Sum1over4FirstLayer}
 \end{center}
 \end{figure}
+As the three sub-triangles are identical, the area of the central reversed triangle is $\frac{1}{3}$ of the area of the layer. 
 
-The final solution is depicted in Fig.~\ref{Fig:Sum1over4cascade} where the recursive process is applied \textit{ad libitum}. 
+\smallskip
 
+The final solution is depicted in Fig.~\ref{Fig:Sum1over4cascade} where the recursive process is applied ``all the way". 
 \begin{figure}
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/Sum1over4cascade}
-        \caption{Summary of the graphical construction. Assuming the total area is 1, the area of the grey internal triangle (left) is $\frac{1}{4}$.
-        As the grey area is one third at each layer (right), the whole area is $\frac{1}{3}$.
-        By the double counting Fubini's principle, this area is the sum of the $\frac{1}{4^k}$ (for $k \geq 1$).}
+        \caption{The recursive decomposition of triangle $T$.}
         \label{Fig:Sum1over4cascade}
 \end{center}
 \end{figure}
-
+Summarizing  the graphical construction.  If the area of the original triangle $T$ is $1$, then 
+one sees that the area of the grey sub-triangle of Fig.~\ref{Fig:Sum1over4cascade}(left) is $1/4$.  Because the grey triangle occupies one-third of the area of each layer of Fig.~\ref{Fig:Sum1over4cascade}(right), the aggregate area of the grey sub-triangles is $1/3$.  
+One can now apply Fubini's principle to evaluate the sum $\sum_{k \geq 1} \ 4^{-k}$.
 \end{itemize}
 
 \ignore{*************************
