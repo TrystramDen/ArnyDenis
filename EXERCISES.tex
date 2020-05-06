@@ -230,7 +230,7 @@ The main message here is that {\em independent} choices {\em multiply}.  This me
 
 \smallskip
 
-Here, the challenge is to convert your mathematical reasoning into a systematic method of
+The challenge is to convert your mathematical reasoning into a systematic method of
 enumeration.  Here is a natural recursive way of doing this. (i) Fix the first number (among the 5 possibilities).  (ii) Recursively, enumerate, for each copy of the first number, all permutations of the four remaining numbers.
 
 \smallskip
@@ -252,8 +252,21 @@ $Fact(n) \ = \ n \times Fact(n-1) \ = \ n \times (n-1) \times \cdots \times 2 \t
 {\bf 4.5. The rationals ($\Q$) and the integers ($\N$) are equinumerous}
 \smallskip
 
-{\em Provide a {\em detailed} proof of Proposition~\ref{thm:|Q|=|N|}.}  
-Informally, there are equally many integers as there are rationals.
+{\bf To prove}. {\em Provide a {\em detailed} proof of Proposition~\ref{thm:|Q|=|N|}:} 
+There are ``equally many" integers as there are rationals.
+
+\smallskip
+
+The relevant fact here is that $\Q$ is (isomorphic to) a proper subset of $\N \times \N$.  One bijection that witnesses this fact is defined as follows.  Map each rational $r \in \Q$ to the unique pair $\langle p,q \rangle \in \N \times \N$ such that:
+\[ [r = p/q] \ \ \  \mbox{ and } \ \ \  [\mbox{$p$ and $q$ share no common factor}] \]
+
+\smallskip
+
+Beware: The first of these conditions is satisfied by infinitely many pairs of integers.  The second condition is needed to end up with a unique pair, hence with the desired bijection.
+
+\smallskip
+
+Once you have a bijection, you can argue based on definitions.
 \end{itemize}
 
 
@@ -419,33 +432,39 @@ Thus, the length of the initial square is equal to $60-30=30$.
 
 \begin{itemize}
 \item
-{\bf 6.4. Evaluating $S_1(n) = \sum_{i=1}^n \ i$, using the fact that $S_2(n) = \sum_{i=1}^n \ i^2$}
+{\bf 6.4. How to evaluate $S_1(n) = \sum_{i=1}^n \ i$, using a ``machine" which evaluates $S_2(n) = \sum_{i=1}^n \ i^2$}
 \smallskip
 
-{\em Show how to use this machine in order to compute the sum of the first $n$ integers.}
+{\bf To do}. {\em Show how how to use the $S_2(n)$-machine in order to compute $S_1(n)$.}
 
 \medskip
-The idea here is to write the sum by extracting the two extreme terms of the sum of squares at rank $n+1$ (namely, first and the last element).
 
+You must exploit how the expressions for $S_1(n)$ and $S_2(n)$ relate to one another.  (You need just a little algebra here.)  Then you must exhibit how to extract the relation from a ``machine" which gives out values in a ``black-box" manner.
+
+\smallskip
+
+You can develop the solution strategy as follows:  
+Write the summation $S_2(n+1)$ in two ways.  First, isolate the {\em last} term of the summation; then, isolate the {\em first} term of the summation:
 \begin{eqnarray*}
 S_2(n+1) & = &  \sum_{i=1}^{n} i^2 \ + \ (n+1)^2  \\
- & = & S_2(n) \ + \ (n+1)^2 \\
-S_2(n+1) & = &  1 \ + \sum_{i=2}^{n+1} i^2 \\
- & = &  1 \ + \sum_{i=1}^{n} \ (i+1)^2 \\
- & = &  1 \ + \sum_{i=1}^{n} \ (i^2 \ + \ 2.i \ + \ 1) \\
- & = & 1 \ + \ S_2(n) \ + \ 2.S_1(n) \ + n
+                & = & S_2(n) \ + \ (n+1)^2 \\
+S_2(n+1) & = & 1 \ + \sum_{i=2}^{n+1} i^2 \\
+                & = & 1 \ + \sum_{i=1}^{n} \ (i+1)^2 \\
+                & = & 1 \ + \sum_{i=1}^{n} \ (i^2 \ + \ 2 i \ + \ 1) \\
+                & = & 1 \ + \ S_2(n) \ + \ 2 S_1(n) \ + n
 \end{eqnarray*} 
-The term $S_2(n)$ disappears while considering both expressions of $S_2(n+1)$:
+Equating the two final derived expressions for $S_2(n+1)$ and simplifying, we find that
 \begin{eqnarray*}
- S_2(n) \ + \ (n+1)^2 & = & 1 \ + \ S_2(n) \ + \ 2.S_1(n) \ + n \\
- (n+1)^2 & = & 1 \ + \ 2.S_1(n) \ + n \\
- 2.S_1(n) & = & (n+1)^2 \ - \ (n + 1) \\
- S_1(n) & =  & \frac{1}{2} \ n(n+1) 
+ S_2(n) \ + \ (n+1)^2 & = & 1 \ + \ S_2(n) \ + \ 2 S_1(n) \ + n \\
+                    (n+1)^2 & = & 1 \ + \ 2 S_1(n) \ + n \\
+                  2 S_1(n) & = & (n+1)^2 \ - \ (n + 1) \\
+                     S_1(n) & =  & \frac{1}{2} \ n(n+1) 
 \end{eqnarray*} 
-\medskip
 
+\medskip
 \item
 {\bf 6.6. Evaluating a geometric summation pictorially}
+
 \smallskip
 
 \ignore{***************
@@ -453,30 +472,30 @@ In Section~\ref{sec:summing-geometric-series:techniques}, we used Thales's theor
 \[ S^{(b)}(n) \ = \ \sum_{i=0}^n \ b^i \]
 ************************}
 
-{\em Use the following figure to evaluate the following expression.}
+{\bf To do}. {\em Use the following figure to evaluate the following summation.}
 \[ S^{(b)}(n) \ = \ \sum_{i=0}^n \ b^i \]
 
 \centerline{\includegraphics[scale=0.4]{FiguresArithmetic/ThalesGeometricSumFiniteSol}}
 \smallskip
 
-We use Thales's theorem (\ref{thm:Thm-of-Thales-similarity}) in the two upper similar triangles .
+We use Thales's Theorem~\ref{thm:Thm-of-Thales-similarity} with the two upper similar triangles in the figure.
 \[ \frac{S^{(b)}(n)}{1-b^{n+1}} \ = \ \frac{1}{1-b} \]
 \[ S^{(b)}(n) \ = \ \frac{1-b^{n+1}}{1-b} \]
 
 \medskip
-
 \item
 {\bf 6.7. A direct proof that the harmonic series diverges}
 
-{\em Develop a proof of the divergence of the harmonic series 
+{\bf To do}.  {\em Develop a proof of the divergence of the harmonic series }
+
 \[ S^{(H)} \ = \ \sum_{k=1}^\infty \ {1 \over k} \]
-\begin{itemize}
+
+\begin{enumerate}
 \item
-partitioning $S^{(H)}$'s terms into groups whose sizes are successive powers of $2$
+Partition $S^{(H)}$'s terms into groups whose sizes are successive powers of $2$
 \item
-developing an argument based on the sums within the groups.
-\end{itemize}
-}
+Develop an argument based on the sums within the groups.
+\end{enumerate}
 
 \smallskip
 
@@ -488,41 +507,52 @@ S^{(H)}   & = \ 1  + {1 \over 2} + \left(  {1 \over 3}   +  {1 \over 4}  \right)
 \end{array} \]
 }
 
-More precisely, each group, say $G_i$, is composed by the $i$ integers from $\frac{1}{2^{(i-1)}+1}$ to $\frac{1}{2^{i}}$ 
-(for $i \geq 1$).
-Grouping the terms like before, the sum within each group $G_i$ is greater than $\frac{1}{2}$:
-\[ 
-\begin{array}{l}
-{1 \over 3} + {1 \over 4}  > 2.{1 \over 4} = {1 \over 2} \\ \smallskip
-{1 \over 5} + {1 \over 6} + {1 \over 7}+ {1 \over 8}  > 4.{1 \over 8} = {1 \over 2}  \\  \smallskip
-{1 \over 9} + {1 \over 10} + {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14} + {1 \over 15} + {1 \over 16}  > 8.{1 \over 16} = {1 \over 2}  \\  \smallskip
-\cdots
-\end{array} \]
-Thus, 
-\[ 
-\begin{array}{ll}
-S^{(H)} \ > \ 1 \ + \ \left( {1 \over 2} \ + \ {1 \over 2} \right) \ + \left( {1 \over 2} + {1 \over 2} \right) + \cdots
-\end{array} \]
-$S^{(H)}$ is greater than the infinite sum of 1 and thus, it is unbounded .
+In detail, each group, say the $i$th group $G_i$ (for $i \geq 1$), is computed from the $i$ numbers
+\[ \frac{1}{2^{(i-1)}+1}, \ \frac{1}{2^{(i-1)}+2}, \ \ldots, \ \frac{1}{2^{i}}  \]
+Grouping the terms in the earlier manner, the sum within each group $G_i$ exceeds $1/2$:
+\begin{eqnarray*}
+{1 \over 3} + {1 \over 4} \ > \ 2 \cdot {1 \over 4} & = & {1 \over 2} \\ \smallskip
+{1 \over 5} + {1 \over 6} + {1 \over 7}+ {1 \over 8} \ > \ 4 \cdot {1 \over 8} & = & {1 \over 2}  \\  \smallskip
+{1 \over 9} + {1 \over 10} + {1 \over 11}  +{1 \over 12} + {1 \over 13} + {1 \over 14} + {1 \over 15} + {1 \over 16}  \ > \ 8 \cdot {1 \over 16} & = & {1 \over 2}  \\  \smallskip
+\vdots
+\end{eqnarray*}
+Therefore, 
+\begin{eqnarray*}
+S^{(H)} & > & 1 \ + \ \left( {1 \over 2} \ + \ {1 \over 2} \right) \ + \left( {1 \over 2} + {1 \over 2} \right) + \cdots \\
+             & = & 1 \ + \ 1 \ +  1 \ + \ 1 \ + \cdots
+\end{eqnarray*}
+This means that the Harmonic sum $S^{(H)}$ is greater than every sum of $1$s, hence, is infinite.
 
 \medskip
 
-{\em Propose an alternative analysis by changing the groupings where the terms are gathered 3 by 3}
-\[ 
-\begin{array}{ll}
-S_i & = \left( \frac{1}{3i-1} + \frac{1}{3i} + \frac{1}{3i+1} \right) 
-\end{array} \]
-\[ 
-\begin{array}{ll}
-S^{(H)}  & = 1 + S_1 +  \cdots + S_i + \cdots  > 1 + 3.\frac{1}{3} + 3.\frac{1}{6} + \cdots + 3.\frac{1}{3i} + \cdots
-\end{array} \]
+{\bf To do}. {\em Propose an alternative analysis of $S^{(H)}$ which uses groupings whose sizes are powers of $3$}
 
-since $S_i > 3.\frac{1}{i} $
+\smallskip
 
-The proof is by contradiction:
-if $S^{(H)} $ is finite, from the previous relation we have: $S^{(H)}  > 1 + S^{(H)} $, which is obviously impossible.
+The aim of this problem is to ensure that you have understood which features of our power-of-$2$ groupings are inherent to the argument and which are just for convenience.
+
+\smallskip
+
+We argue now in a somewhat different way than with our power-of-$2$ groupings.  We now propose the terms $S_i$ defined by
+\[ 
+S_i \ = \ \left( \frac{1}{3i-1} + \frac{1}{3i} + \frac{1}{3i+1} \right) \ >  \ 3 \cdot \frac{1}{i}
+ \]
+We then have
+\begin{eqnarray}
+\nonumber
+S^{(H)}  & = & 1 + S_1 +  S_2 + \cdots + S_i + \cdots  \\
+\label{eq:harmonic-by-3}
+             & >  & 1 + 3 \cdot \frac{1}{3} + 3 \cdot \frac{1}{6} + \cdots + 3 \cdot \frac{1}{3i} + \cdots
+\end{eqnarray}
+
+These summations lead to the following absurdity.
+
+\smallskip
+
+If $S^{(H)}$ were finite, then, by Eq.~\ref{eq:harmonic-by-3}, we would have $S^{(H)}  > 1 + S^{(H)} $, which is obviously impossible. 
+
+
 \medskip
-
 \item
 {\bf 6.8. Summations, and summations of summations}
 \smallskip
