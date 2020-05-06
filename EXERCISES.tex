@@ -133,11 +133,11 @@ Fig.~\ref{Fig:Sum1over4FirstLayer}).
         \label{Fig:Sum1over4FirstLayer}
 \end{center}
 \end{figure}
-As the three sub-triangles are identical, the area of the central reversed triangle is $\frac{1}{3}$ of the area of the layer. 
+As the three sub-triangles are identical, the area of the central reversed triangle is $1/3$ of the area of the layer. 
 
 \smallskip
 
-The final solution is depicted in Fig.~\ref{Fig:Sum1over4cascade} where the recursive process is applied ``all the way". 
+The final solution is depicted in Fig.~\ref{Fig:Sum1over4cascade}, where the recursive process is applied ``all the way". 
 \begin{figure}
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/Sum1over4cascade}
@@ -146,8 +146,7 @@ The final solution is depicted in Fig.~\ref{Fig:Sum1over4cascade} where the recu
 \end{center}
 \end{figure}
 Summarizing  the graphical construction.  If the area of the original triangle $T$ is $1$, then 
-one sees that the area of the grey sub-triangle of Fig.~\ref{Fig:Sum1over4cascade}(left) is $1/4$.  Because the grey triangle occupies one-third of the area of each layer of Fig.~\ref{Fig:Sum1over4cascade}(right), the aggregate area of the grey sub-triangles is $1/3$.  
-One can now apply Fubini's principle to evaluate the sum $\sum_{k \geq 1} \ 4^{-k}$.
+the area of the grey sub-triangle of Fig.~\ref{Fig:Sum1over4cascade}(left) is $1/4$, since it is one of four identical triangles.  Then, because each grey triangle in Fig.~\ref{Fig:Sum1over4cascade}(right) occupies one-third of the area of its layer of, the aggregate area of the grey sub-triangles is $1/3$ of the area of $T$.  One can now apply Fubini's principle to evaluate the sum $\sum_{k \geq 1} \ 4^{-k}$.
 \end{itemize}
 
 \ignore{*************************
@@ -208,39 +207,39 @@ We now have a purely pictorial proof of the proposition.
 {\bf 3.8. More connections between strings and functions}
 \medskip
 
-{\em Craft an argument that predicts the number of permutations, based on the size of set $S$.}
+{\bf To do}.  {\em Craft an argument that predicts the number of permutations, based on the size of set $S$.}
 \smallskip
 
-\begin{itemize}
-\item
-As you create a new string of numbers, in how many ways can you choose {\em the first number}? 
-{\em the second number}? \ldots
+  \begin{itemize}
+  \item
+As you create a new string of numbers, in how many ways can you choose {\em the first number}? {\em the second number}? \ldots
+
 \smallskip
 
-There are $n$ ways to choose the first element of the permutation.
-Once it has been chosen, it remains $n-1$ ways to choose the second and so on.
-\medskip
-\item
-Based on your answers for the first and second and third numbers of the new string, 
-in how many ways can you choose {\em the first two numbers---i.e., the first {\em pair} of numbers}? 
-{\em the next two numbers}? \ldots
+There are $n$ ways to choose the first element of the permutation.  Independently of which first element has been chosen, there remain $n-1$ ways to choose the second element. Independently of which elements are chosen as the first two, there remain $n-2$ ways to choose the third element.  And so on \ldots
+
+  \medskip\item
+Based on your answers for the first and second and third numbers of the new string, in how many ways can you choose {\em the first two numbers---i.e., the first {\em pair} of numbers}?  {\em the next pair of numbers}? \ldots
+
 \smallskip
 
-There are $n(n-1)$ ways to choose two different numbers among $n$. 
-\end{itemize}
+The main message here is that {\em independent} choices {\em multiply}.  This means that the $n$ choices for element \#1 and the $n-1$ choices for element \#2 lead to $n(n-1)$ ways to choose the first pair of numbers.  The persistence of independence of successive selections means that the multiplicative rule continues to hold: There are $n(n-1)(n-2)$ ways to choose the first triple of elements, $n(n-1)(n-2)(n-3)$ ways to choose the first quadruple of elements, \ldots
+  \end{itemize}
 
-{\em Strengthen your argument by listing all permutations of  $S' =  \{1,2,3,4,5\}$.}
+{\bf To do}. {\em Strengthen your argument by listing all permutations of  $S' =  \{1,2,3,4,5\}$.}
+
 \smallskip
 
-as there are a lot of permutations, we should be systematic in the enumeration.
-For instance, we can fix the first number (among the 5 possibilities), and then, take fix the second smallest one, etc.
+Here, the challenge is to convert your mathematical reasoning into a systematic method of
+enumeration.  Here is a natural recursive way of doing this. (i) Fix the first number (among the 5 possibilities).  (ii) Recursively, enumerate, for each copy of the first number, all permutations of the four remaining numbers.
+
 \smallskip
 
-{\em Extrapolate from your argument to determine the number of permutations of the set 
-$S" =  \{1,2,3, \ldots, n\}$, as a function of $n$.}
+{\bf To do}. {\em Extrapolate from your argument to determine the number of permutations of the set $S" =  \{1,2,3, \ldots, n\}$, as a function of $n$.}
+
 \smallskip
 
-$Fact(n) = n \times Fact(n-1)$
+$Fact(n) \ = \ n \times Fact(n-1) \ = \ n \times (n-1) \times \cdots \times 2 \times 1$.
 
 \end{itemize}
 
