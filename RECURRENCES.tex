@@ -1638,16 +1638,24 @@ For each positive integer $k$, the player begins at the northernmost point of ea
 {\em Prove the following assertions about the described game.
 \begin{enumerate}
 \item
-For each $k \in \N^+$,
-\[ M(k) \ = \ B(k-1) \]
+For each $n \in \N^+$,
+\[ M(n) \ = \ B(n-1) \]
 
 \medskip\item
-For each $k \in \N^+$,
-\[ B(k) \ = \ B(k-1) \ + \ \left\lfloor {1 \over 2} B(k-1) \right\rfloor \]
+For each $n \in \N^+$,
+\begin{equation}
+\label{eq:BMWrecurrence}
+B(n) \ = \ B(n-1) \ + \ \left\lfloor {1 \over 2} B(n-1) \right\rfloor 
+\end{equation}
 
 \medskip\item
 $\oplus$ The asymptotic behavior of $B(n)$ is given by
 \[ B(n) \ = \ \left({3 \over 2}\right)^{O(n)} \]
+
+\smallskip
+
+{\em Hint}.  Solve the ``continuous" version of recurrence (\ref{eq:BMWrecurrence})
+for $B(n)$, which is obtained by removing the floors in (\ref{eq:BMWrecurrence}).  Then use asymptotic reasoning to complete the proof.
 \end{enumerate}
 }
 
@@ -1748,9 +1756,11 @@ A \times B & = & (A_1 \times B_1) \cdot 2^n \ + \ (A_2 \times B_2) \\
 {\em Prove the following assertions.}
 \begin{enumerate}
 \item
+$\oplus$
 {\em A recursion (on $n$) that is based on instantiating Eq.~(\ref{eq:karatsuba-normal}) computes the product $A \times B$ using $\Theta(n^2)$ multiplications.}
 
 \medskip\item
+$\oplus \oplus$
 {\em A recursion (on $n$) that is based on Karatsuba's algorithm computes the product $A \times B$ using {\em asymptotically fewer than} $\Theta(n^2)$ multiplications.}
 
 \smallskip
