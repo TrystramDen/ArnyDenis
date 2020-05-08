@@ -842,7 +842,7 @@ $\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
 {\Arny Solution needed}
 
       \medskip\item 
-This problem calls for ``second-order" insights from the sieve.
+This problem calls for ``second-order" insights from the sieve structure.
 
 \smallskip
 
@@ -875,7 +875,7 @@ We prove by a similar analysis that the product of any $p$ consecutive integers 
 {\bf To prove}. {\em The following assertion is true for every positive integer $n$.}
 \smallskip
 
-{\em  For every positive integer $n$:  If you remove {\em any} $n+1$ integers from the set $S = \{ 1, 2, \ldots, 2n\}$, then the set of removed integers contains at least one pair $p$ and $q > p$ such that $p$ divides $q$. }
+{\em If you remove {\em any} $n+1$ integers from the set $S = \{ 1, 2, \ldots, 2n\}$, then the set of removed integers contains at least one pair $p$ and $q > p$ such that $p$ divides $q$. }
 
 \medskip
 
@@ -891,23 +891,13 @@ Subset $2$: & $\{4, 12\}$ \\
 Subset $3$: & $\{8\}$
 \end{tabular}
 
-\ignore{*********
-Let $
-\alpha_i$ be the elements of this set of $n+1$ elements.
+\smallskip
 
-The $2n$ numbers of the sequence are decomposed into groups according to multiples of powers of $2$.
-When there are multiple ways to write a number (for instance $12$ is equal to $2 \times 6$ and $4 \times 3$), we take the one with the largest power of $2$ in order to make the decomposition unique.
+Say that each subset-$k$ element $2^k m$ of $S$ is {\it associated with} its odd divisor $m$.
 
 \medskip
 
-%The sketch of the proof is as follows.
-Within each group,  
-we write $\alpha_i = 2^k \times m$ where $m$ is odd (and $k \geq 0$),
-it belongs to the $n$ numbers $\{1,3,5, \ldots, 2n-1 \}$
-***************}
-
-Now, since set $S$ contains the first $2n$ integers, it contains $n$ {\em odd} integers.  Since
-we remove $n+1$ elements from $S$, the Pigeonhole Principle assures us that some two of the removed integers ``share" the same odd number $m$.  That is, some removed integer has the form $2^{k_1} \times m$ while another has the form $2^{k_2} \times m$.
+Now, since set $S$ consists of the first $2n$ integers, it contains $n$ {\em odd} integers.  Since our challenge begins by removing $n+1$ elements from $S$, the Pigeonhole Principle assures us that some two of the removed integers are {\em associated with} the same odd number $m$.  Stated differently: some removed integer has the form $2^{k_1} \times m$ while another has the form $2^{k_2} \times m$.
 
 \smallskip
 
@@ -924,7 +914,7 @@ The smaller of these removed integers divides the larger one.  \qed
 \smallskip
 
 {\em Hint}.
-How can you employ the injections used to prove Proposition~\ref{thm:|NxN|=|N|} to help with this problem?
+The key here is to employ the injections whose existence is guaranteed by Proposition~\ref{thm:|NxN|=|N|} to help with this problem.
 \end{itemize}
 
 
@@ -935,49 +925,13 @@ How can you employ the injections used to prove Proposition~\ref{thm:|NxN|=|N|} 
 \begin{itemize}
 \item
 {\bf 9.4. Karatsuba multiplication} 
-\smallskip
-
-\ignore{**************************
-\index{Karatsuba multiplication algorithm} \index{Karatsuba, Anatoly} 
-\index{Karatsuba multiplication}
-
-{\sc Lesson:}
-Use the Master Theorem for Linear Recurrences (Theorem~\ref{thm:master-thm-genl}) to analyze a recursive algorithm
 
 \smallskip
-
-Say that you are given two $n$-bit integers, in terms of their base-$2$ numerals: 
-\[ A \ = \ a_{n-1} a_{n-2} \cdots a_0 \ \ \ \ \mbox{ and } \ \ \ \ B \ = \ b_{n-1} b_{n-2} \cdots b_0 \]
-The classical elementary-school method for computing the product of $A$ and $B$ computes the $n$ partial products:
-\[ (a_{n-1} a_{n-2} \cdots a_0) \times b_i 2^i \]
-and then sums these partial products.  This algorithm requires $\Theta(n^2)$ multiplications and a like number of additions.
-
-\smallskip
-
-Now, multiplications are more expensive than additions on standard computing platforms.  Therefore, when the common length $n$ of the numerals for $A$ and $B$, is {\em very} large, then one would be willing to perform somewhat more additions (while staying within the asymptotic class $\Theta(n^2)$) if, in compensation, one could save a significant number of multiplications.  Happily, such a tradeoff is, indeed, available, using an algorithm that is known as {\it Karatsuba multiplication}, after its author, Anatoly Karatsuba; see \cite{KaratsubaO62}.
-
-\medskip
-
-Karatsuba's algorithm builds upon the {\it divide-and-conquer} algorithmic paradigm, whereby a
-problem {\bf P} is decomposed into disjoint, equal-``size" subproblems whose results are accumulated to solve {\bf P}.
-
-The problem is to multiply two $n$-bit numerals $A$ and $B$.  
-To simplify both notation and analysis, say that $n$ is a very large power of $2$, i.e., $n=2^k$ for some large $k \in \N^+$.
-\smallskip
-
-The algorithm breaks the numerals for $A$ and $B$ into pairs of half-size numerals:
-\begin{eqnarray*}
-A & = & A_1 \cdot 2^{n/2} \ + \ A_2 \ \ 
- \eqdef  \ \ (a_n \cdots a_{n/2+1})_2 \cdot 2^{n/2} \ + \ (a_{n/2} \cdots a_1)_2 \\
-B & = & B_1 \cdot 2^{n/2} \ + \  B_2 \ \
-  \eqdef  \ \ (b_n \cdots b_{n/2+1})_2 \cdot 2^{n/2} \ + \ (b_{n/2} \cdots b_1)_2
-\end{eqnarray*}
-**************************}
 
 \begin{enumerate}
 \item 
 {\bf To prove}.
-{\em The conventional algorithm computes the product of two $n$-bit integers uses $\Theta(n^2)$ multiplications.}
+{\em The conventional multiplication algorithm uses $\Theta(n^2)$ multiplications to compute the product of two $n$-bit integers.}
 
 \medskip
 
@@ -992,7 +946,7 @@ where $g$ is the cost of the extra arithmetic operations done while merging subp
 
 \medskip\item
 {\bf To prove}.
-{\em Karatsuba's algorithm computes the product of two $n$-bit integers uses {\em asymptotically fewer than} $\Theta(n^2)$ multiplications.}
+{\em Karatsuba's algorithm uses {\em asymptotically fewer than} $\Theta(n^2)$ multiplications to compute the product of two $n$-bit integers.}
 
 \smallskip
 
@@ -1019,7 +973,7 @@ This recipe performs 3 multiplications of $n/2$-bits numerals at each level of t
 f(n) = \left\{
 \begin{array}{cl}
 3 f(n/2) + \Theta(n) & \hspace*{.2in} \mbox{for } n > 1 \\
-                    1 & \hspace*{.2in} \mbox{for } n = 1
+                            1 & \hspace*{.2in} \mbox{for } n = 1
 \end{array}
 \right. 
 \]
@@ -1029,140 +983,39 @@ Thus, $\log_2 3 \ < \ 2$ can play the role of the constant $\alpha$ we are seeki
 \end{enumerate}
 \end{itemize}
 
-\ignore{***************
-\subsection{Lucas' numbers}
-
-\noindent \textit{The problem.}
-
-Prove the following expression.
- 
-$F(n+1) = \frac{1}{2} (F(0).L(n) + F(n).L(0))$
-\medskip
-
-\noindent \textit{The solution.}
-The proof comes from direct arithmetic manipulations:
-
-$2.F(n+1) = F(n+1) +  F(n+1) =  F(n+1) + F(n) + F(n-1)$
-
-$= L(n) + F(n) $
-
-$= F(0).L(n) + F(n).L(0)$
-\medskip
-
-\noindent \textit{The problem.}
-
-The previous property can be extended for any $m>1$ as follows:
-\medskip
-
-$2.F(n+m) = F(m-1).L(n) + F(n).L(m-1)$
-\medskip
-
-\noindent \textit{The solution.}
-The proof is by recurrence on $m$ considering any fixed $n$.
-\begin{itemize}
-\item
-The \textbf{basis case} (for $m=1$) is given by the previous proposition.
-
-\item
-\textbf{Induction step:} 
-Assume the property holds at rank $m > 1$ and consider $F(n+m+1)$:
-
-Apply the definition of Fibonacci numbers: 
-
-$F(n+m+1) = F(n+m)+F(n+m-1)$ 
-
-Replace both terms by the recurrence hypothesis:
-
-$= \frac{1}{2} (F(m-1).L(n) + F(n).L(m-1)) + \frac{1}{2} (F(m-2).L(n) + F(n).L(m-2))$
-
-$= \frac{1}{2} \left( (F(m-1)+F(m-2)).L(n) + F(n).(L(m-1)+L(m-2))\right)$
-
-$= \frac{1}{2} \left(F(m).L(n) + F(n).(L(m)\right)$
-\end{itemize}
-**************** }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\section*{Exercises: Chapter 10}
 
-\ignore{***************************************
-\subsection{The average length of a carry in a binary counter}
-
-\noindent {\it The problem.}
-%
-You add from $1$ to $n$, in increments of $1$ using a counter of
-binary (or, base-$2$) numerals.  Each time you increment the counter,
-there is a {\it carry}.  These carries have varying lengths; for
-instance, when $n = 32 = 100000_2$, the carry-lengths range
-from $0$---whenever you increment an even integer---to $5$---when you
-increment $31 = 11111_2$ to achieve $32 = 100000_2$. \\
-{\em Prove that the average carry as you go from $1$ to $n$ has length $2$.}
-\medskip
-
-\noindent {\it The solution.}
-
-\noindent
-Half of the increments add $1$ to an even number, i.e., a number whose
-binary numeral ends in ``$ \ldots 0$''.  These increments generate no
-carry---or, equivalently, a carry of length $0$.
-
-\noindent
-One-quarter of the increments, which form half of the remaining
-increments, execute a carry of length $1$, because they add $1$ to a
-numeral that ends in ``$ \ldots 01$''.
-
-\noindent
-One-eighth of the increments, which form half of the remaining
-increments, execute a carry of length $2$, because they add $1$ to a
-numeral that ends in ``$ \ldots 011$''.
-
-Continuing in this way, one can show that the average length of a
-carry can be expressed in the form
-\[ 
-\frac{1}{2} \cdot 0 \ + \ \frac{1}{4} \cdot 1 \ + \ \frac{1}{8} \cdot
-3 \ + \ \frac{1}{16} \cdot 4 \ + \ \cdots
-\]
-Using techniques that we cover in Chapter~\ref{ch:Summation}, one
-verifies that this infinite series converges with the sum $2$.  \qed
-********************************}
-
 \begin{itemize}
-
 \item
 {\bf 10.3. The Josephus Problem}
 \medskip
 
- Fig~\ref{fig:josephus12step1} and Fig.~\ref{fig:josephus12step2} describe pictorially the rounds of the Josephus process
- for determining the survivor number $J(n)$.
+Figs.~\ref{fig:josephus12step1} and~\ref{fig:josephus12step2} pictorially describe the rounds of the Josephus game for $n=12$ persons.The circled numbers in each figure are those that are removed at that round.
 \begin{figure}[ht]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/josephus12step1}
-\caption{First round of the Josephus erasure process for $n=12$. The circled numbers are those that are removed.}
+\caption{The first round of the Josephus erasure process for $n=12$.}
         \label{fig:josephus12step1} 
-%\end{center}
-%\end{figure}
-%\begin{figure}[ht]
-%\begin{center}
+\end{center}
+\end{figure}
+The circled numbers in each figure are those that are removed at that round.
+\begin{figure}[ht]
+\begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/josephus12LastSteps}
-        \caption{The final rounds of the Josephus process when $n=12$ leading to $J(12) = 9$}
+        \caption{The final rounds of the Josephus erasure process when $n=12$: \ $J(12) = 9$}
         \label{fig:josephus12step2}
 \end{center}
 \end{figure}
-
-The following sequence of results provide a roadmap to the solution.
+Note that the first round of the process takes $\lceil n/2 \rceil$ steps, while each subsequent round takes ``half" the number of its preceding round---``half" appears in quotes to emphasize the required up-rounding at each halving.
 
 \medskip
-%
-%We analyze \textit{rounds} of the process---sequences of elementary steps that return to the initial position, $1$.  If position $1$ has been erased, then its role is assumed by the then-smallest survivor.
-%\smallskip
 
-The first round of the process takes $\lceil n/2 \rceil$ steps.  
-Each subsequent round then takes a number of steps that is ``half" the number of its preceding round.  We place ``half" in quotes to emphasize the required up-rounding of each halving.  
-\medskip
+{\bf To do}. {\em Prove the following quadripartite proposition which characterizes $J(n)$ for some particular values of $n$.}
 
-{\em Prove the following quadripartite proposition 
-that provides a characterization of $J(n)$ for some particular values of $n$.
-
+\hspace*{.25in}
 \begin{tabular}{clll}
  & \underline{Condition on $n$} & \hspace*{.1in} & \underline{Value of $J(n)$} \\ 
 {\bf (a)} &
@@ -1174,87 +1027,87 @@ $n$ is odd; i.e., $n = 2m+1$ & & $J(2m+1) = 2J(m)+1$ \\
 {\bf (d)} &
 $n = 2^m+k$, with $k < 2^m$ & & $J(2^m+k) = 2k+1$
 \end{tabular}
-}
 
-\begin{proof}
+The proof proceeds as follows.
 \begin{itemize}
 \item {\bf (a)} 
-All the even numbers are removed from the circle at the first round, thus, it remains only odd numbers.
-\medskip
+All the even numbers are erased in the first round, so only odd numbers remain thereafter.
 
+\medskip
 \item {\bf (b)} 
-is a simple generalization of {\bf (a)}.  
-If $n$ is even, then the first round corresponds to come back to the original circle 
-where one half of the points have been removed. 
-In other words, rank $i$ becomes rank $(2.i-1)$.
+This is a simple generalization of {\bf (a)}.  If $n$ is even, then the first round leads to a circle containing half as many numbers. 
+%In other words, rank $i$ becomes rank $(2i-1)$.
+
 \medskip
-
 \item {\bf (c)} 
-is the counter part of {\bf (b)} for the odd numbers.
+This is the counterpart of {\bf (b)} for the odd numbers.
 
+\medskip
 \item {\bf (d)} 
-Observing the successive values for small $n$ evidences that the $J(n)$ are grouped by successive powers of $2^m$
-and the rule within each group is to start at $1$ and then, increase by $2$ the successive numbers until reaching the next group
+Observing the successive values for small values of $n$ exposes the relevant pattern.
+The values $J(n)$ are grouped by successive powers of $2^m$.  The rule within each group is to start at $1$ and then proceed by increments of $2$ until you reach the next group
 ($0 \leq k < 2^m$).
 
-Formally, the proof of $J(2^m+k) = 2k+1$ is by recurrence on $n$.
+\medskip
 
-\noindent
+The formal proof that $J(2^m+k) = 2k+1$ is by induction on $n$.
+
+\smallskip
+
 {\sf Base}.
-$n=1$, thus $m=0$, $k=0$ and $J(1) = 2^0+0 = 1$
-\smallskip
+If $n=1$, then $m=0$, $k=0$ and $J(1) = 2^0+0 = 1$.
 
-\noindent 
+\smallskip
+ 
 {\sf Inductive hypothesis}.
-Suppose the formula holds for any integer lower than $n=2^m+k$.
+Suppose the formula holds for integers $n < 2^m+k$.
 \smallskip
 
-\noindent 
 {\sf Inductive extension}.
-Since there are two expressions for $J(.)$, we distinguish the cases whether $k$ is even or if it is odd:
+We branch on $k$'s parity:
 \begin{itemize}
-\item If $k$ is even, then, $2^m+k$ is even, and we can write:
-
-$J(2^m+k) = 2J(2^{m-1}+\frac{k}{2})-1$
-
-by induction hypothesis, $J(2^{m-1} +\frac{k}{2}) = 2\frac{k}{2} +1 = k+1$
+\item If $k$ is even, then so also is $2^m+k$; therefore, we can write:
+\[ J(2^m+k) \ = \ 2J(2^{m-1}+(k/2))-1 \]
+By the induction hypothesis, $J(2^{m-1} + (k/2)) = 2(k/2) +1 = k+1$.
 
 Thus, $J(2^m+k) = 2(k+1) -1 = 2k+1$.
 
 \item 
 If $k$ is odd, the proof is similar:
-
-$J(2^m+k) = 2J(2^{m-1}+\lfloor \frac{k}{2} \rfloor)+1 = 2\lfloor \frac{k}{2} \rfloor +1 = 2k+1$.
+\[ J(2^m+k) \ = \ 2J(2^{m-1}+\lfloor k/2 \rfloor)+1 \ = \ 2\lfloor k/2 \rfloor +1 \ = \ 2k+1 \]
 \end{itemize}
 
 \end{itemize}
-\end{proof}
 
-Your ultimate solution for $J(n)$ will emerge from analyzing what the preceding propositions yield as the value of $J(n)$.  
-
-{\em Provide a closed-form expression for $J(n)$ in terms of $n$'s base-$2$ numeral.}
 \medskip
 
-Consider the binary {\em numerals} for $n = 2^m +k$ and $k$.  We first note that, {\em numerically},
+{\bf To do}. {\em Provide a closed-form expression for $J(n)$ in terms of $n$'s base-$2$ numeral.}
+
+\medskip
+
+Consider the binary numerals for $n = 2^m +k$ and $k$.  We first note that, {\em numerically},
 \begin{eqnarray*}
-n & = &  2^m b_m \ + \ 2^{m-1} b_{m-1} \ + \cdots + \ 2 b_1 \ + \ b_0 \\
+n & = & 2^m b_m \ + \ 2^{m-1} b_{m-1} \ + \cdots + \ 2 b_1 \ + \ b_0 \\
 k & = & 2^{m-1}  b_{m-1} \ + \cdots + \ 2 b_1 \ + \ b_0
 \end{eqnarray*} 
 where each bit $b_i \in \{0,1\}$.  Therefore, in terms of {\em base-$2$ numerals}:
 \[ \begin{array}{ccrl}
 (n)_2 & = & 1 b_{m-1} \cdots b_1 b_0 & (\mbox{by definition, } \ b_m=1) \\ 
-(k)_2 & = & 0 b_{m-1} \cdots b_1 b_0 & (\mbox{because } [n = 2^m +k] \ \mbox{ and } \ k < 2^m)
+(k)_2 & = & 0 b_{m-1} \cdots b_1 b_0 & (\mbox{because } [n = 2^m +k] \mbox{ and } k < 2^m)
 \end{array}
 \]
-
+Therefore:
 \[ (J(n))_2 \ = \ b_{m-1} \cdots b_0 b_m. \]
-The solution for $J(n)$ is obtained by a simple shift to the left of the binary representation of $n$
-with a $1$ at the rightmost position.
+
+This means that the value of $J(n)$ is obtained by a simple shift to the left of the binary representation of $n$, with a $1$ at the rightmost position.
+
+\smallskip
+
 The pictorial interpretation of this coding is given in Fig.~\ref{fig:josephusCoding} for $n=43$.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresMaths/josephusCoding}
-        \caption{Obtaining the survivor number $J(43)=23$.}
+        \includegraphics[scale=0.35]{FiguresMaths/josephusCoding}
+        \caption{Computing the survivor number $J(43)=23$.}
         \label{fig:josephusCoding}
 \end{center}
 \end{figure}
@@ -1267,9 +1120,6 @@ The pictorial interpretation of this coding is given in Fig.~\ref{fig:josephusCo
 \item {\bf 10.5. An alternative to Horner's Rule}
 
 \smallskip
-
-%In Section~\ref{sec:Horner-fast-evaluation}, we described Horner's Rule, a method for calculating polynomials faster than the common way of writing polynomials would suggest.  This exercise is devoted to an alternative streamlined polynomial evaluation procedure, called {\it Estrin's method}, after its inventor, Gerald Estrin \cite{Estrin60}.
-%\smallskip
 
 Estrin's method begins with a polynomial of degree $d$ with real coefficients:
 \[
