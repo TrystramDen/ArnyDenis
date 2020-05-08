@@ -1130,13 +1130,7 @@ which is transformed as follows:
 P(x) \ \ = \ \ a_0 \ + \ x \cdot (a_1 \ + \ x \cdot (a_2  \ +  \cdots                                          
 + x \cdot (a_{d-2} \ + \ x \cdot (a_{d-1} \ + \ a_d x)) \cdots ))
 \]
-%To avoid complicated expressions, we apply the method to the degree-$(d=7)$ polynomial:
-%\[
-%P_7(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \ a_3 x^3 \ + \ a_4 x^4 \ + \ a_5 x^5 \ + \ a_6 x^6 \ + \ a_7 x^7
-%\]
-%\[
-%P_7(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ x^2 \ ( a_2  \ + a_3 x \ ) \ + \ x^4 \ ( \ a_4 \ + \ a_5 x \ + \ x^2 \ ( a_6  \ + a_7 x \ ) \ )
-%\]
+
 We then introduce the recursively auxiliary expressions.  
 \begin{eqnarray*}
 C_i^{(0)} & = & a_i + x a_{i+1} \\
@@ -1151,41 +1145,59 @@ Example (for a degree-$(d=7)$ polynomial):
 P_7(x) & = & C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_6^{(0} \ )
 \end{eqnarray*}
 
+\medskip
+
+{\bf To do}.
 \begin{enumerate}
 \item
 {\em Write $P(x)$ using the auxiliary expressions $C_i$.}  
-We consider that $d+1$ is a power of $2$.
+
+\smallskip
+
+We simplify expressions by assuming that $d+1$ is a power of $2$.
 \begin{eqnarray*}
-P_7(x)            & = & C_0^{(1)} \ + \ x^4 \ C_4^{(1)}
+ P_7(x)  & = & C_0^{(1)} \ + \ x^4 \ C_4^{(1)}
 \end{eqnarray*}
 
+{\Arny Solution needed}
+
+
+\medskip
 \item
 {\em Determine how many additions and multiplications are required to evaluate $P(x)$.}
 
-Let us focus on $d=7$.
+Focus first on the case on $d=7$.
 \[
 P_7(x) \ \ = \ \ C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + 
 \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_6^{(0} \ )
 \ = \ C_0^{(1)} \ + \ x^4 \ C_4^{(1)} 
 \]
-There are $2$ multiplications for computing $x^2$ ($x \cdot x$) and $x^4$ ($x^2 \cdot x^2$).
+We use $2$ multiplications to compute $x^2$ and $x^4$, namely,
+$[x^2 \ = \ x \times x]$ and $[x^4 \ = \ x^2 \times x^2]$.
 
-Then, 4 multiplications by $x$ for the products $a_7 x$,  $a_5 x$, $a_3 x$ and $a_1 x$
-followed by 4 additions.
+\smallskip
 
-2 multiplications by $x^2$ for $x^2 C_2^{(0)}$ and $x^2 C_6^{(0)}$
-followed by 2 additions
+Then, we use $4$ multiplications by $x$ for the four products $a_7 \cdot x$,  $a_5 \cdot x$, $a_3 \cdot x$, and $a_1 \cdot x$.  These are followed by $4$ additions.
 
-Finally, 1 multiplication for computing $x^4 C_4^{(1)}$
-followed by 1 addition
+\smallskip
+
+Next, we use $2$ multiplications by $x^2$ for the products $x^2 \cdot C_2^{(0)}$ and $x^2 \cdot C_6^{(0)}$.  These are followed by $2$ additions.
+
+\smallskip
+
+Finally, we use $1$ multiplication to compute $x^4 \cdot C_4^{(1)}$.  This is followed by $1$ addition.
+
 \medskip
 
-Total of $2 + 7$ multiplications and $7$ additions.
+We have, thus, used a total of $9$ multiplications and $7$ additions.
+
 \medskip
 
 Generalization: 
 $\Theta(d + log_2(d))$ multiplications and $\Theta(d)$ additions.
 \end{enumerate}
+
+{\Arny We need some guidance for the generalization}
 \end{itemize}
 
 
@@ -1196,7 +1208,10 @@ $\Theta(d + log_2(d))$ multiplications and $\Theta(d)$ additions.
 {\bf 11.2. Counting replicated triangles}
 \smallskip
 
-{\em How does the progression of numbers of triangles contained into the rank $k$ triangle $T_k$ grow?}
+{\bf To compute}. {\em How does the progression of numbers of triangles contained in successive rank-$k$ triangles $T_k$ grow?}
+
+\smallskip
+
 Let $N_k$ denote this number of triangles within $T_k$.  
 We know that $N_0 =1$, $N_1 = 5$, and $N_2 = 13$.
   \begin{enumerate}
