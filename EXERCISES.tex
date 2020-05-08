@@ -1208,74 +1208,83 @@ $\Theta(d + log_2(d))$ multiplications and $\Theta(d)$ additions.
 {\bf 11.2. Counting replicated triangles}
 \smallskip
 
-{\bf To compute}. {\em How does the progression of numbers of triangles contained in successive rank-$k$ triangles $T_k$ grow?}
+{\bf To do}.  {\em Determine how the progression of numbers of triangles contained within successive rank-$k$ triangles $T_k$ grows}
 
 \smallskip
 
-Let $N_k$ denote this number of triangles within $T_k$.  
-We know that $N_0 =1$, $N_1 = 5$, and $N_2 = 13$.
+Let $N_k$ denote the number of triangles that reside within a rank-$k$ triangle $T_k$.
+
+We have already observed that $N_0 =1$, $N_1 = 5$, and $N_2 = 13$.
   \begin{enumerate}
   \item
 {\em Compute} $N_4$.
+
 \smallskip
 
-First, let remark that there is only one large triangle $T_4$.
+We begin with a single rank-$4$ triangle $T_4$.
 
-$T_4$ is represented in Fig.~\ref{fig:countingTriangles3} where there are clearly $3$ triangles $T_3$
-that partially overlap.
+\smallskip
+
+We next observe Fig.~\ref{fig:countingTriangles3}, wherein there are $3$ (partially overlapping) copies of the rank-$3$ triangle $T_3$.
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.3]{FiguresArithmetic/CountingTriangles3} 
-        \caption{The $3$ triangles $T_3$ contained into $T_4$.}
+        \includegraphics[scale=0.25]{FiguresArithmetic/CountingTriangles3} 
+        \caption{The rank-$3$ triangles $T_3$ contained within the rank-$4$ triangle $T_4$.}
         \label{fig:countingTriangles3}
 \end{center}
 \end{figure}
-Let us now enumerate the $T_2$ triangles
-(see Fig.~\ref{fig:countingTriangles2}).
+Next, we inspect Fig.~\ref{fig:countingTriangles2}
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.3]{FiguresArithmetic/CountingTriangles2} 
+        \includegraphics[scale=0.25]{FiguresArithmetic/CountingTriangles2} 
         \caption{$4$ triangles $T_2$(left) and $3$ triangles $T_2$(right).}
         \label{fig:countingTriangles2}
 \end{center}
 \end{figure}
-Let us now jump to the smallest $T_1$.
-Counting them row by row indicates that their number is equal to the sum of the first $k$ integers (here $k=4$).
+in order to enumerate the rank-$2$ triangles $T_2$ within $T_3$.  Finally, we focus on the smallest triangle, $T_1$.  Counting them row by row indicates that their number equals the sum of the first $k$ integers (here $k=4$).
 This sum is well-known and it is equal to the square of the rank: $4^2 = 16$.
+
 \smallskip
 
-Summing up all levels, we obtain:
-
-$N_4 = 1 + 3 + 7 + 16 = 27$.
+Summing up all levels, we obtain:  $N_4 \ = \ 1 + 3 + 7 + 16 \ = \ 27$.
 
 \medskip\item
 {\em Develop a recurrence for} $N_k$ (i.e., the general case).
+
 \smallskip
 
-The recurrence is based on the generalization of the analysis of the previous case $k=4$.
+The recurrence is obtained by generalizing the analysis of the case $k=4$.
 
-For each triangle $T_k$, we have $3$ intertwined triangles $T_{k-1}$ (thus, $3 N_{k-1}$).
-Two of these triangles share a common part, this part is a triangle $T_{k-2}$ that should be removed from the counting
-(which corresponds to $ -3 N_{k-2}$).
-But there is another part which is common to these three triangles. This part is a lower dimension $T_{k-3}$ (thus, $+ N_{k-3}$). 
-Finally, we should add the largest triangle $T_{k}$ (this corresponds to $+1$), and when $k$ is even,  there is an extra triangle $T_{k-2}$ that
-appears reversed in the middle (therefore, we should add $+1$ in this case).
 \smallskip
 
-The summary is as follows:
+For each triangle $T_k$, we have $3$ intertwined triangles $T_{k-1}$ (which contributes, $3 N_{k-1}$ to our count).  Two of these triangles share a common part, which is a copy of triangle $T_{k-2}$; this count (which amounts to $ -3 N_{k-2}$) must be removed from our count, so that we avoid double-counting.  But, there is another part which is common to these three triangles. This part has lower rank and is a copy of $T_{k-3}$ (accordingly we add $+ N_{k-3}$ to our count).  Finally, we must add the largest triangle, $T_{k}$ (which augments our sum by $+1$).  Finally, when $k$ is even,  there is an extra copy of triangle $T_{k-2}$ which appears reversed in the middle of $T_k$ (augments our sum by $+1$ in this case).
 
-For even $k$:  $N_k = 3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1 + 1$
+\smallskip
 
-For odd $k$: $N_k = 3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1$
+In summary, our tally is as follows:\footnote{We added the artificial case $k=0$ in order to simplify the expression}.
+\[ N_k \ = \ \left\{
+\begin{array}{cl}
+3 (N_{k-1} - N_{k-2}) + N_{k-3} + 2 & \mbox{ when $k$ is even} \\
+3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1 & \mbox{ when $k$ is odd} \\
+5 & \mbox{ when $k=2$} \\
+1 & \mbox{ when $k=1$} \\
+0 & \mbox{ when $k=0$}
+\end{array}
+\right. \] 
 
-with $k \geq 3$ et $N_0 = 0$, $N_1 = 1$ et $N_2 = 5$\footnote{We added the artificial case $k=0$ in order to simplify the expression}.
+%For even $k$:  $N_k = 3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1 + 1$
+%For odd $k$: $N_k = 3 (N_{k-1} - N_{k-2}) + N_{k-3} + 1$
+%with $k \geq 3$ et $N_0 = 0$, $N_1 = 1$ et $N_2 = 5$
+
 \medskip
 
-The most discerning readers may check that solving this recurrence leads to the following expression:
-
-$N_k = \frac{k.(k+2).(2k+1)}{8}$ if $k$ is even
-
-$N_k = \frac{k.(k+2).(2k+1)-1}{8}$ if $k$ is odd.
+Courageous readers can verify that this recurrence leads to the following explicit expression for $N_k$:
+\[ N_k \ = \ \left\{
+\begin{array}{cl}
+{1 \over 8} k(k+2)(2k+1) & \mbox{ when $k$ is even} \\ 
+{1 \over 8} k(k+2)(2k+1)-{1 \over 8}  & \mbox{ when $k$ is odd}
+\end{array}
+\right. \]
 \end{enumerate}
 
 %%%
@@ -1283,8 +1292,10 @@ $N_k = \frac{k.(k+2).(2k+1)-1}{8}$ if $k$ is odd.
 
 \medskip\item
 {\bf 11.6. Monge shuffles: mathematical party tricks}
+
 \smallskip
 
+We have introduced two versions of the Monge shuffle.
 For both shuffle-techniques. we begin with a deck of $2n$ distinct cards.  
 We employ the running example of the following small deck, where $n=4$:
 \[ (1, \ 2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8) \]
@@ -1301,33 +1312,6 @@ We then merge the two $n$-card decks to again obtain a single $2n$-card deck.  T
 The first, simple, Monge shuffle alternates the ``top" cards from the righthand and lefthand $n$-card decks. 
 The merged deck has the form
 \[ (5, \ 1, \ 6, \ 2, \ 7, \ 3, \ 8, \ 4) \]
-%\begin{figure}[h]
-%\begin{center}
-%        \includegraphics[scale=0.4]{FiguresArithmetic/suffleMongeBasic}
-%        \caption{The Monge shuffle for $8$ cards ($n=4$).}
-%        \label{fig:suffleMonge}
-%\end{center}
-%\end{figure}
-%\smallskip
-%
-%Let's see what happens after several steps of this cut-then-merge process:
-%\[ \begin{array}{ccccccccccccccccc}
-%(1 & 2 & 3 & 4 & 5 & 6 & 7 & 8) & \rightarrow & (1 & 2 & 3 & 4) & (5 & 6 & 7 & 8) \\
-% & & & & & & & & \swarrow & & & & & & & & \\
-%(5 & 1 & 6 & 2 & 7 & 3 & 8 & 4) & \rightarrow & (5 & 1 & 6 & 2) & (7 & 3 & 8 & 4) \\
-% & & & & & & & & \swarrow & & & & & & & & \\
-%(7 & 5 & 3 & 1 & 8 & 6 & 4 & 2) &  \rightarrow& (7 & 5 & 3 & 1) & (8 & 6 & 4 & 2) \\
-% & & & & & & & & \swarrow & & & & & & & & \\
-%(8 & 7 & 6 & 5 & 4 & 3 & 2 & 1) &  \rightarrow& (8 & 7 & 6 & 5) & (4 & 3 & 2 & 1) \\
-% & & & & & & & & \swarrow & & & & & & & & \\
-%(4 & 8 & 3 & 7 & 2 & 6 & 1 & 5) &  \rightarrow& (4 & 8 & 3 & 7) & (2 & 6 & 1 & 5) \\
-% & & & & & & & & \swarrow & & & & & & & & \\
-%(2 & 4 & 6 & 8 & 1 & 3 & 5 & 7) &  \rightarrow& (2 & 4 & 6 & 8) & (1 & 3 & 5 & 7) \\
-% & & & & & & & & \swarrow & & & & & & & & \\
-%(1 & 2 & 3 & 4 & 5 & 6 & 7 & 8)
-%\end{array}
-%\]
-%So, this does not look too random!  After {\em three} (which, ``coincidentally", equals $n-1$) cut-then-merge steps, the deck has been reversed, and after $2n-1$ cut-and-merge steps, it has been replicated in its original order!
 
 {\em Prove the following Proposition.}
 
@@ -1413,113 +1397,6 @@ Thus, $2n$ rounds are needed to restore the original deck.
 
 %\section*{Exercises: Chapter 12}
 
-\ignore{******************************************
-\subsection{Formal definition of mesh graphs}
-\label{Exercice:FormalDefinitionMesh}
-
-\noindent \textit{The problem.}
-Formalize precisely the definition of mesh  $\m_{m,n}$ and torus $\widetilde{\m}_{m,n}$ graphs
-for positive integers $m, n \in \N^+$.
-\medskip
-
-\noindent \textit{The solution.}
-The  {\it vertex-set} is the same for both graphs:
-
-\begin{eqnarray*}
-\n_{\fm_{m,n}} \ = \ \n_{\widetilde{\fm}_{m,n}}
-  & = & 
-\{1, \ 2, \ldots, \ m\} \ \times \ \{1, \ 2, \ldots, \ n\} \\
-  & = & 
-\big\{ \langle i, \ j \rangle \ \ | \ \ 
-\big[ i \in \{1, \ 2, \ldots, \ m\} \big], \ \
-\big[ j \in \{1, \ 2, \ldots, \ n\} \big]
-\big\}
-\end{eqnarray*}
-
-$\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
-\begin{eqnarray*}
-\e_{\fm_{m,n}} & = & 
-\big\{
-\{ \{ i, j \}, \ \{ i+1, j \} \ \ | \ \
-1 \leq i < m, \ \ 1 \leq j \leq n \} \\
-  &  & \hspace*{.1in} \cup
-\{ \{ i, j \}, \ \{ i, j+1 \} \ \ | \ \
-1 \leq i \leq m, \ \ 1 \leq j < n \}
-\big\}
-\end{eqnarray*}
-
-\medskip
-
-The subgraph of $\m_{m,n}$ defined by the vertex-set
-\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
-  m\}\right], \ \ \left[1 \leq j < n\right]\}
-\]
-and all edges both of whose endpoints belong to that set is called the
-$i$th {\it row} of $\m_{m,n}$
-Dually, the subgraph of $\m_{m,n}$ defined by the vertex-set
-\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
-  n\}\right], \ \ \left[1 \leq i < m\right] \}
-\]
-and all edges both of whose endpoints belong to that set is called the
-$j$th {\it column} of $\m_{m,n}$.
-
-
-\begin{itemize}
-     \item
-Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
-\ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner vertices}
-(or, just {\it corners}) of $\m_{m,n}$.
-     \item
-The path-graph consisting of the vertex-set
-\[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
-\langle 1, \ n \rangle \}
-\]
-together with all edges of $\m_{m,n}$ both of whose endpoints belong
-to this set, is the {\it top edge} of $\m_{m,n}$.
-
-The other edges of $\m_n$ are defined analogously:
-
-\medskip
-
-The {\it bottom edge} of $\m_{m,n}$ is the path-graph built upon the
-vertex-set
-\[ \{ \langle m, \ 1 \rangle, \ \langle m, \ 2 \rangle, \ldots, \
-\langle m, \ n \rangle \}
-\]
-
-The {\it left edge} of $\m_{m,n}$ is the path-graph built upon the
-vertex-set
-\[ \{ \langle 1, \ 1 \rangle, \ \langle 2, \ 1 \rangle, \ldots, \
-\langle m, \ 1 \rangle \}
-\]
-
-The {\it right edge} of $\m_{m,n}$ is the path-graph built upon the
-vertex-set
-\[ \{ \langle 1, \ n \rangle, \ \langle 2, \ n \rangle, \ldots, \
-\langle m, \ n \rangle \}
-\]
-\end{itemize}
-\medskip
-
-Same for the torus graphs:
-
-The subgraph of $\widetilde{\m}_{m,n}$ defined by the vertex-set
-\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
-  m\}\right], \ \ \left[1 \leq j \leq n\right]\}
-\]
-and all edges both of whose endpoints belong to that set is called the
-$i$th {\it row} of $\widetilde{\m}_{m,n}$
-Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the vertex-set
-\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
-  n\}\right], \ \ \left[1 \leq i \leq m\right] \}
-\]
-and all edges both of whose endpoints belong to that set is called the
-$j$th {\it column} of $\widetilde{\m}_{m,n}$.
-%\medskip
-%
-%\noindent \textit{Lesson learned.}
-%manipulate mathematical symbols. 
-****************************************}
 
 \begin{itemize}
 \item
@@ -1615,61 +1492,7 @@ The next step is to show the one-to-one correspondence of the relative edges.
 {\bf 12.9. A traffic map for a mesh-structured city}
 \smallskip
 
-%Here is a {\em highly structured, recursive} proposal for a traffic network.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
-%  \begin{itemize}
-%  \item
-%We logically arrange the city's $N$ sites in an $n \times n$ grid by assigning each site a distinct name of the form $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
-%
-%\smallskip
-%Fig.~ \ref{fig:routingCity} gives an illustration of the previous textual description.
-%\begin{figure}[hbt]
-%\begin{center}
-%       \includegraphics[scale=0.4]{FiguresGraph/routingCity}
-%\caption{A $64$-site city arranged as an $8 \times 8$ grid.  The figure illustrates: the level-$0$ $8 \times 8$ grid and its northwestern $4 \times 4$ quadrant; the grid's four level-$2$ northwestern $2 \times 2$ quadrants (shaded).}
-%  \label{fig:routingCity}
-%\end{center}
-%\end{figure}
-%\begin{figure}[hbt]
-%\begin{center}
-%       \includegraphics[scale=0.3]{FiguresGraph/routingCitySynthesis}
-%\caption{Summary of the routing rules.}
-%  \label{fig:routingCitySynthesis}
-%\end{center}
-%\end{figure}
-%  \medskip\item
-%We turn now to the (oriented) edges that we use to navigate our grid-like city.
-%
-%\smallskip
-%
-%We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we employ only edges whose endpoint-sites share a coordinate.  Each of these edges goes from a site $\langle i,j \rangle$ to a site $\langle i,k \rangle$ or a site $\langle h,j \rangle$.
-%
-%\smallskip
-%
-%This means that every {\em oriented} edge now goes either northward or southward or eastward or westward.
-%
-%\medskip\item
-%We now assign (oriented) edges to levels, as a prelude to our routing regimen.
-%
-%\smallskip
-%
-%Focus on an edge $e$.  We say that $e$ is a level-$\ell$ edge if $\ell$ is the smallest integer such that the endpoints of $e$ are in distinct level-$\ell$ quadrants.
-%
-%  \medskip\item
-%As the final step in creating our abstract traffic model, we impose the following routing regimen upon the travelers in our city.
-%
-%\smallskip
-%
-%In order to travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$, a traveler:
-%    \begin{itemize}
-%    \item
-%must traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
-%
-%   \medskip\item
-%From that point on, the traveler recursively finds an acceptable path from site $\langle i_1,j_1 \rangle$ to site $\langle h,k \rangle$.
-%    \end{itemize}
-%  \end{itemize}
 
-%In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
   \begin{enumerate}
   \item
 In the {\em metro} version of the model, we pay a fee every time we encounter a new site on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
@@ -1747,28 +1570,30 @@ In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section*{Exercises Chapter 13}
-\vspace{1in}
+
 \begin{itemize}
 \item
 {\bf 13.2. Appreciating de Bruijn networks}
-\smallskip
-
-
-\noindent
-{\em a. Identify, by coloring the edges of $\d_3$ and $\d_4$, how each network can be viewed as two trees which are ``embracing" one another.}
 
 \smallskip
 
-Fig.~\ref{fig:DeBruijn3Tree} shows both trees for $\d_3$. 
-The first one is rooted at the extreme left while the second one is rooted at the extreme right of the figure. 
+{\bf To do}.
+{\em Identify, by coloring the edges of $\d_3$, how the network can be viewed as two directed trees which are ``embracing" one another.}
+
+\smallskip
+
+Being constrained to ``monochromaticism", we partition $\d_3$ into two isomorphic sub-digraphs, which are the sought ``red" and ``green" directed trees of the problem.  Fig.~\ref{fig:DeBruijn3Tree} depicts both trees.  The tree in the left side of the figure is rooted at its leftmost vertex;  the tree in the right side of the figure is rooted at its rightmost vertex. 
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresGraph/DeBruijn3Tree}
-        \caption{Two interleaved trees in $\d_3$.}
+        \caption{Two disjoint trees that cover $\d_3$ in an interleaved manner.}
         \label{fig:DeBruijn3Tree}
 \end{center}
 \end{figure}
 
+\smallskip
+
+Hopefully, the reader has a feeling of how this covering can be extended beyond order $3$.  Actually depicting the relevant trees is a daunting task, because drawing any network $\d_k$ for $k > 3$ is a daunting task.
 
 \medskip\item 
 {\bf 13.4. Fundamental insights into outerplanarity in graphs}
@@ -1777,6 +1602,7 @@ The first one is rooted at the extreme left while the second one is rooted at th
 {\em Prove the following assertions.}
 
 \noindent {\em a. Show that the complete bipartite graph $K_{3,2}$ is not outerplanar.}
+
 \smallskip
 
 The question is how to distribute the two groups of vertices (dark grey and white) on a circle
