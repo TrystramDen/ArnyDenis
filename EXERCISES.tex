@@ -5,7 +5,7 @@
 \chapter*{Solution Sketches for $\oplus \oplus$ Exercises}
 \label{ch:Exercises}
 \pagestyle{empty}
-%\leftmark{Solution Sketches for $\oplus \oplus$ Exercises}
+
 
 %\section*{Exercises: Chapter 2}
 
@@ -816,7 +816,7 @@ The first $m$ levels of the triangle replicate endlessly, with periodic inverted
 
   \begin{itemize}
 \item
-b. {\bf The sieve of Eratosthenes and its implications}
+{\bf The sieve of Eratosthenes and its implications}
 
 We formulate the sieve as a regimen for labeling integers with their prime factors.  For simplicity, we use the label $\lambda_p$ to identify integers which are multiples of prime $p$.
 
@@ -824,6 +824,9 @@ We formulate the sieve as a regimen for labeling integers with their prime facto
 
 The multiples of $2$, $3$ and $5$ are labeled in the following table:
 
+\medskip
+
+\hspace*{.25in}
 $\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
  & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
@@ -886,6 +889,8 @@ Organize the $2n$ numbers of set $S$ into subsets, based on the largest power of
 
 \noindent
 When $n=7$, for instance, set $S = \{ 1, 2, \ldots, 14\}$ is partitioned into $4$ subsets:
+
+\smallskip
 
 \hspace*{.25in}\begin{tabular}{cl}
 Subset $0$: & $\{1, 3, 5, 7, 9, 11, 13\}$ \\
@@ -1031,6 +1036,8 @@ $n$ is odd; i.e., $n = 2m+1$ & & $J(2m+1) = 2J(m)+1$ \\
 $n = 2^m+k$, with $k < 2^m$ & & $J(2^m+k) = 2k+1$
 \end{tabular}
 
+\smallskip
+
 The proof proceeds as follows.
 \begin{itemize}
 \item {\bf (a)} 
@@ -1134,13 +1141,14 @@ P(x) \ \ = \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \cdots + \ a_{d-1} x^{d-1} \ + 
 %+ x \cdot (a_{d-2} \ + \ x \cdot (a_{d-1} \ + \ a_d x)) \cdots ))
 %\]
 
-We introduce the recursively auxiliary expressions.  
+We introduce the recursively defined auxiliary expressions.  
 \begin{eqnarray*}
 C_i^{(0)} & = & a_i + x a_{i+1} \\
                 &\vdots &  \\
 C_i^{(n)}  & = & C_i^{(n-1)} + x^{2n} C_{i+2^n}^{(n-1)}
 \end{eqnarray*}
 The method completes by expressing $P(x)$ in terms of the auxiliary $C_i^{(k)}$
+
 \medskip
 
 {\bf To do}.
@@ -1150,59 +1158,65 @@ The method completes by expressing $P(x)$ in terms of the auxiliary $C_i^{(k)}$
 
 \smallskip
 
-We simplify expressions by assuming that $d+1$ is a power of $2$
-and let develop the method for a degree-$(d=7)$ polynomial.
+We simplify expressions by assuming that $d+1$ is a power of $2$.  Thereby, we can illustrate the key manipulations without worrying about floors and ceiling.
 
+\smallskip
+
+We begin by developing the method for a degree-$(d=7)$ polynomial.  This will provide a convenient touchstone as we extrapolate to arbitrary degrees.
 \begin{eqnarray*}
-P_7(x) & = & \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ +  \ a_{3} x^{3} \ + \ a_4 x^4 \ + \ a_{5} x^{5} \ + \ a_{6} x^{6} \ + \ a_7 x^7 \\
-& = & \ \ a_0 \ + \ x \cdot a_1 \ + \ x^2 \cdot (a_2  \ + \ x \cdot a_3) \ + \ x^4 \cdot (a_4  \ + \ x \cdot a_5) \ +  \ x^6 \cdot (a_6  \ + \ x \cdot a_7)\\
-& = & \ \ (a_0 \ + \ x \cdot a_1) \ + \ x^2 \cdot (a_2  \ + \ x \cdot a_3) \ + \ x^4 \cdot \left( (a_4 \ + \ x \cdot a_5) \ + \ x^2 \cdot (a_6  \ + \ x \cdot a_7) \right) \\
-& = & \ C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_{6}^{(0)} \ ) \\
-& = & C_0^{(1)} \ + \ x^4 \ C_4^{(1)} 
+P_7(x) & = & a_0 \ + \ a_1 x \ + \ a_2 x^2 \ + \ a_{3} x^{3} \ + \ a_4 x^4 \ + \ a_{5} x^{5} \ + \ a_{6} x^{6} \ + \ a_7 x^7 \\
+           & = & a_0 \ + \ x \cdot a_1 \ + \ x^2 \cdot (a_2 \ + \ x \cdot a_3) \ + \ x^4 \cdot (a_4 \ + \ x \cdot a_5) \\
+           &  &  \ \ + \ x^6 \cdot (a_6 \ + \ x \cdot a_7) \\
+          & = & (a_0 \ + \ x \cdot a_1) \ + \ x^2 \cdot (a_2 \ + \ x \cdot a_3) \\
+           & & \ \ + \ x^4 \cdot \left( (a_4 \ + \ x \cdot a_5) \ + \ x^2 \cdot (a_6 \ + \ x \cdot a_7) \right) \\
+          & = & C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_{6}^{(0)} \ ) \\
+          & = & C_0^{(1)} \ + \ x^4 \ C_4^{(1)} 
 \end{eqnarray*}
 
-The generalization for degree-$d$ polynomials is in the direct line as before:
+\smallskip
+
+The generalization for degree-$d$ polynomials follow the same pattern:
 \begin{eqnarray*}
-P_d(x) & = & \ \ a_0 \ + \ a_1 x \ + \ a_2 x^2 \ +  \ \cdots \ + \ a_{d-1} x^{d-1} \ + \ a_{d} x^{d} \\
-& = & \ \ a_0 \ + \ x \cdot a_1 \ + \ x^2 \cdot (a_2  \ + \ x \cdot a_3) \  +  \ \cdots \ + \ x^{d-1} \cdot (a_{d-1}  \ + \ x \cdot a_{d})\\
-& = & \ \ (a_0 \ + \ x \cdot a_1) \ + \ x^2 \cdot (a_2  \ + \ x \cdot a_3) \ + \ \cdots \ + \ x^{d-3} \cdot (a_{d-3} \ + \ x \cdot a_{d-2}) \\
-& & \ \ + \ x^{d-1} \cdot (a_{d-1}  \ + \ x \cdot a_{d}) \\
-& = & \ C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_{6}^{(0)} \ )  \ + \ \cdots \\
-&  & \ + \ x^{(d+1)-8} \ (\ C_{d-7}^{(0)} \ + \ x^2 \ C_{d-5}^{(0)}) \ + \ x^{(d+1)-4} \ ( \ C_{d-3}^{(0)} \ + \ x^2 \ C_{d-1}^{(0)} ) \\
-& = & \ C_{0}^{(1)} \ + \ x^4 \ C_4^{(1)} \ + \ x^8 \ ( \ C_8^{(1)} \ + \ x^4 \ C_{12}^{(1)} \ )  \ + \ \cdots \\
-&  &  \ + \ x^{(d+1)-8} \ ( \ C_{d-7}^{(1)} \ + \ x^4 \ C_{d-3}^{(1)} ) \\
-& = & \ C_{0}^{(2)} \ + \ x^8 \ C_8^{(2)}  \ + \ \cdots \ + \ x^{(d+1)-4} \ C_{(d+1)-4}^{(2)} \\
-& & \cdots \\
-& = & \ C_0^{(log (d+1)-2)} \ + \ x^{{d+1} \over {2}} \ C_{{d+1} \over {2}}^{(log (d+1)-2)} 
+P_d(x) & = & a_0 \ + \ a_1 x \ + \ a_2 x^2 \ +  \ \cdots \ + \ a_{d-1} x^{d-1} \ + \ a_{d} x^{d} \\
+           & = & a_0 \ + \ x \cdot a_1 \ + \ x^2 \cdot (a_2  \ + \ x \cdot a_3) \  +  \ \cdots \ + \ x^{d-1} \cdot (a_{d-1}  \ + \ x \cdot a_{d})\\
+           & = & (a_0 \ + \ x \cdot a_1) \ + \ x^2 \cdot (a_2  \ + \ x \cdot a_3) \ + \ \cdots \ + \ x^{d-3} \cdot (a_{d-3} \ + \ x \cdot a_{d-2}) \\
+           & & \ \ + \ x^{d-1} \cdot (a_{d-1}  \ + \ x \cdot a_{d}) \\
+           & = & \ C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_{6}^{(0)} \ )  \ + \ \cdots \\
+           &  & \ + \ x^{(d+1)-8} \ (\ C_{d-7}^{(0)} \ + \ x^2 \ C_{d-5}^{(0)}) \ + \ x^{(d+1)-4} \ ( \ C_{d-3}^{(0)} \ + \ x^2 \ C_{d-1}^{(0)} ) \\
+          & = & \ C_{0}^{(1)} \ + \ x^4 \ C_4^{(1)} \ + \ x^8 \ ( \ C_8^{(1)} \ + \ x^4 \ C_{12}^{(1)} \ )  \ + \ \cdots \\
+          &  &  \ + \ x^{(d+1)-8} \ ( \ C_{d-7}^{(1)} \ + \ x^4 \ C_{d-3}^{(1)} ) \\
+         & = & \ C_{0}^{(2)} \ + \ x^8 \ C_8^{(2)}  \ + \ \cdots \ + \ x^{(d+1)-4} \ C_{(d+1)-4}^{(2)} \\
+         & \vdots &  \\
+         & = & \ C_0^{(\log (d+1)-2)} \ + \ x^{(d+1)/2} \ C_{(d+1)/2}^{(\log (d+1)-2)} 
 \end{eqnarray*}
 
 \medskip
 \item
+{\bf To do}.
 {\em Determine how many additions and multiplications are required to evaluate $P(x)$.}
 
-As before, we focus again on the case on $d=7$ for a detailed analysis. 
+\smallskip
+
+As before, we focus on the case $d=7$ to build intuition for a detailed analysis. 
 \[
 P_7(x) \ \ = \ \ C_{0}^{(0)} \ + \ x^2 \ C_2^{(0)} \ + 
 \ x^4 \ ( \ C_4^{(0)} \ + \ x^2 \ C_6^{(0)} \ )
 \ = \ C_0^{(1)} \ + \ x^4 \ C_4^{(1)} 
 \]
+\begin{itemize}
+\item
 We use $2$ multiplications to compute $x^2$ and $x^4$, namely,
 $[x^2 \ = \ x \times x]$ and $[x^4 \ = \ x^2 \times x^2]$.
 
-\smallskip
+\medskip\item
+We use $4$ multiplications by $x$ for the four products $a_7 \cdot x$,  $a_5 \cdot x$, $a_3 \cdot x$, and $a_1 \cdot x$.  These are followed by $4$ additions.
 
-Then, we use $4$ multiplications by $x$ for the four products $a_7 \cdot x$,  $a_5 \cdot x$, $a_3 \cdot x$, and $a_1 \cdot x$.  These are followed by $4$ additions.
-
-\smallskip
-
+\medskip\item
 Next, we use $2$ multiplications by $x^2$ for the products $x^2 \cdot C_2^{(0)}$ and $x^2 \cdot C_6^{(0)}$.  These are followed by $2$ additions.
 
-\smallskip
-
-Finally, we use $1$ multiplication to compute $x^4 \cdot C_4^{(1)}$.  This is followed by $1$ addition.
-
-\medskip
-
+\medskip\item
+Finally, we use one multiplication to compute $x^4 \cdot C_4^{(1)}$.  This is followed by $1$ addition.
+\end{itemize}
 We have, thus, used a total of $9$ multiplications and $7$ additions.
 
 \medskip
