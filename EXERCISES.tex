@@ -1,6 +1,7 @@
-%version of 05-05-20
+%version of 05-09-20
 
-\chapter{Solution Sketches for $\oplus \oplus$ Exercises}
+\setcounter{chapter}{0}
+\chapter*{Solution Sketches for $\oplus \oplus$ Exercises}
 \label{ch:Exercises}
 
 
@@ -1597,7 +1598,7 @@ In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/
 
 \smallskip
 
-Being constrained to ``monochromaticism", we partition $\d_3$ into two isomorphic sub-digraphs, which are the sought ``red" and ``green" directed trees of the problem.  Fig.~\ref{fig:DeBruijn3Tree} depicts both trees.  The tree in the left side of the figure is rooted at its leftmost vertex;  the tree in the right side of the figure is rooted at its rightmost vertex. 
+We describe the two ``embracing" directed trees separately, but in a way that makes it clear that their arcs partition the arc-set of $\d_3$.  Fig.~\ref{fig:DeBruijn3Tree} depicts both trees, drawn as though we were drawing $\d_3$.  The tree in the left side of the figure is rooted at its leftmost vertex;  its isomorphic counterpart in the right side of the figure is rooted at its rightmost vertex. 
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresGraph/DeBruijn3Tree}
@@ -1608,34 +1609,39 @@ Being constrained to ``monochromaticism", we partition $\d_3$ into two isomorphi
 
 \smallskip
 
-Hopefully, the reader has a feeling of how this covering can be extended beyond order $3$.  Actually depicting the relevant trees is a daunting task, because drawing any network $\d_k$ for $k > 3$ is a daunting task.
+As a strong hint at how this covering can be extended beyond order $3$, we urge the reader to label all arcs in Fig.~\ref{fig:DeBruijn3Tree} according to the scheme depicted in Fig.~\ref{FiguresGraph/dBlabelEdge}.  One will thereby see how the complementary trees in Fig.~\ref{fig:DeBruijn3Tree} are actually encodings of one another, obtained by flipping the bits in their labels from $0$ to $1$ and vice-versa.
+
+\smallskip
+
+Actually drawing the relevant trees beyond order $3$ is a daunting task, because drawing any network $\d_k$ for $k > 3$ is a daunting task.  This fact reinforces our claim throughout the book of the importance of having many ways to look at the same thing: in this case, graphs and structured arrangements of bit-strings.
+
 
 \medskip\item 
 {\bf 13.4. Fundamental insights into outerplanarity in graphs}
-\smallskip
-
-{\em Prove the following assertions.}
-
-\noindent {\em a. Show that the complete bipartite graph $K_{3,2}$ is not outerplanar.}
 
 \smallskip
 
-The question is how to distribute the two groups of vertices (dark grey and white) on a circle
-with no crossing edges.
-The solution is a case by case analysis according to all the possibilities to distribute $K_{3,2}$'s vertices around a circle:
-either the vertices of each of both groups are distributed consecutively, or each group of vertices is interlaced with a vertex of the other group.
-Fig.~\ref{fig:outerplanarK32} depictes both cases.
+{\bf To prove.} {\em The complete bipartite graph $\k_{3,2}$ is not outerplanar.}
 
-It is easy to verify that in each case, it is impossible to link the isolated white vertex with all the three dark grey ones.
+\medskip
 
+In contrast to some of our more abstract exercises, this problem requires detailed argument about a specific drawing of a single specific graph.
+
+\smallskip
+
+By definition of ``outerplanar", the question at hand is whether one can distribute the two groups of $\k_{3,2}$'s vertices---depicted as $3$ grey vertices and $2$ white ones---along the circumference of a circle, in a manner so that no two of $\k_{3,2}$'s edges cross.
+
+\smallskip
+
+The demonstration that a noncrossing distribution is impossible begins with the observation that there are only two distinct ways to distribute $\k_{3,2}$'s vertices around a circle---in two nonintersecting blocks (left side of Fig.~\ref{fig:outerplanarK32}) and interleaved (right side of Fig.~\ref{fig:outerplanarK32}).
 \begin{figure}[h]
 \begin{center}
-        \includegraphics[scale=0.4]{FiguresGraph/outerplanarK3,2}
-        \caption{The two only possibilities to distribute the white and shaded vertices along a circle.}
+        \includegraphics[scale=0.3]{FiguresGraph/outerplanarK3,2}
+        \caption{The two ways to distribute $\k_{3,2}$'s vertices around a circle.}
         \label{fig:outerplanarK32}
 \end{center}
 \end{figure}
-
+In both cases, the remainder of the verification proceeds by connecting one of the white vertices to all of the grey vertices and noting that these edges block any attempt to connect the other white vertex to at least one of the grey vertices.
 
 \end{itemize}
 
