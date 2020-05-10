@@ -737,7 +737,8 @@ Given integers $m$, $n$, and $q$, if $m$ divides both $n$ and $q$, then $m$ divi
 \end{prop}
 
 \begin{proof}
-Because $m$ divides both $n$ and $q$, there exist integers $k_1$ and $k_2$ such that $k_1 \cdot m = n$ and $k_2 \cdot m = q$.  By the distributive law, we therefore have:
+Because $m$ divides both $n$ and $q$, 
+there exist integers $k_1$ and $k_2$ such that $k_1 \cdot m = n$ and $k_2 \cdot m = q$.  By the distributive law, we therefore have:
 \[ (k_1 \cdot s \ + \ k_2 \cdot t)m \ = \ sn+tq \]
 for any $s$ and $t$.  \qed
 \end{proof}
@@ -762,6 +763,37 @@ Stated alternatively: For any positive integers $n$ and $q$, there exist integer
 \end{prop}
 
 \begin{proof}
+Let $m$ denote the smallest positive linear combination of $n$ and $q$.
+
+We prove respectively that $m \geq$ {\sc gcd}$(n, q)$ and $m \leq$ {\sc gcd}$(n, q)$. 
+
+\begin{enumerate}
+\item 
+By definition, {\sc gcd}$(n, q)$ divides $n$ and {\sc gcd}$(n, q)$ divides $q$, 
+then, from the previous proposition~\ref{thm:m-common-divisor-nq} 
+{\sc gcd}$(n, q)$ divides all the linear combinations $s \cdot n +t \cdot q$ for any $s$ and $t$ 
+(and thus, in particular the smallest combination). 
+
+{\sc gcd}$(n, q)$ divides $m$ and thus, $m \geq$ {\sc gcd}$(n, q)$.
+\item
+First, remark that $m \leq n$ because $n = 1.n + 0.q$ is a particular linear combination
+and $m$ is the smallest positive one.
+We show now that $m$ divides $n$. 
+
+By the division theorem~\ref{thm:division-thm}, there exists a decomposition $n=k.m+r$ (where $0 \leq r<m$). 
+Recall also that $m=s \cdot n+t \cdot q$ for some $s$ and $t$. 
+Thus, a simple artithmetic manupilation shows that $r$ can be written as $(1-k \cdot s)n+(-k \cdot t)q$ 
+which is a linear combination of $n$ and $q$. 
+
+However, as $m$ is the smallest positive one, we get $r=0$.
+
+Symmetrically, we show by exactly the same analysis that $m$ divides also $q$.
+
+Then, $m \leq$ {\sc gcd}$(n, q)$.
+\end{enumerate}
+% \qed
+
+\ignore{**************************************
 Consider the set of all integer linear combinations of $n$ and $q$:
 \[  L_{n,q} \ \eqdef \   \{ sn +tq \ | \ s, t \in \Z \} \ \subseteq \ \Z. \]
 Note that both $n$ and $q$ belong to $L_{n,q}$, because of the respective cases $(s=1, t=0)$ and $(s=0, t=1)$.  One consequence of this is that $L_{n,q}$ has a nonempty subset, call it
@@ -796,7 +828,9 @@ This is because $m_2 < m_1$, while $m_1$ is the {\em smallest} element of $L^{(>
 \end{itemize}
 This contradiction forces us to conclude that integer $m_1$ does not exist; in other words: all elements of $L^{(>0)}_{n,q}$ are multiples of $m_0$.
 
-Let us summarize.  The set of positive integer linear combinations of $n$ and $q$ consists entirely of integer multiples of a single integer $m_0$.  This means, in particular, that $m_0$ is a common divisor of $n$ and $q$.  The only way this situation could hold is if $m_0 = \mbox{\sc gcd}(n,q)$, as claimed in the proposition.  \qed
+Let us summarize.  The set of positive integer linear combinations of $n$ and $q$ consists entirely of integer multiples of a single integer $m_0$.  This means, in particular, that $m_0$ is a common divisor of $n$ and $q$.  The only way this situation could hold is if $m_0 = \mbox{\sc gcd}(n,q)$, as claimed in the proposition.  
+*******************************}
+
 \end{proof}
 
 B\'{e}zout's identity has the following significant corollary.
