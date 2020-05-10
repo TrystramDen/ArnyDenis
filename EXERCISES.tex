@@ -1482,47 +1482,35 @@ In the {\em driving} model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units
 
 \medskip
 
-We must begin by characterizing which vertex/site is the most distant from $\langle i,j \rangle$. 
-Of course, the answer will depend on where this site resides within its quadrant.
+We begin by characterizing which vertex/site is the most distant from $\langle i,j \rangle$.  Of course, the answer depends on where this site resides within its quadrant.
 
 \smallskip
 
-Let us focus, with no loss of generality, to a specific quadrant, say the southeastern one. 
-There are two situations to consider, which are illustrated in Fig.~\ref{fig:routingWorstCase}:
+Let us focus, with no loss of generality, to a single quadrant, say the southeastern one. The two situations to consider are illustrated in Fig.~\ref{fig:routingWorstCase}.
  \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresGraph/routingWorstCase}
-       \caption{The two possible situations for reaching a vertex in the same bottom-right quadrant.
-       The origin site $\langle i,j \rangle$ is represented in dark grey and the destination site is on the shaded quadrant.}
+       \caption{The two possible situations for routing within a quadrant. The origin site is in black and the destination site is in the shaded region.}
   \label{fig:routingWorstCase}
 \end{center}
 \end{figure}
-
-the shaded region identifies the location of the destination site $\langle h,k \rangle$.
-The first situation (left in the figure) is easy since the directions of the edges allow $\langle i,j \rangle$ to reach directly $\langle h,k \rangle$
-without going out of the considered quadrant while in the second situation (right on the figure) we should reach an external
-vertex in the bottom-left quadrant, then, reach a vertex in the top-left one, then, reach a vertex in the top-right before being able to
-reach $\langle h,k \rangle$.
-The worst case comes from this last situation where the internal paths are maximized (see Fig.~\ref{fig:routingCitySolution}).
-
-
- \smallskip
-
-
+We begin at site $\langle i,j \rangle$ (black in the figure).  Because of the routing constraints (``one-way streets"), traveling to a target $\langle h,k \rangle$ in the shaded region of Fig.~\ref{fig:routingWorstCase}(left) is easy because the directions of the edges permit $\langle i,j \rangle$ to reach $\langle h,k \rangle$ without leaving the southeastern quadrant.  In contrast, 
+if the target $\langle h,k \rangle$ resides in the shaded region of Fig.~\ref{fig:routingWorstCase}(right), then any journey from $\langle i,j \rangle$ to $\langle h,k \rangle$ must proceed indirectly, by leaving, and then reentering, the southeastern quadrant.  The worst-case scenario arises when the indirection encountered in the preceding second situation occurs at every stage of the journey, where a ``stage" is identified by a turning-point of the journey.
 
 \smallskip
 
- The previous analysis still holds. 
-
- 
-
- \begin{figure}[hbt]
+No matter where the source and target sites are located, the schematic routings depicted in
+Fig.~\ref{fig:routingCitySolution} 
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresGraph/routingCitySolution}
-       \caption{Worst case in the metro model.}
+       \caption{The worst-case source/target positioning under the metro model.}
   \label{fig:routingCitySolution}
 \end{center}
 \end{figure}
+lead to cost-optimal routing under both models.
+
+{\Arny I infer that this is the optimal routing strategy under both models.  (1) Why is this true?  (2) What are the costs of the optimal routings -- asymptotically?}
 
 \ignore{************ 
  \begin{figure}[hbt]
