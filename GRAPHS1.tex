@@ -1,4 +1,4 @@
-%version of 04-19-20
+%version of 05-10-20
 
 \chapter{Graphs I:
 Representing Relationships Mathematically}
@@ -40,8 +40,7 @@ This chapter and the next provide the basic concepts and tools necessary to inco
 
 \subsection{The Basics of the World of Graphs}
 
-The basic components of a graph $\g$ are {\it vertices}---object which represent things one wants to interrelate---and {\it edges}---each edge connecting two of $\g$'s vertices.  Formally, we view and edge as a $2$-element set of $\g$'s vertices.  For each graph $\g$, we denote the set of $\g$'s vertices by $\n_{\fg}$ and the set of $\g$'s edges by $\e_{\fg}$.\footnote{We often omit the subscript ``$\g$" in notation such as ${\cal N}_{\cal G}$ or ${\cal E}_{\cal G}$ unless 
-there is danger of ambiguity.}
+The basic components of a graph $\g$ are {\it vertices}---object which represent things one wants to interrelate---and {\it edges}---each edge connecting two of $\g$'s vertices.  Formally, we view and edge as a $2$-element set of $\g$'s vertices.  For each graph $\g$, we denote the set of $\g$'s vertices by $\n_{\fg}$ and the set of $\g$'s edges by $\e_{\fg}$.\footnote{We often omit the subscript ``$\g$" in notation such as ${\cal N}_{\cal G}$ or ${\cal E}_{\cal G}$ unless there is danger of ambiguity.}
 
 \bigskip
 
@@ -52,16 +51,14 @@ there is danger of ambiguity.}
 
 The singular form of ``vertices'' is ``{\it vertex}''.
 
-The word ``{\it node}" is often used as a synonym of ``vertex".  We usually employ the
-somewhat more common ``vertex".
+The word ``{\it node}" is often used as a synonym of ``vertex".  We usually employ the somewhat more common ``vertex".
 \end{minipage}
 }
 
 \bigskip
 
 \noindent
-A {\it subgraph} $\g'$ of a graph $\g$ is a graph whose vertices are a subset of $\g$'s and
-whose edges are a subset of $\g$'s that interconnect only vertices of $\g'$.
+A {\it subgraph} $\g'$ of a graph $\g$ is a graph whose vertices are a subset of $\g$'s and whose edges are a subset of $\g$'s that interconnect only vertices of $\g'$.
 
 \medskip
 
@@ -188,22 +185,6 @@ Extrapolating from our discussion of path (\ref{eq:undi-path}): The {\it distanc
 \index{diameter in a graph} \index{graph!diameter}
 The {\it diameter} of an undirected graph is the largest distance between two vertices,  i.e., the largest number $d$ for which there exists a pair of vertices $u_1, u_n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that when discussing undirected graphs, we always use {\em undirected} paths when defining distance.
 
-\ignore{********
-Alternatively, this result can be proved by applying the Fubini's
-principle using the adjacency matrix.  The two ways of counting the
-non-zero elements are by rows (giving the sum of degrees) and globally.
-\bigskip
-
-Now, decompose this sum into even and odd degrees.
-
-$\Sigma_{x \in V} \delta(x) = \Sigma_{x \in V_{even}} \delta(x) +
-\Sigma_{x \in V_{odd}} \delta(x)$.
-
-As $\Sigma_{x \in V_{even}} \delta(x)$ is obviously even as the sum of
-even numbers, $\Sigma_{x \in V_{odd}} \delta(x)$ should also be even.
-
-Thus, the number of odd vertices is even.% as depicted in Figure~\ref{propertyOdd}.
-*************}
 
 \bigskip
 \noindent \fbox{
@@ -1259,7 +1240,6 @@ We are going to fashion this proof to reflect the way that a mathematician would
 
 \noindent 
 The base case $k=1$ is immediate:  Because $\k_{2}$ consists of a single edge, it admits precisely one perfect matching; i.e., $M_1 = 1$.
-%(see Figure~\ref{perfectMatching1}): 
 
 \smallskip
 
@@ -1443,6 +1423,45 @@ $\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \ \lfloor n/2 \rfl
   \label{fig:torus}
 \end{center}
 \end{figure}
+
+\bigskip
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Enrichment Note}.
+
+\smallskip
+
+\index{direct product!of graphs} \index{Cartesian product!of graphs}
+
+The mesh and torus networks are among the simplest instances of graphs that are built from simpler graphs.  In this case, the underlying operation is the {\it direct product}---or, {\it Cartesian product}---of graphs.
+
+\smallskip
+
+The {\it direct product} of graphs $\g_1$ and $\g_2$ is denoted $\g_1 \times \g_2$ and is defined as follows.
+\begin{itemize}
+\item
+The vertex-set of $\g_1 \times \g_2$ is the direct product $\n_{\fg_1} \times \n_{\fg_2}$.
+\medskip\item
+Each edge of $\g_1 \times \g_2$ comes either from $\g_1$ or from $\g_2$, but {\em not from both}.
+  \begin{itemize}
+  \item
+If $(u_1, v_1)$ is an edge of $\g_1$, then for each $w \in \n_{\fg_2}$, 
+$(\langle u_1, w \rangle, \langle v_1, w \rangle)$ is an edge of $\g_1 \times \g_2$.
+  \medskip\item
+If $(u_2, v_2)$ is an edge of $\g_2$, then for each $x \in \n_{\fg_1}$, 
+$(\langle  x, u_2 \rangle, \langle x, v_2 \rangle)$ is an edge of $\g_1 \times \g_2$.
+  \medskip\item
+Those are all of the edges of $\g_1 \times \g_2$.
+  \end{itemize}
+\end{itemize}
+
+As specific examples:  {\em Each mesh-graph $\m_{m,n}$ is the direct product of paths}
+\[ \m_{m,n} \ = \ \p_{m} \times \p_n \]
+{\em and each torus-graph $\widetilde{\m}_{m,n}$ is the direct product of cycles}
+\[ \widetilde{\m}_{m,n} \ = \ \cc_m \times \cc_n \]
+\end{minipage} }
+
 
 \subsection{The (Boolean) {\it Hypercube} $\q_n$}
 \label{sec:hypercube}
