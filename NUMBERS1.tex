@@ -658,14 +658,14 @@ In order to better understand the fundamental concept of divisibility, we must b
 
 Divisibility is not always perfect: Given a pair of integers, neither needs be an integer multiple of the other.  As we learned in elementary school, if an integer $m > 0$ does not ``evenly'' divide an integer $n > m$, then we are left with a ``remainder'' when we attempt to divide $n$ by $m$.  {it Euclidean}  {\it division}---so named for the Greek mathematician Euclid, whose writings introduced the process in the West---is the process of producing, given integers $m >0$ and $n >m$, an integer {\it quotient} $q$ and an integer {\it remainder} $r$ (where $0 \leq r < m$) such that $n = q \cdot m + r$.  The process of Euclidean division always succeeds, in the following strong sense.
 
-\begin{prop}[The Division Theorem]
+\begin{theorem}[The Division Theorem]
 \label{thm:division-thm}
 Given any integers $n$ and $m > 0$, there exists a unique pair of integers $q$ and $r$, with $0 \leq r < m$ such that
 \begin{equation}
 \label{eq:euclid-division}
 n \ = \ q \cdot m + r.
 \end{equation}
-\end{prop}
+\end{theorem}
 
 \begin{proof}
 We first prove that a result-pair $\langle q, r \rangle$, as described in the Proposition, exists for each argument-pair $\langle m, n \rangle$.  Then we prove that the result-pair is unique.
@@ -761,47 +761,44 @@ We are finally ready for our first major result about integer division and divis
 \label{thm:gcd-n-linear}
 For positive integers $n$ and $q$, {\sc gcd}$(n, q)$ is the smallest positive linear combination of $n$ and $q$.
 
-\smallskip
+\medskip
 
 \noindent
 Stated alternatively, the following two statements both hold.
 \begin{itemize}
 \item
-For any positive integers $n$ and $q$, there exist integers $s_0$ and $t_0$, not necessarily positive, such that
-\[ s_0 n + t_0 q \ = \ \mbox{\sc gcd}(n, q) \]
+For any positive integers $n$ and $q$, there exist integers $s_0$ and $t_0$, not necessarily positive, such that $s_0 n + t_0 q \ = \ \mbox{\sc gcd}(n, q)$.
 \item
-For all integers $s$ and $t$, not necessarily positive,
-\[ s n + t q \ \geq \ s_0 n + t_0 q \]
+For all integers $s$ and $t$, not necessarily positive, $s n + t q \ \geq \ s_0 n + t_0 q$.
 \end{itemize}
 \end{prop}
 
 \begin{proof}
-Let $m$ denote the smallest positive linear combination of $n$ and $q$.
-
-We prove in turn that $m \geq$ {\sc gcd}$(n, q)$ and $m \leq$ {\sc gcd}$(n, q)$. 
+Let $m$ denote the smallest positive linear combination of $n$ and $q$.  We prove in turn that $m \geq$ {\sc gcd}$(n, q)$ and $m \leq$ {\sc gcd}$(n, q)$. 
 \begin{enumerate}
 \item 
 By definition, {\sc gcd}$(n, q)$ divides both $n$ and $q$.  By 
-Proposition~\ref{thm:m-commondivisor-n-q}, then {\sc gcd}$(n, q)$ divides all linear combinations $s n +t q$ of $n$ and $q$, for any integers $s$ and $t$.  In particular, {\sc gcd}$(n, q)$ divides the {\em smallest} such combination. 
+Proposition~\ref{thm:m-commondivisor-n-q}, then, for all integers $s$ and $t$, {\sc gcd}$(n, q)$ divides the linear combination, $s n +t q$, of $n$ and $q$.  In particular, {\sc gcd}$(n, q)$ divides the {\em smallest} such combination, $m$. 
 
-{\sc gcd}$(n, q)$ divides $m$ and thus, $m \geq$ {\sc gcd}$(n, q)$.
+\smallskip
+
+It follows, therefore, that $m \geq$ {\sc gcd}$(n, q)$.
 \item
-First, remark that $m \leq n$ because $n = 1.n + 0.q$ is a particular linear combination
-and $m$ is the smallest positive one.
-We show now that $m$ divides $n$. 
+First, notice that $m \leq n$.  To wit, the expression $n = 1 \cdot n + 0 \cdot q$ is a particular linear combination of $n$ and $q$, and $m$ is the {\em smallest} positive such combination.   
 
-By the division theorem~\ref{thm:division-thm}, there exists a decomposition $n=k.m+r$ (where $0 \leq r<m$). 
-Recall also that $m=s \cdot n+t \cdot q$ for some $s$ and $t$. 
-Thus, a simple artithmetic manupilation shows that $r$ can be written as $(1-k \cdot s)n+(-k \cdot t)q$ 
-which is a linear combination of $n$ and $q$. 
+\smallskip
 
-However, as $m$ is the smallest positive one, we get $r=0$.
+Because $m \leq n$, Theorem~\ref{thm:division-thm} (the Division Theorem) assures us that there exists an integer $r$ with $0 \leq r < m$ such that $n \ = \ k m + r$.  Further, because $m$ can be written in the form $m = s n+t q$ for integers $s$ and $t$, simple arithmetic manipulation expresses $r$ in the form $r \ = \ (1 - k s)n + (-k t)q$,  {\em which is a linear combination of $n$ and $q$}.  Because $m$ is the {\em smallest positive} such combination, it follows that $r=0$.  We conclude that $m$ divides $n$.
 
-Symmetrically, we show by exactly the same analysis that $m$ divides also $q$.
+\smallskip
 
-Then, $m \leq$ {\sc gcd}$(n, q)$.
+A symmetric argument, using exactly the same analysis, allows us to conclude that $m$ divides $q$.
+
+\smallskip
+
+We thus have $m \leq$ {\sc gcd}$(n, q)$, which completes the proof.  \qed
 \end{enumerate}
-% \qed
+
 
 \ignore{**************************************
 Consider the set of all integer linear combinations of $n$ and $q$:
@@ -843,6 +840,7 @@ Let us summarize.  The set of positive integer linear combinations of $n$ and $q
 
 \end{proof}
 
+\noindent
 B\'{e}zout's identity has the following significant corollary.
 
 \begin{corol}
@@ -874,7 +872,7 @@ $D(m, n) \ \subseteq \ D(m, \mbox{\sc rem}(m,n))$.
 
 \smallskip
 
-Say that the integer $d$ divides both $m$ and $n$, i.e., that $d \in D(m,n)$.  By Proposition~\ref{thm:division-thm}, we know that $n \ = \ q \cdot m \ + \ \mbox{\sc rem}(m,n)$.  By property 3 in Proposition~\ref{thm:basic-divisibility}, we must then have $d \mid
+Say that the integer $d$ divides both $m$ and $n$, i.e., that $d \in D(m,n)$.  By Theorem~\ref{thm:division-thm}, we know that $n \ = \ q \cdot m \ + \ \mbox{\sc rem}(m,n)$.  By property 3 in Proposition~\ref{thm:basic-divisibility}, we must then have $d \mid
 \mbox{\sc rem}(m,n)$.  This means that $d \in D(m, \mbox{\sc rem}(m,n))$.
 
 \medskip\item 
