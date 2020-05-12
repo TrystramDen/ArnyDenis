@@ -1470,9 +1470,9 @@ The described encoding exposes a one-to-one correspondence between the vertices 
 We have specified two cost models for traveling within our idealized mesh-structured city.  As we travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$:
   \begin{itemize}
   \item
-In the {\em metro} model, we pay a fee every time we encounter a new site along our trip.
+In the {\em metro} model, we pay a fee every time we change to a different-level road along our trip.
   \medskip\item
-In the {\em driving} model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units every time we traverse a level-$\ell$ edge along our trip 
+In the {\em driving} model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units every time we traverse a level-$\ell$ stretch between road-level changes along our trip 
   \end{itemize}
 
 \medskip
@@ -1488,6 +1488,7 @@ In the {\em driving} model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units
 
 \medskip
 
+\ignore{********************
 We begin by characterizing which vertex/site is the most distant from $\langle i,j \rangle$.  Of course, the answer depends on where this site resides within its quadrant.
 
 \smallskip
@@ -1516,25 +1517,42 @@ Fig.~\ref{fig:routingCitySolution}
 \end{figure}
 lead to cost-optimal routing under both models.
 
-{\Arny I infer that this is the optimal routing strategy under both models.  (1) Why is this true?  (2) What are the costs of the optimal routings -- asymptotically?
+{\Arny I infer that this is the optimal routing strategy under both models.  (1) Why is this true?  (2) What are the costs of the optimal routings -- asymptotically?}
 
 More generally:
 
 I do not believe that an adequate solution to this problem even has to address the issue of characterizing the worst case, because the easily attainable case is so easy and efficient.
+**********************}
 
-Say that the smallest quadrant that contains both the source site and the target site has dimensions $n/2^i \times n/2^i$.  Then at the cost of
+Say that the smallest quadrant that contains both the source site and the target site is at level $\ell$, i.e., has dimensions $n/2^\ell \times n/2^\ell$.  Then at the cost of
 
 \begin{itemize}
 \item
-$\leq 4$ metro tickets --- in the metro model
+$\leq 4$ metro tickets---in the metro model
 \item
-$\leq 4 \cdot n/2^i = n/2^{i-2}$ km --- in the driving model
+$\leq 4 \cdot n/2^\ell = n/2^{\ell -2}$ km, where $\ell \leq \log n$, in the driving model
 \end{itemize}
-one can arrive at a new source site which satisfies the following.  The smallest quadrant that contains both the new source site and the (original) target site has dimensions $n/2^{i+1} \times n/2^{i+1}$.
+one can arrive at a new source site which satisfies the following.  The smallest quadrant that contains both the new source site and the (original) target site is at level $\ell +1$, i.e., has dimensions $n/2^{\ell +1} \times n/2^{\ell +1}$.
 
-This gives us two easy recurrences which the student should be able to solve.
-}
+This information gives us two easy recurrences to solve.
 
+\begin{itemize}
+\item
+Under the metro model, we spend at most $4$ metro tickets to increase the level---hence, shrink the size---of the quadrant we are currently traveling in.  This leads to the recurrence
+\begin{eqnarray*}
+M(0) & = & 0 \\
+M(n+1) & \leq & 4 + M(n)
+\end{eqnarray*}
+which solves to $M(n) \ \leq \ 4 \log n$.
+
+\medskip\item
+Under the driving model, we drive $\leq 4 \cdot n/2^i$ kms to increase the level of the quadrant we are currently traveling in.  This leads to the recurrence
+\begin{eqnarray*}
+D(0) & = & 0 \\
+D(1 + \log k) & \leq & 4  \cdot n/ k + D(\log k)
+\end{eqnarray*}
+which solves to $D(\log n) \ = \ O(n)$. 
+\end{itemize}
 \ignore{************ 
  \begin{figure}[hbt]
 \begin{center}
@@ -1644,12 +1662,12 @@ $\d_4$ as an unlabeled graph.  The reader is invited to label the vertices with 
         \label{fig:DeBruijn4base}
 \end{center}
 \end{figure}
-(The self-loops are a good place to start.)  Then, Fig.~\ref{fig:DeBruijn4tree} illustrates one of the  
+(The self-loops are a good place to start.)  Then, Fig.~\ref{fig:DeBruijn4tree} illustrates the  
 ``Escherian" trees that are the basis for the current problem.
 \begin{figure}[ht]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresGraph/deBruijn4Tree}
-        \caption{One of the ``Escherian" trees that cover $\d_4$.}
+        \caption{The ``Escherian" trees that cover $\d_4$.}
         \label{fig:DeBruijn4tree}
 \end{center}
 \end{figure}
