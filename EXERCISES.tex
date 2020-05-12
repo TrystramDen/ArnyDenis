@@ -1441,64 +1441,78 @@ The described encoding exposes a one-to-one correspondence between the vertices 
 {\bf 12.9. A traffic map for a mesh-structured city}
 \smallskip
 
+PROBLEM HERE
+
 We have specified two cost models for traveling within our idealized mesh-structured city.  As we travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$:
   \begin{itemize}
   \item
-In the {\em metro} model, we pay a fee every time we encounter a new site along our trip.
+In the {\em metro} model, we pay a fee every time we encounter a new site along our trip.  (This is like buying a new metro ticket at each switch of lines.)
   \medskip\item
-In the {\em driving} model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units every time we traverse a level-$\ell$ edge along our trip 
+In the {\em driving} model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ cost-units every time we traverse a path along our trip, which lies entirely within a sub-quadrant of dimensions
+$n^{(1/2)^\ell} \times n^{(1/2)^\ell}$.  (This is like paying a toll within a rectilinear network of interconnecting roads.)
   \end{itemize}
 
 \medskip
 
-{\bf To determine}.
-{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site, $\langle h,k \rangle$}:
+{\bf To do}.
+{\em Find a low-cost trip from a site $\langle i,j \rangle$ to the most-distant site, $\langle h,k \rangle$}:
 \begin{enumerate}
 \item
-{\em under the metro model?}
+{\em under the metro model}
 \medskip\item
-{\em under the driving model?}
+{\em under the driving model}
 \end{enumerate}
 
 \medskip
 
-We begin by characterizing which vertex/site is the most distant from $\langle i,j \rangle$.  Of course, the answer depends on where this site resides within its quadrant.
-
-\smallskip
-
-Let us focus, with no loss of generality, to a single quadrant, say the southeastern one. The two situations to consider are illustrated in Fig.~\ref{fig:routingWorstCase}.
- \begin{figure}[hbt]
+Fig.~\ref{fig:routingWorstCase} will help us understand which sites can be reached at low cost from a given site $\langle i,j \rangle$, which is represented by a black dot in the figure.
+\begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresGraph/routingWorstCase}
-       \caption{The two possible situations for routing within a quadrant. The origin site is in black and the destination site is in the shaded region.}
+       \caption{The two possible situations for routing within a quadrant. The origin site, $\langle i,j \rangle$, is a black dot; the destination site lies within one of the two shaded regions---either to the southwest of $\langle i,j \rangle$ (in the lefthand subfigure) or not (in the righthand subfigure).}
   \label{fig:routingWorstCase}
 \end{center}
 \end{figure}
-We begin at site $\langle i,j \rangle$ (black in the figure).  Because of the routing constraints (``one-way streets"), traveling to a target $\langle h,k \rangle$ in the shaded region of Fig.~\ref{fig:routingWorstCase}(left) is easy because the directions of the edges permit $\langle i,j \rangle$ to reach $\langle h,k \rangle$ without leaving the southeastern quadrant.  In contrast, 
-if the target $\langle h,k \rangle$ resides in the shaded region of Fig.~\ref{fig:routingWorstCase}(right), then any journey from $\langle i,j \rangle$ to $\langle h,k \rangle$ must proceed indirectly, by leaving, and then reentering, the southeastern quadrant.  The worst-case scenario arises when the indirection encountered in the preceding second situation occurs at every stage of the journey, where a ``stage" is identified by a turning-point of the journey.
+The figure's focus on the southeastern sub-quadrant of the city is for definiteness:  Clerical adjustments will adapt the discussion to any other sub-quadrant.
 
 \smallskip
 
-No matter where the source and target sites are located, the schematic routings depicted in
-Fig.~\ref{fig:routingCitySolution} 
+The main lesson of the figure is the following.
+\begin{itemize}
+\item
+If the destination site $\langle h,k \rangle$ lies to the southwest of the origin site $\langle i,j \rangle$, then a two-leg (reversed-L) path {\em using edges within that sub-quadrant} will get us from $\langle i,j \rangle$ to the sub-sub-quadrant that $\langle h,k \rangle$ lies in.
+\item
+If $\langle h,k \rangle$ {\em does not} lie to the southwest of $\langle i,j \rangle$, then we must leave the southeastern quadrant $Q_1$ in order to get to the sub-sub-quadrant that $\langle h,k \rangle$ lies in---and end up to the northeast of $\langle h,k \rangle$.
+\end{itemize}
+
+This lesson gives us access to a strategy for getting from $\langle i,j \rangle$ to $\langle h,k \rangle$ with cost which is moderate under both of our models.
+
+\smallskip
+
+The basic strategy is to get progressively closer to the destination site $\langle h,k \rangle$, with closeness measured by the size of the smallest sub-quadrant that holds both us and $\langle h,k \rangle$.  We begin by sharing the $n \times n$ quadrant with $\langle h,k \rangle$.  We aim for a first sub-journey that will allow us to share some $n/2^i \times n/2^i$ sub-quadrant with $\langle h,k \rangle$, where $i > 0$.  Having achieved that, we will aim for a second sub-journey that will allow us to share some $n/2^j \times n/2^j$ sub-quadrant with $\langle h,k \rangle$, where $j > i$.  We will proceed in this manner until we reach $\langle h,k \rangle$.
+
+\smallskip
+
+The strategy for the current sub-journey can be discerned in Fig.~\ref{fig:routingCitySolution}, 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresGraph/routingCitySolution}
-       \caption{The worst-case source/target positioning under the metro model.}
+       \caption{The sub-journey which gets us to the next stage of our routing.}
   \label{fig:routingCitySolution}
 \end{center}
 \end{figure}
-lead to cost-optimal routing under both models.
-
-{\Arny I infer that this is the optimal routing strategy under both models.  (1) Why is this true?  (2) What are the costs of the optimal routings -- asymptotically?
-
-More generally:
-
-I do not believe that an adequate solution to this problem even has to address the issue of characterizing the worst case, because the easily attainable case is so easy and efficient.
-
+which takes place in the smallest sub-quadrant that we share with $\langle h,k \rangle$.
+\begin{itemize}
+\item
+If $\langle h,k \rangle$ lies to our southwest, then we follow a reversed-L sub-journey to the sub-sub-quadrant that If $\langle h,k \rangle$ resides in.
+\item
+If $\langle h,k \rangle$ does not lie to our southwest, then we follow the type of sub-journey depicted in the figure.
+  \begin{enumerate}
+  \item
+We proceed westward until we are out of our current sub-quadrant until we encounter a road that permits northward travel.
+\end{enumerate}
 Say that the smallest quadrant that contains both the source site and the target site has dimensions $n/2^i \times n/2^i$.  Then at the cost of
 
-\begin{itemize}
 \item
 $\leq 4$ metro tickets --- in the metro model
 \item
@@ -1506,8 +1520,18 @@ $\leq 4 \cdot n/2^i = n/2^{i-2}$ km --- in the driving model
 \end{itemize}
 one can arrive at a new source site which satisfies the following.  The smallest quadrant that contains both the new source site and the (original) target site has dimensions $n/2^{i+1} \times n/2^{i+1}$.
 
-This gives us two easy recurrences which the student should be able to solve.
-}
+This gives us two easy recurrences.
+
+\begin{eqnarray*}
+M(k) & = & 4 + M(k-1) \\
+D(k)  & = & 4 \cdot n/2^i + D(k-1)
+\end{eqnarray*}
+
+These recurrences solve to 
+\begin{eqnarray*}
+M(0) & = & \log n \\
+D(k)  & = & 4 n
+\end{eqnarray*}
 
 \ignore{************ 
  \begin{figure}[hbt]
