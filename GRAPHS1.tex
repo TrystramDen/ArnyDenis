@@ -2030,20 +2030,20 @@ The special graphs of this chapter were invented---and reinvented---to model a l
 \smallskip
 
 Before we analyze any costs, the complete graph $\k_N$ seems to provide an attractive traffic model for interconnecting $N$ sites: its diameter is tiny (in fact, unity); routing is no problem; nor is link-directionality.  But, of course, the density of roads and vertex-degrees makes this an untenable option.
-% If you have driven in a city such as Catania, Sicily, then you appreciate the problems that accompany a graph-model that is too close to $\k_N$.
+
 
 \smallskip
 
-To step away from the chaos of $\k_N$ we could orient the edges of our abstract city map---i.e., make each street unidirectional.  If done poorly, this process could produce a city which has {\em sinks}---sites that lack exit roads.  It is easy to avoid single-site sinks, but some subtlety is needed to avoid multi-site sinks.
+To step away from the chaos of $\k_N$ we could orient the edges of our abstract city map---i.e., make each street unidirectional.  If done poorly, this process could produce a city which has {\em sinks}---sites that lack exit roads.  It is easy to avoid single-site sinks, but extensive subtlety is needed to avoid multi-site sinks.
 {\em We accomplish this goal by means of a map that is {\em transitive}, in that it allows travel between every pair of sites.}
 
 \index{transitive digraph} \index{digraph!transitive}
 
-% If you have driven in a city such as Boston, Massachusetts, then you will appreciate this potential problem.
+
 
 \medskip
 
-Here is a {\em highly structured, recursive} proposal for a traffic network.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
+Here is a {\em highly structured, recursive} proposal for a traffic network.  The design may appear quite inefficient in terms of inter-site costs---but only a complete analysis will verify or refute that impression.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
   \begin{itemize}
   \item
 We logically arrange the city's $N$ sites in an $n \times n$ grid by assigning each site a distinct name of the form $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
@@ -2081,16 +2081,17 @@ the {\em southeastern quadrant}, $SE$, comprises the sites
 We call these the {\em level}-$0$, or, {\em top-level} quadrants.
 
 \medskip\item
-Recursively, each level-$\ell$ quadrant partitions into four level-$(\ell +1)$ sub-quadrants, and so on, down to sub-sub-\ldots-sub-quadrants that each contain only a single site.  
+Recursively, each level-$\ell$ quadrant partitions into four level-$(\ell +1)$ sub-quadrants, and so on, down to sub-sub-$\cdots$-sub-quadrants that each contain only a single site.  
     \end{itemize}
-Fig.~ \ref{fig:routingCity} gives an illustration of the previous textual description.
+Fig.~ \ref{fig:routingCity} illustrates the preceding textual description.
 \begin{figure}[hbt]
 \begin{center}
-       \includegraphics[scale=0.4]{FiguresGraph/routingCity}
-\caption{A $64$-site city arranged as an $8 \times 8$ grid.  The figure illustrates: the level-$0$ $8 \times 8$ grid and its northwestern $4 \times 4$ quadrant; the grid's four level-$2$ northwestern $2 \times 2$ quadrants (shaded).}
+       \includegraphics[scale=0.35]{FiguresGraph/routingCity}
+\caption{A $64$-site city arranged as an $8 \times 8$ grid.  The figure illustrates: the level-$0$ $8 \times 8$ grid and highlights (by shading) its northwestern $4 \times 4$ quadrant; it also highlights the grid's four level-$2$ northwestern $2 \times 2$ quadrants (shaded).}
   \label{fig:routingCity}
 \end{center}
 \end{figure}
+\ignore{************
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresGraph/routingCitySynthesis}
@@ -2098,11 +2099,14 @@ Fig.~ \ref{fig:routingCity} gives an illustration of the previous textual descri
   \label{fig:routingCitySynthesis}
 \end{center}
 \end{figure}
+********************}
+
   \medskip\item
 We turn now to the (oriented) edges that we use to navigate our grid-like city.
 
 \smallskip
 
+\ignore{****************
 We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we employ only edges whose endpoint-sites share a coordinate.  Each of these edges goes from a site $\langle i,j \rangle$ to a site $\langle i,k \rangle$ or a site $\langle h,j \rangle$.
 
 \smallskip
@@ -2129,7 +2133,34 @@ must traverse the at-most three edges that lead site $\langle i,j \rangle$ to so
    \medskip\item
 From that point on, the traveler recursively finds an acceptable path from site $\langle i_1,j_1 \rangle$ to site $\langle h,k \rangle$.
     \end{itemize}
+**************************}
+
+ROUTING
+
+\begin{figure}
+\[
+\begin{array}{c|ccc|ccc|c}
+\nearrow & \rightarrow & \rightarrow & \rightarrow & \rightarrow & \rightarrow & \rightarrow & \searrow \\
+\hline
+\uparrow & \nearrow & \rightarrow & \searrow     & \nearrow  & \rightarrow & \searrow         & \downarrow \\
+\uparrow & \uparrow &                   & \downarrow & \uparrow &                    & \downarrow    & \downarrow \\
+\uparrow & \nwarrow & \leftarrow    & \swarrow    & \nwarrow & \leftarrow    & \swarrow       & \downarrow \\
+\hline
+\uparrow & \nearrow & \leftarrow    & \searrow     & \nearrow  & \rightarrow  & \searrow      & \downarrow \\
+\uparrow & \uparrow &                    & \downarrow & \uparrow &                    & \downarrow  & \downarrow \\
+\uparrow & \nwarrow & \leftarrow    & \swarrow     & \nwarrow & \leftarrow     & \swarrow    & \downarrow \\
+\hline
+\nwarrow & \leftarrow & \leftarrow & \leftarrow & \leftarrow & \leftarrow & \leftarrow                     & \swarrow
+\end{array}
+\]
+\caption{Two levels of the routing structure in the city: The top-level peripheral road and the four peripheral roads at the next level}
+\label{fig:PeripheralRoads}
+\end{figure}
+
   \end{itemize}
+
+
+
 
 Now we are ready to analyze our model.  
 In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
