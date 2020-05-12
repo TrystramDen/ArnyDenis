@@ -2029,8 +2029,7 @@ The special graphs of this chapter were invented---and reinvented---to model a l
 
 \smallskip
 
-Before we analyze any costs, the complete graph $\k_N$ seems to provide an attractive traffic model for interconnecting $N$ sites: its diameter is tiny (in fact, unity); routing is no problem; nor is link-directionality.  But, of course, the density of roads and vertex-degrees makes this an untenable option.
-
+If we do not analyze any costs, then the complete graph $\k_N$ seems to provide an attractive traffic model for interconnecting $N$ sites: its diameter is tiny (in fact, unity); routing is no problem; nor is link-directionality.  But, of course, the density of roads and vertex-degrees makes this an untenable option.
 
 \smallskip
 
@@ -2039,11 +2038,9 @@ To step away from the chaos of $\k_N$ we could orient the edges of our abstract 
 
 \index{transitive digraph} \index{digraph!transitive}
 
-
-
 \medskip
 
-Here is a {\em highly structured, recursive} proposal for a traffic network.  The design may appear quite inefficient in terms of inter-site costs---but only a complete analysis will verify or refute that impression.  To simplify our work, let us assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
+Striving for feasibility at reasonable cost, we propose a {\em highly structured, recursive} design for a traffic network.  The design may appear quite inefficient in terms of inter-site costs---but only a complete analysis will verify or refute that impression.  To simplify exposition, we assume that $N$ has the form $n^2$ with $n = 2^{m}$. 
   \begin{itemize}
   \item
 We logically arrange the city's $N$ sites in an $n \times n$ grid by assigning each site a distinct name of the form $\langle i,j \rangle$, where $i, j \in \{1, 2, \ldots, n\}$.
@@ -2080,10 +2077,10 @@ the {\em southeastern quadrant}, $SE$, comprises the sites
 
 We call these the {\em level}-$0$, or, {\em top-level} quadrants.
 
-\medskip\item
-Recursively, each level-$\ell$ quadrant partitions into four level-$(\ell +1)$ sub-quadrants, and so on, down to sub-sub-$\cdots$-sub-quadrants that each contain only a single site.  
+  \medskip\item
+Recursively, each level-$\ell$ quadrant partitions into four level-$(\ell +1)$ sub-quadrants, and so on, down to sub-sub-$\cdots$-sub-quadrants that each contains only a single site.  
     \end{itemize}
-Fig.~ \ref{fig:routingCity} illustrates the preceding textual description.
+Fig.~ \ref{fig:routingCity} illustrates the preceding description.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresGraph/routingCity}
@@ -2100,43 +2097,14 @@ Fig.~ \ref{fig:routingCity} illustrates the preceding textual description.
 \end{center}
 \end{figure}
 ********************}
+ end{itemize}
 
-  \medskip\item
+\medskip\item
 We turn now to the (oriented) edges that we use to navigate our grid-like city.
 
 \smallskip
 
-\ignore{****************
-We eliminate (from consideration) all ``diagonal" edges.  Phrased positively: we employ only edges whose endpoint-sites share a coordinate.  Each of these edges goes from a site $\langle i,j \rangle$ to a site $\langle i,k \rangle$ or a site $\langle h,j \rangle$.
-
-\smallskip
-
-This means that every {\em oriented} edge now goes either northward or southward or eastward or westward.
-
-\medskip\item
-We now assign (oriented) edges to levels, as a prelude to our routing regimen.
-
-\smallskip
-
-Focus on an edge $e$.  We say that $e$ is a level-$\ell$ edge if $\ell$ is the smallest integer such that the endpoints of $e$ are in distinct level-$\ell$ quadrants.
-
-  \medskip\item
-As the final step in creating our abstract traffic model, we impose the following routing regimen upon the travelers in our city.
-
-\smallskip
-
-In order to travel from site $\langle i,j \rangle$ to site $\langle h,k \rangle$, a traveler:
-    \begin{itemize}
-    \item
-must traverse the at-most three edges that lead site $\langle i,j \rangle$ to some site $\langle i_1,j_1 \rangle$ within the same quadrant as site $\langle h,k \rangle$.
-
-   \medskip\item
-From that point on, the traveler recursively finds an acceptable path from site $\langle i_1,j_1 \rangle$ to site $\langle h,k \rangle$.
-    \end{itemize}
-**************************}
-
-ROUTING
-
+The roads in the city honor the hierarchical structure of the quadrants.  The first two levels of this structure are discernible in Fig.~\ref{fig:PeripheralRoads}.  Peripheral roads that encircle a level-$\ell$ (sub-)quadrant are called {\em level}-$\ell$ roads.
 \begin{figure}
 \[
 \begin{array}{c|ccc|ccc|c}
@@ -2156,30 +2124,57 @@ ROUTING
 \caption{Two levels of the routing structure in the city: The top-level peripheral road and the four peripheral roads at the next level}
 \label{fig:PeripheralRoads}
 \end{figure}
+As the figure suggests, all roads are {\em clockwise} directed cycles; each is a {\em peripheral} road around a level-$\ell$ (sub-)quadrant.  The figure depicts the longest peripheral road, which encircles the entire city, in addition to the four next-longest peripheral road, each of which encircles one of the city's top-level quadrants.
 
-  \end{itemize}
+\medskip
 
+All journeys begin by traversing one of the peripheral road, say a level-$\ell$ road.  If the current level-$\ell$ road runs adjacent to a level-$(\ell -1)$ road or a level-$(\ell +1)$ road, then a traveler can switch from the current road to one of these roads at an adjacent level.  Fig.~\ref{fig:PeripheralRoads2} illustrates two of these switches, one to a higher-level road, one to a lower-level road.
 
+\begin{figure}
+\[
+\begin{array}{c|ccc|ccc|c}
+\nearrow & \Rightarrow & \rightarrow & \rightarrow & \rightarrow & \rightarrow & \rightarrow & \searrow \\
+\hline
+\Uparrow & \nearrow & \Rightarrow & \searrow     & \nearrow  & \rightarrow & \searrow         & \downarrow \\
+\Uparrow & \uparrow &                   & \Downarrow & \uparrow &                    & \downarrow    & \downarrow \\
+\uparrow & \nwarrow & \Leftarrow    & \swarrow    & \nwarrow & \leftarrow    & \swarrow       & \downarrow \\
+\hline
+\uparrow & \nearrow & \leftarrow    & \searrow     & \nearrow  & \rightarrow  & \searrow      & \downarrow \\
+\uparrow & \uparrow &                    & \downarrow & \uparrow &                    & \downarrow  & \downarrow \\
+\uparrow & \nwarrow & \leftarrow    & \swarrow     & \nwarrow & \leftarrow     & \swarrow    & \downarrow \\
+\hline
+\nwarrow & \leftarrow & \leftarrow & \leftarrow & \leftarrow & \leftarrow & \leftarrow                     & \swarrow
+\end{array}
+\]
+\caption{A tour around the city's northwestern quadrant: The tour switches from the level-0 road to the level-1 road at grid-position $\langle 0,1 \rangle$, and it switches back at grid-position $\langle 2,0 \rangle$.}
+\label{fig:PeripheralRoads2}
+\end{figure}
+The double-arrows in the figure trace the route of the traveler.
+ \end{itemize}
 
+\medskip
 
-Now we are ready to analyze our model.  
-In both of the sought analyses, the phrase ``worst-case" means that the sites are situated pessimally for our regimen.
+Now we are ready to analyze our design, using two cost-models.  
   \begin{enumerate}
   \item
-In the {\em metro} version of the model, we pay a fee every time we encounter a new site on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
+In the {\em metro} version of the model, we pay a fee every time we change levels during our journey from source site $\langle i,j \rangle$ to destination site $\langle h,k \rangle$.
 
 \smallskip
 
-{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site,$\langle h,k \rangle$, under the \underline{metro} model?}
+{\em What is the cost of a trip from a site $\langle i,j \rangle$ to site $\langle h,k \rangle$, under the \underline{metro} model?}
 
   \medskip\item
 In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/2)^\ell}$ units every time we traverse a level-$\ell$ edge on the way from $\langle i,j \rangle$ to $\langle h,k \rangle$.
  
  \smallskip
 
-{\em What is the cost of a trip from a site $\langle i,j \rangle$ to the most-distant site, $\langle h,k \rangle$, under the \underline{driving} model?}
+{\em What is the cost of a trip from a site $\langle i,j \rangle$ to $\langle h,k \rangle$, under the \underline{driving} model?}
 
+\smallskip
+
+Your analysis under both models should concentrate on grid-levels that must be changed during the trip.
  \end{enumerate}
+\ignore{*******************
  \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresGraph/routingCitySolution1}
@@ -2201,75 +2196,6 @@ In the {\em driving} version of the model, we pay a per-kilometer fee of $n^{(1/
 %  \label{fig:routingCity}
 \end{center}
 \end{figure}
+***********************}
 \end{enumerate}
-
-
-
-%
-%The subgraph of $\m_{m,n}$ defined by the vertex-set
-%\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
-%  m\}\right], \ \ \left[1 \leq j < n\right]\}
-%\]
-%and all edges both of whose endpoints belong to that set is called the
-%$i$th {\it row} of $\m_{m,n}$
-%Dually, the subgraph of $\m_{m,n}$ defined by the vertex-set
-%\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
-%  n\}\right], \ \ \left[1 \leq i < m\right] \}
-%\]
-%and all edges both of whose endpoints belong to that set is called the
-%$j$th {\it column} of $\m_{m,n}$.
-%
-%
-%\begin{itemize}
-%     \medskip\item
-%Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
-%\ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner vertices}
-%(or, just {\it corners}) of $\m_{m,n}$.
-%     \medskip\item
-%The path-graph consisting of the vertex-set
-%\[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
-%\langle 1, \ n \rangle \}
-%\]
-%together with all edges of $\m_{m,n}$ both of whose endpoints belong
-%to this set, is the {\it top edge} of $\m_{m,n}$.
-%
-%The other edges of $\m_n$ are defined analogously:
-%
-%\medskip
-%
-%The {\it bottom edge} of $\m_{m,n}$ is the path-graph built upon the
-%vertex-set
-%\[ \{ \langle m, \ 1 \rangle, \ \langle m, \ 2 \rangle, \ldots, \
-%\langle m, \ n \rangle \}
-%\]
-%
-%The {\it left edge} of $\m_{m,n}$ is the path-graph built upon the
-%vertex-set
-%\[ \{ \langle 1, \ 1 \rangle, \ \langle 2, \ 1 \rangle, \ldots, \
-%\langle m, \ 1 \rangle \}
-%\]
-%
-%The {\it right edge} of $\m_{m,n}$ is the path-graph built upon the
-%vertex-set
-%\[ \{ \langle 1, \ n \rangle, \ \langle 2, \ n \rangle, \ldots, \
-%\langle m, \ n \rangle \}
-%\]
-%\end{itemize}
-%\medskip
-%
-%Same for the torus graphs:
-%
-%The subgraph of $\widetilde{\m}_{m,n}$ defined by the vertex-set
-%\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[i \in \{1, 2, \ldots,
-%  m\}\right], \ \ \left[1 \leq j \leq n\right]\}
-%\]
-%and all edges both of whose endpoints belong to that set is called the
-%$i$th {\it row} of $\widetilde{\m}_{m,n}$
-%Dually, the subgraph of$\widetilde{\m}_{m,n}$ defined by the vertex-set
-%\[ \{ \langle i, \ j \rangle  \ \ | \ \ \left[j \in \{1, 2, \ldots,
-%  n\}\right], \ \ \left[1 \leq i \leq m\right] \}
-%\]
-%and all edges both of whose endpoints belong to that set is called the
-%$j$th {\it column} of $\widetilde{\m}_{m,n}$.
-%\medskip
 
