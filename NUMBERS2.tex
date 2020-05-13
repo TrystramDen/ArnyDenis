@@ -1,4 +1,4 @@
-%version of 04-30-20
+%version of 05-13-20
 
 \chapter{Numbers II:
 Building the Integers and Building with the Integers}
@@ -270,13 +270,9 @@ In fact, we claim that $n^\star$ is a prime that is not in the sequence {\bf Pri
 \smallskip
 
 To see this, note that for each $P_k$ in the sequence,
-\[
-n^\star / p_k \ \ = \ \ \frac{1}{p_k} \ + \ \prod_{i \neq k} \ p_i .
-\]
+\[ n^\star / p_k \ \ = \ \ \frac{1}{p_k} \ + \ \prod_{i \neq k} \ p_i .  \]
 Because $p_k \geq 2$, we see that $n^\star / p_k$ obeys the inequalities
-\[
-\prod_{i \neq k} \ p_i \ < \ n^\star /p_k \ < \ 1 + \prod_{i \neq k} \ p_i.
-\] 
+\[  \prod_{i \neq k} \ p_i \ < \ n^\star /p_k \ < \ 1 + \prod_{i \neq k} \ p_i.  \] 
 The discreteness of the set $\Z$---see Section~\ref{sec:integer-number-line}---implies that $n^\star / p_k$ is not an integer, because it lies strictly between two adjacent integers.
 
 \medskip\item
@@ -307,8 +303,108 @@ numbers.  {\em We therefore conclude that this vulnerable assumption is false!}
 In other words: {\em There are infinitely many prime numbers.}  \qed
 \end{proof}
 
+\subsubsection{Number sieves: Eratosthenes and Euler}
+\label{sec:sieves}
 
-\subsubsection{Applying the Theorem in {\em encryption}}
+\index{Eratosthenes of Cyrene}
+\index{sieve of Eratosthenes}
+
+The 3rd century BCE Greek polymath Eratosthenes of Cyrene is widely credited with a conceptual algorithm---{\it the sieve}---which exhibits the prime factors of integers in a perspicuous manner.  We define the {\it sieve of Eratosthenes} and suggest some of its applications.
+
+\medskip
+
+We formulate the sieve as a regimen for labeling integers with their prime factors.  We use the label $\lambda_p$ to identify integers which are multiples of prime $p$.
+
+\medskip
+
+We begin with the linear array of positive integers:
+
+\smallskip
+
+\hspace*{.25in}$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13
+\end{array}$ \ldots
+
+\medskip
+
+We next label the multiples of $2$ (i.e., the even numbers):
+
+\smallskip
+
+\hspace*{.25in}$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 &
+\end{array}$ \ldots
+
+\medskip
+
+We then label the multiples of $3$:
+
+\smallskip
+
+\hspace*{.25in}$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
+ & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 &
+\end{array}$ \ldots
+
+\medskip
+
+We then label the multiples of $5$:
+
+\smallskip
+
+\hspace*{.25in}$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
+ & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
+ & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 & \\
+ & & & & \lambda_5 & & & & & \lambda_5 & & & 
+\end{array}$ \ldots
+
+\bigskip
+
+The sieve affords one a wonderful perspective for perceiving the patterns that drive mathematical insights.  Here are a few results that you will be asked to prove as exercises, which are suggested by studying the sieve.
+{\em
+\begin{enumerate}
+\item
+Every integer $n > 1$ is divisible by at least one prime number.
+\medskip\item
+Every sequence $(k+1)$, $(k+2)$, \ldots , $(k+p)$ of $p$ consecutive integers contains a multiple of $p$.
+\medskip\item
+Every product of four consecutive integers, $(k+1) \cdot (k+2) \cdot (k+3) \cdot (k+4)$ is divisible by {\sc fact}$(4)$.
+\end{enumerate}
+}
+
+\medskip
+
+Our respected friend Leonhard Euler developed an alternative version of the sieve, which is more convenient for studying certain topics involving integer divisibility.  In his version of the sieve, each prime and all of its multiples are removed from the sieve as soon as their existence is acknowledged.  Our earlier construction of Eratosthenes's version of the sieve now becomes:
+
+\index{Euler, Leonhard}
+\index{sieve of Euler}
+
+\medskip
+
+\hspace*{.25in}$\begin{array}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\mbox{Initial array:} &
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & \cdots \\
+\mbox{after prime $2$ is processed:} &
+1 &  & 3 &  & 5 &  & 7 &  & 9 &  & 11 &  & 13 & \cdots \\
+\mbox{after primes $2, 3$ are processed:} &
+1 &  &  &  & 5 &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
+\mbox{after primes $2, 3, 5$ are processed:} &
+1 &  &  &  &  &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
+\hspace*{.8in} \vdots  &
+ &  &  &  &  &  & \vdots &  &  &  &  &  &  & \\
+\hline
+\end{array}$
+
+\smallskip
+
+We shall revisit both versions of the sieve in the Exercises for this chapter.
+
+
+\subsubsection{Applying the Fundamental Theorem in {\em encryption}}
 \label{sec:apply-FTA}
 
 \index{number!using the Fundamental Theorem of Arithmetic for encoding}
@@ -1649,57 +1745,8 @@ The Fundamental Theorem of Arithmetic yields a particularly charming proof of Pr
 
 \smallskip
 
-The 3rd century BCE Greek polymath Eratosthenes of Cyrene is widely credited with a conceptual algorithm---{\it the sieve}---which identifies the prime factors of integers.  This exercise studies the algorithm and some applications.
-
-\medskip
-
-We formulate the sieve as a regimen for labeling integers with their prime factors.  For simplicity, we use the label $\lambda_p$ to identify integers which are multiples of prime $p$.
-
-\medskip
-
-We begin with the linear array of positive integers:
-
-$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13
-\end{array}$ \ldots
-
-\medskip
-
-We label the multiples of $2$ (i.e., the even numbers):
-
-$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
- & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 &
-\end{array}$ \ldots
-
-\medskip
-
-We label the multiples of $3$:
-
-$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
- & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
- & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 &
-\end{array}$ \ldots
-
-\medskip
-
-We label the multiples of $5$:
-
-$\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c}
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 \\
- & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & & \lambda_2 & \\
- & & \lambda_3 & &  & \lambda_3 & & & \lambda_3 & & & \lambda_3 & \\
- & & & & \lambda_5 & & & & & \lambda_5 & & & 
-\end{array}$ \ldots
-
-\bigskip
-
-The sieve affords one a wonderful perspective for perceiving the patterns that drive mathematical insights.  Here are a few results for you to prove, which are suggested by a perusal of the sieve.
-
+{\em Prove the following results which are presaged by the sieve.}
 \smallskip
-
-{\em Prove the following results.}
      \begin{enumerate}
      \item
 \begin{prop}
@@ -1708,56 +1755,31 @@ Every integer $n>1$ is divisible by at least one prime number.
 
      \medskip\item
 \begin{prop}
-Every sequence $k+1, \ldots, k+p$ of $p$ integers contains a multiple of $p$.
+Every sequence $(k+1), \ (k+2), \ldots, \ (k+p)$ of $p$ integers contains a multiple of $p$.
 \end{prop}
 
-      \medskip\item $\oplus$ This result calls for ``second-order" insights from the sieve.
+      \medskip\item 
+      $\oplus$ The following result calls for ``second-order" insights from the sieve.
 \begin{prop}
-Every product of four consecutive integers, $(k+1) \cdot (k+2) \cdot (k+3) \cdot (k+4)$ is divisible by $4!$
+Every product of four consecutive integers,
+\[ (k+1) \cdot (k+2) \cdot (k+3) \cdot (k+4) \]
+is divisible by {\sc fact}($4$).
 \end{prop}
 
 \smallskip
 
-{\em Hint}:  Look at the {\em multiplicity} with which a given prime divides a given number, particularly within the context of the spacings of the divisibilities---e.g., every even number that is $2 \times$ an odd number is followed by an even number that is $2 \times$ an even number.  
+{\em Hint}:  Look at the {\em multiplicity} with which a given prime divides a given number, particularly within the context of the spacings of the divisibilities---e.g., every even number that is $2 \times$ (an odd number) is followed by an even number that is $2 \times$ (an even number).  
 
-\smallskip
-
-$\oplus \oplus$ {\em Extend this exercise to divisors other than $4$.}
-
-\medskip\item
-$\oplus$
-The sieve affords us an alternative proof that there are infinitely many primes, particularly via the alternative version that is due to Leonhard Euler.  In this version of the sieve, each prime and all of its multiples are removed from the sieve as soon as their existence is acknowledged.  Our earlier construction of Eratosthenes's version of the sieve now becomes:
-
-\index{Euler, Leonhard}
-\index{sieve of Euler}
-
-\medskip
-
-$\begin{array}{|l||c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
-\mbox{Initial array:} &
-1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & \cdots \\
-\mbox{after prime $2$ is processed:} &
-1 &  & 3 &  & 5 &  & 7 &  & 9 &  & 11 &  & 13 & \cdots \\
-\mbox{after primes $2, 3$ are processed:} &
-1 &  &  &  & 5 &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
-\mbox{after primes $2, 3, 5$ are processed:} &
-1 &  &  &  &  &  & 7 &  &  &  & 11 &  & 13 & \cdots \\
-\hspace*{.8in} \vdots  &
- &  &  &  &  &  & \vdots &  &  &  &  &  &  & \\
-\hline
-\end{array}$
-
-
-\bigskip
-
-{\em Use Euler's sieve to prove that there are infinitely many primes.}
-
-\medskip
-
-{\em Hint:} If there were only finitely many primes, then at some (finite) stage in processing the sieve, the list of integers would be reduced to the single integer $1$.
+  \medskip\item
+$\oplus \oplus$ 
+\begin{prop}
+For every integer $n$, every product of $n$ consecutive integers,
+\[ (k+1) \times (k+2) \times \cdots \times (k+n) \]
+is divisible by {\sc fact}($n$).
+\end{prop}
      \end{enumerate}
   \end{enumerate}
+
 
   \medskip\item
 $\oplus \oplus$
@@ -1767,7 +1789,7 @@ $\oplus \oplus$
 
 \smallskip
 
-{\em Prove that the following assertion is true for every positive integer $n$.}
+{\em Prove the following assertion.}
 
 \begin{prop}
 For every positive integer $n$:  If you remove {\em any} $n+1$ integers from the set $S = \{ 1, 2, \ldots, 2n\}$, then the set of removed integers contains at least one pair $p$ and $q > p$ such that $p$ divides $q$.
