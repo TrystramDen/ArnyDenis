@@ -228,15 +228,19 @@ We conclude that one of the products (\ref{eq:product1.1}) and (\ref{eq:product2
 \subsubsection{A ``prime'' corollary: There are infinitely many primes}
 \label{sec:infinite-primes}
 
-\index{Euclid}
-The main result of this section, which is traditionally attributed to (our friend, by now) Euclid, invokes Theorem~\ref{thm:Fund-Thm-Arith} in a crucial way.
+The main result of this section builds upon Theorem~\ref{thm:Fund-Thm-Arith} in a crucial way.
 
 \begin{prop}
 \label{thm:infinite-primes}
 There are infinitely many prime numbers.
 \end{prop}
 
-\begin{proof}
+We provide two proofs of this seminal result.  The first, classical, proof is traditionally attributed to (our friend, by now) Euclid.  The second, mathematically more interesting, proof is the work of Euler, who is quickly becoming another friend.
+
+\index{Euclid} \index{Euler, Leonhard}
+\index{infinitely many primes, Euclid's proof}
+
+\begin{proof} [Euclid's classical proof]
 We know that the first several primes are
 \[ (p_1 =2), \ (p_2 = 3), \ (p_3 =5), \ (p_4 = 7), \ (p_5 =11), \ldots \] 
 How far does this sequence extend?  Does it ever end?
@@ -303,30 +307,45 @@ numbers.  {\em We therefore conclude that this vulnerable assumption is false!}
 In other words: {\em There are infinitely many prime numbers.}  \qed
 \end{proof}
 
-We present below an alternative proof. 
-It involves several pieces of Mathematics and thus, this is a wonderful example of connected and related techniques.
-This is due to the Leonard Euler in the 19th century.
+\index{infinitely many primes, Euler's proof}
 
-The idea is to prove that a given expression of products of primes is not bounded.
+\smallskip
 
-Let $\widehat{P}$ denote the set of primes and assume it is infinite.
-Let us consider the product:
-\[
-\prod_{p \in \widehat{P}} \frac{p}{p-1}
-\] 
+\begin{proof} [Euler's 19th century proof]
+We now present Euler's proof of the infinitude of primes, which postdates Euclid's by roughly four millennia.  Being an elegant tapestry crafted from several quite-distinct pieces of mathematics, this proof a wonderful example of the kinds of unexpected connections that appear within mathematics once you learn where to look.
 
-\[
-\frac{p}{p-1} = \frac{1}{1-1/p}\], it corresponds to the sum of a geometric series: 
+\medskip
 
-\[
-\frac{1}{1-1/p} \ = \ \sum_{k=0}^{\infty} \left( \frac{1}{p} \right)^k \ = \ \sum_{k=0}^{\infty} \frac{1}{p^k}
+The idea underlying this proof is to establish that a given expression involving products of primes is not bounded.
+
+\smallskip
+
+Let $\widehat{P}$ denote the {\em set} of all prime numbers.  (We highlight the word ``set" to distinguish $\widehat{P}$, which certainly exists, from Euclid's sequence {\bf Prime-Numbers}, which we now know does not exist.)
+
+\smallskip
+
+Consider the product:
+\begin{equation}
+\label{eq:prod-widehat-P}
+ \prod_{p \in \widehat{P}} \ \frac{p}{p-1} \ = \ \prod_{p \in \widehat{P}} \ \frac{1}{1-1/p} 
+\end{equation}
+We know from Section~\ref{sec:geometric-sums} that $p/(p-1)$ is the sum of the geometric series of powers of $1/p$: 
+\[ \frac{1}{1-1/p} \ = \ 
+%\sum_{k=0}^{\infty} \left( \frac{1}{p} \right)^k \ = \ 
+\sum_{k=0}^{\infty} \frac{1}{p^k}
 \]
+We can now perform some manipulations that reorder the additions and multiplications which are embedded with the product (\ref{eq:prod-widehat-P}).
 
 \begin{eqnarray}
-\prod_{p \in \widehat{P}} \frac{p}{p-1} & \ = & \ \prod_{p \in \widehat{P}} \left( \sum_{k=0}^{\infty} \frac{1}{p^k} \right) \\
-& \ = & \ \sum_{k=0}^{\infty} \left( \prod_{p \in \widehat{P}} \frac{1}{p^k} \right)\\
-& \ = & \ \sum_{k=0}^{\infty} \frac{1}{\prod_{p \in \widehat{P}} p^k} 
+\prod_{p \in \widehat{P}} \ \frac{p}{p-1}
+\nonumber
+         & = & \prod_{p \in \widehat{P}} \ \left( \sum_{k=0}^{\infty} \frac{1}{p^k} \right) \\
+\nonumber
+         & = & \sum_{k=0}^{\infty} \ \left( \prod_{p \in \widehat{P}} \frac{1}{p^k} \right) \\
+\label{eq:sumprod-widehat-P}
+         & = & \sum_{k=0}^{\infty} \ \frac{1}{\prod_{p \in \widehat{P}} p^k} 
 \end{eqnarray}
+
 
 The fundamental theorem of arithmetic~\ref{thm:Fund-Thm-Arith} tells us that any integer is fully characterized by its (unique) decomposition over a product of powers of primes. In our context, this theorem means that the sum of all products of primes to the power $k$ scans the whole set of integers, thus
 \[
@@ -338,8 +357,8 @@ Thus, the expression
 \prod_{p \in \widehat{P}} \frac{p}{p-1}
 \] 
 is infinite.
-By a straightforward contradiction, the only way that it is possible is that there are an infinity of primes.
-
+By a straightforward contradiction, the only way that it is possible is that there are an infinity of primes.  \qed
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
