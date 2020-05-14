@@ -269,7 +269,7 @@ In fact, we claim that $n^\star$ is a prime that is not in the sequence {\bf Pri
 
 \smallskip
 
-To see this, note that for each $P_k$ in the sequence,
+To see this, note that for each $p_k$ in the sequence,
 \[ n^\star / p_k \ \ = \ \ \frac{1}{p_k} \ + \ \prod_{i \neq k} \ p_i .  \]
 Because $p_k \geq 2$, we see that $n^\star / p_k$ obeys the inequalities
 \[  \prod_{i \neq k} \ p_i \ < \ n^\star /p_k \ < \ 1 + \prod_{i \neq k} \ p_i.  \] 
@@ -302,6 +302,46 @@ numbers.  {\em We therefore conclude that this vulnerable assumption is false!}
 
 In other words: {\em There are infinitely many prime numbers.}  \qed
 \end{proof}
+
+We present below an alternative proof. 
+It involves several pieces of Mathematics and thus, this is a wonderful example of connected and related techniques.
+This is due to the Leonard Euler in the 19th century.
+
+The idea is to prove that a given expression of products of primes is not bounded.
+
+Let $\widehat{P}$ denote the set of primes and assume it is infinite.
+Let us consider the product:
+\[
+\prod_{p \in \widehat{P}} \frac{p}{p-1}
+\] 
+
+\[
+\frac{p}{p-1} = \frac{1}{1-1/p}\], it corresponds to the sum of a geometric series: 
+
+\[
+\frac{1}{1-1/p} \ = \ \sum_{k=0}^{\infty} \left( \frac{1}{p} \right)^k \ = \ \sum_{k=0}^{\infty} \frac{1}{p^k}
+\]
+
+\begin{eqnarray}
+\prod_{p \in \widehat{P}} \frac{p}{p-1} & \ = & \ \prod_{p \in \widehat{P}} \left( \sum_{k=0}^{\infty} \frac{1}{p^k} \right) \\
+& \ = & \ \sum_{k=0}^{\infty} \left( \prod_{p \in \widehat{P}} \frac{1}{p^k} \right)\\
+& \ = & \ \sum_{k=0}^{\infty} \frac{1}{\prod_{p \in \widehat{P}} p^k} 
+\end{eqnarray}
+
+The fundamental theorem of arithmetic~\ref{thm:Fund-Thm-Arith} tells us that any integer is fully characterized by its (unique) decomposition over a product of powers of primes. In our context, this theorem means that the sum of all products of primes to the power $k$ scans the whole set of integers, thus
+\[
+\prod_{p \in \widehat{P}} \frac{1}{1-1/p} \ = \ \sum_{n=1}^{\infty} \frac{1}{n}
+\]
+
+Thus, the expression 
+\[
+\prod_{p \in \widehat{P}} \frac{p}{p-1}
+\] 
+is infinite.
+By a straightforward contradiction, the only way that it is possible is that there are an infinity of primes.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Number sieves: Eratosthenes and Euler}
 \label{sec:sieves}
