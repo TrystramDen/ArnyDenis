@@ -332,8 +332,31 @@ Consider the product:
 We know from Section~\ref{sec:geometric-sums} that $p/(p-1)$ is the sum of the geometric series of powers of $1/p$: 
 \[ \frac{1}{1-1/p} \ = \ 
 %\sum_{k=0}^{\infty} \left( \frac{1}{p} \right)^k \ = \ 
-\sum_{k=0}^{\infty} \frac{1}{p^k}
+\sum_{k=0}^{\infty} \frac{1}{p^k} 
 \]
+Combining the preceding two equations, we see that
+\begin{equation}
+\label{eq:prod-widehat-P-2}
+\prod_{p \in \widehat{P}} \ \frac{p}{p-1} \ = \
+ \prod_{p \in \widehat{P}} \ \left( \sum_{k=0}^{\infty} \frac{1}{p^k} \right)
+\end{equation}
+We can now expand the product of sums on the righthand side Eq.~(\ref{eq:prod-widehat-P-2}).  After applying all of the relevant laws of arithmetic---the commutativity and associativity of both addition and multiplication, and the distributivity of multiplication over addition---we can rewrite the product of sums as the following summation
+\begin{equation}
+\label{eq:prod-widehat-P-3}
+ \prod_{p \in \widehat{P}} \ \frac{p}{p-1} \ = \
+\sum \ \frac{1}{p_{i_1}^{a_1} p_{i_2}^{a_2} \cdots p_{i_k}^{a_k}}
+\end{equation}
+where the summation is over all choices of
+\begin{itemize}
+\item
+a positive integer $k$
+\item
+a $k$-element sequence of primes $2 \leq p_{i_1} < p_{i_2} < \cdots < p_{i_k}$
+\item
+a $k$-element sequence of nonnegative integers $a_1, \ a_2, \ \ldots,  \ a_k$
+\end{itemize}
+
+\ignore{***********
 We can now perform some manipulations that reorder the additions and multiplications which are embedded with the product (\ref{eq:prod-widehat-P}).
 \begin{eqnarray}
 \prod_{p \in \widehat{P}} \ \frac{p}{p-1}
@@ -347,9 +370,19 @@ We can now perform some manipulations that reorder the additions and multiplicat
 
 \smallskip
 
-We now interpret expression (\ref{eq:sumprod-widehat-P}) within the context of Theorem~\ref{thm:Fund-Thm-Arith}.  Because every integer is completely characterized by its (unique) decomposition as a product of powers of primes, we see that the sum of all products of primes to all possible power encompasses the whole set of positive integers.  Therefore, we have
-\[ \prod_{p \in \widehat{P}} \ \frac{1}{1-1/p} \ = \ \sum_{n \in \mathbb{N}} \ \frac{1}{n} \]
-which means, by Proposition~\ref{thm:harmonic}, that the product (\ref{eq:prod-widehat-P}) is infinite.  Since any product of finitely many integers is finite, the only way that this product could be infinite is that there are infinitely many primes.  \qed
+We now interpret expression (\ref{eq:sumprod-widehat-P}) within the context of 
+****************}
+
+But, now, Theorem~\ref{thm:Fund-Thm-Arith} tells us that the summation in Eq.~(\ref{eq:prod-widehat-P-3}) includes the reciprocal of every positive integer as a summand. This is because every such integer is completely characterized by its (unique) decomposition as a product of powers of primes.  This means, though, that the product (\ref{eq:prod-widehat-P}) has the same value as the harmonic series $S^{(H)}$:
+\[ \prod_{p \in \widehat{P}} \ \frac{1}{1-1/p} \ = \ 
+\sum_{n \in \mathbb{N}} \ \frac{1}{n} \ = \  S^{(H)} 
+\]
+which, by Proposition~\ref{thm:harmonic}, is infinite!
+
+\smallskip
+
+Since any product of finitely many numbers is finite, the only way that product 
+(\ref{eq:prod-widehat-P}) could be infinite is if there were infinitely many primes.  We conclude that this must be the case.  \qed
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
