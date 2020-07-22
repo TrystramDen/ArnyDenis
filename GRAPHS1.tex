@@ -1,17 +1,17 @@
-%version of 05-10-20
+%version of 07-22-20
 
 \chapter{Graphs I:
 Representing Relationships Mathematically}
 \label{ch:Graphs1}
 \index{graph}
 
-\begin{quote}
-``Oh what a tangled web we weave \ldots" 
+\hfill
+\begin{tabular}{l}
+{\em Oh what a tangled web we weave \ldots} \\
+\hfill {\small Sir Walter Scott ({\it Marmion})}
+\end{tabular}
 
-\hspace*{.75in}Sir Walter Scott, {\it Marmion}
-\end{quote}
-
-\bigskip
+\vspace*{.5in}
 
 \noindent
 Graphs provide one of the richest technical and conceptual frameworks in the world of computing.  They provide tangible structural representations of the manifold data interrelationships that are needed to craft sophisticated algorithms.  Indeed, they embody valuable abstractions of relationships of all sorts, hence must be well understood in order to discuss entities as varied as web-search engines and social networks with precision and rigor.  As with most of the areas we cover in this text, graph-oriented concepts must be studied ``in layers'', with each reader delving to a depth that is appropriate for their goals.   The fact that so much of modern society depends on understanding interconnections of all sorts suggests that every reader should master at least the basic concepts of graph theory, as exposed by the first two sections of this chapter.  The remainder of this chapter, and the entirety of the next, provide a buffet of more specialized and/or advanced topics, with delicacies for the aspiring mathematician, computer scientist,  computer engineer, computational scientist, data scientist, \ldots.  Please peruse, sample, and enjoy.
@@ -746,7 +746,7 @@ We note in closing that, while edge-weightings often complicate computational pr
 \section{Trees and Spanning Trees}
 \label{sec:Trees}
 
-\index{graph!trees} \index{trees} \index{forest (of trees)} \index{graph!cycle-free}
+\index{graph!tree} \index{tree} \index{forest (of trees)} \index{graph!cycle-free}
 
 The special class of graphs called {\it trees} occupy a place of honor within both the mathematical field called {\it graph theory} and within the vernacular.  Trees are identified mathematically as graphs that contain no cycles (as subgraphs) or, equivalently, as graphs in which each pair of vertices is connected by a unique path: a tree is thus the embodiment of ``pure'' connectivity:  it provides the minimal interconnection structure (in number of edges) that provides paths that connect every pair of vertices; see Fig.~\ref{fig:tree}.
 \begin{figure}[hbt]
@@ -842,12 +842,12 @@ This extends the induction, hence completes the proof.  \qed
 
 \bigskip
 
-\index{trees!parent vertex}
-\index{trees!child vertex}
-\index{trees!ancestor vertex}
-\index{trees!descendant vertex}
-\index{trees!root (vertex)} \index{root (of a directed tree)} 
-\index{trees!leaf (vertex)}\index{leaf (of a directed tree)}
+\index{tree!parent vertex}
+\index{tree!child vertex}
+\index{tree!ancestor vertex}
+\index{tree!descendant vertex}
+\index{tree!root (vertex)} \index{root (of a directed tree)} 
+\index{tree!leaf (vertex)}\index{leaf (of a directed tree)}
 
 Just as with graphs, there is a {\em directed} version of trees, which is formed by replacing
 the (nonoriented) edges of an undirected tree by (oriented) arcs; see Fig.~\ref{fig:tree}(right).  Within a directed tree $\t$, one often says that an arc goes {\em from} a {\it parent vertex} {\em to} a {\it child vertex}.  Extending this anthropomorphic metaphor, one often talks about the {\it ancestor(s)}  and {\it descendant(s)} of a tree-vertex.  We single out two special classes of vertices: A {\it root (vertex)} of $\t$ is defined by having no entering arcs, i.e., by having indegree $0$; a {\it leaf (vertex)} of $\t$ is defined by having no exiting arcs, i.e., by having outdegree $0$.
@@ -891,7 +891,7 @@ great-grandchild, etc.  Every vertex of the tree is the root of a singly-rooted 
 
 \bigskip
 
-\index{trees!singly-rooted!hierarchy} \index{hierarchy}
+\index{tree!singly-rooted!hierarchy} \index{hierarchy}
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
@@ -913,7 +913,7 @@ digraphs.  Paths in trees which start at the root are often called
 {\em branches}.  The {\em acyclicity} of a tree $\t$ means that for
 any branch of $\t$ of the form (\ref{eq:di-path}), we cannot have $u_1
 = u_n$, for this would create a cycle.  Each singly-rooted tree $\t$
-has a designated {\em root vertex} \index{trees!root vertex} $u_n \in
+has a designated {\em root vertex} \index{tree!root vertex} $u_n \in
 \n_{\ft}$ that resides at the end of a branch (\ref{eq:di-path}) that
 starts at $r_{\ft}$ (so $u_1 = r_{\ft}$) is said to reside at {\em
   depth} $n-1$ in $\t$; by convention, $r_{\ft}$ is said to reside at
@@ -922,15 +922,15 @@ root $r_{\ft}$ has some number (possibly $0$) of arcs that go from
 $r_{\ft}$ to its {\em children,} each of which thus resides at depth
 $1$ in $\t$; in turn, each child has some number of arcs (possibly
 $0$) to its children, and so on.  For each arc $(u \rightarrow v) \in
-A_{\ft}$, we call $u$ a {\it parent} \index{trees!parent vertex} of $v$,
-and $v$ a {\it child} \index{trees!child vertex} of $u$, in $\t$;
+A_{\ft}$, we call $u$ a {\it parent} \index{tree!parent vertex} of $v$,
+and $v$ a {\it child} \index{tree!child vertex} of $u$, in $\t$;
 clearly, the depth of each child is one greater than the depth of its
 parent.  Every vertex of $\t$ except for $r_{\ft}$ has precisely one
 parent; $r_{\ft}$ has no parents.  A childless vertex of a tree is a
-{\em leaf}, \index{trees!leaf vertex} i.e., a vertex of degree $1$.  The
+{\em leaf}, \index{tree!leaf vertex} i.e., a vertex of degree $1$.  The
 transitive extensions of the parent and child relations are,
-respectively, the {\em ancestor} \index{trees!ancestor vertex} and {\em
-  descendant} \index{trees!descendant vertex} relations.  The {\em
+respectively, the {\em ancestor} \index{tree!ancestor vertex} and {\em
+  descendant} \index{tree!descendant vertex} relations.  The {\em
   degree} \index{degree (of a vertex in a tree)} of a vertex $v$ in a tree
 is the number of children that the vertex has, call it $c_v$.  If every
 non-leaf vertex in a tree has the same degree $c$, then we call $c$ the
@@ -1170,7 +1170,7 @@ Of course, $n-1$ is an upper bound on the diameter of any $n$-vertex digraph.  T
 \end{center}
 \end{figure}
 
-\subsection{The {\it Complete graph}, or, {\it Clique} $\k_n$}
+\subsection{The {\it Complete graph} ({\it Clique}) $\k_n$}
 \label{sec:clique}
 \index{complete graph} \index{clique} 
 \index{complete graph!vertex-degrees} \index{clique!vertex-degrees}
@@ -1276,7 +1276,7 @@ In summary, $M_k$ grows exponentially with the parameter $k$, as claimed.  \qed
 
 The two families of graphs we have discussed thus far---cycles and cliques---are recommended by their structural simplicity:  They epitomize, respectively, the most sparse way (the cycle) and the most dense way (the clique) to completely interconnect $n$ vertices.  The remainder of this section is devoted to three families of graphs which have been found to be very useful in computational and communicational scenarios.  These graphs' structures are simple enough to be amenable to rigorous reasoning, while being rich enough to support a broad range of procedures that have been shown to afford one access to craft algorithms that exploit the potential efficiencies---in computation and communication---that one can achieve using modern technologies.
 
-\subsection{Sibling Networks: the {\it M}esh ($\m_{m,n}$); the {\it Torus} ($\widetilde{\m}_{m,n}$)}
+\subsection{Sibling Networks: the {\it Mesh} ($\m_{m,n}$); the {\it Torus} ($\widetilde{\m}_{m,n}$)}
 \label{sec:mesh}
 \index{mesh and torus networks}
 
