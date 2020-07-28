@@ -1,4 +1,4 @@
-%version of 07-23-20
+%version of 07-27-20
 
 \chapter*{Preface}
 
@@ -6,20 +6,46 @@ We live in a world of increasing professional and social diversity.  Computing c
 
 \smallskip
 
-Early computation-oriented academic programs focused narrowly on the principles and practices related to designing and using digital computers.  Discrete mathematics was ``automatically'' prepended to such programs, in recognition of the fact that every aspect of the design and use of computers built upon mathematical concepts and tools.  Today, these traditional programs have been joined by a broad range of curricula which focus on the computational concerns of an equally broad range of {\em consumers} of the craft of computing: from those interested in fields that touch upon technology, such as scientists or engineers, to those interested in nontechnological pursuits, such as scholars in the humanities or social studies, to practitioners in professions such as business, law, or medicine, and so on, all the way to members of the general population whose computing-related interests are avocational.  Within this new world, many aspiring users of computers need only very specialized knowledge of mathematics in order to compute successfully.  But, the amount and direction of the specialization can vary greatly
-based on a student's, or an academic program's, focus; therefore, absent a broad background in mathematics, a student may lack the technical tools necessary to conceive of and to pursue truly bold novel ideas.
+Early computation-oriented academic programs focused narrowly on the principles and practices related to designing and using digital computers.  Discrete mathematics was ``automatically'' prepended to such programs, in recognition of the fact that every aspect of the design and use of computers built upon mathematical concepts and tools.  Today, these traditional programs have been joined by a broad range of curricula which focus on the computational concerns of an equally broad range of {\em consumers} of the craft of computing: from those interested in fields that touch upon technology, such as scientists or engineers, to those interested in nontechnological pursuits, such as scholars in the humanities or social studies, to practitioners in professions such as business, law, or medicine, and so on, all the way to members of the general population whose computing-related interests are avocational (e.g., hobbyists).  Within this new world, many aspiring users of computers need only very specialized knowledge of mathematics in order to compute successfully.  But, the amount and direction of the specialization can vary greatly based on a student's, or an academic program's, focus; therefore, unless all or most students have a broad background in mathematics, some students may lack the technical tools necessary to conceive of and to pursue truly bold novel computational ideas.
 
 \bigskip
 
-The number of nontraditional students seeking technical education is growing, and the ways in which their nontraditional goals and backgrounds manifest themselves is increasing.  We have striven to keep this diversity in mind while writing this text.  First, we have included a broad range of material, in both subject and level.  Next, we have tried throughout to expound on the fundamentals of mathematical ideas, unadorned by superficial (from a mathematical perspective) details that arise in specific applications.   Finally, we have addressed certain basic notions (e.g., ``number") in layers of increasing detail, as we guide the reader along a journey from student to apprentice.
-
-\bigskip
-
-{\bf Our goal is to endow each reader with an {\em operational} understanding of an activity that we---hopefully evocatively---call ``{\em doing}'' mathematics.}  We want the reader to be able to recognize situations---especially, but not exclusively, relating to the world of computing---wherein mathematical reasoning and analysis can make a positive difference.  Of course, a large component of enabling this activity requires imparting mathematical knowledge relating to the fundamental concepts and tools and intellectual artifacts that we have inherited from our mathematical forebears.  Another part, though, requires transmitting the understanding of how to use the knowledge effectively and creatively.
+The number of nontraditional students seeking technical education is growing, and the ways in which their nontraditional goals and backgrounds manifest themselves is increasing.  We have striven to keep this diversity in mind while writing this text.
+\begin{itemize}
+\item
+We have included a broad range of material, in subject and level and depth.
+  \begin{itemize}
+  \item
+Some topics will be appropriate only for students with specific goals/interests.  For instance:
 
 \smallskip
 
-We have striven to design the text so that each chapter adds new computing-related mathematical concepts and techniques to the reader's toolkit.  We have designed each chapter to develop mathematical tools {\em in multiple ways}, with the hope that each reader, no matter what her goals, insights, and interests, will learn how to think mathematically and to achieve an {\em operational} understanding of both the activity of computing and the systems that enable that activity.
+We expect only aspiring hardware specialists study the design of carry-free digital adders (Chapter~\ref{ch:carry-free}).
+
+\smallskip
+
+We expect only students with interest in foundational topics to even glance at topics such as ``bijective" number systems (Section~\ref{sec:bijective-adic}).
+  \medskip\item
+Some topics will be studied casually by most students but much more deeply by aspiring specialists.  A topic such as graph coloring (Section~\ref{sec:graph-color}) should be on the menu for most students, because of the extensive range of ``real" applications which benefit from the topic.  We would, however, expect only students with specialized interests---such as task-scheduling---to delve deeply into the subject, say, by studying algorithms for assigning colors to the vertices of general graphs.
+  \medskip\item
+An extreme example of the preceding point relates to rather specialized subtopics that the general student will likely never encounter.  While all students will benefit from a cultural/historical introduction to the Fibonacci numbers (Section~\ref{sec:Fibonacci}), only a self-selected few will want to delve into the mathematical depths of the topic, as in 
+Sections~\ref{sec:Fibonacci-other-recurrences} and~\ref{sec:numerals-special-families}.
+  \end{itemize}
+
+\medskip\item
+We have tried throughout to expound on the fundamentals of mathematical ideas, unadorned by superficial (from a mathematical perspective) details that arise in specific applications.
+
+\medskip\item
+We have addressed certain basic notions (e.g., ``number") in layers of increasing detail, as we guide the reader along a journey from student to apprentice.
+\end{itemize}
+
+\bigskip
+
+{\bf Our goal is to endow each reader with an {\em operational} understanding of an activity that we---hopefully evocatively---call ``{\em doing}'' mathematics.}  We want the reader to be able to recognize situations---especially, but not exclusively, relating to the world of computing---wherein mathematical reasoning and analysis can make a positive difference.  Of course, a large component of enabling this activity requires imparting  mathematical knowledge relating to the fundamental concepts and tools and intellectual artifacts that we have inherited from our mathematical forebears.  Another part, though, requires transmitting the understanding of how to use the knowledge effectively and creatively.
+
+\smallskip
+
+We have tried to design the text so that each chapter adds new computing-related mathematical concepts and techniques to the reader's toolkit.  We have designed each chapter to develop mathematical tools {\em in multiple ways}, with the hope that each reader, no matter what her goals, background, and interests, will learn how to think mathematically and to achieve an {\em operational} understanding of both the activity of computing and the systems that enable that activity.
 
 \smallskip
 
@@ -43,21 +69,20 @@ With tongues only mildly impinging on our cheeks, we encapsulate the philosophy 
 
 \medskip
 
-An extreme illustration of this stratagem resides in our multiple derivations of the sum of the first $n$ positive integers.  
-The reader will encounter (in Chapter~\ref{ch:Summation}) derivations that adopt each of the following worldviews:
+An extreme illustration of this philosophy resides in our multiple derivations of the sum of the first $n$ positive integers.  The reader will encounter (in Chapter~\ref{ch:Summation}) derivations that adopt each of the following worldviews:
   \begin{enumerate}
     \item
-View the problem ``textually'', by writing out the summation symbolically and manipulating the resulting string.
-  \item
-View each positive integer $k$ as a height-$k$ unit-width rectangle.
-  \item
-View each positive integer $k$ as a collection of $k$ tokens (pebbles) which can be aggregated and manipulated in a variety of ways,
-  \item
-View the process of summation as a combinatorial object---specifically, the number of ways of selecting two items from a set of $n$ items.
-  \item
-View the problem geometrically, by drawing a figure and calculating its area.
-  \item
-View the integers via their familiar names (say, in decimal notation), and calculate their sum by replicating, rearranging, and counting the number of occurrences of different numbers.
+The problem is a ``textual'' one:  One writes out the summation symbolically and manipulates the resulting string (as in elementary school).
+  \medskip\item
+One views each positive integer $k$ as a height-$k$ unit-width rectangle:  One sums by calculating the combined area of the rectangles.
+ \medskip \item
+One views each positive integer $k$ as a collection of $k$ tokens:  One sums by aggregating and manipulating tokens into a perspicuous configuration.  
+  \medskip\item
+One views the process of summation ``combinatorially"---as the process of determining the number of ways of selecting two items from a set of $n$ items.
+  \medskip\item
+One views the problem geometrically, by drawing a complex figure and calculating its area.
+  \medskip\item
+One views integers via their familiar numerals (say, in decimal notation):  One sums by replicating, rearranging, and counting the number of occurrences of the various integers.
   \end{enumerate}
 While the {\em number} of derivations of this result exceeds our norm, the {\em fact} of exploiting multiple viewpoints is a hallmark of our approach.
 
@@ -66,15 +91,15 @@ While the {\em number} of derivations of this result exceeds our norm, the {\em 
 
 \smallskip
 
-Our treatment of the fundamental topic ``number'' illustrates this stratagem well.
+Our treatment of the fundamental topic ``number'' illustrates this approach well.
   \begin{enumerate}
   \item
-We describe the number system that we have inherited from our mathematical forebears in Chapter~\ref{ch:numbers-numerals}.  The treatment in this chapter is mostly discursive but it is peppered with a number of important results and computational insights.
+We describe the number system that we have inherited from our mathematical forebears in Chapter~\ref{ch:numbers-numerals}.  The treatment in that chapter is mostly discursive but it is peppered with a number of important results and computational insights.
  \medskip \item
-In Chapter~\ref{ch:numbers-advanced}, we take a more careful look inside our number system, addressing topics such as prime numbers---and their use within encoding schemes and security.  In order to do justice to this deeper layer of material, we insert Chapters~\ref{ch:arithmetic} and~\ref{ch:Summation}, which cover arithmetic and summations, respectively, between
+In Chapter~\ref{ch:numbers-advanced}, we take a careful look inside our number system, addressing topics such as prime numbers---and their use within encoding schemes and security.  In order to do justice to this deeper layer of material, we insert Chapters~\ref{ch:arithmetic} and~\ref{ch:Summation}, which respectively cover arithmetic and summations, between
 Chapters~\ref{ch:numbers-numerals} and~\ref{ch:numbers-advanced}.
   \medskip\item
-Finally, we turn in Chapter~\ref{ch:numerals} to the issue of how we represent numbers in order to compute with them.  Here again, we insert auxiliary material---in this case, Chapter~\ref{ch:Recurrences}, which covers recurrences---between number-oriented chapters, to lay the groundwork for material related to systems of number representation.
+Finally, we turn in Chapter~\ref{ch:numerals} to the issue of how to represent numbers in order to compute with them.  Here again, we insert auxiliary material---in this case, Chapter~\ref{ch:Recurrences}, which covers recurrences---between number-oriented chapters, to lay necessary groundwork.
   \end{enumerate}
 
 \item
@@ -82,7 +107,7 @@ Finally, we turn in Chapter~\ref{ch:numerals} to the issue of how we represent n
 
 \smallskip
 
-While this book is unquestionably a text on {\em mathematics}, we never lose sight of the computational motivation for our work.  Traces of this motivation are visible, for instance, in:
+While this book is unquestionably a text on {\em mathematics}, we never lose sight of the computational motivation for our study.  Traces of this motivation are visible, for instance, in:
   \begin{itemize}
   \item
 Chapters~\ref{ch:numbers-numerals},~\ref{ch:numbers-advanced}, and~\ref{ch:numerals}, where we develop material concerning numbers and their representations that underlies much of the world of computing:
@@ -121,7 +146,7 @@ the design of integrated electronic circuits
   \end{itemize}
   
 \item
-{\em We expound on explicit connections between the mathematics we develop here and the computational topics that have informed our choices of material.}
+{\em We describe explicit connections between the mathematics we develop here and the computational topics that have informed our choices of material.}
 
 \smallskip
 
@@ -147,12 +172,12 @@ In furtherance of our hope to excite the reader about further involvement with m
   \begin{itemize}
   \item
 Citations tagged ``{\bf [H/C]}" are identified as being of {\em {\bf H}istorical} and/or 
-{\em {\bf C}ultural} interest.  They expose how our mathematical forebears thought about the subjects being discussed and, thereby, how mathematical thinking has evolved since their writing.  Some of these references are, in fact, modern histories; others are (translations of) original texts.  It can be fascinating to read about Leonardo Pisano's interest in the demographics of rabbits and about John Arbuthnot's curiosity about the relative birth rates of the sexes in the London of his day.
+{\em {\bf C}ultural} interest.  They expose how our mathematical forebears thought about the subjects being discussed and, thereby, how mathematical thinking has evolved since their writing.  Some of these references are, in fact, modern histories; others are (translations of) original texts.  It can be fascinating to read about Leonardo Pisano's ({\em that's Fibonacci's real name}) interest in the demographics of rabbits and about John Arbuthnot's curiosity about the relative birth rates of the sexes in the London of his day.
 
-  \item
-Citations tagged ``{\bf [T/R]}" point to advanced and/or specialized {\em {\bf T}extbooks} and {\em {\bf R}eference books}.  They will lead the interested reader beyond the introductory level of this text.  For instance, our description in Appendix E of ``carry-free" addition can be a stepping stone to a study of the details of computer arithmetic.
+  \medskip\item
+Citations tagged ``{\bf [T/R]}" point to advanced and/or specialized {\em {\bf T}extbooks} and {\em {\bf R}eference books}.  They will lead the interested reader beyond the introductory level of this text.  For instance, our description in Appendix E of ``carry-free" addition can be a stepping stone to a study of {\em computer arithmetic}.
 
-  \item
+  \medskip\item
 Untagged citations identify ``modern" expositions of the material we describe in the text.  They also usually will lead the interested reader beyond the introductory level of this text.  Indeed, they are often quite technical companions to quite dramatic human-interest stories.
   \end{itemize}
 
