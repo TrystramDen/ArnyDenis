@@ -574,7 +574,7 @@ We close our discussion of proof methodology by highlighting a number of ideas f
 
 \paragraph{A. Distinguishing name from object}
 
-A fundamental stumbling block in the road toward cogent reasoning arises from the inability to distinguish names from the objects they denote.  Two prime examples within the world of computing reside in the following distinctions that are often missed.
+A common, fundamental stumbling block in the road toward cogent reasoning arises from the failure to distinguish {\em names} from the {\em objects} they denote.  Two prime examples within the world of computing reside in the following distinctions that are often missed.
 \begin{itemize}
 \item
 A {\it function} is a special genre of infinite set of argument-value pairs; see Section~\ref{sec:function}.  {\em A function is not a program}---even when the program computes the values of the function.  Indeed, a program that computes a function can/should be
@@ -582,34 +582,38 @@ viewed as a {\it name} for the function.
 
 \smallskip
 
-Note that the often-used view of a function as a {\em rule} for assigning values to arguments should be avoided, because it suggests---\underline{\em erroneously}---that an implementable such rule always exists!
+Note that the often-used view of a function as a {\em rule} for assigning values to arguments should be avoided, because it suggests---{\bf erroneously}---that an implementable such rule always exists!
 
 \medskip\item
-A number is an abstract notion that denotes a quantity.  {\em You cannot touch a number; you cannot compute with a number!}  As we discuss at length in our three chapters about numbers---Chapters~\ref{ch:numbers-numerals},~\ref{ch:numbers-advanced}, and~\ref{ch:numerals}---it is {\em numerals}, or, {\em number representations}, that we manipulate in order to compute.
+A number is an abstract notion that denotes a quantity.  {\em You cannot touch a number; you cannot compute with a number!}  As we discuss at length in our three chapters about numbers---Chapters~\ref{ch:numbers-numerals},~\ref{ch:numbers-advanced}, and~\ref{ch:numerals}---it is {\em numerals}, i.e., {\em number representations}, that we manipulate in order to compute.
 \end{itemize}
-Myriad other instances of the {\em name-vs.-object} distinction must always be in the forefront of a person's mind as the person ``does'' mathematics.
+Instances of the {\em name-vs.-object} distinction---such as the two just noted---must always be in the forefront of the mind of a person while ``doing'' mathematics.
 
 \paragraph{B. Quantitative reasoning}
 
-Readers who aspire to ``doing'' mathematics must understand the foundational distinction between ``growing without bound'' and being infinite.  Within this theme, they should appreciate situations such as the following.  Every integer, and every polynomial with integer coefficients, is finite, but there are infinitely many integers and infinitely many polynomials.  Readers should be able to verify (cogently but not necessarily via any particular formalism) assertions such as the following.
+Readers who aspire to ``do'' mathematics must understand the foundational distinction between a quantity's {\em growing without bound} and the quantity's {\em being infinite}.  Within this theme, they should appreciate situations such as the following.  Every integer, and every polynomial with integer coefficients, is finite, but there are infinitely many integers and infinitely many polynomials.  Readers should be able to verify (cogently but not necessarily via any particular formalism) assertions such as the following.
 \begin{itemize}
 \item
-Let us be given polynomials with positive coefficients: $p(x)$ of degree $a$ and $q(x)$ of degree $b > a$, where $a, b$ need not be integers.  There must exist a constant $X_{p,q}$ (i.e., a constant that depends on the forms of polynomials $p$ and $q$) such that for all $x > X_{p,q}$, $p(x) < q(x)$.
+Let us be given polynomials with positive coefficients: $p(x)$ of degree $a$ and $q(x)$ of degree $b > a$, where $a, b$ need not be integers.  There must exist a constant $X_{p,q}$ (i.e., a constant that depends on the forms of polynomials $p$ and $q$) such that:\footnote{The notation ``$(\forall \ x)$" is a common shorthand for the phrase ``for all $x$".}
+\[ (\forall \ x > X_{p,q}) \ \ \ p(x) < q(x) \]
 
-\index{majorize}
+\index{$\forall$: the universal quantifier for all}
 
 \smallskip
+
+\index{majorize}
 
 Thus, polynomials having bigger degrees eventually {\em majorize}---i.e., have larger values than---polynomials having smaller degrees.
 
 \medskip\item
-Continuing with polynomial $q$ of degree $b$: For any real number $c > 1$, there exists a constant $Y_{c;q}$ (i.e., a constant that depends on the polynomial $q$ and the constant $c$) such that for all $x > Y_{c;q}$, $c^x > q(x)$.
+Continuing with polynomial $q$ of degree $b$: For any real number $c > 1$, there exists a constant $Y_{c;q}$ (i.e., a constant that depends on the polynomial $q$ and the constant $c$) such that:
+\[ (\forall \ x >  Y_{c;q}) \ \ \ c^x > q(x) \]
 
 \smallskip
 
 Thus, exponential functions eventually {\em majorize} polynomials.
 \end{itemize}
-Here again, we provide just illustrative examples of pervasive phenomena.
+(Of course, the preceding examples are just simple illustrations of the kinds of principles that the reader should keep an eye out for.)
 
 \paragraph{C. The elements of {\em empirical} reasoning}
 \index{empirical reasoning}
@@ -641,28 +645,45 @@ The goal of {\em science}---especially physical science and biological science--
 
 {\em Mathematics} is a science which seeks to learn ``absolute'' truths---not just evolving approximations to such truths---and it strives to accomplish this via pure reasoning.  As such, mathematics does not really fit into the previous description of empirical sciences.  Yet, empiricism plays an indispensable role in the process of ``doing'' mathematics!
 
-While empirical reasoning does not convey the certitude that formal reasoning does, one cannot overemphasize how useful it is preparing the ground for formal reasoning.  In order to develop intuition for the nature of the truths that one will attempt to prove formally, the mathematician starts by observing and experimenting via activities such as drawing figures and computing mathematical expressions, in order to understand small instances of the phenomena of interest. This experimentation (often) leads to the insight needed to develop formal proofs---but this insight sometimes takes years, or even decades, to mature.
+\smallskip
 
-Several instances of quick-ripening intuition involve summations.  In this arena, experimentation helps one \textit{guess} the right expressions---and it also helps one detect little mistakes, because any form of mathematics does not tolerate any mistake!  One example of quick-ripening intuition appears as Proposition~\ref{thm:squares-odd-integers-induction1} later in this
-chapter: It is not {\em a priori} obvious that each perfect square $n^2$ is the sum of the first $n$ odd numbers.  Indeed, Chapter~\ref{ch:Summation} is a treasure trove of the fruits of
-quick-ripening intuition.
+While empirical reasoning does not convey the certitude that formal reasoning does, one cannot overemphasize how useful it is in preparing the ground for formal reasoning.  Every practicing mathematician develops intuition to prepare for an attempted formal proof via activities such as
+\begin{itemize}
+\item
+trying to solve small instances of quantitative assertions of interest
+\medskip\item
+drawing pictures that caricature phenomena of interest
+\medskip\item
+playing with continuous versions of discrete phenomena of interest
+\end{itemize}
+Such experimentation can lead to the insight(s) needed to develop formal proofs.  These insight(s), though, sometimes take years, or even decades, to ``ripen".
 
 \smallskip
 
-Throughout this text, we shall discuss numerous results that required years, or decades, or even centuries to prove.
+Many instances of quick-ripening intuitions involve summations.  In this arena, experimentation helps one to \textit{guess} the right expressions---and to detect small mistakes, because any form of mathematics does not tolerate any mistake!  Proposition~\ref{thm:squares-odd-integers-induction1}, which we encounter later in this chapter, provides an example of quick-ripening intuition: It is not obvious {\em a priori} that each perfect square $n^2$ is the sum of the first $n$ odd numbers, but it is!  Indeed, Chapter~\ref{ch:Summation} is a treasure trove of the fruits of quick-ripening intuition.
+
+\smallskip
+
+Throughout this text, we discuss numerous results that required years, or decades, or even centuries to prove.
 \begin{itemize}
 \item
 One of the best-known such ``slow-cookers'' is {\it Fermat's Last Theorem} (Theorem~\ref{thm:Fermat-last}), which we discussed earlier.  Its smallest instance asserts that the sum of prefect cubes, $a^3 + b^3$, cannot itself be a perfect cube, $c^3$.
+
+\index{Fermat's Last Theorem}
+
 \medskip\item
 Another well-known ``slow-cooker" is the {\it Four-Color Theorem}
-(Theorem~\ref{thm:Four-ColorTheorem}).  This result asserts that any map of the world can be colored using four colors so that entities sharing a border get different colors.  Adding to the interest in this result is that it was the first theorem that enlisted the aid of a computer program as a ``collaborator" in the midst of its proof.
+(Theorem~\ref{thm:Four-ColorTheorem}).  This result asserts that any map of the world can be colored using four colors in such a way that entities sharing a border get different colors.  Adding to the interest in this result is that it was the first (significant) theorem that enlisted the aid of a computer program as a ``collaborator" in the developing its proof.
+
+\index{the Four-Color Theorem}
+
 \medskip\item
-The final example we cite here is {\it Hilbert's-Tenth Theorem} (Theorem~\ref{thm:Hilberts-10th}), so named for the tenth problem in the 20th-century mathematical to-do list promulgated by the German mathematician David Hilbert.  This momentous result, which is less well-known but no less consequential than Fermat's Last Theorem and the Four-Color Theorem, can be viewed as asserting that the problem of solving polynomial equations using integers (whole numbers) completely captures the essence of complex computations.
+The final example we cite here is {\it Hilbert's-Tenth Theorem} (Theorem~\ref{thm:Hilberts-10th}), so named for its position in the 23-item to-do list for twentieth-century mathematics promulgated by the German mathematician David Hilbert.  This momentous result, which is less well known but no less consequential than our other two sample ``slow-cookers", can be viewed as asserting that the problem of solving polynomial equations using integers (whole numbers) completely captures the essence of complex computations.
 \index{Hilbert's Tenth Problem}  \index{Hilbert, David}
 \end{itemize}
-The proofs of long-maturing results such as the preceding examples are beyond the scope of this text, but the stories behind them usually have lessons that any aspiring practitioner of the mathematical arts can benefit from.
+The proofs of long-maturing results such as the preceding three are beyond the scope of this text, but the stories behind them usually have lessons that any aspiring practitioner of the mathematical arts can benefit from.
 
-\smallskip
+\medskip
 
 To sum up: empirical exploration can be extremely useful in the endeavor of ``doing'' mathematics.  Indeed, as we explore phenomena of immense complexity or even phenomena that inherently involve immensely large numbers, empirical studies are the only known avenue toward deep understanding.
 
