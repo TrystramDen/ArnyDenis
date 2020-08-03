@@ -1554,60 +1554,60 @@ Chapter~\ref{ch:combinatorics} introduces the foundations of this subfield, foll
 \label{sec:comb-sum-of-first-n}
 
 Sometimes combinatorial argumentation can be used in unexpected ways.  We illustrate that fact here by combinatorially deriving an explicit expression for the summation
-$S_n \  = \ 1 \ + \ 2 \ + \cdots + \ n$.
+$S_{n-1} \  = \ 1 \ + \ 2 \ + \cdots + \ (n-1)$.
 
 \smallskip
 
 Our summation begins, unexpectedly, by counting the number of ways---call it $C(n,2)$---of selecting two items from a set of $n$ items.  We describe this selection in a somewhat unconventional way.
 \begin{itemize}
 \item
-The bigger integer of the two we are selecting can be chosen in $n$ ways, corresponding to the $n$ elements of the set
-\[ \{ 1, \ 2, \ldots, \ n-1, \ n \} \]
+The bigger integer of the two we are selecting can be chosen in $n-1$ ways, corresponding to the $n-1$ elements of the set
+\[ \{ 1, \ 2, \ldots, \ (n-2), \ (n-1) \} \]
 \item
-If the bigger item was integer $k$, then we can select the second, smaller, one in $k-1$ ways, from the integers smaller than $k$.
+If the bigger integer chosen was $k$, then we can select the second, smaller integer in $k-1$ ways, from among the integers smaller than $k$.
 \end{itemize}
-We thereby observe the following summation, which yields the desired value of $S_n$.
+We thereby observe the following summation, which yields the sum $S_{n-1}$.
 \begin{eqnarray*}
-C(n,2) & = & n \ + \ \sum_{k=2}^n \ C(k-1,1) \\
-       & = & n \ + \ \sum_{k=2}^n \ (k-1) \\
-       & = & n \ + \ \sum_{k=1}^{n-1} \ k \\
-       & = & S_n
+C(n,2) & = & (n-1) \ + \ \sum_{k=2}^{n-1} \ C(k-1,1) \\
+       & = & (n-1) \ + \ \sum_{k=2}^{n-1} \ (k-1) \\
+       & = & (n-1) \ + \ \sum_{k=1}^{n-2} \ k \\
+       & = & S_{n-1}
 \end{eqnarray*}
 
 \subsubsection{Summation as a rearrangement problem}
 \label{sec:summation-via-Fubini}
 
-Our next proof technique is a combination of geometry and combinatorial re-arrangement of a configuration of objects.  The second component of this pair incurs an intellectual debt to Guido Fubini, whose eponymous {\em Principle} mandates {\em looking at configurations from multiple points of view and garnering new intuitions from each}.
+Our next proof technique combines geometry with the combinatorial rearrangement of a configuration of objects.  The second of these techniques owes an intellectual debt to Guido Fubini, whose eponymous {\em Principle} mandates {\em looking at configurations from multiple points of view, to gather multiple intuitions}.
 \index{Fubini, Guido} \index{Fubini's Principle}
 
 \smallskip
 
 We apply this two-stage reasoning paradigm to the problem of evaluating the summation $S_n \ = \ 1 + 2 + \cdots + n$.
 
+\smallskip
+
 \index{Gauss, Karl Friedrich}
 \index{Gauss, Karl Friedrich!summation ``trick''}
-The first idea in our reasoning is to represent each integer $k$ as a horizontal sequence of $k$ tokens, depicted as darkened circles in Fig.~\ref{fig:sumIntegers1}.
+The first idea in our reasoning is to represent each positive integer $k$ as a horizontal sequence of $k$ tokens, depicted as darkened circles in Fig.~\ref{fig:sumIntegers1}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersBasis}
-\caption{Representing the first $n$ integers using tokens.  In
-  this illustration, $n=7$.}
+\caption{Representing the first $n$ positive integers using tokens.  In this illustration, $n=7$.}
        \label{fig:sumIntegers1}
 \end{center}
 \end{figure}
-Using such a representation, we naturally view the summation $S_n$ as a \textit{triangular pattern} of tokens.  How can we use this representation to evaluate $S_n$ without just counting and summing?  We call upon an intuition attributed to the great 19th-century mathematician Karl Friedrich Gauss---who famously had this intuition as a pre-teenager.  We remark that if we {\em replicate} the triangular pattern in the figure and {\em flip} it, then we can configure the resulting triangles---see Fig.~\ref{fig:sumIntegers2}---to form the rectangular pattern depicted in Fig~\ref{fig:sumIntegers3}.
+Using such a representation, we can naturally view the summation $S_n$ as a \textit{triangular pattern} of tokens.  How can we use this representation to evaluate $S_n$ without just counting and summing?  We call upon an intuition attributed to the great nineteenth-century mathematician Karl Friedrich Gauss---who famously had this intuition as a preteenager.  We remark that if we {\em replicate} the triangular pattern in the figure and {\em flip} it, then we can configure the resulting triangles---see Fig.~\ref{fig:sumIntegers2}---in the rectangular pattern depicted in Fig~\ref{fig:sumIntegers3}.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersIntermediate}
-   \caption{Putting two copies of a triangle together to form a rectangle.}
+   \caption{Putting two copies of a triangle together to form a rectangle}
        \label{fig:sumIntegers2}
 \end{center}
 \end{figure}
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/SumIntegersFinal}
-\caption{The two copies of a triangle have become an $n \times (n+1)$
-  rectangular array of tokens.}
+\caption{The two copies of a triangle have become an $n \times (n+1)$ rectangular array of tokens}
        \label{fig:sumIntegers3}
 \end{center}
 \end{figure}
@@ -1618,7 +1618,7 @@ The number of tokens in the rectangular pattern is precisely $2 S_n$.
 
 \smallskip
 
-This is a pictorial version of the seminal intuition that underlies Gauss's (text-based) summation of the series $S_n$; see Proposition~\ref{thm:sum-first-integers-Gauss}.
+This is a pictorial version of the seminal intuition that underlies Gauss's (text-based) evaluation of the summation $S_n$; see Proposition~\ref{thm:sum-first-integers-Gauss}.
 
 \medskip\item
 The rectangular pattern has $n+1$ columns, each having $n$ tokens.
@@ -1633,9 +1633,9 @@ S_n \ = \ {1 \over 2} n \cdot (n+1)
 \]
 
 
-\subsection{The Computer as a Mathematician's Assistant}
+\subsection{The Computer as Mathematician's Assistant}
 
-Computers have played an essential role in the process of ``doing'' mathematics from the earliest times when computers had enough power to explore the mathematical terrain, searching and verifying.
+Computers have played an essential role in the process of ``doing'' mathematics from the earliest days when computers had enough power to explore mathematical terrain, searching and verifying.
 \begin{itemize}
 \item
 Some of the calculations performed by these ``silicon assistants'' have a game-like quality to them:
@@ -1652,20 +1652,24 @@ Yet other calculations represent attempts to hone intuition for what will someda
   \item
 Search for an odd perfect number
   \medskip\item
-Determine the relative frequencies of the decimal digits in the infinite decimal expansion of $\pi$
+Determine the relative frequencies of the decimal digits in the (infinite) decimal expansion of $\pi$
   \end{itemize}
 
 \medskip\item
-Finally, some of these calculations represent attempts to contribute essential details to already-serious attempts at proofs: These are our interest here.
+Finally, some of these calculations represent attempts to contribute essential detail to already serious attempts at proofs: These are the calculations that interest us here.
 \end{itemize}
 
-Many significant theorems languished as conjectures for decades, some even for centuries, awaiting elevation to theoremhood.  While many of these eventual theorems languished in mathematical limbo as they awaited the development of new mathematics---Fermat's Last Theorem (Theorem~\ref{thm:Fermat-last}) is a prime example---yet others have suffered their fates because of a plethora of cases that needed (often-minor) calculational verification.
+Many significant theorems languished as conjectures for decades, some even for centuries, awaiting their eventual elevation to theoremhood.  While many of these eventual theorems languished in mathematical limbo awaiting the development of new mathematics---Fermat's Last Theorem (Theorem~\ref{thm:Fermat-last}) is a prime example---yet others endured their long waits because of a veritable ``mountain" of cases that needed (often minor) calculational verification.
 
-The latter category of conjecture can increasingly be tackled with the aid of the ever-more powerful computers that are being developed with ever-increasing frequency.  When used in this way, computers are clearly ``junior'' partners to their mathematician-users.  When the domain of discourse within a conjecture is discrete---i.e., does {\em not} involve real numbers ``to infinite precision'' nor any continuity-related notions---then it is always possible---at least in principle---to eliminate the computer from the ``team'' by transforming such a verification into a classical formal proof.  The role of the computer in the ``team'' is solely to assist the mathematicians---by
+\smallskip
+
+The latter category of conjecture can increasingly be tackled with the aid of the ever more powerful computers that are being developed with ever-increasing frequency.  When used in this way, computers are clearly ``junior'' partners to their mathematician-users.  When the domain of discourse within a conjecture is discrete---i.e., does {\em not} involve real numbers ``to infinite precision'' nor any continuity-related notions---then it is always possible---at least in principle---to eliminate the computer from the ``team'' by transforming such a verification into a classical formal proof.  The role of the computer in the ``team'' is solely to assist the mathematician---by
 performing calculations that are too long and/or too numerous and/or too complicated for humans to perform reliably and efficiently.
 
+\smallskip
+
  \index{Appel, Kenneth} \index{Haken, Wolfgang}
-The renowned Four-Color Theorem (Theorem~\ref{thm:Four-ColorTheorem}) was a landmark in the use of computers as partners to humans in proving theorems.  The Theorem asserts---ignoring a few technical details---that any map on Earth (or on a topologically similar planet) can be colored using four colors in such a way that distinct countries that share a border receive distinct colors.  As we discuss in some detail in Section~\ref{sec:planar+outerplanar-color}, this result languished in mathematical limbo for many decades before a pair of American mathematicians, Kenneth Appel and Wolfgang Haken, used a computer to help resolve the thousands of cases that had to be verified-via-calculation in the proof.
+The renowned Four-Color Theorem (Theorem~\ref{thm:Four-ColorTheorem}) was a landmark in the use of computers as partners to humans in proving theorems.  The Theorem asserts---ignoring a few technical details---that any map on Earth (or on a topologically similar planet) can be colored using four colors in such a way that distinct countries that share a border receive distinct colors.  As we discuss in detail in Section~\ref{sec:planar+outerplanar-color}, this result languished in mathematical limbo for many decades before a pair of American mathematicians, Kenneth Appel and Wolfgang Haken, used a computer to help resolve the thousands of cases that had to be verified-via-calculation in the proof.
 
 The mathematical world erupted in controversy over this first-ever use of a computer in an essential way to construct a mathematical proof.  It took years---plus the result-replicating program of a team of Japanese mathematicians---before the global mathematical community accepted the claim by Appel and Haken that Theorem~\ref{thm:Four-ColorTheorem} had, indeed, been proved!
 
@@ -1701,10 +1705,16 @@ $S_3(n) \ \ \eqdef \ \
 1 + 2^3 + \cdots  + n^3 \ \ = \ \
 \frac{1}{4} n^2 (n+1)^2$
     \end{enumerate}
+    
+\smallskip
+    
 Note that the sum of the first $n$ integers is quadratic (degree $2$) in $n$ (Proposition~\ref{thm:sum-1-to-n-induction1}); the sum of the first $n$ squares of integers is cubic (degree $3$) in $n$; the sum of the first $n$ cubes of integers is quartic (degree $4$) in $n$.  Do you detect the pattern?  {\em New mathematics is born from such detected patterns!}  We shall verify this pattern in Chapter~\ref{ch:Summation}.
 
   \medskip\item
 Summing the first $n$ powers of a fixed base number (we use base $2$).
+
+\smallskip
+
        \begin{enumerate}
        \item
 $\sum_{i=0}^n \ 2^i \ \ = \ \ 1 \ + \ 2 \ + \ 4 \ +  \cdots + \ 2^n \ \ = \ \ 2^{n+1} -1$
@@ -1712,7 +1722,7 @@ $\sum_{i=0}^n \ 2^i \ \ = \ \ 1 \ + \ 2 \ + \ 4 \ +  \cdots + \ 2^n \ \ = \ \ 2^
 $\sum_{i=0}^n \ i 2^i \ \ = \ \ 2 \ + \ 8 \ + \ 24 \ +  \cdots + \ n 2^n \ \ = \ \
 n 2^{n+1} \ + \ 2$
     \end{enumerate}
-Note that exponential grow so fast (as functions of $n$) that the sum of terms is just a bit larger than the largest term!  We shall learn, in detail, how to discover this fact in Chapter~\ref{ch:Summation}.
+Note that exponentials grow so fast (as functions of $n$) that the sum of terms is just a bit larger than the largest term!  We shall learn, in detail, how to discover this fact in Chapter~\ref{ch:Summation}.
 
 \ignore{*********
 \medskip\item
@@ -1852,7 +1862,7 @@ are similar to one another
 \medskip\item
 are similar to the original triangle
 \medskip\item
-have area which is $1/4$ that of the original triangle
+have an area which is $1/4$ that of the original triangle
 \end{itemize}
 Assemble these facts into an evaluation of the sum $S$.}
 \end{enumerate}
