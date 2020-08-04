@@ -764,7 +764,7 @@ The equality relation $=$ on a set $S$ is the {\em finest} equivalence relation 
 \subsubsection{The basics: definitions and generic properties}
 \label{sec:basic-functions}
 
-One learns early in school that a function from a set $S$ to a set $T$ is a rule that assigns a unique value from $T$ to every value from $S$.  Simple examples illustrate that this notion of function is more restrictive than necessary.  Think, e.g., of the operation {\em division} on integers.  We learn that division, like multiplication, is a function that assigns a number to a given pair of numbers---yet we are warned immediately not to ``divide by $0$'': The quotient upon division by $0$ is ``undefined.''  So, division is {\em not quite} a function of the same sort as addition or multiplication, which both {\em do} conform to the notion envisioned by our initial definition of ``function''.  In more homely terms, note that, in contrast to an expression such as ``$4 \div 2$,'' which should lead to the result $2$ in every programming environment,\footnote{We are, of course, ignoring demons such as round-off error.}~expressions such as ``$4 \div 0$'' can lead to wildly different results in different programming environments.  Since ``wildly different'' is anathema in any mathematical setting, mathematicians have dealt with situations such as one encounters with division by broadening the definition of ``function'' in a way that behaves like our initial simple definition under ``well-behaved'' circumstances and that extends the notion in an intellectually consistent way under ``ill-behaved'' circumstances.  Let us begin to get formal.
+One learns early in school that a function from a set $S$ to a set $T$ is a rule that assigns a unique value from $T$ to every value from $S$.  Simple examples illustrate that this notion of function is more restrictive than necessary.  Think, e.g., of the operation {\em division} on integers.  We learn that division, like multiplication, is a function that assigns a number to a given pair of numbers---yet we are warned immediately not to ``divide by $0$'': The quotient upon division by $0$ is ``undefined'',  So, division is {\em not quite} a function of the same sort as addition or multiplication, which both {\em do} conform to the notion envisioned by our initial definition of ``function''.  In more homely terms, note that, in contrast to an expression such as ``$4 \div 2$'', which should lead to the result $2$ in every programming environment,\footnote{We are, of course, ignoring demons such as round-off error.}~expressions such as ``$4 \div 0$'' can lead to wildly different results in different programming environments.  Since ``wildly different'' is anathema in any mathematical setting, mathematicians have dealt with situations such as one encounters with the operation of division by broadening the definition of ``function'' in a way that behaves like our initial simple definition under ``well-behaved'' circumstances and that extends the notion in an intellectually consistent way under ``ill-behaved'' circumstances.  Let us begin to get formal.
 
 \medskip
 
@@ -772,8 +772,7 @@ One learns early in school that a function from a set $S$ to a set $T$ is a rule
 \index{function!target} \index{function!range}
 A {\it (partial) function from set $S$ to set $T$} is a relation $F \subseteq S \times T$ that is {\it single-valued;} i.e., for each $s \in S$, there is {\em at most} one $t \in T$ such that $sFt$.  We
 traditionally write ``$F: S \rightarrow T$'' as shorthand for the assertion, ``$F$ is a function from the set $S$ to the set $T$''; we also traditionally write ``$F(s) = t$'' for the more conservative (but
-correct) ``$sFt$.''  (The single-valuedness of $F$ makes the nonconservative notation safe.)  We often call the set $S$ the {\em source}, or, {\it domain} of function $F$, and we call set $T$ {\em
-  target} or, the {\it range} of function $F$.  In situations when there is always a (perforce, unique) $t \in T$ for each $s \in S$, then we call $F$ a {\em total} function.
+correct) ``$sFt$''.  (The single-valuedness of $F$ makes the nonconservative notation safe.)  We often call the set $S$ the {\em source} or {\it domain} of function $F$, and we call set $T$ the {\em target} or the {\it range} of function $F$.  In situations when there is always a (perforce, unique) $t \in T$ for each $s \in S$, then we call $F$ a {\em total} function.
 
 
 \ignore{******* 
@@ -800,24 +799,24 @@ They appended both $0$ and the negative integers to the preexisting positive int
   \medskip\item
 They appended the {\it rational numbers} to the preexisting integers in order to make division (by nonzero numbers!)~a total function.
   \end{itemize}
-The {\it irrational algebraic numbers}, the {\it nonalgebraic real (or, transcendental) numbers}, and the {\it nonreal complex (or, imaginary) numbers} were similarly appended, in turn, to our number system in order to make certain (more complicated) functions total.  (Chapter~\ref{ch:numbers-numerals} expands on this brief history of our number system's development.)
+The {\it irrational algebraic} numbers, the {\it nonalgebraic real} or {\em transcendental} numbers, and the {\it nonreal complex} or {\em imaginary} numbers were similarly appended, in turn, to our number system in order to make certain (more complicated) functions total.  (Chapter~\ref{ch:numbers-numerals} expands on this brief history of our number system.)
 
 \medskip\item
 {\em They adapted the function.}
 
 \smallskip
 
-In programming languages, in particular, literal undefinedness is anathema---a computer must do {\em something}---so programming languages typically have chosen (sometimes artificial) ways of making functions total, via devices such as ``integer division'' (so that odd integers can be ``divided by $2$'') in addition to various ploys for accommodating ``division by $0$.''
+For programming systems, in particular, literal undefinedness is anathema---a computer must always do {\em something} in response to a command---so programming languages typically have chosen (sometimes artificial) ways of making functions total, via devices such as ``integer division'' (so that odd integers can be ``divided by $2$'') in addition to various ploys for accommodating ``division by $0$''.
 \end{enumerate}
-The ($20$th-century) inventors of {\em Computation Theory} insisted on a theory of functions on nonnegative integers (or some transparent encoding thereof).  The price for such ``pureness'' is that they had to allow functions to be literally undefined on some arguments.  Thus the theory renders such functions as ``division by $2$'' and ``taking square roots'' as {\em nontotal}: Both are defined only on subsets of the positive integers (the even integers and the perfect squares, respectively).
+The (twentieth-century) inventors of {\em Computation Theory} insisted on a theory of functions on nonnegative integers (or some transparent encoding thereof).  The price for such ``pureness'' is that they had to allow functions to be literally undefined on some arguments.  Thus the Theory renders such functions as ``division by $2$'' and ``taking square roots'' as {\em nontotal}: Both are defined only on subsets of the positive integers (the even integers and the perfect squares, respectively).
 \index{Computation Theory}
 
-\medskip
+\bigskip
 
-Three special classes of functions merit explicit mention.  For each, we give both a down-to-earth name and a more scholarly Latinate one.
+Three special classes of functions merit explicit mention.  For each, we give both a down-to-earth name and a more scholarly Latinate one.  (Both types of names are actually used.)
 \begin{enumerate}
 \item
-A function $F: S \rightarrow T$ is {\it one-to-one}, or, {\it injective} if for each $t \in T$, there is at most one $s \in S$ such that $F(s) = t$;
+A function $F: S \rightarrow T$ is {\it one-to-one} or {\it injective} if for each $t \in T$, there is at most one $s \in S$ such that $F(s) = t$;
 
 \medskip
 
@@ -851,7 +850,7 @@ s &
 Because $F$ is {\em injective}, there is at most one element $s \in S$ such that $F(s)= t$.  In other words, an element $t \in T$ can occur in the range of $F$ only because of a single element $s \in S$ in the domain of $F$.  This means that
 \begin{itemize}
 \item
-the preceding definition of $F^{-1}$ is a valid definition---i.e., the notion ``functional inverse of an injection'' is {\it ``well-defined''}.
+the preceding definition of $F^{-1}$ is a valid definition---i.e., the notion ``functional inverse of an injection'' is {\it ``well defined''}.
 \medskip\item
 $F^{-1}$ is a (partial) function $F^{-1}: T \rightarrow S$ whose domain is the range of $F$.
 \end{itemize}
@@ -877,13 +876,14 @@ Two functions on the nonnegative integers that are {\em not} surjective:
   \item
 ``addition of $1$'' is not surjective, because, e.g., $0$ is not ``$1$ greater'' than any nonnegative integer.
   \medskip\item
-``squaring'' is not surjective, because, e.g., $2$ is not the square of any integer.  (We prove this as Proposition~\ref{thm:sqrt(2)}.) 
+``squaring'' is not surjective, because, e.g., $2$ is not the square of any integer.
+% (We prove this as Proposition~\ref{thm:sqrt(2)}.) 
   \end{itemize}
 \end{itemize}
 A surjective function $F$ is called a {\it surjection}.
 
 \medskip\item
-A function $F: S \rightarrow T$ is ``{\it one-to-one, onto}" (or, {\it bijective}) if for each $t \in T$, there is precisely one $s \in S$ such that $F(s) = t$.
+A function $F: S \rightarrow T$ is ``{\it one-to-one, onto}" or {\it bijective} if for each $t \in T$, there is precisely one $s \in S$ such that $F(s) = t$.
 
 \ignore{**********
 {\em Example:} The (total) function $F: \{0,1\}^\star \rightarrow
@@ -920,6 +920,8 @@ is multiplied by $b^{i+1}$.
 \end{quote}
 *********}
 
+\smallskip
+
 A bijective function $F$ is called a {\it bijection}.  When $F$ is a bijection from $S$ onto $T$, we often write $F: S \leftrightarrow T$.
 \end{enumerate}
 
@@ -941,7 +943,7 @@ The {\it preimage} of the set $B$ under $f$ is the subset of $A$
 \index{permutation} \index{function!permutation}
 
 \noindent
-For any set $S$, a bijection $f: S \leftrightarrow S$ is called a {\it permutation} of set $S$.   Note that the set $S$ plays a lot of roles here: $S$ is:
+For any set $S$, a bijection $f: S \leftrightarrow S$ is called a {\it permutation} of set $S$.   Note that the set $S$ plays a lot of roles here.  $S$ is:
 \begin{itemize}
 \item
 the source of function $f$
@@ -954,128 +956,11 @@ the preimage of set $S$ under function $f$
 \end{itemize}
 
 
-\subsubsection{$\oplus$ The Schr\"{o}der-Bernstein Theorem}
-\label{sec:schroeder-bernstein}
-
-This section is devoted to a remarkable theorem which states that {\em bijections} ($S \leftrightarrow T$) and {\em paired injections} ($S \rightarrow T$, $T \rightarrow S$) always travel together.  In detail, for all sets $S$ and $T$: If there exists both
-
-\hspace*{.2in}{\em an injection from $S$ to $T$ and an injection from $T$ to $S$}
-
-\noindent then there exists
-
-\hspace*{.2in}{\em a bijection between $S$ and $T$}.
-
-\index{The Schr\"{o}der-Bernstein Theorem}
-\index{Bernstein, Felix}
-\index{Schr\"{o}der, Ernst}
-\index{The Cantor-Bernstein Theorem}
-\index{Cantor, Georg}
-
-\noindent
-This is the celebrated theorem of Ernst Schr\"{o}der and Felix Bernstein; it is, alternatively, attributed to (Georg) Cantor and Bernstein.  As this complex attribution suggests, the theorem has a rather complicated history.  Picking just a few high points associated with the theorem's namesakes: The theorem was first stated without proof by Cantor in \cite{Cantor87}.  Roughly a decade later, Schr\"{o}der produced a flawed proof in \cite{Schroeder98a}.  As reported in \cite{Deiser2010}, Schr\"{o}der soon thereafter provided a correct proof---as, independently, did Bernstein.
-
-We shall refer to the theorem by its customary name, the {\it Schr\"{o}der-Bernstein Theorem}. This result can be immensely useful when reasoning about myriad mathematical scenarios that can be formulated using correspondences between the elements of two sets.  We encounter such a scenario, for example, when we prove Lemma~\ref{lem:N-=-F} in Section~\ref{sec:FNS-uncountable}.  Acknowledging the importance of the theorem, we now provide a formal statement and a somewhat informal sketch of its proof.
-
-\index{The Schr\"{o}der-Bernstein Theorem}
-\begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
-\label{thm.S-B}
-For any sets $S$ and $T$, if there exist both an {\em injection}
-\[ F^{(S \rightarrow T)}: S \rightarrow T \]
-and an {\em injection}
-\[ F^{(T \rightarrow S)}: T \rightarrow S \]
-then there exists a {\em bijection}
-\[ F^{(S \leftrightarrow T)}: S \leftrightarrow T \]
-\end{theorem}
-
-\begin{proof}[Sketch]
-We give the highlights of the perspicuous proof which appears in \cite{Tonien07}.
-
-\smallskip
-
-Let $S_0 = S$ and $T_0 = T$.  We set up a sequence of indices to orchestrate the upcoming argument: We have an index $i$ for each integer $i \in \N$, and we have a special index $\omega$ which takes care of the single case that the integer indices do not.
-
-\ignore{\Denis we should add the range of $i$ here, start at 0 up to some integer denote by $\omega$}
-
-For each index $i \in \N$, define
-\[ S_{i+1} \ = \ F^{(T \rightarrow S)}(T_i) \ \ \ \ \mbox{ and }
-\ \ \ \ T_{i+1} \ = \ F^{(S \rightarrow T)}(S_i) 
-\]
-We are repeatedly using here the notational convention that for any set $A$ and function $f$ defined on $A$,
-\[ f(A) \ = \ \{ f(a) \ | \ a \in A \} \]
-Because each of our injections, $F^{(S \rightarrow T)}$ and $F^{(T \rightarrow S)}$, maps its domain-set {\em into} its range-set (and not necessarily {\em onto}), we observe that increasing indices lead to nested progressions of sets, in the sense that
-\[ \mbox{Each } \ \  S_{i+1} \subseteq S_i
- \ \ \ \mbox{ and each } \ \ \ 
- T_{i+1} \subseteq T_i
-\]
-We now define two new sequences of sets:
-\begin{itemize}
-\item
-The sets $U_\omega$  and $U_0, \ U_1, \ U_2, \ldots$ are defined as follows:
-\[ U_\omega \ = \ \bigcap_i S_i \ \ \ \ \
-\mbox{and for each } \  i \in \N \ \ \  U_i \ = \ S_i \setminus S_{i+1} \]
-Our reasoning shows that set $S$ is {\em partitioned} into the sets $U_0, \ U_1, \ U_2, \ldots$ and $U_\omega$.
-\medskip\item
-The sets $V_\omega$  and $V_0, \ V_1, \ V_2, \ldots$ are defined as follows:
-\[ V_\omega \ = \ \bigcap_i T_i \ \ \ \ \
-\mbox{and for each } \  i \in \N \ \ \  V_i \ = \ T_i \setminus T_{i+1}
-\]
-Our reasoning shows that set $T$ is {\em partitioned} into the sets $V_0, \ V_1, \ V_2, \ldots$ and $V_\omega$.
-\end{itemize}
-Moreover, one sees that:
-\begin{itemize}
-\item
-$F^{(S \rightarrow T)}$ is a {\em bijection} between each $U_i$ and $V_{i+1}$, while
-\medskip\item
-$F^{(T \rightarrow S)}$ is a {\em bijection} between each $V_i$ and $U_{i+1}$.
-\end{itemize}
-Finally: Since $V_\omega \subseteq F^{(S \rightarrow T)}(S)$, and
-\[ \Big[F^{(S \rightarrow T)}\Big]^{-1} (V_\omega) \ = \
-\Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
-\bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \ = \
-\bigcap S_i \ = \ U_\omega
-\]
-it follows that $F^{(S \rightarrow T)}$ maps $U_\omega$ {\em bijectively} onto $V_\omega$.
-
-\smallskip
-
-Let us briefly ``decode" the preceding symbol-heavy chain of equations.  Recall first that $F^{(S \rightarrow T)}$ maps each set $S_i$ {\em injectively} into $T_{i+1}$.  This means that as we look at the {\it preimage} of the set $\bigcap T_{i+1}$ under $F^{(S \rightarrow T)}$, the various sets $S_i$ do not get ``mixed together"; they retain the separate identities that $F^{(S \rightarrow T)}$ endows them with because of the way it maps $S$ into $T$.  In other words,
-\[ \Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
-\bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \]
-
-\ignore{\Denis right, but the interchanged of the inverse and the intersection is not obvious, may but a word here would be welcome?}
-
-\smallskip
-
-\noindent
-By similar calculation and reasoning, $F^{(T \rightarrow S)}$ maps $V_\omega$ bijectively onto $U_\omega$.
-
-\medskip
-
-The preceding identifications of bijections between portions of set $S$ and portions of set $T$ allow us to piece together the advertised bijection $F^{(S \leftrightarrow T)}$ between the complete sets $S$ and $T$.  To wit:
-\begin{itemize}
-\item
-For each $i \in \N$:
-  \begin{itemize}
-  \item
-$F^{(S \leftrightarrow T)}$ maps each set $U_{2i}$ bijectively onto $V_{2i+1}$ in the same way that $F^{(S \rightarrow T)}$ does.
-  \medskip\item
-$F^{(S \leftrightarrow T)}$ maps each set $U_{2i+1}$ bijectively onto $V_{2i}$ in the same way that $F^{(T \rightarrow S)}$ does.
-\end{itemize}
-
-\medskip\item
-$F^{(S \leftrightarrow T)}$ maps $V_\omega$ bijectively onto $U_\omega$ in the same way that either $F^{(S \rightarrow T)}$ or $\Big[F^{(T \rightarrow S)}\Big]^{-1}$ does.
-\end{itemize}
-This sketch provides all of the salient ingredients of the proof in \cite{Tonien07}.  \qed
-\end{proof}
-\ignore{\Denis nice and clear, just add the range of $i$ here (since it is bounded by $omega$}
-
 \bigskip
 
 \index{composition!functions} \index{function!composition}
 While the operation of {\it (functional) composition}, as introduced in Section~\ref{sec:relation}, is important for general binary relations, it is a daily staple with relations that are functions!  Let us be given two functions on a set $S$
-\[
-F: S \rightarrow S \ \ \ \ \mbox{ and } \ \ \ \ G: S \rightarrow S
-\]
+\[ F: S \rightarrow S \ \ \ \ \mbox{ and } \ \ \ \ G: S \rightarrow S \]
 The {\it composition} of $F$ and $G$, {\em in that order}, is the function
 \[ F \circ G: S \rightarrow S \]
 defined as follows.
@@ -1084,7 +969,7 @@ defined as follows.
 \mbox{For each } \ s \in S \ \ \
 F \circ G(s) \ = \ G(F(s)).
 \end{equation}
-The unexpected change in the orders of writing $F$ and $G$ on the two sides of Eq.~(\ref{eq:functions-composed}) results from the existence of two historical schools that both contributed to the formulation of this material.  One school cleaved to the tradition of {\it abstract algebra}:  they wanted expressions to be written with {\em all} operators, including the composition operator $\circ$, in {\em infix} notation---i.e., in the form ``$s \rho t$''.  Another school, which could be called the {\it applicative algebraic school}, wanted to view functions as ``applying'' to their arguments.  Both notations have significant advantages in certain contexts, so both have survived.  It is a good idea for neophyte readers to be prepared to encounter both notations---but they have to keep their eyes open regarding the relative orders of $F$ and
+The unexpected change in the orders of writing $F$ and $G$ on the two sides of Eq.~(\ref{eq:functions-composed}) results from the existence of two historical schools that both contributed to the formulation of this material.  One school cleaved to the tradition of {\it abstract algebra}.  They wanted expressions to be written with {\em all} operators, including the composition operator $\circ$, in {\em infix} notation---i.e., in the form ``$s \rho t$''.  Another school, which could be called the {\it applicative algebraic school}, wanted to view functions as ``applying'' to their arguments.  Both notations have significant advantages in certain contexts, so both have survived.  It is a good idea for neophyte readers to be prepared to encounter both notations---but they have to keep their eyes open regarding the relative orders of $F$ and
 $G$.  \index{composition!functions!notation}
 
 \medskip
@@ -1112,27 +997,21 @@ If $F$ and $G$ are bijections, then so also is $F \circ G$.
 We prove each of the four assertions by invoking the underlying definitions.
 
 \noindent ({\bf a})
-Because $F$ and $G$ are functions on $S$: For each $s \in S$, there is at most one $t_1 \in S$ such that $F(s) = t_1$ and at most one $t_2 \in S$ such that $G(s) = t_2$.  Hence, we identify three possibilities.
+Because $F$ and $G$ are functions on $S$, for each $s \in S$, there is at most one $t_1 \in S$ such that $F(s) = t_1$ and at most one $t_2 \in S$ such that $G(s) = t_2$.  Hence, we identify three possibilities.
 
 \smallskip
 
 \begin{tabular}{lllll}
 1. &
-{\bf if}
-$F$ is defined at $s \in S$  & & & {\bf then} $F(s) \in S$ is unique \\
+{\em if} $F$ is defined at $s \in S$  & & & {\em then} $F(s) \in S$ is unique \\
   &
-{\bf and if} $G$ is defined at $F(s) \in S$ & & & {\bf then} $G(F(s))
-= F \circ G(s) \in S$ is unique \\
+{\em and if} $G$ is defined at $F(s) \in S$ & & & {\em then} $G(F(s)) = F \circ G(s) \in S$ is unique \\
 2. &
-{\bf if}
-$F$ is not defined at $s \in S$ & & & {\bf then} $F \circ G$ is not
-defined at $s \in S$ \\ 
+{\em if} $F$ is not defined at $s \in S$ & & & {\em then} $F \circ G$ is not defined at $s \in S$ \\ 
 3. & 
-{\bf if}
-$F$ is defined at $s \in S$ & & & {\bf then} $F(s) \in S$ is unique \\
+{\em if} $F$ is defined at $s \in S$ & & & {\em then} $F(s) \in S$ is unique \\
   &
-{\bf and if} $G$ is not defined at $F(s) \in S$ & & & {\bf then}
-$F \circ G$ not defined at $s \in S$ 
+{\em and if} $G$ is not defined at $F(s) \in S$ & & & {\em then} $F \circ G$ not defined at $s \in S$ 
 \end{tabular}
 
 \smallskip
@@ -1156,6 +1035,139 @@ Focus on any $s \in S$.  Because $F$ is a surjection on $S$, there exists $t \in
 If each of $F$ and $G$ is a bijection on $S$, then each is an injection on $S$, and each is a surjection on $S$.  Then Part (b) tells us that $F \circ G$ is an injection on $S$, and Part (c) tells
 us that $F \circ G$ is a surjection on $S$.  Hence, $F \circ G$ is a bijection on $S$.  \qed
 \end{proof}
+
+
+\subsubsection{$\oplus$ The Schr\"{o}der-Bernstein Theorem}
+\label{sec:schroeder-bernstein}
+
+This section is devoted to a remarkable theorem which states that {\em bijections} ($f: S \leftrightarrow T$) and {\em paired injections} ($g: S \rightarrow T$ and $h: T \rightarrow S$) always travel together.  In detail, for all sets $S$ and $T$, if there exists
+
+\smallskip
+
+\hspace*{.2in}{\em both} an injection from $S$ to $T$ {\em and} an injection from $T$ to $S$
+
+\smallskip
+
+\noindent then there exists
+
+\smallskip
+
+\hspace*{.2in}a bijection between $S$ and $T$.
+
+\medskip
+
+\index{The Schr\"{o}der-Bernstein Theorem}
+\index{Bernstein, Felix}
+\index{Schr\"{o}der, Ernst}
+\index{The Cantor-Bernstein Theorem}
+\index{Cantor, Georg}
+
+\noindent
+This is the celebrated theorem of Ernst Schr\"{o}der and Felix Bernstein; it is, alternatively, attributed to (Georg) Cantor and Bernstein.  As this complex attribution suggests, the theorem has a rather complicated history.  Picking just a few high points associated with the theorem's namesakes: The theorem was first stated without proof by Cantor in \cite{Cantor87}.  Roughly a decade later, Schr\"{o}der produced a flawed proof in \cite{Schroeder98a}.  As reported in \cite{Deiser2010}, Schr\"{o}der soon thereafter provided a correct proof---as, independently, did Bernstein.  We shall refer to the theorem by its customary name, the {\it Schr\"{o}der-Bernstein Theorem}, for that is the most likely name the reader will encounter. 
+
+\smallskip 
+
+The Schr\"{o}der-Bernstein Theorem can be immensely useful when reasoning about a large variety of mathematical scenarios that involve correspondences between the elements of two sets.  We encounter such a scenario, for example, when we prove Lemma~\ref{lem:N-=-F} in Section~\ref{sec:FNS-uncountable}.  Acknowledging the importance of the result, we now provide a formal statement and a somewhat informal sketch of its proof.
+
+\index{The Schr\"{o}der-Bernstein Theorem}
+\begin{theorem}[The Schr\"{o}der-Bernstein Theorem]
+\label{thm.S-B}
+For any sets $S$ and $T$, if there exist both an {\em injection}
+\[ F^{(S \rightarrow T)}: S \rightarrow T \]
+and an {\em injection}
+\[ F^{(T \rightarrow S)}: T \rightarrow S \]
+then there exists a {\em bijection}
+\[ F^{(S \leftrightarrow T)}: S \leftrightarrow T \]
+\end{theorem}
+
+\begin{proof}[Sketch]
+We give the highlights of a perspicuous proof from \cite{Tonien07}.
+
+\smallskip
+
+Let $S_0 = S$ and $T_0 = T$.  We set up a sequence of indices to orchestrate the upcoming argument: We have an index $i$ for each integer $i \in \N$, and we have a special index $\omega$ which takes care of the single case that the integer indices do not.
+
+\ignore{\Denis we should add the range of $i$ here, start at 0 up to some integer denote by $\omega$}
+
+For each index $i \in \N$, define
+\[ S_{i+1} \ = \ F^{(T \rightarrow S)}(T_i) \ \ \ \ \mbox{ and }
+\ \ \ \ T_{i+1} \ = \ F^{(S \rightarrow T)}(S_i) 
+\]
+We are repeatedly using here the notational convention that for any set $A$ and function $f$ defined on $A$, the {\em image} of set $A$ under function $f$ is the set
+\[ f(A) \ = \ \{ f(a) \ | \ a \in A \} \]
+
+\index{image of a set under a function}
+\index{image of a set under a function!$f(A)$: the image of set $A$ under function $f$}
+\index{$f(A)$: the image of set $A$ under function $f$}
+
+\medskip
+
+Because each of our injections, $F^{(S \rightarrow T)}$ and $F^{(T \rightarrow S)}$, maps its domain-set {\em into} its range-set (and not necessarily {\em onto}), we observe that increasing indices lead to nested progressions of sets, in the sense that
+\[ \mbox{Each } \ \  S_{i+1} \subseteq S_i
+ \ \ \ \mbox{ and each } \ \ \ 
+ T_{i+1} \subseteq T_i
+\]
+We now define two new sequences of sets:
+\begin{itemize}
+\item
+The sets $U_\omega$  and $U_0, \ U_1, \ U_2, \ldots$ are defined as follows:
+\[ U_\omega \ = \ \bigcap_i S_i \ \ \ \ \
+\mbox{and for each } \  i \in \N \ \ \  U_i \ = \ S_i \setminus S_{i+1} \]
+Our reasoning shows that set $S$ is {\em partitioned} into the sets $U_0, \ U_1, \ U_2, \ldots$ and $U_\omega$.
+\medskip\item
+The sets $V_\omega$  and $V_0, \ V_1, \ V_2, \ldots$ are defined as follows:
+\[ V_\omega \ = \ \bigcap_i T_i \ \ \ \ \
+\mbox{and for each } \  i \in \N \ \ \  V_i \ = \ T_i \setminus T_{i+1}
+\]
+Our reasoning shows that set $T$ is {\em partitioned} into the sets $V_0, \ V_1, \ V_2, \ldots$ and $V_\omega$.
+\end{itemize}
+Moreover, one sees that:
+\begin{itemize}
+\item
+$F^{(S \rightarrow T)}$ is a {\em bijection} between each $U_i$ and $V_{i+1}$, while
+\medskip\item
+$F^{(T \rightarrow S)}$ is a {\em bijection} between each $V_i$ and $U_{i+1}$.
+\end{itemize}
+Finally, since $V_\omega \subseteq F^{(S \rightarrow T)}(S)$, and
+\[ \Big[F^{(S \rightarrow T)}\Big]^{-1} (V_\omega) \ = \
+\Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
+\bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \ = \
+\bigcap S_i \ = \ U_\omega
+\]
+it follows that $F^{(S \rightarrow T)}$ maps $U_\omega$ {\em bijectively} onto $V_\omega$.
+
+\smallskip
+
+Let us briefly ``decode" the preceding symbol-heavy chain of equations.  Recall first that $F^{(S \rightarrow T)}$ maps each set $S_i$ {\em injectively} into $T_{i+1}$.  This means that as we look at the {\it preimage} of the set $\bigcap T_{i+1}$ under $F^{(S \rightarrow T)}$, the various sets $S_i$ do not get ``mixed together"; they retain the separate identities that $F^{(S \rightarrow T)}$ endows them with because of the way it maps $S$ into $T$.  In other words,
+\[ \Big[F^{(S \rightarrow T)}\Big]^{-1} \Big(\bigcap T_{i+1} \Big) \ = \
+\bigcap \Big[F^{(S \rightarrow T)}\Big]^{-1} (T_{i+1}) \]
+
+\ignore{\Denis right, but the interchanged of the inverse and the intersection is not obvious, may but a word here would be welcome?}
+
+\smallskip
+
+\noindent
+By similar calculation and reasoning, $F^{(T \rightarrow S)}$ maps $V_\omega$ bijectively onto $U_\omega$.
+
+\medskip
+
+The preceding identifications of bijections between portions of set $S$ and portions of set $T$ allow us to piece together the advertised bijection $F^{(S \leftrightarrow T)}$ between the complete sets $S$ and $T$.  In detail:
+\begin{itemize}
+\item
+For each $i \in \N$:
+  \begin{itemize}
+  \item
+$F^{(S \leftrightarrow T)}$ maps each set $U_{2i}$ bijectively onto $V_{2i+1}$ in the same way that $F^{(S \rightarrow T)}$ does.
+  \medskip\item
+$F^{(S \leftrightarrow T)}$ maps each set $U_{2i+1}$ bijectively onto $V_{2i}$ in the same way that $F^{(T \rightarrow S)}$ does.
+\end{itemize}
+
+\medskip\item
+$F^{(S \leftrightarrow T)}$ maps $V_\omega$ bijectively onto $U_\omega$ in the same way that either $F^{(S \rightarrow T)}$ or $\Big[F^{(T \rightarrow S)}\Big]^{-1}$ does.
+\end{itemize}
+This sketch provides all of the salient ingredients of the proof in \cite{Tonien07}.  \qed
+\end{proof}
+\ignore{\Denis nice and clear, just add the range of $i$ here (since it is bounded by $omega$}
 
 \subsection{Sets, Strings, Functions: Important Connections}
 \label{sec:sets-strings-functions}
