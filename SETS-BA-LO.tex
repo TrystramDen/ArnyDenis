@@ -1225,8 +1225,10 @@ In this scenario, $\beta$ is called the {\it characteristic vector} of the funct
 
 \medskip
 
-\noindent {\em The notion of characteristic vector leads to a rather straightforward proof that there does {\em not} exist a bijection between the set $\N^+$ of positive integers and the set of all functions from $\N^+$ to $\{0,1\}$, i.e., the set $\big\{ f:\N^+ \rightarrow \{0,1\} \big\}$.}  See Proposition~\ref{thm:R-uncountable}.
+\noindent {\em The notion of characteristic vector leads to a rather straightforward proof that there does {\em not} exist a bijection between the set $\N^+$ of positive integers and the set $\F$ of all functions from $\N^+$ to $\{0,1\}$; symbolically, $\F \ = \ \big\{ f:\N^+ \rightarrow \{0,1\} \big\}$.}  See Proposition~\ref{thm:R-uncountable}.
 \end{enumerate}
+
+\medskip
 
 We now have a new way to think about sequences/strings, sets, and functions.  Each way conveys insights and tools for reasoning about and analyzing these concepts that other ``names'' for the concepts do not.  And, we now recognize conceptual ties among these three concepts that are not always intuitive.  Our conceptual toolkit has been enriched!
 
@@ -1234,7 +1236,7 @@ We now have a new way to think about sequences/strings, sets, and functions.  Ea
 \label{sec:Boolean-Algebra}
 \index{Boolean Algebra}
 
-We remarked in Section~\ref{sec:operations-on-sets} that there is an extensive repertoire of operations on sets.  It is not difficult to compile a list of laws that various subsets of these operations obey.
+We remarked in Section~\ref{sec:operations-on-sets} that there is an extensive repertoire of operations on sets.  It is useful---and not difficult---to compile a list of laws that govern various sets of these operations.
 \begin{itemize}
 \item
 The {\em commutativity} of union and intersection is one example:
@@ -1245,20 +1247,22 @@ S \cap T & = & T \cap S
 
 \medskip\item
 The {\em distributivity} of either of union and intersection over the other provides another example:
-\begin{eqnarray*}
+\begin{eqnarray}
+\label{eq:BooleanDistr-UI}
 R \cup (S \cap T) & = & (R \cup S) \cap (R \cup T) \\
+\label{eq:BooleanDistr-IU}
 R \cap (S \cup T) & = & (R \cap S) \cup (R \cap T)
-\end{eqnarray*}
+\end{eqnarray}
 
 \smallskip
 
-Notice that arithmetic (of numbers) has an analogue of the second of these equations---with multiplication playing the role of intersection and addition playing the role of union---but it does {\em not} have an analogue of the first.
+{\em Note that arithmetic (of numbers) has an analogue of Eq.~(\ref{eq:BooleanDistr-IU})---with multiplication playing the role of intersection and addition playing the role of union---but it does {\em not} have an analogue of Eq.~(\ref{eq:BooleanDistr-UI}).}
 
 \medskip\item
 The {\em idempotence} of complementation provides a third example:
 \[ \overline{\overline{S}} \ = \ S \]
 \end{itemize}
-Along the same general theme, there are special constants.
+Following the same general theme, there are special constants, $\emptyset$ and $U = \overline{\emptyset}$.
 \[
 \begin{array}{l}
 S \cap \overline{S} \ = \ S \cap \emptyset \ = \ \emptyset \\
@@ -1272,7 +1276,9 @@ The English logician/mathematician George Boole is historically credited with de
 mathematical logic within an algebraic framework; see
 \cite{Boole54}.\footnote{The cited source seems to be an expansion on Boole's original exposition of these thoughts, in {\it The Mathematical Analysis of Logic} (1847).}  The system that Boole developed has been named {\it Boolean algebra}, in his honor.
 
-Rather than provide an extensive description of ``abstract" Boolean algebras in terms of their operations and axioms, we turn directly to the system of logic that was Boole's inspiration and that has since his day provided a mathematical foundation for areas of immeasurable importance to technology.  (Much of an exposition of ``abstract" Boolean algebra would just repeat material from the ``applied" areas.)  We list citations to just three areas: the first citation is to Boole's original work; the other two are seminal studies by one of the greatest ``technology-theorists'' of the $20$th century, Claude E.~Shannon. \index{Shannon, Claude E.}
+\smallskip
+
+Rather than provide an extensive description of ``abstract" Boolean algebras in terms of their operations and axioms, we turn directly to the system of logic that was Boole's inspiration and that has since his day provided a mathematical foundation for areas of immeasurable importance to technology.  (Much of an exposition of ``abstract" Boolean algebra would just repeat material from the ``applied" areas.)  We list citations to just three areas: the first citation is to Boole's original work; the other two are seminal studies by one of the greatest ``technology-theorists'' of the twentieth century, Claude E.~Shannon. \index{Shannon, Claude E.}
 \begin{itemize}
 \item
 the foundations of Mathematical Logic \cite{Boole54}
@@ -1281,7 +1287,10 @@ the mathematical foundations of Switching-Circuit Theory \cite{Shannon38}
 \medskip\item
 the mathematical foundations of Information Theory \cite{Shannon48}
 \end{itemize}
-The genius of the mathematical system invented by Boole is manifest in the fact that it provides a starting point for formally understanding many seemingly disparate disciplines.  Indeed, if one develops a level of understanding of Boole's algebraic framework for Propositional Logic, then one can translate that understanding almost seamlessly to at least the preliminaries of Shannon's mathematical settings for Switching Circuit Theory and Information Theory.
+The genius of the mathematical system invented by Boole is manifest in the fact that it provides a starting point for formally understanding many seemingly disparate disciplines.  Indeed, if one develops a level of understanding of Boole's algebraic framework for Propositional Logic, then one can transfer that understanding almost seamlessly to at least the preliminaries of Shannon's mathematical settings for Switching-Circuit Theory and Information Theory.  We could use the verb ``{\em translate}" here, rather than ``transfer" because converting assertions within Boolean algebra to kindred assertions within Switching-Circuit Theory often requires only a change in notation.
+
+
+
 \index{Switching Circuit Theory} \index{Information Theory}
 
 \subsection{The Algebra of Propositional Logic}
@@ -1295,12 +1304,7 @@ The genius of the mathematical system invented by Boole is manifest in the fact 
 \index{propositional logic!objects of the algebra}
 \index{propositional logic!propositions}
 
-\noindent
-As we noted earlier in this chapter, what distinguishes Propositional
-Logic from more general mathematical logic is the absence of
-quantifiers ({\sc there exists}, {\sc for all}, etc.).  The objects of
-Propositional Logic are {\it propositions}, i.e., fixed assertions, as
-exemplified by the following three sentences.
+As we noted earlier in this chapter, what distinguishes Propositional Logic from more general mathematical logic is the absence of quantifiers ({\sc there exists}, {\sc for all}, etc.).  The objects of Propositional Logic are {\it propositions}, i.e., fixed assertions, as exemplified by the following three sentences.
 
 \smallskip
 
@@ -1320,7 +1324,7 @@ exemplified by the following three sentences.
 
 \smallskip
 
-The property of being a ``proposition'' is {\em syntactic}, rather than {\em semantic}.  Our three sample propositions illustrate that the assertion made in a proposition need not be factually true---nor even sensible.  Indeed, the third of our samples was made famous by American linguist Noam Chomsky---in his seminal monograph {\it Syntactic Structures} (Mouton Press, 1957, {\it Janua Linguarum} series)---as he illustrated the independence of the notions ``grammatical" and ``meaningful".
+The property of being a ``proposition'' is {\em syntactic}, rather than {\em semantic}.  Our three sample propositions illustrate that the assertion made in a proposition need not be factually true---nor even sensible.  Indeed, our third sample proposition was made famous by American linguist Noam Chomsky---in his seminal monograph {\it Syntactic Structures} (Mouton Press, 1957, {\it Janua Linguarum} series)---as he illustrated the independence of the notions ``grammatical" and ``meaningful".
 \end{minipage}
 }
 
@@ -1342,7 +1346,6 @@ The algebra that underlies Propositional Logic uses operations that are reminisc
 Two special propositions---the constants of the algebra---are denoted {\sc true} and {\sc false}.  They are {\em intended} to represent factual truth and factual falsehood, but they are {\em defined} by the way they interact with each other and with other propositions.  In order
 to specify these interactions, we have to specify the logic's {\it connectives}: the operations of the algebra.
 
-\bigskip
 
 \paragraph{B. Logical connectives: the algebra's operations}
 \index{propositional logic!operations of the algebra}
