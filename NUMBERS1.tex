@@ -737,7 +737,7 @@ We begin to study the several important aspects of integer divisibility by consi
 If $m$ divides $n$, then $m$ divides all integer multiples of $n$. That is: If $m$ divides $n$, then $m$ divides $cn$ for all integers $c$.
 
 \medskip\item
-The relation ``divides'' is {\em transitive}.\footnote{See Chapter~\ref{sec:order-relation}.}  Specifically, if $m$ divides $n$ and $n$ divides $q$ for some integer $q$, then $n$ divides $q$.
+The relation ``divides'' is {\em transitive}.\footnote{See Chapter~\ref{sec:order-relation}.}  Specifically, if $m$ divides $n$ and $n$ divides $q$ for some integer $q$, then $m$ divides $q$.
 
 \medskip\item
 The relation ``divides'' {\em distributes} over addition.\footnote{We use the term ``distributes'' in the sense of the Distributive Law; see Section~\ref{sec:Arithmetic-Laws}.}  That is, if $m$ divides $n$ and $m$ divides $(n+q)$ for some integer $q$, then $m$ divides $q$.
@@ -801,7 +801,7 @@ Proposition~\ref{thm:m-commondivisor-n-q}, then, for all integers $s$ and $t$, {
 
 It follows, therefore, that $m \geq$ {\sc gcd}$(n, q)$.
 \item
-First, notice that $m \leq n$.  To wit, the expression $n = 1 \cdot n + 0 \cdot q$ is a particular linear combination of $n$ and $q$, and $m$ is the {\em smallest} positive such combination.   
+First, notice that $m \leq n$.  The expression $n = 1 \cdot n + 0 \cdot q$ is a particular linear combination of $n$ and $q$, and $m$ is the {\em smallest} positive such combination.   
 
 \smallskip
 
@@ -861,7 +861,7 @@ Let us summarize.  The set of positive integer linear combinations of $n$ and $q
 B\'{e}zout's identity has the following significant corollary.
 
 \begin{corol}
-Every linear combination of $n$ and $q$ is a multiple of $\mbox{\sc gcd}(n,q)$, and vice-versa.
+Every linear combination of $n$ and $q$ is a multiple of $\mbox{\sc gcd}(n,q)$, and vice versa.
 \end{corol}
 
 \index{Euclid}
@@ -878,11 +878,11 @@ For positive integers $m$ and $n$, let $\mbox{\sc rem}(m,n)$ denote the (integer
 \begin{prop}
 \label{thm:gcd-basis}
 For any integers $n$ and $m > 0$,
-\[ \mbox{\sc gcd}(m,n) \ = \  \mbox{\sc gcd}(m, \ \mbox{\sc rem}(m,n)) . \]
+\[ \mbox{\sc gcd}(m,n) \ = \  \mbox{\sc gcd}(m, \ \mbox{\sc rem}(m,n))  \]
 \end{prop}
 
 \begin{proof}
-For integers $x > 0$ and $y \geq 0$, we denote by $D(x,y)$ the set of common divisors of $x$ and $y$, i.e., the set of integers that divide both $x$ and $y$.  We prove the proposition by showing, as follows, that the sets $D(m, n)$ and $D(m, \mbox{\sc rem})$ actually contain precisely the same elements.
+For integers $x > 0$ and $y \geq 0$, we denote by $D(x,y)$ the set of common divisors of $x$ and $y$, i.e., the set of integers that divide both $x$ and $y$.  We prove the proposition by showing, as follows, that the sets $D(m, n)$ and $D(m, \mbox{\sc rem}(m,n))$ actually contain precisely the same elements.
 \begin{itemize}
 \item 
 $D(m, n) \ \subseteq \ D(m, \mbox{\sc rem}(m,n))$.
@@ -897,20 +897,19 @@ $D(m, \mbox{\sc rem}(m,n)) \ \subseteq \ D(m,n)$.
 
 \smallskip
 
-Say that the integer $d$ divides both $m$ and $\mbox{\sc rem}(m,n)$, i.e., that $d \in D(m, \mbox{\sc rem}(m,n))$.  By Proposition~\ref{thm:m-common-divisor-nq}, $d$ divides every linear
+Say that the integer $d$ divides both $m$ and $\mbox{\sc rem}(m,n)$, i.e., that $d \in D(m, \mbox{\sc rem}(m,n))$.  By Proposition~\ref{thm:m-commondivisor-n-q}, $d$ divides every linear
 combination of $m$ and $\mbox{\sc rem}(m,n)$.  In particular, $d$ divides the specific combination $q \cdot m \ + \ 1 \cdot \mbox{\sc rem}(m,n) \ = \ n$.  Thus, $d$ divides $n$, so that $d \in D(m,n)$.
 \end{itemize}
 Since we thus have $D(m, n) \ = \ D(m, \mbox{\sc rem}(m,n))$, we know that the sets contain the same largest element:
-\[ \max\left( D(m, n) \right) \ = \ \max\left( D(m, \mbox{\sc rem}(m,n)) \right);
-\]
-the proposition follows.  \qed
+\[ \max\left( D(m, n) \right) \ = \ \max\left( D(m, \mbox{\sc rem}(m,n)) \right) \]
+The proposition follows.  \qed
 \end{proof}
 
 
 \section{The Rational Numbers}
 \label{sec:rationals}
 
-Each enrichment of our number system throughout history has been a response to a deficiency with the then-current system.  The deficiency which instigated the introduction of the rational numbers was the fact that many integers do not divide certain other integers.
+Each enrichment of our number system throughout history has been a response to a deficiency with the then-current system.  The deficiency that instigated the introduction of the rational numbers was the fact that many integers do not divide certain other integers.
 
 This situation led to practical problems when people began to share commodities that were physically divisible.  With a bit of care, you can always cut a pizza into any desired number of slices---but mandating such an action is awkward if you lack the terminology to describe what you want to achieve.
 
@@ -922,20 +921,19 @@ The situation also led to an intellectual problem, when viewed from a modern per
  \ \ \ \mbox{ and } \ \ \
 [a \cdot b \ = \ b \cdot a] \big]
 \]
-both are {\em associative}, in the sense asserted by the equations
+and both are {\em associative}, in the sense asserted by the equations
 \[
 (\forall a,b) \ \ \big[ [a+(b+c) \ = \ (a+b)+c]
  \ \ \ \mbox{ and } \ \ \ 
 [a \cdot (b \cdot c) \ = \ (a \cdot b) \cdot c] \big]
 \]
-If we restrict our focus to the {\em integers}, however, there is a glaring difference between addition and multiplication.  To wit, addition has a ``partner operation'', {\it subtraction}, which operates as an {\it inverse operation}:
+If we restrict our focus to the {\em integers}, however, there is a glaring difference between addition and multiplication.  That is, addition has a ``partner operation'', {\it subtraction}, which operates as an {\it inverse operation}:
 \[ (\forall a, b, c) \big[ \mbox{if } \ \ [c = a + b] \ \ \mbox{ then }  \ \ [a = c-b] \big]
 \]
 (We call $c-b$ the {\em difference} between $c$ and $b$.)  Within the context of the integers, multiplication has no such ``partner''.  We respond to this imbalance by inventing a ``partner'' for
 multiplication, and we call it {\it division}, denoted $\div$.  Now, division cannot completely mimic subtraction because of the technical problems that arise from the {\em multiplicative annihilation} properties of the integer $0$:
 \[ (\forall a) \left[ a \cdot 0 \ = \ 0 \cdot a \ = \ 0 \right] \] 
-There is no way to ``undo'', or ``invert'' the operation {\em multiply-by-$0$}, because that operation is not one-to-one.  But, if we frame the operation of division carefully---specifically, by
-avoiding division by $0$---then we can endow multiplication with the desired ``partner'':
+There is no way to ``undo'' or ``invert'' the operation {\em multiply-by-$0$}, because that operation is not one-to-one.  However, if we frame the operation of division carefully---specifically, by avoiding division by $0$---then we can endow multiplication with the desired ``partner'':
 \[ (\forall a, b, c) \big[ \mbox{if } \ \ [c = a \cdot b] \ \
 \mbox{ and if } \ \ [b \neq 0] \ \
  \mbox{ then }  \ \ [a = c \div b] \big]
@@ -966,7 +964,7 @@ An alternative, mathematically more advanced, way of defining the set $\Q$ is as
 
 \smallskip
 
-Numerous notations have been proposed for denoting rational numbers in terms of the integers they are ``built from.''  Most of these notations continue our custom of employing the single symbol ``$0$'' for the number $0$, but notations such as $0/q$ (where $q \neq 0$) are permissible when they arise as part of a calculation or an analysis.  For the nonzero elements of $\Q$, we traditionally employ some notation for the operation of division and denote the quotient of $p$ by $q$ using one of the following:
+Numerous notations have been proposed for denoting rational numbers in terms of the integers they are ``built from''.  Most of these notations continue our custom of employing the single symbol ``$0$'' for the number $0$, but notations such as $0/q$ (where $q \neq 0$) are permissible when they arise as part of a calculation or an analysis.  For the nonzero elements of $\Q$, we traditionally employ some notation for the operation of division and denote the quotient of $p$ by $q$ using one of the following:
 \begin{equation}
 \label{eq:fraction}
  p/q \ \ \ \mbox{ or } \ \ \ {p \over q} \ \ \ \mbox{ or } \ \ \ p
@@ -979,7 +977,7 @@ The integer $p$ in any of the expressions of (\ref{eq:fraction}) is the {\it num
 \subsection{Comparing the Rational and Integer Number Lines}
 \label{sec:Compare-Q-Z}
 
-There are many ways to compare the sets $\Z$ and $\Q$ in ways that enhance our understanding of both sets.  We craft a comparison that focuses on the similarities and differences in the two sets' number lines, using Section~\ref{sec:integer-number-line} as the reference for the integer number line.
+There are many ways to compare the sets $\Z$ and $\Q$ that enhance our understanding of both sets.  We craft a comparison that focuses on the similarities and differences in the two sets' number lines, using Section~\ref{sec:integer-number-line} as the reference for the integer number line.
 
 \smallskip
 
@@ -999,11 +997,11 @@ sets $\Z$ and $\Q$ ``have the same size'', and the more advanced Section~\ref{se
 \label{sec:Q-Z-laws}
 \index{number!rational!number line}
 
-The rational numbers share some, but not all, of the number-line laws of the integers, as enumerated in Section~\ref{sec:integers}.A.  We now adapt for $\Q$ that section's discussion of $\Z$'s number line.
+The rational numbers share some, but not all, of the number-line laws of the integers, as enumerated in Section~\ref{sec:integer-number-line}.  We now adapt for $\Q$ that section's discussion of $\Z$'s number line.
 
 \smallskip
 
-The sets $\Q$ and $\Q^+$ are both {\em totally ordered}, in the manners expressed by the Trichotomy laws for rational numbers.
+The sets $\Q$ and $\Q^+$ are both {\em totally ordered}, in the manner expressed by the Trichotomy laws for rational numbers.
 \index{number!rational!total order}
 
 \medskip
@@ -1035,7 +1033,7 @@ The total ordering of $\Q$ is expressed as follows
 
 \smallskip
 
-As with the integers, the rationals can be visualized via a ($2$-way infinite) number line.  But the rational line is much harder to visualize, mainly because the rationals do {\em not} enjoy the
+As with the integers, the rationals can be visualized via a (two-way infinite) number line.  But the rational line is much harder to visualize, mainly because the rationals do {\em not} enjoy the
 well-ordering or discreteness or ``between-ness'' laws of the integers.
 
 \medskip
@@ -1060,16 +1058,16 @@ In fact, $\Q$ violates the ``Between'' laws in a very strong way: {\it For any t
 
 \smallskip
 
-One can specify such an infinite set for the pair $a,b$ in myriad ways.  Here is a simple such set, call it $S_{a,b}$.
+One can specify such an infinite set for the pair $a,b$ in a many different ways.  Here is a simple such set for the case $b > 0$, call it $S_{a,b}$.
 \begin{equation}
 \label{eq:between-rationals}
-S_{a,b} \ = \ \left\{ \frac{a+b}{k} \ \ | \ \ k \in \Z \right\}.
+S_{a,b} \ = \ \left\{ \frac{ka+b}{k} \ \ | \ \ k \in \N^+ \right\}
 \end{equation}
 
 \subsubsection{Comparing $\Z$ and $\Q$ via their cardinalities}
 \label{sec:Q-Z-cardinality}
 
-Our final comparison between the rationals and the integers compares the relative ``sizes'', or, {\em cardinalities} of $\Z$ and $\Q$.  Informally, 
+Our final comparison between the rationals and the integers compares the relative ``sizes'' or {\em cardinalities} of $\Z$ and $\Q$.  Informally, 
 
 \smallskip
 
@@ -1108,7 +1106,7 @@ $|\Q| \ = \ |\N|$.
 \end{prop}
 
 \begin{proof}[Sketch]
-We leave the details of this proof to an exercise.
+We leave the details of this proof as an exercise.
 
 \smallskip
 
@@ -1150,7 +1148,7 @@ Combining the preceding derived inequalities completes the proof.
 \subsection{Inventing the Real Numbers}
 \label{sec:real-history}
 
-Each subsequent augmentation of our system of numbers is more complicated than the last one: Many relatively sophisticated deficiencies in the system are not even visible until other, relatively simple deficiencies have been eliminated.  The deficiency in the system of rational numbers which led to the system of real numbers actually dates to historical time, roughly $2 {1 \over 2}$ millennia ago.  The ancient Egyptians were prodigious builders who mastered truly sophisticated mathematics in order to engineer their temples and pyramids.  The ancient Greeks continued this engineering tradition, but they added to it a philosophical ``soul''.  Both the earthly and ethereal sides of mathematics will be observed in this chapter.
+Each subsequent augmentation of our system of numbers is more complicated than the last one: Many relatively sophisticated deficiencies in the system are not even visible until other, relatively simple deficiencies have been eliminated.  The deficiency in the system of rational numbers which led to the system of real numbers actually dates to historical time, roughly two-and-a-half millennia ago.  The ancient Egyptians were prodigious builders who mastered truly sophisticated mathematics in order to engineer their temples and pyramids.  The ancient Greeks continued this engineering tradition, but they added to it a philosophical ``soul''.  Both the earthly and ethereal sides of mathematics will be observed in this chapter.
 
 \smallskip
 
@@ -1160,14 +1158,14 @@ accomplished using only {\em straight-edges} (what we often call ``rulers") {\em
 \[ 
 ax \ = \ by \ \ \ \ \mbox{ or, equivalently, } \ \ \ \ x \ = \ \frac{b}{a} y.
 \]
-As Greek philosophers contemplated their desire to employ commensurable pairs of integers in constructions, they discovered that this goal was not always possible---even in moderately simple constructions.  The ``poster child'' of this assertion is perceptible in {\it the diagonal of the square with unit-length sides} or, equivalently, in {\it the hypotenuse of the isosceles right triangle with unit-length legs}.  For both of these constructs, the unit lengths of the structure's sides or legs were accompanied by the inevitable {\em non-commensurability} of the length of the square's diagonal or the triangle's hypotenuse: In current terminology, the (shared) length of the diagonal and the hypotenuse is $\sqrt{2}$.  The Greek mathematicians, as reported by Euclid,\footnote{Euclid wrote extensively on this and related subjects, especially regarding geometry and what is currently known as number theory.}~proved, using current terminology, that $\sqrt{2}$ {\em is not rational}.  (We rephrase Euclid's proof imminently, in Proposition~\ref{thm:sqrt(2)}.)  The conclusion from this proof is that a number system based solely on the integers and rationals was inadequate for even elementary constructions.  In response to this discovery, the philosophers/mathematicians augmented our number system by introducing {\it surds} or, as we more commonly term them, {\it radicals}.  The augmentation thus begun culminated in what we know as the {\it real number system}.  Since our intention in this introduction has been to justify the journey along that trajectory, we leave our historical digression and turn to our real focus, the set of {\it real numbers}.
+As Greek philosophers contemplated their desire to employ commensurable pairs of integers in constructions, they discovered that this goal was not always possible---even in moderately simple constructions.  The poster child of this assertion is perceptible in {\it the diagonal of the square with unit-length sides} or, equivalently, in {\it the hypotenuse of the isosceles right triangle with unit-length legs}.  For both of these constructs, the unit lengths of the structure's sides or legs were accompanied by the inevitable {\em non-commensurability} of the length of the square's diagonal or the triangle's hypotenuse: In current terminology, the (shared) length of the diagonal and the hypotenuse is $\sqrt{2}$.  The Greek mathematicians, as reported by Euclid,\footnote{Euclid wrote extensively on this and related subjects, especially regarding geometry and what is currently known as number theory.}~proved, using current terminology, that $\sqrt{2}$ {\em is not rational}.  (We rephrase Euclid's proof imminently, in Proposition~\ref{thm:sqrt(2)}.)  The conclusion from this proof is that a number system based solely on the integers and rationals was inadequate for even elementary constructions.  In response to this discovery, the philosophers/mathematicians augmented our number system by introducing {\it surds} or, as we more commonly term them, {\it radicals}.  The augmentation thus begun culminated in what we know as the {\it real number system}.  Since our intention in this introduction has been to justify the journey along that trajectory, we leave our historical digression and turn to our real focus, the set of {\it real numbers}.
 \index{number!real} \index{Euclid} \index{number!surd} \index{number!radical}
 
 \subsection{Defining the Real Numbers via Their Representations}
 \label{sec:define-Reals}
 \index{real number} \index{number!real}  \index{$\R$: the set of real numbers}
 
-There are numerous ways to define the class $\R$ of {\it real numbers}.  The definition which we have chosen has two advantages, given the goals for this text.  It: (1) has clear connections to the {\em computational aspects} of real numbers; (2) relies on {\em basic} mathematical concepts, hence can confidently appear at this early stage of the text.  We define the class of real numbers in terms of their {\em operational} numerals, thereby laying the groundwork for Chapter~\ref{ch:numerals}'s study of numerals.  The definition we provide is completely correct and adequate, but its nuances will be appreciated by readers only incrementally, as they progress through Chapter~\ref{ch:Summation} (especially Section~\ref{sec:geometric-sums}) and Chapter~\ref{ch:numerals}.
+There are numerous ways to define the class $\R$ of {\it real numbers}.  The definition which we have chosen has two advantages, given the goals for this text.  Our definition: (1) has clear connections to the {\em computational aspects} of real numbers; (2) relies on {\em basic} mathematical concepts, hence can confidently appear at this early stage of the text.  We define the class of real numbers in terms of their {\em operational} numerals, thereby laying the groundwork for Chapter~\ref{ch:numerals}'s study of numerals.  The definition we provide is completely correct and adequate, but its nuances will be appreciated by readers only incrementally, as they progress through Chapter~\ref{ch:Summation} (especially Section~\ref{sec:geometric-sums}) and Chapter~\ref{ch:numerals}.
 
 \index{number base} \index{number!real}
 Our definition is parameterized by an integer {\it base} $b > 1$: any such integer will work.  Having fixed on a base $b$, a {\it real number} is any number that is specified by an {\em infinite} summation of the form
@@ -1183,9 +1181,9 @@ Our definition is parameterized by an integer {\it base} $b > 1$: any such integ
 \end{array}
 \end{array}
 \end{equation}
-By prepending a ``negative sign'' (or, ``minus sign'') to a numeral or a number, one renders the thus-embellished entity as negative.
-\index{number!real!specified via infinite summation}
-\index{real number!specified via infinite summation}
+By prepending a {\em negative sign} or {\em minus sign} to a numeral or a number, one renders the thus-embellished entity as negative.
+\index{number!real!specified via infinite summation} \index{negative sign}
+\index{real number!specified via infinite summation} \index{minus sign}
 
 \smallskip
 
@@ -1195,8 +1193,8 @@ The perceptive reader will note that a proof is required to establish that every
 
 \medskip
 
-\index{constructibility principle for real numbers}
-\noindent {\bf Constructibility Principle for real numbers}.  {\em Any length (of a line segment) that can be specified via a drawing that uses only ruler and compass is a real number.}
+\index{Constructibility Principle for real numbers}
+\noindent {\bf Constructibility Principle for real numbers}.  {\em Any length (of a line segment) that can be specified via a drawing made using only straightedge and compass is a real number.}
 
 
 \subsection{Not All Real Numbers Are Rational}
@@ -1268,8 +1266,8 @@ As we do for many results that we encounter in our mathematical journey, we prov
 Let us assume, for contradiction, that $\sqrt{2}$ is rational.  By definition, then, $\sqrt{2}$ can be written as a quotient
 \[ \sqrt{2} \ = \ {a \over b} \]
 for positive integers $a$ and $b$.  In fact, we can also insist that $a$ and $b$ {\em share no common prime factor}.  For, if $a$ and $b$ did share the prime factor $p$, then we would have $a = p \cdot c$ and $b = p \cdot d$.  In this case, we would also have
-\[ \sqrt{2} \ = \ {a \over b} \ = \ \frac{p \cdot c}{p \cdot d} \ = \ {c \over d}, \]
-by cancellation of the common factor $p$.  We can eliminate all further common prime factors if necessary until, finally, we find a quotient for $\sqrt{2}$ whose numerator and denominator share no common prime factor.  This must occur eventually because each elimination of a common factor leaves us with smaller integers, so the iterative elimination of common factors must terminate.  Therefore, let us say, finally, that
+\[ \sqrt{2} \ = \ {a \over b} \ = \ \frac{p \cdot c}{p \cdot d} \ = \ {c \over d} \]
+by canceling the common factor $p$.  We can eliminate all further common prime factors if necessary until, finally, we find a quotient for $\sqrt{2}$ whose numerator and denominator share no common prime factor.  This must occur eventually because each elimination of a common factor leaves us with smaller integers, so the iterative elimination of common factors must terminate.  Therefore, let us say, finally, that
 \begin{equation}
 \label{eq:sqrt2-1}
 \sqrt{2} \ = \ {k \over \ell}
@@ -1281,7 +1279,7 @@ where $k$ and $\ell$ share no common prime factor.
 Let us square both expressions in Eq.~(\ref{eq:sqrt2-1}) and multiply both sides of the resulting equation by $\ell^2$.  We thereby discover that
 \begin{equation}
 \label{eq:sqrt2-2}
-2 \ell^2 \ = \ k^2.
+2 \ell^2 \ = \ k^2
 \end{equation}
 This rewriting exposes the fact that $k^2$ is {\em even}, i.e., {\em divisible by $2$}.  We claim that the divisibility of $k^2$ by $2$ betokens the same divisibility for $k$.
 \begin{description}
@@ -1308,7 +1306,9 @@ Hence, we can divide the first and last quantities in Eq.~(\ref{eq:sqrt2-3}) by 
 If we now repeat the preceding indented argument, we discover that the integer $\ell$ must be even.  This means that {\em both $k$ and $\ell$ are even}.  This fact contradicts our assumption that $k$ and $\ell$ share no common prime divisor!
 \index{integer!even}
 
-Since every step of our argument is ironclad---except for our assumption that $\sqrt{2}$ is rational, we conclude that that assumption is false!  Part (b) of the Proposition is verified. \qed
+\smallskip
+
+Since every step of our argument is ironclad, except for our assumption that $\sqrt{2}$ is rational, we conclude that that assumption is false!  Part (b) of the Proposition is verified. \qed
 \end{proof}
 
 \subsubsection{A geometric proof that $\sqrt{2}$ is not rational: $\sqrt{2} \not\in \Q$}
@@ -1320,7 +1320,7 @@ Our geometric proof is built around Fig.~\ref{fig:irrationality1}, which
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/sqrt2initial}
 \caption{{\it A geometric depiction of the Pythagorean Theorem and its
-    underlying equation: $a^2 = b^2 + b^2$.}
+    underlying equation: $a^2 = b^2 + b^2$}
 \label{fig:irrationality1}}
 \end{center}
 \end{figure}
@@ -1350,7 +1350,7 @@ Fig.~\ref{fig:irrationality1} into the white $a \times a$ square, in the overlap
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresArithmetic/sqrt2final}
-\caption{{\it Constructing a smaller instance of the Pythagorean equation.}
+\caption{{\it Constructing a smaller instance of the Pythagorean equation}
 \label{fig:irrationality2}}
 \end{center}
 \end{figure}
@@ -1364,10 +1364,10 @@ Now, let us get quantitative.
 On the one hand, the fact that the combined areas of the two grey squares equal the area of the white square guarantees that the area of the dark grey overlap-square is equal to the combined areas of the small unoccupied white squares.
 
 \medskip\item
-On the other hand, because the side-length of the large white square is $a$, while the (common) side-length of the grey squares is $b$, it follows that the side-lengths of the small white square is $a-b$, and the side-length of the dark grey overlap-square is $2b-a$.  All of these side-lengths are positive because of the value of $\sqrt{2}$.  To wit: ($i$) $a > b$ because $\sqrt{2} >1$; ($ii$) $2b >a$ because $\sqrt{2} < 2$.
+On the other hand, because the side-length of the large white square is $a$, while the (common) side-length of the grey squares is $b$, it follows that the side-lengths of the small white square is $a-b$, and the side-length of the dark grey overlap-square is $2b-a$.  All of these side-lengths are positive because of the value of $\sqrt{2}$.  That is: ($i$) $a > b$ because $\sqrt{2} >1$; ($ii$) $2b >a$ because $\sqrt{2} < 2$.
 \end{itemize}
-The preceding facts allow us to label the squares of Fig.~\ref{fig:irrationality1} differently than we did earlier---and thereby derive a different valid ``equation''.  As we did at the beginning of this discussion, we again invoke the Pythagorean Theorem, but now we do so while focusing---cf., Fig.~\ref{fig:irrationality2}---on the dark grey overlap-square (which plays the role of the large square in Fig.~\ref{fig:irrationality1}) and the two small white squares (which play the role of the two small squares in Fig.~\ref{fig:irrationality1}).  Whereas our original focus led to the putative rational value for $\sqrt{2}$: $\displaystyle {a \over b}$ for $\sqrt{2}$, the new focus yields the putative rational value $\displaystyle {2b-a \over a-b}$.  We thus have
-\[ \sqrt{2} \ = \ {a \over b} \ = \ {2b-a \over a-b}, \]
+The preceding facts allow us to label the squares of Fig.~\ref{fig:irrationality1} differently than we did earlier---and thereby derive a different valid ``equation''.  As we did at the beginning of this discussion, we again invoke the Pythagorean Theorem, but now we do so while focusing---see Fig.~\ref{fig:irrationality2}---on the dark grey overlap-square (which plays the role of the large square in Fig.~\ref{fig:irrationality1}) and the two small white squares (which play the role of the two small squares in Fig.~\ref{fig:irrationality1}).  Whereas our original focus led to the putative rational value $\displaystyle {a \over b}$ for $\sqrt{2}$, the new focus yields the putative rational value $\displaystyle {2b-a \over a-b}$.  We thus have
+\[ \sqrt{2} \ = \ {a \over b} \ = \ {2b-a \over a-b}  \]
 where $2b-a \ < \ a$ and $a-b \ < \ b$.  In the light of the Fundamental Theorem of Arithmetic (Theorem~\ref{thm:Fund-Thm-Arith}), this new rational name for $\sqrt{2}$ contradicts our initial assumption that $a/b$ was a fraction {\em in lowest  terms}, i.e., in which $a$ and $b$ share no common factor.  \qed
 \end{proof}
 
@@ -1443,7 +1443,7 @@ real multiplications rather than the method that directly follows the definition
 
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
-Of course, a full reckoning of the comparative costs of multiplying complex numbers using three real multiplications vs.~four must consider that the $3$-multiplication procedure uses {\em three} real additions, whereas the $4$-multiplication procedure uses only {\em two} real additions.  A complete comparison between the two procedures would require knowing the relative costs of multiplication and addition on the target computing platform.
+Of course, a full reckoning of the comparative costs of multiplying complex numbers using three real multiplications vs.~four must consider that the three-multiplication procedure uses {\em three} real additions, whereas the four-multiplication procedure uses only {\em two} real additions.  A complete comparison between the two procedures would require knowing the relative costs of multiplication and addition on the target computing platform.
 \end{minipage}
 }
 \medskip
