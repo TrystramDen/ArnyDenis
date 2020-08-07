@@ -243,8 +243,9 @@ The number $0$ is the unique additive identity.
 
 \medskip
 
+\index{arithmetic!integer!successor} \index{arithmetic!integer!predecessor}
+
 \noindent {\em The special role of $1$ under addition and subtraction.}
-\index{arithmetic!integers!successor} \index{arithmetic!integers!predecessor}
 For any integer $a$, there is no integer between $a$ and $a+1$ nor between $a-1$ and $a$. For this reason, on the sets $\Z$ and $\N$, one often singles out the following special cases of addition and subtraction, especially in reasoning about situations that are indexed by integers.  Strangely, these operations have no universally accepted notations.
 \begin{itemize}
 \item
@@ -254,18 +255,60 @@ integer $a$ by the integer $a+1$.
 The {\it predecessor} operation is a {\em total function} on $\Z$ which replaces an integer $a$ by the integer $a-1$.  It is a {\em partial function} on $\N$ which is defined only when the argument $a$ is positive (so that $a-1 \in \N$).
 \end{itemize}
 
-\smallskip
+\medskip
+
+{\Arny This is a lengthy response to a (correct) criticism by the CE}
 
 \index{functional inverse}
-The operations of addition and subtraction are {\em mutually inverse operations}, in the sense of the following definition.  Function $f$ is a {\it functional inverse} of function $g$ if for all arguments $x$,
+
+\noindent {\em Functional inverses.}
+When a function $f$ admits an {\em inverse}---i.e., a function that ``undoes'' the result of applying $f$---knowledge of the inverse can help one verify and analyze algorithms that involve $f$.  A number of arithmetic operations have some type of inverse.  We discuss here only functions that are related to the operations of addition and subtraction.  The reader should supply analogues of these definitions for functions that are based on other arithmetic operations.
+
+\begin{itemize}
+\item
+{\em Inverses of unary functions}.
+Unary function $g$ is a {\it functional inverse} of unary function $f$ if for all $x$ in the domain of $f$,
 \begin{equation}
-\label{eq:functional-inverse}
-f(g(x)) \ = \ x
+\label{eq:functional-inverse-unary}
+g(f(x)) \ = \ x
 \end{equation}
-In suggestive terminology, applying function $f$ ``undoes'' the result of applying function $g$.  Within the current context, each of addition and subtraction is a functional inverse of the other, so that Eq.~(\ref{eq:functional-inverse}) takes the following dual form.
-\[ a \ = \ (a+b) -b \ = \ (a-b) +b \]
-\index{arithmetic!integers!additive inverse} 
-\index{arithmetic!integers!addition and subtraction are mutually inverse}
+Note the implicit assumption here that $g$ is defined on every result $f(x)$ of $f$.
+
+\smallskip
+
+\index{arithmetic!integer!successor and predecessor are mutually inverse}
+
+The operations of successor and predecessor are {\em mutually inverse operations} in the sense of Eq.~(\ref{eq:functional-inverse-unary}).  Symbolically, for all $a \in \N$:
+\begin{eqnarray*}
+\mbox{\sc predecessor}(\mbox{\sc successor}(a)) & = & \mbox{\sc predecessor}(a+1) \\
+                                                           & = & (a+1)-1 \\
+                                                           & = & 1 \\
+\mbox{\sc successor}(\mbox{\sc predecessor}(a)) & = & \mbox{\sc successor}(a-1) \ \ \mbox{ for all } a \in \N^+ \\
+                                                           & = & (a-1)+1 \\
+                                                           & = & 1 \\
+\end{eqnarray*}
+
+\item
+{\em Inverses of binary functions}.
+Binary function $g$ is a {\it functional inverse} of binary function $f$ if for all pairs $(x, y)$ in the domain of $f$,
+\begin{equation}
+\label{eq:functional-inverse-binary}
+g(f(x,y),y) \ = \ x
+\end{equation}
+Note the implicit assumption here that $g$ is defined on every pair $(x,y)$ whose first element is a result $f(x,y)$ of $f$.
+
+\smallskip
+
+Each of addition and subtraction is a functional inverse of the other, in the sense of Eq.~(\ref{eq:functional-inverse-binary}).  Symbolically, for all $a, b \in \N$:
+\begin{eqnarray*}
+(a+b) -b & =& a \\
+(a-b) +b & =& a \ \ \
+\mbox{ whenever } \ \ a \geq b
+\end{eqnarray*}
+\end{itemize}
+
+\index{arithmetic!integer!additive inverse} 
+\index{arithmetic!integer!addition and subtraction are mutually inverse}
 
 \subsubsection{Multiplication and Division}
 \index{arithmetic!basic operations!multiplication} \index{arithmetic!basic operations!division}
@@ -284,10 +327,14 @@ The operation of {\it division} is a {\em partial function} on all of our sets o
 \[  a/b, \ \ \ a \div b, \ \ \ {a \over b}  \]
 The {\it quotient of $a$ by $b$} is defined precisely when {\em both}
 
+\smallskip
+
 \noindent
 \hspace*{.35in}(1) $b \neq 0$: one can never divide by $0$ \\
 \hspace*{.35in}{\em and} \\
 \hspace*{.35in}(2) there exists a number $c$ such that $a = b \cdot c$
+
+\smallskip
 
 \noindent
 Assuming that condition (1) holds, {\em condition} (2) {\em always holds when $a$ and $b$ belong to $\Q$ or $\R$ or $\C$}.
@@ -310,18 +357,22 @@ d \ = \ \frac{-b}{a^2 + b^2}
 \noindent {\em The special role of $1$ under multiplication and division.}
 The number $1$ is the {\it identity} under the operations of multiplication and division; terminologically, $1$ is a {\it multiplicative identity}.  This means that, for all numbers $a$,
 \[ a \cdot 1 \ = \ a \cdot (1/1) \ = \ a \]
-One shows as follows that $1$ is {\em the} multiplicative identity.
+The reader has already shown---by proving Proposition~\ref{thm:uniqueONE}---that $1$ is the {\em unique} multiplicative identity.
 
+\ignore{**************
 \begin{prop}
 \label{thm:unique-mult-iden}
 The number $1$ is the unique multiplicative identity.
 \end{prop}
+
+Proposition~\ref{thm:uniqueONE}
 
 \begin{proof}
 Assume, for contradiction, that there is an additional multiplicative identity, call it $1'$.  By definition of ``multiplicative identity'', we would then have
 \[ 1 \ = \ 1 \times 1' \ = \ 1' \]
 It follows that all multiplicative identities are equal.  \qed
 \end{proof}
+******************}
 
 \medskip
 
@@ -331,7 +382,7 @@ It follows that all multiplicative identities are equal.  \qed
 \noindent {\em The special role of $0$ under multiplication and division.}
 The number $0$ is the {\it annihilator} under multiplication.  This means that, for all numbers $a$
 \[ a \times 0 \ = \ 0 \]
-Using reasoning which parallels that of Propositions~\ref{thm:unique-mult-iden} and~\ref{thm:unique-mult-iden}, the reader can prove that $0$ is {\em the unique} multiplicative annihilator.
+Using reasoning which parallels that of Propositions~\ref{thm:unique-add-iden} and~\ref{thm:unique-mult-iden}, the reader can prove that $0$ is {\em the unique} multiplicative annihilator.
 
 \begin{prop}
 The number $0$ is the unique multiplicative annihilator.
@@ -339,10 +390,10 @@ The number $0$ is the unique multiplicative annihilator.
 
 \medskip
 
-\index{arithmetic!integers!multiplicative inverse}
-\index{arithmetic!integers!multiplication and division are mutually inverse}
+\index{arithmetic!integer!multiplicative inverse}
+\index{arithmetic!integer!multiplication and division are mutually inverse}
 
-The operations of multiplication and division are mutually inverse operations, in the sense of Eq.~(\ref{eq:functional-inverse}): each can be used to ``undo'' the other.
+The operations of multiplication and division are mutually inverse operations, in the sense of Eq.~(\ref{eq:functional-inverse-binary}): each can be used to ``undo'' the other.
 \[ a = (a \times b) \div b \ = \ (a \div b) \times b  \]
 
 \subsubsection{Exponentiation and Taking Logarithms}
@@ -351,7 +402,7 @@ The operations of multiplication and division are mutually inverse operations, i
 \index{arithmetic!basic operations!exponentiation}
 \index{arithmetic!raising a number to a power}
 
-A conceptually powerful notational construct is the operation of {\it exponentiation},  i.e., {\it raising a number to a power}.  For real numbers $a$ and $b$, the  $b$th {\it power} of $a$, denoted $a^b$ is defined by the system of equations
+A conceptually powerful notational construct is the operation of {\it exponentiation},  i.e., {\it raising a number to a power}.  For real numbers $a$ and $b$, the  $b$th {\it power} of $a$, denoted $a^b$, is defined by the system of equations
 \begin{equation}
 \label{eq:power-def}
 \begin{array}{llll}
@@ -360,7 +411,7 @@ A conceptually powerful notational construct is the operation of {\it exponentia
 \mbox{for all numbers $a, b, c$} & & & a^b \cdot a^c = a^{b+c}
 \end{array}
 \end{equation}
-This deceptively simple definition has myriad consequences which we often take for granted.
+This deceptively simple definition has many consequences which we often take for granted.
 \index{$a^{1/2}$: the square root of number $a$} \index{square root}
 \index{$\sqrt{a}$: the square root of number $a$}
 \begin{itemize}
