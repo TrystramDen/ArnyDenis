@@ -402,14 +402,18 @@ The operations of multiplication and division are mutually inverse operations, i
 \index{arithmetic!basic operations!exponentiation}
 \index{arithmetic!raising a number to a power}
 
+{\Arny I have edited this a lot --- especially regarding power 0.  I believe that this makes it stronger.  Let's talk.}
+
+\noindent
 A conceptually powerful notational construct is the operation of {\it exponentiation},  i.e., {\it raising a number to a power}.  For real numbers $a$ and $b$, the  $b$th {\it power} of $a$, denoted $a^b$, is defined by the system of equations
 \begin{equation}
 \label{eq:power-def}
-\begin{array}{llll}
-\mbox{for all numbers $a>0$} & & & a^0 = 1 \\
- & & & \\
-\mbox{for all numbers $a, b, c$} & & & a^b \cdot a^c = a^{b+c}
-\end{array}
+%\begin{array}{llll}
+%\mbox{for all numbers $a>0$} & & & a^0 = 1 \\
+% & & & \\
+%\mbox{for all numbers $a, b, c$} & & & a^b \cdot a^c = a^{b+c}
+%\end{array}
+(\mbox{for all numbers } a, b, c) \ \ \ a^b \cdot a^c = a^{b+c}
 \end{equation}
 This deceptively simple definition has many consequences which we often take for granted.
 \index{$a^{1/2}$: the square root of number $a$} \index{square root}
@@ -425,6 +429,10 @@ This deceptively simple definition has many consequences which we often take for
 
 This follows (via cancellation) from system (\ref{eq:power-def}) via the fact that
 \[ a^b \cdot a^0 \ = \ a^{b+0} \ = \ a^b \ = \ a^b \cdot 1  \]
+
+\smallskip
+
+Many texts provide an inductive definition of exponentiation whose base is the equation $a^0 = 1$.  We see now that this base equation is actually a consequence of the inductive system (\ref{eq:power-def}) rather than an independent convention.
 
 \medskip\item
 {\em For all numbers $a >0$, the number $a^{1/2}$ is the {\it square root} of $a$; i.e., $a^{1/2}$ is the (unique, via cancellation) number $b$ such that $b^2 = a$.}
@@ -495,6 +503,12 @@ We shall note in Section~\ref{sec:exponential+logarithm} that most of the main p
 
 \smallskip
 
+{\Arny I just added the following sentence --- culture!}
+
+{\em This note points out one of the most beautiful patterns in mathematics.}
+
+\smallskip
+
 We have remarked in several places about the importance of noticing patterns as we ``do'' mathematics.  A pattern that leads to some beneficial insights has emerged in the current section.  The pattern suggests that in certain senses:
 \begin{itemize}
 \item
@@ -558,7 +572,8 @@ The number $m$ denoted by these notations is defined by the following equation, 
 \label{eq:binom-coeff}
 m \ = \ 
 {n \choose k} \ \eqdef \ \frac{n!}{k!(n-k)!} \ = \
-\frac{n \times (n-1) \times (n-2) \times \cdots \times (n-k+1)}{k \times (k-1) \times (k-2) \times \cdots \times 1}
+\frac{n (n-1)  \cdots (n-k+1)}{\big(k  (k-1)  \cdots  1 \big)
+\big((n-k)  (n-k-1) \cdots  1 \big)}
 \end{equation}
 
 \bigskip
@@ -623,10 +638,10 @@ In Section~\ref{sec:arithmetic-series}, binomial coefficients play a prominent r
 \medskip\item
 In Section~\ref{sec:bilinear-recurrences}, binomial coefficients provide an important example of {\em bilinear} recurrences and their computational importance.
 \medskip\item
-In Chapter~\ref{ch:prob-stat}, we see how binomial coefficients are indispensable when studying myriad topics related to {\em counting}; some examples:
+In Chapter~\ref{ch:prob-stat}, we see how binomial coefficients are indispensable when studying a great many topics related to {\em counting}; some examples:
   \begin{itemize}
   \item
-What are the relative likelihoods of various $5$-card deals from an unbiased $52$-card deck?
+What are the relative likelihoods of various five-card deals from an unbiased $52$-card deck?
   \medskip\item
 What is the likelihood of observing $15$ {\sc head}s and $25$ {\sc tail}s in $40$ flips of an unbiased coin?
   \medskip\item
@@ -636,7 +651,7 @@ What are the comparative operation-count costs of Merge-Sort and Quick-Sort when
 
 \index{Pascal, Blaise} \index{Pascal's Triangle}
 
-One of the most common ways of presenting binomial coefficients is by means of {\it Pascal's Triangle}, an array of integers which is named in honor of the French polymath Blaise Pascal. The contents of this array are determined by the laws enunciated in Proposition~\ref{thm:manipulate-binom-coeff}.  Since we shall devote ample attention in subsequent chapters to studying this array and its manifold applications, we merely present in Fig.~\ref{fig:pascal-triangle} a ``prefix'' of this famed array, for the range of parameters $n,k \leq 5$.
+One of the most common ways of presenting binomial coefficients is by means of {\it Pascal's Triangle}, an array of integers which is named in honor of the French polymath Blaise Pascal. The contents of this array are determined by the laws enunciated in Proposition~\ref{thm:manipulate-binom-coeff}.  Since we shall devote ample attention in subsequent chapters to studying this array and its manifold applications, we merely present in Fig.~\ref{fig:pascal-triangle} a ``prefix'' of this famed array, for the range of parameters $n,k \leq 9$.
 \begin{figure}[ht]
 \[
 \begin{array}{c||r|r|r|r|r|r|r|r|r|r|r}
@@ -666,7 +681,7 @@ n=9 & 1 & 9 & 36 & 84 & 126 & 126 & 84 & 36 & 9 & 1 & \ldots \\
 &\vdots &\vdots &\ddots
 \end{array}
 \]
-\caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 9$.}
+\caption{A ``prefix'' of Pascal's Triangle, for $n,k \leq 9$}
 \label{fig:pascal-triangle}
 \end{figure}
 The {\em formation rule} of Pascal's Triangle is that the array-entry at (row $n+1$, column $k+1$) is the sum of the array-entries at (row $n$, column $k$) and at (row $n$, column $k+1$).
@@ -681,10 +696,8 @@ The {\em formation rule} of Pascal's Triangle is that the array-entry at (row $n
 
 \smallskip
 
-The array in Fig.~\ref{fig:pascal-triangle} is usually attributed to Blaise
-Pascal in the West, with a date in the 17th century.  In fact, the
-array appears in {\it Siyuan Yujian} \cite{Zhu-1303},
-a Chinese book from the early 14th century; the array is there attributed to Jia Xian in the 11th century.  \index{Zhu Shijie} \index{Jia Xian}
+The array in Fig.~\ref{fig:pascal-triangle} is usually attributed to Blaise Pascal in the West, with a date in the seventeenth century.  In fact, the array appears in {\it Siyuan Yujian} \cite{Zhu-1303},
+a Chinese book from the early fourteenth century; the array is there attributed to Jia Xian in the eleventh century.  \index{Zhu Shijie} \index{Jia Xian}
 \end{minipage} }
 
 \subsection{Rational Arithmetic: A Computational Exercise}
@@ -717,7 +730,7 @@ The basic arithmetic operations on the rational numbers obey rules that are adap
 {p \over q} \cdot {r \over s} }
   & & = & &
 {\displaystyle
-\frac{p \cdot r}{r \cdot s} } \\
+\frac{p \cdot r}{q \cdot s} } \\
   & & & & & \\
 \mbox{\small\sf Division:} &
 {\displaystyle
@@ -804,7 +817,7 @@ One commonly articulates this law as, ``{\em Multiplication distributes over add
 
 \index{arithmetic!factoring}
 
-One of the most common uses of the distributive law reads Eq.~(\ref{eq:distr-law}) ``backwards,'' thereby deriving a formula for {\em factoring} structurally complicated expressions that involve both addition and multiplication.
+One of the most common uses of the distributive law reads Eq.~(\ref{eq:distr-law}) ``backwards'', thereby deriving a formula for {\em factoring} structurally complicated expressions that involve both addition and multiplication.
 
 \smallskip
 
@@ -819,7 +832,7 @@ we know that the multiplication is performed before the addition.  This rule is 
 
 \smallskip
 
-\noindent This prioritization enables us to write the righthand side of Eq.~(\ref{eq:distr-law}) without parentheses, as in
+\noindent This prioritization enables us to write the right-hand side of Eq.~(\ref{eq:distr-law}) without parentheses, as in
 \[ x \cdot (y + z) \ = \ x \cdot y + x \cdot z \]
 
 \medskip
@@ -828,7 +841,7 @@ By invoking the preceding laws multiple times, we can derive a recipe for multip
 
 \begin{prop}
 \label{prop:(a+b)(c+d)}
-For all numbers $a, b, c, d$:\footnote{Because multiplication has priority over addition, the absence of parentheses in the righthand side of Eq.~(\ref{eq:(a+b)(c+d)}) cannot introduce ambiguity.}
+For all numbers $a, b, c, d$:\footnote{Because multiplication has priority over addition, the absence of parentheses in the right-hand side of Eq.~(\ref{eq:(a+b)(c+d)}) cannot introduce ambiguity.}
 \begin{equation}
 \label{eq:(a+b)(c+d)}
 (a+b) \cdot (c+d) \ = \ a \cdot c \ + \ a \cdot d \ + \ b \cdot c \ + \ b \cdot d
@@ -836,7 +849,7 @@ For all numbers $a, b, c, d$:\footnote{Because multiplication has priority over 
 \end{prop}
 
 \begin{proof}
-We perform a sequence of operations on the lefthand expression of Eq.~(\ref{eq:(a+b)(c+d)}), justifying each by an invocation of the commutative and associative laws.
+We perform a sequence of operations on the left-hand expression of Eq.~(\ref{eq:(a+b)(c+d)}), justifying each by an invocation of the commutative and associative laws.
 \[
 \begin{array}{lclll}
 (a+b) \cdot (c+d) & = & (a+b) \cdot c \ + \ (a+b) \cdot d
@@ -851,7 +864,7 @@ We perform a sequence of operations on the lefthand expression of Eq.~(\ref{eq:(
 & & \mbox{commutativity of addition}
 \end{array}
 \]
-We thus finally derive the righthand expression of Eq.~(\ref{eq:(a+b)(c+d)}).  \qed
+We thus finally derive the right-hand expression of Eq.~(\ref{eq:(a+b)(c+d)}).  \qed
 \end{proof}
 
 \medskip
@@ -880,7 +893,7 @@ Every {\em nonzero} number $x \neq 0$ has a {\em multiplicative inverse}, i.e., 
 \index{function!algebraic!monomial} \index{polynomial!powers}
 \index{polynomial!coefficients} \index{monomial!coefficient} \index{bivariate}
 
-Among the most basic functions are {\it polynomials}.  A polynomial on the $k$ {\it variables} $v_1$, $v_2$, \ldots, $v_k$ with {\it coefficients} in the set $S$ is any function that can be written as a sum of {\it monomials}.  A monomial on that $k$ variables $v_1$, $v_2$, \ldots, $v_k$ whose coefficient is in the set $S$ is a function that can be written in the following form:
+Among the most basic functions are {\it polynomials}.  A polynomial on the $k$ {\it variables} $v_1$, $v_2$, \ldots, $v_k$ with {\it coefficients} in the set $S$ is any function that can be written as a sum of {\it monomials}.  A monomial on the $k$ variables $v_1$, $v_2$, \ldots, $v_k$ whose coefficient is in the set $S$ is a function that can be written in the following form:
 \begin{equation}
 \label{eq:monomial}
 a \times v_1^{c_1} \times v_2^{c_2} \times \cdots \times v_k^{c_k}
@@ -904,7 +917,7 @@ When $S = \Q$, we have ``a polynomial/monomial with {\em rational coefficients}"
 \medskip\item
 The exponents $c_i$ of the variables are {\em nonnegative integers} that are called the {\it powers} to which the variables are raised.
 \end{itemize}
-For illustration, here is a specific {\em bivariate}---i.e., $2$-variable---polynomial with integer coefficients; we denote its two variables $x_1$ and $x_2$.  (By convention a variable does not appear when its power or its coefficient is $0$.)
+For illustration, here is a specific {\em bivariate}---i.e., two-variable---polynomial with integer coefficients; we denote its two variables $x_1$ and $x_2$.  (By convention a variable does not appear when its power or its coefficient is $0$.)
 \[ 
 3 x_1^7 \cdot x_2^{19} \ + \ x_1^3 \cdot x_2 \ + \ 45 x_2^{9} \ + \ 7 x_1^{11} \cdot x_2^{5}
 \]
@@ -915,19 +928,19 @@ multiplication/division.
 
 \index{univariate} \index{bivariate}
 
-Polynomials on a single variable---the case $k=1$---are said to be {\it univariate} (a Latinate form of ``having a single variable'').  Polynomials on two variables---the case $k=2$---are said to be {\it bivariate} (a Latinate form of ``having two variables'').  These simplest polynomials are usually the only ones graced by Latinate nicknames.  Our interest in this section will mostly be on univariate polynomials (Section~\ref{sec:univariate-polynomials}); we also spend some time on one particular family of bivariate polynomials which has many important applications (Section~\ref{sec:bivariate-polynomials}); and we finally describe informally an advanced result on general multivariate polynomials, which has truly foundational importance to the underpinnings of the activity of computing (Section~\ref{sec:Hilberts-Tenth}).
+Polynomials on a single variable---the case $k=1$---are said to be {\it univariate} (a Latinate form of ``having a single variable'').  Polynomials on two variables---the case $k=2$---are said to be {\it bivariate} (a Latinate form of ``having two variables'').  These simplest polynomials are usually the only ones graced by Latinate nicknames.  Our interest in this section will mostly be in univariate polynomials (Section~\ref{sec:univariate-polynomials}); we also spend some time on one particular family of bivariate polynomials which has many important applications (Section~\ref{sec:bivariate-polynomials}); and we finally describe informally an advanced result on general multivariate polynomials which has truly foundational importance to the underpinnings of the activity of computing (Section~\ref{sec:Hilberts-Tenth}).
 
 \bigskip
 
 \index{polynomial!root}
 
-A problem of particular interest when discussing a polynomial $P(x_1, x_2, \ldots, x_k)$ is to discover vectors of values of the variables $\{x_i\}$ that cause $P$ to {\em vanish}, i.e., to evaluate to $0$.  Each such vector, $\langle r_1, r_2, \ldots, r_k)$ is called a {\it root} of $P$.  As a very simple example, the roots of the polynomial
+A problem of particular interest when discussing a polynomial $P(x_1, x_2, \ldots, x_k)$ is to discover vectors of values of the variables $\{x_i\}$ that cause $P$ to {\em vanish}, i.e., to evaluate to $0$.  Each such vector $\langle r_1, r_2, \ldots, r_k \rangle$ is called a {\it root} of $P$.  As a very simple example, the roots of the polynomial
 \[ P(x,y) \ \ = \ \ x^2 \ - \ 2xy \ + \ y^2 \]
-are precisely the $2$-place vectors (i.e., ordered pairs) $\langle k,k \rangle$, i.e., ordered pairs whose first and second components are identical, $x=y$.
+are precisely the two-place vectors (i.e., ordered pairs) $\langle k,k \rangle$ whose first and second components are identical, $x=y$.
 
 \medskip
 
-The problem of finding the roots of given polynomials has garnered tremendous attention for centuries, both for its practical applications and its theoretical implications.  Historically, two of the major problems regarding roots of polynomials are:
+The problem of finding the roots of given polynomials has garnered tremendous attention for centuries, for both its practical applications and its theoretical implications.  Historically, two of the major problems regarding roots of polynomials are:
 \begin{itemize}
 \item
 {\em Find all roots of a given polynomial.}
@@ -943,7 +956,7 @@ Most of the studies of this problem are found in algorithmic settings---courses,
 
 \index{Diophantus of Alexandria!Diophantine analysis} \index{Diophantus of Alexandria}
  
-This problem is often found under the name {\it Diophantine analysis}, so named in honor of the Greek mathematician Diophantus of Alexandria, who has been called the {\em father of algebra} for his seminal studies of the process of equation-solving.  By its very nature---namely, seeking a ``{\sc yes}''-``{\sc no}'' answer, rather than an actual root-finding procedure---this problem has been studied largely within theoretical or mathematical settings.  While most work on this subject uses advanced techniques, hence is beyond the scope of the current text, there is one result in this domain whose underlying message is so profound that we at least tell its ``story'', in Section~\ref{sec:Hilberts-Tenth}.
+This problem is often found under the name {\it Diophantine analysis}, so named in honor of the Greek mathematician Diophantus of Alexandria, who has been called the {\em father of algebra} for his seminal studies of the process of equation-solving.  By its very nature---namely, seeking a ``{\sc yes}''/``{\sc no}'' answer, rather than an actual root-finding procedure---this problem has been studied largely within theoretical or mathematical settings.  While most work on this subject uses advanced techniques and hence is beyond the scope of the current text, there is one result in this domain whose underlying message is so profound that we at least tell its ``story'', in Section~\ref{sec:Hilberts-Tenth}.
 \end{itemize}
 \index{Diophantus of Alexandria!Diophantine analysis} \index{Diophantus of Alexandria}
 
@@ -1011,8 +1024,7 @@ does, indeed, have {\em two} roots, but these roots {\em are equal}.
 \index{Cauchy, Augustin-Louis}
 
 Despite its rather simple form, Theorem~\ref{thm:fund-thm-algebra} resisted formal proof for literally {\em centuries}, resisting the proof attempts of mathematical luminaries such as Fermat, 
-Euler, Lagrange, and Laplace.  The theorem was finally proved in the early 19th century by the
-amateur(!)~French mathematician Jean-Robert Argand.  Argand publicized his proof in 1806 \cite{Argand}, but the proof became well-known only when it appeared in the famous {\it Cours d'analyse} \cite{Cauchy21} of Augustin-Louis Cauchy.
+Euler, Lagrange, and Laplace.  The theorem was finally proved in the early nineteenth century by the amateur(!)~French mathematician Jean-Robert Argand.  Argand publicized his proof in 1806 \cite{Argand}, but the proof became well known only when it appeared in the famous {\it Cours d'analyse} \cite{Cauchy21} of Augustin-Louis Cauchy.
 
 \medskip
 
@@ -1028,16 +1040,16 @@ A few cultural/historical comments are in order.
 \item
 The many failed attempts at proving Theorem~\ref{thm:fund-thm-algebra} should not be viewed as casting shadows over the luster of any of the greats who failed.  In most of the cases, the failures pointed out new mathematics that had yet to be developed.  Such is the trajectory of mathematics and the sciences!
 \medskip\item
-Despite the word ``fundamental'' in the name of Theorem~\ref{thm:fund-thm-algebra}, the result is no longer viewed as {\em the} fundamental theorem of algebra.  The field of algebra has grown in a variety of directions in the past two centuries, so the {\em Theory of Equations}, which was largely coextensive with the field of algebra into the 19th century is presently just one branch of the field.
+Despite the word ``fundamental'' in the name of Theorem~\ref{thm:fund-thm-algebra}, the result is no longer viewed as {\em the} fundamental theorem of algebra.  The field of algebra has grown in a variety of directions in the past two centuries, so the {\em Theory of Equations}, which was largely coextensive with the field of algebra into the nineteenth century, is presently just one branch of the field.
 \medskip\item
-Despite the word ``algebra'' in the name of Theorem~\ref{thm:fund-thm-algebra}, there does not yet exist a purely {\em algebraic} proof of the theorem: Some input from other areas of mathematics enters every known proof in some essential way.
+Despite the word ``algebra'' in the name of Theorem~\ref{thm:fund-thm-algebra}, there does not yet exist a purely {\em algebraic} proof of the Theorem: Some input from other areas of mathematics enters every known proof in some essential way.
 \medskip\item
 The complete march toward Theorem~\ref{thm:fund-thm-algebra} took literally millennia.  Among the luminaries who made major contributions along the way were the following pioneers in the Theory of (Solving) Equations:
   \begin{itemize}
   \item
 {\it Diophantus of Alexandria}.  He authored a series of books known collectively as {\it Arithmetica}, which expounded the basics of a theory of solving equations.  These books earned Diophantus the name ``father of algebra''.
    \medskip\item
-{\it Muhammad ibn M$\bar{\mbox{u}}$s$\bar{\mbox{a}}$ al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$}.  Known better as {\em al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$}, this Persian mathematician and scholar of the $9$th century lent his name to the modern term {\it algorithm}.  His extensive writings, especially the book \cite{Al-Khwarizmi}, introduced into Europe both the Hindu-Arabic numerals which we all use in everyday discourse and the elements of what was known of the field of algebra in the $9$th century---particularly the solution of equations.
+{\it Muhammad ibn M$\bar{\mbox{u}}$s$\bar{\mbox{a}}$ al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$}.  Better known as {\em al-Khw$\bar{\mbox{a}}$rizm$\bar{\mbox{i}}$}, this Persian mathematician and scholar of the ninth century lent his name to the modern term {\it algorithm}.  His extensive writings, especially the book \cite{Al-Khwarizmi}, introduced into Europe both the Hindu-Arabic numerals which we all use in everyday discourse and the elements of what was known of the field of algebra in the ninth century---particularly the solution of equations.
 
 \medskip
 
@@ -1053,7 +1065,7 @@ The important role of the Middle East in the development of mathematics is testi
 \bigskip
 
    \medskip\item
-{\it Ren\'{e} Descartes}.  The $17$th-century mathematician and philosopher Descartes is credited with establishing the algebraic notation that we use to this day.  The reader should not minimize the importance of notation until trying to perform arithmetic using Roman numerals!  At a more abstract level, Descartes's invention of {\em Analytical Geometry} enabled the use of geometric concepts and techniques in algebra.  Both of these contributions were of incalculable value in the history leading to Theorem~\ref{thm:fund-thm-algebra}.
+{\it Ren\'{e} Descartes}.  The seventeenth-century mathematician and philosopher Descartes is credited with establishing the algebraic notation that we use to this day.  Readers should not minimize the importance of notation until they have tried to perform arithmetic using Roman numerals!  At a more abstract level, Descartes's invention of {\em Analytical Geometry} enabled the use of geometric concepts and techniques in algebra.  Both of these contributions were of incalculable value in the history leading to Theorem~\ref{thm:fund-thm-algebra}.
    \end{itemize}
 \end{itemize}
 \index{Descartes, Ren\'{e}!inventor of Analytical Geometry}
@@ -1061,6 +1073,8 @@ The important role of the Middle East in the development of mathematics is testi
 \medskip
 
 The earliest proofs of Theorem~\ref{thm:fund-thm-algebra} were not {\em constructive}---they did not provide a roadmap for actually finding the roots of a given polynomial.  There currently do exist proofs of the Theorem that are constructive, in the following sense.  Given a degree-$d$ polynomial $P(x)$, these proofs determine a disk in two-dimensional space which contains all $d$ roots of $P(x)$.  How might such a disk emerge from a mathematical argument?  Here is a {\em very simple} illustration which focuses on a {\em very special} type of polynomial.
+
+\smallskip
 
 Let us be given a degree-$d$ polynomial with real coefficients:
 \[ Q(x) \ \ = \ \ a_d x^d \ + \ a_{d-1} x^{d-1} \ + \ a_{d-2} x^{d-2} \ + \cdots + \ a_1 x \ + \ a_0
@@ -1086,7 +1100,7 @@ The benefit of this rewriting is that it exposes the following inequality.
 P(x) \ > \ 0 \ \ \ \ \mbox{ whenever } \ \ \ x >
  \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots + \ |a_1| \ + \ |a_0| \right)
 \end{equation}
-And, this inequality implies that all real roots of $P(x)$, if there are any, lie within the region
+And this inequality implies that all real roots of $P(x)$, if there are any, lie within the region
 \[ x \ \leq \ \left(|a_{d-1}| \ + \ |a_{d-2}| \ + \cdots + \ |a_1| \ + \ |a_0| \right) \]
 This observation can be used to develop an efficient algorithm for finding all of $P$'s roots---but this is outside the scope of this text.
 
@@ -1098,7 +1112,7 @@ This is just one very simple example, but it does illustrate that one can someti
 \subsubsection{Solving polynomials by radicals}
 \label{sec:poly-by-radical}
 
-The problem of {\it solving} arbitrary degree-$d$ polynomials---i.e., of discovering their $d$ roots, as promised by Theorem~\ref{thm:fund-thm-algebra}---is computationally very complex, even for moderately low degrees.  (This assertion can be made mathematically precise, but the required notions are beyond the scope of this text.)  For univariate polynomials of low degree, there do exist computationally feasible root-finding algorithms.  Indeed, for polynomials of {\em very} low degree---specifically, degrees $2$, $3$ and $4$---there actually exist ``simple'' {\em formulas} that specify the polynomial's roots.  The word ``simple'' is used in a technical sense here: it refers to a formula that can be constructed using the following algebraic operations: adding/subtracting two quantities, multiplying/dividing two quantities, and raising a quantity to a rational power.  Because the last of these operations is often expressed by using a {\em radical sign}, rather than an exponent---as when we write $\sqrt{x}$ for $x^{1/2}$---these formulas are often referred to as {\it solutions by radicals}.  \index{polynomial!solution by radicals}
+The problem of {\it solving} arbitrary degree-$d$ polynomials---i.e., of discovering their $d$ roots, as promised by Theorem~\ref{thm:fund-thm-algebra}---is computationally very complex, even for moderately low degrees.  (This assertion can be made mathematically precise, but the required notions are beyond the scope of this text.)  For univariate polynomials of low degree, there do exist computationally feasible root-finding algorithms.  Indeed, for polynomials of {\em very} low degree---specifically, degrees $2$, $3$, and $4$---there actually exist ``simple'' {\em formulas} that specify the polynomial's roots.  The word ``simple'' is used in a technical sense here: it refers to a formula that can be constructed using the following algebraic operations: adding/subtracting two quantities, multiplying/dividing two quantities, and raising a quantity to a rational power.  Because the last of these operations is often expressed by using a {\em radical sign}, rather than an exponent---as when we write $\sqrt{x}$ for $x^{1/2}$---these formulas are often referred to as {\it solutions by radicals}.  \index{polynomial!solution by radicals}
 \index{solution by radicals}  \index{radical sign}
 
 \index{polynomials!quadratic} \index{polynomials!cubic} \index{polynomials!quartic}
@@ -1111,7 +1125,7 @@ The remainder of this section is devoted to deriving the {\em quadratic} formula
 
 \smallskip
 
-It is useless to try to solve polynomials of degrees $> 4$ by radicals.  In the early 19th century, a (mathematically brilliant, for sure!)~French teenager, Evariste Galois, proved that {\em one cannot solve the degree-$5$ {\it (quintic)} polynomial by radicals, no matter how much abstruse computation one is willing to do!}  Galois achieved this result by developing a mathematical theory which has since been named for him.  Tragically for the world of mathematics, Galois was killed in a duel just two years after announcing his theory via a memoir submitted to the Paris Academy of Sciences.
+It is useless to try to solve polynomials of degrees $> 4$ by radicals.  In the early nineteenth century, a (mathematically brilliant, for sure!)~French teenager, Evariste Galois, proved that {\em one cannot solve the degree-$5$ {\it (quintic)} polynomial by radicals, no matter how much abstruse computation one is willing to do!}  Galois achieved this result by developing a mathematical theory which has since been named for him.  Tragically for the world of mathematics, Galois was killed in a duel just two years after announcing his theory via a memoir submitted to the Paris Academy of Sciences.
 
 \medskip
 
@@ -1150,7 +1164,7 @@ We find the roots of $P(x)$ by solving the polynomial equation $P(x) = 0$.  We s
 \label{eq:generic-quadratic-2}
 x^2 \ + \ \frac{b}{a} x \ = \ - \frac{c}{a}
 \end{equation}
-The technique of {\it completing the square} gives us an easy path toward solving this equation.  This technique involves adding to both sides of the equation a variable-free expression $E$ that turns the lefthand expression into a perfect square.  In the case of Eq.~(\ref{eq:generic-quadratic-2}), the expression
+The technique of {\it completing the square} gives us an easy path toward solving this equation.  This technique involves adding to both sides of the equation a variable-free expression $E$ that turns the left-hand expression into a perfect square.  In the case of Eq.~(\ref{eq:generic-quadratic-2}), the expression
 \[ E \ = \ \frac{b^2}{4a^2} \]
 does the job, because
 \[
@@ -1162,7 +1176,6 @@ We have thereby converted Eq.~(\ref{eq:generic-quadratic-2}) to the equation
 \begin{equation}
 \label{eq:generic-quadratic-3}
 \left( x \ + \ \frac{b}{2a} \right)^2
-% \ \ = \ \ \frac{b^2}{4a^2} - \frac{c}{a}
  \ \ = \ \ \frac{b^2 - 4ac}{4a^2}.
 \end{equation}
 Elementary calculation on Eq.~(\ref{eq:generic-quadratic-3}) identifies $P(x)$'s two roots as the values $x_1$ and $x_2$ specified in Eq.~(\ref{eq:generic-quadratic-4}).  \qed
@@ -1175,7 +1188,7 @@ We close our discussion of quadratic polynomials with a few comments that may in
 
 \index{$\pm$: plus-or-minus}
 
-\smallskip
+\medskip
 
 {\bf 1.}
 Using a common shorthand, the expressions for $x_1$ and $x_2$ in Eq.~(\ref{eq:generic-quadratic-4}) are often abbreviated within a single expression, by using the operator $\pm$, which is a shorthand for ``plus-or-minus''.  The quadratic formula can then be written in the following familiar form:
@@ -1193,12 +1206,11 @@ This replacement streamlines the process of completing the square and finding th
 \smallskip
 
 {\bf 3.}
-When we look carefully at the roots $x_1$ and $x_2$ in Eq.~(\ref{eq:generic-quadratic-4}), we note that there are three genres of solutions.  These can be discriminated in the graphical form of
-$P(x)$, as illustrated in Fig.~\ref{fig:SecondDegreeInit}.  (Note that the {\em horizontal} displacement of $P(x)$'s plot is irrelevant; it is only the {\em vertical} displacement which affects the nature of $P(x)$'s roots.)
+When we look carefully at the roots $x_1$ and $x_2$ in Eq.~(\ref{eq:generic-quadratic-4}), we note that there are three genres of solutions.  These can be discriminated in the graphical form of $P(x)$, as illustrated in Fig.~\ref{fig:SecondDegreeInit}.  (Note that the {\em horizontal} displacement of $P(x)$'s plot is irrelevant; it is only the {\em vertical} displacement which affects the nature of $P(x)$'s roots.)
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.325]{FiguresArithmetic/SecondDegreeInit}
-\caption{$P(x)$ has: [left] two distinct real roots; [center] two equal real roots; [right] no real root (both roots are complex).}
+\caption{$P(x)$ has: [left] two distinct real roots; [center] two equal real roots; [right] no real root (both roots are complex)}
 \label{fig:SecondDegreeInit}
 \end{center}
 \end{figure}
@@ -1208,7 +1220,7 @@ The solutions $x_1$ and $x_2$ are distinct real numbers.
 
 \smallskip
 
-This corresponds to the lefthand plot in the figure: $P(x)$ crosses the (real) $X$-axis at two distinct points.
+This corresponds to the left-hand plot in the figure: $P(x)$ crosses the (real) $X$-axis at two distinct points.
 
 \medskip\item
 The solutions $x_1$ and $x_2$ are identical real numbers.
@@ -1222,7 +1234,7 @@ The solutions $x_1$ and $x_2$ are distinct {\em non}-real numbers.
 
 \smallskip
 
-This corresponds to the righthand plot in the figure: $P(x)$ never touches the (real) $X$-axis.
+This corresponds to the right-hand plot in the figure: $P(x)$ never touches the (real) $X$-axis.
 \end{itemize}
 
 \ignore{***************
@@ -1254,7 +1266,7 @@ From Fig.~\ref{fig:SecondDegree}, the two roots we are looking for are symmetric
 \end{figure}
 ******************}
 
-%\smallskip
+\vspace*{-.1in}
 
 \paragraph{B. Solving cubic polynomials by radicals}
 
@@ -1266,7 +1278,7 @@ We derive a formula for the roots of the general cubic polynomial  with real coe
 P(x) \ = \  ax^3 \ + \ bx^2 \ + \ cx \ + \ d \ \ \mbox{  where  }
 \ b,c, d  \in \R;\ a \in \R \setminus \{0\}
 \end{equation}
-Although the so-called {\em cubic formula}, which we derive now, is daunting in form, its proof and derivation should be quite accessible because they follow the same flow as the clerically much simpler proof and derivation of the quadratic formula.  Because the cubic formula is so complex in form, we present the cubic formula step by step {\em before} we present the formula.
+Although the so-called {\em cubic formula}, which we derive now, is daunting in form, its proof and derivation should be quite accessible because they follow the same flow as the clerically much simpler proof and derivation of the quadratic formula.  Because the cubic formula is so complex in form, we present the derivation step by step {\em before} we present the formula.
 
 \begin{proof} {\it (Derivation of the cubic formula)}
 
@@ -1334,8 +1346,10 @@ F & = & \frac{2 B^3}{27}  \ - \ \frac{BC}{3}  \ + \ D
 
 \index{Vi\`{e}te, Fran\c{c}ois (Vieta, Franciscus)}
 
+\smallskip
+
 \noindent
-We accomplish this step by applying a transformation that is attributed to the $16$th-century French mathematician Fran\c{c}ois Vi\`{e}te (often referred to by his Latinized name, Franciscus Vieta); see \cite{Hazewinkel}.  Vieta's transformation converts $P^{(2)}(y)$ to a quadratic polynomial by means of the following variable-substitution in Eq.~(\ref{eq:generic-cubic-4}):
+We accomplish this step by applying a transformation that is attributed to the sixteenth-century French mathematician Fran\c{c}ois Vi\`{e}te (often referred to by his Latinized name, Franciscus Vieta); see \cite{Hazewinkel}.  Vieta's transformation converts $P^{(2)}(y)$ into a quadratic polynomial by means of the following variable-substitution in Eq.~(\ref{eq:generic-cubic-4}):
 \begin{equation}
 \label{eq:cubic-substitute-z-for-y}
 y \ = \ z \ - \ \frac{E}{3z}
@@ -1363,7 +1377,7 @@ We can now derive all solutions for the variable $z$ in Eq.~(\ref{eq:solve-cubic
 
 \index{Euler, Leonhard!Euler's formula} \index{Euler, Leonhard}
 
-Theorem~\ref{thm:fund-thm-algebra} assures us that the polynomial $P^{(2)}(z)$ has three roots.  In order to compute these roots, we invoke a truly remarkable result that is known as  {\it Euler's formula}, in honor of its discoverer, the much-traveled $18$th-century mathematician Leonhard Euler.  This result/formula exposes a fundamental relationship among:
+Theorem~\ref{thm:fund-thm-algebra} assures us that the polynomial $P^{(2)}(z)$ has three roots.  In order to compute these roots, we invoke a truly remarkable result that is known as  {\it Euler's formula}, in honor of its discoverer, the much-traveled eighteenth-century mathematician Leonhard Euler.  This result/formula exposes a fundamental relationship among:
 \begin{itemize}
 \item
 the imaginary unit \index{$i$: the imaginary unit} $i$
@@ -1386,12 +1400,12 @@ the base of natural logarithms, Euler's constant $e \ = \ 2.718281828 \cdots$
   
 Back to Eq.~(\ref{eq:solve-cubic-for-z3}): Theorem~\ref{thm:fund-thm-algebra} tells us that within the complex number system $\C$, the cubic polynomial
 \[ u^3 \ - \ 1 \]
-has three distinct roots.  These numbers are known as the {\em primitive $3$rd roots of unity}  and are traditionally denoted $\omega^0$, $\omega^1$, and $\omega^2$.  Using Theorem~\ref{thm:Euler's-formula}, we can provide explicit values for these numbers:
+has three distinct roots.  These numbers are known as the {\em primitive third roots of unity}  and are traditionally denoted $\omega^0$, $\omega^1$, and $\omega^2$.  Using Theorem~\ref{thm:Euler's-formula}, we can provide explicit values for these numbers:
 \[ \omega^0 \ = \ 1; \ \ \ \ \
 \omega^1 \ = \ e^{2i \pi/3}; \ \ \ \ \
-\omega^2 \ = \ e^{4i \pi/3}.
+\omega^2 \ = \ e^{4i \pi/3}
 \]
-{\em Aside:} There are analogues of these numbers for any parameter $n$, not just for $n=3$.  For general $n$, the {\it $n$th primitive roots of unity} comprise the set
+{\em Aside:} There are analogues of these numbers for any parameter $n$, not just for $n=3$.  For general $n$, the {\it primitive $n$th roots of unity} comprise the set
 \[ \{ e^{2ki \pi/n} \ | \ k = 0, 1, \ldots n-1\} \]
 
 \medskip
@@ -1524,7 +1538,7 @@ and
 \begin{eqnarray}
 \nonumber
 y \cdot P_n(x,y) & = &
- x^n y \ + \ a_{n,n-1} x^n y^2 \ + \cdots + \\
+ x^n y \ + \ a_{n,n-1} x^{n-1} y^2 \ + \cdots + \\
 \nonumber
          &   & \hspace*{.15in}
 a_{n,n-r} x^{n-r} y^{r+1} \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+2}
@@ -1535,7 +1549,7 @@ a_{n,n-r} x^{n-r} y^{r+1} \ + \ a_{n,n-r-1} x^{n-r-1} y^{r+2}
 \end{eqnarray}
 Because
 \[ P_{n+1}(x+y) \ = \ (x+y) \cdot P_n(x,y) \ = \ x \cdot P_n(x,y) \ + \ y \cdot P_n(x,y) \]
-the symbolic coefficient $a_{n-r+1,r}$ of $x^{n-r+1} y^r$ in $P_{n+1}(x+y)$ is the sum of the following symbolic coefficients in $P_n(x,y)$:
+the symbolic coefficient $a_{n+1,n-r+1}$ of $x^{n-r+1} y^r$ in $P_{n+1}(x+y)$ is the sum of the following symbolic coefficients in $P_n(x,y)$:
 \begin{itemize}
 \item
 the coefficient $a_{n,n-r}$ of $x^{n-r}y^r$
@@ -1571,18 +1585,18 @@ For all $n \in \N$,
 \label{sec:Hilberts-Tenth}
 \index{Hilbert's Tenth Problem}
 
-This section is devoted to a true milestone in the history of mathematics, of logic, and of computing.  The mathematical details necessary to fully describe the analyses that lead to this blockbuster theorem go way beyond the scope of an introductory text.  But, this result has cultural lessons that make even its story valuable.  An important source of this value is that the reader who understands even the outlines of the theorem will be receptive to the broad implications of the material in Section~\ref{sec:Reals-uncountable}, Section~\ref{sec:pairing}, and Appendix~\ref{Appendix:building-pairing-functions}.  This material supplies essential mathematical underpinnings for the theorem whose tale we are about to embark on.
+This section is devoted to a true milestone in the history of mathematics, of logic, and of computing.  The mathematical details necessary to fully describe the analyses that lead to this blockbuster theorem go way beyond the scope of an introductory text.  However, this result has cultural lessons that make even its story valuable.  An important source of this value is that the reader who understands even the outlines of the theorem will be receptive to the broad implications of the material in Section~\ref{sec:Reals-uncountable}, Section~\ref{sec:pairing}, and Appendix~\ref{Appendix:building-pairing-functions}.  This material supplies essential mathematical underpinnings for the theorem whose tale we are about to embark on.
 
 \medskip
 
 \index{Hilbert, David}  \index{Newson, Mary Frances Winston} \index{Hilbert's Tenth Problem}
 
-In 1900, the eminent, influential German mathematician David Hilbert set forth a list of $23$ problems to serve as a ``bucket list''\footnote{The ``bucket'' is not yet empty.  A number of Hilbert's original 23 problems are yet to be solved.}~for the world mathematics community at the dawn of the 20th century.\footnote{Hilbert's list was published in 1902 \cite{Hilbert02}; it was translated into English by Mary Frances Winston Newson, the first American woman to receive a doctorate from the University of G\"{o}ttingen (which was probably the world's premier university for mathematical research in the late 19th and early 20th centuries).}  Of Hilbert's 23 problems, the 10th stands out within the world of computing.  Stated in modern terminology, with a modern perspective, the Problem can be stated as follows.
+In 1900, the eminent, influential German mathematician David Hilbert set forth a list of $23$ problems to serve as a ``bucket list''\footnote{The ``bucket'' is not yet empty.  A number of Hilbert's original 23 problems are yet to be solved.}~for the world mathematics community at the dawn of the twentieth century.\footnote{Hilbert's list was published in 1902 \cite{Hilbert02}; it was translated into English by Mary Frances Winston Newson, the first American woman to receive a doctorate from the University of G\"{o}ttingen (which was probably the world's premier university for mathematical research in the late 19th and early 20th centuries).}  Of Hilbert's 23 problems, the tenth stands out within the world of computing.  Stated in modern terminology, with a modern perspective, the Problem can be stated as follows.
 \begin{description}
 \item[{\bf Hilbert's Tenth Problem}]
 {\it Develop an algorithm that will decide---via a {\sc yes} or {\sc no} answer---whether a given multivariate polynomial with integer coefficients has any integer roots.}
 \end{description}
-The Problem attracted the attention of many of the best mathematical minds of the 20th century.  Building on the work of American mathematicians Martin Davis and Julia Robinson.  The Problem was finally resolved by the Russian then-graduate student Yuri Matiyasevich in the mid-1970s.
+The Problem attracted the attention of many of the best mathematical minds of the twentieth century.  Building on the work of American mathematicians Martin Davis and Julia Robinson, the Problem was finally resolved by the Russian then-graduate student Yuri Matiyasevich in the mid-1970s.
 \index{Davis, Martin} \index{Robinson, Julia} \index{Matiyasevich, Yuri}
 
 \bigskip
@@ -1607,17 +1621,17 @@ The long history leading to Matiyasevich's proof of Theorem~\ref{thm:Hilberts-10
 
 \medskip
 
-The mathematics needed even to understand Hilbert's Tenth Problem and its resolution are beyond an introductory text.  However, a few words are in order about the exciting way in which Theorem~\ref{thm:Hilberts-10th} fundamentally changed the course of 20th-century mathematics by turning the table on all of the mathematics that had been done to that point in history.
+The mathematics needed even to understand Hilbert's Tenth Problem and its resolution are beyond an introductory text.  However, a few words are in order about the exciting way in which Theorem~\ref{thm:Hilberts-10th} fundamentally changed the course of twentieth-century mathematics by turning the tables on all of the mathematics that had been done to that point in history.
 
 \medskip
 
-We recall from Section~\ref{sec:classical-v-modern-proofs} that one of the main movements that took root in 19th-century mathematics had as its goal to codify the notion of ``rigorous proof''.  Toward this end, one of Hilbert's goals in his to-do list of 1900---especially with regard to the 10th problem on his list---was to have mathematicians rigorously prove that the notions of ``Truth'' and ``Provability'' coincided.  Hilbert's immediate challenge was to find such a proof at least for ``elementary'' areas of mathematics.
+We recall from Section~\ref{sec:classical-v-modern-proofs} that one of the main movements that took root in nineteenth-century mathematics had as its goal to codify the notion of ``rigorous proof''.  Toward this end, one of Hilbert's goals in his to-do list of 1900---especially with regard to the tenth problem on his list---was to have mathematicians rigorously prove that the notions of ``Truth'' and ``Provability'' coincided.  Hilbert's immediate challenge was to find such a proof at least for ``elementary'' areas of mathematics.
 
 \smallskip
 
 \index{G\"{o}del, Kurt} \index{G\"{o}del's Incompleteness Theorems}
 
-This hope was, in fact, the first of Hilbert's dreams to be dashed: In the early 1930s, Austrian expatriate, then Princeton professor, Kurt G\"{o}del, proved the first of his celebrated {\it Incompleteness Theorem}s \cite{Goedel31}.  Stated {\em very(!)}~informally, this first theorem asserts that in any ``reasonable'' mathematical system, there will always be {\em true} statements that cannot be proved.
+This hope was, in fact, the first of Hilbert's dreams to be dashed: In the early 1930s, Austrian logician-mathematician Kurt G\"{o}del proved the first of his celebrated {\it Incompleteness Theorem}s \cite{Goedel31}.  Stated {\em very(!)}~informally, this first theorem asserts that in any ``reasonable'' mathematical system, there will always be {\em true} statements that cannot be proved.
 
 \bigskip
 
@@ -1632,7 +1646,7 @@ Two crucial words remain unspecified in our story, namely, ``elementary'' and ``
 \item
 One given integer, say $z$, is the sum of the other two ($z = x+y$).
 \medskip\item
-One given integer, again say $z$, is the product of the two others ($z = x \times y$).
+One given integer, again say $z$, is the product of the other two ($z = x \times y$).
 \end{itemize}
 \end{minipage}
 }
@@ -1642,7 +1656,7 @@ One given integer, again say $z$, is the product of the two others ($z = x \time
 \index{Turing, Alan} \index{uncomputable function} \index{Cantor, Georg}
 
 \noindent
-Building on G\"{o}del's insights, English mathematician Alan Turing soon thereafter proved---again, stated {\em very(!)}~informally---that no matter how much ``smarts'' we build into a digital computer using digital logic, there will always be functions---even $0$-$1$ valued functions---that the computer cannot compute \cite{Turing36}.  Theorem~\ref{thm:Hilberts-10th} can be reworded to assert that the integer-root-finding behavior called for in Hilbert's Tenth Problem is one of Turing's {\it uncomputable} functions!\footnote{The connections between G\"{o}del's work and Turing's, and the manner in which both authors' work connects to the work of German logician Georg Cantor  on infinite sets of numbers, \cite{Cantor74,Cantor78} are described in \cite{Rosenberg09} using consistent terminology to discuss all three authors' work.}
+Building on G\"{o}del's insights, English mathematician Alan Turing soon thereafter proved---again, stated {\em very(!)}~informally---that no matter how much ``smarts'' we build into a digital computer using digital logic, there will always be functions---even ($0$-$1$)-valued functions---that the computer cannot compute \cite{Turing36}.  Theorem~\ref{thm:Hilberts-10th} can be reworded to assert that the integer-root-finding behavior called for in Hilbert's Tenth Problem is one of Turing's {\it uncomputable} functions!\footnote{The connections between G\"{o}del's work and Turing's, and the manner in which both authors' work connects to the work of German logician Georg Cantor  on infinite sets of numbers, \cite{Cantor74,Cantor78} are described in \cite{Rosenberg09} using consistent terminology to discuss all three authors' work.}
 
 
 \section{Exponential and Logarithmic Functions}
@@ -1693,7 +1707,7 @@ We leave to the reader the easy verification, from Eq.~(\ref{eq:logarithm-defn})
 
 \subsection{Learning from Logarithms (and Exponentials)}
 
-Definition (\ref{eq:logarithm-defn}) exposes and---even more importantly---explains myriad facts about logarithms, which we often take for granted.
+Definition (\ref{eq:logarithm-defn}) exposes and---even more importantly---explains many facts about logarithms which we often take for granted.
 
 \begin{prop}
 \label{thm:log-add-multiply}
@@ -1718,7 +1732,7 @@ by the laws of powers.  Taking base-$b$ logarithms of the first and last terms i
 \smallskip
 
 Proposition~\ref{thm:log-add-multiply} provides the mathematical underpinnings of the analogue computing device known as a {\it slide rule}.  Without going into details, a slide rule is built from two straight sticks that are both marked off according to a logarithmic scale.  The sticks are attached in a way that allows each to slide along the other (whence the name of the device); see Fig.~\ref{fig:slide-rule}.
-The important property of this device is illustrated in the figure:  When one positions the origin (number $1$ of stick $A$ at the position of stick $B$ that corresponds to number $a$, then the number on stick $B$ that corresponds to the number $b$ on stick $A$ is $a \times b$.  In short, the logarithmic scale on the device's sticks enables it to translate linear motion (the sliding of the sticks relative to one another) into numerical multiplication.
+The important property of this device is illustrated in the figure:  When one positions the origin (number $1$) of stick $A$ at the position of stick $B$ that corresponds to number $a$, then the number on stick $B$ that corresponds to the number $b$ on stick $A$ is $a \times b$.  In short, the logarithmic scale on the device's sticks enables it to translate linear motion (the sliding of the sticks relative to one another) into numerical multiplication.
 \end{minipage}
 }
 
@@ -1747,7 +1761,7 @@ B \hspace*{.35in} &
 \hline
 \end{array}
 \]
-\caption{A schematic view of a slide rule performing a multiplication.  If one slides Stick $A$ to position $a$ of Stick $B$, then position $b$ of Stick $A$ appears directly above position $a \cdot b$ of Stick $B$.  Thereby, the addition of distances on the rule's logarithmic scale is used to compute products.}
+\caption{A schematic view of a slide rule performing a multiplication.  If one slides Stick $A$ to position $a$ of Stick $B$, then position $b$ of Stick $A$ appears directly above position $a \cdot b$ of Stick $B$.  Thereby, the addition of distances on the rule's logarithmic scale is used to compute products}
 \label{fig:slide-rule}
 \end{figure}
 
@@ -1793,7 +1807,7 @@ We invoke Eq.~(\ref{eq:logarithm-defn}) twice to remark that
 \[ \left[x^{\log_b y} \ = \ b^{(\log_b x) \cdot (\log_b y)}\right]
 \ \ \mbox{ and } \ \ 
 \left[y^{\log_b x}\ = \ b^{(\log_b y) \cdot (\log_b x)}\right] \]
-The commutativity of addition completes the verification.  \qed
+The commutativity of multiplication completes the verification.  \qed
 \end{proof}
 
 \smallskip
@@ -1856,23 +1870,25 @@ For any integers $a, b >1$,
 
 \section{$\oplus$ Pointers to Specialized Topics}
 
-Emerging technologies prolifically give rise to novel specialties that grab the imagination of the computer-literate public.  Since many such specialties build upon mathematical concepts and tools, they afford the designer of a mathematics course an opportunity to add enrichment to a syllabus that is dominated by the ``classics.''  During the first decades of the 21st century, application areas such as {\it robotics} or {\it data science} or {\it data mining} or {\it computer security} or {\it energy-awareness} each can benefit from supplements to a standard mathematics syllabus---of course, at levels consistent with the students' preparation.  We now flesh out this suggestion by discussing two supplements which, broadly construed, could fit under the mantle of {\it Arithmetic}.
+Emerging technologies prolifically give rise to novel specialties that grab the imagination of the computer-literate public.  Since many such specialties build upon mathematical concepts and tools, they afford the designer of a mathematics course an opportunity to add enrichment to a syllabus that is dominated by the ``classics''.  During the first decades of the twenty-first century, application areas such as {\it robotics} or {\it data science} or {\it data mining} or {\it computer security} or {\it energy-awareness} can all benefit from supplements to a standard mathematics syllabus---of course, at levels consistent with the students' preparation.  We now flesh out this suggestion by discussing two supplements which, broadly construed, could fit under the mantle of {\it Arithmetic}.
 
 \subsection{Norms and Metrics for Tuple-Spaces}
 \label{sec:Ln-norms}
 
 \index{tuple-spaces}
 
-By the 1950s, computers had become sophisticated enough to handle structured data, computer users became sophisticated enough to think in terms of structured models.  Thus, from the 1960s and 1970s onward to the present, one sees {\it tuple-spaces} used to algorithmic advantage in application areas as varied as {\it databases} \cite{Codd70}, {\it parallel computing} \cite{BlumS77,Shinahr74}, and {\it robotics} \cite{Marchese96,Rosenberg12}.  While the specific concepts drawn from the study of tuple-spaces vary a bit from one application area to another, certain concepts recur---and among these, the {\it norms} and {\it metrics} that allow us to talk about notions such as ``distance'' play a very important role.  Of course, notions of ``distance''
+By the 1950s, computers had become sophisticated enough to handle structured data, and computer users had become sophisticated enough to think in terms of structured models.  Thus, from the 1960s and 1970s onward to the present, one sees {\it tuple-spaces} used to algorithmic advantage in application areas as varied as {\it databases} \cite{Codd70}, {\it parallel computing} \cite{BlumS77,Shinahr74}, and {\it robotics} \cite{Marchese96,Rosenberg12}.  While the specific concepts drawn from the study of tuple-spaces vary a bit from one application area to another, certain concepts recur---and among these, the {\it norms} and {\it metrics} that allow us to talk about notions such as ``distance'' play a very important role.  Of course, notions of ``distance''
 relevant to databases may differ from those used in, e.g., robotic path planning, but in very many applications it is important to know whether tuple $t_1$ is ``closer to'' tuple $t_2$ than to tuple $t_3$.
 
 \smallskip
 
 \index{Lebesgue, Henri L\'{e}on} \index{Lebesgue's $L$-measures}
 
-It is an often-frustrating phenomenon that new application areas all too frequently rename concepts and tools that it inherits from its predecessors.  So how shall we name the norms and metrics that we inject into our mathematics curriculum?  Probably the most scholarly course is to employ the names that honor the early 20th century French mathematician and function theorist Henri L\'{e}on Lebesgue whose $L$-measures form the classical taxonomy of norms and distances in tuple-spaces.
+It is an often-frustrating phenomenon that new application areas all too frequently rename concepts and tools that they inherit from their predecessors.  So how shall we name the norms and metrics that we inject into our mathematics curriculum?  Probably the most scholarly course is to employ the names that honor the early-twentieth-century French mathematician and function theorist Henri L\'{e}on Lebesgue, whose $L$-measures form the classical taxonomy of norms and distances in tuple-spaces.
 
-We focus on {\em two-dimensional} tuple-spaces, although everything we say generalizes in a straightforward manner to arbitrary finite-integer dimensionalities.  And, we restrict attention to the three $L$-measures that are the most common in application areas such as informatics and robotics.  Focus on arbitrary $2$-tuples of numbers $z_1 = \langle x_1, y_1 \rangle$ and $z_2 = \langle x_2, y_2 \rangle$.
+\smallskip
+
+We focus on {\em two-dimensional} tuple-spaces, although everything we say generalizes in a straightforward manner to arbitrary finite-integer dimensionalities.  Also, we restrict attention to the three $L$-measures that are the most common in application areas such as informatics and robotics.  Focus on arbitrary $2$-tuples of numbers $z_1 = \langle x_1, y_1 \rangle$ and $z_2 = \langle x_2, y_2 \rangle$.
 
 \medskip
 
@@ -1889,7 +1905,7 @@ The $L^1$-{\it norm} of $z_1$ is the sum of the magnitudes of its coordinates, i
 The $L^1$-{\it distance} between $z_1$ and $z_2$ is the sum of the magnitudes of the differences between the coordinates of the two pairs, i.e.,
 \[ L^1(z_1, z_2) \ = \ |x_1 - x_2| + |y_1 - y_2| \]
 \end{itemize}
-The $L^1$-distance is also called {\it Manhattan distance} or {\it rook distance}, because a path between $z_1$ and $z_2$, viewed as points in $2$-dimensional space, in which adjacent points are unit $L^1$-distance apart, follows a rectilinear grid-like pattern such one observes in a map of Manhattan or in the path taken by a rook in chess.  From a less picturesque point of view, one observes that each point in $2$-dimensional space is unit $L^1$-distance from four other points, one each in the four NEWS (north, east, south, west) compass directions.  If one maps out the points in $2$-dimensional space that are at successive $L^1$-distances from a ``center'' point $z$, then one observes the {\it $L^1$-disc} of Fig.~\ref{fig:Ln-discs}(left), which generalizes in higher dimensions to the {\it $L^1$-sphere}. \index{$L^1$ measure!sphere} 
+The $L^1$-distance is also called {\it Manhattan distance} or {\it rook distance}, because a path between $z_1$ and $z_2$, viewed as points in two-dimensional space, in which adjacent points are unit $L^1$-distance apart, follows a rectilinear grid-like pattern such as one observes in a map of Manhattan or in the path taken by a rook in chess.  From a less picturesque point of view, one observes that each point in two-dimensional space is unit $L^1$-distance from four other points, one each in the four NEWS (north, east, west, south) compass directions.  If one maps out the points in two-dimensional space that are at successive $L^1$-distances from a ``center'' point $z$, then one observes the {\it $L^1$-disc} of Fig.~\ref{fig:Ln-discs}(left), which generalizes in higher dimensions to the {\it $L^1$-sphere}. \index{$L^1$ measure!sphere} 
 \index{$L^1$ measure!disc} 
 \begin{figure}[hbt]
 \[
@@ -1919,7 +1935,7 @@ The $L^1$-distance is also called {\it Manhattan distance} or {\it rook distance
 \end{array}
 \end{array}
 \]
-\caption{The radius-$3$ $L^1$-disc (left) and $L^\infty$-disc (right), with annotated $L^1$-distances and $L^\infty$-distances, respectively, from the ``center'' point.}
+\caption{The radius-$3$ $L^1$-disc (left) and $L^\infty$-disc (right), with annotated $L^1$-distances and $L^\infty$-distances, respectively, from the ``center'' point}
 \label{fig:Ln-discs}
 \end{figure}
 
@@ -1939,7 +1955,7 @@ The $L^\infty$-{\it distance} between $z_1$ and $z_2$ is the larger of the magni
 differences between the coordinates of the two pairs, i.e.,
 \[ L^\infty(z_1, z_2) \ = \ \max(|x_1 - x_2|, \  |y_1 - y_2|) \]
 \end{itemize}
-$L^\infty$-distance is also called {\it king's-move distance}, because each step in a path between $z_1$ and $z_2$, in which adjacent points are unit $L^\infty$-distance apart follows a pattern such as one observes in a path taken by a king in chess.  From a less picturesque point of view, one observes that each point in $2$-dimensional space is unit $L^\infty$-distance from eight other points, one each in the eight compass directions, N, NE, E, SE, S, SW, W, NW.  If one maps out the points in $2$-dimensional space that are at successive $L^\infty$-distances from a ``center'' point $z$, then one observes the {\it $L^\infty$-disc} of Fig.~\ref{fig:Ln-discs}(right), which generalizes in higher dimensions to the {\it $L^\infty$-sphere}.
+$L^\infty$-distance is also called {\it king's-move distance}, because each step in a path between $z_1$ and $z_2$, in which adjacent points are unit $L^\infty$-distance apart follows a pattern such as one observes in a path taken by a king in chess.  From a less picturesque point of view, one observes that each point in two-dimensional space is unit $L^\infty$-distance from eight other points, one each in the eight compass directions, N, NE, E, SE, S, SW, W, NW.  If one maps out the points in two-dimensional space that are at successive $L^\infty$-distances from a ``center'' point $z$, then one observes the {\it $L^\infty$-disc} of Fig.~\ref{fig:Ln-discs}(right), which generalizes in higher dimensions to the {\it $L^\infty$-sphere}.
  \index{$L^\infty$ measure!sphere} \index{$L^\infty$ measure!disc}
 
 \smallskip
@@ -1948,9 +1964,10 @@ As one observes in Fig.~\ref{fig:Ln-discs}, the structures of the $L^1$-disc and
 
 \bigskip
 
-\index{Euclid!{\it The Elements}}
+\index{Euclid!{\it The Elements}} \index{Euclid!the euclidean or $L^2$ measure/nrm}
+\index{$L^2$ measure/norm} \index{eucidean measure/norm}
 
-We have not (yet) mentioned what is likely the most familiar $L$-measure, namely, the $L^2$ measure which is named for Euclid in honor of his celebrated treatise on geometry, {\it The Elements}.  For completeness, we now define this measure, but we do not develop the subject further because it is not frequently used when dealing with the discrete mathematical structures
+We have not (yet) mentioned what is likely the most familiar $L$-measure, namely the $L^2$ ({\em euclidean}) measure which is named for Euclid in honor of his celebrated treatise on geometry, {\it The Elements}.  For completeness, we now define this measure, but we do not develop the subject further because it is not frequently used when dealing with the discrete mathematical structures
 that are the primary foci of this text.
 
 \medskip
@@ -1961,7 +1978,7 @@ that are the primary foci of this text.
 \begin{itemize}
 \item
 The $L^2$-{\it norm} of $z_1$ is the Euclidean distance of the point from the {\it origin} of
-$2$-dimensional space, which is the point $\langle 0,0 \rangle$:
+two-dimensional space, which is the point $\langle 0,0 \rangle$:
 \[ L^2(z_1) \ = \ \sqrt{x_1^2 + y_1^2}  \]  
 
 \medskip\item
@@ -1977,15 +1994,15 @@ From the earliest days of digital computing, the challenge of employing computer
 \index{Yngve, Victor} \index{Backus, John}
   \begin{itemize}
   \item
-Computational linguists attempted to enlist computers in the processing of natural language.  The goal of automatic translation between Russian and English became the ``holy grail'' of this community, at least in the US and USSR.  Reminiscences by Anthony G.~Oettinger,  a pioneer in this effort, appear in \cite{Hutchins00}.
+Computational linguists attempted to enlist computers in the processing of natural language.  The goal of automatic translation between Russian and English became the ``holy grail'' of this community, at least in the USA and USSR.  Reminiscences by Anthony G.~Oettinger,  a pioneer in this effort, appear in \cite{Hutchins00}.
    \medskip\item
-As the quickly growing power of computers became appreciated, more sophisticated process-specification languages began to emerge.  From the very early days of this development, programming languages became more ``natural"-language-like.  (There was a split among computer-language designers:  Some interpreted ``natural" as in the phrase ``natural language":  They wanted to program in [an approximation to] English or French or Russian or \ldots.  Others interpreted ``natural" as a synonym for ``problem-specific".  They wanted scientists to be able to feed computers systems of equations, while engineers might feed some textual encoding of a circuit design.) One of the earliest entrants in this arena was the business-oriented language COBOL, which was inspired by early work of the computing giant Grace Murray Hopper and developed under the leadership of Jean E.~Sammet; see \cite{Sammet78}.  A second early entrant was the string-processing language COMIT developed under the leadership of Victor Yngve, with an eye toward applications such as language processing; see \cite{Yngve}.  A champion by any metric was the ever-evolving FORTRAN language which was developed in the mid-1950s by a small team at IBM, headed by John Backus; see \cite{Backus-etal57}.  FORTRAN was the first programming language which aimed to enable scientists to specify the problems they wished to compute in a manner that was at least reminiscent of the mathematical notation they would use to communicate with one another.
+As the quickly growing power of computers became appreciated, more sophisticated process-specification languages began to emerge.  From the very early days of this development, programming languages became more ``natural"-language-like.  (There was a split among computer-language designers:  Some interpreted ``natural" as in the phrase ``natural language":  They wanted to program in [an approximation to] English or French or Russian or \ldots.  Others interpreted ``natural" as a synonym for ``problem-specific".  They wanted scientists to be able to feed computers systems of equations, while engineers might feed some textual encoding of a circuit design.) One of the earliest entrants in this arena was the business-oriented language COBOL, which was inspired by early work of the computing giant Grace Murray Hopper and developed under the leadership of Jean E.~Sammet; see \cite{Sammet78}.  A second early entrant was the string-processing language COMIT developed under the leadership of Victor Yngve, with an eye toward applications such as language processing; see \cite{Yngve}.  A champion by any metric was the ever-evolving FORTRAN language, which was developed in the mid-1950s by a small team at IBM, headed by John Backus; see \cite{Backus-etal57}.  FORTRAN was the first programming language which aimed to enable scientists to specify the problems they wished to compute in a manner that was at least reminiscent of the mathematical notation they would use to communicate with one another.
    \medskip\item
-As it became clear that FORTRAN was a step toward satisfying the programming needs of an enormous market, a veritable army of systems programmers began to develop increasingly sophisticated processors for its genre of programming language.  The era of ``smart compilers'' was dawning.
+As it became clear that FORTRAN was a step toward satisfying the programming needs of an enormous market, a veritable army of systems programmers began to develop increasingly sophisticated processors for its genre of programming languages.  The era of ``smart compilers'' was dawning.
    \end{itemize}
 
 A common feature in the preceding developments was that people were typing more as they used computers.  Inevitably, therefore, they were making more typing mistakes.  A very specific computing challenge arose, to make much more concrete the desire to understand how close a
-string $x$ was to a string $y$.  Could one develop an algorithm that would rewrite one of these strings as the other while ``editing'', or, rewriting, as few symbols as possible?  While such an algorithm would not completely solve the ``mistyping'' problem---consider, e.g., that the strings
+string $x$ was to a string $y$.  Could one develop an algorithm that would rewrite one of these strings to the other while ``editing'', or rewriting, as few symbols as possible?  While such an algorithm would not completely solve the ``mistyping'' problem---consider, e.g., that the strings
 
 \hspace*{.25in} ``SORTH'' \ \ and \ \ ``NOUTH''
 
@@ -2046,7 +2063,7 @@ For each {\em nonzero} number $x$ in $\Q$ or in $\R$, there is a unique number $
 \end{enumerate}
 \end{prop}
 
-The class $\N$ is (intentionally) missing from Proposition~\ref{thm:AR-EX-mult-inv}.b: integers other than $\pm 1$ do not have integral multiplicative inverses.  We shall take some of the sting out of this lack in 
+The class $\Z$ is (intentionally) missing from Proposition~\ref{thm:AR-EX-mult-inv}.b: integers other than $\pm 1$ do not have integral multiplicative inverses.  We shall take some of the sting out of this lack in 
 Section~\ref{sec:EX-NUM2} by means of Proposition~\ref{thm:NUM2-EX-CXL}, which shows that integers have a rudimentary version of multiplicative inverse.
 \medskip
 

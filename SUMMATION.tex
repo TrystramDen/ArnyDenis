@@ -1,4 +1,4 @@
-%version of 07-22-20
+%version of 08-10-20
 
 \chapter{Summation:
 A Complex Whole from Simple Parts}
@@ -14,15 +14,15 @@ A Complex Whole from Simple Parts}
 
 \vspace*{.5in}
 
-\section{Introducing the Many Facets of Summation}
+\section{The Many Facets of Summation}
 \label{sec:intro}
 
-The operation of {\it summation}---adding up aggregations of numbers---is of fundamental importance in the world of digital computing.  While we humans are able to deal handily with abstractions such as ``smoothness'' and ``continuity'', we must employ sophisticated {\em discretizations} of these concepts in order to enlist the aid of digital computers in dealing with such abstractions.  Summations provide a very useful discretization of {\em continuous} (or,
-``smooth'') phenomena that are typically dealt with with the aid of the (differential and integral) calculus.
+The operation of {\it summation}---adding up aggregations of numbers---is of fundamental importance in the world of digital computing.  While we humans are able to deal handily with abstractions such as ``smoothness'' and ``continuity'', we must employ sophisticated {\em discretizations} of these concepts in order to enlist the aid of digital computers in dealing with such abstractions.  Summations provide a very useful discretization of {\em continuous}, or
+``smooth'', phenomena that are typically dealt with with the aid of the (differential and integral) calculus.
 
 \medskip
 
-This chapter is dedicated to exploring how to employ summations as a computational tool.  We deal throughout with {\it series}, {\it i.e.}, (possibly infinite) sequences of numbers
+This chapter is dedicated to exploring how to employ summations as a computational tool.  We deal throughout with {\it series}, i.e., (possibly infinite) sequences of numbers
 \[ a_1, \ a_2, \ a_3, \ldots \]
 whose sum
 \begin{equation}
@@ -51,27 +51,26 @@ Of course, when we deal with {\em infinite} series, wherein there are infinitely
 
 \smallskip
 
-But sometimes an infinite series does {\em not} have a finite sum.  This is true, for instance, with the well-known {\it harmonic} series \index{harmonic series}
+But sometimes an infinite series does {\em not} have a finite sum.  This is true, for instance, of the well-known {\it harmonic} series \index{harmonic series}
 \begin{equation}
 \label{eq:sample-sum-harmonic}
 1 \ + \ \frac{1}{2} \ + \ \frac{1}{3} \ + \ \frac{1}{4} \ +
-\ \frac{1}{5} \ + \ \cdots \ + \ \frac{1}{k} \ + \ \frac{1}{k+1} \ +
-\ \cdots
+\ \frac{1}{5} \ + \ \cdots \ + \ \frac{1}{k} \ + \ \frac{1}{k+1} \ + \cdots
 \end{equation}
 As more and more terms are added to this summation, the accumulated sum eventually exceeds every number.  Such an infinite series is said to {\em diverge}.
 \index{infinite series!divergent}
 
 \smallskip
 
-Summations such as in Eq.~(\ref{eq:sample-sum-harmonic}) diverge because their initial partial sums---i.e., the sequence $1$, $1 + \frac{1}{2}$, $1 + \frac{1}{2} + \frac{1}{3}$, \ldots, for Eq.~(\ref{eq:sample-sum-harmonic})--grow without bound.  There are other infinite series whose behavior is harder to describe.  One such example is the series
+Summations such as in Eq.~(\ref{eq:sample-sum-harmonic}) diverge because their initial partial sums---i.e., the sequence $1$, $1 + \frac{1}{2}$, $1 + \frac{1}{2} + \frac{1}{3}$, \ldots, for Eq.~(\ref{eq:sample-sum-harmonic})---grow without bound.  There are other infinite series whose behavior is harder to describe.  One such example is the series
 \[ 1 \ - \ 1 \ + \ 1 \ - \cdots + \ 1 \ - \ 1 \ + - \cdots \] 
 which we discuss briefly in the exercises of this chapter and in Chapter~\ref{ch:infinity}.
 \end{minipage}
 }
 
-\medskip
+\bigskip
 
-Sums such as in Eqs.~(\ref{eq:sample-sum-2^(-k)}) and (\ref{eq:sample-sum-harmonic}) illustrate some of the complexity of dealing with infinite entities.  Most obviously, as we have just remarked, when the summations are infinite, some of them have finite sums while others do not.  Even more subtle, the series that {\em do} have (finite) sums illustrate the unintuitive fact that sometimes finite objects or entities---such as the integer $2$ in Eq.~(\ref{eq:sample-sum-2^(-k)})---have infinite ``names'':  In this example, the series is an infinite ``name" of integer $2$.  Lots to think about!
+Summations such as in Eqs.~(\ref{eq:sample-sum-2^(-k)}) and (\ref{eq:sample-sum-harmonic}) illustrate some of the complexities of dealing with infinite entities.  Most obviously, as we just remarked, when dealing with summations that are infinite, some of them have finite sums while others do not.  Even more subtle, the series that {\em do} have (finite) sums illustrate the unintuitive fact that sometimes finite objects or entities---such as the integer $2$ in Eq.~(\ref{eq:sample-sum-2^(-k)})---have infinite ``names'':  In this example, the series is an infinite ``name" of integer $2$.  Lots to think about!
 
 \bigskip
 
@@ -145,7 +144,7 @@ We include specialized techniques that work for specific classes of summations, 
 
 \smallskip
 
-Examples of such techniques include, e.g.: estimating summations by integrating functions related to the summation; grouping/replication of terms within a summation; verifying ``guessed'' sums via induction.
+Examples of such techniques include, e.g., estimating summations by integrating functions related to the summation; grouping/replicating terms within a summation; verifying ``guessed'' sums via induction.
 
 \medskip\item
 We study a variety of {\it fundamental representations} of the elements being summed.  We observe that being able to study the same phenomenon in a variety of seemingly unrelated ways often gives one unexpected mathematical understanding of, and operational control over, the phenomenon.
@@ -165,12 +164,12 @@ Examples of such representations include, among others, representations of numbe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \index{Sissa ibn Dahir, legend of} 
-To illustrate the power of summation methodology, consider the following modernized version of the {\it legend of Sissa ibn Dahir}.  Sissa, goes the legend, has invented a marvelous game that is played on a chessboard, i.e., an $8 \times 8$ array of unit-size squares.  An entrepreneur proposes to buy the rights of this marvelous game from Sissa.  The entrepreneur offers Sissa a one-time payment of {\em one million million (i.e., $10^{12} = 1,000,000,000,000$) euros} in return for all rights to the new game\footnote{The original legend was about grains of rice, this is what is called {inflation}...}.  As a counter-offer, Sissa asked the entrepreneur instead for all of the money amassed in the following way.  Sissa requested that the entrepreneur proceed row by row along a chessboard, placing money in the board's squares, according to the following regimen.  The entrepreneur should place $1$ euro in the first square, $2$ euros in the second square, $4 \ (= 2 \times 2)$ euros in the third square, $8 \ (= 4 \times 2)$ euros in the
-fourth square, and so on, doubling the number of euros at each step of the procedure---so the last square would contain $2^{63}$ euros. Fig.~\ref{fig:Sissa} illustrates the growth of the pile of euros during first few steps of the procedure.
+To illustrate the power of summation methodology, consider the following modernized version of the {\it legend of Sissa ibn Dahir}.  Sissa, goes the legend, has invented a marvelous game that is played on a chessboard, i.e., an $8 \times 8$ array of unit-size squares.  An entrepreneur proposes to buy the rights of this marvelous game from Sissa.  The entrepreneur offers Sissa a one-time payment of {\em one million million (i.e., $10^{12} = 1,000,000,000,000$) euros} in return for all rights to the new game\footnote{The original legend was about grains of rice; this is what is called {inflation} ...}.  As a counteroffer, Sissa asked the entrepreneur instead for all of the money amassed in the following way.  Sissa requested that the entrepreneur proceed row by row along a chessboard, placing money in the board's squares, according to the following regimen.  The entrepreneur should place $1$ euro in the first square, $2$ euros in the second square, $4 \ (= 2 \times 2)$ euros in the third square, $8 \ (= 4 \times 2)$ euros in the
+fourth square, and so on, doubling the number of euros at each step of the procedure---so the last square would contain $2^{63}$ euros.  Figure \ref{fig:Sissa} illustrates the growth of the pile of euros during the first few steps of the procedure.
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.3]{FiguresMaths/chess}
-\caption{The money in the first seven squares of the chessboard based on Sissa's counteroffer.}
+\caption{The money in the first seven squares of the chessboard based on Sissa's counteroffer}
        \label{fig:Sissa}
 \end{center}
 \end{figure}
@@ -216,6 +215,8 @@ an + b \cdot (1 + 2 + \cdots + n-1)
 \end{array}
 \end{equation}
 The common inter-element difference $b$ in the sequence and the series in Eq.~(\ref{eq:arith-seq}) is the {\it period} of the sequence and the series.
+
+\smallskip
  
 The message from the factorization of the arithmetic series in Eq.~(\ref{eq:arith-seq}) is that we can calculate the sum of the series by determining the sum of the first $n-1$ positive integers.  In the next subsection, we use this fact as an opportunity to introduce important notation.
 
@@ -234,7 +235,7 @@ is in {\it closed form} if it provides a prescription for evaluating the sum usi
 
 \index{$\Delta_n$: sum of the first $n$ integers}
 The sum $f(n)$ of the special summation  (\ref{eq:sigma-summation}) is commonly denoted $\Delta_n$.  Within this chapter, we usually prefer the notation $S_1(n)$ for this sum, because it
-exposes this summation as one instance of a related family of such summations that will occupy us through this chapter; we denote the sums of these summations by the notation $S_c(n)$ for various values of parameter $c$.
+exposes this summation as one instance of a related family of such summations that will occupy us throughout this chapter; we denote the sums of these summations by the notation $S_c(n)$ for various values of parameter $c$.
 
 \smallskip
 
@@ -259,7 +260,7 @@ S_1(n) \ = \ \sum_{i=1}^n \ i \  \ = \  \frac{1}{2} n (n+1)
 \index{sum of first $n$ integers!a textual reckoning}
 \begin{proof}
 {\bf A textual proof.}
-We begin with a {\em constructive, textual} proof\footnote{The proof is {\em constructive:} it actually derives an explicit answer.  This contrasts with, say, the inductive validation of the sum $S_1(n)$ in Section~\ref{sec:positive-integer-power}.C, which just verifies a ``guessed'' answer.}~of summation (\ref{eq:sum-1-to-n}) which employs an approach that was, famously,  used in a school exercise by the eminent German mathematician Karl Friedrich Gauss---as a pre-teenager.  This approach proceeds in two steps.
+We begin with a {\em constructive, textual} proof\footnote{The proof is {\em constructive:} it actually derives an explicit answer.  This contrasts with, say, the inductive validation of the sum $S_1(n)$ in Section~\ref{sec:positive-integer-power}.C, which just verifies a ``guessed'' answer.}~of summation (\ref{eq:sum-1-to-n}) which employs an approach that was, famously,  used in a school exercise by the eminent German mathematician Karl Friedrich Gauss---as a preteenager.  This approach proceeds in two steps.
 \begin{equation}
 \label{eq:arith-series}
 \begin{array}{llccccccccc}
@@ -270,7 +271,7 @@ We begin with a {\em constructive, textual} proof\footnote{The proof is {\em con
 \hspace*{.2in}\sum_{i=n}^1 \ i \ = & n & + & (n-1) & + & \cdots & + & 2   & + & 1
 \end{array}
 \end{equation}
-Now add the two representations of $S_1(n)$ in Eq.~(\ref{eq:arith-series}) {\em column by column}.  Because each of the $n$ column-sums equals $n+1$, we find that $2 S_1(n) = n(n+1)$, which we easily rewrite in the form (\ref{eq:sum-1-to-n})---after we multiply both sides of the equation by $2$.
+Now add the two representations of $S_1(n)$ in Eq.~(\ref{eq:arith-series}) {\em column by column}.  Because each of the $n$ column-sums equals $n+1$, we find that $2 S_1(n) = n(n+1)$, which we easily rewrite in the form (\ref{eq:sum-1-to-n})---after we multiply both sides of the equation by $2$.  \qed
 \end{proof}
 
 \medskip
@@ -292,9 +293,9 @@ Not everyone thinks the same way---even within the context of mathematics.  It i
 \index{unit-side square}
 \begin{proof}
 {\bf A ``pictorial'', graphical proof.}
-Now we shall look at the problem of summing $S_1(n)$ by estimating the area of a simple (in the \textit{good sense} of the word) surface.  In this worldview, integers are represented by concatenating {\it unit-side} (i.e., $1 \times 1$ {\it squares}), as in Fig.~\ref{fig:sumIntegersGeo1}.
+Now we shall look at the problem of summing $S_1(n)$ by estimating the area of a simple (in the \textit{good sense} of the word) geometric figure.  In this worldview, integers are represented by concatenating {\it unit-side} (i.e., $1 \times 1$) {\it squares}, as in Fig.~\ref{fig:sumIntegersGeo1}.
 
-\smallskip
+\medskip
 
 Our summation process proceeds in the three steps illustrated in Figs.~\ref{fig:sumIntegersGeo1}-\ref{fig:sumIntegersGeo2}.
 \begin{enumerate}
@@ -316,7 +317,7 @@ Next, we illustrate in Fig.~\ref{fig:sumIntegersGeo2}(Left) that the area of the
        \hspace*{.25in}
         \includegraphics[scale=0.33]{FiguresMaths/SumIntegersGeometricFinal}
 \end{center}
-\caption{(Left) The area of the lower-right triangle (light grey) is one-half that of the entire $n \times n$ square.  (Right) The area of the (dark) triangles upon the upper diagonal of the $n \times n$ square is ${1 \over2} n$.}
+\caption{(Left) The area of the lower-right triangle (light grey) is one-half that of the entire $n \times n$ square.  (Right) The area of the (dark) triangles upon the upper diagonal of the $n \times n$ square is ${1 \over2} n$}
        \label{fig:sumIntegersGeo2}
 \end{figure}
 
@@ -345,7 +346,7 @@ i.e., $\frac{1}{2} n$}
 \smallskip
 
 \noindent
-This reasoning thus derives the value of $S_1(n)$.
+This reasoning thus derives the value of $S_1(n)$.  \qed
 \end{proof}
 
 \medskip
@@ -375,7 +376,7 @@ Place (tokens that represent) the integers $0$ to $n$ along a line.  For each in
  &   &   &   &   & 4
 \end{array}
 \]
-\caption{A two-dimensional (triangular) depiction of the right-lying integer-instances.}
+\caption{A two-dimensional (triangular) depiction of the right-lying integer-instances}
 \label{fig:rightward-instances}
 \end{figure}
 
@@ -386,11 +387,12 @@ On the one hand, we see that the total number, $j$, of right-lying integers equa
 \smallskip
 
 On the other hand, every instance of a right-lying integer can be identified uniquely by the pair of nonnegative integers, $i$ (the instance's block) and $j>i$ (the instance's position-within-block).
-The total number of right-lying integer-instances corresponds to the number of ways one can select two objects (here, integers) from among $n+1$ objects.\footnote{We study such counting techniques in depth in Section~\ref{sec:counting}.}  This number is the {\it binomial coefficient }, whose definition we specialize from Eq.~(\ref{eq:binom-coeff}) in Section~\ref{sec:binary-operators}.C:
+The total number of right-lying integer-instances corresponds to the number of ways one can select two objects (here, integers) from among $n+1$ objects.\footnote{We study such counting techniques in depth in Section~\ref{sec:counting}.}  This number is the {\it binomial coefficient }, whose definition we specialize from Eq.~(\ref{eq:binom-coeff}) in 
+Section~\ref{sec:binomial-coeff}.
 \[
 \Delta_n  \ = \  {{n+1} \choose 2}  \  \eqdef  \  \frac{1}{2} n(n+1)
 \]
-We have thus derived two distinct---but, of course, equal---expressions for $S_1(n)$.
+We have arrived at two distinct---but, of course, equal---expressions for $S_1(n)$.  \qed
 \end{proof}
 
 \medskip
@@ -401,7 +403,7 @@ We have thus derived two distinct---but, of course, equal---expressions for $S_1
 
 \smallskip
 
-We have now exposed the sums $\Delta_n$ as special binomial coefficients, namely, those whose ``bottom" parameter is $2$.  The many ways of viewing the underlying summation in terms of {\em triangles}---as in Figs.~\ref{fig:sumIntegersGeo1}--\ref{fig:rightward-instances}---have led to the naming of these special binomial coefficients as {\it triangular numbers}.
+We have exposed the sums $\Delta_n$ as special binomial coefficients, namely, those whose ``bottom" parameter is $2$.  The many ways of viewing the underlying summation in terms of {\em triangles}---as in Figs.~\ref{fig:sumIntegersGeo1}--\ref{fig:rightward-instances}---have led to the naming of these special binomial coefficients as {\it triangular numbers}.
 \index{triangular number}  
 \index{binomial coefficient!triangular number} 
 \end{minipage}
@@ -437,7 +439,8 @@ a + (a+b) + (a+2b) + (a+3b) + \cdots + (a+(n-1)b) \ \ = \ \ an + b \cdot \Delta_
 \label{sec:sumOfOdds}
 
 In this section, we build on Proposition~\ref{thm:sum-first-integers-Gauss} to craft multiple constructive proofs of the fact that each perfect square $n^2$ is the sum of the first $n$ odd integers, $1, 3, 5, \ldots, 2n-1$.  All of these proofs complement the ``guess-and-verify'' inductive
-proof of this result in Section~\ref{sec:positive-integer-power}.C.
+proof of this result in Section~\ref{sec:DO-two-more-inductions}
+(Proposition~\ref{thm:squares-odd-integers-induction1}).
 
 \begin{prop}
 \label{thm:squares-odd-integers-Gauss}
@@ -461,7 +464,7 @@ Our first two proofs of Proposition~\ref{thm:squares-odd-integers-Gauss} note th
 
 \index{$n^2$ as sum of first $n$ odd integers!a proof using algebra}
 \begin{proof}
-{\bf A proof using algebra.}
+{\bf A proof by calculation.}
 By direct calculation, we find that
 \begin{eqnarray*}
 \sum_{i=1}^n \ \left( 2i-1 \right)
@@ -471,16 +474,18 @@ By direct calculation, we find that
    & = & (n^2 + n) - n \\
    & = & n^2
 \end{eqnarray*}
+We thus have a proof by algebraic manipulation. \qed
 \end{proof}
 
 \medskip
 
 \index{$n^2$ as sum of first $n$ odd integers!a proof by calculation}
 \begin{proof}
-{\bf A proof by calculation.}
+{\bf A proof by formula instantiation.}
 %
 Because summation (\ref{eq:sum-of-odds}) is an arithmetic series with parameters $a=1$ and $b=2$, we know from Proposition~\ref{thm:sum-of-arithmetic-series} that the summation evaluates to
 \[ (1 \cdot n) + 2 \Delta_{n-1} \ = \ n + n^2 -n \ = \ n^2 \]
+We thereby have a proof by applying our formula for arithmetic sums.  \qed
 \end{proof}
 
 \ignore{***\Denis According to the
@@ -514,7 +519,7 @@ Now, we add these two representations of $S(n)$ {\em column by column}.  Because
 2 S(n) \ = \ 2 \sum_{i=1}^n \ (2i-1) \ = \ 2n^2
 \end{equation}
 We thus derive the sum (\ref{eq:sum-of-odds}) when we halve (i.e., divide by $2$) the three
-equated quantities in Eq.~(\ref{eq:sum-of-odds-sum}).
+equated quantities in Eq.~(\ref{eq:sum-of-odds-sum}).  \qed
 \end{proof}
 
 \medskip
@@ -527,7 +532,7 @@ We now build up to a proof that is almost purely pictorial, with only a bit of r
 \label{eq:(n+1)^2}
 (n+1)^2 \ = \ n^2 \ + \ 2n \ + \ 1
 \end{equation}
-This well-known equation is verified by symbolically {\em squaring} expression $n+1$:
+This well-known equation is verified by symbolically {\em squaring} the expression $n+1$:
 \[ (n+1) \times (n+1) \ \ = \ \ n \cdot (n+1) \ + \ (n+1) 
      \ \ = \ \ n^2 \ + \ n \ + \ n \ + \ 1
 \]
@@ -550,16 +555,16 @@ Our pictorial proof begins by representing the generic positive integer $n$ as a
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsBasis}
-\caption{Representing the first $n$ odd integers using tokens.  In this illustration, $n=5$.}
+\caption{Representing the first $n$ odd integers using tokens.  In this illustration, $n=5$}
        \label{fig:sumOdds1}
 \end{center}
 \end{figure}
 
-Starting with this picture, we take each row of $2i-1$ tokens and ``fold" it at its midpoint so that it becomes a reversed letter ``$L$''.  The row of $2i-1$ tokens becomes an ``$L$'' whose horizontal portion (at the bottom of the reversed ``$L$'') is a row of $i$ tokens and whose vertical portion (at the right of the reversed ``$L$'') is a column of $i$ tokens (the ``hinge" token resides in both portions).
+Starting with this picture, we take each row of $2i-1$ tokens and ``fold" it at its midpoint so that it becomes a reversed letter ``$L$''.  The row of $2i-1$ tokens becomes an ``$L$'' (see Fig.~\ref{fig:sumOdds2}) whose horizontal portion (at the bottom of the reversed ``$L$'') is a row of $i$ tokens and whose vertical portion (at the right of the reversed ``$L$'') is a column of $i$ tokens (the ``hinge" token resides in both portions).
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsIntermediate}
-              \caption{Folding a single row into a reversed letter ``$L$''.}
+              \caption{Folding a single row into a reversed letter ``$L$''}
        \label{fig:sumOdds2}
 \end{center}
 \end{figure}
@@ -568,11 +573,11 @@ Once we have folded every row of tokens into a reversed ``$L$'', we nest the dif
 \begin{figure}[ht]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/SumOddsFinal}
-\caption{The final picture organized as an $n \times n$ square array of tokens.}
+\caption{The final picture organized as an $n \times n$ square array of tokens}
        \label{fig:sumOdds3}
 \end{center}
 \end{figure}
-Clearly, this nesting produces an $n \times n$ square array of (perforce, $n^2$) tokens.
+Clearly, this nesting produces an $n \times n$ square array of (perforce, $n^2$) tokens.  \qed
 \end{proof}
 
 \medskip
@@ -584,11 +589,11 @@ The reader who enjoyed the preceding ```pictorial' proof'' may be amused by the 
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresMaths/Deltaodd}
-\caption{Four copies of $S(n)$ represented as a triangle of tokens.  The triangles are arranged to yield a $2n \times 2n$ square of tokens.}
+\caption{Four copies of $S(n)$ represented as a triangle of tokens.  The triangles are arranged to yield a $2n \times 2n$ square of tokens}
        \label{fig:anotherSumOdds}
 \end{center}
 \end{figure}
-In the figure we have illustrate four copies of the triangle of tokens which depicts summation $S(n)$ (which sums the first $n$ odd numbers).  We have arranged the triangles in a way that produces a $2n \times 2n$ square of tokens.  In the arrangement, each side of the square is a line of $1+2n-1 \ = \ 2n$ tokens.  This construction illustrates that $4 S(n) \ = \ (2n)^2  \ = \ 4n^2$.
+In the figure we have illustrated four copies of the triangle of tokens that depicts summation $S(n)$ (which sums the first $n$ odd numbers).  We have arranged the triangles in a way that produces a $2n \times 2n$ square of tokens.  In the arrangement, each side of the square is a line of $1+2n-1 \ = \ 2n$ tokens.  This construction illustrates that $4 S(n) \ = \ (2n)^2  \ = \ 4n^2$.  \qed
 \end{proof}
 
 \medskip
@@ -600,7 +605,7 @@ In the figure we have illustrate four copies of the triangle of tokens which dep
 \smallskip
 
 \textit{Full disclosure}: Fig.~\ref{fig:anotherSumOdds} provides the basis for a proof of 
-Proposition~\ref{thm:squares-odd-integers-Gauss}, but it does not provide the complete proof: We must somehow verify that the construction in the figure is completely general, i.e., that the depicted emergence of the $2n \times 2n$ square of tokens from four copies of the $\Delta_n$-triangle is not an artifact of the depicted case $n =5$.  This verification is not difficult.
+Proposition~\ref{thm:squares-odd-integers-Gauss}, but it does not provide a complete proof: We must somehow verify that the construction in the figure is completely general, i.e., that the depicted emergence of the $2n \times 2n$ square of tokens from four copies of the $\Delta_n$-triangle is not an artifact of the depicted case $n =5$.  This verification is not difficult.
 
 \medskip
 
@@ -656,9 +661,9 @@ the sums of the first $n$ squares of the integers (the summations $S_2(n)$),
 \medskip\item
 the sums of the first $n$ cubes of the integers (the summations $S_3(n)$),
 \end{itemize}
-and so on.  We have, thus begun to establish a base for a summation technique that is {\em inductive}, i.e., that computes each summation $S_c(n)$ from the lower-index summations: $S_1(n)$, $S_2(n)$, \ldots, $S_{c-1}(n)$.  Our inductive technique awaits a bit more background.
+and so on.  We have thus begun to establish a base for a summation technique that is {\em inductive}, i.e., that computes each summation $S_c(n)$ from the lower-index summations: $S_1(n)$, $S_2(n)$, \ldots, $S_{c-1}(n)$.  Our inductive technique awaits a bit more background.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Geometric Sums and Series}
 \label{sec:general-geometric-series}
@@ -745,7 +750,7 @@ S^{(b<1)}_{b}(n) \ = \ \frac{1 - b^n}{1-b}
 \smallskip
 
 \noindent {\bf (c)}
-In the uninteresting, {\em degenerate}, case $b=1$
+In the uninteresting, {\em degenerate} case $b=1$
 \[ S^{(b=1)}_{b}(n) \ = \ 1 + 1 + \cdots + 1 \ \ \mbox{($n$ times)} \ \ = \ n \]
 \end{prop}
 
@@ -808,7 +813,7 @@ When $b < 1$,  the {\em infinite} series $S^{(\infty)}_{b}$ {\em
 \subsubsection{Techniques for summing geometric series}
 \label{sec:summing-geometric-series:techniques}
 
-We turn now to a sequence of proofs of Propositions~\ref{thm:sum-finite-geometric-series} and~\ref{thm:sum-infinite-geometric-series}.
+We now develop a sequence of proofs of Propositions~\ref{thm:sum-finite-geometric-series} and~\ref{thm:sum-infinite-geometric-series}.
 
 \medskip
 
