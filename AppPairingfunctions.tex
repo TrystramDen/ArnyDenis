@@ -1,4 +1,4 @@
-%version of 04-21-20
+%version of 08-12-20
 
 \chapter{$\oplus \oplus$ Pairing Functions: Encoding $\N^+ \times \N^+$ as $\N^+$}
 \label{Appendix:building-pairing-functions}
@@ -12,7 +12,7 @@ A.L.~Rosenberg (1974): Allocating storage for extendible arrays.  {\it J.~ACM 21
 
 \smallskip
 
-A.L.~Rosenberg (1975): Managing storage for extendible arrays.  {\it SIAM J.~Comput.~4},287--306.
+A.L.~Rosenberg (1975): Managing storage for extendible arrays.  {\it SIAM J.~Comput.~4}, 287--306.
 
 \smallskip
 
@@ -30,20 +30,20 @@ L.J.~Stockmeyer (1973): Extendible array realizations with additive traversal.  
 This chapter extends in three directions the study of pairing functions which we began in Section~\ref{sec:pairing}.
 \begin{enumerate}
 \item 
-We develop a ``generic" version of the construction paradigm of Section~\ref{sec:diag-pair-fn}, which develops the diagonal pairing function $\d$  of (\ref{eq:diag}) in two steps: First one decomposes $\N^+ \times \N^+$ into ``shells".  Second one linearizes the partial order of $\N^+ \times \N^+$ that the ``shells" specify.  This paradigm was motivated by the ``real-life"  challenge of devising {\em efficient} computer-storage mappings for arrays and tables that can be expanded and contracted dynamically.
+We develop a ``generic" version of the construction paradigm of Section~\ref{sec:diag-pair-fn}, which develops the diagonal pairing function $\d$  of (\ref{eq:diag}) in two steps: First, one decomposes $\N^+ \times \N^+$ into ``shells".  Second, one linearizes the partial order of $\N^+ \times \N^+$ that the ``shells" specify.  This paradigm was motivated by the ``real-life"  challenge of devising {\em efficient} computer-storage mappings for arrays and tables that can be expanded and contracted dynamically.
 
 \item
 We describe additional specific pairing functions whose structures are specified via the ``shell"-based mechanism---and we describe inherent limitations on the ``compactness" that is achievable via the ``shell"-based paradigm.
  
 \item
-We exemplify a non-``shell"-based genre of pairing function which is motivated by another ``real-life" challenge: how to devise computer-storage mappings for arrays and tables whose rows can be {\em efficiently} traversed, even after an arbitrary number of dynamic expansions and contractions.  One finds one specific scenario that embodies this challenge in [Rosenberg, 2002].
+We exemplify a non-``shell"-based genre of pairing function which is motivated by another ``real-life" challenge: how to devise computer-storage mappings for arrays and tables whose rows can be {\em efficiently} traversed, even after an arbitrary number of dynamic expansions and contractions.  One finds one specific scenario that embodies this challenge in [Rosenberg, 2003].
 \end{enumerate}
-Our motivation here is twofold.  On the one hand, the mathematics needed to verify the bijectiveness of the functions we discuss provides valuable practice with some of the tools we have been developing to this point.  On the other hand, the manifold varied applications of pairing functions adds value to our excursion into the world of these functions.  The detailed survey article \cite{Rosenberg03} provides much more detail than we are able to provide here.
+Our motivation here is twofold.  On the one hand, the mathematics needed to verify the bijectiveness of the functions we discuss provides valuable practice with some of the tools we have been developing to this point.  On the other hand, the many and varied applications of pairing functions adds value to our excursion into the world of these functions.  The detailed survey article \cite{Rosenberg03} provides much more detail than we are able to provide here.
 
 \bigskip
 
 As we embark on our short guided tour, the reader should note that the diagonal pairing function of Section~\ref{sec:diag-pair-fn} and the square-shell pairing function of
-Section~\ref{sec:square-pair-fn} build in essential ways on the $L$-norms of Section~\ref{sec:Ln-norms}; cf., Fig.~\ref{fig:Ln-discs}.
+Section~\ref{sec:square-pair-fn} build in essential ways on the $L$-norms of Section~\ref{sec:Ln-norms}; cf.~Fig.~\ref{fig:Ln-discs}.
 
 
 \section{A Shell-Based Methodology for Crafting Pairing Functions}
@@ -64,7 +64,7 @@ The shell-oriented strategy that underlies the diagonal pairing function $\d$ ca
 %
 Partition the set $\N^+ \times \N^+$ into finite sets called {\it shells}.  Order the shells linearly in some way: many natural shell-partitions carry a natural order.
 \end{description}
-Shell $c$ of the diagonal pairing function $\d$ is the following subset of $\N^+ \times \N^+$: $\{ \langle x,y \rangle \ | \ x+y = c \}$.  The parameter $c$ orders $\d$'s shells.
+For example, shell $c$ of the diagonal pairing function $\d$ is the following subset of $\N^+ \times \N^+$: $\{ \langle x,y \rangle \ | \ x+y = c \}$.  The parameter $c$ orders $\d$'s shells.
 
 \begin{description}
 \item[Step 2.]
@@ -90,12 +90,12 @@ Any function $\a: \N^+ \times \N^+ \leftrightarrow \N^+$ that is designed via Pr
 \end{prop}
 
 \begin{proof}[Sketch]
-Step 1 of Procedure {\small\sf PF-Constructor} constructs a partial order on $\N^+ \times \N^+$, in which: ($a$) each shell is finite; ($b$) there is a linear order on the shells.  Step 2 extends this partial order to a linear order, by honoring the inherent ordering of shells and imposing a linear order within each shell.  The function constructed via the Procedure is: {\em injective} because the disjoint shells are enumerated sequentially; {\em surjective} because the enumeration within each shell begins immediately after the enumeration within the preceding shell, with no gap.  \qed
+Step 1 of Procedure {\small\sf PF-Constructor} constructs a partial order on $\N^+ \times \N^+$ in which: ($a$) each shell is finite; ($b$) there is a linear order on the shells.  Step 2 extends this partial order to a linear order by honoring the inherent ordering of shells and imposing a linear order within each shell.  The function constructed via the Procedure is: {\em injective} because the disjoint shells are enumerated sequentially; {\em surjective} because the enumeration within each shell begins immediately after the enumeration within the preceding shell, with no gap.  \qed
 \end{proof}
 
 \bigskip
 
-Having noted how to use Procedure {\small\sf PF-Constructor} to construct pairing function $\d$,  we now use the Procedure to design two other pairing functions which produce efficient storage mappings for extendible arrays and tables..
+Having noted how to use Procedure {\small\sf PF-Constructor} to construct pairing function $\d$,  we now use the Procedure to design two other pairing functions which produce efficient storage mappings for extendible arrays and tables.
 
 \section{The Square-Shell Pairing Function $\s$}
 \label{sec:square-pair-fn}
@@ -105,9 +105,7 @@ One computational situation where pairing functions can be useful is as storage-
 
 \medskip
 
-In conventional programming systems, when one expands an $n \times n$ table into an $(n+1) \times (n+1)$ table, one allocates a new region of $(n+1)^2$ storage locations and copies the current table from its $n^2$-location region to the new region.  Of course, this is very wasteful: one is moving $\Omega(n^2)$ items to make room for the anticipated $2n+1$ new items.  On any given day, the practical impact of this waste depends on current technology.  But, this is a
-mathematics text, not an engineering one, so we are exploring whether {\em in principle} we can avoid the waste.  The answer is ``YES''.  If we employ a pairing function $\varepsilon: \N^+ \times \N^+ \leftrightarrow \N^+$ to allocate storage for tables, then to expand a table from dimensions $n \times n$ to $(n+1) \times (n+1)$, we need move only $O(n)$ items to accommodate the {\em new} table entries; the current entries need not be moved.  For square tables, the following
-{\it Square-shell} pairing function $\s$ manages the described scenario perfectly.  After describing $\s$, we comment on managing tables of other shapes.
+In conventional programming systems, when one expands an $n \times n$ table into an $(n+1) \times (n+1)$ table, one allocates a new region of $(n+1)^2$ storage locations and copies the current table from its $n^2$-location region to the new region.  Of course, this is very wasteful: one is moving $\Omega(n^2)$ items to make room for the anticipated $2n+1$ new items.  On any given day, the practical impact of this waste depends on current technology.  However, this is a mathematics text, not an engineering one, so we are exploring whether {\em in principle} we can avoid the waste.  The answer is ``YES''.  If we employ a pairing function $\varepsilon: \N^+ \times \N^+ \leftrightarrow \N^+$ to allocate storage for tables, then to expand a table from dimensions $n \times n$ to $(n+1) \times (n+1)$, we need move only $O(n)$ items to accommodate the {\em new} table entries; the rest of the current entries need not be moved.  For square tables, the following {\it square-shell} pairing function $\s$ manages the described scenario perfectly.  After describing $\s$, we comment on managing tables of other shapes.
 \begin{figure}[htb]
 \begin{center}
 %\begin{tabular}{r|r|r|r|r|r|r|r|r}
@@ -125,7 +123,7 @@ mathematics text, not an engineering one, so we are exploring whether {\em in pr
 %\end{tabular}
    \includegraphics[scale=0.4]{FiguresArithmetic/PairingSquareShell}
 \end{center}
-\caption{{\it The square-shell pairing function $\s$.  The shell $\max(x,y) = 5$ is highlighted.}
+\caption{{\it The square-shell pairing function $\s$.  The shell $\max(x,y) = 5$ is highlighted}
 \label{fig:pairingSquareShell}}
 \end{figure}
 \begin{equation}
@@ -136,7 +134,7 @@ mathematics text, not an engineering one, so we are exploring whether {\em in pr
 \end{array}
 \end{equation}
 One sees in Fig.~\ref{fig:pairingSquareShell} that $\s$ follows the prescription of Procedure PF-Constructor: (1) it maps integers into the ``square shells'' defined by: $m = 0, \ m = 1, ...$.  (2) it
-enumerates the entries in each shell in a counterclockwise direction.  (Of course, $\s$ has a twin that enumerates the shells in a clockwise direction.)
+enumerates the entries in each shell in a clockwise direction.  (Of course, $\s$ has a twin that enumerates the shells in a counterclockwise direction.)
 
 \bigskip
 
@@ -162,7 +160,7 @@ The diagonal- and square-shell pairing functions indicate that when the growth p
 Note that an ordered pair of integers $\langle x,y \rangle$ appears as a position-index within an $n$-position table if, and only if, $xy \leq n$.  Therefore, we define the spread of a PF-based storage map $\m$ via the function
 \begin{equation}
 \label{e.compact}
-{\bf S}_{\cal M}(n) \ \eqdef \ \max\{ \m(x, y) \ | \ xy \leq n \}.
+{\bf S}_{\cal M}(n) \ \eqdef \ \max\{ \m(x, y) \ | \ xy \leq n \}
 \end{equation}
 ${\bf S}_{\cal M}(n)$ is the largest ``address'' that PF $\m$ assigns to any position of a table that has $n$ or fewer positions.
 
@@ -175,7 +173,7 @@ Happily, the tools that we have developed enable us to design a pairing function
 \begin{array}{lcll}
 \multicolumn{4}{l}{\mbox{Let $\delta(k)$ be the number of divisors of the integer $k$.}} \\
 \h(x,y) & = & {\displaystyle \sum_{k=1}^{xy-1} \delta(k) \ \ +} &
-  \mbox{the position of } \ \langle x, y \rangle \ \mbox{ among 2-part} \\
+  \mbox{the position of } \ \langle x, y \rangle \ \mbox{ among two-part} \\
         &   &  & \mbox{factorizations of the number $xy$, in} \\
         &   &  & \mbox{reverse lexicographic order}
 \end{array}
@@ -196,7 +194,7 @@ Happily, the tools that we have developed enable us to design a pairing function
 %\end{tabular}
       \includegraphics[scale=0.4]{FiguresArithmetic/PairingHyper}
 \end{center}
-\caption{{\it The hyperbolic pairing function $\h$.  The shell $xy = 6$ is highlighted.}
+\caption{{\it The hyperbolic pairing function $\h$.  The shell $xy = 6$ is highlighted}
 \label{fig:pairingHyper}}
 \end{figure}
 
@@ -225,18 +223,18 @@ No pairing function has better compactness than $\h$ (in the worst case) by more
 
 \noindent {\bf (b)}
 The pairing function $\h$ maps integers along the ``hyperbolic shells'' defined by $xy = 1, \ xy =2, \ xy=3, \ldots$.  Hence, when an integer $n$ is ``placed'' into the table of values of $\h$, the number of occupied slots is within $n$ of
-\[ \sum_{i=1}^{n-1} \ |\{ \langle x,y \rangle \ | \ xy < i \}|  \]
+\[ \sum_{i=1}^{n-1} \ |\{ \langle x,y \rangle \ | \ xy = i \}|  \]
 Elementary calculations show that this sum is $O(n \log n)$.
 
 \smallskip
 
 \noindent {\bf (c)}
-The optimality of $\h$ in compactness (to within constant factors) is seen via the following argument.  The set of tables that have $n$ or fewer positions are those of aspect ratios $a_i \times b_i$, where $a_i b_i \leq n$.  As one sees from Fig.~\ref{f.hyp} (generalized to arbitrary $n$), the union of the positions of all these arrays is the set of integer lattice points under the hyperbola $xy = n$.  It is well-known---cf.~\cite{NivenZ80}---that this set of points has cardinality $\Theta(n \log n)$.  Since every table contains position $\langle 1,1 \rangle$, it follows that, for every $n$, some table containing $n$ or fewer positions is spread over $\Omega(n \log n)$ ``addresses.''  \qed
+The optimality of $\h$ in compactness (to within constant factors) is seen via the following argument.  The set of tables that have $n$ or fewer positions are those of aspect ratios $a_i \times b_i$, where $a_i b_i \leq n$.  As one sees from Fig.~\ref{f.hyp} (generalized to arbitrary $n$), the union of the positions of all these arrays is the set of integer lattice points under the hyperbola $xy = n$.  It is well known---cf.~\cite{NivenZ80}---that this set of points has cardinality $\Theta(n \log n)$.  Since every table contains position $\langle 1,1 \rangle$, it follows that, for every $n$, some table containing $n$ or fewer positions is spread over $\Omega(n \log n)$ ``addresses''.  \qed
 \end{proof}
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresArithmetic/PairingHyp}
-\caption{The aggregate set of positions of tables having $16$ or fewer position.  To help the reader understand the figure, we include the curve $f(x,y) = xy$ which provides an upper envelope for the set.  A careful look at this curve will reveal that it touches the set of positions at the points $\langle x,y \rangle \in \{ \langle 1,16 \rangle, \ \langle 2,8 \rangle, \ \langle 4,4 \rangle, \ \langle 8,2 \rangle, \ \langle 16,1 \rangle \}$, but it does {\em not} touch the set at the points $\langle x,y \rangle \in \{ \langle 3,5 \rangle, \ \langle 5,3 \rangle \}$. 
+\caption{The aggregate set of positions of tables having $16$ or fewer position.  To help the reader understand the figure, we include the curve $f(x,y) = xy$, which provides an upper envelope for the set.  A careful look at this curve reveals that it touches the set of positions at the points $\langle x,y \rangle \in \{ \langle 1,16 \rangle, \ \langle 2,8 \rangle, \ \langle 4,4 \rangle, \ \langle 8,2 \rangle, \ \langle 16,1 \rangle \}$, but it does {\em not} touch the set at the points $\langle x,y \rangle \in \{ \langle 3,5 \rangle, \ \langle 5,3 \rangle \}$ 
 \label{f.hyp}}
 \end{center}
 \end{figure}

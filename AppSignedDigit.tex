@@ -1,4 +1,4 @@
-%version of 07-22-20
+%version of 08-12-20
 \chapter{$\oplus \oplus$ Signed-Digit Numerals: Carry-Free Addition}
 \label{ch:carry-free}
 
@@ -28,7 +28,7 @@ D.E.~Knuth (1969):
 \noindent
 Say that you have a box that contains a {\it counter}.  There are two buttons on top of the box: one {\em red} and one {\em green}.  Each time the green button is pushed, the counter increments---i.e., adds $+1$ to---its tally; each time the red button is pushed, the counter
 decrements---i.e., adds $-1$ to---its tally.  Now, in order for the tally on the counter to {\em always be correct}, you must insert delays between button-pushes: you must always wait until the
-electronic circuitry inside the box settles into a stable configuration with all necessary carries and borrows up to date.  Now, if the electronic circuitry that implements the counter was designed to mimic the binary representation of the number---in technical jargon,  the counter implements a {\it carry-ripple adder}; see [Hwang, 1979] for details---then, you observe the following.  While you keep pushing only the green (increment) button, you do not feel that the delays between
+electronic circuitry inside the box settles into a stable configuration with all necessary carries and borrows up to date.  Now, if the electronic circuitry that implements the counter was designed to mimic the binary representation of the number---in technical jargon,  the counter implements a {\it carry-ripple adder}; see [Hwang, 1979] for details---then you observe the following.  While you keep pushing only the green (increment) button, you do not feel that the delays between
 button-pushes are onerous, for the reason exposed in the following analysis.
 \begin{itemize}
 \item
@@ -40,14 +40,13 @@ Roughly one-eighth of the time, you have a slightly longer delay: the update eng
 \item
 \ldots Continuing this progression: For each integer $k$ roughly the fraction $2^{-k}$ of the button-pushes engender a delay commensurate with a carry of $k-1$ places.
 \end{itemize}
-Stated differently, the {\em average} delay you must suffer is bounded by the time required for a $2$-place carry.  In fact, you can even improve on the described pattern of delays, by using more
+Stated differently, the {\em average} delay you must suffer is bounded by the time required for a two-place carry.  In fact, you can even improve on the described pattern of delays, by using more
 sophisticated circuitry for your counter's adder.  If you replace the carry-ripple adder by a {\it carry-lookahead adder}---see [Hwang, 1979] for details---you can thereby reduce the aggregate
 number of carries engendered by the first $n$ button-pushes from the $\Theta(n^2)$ carries of the carry-ripple adder to $O(n \log n)$ carries for a carry-lookahead adder.
 
 \smallskip
 
-But, the picture changes markedly as soon as you (or an opponent) starts using the red button as well as the green one.  If you wait until the counter has tallied some number of green-button pushes of the form $2^k$, hence contains the binary numeral $100 \cdots 00$ with $k$ $0$s, then a push of the red button engenders a delay of $k$ carry-units---and a subsequent push of the green button incurs the same delay!  In fact, if you (and your opponent) begin to toggle the
-two buttons---one red push, then one green push, then one red push, then one green push, \ldots---then you incur a delay of $k$ carry-units with each successive button-push.  If you do this for long enough, then your {\em average} delay starts growing toward $k$ carry-units.
+However, the picture changes markedly as soon as you (or an opponent) start to use the red button as well as the green one.  If you wait until the counter has tallied some number of green-button pushes of the form $2^k$, hence contains the binary numeral $100 \cdots 00$ with $k$ $0$s, then a push of the red button engenders a delay of $k$ carry-units---and a subsequent push of the green button incurs the same delay!  In fact, if you (and your opponent) begin to toggle the two buttons---one red push, then one green push, then one red push, then one green push, \ldots---then you incur a delay of $k$ carry-units with each successive button-push.  If you do this for long enough, then your {\em average} delay starts growing toward $k$ carry-units.
 
 \medskip
 
@@ -67,7 +66,7 @@ The signed-digit number systems which we describe now\footnote{There are many su
 (-1), 0 , 1, \ldots, \overline{b-2}, \overline{b-1}\}
 \]
 For reasons that are purely technical, the simple carry-free adder that we describe requires that the number base $b$ be no smaller than $3$.  For the smallest relevant base, $b=3$, one can use the digit-set $\widehat{B}_3 \ = \ \{ (-2), (-1), 0, 1, 2\}$ (parentheses added to enhance legibility).  The ``redundancy'' in this system is witnessed by facts such as the following:  The number $1$ is the numerical value of {\em every} numeral of the form
-\[ 1 \ (-2) \ (-2) \ \cdots \ (-2) \ (-2), \]
+\[ 1 \ (-2) \ (-2) \ \cdots \ (-2) \ (-2) \]
 because the $d$-digit instance of these numerals has numerical value
 
 \smallskip
@@ -82,7 +81,7 @@ $\displaystyle \mbox{\sc val}_3 \big( 1 \ (-2) \ (-2) \ \cdots \ (-2) \ (-2) \bi
 
 \bigskip
 
-We now provide a schematic description\footnote{Detailed descriptions of both genres of adders---including both operational and implementational matters---can be found in sources such as [Hwang79].}~of ($a$) a carry-ripple adder and ($b$) a carry-free adder adding the $b$-ary integer-specifying numerals
+We now provide a schematic description\footnote{Detailed descriptions of both genres of adders---including both operational and implementational matters---can be found in sources such as [Hwang, 1979].}~of ($a$) a carry-ripple adder and ($b$) a carry-free adder adding the $b$-ary integer-specifying numerals
 \[ x_n x_{n-1} \cdots x_1 x_0 \ \ \ \mbox{ and } \ \ \ 
 y_n y_{n-1} \cdots y_1 y_0
 \]
@@ -104,7 +103,7 @@ c_{i+1} \ = \ \big( (x_i + y_i + c_i) \ominus \bar{b} \big)
 \hline
 \end{array}
 \]
-\caption{Digit $i$ of a $b$-ary carry-ripple adder.  The input digits $x_i$ and $y_i$ are summed with the in-carry $c_i$.  If the sum can be represented by a single $b$-ary digit, then it is the output from this digit-adder, and the out-carry $c_{i+1}$ is set to $0$.  If the sum is too large, then the maximum $b$-ary digit $\bar{b}$ is the output from this digit-adder, and the out-carry $c_{i+1}$ is set to the portion of the sum that exceeds $\bar{b}$.}
+\caption{Digit $i$ of a $b$-ary carry-ripple adder.  The input digits $x_i$ and $y_i$ are summed with the in-carry $c_i$.  If the sum can be represented by a single $b$-ary digit, then it is the output from this digit-adder, and the out-carry $c_{i+1}$ is set to $0$.  If the sum is too large, then the maximum $b$-ary digit $\bar{b}$ is the output from this digit-adder, and the out-carry $c_{i+1}$ is set to the portion of the sum that exceeds $\bar{b}$}
 \label{fig:carry-ripple-digit}
 \end{figure}
 
@@ -170,7 +169,7 @@ $b \cdot t_{i+1} + \tau_i \ = \ x_i + y_i$
 \hline
 \end{array}
 \]
-\caption{Digit-adder $i$ of a $(b > 2)$-ary carry-free adder.  The outgoing {\it transfer digit} $t_{i+1}$ and the {\it tentative sum} $\tau_i$ are computed from the input digits $x_i$ and $y_i$, using the relation specified in the upper box.  These results are transmitted, respectively, to stage $1$ of digit-adder $i+1$ and stage $2$ of the current digit-adder $i$.}
+\caption{Digit-adder $i$ of a $(b > 2)$-ary carry-free adder.  The outgoing {\it transfer digit} $t_{i+1}$ and the {\it tentative sum} $\tau_i$ are computed from the input digits $x_i$ and $y_i$, using the relation specified in the upper box.  These results are transmitted, respectively, to stage $1$ of digit-adder $i+1$ and stage $2$ of the current digit-adder $i$}
 \label{fig:carry-free-digit}
 \end{figure}
 
@@ -183,7 +182,7 @@ $b \cdot t_{i+1} + \tau_i \ = \ x_i + y_i$
 See Fig.~\ref{fig:carry-free-digit}.
 \begin{itemize}
 \item
-This simple carry-free adder operates in {\em two-stages}.  It operates on base-$b$ numerals but requires $b > 2$ (for technical reasons).
+This simple carry-free adder operates in {\em two stages}.  It operates on base-$b$ numerals but requires $b > 2$ (for technical reasons).
 \item
 There is no ``carry digit''.  In its place, there is a {\it transfer digit} $t_i \in \{-1, 0, 1\}$ which is generated in stage 1 of the adder and consumed in stage 2.
 \item
@@ -202,7 +201,7 @@ transmits $t_{i+1}$ to digit-adder $i+1$
 transmits $\tau_i$ to stage $2$.
 \end{enumerate}
 \item
-Stage 2 of the adder computes the $i$th output digit $z_i$ via by adding $\tau_i$ to $t_i$ (which came from digit-adder $i-1$).
+Stage 2 of the adder computes the $i$th output digit $z_i$ by adding $\tau_i$ to $t_i$ (which came from digit-adder $i-1$).
 \end{enumerate}
 The important fact to note is that this adder does not have a chain of propagated carries!  Digit-adder $i$ computes transfer digit $t_{i+1}$---which is the only information that it transmits to
 digit-adder $i+1$---based only on the $i$th input digits $x_i$ and $y_i$.  Consequently: {\em All of the adder's digit-adders can operate in parallel!}
