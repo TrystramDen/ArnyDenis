@@ -1,4 +1,4 @@
-%version of 07-21-20
+%version of 08-14-20
 
 \chapter{Recurrences:
 Rendering Complex Structure Manageable}
@@ -20,8 +20,8 @@ One of the intellectually most powerful strategies for all manner of human endea
 \smallskip
 
 \index{arithmetic!basic operations!factorial (of a nonnegative integer)}
-The classical first example of such a {\it recurrent} mode of computing involves the {\it factorial function}, which is referred to as ``{\sc Fact}" Section~\ref{sec:unary-ops}.C.  The ``direct'' mode of computing {\sc Fact} at an argument $n \in \N^+$ is:
-\[ \mbox{\sc Fact}(n) \ = \ 1 \times 2 \times 3 \times \cdots \times n. \]
+The classical first example of such a {\it recurrent} mode of computing involves the {\it factorial function}, which is referred to as ``{\sc Fact}" Section~\ref{sec:factorial-function}.  The ``direct'' mode of computing {\sc Fact} at an argument $n \in \N^+$ is:
+\[ \mbox{\sc Fact}(n) \ = \ 1 \times 2 \times 3 \times \cdots \times n \]
 The {\em recurrent} mode of computing {\sc Fact}($n$) is more compact---and it better exposes the inherent structure of the function.
 \[ \mbox{\sc Fact}(n) \ = \ \left\{
 \begin{array}{cl}
@@ -68,7 +68,7 @@ a f(n/b) + c & \hspace*{.4in} \mbox{for } n \geq b \\
 
 \smallskip
 
-Myriad basic algorithmic problems, including sorting, selection, matching, \ldots, can be solved using linear-recurrent algorithms \cite{CLRS}---and such algorithms yield to specification and analysis via linear recurrences.
+Many basic algorithmic problems, including sorting, selection, matching, \ldots can be solved using linear-recurrent algorithms \cite{CLRS}---and such algorithms yield to specification and analysis via linear recurrences.
 
 \smallskip
 
@@ -201,17 +201,12 @@ a^{\log_b n} f(1) + \left( \sum_{i=0}^{\log_b (n)-1} (a/b)^i \right) n
 
 \smallskip
 
-We thus see that solving the more general recurrence
-(\ref{eq:Lin-Recur:general}) requires only augmenting the solution to
-the simple recurrence (\ref{eq:Lin-Recur:basic}) by ``appending'' to
-the simple solution a geometric summation whose base is the ratio
-$a/b$.  The reader can now invoke the techniques from
-Section~\ref{sec:summing-geometric-series:techniques} to arrive at the
-announced solution to recurrence (\ref{eq:Lin-Recur:general}).
+We thus see that solving the more general recurrence (\ref{eq:Lin-Recur:general}) requires only augmenting the solution to the simple recurrence (\ref{eq:Lin-Recur:basic}) by ``appending'' to
+the simple solution a geometric summation whose base is the ratio $a/b$.  The reader can now invoke the techniques from Section~\ref{sec:summing-geometric-series:techniques} to arrive at the announced solution to recurrence (\ref{eq:Lin-Recur:general}).
 
 \medskip
 
-When one ``does'' mathematics, one is often interested in uncovering the {\em dominant behavior} of the function $f(n)$ specified via a recurrence such as (\ref{eq:Lin-Recur:general}).  Therefore, the two assertions in the statement of the proposition, about the ``dominant behavior" of function $f$ for given relative sizes of $a$ and $b$ is an integral part of the lessons that we learn from this proof.
+When one ``does'' mathematics, one is often interested in uncovering the {\em dominant behavior} of the function $f(n)$ specified via a recurrence such as (\ref{eq:Lin-Recur:general}).  Therefore, the two assertions in the statement of the proposition about the ``dominant behavior" of function $f$ for given relative sizes of $a$ and $b$ is an integral part of the lessons that we learn from this proof.
 
 \medskip
 
@@ -219,7 +214,7 @@ One can learn yet other lessons about $f(n)$, specifically about how to compute 
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/MasterTheoremgeneral}
-\caption{Illustrating the calculation specified by recurrence (\ref{eq:Lin-Recur:general}).  The total cost is obtained by the summation on each row: $a \times f(n/b)$ in the first row, $a^2 \times f(n/b^2)$ in the second row, and so on.  This leads to the final value $a^{log_b(n)}$.
+\caption{Illustrating the calculation specified by recurrence (\ref{eq:Lin-Recur:general}).  The total cost is obtained by the summation on each row: $a \times f(n/b)$ in the first row, $a^2 \times f(n/b^2)$ in the second row, and so on.  This leads to the final value $a^{log_b(n)}$
 \label{fig:masterTheorem}}
 \end{center}
 \end{figure}
@@ -232,8 +227,8 @@ In particular, one observes in the figure that when $a=b$, the computations in e
 
 \index{Shannon, Claude E.} \index{Information Theory}
 \index{data science}  \index{data encryption} \index{data security}
-By the middle of the 20th century, the existence of electrical and electronic devices that enhanced our ability to compute and to intercommunicate, made it imperative that ``the experts'' understand the mathematical laws that govern these activities.  In 1948, the American
-mathematician and engineer Claude E.~Shannon revolutionized our understanding of these laws by inventing the field of {\it information theory}  \cite{Shannon48}.  Shannon's intellectual innovations enabled us to quantify the quality of our handling of data: speed of transmission, efficiency of encoding, vulnerability to errors.  The evolution of data science and the ever-increasing importance of information-related topics such as {\it encryption} and {\it data security} and make it important that everyone who has contact with the world of computing and communication---which means pretty much everyone---understand at least the rudiments of information theory.  This section is devoted to taking one small step in that direction, a step that hints at the fundamental role that logarithms play in the theory. 
+By the middle of the twentieth century, the existence of electrical and electronic devices that enhanced our ability to compute and to intercommunicate, made it imperative that ``the experts'' understand the mathematical laws that govern these activities.  In 1948, the American
+mathematician and engineer Claude E.~Shannon revolutionized our understanding of these laws by inventing the field of {\it information theory}  \cite{Shannon48}.  Shannon's intellectual innovations enabled us to quantify the quality of our handling of data: speed of transmission, efficiency of encoding, vulnerability to errors.  The evolution of data science and the ever-increasing importance of information-related topics such as {\it encryption} and {\it data security} make it important that everyone who has contact with the world of computing and communication---which means pretty much everyone---understand at least the rudiments of information theory.  This section is devoted to taking one small step in that direction, a step that hints at the fundamental role that logarithms play in the theory. 
 
 \medskip
 
@@ -254,7 +249,7 @@ $|A^{(0)}| =1$
 
 \index{null string $\varepsilon$}
 \index{$\varepsilon$: the null string, of length $0$}
-This is because the null-string, which is commonly denoted $\varepsilon$,  is the unique string in $A^{(0)}$; symbolically: $A^{(0)} = \{ \varepsilon \}$.
+This is because the null string, which is commonly denoted $\varepsilon$,  is the unique string in $A^{(0)}$; symbolically: $A^{(0)} = \{ \varepsilon \}$.
 
 \medskip\item
 $|A^{(k+1)}| = |A| \times |A^{(k)}|$.
@@ -262,9 +257,7 @@ $|A^{(k+1)}| = |A| \times |A^{(k)}|$.
 \smallskip
 
 This reckoning follows from the following recipe for building the set $A^{(k+1)}$ from the set $A^{(k)}$.
-\[
-A^{(k+1)} \ = \ \{ \sigma x \ | \ \sigma \in A \ \ \mbox{ and } \ \ x \in A^{(k)} \}
-\]
+\[ A^{(k+1)} \ = \ \{ \sigma x \ | \ \sigma \in A \ \ \mbox{ and } \ \ x \in A^{(k)} \} \]
 In other words, every length-$(k+1)$ string over $A$ is obtained by taking a length-$k$ string $x$ over $A$ and {\em prepending} to it a symbol from $A$.
 \index{prepend a symbol to a string}
 
