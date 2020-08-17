@@ -283,7 +283,8 @@ $A^{(k+1)}$, as constructed, contains all strings of length $k+1$ over $A$
 
 \smallskip
 
----because for each $\sigma \in A$ and each $x \in A^{(k)}$, the string $\sigma x$ belongs to the just-constructed set $A^{(k+1)}$.
+---because every length-$(k+1)$ over $A$ has the form $\sigma x$ for some unique $\sigma \in A$ \\
+\hspace*{.14in}and some unique $x \in A^{(k)}$; and the set $A^{(k+1)}$ contains every such string.
   \end{itemize}
 \end{itemize}
 We thus have the following recurrence.
@@ -292,12 +293,19 @@ We thus have the following recurrence.
 |A^{(k+1)}| & = & |A| \times |A^{(k)}| \ \ \ \  \mbox{ for } \ k \geq 0
 \end{eqnarray*}
 Theorem~\ref{thm:master-thm-simple} tells us that, for each $\ell \in \N$,
-\[ |A^{(\ell)}| \ \ = \ \ \frac{|A|^{\ell+1} \ - \ |A|}{|A| -1} \ \ \leq \ \ c' \cdot |A|^{\ell}
-\]
-for some constant $c'$.  In order for this quantity to reach the value $n$, we must have
+\[ |A^{(\ell)}| \ \ = \ \ \frac{|A|^{\ell+1} \ - \ |A|}{|A| -1} \ \ \leq \ \ c' \cdot |A|^{\ell} \]
+for some constant $c' > 0$.  In order for this quantity to reach the value $n$, we must have
+\[  n \ \ = \ \ |A^{(\ell)}| \ \ \leq \ \ c' \cdot |A|^{\ell} \]
+We can rewrite this inequality in the form
+\[ |A|^{\ell} \ \ \geq \ \ {1 \over c'} n \]
+Because $1/c' > 0$, we can now take logarithms of both sides of the preceding inequality.  Using the logarithm to the base $|A|$ yields the most perspicacious result:
+\[ \ell \cdot \log_{|A|} |A| \ \ = \ \ \ell \ \ \geq \ \ \log_{|A|} n \ - \ \log_{|A|} c' \]
+Because $n$ grows without bound, while $c'$ is a fixed constant, we can find a value $n_0$ for $n$ such that, for all $n > n_0$, there exists a constant $d' > 1$ such that 
 \[ \ell \ > \ d' \cdot \log_{|A|} n   \]
-for some small constant $d'$.  \qed
+In other words, the string-length $\ell$ must grow logarithmically with the number of strings.  \qed
 \end{proof}
+
+{\Arny Is this enough detail?  Too much detail?  Is the word "perspicacious" too "adult"?}
 
 The following result can be considered another way of looking at Proposition~\ref{thm:bound-stringnames-lgth-k}.
 
@@ -344,12 +352,10 @@ The induction is thus extended, which completes the proof.  \qed
 \label{sec:binomial-coeff+Pascal}
 
 \index{binomial coefficient} \index{bilinear recurrence}
-In Section~\ref{sec:binomial-coeff}, we introduced and briefly discussed the binomial coefficients, or, triangular numbers, 
+In Section~\ref{sec:binomial-coeff}, we introduced and briefly discussed the {\em binomial coefficients} or {\em triangular numbers}, 
 \[ \Delta_{n,k} \ \eqdef \ {n \choose k} \]
-within the context of binary operations on integers; see Eq.~(\ref{eq:binom-coeff}).  And, we established in Proposition~\ref{thm:manipulate-binom-coeff} the summation rule
-\[
-{n \choose k} \ + \ {n \choose {k+1}} \ = \ {{n+1} \choose {k+1}}
-\]
+within the context of binary operations on integers; see Eq.~(\ref{eq:binom-coeff}).  Also, we established in Proposition~\ref{thm:manipulate-binom-coeff} the summation rule
+\[ {n \choose k} \ + \ {n \choose {k+1}} \ = \ {{n+1} \choose {k+1}} \]
 for these integers.  We now {\em define} binomial coefficients via the {\em bilinear recurrence} that underlies the summation rule.  This change in viewpoint is the topic of the current subsection.
 
 \subsubsection{The formation rule for Pascal's Triangle}
@@ -395,11 +401,11 @@ We note by observation and direct calculation (see Fig.~\ref{fig:pascal-triangle
 
 \medskip
 
-Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff3} provide the skeleton of an alternative proof of the summation formula for binomial coefficients.  This proof, which we leave for the interested reader, is our first evidence of the intellectual importance of Pascal's Triangle.
+Figures~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff3} provide the skeleton of an alternative proof of the summation formula for binomial coefficients.  This proof, which we leave for the interested reader, is our first evidence of the intellectual importance of Pascal's Triangle.
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiaux1}
-\caption{A graph-like representation of Pascal's Triangle.  Note that each entry $\hat{\Delta}(n, k)$ equals the number of paths in the graph from entry $\hat{\Delta}(n, 0)$ to $\hat{\Delta}(n, k)$.}
+\caption{A graph-like representation of Pascal's Triangle.  Note that each entry $\hat{\Delta}(n, k)$ equals the number of paths in the graph from entry $\hat{\Delta}(n, 0)$ to $\hat{\Delta}(n, k)$}
 \label{fig:binomialCoeff1}
 \end{center}
 \end{figure}
@@ -407,7 +413,7 @@ Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff3} provide the skeleton of
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiaux2}
-\caption{Outlining an alternative proof of the summation formula for binomial coefficients:  The number of paths from entry $\hat{\Delta}(n, 0)$ of the Triangle to entry $\hat{\Delta}(n+1, k)$  equals the sum of the number of paths to entry $\hat{\Delta}(n, k)$ and the number of paths to entry $\hat{\Delta}(n, k-1)$.}
+\caption{Outlining an alternative proof of the summation formula for binomial coefficients:  The number of paths from entry $\hat{\Delta}(n, 0)$ of the Triangle to entry $\hat{\Delta}(n+1, k)$  equals the sum of the number of paths to entry $\hat{\Delta}(n, k)$ and the number of paths to entry $\hat{\Delta}(n, k-1)$}
 \label{fig:binomialCoeff2}
 \end{center}
 \end{figure}
@@ -415,14 +421,14 @@ Figs.~\ref{fig:binomialCoeff1}--\ref{fig:binomialCoeff3} provide the skeleton of
 \begin{figure}[htb]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresMaths/CoeffBinomiauxCounting}
-\caption{Three distinct paths lead from entry $\hat{\Delta}(3,0)$ to entry $\hat{\Delta}(3,2) = {\displaystyle {3 \choose 2}}$.}
+\caption{Three distinct paths lead from entry $\hat{\Delta}(0,0)$ to entry $\hat{\Delta}(3,2) = {\displaystyle {3 \choose 2}}$}
 \label{fig:binomialCoeff3}
 \end{center}
 \end{figure}
 
 \bigskip
 
-The relation between binomial coefficients and Pascal's Triangle leads us to following {\it a priori} non-obvious fact.
+The relation between binomial coefficients and Pascal's Triangle leads us to the following {\it a priori} non-obvious fact.
 
 \begin{prop}
 \label{thm:binomcoeff-integer}
@@ -454,9 +460,7 @@ For every positive integer $n$,
 \begin{proof}
 This result is an immediate consequence of the Binomial Theorem 
 (Theorem~\ref{thm:Binomial-theorem}).  That seminal result tells us that, for all $n \in \N$,
-\[
-(x+y)^n \ \ = \ \ \sum_{i=0}^n \ \ {n \choose i} x^{n-i} y^i
-\]
+\[ (x+y)^n \ \ = \ \ \sum_{i=0}^n \ \ {n \choose i} x^{n-i} y^i \]
 If we instantiate this polynomial equation with the values $x = y = 1$, then we obtain the present result.  \qed
 \end{proof}
 
@@ -470,7 +474,7 @@ We shall observe numerous applications of this result as we explore a broad vari
 
 \index{Fibonacci, Leonardo}
 \index{Fibonacci, Leonardo!alternative names}
-This section is devoted to one of the most storied topics in the world of mathematics---in terms of the topic's manifestation in the real world and in terms of the multiple names used to refer to its discoverer,\footnote{Not surprisingly, this marvelous sequence was discovered many times, in many places.  Our story refers only to its discovery in the West.}~the 13th-century Italian mathematician known variously as:
+This section is devoted to one of the most storied topics in the world of mathematics---in terms of the topic's manifestation in the real world and in terms of the multiple names used to refer to its discoverer,\footnote{Not surprisingly, this marvelous sequence was discovered many times, in many places.  Our story refers only to its discovery in the West.}~the thirteenth-century Italian mathematician known variously as:
 
 \smallskip
 
@@ -491,7 +495,7 @@ The sequence discovered by this multi-named genius is defined as follows.
 \medskip
 
 \index{Fibonacci number/sequence!definition}
-The {\it Fibonacci sequence}, or, {\it the Fibonacci numbers}, is an infinite sequence
+The {\it Fibonacci sequence} or {\it the Fibonacci numbers} is an infinite sequence
 \[ F(0), \ F(1), \ F(2), \ \ldots \]
 of {\em positive} integers.  As just denoted, we see that the numbers in the sequence are traditionally indexed by the {\em nonnegative} integers and are often written using functional notation ($F(i)$) rather than as subscripts ($F_i$).  The classical definition of the sequence is via the following bilinear recurrence.
 \begin{eqnarray}
@@ -514,11 +518,11 @@ Leonardo Fibonnaci describes\footnote{In his {\it Liber Abaci}, 1202} discoverin
 
 \smallskip
 
-Rabbits mature quickly and, after attaining maturity at age one month, they can spawn a new pair of progeny every subsequent month.  So, let us begin ``at time $0$'', with one pair of rabbits.  This state persists at month $1$, because there has not yet been time for the initial pair to spawn new rabbits.  By month $2$, though, there are $2$ pairs of rabbits.  At month $3$, only the first pair will have spawned---because the second pair is too young---so there are $3$ pairs of rabbits.  At month $4$, these $3$ pairs are joined by $2$ more.  The reader who continues this story will discover that {\em the number of pairs of rabbits observed after successive months is specified by the process implicit in recurrence (\ref{eq:Fibonacci-defn})}.  Fig.~\ref{fig:fibo5} illustrates the process up to month $4$.
+Rabbits mature quickly and, after attaining maturity at age one month, they can spawn a new pair of progeny every subsequent month.  So, let us begin ``at time $0$'', with one pair of newborn rabbits.  We continue with just the initial pair of rabbits at month $1$, because there has not yet been time for the pair to spawn new rabbits.  By month $2$, though, there are two pairs of rabbits.  At month $3$, only the first pair will have spawned---because the second pair is too young---so there are three pairs of rabbits.  At month $4$, these three pairs are joined by two more.  The reader who continues this story will discover that {\em the number of pairs of rabbits observed after successive months is specified by the process implicit in recurrence (\ref{eq:Fibonacci-defn})}.  Figure~\ref{fig:fibo5} illustrates the process up to month $4$.  {\Arny Bunnies are your department, mon ami!}
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.275]{FiguresMaths//Fibo5}
-\caption{The successive generations of rabbits for the first four months.}
+\caption{The successive generations of rabbits for the first four months}
         \label{fig:fibo5}
 \end{center}
 \end{figure}
@@ -541,7 +545,7 @@ You can make your own observations regarding rectangles with pleasing aspect rat
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresMaths//Fiboembedded}
-\caption{Successive Fibonacci numbers interpreted geometrically, via a spiral of squares whose respective side-lengths form a Fibonacci sequence.}
+\caption{Successive Fibonacci numbers interpreted geometrically, via a spiral of squares whose respective side-lengths form a Fibonacci sequence}
         \label{fig:fibosquare}
 \end{center}
 \end{figure}
@@ -565,11 +569,11 @@ The mathematical properties of this truly remarkable sequence will be our focus 
 %\bigskip
 
 \noindent
-There is a strong, non-obvious, connection between the binomial coefficients (cf., Section~\ref{sec:binomial-coeff+Pascal}) and the Fibonacci numbers.  We observe this connection by contemplating the diagonals of Pascal's Triangle.  Fig.~\ref{fig:FiboPascal} and Proposition~\ref{thm:FibNo+BinomCoeff} establish this connection.
+There is a strong, non-obvious connection between the binomial coefficients (cf.~Section~\ref{sec:binomial-coeff+Pascal}) and the Fibonacci numbers.  We observe this connection by contemplating the diagonals of Pascal's Triangle.  Figure~\ref{fig:FiboPascal} and Proposition~\ref{thm:FibNo+BinomCoeff} establish this connection.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths//FiboPascal1}
-\caption{Obtaining Fibonacci numbers as the sums of diagonal elements of the left-justified Pascal Triangle.}
+\caption{Obtaining Fibonacci numbers as the sums of diagonal elements of the left-justified Pascal Triangle}
 \label{fig:FiboPascal}
 \end{center}
 \end{figure}
@@ -580,14 +584,14 @@ For all $n \in \N$, the Fibonacci number $F(n)$ is the sum of the first $\lceil 
 \begin{equation}
 \label{eq:FibNo+BinomCoeff}
 F(n) \ = \ {n \choose 0} \ + \ {{n-1} \choose 1} \ + \cdots + \ 
-{{\lfloor (n+1)/2 \rfloor} \choose {\lceil (n+1)/2 \rceil -1}}.
+{{\lfloor (n+1)/2 \rfloor} \choose {\lceil (n+1)/2 \rceil -1}}
 \end{equation}
 \end{prop}
 
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths//FiboPascal2}
-\caption{Each term of the diagonal is obtained by summing the two preceding ones.}
+\caption{Each term of the diagonal is obtained by summing the two preceding ones}
         \label{fig:FiboPascalExplanation}
 \end{center}
 \end{figure}
@@ -597,7 +601,7 @@ Because of the heavy calculational content of a complete proof, we provide here 
 
 \smallskip
 
-Fig.~\ref{fig:FiboPascalExplanation} depicts a portion of Pascal's Triangle with shaded diagonal and horizontal annotations.  The diagonal annotation depicts the three numbers in the Triangle that sum to the Fibonacci number $F(5)$.
+Figure~\ref{fig:FiboPascalExplanation} depicts a portion of Pascal's Triangle with shaded diagonal and horizontal annotations.  The diagonal annotation depicts the three numbers in the Triangle that sum to the Fibonacci number $F(5)$.
 \begin{enumerate}
 \item
 Looking at the three horizontal shaded areas {\em individually} illustrates the relationship asserted by the proposition.  Each of the three numbers on the shaded diagonal, namely, $1$, $4$, and  $3$, is a binomial coefficient; therefore, the number is the sum of the two numbers on the preceding row of the array: These sums are instantiations of the formation rule for Pascal's Triangle.  The illustrated instance of the rule asserts that:
@@ -626,7 +630,7 @@ Looking at the three horizontal shaded areas {\em individually} illustrates the 
 \medskip\item
 Looking at the three horizontal shaded areas {\em in tandem} illustrates that the numbers along the shaded diagonal are sums of the numbers along the two diagonals that sit above the shaded one:  These numbers are instantiations of the formation rule for Fibonacci numbers.  The
 illustrated instance of the rule asserts that
-\[ F(5) \ = \ F(4) + F(3) \ = \ 5 + 3 \ = \ 8. \]
+\[ F(5) \ = \ F(4) + F(3) \ = \ 5 + 3 \ = \ 8 \]
 \end{enumerate}
 
 The preceding reasoning provides the infrastructure for an induction which proves that the proposition holds for {\em every} Fibonacci number.  As suggested by the statement of the proposition, the required calculations on indices can obscure the rather elegant basis for the result.  \qed
@@ -639,7 +643,6 @@ Although the classical recurrence (\ref{eq:Fibonacci-defn}) is the structurally 
 
 \paragraph{A. Two multilinear generating recurrences}
 \index{Fibonacci number/sequence!additional multilinear generating recurrences}
-
 
 \begin{prop}
 \label{thm:FiboSum-1}
@@ -673,7 +676,7 @@ Assume, for induction, that Eq.~(\ref{eq:multilinear-Fib-1}) holds for all argum
 \noindent 
 {\sf Inductive extension}.
 We extend the induction as follows.  Our inductive hypothesis assures us that for all $n \geq 3$,
-\[ F(m-1) \ = \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(n-3). \]
+\[ F(n-1) \ = \ 1 \ + \ F(0) \ + \ F(1) \ + \ F(2) \ + \cdots + \ F(n-3). \]
 Combining this with the classical recurrence (\ref{eq:Fibonacci-defn}), we therefore have
 \begin{eqnarray*}
 F(n) & = & F(n-2) \ + \ F(n-1) \\
@@ -702,7 +705,7 @@ We thereby sum every other Fibonacci number as long as we can.
 \end{prop}
 
 \begin{proof}
-We verify summation (\ref{eq:multilinear-Fib-2}) by iteratively expanding the righthand term ---i.e., $F(n-2)$---of the classical recurrence (\ref{eq:Fibonacci-defn}).  This expansion begins
+We verify summation (\ref{eq:multilinear-Fib-2}) by iteratively expanding the right-hand term ---i.e., $F(n-2)$---of the classical recurrence (\ref{eq:Fibonacci-defn}).  This expansion begins
 \begin{eqnarray}
 \label{eq:multilinear-Fib-3}
 F(n)
@@ -731,7 +734,7 @@ What we have earlier called ``generating recurrences'' or ``formation rules'' fo
 For all $n \in \N$ and $0 < k < n$
 \begin{equation}
 \label{eq:Fib-higher-indices}
-F(n) \ = \ F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1).
+F(n) \ = \ F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1)
 \end{equation}
 \end{prop}
 
@@ -750,7 +753,7 @@ F(n-1) & = & F(n-2) & + & F(n-3)
 \end{array}
 \]
 and we combine them algebraically to produce the following.
-\[ F(n) \ = \ 2 F(n-2) \ + \ F(n-3). \]
+\[ F(n) \ = \ 2 F(n-2) \ + \ F(n-3) \]
 And then we iterate!  The following table illustrates the result of the first four iterations of the process.
 \[
 \begin{array}{ccrcrcrcrcrcr}
@@ -808,7 +811,7 @@ F(n) & = & F(k) \cdot F(n-k) \ + \ F(k-1) \cdot F(n-k-1) \\
              \ F(k-1) \cdot F(n-k-1) \\
      & = & \big[ F(k) \ + \ F(k-1) \big] \cdot F(n-k-1) \ + \ F(k)
              \cdot F(n-k-2) \\
-     & = & F(k+1) \cdot F(n-k-1) \ + \ F(k) \cdot F(n-k-2).
+     & = & F(k+1) \cdot F(n-k-1) \ + \ F(k) \cdot F(n-k-2)
 \end{eqnarray*}
 The induction is thus extended, which establishes the proposition.  \qed 
 \end{proof}
@@ -828,8 +831,8 @@ Our setting is {\em combinatorial} in nature, in the sense that the Fibonacci nu
 
 For each positive integer $n$, let $S_n$ be the set of all length-$n$ binary strings in which {\em every occurrence of bit $1$ is directly preceded by an occurrence of bit $0$}.  Table~\ref{tab:comb-FIB} provides the first few instances of $S_n$, with their cardinalities.
 \begin{table}[hbt]
-\label{tab:comb-FIB}
-\caption{The first few instances of $S_n$, with their cardinalities.}
+%\label{tab:comb-FIB}
+\caption{The first few instances of $S_n$, with their cardinalities}
 \[
 \begin{array}{|c|c|c|}
 \hline
@@ -842,12 +845,12 @@ n = & S_n =               & |S_n| = \\
 \hline
 \end{array}
 \]
+\label{tab:comb-FIB}
 \end{table}
-
 
 \begin{prop}
 \label{thm:FIBO-from-sparse-bitstrings}
-For each $n \in \N^+$, the number of length-$n$ binary strings in which each occurrence of a $1$ is directly preceded by a $0$, is the Fibonacci number $F(n)$.
+For each $n \in \N^+$, the number of length-$n$ binary strings in which each occurrence of a $1$ is directly preceded by a $0$ is the Fibonacci number $F(n)$.
 \end{prop}
 
 \begin{proof}
@@ -975,7 +978,7 @@ For all $n$,
 \label{sec:TokenGame}
 
 In order to truly appreciate the power of recurrences as an analysis tool, one must witness them ``in action''.  
-To this end, we now describe the ({\it single-player}) combinatorial {\it Token Game}.\footnote{This game is inspired by the \textit{Baguenaudier} introduced by \'{E}douard Lucas~\cite{Lucas}. It is also known as the chinese rings.}
+To this end, we now describe the ({\it single-player}) combinatorial {\it Token Game}.\footnote{This game is inspired by the \textit{Baguenaudier} introduced by \'{E}douard Lucas~\cite{Lucas}. It is also known as the Chinese rings.}
 By employing recurrences to analyze plays of the game, we are able to derive an optimal strategy for playing the game.
 
 \subsection{Rules of the Game}
@@ -997,7 +1000,7 @@ Each play of the game begins with the bank empty and the pile full, as depicted 
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresMaths/GameTokenInit.png}
-\caption{The initial configuration of the Token Game: Each of the $n$ tokens appears as a grey circle, and the empty bank has $n$ slots.  In the figure, $n=8$.}
+\caption{The initial configuration of the Token Game: Each of the $n$ tokens appears as a grey circle, and the empty bank has $n$ slots.  In the figure, $n=8$}
         \label{fig:jeujetonsInit}
 \end{center}
 \end{figure}
@@ -1025,7 +1028,7 @@ If slot \#$1$ is full (i.e., contains a token), then remove this token and retur
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/GameTokenRule1.png}
-\caption{(Top) Slot \#1 contains a token.  (Bottom) Therefore, remove it (i.e., move it back to the pile).}
+\caption{(Top) Slot \#1 contains a token.  (Bottom) Therefore, remove it (i.e., move it back to the pile)}
         \label{fig:rule1}
 \end{center}
 \end{figure}
@@ -1043,7 +1046,7 @@ If slot \#$s$ is full (i.e., contains a token), then remove this token and retur
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/GameTokenRule2.png}
-\caption{(Top) Bank-slot \#$s$, which is immediately to the right of the first empty slot ($s=3$ in this example) is empty.  (Bottom) Therefore, move a token from the pile into slot \#$3$.}
+\caption{(Top) Bank-slot \#$s$, which is immediately to the right of the first empty slot ($s=3$ in this example) is empty.  (Bottom) Therefore, move a token from the pile into slot \#$3$}
         \label{fig:rule2}
 \end{center}
 \end{figure}
@@ -1114,7 +1117,7 @@ Thus, in this recursive formulation, the Game can be played by recursively execu
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/GameTokenPrinciple.png}
-\caption{A schematic of the recursive play of the current-sized version of the Game.  The top four bank configurations indicate the iterating four super-steps in the recursions.  The bottom bank configuration is the final one: The bank is entirely filled. }
+\caption{A schematic of the recursive play of the current-sized version of the Game.  The top four bank configurations indicate the four iterating super-steps in the recursions.  The bottom bank configuration is the final one: The bank is entirely filled }
         \label{fig:jeujetonsPrinciple}
 \end{center}
 \end{figure}
@@ -1152,7 +1155,6 @@ The Game is complete!
 
 \ignore{**************
 \medskip
-
 We can specify the preceding recursive algorithm in the following more
 formal format:
 
@@ -1193,7 +1195,7 @@ Not surprisingly, our analysis of the optimal recursive strategy for playing the
 
 \medskip
 
-For $i = 1, \ldots, n$, let $f(i)$ denote the cost for filling the bank-slots \#$1$ through \#$i$, measured in terms of the number of atomic moves, each of the form {\sc place a token} or {\sc remove a token}.  Because of the dual forms of our atomic moves---each move fills one slot that is empty or empties one slot that is full---the cost of filling an empty length-$i$ prefix of the bank with tokens equals the cost of emptying a full length-$i$ prefix of the bank.  The total cost of a play of the order-$n$ Game is the cost of filling the initially empty $n$-slot bank with tokens.
+For $i = 1, \ldots, n$, let $f(i)$ denote the cost of filling the bank-slots \#$1$ through \#$i$, measured in terms of the number of atomic moves, each of the form {\sc place a token} or {\sc remove a token}.  Because of the dual forms of our atomic moves---each move fills one slot that is empty or empties one slot that is full---the cost of filling an empty length-$i$ prefix of the bank with tokens equals the cost of emptying a full length-$i$ prefix of the bank.  The total cost of a play of the order-$n$ Game is the cost of filling the initially empty $n$-slot bank with tokens.
 
 \begin{prop}
 \label{thm:f-cost of TokenGame}
@@ -1300,9 +1302,7 @@ g(n) \ \ = \ \ 2^{n-1} \ + \ 2^{n-2} \ + \cdots + \ 2^2 \ + \ 2 \ + \ 1 \ \ = \ 
 
 \smallskip
 
-We can now return to evaluating $f(n)$ via recurrence
-(\ref{eq:Token-cost-recurrence}), in the light of our analysis of
-$g(n)$ in recurrences (\ref{eq:g-Token-cost-recurrence}) and (\ref{eq:VALUE-g-Token-cost}).  We find that 
+We can now return to evaluating $f(n)$ via recurrence (\ref{eq:Token-cost-recurrence}), in the light of our analysis of $g(n)$ in recurrences (\ref{eq:g-Token-cost-recurrence}) and (\ref{eq:VALUE-g-Token-cost}).  We find that 
 \begin{equation}
 \label{eq:f-Token-cost-recurrence}
 f(n) \ = \ \left\{
@@ -1321,7 +1321,7 @@ f(n) & = & 2^{n} - 2^{n-1} + f(n-2) + 1 -1 \\
      &    & \hspace*{.35in}  \vdots
 \end{eqnarray*}
 What we observe emerging---an inviting induction for the reader lurks in those words---is a geometric summation of powers of $2$, with adjacent terms {\em alternating} in sign; the terminal units, $\pm 1$, cancel after each pair of steps.  We must be careful, though, because
-the numbers of terms in the summations differ based on the parity of $n$: when $n$ is even, the last term is $-2$; when $n$ is odd, the last term is $-1$.
+the numbers of terms in the summations differ based on the parity of $n$: when $n$ is even, the last term is $0$; when $n$ is odd, the last term is $-1$.
 
 \smallskip
 
