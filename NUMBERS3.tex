@@ -233,11 +233,10 @@ In order to make base-$2$ numerals easier for humans to deal with, we often aggr
 By aggregating length-$3$ sequences of bits, one converts base-$2$ numerals to {\it base}-$8$ numerals, known also as {\it octal} or $8$-{\it ary} numerals; the octal digits comprise the set $\{0, 1, 2, 3, 4, 5, 6, 7\}$. \index{the octal (base-$8$) number system} 
   \medskip\item
 By aggregating length-$4$ sequences of bits, one converts base-$2$ numerals to base-$16$ numerals, known also as {\it hexadecimal} or {\it $16$-ary} numerals;the hexadecimal digits comprise the set 
-\[ \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, \overline{10}, \overline{11},
-\overline{12}, \overline{13}, \overline{14}, \overline{15}\}.
+\[ \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, \overline{10}, \overline{11}, \overline{12}, \overline{13}, \overline{14}, \overline{15}\}.
 \]
-{\it Note:} We have written the hexadecimal digits in decimal, to make them easy to read, but we have placed overlines above the $2$-decimal-digit numerals ``$10$'', ``$11$'', ``$12$'', ``$13$'',
-``$14$'', and ``$15$'' as a reminder that each represents a single hexadecimal digit, not a $2$-digit numeral.   \index{the hexadecimal (base-$16$) number system} 
+{\it Note:} We have written the hexadecimal digits in decimal, to make them easy to read, but we have placed overlines above the two-decimal-digit numerals ``$10$'', ``$11$'', ``$12$'', ``$13$'',
+``$14$'', and ``$15$'' as a reminder that each represents a single hexadecimal digit, not a two-digit numeral.   \index{the hexadecimal (base-$16$) number system} 
   \end{itemize}
 The success of these aggregations in achieving shortened numerals is attested to by the following chain of equations:
 \[ 32,768_{10} \ \ = \ \ 1,000,000,000,000,000_2 \ \ = \ \ 100,000_8 \ \ = \ \ 8,000_{16} \]
@@ -323,7 +322,7 @@ This numeral has the {\it numerical value}\footnote{The notation ``$\mbox{\sc va
 \label{eq:real-numeral-number}
 \mbox{\sc val}_{b}(\alpha_n \alpha_{n-1} \cdots \alpha_1 \alpha_0 \ . \ \beta_0 \beta_1 \beta_2 \cdots)
 \ \ \eqdef \ \
-\sum_{i=0}^n \alpha_i \cdot b^i \ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}.
+\sum_{i=0}^n \alpha_i \cdot b^i \ + \ \sum_{j\geq 0} \beta_j \cdot b^{-j}
 \end{equation}
 \index{positional number system!numerical value of base-$b$ numeral}
 \index{base-$b$ numeral!numerical value}
@@ -345,7 +344,7 @@ The numerical value of the fractional part of the numeral in expression~(\ref{eq
 \sum_{j\geq 0} \beta_j \cdot b^{-j}
 \]
 \medskip\item
-By prepending a ``minus sign'', or, ``negative sign'' ($-$) to a numeral or a number, one renders the thus-embellished entity as negative.
+By prepending a ``minus sign'' or ``negative sign'' ($-$) to a numeral or a number, one renders the thus-embellished entity as negative.
 \end{itemize}
 \index{positional number system!numerical value of integer part}
 \index{positional number system!numerical value of fractional part}
@@ -376,7 +375,7 @@ We finish this section with an important consequence of the definition of real n
 
 \begin{prop}
 \label{thm:define-Reals-via-numerals}
-A number $n$ is real, i.e., belongs to the set $\R$, if, and only if it is the numerical value of a numeral of the form in expression~(\ref{eq:real-numeral}).
+A number $n$ is real, i.e., belongs to the set $\R$, if, and only if, it is the numerical value of a numeral of the form in expression~(\ref{eq:real-numeral}).
 \end{prop}
 
 \subsection{A {\em Bijective} Number System}
@@ -392,21 +391,26 @@ system, which is the -adic analogue of the binary system.
 
 \medskip
 
-For any number base $b > 1$, the base-$b$ bijective systems' numerals are formed in exactly the same way as are the numerals of the $b$-ary number system---see expression~(\ref{eq:real-numeral-number}).  But the bijective systems' numerals are formed using the digit-set $B'_b \ = \ \{1, 2, \ldots, b\}$, rather than the $b$-ary set $B_b$ of (\ref{eq:b-ary-digits}).  In order to lend the reader some intuition, we display the dyadic numerals that have one or two digits together with their numerical values.
+For any number base $b > 1$, the base-$b$ bijective system's numerals are formed in exactly the same way as are the numerals of the $b$-ary number system---see expression~(\ref{eq:real-numeral-number}).  But the bijective system's numerals are formed using the digit-set $B'_b \ = \ \{1, 2, \ldots, b\}$, rather than the $b$-ary set $B_b$ of (\ref{eq:b-ary-digits}).  In order to lend the reader some intuition, we display the dyadic numerals that have one or two digits together with their numerical values.
 
 \medskip
 
-\begin{tabular}{|lc|ll|}
-\multicolumn{2}{c}{\bf Dyadic Numeral} & \multicolumn{2}{c}{\bf Numerical Value} \\
+{\Arny I reformatted the following table.  We can reformat if you wish.}
+
+\fbox{
+\begin{tabular}{lr|ll}
+\multicolumn{4}{c}{\bf Dyadic numerals \& their numerical values} \\
+\hline
+\multicolumn{2}{c}{\it Numeral} & \multicolumn{2}{c}{\it Value} \\
 \hline
 $x=$ & $1$  & {\sc dyadic-val}$(x) =$ & $1$ \\
      & $2$  &                         & $2$ \\
      & $11$ &                         & $2 + 1 = 3$ \\
      & $12$ &                         & $2 + 2 = 4$ \\
      & $21$ &                         & $4 + 1 = 5$ \\
-     & $22$ &                         & $4 + 2 = 6$ \\
-\hline
+     & $22$ &                         & $4 + 2 = 6$
 \end{tabular}
+}
 
 \medskip
 
@@ -436,9 +440,9 @@ Our proof that distinct dyadic numerals denote distinct integers begins by expos
 \begin{lemma}
 \label{lem:big-small-dyadic}
 The {\em smallest} integer representable by a $d$-digit dyadic numeral is 
-\[ \mbox{\sc min-integer}_d \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1 \]
+\[ \mbox{\sc min-integer}_d \ = \  2^{d-1} + 2^{d-2} + \cdots + 1 \ = \ 2^d - 1 \]
 The {\em largest} integer representable by a $d$-digit dyadic numeral is
-\[ \mbox{\sc max-integer}_d \ = \ 2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2 \]
+\[ \mbox{\sc max-integer}_d \ = \ 2 \times (2^{d-1} + 2^{d-2} + \cdots + 1) \ = \ 2^{d+1} - 2 \]
 \end{lemma}
 
 \begin{proof}[Lemma]
@@ -447,11 +451,11 @@ We derive the values of both extremal integers by invoking the summation techniq
 \item
 The {\em smallest} $d$-digit dyadic numeral is $11 \cdots 1$ ($d$ digits).  Its value is:
 \[ \mbox{\sc dyadic-val}_2(11 \cdots 1)
- \ = \ 2^d + 2^{d-1} + \cdots + 1 \ = \ 2^{d+1} - 1 \]
+ \ = \ 2^{d-1} + 2^{d-2} + \cdots + 1 \ = \ 2^d - 1 \]
 \medskip\item
 The {\em largest} $d$-digit dyadic numeral is  $22 \cdots 2$ ($d$ digits).  Its value is:
 \[ \mbox{\sc dyadic-val}_2(22 \cdots 2)
-\ = \ 2 \times (2^d + 2^{d-1} + \cdots + 1) \ = \ 2^{d+2} - 2 \]
+\ = \ 2 \times (2^{d-1} + 2^{d-2} + \cdots + 1) \ = \ 2^{d+1} - 2 \]
 \end{itemize}
 \qed-Lemma
 \end{proof}
@@ -469,9 +473,9 @@ y \ = \ \delta_s \delta_{s-1} \cdots \delta_1
 \smallskip
 
 {\bf (a)} Assume first that $r \neq s$.  With no loss of generality, say that $r = s +c$ for some $c \geq 1$.  In this case, we have, by Lemma~\ref{lem:big-small-dyadic}:
-\[ \mbox{\sc dyadic-val}(x) \ \geq \ 2^{r+1} - 1 \ = \ 2^{s+c+1} -1 \]
+\[ \mbox{\sc dyadic-val}(x) \ \geq \ 2^{r} - 1 \ = \ 2^{s+c} -1 \]
 while
-\[ \mbox{\sc dyadic-val}(y) \ \leq \ 2^{s+2} - 2 \]
+\[ \mbox{\sc dyadic-val}(y) \ \leq \ 2^{s+1} - 2 \]
 It follows, therefore, that
 \[ \mbox{\sc dyadic-val}(x) \ \geq \ \mbox{\sc dyadic-val}(y) \ + \ 1 \]
 In particular, numerals $x$ and $y$ thus behave in consistency with the proposition.
@@ -487,15 +491,13 @@ Invoking Lemma~\ref{lem:big-small-dyadic}, we can infer the following bounds on 
 $\mbox{\sc dyadic-val}(x) \ - \ \mbox{\sc dyadic-val}(y)$
 \begin{eqnarray*}
   & =  &
-2^m \cdot (\gamma_m - \delta_m) \ + \ 2^{m-1} \cdot (\gamma_{m-1} -
-\delta_{m-1}) \ + \cdots + \  2 \cdot (\gamma_1 - \delta_1) \\
+2^{m-1} \cdot (\gamma_m - \delta_m) \ + \ 2^{m-2} \cdot (\gamma_{m-1} - \delta_{m-1}) \ + \cdots + \  (\gamma_1 - \delta_1) \\
   & \geq &
-2^m \cdot (\gamma_m - \delta_m) \ - \ \left( 2^{m-1} + 2^{m-2} +
-\cdots + 1 \right) \\
+2^{m-1} \cdot (\gamma_m - \delta_m) \ - \ \left( 2^{m-2} + 2^{m-3} + \cdots + 1 \right) \\
   & = &
-2^m \cdot (\gamma_m - \delta_m)\ - \ \left( 2^m -1 \right) \\
+2^{m-1} \cdot (\gamma_m - \delta_m)\ - \ \left( 2^m -1 \right) \\
   & = &
-2^m \cdot (c-1) +1 \\
+2^{m-1} \cdot (c-1) +1 \\
   & \geq & 1
 \end{eqnarray*}
 Once again, numerals $x$ and $y$ behave in consistency with the proposition.  \qed
@@ -525,7 +527,7 @@ A real number is an integer if, and only if, it can be represented by a {\em fin
 \end{prop}
 
 \begin{proof}
-The result follows from definition (\ref{eq:real-numeral-number}).  In the indicated form, if any $\beta_i$ is nonzero, then the numerical value of the numeral is non-integral.  To wit, digit $\beta_i$ witnesses that the numeral has a nonzero fractional part, hence is not an integer.  \qed
+The result follows from definition (\ref{eq:real-numeral-number}).  In the indicated form, if any $\beta_i$ is nonzero, then the numerical value of the numeral is non-integral.  That is, digit $\beta_i$ witnesses that the numeral has a nonzero fractional part, hence is not an integer.  \qed
 \end{proof}
 
 \medskip
@@ -561,7 +563,7 @@ Since the problem of computing an integer $n$ from a $d$-digit positional numera
 \index{Horner's rule} \index{polynomial!Horner's rule}
 \index{Horner's scheme} \index{polynomial!Horner's scheme}
 
-One can clearly evaluate the degree-$d$ univariate polynomial $\mbox{\sc val}_{b}(x)$ using $\Theta(d^2)$ integer multiplications.  It appears at first glance that $\Theta(d^2)$ multiplications are also {\em necessary} for this evaluation---which would suggest that one cannot evaluate general polynomials very efficiently.  However, one can develop an $O(d)$-multiplication procedure for evaluating degree-$d$ univariate polynomials, by adapting a method of rewriting univariate polynomials, which is known as {\it Horner's rule} (the name we shall use) or {\it Horner's scheme} \cite{Horner}.  We now describe Horner's rule on a generic degree-$d$ polynomial, with particular detail on the case $d=3$.
+One can clearly evaluate the degree-$d$ univariate polynomial $\mbox{\sc val}_{b}(x)$ using $\Theta(d^2)$ integer multiplications.  It appears at first glance that $\Theta(d^2)$ multiplications are also {\em necessary} for this evaluation---which would suggest that one cannot evaluate general polynomials very efficiently.  However, one can develop an $O(d)$-multiplication procedure for evaluating degree-$d$ univariate polynomials, by adapting a method of rewriting univariate polynomials which is known as {\it Horner's rule} (the name we shall use) or {\it Horner's scheme} \cite{Horner}.  We now describe Horner's rule on a generic degree-$d$ polynomial, with particular detail on the case $d=3$.
 
 \bigskip
 
@@ -681,7 +683,7 @@ Use Horner's Rule to rewrite the polynomial for $n$ in the form
 \[ n \ = \ a_0 \ + \ 2 \cdot (a_1 \ + \ 2 \cdot (a_2 \ + \ 2 \cdot (a_3 \ + \ 2 \cdot a_4 ))) \]
 
 \medskip\item
-Interpret the ``ground level'' computation of the numeral-polynomial within the ``exponent level'' of base $b$.
+Interpret the ``ground-level'' computation of the numeral-polynomial within the ``exponent level'' of base $b$.
 
 \smallskip
 
@@ -774,7 +776,7 @@ Given positive integers $b$ and $n$, one can compute the number $b^n$ with $O(\l
 
 \index{ultimately periodic sequence}
 
-We can completely characterize the positional numerals that represent rational numbers, in terms of the following auxiliary notion.  An infinite sequence $S$ of digits is {\em ultimately periodic} if there exist two {\em finite} sequences of digits, $A$ and $B$, such that $S$ can be written in the following form (we have added spaces to enhance legibility):
+We can completely characterize the positional numerals that represent rational numbers in terms of the following auxiliary notion.  An infinite sequence $S$ of digits is {\em ultimately periodic} if there exist two {\em finite} sequences of digits, $A$ and $B$, such that $S$ can be written in the following form (we have added spaces to enhance legibility):
 \begin{equation}
 \label{eq:ult-per-seq}
  S \ = \ A \ B \ B \ B \cdots B \ B \cdots
@@ -846,7 +848,7 @@ c_0 c_1 c_2 \ c_0 c_1 c_2 \cdots c_0 c_1 c_2 \cdots) \\
  \ + \
 \mbox{\sc val}_b(c_0 c_1 c_2) \cdot b^{-8}
  \ + \
-\mbox{\sc val}_b(\gamma_0 \gamma_1 \gamma_2) \cdot b^{-11}
+\mbox{\sc val}_b(c_0 c_1 c_2) \cdot b^{-11}
 \ + \cdots \\
 \nonumber
   & = &
@@ -974,7 +976,7 @@ Those interested in the (philosophical) foundations of mathematics might quibble
 \label{sec:Q-Z-F-cardinality}
 \label{sec:FNS-uncountable}
 
-This section completes the topic of the cardinalities of infinite sets which we began in Section~\ref{sec:compare-sets-via-card}.  We discussed {\em countable} sets in that section; we turn here to the complementary topic of {\em uncountable} sets.
+This section completes the topic of the cardinalities of infinite sets, which we began in Section~\ref{sec:compare-sets-via-card}.  We discussed {\em countable} sets in that section; we turn here to the complementary topic of {\em uncountable} sets.
 
 \subsection{The Set of Binary Functions $\F$ Is Uncountable}
 \label{sec:F-uncountable}
@@ -992,12 +994,12 @@ This section is dedicated to proving the following result.
 The set $\F$ of binary-valued functions from $\N$ into $\{0,1\}$ is not countable.  In particular, there is no injection $f: \F \rightarrow \N$.
 \end{prop}
 
-In the next subsection, we prove the qualitatively similar but technically more complicated companion of Proposition~\ref{thm:F-uncountable}, which establishes that the set $\R$ of real numbers is also uncountable.
+In the next subsection, we prove the qualitatively similar but technically more complicated companion of Proposition~\ref{thm:F-uncountable} which establishes that the set $\R$ of real numbers is also uncountable.
 
 \index{diagonalization} \index{diagonalization!argument} \index{diagonalization!construction}
 
 \begin{proof}
-Our multi-step proof of Proposition~\ref{thm:F-uncountable} shows that assuming the countability of $\F$ leads to a contradiction.  Being built around Georg Cantor's revolutionary {\it diagonalization construction}, the upcoming argument---and its companion argument about the set $\R$---provides the most sophisticated proof by contradiction in our text.  The reader might want to review the reasoning underlying such argumentation, in Section~\ref{sec:Contradiction}, as a ``warm-up.''
+Our multi-step proof of Proposition~\ref{thm:F-uncountable} shows that assuming the countability of $\F$ leads to a contradiction.  Being built around Georg Cantor's revolutionary {\it diagonalization construction}, the upcoming argument---and its companion argument about the set $\R$---provides the most sophisticated proof by contradiction in our text.  The reader might want to review the reasoning underlying such argumentation, in Section~\ref{sec:Contradiction}, as a ``warm-up''.
 
 \subsubsection{Plotting a strategy to prove uncountability}
 \label{sec:the-diag-strategy}
@@ -1049,18 +1051,9 @@ but Cantor's diagonalization argument deals quite gracefully with the latter ass
 \paragraph{A. Seeking a bijection $g: \N \leftrightarrow \F$}
 
 We assume, for contradiction, that there exists a bijection $g: \N \leftrightarrow \F$.  As part of this two-way mapping, there exists an {\em injection}
-\[ 
-h: \N \ \rightarrow \ \F
-\]
-We view $h$ as an {\em enumeration}---i.e., an ordered listing---of
-the elements of $\F$.  Specifically, for each integer $k \in \N$, we
-can think of $h(k)$ as the ``$k$th binary-valued function in the set
-$\F$.''  We thereby view $h$ as producing an ``infinite-by-infinite''
-matrix $\Delta$ of bits, whose $k$th row is the infinite string of
-bits that is the characteristic vector $\xi$ of the function $h(k)$.  
-Recall that $\xi$ is an infinite binary vector whose $i$th element
-specifies the value of $h$ at argument $i$; i.e., $h(i) = \xi_i$.
-Let us visualize $\Delta$:
+\[  h: \N \ \rightarrow \ \F  \]
+We view $h$ as an {\em enumeration}---i.e., an ordered listing---of the elements of $\F$.  Specifically, for each integer $k \in \N$, we can think of $h(k)$ as the ``$k$th binary-valued function in the set $\F$''.  We thereby view $h$ as producing an ``infinite-by-infinite'' matrix $\Delta$ of bits, whose $k$th row is the infinite string of bits that is the characteristic vector $\xi$ of the function $h(k)$.  Recall that $\xi$ is an infinite binary vector whose $i$th element
+specifies the value of $h$ at argument $i$; i.e., $h(i) = \xi_i$.  Let us visualize $\Delta$:
 \[ \Delta \ \ = \ \
 \begin{array}{ccccccc}
 \delta_0 = &
@@ -1117,7 +1110,7 @@ The infinite binary string $\Psi$ differs from every row of $\Delta$, even thoug
 
 \smallskip
 
-Where could we have gone wrong?  Every step of our argument, save one, is backed up by a proof---so the one step that is not so bolstered must be the link that has broken the argument.  This one unsubstantiated step is our assumption that the set $\F$ is countable. Since this assumption has led us to a contradiction, we must conclude that the set $\F$, is {\em not} countable!  \qed
+Where could we have gone wrong?  Every step of our argument, save one, is backed up by a proof---so the one step that is not so bolstered must be the link that has broken the argument.  This one unsubstantiated step is our assumption that the set $\F$ is countable. Since this assumption has led us to a contradiction, we must conclude that the set $\F$ is {\em not} countable!  \qed
 \end{proof}
 
 \subsection{$\oplus$ $\R$ Is Uncountable}
@@ -1126,7 +1119,7 @@ Where could we have gone wrong?  Every step of our argument, save one, is backed
 
 \index{$\R$: the set of real numbers!uncountability}
 
-This section is a companion to Section~\ref{sec:FNS-uncountable}, in which we establish the uncountability of the set $\R$ of real numbers.  We thereby have an argument that the infinitude of the set of real numbers is {\em of a higher order} than the infinitude of the set of integers.  We accomplish by providing a proof of the following result.
+This section, in which we establish the uncountability of the set $\R$ of real numbers, is a companion to Section~\ref{sec:FNS-uncountable}.  We thereby have an argument that the infinitude of the set of real numbers is {\em of a higher order} than the infinitude of the set of integers.  We accomplish this by developing a proof of the following result.
 
 \begin{prop}
 \label{thm:R-uncountable}
@@ -1140,7 +1133,7 @@ The flow of the proof of Proposition~\ref{thm:R-uncountable} follows the flow of
 \smallskip
 
 \begin{proof}
-We simplify exposition by making extensive use of the proof of Proposition~\ref{thm:F-uncountable}.  Our proof begins with the following lemmas.
+We simplify the exposition by making extensive use of the proof of Proposition~\ref{thm:F-uncountable}.  Our proof begins with the following lemmas.
 
 \smallskip
 
