@@ -1,4 +1,4 @@
-%version of 07-21-20
+%version of 08-19-20
 
 \chapter{The Art of Counting:
 Combinatorics, with Applications to Probability and Statistics}
@@ -25,7 +25,7 @@ Combinatorics, with Applications to Probability and Statistics}
 \noindent
 We have named this chapter in honor of the great German mathematician Gottfried Leibniz, whose 1666 doctoral thesis\footnote{G.W.~Leibniz (Leibnitz) (1666):  {\it Dissertatio de Arte Combinatoria}.  {\it S\"{a}mtliche Schriften und Briefe}.  Akademie Verlag, Berlin.
 
-While Leibniz is best known (at least among students of mathematics) for his never-to-be-settled dispute with Isaac Newton over prior discovery of the calculus, Leibniz's life was in fact dedicated to a broad range of topics in mathematics and philosophy.}~gave us the now-common phrase, ``the art of counting.''  The word ``counting'' in this context must be understood much more broadly than in the vernacular: In days past, the phrase encompassed much of the field known nowadays as {\it combinatorics}. \index{combinatorics}
+While Leibniz is best known (at least among students of mathematics) for his never-to-be-settled dispute with Isaac Newton over prior discovery of the calculus, Leibniz's life was in fact dedicated to a broad range of topics in mathematics and philosophy.}~gave us the now-common phrase, ``the art of counting''.  The word ``counting'' in this context must be understood much more broadly than in the vernacular: In days past, the phrase encompassed much of the field known nowadays as {\it combinatorics}. \index{combinatorics}
 
 \medskip
 
@@ -44,7 +44,9 @@ Our introduction to combinatorics can be viewed in many ways as a return to Chap
 \index{poker!three-of-a-kind} \index{poker!two-pair}
 
 \noindent {\it Combinatorial probability} (Section~\ref{sec:combinatorial-prob}).
-The tools we develop for determining the cardinalities of finite sets give us access to the important (and, often, fun!)~field known as {\em combinatorial probability}. In reality, probability theory is an {\em applied} spin-off of combinatorics.  In its most elementary form, combinatorial probability uses counting to answer myriad significant questions about the relative frequencies of occurrences that range from the important---Is one more likely to die while crossing the street or while crossing the ocean?---to those some might call frivolous---Why does the game of ($5$-card) poker value three-of-a-kind more highly than two-pair?  By the end of the section, you will have the wherewithal to answer myriad questions of this ilk.
+The tools we develop for determining the cardinalities of finite sets give us access to the important (and, often, fun!)~field known as {\em combinatorial probability}.  In reality, probability theory is an {\em applied} spin-off of combinatorics.  In its most elementary form, combinatorial probability uses counting to answer a broad range of significant questions about the relative frequencies of occurrences that range from the important---Is one more likely to die while crossing the street or while crossing the ocean?---to those some might call frivolous---Why does the game of (five-card) poker value three-of-a-kind more highly than two-pair?  By the end of the section, you will have the wherewithal to answer many questions of this ilk.
+
+\smallskip
 
 The elements of probability theory and statistics infuse many aspects of life---and every area of computing.
 \begin{itemize}
@@ -65,8 +67,10 @@ Every reader whose life will be touched by computing---which nowadays means just
 \index{probability!distribution} 
 \index{statistical moments}
 
+{\Arny I reworded the sentence about parameters because I felt that the CE's suggestion was awkward.}
+
 \noindent {\it The structures of probability theory} (Section~\ref{sec:prob-distributions}).
-Just as engineering can be viewed as the ``applied'' sibling of science, {\it statistics} can be viewed as the ``applied'' sibling of probability.  Whereas combinatorial probability gives the reader the ability to calculate the likelihoods of various events happening, statistics looks as the events ``in the large".  One mechanism used in statistics are parameters---aptly called ``statistics"---that can be viewed as {\em summarizing} large corpora of data.  Such summarizing measures include:
+Just as engineering can be viewed as the ``applied'' sibling of science, {\it statistics} can be viewed as the ``applied'' sibling of probability.  Whereas combinatorial probability gives the reader the ability to calculate the likelihoods of various events happening, statistics looks as the events ``in the large".  Statisticians use parameters---aptly called ``statistics"---that can be viewed as {\em summarizing} large corpora of data.  Such summarizing measures include:
 \begin{itemize}
 \item
 {\em means, medians}, and {\em modes}: different ways to embody concepts such as {\em averages} and {\em likelihood}.  These are attempts to find single values that capture the essence of many observed instances; they are often called the {\it first statistical moments}.
@@ -80,19 +84,19 @@ Just as engineering can be viewed as the ``applied'' sibling of science, {\it st
 \end{itemize}
 A second mechanism used in statistics is the {\em (probability) distribution}.  Probability distributions can be viewed as {\em families} of functions that measure probabilities of kindred events.  Most often, a distribution is viewed as a curve that describes the probabilities of the items that are produced by an event of interest, where ($a$) each item is associated with a numerical value; ($b$) all items are laid out in order of value.  The items could be, for illustration, the observed diameters of roller bearings produced by a particular manufacturing process.
 
-Perhaps the most familiar probability distribution is the {\it normal distribution}, which is readily recognized from its {\it Bell-shaped curve}.  The shape of the Bell curve tells us: the probabilities of the items having extreme values---very small or very large---are very small; and, the probabilities of the items are distributed (roughly) symmetrically around the ``average" item.  Returning to our roller bearings: (1) Very few bearings have diameters that are very far from the target; (2) deviations from the target are as likely to produce bearings that are too large as bearings that are too small.
+Perhaps the most familiar probability distribution is the {\it normal distribution}, which is readily recognized from its {\it bell-shaped curve}.  The shape of the bell curve tells us: the probabilities of the items having extreme values---very small or very large---are very small; and, the probabilities of the items are distributed (roughly) symmetrically around the ``average" item.  Returning to our roller bearings: (1) Very few bearings have diameters that are very far from the target; (2) deviations from the target are as likely to produce bearings that are too large as bearings that are too small.
 
 \medskip
 
 \index{the deductive paradigm} \index{the inferential paradigm}
 
 \noindent {\it The elements of empirical reasoning} (Section~\ref{sec:empirical}).
-In earlier chapters, we have discussed at length the {\em deductive paradigm} for uncovering truth.  We all know, though, that only a small fraction of situations we encounter in ``real life" are amenable to the deductive paradigm.  For all other situation, we use some form of empirical reasoning---{\em we learn from experience}.  Fortunately, even ``experience" has mathematical underpinnings, at least over ``large" numbers of trials.  One simple, but illustrative, example of the principle of {\em experientia docet}--Latin for ``experience teaches"---is that if a repeatedly tossed coin does not come out {\sc head}s roughly half the time over a very long sequence of tosses, then we can infer that the coin is not unbiased.  More advanced techniques enable one to quantify the adjective ``large" in the preceding sentences.  Since much of the mathematics relevant to empirical reasoning is beyond the scope of a beginning text, most of our effort in this section is devoted to imbuing the reader with a level of literacy adequate to understand relevant concepts and their significance:  Rather than supplying proofs of truly advanced theorems, we supply only introductory discussions and pointers to more advanced treatment.
+In earlier chapters, we have discussed at length the {\em deductive paradigm} for uncovering truth.  We all know, though, that only a small fraction of situations we encounter in ``real life" are amenable to the deductive paradigm.  For all other situations, we use some form of empirical reasoning---{\em we learn from experience}.  Fortunately, even ``experience" has mathematical underpinnings, at least over ``large" numbers of trials.  One simple, but illustrative, example of the principle of {\em experientia docet}--Latin for ``experience teaches"---is that if a repeatedly tossed coin does not come out {\sc head}s roughly half the time over a very long sequence of tosses, then we can infer that the coin is not unbiased.  More advanced techniques enable one to quantify the adjective ``large" in the preceding sentences.  Since much of the mathematics relevant to empirical reasoning is beyond the scope of a beginning text, most of our effort in this section is devoted to imbuing the reader with a level of literacy adequate to understand relevant concepts and their significance:  Rather than supplying proofs of truly advanced theorems, we supply only introductory discussions and pointers to more advanced treatment.
 
 \section{The Elements of Combinatorics}
 \label{sec:counting}
 
-This section contains three quite distinct, but closely related, lessons about counting.  The first lesson is in the form of a single important example.  In Section~\ref{sec:b-ary strings}, we exploit the special structure of {\em strings} to count the number of length-$n$ strings over fixed-size alphabets; and we extend this ability to other objects whose structures can be {\em encoded} as strings---notable the power-sets of finite sets.  In Section~\ref{sec:count-by-structure}, we illustrate how to count within sets that are ``complex" in the sense of being formed from other sets by using the algebraic operations on sets that we discussed in Section~\ref{sec:operations-on-sets}.  Section~\ref{sec:set-arrangement} lays the foundations for {\em combinatorial probability}: the sub-area of probability theory that is based on {\em counting}.  The section 
+This section contains three quite distinct, but closely related, lessons about counting.  The first lesson is in the form of a single important example.  In Section~\ref{sec:b-ary strings}, we exploit the special structure of {\em strings} to count the number of length-$n$ strings over fixed-size alphabets; and we extend this ability to other objects whose structures can be {\em encoded} as strings---notably the power sets of finite sets.  In Section~\ref{sec:count-by-structure}, we illustrate how to count within sets that are ``complex" in the sense of being formed from other sets by using the algebraic operations on sets that we discussed in Section~\ref{sec:operations-on-sets}.  Section~\ref{sec:set-arrangement} lays the foundations for {\em combinatorial probability}: the subarea of probability theory that is based on {\em counting}.  The section 
 introduces two operations on sets---the {\em selection} and {\em arrangement} of the objects in sets---that are at the center of probability-via-counting.
 
 \subsection{Counting Binary Strings and Power Sets}
@@ -139,7 +143,7 @@ We begin by taking an arbitrary finite set $S$---say of $n$ elements---and layin
 
 \smallskip
 
-Next, we note that we can specify any subset $S'$ of $S$ by specifying a length-$n$ {\em binary (i.e., base-$2$) string}, i.e., a string of $0$'s and $1$'s.  The translation is as follows.  If an element $s$ of $S$ appears in the subset $S'$, then we look at the integer we have associated with $s$ (via our linear ordering of $S$), and we set the corresponding bit-position of our binary string to $1$; otherwise, we set this bit-position to $0$.  In this way, we get a distinct subset of $S$ for each distinct binary string, and a distinct binary string for each distinct subset of $S$.  {\em We thus have a {\em bijection} between the set of length-$n$ bit-strings and the power set of $S$.}
+Next, we note that we can specify any subset $S'$ of $S$ by specifying a length-$n$ {\em binary (i.e., base-$2$) string}, i.e., a string of $0$s and $1$s.  The translation is as follows.  If an element $s$ of $S$ appears in the subset $S'$, then we look at the integer we have associated with $s$ (via our linear ordering of $S$), and we set the corresponding bit-position of our binary string to $1$; otherwise, we set this bit-position to $0$.  In this way, we get a distinct subset of $S$ for each distinct binary string, and a distinct binary string for each distinct subset of $S$.  {\em We thus have a {\em bijection} between the set of length-$n$ bit-strings and the power set of $S$.}
 
 \smallskip
 
@@ -206,7 +210,7 @@ The addition rule is also known as the {\it Law of inclusion and exclusion}.
 \smallskip
 
 One can compute the cardinalities of unions of sets by adding and/or subtracting
-the cardinalities of the individual sets.  For any sets $A$ and $B$.
+the cardinalities of the individual sets.  For any sets $A$ and $B$,
 \[ |A \cup B| \ \ = \ \ |A|  \ + \ |B| \ - \ |A \cap B| \]
 Specifically:
   \begin{itemize}
@@ -214,17 +218,17 @@ Specifically:
 If $A$ and $B$ are {\em disjoint}---i.e., have no common elements (symbolically, $A \cap B = \emptyset$)---then $|A \cup B| = |A| + |B|$.
 
  \medskip\item
-if $A$ and $B$ {\em intersect}---i.e., share some elements (symbolically, $A \cap B \neq \emptyset$---then $|A \cup B|  =  |A|  + |B| - |A \cap B|$.
+if $A$ and $B$ {\em intersect}---i.e., share some elements (symbolically, $A \cap B \neq \emptyset$)---then $|A \cup B|  =  |A|  + |B| - |A \cap B|$.
 
 \smallskip
 
-This formula {\em includes} the elements of both sets and the {\em excludes} the sets' shared elements, which are double-counted by the inclusion.  (You can see the origin of the name ``the law of inclusion and exclusion.")
+This formula {\em includes} the elements of both sets and then {\em excludes} the sets' shared elements, which are double-counted by the inclusion.  (You can see the origin of the name ``the law of inclusion and exclusion".)
  \end{itemize}
-Figs.~\ref{fig:unionSetsInit} and~\ref{fig:unionSets} illustrate how to generalize the preceding equations to collections of three sets; going beyond three adds complexity that is clerical but not conceptual.
+Figures~\ref{fig:unionSetsInit} and~\ref{fig:unionSets} illustrate how to generalize the preceding equations to collections of three sets; going beyond three adds complexity that is clerical but not conceptual.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresMaths/3sets}
-    \caption{Three sets, $A$, $B$ and $C$, in ``general" position, i.e., with all possible overlaps.}
+    \caption{Three sets, $A$, $B$ and $C$, in ``general" position, i.e., with all possible overlaps}
         \label{fig:unionSetsInit}
 \end{center}
 \end{figure}
@@ -233,7 +237,7 @@ Figs.~\ref{fig:unionSetsInit} and~\ref{fig:unionSets} illustrate how to generali
         \includegraphics[scale=0.35]{FiguresMaths/RuleAdditive}
         \hspace{1cm}
         \includegraphics[scale=0.35]{FiguresMaths/RuleAdditive2}
-        \caption{The union of sets $A$, $B$, and $C$ (left), and their intersections (right).}
+        \caption{The union of sets $A$, $B$, and $C$ (left), and their intersections (right)}
         \label{fig:unionSets}
 \end{center}
 \end{figure}
@@ -269,7 +273,7 @@ As we move forward, we shall encounter many other ways of counting the elements 
 most importantly by using operations involving {\it selection} and {\it re-arrangement}.  As we
 proceed with this new material, we will encounter old friends, often wearing new clothing.  We
 will renew our acquaintance with the factorial operation and with binomial coefficients; we will
-have cause to recall the pigeonhole principle in new settings.  And, we will discover new domains of application, as we move beyond ``pure" mathematics to the applications of mathematical laws in domains related to probability and statistics.
+have cause to recall the pigeonhole principle in new settings.  Also, we will discover new domains of application, as we move beyond ``pure" mathematics to the applications of mathematical laws in domains related to probability and statistics.
 
 \smallskip
 
@@ -279,8 +283,7 @@ Let us begin our journey.
 \label{sec:set-arrangement}
 
 This section introduces the primary operations that are used for arranging finite sets as we
-establish a base for studying combinatorial probability.  The importance of set-arrangement
-in this context results from the common practice of defining discrete probability/likelihood as a counting problem---most specifically, of defining the ratio
+establish a base for studying combinatorial probability.  The importance of set arrangement in this context results from the common practice of defining discrete probability/likelihood as a counting problem---most specifically, of defining the ratio
 \begin{equation}
 \label{eq:prob-def-ratio}
 \frac{\mbox{number of ways of achieving a targeted event $E$}}{\mbox{number of possible events}}
@@ -318,11 +321,11 @@ It is a straightforward exercise to count the number of permutations of $n$ item
 
 \begin{prop}
 \label{thm:no-permutation}
-The number of permutations, $P(n)$, of a $n$-element set equals $n!$
+The number of permutations, $P(n)$, of an $n$-element set equals $n!$
 \end{prop}
 
 \begin{proof}
-Just for the practice, we describe two inductive proofs of this simple result, based on two quite-distinct ways of constructing permutations.  We merely sketch the inductions underlying the proofs, leaving details for the reader.
+Just for the practice, we describe two inductive proofs of this simple result, based on two quite distinct ways of constructing permutations.  We merely sketch the inductions underlying the proofs, leaving the details for the reader.
 
 \medskip
 
@@ -343,7 +346,7 @@ n \times P(n-1) & \mbox{ if } \ n>1
 \end{array}
 \right.
 \]
-By elementary reasoning, we find that $P(n) \ = \ n!$
+Elementary reasoning now shows that $n!$ is the value of $P(n)$.
 
 \bigskip
 
@@ -389,13 +392,12 @@ we get to Proposition~\ref{thm:no-combination}?)
 
 Factorials play as essential a role in combinational selection as in permutational selection, but
 now it plays a {\em dual} role: choosing the identities of the selected elements {\em and} factoring out the order in which the elements were selected.  The binomial coefficients that we introduced in Section~\ref{sec:binomial-coeff} and that have arisen several times since then
-throughout our journey are (literally!) tailor made for this genre of selection problem.  Recall that
-\[ {n \choose m} \ = \ \frac{n \times (n-1) \times \cdots \times (n-m)}{m!} \ = \  \frac{n!}{m!(n-m)!} 
-\]
+throughout our journey are (literally!) tailor-made for this genre of selection problem.  Recall that
+\[ {n \choose m} \ = \ \frac{n \times (n-1) \times \cdots \times (n-m)}{m!} \ = \  \frac{n!}{m!(n-m)!} \]
 
 \begin{prop}
 \label{thm:no-combination}
-The number of ways of selecting $m$ elements from a set of $n \geq m$ elements, while ignoring the order in which the $m$ elements were selected is $\displaystyle {n \choose m}$.
+The number of ways of selecting $m$ elements from a set of $n \geq m$ elements, while ignoring the order in which the $m$ elements were selected, is $\displaystyle {n \choose m}$.
 \end{prop}
 
 \begin{proof}
@@ -404,7 +406,7 @@ The number of {\em ordered} ways of selecting $m$ elements from a set of $n \geq
 \label{eq:combination}
 n \times (n-1) \times \cdots \times (n-m+1) \ = \ \frac{n!}{(n-m)!}
 \end{equation}
-To wit: One can select the first element in any of $n$ ways.  Having selected this element, there are: $n-1$ ways to choose the second element; $n-2$ ways to choose the third element; $n-3$ ways to choose the fourth element; and so on.
+One can select the first element in any of $n$ ways.  Having selected this element, there are: $n-1$ ways to choose the second element; $n-2$ ways to choose the third element; $n-3$ ways to choose the fourth element; and so on.
 
 \smallskip
 
@@ -415,9 +417,7 @@ This method of numeration accounts for both the identities of the $m$ elements a
 \[ x_1, \ x_2, \ \mbox{(some fixed order for the remaining $m-2$ selections)} \]
 and 
 \[ x_2, \ x_1, \ \mbox{(some fixed order for the remaining $m-2$ selections)} \]
-are counted as separate events.  Easily, this overcounting uniformly
-expands each of the events that we {\em do} want to account for by the
-factor $m!$, for this is the number of orders in which we could have selected the finally chosen $m$ elements.
+are counted as separate events.  It is easy to see that this overcounting uniformly expands each of the events that we {\em do} want to account for by the factor $m!$, for this is the number of orders in which we could have selected the finally chosen $m$ elements.
 
 \smallskip
 
@@ -464,8 +464,7 @@ Clearly, derangements always exist (for $n>1$).  One can just label the elements
 
 \medskip
 
-But, playing around with some sets should convince you that derangements are not so common!
-In fact, the set  $A = \{0, 1,2 \}$ admits $6$ self-bijections, but only two are derangements, namely:
+However, playing around with some sets should convince you that derangements are not so common!  In fact, the set  $A = \{0, 1,2 \}$ admits six self-bijections, but only two are derangements, namely:
 \[
 \begin{array}{lll}
 f(a) = a+1 \bmod 3 &: \mbox{which maps} &(0 \rightarrow 1),  (1 \rightarrow 2), (2 \rightarrow 0) \\
@@ -491,7 +490,7 @@ For $n=1$:  \ $d(1) = 0$.
 
 \smallskip
 
-To wit, the unique bijection in this case consists only of a fixed point. 
+The unique bijection in this case consists only of a fixed point. 
 
 \medskip\item
 For $n=2$:  \ $d(2) = 1$.
@@ -545,7 +544,7 @@ constant (the base of natural logarithms).
 
 \index{probability!via counting} \index{poker} \index{poker!card game}
 
-Perhaps the easiest and most engaging way to introduce ``combinatorial probability'', i.e., probability via counting", is by calculating game-related likelihoods---deals of cards, rolls of dice, and guessing games of various sorts.  Why is one specific genre of deal in the game of poker (say, a ``straight") worth more than another (say, ``three of a kind")?  The arithmetic required for such a discussion is elementary, and the references to {\it gedanken gambling} (gambling via thought experiment) are easily understood---and, they are usually of some interest even to non-gamblers.  One can also introduce in such a setting concepts such as randomness and bias, which are so important in the design of experiments and the analysis of their outcomes.
+Perhaps the easiest and most engaging way to introduce ``combinatorial probability'', i.e., probability via counting, is by calculating game-related likelihoods---deals of cards, rolls of dice, and guessing games of various sorts.  Why is one specific genre of deal in the game of poker (say, a ``straight") worth more than another (say, ``three of a kind")?  The arithmetic required for such a discussion is elementary, and the references to {\it gedanken gambling} (gambling via thought experiment) are easily understood---and, they are usually of some interest even to non-gamblers.  One can also introduce in such a setting concepts such as randomness and bias, which are so important in the design of experiments and the analysis of their outcomes.
 
 \smallskip
 
@@ -583,7 +582,7 @@ Before we begin to play, though, we need some groundwork, beginning with the com
 \medskip
 
 \noindent
-As noted earlier, the {\em (discrete) probability}, or, {\em likelihood}, of an event is given by the ratio (\ref{eq:prob-def-ratio}), which measures the number of targeted events as a fraction of the number of possible events.
+As noted earlier, the {\em (discrete) probability} or {\em likelihood} of an event is given by the ratio (\ref{eq:prob-def-ratio}), which measures the number of targeted events as a fraction of the number of possible events.
 
 \smallskip
 
@@ -626,11 +625,11 @@ probability  $(1-p)$.
 
 \smallskip
 
-In our formulation, a probability as a number $p$ in the range $0 \leq p \leq 1$.  
+In our formulation, a probability is a number $p$ in the range $0 \leq p \leq 1$.  
 
 \smallskip
 
-It is also very common, though, to view a probability as a {\em percent}, as in
+It is also very common, though, to view a probability as a {\em percentage}, as in
 
 \smallskip
 
@@ -661,14 +660,14 @@ We are going to focus on {\em games of pure chance}---with no complicating notio
 
 \smallskip
 
-There exists an exciting mathematical field of study that is dedicated to all games: games of pure chance (which is our focus), games that combine skill and chance (e.g., {\it backgammon} or {\it bridge} or {\it poker}), and games of pure skill (e.g., {\it chess} or {\it GO}).   But, alas, the issues that one must deal with when studying the broad spectrum of games go beyond the  scope of our introductory text.
+There exists an exciting mathematical field of study that is dedicated to all games: games of pure chance (which is our focus), games that combine skill and chance (e.g., {\it backgammon} or {\it bridge} or {\it poker}), and games of pure skill (e.g., {\it chess} or {\it go}).   But, alas, the issues that one must deal with when studying the broad spectrum of games go beyond the  scope of our introductory text.
 
 \medskip
 
 \index{von Neumann, John} \index{Morgenstern, Oskar} \index{Nash, John}
 
 We recommend to the reader just two classical works that may be of interest for historical and cultural reasons, as well to supply a foundation for further study.  The first reference is to the
-classic \cite{vonNeumann-Morg} by American polymath John von Neumann  and German economist Oskar Morgenstern, which established the connection between the mathematical subject of game theory and the field of economics.  (Now-familiar concepts such as ``rational game" and ``zero-sum game" originated in \cite{vonNeumann-Morg}.)  The second classic is \cite{Nash50}, by the American mathematician John Nash, which introduced the now-familiar notion of ``Nash equilibrium." (The story behind \cite{Nash50} is movingly related in the movie ``{\it A Beautiful Mind}".)
+classic \cite{vonNeumann-Morg} by American polymath John von Neumann  and German economist Oskar Morgenstern, which established the connection between the mathematical subject of game theory and the field of economics.  (Now-familiar concepts such as ``rational game" and ``zero-sum game" originated in \cite{vonNeumann-Morg}.)  The second classic is \cite{Nash50}, by the American mathematician John Nash, which introduced the now-familiar notion of ``Nash equilibrium".  (The story behind \cite{Nash50} is movingly related in the movie ``{\it A Beautiful Mind}".)
 \end{minipage}
 }
 
@@ -701,10 +700,8 @@ $\displaystyle \left\{
 \index{the number of random $5$-card deals in poker} 
 
 \noindent
-In a popular version of the game of poker, each player is dealt a {\it hand} consisting of five cards.  The total number of possible $5$-card hands, i.e., of (unordered sets) of $5$ cards, is just the number of ways of choosing a $5$-element set from a $52$-element set.  Invoking the counting techniques from Section~\ref{sec:set-arrangement}, we note that this ``astronomical" number is
-\[
-{32 \choose 5} \ \ = \ \ \frac{52!}{5! 47!} \ \ = \ \ 2,598,960 
-\]
+In a popular version of the game of poker, each player is dealt a {\it hand} consisting of five cards.  The total number of possible five-card hands, i.e., of (unordered sets) of five cards, is just the number of ways of choosing a five-element set from a $52$-element set.  Invoking the counting techniques from Section~\ref{sec:set-arrangement}, we note that this ``astronomical" number is
+\[ {52 \choose 5} \ \ = \ \ \frac{52!}{5! 47!} \ \ = \ \ 2,598,960  \]
 The size of this number explains much of what of makes the game of poker so interesting.
 
 \medskip
@@ -747,8 +744,9 @@ A {\it royal flush} is a poker hand of the form
 There are only four ways to form a royal flush---one for each suit.  Therefore, the probability that
 a fair deal will produce such a hand is
 \[ 
-Pr(\mbox{royal flush}) \ \ = \ \
-\frac{4}{2,598,960} \ \ = \ \ {1 \over {649,740}} \ \ \approx \ \ 0.00000154 \ \ = \ \ 1.54 \times 10^{-6} \]
+Pr(\mbox{royal flush}) \ \ = \ \ \frac{4}{2,598,960} \ \ = \ \ {1 \over {649,740}}
+   \ \ \approx \ \ 0.00000154 \ \ = \ \ 1.54 \times 10^{-6} 
+\]
 
 \medskip\item
 A {\it straight flush} is a poker hand in which the cards share the same suit and follow one 
@@ -760,7 +758,7 @@ Let us calculate the number of straight flushes.
 
 \smallskip
 
-The counting is similar to that for a royal flush:  For each suit, there are nine sequences of $5$ cards that are consecutive in rank.  From lowest rank to highest:
+The counting is similar to that for a royal flush:  For each suit, there are nine sequences of five cards that are consecutive in rank.  From lowest rank to highest:
 \[ \begin{array}{llccccc}
 \mbox{Hand \#1}: & &
 2 & 3 & 4 & 5 & 6 \\
@@ -841,27 +839,24 @@ where $X, Y \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbo
 
 where $X, Y,  Z \in \{2, \ 3, \ 4, \ 5, \ 6, \ 7, \ 8, \ 9, \ 10, \ \mbox{J}, \ \mbox{Q}, \ \mbox{K}, \ \mbox{A}\}$,  and $|\{X, Y, Z\}| =3$.  The final equation, about set-cardinality, is a ``cute", succinct, way of saying that $Y$ and $Z$ differ both from $X$ and from each other.
 \end{itemize}
-For both of these patterns, the analysis begins by noting that the face-value $X$ can be chosen
-in $13$ ways.  Having chosen face-value $X$, we select three of the four cards with that face-value: this choice can be made in $\displaystyle {4 \choose 3} = 4$ ways.  The $X$ component of the hand has now been selected.
+For both of these patterns, the analysis begins by noting that the face value $X$ can be chosen
+in $13$ ways.  Having chosen face value $X$, we select three of the four cards with that face value: this choice can be made in $\displaystyle {4 \choose 3} = 4$ ways.  The $X$ component of the hand has now been selected.
 
 \smallskip
 
-With the {\it full-house} pattern, we must now choose the face-value $Y$.  This can be done in $12$ ways.  The selection of the hand is completed once we select the $\displaystyle {4 \choose 2} = 6$ needed cards that have face-value $Y$.
+With the {\it full-house} pattern, we must now choose the face value $Y$.  This can be done in $12$ ways.  The selection of the hand is completed once we select the $\displaystyle {4 \choose 2} = 6$ needed cards that have face-value $Y$.
 
 \smallskip
 
 Summing up, the {\it full-house} pattern can be assembled in
 \[ 13 \cdot {4 \choose 3} \cdot 12 \cdot {4 \choose 2} \ \ = \ \  3,744 \]
 ways, so the probability of being dealt such a hand is
-\[ 
-Pr(\mbox{full house}) \ \ = \ \
-\frac{3744}{2,598960}  \ \ \approx \ \ 1.44 \times 10^{-3}
-\]
+\[ Pr(\mbox{full house}) \ \ = \ \ \frac{3,744}{2,598,960}  \ \ \approx \ \ 1.44 \times 10^{-3} \]
 
 \medskip
 
 To finish up the {\it three-of-a-kind} poker hand, we remark that once we have selected the $X$
-component of the hand, we must select the remaining cards by choosing the (distinct) face-values of $Y$ and $Z$; this can be done in $\displaystyle {12 \choose 2} = 66$ ways.  Then, for each of these choices we must select a specific card, which can be done in $4$ ways.  We thereby find that the {\it three-of-a-kind} pattern can be assembled in
+component of the hand, we must select the remaining cards by choosing the (distinct) face values of $Y$ and $Z$; this can be done in $\displaystyle {12 \choose 2} = 66$ ways.  Then, for each of these choices we must select a specific card, which can be done in four ways.  We thereby find that the {\it three-of-a-kind} pattern can be assembled in
 \[ 13 \cdot {4 \choose 3} \cdot {12 \choose 2} \cdot 4^2 \ \ = \ \  54,912 \]
 ways, so the probability of being dealt such a hand is
 \[ Pr(\mbox{three of a kind}) \ \ = \ \
@@ -875,13 +870,13 @@ The final poker hand that we consider is {\it two-pair}.  We remarked earlier in
 
 The {\it two-pair} hand in poker is a deal that is {\em a permutation of} the hand
 \[ X, \ X, \ Y, \ Y, \ Z \]
-where $X$, $Y$, $Z$, are distinct face values.
+where $X$, $Y$, $Z$ are distinct face values.
 
 \smallskip
 
-You can show ({\em in a exercise}) that the probability of receiving a two-pair hand in a fair poker deal is
+You can show ({\em in an exercise}) that the probability of receiving a two-pair hand in a fair poker deal is
 \[ Pr(\mbox{two-pair}) \ = \ \frac{123,552}{2, 598, 960} \ \approx \ 4.75  \times 10^{-2} \]
-This is a bit more than twice the probability of receiving a three-of-a-kind---which explains why the latter hands beats the current one in a poker game.
+This is a bit more than twice the probability of receiving a three-of-a-kind---which explains why the latter hand beats the current one in a poker game.
 \end{itemize}
 
 \medskip
@@ -890,8 +885,8 @@ One can find in many sources (including the Internet) tables that: enumerate all
 
 \smallskip
 
-Of course, our interest has been in exposing how to perform these calculations, not with their
-results---but it s fun to see why the various poker hands have their relative values in the game.
+Of course, our interest has been in exposing how to perform these calculations, not in their
+results---but it is fun to determine why the various poker hands have their relative values in the game.
 
 
 \subsection{The Monty Hall Puzzle: {\em Conditional} Probabilities}
@@ -903,15 +898,15 @@ The following real-life situation illustrates that reasoning probabilistically i
 
 \index{Let's Make a Deal}
 
-We recall a popular TV show from the 1970s and 1980s, \textit{Let's Make a Deal}.  In one segment of each episode of the show, a contestant was confronted by three doors: door (1), door (2), and door (3) in Fig.~\ref{fig:MonthyHal-1}.
+We recall a popular US TV show from the 1970s and 1980s, \textit{Let's Make a Deal}.  In one segment of each episode of the show, a contestant was confronted by three doors: door (1), door (2), and door (3) in Fig.~\ref{fig:MonthyHal-1}.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths/MonthyHallInitial}
-        \caption{The three doors of \textit{Let's Make a Deal}.}
+        \caption{The three doors of \textit{Let's Make a Deal}}
         \label{fig:MonthyHal-1}
 \end{center}
 \end{figure}
-The contestant was told that a jackpot was hidden behind one of the doors and that the other two doors hid less-desirable outcomes.  The show's host, Monty Hall, invited the contestant to choose one of the doors: the contestant would receive whatever prize was behind the selected door.
+The contestant was told that a jackpot was hidden behind one of the doors and that the other two doors hid less desirable outcomes.  The show's host, Monty Hall, invited the contestant to choose one of the doors: the contestant would receive whatever prize was behind the selected door.
 \index{Hall, Monty} 
 
 \smallskip
@@ -933,14 +928,14 @@ Well, the popular (well-named) newspaper columnist Marilyn vos Savant published 
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.4]{FiguresMaths/MonthyHall}
-        \caption{Suppose the jackpot is behind door (3).  If the contestant selected door (3) initially, then {\em not switching is a win}, while {\em switching is a loss}.  If the contestant selected either door (1) or door (2) initially, then {\em switching is a win}, while {\em not switching is a loss}.}
+        \caption{Suppose the jackpot is behind door (3).  If the contestant selected door (3) initially, then {\em not switching is a win}, while {\em switching is a loss}.  If the contestant selected either door (1) or door (2) initially, then {\em switching is a win}, while {\em not switching is a loss}}
         \label{fig:MonthyHall-2}
 \end{center}
 \end{figure}
 There are two possible cases.
 \begin{itemize}
 \item
-If the contestant had selected the jackpot-door initially, then holding on to this choice leads to the same probability of success as she had from the beginning, namely, $1/3$.
+If the contestant had selected the jackpot door initially, then holding on to this choice leads to the same probability of success as she had from the beginning, namely, $1/3$.
 \medskip\item
 If the contestant had selected a wrong door initially---which occurs with probability $2/3$---then she will win the jackpot if she now changes her initial (erroneous) choice.
 \end{itemize}
@@ -954,7 +949,7 @@ You can have fun by confronting your friends with this unintuitive analysis.
 
 \index{conditional probability} \index{Bayes's Theorem}
 
-Of course, the Monty Hall game and its analysis are not just a trick!  Our story is a demonstration that you can improve your chances of winning by taking advantage of all available information!  The ``science'' behind this analysis builds upon the topic of {\em conditional probability}.  Rather than looking only at the probability of an event $E$ in isolation, one focuses on the probability of event $E$, {\em given that some event $F$ has occurred}.  The {\em notation} that traditionally indicates this shift in focus is the following: If one uses the notation $Pr[E]$ to denote the probability of event $E$ in isolation, then one uses the embellishment $Pr[E \ | \ F]$ to denote, the probability of the compound event: ``$E$, given $F$''.
+Of course, the Monty Hall game and its analysis are not just a trick!  Our story is a demonstration that you can improve your chances of winning by taking advantage of all available information!  The ``science'' behind this analysis builds upon the topic of {\em conditional probability}.  Rather than looking only at the probability of an event $E$ in isolation, one focuses on the probability of event $E$, {\em given that some event $F$ has occurred}.  The {\em notation} that traditionally indicates this shift in focus is the following: If one uses the notation $Pr[E]$ to denote the probability of event $E$ in isolation, then one uses the embellishment $Pr[E \ | \ F]$ to denote the probability of the compound event: ``$E$, given $F$''.
 
 \medskip
 
@@ -966,7 +961,7 @@ We refer the interested reader to \cite{Lee12} for a general presentation of thi
 
 \smallskip
 
-And---see the interactive sites on the Internet that interactively perform the computation of (conditional) likelihoods!
+Also, the reader should see the sites on the Internet that interactively perform the computation of (conditional) likelihoods!
 
 
 \subsection{The Birthday Puzzle: {\em Complementary} Counting}
@@ -978,7 +973,7 @@ This section presents another application of the rules of enumeration to the cal
 \smallskip
 
 \noindent
-{\em it is sometimes easier to calculate the probability that event $E$ {\em does not} occur than the probability that it {\em does} occur.}  
+{\em It is sometimes easier to calculate the probability that event $E$ {\em does not} occur than the probability that it {\em does} occur.}  
 
 \smallskip
 
@@ -1048,7 +1043,7 @@ Otherwise persons \#1 and \#2 would share a birthday!
 Proceeding by similar reasoning:  We can select person \#3's birthday from only the $363$ days that the first two people have not ``occupied"; we have $362$ days available for person \#4, and so on, until person \#$n$'s birthday must be selected from among $365-(n-1)$ days.
 \end{itemize}
 Our procedure indicates that among the $365^n$ possible assignments of birthdays to $n$ people, only
-\[ 365 \times 364 \times 363 \times \cdots \times (366-n+1) \ = \ \frac{365!}{(365-n)!}  \]
+\[ 365 \times 364 \times 363 \times \cdots \times (365-n+1) \ = \ \frac{365!}{(365-n)!}  \]
 assignments have no two people sharing a birthday.
 
 \smallskip
@@ -1082,7 +1077,7 @@ is the complement of the event
 \smallskip
 
 \noindent
-the probability of a shared birthday is precisely $1-Pr(n)$.  For $n=23$, the desired probability is $0.5073$:  In other words,
+the probability of a shared birthday is precisely $1-Pr(n)$.  For $n=23$, the desired probability is $0.5073$.
 
 \begin{prop}
 In any group of $23$ people, the likelihood that two people share the same birthday is slightly greater than $50\%$, assuming a year with $365$ equally likely days.
@@ -1095,8 +1090,7 @@ When our teacher's class grows to 30 students, the probability of a shared birth
 \label{sec:three-dice}
 \index{Dice games}
 
-Archaeology suggests that games have fascinated our species since our origins.  The 
-games that have endured span a spectrum from those that depend almost entirely on thinking and strategy to those that depend on pure chance.  A number of games that have endured involve the rolling of 6-sided dice, each die\footnote{The word ``dice'' is plural; the singular form is ``die''.}~having distinct numbers (usually denoted by {\it spots}) on its six faces.  For convenience, we refer to each die's face-numbers via the numerals $1, 2, 3, 4, 5, 6$. (Ancient Egyptians played such games, as did Roman legionaries;  and such games persist in present-day casinos.)
+Archaeology suggests that games have fascinated our species since our origins.  The games that have endured span a spectrum from those that depend almost entirely on thinking and strategy to those that depend on pure chance.  A number of games that have endured involve the rolling of six-sided dice, each die\footnote{The word ``dice'' is plural; the singular form is ``die''.}~having distinct numbers (usually denoted by {\it spots}) on its six faces.  For convenience, we refer to each die's face-numbers via the numerals $1, 2, 3, 4, 5, 6$. (Ancient Egyptians played such games, as did Roman legionaries;  and such games persist in present-day casinos.)
 
 \smallskip
 
@@ -1159,7 +1153,7 @@ Under the assumption of a {\em fair} game---i.e., one in which all faces of all 
 \end{tabular}
 \end{tabular}
 \end{center}
-\caption{The possible outcomes of craps (left) and of sum-of-three (right).}
+\caption{The possible outcomes of craps (left) and of sum-of-three (right)}
 \label{fig:dice-outcomes}
 \end{figure}
 
@@ -1176,7 +1170,7 @@ Our first technique of enumeration lists the $16$ possible sums of a roll of the
 
 \smallskip
 
-The $16$ possible sums arise from the fact that dice are labeled with the integers $1, 2, 3, 4, 5, 6$, so the smallest possible sum is $3$ (which occurs when all three dice show the number $1$), and the largest possible sum is $18$ (which occurs when all three dice show the number $6$).  All possible sums are listed in Fig.~\ref{fig:dice-outcomes}(right).  The depicted table allows us to easily compute, e.g., that the probability of obtain the sum $6$ in a roll of three dice is $Pr(6) \ = \ 4/56 \ = \ 0.071\cdots$; in other words, we expect to observe this sum with just a bit more than $7\%$ of rolls.
+The $16$ possible sums arise from the fact that dice are labeled with the integers $1, 2, 3, 4, 5, 6$, so the smallest possible sum is $3$ (which occurs when all three dice show the number $1$), and the largest possible sum is $18$ (which occurs when all three dice show the number $6$).  All possible sums are listed in Fig.~\ref{fig:dice-outcomes}(right).  The depicted table allows us to easily compute, e.g., that the probability of obtaining the sum $6$ in a roll of three dice is $Pr(6) \ = \ 4/56 \ = \ 0.071\cdots$; in other words, we expect to observe this sum in just a bit more than $7\%$ of rolls.
 
 \medskip\item 
 A rather different way of enumerating sums is to partition configurations $abc$ based on the number of distinct numbers in the set $\{ a, b, c\}$.
@@ -1187,13 +1181,13 @@ At one extreme, there are six configurations in which $a = b = c$, based on the 
 In the intermediate case, either $a=b$ or $b=c$ but the third value is distinct.
   \begin{itemize}
   \item
-The situation $a=b$ can occur in $5$ ways (we must leave room for $c$).  For each way, $c$ can assume $6-a$ values (because $c$ is the biggest value).  There are, therefore, $15$ such configurations.
+The situation $a=b$ can occur in five ways (we must leave room for $c$).  For each way, $c$ can assume $6-a$ values (because $c$ is the biggest value).  There are, therefore, $15$ such configurations.
   \medskip\item
 The situation $b=c$ is the mirror image of the preceding situation, hence engenders the same number of configurations.
   \end{itemize}
 
 \medskip\item
-Finally, when $a$, $b$, and $c$ are all distinct (but appear in increasing order): $a$ can assume the values $1, 2, 3, 4$.  For each choice of $a$, $b$ can assume the values $a+1, a+2, \ldots, 5$.  And, for each choice of $b$, $c$ can assume the values $b+1, b+2, \ldots, 6$.  A simple calculation identifies $20$ configurations in which $a$, $b$, and $c$ are all distinct.
+Finally, when $a$, $b$, and $c$ are all distinct (but appear in increasing order), $a$ can assume the values $1, 2, 3, 4$.  For each choice of $a$, $b$ can assume the values $a+1, a+2, \ldots, 5$.  And, for each choice of $b$, $c$ can assume the values $b+1, b+2, \ldots, 6$.  A simple calculation identifies $20$ configurations in which $a$, $b$, and $c$ are all distinct.
 \end{itemize}
 Of course, we again identify $56$ possible configurations.
 \end{enumerate}
@@ -1240,8 +1234,8 @@ number of configurations & 1 & 3 & 6 & 10 & 15 & 21 & 25 & 27  \\
 \caption{Achieving all possible sums via {\em ordered} rolls of three dice}
 \label{fig:dice-ordered-configs}
 \end{figure}
-We leave it to the reader to verify the table in Fig.~\ref{fig:dice-ordered-configs}, which gives the number of configurations that engender each possible sum (from $3$ to $18$) in the ordered-roll version of sum-of-three.  Note that each possible sum $k$ is engendered by the same number of configurations as is sum $21- k$.  ({\em Can you figure out why?})  The total number of configurations is $6^3 = 216$; easily, this number is equal to
-\[ 2 \times (1 + 3 + 6 + 10 + 15 + 21 + 25 + 27). \]
+We leave it to the reader to verify the table in Fig.~\ref{fig:dice-ordered-configs}, which gives the number of configurations that engender each possible sum (from $3$ to $18$) in the ordered-roll version of sum-of-three.  Note that each possible sum $k$ is engendered by the same number of configurations as is sum $21- k$.  ({\em Can you figure out why?})  The total number of configurations is $6^3 = 216$; it is easy to see that this number is equal to
+\[ 2 \times (1 + 3 + 6 + 10 + 15 + 21 + 25 + 27) \]
 
 \medskip
 
@@ -1262,7 +1256,7 @@ instances of the event divided by the number of all possible instances. This app
 \index{probability!random variable} \index{sample space}
 \index{random variable} \index{random variable!sample space}
 
-Applications of probability theory often operate with sets whose elements represent the outcomes of individual trials in an experiment---think, for instance, of the deal of a single card or the roll of a single die.  The range of possible outcomes is termed a {\it sample space}; and, a variable that ranges over the frequencies of outcomes from the sample space is called a {\it random variable}.  The goal of a probabilistic analysis is to capture important elements of ``{\em the truth}'', as exposed via experiments that produce sequences of {\em outcomes}, each being an instantiation of a random variable with a value from its sample space.
+Applications of probability theory often operate with sets whose elements represent the outcomes of individual trials in an experiment---think, for instance, of the deal of a single card or the roll of a single die.  The range of possible outcomes is termed the {\it sample space}; a variable that ranges over the frequencies of outcomes from the sample space is called a {\it random variable}.  The goal of a probabilistic analysis is to capture important elements of ``{\em the truth}'', as exposed via experiments that produce sequences of {\em outcomes}, each being an instantiation of a random variable with a value from its sample space.
 
 \subsection{Probability Frequency Functions}
 \label{sec:prob-freq-fns}
@@ -1279,11 +1273,11 @@ We focus on sequences $S = \langle s_1, s_2, \ldots, s_n \rangle$ of $n$ {\it ou
 Exemplary sample spaces $\Sigma$:
   \begin{enumerate}
   \item
-Rolls of a $6$-sided die:
+Rolls of a six-sided die:
 
 $\Sigma = \{1, 2, 3, 4, 5, 6\}$ .
   \medskip\item
-The noontime temperatures observed in Grenoble, France:
+The noontime temperatures (in Celsius) observed in Grenoble, France:
 
 $\Sigma = \{ t \ | \ -10 \leq t \leq 45\}$
   \medskip\item
@@ -1292,7 +1286,7 @@ The observed diameters of $n$ roller bearings after a given run at Factory $X$:
 $\Sigma =$ the range of diameters of roller bearings.
   \end{enumerate}
 
-Another way to look at this setup is that the sample space $\Sigma$ comprises the range of values of a random variable $X$ and that the outcome-sequence $S$ announces the values that $X$ achieves during the course of the subject experiment.
+Another way to look at this setup is that the sample space $\Sigma$ comprises the range of values of a random variable $X$ and that the outcome sequence $S$ announces the values that $X$ achieves during the course of the subject experiment.
 
 \medskip
 
@@ -1311,7 +1305,7 @@ then for each $i \in \Sigma$, $f_S(i) = i$.
 
 \medskip
 
-Note that $f_S(s_1) + f_S(s_2) + \cdots + f_S(s_n) \ = \ n$.
+Note that $f_S(s_1) + f_S(s_2) + \cdots + f_S(s_m) \ = \ m$, where $|\Sigma| = m$.
 
 \medskip
 
@@ -1357,7 +1351,7 @@ each is valuable within certain domains of inquiry.
 \label{sec:mean}
 
 \index{mean} \index{arithmetic mean} \index{mean!arithmetic} \index{expected value}
-For any outcome-sequence $S$ over a sample space $\Sigma$, with associate frequency function $f_S$, the {\it arithmetic mean} of $S$ is the weighted average of $S$'s elements:
+For any outcome-sequence $S$ over a sample space $\Sigma$ with associated frequency function $f_S$, the {\it arithmetic mean} of $S$ is the weighted average of $S$'s elements:
 \[ {1 \over n} \sum_{k \in \Sigma} \ k \cdot f_S(k) \]
 This quantity is often denoted $\mbox{\sc mean}(S)$.  
 
@@ -1418,8 +1412,7 @@ The major source of discontent with the arithmetic mean as a summarization tool 
 Regarding ``denseness":
 Consider the following $2n$-element sequence $S_1$ chosen from the sample space $\Sigma_1 = \{1, 2, \ldots k\}$.
 \[ S_1 = \langle 1, 1, \ldots, 1, k, \ldots, k, k \rangle \]
-where there are $n$ occurrences of $1$ and $n$ occurrences of $k$.  One would imagine that any analysis of an 
-experimental setting that yielded the sequence $S_1$ of outcomes would {\em prominently} mention the sequence's sparseness---the fact that all outcomes are at the extremes of their range.  The arithmetic mean
+where there are $n$ occurrences of $1$ and $n$ occurrences of $k$.  One would imagine that any analysis of an experimental setting that yielded the sequence $S_1$ of outcomes would {\em prominently} mention the sequence's sparseness---the fact that all outcomes are at the extremes of their range.  The arithmetic mean
 \[  \mbox{\sc mean}(S_1) \ = \ \frac{2(k+1)n}{4n} \ = \ {k+1 \over 2} \]
 gives no information other than the ``center of gravity" of $S_1$.
 
@@ -1444,7 +1437,7 @@ Consider $n$-element sequences that share the following construction formula, wh
 \end{array}  
 \right.
 \]
-The following calculation verifies that $\mbox{\sc mean}(S_2) = 8.1$. 
+The following calculation verifies that $\mbox{\sc mean}(S_2) \approx 8.1$. 
 \begin{eqnarray*}
 \mbox{\sc mean}(S_2)
  & = & 
@@ -1491,10 +1484,10 @@ When $n$ is odd, sequence $S$ has a single midpoint:
 \smallskip
 
 \hspace*{.35in}
-$\mbox{\sc median}(S)  \ = \ s_{\lfloor n/2 \rfloor}$
+$\mbox{\sc median}(S)  \ = \ s_{\lceil n/2 \rceil}$
 
 \medskip\item
-When $n$ is even, sequence $S$ has two ``midpoints", namely, $s_{\lfloor n/2 \rfloor}$ and $s_{\lfloor n/2 \rfloor +1}$.  In this case,
+When $n$ is even, sequence $S$ has two ``midpoints", namely, $s_{n/2}$ and $s_{n/2 +1}$.  In this case,
   \begin{itemize}
   \item
 some empiricists say that $S$ has two medians:
@@ -1502,7 +1495,7 @@ some empiricists say that $S$ has two medians:
 \smallskip
 
 \hspace*{.35in}
-$\mbox{\sc median}(S)  \ = \ \langle s_{\lfloor n/2 \rfloor}, \ s_{\lfloor n/2 \rfloor +1} \rangle$
+$\mbox{\sc median}(S)  \ = \ \langle s_{n/2}, \ s_{n/2 +1} \rangle$
 
   \medskip\item
 others use interpolation to maintain the existence of a single median:
@@ -1510,7 +1503,7 @@ others use interpolation to maintain the existence of a single median:
 \smallskip
 
 \hspace*{.35in}
-$\mbox{\sc median}(S)  \ = \ {1 \over 2} \left(s_{\lfloor n/2 \rfloor} + \ s_{\lfloor n/2 \rfloor +1} \right)$
+$\mbox{\sc median}(S)  \ = \ {1 \over 2} \left(s_{n/2} + \ s_{n/2 +1} \right)$
   \end{itemize}
 \end{itemize}
 Our $31$-element sequence $S_2$, having an odd population, has a single median, namely,
@@ -1530,14 +1523,14 @@ The median appears rather often in the news media, especially in regard to skewe
 \bigskip
 
 \noindent {\sf Modes and geometric means.}
-Two other single-number ``summarizations" have garnered support in specialized communities.  We mention them just for completeness, so that the reader can consider more options when seeking useful summarizations of sequences of empirical outcomes.
+Two other single-number ``summarizations" have garnered support in specialist communities.  We mention them just for completeness, so that the reader can consider more options when seeking useful summarizations of sequences of empirical outcomes.
 
 \medskip
 
 \index{mode} \index{{\sc mode}($S$)}
 
 \noindent
-If there is a single maximum element $s \in S$, then that element is called the {\em mode} of sequence $S$ and is denoted {\sc mode}($S$).  The mode is typically said not to exist for sequences that have multiple maxima.
+If there is a single element $s \in S$ whose frequency $f_S(s)$ is the maximum among all frequencies $f_S(x)$, then that element is called the {\em mode} of sequence $S$ and is denoted {\sc mode}($S$).  The mode is typically said not to exist for sequences that have multiple maxima.
 
 \medskip
 
@@ -1570,11 +1563,7 @@ logarithms of the elements of sequence $S$.
 \index{mean!actual value $\mu$}
 \index{mean!experimental value $\bar{x}$ of random variable $x$}
 
-We have thus far discussed measures of ``midpoint" in terms of the
-sequence of outcomes of a fixed experiment.  The more common use of
-means---and of other statistical measures---in daily life involves the
-means of sequences which are unbounded (hence, often informally
-thought of as infinite): the average July rainfall in Buenos Aires, the mean time to failure of transistors produced in a given silicon foundry, the average wealth of the residents of Monaco.  Within this expanded framework, we distinguish between the {\em actual mean} of a random variable $X$, which is often denoted $\mu$, and the {\em experimental mean} of the random variable, which is usually denoted $\bar{x}$.  (Here again the identity of $X$ is usually assumed to be known from context.)
+We have thus far discussed measures of ``midpoint" in terms of the sequence of outcomes of a fixed experiment.  The more common use of means---and of other statistical measures---in daily life involves the means of sequences which are unbounded (hence, often informally thought of as infinite): the average July rainfall in Buenos Aires, the mean time to failure of transistors produced in a given silicon foundry, the average wealth of the residents of Monaco.  Within this expanded framework, we distinguish between the {\em actual mean} of a random variable $X$, which is often denoted $\mu$, and the {\em experimental mean} of the random variable, which is usually denoted $\bar{x}$.  (Here again the identity of $X$ is usually assumed to be known from context.)
 
 \index{moments in statistics}
 \index{moments in statistics!the first moment: the mean}
@@ -1589,7 +1578,7 @@ Once we distinguish between actual and experimental means, we must address the q
 The {\em first moment} of a distribution is its mean $\mu$.  The  {\em first moment} of a sequence $S$ of experimental outcomes is $\bar{x}  =  \mbox{\sc mean}(S)$.
 \medskip\item
 The {\em second moment} of a sequence $S$ of experimental outcomes is termed the {\it variance} of the sequence.   It measures the {\em distance} between the actual and experimental means of the distribution that $S$ represents:\footnote{Note that the variance and standard deviation are adaptations of the $L^2$-{\it norm} of Section~\ref{sec:Ln-norms} to the setting of probability and statistics.}
-\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{k \in S} \ (k - \bar{x})^2 \cdot f_S(x) \]
+\[  \mbox{\sc variance}(S) \ \eqdef \ {1 \over n} \sum_{k \in S} \ (k - \bar{x})^2 \cdot f_S(|k|) \]
 The preceding expression for variance can be replaced with the following streamlined expression.
 
 \begin{prop}
@@ -1636,20 +1625,13 @@ Empirical reasoning does not convey the certitude that deductive reasoning does:
 \item
 design experiments whose outcomes will supply data appropriate for studying a desired phenomenon
 \medskip\item
-learn how to analyze experimental outcomes in order to draw inferences and establish levels of confidence for these inferences.
+analyze experimental outcomes in order to draw inferences and establish levels of confidence for these inferences.
 \end{itemize}
 
 \smallskip
 
-The problem of how to {\em design} experiments is completely outside
-the scope of this text, but there are aspects of the {\em analysis} of
-experiments which do build on mathematical foundations, hence can
-legitimately be discussed here.  While there exist computational
-statistical packages that relieve one from the burden of mastering the
-mathematics that underlies much of statistics, one must acquire a {\em
-  basic} understanding of how such packages work in order to derive
-justifiable conclusions from their use.  Absent such understanding,
-one can all too easily fall prey to the pitfalls of fallacious statistical reasoning.  Here are just two such pitfalls.
+The problem of how to {\em design} experiments is completely outside the scope of this text, but there are aspects of the {\em analysis} of experiments which do build on mathematical foundations, and hence can legitimately be discussed here.  While there exist computational
+statistical packages that relieve one from the burden of mastering the mathematics that underlies much of statistics, one must acquire a {\em basic} understanding of how such packages work in order to derive justifiable conclusions from their use.  Absent such understanding, one can all too easily fall prey to the pitfalls of fallacious statistical reasoning.  Here are just two such pitfalls.
 \begin{enumerate}
 \item
 {\em Does your experiment deal with the same population as your analysis tools presume?} 
@@ -1670,16 +1652,16 @@ This section is devoted to introducing a small number of major mathematical conc
 
 \bigskip
 
-Empirical reasoning strives to draw reliable conclusions from the analysis of large corpora of (often numerical) data which has been generated by some type of experiment.  The experiments in question usually involve measuring either the outcomes of some process or instances of some natural or artificial phenomenon.
+Empirical reasoning strives to draw reliable conclusions from the analysis of large corpora of (often numerical) data which have been generated by some type of experiment.  The experiments in question usually involve measuring either the outcomes of some process or instances of some natural or artificial phenomenon.
 \begin{enumerate}
 \item
-An example of the former situation:  A student in an introductory Physics course derives an estimate of the value of Earth's gravitational force by having students repeatedly drop a ball of known mass and time the duration of the ball's fall before it hits the floor.
+An example of the former situation:  An instructor in an introductory Physics course derives an estimate of the value of Earth's gravitational force by having students repeatedly drop a ball of known mass and time the duration of the ball's fall before it hits the floor.
 
 \medskip\item
 An example of the latter situation:  An observational experiment records, over fixed periods of time, the percentage of human births in which the newborn has a specific gender.
 \end{enumerate}
 
-Our ability to derive reliable truths from mountains of observed data relies on two monumental theorems which the edifice of empirical reasoning stands on.  We approach these results by introducing conceptual tools that aggregate (outcome sequence)-(frequency function) pairs into well-behaved {\it probability distributions} which help us (approximately) expose analyzable structure within the data.  We begin our study by introducing a small number of distributions that are among the most useful to experimental researchers.
+Our ability to derive reliable truths from mountains of observed data relies on two monumental theorems on which the edifice of empirical reasoning stands.  We approach these results by introducing conceptual tools that aggregate (outcome sequence)-(frequency function) pairs into well-behaved {\it probability distributions} which help us (approximately) expose analyzable structure within the data.  We begin our study by introducing a small number of distributions that are among the most useful to experimental researchers.
 
 \subsection{Probability Distributions}
 \label{sec:prob-distr}
@@ -1690,7 +1672,7 @@ We now take an important step in the direction of abstraction, by noting that ma
 \subsubsection{The binomial distribution}
 \label{sec:binomial-distribution}
 
-Focus on an experiment that involves a sequence of repeated identical events.  (A sample event might be: (a) a single toss of a coin or (b) a single roll of a die or (c) a single roll of a pair of dice.)  Choose one or more outcomes---say: (a) {\sc heads} for the coin toss; (b) a $3$ for the roll of a single die; (c) a $7$ or $11$ for the roll of a pair of dice---to be {\em success}, while any other outcome is {\em failure}.  Our sample space $\Sigma$ is defined to be all events that are {\em successes}, so we can discuss and analyze a random variable $X$ that ranges over this space.
+Focus on an experiment that involves a sequence of repeated identical events.  (A sample event might be: (a) a single toss of a coin or (b) a single roll of a die or (c) a single roll of a pair of dice.)  Choose one or more outcomes---say: (a) {\sc heads} for the coin toss; (b) a $3$ for the roll of a single die; (c) a $7$ or $11$ for the roll of a pair of dice---to be {\em success}, while any other outcome is {\em failure}.  Our sample space $\Sigma$ is the count of the number of {\em successes}, so we can discuss and analyze a random variable $X$ that ranges over this space.
 
 \smallskip
 
@@ -1797,7 +1779,7 @@ n p (1-p)
 \smallskip
 
 \noindent
-This completes the proof. \qed
+This completes the proof.  \qed
 \end{proof}
 
 \bigskip
@@ -1806,13 +1788,13 @@ This completes the proof. \qed
 
 The binomial distribution is the discrete avatar of a {\em bell-shaped} distribution.  We observe this most easily by focusing on the probability frequency function associated with the {\em coin-tossing} game.  We focus on determining the probability of achieving exactly $k$ {\sc head}s via $n$ tosses of a fair coin.  This problem is clearly an instance of a binomial distribution with success probability $p = 1/2$; hence, it obeys the probability frequency function 
 \[ f_{n,1/2}(k) \ = \  {n \choose k} \ 2^{-n} \] 
-cf., Eq.~(\ref{eq:binomial-prob-freq}).  This simple example is a good starting point for observing the ``bell-shape" in such distributions.
+cf. Eq.~(\ref{eq:binomial-prob-freq}).  This simple example is a good starting point for observing the ``bell-shape" in such distributions.
 
 \smallskip
 
 Table~\ref{tab:select-replace} illustrates the probabilities associated with the possible numbers of {\sc head}s achieved in two instances of the coin-tossing game, namely, $n = 10$ tosses and $n= 15$ tosses.  
 \begin{table}[htb]
-\caption{Probabilities (to $3$ significant figures) associated with achieving $k$ {\sc head}s in the coin-tossing game, for $n = 10$ coin tosses and $n= 15$ coin tosses}
+\caption{Probabilities (to three significant figures) associated with achieving $k$ {\sc head}s in the coin-tossing game, for $n = 10$ coin tosses and $n= 15$ coin tosses}
 \begin{center}
 \label{tab:select-replace}
 \begin{tabular}{|c||r|l||r|l|}
@@ -1841,11 +1823,11 @@ $15$ & --       & \ --                  &          $1$ & \  $0.0000305$  \\
 \end{tabular}
 \end{center}
 \end{table}
-Fig.~\ref{fig:gaussiandistribution} is a companion to Table~\ref{tab:select-replace}, which presents histograms depicting the values of $\displaystyle {n \choose k}$, i.e., the unnormalized probabilities in the table; these values are, of course, rows $n =10$ and $n=15$ of Pascal's triangle.
+Figure~\ref{fig:gaussiandistribution} is a companion to Table~\ref{tab:select-replace} which presents histograms depicting the values of $\displaystyle {n \choose k}$, i.e., the unnormalized probabilities in the table; these values are, of course, rows $n =10$ and $n=15$ of Pascal's triangle.
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.45]{FiguresMaths/ProbaGaussianDistribution}
-        \caption{Histograms of the binomial coefficients in the $10$th row (left) and the $15$th row (right) of Pascal's triangle.  The righthand histogram has been scaled---in the proportion 1:20---in order to fit on the page.}
+        \caption{Histograms of the binomial coefficients in the $10$th row (left) and the $15$th row (right) of Pascal's triangle.  The right-hand histogram has been scaled---in the proportion 1:20---in order to fit on the page}
         \label{fig:gaussiandistribution}
 \end{center}
 \end{figure}
@@ -1865,19 +1847,12 @@ Although our focus is squarely on {\em discrete} mathematical phenomena, it is i
 
 \medskip
 
-The most familiar Bell curve probability distributions is the continuous {\em normal}, or, {\it Gaussian} distribution.  The term ``normal" here does not refer to a specific probability distribution but rather to a large family of distributions all of whose ``higher moments"---meaning all moments other than the mean and variance (or, equivalently, the standard deviation) are identically $0$.  Despite this rigorous specification, most non-statisticians identify a normal probability distribution as any one whose probability frequency function has the form
+The most familiar bell curve probability distributions is the continuous {\em normal} or {\it Gaussian} distribution.  The term ``normal" here does not refer to a specific probability distribution but rather to a large family of distributions all of whose ``higher moments"---meaning all moments other than the mean and variance (or, equivalently, the standard deviation) are identically $0$.  Despite this rigorous specification, most non-statisticians identify a normal probability distribution as any one whose probability frequency function has the form
 \[ f(x) \ = \ \frac{1}{\sqrt{2 \pi} \sigma} \ e^{\frac{(x - \mu)^2}{2 \sigma^2} } \]
-In this formula: $\mu$ is the {\it mean} of the distribution, and
-$\sigma^2$ (resp., $\sigma$) is its {\it variance} (resp., its {\it
-  standard deviation}).  In this setting, the parameters $\mu$ and
-$\sigma$ {\em specify} each individual normal distribution, which one
-can unambiguously denote $ND(\mu, \sigma)$.  Many people focus on a
-{\em standardized} normal distribution as the default, namely,
-$ND(0,1)$; this distribution has the simpler form
+In this formula $\mu$ is the {\it mean} of the distribution, and $\sigma^2$ (resp., $\sigma$) is its {\it variance} (resp., its {\it standard deviation}).  In this setting, the parameters $\mu$ and
+$\sigma$ {\em specify} each individual normal distribution, which one can unambiguously denote $ND(\mu, \sigma)$.  Many people focus on a {\em standardized} normal distribution as the default, namely $ND(0,1)$; this distribution has the simpler form
 \[ f(x) \ = \ \frac{1}{\sqrt{2 \pi}} \ e^{x^2/2} \]
-To those who focus on the standardized normal distribution, $ND(0,1)$, as the
-default, the more general familly of distributions $ND(\mu, \sigma)$,
-in the values of $\mu$ and $\sigma^2$ can be specified, is called a {\em generalized normal distribution}.  Of course, the values $\mu$ and $\sigma^2$ shift the specified Bell curve and change the slope of its ascent and descent.
+To those who focus on the standardized normal distribution, $ND(0,1)$, as the default, the more general family of distributions $ND(\mu, \sigma)$, specified by the values of $\mu$ and $\sigma^2$, is called a {\em generalized normal distribution}.  Of course, the values $\mu$ and $\sigma^2$ shift the specified bell curve and change the slope of its ascent and descent.
 
 \bigskip
 
@@ -1934,7 +1909,7 @@ Note that we do not demand any uniformity among the $X_i$ other than that they a
 
 \index{de Moivre, Abraham}
 
-There are many versions of the Central Limit Theorem, which instantiate certain details of its premise in various ways.  The earliest version seems to date to a 1738 edition of {\it The Doctrine of Chances} \cite{DeMoivre}, the first text on probability theory.  In this major work, the French mathematician Abraham de Moivre conceived a brilliant idea while observing the pattern of the various summands in Newton's binomial formula (Theorem~\ref{thm:Binomial-theorem}).  He observed that as the Theorem expands the polynomial $(x+y)^n$, one can view what is happening as an analogue of quite a different manner of ``expansion".  (Recall our call in Chapter~\ref{ch:doingmath} to look for nonobvious, sophisticated patterns throughout the world.)  De Moivre noted that one can think of the polynomial being expanded as a $2$-event system that one is observing.  Viewed this way, the variables $x$ and $y$ become disjunctive sub-events of the compound event $x+y$; and the power $n$ becomes a measure of the number of observations that one has made.  This bold intuition suggests that {\em maybe}, over sufficiently many observations, one might observe the regularity in the $2$-event system that the Binomial Theorem guarantees in the bivariate polynomial.
+There are many versions of the Central Limit Theorem, which instantiate certain details of its premise in various ways.  The earliest version seems to date to a 1738 edition of {\it The Doctrine of Chances} \cite{DeMoivre}, the first text on probability theory.  In this major work, the French mathematician Abraham de Moivre conceived a brilliant idea while observing the pattern of the various summands in Newton's binomial formula (Theorem~\ref{thm:Binomial-theorem}).  He observed that as the Theorem expands the polynomial $(x+y)^n$, one can view what is happening as an analogue of quite a different manner of ``expansion".  (Recall our call in Chapter~\ref{ch:doingmath} to look for nonobvious, sophisticated patterns throughout the world.)  De Moivre noted that one can think of the polynomial being expanded as a two-event system that one is observing.  Viewed this way, the variables $x$ and $y$ become disjunctive sub-events of the compound event $x+y$, and the power $n$ becomes a measure of the number of observations that one has made.  This bold intuition suggests that {\em maybe}, over sufficiently many observations, one might observe the regularity in the two-event system that the Binomial Theorem guarantees in the bivariate polynomial.
 
 \smallskip
 
@@ -1961,7 +1936,7 @@ In {\em discrete} settings, cumulative distributions are usually defined via sum
 
 \bigskip
 
-The computational relation of a probability frequency function $f$ to its associated cumulative distribution functions can be quite complicated.  For one probability distribution that is very important in empirical studies of manifold phenomena, this relation is very simple.  We refer here to the so-called {\em exponential distributions.}
+The computational relation of a probability frequency function $f$ to its associated cumulative distribution functions can be quite complicated.  For one probability distribution that is very important in empirical studies of many phenomena, this relation is very simple.  We refer to the so-called {\em exponential distributions.}
 
 
 \index{exponential distribution}
@@ -2008,13 +1983,13 @@ The memoryless property:  For all $x, y \geq 0$,
 \end{enumerate}
 \end{prop}
 
-Note our invocation in Part 4 of {\em conditional} probabilities; cf., Section~\ref{sec:monty-hall}: We are concerned with the probability that the random variable $X$ exceeds the quantity $x+y$ {\em given that} $X$ exceeds the quantity $y$.
+Note our invocation in Part 4 of {\em conditional} probabilities; cf.~Section~\ref{sec:monty-hall}: We are concerned with the probability that the random variable $X$ exceeds the quantity $x+y$ {\em given that} $X$ exceeds the quantity $y$.
 
 
 \subsection{A Historically Important Observational Experiment}
 \label{sec:Arbuthnot}
 
-An observational experiment that dates to the early 18th century played a historically significant role in the development of the operational methodology of the field of statistics.  The experiment arose from the curiosity of the 18th-century British polymath John Arbuthnot.
+An observational experiment that dates to the early eighteenth century played a historically significant role in the development of the operational methodology of the field of statistics.  The experiment arose from the curiosity of the British polymath John Arbuthnot.
 \index{Arbuthnot, John}
 
 \smallskip
@@ -2022,9 +1997,9 @@ An observational experiment that dates to the early 18th century played a histor
 Arbuthnot's curiosity, so the story goes, was piqued by a popular belief of the period that more boys are born than girls.  In an effort to gauge the veracity of this belief, Arbuthnot studied an archive that he had access to, which reported on births in London in the $82$-year period 1629--1710.  As reported in his 1710 paper \cite{Arbuthnot}, Arbuthnot observed results such as the following (citing figures just from the first and last years that he reported on):\footnote{London's population was growing during this period, which accounts for the roughly $50\%$ growth in the total number of births.}
 \begin{itemize}
 \item
-In 1629, male births were $52.7\%$ of the total: 5218 males versus 4683 females;
+In 1629, male births were $52.7\%$ of the total: 5,218 males versus 4,683 females;
 \medskip\item
-in 1710, male births were $51.8\%$ of the total: 7640 males versus 7288 females.
+in 1710, male births were $51.8\%$ of the total: 7,640 males versus 7,288 females.
 \end{itemize}
 In fact, to Arbuthnot's surprise, the archives exposed that male births consistently outnumbered female births throughout the $82$ years covered by the archives!
 
@@ -2039,6 +2014,8 @@ Roughly a century after Arbuthnot, the French mathematician Pierre Simon Laplace
 So \ldots \ \ Are male births actually more common than female births?
 
 \bigskip
+
+********************REWRITE HERE, MORE "QUALITATIVE"
 
 \noindent
 Arbuthnot would have responded YES to this query, based on the following reasoning, which is inspired by how one would analyze a coin-tossing experiment.  If the ``coin" is unbiased---so that the genders-of-newborns observations are reporting on a random process with two equiprobable outcomes---then we would expect to see each new birth be a male or a female with probability $1/2$.  Over the course of $82$ years, with (very roughly) $10,000$ births per year, then, the probability of seeing more boys than girls should equal $p=(1/2)^{820,000}$, which should be {\em very} close to $0$.  The fact that he observed more male births than female births over the entire period of his observations therefore convinced Arbuthnot that he was observing a true deviation from randomness---i.e., there {\em is} an actual bias toward male births!
