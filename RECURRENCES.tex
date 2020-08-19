@@ -1360,11 +1360,11 @@ f(n)
   & = &  
 2^{n-1} \cdot \left( 1 \ + \ \frac{1}{4} \ + \ \frac{1}{16}  \ + \cdots + \ \frac{1}{4^{(n-1)/2}} \right) \\
   & = & 
-\frac{1}{3} 2^{n+1} \cdot \left( 1 \ - \  \left( \frac{1}{4} \right)^{(n-3)/2} \right) \\
+ 2^{n-1} \cdot \frac{4}{3} \cdot \left( 1 \ - \  \left( \frac{1}{4} \right)^{(n+1)/2} \right) \\
+   & = & 
+\frac{ 2^{n+1} }{3} \cdot \left( 1 \ - \  \frac{1}{2^{n+1}} \right) \\
   & = & 
-\frac{1}{3} \left(2^{n+1} -  2^{(n+1) - (n-3)}\right) \\
-  & = & 
-\frac{1}{3} \cdot 2^{n+1} -  {1 \over 12}
+\frac{1}{3} \left(2^{n+1} -  \ 1 \right) \\
 \end{eqnarray*}
 
 \bigskip
@@ -1447,8 +1447,9 @@ Once we have completed the described construction of the composite object depict
 
 We immediately derive the expression for even $n$ using the definition of $g(n)$:
 \begin{eqnarray*}
-f(n) & = & 2^n \ - \ 1 \ + \ f(n-1) \ \ \ \mbox{ for } \ n \geq 2 \\
-       & = & 2^n -1 + \frac{1}{3} \left(2^{n} - 1 \right) \\
+f(n) & = & 2^n \ - \ 1 \ - \ f(n-1) \ \ \ \mbox{ for } \ n \geq 2 \\
+       & = & 2^n -1 - \frac{1}{3} \left( 2^{n} - 1 \right) \\
+       & = & 2^n \left( 1 - \frac{1}{3} \right) - 1 +  \frac{1}{3} \\
        & = &  \frac{1}{3} \left(2^{n+1} - 2 \right)
 \end{eqnarray*}
 This completes the proof.  \qed
@@ -1597,7 +1598,7 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 
 \smallskip
 
-{\Arny. I corrected embedded quotation marks in the next paragraph.  The CE seems to have some problem with the reference to ``general recurrence (\ref{eq:Lin-Recur:general}) " -- but he does not explain what his problem is.  Am I missing something?}
+%{\Arny. I corrected embedded quotation marks in the next paragraph.  The CE seems to have some problem with the reference to ``general recurrence (\ref{eq:Lin-Recur:general}) " -- but he does not explain what his problem is.  Am I missing something?}
 
 We noted in the text that ``solving the more general recurrence (\ref{eq:Lin-Recur:general}) requires only augmenting the solution to the simple recurrence (\ref{eq:Lin-Recur:basic}) by `appending' to the simple solution a geometric summation whose base is the ratio $a/b$".
 
