@@ -1,4 +1,4 @@
-%version of 07-22-20
+%version of 08-20-20
 
 \chapter{Graphs I:
 Representing Relationships Mathematically}
@@ -29,8 +29,6 @@ This chapter and the next provide the basic concepts and tools necessary to inco
 \label{sec:graphs-generic}
 \label{sec:basic-graphs}
 
-%\subsection{Connectivity-Related Concepts}
-%\label{sec:connectivity-notions}
 
 \index{graph!vertices} \index{graph!vertices} 
 \index{vertex (of a graph)}  \index{vertex (of a graph)} 
@@ -40,7 +38,7 @@ This chapter and the next provide the basic concepts and tools necessary to inco
 
 \subsection{The Basics of the World of Graphs}
 
-The basic components of a graph $\g$ are {\it vertices}---object which represent things one wants to interrelate---and {\it edges}---each edge connecting two of $\g$'s vertices.  Formally, we view and edge as a $2$-element set of $\g$'s vertices.  For each graph $\g$, we denote the set of $\g$'s vertices by $\n_{\fg}$ and the set of $\g$'s edges by $\e_{\fg}$.\footnote{We often omit the subscript ``$\g$" in notation such as ${\cal N}_{\cal G}$ or ${\cal E}_{\cal G}$ unless there is danger of ambiguity.}
+The basic components of a graph $\g$ are {\it vertices}---objects which represent things one wants to interrelate---and {\it edges}---each edge connecting two of $\g$'s vertices.  Formally, we view an edge as a two-element set of $\g$'s vertices.  For each graph $\g$, we denote the set of $\g$'s vertices by $\n_{\fg}$ and the set of $\g$'s edges by $\e_{\fg}$.\footnote{We often omit the subscript ``$\g$" in notation such as ${\cal N}_{\cal G}$ or ${\cal E}_{\cal G}$ unless there is danger of ambiguity.}
 
 \bigskip
 
@@ -68,7 +66,7 @@ A graph $\g$ is {\em bipartite} if its vertices can be partitioned into (by defi
 
 \smallskip
 
-Among the many scenarios that benefit from modeling via bipartite graphs are those in which set $X$ represents a base set---say, the members of an organization---while set $Y$ represents a collection of aggregates of elements of $X$---say, the various committees that organization members can serve on.  In the depicted scenario, and edge that connects $x \in X$ with $y \in Y$ could expose $x$'s membership on committee $Y$.  An illustrative such situation can be found in the proof of Lemma~\ref{thm:PlanarGraph-degree5}.
+Among the many scenarios that benefit from modeling via bipartite graphs are those in which set $X$ represents a base set---say, the members of an organization---while set $Y$ represents a collection of aggregates of elements of $X$---say, the various committees that organization members can serve on.  In the depicted scenario, an edge that connects $x \in X$ with $y \in Y$ could expose $x$'s membership on committee $Y$.  An illustrative such situation can be found in the proof of Lemma~\ref{thm:PlanarGraph-degree5}.
 
 \bigskip
 
@@ -103,14 +101,13 @@ Undirected graphs are usually the default concept, in the following sense: When 
 \index{path!simple} \index{graph!simple path}
 
 \noindent {\it Paths and cycles}.
-A {\em path} in an undirected graph is a {\em nonrepeating} sequence of vertices within which
-every adjacent pair is connected by an edge.  A path is {\em simple} if all of its constituent vertices are distinct.  A path is a {\em cycle} if all vertices in the sequence are distinct except for the first and last, which are identical.  
+A {\em path} in an undirected graph is a sequence of vertices within which every adjacent pair is connected by an edge.  A path is {\em simple} if all of its constituent vertices are distinct.  A path is a {\em cycle} if all vertices in the sequence are distinct except for the first and last, which are identical.  
 
 \medskip
 
 \index{graph!path in a digraph} \index{path!in a digraph}
 
-Paths and cycles in directed graphs are defined similarly, except that now every adjacent pair of vertices must be connected by an {\em arc}, and all arcs must ``point in the same direction.''
+Paths and cycles in directed graphs are defined similarly, except that now every adjacent pair of vertices must be connected by an {\em arc}, and all arcs must ``point in the same direction''.
 
 In detail: A {\it path} in a digraph $\g$ is a sequence of arcs that share adjacent endpoints, as in the following $(n-1)$-arc path in $\g$ from vertex $u_1$ to vertex $u_n$:
 \begin{equation}
@@ -121,13 +118,103 @@ The path (\ref{eq:di-path}) is often written in the more succinct form
 \[
 u_1 \ \rightarrow \ u_2 \ \rightarrow \ u_3 \ \rightarrow \cdots \rightarrow \ u_{n-2} \ \rightarrow \ u_{n-1} \ \rightarrow \ u_n
 \]
-The just-described path makes sense only when every vertex $u_i$ belongs to $\n_{\fg}$ and every one of its arcs, $(u_i \rightarrow u_{i+1})$, belongs to $\a_{\fg}$.
+The just-described path makes sense only when every vertex $u_i$ belongs to $\n_{\fg}$ and every one of its arcs $(u_i \rightarrow u_{i+1})$ belongs to $\a_{\fg}$.
 
 \index{cycle (in a digraph)}
 
-When $u_1 = u_n$, then the path (\ref{eq:di-path}) is a {\em cycle} that contains vertices $u_1, \ldots, u_{n-1}$.  Of course, a cycle has no endpoints.
+When $u_1 = u_n$, then the path (\ref{eq:di-path}) is a {\em cycle} that contains vertices $u_1, \ldots, u_{n-1}$.
+
+
+\index{graph!vertices!neighbor vertices}
+\index{neighbor vertex!in a graph} \index{graph!vertices!adjacent vertices}
+\index{adjacent vertex}
+\index{graph!vertices!degree of a vertex in an undirected graph}
+\index{graph!degree of a vertex in an undirected graph}
+\index{degree of a vertex in an undirected graph}
+
+{\Arny At the CE's suggestion, I interchanged the locality and distance subsubsections.  Please check carefully that every term is defined before it is used.  (A violation is why the CE suggested the switch.)}
+
+\subsubsection{Locality-related concepts}
+
+\begin{itemize}
+\item
+Let $\g$ be an undirected graph having vertex-set $\n$ and edge-set $\e$:   For each edge $\{u,v\} \in \e$, we say that vertices $u$ and $v$ are {\it neighbors} (in $\g$) or, equivalently, that they are {\it adjacent} (in $\g$).
+
+\smallskip
+
+The {\it degree} of vertex $u \in \n$ is the number of neighbors that $u$ has.
+
+\smallskip
+
+$\g$ is {\it regular} (or is a {\it regular graph}) if all vertices have the same degree.
+
+\medskip\item
+Let $\h$ be a directed graph having vertex-set $\n_{\fh}$ and arc-set $\a_{\fh}$:   For each arc $(u \rightarrow v) \in \a$, we say that vertex $u$ is a {\it predecessor} of $v$ (in $\h$) or, equivalently, that vertex $v$ is a {\it successor} of $u$ (in $\h$).
+
+\smallskip
+ 
+The words ``{\it source}" and ``{\it target}" sometimes replace the words ``{\it predecessor}"  and ``{\it successor}".
+
+\smallskip
+
+The {\it out-degree} of vertex $u \in \n$ is the number of successors that $u$ has.  The {\it in-degree} of vertex $v \in \n$ is the number of predecessors that $v$ has.
+
+\smallskip
+
+$\g$ is {\it in-regular} if all vertices have the same in-degree; it is {\it out-regular} if all vertices have the same out-degree.
+\end{itemize}
+
+\bigskip
+
+We can observe a few important facts that can be useful when analyzing a broad range of
+computation-related issues involving graphs (either as auxiliary notions or as subjects of discourse).
+
+\begin{prop}
+\label{thm:number-edges/arcs}
+{\bf (a)}
+An $n$-vertex digraph $\g$ has no more than $n^2$ arcs.
+
+\noindent {\bf (b)}
+An $n$-vertex undirected graph $\g$ has no more than $\displaystyle {n \choose 2}$ edges.
+\end{prop}
+
+\begin{proof}
+{\bf (a)}
+The set $\a$ of arcs of $\g$ is a subset of the set of ordered pairs of vertices of $\g$.  This latter number is clearly $n^2$, because one can choose the first vertex of a pair in $n$ ways and then
+{\em independently} choose the second vertex in $n$ ways.
 
 \medskip
+
+\noindent {\bf (b)}
+The stated quantity is the number of two-vertex subsets of $\n$.  To see this, start by listing the $n^2$ ordered pairs of vertices of $\g$.  First, eliminate from the list all $n$ pairs whose first and second elements are equal: a set of the form $\{ u,u\}$ has only one element, hence is not an edge of $\g$.  Then, for each distinct pair of vertices $u, v \in \n$, eliminate one of the two ordered pairs, $\langle u,v \rangle$ and $\langle v,u \rangle$: both of these ordered pairs lead to the same unordered doubleton set $\{ u,v\}$, hence to the same edge of $\g$.  After these eliminations, we are left with
+\[ \frac{n^2 - n}{2} \ = \ {n \choose 2} \]
+two-element subsets of $\n$, from which we choose the edges of $\g$. \qed
+\end{proof}
+
+\smallskip
+
+\begin{prop}
+\label{thm:even-num-odd-degrees}
+In any undirected graph, the number of vertices of odd degree is even.
+\end{prop}
+
+\begin{proof}
+The result follows from the following equation, which holds for any undirected graph $\g$:
+\[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot |\e_{\cal G}| \]
+
+The equation holds because each edge $e$ of $\g$ ``touches'' two vertices of $\g$, namely, $e$'s two endpoints.  Since the sum of $\g$'s vertex-degrees is even, each odd vertex-degree must be paired (in the sum) with another odd vertex-degree.  \qed
+\end{proof}
+
+\medskip
+
+\index{neighbor vertex!in a directed graph}
+\index{digraph!successor vertex}
+\index{successor vertex in a directed graph}
+\index{digraph!predecessor vertex}
+\index{predecessor vertex in a directed graph}
+
+We sometimes use the term {\it neighbor} also when speaking of a {\em directed} graph, $\g$, by using an obvious analogy to the undirected version of $\g$ (in which arcs lose their directionality).  In detail, when we say that vertices $u$ and $v$ are ``neighbors'' in the digraph $\g$, we mean that $\a_{\fg}$ contains at least one of the arcs $(u \rightarrow v)$ or $(v \rightarrow u)$.  More typically, we use terminology that is more faithful to digraph $\g$'s 
+directionality.  If $\a_{\fg}$ contains the arc $(u \rightarrow v)$, then we call $v$ a {\it (direct) successor} of $u$, and we call $u$ a {\it (direct) predecessor} of $v$.  The term {\it parent} often replaces ``predecessor vertex'', and the term {\it child} often replaces ``successor vertex'', especially when $\g$ is a directed {\em tree}.
 
 \index{distance!in a graph} \index{graph!distance} \index{graph!distance!in a graph}
 \index{distance!in a digraph} \index{digraph!distance} \index{graph!distance!in a digraph}
@@ -140,12 +227,13 @@ The {\it length} of a path or cycle in an undirected graph is the number of edge
 
 \smallskip
 
-The  {\it distance} in graph $\g$ between vertex $u_1$ and vertex $u_n$ is the length of a shortest path that connects $u_1$ with node $u_n$.  When $\g$ is a digraph, then the {\it distance} from vertex $u_1$ to vertex $u_n$ is the length of a shortest directed path that leads from $u_1$ to $u_n$.  Note that the existence of the path (\ref{eq:di-path}) in digraph $\g$ means that the distance from $u_1$ to $u_n$ is {\em no greater than} $n-1$: there could exist shorter paths in $\g$ from $u_1$ to $u_n$.
+The  {\it distance} in graph $\g$ between vertex $u_1$ and vertex $u_n$ is the length of a shortest path that connects $u_1$ with $u_n$.  When $\g$ is a digraph, then the {\it distance} from vertex $u_1$ to vertex $u_n$ is the length of a shortest directed path that leads from $u_1$ to $u_n$.  Note that the existence of the path (\ref{eq:di-path}) in digraph $\g$ means that the distance from $u_1$ to $u_n$ is {\em no greater than} $n-1$: there might exist shorter paths in $\g$ from $u_1$ to $u_n$.
 
+\smallskip
 
-\noindent {\it Distance and diameter in a digraph.}
 \index{digraph!distance between two vertices}
 
+\noindent {\it Distance and diameter in a digraph.}
 Extrapolating from our discussion of path (\ref{eq:di-path}): The {\it distance} from vertex $u_1$ to vertex $u_n$ in the digraph $\g$ is the smallest number of arcs in any path from $u_1$ to $u_n$.  In detail:
 \begin{equation}
 \label{eq:di-distance-defn}
@@ -169,13 +257,7 @@ The {\it diameter} of a directed graph $\g$ is the largest distance between two 
 \index{diameter in a graph}
 
 \noindent {\it Distance and diameter in an undirected graph.}
-It is easy to extrapolate from our discussion of {\em directed} paths
-in {\em directed} graphs, as illustrated in (\ref{eq:di-path}), to an
-anlogous notion of {\em undirected} path in an {\em undirected}
-graph.  Informally, one derives each undirected  notion by removing
-the arrowheads in from the arcs in a directed graph.  We leave details
-to the reader.  Having thus converted a directed graph into an
-undirected one, call it $\g$: The {\it distance between} vertex $u_1$ and vertex $u_n$ in $\g$ is the smallest number of edges in any path from $u_1$ to $u_n$.  In detail:
+It is easy to extrapolate from our discussion of {\em directed} paths in {\em directed} graphs, as illustrated in (\ref{eq:di-path}), to an analogous notion of {\em undirected} path in an {\em undirected} graph.  Informally, one derives each undirected  notion by removing the arrowheads in from the arcs in a directed graph.  We leave details to the reader.  Having thus converted a directed graph into an undirected one, call it $\g$: The {\it distance between} vertex $u_1$ and vertex $u_n$ in $\g$ is the smallest number of edges in any path from $u_1$ to $u_n$.  In detail:
 \begin{equation}
 \label{eq:distance-defn}
  \mbox{\sc distance}(u, v) \ \ \left\{
@@ -200,7 +282,7 @@ The {\it diameter} of an undirected graph is the largest distance between two ve
 
 \smallskip
 
-Our discussion of inter-vertex distances within graphs has focused on shortest (or longest) path problems in {\em unweighted} graphs.  A variety of important applications can be modeled via path-distance problems in graphs $\g$ each of whose edges, $\{u,v\}$, is {\em weighted} with a number that measures the cost of going between vertices $u$ and $v$ in $\g$.  Of course, when graph $\g$ is directed, then the arcs $(u \rightarrow v)$ and $(v \rightarrow u)$ can have different weights, to model situations wherein going from $u$ to $v$ is easier/cheaper than going from $v$ to $u$.  Happily, determining shortest (or longest) paths in a directed or undirected graph $\g$ can be accomplished ``efficiently''---which in the world of algorithmics means ``in a number of steps that is polynomial in the size of $\g$''.
+Our discussion of inter-vertex distances within graphs has focused on shortest (or longest) path problems in {\em unweighted} graphs.  A variety of important applications can be modeled via path-distance problems in graphs $\g$ each of whose edges $\{u,v\}$ is {\em weighted} with a number that measures the cost of going between vertices $u$ and $v$ in $\g$.  Of course, when graph $\g$ is directed, then the arcs $(u \rightarrow v)$ and $(v \rightarrow u)$ can have different weights, to model situations wherein going from $u$ to $v$ is easier/cheaper than going from $v$ to $u$.  Happily, determining shortest (or longest) paths in a directed or undirected graph $\g$ can be accomplished ``efficiently''---which in the world of algorithmics means ``in a number of steps that is polynomial in the size of $\g$''.
 \end{minipage}
 }
 
@@ -320,95 +402,6 @@ the path means that the {\it distance} \index{graph!distance}
 %\textbf{(There may exist shorter paths that connect $u$ and $v$.)}
 ***************}
 
-\index{graph!vertices!neighbor vertices}
-\index{neighbor vertex!in a graph} \index{graph!vertices!adjacent vertices}
-\index{adjacent vertex}
-\index{graph!vertices!degree of a vertex in an undirected graph}
-\index{graph!degree of a vertex in an undirected graph}
-\index{degree of a vertex in an undirected graph}
-
-\subsubsection{Locality-related concepts}
-
-\begin{itemize}
-\item
-Let $\g$ be an undirected graph having vertex-set $\n$ and edge-set $\e$:   For each edge $\{u,v\} \in \e$, we say that vertices $u$ and $v$ are {\it neighbors} (in $\g$) or, equivalently, that they are {\it adjacent} (in $\g$).
-
-\smallskip
-
-The {\it degree} of vertex $u \in \n$ is the number of neighbors that $u$ has.
-
-\smallskip
-
-$\g$ is {\it regular} (or, is a {\it regular graph}) if all vertices have the same degree.
-
-\medskip\item
-Let $\h$ be a directed graph having vertex-set $\n_{\fh}$ and arc-set $\a_{\fh}$:   For each arc $(u \rightarrow v) \in \a$, we say that vertex $u$ is a {\it predecessor} of $v$ (in $\h$) or, equivalently, that vertex $v$ is a {\it successor} of $u$ (in $\h$).
-
-\smallskip
- 
-The words ``{\it source}" and ``{\it target}" sometimes replace the words ``{\it predecessor}"  and ``{\it successor}".
-
-\smallskip
-
-The {\it outdegree} of vertex $u \in \n$ is the number of successors that $u$ has.  The {\it indegree} of vertex $v \in \n$ is the number of predecessors that $v$ has.
-
-\smallskip
-
-$\g$ is {\it in-regular} if all vertices have the same in-degree; it is {\it out-regular} if all vertices have the same out-degree.
-\end{itemize}
-
-\bigskip
-
-We can observe a few important facts that can be useful when analyzing a broad range of
-computation-related issues involving graphs (either as auxiliary notions or as subjects of discourse).
-
-\begin{prop}
-\label{thm:number-edges/arcs}
-{\bf (a)}
-An $n$-vertex digraph $\g$ has no more than $n^2$ arcs.
-
-\noindent {\bf (b)}
-An $n$-vertex undirected graph $\g$ has no more than $\displaystyle {n \choose 2}$ edges.
-\end{prop}
-
-\begin{proof}
-{\bf (a)}
-The set $\a$ of arcs of $\g$ is a subset of the set of ordered pairs of vertices of $\g$.  This latter number is clearly $n^2$, because one can choose the first vertex of a pair in $n$ ways and then
-{\em independently} choose the second vertex in $n$ ways.
-
-\medskip
-
-\noindent {\bf (b)}
-The stated quantity is the number of $2$-vertex subsets of $\n$.  To wit, start by listing the $n^2$ ordered pairs of vertices of $\g$.  First, eliminate from the list all $n$ pairs whose first and second elements are equal: a set of the form $\{ u,u\}$ has only one element, hence is not an edge of $\g$.  Then, for each distinct pair of vertices $u, v \in \n$, eliminate one of the two ordered pairs, $\langle u,v \rangle$ and $\langle v,u \rangle$: both of these ordered pairs lead to the same unordered doubleton set $\{ u,v\}$, hence to the same edge of $\g$.  After these eliminations, we are left with
-\[ \frac{n^2 - n}{2} \ = \ {n \choose 2} \]
-$2$-element subsets of $\n$, from which we choose the edges of $\g$. \qed
-\end{proof}
-
-\smallskip
-
-\begin{prop}
-\label{thm:even-num-odd-degrees}
-In any undirected graph, the number of vertices of odd degree is even.
-\end{prop}
-
-\begin{proof}
-The result follows from the following equation, which holds for any undirected graph $\g$:
-\[ \sum_{v \in {\cal N}_{\cal G}} \ \mbox{\sc degree}(v) \ = \ 2 \cdot |\e_{\cal G}| \]
-
-The equation holds because each edge $e$ of $\g$ ``touches'' two vertices of $\g$, namely, $e$'s two endpoints.  Since the sum of $\g$'s vertex-degrees is even, each odd vertex-degree must be paired (in the sum) with another odd vertex-degree.  \qed
-\end{proof}
-
-\medskip
-
-\index{neighbor vertex!in a directed graph}
-\index{digraph!successor vertex}
-\index{successor vertex in a directed graph}
-\index{digraph!predecessor vertex}
-\index{predecessor vertex in a directed graph}
-
-We sometimes use the term {\it neighbor} also when speaking of a {\em directed} graph, $\g$, by using an obvious analogy to the undirected version of $\g$ (in which arcs lose their directionality).  In detail, when we say that vertices $u$ and $v$ are ``neighbors'' in the digraph $\g$, we mean that $\a_{\fg}$ contains at least one of the arcs $(u \rightarrow v)$ or $(v \rightarrow u)$.  More typically, we use terminology that is more faithful to digraph $\g$'s 
-directionality.  If $\a_{\fg}$ contains the arc $(u \rightarrow v)$, then we call $v$ a {\it (direct) successor} of $u$, and we call $u$ a {\it (direct) predecessor} of $v$.  The term {\it parent} often replaces ``predecessor vertex'', and the term {\it child} often replaces ``successor vertex'', especially when $\g$ is a directed {\em tree}.
-
 \medskip
 
 \index{graph!vertex accessibility}
@@ -468,10 +461,10 @@ We develop the proof of Proposition~\ref{thm:2SAT-reprise} by focusing on an ins
 \nonumber
   &               & \bullet \ \ \Phi \ \ \mbox{ has $n$ logical variables}
 \end{eqnarray}
-We transform $\Phi$ into a directed graph $\g(\Phi)$ that has $2n$ vertices and $2n$ arcs.
+We transform $\Phi$ into a directed graph $\g(\Phi)$ that has $2n$ vertices and $2m$ arcs.
 \begin{itemize}
 \item
-For each logical variable, $x$: there is one vertex that represents the {\sc true} literal form, $x$, of variable $x$, and a second vertex that represents the {\sc false} literal form, $\bar{x}$, of the
+For each logical variable $x$ there is one vertex that represents the {\sc true} literal form, $x$, of variable $x$, and a second vertex that represents the {\sc false} literal form, $\bar{x}$, of the
 variable.
 \medskip\item
 Each clause $C_i = (\ell_{i,1} \vee \ell_{i,2})$ is represented by a pair of arcs.  Say that literal $\ell_{i,1}$ comes from variable $x_1$, and literal $\ell_{i,2}$ comes from variable $x_2$.  These arcs represent ``instructions'' for assigning truth-values in a way that maximizes the number of clauses that receive the value {\sc true}.
@@ -580,8 +573,7 @@ If we encounter an instance of a vertex/literal $\ell$ whose associated variable
 variable's assignment: i.e., a positive literal gets the same assignment, while a negative instance gets the negated version of the assignment.
 \end{itemize}
 
-Proceeding in this fashion, we develop a truth assignment that satisfies all of $\Phi$'s clauses.  To wit, assume for contradiction that some clause of $\Phi$, say $(\xi \vee \eta)$, is not satisfied
-under our procedure.  This means, in particular, that our assignment $t$ assigns the truth-value {\sc false} to vertex/literal $\xi$.   But, this can happen only if $t$ has assigned the truth-value {\sc true} to vertex/literal $\bar{\xi}$, within a strongly connected component of $\g(\Phi)$ whose index is higher than that of the strongly connected component that $\xi$ occurs in.  The same observation applies to vertex/literal $\eta$.   But this is impossible, because within our construction of $\g(\Phi)$, the clause $(\xi \vee \eta)$ in formula $\Phi$ would add the arc $(\bar{\xi} \rightarrow \eta)$ to graph $\g(\Phi)$.  It follows that we have found a truth assignment that satisfies formula $\Phi$, as was claimed.  \qed
+Proceeding in this fashion, we develop a truth assignment that satisfies all of $\Phi$'s clauses.  Assume for contradiction that some clause of $\Phi$, say $(\xi \vee \eta)$, is not satisfied under our procedure.  This means, in particular, that our assignment $t$ assigns the truth-value {\sc false} to vertex/literal $\xi$.   But, this can happen only if $t$ has assigned the truth-value {\sc true} to vertex/literal $\bar{\xi}$, within a strongly connected component of $\g(\Phi)$ whose index is higher than that of the strongly connected component that $\xi$ occurs in.  The same observation applies to vertex/literal $\eta$.   But this is impossible, because within our construction of $\g(\Phi)$, the clause $(\xi \vee \eta)$ in formula $\Phi$ would add the arc $(\bar{\xi} \rightarrow \eta)$ to graph $\g(\Phi)$.  It follows that we have found a truth assignment that satisfies formula $\Phi$, as was claimed.  \qed
 \end{proof}
 
 \medskip
@@ -589,12 +581,12 @@ under our procedure.  This means, in particular, that our assignment $t$ assigns
 \noindent We close with sample illustrations of Proposition~\ref{prop:2SAT}.
 \begin{enumerate}
 \item
-Fig.~\ref{2SATyes} illustrates $\g(\Phi_1)$ for the formula
+Figure~\ref{2SATyes} illustrates $\g(\Phi_1)$ for the formula
 \[ \Phi_1 \ = \ (a \vee \bar{b}) \ \wedge \ (b \vee \bar{c}) \ \wedge \ (c \vee \bar{a}) \]
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=0.25\textwidth]{FiguresGraph/2SATyes.png}
-\caption{The digraph $\g(\Phi_1)$ and its two strongly connected components.}
+\caption{The digraph $\g(\Phi_1)$ and its two strongly connected components}
 \label{2SATyes}
 \end{center}
 \end{figure}
@@ -613,19 +605,18 @@ or symmetrically
 \hspace*{.2in} $t(a) = t(b) = t(c) = \mbox{\sc false}$.
 
 \medskip\item
-Fig.~\ref{2SATno} illustrates $\g(\Phi_2)$ for the formula
+Figure~\ref{2SATno} illustrates $\g(\Phi_2)$ for the formula
 \[ \Phi_2 \ = \ (a \vee \bar{b}) \ \wedge \ (b \vee \bar{c}) \ \wedge \ (c \vee \bar{a})
  \ \wedge \ (a \vee c) \ \wedge \ (\bar{a} \vee \bar{c})
 \]
 \begin{figure}[htb]
 \begin{center}
 \includegraphics[width=0.25\textwidth]{FiguresGraph/2SATno.png}
-\caption{The digraph $\g(\Phi_2)$}. 
+\caption{The digraph $\g(\Phi_2)$} 
 % Because the graph  contains  a path from vertex $a$ to vertex $\bar{a}$,  formula  $\Phi_2$ does not admit any satisfying truth-assignment.}
 \label{2SATno}
 \end{center}
 \end{figure}
-
 Because the graph is strongly connected and contains directed paths in both directions between vertex $a$ and vertex $\bar{a}$, Proposition~\ref{prop:2SAT} assures us that formula $\Phi_2$ does not admit any satisfying truth assignment.
 \end{enumerate}
 
@@ -652,7 +643,7 @@ can be accomplished in a number of computational steps that is polynomial in the
 \subsection{Matchings in Graphs}
 \index{graph!matching}
 
-{\it Matching} are fundamental to many situations that can be modeled using graphs.  A {\it matching} in an undirected graph $\g$ is a set of edges of $\g$ that have no vertices in common.  In many computational settings, matchings are, thus, a convenient formal mechanism for pairing a graph's vertices.  The broad range of activities which can be modeled using graph matching
+{\it Matching} is fundamental to many situations that can be modeled using graphs.  A {\it matching} in an undirected graph $\g$ is a set of edges of $\g$ that have no vertices in common.  In many computational settings, matchings are, thus, a convenient formal mechanism for pairing a graph's vertices.  The broad range of activities which can be modeled using graph matching
 include: pairing competitors for a tennis tournament; helping a person select a potential spouse (which even in the vernacular is often termed ``matchmaking''); determining (near-)optimal layouts for a keyboard in language X (based on the relative ``affinities'' of various pairs of letters for one another in X); selecting persons to command the police stations in city Y (based on the
 perceived ``match'' between a candidate's qualifications and the needs of specific stations).  Even this small sampler makes it clear that there are many significant variations on this formal theme.  This section is devoted to describing, and briefly discussing, a few of the most commonly encountered versions of matching in graphs.
 
@@ -712,7 +703,7 @@ Repeat the following process until no vertices remain in the layout.
 Select the leftmost vertex, $u$, in the remaining layout of $\n$.
   \begin{itemize}
   \item
-If we succeed in finding such a neighbor of $u$ (taken from left to right)). call it vertex $v$, then add edge $\{u,v\}$ to the matching we are building.  Then, remove both $u$ and $v$ from the layout.
+If we succeed in finding such a neighbor of $u$ (taken from left to right)), call it vertex $v$, then add edge $\{u,v\}$ to the matching we are building.  Then, remove both $u$ and $v$ from the layout.
   \medskip\item
 If there is no neighbor $v$ of $u$, then remove vertex $u$ from the layout.
   \end{itemize}
@@ -721,7 +712,7 @@ Of course, the real challenge here is to find a data structure that allows an ef
 
 \medskip
 
-In contrast to maximal matchings, there exist myriad simple graphs that do not admit any perfect matching.  Contemplating, for instance, matchings within any cycle with an odd number of vertices may prepare the reader for the challenge of verifying the following necessary condition for a graph to admit a perfect matching.
+In contrast to the situation with maximal matchings, many simple graphs do not admit any perfect matching.  Contemplating, for instance, matchings within any cycle with an odd number of vertices may prepare the reader for the challenge of verifying the following necessary condition for a graph to admit a perfect matching.
 
 \begin{prop}
 \label{thm:necessary-for-perfect-matching}
@@ -740,7 +731,7 @@ $\frac{1}{2}|\n|$.
 \index{graph!maximal matching}
 
 \noindent {\it Matchings in weighted graphs}.
-The other very popular genre of matching problem focuses on graphs each of whose edges, say, $\{u,v\}$, is weighted with a number that measure the ``affinity'' of  vertices $u$ and $v$ for each other.  The challenge is to find a matching that is {\em maximal} in the sense of having a cumulative sum of edge-weights that is not exceeded by any other matching's.
+The other very popular genre of matching problem focuses on graphs each of whose edges, say $\{u,v\}$, is weighted with a number that measures the ``affinity'' of  vertices $u$ and $v$ for each other.  The challenge is to find a matching that is {\em maximal} in the sense of having a cumulative sum of edge-weights that is not exceeded by any other matching's.
 
 \smallskip
 
@@ -756,7 +747,7 @@ We note in closing that, while edge-weightings often complicate computational pr
 
 \index{graph!tree} \index{tree} \index{forest (of trees)} \index{graph!cycle-free}
 
-The special class of graphs called {\it trees} occupy a place of honor within both the mathematical field called {\it graph theory} and within the vernacular.  Trees are identified mathematically as graphs that contain no cycles (as subgraphs) or, equivalently, as graphs in which each pair of vertices is connected by a unique path: a tree is thus the embodiment of ``pure'' connectivity:  it provides the minimal interconnection structure (in number of edges) that provides paths that connect every pair of vertices; see Fig.~\ref{fig:tree}.
+The special class of graphs called {\it trees} occupy a place of honor within both the mathematical field called {\it graph theory} and within the vernacular.  Trees are identified mathematically as graphs that contain no cycles (as subgraphs) or, equivalently, as graphs in which each pair of vertices is connected by a unique path: a tree is thus the embodiment of ``pure'' connectivity:  it provides the minimal interconnection structure (in number of edges) that provides paths that connect every pair of vertices; see Fig.~\ref{fig:tree}.  As one would expect from the vernacular, a set of trees is called a {\it forest}.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/tree}
@@ -764,8 +755,7 @@ The special class of graphs called {\it trees} occupy a place of honor within bo
   \label{fig:tree}
 \end{center}
 \end{figure}
-As one would expect from the vernacular, a set of trees is called a {\it forest}. 
-
+ 
 \medskip
 
 We have asserted implicitly that our two definitions of ``tree'' define the same class of graphs.  Of course, we do not accept this on faith---we must prove it.
@@ -790,7 +780,7 @@ We leave the proof of Proposition~\ref{thm:2defns-trees} to the reader.
 
 \bigskip
 
-The following property of connected trees provides a valuable insight into myriad tree-related phenomena.  The property is a subtle  corollary of Proposition~\ref{thm:2defns-trees}.
+The following property of connected trees provides a valuable insight into many tree-related phenomena.  The property is a subtle corollary of Proposition~\ref{thm:2defns-trees}.
 
 \begin{prop}
 \label{thm:edges-vs-nodes-tree}
@@ -841,7 +831,7 @@ Consider, to extend the induction, any tree $\t$ on $k+1$ vertices.
 \smallskip
 
 By Lemma~\ref{lem:vtx-deg-connected}, $\t$ must contain at least one vertex $v$ of degree $1$.  If we remove $v$ and its (single) incident edge, we now have a tree $\t'$ on $k$ vertices.
-By induction, $\t'$ has $k-1$ edges.  When we reattach vertex $v$ to $\t'$, we restore $\t$ to its original state.  Because this restorations adds one vertex and one edge to $\t'$, we see that $\t$ has $k+1$ vertices and $k$ edges.
+By induction, $\t'$ has $k-1$ edges.  When we reattach vertex $v$ to $\t'$, we restore $\t$ to its original state.  Because this restoration adds one vertex and one edge to $\t'$, we see that $\t$ has $k+1$ vertices and $k$ edges.
 
 \smallskip
 
@@ -855,10 +845,10 @@ This extends the induction, hence completes the proof.  \qed
 \index{tree!ancestor vertex}
 \index{tree!descendant vertex}
 \index{tree!root (vertex)} \index{root (of a directed tree)} 
-\index{tree!leaf (vertex)}\index{leaf (of a directed tree)}
+\index{tree!leaf (vertex)} \index{leaf (of a directed tree)}
 
 Just as with graphs, there is a {\em directed} version of trees, which is formed by replacing
-the (nonoriented) edges of an undirected tree by (oriented) arcs; see Fig.~\ref{fig:tree}(right).  Within a directed tree $\t$, one often says that an arc goes {\em from} a {\it parent vertex} {\em to} a {\it child vertex}.  Extending this anthropomorphic metaphor, one often talks about the {\it ancestor(s)}  and {\it descendant(s)} of a tree-vertex.  We single out two special classes of vertices: A {\it root (vertex)} of $\t$ is defined by having no entering arcs, i.e., by having indegree $0$; a {\it leaf (vertex)} of $\t$ is defined by having no exiting arcs, i.e., by having outdegree $0$.
+the (nonoriented) edges of an undirected tree by (oriented) arcs; see Fig.~\ref{fig:tree}(right).  Within a directed tree $\t$, one often says that an arc goes {\em from} a {\it parent vertex} {\em to} a {\it child vertex}.  Extending this anthropomorphic metaphor, one often talks about the {\it ancestor(s)}  and {\it descendant(s)} of a tree-vertex.  We single out two special classes of vertices: A {\it root (vertex)} of $\t$ is defined by having no entering arcs, i.e., by having in-degree $0$; a {\it leaf (vertex)} of $\t$ is defined by having no exiting arcs, i.e., by having out-degree $0$.
 
 \bigskip
 
@@ -886,7 +876,13 @@ The reader is certainly familiar with the use of rooted directed trees to repres
 
 \smallskip
 
-Sociologically, the historical {\it atomic family tree} has two roots, representing the matriarch and patriarch of the family.  The entirety of the tree represents a single family generationally, before any children form their own families.  All child-vertices in this genre of tree are the roots of singly-rooted subtrees of the entire family tree.  The leaves of the tree are the childless descendants of the roots.  Note that, while we are using anthropomorphic language here, we could be discussing other genres of ``family'', as, e.g., many types of biological taxonomies.
+{\Arny Please check whether this. is intelligible}
+
+Sociologically, the historical {\it atomic family tree} has two roots, representing the matriarch and patriarch of the family.  The entirety of the tree represents a single family generationally, before any children form their own families.  When a child pairs with a partner and the pair spawns children, the family tree is expanded to accommodate the additions: each (new-partner)-plus-(old child) pair become twin roots of its own family tree, which grows from the former tree.  The leaves of any such tree tree are the childless descendants of the roots.
+
+\smallskip
+
+Note that, while we are using anthropomorphic language here, we could be discussing other genres of ``family'', such as, e.g., many types of biological taxonomies.
 \end{minipage}
 }
 
@@ -894,8 +890,8 @@ Sociologically, the historical {\it atomic family tree} has two roots, represent
 
 \index{generation of a vertex in a singly-rooted directed tree}
 
-Among rooted directed trees, an important subclass comprises those that have a {\em single root} which has a directed path to every other vertex.  The length of each such directed path is often used to label the {\it generation} of the vertex at the end of the path: root, child, grandchild,
-great-grandchild, etc.  Every vertex of the tree is the root of a singly-rooted directed subtree of the entire tree.  All subtrees that are rooted at vertices of the same generation are mutually disjoint.
+Among rooted directed trees, an important subclass comprises those that have a {\em single root}, which has a directed path to every other vertex.  The length of each such directed path is often used to label the {\it generation} of the vertex at the end of the path: root, child, grandchild,
+great-grandchild, etc.  Every vertex of the tree is the root of a singly rooted directed subtree of the entire tree.  All subtrees that are rooted at vertices of the same generation are mutually disjoint.
 
 \bigskip
 
@@ -907,7 +903,7 @@ great-grandchild, etc.  Every vertex of the tree is the root of a singly-rooted 
 
 \smallskip
 
-A singly-rooted tree represents a {\it hierarchy}.  Given two directed subtrees within a hierarchy, either the root of one of the subtrees is a descendant of the root of the other, or the two subtrees
+A singly rooted tree represents a {\it hierarchy}.  Given two distinct directed subtrees within a hierarchy, either the root of one of the subtrees is a descendant of the root of the other, or the two subtrees
 are mutually disjoint.
 \end{minipage}
 }
@@ -1056,21 +1052,21 @@ none
 One of the major uses of trees and forests is as a way of succinctly ``summarizing'' the connectivity structure inherent in an undirected graph.  This role is inherent in the notion of a {\it spanning tree} of a connected graph $\g$.  A spanning tree of $\g$ is a tree $\t(\g)$ whose vertex-set is identical to $\g$'s:
 \[ \n_{\ft(\fg)} \ = \ \n_{\fg} \]
 and all of whose edges are edges of $\g$:
-\[ \e_{\ft(\fg)} \ \subseteq \ \e_{\fg}. \]
+\[ \e_{\ft(\fg)} \ \subseteq \ \e_{\fg} \]
 Not surprisingly, a connected graph $\g$  typically has {\em many} spanning trees.  All such trees share $\g$'s vertex-set, but they may choose quite different sets of edges.
 
 \smallskip
 
 \index{graph!spanning forest} \index{spanning forest}
 
-For a graph $\g$ that is not connected, we replace the notion of spanning tree of $\g$ with the kindred notion of a {\it spanning forest}.  We discuss only spanning trees in this section, but we urge the reader to extrapolate the discussion to spanning forests of unconnected graphs.
+For a graph $\g$ that is not connected, we replace the notion of a spanning tree of $\g$ with the kindred notion of a {\it spanning forest}.  We discuss only spanning trees in this section, but we urge the reader to extrapolate the discussion to spanning forests of unconnected graphs.
 
 \smallskip
 
 \index{graph!spanning tree!edge-weighted} \index{graph!minimum-weight spanning tree}
 \index{minimum-weight spanning tree} 
 
-Within applications, as a spanning tree ``summarizes'' the connectivity structure of a graph, it does the same for any entities that the graph models, such as a map, the layout of a museum, etc.  This modeling role makes spanning trees invaluable as the basis for algorithms that involve connectivity-related notions.  To encompass an even greater range of such notions, we often {\it weight} the edges of spanning trees, in order to model a ``cost'' of incorporating that edge into the tree.  The types of computational problem modeled via edge-weighted spanning trees include: the optimal placement of firehouses, or hospitals, in a town and the optimal deployment of security mechanisms in an art museum.  Reflecting problems wherein edge-weights measure transit costs, it is a classical computational problem to seek a {\em minimum-weight spanning tree} (usually abbreviated in the vernacular to {\em minimum spanning tree}).  Happily, this classical optimization problem can be solved within a number of steps that is linear in the number of edges of $\g$ \cite{CLRS}.
+Within applications, as a spanning tree ``summarizes'' the connectivity structure of a graph, it does the same for any entities that the graph models, such as a map, the layout of a museum, etc.  This modeling role makes spanning trees invaluable as the basis for algorithms that involve connectivity-related notions.  To encompass an even greater range of such notions, we often {\it weight} the edges of spanning trees, in order to model the ``cost'' of incorporating that edge into the tree.  The types of computational problem modeled via edge-weighted spanning trees include: the optimal placement of firehouses or hospitals in a town and the optimal deployment of security mechanisms in an art museum.  Reflecting problems wherein edge-weights measure transit costs, it is a classical computational problem to seek a {\em minimum-weight spanning tree} (usually abbreviated in the vernacular to {\em minimum spanning tree}).  Happily, this classical optimization problem can be solved within a number of steps that is linear in the number of edges of $\g$ \cite{CLRS}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1078,7 +1074,7 @@ Within applications, as a spanning tree ``summarizes'' the connectivity structur
 \section{Computationally Significant ``Named'' Graphs}
 \label{sec:graphs-important-families}
 
-The area of mathematics called graph theory is an important source of formal aids for designing, analyzing, utilizing, modeling, and verifying systems that are used for computation and/or communication.  Of course, such systems are designed by humans.  Among the manifold consequences of this fact is the observation that the (families of) graphs that are among the most commonly used to model systems tend to be rather uniform in structure, in a variety of ways: Such graphs, when drawn, often exhibit a lot of structural regularity.  We single out one particularly popular form of structural regularity to watch for as we prepare to describe five families of graphs that have proven so significant as models of variety of computational and communicational processes that they are usually referred to just by their given names.  (We noted a similar phenomenon early in Chapter~\ref{ch:numerals}, as we discussed numbers such as $e$ and $\pi$ and Avogadro's number.)  The notion of regularity that we single out is so popular that it is familiarly known as just {\it ``regularity",} even though its complete name is
+The area of mathematics called graph theory is an important source of formal aids for designing, analyzing, utilizing, modeling, and verifying systems that are used for computation and/or communication.  Of course, such systems are designed by humans.  Among the manifold consequences of this fact is the observation that the (families of) graphs that are among the most commonly used to model systems tend to be rather uniform in structure, in a variety of ways: Such graphs, when drawn, often exhibit a lot of structural regularity.  We single out one particularly popular form of structural regularity to watch for as we prepare to describe five families of graphs that have proven so significant as models of a variety of computational and communicational processes that they are usually referred to just by their given names.  (We noted a similar phenomenon early in Chapter~\ref{ch:numerals}, as we discussed numbers such as $e$ and $\pi$ and Avogadro's number.)  The notion of regularity that we single out is so popular that it is familiarly known as just {\it ``regularity",} even though its complete name is
 {\it ``degree regularity"}.
 \begin{itemize}
 \item
@@ -1093,10 +1089,10 @@ A directed graph $\g$ is {\it (degree-)in-regular} if all of its vertices have t
 
 \medskip
 
-We now describe five families of regular graphs that have proven useful for understanding and implementing both computation and communication over the entire digital era, and we expose some basic properties of each.  Each of these graphs is available in both a directed and an undirected version, although, as we note, for each, one of these versions is more commonly encountered.  We have selected these specific graphs for rather different reasons.
+We now describe five families of regular graphs that have proven useful for understanding and implementing both computation and communication over the entire digital era, and we expose some basic properties of each.  Each of these graphs is available in both a directed and an undirected version, although, as we note, in each case, one of these versions is more commonly encountered.  We have selected these specific graphs for rather different reasons.
 \begin{itemize}
 \item
-The first two graphs, the {\it cycle-graph} of Section~\ref{sec:cycle} and the {\it complete graph} (or, {\it clique}) of Section~\ref{sec:clique} were selected for representing, respectively, the lowest-degree and highest-degree graphs that share two properties:
+The first two graphs, the {\it cycle-graph} of Section~\ref{sec:cycle} and the {\it complete graph} (or {\it clique}) of Section~\ref{sec:clique} were selected to represent, respectively, the lowest-degree and highest-degree graphs that share two properties:
 \begin{enumerate}
 \item
 Every vertex of each graph is accessible from every other vertex.
@@ -1114,7 +1110,7 @@ To elaborate: If someone places you on a vertex of either graph, there is no way
 This is an important feature to ponder, because it is a simple instance of the {\it anonymity} problem that plagues many modern distributed computing environments:  {\it How does one orchestrate cooperative activities when all agents are ``indistinguishable''?}
 \end{enumerate}
 \medskip\item
-The remaining graphs, the {\it mesh and torus networks}\footnote{These two structures, though distinct, are usually discussed together because they share so many important properties.}~of~\ref{sec:mesh}, the {\it hypercube network} of Section~\ref{sec:hypercube}, and the {\it de Bruijn network} of Section~\ref{sec:deBruijn}, were selected for their importance within the world of parallel and distributed computing---as abstract platforms for developing efficient computational and communicational processes, and as abstract versions of the networks that underlie parallel architectures by interconnecting its processors.
+The remaining graphs, the {\it mesh and torus networks}\footnote{These two structures, though distinct, are usually discussed together because they share so many important properties.}~of~\ref{sec:mesh}, the {\it hypercube network} of Section~\ref{sec:hypercube}, and the {\it de Bruijn network} of Section~\ref{sec:deBruijn}, were selected for their importance within the world of parallel and distributed computing---as abstract platforms for developing efficient computational and communicational processes, and as abstract versions of the networks that underlie parallel architectures by interconnecting their processors.
 
 \smallskip
 
@@ -1130,12 +1126,12 @@ Throughout this section, each parameter $n$ that identifies an instance from our
 \index{cycle graph!successor vertex} \index{cycle graph!diameter}
 
 For each positive integer $n \in \N^+$, both the {\it undirected order-$n$ cycle-graph} $\cc_n$ and the {\it directed order-$n$ cycle-graph} $\widehat{\cc}_n$  have {\it vertex-set}
-\[ \n_{{\cal C}_n} \ = \ \n_{\widehat{{\cal C}}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
+\[ \n_{{\cal C}_n} \ = \ \n_{\widehat{{\cal C}}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\} \]
 \begin{itemize}
 \item
 $\cc_n$ has $n$ edges; its {\it edge-set} is
-\[ \e_{{\cal C}_n} \ = \ \big\{ \{i, \ i+1 \bmod n\} \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}.  \]
-Fig.~\ref{fig:cycle} depicts the $8$-vertex cycle $\cc_8$.
+\[ \e_{{\cal C}_n} \ = \ \big\{ \{i, \ i+1 \bmod n\} \ \ | \ \ i \in \{0, \ 1, \ \ldots, \ n-1\} \big\}  \]
+Figure~\ref{fig:cycle} depicts the eight-vertex cycle $\cc_8$.
   \begin{itemize}
   \item
 $\cc_n$ is degree-regular: each vertex has degree $2$.
@@ -1173,7 +1169,7 @@ Of course, $n-1$ is an upper bound on the diameter of any $n$-vertex digraph.  T
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.6]{FiguresGraph/cycle}
-       \caption{The $8$-vertex cycle $\cc_8$.}
+       \caption{The eight-vertex cycle $\cc_8$}
   \label{fig:cycle}
 \end{center}
 \end{figure}
@@ -1185,11 +1181,11 @@ Of course, $n-1$ is an upper bound on the diameter of any $n$-vertex digraph.  T
 \index{complete graph!diameter}
 
 For each positive integer $n \in \N^+$, we denote by $\k_n$ the {\em undirected} order-$n$ {\it complete-graph} (or, {\it clique}), and by $\widehat{\k}_n$ the {\em directed} order-$n$ {\it complete-graph} (or, {\it clique}).  Both $\k_n$ and $\widehat{\k}_n$ have {\it vertex-set}
-\[ \n_{{\cal K}_n} \ = \ \n_{\widehat{{\cal K}}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\}. \]
+\[ \n_{{\cal K}_n} \ = \ \n_{\widehat{{\cal K}}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\} \]
 \begin{itemize}
 \item
 $\k_n$ has $\displaystyle {n \choose 2}$ edges; its {\it edge-set} is
-\[ \e_{{\cal K}_n} \ = \ \big\{ \{i, \ j\} \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\}, \ i \neq j \big\}. \]
+\[ \e_{{\cal K}_n} \ = \ \big\{ \{i, \ j\} \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\}, \ i \neq j \big\} \]
   \begin{itemize}
   \item 
 $\k_n$ is a regular network: each vertex has degree $n-1$; every vertex $i \in \n_{\fk_n}$ is a neighbor of every other vertex.
@@ -1205,7 +1201,7 @@ $\k_n$'s diameter is a direct consequence of its vertex-degrees, and vice versa.
 \medskip\item
 $\widehat{\k}_n$ has $(n-1)n$ arcs; its {\it arc-set} is
 \[ \a_{\widehat{{\cal K}}_n} \ = \ 
-\big\{ (i \rightarrow j) \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\} \big\}, \ i \neq j \]
+\big\{ (i \rightarrow j) \ \ | \ \ i,j \in \{0, \ 1, \ \ldots, \ n-1\}, \ i \neq j \big\} \]
   \begin{itemize}
   \item
 $\widehat{\k}_n$ is a regular directed network: each vertex has in-degree and out-degree $n-1$.
@@ -1220,7 +1216,7 @@ $\widehat{\k}_n$'s diameter and its (in- and out-) vertex-degrees determine one 
 
 \medskip
 
-Hearkening back to our discussion of matchings in (unweighted) graphs: The structure of the set of perfect matchings in general graphs is decidely nontrivial.  For clique-graphs, though, the structure is much easier to discuss.
+Recalling our discussion of matchings in (unweighted) graphs: The structure of the set of perfect matchings in general graphs is decidedly nontrivial.  For clique-graphs, though, the structure is much easier to discuss.
 
 \begin{prop}
 \label{thm:perfect-matchings-clique}
@@ -1250,11 +1246,11 @@ To garner intuition, we also explicitly solve the case $k=2$, which is illustrat
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.55]{FiguresGraph/perfectmatchingAll}
-       \caption{$\k_4$ (left) and its three different perfect matchings (right):  The matchings' edges are drawn, respectively, with bold lines, dashed lines, and dotted lines.}
+       \caption{$\k_4$ (left) and its three different perfect matchings (right):  The matchings' edges are drawn, respectively, with bold lines, dashed lines, and dotted lines}
   \label{fig:AllPerfectMatchings}
 \end{center}
 \end{figure}
-As the figure illustrates, $\k_4 = \k_{2 \cdot 2}$ can be viewed as a $4$-cycle (drawn with bold and dashed lines), augmented by two ``cross-edges'' (drawn with dotted lines).  Easily, then, $\k_4$ admits $3$ different perfect matchings, which can be identified (and specified) by the edge that contains the northwesterly vertex---call it $v$---in the figure.  Vertex $v$ has the choice of three vertices to ``boldly'' match with. (In the figure, $v$ has chosen the southwesterly vertex as its ``bold'' match.)  Once $v$ has chosen its match, there is only one viable choice for the second edge in the matching.  Thus, $M_2=3$.
+As the figure illustrates, $\k_4 = \k_{2 \cdot 2}$ can be viewed as a $4$-cycle (drawn with bold and dashed lines), augmented by two ``cross-edges'' (drawn with dotted lines).  It is easy to see, then, $\k_4$ admits three different perfect matchings, which can be identified (and specified) by the edge that contains the northwesterly vertex---call it $v$---in the figure.  Vertex $v$ has the choice of three vertices to ``boldly'' match with. (In the figure, $v$ has chosen the southwesterly vertex as its ``bold'' match.)  Once $v$ has chosen its match, there is only one viable choice for the second edge in the matching.  Thus, $M_2=3$.
 
 \medskip
 
@@ -1282,21 +1278,19 @@ In summary, $M_k$ grows exponentially with the parameter $k$, as claimed.  \qed
 
 \bigskip
 
-The two families of graphs we have discussed thus far---cycles and cliques---are recommended by their structural simplicity:  They epitomize, respectively, the most sparse way (the cycle) and the most dense way (the clique) to completely interconnect $n$ vertices.  The remainder of this section is devoted to three families of graphs which have been found to be very useful in computational and communicational scenarios.  These graphs' structures are simple enough to be amenable to rigorous reasoning, while being rich enough to support a broad range of procedures that have been shown to afford one access to craft algorithms that exploit the potential efficiencies---in computation and communication---that one can achieve using modern technologies.
+The two families of graphs we have discussed thus far---cycles and cliques---are recommended by their structural simplicity:  They epitomize, respectively, the most sparse way (the cycle) and the most dense way (the clique) to completely interconnect $n$ vertices.  The remainder of this section is devoted to three families of graphs which have been found to be very useful in computational and communicational scenarios.  These graphs' structures are simple enough to be amenable to rigorous reasoning, while being rich enough to support a broad range of procedures that have been shown to aid one in the crafting of algorithms that exploit the potential efficiencies---in computation and communication---that one can achieve using modern technologies.
 
 \subsection{Sibling Networks: the {\it Mesh} ($\m_{m,n}$); the {\it Torus} ($\widetilde{\m}_{m,n}$)}
 \label{sec:mesh}
 \index{mesh and torus networks}
 
-For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network} (or, {\it torus}) $\widetilde{\m}_{m,n}$ have {\it vertex-set}
+For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network} ({\it torus}, for short) $\widetilde{\m}_{m,n}$ have {\it vertex-set}
 \begin{eqnarray*}
 \n_{\fm_{m,n}} \ = \ \n_{\widetilde{\fm}_{m,n}}
   & = & 
 \{1, \ 2, \ldots, \ m\} \ \times \ \{1, \ 2, \ldots, \ n\} \\
   & = & 
-\big\{ \langle i, \ j \rangle \ \ | \ \ 
-\big[ i \in \{1, \ 2, \ldots, \ m\} \big], \ \ \big[ j \in \{1, \ 2, \ldots, \ n\} \big]
-\big\}
+\big\{ \langle i, \ j \rangle \ \ | \ \ i \in \{1, \ 2, \ldots, \ m\}, \ \  j \in \{1, \ 2, \ldots, \ n\} \big\}
 \end{eqnarray*}
 
 \begin{itemize}
@@ -1305,10 +1299,9 @@ $\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
 \begin{eqnarray*}
 \e_{\fm_{m,n}} & = & 
 \big\{
-\{ \{ i, j \}, \ \{ i+1, j \} \ \ | \ \
-1 \leq i < m, \ \ 1 \leq j \leq n \} \\
+\{ \langle i, j \rangle, \ \langle i+1, j \rangle \ \ | \ \ 1 \leq i < m, \ \ 1 \leq j \leq n \} \\
   &  & \hspace*{.1in} \cup \ \
-\{ \{ i, j \}, \ \{ i, j+1 \} \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j < n \}
+\{ \langle i, j \rangle, \ \langle i, j+1 \rangle \ \ | \ \ 1 \leq i \leq m, \ \ 1 \leq j < n \}
 \big\}
 \end{eqnarray*}
 
