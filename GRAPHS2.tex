@@ -8,12 +8,12 @@ Graphs for Computing and Communicating}
 \hfill
 \begin{tabular}{l}
 {\em Many hands make light work} \\
-\hfill {\small John Heywood (15th century English writer)}
+\hfill {\small John Heywood (sixteenth-century English writer)}
 \end{tabular}
 
 \vspace*{.5in}
 
-Chapter~\ref{ch:Graphs1} has laid the groundwork for an intensive study of the many  ways in which graphs and graph-related concepts find application within the fields of computing and communicating.  That chapter focused mainly on properties of graphs---and families of graphs---that are local and descriptive: What is the essence of a graph's being a tree? a hypercube?  The current chapter takes a further step and studies how the described local structure influences some of the dynamically applicable characteristics of graphs.  Two major foci in this chapter are {\em vertex-coloring} (Section~\ref{sec:graph-color}) and {\em path discovery} (Section~\ref{sec:path-cycle-problems}).  Both of these topics are used algorithmically in myriad applications of graphs, from circuit layout to computation scheduling to inter-agent communication scheduling.  We provide a layered presentation to both topics: We completely cover the basic aspects of both topics; we offer extended material in appendices, providing further study opportunities for the interested reader; and we provide pointers to the literature for a number of fascinating more-advanced topics.  We close the chapter with capsule discussions of several specialized topics which go beyond the scope of any introductory text.  We hope that the reader will be excited by these preliminary excursions into some of the wats that graph theory plays a role in ``real life".
+Chapter~\ref{ch:Graphs1} has laid the groundwork for an intensive study of the many  ways in which graphs and graph-related concepts find application within the fields of computing and communicating.  That chapter focused mainly on properties of graphs---and families of graphs---that are local and descriptive: What is the essence of a graph's being a tree? a hypercube?  The current chapter takes a further step and studies how the described local structure influences some of the dynamically applicable characteristics of graphs.  Two major foci in this chapter are {\em vertex-coloring} (Section~\ref{sec:graph-color}) and {\em path discovery} (Section~\ref{sec:path-cycle-problems}).  Both of these topics are used algorithmically in a broad range of applications of graphs, from circuit layout to computation scheduling to inter-agent communication scheduling.  We provide a layered presentation to both topics: We completely cover the basic aspects of both topics; we offer extended material in appendices, providing further study opportunities for the interested reader; and we provide pointers to the literature for a number of fascinating more advanced topics.  We close the chapter with capsule discussions of several specialized topics which go beyond the scope of any introductory text.  We hope that the reader will be excited by these preliminary excursions into some of the ways that graph theory plays a role in ``real life".
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -70,13 +70,13 @@ $\cdots$
 
 \medskip
 
-In a quite different setting, graph coloring can be used to represent either compatibility or incompatibility between pairs of graph vertices.  As but example: The graph-theoretic formulation in Section ~\ref{sec:graph-model-2SAT} of the 2SAT problem employs adjacencies in a graph to signal incompatible literals in a POS expression.
+In a quite different setting, graph coloring can be used to represent either compatibility or incompatibility between pairs of graph vertices.  As but one example: The graph-theoretic formulation in Section~\ref{sec:graph-model-2SAT} of the 2SAT problem employs adjacencies in a graph to signal incompatible literals in a POS expression.
 \end{minipage}
 }
 
 \bigskip
 
-Most of the ``named'' graphs in Section~\ref{sec:graphs-important-families} have quite small chromatic numbers.  This is no accident: These graphs were invented (or, at least, placed in the spotlight) because of their importance to the arena of parallel and distributed computing.  As such, vertex-colorings of these graphs are an important tool for identifying the dependencies, or the lack thereof, as one schedules the concurrent execution of the graphs' task-vertices.
+Most of the ``named'' graphs in Section~\ref{sec:graphs-important-families} have quite small chromatic numbers.  This is no accident: These graphs were invented (or, at least, placed in the spotlight) because of their importance to the field of parallel and distributed computing.  As such, vertex-colorings of these graphs are an important tool for identifying the dependencies, or the lack thereof, as one schedules the concurrent execution of the graphs' task-vertices.
 
 \smallskip
 
@@ -101,9 +101,20 @@ A graph $\g$ has chromatic number $2$ if, and only if, it is leveled.
 \begin{proof}
 Say first that $\g$ is a leveled graph.  Then labeling each vertex of $\g$ with the (odd-even) parity of its level provides a valid $2$-coloring of $\g$.
 
-\smallskip
+\medskip
 
-Say next that $\g$ is $2$-colorable.  Pick any vertex $v$ of $\g$ and assign it to be the unique vertex on level $1$.  Let all neighbors of $v$ be assigned to level $2$.  Continuing iteratively, say that the largest level-number that we have employed---i.e., assigned vertices to---is $\ell$.  Then we now assign level-number $\ell +1$ all neighbors of level-$\ell$ vertices that have not yet been assigned to a level of $\g$.  Because $\g$ is $2$-colorable, each of the levels we have specified is monochromatic, so that each edge of $\g$ connects a vertex of one color with a vertex of the other color.  \qed
+{\Arny Looking behind the CE's comments, I have rewritten the next paragraph.  Reactions?}
+
+Say next that $\g$ is $2$-colorable.  Pick any vertex $v_0$ of $\g$ and assign it to be the unique vertex on level $1$.  Next, assign all neighbors of $v_0$ to level $2$.  Continuing iteratively, say that the largest level-number that we have employed---i.e., assigned vertices to---is $\ell$.  Then we now assign to level $\ell +1$ all neighbors of level-$\ell$ vertices that have not yet been assigned to a level.  Because $\g$ is $2$-colorable, this process colors every vertex of $\g$.  Moreover, for each vertex $v$ of $\g$:
+\begin{itemize}
+\item
+Vertex $v$ is assigned a single color.
+\item
+If the shortest path from $v$ to vertex $v_0$ has length $\ell$, then $v$ is assigned to level $\ell+1$.
+\item
+Each neighbor of level-($\ell+1$) vertex $v$ is assigned to level $\ell$ or level $\ell+2$, as required.
+\end{itemize}
+Thus, if we color each vertex $v$ of $\g$ by the parity of its assigned level each edge of $\g$ connects a vertex of one color with a vertex of the other color.  \qed
 \end{proof}
 
 We can now show that the following named graphs are $2$-colorable.
@@ -130,8 +141,7 @@ every mesh-graph $\m_{m,n}$
 \smallskip
 
 {\bf (d)}
-every torus-graph $\widetilde{\m}_{m,n}$ with even $m+n$, i.e., evenly many diagonals
-
+every torus-graph $\widetilde{\m}_{m,n}$ with $m$ and $n$ both even
 \smallskip
 
 {\bf (e)}
@@ -150,7 +160,7 @@ assigned to a level of $\t$.
 
 \smallskip
 
-Of course this process can be simplified when $\t$ is a path-graph $\p$, by choosing one of $\p$'s end-vertices as vertex $v$.  We thereby have precisely one vertex on each level.  (Starting with an internal vertex would create some levels with $2$ vertices.)  A lesson here is that {\em a graph may admit distinct level structures}.
+Of course this process can be simplified when $\t$ is a path-graph $\p$, by choosing one of $\p$'s end vertices as vertex $v$.  We thereby have precisely one vertex on each level.  (Starting with an internal vertex would create some levels with two vertices.)  A lesson here is that {\em a graph may admit distinct level structures}.
 
 \medskip
 
@@ -165,7 +175,7 @@ The edge-structure of mesh-graphs ensures that the labeling of each vertex $\lan
 \medskip
 
 \noindent {\bf (d)}
-The labeling in part (d) provides a $2$-coloring of any torus-graph $\widetilde{\m}_{m,n}$ with even $m+n$.
+The labeling in part (d) provides a $2$-coloring of any torus-graph $\widetilde{\m}_{m,n}$ with $m$ and $n$ both even.
 
 \medskip
 
@@ -184,7 +194,9 @@ The preceding explanations complete the proof. \qed
 
 A simple argument verifies that no odd-length cycle $\cc_{2q+1}$ with $q \geq 1$ is $2$-colorable.  One can craft such an argument by trying to $2$-color such a cycle.  One can then extend this argument to prove that no graph $\g$ that {\em contains} an odd-length cycle (as a subgraph) can be $2$-colored.
 
-{\em This is an example of an {\em excluded subgraph} condition:}  Containing odd-length cycles is the feature that prevents $2$-colorings of many graphs, including the torus $\widetilde{\m}_{m,n}$ when $m+n$ is odd and all de Bruijn networks.
+\smallskip
+
+{\em This is an example of an {\em excluded subgraph} condition:}  Containing odd-length cycles is the feature that prevents $2$-colorings of many graphs, including all de Bruijn networks and all torus-networks $\widetilde{\m}_{m,n}$ having odd $m$ or $n$.
 
 \index{excluded subgraph}
 
@@ -194,7 +206,7 @@ Let us focus momentarily on de Bruijn networks because they have quite interesti
 \[ 00 \ \rightarrow \ 01 \ \rightarrow \ 10  \rightarrow \ 00 \]
 in $\d_2$ in Fig.~\ref{fig:dB2by2} and the $3$-cycle
 \[ 001 \ \rightarrow \ 010 \ \rightarrow \ 100 \ \rightarrow \ 001 \]
-in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length cycles are only the proverbial tip of the proverbial iceberg for de Bruijn networks.  In fact, de Bruijn networks are {\it directed-pancyclic}, in the sense of the following result from \cite{Yoeli62}.
+in $\d_3$ in Fig.~\ref{fig:dB2by3}.  In fact, these small odd-length cycles are only the proverbial tip of the iceberg for de Bruijn networks.  In fact, de Bruijn networks are {\it directed-pancyclic}, in the sense of the following result from \cite{Yoeli62}.
 
 \index{graph!pancyclic} \index{de Bruijn graph/network!pancyclicity} 
 
@@ -238,7 +250,7 @@ We refer the reader to the revolutionary 1979 text by Mead and Conway \cite{Mead
 \index{outerplanar graph}
 
 \noindent
-A graph is {\it planar} precisely if it can be drawn {\em without any crossing edges}.  A graph $\g$ is {\it outerplanar} precisely if it can be drawn by {\em placing its vertices along a circle in such a way that its edges can be drawn as non-crossing chords of the circle}.  The latter condition is
+A graph is {\it planar} precisely if it can be drawn {\em without any crossing edges}.  A graph $\g$ is {\it outerplanar} precisely if it can be drawn by {\em placing its vertices along a circle in such a way that its edges can be drawn as noncrossing chords of the circle}.  The latter condition is
 equivalent to demanding that $\g$'s edges can be drawn within the circle without any crossings.
 
 \smallskip
@@ -257,17 +269,21 @@ $\k_5$ is not planar.
   \end{itemize}
 
 \medskip\item
-The {\em bipartite} cousins of the cliques also provide valuable insights.  For positive integers $m$ and $n$, the $m \times n$ bipartite clique $\k_{m,n}$ is the graph whose vertex-set comprises the ordered pairs of integers:
+The {\em bipartite} cousins of the cliques also provide valuable insights.  For positive integers $m$ and $n$, the $m \times n$ {\em biclique} (or {\em bipartite clique}) $\k_{m,n}$ is the graph whose vertex-set comprises the ordered pairs of integers:
 \[  \n_{\fk_{m,n}} \ = \
-\{ \langle i,j \rangle \ \ | \ \ 1 \leq i \leq m; \ \ 1 \leq j \leq n\}
+\big\{ \langle i,0\rangle \ \ | \ \  i \in \{1,2, \ldots, m \}  \big\}
+\ \cup \
+\big\{ \langle j,1 \rangle \ \ | \ \  j \in \{1,2, \ldots, n  \} \big\}
 \]
-and whose edges connect each vertex $\langle i,j \rangle$ to every vertex $\langle i,k \rangle$ where $1 \leq k \leq n$ and to every vertex $\langle h,j \rangle$ where $1 \leq h \leq m$.
+and whose edges connect each vertex $\langle i,0 \rangle$ with each vertex $\langle j,1 \rangle$ where $1 \leq i \leq m$ and $1 \leq j \leq n$.
 
 \index{bipartite clique}
+\index{biclique: bipartite clique}
+\index{clique!bipartite} \index{clique!biclique}
 
 \smallskip
 
-The second set of graphs to draw are the bipartite cliques $\k_{1,3}$, $\k_{2,3}$, and $\k_{3,3}$.  These graphs will also help expose the nature of the planar and outerplanar graphs, because:
+The second set of graphs to draw are the bicliques $\k_{1,3}$, $\k_{2,3}$, and $\k_{3,3}$.  These graphs will also help expose the nature of the planar and outerplanar graphs, because:
   \begin{itemize}
   \item
 $\k_{1,3}$ is outerplanar; 
@@ -284,7 +300,7 @@ $\k_{3,3}$ is not planar.
 \index{forbidden subgraph!characterization of outerplanar graphs}
 \index{graph!homeomorphism} \index{graph!homeomorph}
 
-We selected the preceding cliques and bipartite cliques to ``play with'' very carefully.  Using arguments that go beyond the scope of an introductory text, one can prove the following result, which characterizes each of our graph families by identifying {\it forbidden subgraphs}.   The notion of {\it graph homeomorphism} plays a fundamental role in the characterization.
+We selected the preceding cliques and bicliques to ``play with'' very carefully.  Using arguments that go beyond the scope of an introductory text, one can prove the following result, which characterizes each of our graph families by identifying {\it forbidden subgraphs}.   The notion of {\it graph homeomorphism} plays a fundamental role in the characterization.
 
 \smallskip
 
@@ -299,7 +315,7 @@ vertices along one or more edges of $\g$.
 \index{Kuratowski, Kazimierz}
 
 \noindent
-The characterization of planar graphs via forbidden subgraphs constitutes a celebrated theorem by the Polish mathematician and logician Kazimierz Kuratowski; the analogous result for outerplanar graphs was derived by the French mathematician Gary Chartrand and the American mathematician Frank Harary (who invented the name ``outerplanar", for reasons described in Section~\ref{sec:planar-graphs}).
+The characterization of planar graphs via forbidden subgraphs constitutes a celebrated theorem by the Polish mathematician and logician Kazimierz Kuratowski; the analogous result for outerplanar graphs was derived by the American mathematicians Gary Chartrand and Frank Harary (who invented the name ``outerplanar", for reasons described in Section~\ref{sec:planar-graphs}).
 
 \index{Chartrand, Gary} \index{Harary, Frank}
  
