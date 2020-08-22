@@ -1426,41 +1426,42 @@ Eq.~(\ref{eq:upper-integral-xc}) into a more convenient form.  We begin by multi
 \nonumber
   & = &
 \frac{1}{c+1} \cdot (n+1) \cdot n^c \cdot \left( \frac{n+1}{n} \right)^c  \ + \ \overline{\kappa} \\
-%\label{eq:useVALUEe}
 \nonumber
  & = &
 \frac{1}{c+1} \cdot n^{c+1} \cdot  \left( 1 \ + \frac{1}{n} \right) \cdot \left( 1 \ + \frac{1}{n} \right)^c
 \ + \ \overline{\kappa} \\
 \nonumber
   & = &
-\frac{1}{c+1} \cdot n^{c+1} \cdot \left( 1 \ + \frac{1}{n} \right)^{c+1}
-\ + \ \overline{\kappa} \\
-\nonumber
+\frac{1}{c+1} \cdot n^{c+1} \cdot \left( 1 \ + \frac{1}{n} \right)^{c+1} \ + \ \overline{\kappa} \\
+\label{eq:useVALUEe}
+  & < & 
+\frac{e}{c+1} \cdot n^{c+1} \ + \ \kappa
 \end{eqnarray}
+where $e = 2.71828\cdots$ is Euler's constant and $\kappa$ is a real number.  The only step in this derivation that is not pure algebraic manipulation is the one that yields inequality (\ref{eq:useVALUEe}).  This step invokes the following classical result from the calculus.
 
-%The lemma we invoke from calculus gives us inequality~(\ref{eq:useVALUEe}), which tells us how to ``sneak up on"  Euler's constant $e = 2.71828\ldots$.
-%
-%\begin{lemma}
-%\label{thm:Limit4e}
-%For all positive $n$, $(1 \ + \ 1/n) \ \leq \ e$.
-%\end{lemma}
+\begin{lemma}
+\label{thm:Limit4e}
+For all positive $n$, $(1 \ + \ 1/n)^n \ \leq \ e$.
+\end{lemma}
 
-\begin{eqnarray}
-\nonumber
-\overline{C}_c(n) & \leq &
-\frac{1}{c+1} \cdot n^{c+1} \ + \ \kappa n^c \ \ \ \ \ \mbox{ for some } \kappa \geq 0
-\end{eqnarray}
+%\begin{eqnarray}
+%\nonumber
+%\overline{C}_c(n) & \leq &
+%\frac{1}{c+1} \cdot n^{c+1} \ + \ \kappa n^c \ \ \ \ \ \mbox{ for some } \kappa \geq 0
+%\end{eqnarray}
 
+\smallskip
 
 We finally have our two-sided bound on $S_c(n)$:
 
 \begin{prop}
+\label{thm:bounds-sum-xc}
 There exist constants $\underline{\kappa}$ and $\kappa$ which do not depend on $n$---although they could depend on $c$---such that, for all sufficiently large $n$:
 \begin{equation}
 \label{eq:bounds-sum-xc}
 \frac{1}{c+1} n^{c+1} \ + \ \underline{\kappa}
   \ \ \leq \ \ S_c(n)
-  \ \ \leq \ \ \frac{1}{c+1} n^{c+1} \ + \ \kappa n^c
+  \ \ \leq \ \ \frac{e}{c+1} n^{c+1} \ + \ \kappa
 \end{equation}
 \end{prop}
 
@@ -1477,6 +1478,22 @@ The main message here is that when one views each $S_c(n)$ as a function of $n$:
 
 \subsubsection{Nonnegative integer $c$th powers}
 \label{sec:positive-integer-power}
+
+When $c$ is a nonnegative integer, we can strengthen Proposition~\ref{thm:bounds-sum-xc}.
+
+\begin{prop}
+\label{thm:bounds-sum-xc-INTEGER}
+There exist constants $\underline{\kappa}$ and $\kappa$ which do not depend on $n$---although they could depend on $c$---such that, for all sufficiently large $n$:
+\begin{equation}
+\label{eq:bounds-sum-xc-INTEGER}
+\frac{1}{c+1} n^{c+1} \ + \ \underline{\kappa}
+  \ \ \leq \ \ S_c(n)
+  \ \ \leq \ \ \frac{1}{c+1} n^{c+1} \ + \ \kappa n^c
+\end{equation}
+\end{prop}
+
+The upper bound in the inequality-pair (\ref{eq:bounds-sum-xc-INTEGER}) follows from a restricted version of Newton's celebrated Binomial Theorem.
+
 
 \paragraph{A. A better bound via the Binomial Theorem}
 
@@ -1495,14 +1512,14 @@ For all positive integers $k$,
 We improve our upper bound on $S_c(n)$ by paralleling the reasoning that led us to the relation (\ref{eq:upper-integral-xc}).  Our improved bound emerges also by evaluating the integral that
 yields the area $\overline{C}_c(n)$ under the continuous curve that passes through the upper left-hand corners of the unit-width rectangles specified by the summation $S_c(n)$.  For sufficiently large $n$:
 \begin{eqnarray}
-\label{eq:upper-integral-xk}
+\nonumber
 \overline{C}_c(n) \ = \
 \int_0^n \ (x+1)^c {\rm d}x & = &
 \int_0^n \ \left(\sum_{i=0}^c \ \ {c \choose i} x^{c-i} \right) {\rm d}x \\
 \nonumber
 & = &
 \sum_{i=0}^c \left( \int_0^n \  {c \choose i} x^{c-i} \right) {\rm d}x \\
-\nonumber
+\label{eq:upper-integral-xk}
   & = &
 \sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \overline{\kappa}
 \end{eqnarray}
@@ -1510,15 +1527,15 @@ where $\overline{\kappa}$ is our now-familiar unspecified fixed constant.  This 
 
 \smallskip
 
-Using this strategy, we find that for any positive integer $c$, summation $S_c(n)$ enjoys the following two-sided bound. For sufficiently large $n$:
-\begin{equation}
+We now have access to the upper bound of (\ref{eq:bounds-sum-xc-INTEGER}), hence to Proposition~\ref{eq:bounds-sum-xc-INTEGER}, by exploiting the fact that the right-hand expression in Eq.~\ref{eq:restricted-binomial-thm} has $k+1$ terms.  Therefore, for sufficiently large $n$:
+\begin{eqnarray}
+\nonumber
+\sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1}
+  & = & 
+\frac{1}{c+1} n^{c+1} \ + \ \sum_{i=1}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \\
 \label{eq:bounds-sum-xk}
-\frac{1}{c+1} n^{c+1} \ + \ \overline{\kappa}
-  \ \ \leq \ \ \sum_{i=1}^n \ i^c
-  \ \ \leq \ \ 
-\sum_{i=0}^c \ \ \frac{1}{c-i+1} {c \choose i} n^{c-i+1} \ + \ \underline{\kappa}
-\end{equation}
-where $\overline{\kappa}$ and $\underline{\kappa}$ are fixed constants.
+  & \leq & c \cdot {c \choose \lceil c/2 \rceil} n^c
+\end{eqnarray}
 
 \smallskip
 
