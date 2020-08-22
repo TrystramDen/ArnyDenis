@@ -1,6 +1,6 @@
 %version of 08-22-20
 
-\chapter{$\oplus$ Pointers to Applied Topics on Graphs}
+\chapter{$\oplus$ Pointers to Applied Studies of Graphs}
 \label{ch:advanced-topics}
 
 This chapter introduces four graph-related topics that are typically not covered---at least in depth---early in the curriculum, but that are important enough that the reader should at least be aware of them.  The topics we choose are motivated by studies in virtually every computational area that benefits from graph-theoretic models.  We have tried to present each topic at a level of discourse that will prepare the interested reader to delve more deeply into the material, yet at a level of informality that will make the material accessible to the more casual reader.  We thus strive for an intuitive presentation that will not lead any reader astray.
@@ -9,7 +9,7 @@ This chapter introduces four graph-related topics that are typically not covered
 
 \begin{itemize}
 \item
-Section~\ref{sec:graph-decompose} focuses on the myriad computations on graphs that can be accomplished efficiently via recursive algorithms that (1) decompose an input graph $\g$; (2) process the resulting subgraphs of $\g$; (3) reassemble the processed graphs.
+Section~\ref{sec:graph-decompose} focuses on the many computations on graphs that can be accomplished efficiently via recursive algorithms that (1) decompose an input graph $\g$; (2) process the resulting subgraphs of $\g$; (3) reassemble the processed graphs.
 
 \index{graph!graph separators} \index{graph!graph decomposition}
 
@@ -24,7 +24,7 @@ Section~\ref{sec:hypergraphs} introduces {\it hypergraphs}---generalized graphs 
   \item
 {\it social networks:} Hyperedges describe, e.g., collaboration and collusion.
   \medskip\item
-{\it electronic networks:} Hyperedges enable the design of equi-potential vertices in 
+{\it electronic networks:} Hyperedges enable the design of equipotential vertices in 
 voltage-driven technologies such as {\it VLSI}.
   \medskip\item
 {\it communication networks:} Hyperedges model bus-oriented communication.
@@ -33,7 +33,7 @@ voltage-driven technologies such as {\it VLSI}.
 \index{hypergraph} \index{graph!hypergraph} \index{VLSI} \index{bus-oriented communication}
 
 \medskip\item
-Section~\ref{sec:multigraphs} introduces {\it multigraphs}---generalized graphs that allow multiple edges between each pair of vertices.  In contrast to other advanced topics, multigraphs are used more {\em internally}, as an algorithmic device, than {\em externally}, as an abstract model of ``real'' structures.  E.g., using multigraphs to replace integer-weighted edges with multiple unweighted edges with the same endpoints can trigger algorithmic ideas.
+Section~\ref{sec:multigraphs} introduces {\it multigraphs}---generalized graphs that allow multiple edges between each pair of vertices.  In contrast to other advanced topics, multigraphs are used more {\em internally}, as an algorithmic device, than {\em externally}, as an abstract model of ``real'' structures.  For example, using multigraphs to replace integer-weighted edges with multiple unweighted edges with the same endpoints can trigger algorithmic ideas.
 
 \index{graph!multigraphs} \index{multigraphs}
 \end{itemize}
@@ -50,8 +50,7 @@ Section~\ref{sec:multigraphs} introduces {\it multigraphs}---generalized graphs 
 \smallskip
 
 %F.~Annexstein, M.~Baumslag, A.L.~Rosenberg (1990): Group action graphs and parallel architectures.  {\it SIAM J.~Comput.~19}, 544--569.
-
-\smallskip
+%\smallskip
 
 C.E.~Leiserson (1985): Fat-trees: Universal networks for hardware-efficient supercomputing.
 {\it IEEE Trans.~on Computers, C-34}(10), 892--201.
@@ -74,10 +73,10 @@ J.D.~Ullman (1984): {\it Computational Aspects of VLSI.}. Computer Science Press
 \bigskip
 
 \noindent
-The reader will certainly have noted that some ``named'' graphs are, intuitively, more tightly interconnected than others---with the cycle and clique being the antipodal examples.  Even from a purely intellectual vantage point---and all the more so from an algorithmic vantage point---it would be of interest to be able to quantify the tightness of a graph's interconnectedness.  Among  the various measures that have been proposed for this task, one stands out for its myriad algorithmic implications: the notion of {\it graph separator}.  In fact, this notion appears in the literature in several flavors.  An $n$-vertex, $e$-edge graph $\g$ has:
+The reader will certainly have noted that some ``named'' graphs are, intuitively, more tightly interconnected than others---with the cycle and clique being the antipodal examples.  Even from a purely intellectual vantage point---and all the more so from an algorithmic vantage point---it would be of interest to be able to quantify the tightness of a graph's interconnectedness.  Among  the various measures that have been proposed for this task, one stands out for its broad range of algorithmic implications: the notion of {\it graph separator}.  In fact, this notion appears in the literature in several flavors.  An $n$-vertex, $e$-edge graph $\g$ has:
 \begin{itemize}
 \item
-an {\it $\alpha$-edge separator} of size $k$---where $\alpha$ is a real number with $\alpha \leq 1/2$  and $k$ is an integer with $k < n$---precisely if:
+an {\it $\alpha$-edge separator} of size $k$---where $\alpha$ is a real number and $k$ is an integer with $k < e$---precisely if:
 
 \index{graph!$\alpha$-edge separator of size $k$}
 
@@ -87,7 +86,7 @@ one can partition $\g$ into two disjoint (not-necessarily connected) subgraphs, 
 $\leq \alpha n$ vertices, by removing $\leq k$ edges from $\g$.
 
 \medskip\item
-a {\it $\alpha$-vertex separator} of size $\ell$, where $\alpha$ is a real number with  $\alpha \leq 1/2$ and $\ell$ is an integer with $k < e$, precisely if:
+an {\it $\alpha$-vertex separator} of size $\ell$, where $\alpha$ is a real number and $\ell$ is an integer with $k < n$, precisely if:
 
 \index{graph!$\alpha$-vertex separator of size $\ell$}
 
@@ -112,11 +111,11 @@ It is far less clear that de Bruijn networks and hypercubes are roughly equal in
 
 \smallskip
 
-Similarity in separation behavior often has very important algorithmic consequences.  For instance, the closeness in separation characteristics between de Bruijn networks and hypercubes manifests itself in a large range of algorithmic applications.  The range of such applications is hinted at by sources that study the algorithmics of laying out VLSI circuits (cf., [Leiserson, 1985]) and sources that study the ability of a network's interconnections to host a range of communication patterns that enable efficient parallel computation and communication (cf.~\cite{AnnexsteinBR90}, [Leiserson, 1985], and [Ullman, 1984]).
+Similarity in separation behavior often has very important algorithmic consequences.  For instance, the closeness in separation characteristics between de Bruijn networks and hypercubes manifests itself in a large range of algorithmic applications.  The range of such applications is hinted at by sources that study the algorithmics of laying out VLSI circuits (cf. [Leiserson, 1985]) and sources that study the ability of a network's interconnections to host a range of communication patterns that enable efficient parallel computation and communication (cf.~\cite{AnnexsteinBR90}, [Leiserson, 1985], and [Ullman, 1984]).
 
 \medskip
 
-There is a large literature that develops the algorithmics of finding small separators for computationally significant families of graphs.  An early star in the firmament of such studies is the discovery in [Lipton, Tarjan, 1979] of a $1/3$-vertex separator of size $\sqrt{8n}$ for $n$-vertex planar graphs.  The dual problem of finding lower bounds on the sizes of graph separators is a bit sparser but, of course, no less significant.  The reader can find a comprehensive exposition of the theory of graph separators in [Rosenberg, Heath, 2001], including both the mathematics that yields lower bounds on separator sizes and the algorithmics that yields upper bounds.
+There is a large literature that develops the algorithmics of finding small separators for computationally significant families of graphs.  An early star in the firmament of such studies is the discovery in [Lipton, Tarjan, 1979] of a $2/3$-vertex separator of size $\sqrt{8n}$ for $n$-vertex planar graphs.  The dual problem of finding lower bounds on the sizes of graph separators is more sparsely studied but, of course, no less significant.  The reader can find a comprehensive exposition of the theory of graph separators in [Rosenberg, Heath, 2001], including both the mathematics that yields lower bounds on separator sizes and the algorithmics that yields upper bounds.
 
 
 \section{Graphs Having Evolving Structure}
@@ -132,7 +131,7 @@ W.~Aiello, F.R.K.~Chung, L.~Lu (2000): A random graph model for massive graphs. 
 
 \smallskip
 
-A.L.~Barab\'{a}si, R.~Albert (1999): Emergence of scaling in random networks.  {\it Science (286)}, 509--512.
+A.-L.~Barab\'{a}si, R.~Albert (1999): Emergence of scaling in random networks.  {\it Science (286)}, 509--512.
 
 \smallskip
 
@@ -162,7 +161,7 @@ Network topology generators: Degree-based vs. structural.  {\it ACM SIGCOMM'02}.
 
 \smallskip
 
-E.~Zegura, K.L.~Calvert, M.J.~Donohoo (1997): A quantitative comparison of graph-based models for internetworks.  {\it IEEE/ACM Trans.~on Networking, 5}(6), 770--783.
+E.~Zegura, K.L.~Calvert, M.J.~Donahoo (1997): A quantitative comparison of graph-based models for internetworks.  {\it IEEE/ACM Trans.~on Networking, 5}(6), 770--783.
 \end{minipage}
 }
 
@@ -199,29 +198,17 @@ An evolving network {\it obeys a power law} if there exists a real number $\gamm
 }
 \bigskip
 
-Little of the abstract work on power-law networks would likely be studied in depth in an early course; indeed, the structure of these networks is not yet well understood even in advanced settings.  Attempts to understand power laws with rigor have led to a number of competing, rather sophisticated, abstract models---see, e.g.,  [Aiello, Chung, Lu, 2000], [Barab\'{a}si, Albert, 1999], [Bollobas, 1985], and [Chen, Chang, Govindan, Jamin, Shenker, Willinger, 2002]---and numerous studies have attempted to understand when the abstract models reflect reality more or less faithfully---see, e.g.,
-[Bu, Towsley, 2002], [Faloutsos, Faloutsos, Faloutsos, 1999], [Jaiswal, Rosenberg, Towsley, 2004] [Tangmunarunkit, Govindan, Jamin, Shenker, Willinger, 2002], and [Zegura, Calvert, Donohoo, 1997].
+Little of the abstract work on power-law networks would likely be studied in depth in an early course; indeed, the structure of these networks is not yet well understood even in advanced settings.  Attempts to understand power laws with rigor have led to a number of competing, rather sophisticated, abstract models---see, e.g.,  [Aiello, Chung, Lu, 2000], [Barab\'{a}si, Albert, 1999], [Bollobas, 1985], and [Chen, Chang, Govindan, Jamin, Shenker, Willinger, 2002]---and numerous studies have attempted to understand when the abstract models reflect reality more or less faithfully---see, e.g., [Bu, Towsley, 2002], [Faloutsos, Faloutsos, Faloutsos, 1999], [Jaiswal, Rosenberg, Towsley, 2004], [Tangmunarunkit, Govindan, Jamin, Shenker, Willinger, 2002], and [Zegura, Calvert, Donahoo, 1997].
 
 \bigskip
 
-\noindent \fbox{\begin{minipage}{0.96\textwidth}
-{\bf Explanatory note}.
-
-\smallskip
-
-We have just cited several sources that deal with the evolving formal notion of power-law graph.  This apparent overkill---wouldn't one citation suffice?---is intentional.
-\end{minipage}
-}
-
-\smallskip
 
 \noindent \fbox{\begin{minipage}{0.96\textwidth}
 {\bf Explanatory note} (cont'd).
 
 \smallskip
 
-We have just cited several sources that deal with the evolving formal notion of power-law graph.  This apparent overkill---wouldn't one citation suffice?---is intentional.
-As new ``real-life" concepts emerge which need mathematical modeling---in this case, as the social media become an object of increasing study---there is inevitably a period in which competing mathematical models are proposed.  All of the models that have emerged thus far capture the central feature of power laws.  But every mathematical model embodies ``side" features that go beyond the targeted central feature.  We must allow multiple models to coexist until we have the opportunity to compare all of the models' side features.  Only after this vetting period will the scientific community converge on a single mathematical model of a ``real-life" concept such as ``power-law graph".
+We have just cited several sources that deal with the evolving formal notion of power-law graph.  This apparent overkill---wouldn't one citation suffice?---is intentional.  As new ``real-life" concepts emerge which need mathematical modeling---in this case, as social media become an object of increasing study---there is inevitably a period in which competing mathematical models are proposed.  All of the models that have emerged thus far capture the central feature of power laws.  But every mathematical model embodies ``side" features that go beyond the targeted central feature.  We must allow multiple models to coexist until we have the opportunity to compare all of the models' side features.  Only after this vetting period will the scientific community converge on a single mathematical model of a ``real-life" concept such as ``power-law graph".
 \end{minipage}
 }
 
@@ -235,7 +222,7 @@ As new ``real-life" concepts emerge which need mathematical modeling---in this c
 
 \smallskip
 
-F.~Amato, F.~di Lillo, V.~Moscato, A.~Picariello, G.~Sperl (2017): Influence analysis in online social networks using hypergraphs.  {\it IEEE Int'l Conf.~on Information Reuse and Integration}.
+F.~Amato, F.~di Lillo, V.~Moscato, A.~Picariello, G.~Sperli (2017): Influence analysis in online social networks using hypergraphs.  {\it IEEE Int'l Conf.~on Information Reuse and Integration}.
 
 \smallskip
 
@@ -243,7 +230,7 @@ D.~Liu, N.~Blenn, P.~Van Mieghem (2010): Modeling social networks with overlappi
 
 \smallskip
 
-L.~Lov\'{a}sz (1973): Coverings and colorings of hypergraphs.  {\it 4th Southeast Conf.~on Combinatorics, Graph Theory, and Computing}, 3--12.
+L.~Lov\'{a}sz (1973): Coverings and coloring of hypergraphs.  {\it 4th Southeast Conf.~on Combinatorics, Graph Theory, and Computing}, 3--12.
 
 %\smallskip
 %C.~Mead and L.~Conway (1979): {\it Introduction to VLSI Systems}.  Addison-Wesley, Reading, MA., (ISBN 0201043580).
@@ -261,7 +248,7 @@ A.L.~Rosenberg (1989): Interval hypergraphs.  In {\it Graphs and Algorithms} (R.
 \bigskip
 
 \noindent
-A large variety of modern computing-related topics benefit from the structure inherent in graph-theoretic models but do not comfortably conform to the {\em binary} relationships imposed by graphs' having {\em two} vertices per edge.  We now discuss a model that retains the general structure of graph-theoretic models while it abandons the {\em binary} constraint in edge-membership---this is the {\em hypergraph} model.  A hypergraph has vertices that play exactly the same role as with graphs, but in place of a graph's $2$-element edges, a hypergraph has {\em hyperedges}, each being a set of vertices whose size is not restricted to $2$.  A rather general treatment of hypergraphs can be found in the comprehensive graph-theory text \cite{Berge73}; a specialized article that focuses on hypergraph-related versions of several topics from Chapters~\ref{ch:Graphs1} and~\ref{ch:Graphs2}, including vertex-coloring, is [Lov\'{a}sz, 1973].
+A large variety of modern computing-related topics benefit from the structure inherent in graph-theoretic models but do not comfortably conform to the {\em binary} relationships imposed by graphs' having {\em two} vertices per edge.  We now discuss a model that retains the general structure of graph-theoretic models while it abandons the {\em binary} constraint on edge-membership---this is the {\em hypergraph} model.  A hypergraph has vertices that play exactly the same role as with graphs, but in place of a graph's two-element edges, a hypergraph has {\em hyperedges}, each being a set of vertices whose size is not restricted to $2$.  A rather general treatment of hypergraphs can be found in the comprehensive graph-theory text \cite{Berge73}; a specialized article that focuses on hypergraph-related versions of several topics from Chapters~\ref{ch:Graphs1} and~\ref{ch:Graphs2}, including vertex coloring, is [Lov\'{a}sz, 1973].
 
 \smallskip
 
@@ -274,17 +261,17 @@ Bus-connected parallel communication has been part of digital-computer design si
 
 \medskip
 \item
-Modern electronic circuits are implemented using integrated circuit technology, specifically, {\em VLSI: Very Large Scale Integrated circuitry}; the often-informal book \cite{Mead-Conway} provides an introduction to VLSI for the non-specialist.  VLSI technologies are often {\em voltage}-driven, rather than {\em current}-driven.  Accordingly, much of the attention when designing VLSI circuits centers on the coordination of equi-potential points in an electrical  network, rather than on point-to-point transmission of signals.  Hypergraphs are tailor-made for such technologies.
+Modern electronic circuits are implemented using integrated circuit technology, specifically, {\em VLSI: Very Large Scale Integrated circuitry}; the often-informal book \cite{Mead-Conway} provides an introduction to VLSI for the non-specialist.  VLSI technologies are often {\em voltage}-driven, rather than {\em current}-driven.  Accordingly, much of the attention when designing VLSI circuits centers on the coordination of equipotential points in an electrical  network, rather than on point-to-point transmission of signals.  Hypergraphs are tailor-made for such technologies.
 
 A crucially important issue that arises because of the design strengths and weaknesses of VLSI 
-technology is {\it fault tolerance}---how to cope with the inevitable faulty transistors in massive VLSI systems.  A variety of quite-accessible mathematical ideas can provide provocative ideas about this important topic; see, e.g., [Rosenberg, 1985].
+technology is {\it fault tolerance}---how to cope with the inevitable faulty transistors in massive VLSI systems.  A variety of quite accessible mathematical ideas can provide provocative ideas about this important topic; see, e.g., [Rosenberg, 1985].
 
 \index{hypergraph!modeling integrated circuits} \index{VLSI}
 
 \medskip
 \item
 Social networks have become so prevalent in society that no one will be surprised to learn that many approaches to modeling the networks' interconnectivity have been studied.  In
-Section~\ref{sec:graph-evolve}, we discussed an interconnectivity model based on evolving graphs and clustering within such graphs.  More recently, hypergraph-based models have also been proposed; see, e.g., [Amato, di Lillo, Moscato, Picariello, Sperl, 2017] and [Liu, Blenn, Van Mieghem, 2010].
+Section~\ref{sec:graph-evolve}, we discussed an interconnectivity model based on evolving graphs and clustering within such graphs.  More recently, hypergraph-based models have also been proposed; see, e.g., [Amato, di Lillo, Moscato, Picariello, Sperli, 2017] and [Liu, Blenn, Van Mieghem, 2010].
 \index{hypergraph!modeling interconnectivity in social networks}
 \end{itemize}
 
@@ -292,11 +279,11 @@ Section~\ref{sec:graph-evolve}, we discussed an interconnectivity model based on
 \label{sec:multigraphs}
 \index{graph!multigraph} \index{multigraph} \index{multiedge}
 
-A {\it multigraph} is a graph-like structure that admits a {\em multiset} of edges, rather than a set.  In detail, a multigraph $\h$ has a set $\n_{\fh}$ of vertices and a {\em multiset} of edges, each edge being a $2$-element set of vertices.  Viewed differently, but equivalently, a pair of vertices in a multigraph can be connected by more than one edge.  Fig.~\ref{fig:EulerianFinal} depicts a ten-vertex multigraph $\h$.
+A {\it multigraph} is a graph-like structure that admits a {\em multiset} of edges, rather than a set.  In detail, a multigraph $\h$ has a set $\n_{\fh}$ of vertices and a {\em multiset} of edges, each edge being a two-element set of vertices.  Viewed differently, but equivalently, a pair of vertices in a multigraph can be connected by more than one edge.  Figure~\ref{fig:EulerianFinal} depicts a ten-vertex multigraph $\h$.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.4]{FiguresGraph/EulerienFinal}
-       \caption{A $10$-vertex multigraph $\g$ with $3$ multi-edges.}
+       \caption{A $10$-vertex multigraph $\g$ with three multiedges}
               \label{fig:EulerianFinal}
 \end{center}
 \end{figure}
@@ -315,7 +302,7 @@ From an applied vantage point, {\em pragmatism is often preferable to purity!}  
 The preceding highlighted dictum can be illustrated via the Euler-tour problem.
 
 \begin{prop}
-If a {\em connected} graph $\g$ has an {\em even number of odd-degree vertices}, then we can transform $\g$ to a {\em multigraph} $\g^+$ that admits a tour which crosses every edge precisely once.
+If a {\em connected} graph $\g$ has an {\em even number of odd-degree vertices}, then we can transform $\g$ into a {\em multigraph} $\g^+$ that admits a tour which crosses every edge precisely once.
 \end{prop}
 
 In fact, we can solve this ``distorted" version of the Euler-tour problem in a manner that is algorithmically efficient in the following senses.
@@ -335,7 +322,7 @@ As we add the edges that convert $\g$'s edge-set to an edge-{\em multiset}, we n
 Say that the multigraph $\g'$ is produced by adding edges to $\g$.  If $\g'$ has fewer edges than $\g^+$, then $\g'$ does {\em not} admit a tour that crosses each edge precisely once.
 
 \medskip\item
-{\em The algorithm is computationally efficient: it operates in time polynomial in the size of the graph $\g$.}
+{\em The algorithm is computationally efficient: It operates in time polynomial in the size of the graph $\g$.}
 \end{itemize}
 
 \medskip
@@ -350,11 +337,11 @@ We illustrate the problem and an algorithm that solves it.
 
 \smallskip
 
-Fig.~\ref{fig:EulerianInitial} presents a $10$-vertex input $\g$ to our ``distorted" Euler-tour problem. 
+Figure~\ref{fig:EulerianInitial} presents a $10$-vertex input $\g$ to our ``distorted" Euler-tour problem. 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresGraph/EulerienInitial}
-       \caption{A $10$-vertex graph which is not Eulerian.}
+       \caption{A $10$-vertex graph which is not Eulerian}
               \label{fig:EulerianInitial}
 \end{center}
 \end{figure}
@@ -362,14 +349,14 @@ Note that $\g$ is not Eulerian because it has four odd-degree vertices---happily
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresGraph/EulerianVodd}
-       \caption{$\g$ with its $4$ odd-degree vertices highlighted by shading.}
+       \caption{$\g$ with its four odd-degree vertices highlighted by shading}
               \label{fig:EulerianVodd}
 \end{center}
 \end{figure}
 
 \smallskip
 
-We sketch a process that adds a minimally many edges to $\g$ while converting $\g$ to a multigraph that admits a ``distorted" Euler tour. 
+We sketch a process that adds a minimally many edges to $\g$ while converting $\g$ into a multigraph that admits a ``distorted" Euler tour. 
 
 \medskip
 
@@ -403,22 +390,22 @@ Computing minimal-weight perfect matchings can be accomplished in low-degree pol
 
 \smallskip
 
-Fig.~\ref{fig:Eulerianperfectmatching} illustrates the results of this process on our sample graph $\g$.   {\em Note}: The double-edges that we add make the degrees of all odd-degree vertices even.  The double-edge at the top of $\g$ in the drawing makes the degrees of both top vertices even; the length-$2$ double-edge at the bottom of $\g$ in the drawing makes the degrees of both bottom odd-degree vertices even.
+Figure~\ref{fig:Eulerianperfectmatching} illustrates the results of this process on our sample graph $\g$.   {\em Note}: The double-edges that we add make the degrees of all odd-degree vertices even.  The double-edge at the top of $\g$ in the drawing makes the degrees of both top vertices even; the length-$2$ double-edge at the bottom of $\g$ in the drawing makes the degrees of both bottom odd-degree vertices even.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.35]{FiguresGraph/EulerienPerfectMatching}
-       \caption{A minimum weight perfect matching labelled by the shortest-distances $\ell(u,v)$.}
+       \caption{A minimum-weight perfect matching labeled by the shortest-distances $\ell(u,v)$}
               \label{fig:Eulerianperfectmatching}
 \end{center}
 \end{figure}
 
 \medskip\item[Step 5.]
 %
-Replace each weighted edge produced by the process by an appropriate number of multi-edges.
+Replace each weighted edge produced by the process by an appropriate number of multiedges.
 
 \smallskip
 
-Fig.~\ref{fig:EulerianFinal} performs this last step for the weighted graph of Fig.~\ref{fig:Eulerianperfectmatching}.
+Figure~\ref{fig:EulerianFinal} performs this last step for the weighted graph of Fig.~\ref{fig:Eulerianperfectmatching}.
 \end{description}
 {\bf end} {\sf Edge Augmentation}
 
