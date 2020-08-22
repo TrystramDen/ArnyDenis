@@ -1,4 +1,4 @@
-%version of 07-22-20
+%version of 08-22-20
 
 
 \index{search trees} \index{search trees!2,3-trees} \index{search trees!B-trees}
@@ -37,11 +37,11 @@ Fig.~\ref{fig:pascal-triangle} with Fig.~\ref{fig:TP-triangle}.
 
 \smallskip
 
-Fig.~\ref{Fig:treeprofile}'s illustration of how Tree-profile numbers evolve is a valuable companion to the textual development in the section, including definition (\ref{eq:TP-defn}).
+Figure~\ref{Fig:treeprofile}'s illustration of how Tree-profile numbers evolve is a valuable companion to the textual development in the section, including definition (\ref{eq:TP-defn}).
 \begin{figure}[htb]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresMaths/TreeProfile}
-        \caption{A graphical depiction of the Tree-profile triangle; shaded boxes identify the initial values.}
+        \caption{A graphical depiction of the Tree-profile triangle; shaded boxes identify the initial values}
         \label{Fig:treeprofile}
 \end{center}
 \end{figure}
@@ -74,7 +74,7 @@ n=9 &  1 &  2 &  4 &  8 &  16 &  32 &  64 & 128 & 256 & 511 \\
 &\vdots &\vdots &\ddots
 \end{array}
 \] 
-\caption{A ``prefix'' of the Tree-profile triangle, for $n,k \leq 9$.}
+\caption{A ``prefix'' of the Tree-profile triangle, for $n,k \leq 9$}
 \label{fig:TP-triangle}
 \end{figure}
 
@@ -87,7 +87,7 @@ n=9 &  1 &  2 &  4 &  8 &  16 &  32 &  64 & 128 & 256 & 511 \\
 For all $n \geq 1$ and all $k \geq 0$,
 \begin{equation}
 \label{eq:TP=sum-of-bincoeff}
-P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i}
+P(n,k) \ = \ 2^{k-n} \cdot \sum_{i=0}^{2n-k-1} {n \choose i}
 \end{equation}
 \end{prop}
 
@@ -98,7 +98,7 @@ We proceed by induction on $n$.
 
 \noindent
 {\sf Base case.}
-The case $n=1$ of (\ref{eq:TP=sum-of-bincoeff}) follows from the ``boundary cases'' of definition (\ref{eq:TP-defn}).
+The case $n=1$ of Eq.~(\ref{eq:TP=sum-of-bincoeff}) follows from the ``boundary cases'' of definition (\ref{eq:TP-defn}).
 
 \medskip
 
@@ -108,26 +108,26 @@ Let us assume that Eq.~(\ref{eq:TP=sum-of-bincoeff}) holds for all $n$ up to (bu
 
 \noindent
 {\sf Inductive extension}.
-Focus on an arbitrary Tree-Profile number $P(m,k)$.
+Focus on an arbitrary Tree-profile number $P(m,k)$.
 \begin{itemize}
 \item
 If $k \in \{0,1\}$, then the ``boundary cases'' of definition (\ref{eq:TP-defn}) assure us that
 \[
-P(m,k) \ \ = \ \ 2^k \ \ = \ \ 2^{k-n} \cdot 2^n \ \ = \ \  2^{k-n} \cdot \sum_{i=0}^{2n-k} {n \choose i}
+P(m,k) \ \ = \ \ 2^k \ \ = \ \ 2^{k-m} \cdot 2^m \ \ = \ \  2^{k-m} \cdot \sum_{i=0}^{2m-k} {m \choose i}
 \]
 
 \item
-If $k > 1$, then the defining recurrence in (\ref{eq:TP-defn}) combines with the inductive hypothesis to yield:
+If $k > 1$, then the defining recurrence (\ref{eq:TP-defn}) combines with the inductive hypothesis to yield:
 \begin{eqnarray*}
 \nonumber
 P(m, k) & = &
    P(m-1, k-1) \ + \ 2 P(m-1, k-2) \\
         & = &
-   2^{k-m} \cdot \sum_{i=0}^{2m-k-2} {m-1 \choose i}
+   2^{k-m} \cdot \sum_{i=0}^{2m-k} {m-1 \choose i}
    \ + \
-   2^{k-m} \cdot \sum_{j=0}^{2m-k-1} {m-1 \choose i} \\
+   2^{k-m} \cdot \sum_{i=0}^{2m-k-1} {m-1 \choose i} \\
         & = &
-   2^{k-m} \cdot {m \choose 0}
+   2^{k-m} \cdot {m-1 \choose 0}
    \ + \
    2^{k-m} \cdot \sum_{i=1}^{2m-k-1} {m-1 \choose i}
    \ + \
@@ -205,7 +205,11 @@ This chain thus yields part {\bf (a)} of the proposition.
 \bigskip
 
 \noindent {\bf (b)}
-This part of the proposition follows by direct calculation from recurrence (\ref{eq:TP-recurrence-3}) and Proposition~\ref{thm:TP=sum-of-bincoeff}.  To wit,
+This part of the proposition follows by direct calculation from recurrence (\ref{eq:TP-recurrence-3}) and Proposition~\ref{thm:TP=sum-of-bincoeff}.
+
+{\Arny Please check the calculation.  I believe that the CE has trouble with it.}
+
+
 \begin{eqnarray*}
 P(n+1, k) \ - \ P(n, k)
   & = &
@@ -226,10 +230,10 @@ P(n, k-1) \ + \ 2 P(n, k-2) \ - \ P(n,k) \\
 This chain thus yields part {\bf (b)} of the proposition, completing the proof.  \qed
 \end{proof}
 
-\subsection{The summation formula for Tree-profile numbers}
+\subsection{The Summation Formula for Tree-Profile Numbers}
 \index{Tree-profile numbers!summation formula}
 
-We observed in Proposition~\ref{thm:sumsof-binomcoeff} that the binomial coefficients in successive rows of Pascal's Triangle sum to successive powers of $2$.  While not quite matching that level of elegance, we show now that the Tree-profile numbers in successive rows of the Tree-profile triangle sum to $1$ less than successive powers of $3$.
+We observed in Proposition~\ref{thm:sumsof-binomcoeff} that the binomial coefficients in successive rows of Pascal's Triangle sum to successive powers of $2$.  While not quite matching that level of elegance, we show now that the Tree-profile numbers in successive odd rows of the Tree-profile triangle sum to $1$ less than successive powers of $3$.
 
 \begin{prop}
 \label{thm:TP-summation}
@@ -242,12 +246,11 @@ S_n \ \ \eqdef \ \ \sum_{k=0}^{2n-1} P(n,k) \ \ = \ \ 3^n -1.
  
 \begin{proof}
 We begin with the following consequence of Proposition~\ref{thm:TP=sum-of-bincoeff}:
-\[
-S(n) \ \ = \ \  \sum_{k=0}^{2n-1} P(n,k)  \ \ = \ \  1 \ + \ \sum_{k=0}^{2n-1} P(n,k+1).
-\]
+\[  S(n) \ \ = \ \  \sum_{k=0}^{2n-1} P(n,k)  \ \ = \ \  1 \ + \ \sum_{k=0}^{2n-1} P(n,k+1) \]
 If we now invoke Proposition~\ref{thm:successor-TP-values}(a), then we find that
 \[
-S(n) \ \ = \ \ 1 \ + \ 2 \cdot \sum_{k=0}^{2n-1}   \big( P(n,k) \ - \ 2^{k-n} \cdot {n \choose {k-n+1}} \big).
+S(n) \ \ = \ \ 
+1 \ + \ 2 \cdot \sum_{k=0}^{2n-1}   \big( P(n,k) \ - \ 2^{k-n} \cdot {n \choose {k-n+1}} \big).
 \]
 
 We can combine the preceding expressions with the ``restricted'' Binomial Theorem (Theorem~\ref{thm:restricted-binomial-thm}) to generate the following chain of equalities.
