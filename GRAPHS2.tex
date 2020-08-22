@@ -798,14 +798,12 @@ In all remaining cases, the five neighbors of $v$ receive distinct colors.  The 
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.45]{FiguresGraph/5colorsInit}
-\caption{A vertex with degree $5$}
+\caption{A vertex of degree $5$}
   \label{fig:5colorsInit}
 \end{center}
 \end{figure}
-In the figure, 
-we use integer-label $i$ to denote, ambiguously, vertex $v_i$ and its assigned color $c_i$.  The question mark ``?'' that labels vertex $v$ indicates that we do not yet know what color to assign to $v$. 
+In this figure and its companions that illustrate the current proof, we use integer-label $i$ to denote, ambiguously, vertex $v_i$ and its assigned color $c_i$.  The question mark ``?'' that labels vertex $v$ indicates that we do not yet know what color to assign to $v$. 
 
-***START HERE
 %Fig.~\ref{fig:5colorsCase2},
 
 \begin{description}
@@ -814,18 +812,28 @@ For some $5$-coloring of $\g$, some two neighbors of $v$---call them $v_1$ and $
 
 \smallskip
 
-As before, let $\g'$ be the (in this case, disconnected) graph that results when $v$ and its incident edges are removed from $\g$.  For $i = 1,2$ let $\g_i$ be the component of $\g'$ that contains vertex $v_i$.
+As before, let $\g'$ be the (in this case, disconnected) graph that results when $v$ and its incident edges are removed from $\g$.  For $i = 1,2$, let $\g_i$ be the component of $\g'$ that contains vertex $v_i$.
 
-Say that, under the $5$-coloring of $\g$ that we are focusing on, $v_1$ is colored {\it red} and $v_2$ is colored {\it green}.
+Say that, under the $5$-coloring of $\g$ that we are focusing on, $v_1$ is colored {\it black} and $v_2$ is colored {\it grey}.  Figure~\ref{fig:5colorsCase3} illustrates the scenario.
+\begin{figure}[hbt]
+\begin{center}
+   \includegraphics[scale=0.4]{FiguresGraph/5colorsCase1}
+\caption{A vertex-coloring for Case 3}
+  \label{fig:5colorsCase3}
+\end{center}
+\end{figure}
 
-\smallskip
-
-Let us recolor the vertices of $\g_1$ so that vertex $v_1$ is now colored {\it green}.  (One need only switch the colors {\it red} and {\it green} in the existing coloring of $\g_1$ to achieve this.)  It is always possible to do this in a way that does not affect the valid coloring of $\g_2$ because $\g_1$ and $\g_2$ are mutually disjoint.
+We recolor the vertices of $\g_1$ so that vertex $v_1$ is now colored {\it grey}.  (One need only switch the colors {\it black} and {\it grey} in the existing coloring of $\g_1$ to achieve this.)  It is always possible to do this in a way that does not affect the valid coloring of $\g_2$ because $\g_1$ and $\g_2$ are mutually disjoint.
 
 \smallskip
 
 Once we have thus recolored $\g_1$, we have a $5$-coloring of $\g$ for which Case 2 holds.  (In fact, we can color vertex $v$ {\em red} when we reattach it to $\g'$.)
 \end{description}
+
+%\begin{itemize}
+%\item
+%All neighbors of vertex $v$ remain in the same component of $\g$ when $v$ and its incident edges are removed.
+%\end{itemize}
 
 \smallskip
 
@@ -847,36 +855,20 @@ In every $5$-coloring of $\g$, the neighbors of every minimum-degree vertex rece
 
 For vertex $v$, let us say that neighbor $v_i$ receives color $c_i$.
 \end{itemize}
- 
-
-\smallskip
-
-The two graphs in NEXT FIGURE depict schematically how we have dealt with Case 3 above.
-\begin{figure}[hbt]
-\begin{center}
-   \includegraphics[scale=0.4]{FiguresGraph/5colorsCase1}
-\caption{A vertex-coloring for Case 3}
-  \label{fig:5colorsCase1}
-\end{center}
-\end{figure}
-\begin{itemize}
-\item
-All neighbors of vertex $v$ remain in the same component of $\g$ when $v$ and its incident edges are removed.
-\end{itemize}
 \end{description}
-To analyze Case 4, we focus on vertices $v_1$ and $v_3$ in Fig.~\ref{fig:5colorsCase2}.
+To analyze Case 4, we focus on vertices $v_1$ and $v_3$ in Fig.~\ref{fig:5colorsCase4}.
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.4]{FiguresGraph/5colorsCase2}
-\caption{A vertex-coloring for Case 2.}
-  \label{fig:5colorsCase2}
+\caption{A vertex-coloring for Case 4.}
+  \label{fig:5colorsCase4}
 \end{center}
 \end{figure}
 Importantly, these vertices have received distinct colors ($c_1$ and $c_3 \neq c_1$, respectively), and these vertices are not adjacent to one another along a clockwise sweep around vertex $v$.
 
 \smallskip
 
-Now take $\g$ and focus only on the vertices that are colored $c_1$ or $c_3$ (as are $v_1$ and $v_3$, respectively) and on the vertices that are colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One sees from Figure~\ref{fig:5colorsCase2} that:
+Now take $\g$ and focus only on the vertices that are colored $c_1$ or $c_3$ (as are $v_1$ and $v_3$, respectively) and on the vertices that are colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One sees from Fig.~\ref{fig:5colorsCase2} that:
 \begin{itemize}
 \item
 $\g$ can---{\em but need not}---contain a path whose vertices alternate  colors $c_1$ and $c_3$. Call this a ``$c_1$-$c_3$ path'' between vertices $v_1$ and $v_3$.
@@ -887,11 +879,11 @@ $\g$ {\em cannot} contain both of the paths just described, i.e., a $c_1$-$c_3$ 
 
 \smallskip
 
-These two paths, if they existed, would cross one another---which is forbidden because $\g$ is a {\em planar} graph,  See Figure~\ref{fig:5colorsCase2}.
+These two paths, if they existed, would cross one another---which is forbidden because $\g$ is a {\em planar} graph,  See Fig.~\ref{fig:5colorsCase2}.
 
 
 \end{itemize}
-It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$ path between $v_2$ and $v_4$.  Say, with no loss of generality, that the former path does not exist.  Then we can switch colors $c_1$ and $c_3$ beginning with vertex $v_1$ and obtain a coloring of $\g$ in which $v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as in Case 2 to get a $5$-coloring of $\g$.
+It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$ path between $v_2$ and $v_4$.  Say, with no loss of generality, that the former path does not exist.  Then we can switch colors $c_1$ and $c_3$ beginning with vertex $v_1$ and obtain a coloring of $\g$ in which $v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as in Case 3 to get a $5$-coloring of $\g$.
 
 \smallskip
 
@@ -903,11 +895,11 @@ This four-case analysis shows that we can always produce a $5$-coloring of $\g$,
 We close our study of vertex-colorings of planar graphs with an overview of the intellectual cost-benefit tradeoff that we have exposed:
 \begin{itemize}
 \item
-A straightforward recursive coloring strategy suffices if one is willing to settle for a $6$-color palette when coloring planar graphs (Proposition~\ref{thm:P-6-colorability}).
+A straightforward recursive coloring strategy suffices if one is willing to settle for a six-color palette when coloring planar graphs (Proposition~\ref{thm:P-6-colorability}).
 \medskip\item
 A four-case analysis, in which one case comprises several subcases, is needed in order to eliminate one of the colors from our palette, i.e., to achieve a $5$-coloring strategy (Proposition~\ref{thm:5colors}).
 \medskip\item
-An analysis involving close to 2000 cases is needed in order to achieve the provable optimal, a $4$-color palette that always works (Theorem~\ref{thm:Four-ColorTheorem}).
+An analysis involving close to 2,000 cases is needed in order to achieve the provable optimal, a four-color palette that always works (Theorem~\ref{thm:Four-ColorTheorem}).
 \end{itemize}
 
 \subsubsection{Two validations of Euler's Formula}
@@ -922,7 +914,7 @@ We now develop two quite different proofs of Proposition~\ref{thm:Euler-Formula}
 
 \noindent {\bf Validation via structural induction}. 
 Our first approach validates formula~(\ref{eqn:Eulers-formula}) by growing a planar graph $\g$
-inductively, edge by edge.  Note that we formulate our induction a bit differently than our earlier, simpler ones, particularly in the Inductive hypothesis.
+inductively, edge by edge.  Note that we formulate our induction a bit differently than our earlier, simpler ones, particularly in the inductive hypothesis.
 
 \smallskip
 
@@ -944,7 +936,7 @@ We extend our induction by growing the current version of $\g$, by adding a new 
 In this case, this augmentation of $\g$ increases the number of edges ($e$) and the number of faces ($f$) by $1$ each, while keeping the number of vertices ($n$) unchanged.
 
 \medskip\item
-{\it The new edge adds a new vertex, which is appended to preexisting vertex.}
+{\it The new edge adds a new vertex, which is appended to a preexisting vertex.}
 In this case, this augmentation of $\g$ keeps the number of faces ($f$) unchanged while
 it increases by $1$ both the number of edges ($e$) and the number of vertices ($n$). 
 \end{itemize}
@@ -960,7 +952,7 @@ The augmentation thus extends the induction, hence validates the Formula.  \qed
 Let us be given a planar graph $\g$ that has $n$ vertices, $e$ edges, and $f$ faces.  We validate Formula (\ref{eqn:Eulers-formula}) by deconstructing $\g$ and showing that each step in the process preserves as {\it invariant} the expression
 \begin{equation}
 \label{eq:phi-in-euler-formula}
- \phi(n,e,f) \ = \ n-e+f
+ \phi(n,e,f) \ \eqdef \ n-e+f
 \end{equation}
 
 \bigskip
@@ -999,11 +991,11 @@ If the graph remaining at some step contains an edge that is shared by two disti
 
 \smallskip
 
-Fig.~\ref{fig:planarStep1} illustrates Phase 1 for a (residual) graph having $n=8$ vertices, $e=11$ edges, and $f=5$ faces.
+Figure~\ref{fig:planarStep1} illustrates Phase 1 for a (residual) graph having $n=8$ vertices, $e=11$ edges, and $f=5$ faces.
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.35]{FiguresGraph/planarStep1}
-\caption{Illustrating Phase 1: From top left to bottom right, each transformation preserves the invariant $\phi(n,e,f)$.  The first transformation removes the edge shared by faces (1) and (2), creating a new, merged, face (1)'.}
+\caption{Illustrating Phase 1: From top left to bottom right, each transformation preserves the invariant $\phi(n,e,f)$.  The first transformation removes the edge shared by faces (1) and (2), creating a new, merged, face (1)'}
   \label{fig:planarStep1}
 \end{center}
 \end{figure}
@@ -1030,11 +1022,11 @@ Remove any leaf of the current tree, together with its incident edge.
 
 \smallskip
 
-Fig.~\ref{fig:planarStep2} illustrates the action of Phase  2 for a tree having $n=8$ vertices---hence, $e=7$ edges and $f=1$ face.
+Figure~\ref{fig:planarStep2} illustrates the action of Phase  2 for a tree having $n=8$ vertices---hence, $e=7$ edges and $f=1$ face.
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.35]{FiguresGraph/planarStep2}
- \caption{Illustrating Phase 2: We remove a sequence of leaves, each with its incident edge, until we reach a single vertex.  Here again, $\phi$ remains invariant after each leaf-removal.}
+ \caption{Illustrating Phase 2: We remove a sequence of leaves, each with its incident edge, until we reach a single vertex.  Here again, $\phi$ remains invariant after each leaf-removal}
   \label{fig:planarStep2}
 \end{center}
 \end{figure}
@@ -1044,7 +1036,7 @@ Fig.~\ref{fig:planarStep2} illustrates the action of Phase  2 for a tree having 
 {\sf The analysis}.
 The value of $\phi$ remains invariant under each leaf-removal:
 \[ \phi(n,e,f) \ = \ \phi(n-1,e-1,f) \]
-To wit, $f$ is unchanged ($f \equiv 1$ for a tree), while $n$ and $e$ are each reduced by $1$.
+That is, $f$ is unchanged ($f = 1$ for a tree), while $n$ and $e$ are each reduced by $1$.
 \end{description}
 
 \medskip
@@ -1089,14 +1081,14 @@ This complexity-theoretic result suggests that {\em optimal} vertex-coloring is 
 
 Just as various genres of {\it spanning trees} are used to ``summarize'' aspects of the {\em connectivity} structure of a  graph $\g$, various genres of {\it paths} and {\it cycles} in $\g$ are often useful to ``summarize'' aspects of $\g$'s {\em traversal} structure.  This section is devoted to a range of problems related to determining the existence in a graph $\g$ of a path or a cycle that {\em completely} ``summarizes'' $\g$'s traversal structure---either by containing every edge of $\g$ precisely once (the {\it Eulerian} version of ``traversal summarization") or by containing every vertex of $\g$ precisely once (the {\it Hamiltonian} version of ``traversal summarization").
 
-We generally focus in this section only on {\em undirected} paths and cycles in {\em undirected}, {\em unweighted} graphs.  Extending the notions we discuss to their directed analogues in directed and/or weighted graphs, will be accomplished via carefully crafted exercises.  In a similar, but simpler, vein, we generally discuss only problems concerning {\em cycles}, leaving to the reader the analogous path-related notion.  We begin by delimiting the two main classes of cycle-discovery problems that we study.
+We generally focus in this section only on {\em undirected} paths and cycles in {\em undirected}, {\em unweighted} graphs.  Extending the notions we discuss to their directed analogues in directed and/or weighted graphs will be accomplished via carefully crafted exercises.  In a similar, but simpler, vein, we generally discuss only problems concerning {\em cycles}, leaving to the reader the analogous path-related notion.  We begin by delimiting the two main classes of cycle-discovery problems that we study.
 
 \bigskip
 
 \index{graph!Eulerian cycle} \index{Euler, Leonhard!Eulerian cycle}
 \index{graph!Eulerian circuit} \index{Euler, Leonhard!Eulerian circuit}  \index{Euler, Leonhard}
 
-{\it Eulerian cycles (or, tours)}.
+{\it Eulerian cycles (or tours)}.
 A cycle in a graph $\g$ that traverses each of $\g$'s {\em edges} precisely once is called an {\it Eulerian cycle} (or, often, an {\it Eulerian circuit}).  The edge-exhausting cycles/circuits/tours referred to by these several names were introduced as a topic of study in 1736 by the Swiss mathematician Leonhard Euler, whose name we have already encountered multiple times.  Euler allegedly identified the topic while contemplating how to devise a tour of the town of K\"{o}nigsberg that would cross each of the town's bridges precisely once.  The quest for Eulerian cycles in graphs is certainly one of the oldest problems---perhaps literally the oldest problem---in the fields now called {\it operations research} and {\it graph theory}.  (An edge-exhausting {\em path} in $\g$ is referred to in the obvious analogous way.)  When one views an Eulerian cycle as a ``map'' for traversing a graph---as did Euler when contemplating this problem---one often calls the cycle an {\it Eulerian tour}.  Traditionally, a graph that admits an Eulerian cycle is said to be {\it Eulerian}. 
  \index{graph!Eulerian tour} \index{Euler, Leonhard!Eulerian tour}  
 \index{graph!Eulerian} \index{Euler, Leonhard!Eulerian graph}
@@ -1107,9 +1099,8 @@ A cycle in a graph $\g$ that traverses each of $\g$'s {\em edges} precisely once
 \index{graph!Hamiltonian!circuit} \index{Hamilton, William Rowan!Hamiltoniancircuit}
 \index{Hamilton, William Rowan} \index{Kirkman, Thomas Pennington}
 
-{\it Hamiltonian cycles (or, circuits, or, tours)}.
-A cycle in a graph $\g$ that encounters each of $\g$'s {\em vertices} precisely once is called a {\it Hamiltonian cycle}, (or, often, a {\it Hamiltonian circuit}).  This cycle-discovery problem is named in honor of the British mathematician Sir William Rowan Hamilton, who is credited with inventing the
-concept in the mid-19th century.  (In fact, Hamilton's work on his eponymous cycles was anticipated by many decades in the work of fellow British mathematician, Thomas Pennington Kirkman.)  When one views a Hamiltonian cycle as a ``map'' for traversing a graph, one often calls the cycle a {\it Hamiltonian tour}.  Traditionally, a graph that admits a Hamiltonian cycle is said to be {\it Hamiltonian}.  (A vertex-exhausting {\em path} in a graph is referred to in the obvious analogous way.)  
+{\it Hamiltonian cycles (or circuits, or tours)}.
+A cycle in a graph $\g$ that encounters each of $\g$'s {\em vertices} precisely once is called a {\it Hamiltonian cycle} (or, often, a {\it Hamiltonian circuit}).  This cycle-discovery problem is named in honor of the British mathematician Sir William Rowan Hamilton, who is credited with inventing the concept in the mid-nineteenth century.  (In fact, Hamilton's work on his eponymous cycles was anticipated by many decades in the work of fellow British mathematician, Thomas Pennington Kirkman.)  When one views a Hamiltonian cycle as a ``map'' for traversing a graph, one often calls the cycle a {\it Hamiltonian tour}.  Traditionally, a graph that admits a Hamiltonian cycle is said to be {\it Hamiltonian}.  (A vertex-exhausting {\em path} in a graph is referred to in the obvious analogous way.)  
  \index{graph!Hamiltonian!tour}
 \index{Hamilton, William Rowan!!Hamiltonian tour}
 \index{graph!Hamiltonian} 
@@ -1128,7 +1119,7 @@ The main results in this section characterize the families of directed and undir
 
 \smallskip
 
-We open our adventure with the following amusing fact:
+We open our adventure with the following amusing fact.
 
 \bigskip
 
@@ -1163,7 +1154,7 @@ A connected undirected graph $\g$ admits an Eulerian cycle if, and only if, ever
 \smallskip
 
 \noindent {\bf (b)}
-A connected directed graph $\g$ admits a directed Eulerian cycle if, and only if, $\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v)$ for every vertex $v$ of $\g$.
+A connected directed graph $\g$ admits a directed Eulerian cycle if, and only if, $\mbox{\sc in-degree}(v) \ = \ \mbox{\sc out-degree}(v)$ for every vertex $v$ of $\g$.
 \end{prop}
 
 \begin{proof}
@@ -1173,7 +1164,7 @@ The conditions asserted in parts (a) and (b) are {\em necessary} because of the 
 \medskip
 
 \noindent {\bf Sufficiency}.
-We now verify that Proposition's conditions are also {\em sufficient}.  We provide  a complete proof of sufficiency only for part (a), for undirected graphs; we provide only hints regarding the sufficiency of the conditions for part (b).
+We now verify that the Proposition's conditions are also {\em sufficient}.  We provide  a complete proof of sufficiency only for part (a), for undirected graphs; we provide only hints regarding the sufficiency of the conditions for part (b).
 
 \smallskip
 
@@ -1199,16 +1190,15 @@ Assume that the Proposition holds for any number of edges $k \leq m$.
 \smallskip
 
 \noindent {\sf Inductive extension.}
-Consider a connected $(m+1)$-edge graph $\g$ all of whose vertices have nonzero even degree.
-By Proposition~\ref{thm:cycle-in-graph}, $\g$ contains a nonempty cycle $\cc$ (see Fig.~\ref{fig:eulerianProof1}). 
+Consider a connected $(m+1)$-edge graph $\g$ all of whose vertices have nonzero even degree.  By Proposition~\ref{thm:cycle-in-graph}, $\g$ contains a nonempty cycle $\cc$ (see Fig.~\ref{fig:eulerianProof1}). 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.45]{FiguresGraph/EulerianProof1}
-       \caption{A cycle in graph $\g$ (ignoring its other vertices and their incident edges).}
+       \caption{A cycle in graph $\g$ (ignoring its other vertices and their incident edges)}
   \label{fig:eulerianProof1}
 \end{center}
 \end{figure}
-Focus on the subgraph $\g'$ of $\g$ that is obtained by removing cycle $\cc$.  Clearly $\g'$ contains fewer than $m-2$ edges, because $\g$ has $m+1$ edges and $\cc$ contains at least $3$ edges.
+Focus on the subgraph $\g'$ of $\g$ that is obtained by removing cycle $\cc$.  Clearly $\g'$ contains no more than $m-2$ edges, because $\g$ has $m+1$ edges and $\cc$ contains at least three edges.
 
 \smallskip
 
@@ -1216,15 +1206,15 @@ Now,  graph $\g'$ may have multiple connected components because the process of 
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.45]{FiguresGraph/EulerianProof2}
- \caption{Subgraph $\g'$ and its connected components after we removed the edges of cycle $\cc$ (whose edges are dotted lines).  In this example, there are four connected components, $C_1$, $C_2$, $C_3$, $C_4$; two of these, namely, $C_2$ and $C_4$ are isolated vertices.}
+ \caption{Subgraph $\g'$ and its connected components after we removed the edges of cycle $\cc$ (whose edges are dotted lines).  In this example, there are four connected components, $C_1$, $C_2$, $C_3$, $C_4$; two of these, namely $C_2$ and $C_4$, are isolated vertices}
   \label{fig:eulerianProof2}
 \end{center}
 \end{figure}
-But, no matter how many components $\g'$ has, each such component has no more than $m-2$ edges.  This means that each connected component of $\g'$ is either an isolated vertex---i.e., a graph with $1$ vertex and $0$ edges---or a {\em nontrivial component}.  In the latter case, our inductive hypothesis guarantees that $\g'$ has an Eulerian cycle.
+However, no matter how many components $\g'$ has, each such component has no more than $m-2$ edges.  This means that each connected component of $\g'$ is either an isolated vertex---i.e., a graph with one vertex and no edges---or a {\em nontrivial component}.  In the latter case, our inductive hypothesis guarantees that $\g'$ has an Eulerian cycle.
 
 \smallskip
 
-The final step in extending the induction is to ``knit" the structure we have derived---namely, cycle $\cc$ plus graph $\g'$---into a single Eulerian cycle for $\g$.  We accomplish this via the following {\em gendanken} process.  We begin to traverse cycle $\cc$, continuing to walk until we encounter a nontrivial component, call it $\g"$, which we have never before encountered.  We now pause in our walk along $\cc$ to traverse the Eulerian cycle in $\g"$ that the induction hypothesis guarantees.  When we conclude the traversal of $\g"$---perforce (since it is a cycle) at the same vertex where the traversal began---we resume our walk along $\cc$.  Eventually, the walk along $\cc$---punctuated by traversals of Eulerian cycles in connected components---terminates.  At this point, we are guaranteed to have crossed every edges of $\g$ exactly once.
+The final step in extending the induction is to ``knit" the structure we have derived---namely, cycle $\cc$ plus graph $\g'$---into a single Eulerian cycle for $\g$.  We accomplish this via the following {\em gendanken} process.  We begin to traverse cycle $\cc$, continuing to walk until we encounter a nontrivial component, call it $\g''$, which we have never before encountered.  We now pause in our walk along $\cc$ to traverse the Eulerian cycle in $\g''$ that the inductive hypothesis guarantees.  When we conclude the traversal of $\g''$---perforce (since it is a cycle) at the same vertex where the traversal began---we resume our walk along $\cc$.  Eventually, the walk along $\cc$---punctuated by traversals of Eulerian cycles in connected components---terminates.  At this point, we are guaranteed to have crossed every edge of $\g$ exactly once.
 
 \medskip
 
@@ -1255,12 +1245,12 @@ A connected undirected graph $\g$ admits an Eulerian path if, and only if, at mo
 A connected directed graph $\g$ admits an Eulerian path if, and only if: either $\g$ admits an 
 Eulerian cycle, or $\g$ contains one vertex $u$ such that
 
-\hspace*{.35in}$\mbox{\sc indegree}(u) \ = \ \mbox{\sc outdegree}(u) +1$
+\hspace*{.35in}$\mbox{\sc in-degree}(u) \ = \ \mbox{\sc out-degree}(u) +1$
 
 \noindent
 and one vertex $v$ such that
 
-\hspace*{.35in}$\mbox{\sc indegree}(v) \ = \ \mbox{\sc outdegree}(v) -1$.
+\hspace*{.35in}$\mbox{\sc in-degree}(v) \ = \ \mbox{\sc out-degree}(v) -1$.
 \end{prop}
 
 The proof of Proposition~\ref{thm:eulerian-path} shares its overall structure with the proof of  Proposition~\ref{thm:eulerian-cycle}, with one major difference.  Whereas a cycle has neither beginning nor end, a path has both.  Proposition~\ref{thm:eulerian-path}(a) asserts that an undirected graph which admits an Eulerian path but not an Eulerian cycle has precisely two vertices of odd degree, and these odd-degree vertices play the roles of the endpoints of the Eulerian path.  In similar fashion, Proposition~\ref{thm:eulerian-path}(b) asserts that a directed graph which admits an Eulerian path but not an Eulerian cycle contains one vertex, $u$, whose out-degree exceeds its in-degree and one vertex, $v$, whose in-degree exceeds its out-degree: vertex $u$ plays the role of the beginning vertex of the Eulerian path, and vertex $v$ plays the role of the end vertex of the path.  With these hints, we invite the reader to adapt the proof of Proposition~\ref{thm:eulerian-cycle} to obtain a proof of Proposition~\ref{thm:eulerian-path}.
@@ -1286,7 +1276,7 @@ Clique              & & Odd indices   & & $\k_{2n}$ has odd vertex-degrees \\
 2-Dim.~Torus   & & Yes                     & & Each vertex has degree $4$ \\
 Hypercube       & & Even indices & & Each vertex of $\q_n$ has degree $n$ \\
 de Bruijn           & &                           & &  \\
-\hspace*{.15in}directed  & & Yes  & & Vertices have equal {\sc indegree} and {\sc outdegree} \\
+\hspace*{.15in}directed  & & Yes  & & Vertices have equal {\sc in-degree} and {\sc out-degree} \\
 \hspace*{.15in}undirected
          & &  Yes & & For $\d_n$: Vertices $\overline{0}$, $\overline{1}$ have
                                                   degree $2n-2$; \\
@@ -1318,8 +1308,7 @@ independent paths of inquiry.  One path seeks ``modest'' ways to weaken the prop
 \index{graph!Hamiltonian!path} \index{Hamilton, William Rowan!!Hamiltonian path}
 
 \noindent {\it Be satisfied with paths, rather than cycles}.
-A {\it Hamiltonian path} in a graph $\g$ is a path that passes through each of $\g$'s vertices precisely once.  Hamiltonian paths can easily be shown to be a strictly weaker notion than Hamiltonian cycles:  Clearly, every graph which admits a Hamiltonian cycle also admits a Hamiltonian path: one just drops any single edge of such a cycle to obtain such a path.  However, there are many graphs which admit a Hamiltonian path but {\em not} any Hamiltonian cycle. Mesh-graphs can supply easy examples.  You have produced (in the preceding paragraph) mesh-graphs
-which admit no Hamiltonian cycle, even though every mesh-graph easily admits a Hamiltonian path---just traverse rows {\it seriatim}, in alternating directions.
+A {\it Hamiltonian path} in a graph $\g$ is a path that passes through each of $\g$'s vertices precisely once.  Hamiltonian paths can easily be shown to be a strictly weaker notion than Hamiltonian cycles:  Clearly, every graph which admits a Hamiltonian cycle also admits a Hamiltonian path: one just drops any single edge of such a cycle to obtain such a path.  However, there are many graphs which admit a Hamiltonian path but {\em not} any Hamiltonian cycle. Mesh-graphs can supply easy examples.  You have produced (in the preceding paragraph) mesh-graphs which admit no Hamiltonian cycle, even though every mesh-graph easily admits a Hamiltonian path---just traverse rows one after another, in alternating directions.
 
 \medskip
 
@@ -1344,7 +1333,7 @@ Let $\g$ be any graph that is {\em $2$-connected} (or, {\it biconnected}) in the
 \subsubsection{Hamiltonicity in ``named'' graphs}
 \label{sec:hamiltonian-named-graphs}
 
-Yet another direction of inquiry is to determine whether specific graphs of interest are Hamiltonian.  We illustrate this avenue by reviewing the five ``named" families of graphs
+Yet another direction of inquiry is to determine whether specific graphs of interest are Hamiltonian.  We illustrate this avenue by reviewing the five ``named" families of graphs in
 Section~\ref{sec:graphs-important-families}.
 
 \begin{prop}
@@ -1367,7 +1356,7 @@ For all $m,n$: the mesh-graph $\m_{m,n}$:
 
 (ii) contains no odd-length cycle; hence, is not Hamiltonian if $mn$ is odd.
 
-(iii) is Hamiltonian whenever $mn$ is even 
+(iii) is Hamiltonian whenever $mn$ is even.
 
 \smallskip
 
@@ -1414,16 +1403,16 @@ This is a consequence of the fact that $\m_{m,n}$ is {\it bipartite}, so that ev
 \smallskip
 
 \noindent {\bf (c)}.1.iii.
-We sketch the construction of a Hamiltonian cycle in $\m_{m,n}$ when $mn$ is even.  Say, with no loss of generality that $m$ is even, so that $\m_{m,n}$ has an even number of rows.  Temporarily remove column $1$ of $\m_{m,n}$, and construct the ``snaking'' Hamiltonian path described in part {\bf (c)}.1.i of this proof.  Because $m$ is even, this path begins and ends in column $2$ of $\m_{m,n}$.  One can, therefore, reinstate column $1$ and use it to connect the ends of the ``snaking'' Hamiltonian path.  This describes a Hamiltonian cycle in $\m_{m,n}$.
+We sketch the construction of a Hamiltonian cycle in $\m_{m,n}$ when $mn$ is even.  Say, with no loss of generality, that $m$ is even, so that $\m_{m,n}$ has an even number of rows.  Temporarily remove column $1$ of $\m_{m,n}$, and construct the ``snaking'' Hamiltonian path described in part {\bf (c)}.1.i of this proof.  Because $m$ is even, this path begins and ends in column $2$ of $\m_{m,n}$.  One can, therefore, reinstate column $1$ and use it to connect the ends of the ``snaking'' Hamiltonian path.  This describes a Hamiltonian cycle in $\m_{m,n}$.
 
 \smallskip
 
 \noindent {\bf (c)}.2.
-When $mn$ is even, the Hamiltonicity of $\widetilde{\m}_{m,n}$ follows from the fact that $\m_{m,n}$ is a spanning subgraph of $\widetilde{\m}_{m,n}$.  (Think about it!)  When $mn$ is odd, one needs just traverse $\widetilde{\m}_{m,n}$'s vertices row by row, going to the cyclically next vertex after completing each row (see Fig.~\ref{fig:HamiltonTorus}).  Details are left to the reader.
+When $mn$ is even, the Hamiltonicity of $\widetilde{\m}_{m,n}$ follows from the fact that $\m_{m,n}$ is a spanning subgraph of $\widetilde{\m}_{m,n}$.  (Think about it!)  When $mn$ is odd, one need just traverse $\widetilde{\m}_{m,n}$'s vertices row by row, going to the cyclically next vertex after completing each row (see Fig.~\ref{fig:HamiltonTorus}).  Details are left to the reader.
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.45]{FiguresGraph/HamiltonTorus}
-\caption{Illustrating the principles for building Hamiltonian cycles in $m \times n$ tori when both $m$ and $n$ are even (left) and when both are odd (right).}
+\caption{Illustrating the principles for building Hamiltonian cycles in $m \times n$ tori when both $m$ and $n$ are even (left) and when both are odd (right)}
   \label{fig:HamiltonTorus}
 \end{center}
 \end{figure}
@@ -1454,12 +1443,12 @@ Inductively, to generate the order-$(k+1)$ Gray code from the order-$k$ code:
 Concatenate the order-$k$ code with a {\em reversed} copy of itself.  (It is the code-sequence that is reversed, not the individual strings.  For instance, as we go from the order-$2$ code $\langle x_0, \ x_1, \ x_2, \ x_3 \rangle$ to the order-$3$ code, we concatenate that sequence with $\langle x_3, \ x_2, \ x_1, \ x_0 \rangle$.)
 
 \medskip\item
-Augment each length-$k$ string in one copy of the order-$k$ Gray code to length $(k+1)$ by prepending a $0$ to each string; and, augment each length-$k$ string in the other (reversed) copy of the order-$k$ Gray code to length $(k+1)$ by prepending a $1$ to each string.
+Augment each length-$k$ string in one copy of the order-$k$ Gray code to length $(k+1)$ by prepending a $0$ to each string; augment each length-$k$ string in the other (reversed) copy of the order-$k$ Gray code to length $(k+1)$ by prepending a $1$ to each string.
 \end{itemize}
 Table~\ref{tab:gray-code} illustrates Gray codes of the first few orders.
 
 \begin{table}
-\caption{Gray codes of orders $1$--$4$.}
+\caption{Gray codes of orders $1$--$4$}
 \label{tab:gray-code}
 \begin{equation}
 %\label{eq:gray-code}
@@ -1504,9 +1493,15 @@ We now sketch a proof that for each index $n \in \N^+$, the order-$n$ Gray code 
 \noindent {\it Assertion} 1.
 We sketch an inductive verification.
 
+\smallskip
+
 The order-($n=1$) Gray code consists of the two distinct strings $0$ and $1$.
 
+\smallskip
+
 Assume that the assertion holds for all orders $n \leq k$.
+
+\smallskip
 
 The order-$(k+1)$ code is obtained by taking two copies of the order-$k$ code and prepending $0$ to the strings in one copy and $1$ to the strings in the other copy.  The $2^k$ distinct binary strings from the order-$k$ code thereby produce $2^{k+1}$ distinct binary strings in the order-$(k+1)$ code.
 
@@ -1528,7 +1523,7 @@ The previous analysis is summarized in Fig.~\ref{fig:HamiltonHypercude} for $n=4
   \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.5]{FiguresGraph/HamiltonHypercube}
-       \caption{A Hamiltonian cycle (bold) in $\q_4$ built using a binary reflected Gray code.}
+       \caption{A Hamiltonian cycle (bold) in $\q_4$ built using a binary reflected Gray code}
   \label{fig:HamiltonHypercude}
 \end{center}
 \end{figure}
@@ -1573,9 +1568,9 @@ For each pair of arcs of $\g$ of the form
 \[ \big[a_{x,y} = (x \ \rightarrow \ y) \big] \ \ \ \mbox{ and } \ \ \ 
 \big[a_{y,z} = (y \ \rightarrow \ z) \big]
 \]
-i.e, arcs such that the target of the first arc is the source of the second arc, $\Lambda(\g)$ contains an arc $(a_{x,y} \ \rightarrow \ a_{y,z})$.
+i.e., arcs such that the target of the first arc is the source of the second arc, $\Lambda(\g)$ contains an arc $(a_{x,y} \ \rightarrow \ a_{y,z})$.
 \end{itemize}
-The relevance of this concept to this section is that the line graph of every de Bruijn network $\d_n$ is the ``next bigger'' de Bruijn network, $\d_{n+1}$.  Let us verify this claim.
+The relevance of this concept to this section is that the line digraph of every de Bruijn network $\d_n$ is the ``next bigger'' de Bruijn network, $\d_{n+1}$.  Let us verify this claim.
 
 \begin{lemma}
 \label{thm:deBruin-linegraph}
@@ -1590,7 +1585,7 @@ where $x$ is a length-$(n-1)$ binary string and $\beta, \gamma \in \{0,1\}$.  Le
 \begin{figure}[hbt]
 \begin{center}
        \includegraphics[scale=0.45]{FiguresGraph/dBlabelEdge}
-\caption{Illustrating how to label each arc of a de Bruijn network by concatenating the labels of the vertices incident to the arc and compacting the common intermediate bits.  In the depicted example, the vertex-labels $01$ and $11$ combine to yield the arc-label $011$.}
+\caption{Illustrating how to label each arc of a de Bruijn network by concatenating the labels of the vertices incident to the arc and compacting the common intermediate bits.  In the depicted example, the vertex-labels $01$ and $11$ combine to yield the arc-label $011$}
   \label{fig:dBlabelEdge-App}
 \end{center}
 \end{figure}
@@ -1630,8 +1625,8 @@ Every de Bruijn network $\d_n$ admits a (directed) Eulerian cycle.
 \end{corol}
 
 This corollary combines with Lemma~\ref{thm:deBruin-linegraph} to complete the proof of 
-Proposition~\ref{thm:named-graph-Hamiltonian}(e).  To wit:  Each $\d_n$ is the line-digraph of  $\d_{n+1}$.  Therefore, by definition of  ``line (di)graph'', the fact that $\d_n$ is (directed)-Eulerian
-(Corollary~\ref{thm:deBruijn-Eulerian}) means that $\d_{n+1}$ is (directed)-Hamiltonian.  \qed
+Proposition~\ref{thm:named-graph-Hamiltonian}(e).  Each $\d_{n+1}$ is the line digraph of  $\d_n$.  Therefore, by definition of  ``line (di)graph'', the fact that $\d_{n+1}$ is (directed)-Eulerian
+(Corollary~\ref{thm:deBruijn-Eulerian}) means that $\d_n$ is (directed)-Hamiltonian.  \qed
 \end{proof}
 
 
@@ -1661,7 +1656,7 @@ Throughout the text, we mark each exercise with 0 or 1 or 2 occurrences of the s
 
 \smallskip
 
-{\em Provide a detailed proof of Corollary~\ref{thm:list-2-colorables}(d):  The torus-graph $\widetilde{\m}_{m,n}$ is leveled---hence, $2$-colorable---if and only if $m+n$ is even.}
+{\em Provide a detailed proof of Corollary~\ref{thm:list-2-colorables}(d):  The torus-graph $\widetilde{\m}_{m,n}$ is leveled---hence, $2$-colorable---if, and only if, both $m$ and $n$ are even.}
 
 \medskip\item
 {\bf Appreciating de Bruijn networks}
@@ -1719,11 +1714,12 @@ The complete bipartite graph $K_{3,2}$ is not outerplanar.
 
 \smallskip
 
-{\em Hint:} Use the following figure to garner intuition.
+{\em Hint:} Use Fig.~\ref{fig:K32} to garner intuition.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.35]{FiguresGraph/outerplanarK3,2init} 
-\caption{$K_{3,2}$: Its two types of vertices are identified by color---white and shaded.}
+\caption{$K_{3,2}$: Its two types of vertices are identified by color---white and shaded}
+\label{fig:K32}
 \end{center}
 \end{figure}
 Perform a case-by-case analysis of all possible ways to distribute $K_{3,2}$'s vertices around a circle.
@@ -1758,8 +1754,7 @@ Every outerplanar graph is a subgraph of a Hamiltonian graph.
 
 \smallskip
 
-Phase 1 in our verification of Euler's Formula ``via deconstruction" iterates process of edge-removals until some edge-removal reduces the initial graph $\g$ to a graph with a single fa\
-ce.
+Phase 1 in our verification of Euler's Formula ``via deconstruction" iterates a process of edge-removals until some edge-removal reduces the initial graph $\g$ to a graph with a single face.
 
 \smallskip
 
