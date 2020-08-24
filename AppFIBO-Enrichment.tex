@@ -1,4 +1,4 @@
-%version of 05-19-20
+%version of 08-24-20
 
 \chapter{A Deeper Look at the Fibonacci Numbers}
 \label{ch:FIBO-enrich}
@@ -32,7 +32,7 @@ Our first identity exposes the marvelous fact that the {\em greatest common divi
 For all integers $m, n, \in \N^+$,
 \begin{equation}
 \label{eq:fibo-gcd}
-\mbox{\sc gcd} \left(F(m), F(n) \right) \ = \ F \left(\mbox{\sc gcd}(m, n) \right).
+\mbox{\sc gcd} \left(F(m), F(n) \right) \ = \ F \left(\mbox{\sc gcd}(m, n) \right)
 \end{equation}
 \end{prop}
 
@@ -66,7 +66,7 @@ We invite the reader to verify the following technical lemmas.
 
 \begin{lemma}
 \label{lem:FIBO-GCD-1}
-The following relation holds for any integers $n$ and $k \geq 1$:
+The following relation holds for any integers $n$ and $k \geq 1$.
 \[  F(n+k) \ = \ F(k) \cdot F(n+1) \ + \ F(k-1) \cdot F(n) \] 
 \end{lemma}
 
@@ -112,7 +112,9 @@ Lemma~\ref{lem:FIBO-GCD-3} guarantees that $F(\mbox{\sc gcd}(n,m))$ divides both
 
 \smallskip
 
-$\mbox{\sc gcd}(n,m)$ can be written as a linear combination, $a n + b m$, of $n$ and $m$.  (In fact, it is the smallest positive such combination.). Therefore, 
+{\Arny The CE wants more details.  This is your bailiwick.}
+
+$\mbox{\sc gcd}(n,m)$ can be written as a linear combination, $a n + b m$, of $n$ and $m$.  (In fact, it is the smallest positive such combination.) Therefore, 
 \[ F(\mbox{\sc gcd}(n,m)) \ = \ F(a n + b m) \]
 for some integers $a$ and $b$.  Lemma~\ref{lem:FIBO-GCD-1} assures us, then, that
 $F(\mbox{\sc gcd}(n,m))$ is a multiple of $n$ and, symmetrically, of $m$; therefore, it is a multiple of their {\sc gcd}. 
@@ -131,7 +133,7 @@ Our next identity asserts the equality of each product $F(n) \cdot F(n-1)$ with 
 For all integers $n \geq 1$,
 \begin{equation}
 \label{eq:FiboSumConsecutive}
-F(n) \times F(n-1) \ \ = \ \ \sum_{k=0}^{n-1} (F(k))^2.
+F(n) \times F(n-1) \ \ = \ \ \sum_{k=0}^{n-1} (F(k))^2
 \end{equation}
 \end{prop}
 
@@ -163,7 +165,7 @@ F(m+1) \times F(m)
  & = & 
    (F(m))^2  \ \ + \ \ \sum_{k=0}^{m-1} \ (F(k))^2  \\
  & = &
-   \sum_{k=0}^{m} \ (F(k))^2.
+   \sum_{k=0}^{m} \ (F(k))^2
 \end{eqnarray*}
 The induction is thus extended, which completes the proof.  \qed
 \end{proof}
@@ -174,7 +176,7 @@ The induction is thus extended, which completes the proof.  \qed
 
 \index{Cassini, Giovanni Domenico}
 
-Our final identity o Fibonacci numbers was discovered in 1680 by Giovanni Domenico Cassini, the then-director of the Paris Observatory.
+Our final identity on Fibonacci numbers was discovered in 1680 by Giovanni Domenico Cassini, the then-director of the Paris Observatory.
 
 \begin{prop} 
 For all integers $n \geq 1$,
@@ -195,17 +197,17 @@ Expression~\ref{eq:Cassini} holds for $n=1$ because $F(0) \times F(2) = (F(1))^2
 \medskip
 
 \noindent {\sf Inductive hypothesis.}
-Assuming that expression~\ref{eq:Cassini} holds for a given $n \geq 1$
+Assume that expression~\ref{eq:Cassini} holds for a given $n \geq 1$.
 
 \medskip
 
 \noindent {\sf Inductive extension.}
-Replace $F(n+2)$ by its recurrent definition in the product $F(n) \times F(n+2)$
+Replace $F(n+2)$ by its recurrent definition in the product $F(n) \times F(n+2)$.
 \begin{eqnarray*}
 F(n) \times F(n+2) & = & F(n) \times (F(n+1)+F(n)) \\
                               & = & (F(n))^2 + F(n) \times F(n+1)
 \end{eqnarray*}                   
-Now, replace the last term using the inductive hypothesis:
+Now, from the inductive hypothesis, we have:
 \begin{eqnarray*}
 (F(n))^2 & = & F(n-1) \times F(n+1) - (-1)^{n+1} \\
               & = & F(n-1) \times F(n+1) + (-1)^{n+2}
@@ -241,7 +243,7 @@ The proof resides in the following Lemma.
 For all integers $n$:
 
 \noindent {\bf (a)}
-$F(2n) \ = \ (F(n))^2 \ + \ (F(n-1))^2$
+$F(2n) \ = \ (F(n))^2 \ + \ (F(n-1))^2$;
 
 \smallskip
 
@@ -252,9 +254,9 @@ $F(2n+1) \ = \  F(n) \times (2 F(n-1) + F(n))$.
 \smallskip
 
 \begin{proof}[Sketch for the Lemma]
-{\bf (a)} The proof is by induction,
+{\bf (a)} The proof is by induction.
 
-\noindent.
+\noindent
 The base case $n=1$ is true because
 \begin{eqnarray*}
 F(2) & = & (F(1))^2 \ + \ (F(0))^2 \ = \ 2 \\
@@ -293,11 +295,11 @@ This completes the proof sketch for the lemma.  \qed
 
 By exposing the dependencies involved in computing the $n$th Fibonacci number $F(n)$,
 Fig.~\ref{fig:fastFibo} provides a pictorial argument to show why this decomposition 
-enables us to compute $F(n)$ in $log_2 n$ steps.
+enables us to compute $F(n)$ in $\log_2 n$ steps.
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/FiboFast.png}
-        \caption{The dependency relations for computing the pairs $(F(2n), F(2n+1))$.}
+        \caption{The dependency relations for computing the pairs $(F(2n), F(2n+1))$}
                 \label{fig:fastFibo}
 \end{center}
 \end{figure}
@@ -307,7 +309,7 @@ complete binary tree of dependencies (with some redundancies).
 \begin{figure}[h]
 \begin{center}
         \includegraphics[scale=0.3]{FiguresMaths/FiboFast13.png}
-        \caption{Ancestors involved in computing $F(13)$. }
+        \caption{Ancestors involved in computing $F(13)$ }
         \label{fig:fastFibo13}
 \end{center}
 \end{figure}
@@ -324,7 +326,7 @@ This section continues our mathematical-cultural tour of the Fibonacci numbers. 
 
 \medskip
 
-History supplies many examples of nonstandard representations of integers proving significant for reasons that go far beyond the representation of numbers.  Even within our exploration of number representations in this text, we have repeatedly benefited from unexpected uses of number representations---particularly from the ability of mathematical objects to {\em encode} a broad range of situations.  (Two simple examples: ($a$) the use of base-$2$ numerals to count in various combinatorial applications; ($b$) the use of prime-power representations within the realm of coding.)  This section is devoted to developing a system for representing integers, which is based on the family of Fibonacci numbers.
+History supplies many examples of nonstandard representations of integers proving significant for reasons that go far beyond the representation of numbers.  Even within our exploration of number representations in this text, we have repeatedly benefited from unexpected uses of number representations---particularly from the ability of mathematical objects to {\em encode} a broad range of situations.  (Two simple examples: ($a$) the use of base-$2$ numerals to count in various combinatorial applications; ($b$) the use of prime-power representations within the realm of coding.)  This section is devoted to developing a system for representing integers which is based on the family of Fibonacci numbers.
 
 \subsection{Zeckendorf's Theorem}
 \label{sec:Zeckendorf's-Theorem}
@@ -383,10 +385,10 @@ Call a representation of an integer $n$ a {\it Zeckendorf representation} or, al
 \noindent {\it Illustrating Zeckendorf numerals.}
 
 \noindent $\bullet$
-The Zeckendorf representation of the integer $12345$ is:
+The Zeckendorf representation of the integer $12,345$ is:
 \[ \begin{array}{ccccccccccc}
-12345 & =  & 10946 & + & 987    & +  &   377  & + & 34   & + & 1 \\
-           & =  & F(21)  & + & F(16)  & +  & F(14) & + & F(9) & + & F(2)
+12,345 & =  & 10,946 & + & 987    & +  &   377  & + & 34   & + & 1 \\
+            & =  & F(21)  & + & F(16)  & +  & F(14) & + & F(9) & + & F(2)
 \end{array} \]     
 
 \medskip
@@ -397,7 +399,7 @@ Fig.~\ref{fig:zeckendorf} illustrates the Zeckendorf representations of the firs
 \begin{center}
 %\includegraphics[width=0.4\textwidth]{../FIGmaths/zeckendorf_representations.png}
         \includegraphics[scale=0.5]{FiguresArithmetic/Zeckendorf}
-        \caption{The first $26$ integers (on the vertical [Y] axis), represented in the Zeckendorf system.  The breaks in the horizontal bars represent the summations of Fibonacci numbers.  The shaded horizontal bars correspond to pure Fibonacci numbers.}
+        \caption{The first $26$ integers (on the vertical [Y] axis), represented in the Zeckendorf system.  The breaks in the horizontal bars represent the summations of Fibonacci numbers.  The shaded horizontal bars correspond to pure Fibonacci numbers}
 \label{fig:zeckendorf}
 \end{center}
 \end{figure}
@@ -423,13 +425,12 @@ A single induction on $n$ accomplishes all three goals.  Keep in mind our nonsta
 \medskip
 
 \noindent {\sf Base cases}.
-The Proposition holds for the cases $n=2$, $n=3$, and $n=4$.  To wit:
-\[ \begin{array}{l}
-F(3) \ = \ 2 \\
-F(4) \ = \ 3 \\
-F(4) + F(2) \ = \ 3 + 1 \ = \ 4
-\end{array}
-\]
+The Proposition holds for the cases $n=2$, $n=3$, and $n=4$.  That is:
+\begin{eqnarray*}
+F(3) & = & 2 \\
+F(4) & = & 3 \\
+F(4) + F(2) & = & 3 + 1 \ = \ 4
+\end{eqnarray*}
 Uniqueness, which asserts that no other sum of Fibonacci numbers that satisfy the Proposition yield the indicated values, is left as an exercise.
 
 \medskip
@@ -464,7 +465,7 @@ where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
 \smallskip
 
 \noindent
-This means that the integer $n$ admits a representation of the form
+This means, in particular, that the integer $n$ admits a representation of the form
 
 \smallskip
 
@@ -482,6 +483,9 @@ Our final task is to verify that $F(r)$ and $F(k_1)$ are not consecutive Fibonac
 This equality would contradict the fact that $n < F(r+1)$.
 
 \smallskip
+
+{\Arny The CE wants more, but I am not sure what to say.  Intuitively, we want to say that we cannot represent any number as distinct sums of FIBO numbers,
+$F(r_1) + m_1$ and $F(r_2) + m_2$, where both $F(r_1)$ and $F(r_2)$ are the biggest FIBO numbers in the sums.  Is this easy to verify?}
 
 This argument verifies the uniqueness as well as the validity of $n$'s Zeckendorf numeral.
 
@@ -517,10 +521,10 @@ We offer a few comparisons between the numerals of the Fibonacci number system a
 
 \smallskip
 
-The first thing we notice is that base-$2$ numerals are often shorter than Fibonacci numerals. The integer $12345$ provides an illustrative example.  The {\em shortest} Fibonacci numeral for $12345$---i.e., the numeral with no leading $0$s---is the $21$-bit string
-\[ 12345 \ = \ 1 00001 01000 01000 00010_F \]
+The first thing we notice is that base-$2$ numerals are often shorter than Fibonacci numerals. The integer $12,345$ provides an illustrative example.  The {\em shortest} Fibonacci numeral for $12,345$---i.e., the numeral with no leading $0$s---is the $21$-bit string
+\[ 12,345 \ = \ 1 00001 01000 01000 00010_F \]
 The corresponding base-$2$ numeral has only $13$ bits:
-\[ 12345 \ = \ 110 00001 11001_2 \]
+\[ 12,345 \ = \ 110 00001 11001_2 \]
 
 \medskip
 
@@ -589,7 +593,7 @@ For the sake of precision, what we shall present is a procedure that transforms 
 \[ a_n a_{n-1} \cdots a_1 a_0 \]
 that denotes the integer
 \[ (a_n a_{n-1} \cdots a_1 a_0)_F \]
-to a Fibonacci-system numeral
+into a Fibonacci-system numeral
 \[ b_m b_{m-1} \cdots b_1 b_0 \]
 that denotes the integer
 \[ (b_m b_{m-1} \cdots b_1 b_0)_F \ = \ 1 \ + \ (a_n a_{n-1} \cdots a_1 a_0)_F \]
@@ -623,6 +627,9 @@ Because of our prepending step, index $\ell$ will always exist---i.e., the searc
 \item[{\sf Step} 3]
 Replace the bit-string $\alpha^{(right)}$ within the numeral $\alpha$ by the bit-string
 \[ 0 1 0 0 \cdots 0 \ \ \ \mbox{ ($n$ terminal $0$s)} \]
+
+{\Arny The CE claims that $n=1$ in the last parentheses.  Is this true?}
+
 \end{description}
 \noindent {\bf end} {\sf Increment}
 
