@@ -34,7 +34,7 @@ A {\it vertex-coloring} of a graph $\g$ is an assignment of labels (the ``{\em c
 
 \smallskip
 
-``$\g$ has chromatic number $c$'' \ \ \ and \ \ \  ``$\g$ is {\it $c$-colorable}''
+``$\g$ has chromatic number $c$'' \  and \  ``$\g$ is {\it $c$-colorable}''
 
 \smallskip
 
@@ -52,7 +52,7 @@ The notion of graph coloring can be used to computational advantage in a broad v
 
 \medskip
 
-One extremely important, and illustrative, use of graph coloring is to model independence among agents in {\it distributed} computing: The vertices of a computation-graph $\g$ represent {\it agents}, such as, e.g., processing elements in a multicomputer; and $g$'s edges represent {\it communication links} that enable each vertex $u$ to check its neighbors' states before taking any action and to inform its neighbors of state-changes occasioned by an action by $u$.  
+One extremely important, and illustrative, use of graph coloring is to model independence among agents in {\it distributed} computing: The vertices of a computation-graph $\g$ represent {\it agents}, such as, e.g., processing elements in a multicomputer; and $\g$'s edges represent {\it communication links} that enable each vertex $u$ to check its neighbors' states before taking any action and to inform its neighbors of state-changes occasioned by an action by $u$.  
 
 \smallskip
 
@@ -103,7 +103,7 @@ Say first that $\g$ is a leveled graph.  Then labeling each vertex of $\g$ with 
 
 \medskip
 
-{\Arny Looking behind the CE's comments, I have rewritten the next paragraph.  Reactions?}
+%{\Arny Looking behind the CE's comments, I have rewritten the next paragraph.  Reactions?}
 
 Say next that $\g$ is $2$-colorable.  Pick any vertex $v_0$ of $\g$ and assign it to be the unique vertex on level $1$.  Next, assign all neighbors of $v_0$ to level $2$.  Continuing iteratively, say that the largest level-number that we have employed---i.e., assigned vertices to---is $\ell$.  Then we now assign to level $\ell +1$ all neighbors of level-$\ell$ vertices that have not yet been assigned to a level.  Because $\g$ is $2$-colorable, this process colors every vertex of $\g$.  Moreover, for each vertex $v$ of $\g$:
 \begin{itemize}
@@ -783,7 +783,8 @@ Vertex $v$ has degree $\leq 4$.
 By definition, no more than four colors are needed to color $v$'s neighbors in this case.
 \end{description}
 
-In all remaining cases, vertex $v$ has precisely five neighbors---or else, we would have invoked Case 1 to color $\g$ with five colors.  We shall visualize vertex $v$ as in 
+In all remaining cases, vertex $v$ has precisely five neighbors---or else, we would have invoked Case 1 to color $\g$ with five colors.  
+%We shall visualize vertex $v$ as in 
 
 
 \begin{description}
@@ -792,7 +793,8 @@ For some $5$-coloring of $\g$, at least two neighbors of $v$ get the same color.
 
 \smallskip
 
-Because $v$ has exactly five neighbors, in this case, only four colors are used to color these neighbors.
+Because $v$ has exactly five neighbors, in this case, only four colors are used to color these neighbors
+and then, $v$ can be colored accordingly to get a valid 5-coloring.
 \end{description}
 In all remaining cases, the five neighbors of $v$ receive distinct colors.  The situation therefore appears as in Fig.~\ref{fig:5colorsInit}, which depicts vertex $v$ and its neighbors.
 \begin{figure}[hbt]
@@ -808,13 +810,15 @@ In this figure and its companions that illustrate the current proof, we use inte
 
 \begin{description}
 \item[{\sf Case 3}.]
-For some $5$-coloring of $\g$, some two neighbors of $v$---call them $v_1$ and $v_2$---reside in distinct components of $\g$ once $v$ and its incident edges are removed from $\g$.
+For some $5$-coloring of $\g$, some two neighbors of $v$---assume there are $v_1$ and $v_2$---reside in distinct components of $\g$ once $v$ and its incident edges are removed from $\g$.
 
 \smallskip
 
-As before, let $\g'$ be the (in this case, disconnected) graph that results when $v$ and its incident edges are removed from $\g$.  For $i = 1,2$, let $\g_i$ be the component of $\g'$ that contains vertex $v_i$.
+As before, let $\g'$ be the (in this case, disconnected) graph that results when $v$ and its incident edges are removed from $\g$.  
+For $i=1,2$, let $\g_i$ be the components of $\g'$ that contains vertex $v_i$.
 
-Say that, under the $5$-coloring of $\g$ that we are focusing on, $v_1$ is colored {\it black} and $v_2$ is colored {\it grey}.  Figure~\ref{fig:5colorsCase3} illustrates the scenario.
+Say that, under the $5$-coloring of $\g$ that we are focusing on, $v_1$ is colored {\it grey} and $v_2$ is colored {\it black}. 
+Figure~\ref{fig:5colorsCase3} illustrates the scenario.
 \begin{figure}[hbt]
 \begin{center}
    \includegraphics[scale=0.4]{FiguresGraph/5colorsCase1}
@@ -823,11 +827,12 @@ Say that, under the $5$-coloring of $\g$ that we are focusing on, $v_1$ is color
 \end{center}
 \end{figure}
 
-We recolor the vertices of $\g_1$ so that vertex $v_1$ is now colored {\it grey}.  (One need only switch the colors {\it black} and {\it grey} in the existing coloring of $\g_1$ to achieve this.)  It is always possible to do this in a way that does not affect the valid coloring of $\g_2$ because $\g_1$ and $\g_2$ are mutually disjoint.
+We recolor the vertices of $\g_2$ so that vertex $v_2$ is now colored {\it grey}.  (One needs only switch the colors {\it black} and {\it grey} in the existing coloring of $\g_2$ to achieve this.)  It is always possible to do this in a way that does not affect the valid coloring of $\g_1$ because $\g_1$ and $\g_2$ are mutually disjoint.
 
 \smallskip
 
-Once we have thus recolored $\g_1$, we have a $5$-coloring of $\g$ for which Case 2 holds.  (In fact, we can color vertex $v$ {\em red} when we reattach it to $\g'$.)
+Once we have thus recolored $\g_2$, we obtain a $5$-coloring of $\g$ for which Case 2 holds.  (In fact, we can color vertex $v$ in the missing
+of the 5 colors when we reattach it to $\g'$.)
 \end{description}
 
 %\begin{itemize}
@@ -868,8 +873,7 @@ Importantly, these vertices have received distinct colors ($c_1$ and $c_3 \neq c
 
 \smallskip
 
-Now take $\g$ and focus only on the vertices that are colored $c_1$ or $c_3$ (as are $v_1$ and $v_3$, respectively) and on the vertices that are colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One sees from Fig.~\ref{fig:5colorsCase2} that:
-{\Denis check here}
+Now take $\g$ and focus only on the vertices that are colored $c_1$ or $c_3$ (as are $v_1$ and $v_3$, respectively) and on the vertices that are colored $c_2$ or $c_4$ (as are $v_2$ and $v_4$, respectively).  One sees from Fig.~\ref{fig:5colorsCase4} that:
 \begin{itemize}
 \item
 $\g$ can---{\em but need not}---contain a path whose vertices alternate  colors $c_1$ and $c_3$. Call this a ``$c_1$-$c_3$ path'' between vertices $v_1$ and $v_3$.
@@ -880,8 +884,7 @@ $\g$ {\em cannot} contain both of the paths just described, i.e., a $c_1$-$c_3$ 
 
 \smallskip
 
-These two paths, if they existed, would cross one another---which is forbidden because $\g$ is a {\em planar} graph,  See Fig.~\ref{fig:5colorsCase2}.
-
+These two paths, if they existed, would cross one another---which is forbidden because $\g$ is a {\em planar} graph,  See Fig.~\ref{fig:5colorsCase4}.
 
 \end{itemize}
 It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$ path between $v_2$ and $v_4$.  Say, with no loss of generality, that the former path does not exist.  Then we can switch colors $c_1$ and $c_3$ beginning with vertex $v_1$ and obtain a coloring of $\g$ in which $v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as in Case 3 to get a $5$-coloring of $\g$.
