@@ -1412,12 +1412,55 @@ the latter bound is given by
 \end{itemize}
 The terms $\overline{\kappa}$ and $\underline{\kappa}$ are real constants which do not depend on $n$---although they could depend on $c$.
 
-\smallskip
+\medskip
 
 %{\Arny I did not totally succeed -- $e$ snuck into my calculation.  I don't see how to conclude... I did the calculations, but it remains a term greater than 1 to a power}
 
-We can combine the bounds (\ref{eq:upper-integral-xc}) and (\ref{eq:lower-integral-xc}) into a perspicuous two-sided bound on $S_c(n)$.  The lower bound comes directly from Eq.~(\ref{eq:lower-integral-xc}).  We derive the upper bound by manipulating 
-Eq.~(\ref{eq:upper-integral-xc}) into a more convenient form.  We begin by multiplying the expression by $n^{c+1}/n^{c+1} = 1$, which, does not change its value; we then perform some algebraic manipulation.
+\noindent
+We combine the bounds (\ref{eq:upper-integral-xc}) and (\ref{eq:lower-integral-xc}) into a two-sided bound on $S_c(n)$.
+\begin{itemize}
+\item
+We use the quantity $\underline{C}_c(n)$ from Eq.~(\ref{eq:lower-integral-xc}) as our lower bound on $S_c(n)$.
+\medskip\item
+To derive our upper bound $S_c(n)$:
+  \begin{itemize}
+  \item
+We begin with the quantity $\overline{C}_c(n)$ from Eq.~(\ref{eq:upper-integral-xc})
+\[ \frac{1}{c+1} (n+1)^{c+1} \ + \ \overline{\kappa} \]
+  \medskip\item
+We multiply this expression by the quantity $n^{c+1}/n^{c+1} = 1$.  This operation clearly does not change the value of the expression, although it does change its form into
+\[ \frac{1}{c+1} \cdot n^{c+1} \cdot \left( \frac{n+1}{n} \right)^{c+1}  \ + \ \overline{\kappa} \]
+This expression can be simplified by algebraic manipulation into the form
+\begin{equation}
+\label{eq:preVALUEe-1}
+\frac{1}{c+1} \cdot n^{c+1} \cdot \left( 1 \ + \frac{1}{n} \right)^{c+1} \ + \ \overline{\kappa}
+\end{equation}
+
+  \medskip\item
+Next, we remark that there exists a constant $\kappa$ which depends on $\overline{\kappa}$ and $c$, {\em but not on $n$}, such that expression (\ref{eq:preVALUEe-1}) is no larger than (i.e., is less than or equal to) the expression
+\begin{equation}
+\label{eq:preVALUEe-2}
+\frac{1}{c+1} \cdot n^{c+1} \cdot \left( 1 \ + \frac{1}{n} \right)^{n+1} \ + \ \kappa
+\end{equation}
+This inequality follows from the fact that $1 + 1/n$ always exceeds $1$, so increasing the exponent in expression (\ref{eq:preVALUEe-1}) from $c+1$ to $n+1$ can only increase the value of the expression.
+
+\medskip\item
+Finally, we invoke a somewhat surprising, elegant result from the calculus.
+
+\begin{lemma}
+\label{thm:Limit4e}
+For all positive $n$, $(1 \ + \ 1/n)^n \ \leq \ e$, where $e = 2.71828\cdots$ is Euler's constant. 
+\end{lemma}
+
+Lemma~\ref{thm:Limit4e} tells us that expression (\ref{eq:preVALUEe-2}) no larger than (i.e., is less than or equal to) the expression
+\begin{equation}
+\label{eq:preVALUEe-3}
+\frac{e}{c+1} \cdot n^{c+1} \ + \ \kappa
+\end{equation}
+  \end{itemize}
+\end{itemize}
+
+\ignore{********************
 \begin{eqnarray}
 \nonumber
 \overline{C}_c(n)
@@ -1433,6 +1476,8 @@ Eq.~(\ref{eq:upper-integral-xc}) into a more convenient form.  We begin by multi
 \nonumber
   & = &
 \frac{1}{c+1} \cdot n^{c+1} \cdot \left( 1 \ + \frac{1}{n} \right)^{c+1} \ + \ \overline{\kappa} \\
+  & < &
+\frac{1}{c+1} \cdot n^{c+1} \cdot \left( 1 \ + \frac{1}{n} \right)^{c+1} \ + \ \kappa \\
 \label{eq:useVALUEe}
   & < & 
 \frac{e}{c+1} \cdot n^{c+1} \ + \ \kappa
@@ -1449,6 +1494,7 @@ For all positive $n$, $(1 \ + \ 1/n)^n \ \leq \ e$.
 %\overline{C}_c(n) & \leq &
 %\frac{1}{c+1} \cdot n^{c+1} \ + \ \kappa n^c \ \ \ \ \ \mbox{ for some } \kappa \geq 0
 %\end{eqnarray}
+*************************}
 
 \smallskip
 
@@ -1456,7 +1502,7 @@ We finally have our two-sided bound on $S_c(n)$:
 
 \begin{prop}
 \label{thm:bounds-sum-xc}
-There exist constants $\underline{\kappa}$ and $\kappa$ which do not depend on $n$---although they could depend on $c$---such that, for all sufficiently large $n$:
+There exist constants $\underline{\kappa}$ and $\kappa$ which do not depend on $n$---but which could depend on $c$---such that, for all sufficiently large $n$:
 \begin{equation}
 \label{eq:bounds-sum-xc}
 \frac{1}{c+1} n^{c+1} \ + \ \underline{\kappa}
