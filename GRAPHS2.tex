@@ -249,13 +249,18 @@ We refer the reader to the revolutionary 1979 text by Mead and Conway \cite{Mead
 \index{graph!outerplanar}
 \index{outerplanar graph}
 
-\noindent
-A graph is {\it planar} precisely if it can be drawn {\em without any crossing edges}.  A graph $\g$ is {\it outerplanar} precisely if it can be drawn by {\em placing its vertices along a circle in such a way that its edges can be drawn as noncrossing chords of the circle}.  The latter condition is
-equivalent to demanding that $\g$'s edges can be drawn within the circle without any crossings.
+\begin{itemize}
+\item
+A graph is {\it planar} precisely if it can be drawn {\em without any crossing edges}.
+\medskip\item
+A graph $\g$ is {\it outerplanar} precisely if it can be drawn by {\em placing its vertices along a circle in such a way that its edges can be drawn as noncrossing chords of the circle}.
 
 \smallskip
 
-We urge the reader to garner intuition about the graphs in these families by experimenting with drawing some specific, rather complex graphs.
+The latter condition is equivalent to demanding that $\g$'s edges can be drawn within the circle without any crossings. 
+\end{itemize}
+
+We encourage the reader to garner intuition about the graphs in these families by experimenting with drawing some specific, rather complex graphs.
 \begin{itemize}
 \item
 The first set of graphs to draw are cliques, as defined in Section~\ref{sec:clique}.  The cliques $\k_3$, $\k_4$, and $\k_5$ will help expose the nature of the planar and outerplanar graphs, because:
@@ -317,7 +322,7 @@ vertices along one or more edges of $\g$.
 \noindent
 The characterization of planar graphs via forbidden subgraphs constitutes a celebrated theorem by the Polish mathematician and logician Kazimierz Kuratowski; the analogous result for outerplanar graphs was derived by the American mathematicians Gary Chartrand and Frank Harary (who invented the name ``outerplanar", for reasons described in Section~\ref{sec:planar-graphs}).
 
-\index{Chartrand, Gary} \index{Harary, Frank}
+\index{Chartrand, Gary} \index{Harary, Frank} \index{Kuratowski, Kazimierz}
  
 \begin{theorem}
 \label{thm:planar+outerplanar-exclusion}
@@ -334,10 +339,7 @@ A graph is planar if, and only if, it does not have a subgraph that is homeomorp
 
 \subsubsection{On $3$-coloring {\em outerplanar} graphs}
 
-\index{Kuratowski, Kazimierz}
-
-We look first at the smaller of this section's graph families, namely, the {\it outerplanar graphs}. 
-We begin our journey toward $3$-colorings of these graphs with some basic facts about the family.
+We look first at the smaller of this section's graph families, the {\it outerplanar graphs}.   We begin our journey toward $3$-colorings of these graphs with three results that highlight basic facts about the family.  We begin by exposing an important inclusion relationship between outerplanar graphs and another family of simple graphs.
 
 \begin{prop}
 \label{thm:trees-outerplanar}
@@ -367,6 +369,10 @@ We leave the challenge of providing the formal proof of this property to the rea
 \end{center}
 \end{figure}
 
+\medskip
+
+We next broaden our focus to the family relations among outerplanar graphs.
+
 \begin{prop}
 \label{thm:basic-outerplanar-stuff}
 Let $\g$ be an outerplanar graph.  Then:
@@ -376,16 +382,10 @@ Let $\g$ be an outerplanar graph.  Then:
 \noindent {\bf (a)}
 $\g$ is planar.
 
-
 \smallskip
 
 \noindent {\bf (b)}
 Every subgraph of $\g$ is outerplanar.
-
-\smallskip
-
-\noindent {\bf (c)}
-At least one of $\g$'s vertices has degree $\leq 2$.
 \end{prop}
 
 \begin{proof}
@@ -395,25 +395,117 @@ $\g$'s planarity can be inferred from our ability to draw $\g$'s edges as noncro
 \medskip
 
 \noindent {\bf (b)} 
-We can produce a drawing of any subgraph  $\g'$ of $\g$ that witnesses $\g'$'s outerplanarity by erasing some vertices and/or some edges from our outerplanarity-witnessing drawing of $\g$.  These erasures cannot introduce any edge-crossings.
+We can produce a drawing of any subgraph  $\g'$ of $\g$ that witnesses $\g'$'s outerplanarity by erasing some vertices and/or some edges from our outerplanarity-witnessing drawing of $\g$.  These erasures cannot introduce any edge-crossings.  \qed
+\end{proof}
 
-\medskip
+We finally establish a technical result which is important in our quest to $3$-color outerplanar graphs.  The proof of this result is simplified if we restrict attention to those outerplanar graphs that are densest in edges.   An outerplanar graph $\g$ is {\em maximally outerplanar} (or {\em maximal}, for short) if adding any new edge to $\g$ would destroy our ability to place $\g$'s vertices around a circle and draw its edges as noncrossing chords of the circle.
 
-\noindent {\bf (c)}
-One verifies easily that part (c) holds for all outerplanar graphs having $\leq 3$ vertices.  Focus, therefore, on an arbitrary outerplanar graph $\g$ that has $> 3$ vertices.  Since adding more edges to a graph cannot decrease the degree of any vertex, we lose no generality by focusing on a graph $\g$ that is {\em maximally} outerplanar, in the sense that adding any new edge to $\g$ would destroy our ability to draw $\g$'s edges in a noncrossing manner.
-\index{maximal outerplanar graph}
+\index{maximally outerplanar graph}
+\index{outerplanar graph!maximal}
+
+\begin{lemma}
+\label{thm:outerplanar-deg2}
+Let $\g$ be an $n$-vertex outerplanar graph.
 
 \smallskip
 
-Because $\g$ has more than three vertices, and because all of its vertices lie on a circle (in the drawing that witnesses $\g$'s outerplanarity), there must be pairs of vertices of $\g$ that are not adjacent as one walks along the circle.  Let $u$ and $v$ be nonadjacent (in the drawing) vertices of $\g$ such 
-that the distance between $u$ and $v$ (measured in terms of the number of edges that one must traverse to reach one vertex from the other) is {\em minimal} among pairs of nonadjacent vertices.  We must consider two cases.
+\noindent {\bf (a)}
+If $\g$ is maximal, and $n \geq 3$, then at least one of $\g$'s vertices has degree $2$.
+
+\smallskip
+
+\noindent {\bf (b)}
+Therefore, if $n \geq 1$, then at least one of $\g$'s vertices has degree $\leq 2$.
+\end{lemma}
+
+\begin{proof}
+We remark first that part (b) follows immediately from part (a) because adding edges to a non-maximal graph---with the goal of making it maximal---can never reduce the degree of any vertex.  
+So we turn to crafting a proof of part (a).
+
+\medskip
+
+We visualize each $n$-vertex maximal outerplanar graph $\g$ in terms of the drawing that witnesses its outerplanarity.  We name $\g$'s vertices $0$, $1$, \ldots, $n-1$, in their clockwise order around the circle in the drawing.  $\g$'s edges come in two groups.
 \begin{itemize}
 \item
-If the distance between $u$ and $v$ were {\em exactly} $2$, then the unique vertex that lies between $u$ and $v$ along the circle would have degree $2$.
+There are the {\em ring edges}, i.e., the ones that go around the circle.
+
+\smallskip
+
+These are edges $(0,1)$, \ $(1,2)$, \ $(2,3)$, \ \ldots, \ $(n-2, n-1)$, \ $(n-1, 0)$. 
+
 \medskip\item
-If the distance between $u$ and $v$ {\em exceeded} $2$, then there would be at least {\em two} vertices that lie between $u$ and $v$ in either direction around the circle.  But in this case, there would be two nonadjacent vertices that were closer to one another than $u$ and $v$---which contradicts our choice of $u$ and $v$ as a pair of {\em closest} nonadjacent vertices.
+There are the {\em chordal edges}.
+
+\smallskip
+In the drawing, these are noncrossing chords of the circle.
 \end{itemize}
-We conclude that $\g$ must have a vertex of degree $\leq 2$.  \qed
+
+\smallskip
+
+\noindent {\em Small outerplanar graphs.}
+We begin by analyzing outerplanar drawings of graphs having three, four, and five vertices, in order to help the reader develop intuition.
+\begin{description}
+\item[$n=3$ {\em vertices}.]
+The unique $3$-vertex maximal outerplanar graph has three ring edges
+\[ (0,1), \ (1,2), \ (2,0) \]
+and no chordal edges.  All three of its vertices have degree $2$.
+
+\medskip
+\item[$n=4$ {\em vertices}.]
+There are two $4$-vertex maximal outerplanar graphs.  Both graphs have four ring edges
+\[ (0,1), \ (1,2), \ (2,3), \ (3,0)  \]
+and one chordal edge.
+
+\smallskip
+
+The graph with chordal edge $(0, 2)$ has two vertices of degree $2$, namely, $1$ and $3$.
+
+\smallskip
+
+The graph with chordal edge $(1, 3)$ has two vertices of degree $2$, namely, $0$ and $2$.
+
+\medskip
+\item[$n=5$ {\em vertices}.]
+There are five $5$-vertex maximal outerplanar graphs.  All graphs have five ring edges
+\[ (0,1), \ (1,2), \ (2,3), \ (3,4) , \ (4, 0)  \]
+and two chordal edges (which share an endpoint).
+
+\begin{itemize}
+\item
+The graph with chordal edges $(0,2)$ and $(0,3)$ has two vertices of degree $2$, namely, $1$ and $4$
+\item
+The graph with chordal edges $(1,3)$ and $(1,4)$ has two vertices of degree $2$, namely, $2$ and $0$
+
+\item
+The graph with chordal edges $(2,4)$ and $(2,0)$ has two vertices of degree $2$, namely, $3$ and $1$
+
+\item
+The graph with chordal edges $(3,0)$ and $(3,1)$ has two vertices of degree $2$, namely, $4$ and $2$
+
+\item
+The graph with chordal edges $(4,1)$ and $(4,2)$ has two vertices of degree $2$, namely, $0$ and $3$
+\end{itemize}
+\end{description}
+
+\medskip
+
+\noindent {\em A large outerplanar graph.}
+Let us be given a maximal outerplanar graph $\g$ having $n > 3$ vertices---as usual, arrayed in the clockwise order $0$, $1$, \ldots, $n-1$ around the circle that witnesses $\g$'s outerplanararity.
+
+\smallskip
+
+\ignore{***********************
+Now if vertex $0$ of $\g$ has degree $>2$, then $\g$ has a chordal edge of the form $(0,i)$ for some $i \in \{2, 3, \ldots, n-2\}$.  (This set of possible endpoints just witnesses the chordality of the edge.) sily that part (c) holds for all outerplanar graphs having $\leq 3$ vertices.  Focus, therefore, on an arbitrary outerplanar graph $\g$ that has $> 3$ vertices.  Since adding more edges to a graph cannot decrease the degree of any vertex, we lose no generality by focusing on a graph $\g$ that is 
+*****************}
+
+Because $\g$ has $n>3$ vertices, and because all of its vertices lie on circle, there must be pairs of vertices of $\g$ that {\em are not adjacent} as one walks along the circle (following ring edges).  Let $u$ and $v$ be a pair of nonadjacent vertices whose distance---measured in terms of the number of ring edges that one must traverse to reach one vertex from the other---is {\em minimal} among pairs of nonadjacent vertices.  We distinguish two cases.
+\begin{itemize}
+\item
+If the distance between $u$ and $v$ is {\em exactly} $2$, then the unique vertex that lies between $u$ and $v$ along the circle would have degree $2$.
+\medskip\item
+If the distance between $u$ and $v$ {\em exceeds} $2$, then there must be {\em at least two} vertices that lie between $u$ and $v$ along the circle.  But in this case, the path between $u$ and $v$ contains two nonadjacent vertices that are closer to one another than $u$ and $v$ are.  This, however, contradicts our choice of $u$ and $v$ as a pair of {\em closest} nonadjacent vertices.
+\end{itemize}
+We conclude that $\g$ must have a vertex of degree $2$.  \qed
 \end{proof}
 
 \medskip
