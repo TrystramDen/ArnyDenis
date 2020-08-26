@@ -410,12 +410,12 @@ Let $\g$ be an $n$-vertex outerplanar graph.
 \smallskip
 
 \noindent {\bf (a)}
-If $\g$ is maximal, and $n \geq 3$, then at least one of $\g$'s vertices has degree $2$.
+For maximal $\g$: If $n \geq 3$, then at least one of $\g$'s vertices has degree $2$.
 
 \smallskip
 
 \noindent {\bf (b)}
-Therefore, if $n \geq 1$, then at least one of $\g$'s vertices has degree $\leq 2$.
+For all outerplanar $\g$: If $n \geq 1$, then at least one of $\g$'s vertices has degree $\leq 2$.
 \end{lemma}
 
 \begin{proof}
@@ -490,7 +490,7 @@ The graph with chordal edges $(4,1)$ and $(4,2)$ has two vertices of degree $2$,
 \medskip
 
 \noindent {\em Large outerplanar graphs.}
-A valuable way to think about maximal outerplanar graphs is in terms of the drawings that witness their maximal outerplanarity.  Given any such drawing of a maximal outerplanar graph, one cannot add a chordal edge to the drawing without crossing an existing chordal edge.  We now turn this intuition into a proof of the lemma.
+A valuable way to think about maximal outerplanar graphs is in terms of the drawings that witness their maximal outerplanarity.  Given any such drawing, one cannot add a chordal edge to the drawing without crossing an existing chordal edge.  We now turn this intuition into a proof of the lemma.
 
 \smallskip
 
@@ -498,19 +498,11 @@ Let us be given a maximal outerplanar graph $\g$ having $n > 3$ vertices---as us
 
 \smallskip
 
-\ignore{***********************
-Now if vertex $0$ of $\g$ has degree $>2$, then $\g$ has a chordal edge of the form $(0,i)$ for some $i \in \{2, 3, \ldots, n-2\}$.  (This set of possible endpoints just witnesses the chordality of the edge.) sily that part (c) holds for all outerplanar graphs having $\leq 3$ vertices.  Focus, therefore, on an arbitrary outerplanar graph $\g$ that has $> 3$ vertices.  Since adding more edges to a graph cannot decrease the degree of any vertex, we lose no generality by focusing on a graph $\g$ that is 
-*****************}
-
-Because $\g$ has $n>3$ vertices, and because it is {\em maximally} planar, the given drawing has chordal edges.  Let us measure the {\em length} of each chordal edge $(u,v)$ by the smallest number of ring edges that connect vertex $u$ with vertex $v$.  (In other words, we are traversing the circle between $u$ and $v$ in the shorter of the two possible directions.)  We want to look at the shortest chordal edges according to our length measure.  We distinguish two cases.
+Because $\g$ has more than three vertices and because it is {\em maximally} outerplanar, the given drawing has chordal edges.  Let us measure the {\em length} of each chordal edge $(u,v)$ by the smallest number of ring edges that connect vertex $u$ with vertex $v$.  (In other words, we are traversing the circle between $u$ and $v$ in the shorter of the two possible directions.)  We want to look at the shortest chordal edges according to our length measure.  We distinguish two cases.
 %ie on circle, there must be pairs of vertices of $\g$ that {\em are not adjacent} as one walks along the circle (following ring edges).  Let $u$ and $v$ be a pair of nonadjacent vertices whose distance---measured in terms of the number of ring edges that one must traverse to reach one vertex from the other---is {\em minimal} among pairs of nonadjacent vertices.  We distinguish two cases.
 \begin{enumerate}
 \item
-If the shortest chordal edge $(u,v)$ has distance $2$, then there must be a single vertex $w \in \n_{\fg}$ that lies between $u$ and $v$ along the circle.  (The shortest path of ring edges between $u$ and $v$ would have the form $(u - w - v)$.)
-
-\smallskip
-
-In this case, vertex $w$ would have degree $2$.
+If the shortest chordal edge $(u,v)$ has distance $2$, then there must be a single vertex $w \in \n_{\fg}$ that lies between $u$ and $v$ along the circle.  (The shortest path of ring edges between $u$ and $v$ would have the form $(u - w - v)$.)  It is easy to see that vertex $w$ has degree $2$.
 
 \medskip\item
 If the shortest chordal edge $(u,v)$ has distance $d > 2$, then the shortest path of ring edges between $u$ and $v$ would have the form
@@ -520,17 +512,33 @@ is a {\em shortest} chordal edge in the drawing means that there does not exist 
 
 \smallskip
 
-Now we are ``in trouble".  Because there are at least two vertices $w_1, w_2$ between $u$ and $v$ around the circle, the absence of a chordal edge (other than $(u,v)$) with endpoints in the set $S$ {\em contradicts the alleged maximal planarity} of graph $\g$.
+Now we are ``in trouble".  Because there are at least two vertices $w_1, w_2$ between $u$ and $v$ around the circle, the absence of a chordal edge (other than $(u,v)$) with endpoints in the set $S$ {\em contradicts the alleged maximal outerplanarity} of graph $\g$.
 
 \smallskip
-This contradiction shows that this case cannot occur.
+
+In more detail, the property of maximal outerplanarity guarantees that at least one (chordal) edge of one the following forms must be an edge of $\g$.
+
+\smallskip
+
+\hspace*{.2in}\begin{tabular}{ll}
+$(u, w_i)$
+ & for some $i \in \{1, 2, \ldots d-1\}$ \\ 
+$(w_i, w_{i+j})$
+ & for some $j \in \{ 2, 3, \ldots, d-i-1\}$ \\
+$(w_i, v)$
+ & for some $i \in \{1, 2, \ldots d-1\}$
+\end{tabular}
+
+\smallskip
+
+This contradiction shows that this case, $d>2$, cannot occur.
 \end{enumerate}
 We thus see that every maximally outerplanar graph has a vertex of degree $2$.  \qed
 \end{proof}
 
 \medskip
 
-We return now to our primary concern---vertex-colorings in graphs.
+We return now to our primary concern---vertex-colorings in outerplanar graphs.
 
 \medskip
 
