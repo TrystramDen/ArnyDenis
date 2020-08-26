@@ -863,6 +863,7 @@ This result appeared first in \cite{Heawood90}.
 
 \smallskip
 
+\noindent
 Throughout this proof, we discuss, without explicit mention, only {\em valid} vertex-colorings---in which neighboring vertices get different colors.  We proceed by induction.
 
 \medskip
@@ -882,7 +883,7 @@ If the proposition were false, then there would exist a planar graph $\g$ having
 
 \smallskip
 
-If there were a coloring of $\g$'s vertices in which $\leq 4$ colors were used to color $v$'s neighbors, then the following analogue of the coloring strategy we used to prove Proposition~\ref{thm:P-6-colorability} would produce a $5$-coloring of $\g$.
+Assume that there were a coloring of $\g$'s vertices which used $\leq 4$ colors to color $v$'s neighbors.  We could, then, produce a $5$-coloring of $\g$ by using the following analogue of the coloring strategy we used to prove Proposition~\ref{thm:P-6-colorability}.
 \begin{enumerate}
 \item
 Remove vertex $v$ and its incident edges from $\g$, thereby producing the $n$-vertex planar graph $\g'$.
@@ -893,19 +894,19 @@ Produce a $5$-coloring of $\g'$ that uses only four colors for the vertices that
 
 \smallskip
 
-($b$) Color $v$ with any of the five available colors that is not used for $v$'s neighbors.
+($b$) Color $v$ with a color that is not used for $v$'s neighbors; there must exist one.
 \end{enumerate}
 
 \smallskip
 
-In order to proceed in pursuit of a contradiction, we must understand what structural features of $\g$ make it impossible to use only four colors on $v$'s neighbors when $5$-coloring $\g$.  There are three important situations to recognize.
+In order to proceed toward a contradiction, we must understand what structural features of $\g$ make it impossible to use only four colors on $v$'s neighbors while $5$-coloring $\g$.  There are three important situations to recognize.
 \begin{description}
 \item[{\sf Case 1}.]
 Vertex $v$ has degree $\leq 4$.
 
 \smallskip
 
-By definition, no more than four colors are needed to color $v$'s neighbors in this case.
+By definition, we need at most four colors to color $v$'s neighbors in this case.
 \end{description}
 
 In all remaining cases, vertex $v$ has precisely five neighbors---or else, we would have invoked Case 1 to color $\g$ with five colors.  
@@ -918,14 +919,16 @@ For some $5$-coloring of $\g$, at least two neighbors of $v$ get the same color.
 
 \smallskip
 
-Because $v$ has exactly five neighbors, in this case, only four colors are used to color these neighbors
-and then, $v$ can be colored accordingly to get a valid 5-coloring.
+In this case, only four colors are used to color $v$'s (exactly five) neighbors.  Then, we can use the remaining available color for $v$, which gives us a valid $5$-coloring.
 \end{description}
+
+\smallskip
+
 In all remaining cases, the five neighbors of $v$ receive distinct colors.  The situation therefore appears as in Fig.~\ref{fig:5colorsInit}, which depicts vertex $v$ and its neighbors.
 \begin{figure}[hbt]
 \begin{center}
-   \includegraphics[scale=0.45]{FiguresGraph/5colorsInit}
-\caption{A vertex of degree $5$}
+   \includegraphics[scale=0.38]{FiguresGraph/5colorsInit}
+\caption{A partially colored vertex of degree $5$}
   \label{fig:5colorsInit}
 \end{center}
 \end{figure}
@@ -935,29 +938,30 @@ In this figure and its companions that illustrate the current proof, we use inte
 
 \begin{description}
 \item[{\sf Case 3}.]
-For some $5$-coloring of $\g$, some two neighbors of $v$---assume there are $v_1$ and $v_2$---reside in distinct components of $\g$ once $v$ and its incident edges are removed from $\g$.
+For some $5$-coloring of $\g$, some two neighbors of $v$---call them $v_1$ and $v_2$---reside in distinct components of $\g$ once it is decomposed by removing $v$ and its incident edges.
 
 \smallskip
 
-As before, let $\g'$ be the (in this case, disconnected) graph that results when $v$ and its incident edges are removed from $\g$.  
-For $i=1,2$, let $\g_i$ be the components of $\g'$ that contains vertex $v_i$.
+Let $\g'$ be the (in this case, disconnected) graph which results when $v$ and its incident edges are removed from $\g$.  For $i=1,2$, say that vertex $v_i$ resides in component $\g_i$ of $\g'$.
 
-Say that, under the $5$-coloring of $\g$ that we are focusing on, $v_1$ is colored {\it grey} and $v_2$ is colored {\it black}. 
-Figure~\ref{fig:5colorsCase3} illustrates the scenario.
-\begin{figure}[hbt]
+\smallskip
+
+Say that, under the $5$-coloring of $\g$ that we are constructing, $v_1$ is colored {\it grey} and $v_2$ is colored {\it black}, as depicted in Fig.~\ref{fig:5colorsCase3}.
+\begin{figure}[hb]
 \begin{center}
-   \includegraphics[scale=0.4]{FiguresGraph/5colorsCase1}
+   \includegraphics[scale=0.38]{FiguresGraph/5colorsCase1}
 \caption{A vertex-coloring for Case 3}
   \label{fig:5colorsCase3}
 \end{center}
 \end{figure}
 
-We recolor the vertices of $\g_2$ so that vertex $v_2$ is now colored {\it grey}.  (One needs only switch the colors {\it black} and {\it grey} in the existing coloring of $\g_2$ to achieve this.)  It is always possible to do this in a way that does not affect the valid coloring of $\g_1$ because $\g_1$ and $\g_2$ are mutually disjoint.
+\smallskip
+
+We recolor the vertices of $\g_2$ so that vertex $v_2$ is now {\it grey}.  (One needs only interchange the colors {\it black} and {\it grey} in the existing coloring to achieve this.)  Because $\g_1$ and $\g_2$ are mutually disjoint, we can always do this without affecting the valid coloring of $\g_1$.
 
 \smallskip
 
-Once we have thus recolored $\g_2$, we obtain a $5$-coloring of $\g$ for which Case 2 holds.  (In fact, we can color vertex $v$ in the missing
-of the 5 colors when we reattach it to $\g'$.)
+Once we have thus recolored $\g_2$, we obtain a $5$-coloring of $\g$ for which Case 2 holds.  (We can color $v$ with the color that is not used when we reattach $v$ to $\g'$.)
 \end{description}
 
 %\begin{itemize}
@@ -977,19 +981,19 @@ Every minimum-degree vertex of $\g$ has five neighbors.
 
 \smallskip
 
-For the minimum-degree vertex $v$, let us call these neighbors $v_1$, $v_2$, $v_3$, $v_4$, $v_5$, {\em in clockwise order within the planar drawing}.
+For the minimum-degree vertex $v$, let us call these neighbors $v_1$, $v_2$, $v_3$, $v_4$, $v_5$, {\em in clockwise order within the planar drawing of $\g$}.
 \medskip\item
 In every $5$-coloring of $\g$, the neighbors of every minimum-degree vertex receive distinct colors.
 
 \smallskip
 
-For vertex $v$, let us say that neighbor $v_i$ receives color $c_i$.
+For vertex $v$, let us say that each neighbor $v_i$ receives color $c_i$.
 \end{itemize}
 \end{description}
 To analyze Case 4, we focus on vertices $v_1$ and $v_3$ in Fig.~\ref{fig:5colorsCase4}.
 \begin{figure}[hbt]
 \begin{center}
-   \includegraphics[scale=0.4]{FiguresGraph/5colorsCase2}
+   \includegraphics[scale=0.38]{FiguresGraph/5colorsCase2}
 \caption{A vertex-coloring for Case 4.}
   \label{fig:5colorsCase4}
 \end{center}
@@ -1009,14 +1013,13 @@ $\g$ {\em cannot} contain both of the paths just described, i.e., a $c_1$-$c_3$ 
 
 \smallskip
 
-These two paths, if they existed, would cross one another---which is forbidden because $\g$ is a {\em planar} graph,  See Fig.~\ref{fig:5colorsCase4}.
-
+These two paths, if they existed, would cross---see Fig.~\ref{fig:5colorsCase4}---which is forbidden because $\g$ is {\em planar}.
 \end{itemize}
-It follows that {\em either} $\g$ does not contain such a $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$ path between $v_2$ and $v_4$.  Say, with no loss of generality, that the former path does not exist.  Then we can switch colors $c_1$ and $c_3$ beginning with vertex $v_1$ and obtain a coloring of $\g$ in which $v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as in Case 3 to get a $5$-coloring of $\g$.
+It follows that {\em either} $\g$ does not contain a $c_1$-$c_3$ path between $v_1$ and $v_3$ {\em or} $\g$ does not contain a $c_2$-$c_4$ path between $v_2$ and $v_4$.  Say, with no loss of generality, that the former path does not exist.  Then we can switch colors $c_1$ and $c_3$ beginning with vertex $v_1$ and obtain a coloring of $\g$ in which $v_1$ and $v_3$ both receive the color $c_3$.  We can then proceed as in Case 3 to get a $5$-coloring of $\g$.
 
 \smallskip
 
-This four-case analysis shows that we can always produce a $5$-coloring of $\g$, which completes the proof.  \qed
+This four-case analysis shows that we can always produce a $5$-coloring of $\g$.  \qed
 \end{proof}
 
 \bigskip
@@ -1168,7 +1171,8 @@ The value of $\phi$ remains invariant under each leaf-removal:
 That is, $f$ is unchanged ($f = 1$ for a tree), while $n$ and $e$ are each reduced by $1$.
 \end{description}
 
-\medskip
+%\bigskip
+\newpage
 
 \noindent {\sf The cumulative analysis}.
 \begin{itemize}
