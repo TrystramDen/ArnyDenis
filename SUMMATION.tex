@@ -1602,7 +1602,24 @@ We now have access to the upper bound of (\ref{eq:bounds-sum-xc-INTEGER}), hence
 
 \smallskip
 
-{\Denis A short explanation is welcome here: we first majorize $\frac{1}{c-i+1} $, then, each binomial coefficient is also majorized by the max which is at $c/2$... }
+\index{majorize}
+
+We obtain the bound of inequality (\ref{eq:bounds-sum-xk}) via two majorizations.  First, we remark that $1/(c-i+1) \leq 1$ when $1 \leq i \leq c$.  Then we determine that the binomial coefficient $\displaystyle {c \choose i}$ achieves its maximum when $i =  \lceil c/2 \rceil$.  The latter fact is discovered via the following reasoning.
+\begin{itemize}
+\item
+Binomial coefficients are symmetric; i.e.,
+\[ {c \choose i} \ = \ {c \choose c-i} \]
+\medskip\item
+Binomial coefficients increase ``from either end"; i.e.,
+\[ {c \choose i} \ < \ {c \choose i+1} \]
+when $i < c/2$
+\end{itemize}
+The calculations that detail the preceding inequalities are left to the reader.
+
+%{\Denis A short explanation is welcome here: we first majorize $\frac{1}{c-i+1} $, then, each binomial coefficient is also majorized by the max which is at $c/2$... }
+
+\smallskip
+
 We have, of course, not changed the dominant behavior of $S_c(n)$ as $n$ grows without bound, but we have taken a significant step toward developing explicit expressions for the sums of the summations $S_c(n)$ when $c$ is a positive integer.
 
 \paragraph{B. Using {\em undetermined coefficients} to refine sums}
@@ -2033,13 +2050,15 @@ In this case, we obtain essentially the same bounds as in the case of nonnegativ
 
 \begin{prop}
 \label{thm:bounds-(-1)<c<0}
-Consider any summation $S_c(n)$ having fixed negative powers in the range $-1 < c <0$.  There exist nonnegative real constants $\kappa_1$ and $\kappa_2$, neither depending on $n$, such that
+The sum of any summation $S_c(n)$ having fixed negative powers in the range $-1 < c <0$
+% There exist nonnegative real constants $\kappa_1$ and $\kappa_2$, neither depending on $n$, such that
+satisfies the following inequalities.
 \begin{equation}
 \label{eq:bounds-(-1)<c<0}
- \frac{1}{c+1} n^{c+1} \ - \ \kappa_1 n^c
+ \frac{1}{c+1} n^{c+1} \ - \  \frac{1}{c+1} n^c
   \ \ \leq \ \ S_c(n)
   \ \ \leq \ \
-\frac{1}{c+1} n^{c+1} \ + \ \kappa_2
+\frac{1}{c+1} n^{c+1} \ + \ \left(1 - \frac{1}{c+1} \right)
 \end{equation}
 
 \noindent
@@ -2048,9 +2067,9 @@ $\displaystyle S_c^{(\infty)} \ \eqdef \ \sum_{i=0}^\infty i^c$,
 diverges.
 \end{prop}
 
-{\Denis we can be more precise in the constant:
+%{\Denis we can be more precise in the constant:
+%$K1.n^c$ =  -1/(c+1) and K2 1 - 1/(c+1)}
 
-$K1.n^c$ =  -1/(c+1) and K2 1 - 1/(c+1)}
 We thus observe that $S_c(n)$ has the same growth {\em pattern} with increasing $n$ as it does when $c$ is positive, but that $S_c(n)$'s growth {\em rate} is slower because of the damping effect of the negative $c$ in the exponent.  This damped growth notwithstanding, the infinite series $S_c^{(\infty)}$ diverges because $n^{c+1}$, which is the variable portion of the lower bound on $S_c(n)$, grows without bound as $n$ grows without bound.
 
 \paragraph{B. Negative powers $c < -1$}
