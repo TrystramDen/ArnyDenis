@@ -1,4 +1,4 @@
-%version of 08-19-20
+%version of 08-28-20
 
 \chapter{The Art of Counting:
 Combinatorics, with Applications to Probability and Statistics}
@@ -1537,18 +1537,18 @@ If there is a single element $s_i \in S$ whose frequency $f_S(s_i)$ is the maxim
 
 \medskip
 
-\index{mean!geometric}  \index{geometric mean} \index{{\sc geometric-mean}($S$)}
+\index{mean!geometric}  \index{geometric mean} \index{{\sc geometric\_mean}($S$)}
 
 \noindent
 The {\it geometric mean} of an $n$-element sequence $S$ is a weighted {\em product} of $S$'s elements.  As with the arithmetic mean, the geometric mean is defined in terms of $S$'s frequency function $f_S$:
-\[ \mbox{\sc geometric-mean}(S) \ \eqdef \  \left(\prod_{s_i \in S} \ s_i^{f_S(s_i)} \right)^{1/n} \]
+\[ \mbox{\sc geometric\_mean}(S) \ \eqdef \  \left(\prod_{s_i \in S} \ s_i^{f_S(s_i)} \right)^{1/n} \]
 A bit of arithmetic verifies that the geometric mean is defined by the following property:
 
 \smallskip
 
 {\em 
 \begin{tabular}{l}
-The logarithm of {\sc geometric-mean}($S$) is the arithmetic mean of the \\
+The logarithm of {\sc geometric\_mean}($S$) is the arithmetic mean of the \\
 logarithms of the elements of sequence $S$.
 \end{tabular}
 }
@@ -1603,8 +1603,9 @@ The argument centers on the following chain of equations.
 \end{proof}
 
 The fact that the variance is defined in terms of the {\em squares} of the components of the distance measure can make it awkward to reason with:  The mean is {\em linear} in the experimental outcomes, but the ``corrector" of the mean is {\em quadratic} in the outcomes.  To compensate for this, it is common to use the {\it standard deviation}
-\[ \mbox{\sc standard-deviation}(S) \ \eqdef \ \sqrt{\mbox{\sc variance}(S)} \]
+\[ \mbox{\sc standard\_deviation}(S) \ \eqdef \ \sqrt{\mbox{\sc variance}(S)} \]
 rather than the variance when reasoning about how well $\bar{x}$ approximates $\mu$.
+\index{{\sc standard\_deviation}($S$)}
 
 \medskip\item
 Any finite approximation to a measure that is based on infinitely many data points is bound to have imperfections.  The variance exposes some of the imperfections of the mean as a summarization tool, but it is just one step in exposing such imperfections.  In response, an increasingly fine infinite sequence of moments has been developed, the $k$th being defined as follows.
@@ -1664,7 +1665,14 @@ An example of the former situation:  An instructor in an introductory Physics co
 An example of the latter situation:  An observational experiment records, over fixed periods of time, the percentage of human births in which the newborn has a specific gender.
 \end{enumerate}
 
-Our ability to derive reliable truths from mountains of observed data relies on two monumental theorems on which the edifice of empirical reasoning stands.  We approach these results by introducing conceptual tools that aggregate (outcome sequence)-(frequency function) pairs into well-behaved {\it probability distributions} which help us (approximately) expose analyzable structure within the data.  We begin our study by introducing a small number of distributions that are among the most useful to experimental researchers.
+Our ability to derive reliable truths from mountains of observed data relies on two monumental theorems on which the edifice of empirical reasoning stands.  We approach these results by introducing conceptual tools that aggregate (outcome sequence)-(frequency function) pairs into well-behaved {\it probability distributions}.  Such distributions:
+\begin{itemize}
+\item
+help us (approximately) expose analyzable structure within the data
+\item
+enable us go beyond the observed data, via extrapolation and interpolation.
+\end{itemize}
+We begin our study by introducing a small number of distributions that are among the most useful to experimental researchers.
 
 \subsection{Probability Distributions}
 \label{sec:prob-distr}
@@ -1978,7 +1986,7 @@ $\displaystyle \mbox{\sc mean}(X) \ = \ 1 / \lambda$.
 $\displaystyle \mbox{\sc variance}(X) \ = \ 1 / \lambda^2$.
 
 \medskip\item
-$\displaystyle  \mbox{\sc standard-deviation}(X) \ = \  \mbox{\sc mean}(X)$.
+$\displaystyle  \mbox{\sc standard\_deviation}(X) \ = \  \mbox{\sc mean}(X)$.
 
 \medskip\item
 The memoryless property:  For all $x, y \geq 0$,
@@ -2044,6 +2052,19 @@ The {\it Law} and the {\it Central Limit Theorem} are really kindred results.  B
 
 \bigskip
 
+\index{von Bielfield, Jakob} \index{Bernoulli, Jacques (Latin: Jacobi)} \index{Bernoulli, Nicholas}
+
+\noindent \fbox{
+\begin{minipage}{0.96\textwidth}
+{\bf Historical note}.
+
+\smallskip
+Much of our knowledge about the early history of the Law is due to the 1767 book on statistics by the prolific German writer Jakob von Bielfeld.  The Law first appears as a theorem in the 1713 book \cite{Bernoulli} by the Swiss mathematician Jacques (Latin: Jacobi) Bernoulli.  Because of Bernoulli's death, this work was completed by his nephew Nicholas, and the book was published posthumously (the notation {\it ``opus posthumum"} in the citation). 
+\end{minipage}
+}
+
+\bigskip
+
 \noindent \fbox{
 \begin{minipage}{0.96\textwidth}
 $\oplus$ {\bf Enrichment note}.
@@ -2072,19 +2093,6 @@ The Law and the Central Limit Theorem make similar demands on their inputs.
 }
 
 \bigskip
-
-\index{von Bielfield, Jakob} \index{Bernoulli, Jacques (Latin: Jacobi)} \index{Bernoulli, Nicholas}
-
-\noindent \fbox{
-\begin{minipage}{0.96\textwidth}
-{\bf Historical note}.
-
-\smallskip
-Much of our knowledge about the early history of the Law is due to the 1767 book on statistics by the prolific German writer Jakob von Bielfeld.  The Law first appears as a theorem in the 1713 book \cite{Bernoulli} by the Swiss mathematician Jacques (Latin: Jacobi) Bernoulli.  Because of Bernoulli's death, this work was completed by his nephew Nicholas, and the book was published posthumously (the notation {\it ``opus posthumum"} in the citation). 
-\end{minipage}
-}
-
-\medskip
 
 We illustrate the Law via simple examples before returning to the Arbuthnot-Laplace question.
 
