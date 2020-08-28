@@ -106,6 +106,7 @@ A {\em path} in an undirected graph is a sequence of vertices within which every
 \medskip
 
 \index{graph!path in a digraph} \index{path!in a digraph}
+\index{path-graph}
 
 Paths and cycles in directed graphs are defined similarly, except that now every adjacent pair of vertices must be connected by an {\em arc}, and all arcs must ``point in the same direction''.
 
@@ -120,7 +121,7 @@ u_1 \ \rightarrow \ u_2 \ \rightarrow \ u_3 \ \rightarrow \cdots \rightarrow \ u
 \]
 The just-described path makes sense only when every vertex $u_i$ belongs to $\n_{\fg}$ and every one of its arcs $(u_i \rightarrow u_{i+1})$ belongs to $\a_{\fg}$.
 
-\index{cycle (in a digraph)}
+\index{cycle!in a digraph}
 
 When $u_1 = u_n$, then the path (\ref{eq:di-path}) is a {\em cycle} that contains vertices $u_1, \ldots, u_{n-1}$.
 
@@ -235,7 +236,7 @@ The  {\it distance} in graph $\g$ between vertex $u_1$ and vertex $u_n$ is the l
 
 \smallskip
 
-\index{digraph!distance between two vertices}
+\index{digraph!distance}
 
 \noindent {\it Distance and diameter in a digraph.}
 Extrapolating from our discussion of path (\ref{eq:di-path}): The {\it distance} from vertex $u_1$ to vertex $u_n$ in the digraph $\g$ is the smallest number of arcs in any path from $u_1$ to $u_n$.  In detail:
@@ -253,12 +254,12 @@ Extrapolating from our discussion of path (\ref{eq:di-path}): The {\it distance}
 \end{equation}
 The {\it diameter} of a directed graph $\g$ is the largest distance between two vertices of $\g$, i.e., the largest number $d$ for which there exist vertices $u_1, u_n \in \n$ such that {\sc distance}$(u_1, u_n) = d$.  Note that when discussing digraphs, we always use {\em directed} paths when defining distance.
 
- \index{diameter in a digraph} \index{digraph!diameter}
+ \index{diameter!in a digraph} \index{digraph!diameter}
 
 \medskip
 
 \index{graph!!distance between two vertices}
-\index{diameter in a graph}
+\index{diameter!in a graph}
 
 \noindent {\it Distance and diameter in an undirected graph.}
 It is easy to extrapolate from our discussion of {\em directed} paths in {\em directed} graphs, as illustrated in (\ref{eq:di-path}), to an analogous notion of {\em undirected} path in an {\em undirected} graph.  Informally, one derives each undirected  notion by removing the arrowheads in from the arcs in a directed graph.  We leave details to the reader.  Having thus converted a directed graph into an undirected one, call it $\g$: The {\it distance between} vertex $u_1$ and vertex $u_n$ in $\g$ is the smallest number of edges in any path from $u_1$ to $u_n$.  In detail:
@@ -1117,9 +1118,9 @@ Throughout this section, each parameter $n$ that identifies an instance from our
 \subsection{The {\it Cycle-graph} $\cc_n$}
 \label{sec:cycle}
 
-\index{cycle graph}  \index{cycle graph!vertex-degree}
-\index{cycle graph!predecessor vertex}
-\index{cycle graph!successor vertex} \index{cycle graph!diameter}
+\index{cycle-graph}  \index{cycle-graph!vertex-degree}
+\index{cycle-graph!predecessor vertex}
+\index{cycle-graph!successor vertex} \index{cycle-graph!diameter}
 
 For each positive integer $n \in \N^+$, both the {\it undirected order-$n$ cycle-graph} $\cc_n$ and the {\it directed order-$n$ cycle-graph} $\widehat{\cc}_n$  have {\it vertex-set}
 \[ \n_{{\cal C}_n} \ = \ \n_{\widehat{{\cal C}}_n} \ = \ \{ 0, \ 1, \ \ldots, \ n-1\} \]
@@ -1160,7 +1161,7 @@ $\widehat{\cc}_n$ has (directed) diameter $n-1$.
 Of course, $n-1$ is an upper bound on the diameter of any $n$-vertex digraph.  The fact that this is exactly $\widehat{\cc}_n$'s diameter is witnessed by the directed distance from each vertex $k$ of $\widehat{\cc}_n$ to its predecessor vertex $k-1 \bmod n$.
   \end{itemize}
 \end{itemize}
-\index{cycle graph!directed vertex-degree}
+\index{cycle-graph!directed vertex-degree}
 
 \begin{figure}[hbt]
 \begin{center}
@@ -1279,6 +1280,7 @@ The two families of graphs we have discussed thus far---cycles and cliques---are
 \subsection{Sibling Networks: the {\it Mesh} ($\m_{m,n}$); the {\it Torus} ($\widetilde{\m}_{m,n}$)}
 \label{sec:mesh}
 \index{mesh and torus networks}
+\index{mesh-graph} \index{torus-graph}
 
 For positive integers $m, n \in \N^+$, both the $m \times n$ {\it mesh (network)} $\m_{m,n}$ and the $m \times n$ {\it toroidal network} ({\it torus}, for short) $\widetilde{\m}_{m,n}$ have {\it vertex-set}
 \begin{eqnarray*}
@@ -1301,8 +1303,8 @@ $\m_{m,n}$ has $(m-1)n \ + \ (n-1)m$ edges; its {\it edge-set} is
 \big\}
 \end{eqnarray*}
 
-\index{row of a mesh graph}\index{mesh graph!row}
-\index{column of a mesh graph}\index{mesh graph!column}
+\index{mesh-graph!row}
+\index{mesh-graph!column}
 
 %{\Arny I amended the following definitions.  Something was bothering the CE -- I do not understand what}
 
@@ -1324,8 +1326,8 @@ and all edges both of whose endpoints belong to $V_j^{\rm (col)}$ is the $j$th {
 Vertices $\langle 1, \ 1 \rangle$, $\langle 1, \ n \rangle$, $\langle m,
 \ 1 \rangle$, and $\langle m, \ n \rangle$ are the {\it corner vertices}
 (or, just {\it corners}) of $\m_{m,n}$.
-\index{corner (vertex) of a mesh graph}
-\index{mesh graph!corner (vertex)}
+\index{corner (vertex) of a mesh-graph}
+\index{mesh-graph!corner (vertex)}
      \medskip\item
 The path-graph consisting of the vertex-set
 \[ \{ \langle 1, \ 1 \rangle, \ \langle 1, \ 2 \rangle, \ldots, \
@@ -1333,8 +1335,8 @@ The path-graph consisting of the vertex-set
 \]
 together with all edges of $\m_{m,n}$ both of whose endpoints belong
 to this set, is the {\it top edge} of $\m_{m,n}$.
-\index{top edge of a mesh graph}
-\index{mesh graph!top edge}
+\index{top edge of a mesh-graph}
+\index{mesh-graph!top edge}
 
 The other edges of $\m_n$ are defined analogously:
 
@@ -1345,37 +1347,37 @@ vertex-set
 \[ \{ \langle m, \ 1 \rangle, \ \langle m, \ 2 \rangle, \ldots, \
 \langle m, \ n \rangle \}
 \]
-\index{bottom edge of a mesh graph}
-\index{mesh graph!bottom edge}
+\index{bottom edge of a mesh-graph}
+\index{mesh-graph!bottom edge}
 
 The {\it left edge} of $\m_{m,n}$ is the path-graph built upon the
 vertex-set
 \[ \{ \langle 1, \ 1 \rangle, \ \langle 2, \ 1 \rangle, \ldots, \
 \langle m, \ 1 \rangle \}
 \]
-\index{left edge of a mesh graph}
-\index{mesh graph!left edge}
+\index{left edge of a mesh-graph}
+\index{mesh-graph!left edge}
 
 The {\it right edge} of $\m_{m,n}$ is the path-graph built upon the
 vertex-set
 \[ \{ \langle 1, \ n \rangle, \ \langle 2, \ n \rangle, \ldots, \
 \langle m, \ n \rangle \}
 \]
-\index{left edge of a mesh graph}
-\index{mesh graph!right edge}
+\index{left edge of a mesh-graph}
+\index{mesh-graph!right edge}
      \end{itemize}
 **********************}
 
   \medskip\item 
 $\m_{m,n}$ is {\em not} a regular graph.  Its four corner vertices each have degree $2$; its non-corner extreme edge vertices each have degree $3$; its {\em internal vertices} each have degree $4$.
 
-\index{mesh graph!vertex-degree} \index{internal vertex of a mesh graph}
-\index{mesh graph!internal vertex}
+\index{mesh-graph!vertex-degree}
+\index{mesh-graph!internal vertex}
 
-  \medskip\item \index{mesh graph!undirected diameter}
+  \medskip\item \index{mesh-graph!undirected diameter}
 The diameter of $\m_{m,n}$ is $m+n-2$, as witnessed by the distance between vertices $\langle 1, \ 1 \rangle$ and $\langle m, \ n \rangle$.
   \end{itemize}
- \index{mesh graph!undirected diameter}
+ \index{mesh-graph!undirected diameter}
 
 \medskip\item
 $\widetilde{\m}_{m,n}$ has $2mn$ arcs; its {\it arc-set} is
@@ -1408,7 +1410,7 @@ $j$th {\it column} of $\widetilde{\m}_{m,n}$.
 \item
 $\widetilde{\m}_{m,n}$ is a regular network; each vertex has degree $4$.  Despite the fact that $\widetilde{\m}_{m,n}$ is an {\em undirected} graph, its edges are commonly referred to via an  anthropomorphic directional labeling, as ``up, down, left, and right''  or as ``north, south, west, and east''.
   \medskip\item
-$\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \ \lfloor n/2 \rfloor$.  This can be verified by analogy to the diameter of the cycle-graph $\cc_n$.  \index{mesh graph!directed diameter}
+$\widetilde{\m}_{m,n}$'s diameter is $\lfloor m/2 \rfloor \ + \ \lfloor n/2 \rfloor$.  This can be verified by analogy to the diameter of the cycle-graph $\cc_n$.  \index{mesh-graph!directed diameter}
 \end{itemize}
 \end{itemize}
 
@@ -1466,6 +1468,8 @@ $(\langle x, u_2 \rangle, \langle x, v_2 \rangle)$ is an edge of $\g_1 \times \g
 Those are all of the edges of $\g_1 \times \g_2$.
   \end{itemize}
 \end{itemize}
+
+\index{mesh-graph}
 
 As specific examples:  {\em Each mesh-graph $\m_{m,n}$ is the direct product of path-graphs}
 \[ \m_{m,n} \ = \ \p_{m} \times \p_n \]
