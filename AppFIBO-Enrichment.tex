@@ -1,4 +1,4 @@
-%version of 08-24-20
+%version of 08-29-20
 
 \chapter{A Deeper Look at the Fibonacci Numbers}
 \label{ch:FIBO-enrich}
@@ -104,7 +104,8 @@ We are now able to verify identity (\ref{eq:fibo-gcd}) via the following asserti
   &    & \hspace*{.2in} \mbox{(by an easy extension of Lemma~\ref{lem:FIBO-GCD-3})}
 \end{array} \]
 
-\ignore{\begin{enumerate}
+\ignore{*****************
+\begin{enumerate}
 \item
 {\em $F(\mbox{\sc gcd}(n,m))$ divides $\mbox{\sc gcd}(F(n), F(m))$.}
 
@@ -122,15 +123,15 @@ Lemma~\ref{lem:FIBO-GCD-3} guarantees that $F(\mbox{\sc gcd}(n,m))$ divides both
 
 %{\Arny The CE wants more details.  This is your bailiwick.}
 
-$\mbox{\sc gcd}(n,m)$ can be written as a linear combination, $a n + b m$, of $n$ and $m$.  (In fact, it is the smallest positive such combination.) Therefore, 
+$\mbox{\sc gcd}(n,m)$ can be written as a linear combination, $a n + b m$, of $n$ and $m$.  (In fact, it is the smallest positive such combination.)  Therefore, 
 \[ F(\mbox{\sc gcd}(n,m)) \ = \ F(a n + b m) \]
 for some integers $a$ and $b$.  Lemma~\ref{lem:FIBO-GCD-1} assures us, then, that
 $F(\mbox{\sc gcd}(n,m))$ is a multiple of $n$ and, symmetrically, of $m$; therefore, it is a multiple of their {\sc gcd}. 
 \end{enumerate}
 {\Arny I am still stucked but there is a mistake, n should be F(n).}
-}
+**************}
 Applying this process until $r=0$ completes the proof. 
-The last Fibonacci number we have obtained is $F \left(\mbox{\sc gcd}(m, n) \right)$  \qed
+The last Fibonacci number we have obtained is $F \left(\mbox{\sc gcd}(m, n) \right)$.  \qed
 \end{proof}
 
 \subsection{Products of Consecutive Fibonacci Numbers}
@@ -330,7 +331,7 @@ complete binary tree of dependencies (with some redundancies).
 \label{sec:numerals-special-families}
 \label{sec:Fibo-numbers}
 
-\subsection{Preliminaries}
+%\subsection{Preliminaries}
 \label{sec:FIBO-num-intro}
 
 This section continues our mathematical-cultural tour of the Fibonacci numbers.  Our study of the sequence until now, in Sections~\ref{sec:Fibonacci} and~\ref{sec:FIBO-enrich-ops}, has focused ``inward", deriving results that are important for understanding the sequence.  Now, we focus on an ``outward"-looking application of the sequence.
@@ -339,7 +340,9 @@ This section continues our mathematical-cultural tour of the Fibonacci numbers. 
 
 History supplies many examples of nonstandard representations of integers proving significant for reasons that go far beyond the representation of numbers.  Even within our exploration of number representations in this text, we have repeatedly benefited from unexpected uses of number representations---particularly from the ability of mathematical objects to {\em encode} a broad range of situations.  (Two simple examples: ($a$) the use of base-$2$ numerals to count in various combinatorial applications; ($b$) the use of prime-power representations within the realm of coding.)  This section is devoted to developing a system for representing integers which is based on the family of Fibonacci numbers.
 
-\subsection{Zeckendorf's Theorem}
+\subsection{The Foundations of the Number System}
+
+\subsubsection{Zeckendorf's Theorem}
 \label{sec:Zeckendorf's-Theorem}
 
 \index{Zeckendorf, Edouard} \index{Zeckendorf, Edouard!Zeckendorf's Theorem}
@@ -353,8 +356,9 @@ To simplify exposition, we employ two nonstandard conventions in what follows.
 \item
 {\em We index the Fibonacci sequence starting at index $1$, not the traditional $0$.}
 \item
-{\em For integers $m$ and $n$, we write ``$m \gg n$" to mean that $m \geq n+2$.}
+{\em For integers $m$ and $n$, we write ``$m >^+ n$" to mean that $m \geq n+2$.}
 \end{enumerate}
+\index{$>^+$: at least $2$ greater than}
 
 \index{Zeckendorf, Edouard!Zeckendorf numerals} 
 
@@ -369,7 +373,7 @@ Every positive integer $n$ has a unique representation as the sum of nonconsecut
 \smallskip
 
 \noindent
-where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
+where \ \ $k_1 \ >^+ \ k_2 \ >^+ \cdots >^+ \ k_\ell \ \geq \ 2$.
 \end{prop}
 
 
@@ -387,9 +391,12 @@ The injunction against employing $F(1)$ in a representation is no real restricti
 \bigskip
 
 \index{Zeckendorf, Edouard!Zeckendorf representation}
+\index{Zeckendorf representation of an integer}
+\index{Zeckendorf, Edouard!Zeckendorf numeral}
+\index{Zeckendorf numeral}
 
 \noindent
-Call a representation of an integer $n$ a {\it Zeckendorf representation} or, alternatively, a {\it Zeckendorf numeral} if it satisfies the conditions of Proposition~\ref{thm:Zeckendorf}.\footnote{The use of the term {\it Zeckendorf numeral} conforms with the terminology of Chapter~\ref{ch:numerals}.}
+Call a representation of an integer $n$ a {\it Zeckendorf representation} or a {\it Zeckendorf numeral} if it satisfies the conditions of Proposition~\ref{thm:Zeckendorf}.\footnote{The use of the term {\it Zeckendorf numeral} conforms with the terminology of Chapter~\ref{ch:numerals}.}
 
 \medskip
 
@@ -415,23 +422,23 @@ Fig.~\ref{fig:zeckendorf} illustrates the Zeckendorf representations of the firs
 \end{center}
 \end{figure}
 
-\subsection{A Proof of Zeckendorf's Theorem}
+\subsubsection{Proving Zeckendorf's Theorem}
 \label{sec:Zeckendorf-proof}
 
-Our proof accomplishes three goals simultaneously:
-\begin{itemize}
+A complete, constructive proof of Zeckendorf's Theorem would accomplish three goals.
+\begin{enumerate}
 \item
-It specifies an algorithm for constructing a Zeckendorf representation of an arbitrary integer $n$.
+It would specify an algorithm for constructing a Zeckendorf numeral for an arbitrary integer $n$.
 \item
-It verifies that the resulting representation is
-  \begin{itemize}
-  \item
-{\em valid}---the Fibonacci numbers in the representation do, indeed, sum to $n$
-  \item
-{\em unique}---no other selection of Fibonacci numbers that satisfy Proposition~\ref{thm:Zeckendorf} yields numbers that sum to $n$.
-  \end{itemize}
-\end{itemize}
-A single induction on $n$ accomplishes all three goals.  Keep in mind our nonstandard indexing of the Fibonacci sequence as you read the proof.
+It would verify that the specified numeral is {\em valid}---i.e., that the Fibonacci numbers in the representation do, indeed, sum to $n$.
+\item
+It would verify that the specified numeral is {\em unique}---i.e., that no other selection of Fibonacci numbers that satisfy Proposition~\ref{thm:Zeckendorf} sums to $n$.
+\end{enumerate}
+We present an induction on $n$ which accomplishes the first two goals---producing a numeral and proving its validity.  Expanding the induction to accomplish the third goal---proving the uniqueness of the derived numeral---is too intricatefor this text, but it should be accessible to the determined reader from the original description in  [Zeckendorf, 1972].
+
+\smallskip
+
+Keep in mind our nonstandard indexing of the Fibonacci numbers.
 
 \medskip
 
@@ -442,7 +449,7 @@ F(3) & = & 2 \\
 F(4) & = & 3 \\
 F(4) + F(2) & = & 3 + 1 \ = \ 4
 \end{eqnarray*}
-Uniqueness, which asserts that no other sum of Fibonacci numbers that satisfy the Proposition yield the indicated values, is left as an exercise.
+Uniqueness of these representations is a simple exercise.
 
 \medskip
 
@@ -458,7 +465,8 @@ We claim that every $n$ in this interval admits a unique Zeckendorf representati
 
 \smallskip
 
-Of course, this claim is true for the smallest $n$ in the interval, namely, $n=F(r)$, because the equation ``$n=F(r)$" obviously specifies a valid Zeckendorf representation of $n$.  (We leave it to the reader to verify that this representation is unique.)
+Of course, this claim is true for the smallest $n$ in the interval, namely, $n=F(r)$, because the equation ``$n=F(r)$" obviously specifies a valid Zeckendorf representation of $n$.
+%  (We leave it to the reader to verify that this representation is unique.)
 
 \smallskip
 
@@ -471,7 +479,7 @@ Focus, therefore, on an arbitrary $n \neq F(r)$ within the interval.  Write this
 \smallskip
 
 \noindent
-where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
+where \ \ $k_1 \ >^+ \ k_2 \ >^+ \cdots >^+ \ k_\ell \ \geq \ 2$.
 
 \smallskip
 
@@ -485,30 +493,27 @@ This means, in particular, that the integer $n$ admits a representation of the f
 \smallskip
 
 \noindent
-where \ \ $k_1 \ \gg \ k_2 \ \gg \cdots \gg \ k_\ell \ \geq \ 2$.
+where \ \ $k_1 \ >^+ \ k_2 \ >^+ \cdots >^+ \ k_\ell \ \geq \ 2$.
 
 \smallskip 
 
-Our final task is to verify that $F(r)$ and $F(k_1)$ are not consecutive Fibonacci numbers, or equivalently, to verify that $F(k) \gg F(k_1)$.  To this end, assume, for contradiction, that $k_1=r-1$.  Were this the case, we would have (from the Fibonacci recurrence)
+Our final task is to verify that $F(r)$ and $F(k_1)$ are not consecutive Fibonacci numbers, or equivalently, to verify that $F(k) >^+ F(k_1)$.  To this end, assume, for contradiction, that $k_1=r-1$.  Were this the case, we would have (from the Fibonacci recurrence)
 \[ n \ = \ F(r+1) \ + \ F(k_2) \ + \cdots + \ F(k_\ell) \]
 This equality would contradict the fact that $n < F(r+1)$.
 
 \smallskip
 
-{\Arny The CE wants more, but I am not sure what to say.  Intuitively, we want to say that we cannot represent any number as distinct sums of FIBO numbers,
-$F(r_1) + m_1$ and $F(r_2) + m_2$, where both $F(r_1)$ and $F(r_2)$ are the biggest FIBO numbers in the sums.  Is this easy to verify?}
-
-This argument verifies the uniqueness as well as the validity of $n$'s Zeckendorf numeral.
+Our argument does not verify the uniqueness of $n$'s Zeckendorf numeral, but Zeckendorf's original paper does verify this property as well.
 
 \medskip
 
 Our inductive proof yields an effective way to compute the Zeckendorf representation of any number $n$---but there are likely more efficient conversion procedures.
 
-\subsection{Zeckendorf Representations as a Number System}
+\subsection{Using Zeckendorf Numerals as a Number System}
 \label{sec:Zeck-rep-number-system}
 
 \index{Fibonacci number/sequence!Fibonacci number system}
-One can employ Zeckendorf representations as a numbering system for positive integers:  As we just showed, each $n \in \N^+$ admits a unique such representation; we can expand the system to the set $\N$ by explicitly appending the number $0$ to the system.  This section discusses some of the pros and cons of the resulting system.
+One can employ Zeckendorf representations as the numerals of a number system for positive integers:  As we just showed, each $n \in \N^+$ admits such a representation; moreover, it is shown in [Zeckendorf, 1972] that the representation assigns unique numerals to each integer.  Now we can expand the system to the entire set $\N$ by explicitly appending the number $0$ to the system.  This section discusses some of the pros and cons of the resulting system.
 
 \index{Fibonacci number/sequence!Fibonacci number system!numerals}
 
@@ -638,8 +643,8 @@ Because of our prepending step, index $\ell$ will always exist---i.e., the searc
 Replace the bit-string $\alpha^{(right)}$ within the numeral $\alpha$ by the bit-string
 \[ 0 1 0 0 \cdots 0 \ \ \ \mbox{ ($\ell$ terminal $0$s)} \]
 
-{\Arny The CE claims that $n=1$ in the last parentheses.  Is this true?}
-{\Denis indeed, $n$ is not correct, it is $\ell$, I changed}
+%{\Arny The CE claims that $n=1$ in the last parentheses.  Is this true?}
+%{\Denis indeed, $n$ is not correct, it is $\ell$, I changed}
 
 \end{description}
 \noindent {\bf end} {\sf Increment}
