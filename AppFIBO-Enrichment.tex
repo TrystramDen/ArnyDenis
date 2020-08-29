@@ -81,26 +81,28 @@ by writing $F((k+1) \cdot n) = F(n + k \cdot n) = \ F(k \cdot n) \cdot F(n+1) \ 
 
 \begin{lemma}
 \label{lem:FIBO-GCD-3}
-For any integer $n \geq 1$, $F(n)$ and $F(n-1)$.
+For any integer $n \geq 1$, $F(n)$ and $F(n-1)$ are relatively prime:
+\[ \mbox{\sc gcd}(F(n-1), F(n)) \ = \ 1 \]
 \end{lemma}
 
 \noindent
-{\em Hint}: This lemma can be solved by induction. 
+{\em Hint}: The proof is a straightforward induction. 
 
 \bigskip
 
 \noindent
-We are now able to verify identity (\ref{eq:fibo-gcd}) via the following assertions.
+We are now able to verify identity (\ref{eq:fibo-gcd}) via the following assertions, where $r = \mbox{\sc rem}(m,n)$.
 
-\medskip
-
-$\mbox{\sc gcd}(F(n),F(m)) = \mbox{\sc gcd}(F(q \cdot m + r),F(m) )$
-
-$ = \mbox{\sc gcd}(F(m), \ F(m \cdot q +1) \cdot F(r) \ + \ F(m \cdot q) \cdot F(r-1))$ according to Lemma~\ref{lem:FIBO-GCD-1}
-
-$ = \mbox{\sc gcd}(F(m), \ F(m \cdot q +1) \cdot F(r) )$ according to Lemma~\ref{lem:FIBO-GCD-2}
-
-$ = \mbox{\sc gcd}(F(m), \ F(r) )$ since $ F(m)$ and $F(m \cdot q +1)$ are mutually primes by an easy extension of Lemma~\ref{lem:FIBO-GCD-3} 
+\[
+\begin{array}{lcl}
+\mbox{\sc gcd}(F(n),F(m)) & = & \mbox{\sc gcd}(F(q \cdot m + r),F(m) )  \\
+  & = & \mbox{\sc gcd}(F(m), \ F(m \cdot q +1) \cdot F(r) \ + \ F(m \cdot q) \cdot F(r-1))  \\
+  &    & \hspace*{.2in} \mbox{(by Lemma~\ref{lem:FIBO-GCD-1})} \\
+  & =  & \mbox{\sc gcd}(F(m), \ F(m \cdot q +1) \cdot F(r) ) \\
+  &     & \hspace*{.2in} \mbox{(by Lemma~\ref{lem:FIBO-GCD-2})} \\
+  & = &  \mbox{\sc gcd}(F(m), \ F(r) ) \\
+  &    & \hspace*{.2in} \mbox{(by an easy extension of Lemma~\ref{lem:FIBO-GCD-3})}
+\end{array} \]
 
 \ignore{\begin{enumerate}
 \item
